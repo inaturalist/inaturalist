@@ -349,6 +349,11 @@ ca:
   add_evidence_of_presence_track_annotation: 'Afegiu l''anotació "Evidència de Presència: Petjades"'
   add_evidence_of_presence_bone_annotation: 'Afegiu l''anotació "Evidència de Presència: Ossos"'
   add_evidence_of_presence_molt_annotation: 'Afegiu l''anotació "Evidència de Presència: Muda"'
+  add_evidence_of_presence_leafmine_annotation: 'Afegiu l''anotació "Evidència de presència: fulles mossegades"'
+  add_evidence_of_presence_hair_annotation: 'Afegir anotació "Evidència de Presència: Pèls"'
+  add_evidence_of_presence_egg_annotation: 'Afegiu l''anotació "Evidència de presència: Ous"'
+  add_evidence_of_presence_construction_annotation: 'Afegiu l''anotació "Evidència de presència: Construccions".'
+  add_established_not_established: 'Afegiu l''anotació "Establiment: No establerta".'
   #As in a Taxon Framework Relationship
   add_relationship: 'Afegeix una relació'
   #As in a Guide Section
@@ -1140,6 +1145,16 @@ ca:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Fulla mossegada
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Pèl
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construcció
+    #Does the observation belong to a non-established population or not
+    established: Establerta
+    #Organism is not a member of an established population
+    not_established: No establerta
   controlled_term_definitions:
     alive: L'organisme està viu i no mostra signes de probable mort imminent
     bone: |
@@ -1154,7 +1169,12 @@ ca:
     gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
     male: L'evidència indica que l'organisme pot produir espermatozoides per utilitzar-los en la reproducció sexual
     molt: Restes de pell o exoesquelet
+    leafmine: Evidència d'alimentació entre les capes de la dermis d'una fulla
+    hair: Pèl que ja no està fixat a l'organisme del qual es va originar
+    egg: Part o ou sencer
+    construction: Quelcom construït per un animal, fet amb materials o excavat
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
+    not_established: L'organisme pertany a una població no establerta la qual cosa pot incloure mascotes alliberades/escapades, transportades i divagants.
     organism: Tot o part d'un organisme
     scat: Matèria fecal (no egagròpiles de rapinyaires o altres materials regurgitats)
     teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
@@ -2353,6 +2373,7 @@ ca:
     herero: Herero
     hiligaynon: Híligaynon
     hill_mari: Txeremís
+    hodges_number: Número Hodges (o MONA)
     hokkien: Hokkien
     hungarian: Hongarès
     icelandic: Islandès
@@ -2364,8 +2385,10 @@ ca:
     kannada: Kanarès
     kazakh: Kazakh
     korean: Coreà
+    kweyol: Crioll francès
     latvian: Letó
     lithuanian: Lituà
+    lozi: Lozi
     luxembourgish: Luxemburguès
     malagasy: Malgaix
     malay: Malai
@@ -2377,6 +2400,8 @@ ca:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Nàhuatl
+    navajo: Navaho
+    ndebele: Ndebele
     norwegian: Noruec
     occitan: Occità
     ojibwe: Ojibwa
@@ -2390,17 +2415,22 @@ ca:
     santali: Santali
     scientific_names: Noms científics
     serbian: Serbi
+    shona: Shona
     sinhala: Singalès
     slovak: Eslovac
     slovenian: Eslovè
+    sotho: Sesotho
+    sotho_northern: Sotho Septentrional
     spanish: Castellà
     swahili: Suahili
+    swati: Swazi
     swedish: Suec
     tagalog: Tagal
     tahitian: Tahitià
     tamil: Tàmil
     thai: Tailandès
     tokelauan: Tokelauà
+    totonaco: Totonaca
     tsonga: Tsonga
     tswana: Tswana
     turkish: Turc
@@ -2413,6 +2443,7 @@ ca:
     visayan: Visayà
     waray_waray: Samarà
     xhosa: Xosa
+    zapoteco: Zapoteca
     zulu: Zulú
   less: Menys
   #Button show less text
@@ -3080,6 +3111,39 @@ ca:
   observation_accuracy_experiment_correct: "Correcte"
   observation_accuracy_experiment_uncertain: "Incerta"
   observation_accuracy_experiment_incorrect2: "Incorrecta"
+  observation_accuracy_experiment_step_4: "Pas 4: Càlcul de Precisió i Exactitud"
+  observation_accuracy_experiment_accuracy: "Exactitud"
+  observation_accuracy_experiment_we_calculated: "Calculem l'exactitud com el percentatge correcte per a tota la mostra, així com subconjunts com el de Grau de Recerca. També calculem el percentatge d'Incertesa i el percentatge d'Incorrecte. A la figura d'exemple de la dreta, el percentatge correcte seria 83, el percentatge d'incertesa seria 6 i el d'incorrecte seria 11."
+  observation_accuracy_experiment_precision: "Precisió"
+  observation_accuracy_experiment_if_every_sample: "Si cada observació de mostra es trobava en un tàxon ample, com el regne, la precisió del conjunt de dades iNaturalist seria molt alta, però la precisió seria massa baixa per fer que el conjunt de dades sigui útil. Per estimar la precisió, comptem el nombre de fulles descendents a la taxonomia d'iNaturalist per a cada tàxon associat a cada observació de la mostra. Calculem la precisió com a 1 dividit pel nombre de fulles descendents. Si el tàxon era un tàxon de la fulla final, la precisió és del 100%. S'ignoren els rangs per sota de les espècies en el càlcul de precisió."
+  observation_accuracy_experiment_in_the_example: "A la figura d'exemple de la dreta, la precisió mitjana de tres mostres d'observacions seria del 51%."
+  observation_accuracy_validator_email_subject2: "Ens voleu ajudar amb l'experiment %{version} per estimar la precisió de les observacions d'iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Ens voleu ajudar amb un <a href="%{url}">experiment (versió %{version})</a> per a estimar la precisió de les observacions d'iNaturalist?
+  observation_accuracy_validator_email_if_so2_html: |
+    <ol>
+    <li>Identifiqueu totes les observacions a l'enllaç següent amb la màxima precisió possible, fins i tot si són de grau d'investigació, o si el vostre millor identificador és d'un nivell taxonòmic superior (fins i tot el regne). </li>
+    <li>Si veieu la finestra emergent "Desacord potencial"...
+    <ul>
+    <li>i esteu segurs que no heu fet clic al botó taronja,</li>
+    <li>o si no sabeu més enllà de la vostra ID, feu clic al botó verd</li>
+    </ul>
+    </li>
+    <li>Feu-ho abans del <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Aquí teniu el <a href="%{sample_url}">subconjunt de %{num_obs} observacions</a> que creiem que podeu identificar en funció de la vostra activitat a iNat. <b>Afegiu el millor identificador possible a cadascuna de les observacions abans del %{validator_deadline_date}</b>.
+  observation_accuracy_validator_email_we_will_calculate: |
+    Calcularem la precisió comparant la vostra ID amb el Taxó d'Observació. Podeu ometre les observacions on hàgiu afegit anteriorment un identificador si aquest identificador encara és rellevant. Per obtenir més informació sobre com comptarem els acords i els desacords, seguiu llegint.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Les identificacions iguals a (A) o superiors a (B) del tàxon d'observació es comptaran com a Acords.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Les identificacions de branques diferents (C) o més imprecises que el tàxon d'observació on trieu "No, però..." al diàleg "Desacord potencial" (D) es comptaran com a Desacords.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Els identificadors més imprecisos que el tàxon d'observació on trieu "No ho sé, però..." al diàleg "Desacord Potencial" (E) es comptaran com a incerts.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Estem molt agraïts per la vostra ajuda com a identificador a iNaturalist, i moltes gràcies per haver participat en aquest estudi. Si us plau, llegiu <a href="%{url}">el mètode</a> per obtenir més informació sobre el disseny de l'experiment.
+  observation_accuracy_validator_email_with_gratitude: Agraïts,
+  observation_accuracy_validator_email_the_inaturalist_team: L'equip d'iNaturalist
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6252,12 +6316,66 @@ ca:
         cumulative_count_desc: '# d''identificacions per a un tàxon individual i els seus descendents'
         curator_coordinate_access_disabled_desc_html: |
           Aquest projecte no permet les observacions amb coordenades que no són accessibles als seus supervisors. Si no voleu compartir les coordenades d'aquesta observació amb els supervisors d'aquest projecte hauríeu de treure l'observació d'aquest projecte.
+        data_quality_assessment_desc3_html: |
+          El grau de qualitat resumeix l'exactitud, precisió, exhaustivitat, rellevància i adequació d'una observació iNaturalist com a dada de biodiversitat. Alguns atributs es determinen automàticament, mentre que d'altres estan subjectes a la votació dels usuaris d'iNat. iNaturalist comparteix observacions autoritzades de "Grau de Recerca" amb diversos socis de dades per utilitzar-les en ciència i conservació.
         disagreement_count_desc: "# dels tàxons identificats que no estan entre els ancestres del tàxon"
         identification_count_desc: '# de les identificacions per a un tàxon individual'
         flagged_photos_desc_html: |
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
+        quality_assessment_help3_html: |
+          <p>
+          L'avaluació de la qualitat de les dades és un resum de la precisió d'una observació. Totes les observacions comencen com a nota <strong>"casual"</strong> i es converteixen en <strong>"necessita identificació"</strong> quan</p>
+
+          <ul>
+          <li>l'observació <strong>té data</strong></li>
+          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té coordenades lat/lon)</li>
+          <li>l'observació <strong>té fotos o sons</strong></li>
+          <li>l'observació <strong>no és d'un ésser humà</strong></li>
+          </ul>
+          <p>
+          Les observacions es converteixen en <strong>"qualificació de recerca"</strong> quan
+          </p>
+          <ul>
+          <li>
+          la %{site_name} <strong>comunitat està d'acord amb un identificador a escala d'espècie o inferior</strong>, és a dir, quan més de 2/3 dels identificadors estan d'acord en un tàxon (si la comunitat ha votat que el tàxon comunitari ja no es pot millorar , això torna a l'identificador de nivell de subfamília o inferior)
+          </li>
+          </ul>
+          <p>
+          Les observacions tornaran a ser <strong>"casuals"</strong> si no es compleixen les condicions anteriors o la comunitat hi està d'acord
+          </p>
+          <ul>
+          <li>
+          la <strong>ubicació no sembla precisa</strong> (p. ex., micos al mig de l'oceà, hipopòtams a edificis d'oficines, etc.)
+          </li>
+          <li>
+          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o cultivat per humans)
+          </li>
+          <li>
+          l'observació <strong>no presenta proves d'un organisme</strong>, p. imatges d'elements d'aigua, roques, paisatges que no inclouen l'organisme, etc.
+          </li>
+          <li>
+          l'observació <strong>no presenta proves recents (~100 anys) de l'organisme</strong> (per exemple, fòssils, però les petjades, els excrements i les fulles mortes estan bé)
+          </li>
+          <li>
+          l'observació <strong>no presenta proves relacionades amb el mateix tema</strong> (p. ex., té quatre fotos d'organismes no relacionats. Una foto que mostri l'hàbitat del subjecte de l'observació està bé.)
+          </li>
+          <li>
+          l'observació ja no necessita un identificador <em>i</em> l'identificador de la comunitat és de la família o superior
+          </li>
+          <li>
+          l'observador ha desactivat l'identificador de comunitat i el tàxon d'identificació de comunitat no és un avantpassat o descendent del tàxon associat amb l'identificador de l'observador
+          </li>
+          </ul>
+          <p>
+          I per si això no fos prou complicat, també hi ha situacions en què el sistema obté un vot:
+          </p>
+          <ul>
+          <li>
+          El sistema votarà que l'observació no és salvatge/naturalitzada si hi ha almenys 10 observacions més d'un gènere o inferior al lloc més petit equivalent al comtat, estat o país que conté aquesta observació i el 80% o més d'aquestes observacions s'han marcat com a no salvatges/naturalitzades.
+          </li>
+          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 
@@ -7710,7 +7828,6 @@ ca:
               cannot_be_blank: no pot estar en blanc
               invalid_point: té un punt no vàlid, p.e. la longitud és més gran de 180 o la latitud inferior a -90
               must_have_more_than_three_points: ha de tenir més de 3 punts
-              polygon_with_fewer_than_four_points: té un polígon amb menys de 4 punts
         post:
           attributes:
             parent:

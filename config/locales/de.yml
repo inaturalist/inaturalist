@@ -2264,7 +2264,7 @@ de:
   leave_a_comment: Einen Kommentar hinterlassen
   leave_this_project: Dieses Projekt verlassen
   #Terminal nodes in a taxonomic tree
-  leaves: Taxon-Enden
+  leaves: '''End-Taxa'''
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
@@ -4142,7 +4142,7 @@ de:
     variety: Varietät
     form: Form
     infrahybrid: Infrahybrid
-    leaves: Taxon-Enden
+    leaves: '''End-Taxa'''
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: eine Form von
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
@@ -6254,7 +6254,7 @@ de:
         date_added_newest: Datum hinzugefügt (absteigend)
         date_added_oldest: Datum hinzugefügt (aufsteigend)
         ancestry: Vorfahren
-        show: Zeigen
+        show: Anzeigen
         children: Unterkategorien
         simplified_tree: Vereinfachte Baumstruktur
         full_taxonomy: Komplette Taxonomie
@@ -6959,7 +6959,7 @@ de:
           Wähle die Filter aus, die für Beobachtungen im jeweiligen Projekt gelten sollen.
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
-        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für Bioblitz-artige Veranstaltungen)
+        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für "Bioblitze" und ähnliche Veranstaltungen)
         traditional_projects_cannot_be_copied: Traditionelles Projekt kann nicht kopiert werden
         trusting_members_will_be_notified: |
           Du hast die Projektanforderungen geändert oder das Nutzervertrauen aktiviert. Dieses
@@ -8152,13 +8152,17 @@ de:
               is_too_large_to_edit: ist zu groß zum Bearbeiten
               is_too_large_to_import: ist zu groß zum importieren
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
+              cannot_be_blank: darf nicht leer sein
+              invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
+              must_have_more_than_three_points: muss mehr als 3 Punkte haben
+              polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: darf nicht leer sein
               invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
               must_have_more_than_three_points: muss mehr als 3 Punkte haben
-              polygon_with_fewer_than_four_points: hat ein Polygon mit weniger als 4 Punkten
+              polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         post:
           attributes:
             parent:

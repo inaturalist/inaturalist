@@ -6844,13 +6844,17 @@ fi:
               is_too_large_to_edit: on liian iso muokattavaksi
               is_too_large_to_import: on liian iso tuotavaksi
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
+              cannot_be_blank: ei voi olla tyhjä
+              invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
+              must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
+              polygon_with_less_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: ei voi olla tyhjä
               invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
               must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
-              polygon_with_fewer_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
+              polygon_with_less_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
         post:
           attributes:
             parent:

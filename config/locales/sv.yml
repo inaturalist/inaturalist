@@ -8578,13 +8578,17 @@ sv:
               is_too_large_to_edit: är för stor för att redigeras
               is_too_large_to_import: är för stor för att importeras
               contains_too_many_observations: innehåller för många fynd för import
+              cannot_be_blank: kan inte vara tomt
+              invalid_point: har en ogiltig punkt, t.ex. längdgrad större än 180 eller breddgrad mindre än -90
+              must_have_more_than_three_points: måste ha mer än 3 punkter
+              polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: kan inte vara tomt
               invalid_point: har en ogiltig punkt, t.ex. longitud större än 180 eller latitud mindre än -90
               must_have_more_than_three_points: måste ha mer än 3 punkter
-              polygon_with_fewer_than_four_points: har en polygon med färre än 4 punkter
+              polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
         post:
           attributes:
             parent:
