@@ -625,6 +625,11 @@ $introducedColor: #E4007C;
     font-style: italic;
     margin-top: 20px;
   }
+  &.conabio_description {
+    .form-group.row {
+      display: none;
+    }
+  }
 }
 .ArticlesTab .taxon_description_header {
   display: none;
