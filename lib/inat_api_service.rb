@@ -103,6 +103,7 @@ module INatAPIService
     "verifiable",
     "viewer_id",
     "viewer_id",
+    "week",
     "width",
     "without_field",
     "without_ident_user_id",
