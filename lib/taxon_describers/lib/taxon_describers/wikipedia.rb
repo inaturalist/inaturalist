@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TaxonDescribers
   class Wikipedia < Base
     def initialize( options = {} )
@@ -54,7 +56,8 @@ module TaxonDescribers
         ".mw-editsection",
         ".navbar",
         ".taxobox",
-        ".taxobox_v3"
+        ".taxobox_v3",
+        "table.infobox"
       ]
       if options[:strip_references]
         selectors_to_remove << ".reference"
