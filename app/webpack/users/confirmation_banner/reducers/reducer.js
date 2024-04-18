@@ -24,10 +24,6 @@ export function setConfirmationEmailSent( ) {
 export function confirmResendConfirmation( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( state.config.bootstrap_available === false ) {
-      window.location = `/people/${state.config.currentUser.id}/edit`;
-      return;
-    }
     dispatch( setConfirmModalState( {
       show: true,
       message: I18n.t( "users_edit_send_confirmation_prompt_with_grace_html", {

@@ -1,6 +1,15 @@
+- bootstrap ||= false
 - if current_user && !current_user.confirmed?
-  #ConfirmationBanner
-    = raw I18n.t( :please_confirm_that_email_is_the_best_contact_html, email: current_user.email)
+  #ConfirmationBanner{ class: ( bootstrap && !current_user.email.blank? ) ? "dynamic" : nil }
+    - if current_user.email.blank?
+      = I18n.t( "views.email_confirmation.your_site_account_has_no_email", site_name: @site.name )
+    - else
+      = raw I18n.t( "views.email_confirmation.please_confirm_that_email_is_the_best_contact_html", |
+        email: current_user.email )                                                                |
     = succeed "." do
       %button{ type: "button" }
-        = I18n.t( :click_here_to_resend_a_confirmation_email)
+        %a{ href:"/people/#{current_user.id}/edit"}
+          - if current_user.email.blank?
+            = I18n.t( "views.email_confirmation.please_add_an_email_and_password" )
+          - else
+            = I18n.t( "views.email_confirmation.click_here_to_resend_a_confirmation_email" )

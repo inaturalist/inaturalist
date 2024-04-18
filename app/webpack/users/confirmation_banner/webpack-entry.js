@@ -10,7 +10,7 @@ import {
 } from "redux";
 import BannerContainer from "./containers/banner_container";
 import ConfirmationBannerReducer from "./reducers/reducer";
-import configReducer, { setConfig, updateConfig } from "../../shared/ducks/config";
+import configReducer, { setConfig } from "../../shared/ducks/config";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 
 const rootReducer = combineReducers( {
@@ -28,17 +28,13 @@ const store = createStore(
   )
 );
 
-if ( !_.isEmpty( CONFIG ) ) {
-  store.dispatch( setConfig( CONFIG ) );
-}
-
 if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( updateConfig( {
+  store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
 }
 
-const element = document.getElementById( "ConfirmationBanner" );
+const element = document.querySelector( "#ConfirmationBanner.dynamic" );
 if ( element ) {
   render(
     <Provider store={store}>
