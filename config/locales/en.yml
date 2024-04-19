@@ -6711,6 +6711,15 @@ en:
         Thank you for your interest in supporting iNaturalist! Donating to
         iNaturalist is temporarily unavailable while we update our donation
         systems. Please check back soon.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Click here to resend a confirmation email
+      please_add_an_email_and_password:
+        Please add an email and password so you don't lose access to your account
+      please_click_the_link_sent_to_email_to_confirm_html:
+        Please click the link sent to <span class="email">%{email}</span> to confirm your email address.
+      please_confirm_that_email_is_the_best_contact_html:
+        Please confirm that <span class="email">%{email}</span> is the best way to contact you.
+      your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:
         flaggable_content_desc: |

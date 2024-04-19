@@ -33,6 +33,12 @@
   display: flex;
 }
 
+#ConfirmationBanner + #header + #wrapper {
+  #app {
+    top: 94px;
+  }
+}
+
 body.modal-open #app {
   right: 15px;
 }

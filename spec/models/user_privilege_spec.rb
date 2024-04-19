@@ -81,12 +81,21 @@ describe UserPrivilege do
       end
 
       it "should earn organizer" do
-        expect( user ).not_to be_privileged_with( UserPrivilege::ORGANIZER )
-        allow( UserPrivilege ).to receive( :earned_organizer? ) { true }
-        make_research_grade_candidate_observation( user: user )
-        Delayed::Job.find_each( &:invoke_job )
-        user.reload
-        expect( user ).to be_privileged_with( UserPrivilege::ORGANIZER )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be false
+        stub_verifiable_obs = double( "verifiable" )
+        expect( stub_verifiable_obs ).to receive( :limit ).and_return( ( 1..50 ).to_a )
+        expect( user.observations ).to receive( :verifiable ).and_return( stub_verifiable_obs )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be true
+      end
+
+      it "should not earn organizer if email is not confirmed" do
+        expect( UserPrivilege.earned_organizer?( user ) ).to be false
+        stub_verifiable_obs = double( "verifiable" )
+        expect( stub_verifiable_obs ).to receive( :limit ).and_return( ( 1..50 ).to_a )
+        expect( user.observations ).to receive( :verifiable ).and_return( stub_verifiable_obs )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be true
+        user.update( confirmed_at: nil )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be false
       end
     end
     describe "for identification" do
