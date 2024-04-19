@@ -1,3 +1,4 @@
+- font_family = ( current_user && current_user.is_admin? && current_user.in_test_group?( "font" ) ) ? "Lato" : "Whitney"
 .row
   .col-xs-12
     %p
@@ -16,7 +17,7 @@
         %g.y.axis
           - %w(correct uncertain incorrect precision).each_with_index do | label, index |
             %g.tick{transform: "translate( 0, #{10 + 20 * index} )", style: "opacity: 1;"}
-              %text{dy: ".2em",x: "-70",y: "-2",style: "text-anchor: start; font-size: #{label == "precision" ? 14 : 10}px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}
+              %text{dy: ".2em",x: "-70",y: "-2",style: "text-anchor: start; font-size: #{label == "precision" ? 14 : 10}px; font-family: #{font_family}, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}
                 :ruby
                   observation_accuracy_experiment_label = case label
                   when "correct"
@@ -29,7 +30,7 @@
                     t :observation_accuracy_experiment_precision
                   end
                 = observation_accuracy_experiment_label
-          %text{dy: ".2em", x: "-70", y: "-10", style: "text-anchor: start; font-size: 14px; font-family: Whitney, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}=t :observation_accuracy_experiment_accuracy
+          %text{dy: ".2em", x: "-70", y: "-10", style: "text-anchor: start; font-size: 14px; font-family: #{font_family}, 'Trebuchet MS', Arial, sans-serif; line-height: 1.6em;"}=t :observation_accuracy_experiment_accuracy
         %g.x.axis{transform: "translate( 0, 80 )"}
           - ( 0..10 ).each do | tick_value |
             - tick_position = ( 10 - tick_value ) * 80

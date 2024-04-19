@@ -7,6 +7,7 @@ import {
   handleCustomDropdownSelect
 } from "../ducks/user_settings";
 import { setModalState } from "../ducks/third_party_tracking_modal";
+import { toggleGroup } from "../../../shared/actions/test_groups";
 
 function mapStateToProps( state ) {
   return {
@@ -25,7 +26,8 @@ function mapDispatchToProps( dispatch ) {
     handleCustomDropdownSelect: ( eventKey, name ) => {
       dispatch( handleCustomDropdownSelect( eventKey, name ) );
     },
-    setModalState: newState => { dispatch( setModalState( newState ) ); }
+    setModalState: newState => { dispatch( setModalState( newState ) ); },
+    toggleGroup: group => dispatch( toggleGroup( group ) )
   };
 }
 

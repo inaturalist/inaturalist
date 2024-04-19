@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   before_action :draft_site_requires_admin
   before_action :set_ga_trackers
   before_action :set_request_locale
+  before_action :set_testing_font
   before_action :check_preferred_place
   before_action :check_preferred_site
   before_action :sign_out_spammers
@@ -806,6 +807,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_testing_font
+    return unless current_user&.is_admin?
+
+    @testing_font = params[:test] == "font" || current_user&.in_test_group?( "font" )
+    true
+  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

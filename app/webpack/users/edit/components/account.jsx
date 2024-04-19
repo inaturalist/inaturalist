@@ -15,11 +15,15 @@ const Account = ( {
   handleInputChange,
   handlePlaceAutocomplete,
   setModalState,
-  sites
+  sites,
+  toggleGroup
 } ) => {
   if ( !sites ) { return null; }
   const siteId = profile.site_id || 1;
   const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
+  const viewerIsAdmin = config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
+  const userInFontTestGroup = config.currentUser.testGroups
+    && config.currentUser.testGroups.indexOf( "font" ) >= 0;
 
   // these locales are not available for all regions (like "en-US")
   // so taking the list of keys from the english version
@@ -167,6 +171,32 @@ const Account = ( {
             </SettingsItem>
           )
           : <div className="nocontent"><div className="loading_spinner" /></div> }
+        { viewerIsAdmin && (
+          <table className="table">
+            <thead>
+              <tr className="hidden-xs">
+                <th className="borderless">Test Group</th>
+                <th className="borderless">Join / Leave</th>
+              </tr>
+            </thead>
+            <tbody className="borderless">
+              <tr>
+                <td className="col-xs-4 borderless table-row">
+                  Font
+                </td>
+                <td className="col-xs-4 borderless table-row">
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={( ) => toggleGroup( "font" )}
+                  >
+                    { userInFontTestGroup ? I18n.t( "leave" ) : I18n.t( "join" ) }
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
@@ -179,7 +209,8 @@ Account.propTypes = {
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func,
   setModalState: PropTypes.func,
-  sites: PropTypes.array
+  sites: PropTypes.array,
+  toggleGroup: PropTypes.func
 };
 
 export default Account;

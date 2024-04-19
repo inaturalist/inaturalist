@@ -86,7 +86,7 @@
       <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
-<body class="browser">
+<body class="browser<%= ' testing-font' if @testing_font %>">
   <div id="bodywrapper">
     <%= render partial: "shared/confirmation_banner" %>
     <% unless @headless -%>

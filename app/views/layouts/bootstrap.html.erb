@@ -59,7 +59,7 @@
       <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
-  <body>
+  <body class="browser<%= ' testing-font' if @testing_font %>">
     <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
       <%= render partial: "shared/confirmation_banner", locals: { bootstrap: true } %>
       <% unless @headless -%>
