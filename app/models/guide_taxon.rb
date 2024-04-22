@@ -50,23 +50,12 @@ class GuideTaxon < ApplicationRecord
     joins(:taxon).where(c)
   }
 
-  scope :tagged, lambda {|tags|
-    if tags.is_a?(String)
-      tags = [tags]
-    end
-    tag_ids = ActsAsTaggableOn::Tag.where( name: tags ).pluck( :id )
-    tagging_ids = ActsAsTaggableOn::Tagging.where( tag: tag_ids, taggable_type: "GuideTaxon" ).pluck( :id )
-    where( id: tagging_ids )
-  }
-
-  scope :tagged_in_guide, lambda {| tags, guide |
+  scope :tagged, lambda {| tags |
     if tags.is_a?( String )
       tags = [tags]
     end
-    tag_ids = ActsAsTaggableOn::Tag.where( name: tags ).pluck( :id )
-    tagging_ids = ActsAsTaggableOn::Tagging.where( tag: tag_ids, taggable_type: "GuideTaxon" ).pluck( :id )
-    where( id: tagging_ids )
-    GuideTaxon.joins( :taggings ).where( guide: guide, taggings: { tag_id: tag_ids } )
+    tag_records = ActsAsTaggableOn::Tag.where( name: tags ).pluck( :id )
+    joins( :taggings ).where( taggings: { tag: tag_records } )
   }
 
   scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
