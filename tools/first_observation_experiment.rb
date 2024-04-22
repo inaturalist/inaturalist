@@ -64,7 +64,7 @@ user_ids = Observation.elastic_search(
 ).response.aggregations.distinct_users.buckets.map {| b | b["key"] }
 
 # Query users matching criteria
-users = User.where( id: user_ids ).where( "suspended_at IS NULL AND locale LIKE ? AND observations_count = 1", "en%" )
+users = User.where( id: user_ids ).where( "email IS NOT NULL AND suspended_at IS NULL AND locale LIKE ? AND observations_count = 1", "en%" )
 
 # Collect user data for the experiment
 users_set = {}
@@ -73,7 +73,8 @@ users.each do | user |
 
   observation = Observation.find_by( user_id: user.id )
   next unless observation &&
-    ( geoip_response = INatAPIService.geoip_lookup( ip: user.last_ip ) )&.results&.city && geoip_response.results.ll
+    ( geoip_response = INatAPIService.geoip_lookup( ip: user.last_ip ) )&.results&.city &&
+    !geoip_response.results.city.empty? && geoip_response.results.ll
 
   group = rand( 2 ).zero? ? "A" : "B"
   errors = []
@@ -118,10 +119,16 @@ end
 
 # Process users_set and update contact_date if necessary
 users_set.each do | _, row |
-  next unless row[:group] == "A"
+  unless row[:group] == "A"
+    row[:contact_date] = Time.now
+    next
+  end
+
+  next unless row[:contact_date].nil?
 
   user = User.find_by( id: row[:user_id] )
   next unless user
+  next if user.email.nil?
 
   observation = Observation.find_by( id: row[:observation_id] )
   next unless observation
