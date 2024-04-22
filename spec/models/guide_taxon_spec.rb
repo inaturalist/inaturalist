@@ -286,4 +286,19 @@ describe GuideTaxon do
       expect(gt.tag_list).to include "taxonomy:order=Anura"
     end
   end
+
+  describe "tagged_in_guide" do
+    it "looks within a guide" do
+      guide1_taxon = GuideTaxon.make!
+      guide2_taxon = GuideTaxon.make!
+      guide1_taxon.tag_list.add( "tag1" )
+      guide1_taxon.save
+      guide2_taxon.tag_list.add( "tag2" )
+      guide2_taxon.save
+      expect( GuideTaxon.tagged_in_guide( ["tag1"], guide1_taxon.guide ).any? ).to be true
+      expect( GuideTaxon.tagged_in_guide( ["tag1"], guide2_taxon.guide ).any? ).to be false
+      expect( GuideTaxon.tagged_in_guide( ["tag2"], guide1_taxon.guide ).any? ).to be false
+      expect( GuideTaxon.tagged_in_guide( ["tag2"], guide2_taxon.guide ).any? ).to be true
+    end
+  end
 end

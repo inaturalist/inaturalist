@@ -23,7 +23,7 @@ module GuidesHelper
       includes({:taxon => [:taxon_range_without_geom]}, {:guide_photos => :photo}, :guide_sections, :guide_ranges, :tags)
     @guide_taxa = @guide_taxa.in_taxon(@taxon) if @taxon
     @guide_taxa = @guide_taxa.dbsearch(@q) unless @q.blank?
-    @guide_taxa = @guide_taxa.tagged(@tags) unless @tags.blank?
+    @guide_taxa = @guide_taxa.tagged_in_guide(@tags, @guide) unless @tags.blank?
     @guide_taxa = @guide_taxa.sorted_by(@sort)
     @view = gparams[:view] || "grid"
     @guide_taxa

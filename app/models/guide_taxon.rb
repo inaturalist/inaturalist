@@ -54,17 +54,19 @@ class GuideTaxon < ApplicationRecord
     if tags.is_a?(String)
       tags = [tags]
     end
-    scope = GuideTaxon.all
-    tags.each_with_index do |tag, i|
-      taggings_join_name = "_taggings#{i}"
-      scope = scope.
-        joins("LEFT OUTER JOIN taggings #{taggings_join_name} ON #{taggings_join_name}.taggable_type = 'GuideTaxon' AND #{taggings_join_name}.taggable_id = guide_taxa.id")
-      tags_join_name = "_tags#{i}"
-      scope = scope.
-        joins("LEFT OUTER JOIN tags #{tags_join_name} ON #{tags_join_name}.id = #{taggings_join_name}.tag_id").
-        where("#{tags_join_name}.name = ?", tag)
+    tag_ids = ActsAsTaggableOn::Tag.where( name: tags ).pluck( :id )
+    tagging_ids = ActsAsTaggableOn::Tagging.where( tag: tag_ids, taggable_type: "GuideTaxon" ).pluck( :id )
+    where( id: tagging_ids )
+  }
+
+  scope :tagged_in_guide, lambda {| tags, guide |
+    if tags.is_a?( String )
+      tags = [tags]
     end
-    scope
+    tag_ids = ActsAsTaggableOn::Tag.where( name: tags ).pluck( :id )
+    tagging_ids = ActsAsTaggableOn::Tagging.where( tag: tag_ids, taggable_type: "GuideTaxon" ).pluck( :id )
+    where( id: tagging_ids )
+    GuideTaxon.joins( :taggings ).where( guide: guide, taggings: { tag_id: tag_ids } )
   }
 
   scope :dbsearch, lambda {|q| where("guide_taxa.name ILIKE ? OR guide_taxa.display_name ILIKE ?", "%#{q}%", "%#{q}%")}
