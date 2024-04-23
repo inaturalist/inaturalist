@@ -6,12 +6,20 @@
   src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
 }
 
+@font-face {
+  font-family: Lato;
+  src: url("/fonts/Lato/Lato-Regular.ttf");
+}
+
 html, body, #app, .uploader {
   height: 100%;
 }
 
 body {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  &.testing-font {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
 }
 
 a {

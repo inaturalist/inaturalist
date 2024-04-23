@@ -193,6 +193,9 @@ input.failed, textarea.failed {
 .ui-autocomplete {
   .ac-result, .category {
     font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    body.testing-font & {
+      font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+    }
     .ac-label {
       color: #333;
     }

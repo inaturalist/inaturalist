@@ -22,6 +22,34 @@
   font-weight: 700;
   src: url('/fonts/Whitney-Semibold-Pro.otf') format("opentype");
 }
+@font-face {
+  font-family: Lato;
+  src: url("/fonts/Lato/Lato-Regular.ttf");
+}
+@font-face {
+  font-family: Lato;
+  font-weight: 100;
+  font-style: normal;
+  src: url("/fonts/Lato/Lato-Thin.ttf");
+}
+@font-face {
+  font-family: Lato;
+  font-weight: 300;
+  font-style: normal;
+  src: url("/fonts/Lato/Lato-Light.ttf");
+}
+@font-face {
+  font-family: Lato;
+  font-weight: 400;
+  font-style: normal;
+  src: url("/fonts/Lato/Lato-Regular.ttf");
+}
+@font-face {
+  font-family: Lato;
+  font-weight: 700;
+  font-style: normal;
+  src: url("/fonts/Lato/Lato-Bold.ttf");
+}
 html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
 .row-fluid > div, .stats-bar {
   height: 100%;
@@ -30,6 +58,9 @@ html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
 }
 body {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  &.testing-font {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
   color: white;
   background-color: black;
 }
