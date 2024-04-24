@@ -215,30 +215,7 @@ class UsersController < ApplicationController
   # Methods below here are added by iNaturalist
   def index
     @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
-    unless fragment_exist?( @recently_active_key )
-      @updates = []
-      [Observation, Identification, Post, Comment].each do | klass |
-        scope = klass.limit( 30 ).
-          order( "#{klass.table_name}.id DESC" ).
-          includes( :user )
-        if @site&.prefers_site_only_users?
-          scope = scope.joins( :user )
-          scope = scope.where( "users.site_id = ?", @site )
-        end
-        @updates += scope.all
-      end
-      @updates.delete_if do | u |
-        u.user.blank? ||
-          ( u.is_a?( Post ) && u.draft? ) ||
-          ( u.is_a?( Identification ) && u.taxon_change_id ) ||
-          ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
-      end
-      hash = {}
-      @updates.sort_by( &:created_at ).each do | record |
-        hash[record.user_id] = record
-      end
-      @updates = hash.values.sort_by( &:created_at ).reverse[0..11]
-    end
+    @updates = @site.users_index_recent_activity
 
     @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_4"
     unless fragment_exist?( @leaderboard_key )
