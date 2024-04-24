@@ -29,7 +29,7 @@
   </div>
 
   <div id="recent" class="column span-24 stacked">
-    <% cache @recently_active_key, :expires_in => 5.minutes do %>
+    <% cache @recently_active_key, :expires_in => 2.hours do %>
       <h3>
         <span class="right meta ui small">
           <%= t :updated %>
