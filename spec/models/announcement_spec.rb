@@ -1,4 +1,6 @@
-require "spec_helper.rb"
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe Announcement do
   it { is_expected.to have_and_belong_to_many :sites }
@@ -9,21 +11,21 @@ describe Announcement do
   it { is_expected.to validate_presence_of :body }
 
   it "validates placement clients" do
-    expect{
+    expect do
       Announcement.make!( placement: "users/dashboard#sidebar", clients: ["inat-ios"] )
-    }.to raise_error(ActiveRecord::RecordInvalid, /Clients must be valid for specified placement/)
-    expect{
+    end.to raise_error( ActiveRecord::RecordInvalid, /Clients must be valid for specified placement/ )
+    expect do
       Announcement.make!( placement: "users/dashboard#sidebar", clients: [] )
-    }.not_to raise_error
-    expect{
+    end.not_to raise_error
+    expect do
       Announcement.make!( placement: "mobile/home", clients: ["inat-ios"] )
-    }.not_to raise_error
-    expect{
+    end.not_to raise_error
+    expect do
       Announcement.make!( placement: "mobile/home", clients: ["nonsense"] )
-    }.to raise_error(ActiveRecord::RecordInvalid, /Clients must be valid for specified placement/)
-    expect{
+    end.to raise_error( ActiveRecord::RecordInvalid, /Clients must be valid for specified placement/ )
+    expect do
       Announcement.make!( placement: "mobile/home", clients: [] )
-    }.not_to raise_error
+    end.not_to raise_error
   end
 
   describe "targeted_to_user" do
@@ -39,6 +41,17 @@ describe Announcement do
       expect( a.targeted_to_user?( User.make!( confirmed_at: Time.now ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( confirmed_at: nil ) ) ).to be true
     end
-  end
 
+    it "can exclude monthly supporters" do
+      monthly_supporter = User.make!(
+        donorbox_donor_id: 1,
+        donorbox_plan_status: "active",
+        donorbox_plan_type: "monthly"
+      )
+      non_monthly_supporter = User.make!
+      a = Announcement.make!( prefers_exclude_monthly_supporters: true )
+      expect( a.targeted_to_user?( monthly_supporter ) ).to be false
+      expect( a.targeted_to_user?( non_monthly_supporter ) ).to be true
+    end
+  end
 end
