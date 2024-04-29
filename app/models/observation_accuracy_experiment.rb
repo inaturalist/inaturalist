@@ -591,10 +591,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
     delimited_num_obs = ApplicationController.helpers.number_with_delimiter( num_obs )
     subject = I18n.t( :observation_accuracy_validator_email_subject2, version: version )
     no_reply_string = if post_id && ( post = Post.find_by( id: post_id ) )
-      I18n.t( :observation_accuracy_validator_email_please_do_not_reply_no_post_html )
-    else
       post_url = FakeView.post_url( post )
       I18n.t( :observation_accuracy_validator_email_please_do_not_reply_html, url: post_url )
+    else
+      I18n.t( :observation_accuracy_validator_email_please_do_not_reply_no_post_html )
     end
     message_body = <<~HTML
       <p>#{I18n.t( :email_dear_user, user: user.published_name, vow_or_con: user.published_name[0].downcase )}</p>
