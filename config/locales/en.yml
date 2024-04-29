@@ -3463,7 +3463,7 @@ en:
      <li>Do this by <b>%{validator_deadline_date}</b></li>
     </ol>
     Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>* that we think you can identify based on your activity on iNat. <b>Please add the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
-    *<i>This link will open up the identify tool on iNaturalist website which requres you to be logged in. We recommend doing this task from a computer, but it is possible from your mobile browser. If you are reading this message inside the iNaturalist Android app, make sure to open the link in a browser (not the iNat app itself) and you may have to separately log into the website.</i>
+    *<i>This link will open up the identify tool on iNaturalist website which requres you to be logged in. We recommend doing this task from a computer, but it is possible from your mobile browser app. If you are reading this message inside the iNaturalist Android app, make sure to open the link in a browser app (not the iNat app itself). You may have to first log in to the website through the browser app.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
   observation_accuracy_validator_email_ids_equal_to: |
