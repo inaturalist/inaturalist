@@ -3447,7 +3447,7 @@ en:
   observation_accuracy_experiment_if_every_sample: "If every sample observation was at a coarse taxon such as kingdom, the accuracy of the iNaturalist dataset might be very high, but the precision might be too low to make the dataset very useful. To estimate precision, we counted the number of leaf descendants in the iNaturalist taxonomy for each taxon associated with each sample observation. We calculated precision as 1 divided by the number of leaf descendants. If the taxon was a leaf taxon the precision is 100%. We ignored ranks below species in the precision calculation."
   observation_accuracy_experiment_in_the_example: "In the example figure to the right the average precision of three sample observations would be 51%."
   observation_accuracy_experiment_read_more: |
-    To read more about orchestrating this experiment see the accompanying <a href="%{post_url}">blog post</a>.
+    To read more about orchestrating this experiment see the accompanying <a href="%{url}">blog post</a>.
   observation_accuracy_validator_email_subject2: "Will you help us with Experiment %{version} to estimate the accuracy of iNaturalist observations?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Will you help us with an <a href="%{url}">experiment (version %{version})</a> to estimate the accuracy of iNaturalist observations?

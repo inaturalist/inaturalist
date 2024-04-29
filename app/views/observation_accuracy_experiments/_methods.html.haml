@@ -68,7 +68,7 @@
       %svg{ width: "#{50 + 54 * @validators_per_sample.count}", height: "150" }
         %g{ transform: "translate(40,10)" }
           %g.y.axis
-            - (0..5).each do |tick_value|
+            - ( 0..5 ).each do | tick_value |
               - tick_position = tick_value * 20
               %g.tick{ transform: "translate(0,#{tick_position})", style: "opacity: 1;" }
                 %line{ x2: "-6", y2: "0" }

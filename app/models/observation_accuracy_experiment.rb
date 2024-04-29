@@ -593,7 +593,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     no_reply_string = if post_id && ( post = Post.find_by( id: post_id ) )
       I18n.t( :observation_accuracy_validator_email_please_do_not_reply_no_post_html )
     else
-      post_url = FakeView.posts_url( post )
+      post_url = FakeView.post_url( post )
       I18n.t( :observation_accuracy_validator_email_please_do_not_reply_html, url: post_url )
     end
     message_body = <<~HTML
