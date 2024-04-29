@@ -590,10 +590,16 @@ class ObservationAccuracyExperiment < ApplicationRecord
     experiment_url = FakeView.observation_accuracy_experiment_url( self, params: { tab: "methods" } )
     delimited_num_obs = ApplicationController.helpers.number_with_delimiter( num_obs )
     subject = I18n.t( :observation_accuracy_validator_email_subject2, version: version )
+    no_reply_string = if post_id && ( post = Post.find_by( id: post_id ) )
+      I18n.t( :observation_accuracy_validator_email_please_do_not_reply_no_post_html )
+    else
+      post_url = FakeView.posts_url( post )
+      I18n.t( :observation_accuracy_validator_email_please_do_not_reply_html, url: post_url )
+    end
     message_body = <<~HTML
       <p>#{I18n.t( :email_dear_user, user: user.published_name, vow_or_con: user.published_name[0].downcase )}</p>
       <p>#{I18n.t( :observation_accuracy_validator_email_will_you_help_us2_html, version: version, url: experiment_url )}</p>
-      <p>#{I18n.t( :observation_accuracy_validator_email_if_so2_html,
+      <p>#{I18n.t( :observation_accuracy_validator_email_if_so3_html,
         num_obs: delimited_num_obs, sample_url: sample_url,
         validator_deadline_date: I18n.localize( validator_deadline_date.to_date, format: :long ) )}</p>
       <p>#{I18n.t( :observation_accuracy_validator_email_we_will_calculate )}</p>
@@ -607,6 +613,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
       <p>#{I18n.t( :observation_accuracy_validator_email_we_are_so_grateful2_html, url: experiment_url )}</p>
       <p>#{I18n.t( :observation_accuracy_validator_email_with_gratitude )}</p>
       <p>#{I18n.t( :observation_accuracy_validator_email_the_inaturalist_team )}</p>
+      <p>#{no_reply_string}</p>
     HTML
 
     message = Message.new(

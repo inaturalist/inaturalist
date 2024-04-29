@@ -74,14 +74,14 @@
                 %line{ x2: "-6", y2: "0" }
                 %text{ dy: ".32em", x: "-9", y: "0", style: "text-anchor: end;" } #{( 100 - tick_value * 20 ) * scale_factor}
             %path.domain{ d: "M-6,0H0V100H-6" }
-            %text{ transform: "rotate(-90)", y: "6", dy: ".71em", style: "text-anchor: end;"}= t(:frequency) 
+            %text{ transform: "rotate(-90)", y: "6", dy: ".71em", style: "text-anchor: end;"}= t( :frequency ) 
           %g.x.axis{ transform: "translate( 0, 100 )" }
             - @validators_per_sample.keys.each_with_index do | label, index |
               %g.tick{transform: "translate( #{35 + 54 * index}, 0 )", style: "opacity: 1;"}
                 %line{y2: "6", x2: "0"}
                 %text{dy: ".71em", y: "9", x: "0", style: "text-anchor: middle;"}= label
           - @validators_per_sample.values.each_with_index do |values, index|
-            %a{href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.first(500).join( "," ) ) : "#"}
+            %a{href: @explorable ? observations_path( verifiable: "any", place_id: "any", id: values.first( 500 ).join( "," ) ) : "#"}
               %rect{
                 class: "validators",
                 x: "#{10 + 54 * index}",
@@ -136,4 +136,8 @@
       %p
         =t :observation_accuracy_experiment_in_the_example 
       %div{style: "clear: both;"}
+-if @post
+  .row
+    .col-xs-12
+      =t :observation_accuracy_experiment_read_more, url: post_url( @post )
 #tooltip
