@@ -34,13 +34,15 @@ class ObservationAccuracyExperimentsController < ApplicationController
     return unless @experiment.sample_generation_date && @experiment.assessment_date
 
     set_explorable
+    @post = @experiment.post_id ? Post.find_by( id: @experiment.post_id ) : nil
     @candidate_validators, @mean_validator_count, @mean_sample_count = @experiment.get_assignment_methods
     @mean_validators_per_sample, @validators_per_sample, @validators_per_sample_ylim = @experiment.get_val_methods
     render_partial_with_locals( "methods", {
       candidate_validators: @candidate_validators,
       mean_sample_count: @mean_sample_count,
       mean_validator_count: @mean_validator_count,
-      explorable: @explorable
+      explorable: @explorable,
+      post: @post
     } )
   end
 
