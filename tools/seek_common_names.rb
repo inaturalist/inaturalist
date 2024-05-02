@@ -100,7 +100,7 @@ end
 common_names = []
 taxon_ids = relevant_taxa.keys
 taxon_ids.in_groups_of( 1000, false ) do | group |
-  taxa = Taxon.where( id: group ).includes( :taxon_names )
+  taxa = Taxon.where( id: group ).includes( taxon_names: :place_taxon_names )
   taxa.each do | taxon |
     SEEK_LOCALES.each do | locale |
       common_name = taxon.common_name( locale: locale, place: places_by_locale[locale] )
