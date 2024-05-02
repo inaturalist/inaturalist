@@ -258,6 +258,7 @@ th:
   add_notes_about_this_taxon: เพิ่มหมายเหตุเกี่ยวกับอนุกรมวิธานในสถานที่นี้ เช่น เกิดขึ้นที่ไหนและเมื่อไหร่
   add_obs_from_a_link: "เพิ่มการสังเกตจากลิงก์: %{link}"
   add_obs_from_a_list: เพิ่มการสังเกตจากรายการ
+  add_observation_fields: เพิ่มข้อมูลเสริมการสังเกต
   add_observations: เพิ่มการสังเกต
   add_observations_by_checking_off: เพิ่มข้อสังเกตโดยการตรวจสอบสายพันธุ์จากรายการ
   add_observations_project: เพิ่มการสังเกตในโครงการนี้
@@ -1048,8 +1049,10 @@ th:
   draw_rectangular_boundary: วาดขอบเขตสี่เหลี่ยม
   duplicate_verb: คัดลอก
   duration_value: "ระยะเวลา: %{duration} นาที"
+  each_place_displays_all_species_inat_knows: "แต่ละหน้าสถานที่จะแสดงข้อมูลชนิดทั้งหมดที่ %{site_name} รู้จักในสถานที่นั้น รวมถึงข้อมูลเกี่ยวกับความชุกชุม สถานะการอนุรักษ์ และผู้ใช้งานคนแรกที่มีการสังเกตในสถานที่นั้นบน %{site_name} คุณสามารถใช้ตัวกรองแยกดูตามกลุ่มอนุกรมวิธาน สี สถานะการอนุรักษ์ หรือใช้การค้นหาแบบธรรมดาได้เช่นกัน"
   edit: แก้ไข
   edit_a_batch_of_observations: แก้ไขหลายการสังเกต
+  edit_account_settings_and_profile: "แก้ไขการตั้งค่าบัญชี &amp; โปรไฟล์"
   edit_license: แก้ไขสัญญาอนุญาต
   edit_multiple_locations: แก้ไขหลายตำแหน่ง
   edit_multiple_species: แก้ไขหลายชนิด
@@ -1057,6 +1060,7 @@ th:
   edit_observations: แก้ไขการสังเกต
   edit_photos: แก้ไขรูปภาพ
   edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
+  edit_place: แก้ไขสถานที่
   edit_project: แก้ไขโครงการ
   edit_remove: แก้ไข/ลบ
   edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
@@ -1085,6 +1089,7 @@ th:
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
   email: อีเมล
   email_notifications: การแจ้งเตือนทางอีเมล
+  embed_place_widget: ฝังวิดเจ็ตสถานที่
   embed_widget_project: ฝังวิดเจตสำหรับโครงการนี้ในเว็บไซต์ของคุณ
   encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
@@ -1134,7 +1139,7 @@ th:
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
   evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   evidence_related_to_single_subject: หลักฐานแสดงถึงสิ่งมีชีวิตเพียงชนิดเดียว
-  facebook: Facebook
+  facebook: เฟซบุ๊ก
   'false': 'เท็จ'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
@@ -1152,8 +1157,10 @@ th:
   filter_by_place: กรองตามสถานที่
   filters: ตัวกรอง
   find_a_guide: ค้นหาคู่มือ
+  find_a_post: ค้นหาโพสต์
   find_a_place: ค้นหาสถานที่
   find_guides: ค้นหาคู่มือสำรวจ
+  find_posts_for: "ค้นหาโพสต์: %{journal_name}"
   find_new_place_to_explore: ค้นหาสถานที่ใหม่เพื่อสำรวจ
   find_observations: ค้นหาการสังเกต
   find_photos: ค้นหาภาพ
@@ -1324,6 +1331,7 @@ th:
   import_date_time_location_taxonomic: "นำเข้าข้อมูลวันที่ เวลา ตำแหน่ง คำอธิบาย และอนุกรมวิธานจากรูปนี้"
   import_observations: นำเข้าการสังเกต
   improving: แนะนำคนแรก
+  in_place_x: ใน %{place}
   #As in a reason to flag something
   inappropriate: ไม่เหมาะสม
   #Label for messages you've received
@@ -1344,6 +1352,7 @@ th:
   info: ข้อมูล
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
+  instagram: อินสตาแกรม
   introduced: ต่างถิ่น
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
   is_not_following_anyone: ไม่ได้ติดตามใคร
@@ -1923,7 +1932,7 @@ th:
   or_all_caps: หรือ
   order: อันดับ
   order_by: เรียงลำดับตาม
-  organism_is_wild: สิ่งมีชีวิตพบตามธรรมชาติ
+  organism_is_wild: สิ่งมีชีวิตพบในธรรมชาติ
   organisms: สิ่งมีชีวิต
   other: อื่น ๆ
   other_animals: สัตว์อื่น ๆ
@@ -2004,6 +2013,8 @@ th:
       historical_town: เมืองประวัติศาสตร์
       Open_Space: พื้นที่เปิด
       open_space: พื้นที่เปิด
+      Point_of_Interest: จุดสนใจ
+      point_of_interest: จุดสนใจ
       Province: จังหวัด
       province: จังหวัด
       Region: ภูมิภาค
@@ -2585,6 +2596,7 @@ th:
   submitted: ส่งเมื่อ
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
+  subscribe_to_observations_from_this_place_html: <a>ติดตาม</a>การสังเกตจากสถานที่นี้
   subscribe_to_observations_in_a_taxon: ติดตามทุกการสังเกตของสิ่งมีชีวิตชนิดหนึ่งหรือกลุ่มของสิ่งมีชีวิต (เช่น 'แมงป่อง')
   subscribe_to_observations_in_a_place: ติดตามทุกการสังเกตที่พบในสถานที่นี้ คุณสามารถเพิ่มตัวกรองหน่วยอนุกรมวิธานได้ด้วย เช่น 'แมงป่องจาก Texas'
   subscriptions: การติดตาม
@@ -2594,6 +2606,7 @@ th:
   sync_obs_with_photo_metadata: "ซิงก์การสังเกตกับข้อมูลอภิพันธุ์?"
   table_of_contents: สารบัญ
   tags: แท็ก
+  take_me_flickr!: ใช่ ไปที่ Flickr!
   taxa: หน่วยอนุกรมวิธาน
   taxa_with_unknown_relationships: หน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
@@ -2834,6 +2847,7 @@ th:
   trust: ความไว้วางใจ
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
   try_adding_species_form: ลองเพิ่มบางชนิดโดยใช้รูปแบบในหน้านี้
+  twitter: ทวิตเตอร์
   type_place_name: พิมพ์ชื่อสถานที่
   type_species_name: "พิมพ์ชื่อชนิด"
   uicn_red_list_status: "สถานะบัญชีแดง IUCN:"
@@ -2920,7 +2934,7 @@ th:
   view_all_caps: ดูทั้งหมด
   view_all_fields: ดูข้อมูลเสริมทั้งหมด
   view_all_flags: ดูรายงานทั้งหมด
-  view_all_members: ดูสมาชิกทุกคน
+  view_all_members: ดูสมาชิกทั้งหมด
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
     other: "ดูทั้งหมด %{count}"
@@ -3029,6 +3043,8 @@ th:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  x_of_count_confirmed:
+    other: "ยืนยันแล้ว %{x} จาก %{count}"
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
