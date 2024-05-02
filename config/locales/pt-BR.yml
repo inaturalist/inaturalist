@@ -3207,18 +3207,6 @@ pt-BR:
   observation_accuracy_validator_email_subject2: "Você nos ajudaria em um experimento %{version} para avaliar a precisão das observações do iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Você nos ajudaria em um experimento <a href="%{url}">(versão %{version})</a> para estimar a precisão das observações do iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifique todas as observações no link abaixo com a maior precisão puder, mesmo as de Nivel Pesquisa e mesmo que a ID mais precisa seja de um nível taxonomico alto (mesmo reino). . </li>
-    <li>se abrir uma janela de "Desacordo Potencial"…
-    <ul>
-    <li>e voce tiver confiança de que se trata de uma ID equivocada, clique no botão laranja,</li>
-    <li>ou se voce estiver em dúvida sobre sua ID, clique no botão verde</li>
-    </ul>
-    </li>
-    <li>Faça isto até <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Aqui está o <a href="%{sample_url}">subconjunto de %{num_obs} observations</a> que nós supomos que você pode identificar tomando como base sua atividade no iNat. <b>Por favor faça as suas IDs mais precisas que puder para cada uma das obervações até %{validator_deadline_date}</b>
   observation_accuracy_validator_email_we_will_calculate: |
     Vamos calcular a exatidão comparando a sua ID com a ID da Observação. Você pode saltar observações para as quais você já sugeriu uma ID se ela ainda for relevante. Para mais informações sobre como vamos computar concordâncias e discordâncias, continue a leitura.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -8532,12 +8520,17 @@ pt-BR:
               is_too_large_to_edit: é muito grande para editar
               is_too_large_to_import: é muito grande para ser importado
               contains_too_many_observations: contém observações demais para ser importado
+              cannot_be_blank: não pode deixar em branco
+              invalid_point: tem um ponto inválido, por exemplo, longitude maior que 180 ou latitude menor que -90
+              must_have_more_than_three_points: deve ter mais que 3 pontos
+              polygon_with_less_than_four_points: tem um polígono com menos que 4 pontos
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: não pode estar em branco
               invalid_point: tem um ponto inválido, por exemplo, longitude maior que 180 ou latitude menor que -90
               must_have_more_than_three_points: deve ter mais que 3 pontos
+              polygon_with_less_than_four_points: tem um polígono com menos que 4 pontos
         post:
           attributes:
             parent:

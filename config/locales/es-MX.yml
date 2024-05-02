@@ -3160,18 +3160,6 @@ es-MX:
   observation_accuracy_validator_email_subject2: "¿Nos ayudarás con el Experimento %{version} para estimar la precisión de las observaciones de iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     ¿Nos ayudarías con un <a href="%{url}">experimento (versión %{version})</a> para estimar la precisión de las observaciones de iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifica todas las observaciones en el siguiente enlace tan finamente como puedas, incluso si son Grado de Investigación, e incluso si tu mejor ID está en un nivel taxonómico más alto (incluso reino). </li>
-    <li>Si ves la ventana emergente "Desacuerdo Potencial"…
-    <ul>
-    <li>y estás seguro de que es un error de ID hacer clic en el botón naranja,</li>
-    <li>o si no estás seguro más allá de tu ID, haga clic en el botón verde</li>
-    </ul>
-    </li>
-    <li>Hacer esto por <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Aquí está el subconjunto <a href="%{sample_url}">observaciones %{num_obs}</a> que creemos que puede identificar en base a su actividad en iNat. <b>Por favor, añade la mejor ID que puedas a cada una de las observaciones de %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Calcularemos la precisión comparando tu ID con el Taxon de Observación. Puedes omitir observaciones donde hayas añadido previamente un ID si ese ID sigue siendo relevante. Para más información sobre cómo contaremos acuerdos y desacuerdos, siga leyendo.
   observation_accuracy_validator_email_ids_equal_to: |

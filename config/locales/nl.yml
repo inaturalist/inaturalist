@@ -2423,6 +2423,7 @@ nl:
     aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabisch
     armenian: Armeens
+    asturian: Asturisch
     basque: Baskisch
     belarusian: Wit-Russisch
     bengali: Bengaals
@@ -3196,18 +3197,6 @@ nl:
   observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Determineer alle waarnemingen in de onderstaande link zo nauwkeurig als je kunt, zelfs als ze van onderzoekskwaliteit zijn en zelfs als je beste ID zich op een veel hoger taxonomisch niveau bevindt (zelfs koninkrijk). </li>
-    <li>Als je de “Potential Disagreement” popup ziet…
-    <ul>
-    <li>en je er zeker van bent dat het verkeerd gedetermineerd is, klik dan op de oranje knop,</li>
-    <li>of als je niet zeker bent over je determinatie, klik je op de groene knop</li>
-    </ul>
-    </li>
-    <li>Doe dit voor <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Hier is de <a href="%{sample_url}">subset van %{num_obs} waarnemingen</a> waarvan we denken dat je die kan determineren op basis van je activiteit op iNaturalist. <b>Voeg alsjeblieft vóór %{validator_deadline_date} een zo nauwkeurig mogelijke determinatie toe aan elk van de waarnemingen</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
     je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
@@ -6793,10 +6782,10 @@ nl:
            </p>
 
            <ul>
-           <li>de waarneming <strong>heeft een datum</strong></li>
-           <li>de waarneming <strong>heeft een geolocatie</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-           <li>de waarneming <strong>heeft foto's of geluiden</strong></li>
-           <li>de waarneming <strong>is geen mens</strong></li>
+           <li>de waarneming <strong>een datum heeft</strong></li>
+           <li>de waarneming <strong>een geolocatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+           <li>de waarneming <strong>geen mens is</strong></li>
            </ul>
            
            <p>
@@ -6804,14 +6793,14 @@ nl:
            </p>
           <ul>
           <li>
-          De %{site_name} <strong> gemeenschap gaat akkoord met een ID op soortniveau of lager 
-          lower</strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
-          taxon (als de gemeenschap heeft gekozen dat het Community Taxon niet langer kan worden verbeterd keert het terug naar 
-           subfamily-level ID of lager)
+          De %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
+          </strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
+          (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
+           onderfamilie-niveau ID of lager)
           </li>
           </ul>
           <p>
-          Waarnemingen keren terug naar <strong>"casual"</strong> als aan bovenstaande vereisten niet is voldaan
+          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als aan bovenstaande vereisten niet is voldaan
           </p>
           <ul>
           <li>
@@ -6824,14 +6813,14 @@ nl:
           de waarneming <strong>toont geen aanwezigheid van het organisme</strong>, bijvoorbeeld foto's van water eigenschappen, rotsen, landschappen die geen organisme bevatten.
           </li>
           <li>
-          de waarneming <strong>toont geen recent (~100 years) bewijs van het organismeme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
+          de waarneming <strong>toont geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
           </li>
           <li>
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's.</strong>
           (bijvoorbeeld er zijn vier foto's van vier verschillende organismen. Een foto dat het habitat toont van het organisme dat het onderwerp is van de waarneming is OK.)
           </li>
           <li>
-          de waarneming heeft niet langer een ID nodig <em>and</em> het geenschapsID is op familieniveau of hoger.
+          de waarneming heeft niet langer een ID nodig <em>en</em> het gemeenschapsID is op familieniveau of hoger.
           </li>
           <li>
           de waarnemer heeft het gemeenschapsID uitgeschakeld en het gemeenschapstaxon is geen voorouder of afstammeling van het taxon gerelateerd aan het ID van de waarnemer.
