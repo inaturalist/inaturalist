@@ -3026,18 +3026,6 @@ zh-CN:
   observation_accuracy_validator_email_subject2: "您是否会帮助我们进行实验%{version}，以估计iNaturalist观察的准确度？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     您是否会帮助我们进行一次<a href="%{url}">实验（版本%{version}）</a>，以估计iNaturalist观察的准确度？
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>尽可能好地对下列链接中的全部观察结果给出鉴定，即便其已经为研究级别，或者你的最精确的鉴定在更高层级上（甚至是界一级）。</li>
-    <li>如果你看到“可能不同意”弹出……
-    <ul>
-    <li>而你又确定此前它被错误鉴定了，则点击橙色按钮；</li>
-    <li>或者你不确定超出你鉴定层级的情况，则点击绿色按钮</li>
-    </ul>
-    </li>
-    <li>在<b>%{validator_deadline_date}</b>之前完成上述任务</li>
-    </ol>
-    这里是我们根据你在iNat上的活动认为你能够鉴定的<a href="%{sample_url}">观察子集，共%{num_obs}个</a>。<b>请在%{validator_deadline_date}之前为其中的每一个观察添加你精确的鉴定</b>。
   observation_accuracy_validator_email_we_will_calculate: |
     我们将通过将您的鉴定结果与观察分类单元进行比较来计算精度。您可以跳过您以前添加过鉴定的观察，如果这一观察仍然相关的话。 要查看我们是如何计算协议和分歧的更多信息，请继续阅读。
   observation_accuracy_validator_email_ids_equal_to: |
