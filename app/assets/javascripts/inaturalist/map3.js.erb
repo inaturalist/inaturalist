@@ -41,7 +41,7 @@ google.maps.Map.prototype.createMarker = function(lat, lng, options) {
 google.maps.Map.prototype.removeMarker = function(marker) {
   // gracefully clear the listeners out of memory
   google.maps.event.clearInstanceListeners(marker);
-  
+
   // remove the marker from the map
   marker.setMap(null);
   this.removeOverlay(marker);

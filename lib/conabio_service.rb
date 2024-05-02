@@ -1,39 +1,67 @@
-#encoding: utf-8
-# Call the SOAP service from COANBIO
+# frozen_string_literal: true
 
-require 'timeout'
-require 'uri'
+require "timeout"
+require "uri"
 
 class ConabioService
-  def initialize(options = {})
-    @service_name = 'CONABIO'
-    @wsdl = 'http://conabioweb.conabio.gob.mx/webservice/conabio.wsdl'
-    @key = 'La completa armonia de una obra imaginativa con frecuencia es la causa que los irreflexivos la supervaloren.'
+  TAXON_SERVICE = "https://enciclovida.mx/busquedas/resultados.json?busqueda=basica&nombre=[NAME]"
+  DESCRIPTION_SERVICE = "https://enciclovida.mx/especies/[ID]/descripcion?from=conabio_inat"
+  SERVICE_VERSION = 1.0
+
+  attr_reader :timeout, :service_name
+
+  def initialize( options = {} )
+    @service_name = "CONABIO"
     @timeout = 5
     @debug = options[:debug] || false
+    @taxon_api_endpoint = ApiEndpoint.find_or_create_by!(
+      title: "Enciclovida MX Taxa",
+      documentation_url: "https://enciclovida.mx/",
+      base_url: "https://enciclovida.mx/busquedas/resultados.json",
+      cache_hours: 720
+    )
+    @description_api_endpoint = ApiEndpoint.find_or_create_by!(
+      title: "Enciclovida MX Descriptions",
+      documentation_url: "https://enciclovida.mx/",
+      base_url: "https://enciclovida.mx/especies",
+      cache_hours: 720
+    )
   end
 
   #
   # Search for the specific cientific name
   #
-  def search(q)
+  def search( taxon_name )
     begin
-      client=Savon.client(wsdl: @wsdl)
-      begin
-        Timeout::timeout(@timeout) do
-          @response = client.call(:data_taxon, message: { scientific_name: CGI.escape(q.gsub(' ', '_')), key: @key })
-        end
-      rescue Timeout::Error
-        raise Timeout::Error, "Conabio didn't respond within #{@timeout} seconds."
-      rescue Errno::ECONNRESET, Errno::EHOSTUNREACH => e
-        Rails.logger.error "[ERROR #{Time.now}] Failed to retrieve CONABIO page: #{e}"
-        return nil
+      taxon_response_body = MetaService.fetch_request_uri(
+        request_uri: URI.parse( TAXON_SERVICE.sub( "[NAME]", taxon_name ) ),
+        timeout: @timeout,
+        api_endpoint: @taxon_api_endpoint,
+        user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}",
+        raw_response: true
+      )
+      taxon_response_json = JSON.parse( taxon_response_body )
+      unless taxon_response_json && taxon_response_json["taxa"] &&
+          !taxon_response_json["taxa"].empty?
+        return
       end
-    rescue Savon::SOAPFault => e
-      puts e.message
-    end
-    if @response.body[:data_taxon_response][:return].present?
-      @response.body[:data_taxon_response][:return].encode('iso-8859-1').force_encoding('UTF-8').gsub(/\n/,'<br>')
+
+      taxon_id = taxon_response_json["taxa"].first["IdNombre"]
+
+      description_body = MetaService.fetch_request_uri(
+        request_uri: URI.parse( DESCRIPTION_SERVICE.sub( "[ID]", taxon_id.to_s ) ),
+        timeout: @timeout,
+        api_endpoint: @description_api_endpoint,
+        user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}",
+        raw_response: true
+      )
+      if description_body && description_body.strip == "<div></div>"
+        return
+      end
+
+      description_body
+    rescue Timeout::Error
+      raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
   end
 end

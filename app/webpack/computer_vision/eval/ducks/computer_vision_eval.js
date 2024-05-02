@@ -103,7 +103,8 @@ export function score( obsCard ) {
   return function ( dispatch ) {
     dispatch( updateObsCard( { visionStatus: "loading" } ) );
     const scoreParams = {
-      delegate_ca: true
+      delegate_ca: true,
+      aggregated: true
     };
     if ( obsCard.uploadedFile.file ) {
       scoreParams.image = obsCard.uploadedFile.file;

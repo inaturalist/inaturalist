@@ -1,0 +1,26 @@
+#ConfirmationBanner {
+  text-align: center;
+  background: #74ac00;
+  color: white;
+  padding: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  display: block;
+  .email {
+    font-weight: 700;
+  }
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+  button {
+    border: none;
+    background: inherit;
+    padding: 0;
+    text-decoration: underline;
+    color: white;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+  }
+}

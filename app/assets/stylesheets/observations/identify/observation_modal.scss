@@ -766,6 +766,9 @@ body > [role="dialog"] .ObservationModal {
   .ui-autocomplete {
     .ac-result {
       font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+      body.testing-font & {
+        font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+      }
       .ac-label {
         color: #555;
         .title {

@@ -377,12 +377,13 @@ export function fetchDescription( ) {
     }
     fetch( url ).then(
       response => {
-        const source = response.headers.get( "X-Describer-Name" );
+        const sourceName = response.headers.get( "X-Describer-Name" );
+        const sourceURL = response.headers.get( "X-Describer-URL" );
         // the URL is being sent in an HTTP header, which does not support UTF-8, so force encoding
-        const describerUrl = utf8.decode( response.headers.get( "X-Describer-URL" ) );
+        const describerUrl = _.isEmpty( sourceURL ) ? null : utf8.decode( sourceURL );
         response.text( ).then( body => {
           if ( body && body.length > 0 ) {
-            dispatch( setDescription( source, describerUrl, body ) );
+            dispatch( setDescription( sourceName, describerUrl, body ) );
           }
         } );
       },

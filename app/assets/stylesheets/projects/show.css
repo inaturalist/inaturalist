@@ -35,9 +35,18 @@ h2{line-height:1;margin:0;float:left;}
 #cover .timespan,
 #projectstats h2,
 #rtstats label {
-  font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   font-weight: bold;
 }
+body.testing-font #cover h1,
+body.testing-font #addbutton,
+body.testing-font #rtstats .counts .count,
+body.testing-font #cover .timespan,
+body.testing-font #projectstats h2,
+body.testing-font #rtstats label {
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+}
+
 #cover:before {
   content: '';
   display:block;
@@ -139,7 +148,10 @@ h2{line-height:1;margin:0;float:left;}
 #projectstats .counts .stat a.label {
   color: #4f4f4f;
   font-size: 16px;
-  font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+}
+body.testing-font #projectstats .counts .stat a.label {
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 #projectstats .counts .stat a.label:after {
   content: " \00BB";
@@ -151,8 +163,12 @@ h2{line-height:1;margin:0;float:left;}
   color: #2d2d2d;
   font-size: 14px;
   font-weight: bold;
-  font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
 }
+body.testing-font #projectstats .counts .links a {
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+}
+
 #projectstats .image .icon {
   font-size: 48px;
   display: block;

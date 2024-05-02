@@ -75,7 +75,7 @@ class Observation < ApplicationRecord
   attr_accessor :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
     :taxon_introduced, :taxon_endemic, :taxon_native,
-    :skip_identification_indexing, :will_be_saved_with_photos
+    :skip_identification_indexing, :will_be_saved_with_photos, :skip_update_observations_places
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -3121,6 +3121,8 @@ class Observation < ApplicationRecord
   end
 
   def update_observations_places
+    return if skip_update_observations_places
+
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
     observations_places.reload
@@ -3169,6 +3171,7 @@ class Observation < ApplicationRecord
 
   def publicly_viewable_observation_photos
     observation_photos.select do |op|
+      op.photo &&
       ! ( op.photo.is_a?( LocalPhoto ) && op.photo.processing? ) &&
       !op.photo.flagged? &&
       !op.photo.hidden?

@@ -80,6 +80,10 @@ const config = {
       import: "./users/edit/webpack-entry",
       dependOn: ["react-main", "react-dnd", "react-dropzone"]
     },
+    "users-confirmation-banner": {
+      import: "./users/confirmation_banner/webpack-entry",
+      dependOn: ["react-main"]
+    },
     "react-main": {
       import: [
         "core-js/stable",

@@ -221,3 +221,25 @@ body > div > .popover {
   }
 
 }
+
+body.testing-font,
+body.testing-font > div > [role="dialog"],
+body.testing-font > [role="dialog"],
+body.testing-font > .popover,
+body.testing-font > div > .popover {
+  .gm-style {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
+    .gm-style-mtc,
+    .gm-style-iw,
+    .gm-style-iw a,
+    .gm-style-iw span,
+    .gm-style-iw label,
+    .gm-style-iw div,
+    div,
+    span,
+    label,
+    a {
+      font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
+    }
+  }
+}

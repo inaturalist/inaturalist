@@ -83,7 +83,12 @@ class MetaService
         request_url: options[:request_uri].to_s
       )
       return if api_endpoint_cache.in_progress?
+
       if api_endpoint_cache.cached? && !options[:force_update]
+        if options[:raw_response]
+          return api_endpoint_cache.response
+        end
+
         return Nokogiri::XML( api_endpoint_cache.response )
       end
     end
@@ -110,6 +115,10 @@ class MetaService
       success: !response.body.blank?,
       response: response.body
     )
+    if options[:raw_response]
+      return response.body
+    end
+
     Nokogiri::XML( response.body )
   end
 

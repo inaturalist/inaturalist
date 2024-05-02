@@ -495,14 +495,15 @@ class Identification < ApplicationRecord
       Identification.delay( run_at: 5.seconds.from_now ).
         update_categories_for_observation( observation_id )
     else
+      Identification.update_categories_for_observation( observation, {
+        wait_for_obs_index_refresh: wait_for_obs_index_refresh,
+        skip_indexing: skip_indexing
+      } )
       # update_categories_for_observation will reindex all the observation's
       # identifications, so we both do not need to re-index this individual
       # identification after that happens, and in fact that may result in
       # indexing stale data, e.g. a blank category
       self.skip_indexing = true
-      Identification.update_categories_for_observation( observation, {
-        wait_for_obs_index_refresh: wait_for_obs_index_refresh
-      } )
     end
     true
   end
@@ -611,9 +612,10 @@ class Identification < ApplicationRecord
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       next unless taxon_change.automatable_for_output?( output_taxon.id )
+      ident.observation&.skip_update_observations_places = true
       new_ident = Identification.new(
-        observation_id: ident.observation_id,
-        taxon: output_taxon, 
+        observation: ident.observation,
+        taxon: output_taxon,
         user_id: ident.user_id,
         taxon_change: taxon_change,
         disagreement: false,
@@ -662,11 +664,21 @@ class Identification < ApplicationRecord
         obs.skip_indexing = true
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
+        obs.skip_quality_metrics = true
         obs.save
         Identification.update_categories_for_observation( obs, skip_reload: true, skip_indexing: true )
         ident_ids += obs.identification_ids
       end
     end
+
+    if options[:records]
+      Observation.elastic_index!( ids: observation_ids.uniq.compact )
+      Identification.elastic_index!(
+        ids: Identification.where( observation_id: observation_ids.uniq.compact ).pluck( :id )
+      )
+      return
+    end
+
     # Get observations that may have received new identifications from this
     # change from a previous attempt to commit records for this change, in case
     # a previous attempt hit an error and stopped before indexing some records

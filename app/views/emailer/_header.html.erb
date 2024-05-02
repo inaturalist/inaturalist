@@ -8,6 +8,7 @@
     ::UrlHelper.uri_join( site_url, image_url( site_logo_email_banner ) )
   end
   site_name = site.name
+  font_family = ( @user && @user.is_admin? && @user.in_test_group?( "font" ) ) ? "Lato" : "Whitney"
 -%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,7 +22,7 @@
       body, table, td, p, a, li, blockquote, div {
         -webkit-text-size-adjust:100%;
         -ms-text-size-adjust:100%;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
       }
       table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
       img{-ms-interpolation-mode:bicubic;}
@@ -43,7 +44,7 @@
       h1{
         color:#202020 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:26px;
         font-style:normal;
         font-weight:bold;
@@ -58,7 +59,7 @@
       h2{
         color:#404040 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
          font-size:20px;
          font-style:normal;
          font-weight:bold;
@@ -73,7 +74,7 @@
       h3{
         color:#606060 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:16px;
         font-style:italic;
         font-weight:normal;
@@ -88,7 +89,7 @@
       h4{
         color:#808080 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:14px;
         font-style:italic;
         font-weight:normal;
@@ -106,7 +107,7 @@
       }
       .preheaderContent{
         color:#808080;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:10px;
         line-height:125%;
         text-align:left;
@@ -123,7 +124,7 @@
       }
       .headerContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:20px;
         font-weight:bold;
         line-height:100%;
@@ -150,7 +151,7 @@
       }
       .bodyContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:16px;
         line-height:150%;
         padding-top:20px;
@@ -177,7 +178,7 @@
       }
       .leftColumnContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:14px;
         line-height:150%;
         padding-top:0;
@@ -193,7 +194,7 @@
       }
       .rightColumnContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:14px;
         line-height:150%;
         padding-top:0;
@@ -218,7 +219,7 @@
       }
       .footerContent{
         color:#808080;
-        font-family:Whitney, Helvetica;
+        font-family:<%= font_family %>, Helvetica;
         font-size:10px;
         line-height:150%;
         padding-top:20px;
