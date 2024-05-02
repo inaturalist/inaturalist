@@ -438,6 +438,7 @@ cs:
   add_notes_about_this_taxon: Vložit poznámky o taxonu na tomto místě, tzn. kde a kdy se vysktl.
   add_obs_from_a_link: "Vložit pozorování ze seznamu: %{link}"
   add_obs_from_a_list: Vložit pozorování ze ze seznamu
+  add_observation_fields: Přidat pole pozorování
   add_observations: Vložit pozorování
   add_observations_by_checking_off: Přidat pozorování odškrtnutím druhu v seznamu.
   add_observations_project: Vložit poorování do tohoto projektu
@@ -1310,6 +1311,8 @@ cs:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Svlečka
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Srst
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
     bone: |
@@ -1325,7 +1328,10 @@ cs:
     gall: Deformovaný výrůst rostlinných tkání způsobený parazitickým organismem
     male: Důkazy naznačují, že organismus může produkovat sperma pro použití při sexuální reprodukci
     molt: Odhozená kůže nebo exoskelet
+    egg: Celé vejce nebo část vejce
+    construction: Něco vytvořené zvířetem, vyrobené z jiných materiálů nebo vytěžené z jiných materiálů
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
+    not_established: Organismus patří k nepůvodní populaci, včetně vypuštěných nebo uniklých zvířat v zájmovém chovu, migrujících krajinou a toulavých zvířat.
     organism: Celý organismus nebo jeho část
     scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
     teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
@@ -1662,6 +1668,8 @@ cs:
   deviation: Odchylka
   devise:
     confirmations:
+      confirmed: |
+        Vaše e-mailová adresa byla úspěšně potvrzena.
       send_instructions: "Za několik minut obdržíte e-mail s pokyny, jak potvrdit vaši e-mailovou adresu."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1955,6 +1963,7 @@ cs:
   extinct_in_the_wild: vyhynulý v přírodě
   extra_properties: Další vlastnosti
   evidence_of_organism: Důkaz o organismu
+  evidence_related_to_single_subject: Důkazy týkající se jediného subjektu
   facebook: Facebook
   failed_to_find_your_location: Vaše lokalita nebyla nalezena.
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
@@ -2911,6 +2920,8 @@ cs:
     Patří sem akce moderátora (např. skrývání nebo rušení skrývání komentářů), poznámky a příznaky u všeho, co tento uživatel vytvořil, kromě taxonů. Toto je <strong>viditelné pouze pro kurátory</strong> a <strong>kurátoři nemohou prohlížet svou vlastní historii</strong>, takže poznámky o dané osobě by nikdy neměly být viditelné pro tuto osobu.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skrýt
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Odkrýt
   moderator_note_desc: |
     Moderátorské poznámky jsou záznamy o reakcích moderátorů nebo o obavách ohledně uživatele, například o tom, zda se nejedná o falešný účet. Neuvádějte prosím osobní názory nebo pomluvy o uživateli.
   #Person who executed a moderator action or flagged something
@@ -3262,29 +3273,49 @@ cs:
   observation_: pozorování
   observation_accuracy_experiment_the_sample_for: "Vzorek pro tento experiment ještě nebyl vytvořen."
   observation_accuracy_experiment_our_accuracy_estimate: "Na základě tohoto experimentu odhadujeme správnost (accuracy) na %{percent}."
+  observation_accuracy_experiment_our_goak: "Náš cíl pro odhadovanou přesnost (Správnost) a přesnost podskupiny výzkumného stupně je vyšší než 95 % (čárkovaná čára)"
   observation_accuracy_experiment_precision_results: "Výsledná přesnost podle podmnožiny"
   observation_accuracy_experiment_taxon_rank_level: "Taxonomická kategorie"
+  observation_accuracy_experiment_taxon_observations_count: "Počet pozorování taxonu"
   observation_accuracy_experiment_iconic_taxon_name: "Ikonický taxon"
   observation_accuracy_experiment_continent: "Světadíl"
   observation_accuracy_experiment_year: "Rok"
   observation_accuracy_experiment_quality_grade: "Úroveň kvality"
   observation_accuracy_experiment_show_frequency: "zobrazit frekvenci"
+  observation_accuracy_experiment_click_on_bars: "Kliknutím na lišty prozkoumáte podmnožiny."
   observation_accuracy_experiment_accuracy_results: "Výsledná správnost podle podmnožiny"
+  observation_accuracy_experiment_experiment_still: "Experiment stále probíhá. Statistiky budou denně aktualizovány až do termínu pro ověření vzorků %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Experiment na správnost pozorování"
   observation_accuracy_experiment_validators: "Validátoři:"
   observation_accuracy_experiment_show_additional_validators: "(zobrazit další validátory)"
   observation_accuracy_experiment_hide_additional_validators: "(skrýt další validátory)"
   observation_accuracy_experiment_additional_validators: "(%{number} dalších validátorů)"
+  observation_accuracy_experiment_abstract: "Abstrakt: Vygenerovali jsme vzorek pozorování %{sample_generation_date} a koordinovali jsme tým ověřovatelů, aby posoudili jeho přesnost %{deadline_date}. Všechny níže uvedené výsledky ukazují vlastnosti pozorování vzorku v době, kdy byl vzorek generován (např. výzkumná třída či ne). Přesnost pozorování vzorku byla posouzena %{assessment_date}. Pro více detailů se podívejte na záložku metody."
   observation_accuracy_experiment_research_grade_results: "Výsledky pro Výzkumný stupeň"
   observation_accuracy_experiment_verifiable_results: "Ověřitelné výsledky"
   observation_accuracy_experiment_all_results: "Všechny výsledky"
   observation_accuracy_experiment_methods: "Metodika"
   observation_accuracy_experiment_step_1: "Krok 1: vytvoření a rozřazení vzorku"
+  observation_accuracy_experiment_from_the2: "Z databáze pozorování (A) iNaturalist jsme vytvořili náhodný vzorek (B). Subvzorky byly přiděleny kandidátským osobám provádějícím validaci (C) na základě níže popsaných kritérií. Zaměřili jsme se na přiřazení každého pozorování vzorku více kandidátským ověřovatelům ( \"cílová redundance ověřovatele\" )."
+  observation_accuracy_experiment_sample_generated: "Vzorek generován: %{date}"
+  observation_accuracy_experiment_sample_size: "Velikost vzorku: %{number}"
+  observation_accuracy_experiment_number_of: "Počet kandidátských ověřovatelů: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Střední velikost dílčího vzorku na jednoho kandidáta ověřovatele: %{number}"
+  observation_accuracy_experiment_mean_number: "Průměrný počet ověřovatelů na jedno pozorování vzorku: %{number}"
+  observation_accuracy_experiment_if_an_identifier: "Pokud identifikátor provedl alespoň 3 zlepšení identifikace taxonu, považovali jsme je za kvalifikované k ověření tohoto taxonu. Zlepšení identifikace jsou prvním návrhem taxonu, se kterým komunita následně souhlasí."
+  observation_accuracy_experiment_if_an_identifier_continent: "Pokud identifikátor provedl alespoň 3 zlepšení identifikace taxonu na kontinentu, považovali jsme je za způsobilé k ověření tohoto taxonu na tomto kontinentu. Zlepšení identifikace jsou prvním návrhem taxonu, se kterým komunita následně souhlasí."
+  observation_accuracy_experiment_for_example: "Například, identifikátor 1 přidá k pozorování ID typu A. Pokud identifikátor 2 později přidá hlavní ID B, identifikátor 1 na A se stává vylepšujícím ID. Pokud identifikátor 3 později přidá k B podpůrné ID, zlepšující se ID identifikátoru 2 se stává identifikátorem B."
+  observation_accuracy_experiment_step_2: "Krok 2: Ověření vzorků"
   observation_accuracy_experiment_correct: "Správně"
   observation_accuracy_experiment_uncertain: "Nejisté"
+  observation_accuracy_experiment_incorrect2: "Nesprávný"
   observation_accuracy_experiment_step_4: "Krok 4: výpočet správnosti a přesnosti"
   observation_accuracy_experiment_accuracy: "Správnost (accuracy)"
   observation_accuracy_experiment_precision: "Přesnost (precision)"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Pomůžete nám s <a href="%{url}">experimentem (verze %{version})</a> k odhadu přesnosti pozorování na iNaturalist?
+  observation_accuracy_validator_email_we_will_calculate: |
+    Přesnost vypočítáme porovnáním Vašeho ID s taxonem pozorování. Můžete přeskočit pozorování, kde jste dříve přidali ID, pokud je toto ID stále relevantní. Pro více informací o tom, jak budeme počítat shody a neshody, pokračujte ve čtení.
   observation_accuracy_validator_email_ids_equal_to: |
     Stejná identifikace (A) nebo konkrétnější (B), než taxon pozorování, bude započítána mezi Shody.
   observation_accuracy_validator_email_with_gratitude: S vděčností,
@@ -8548,12 +8579,17 @@ cs:
               is_too_large_to_edit: je příliš velký k nahrání
               is_too_large_to_import: je příliš velký k nahrání
               contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
+              cannot_be_blank: nemůže být prázdné
+              invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
+              must_have_more_than_three_points: musí mít více než 3 body
+              polygon_with_less_than_four_points: má polygon s méně než 4 body
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: nemůže být prázdné
               invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
               must_have_more_than_three_points: musí mít více než 3 body
+              polygon_with_less_than_four_points: má polygon s méně než 4 body
         post:
           attributes:
             parent:
