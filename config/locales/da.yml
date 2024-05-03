@@ -3206,6 +3206,8 @@ da:
   observation_accuracy_experiment_precision: "Præcision"
   observation_accuracy_experiment_if_every_sample: "Var hver prøveobservation på en grov takson, såsom rige, ville nøjagtigheden af iNaturalist-datasættet kunne være meget høj, men præcisionen kunne være for lav til at gøre datasættet specielt nyttigt. For at anslå præcisionen har vi talt antallet af bladefterkommere i iNaturalist-taksonomien for hver takson for hver prøveobservation. Vi beregnede præcision som 1 divideret med antallet af bladefterkommere. Var taksonen en bladtakson, er præcisionen 100%. Vi ignorerede rangeringer under arter i præcisionsberegningen."
   observation_accuracy_experiment_in_the_example: "I eksemplet til højre, ville den gns. præcision af tre prøveobservationer være 51%."
+  observation_accuracy_experiment_read_more_html: |
+    For at læse mere om at arrangere dette eksperiment, se det medfølgende <a href="%{url}">blogindlæg</a>.
   observation_accuracy_validator_email_subject2: "Vil du hjælpe os med Eksperiment %{version} til vurdering af korrektheden af iNaturalist-observationer?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Vil du hjælpe os med et <a href="%{url}">eksperiment %{version}</a> til vurdering af korrektheden af iNaturalist-observationer?
@@ -3225,6 +3227,10 @@ da:
     meget for at deltage i denne undersøgelse. Læs endelig <a href="%{url}">metoderne</a>, for at vide mere om dette eksperiment.
   observation_accuracy_validator_email_with_gratitude: Med taknemmelighed
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Besvar venligst ikke denne besked. Ved spørgsmål eller feedback, kommentér venligst <a href="%{url}">dette blogindlæg</a> eller e-mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Besvar venligst ikke denne besked. Ved spørgsmål eller feedback, e-mail venligst <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6276,6 +6282,12 @@ da:
       temporarily_unavailable: |
         Tak for din interesse i at støtte iNaturalist! Donering til
         iNaturalist er midlertidigt utilgængelig, da vi opdaterer vores donationssystemer. Tjek venligst snart tilbage.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik hér for at sende en bekræftelsesmail igen.
+      please_add_an_email_and_password: Tilføj en e-mail og adgangskode, så kontoadgangen ikke ikke mistes
+      please_click_the_link_sent_to_email_to_confirm_html: Klik på linket sendt til <span class="email">%{email}</span> for at bekræfte din e-mailadresse.
+      please_confirm_that_email_is_the_best_contact_html: Bekræft venligst, at <span class="email">%{email}</span> er den bedste måde at kontakte dig på.
+      your_site_account_has_no_email: Din %{site_name}-konto har ingen tilknyttet e-mailadresse.
     flags:
       show:
         flaggable_content_desc: |
@@ -8500,6 +8512,7 @@ da:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
+        prefers_exclude_monthly_supporters: Udeluk månedlige supportere
         clients: Kunder
       assessment:
         description: Beskrivelse
