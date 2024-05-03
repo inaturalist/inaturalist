@@ -3453,7 +3453,7 @@ en:
     Will you help us with an <a href="%{url}">experiment (version %{version})</a> to estimate the accuracy of iNaturalist observations?
   observation_accuracy_validator_email_if_so3_html: |
     <ol>
-    <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom). </li>
+    <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom).</li>
     <li>If you see the “Potential Disagreement” popup…
       <ul>
         <li>and you are confident it’s mis-ID’d click the orange button,</li>
@@ -3463,7 +3463,7 @@ en:
      <li>Do this by <b>%{validator_deadline_date}</b></li>
     </ol>
     Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>* that we think you can identify based on your activity on iNat. <b>Please add the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
-    *<i>This link will open up the identify tool on iNaturalist website which requres you to be logged in. We recommend doing this task from a computer, but it is possible from your mobile browser app. If you are reading this message inside the iNaturalist Android app, make sure to open the link in a browser app (not the iNat app itself). You may have to first log in to the website through the browser app.</i>
+    *<i>This link will open up the Identify tool on the iNaturalist website which requires you to be logged in. We recommend doing this task from a computer, but it is possible from your mobile browser app. If you are reading this message inside the iNaturalist Android app, make sure to open the link in a browser app (not the iNat app itself). You may have to log in to the website through the browser app.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
   observation_accuracy_validator_email_ids_equal_to: |
