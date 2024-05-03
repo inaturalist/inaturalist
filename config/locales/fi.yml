@@ -2895,6 +2895,12 @@ fi:
   observation_accuracy_experiment_all_results: "Kaikki tulokset"
   observation_accuracy_experiment_correct: "Oikea"
   observation_accuracy_experiment_uncertain: "Epävarma"
+  observation_accuracy_experiment_read_more_html: |
+    Lisätietoja tämän kokeilun järjestämisestä on oheisessa <a href="%{url}">blogiviestissä</a>.
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Älä vastaa tähän viestiin. Jos sinulla on kysyttävää tai palautetta, kommentoi <a href="%{url}">tätä blogia</a> tai lähetä sähköpostia: <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Älä vastaa tähän viestiin. Jos sinulla on kysymyksiä tai palautetta, lähetä sähköpostia osoitteeseen <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
   observation_belongs_to_project_requiring_field: |
     Havainto kuuluu projektiin, joka vaatii tätä kenttää. Havainto
@@ -5351,6 +5357,12 @@ fi:
         become_a_monthly_supporter_of_inaturalist_caps: KUUKAUSILAHJOITTAJAKSI
         thank_you_for_being_a_monthly_supporter: Kiitos, että olet kuukausilahjoittaja!
         thank_you_for_being_a_monthly_supporter_caps: KIITOS, ETTÄ OLET KUUKAUSILAHJOITTAJA!
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikkaa tästä lähettääksesi vahvistussähköpostin uudelleen
+      please_add_an_email_and_password: Lisää sähköposti ja salasana, jotta et menetä pääsyä tiliisi
+      please_click_the_link_sent_to_email_to_confirm_html: Ole hyvä ja klikkaa osoitteeseen <span class="email">%{email}</span> lähetettyä linkkiä vahvistaaksesi sähköpostiosoitteesi
+      please_confirm_that_email_is_the_best_contact_html: Vahvista, että osoite <span class="email">%{email}</span> on paras tapa sinun tavoittamiseksi
+      your_site_account_has_no_email: '%{site_name} tiliisi ei ole liitetty sähköpostiosoitetta.'
     flags:
       show:
         flaggable_content_desc: |
@@ -6669,6 +6681,7 @@ fi:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Sivuston tunniste
+        prefers_exclude_monthly_supporters: Jätä pois kuukausittaiset tukijat
       assessment:
         description: Kuvaus
       assessment_section:
