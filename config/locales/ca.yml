@@ -3117,6 +3117,8 @@ ca:
   observation_accuracy_experiment_precision: "Precisió"
   observation_accuracy_experiment_if_every_sample: "Si cada observació de mostra es trobava en un tàxon ample, com el regne, la precisió del conjunt de dades iNaturalist seria molt alta, però la precisió seria massa baixa per fer que el conjunt de dades sigui útil. Per estimar la precisió, comptem el nombre de fulles descendents a la taxonomia d'iNaturalist per a cada tàxon associat a cada observació de la mostra. Calculem la precisió com a 1 dividit pel nombre de fulles descendents. Si el tàxon era un tàxon de la fulla final, la precisió és del 100%. S'ignoren els rangs per sota de les espècies en el càlcul de precisió."
   observation_accuracy_experiment_in_the_example: "A la figura d'exemple de la dreta, la precisió mitjana de tres mostres d'observacions seria del 51%."
+  observation_accuracy_experiment_read_more_html: |
+    Per obtenir més informació sobre com organitzar aquest experiment, consulteu l'<a href="%{url}">entrada de bloc</a> que s'adjunta.
   observation_accuracy_validator_email_subject2: "Ens voleu ajudar amb l'experiment %{version} per estimar la precisió de les observacions d'iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Ens voleu ajudar amb un <a href="%{url}">experiment (versió %{version})</a> per a estimar la precisió de les observacions d'iNaturalist?
@@ -3382,6 +3384,7 @@ ca:
   organism_is_wild: L'organisme és salvatge
   organisms: Organismes
   original: Original
+  original_flag: Marca original
   originally_flagged_by: Originalment posat com a advertència per
   originally_imported_from_url_html: "Originalment importat des de <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Pàgina URL original per a aquesta foto."
@@ -4380,6 +4383,14 @@ ca:
   rotate_left: Gira a l'esquerra
   rotate_right: Gira a la dreta
   row_singular_or_plural: Fila(es)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Vols provar el disseny de dreta a esquerra? També podeu utilitzar el paràmetre d'URL test=rtl. Tingueu en compte que no totes les pàgines s'han convertit al disseny de dreta a esquerra
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Us heu unit a la prova de disseny de dreta a esquerra
   rules_and_formatting: "Normes i format"
   rules_for_adding_observations: Normes per agregar observacions
   rules_for_becoming_a_member: Normes per ser membre
@@ -4588,6 +4599,9 @@ ca:
   sites_affiliation_overview_you_can_continue_html: |
     Podeu continuar iniciant la sessió a través d’iNaturalist.org o a través del vostre lloc web específic de la xarxa. Independentment de la vostra afiliació, totes les vostres dades s’allotjaran al mateix lloc i podreu continuar interactuant amb la comunitat iNaturalist internacional, més àmplia. Cada compte d'iNaturalist només es pot afiliar a un únic membre de la xarxa. Podeu revisar o canviar la vostra afiliació a la %{start_tag_settings}configuració del compte%{end_tag_settings}.
   sites_affiliation_title: Coneix més sobre l'Afiliació a la Xarxa
+  sites_network_agreements_html: |
+    iNaturalist té acords formals amb organitzacions de cadascuna d'aquestes àrees geogràfiques per donar suport a l'ús de la plataforma iNaturalist.
+    <strong>Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu consultar més detalls a %{start_tag_join}aquí%{end_tag_join}.</strong>
   sites_network_consists_of: "La Xarxa iNaturalist està formada per moltes organitzacions:"
   sites_network_inaturalist_network_collection: |
     La xarxa iNaturalist és un conjunt de llocs web localitzats totalment connectats a la comunitat iNaturalist global. Els llocs de la xarxa tenen el suport d’institucions locals que promouen el seu ús local i faciliten l’ús de les dades d’iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades autèntiques dins de les seves àrees geogràfiques, les quals s’amaguen automàticament de la vista pública per protegir millor les espècies amenaçades.
@@ -4703,6 +4717,10 @@ ca:
   stats: Estadístiques
   stats_for_this_year_have_not_been_generated: Les estadístiques d'aquest no s'han generat
   status: Estat
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Estat de conservació aplicat des d'un tàxon de nivell superior:</strong> %{taxon}
   status_globally: '"%{status}" Globalment'
   status_in_place: '"%{status}" a %{place}'
   stay_and_try_again: Romandre i provar de nou
@@ -4950,6 +4968,7 @@ ca:
   text_editing_controls: Eines de control d'edició de text
   thanks!: Gràcies"
   thanks_from_all_of_us_here_at: Gràcies de tots els que estem darrere de
+  that_account_is_already_connected: Aquest compte ja està connectat a un altre usuari
   that_photo_doesnt_exist: Aquesta foto no existeix.
   that_observation_doesnt_exist: Aquesta observació no existeix.
   that_observation_doesnt_have_any_photos: "Aquesta observació no té cap foto."
@@ -5258,6 +5277,10 @@ ca:
   unknown: Desconegut
   unknown_error: Error desconegut
   unknown_rank: '(Classificació desconeguda)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Deixar de seguir l'observació
+  #Text for a button to stop following updates from a user
+  unfollow_user: Deixar de seguir l'usuari
   unlink_your_google_account: Desvinculeu el vostre compte de Google
   unlink_your_flickr_account: "Desenllaçar el compte de Flickr"
   unmute: No silenciar
@@ -5385,6 +5408,7 @@ ca:
   user_commented: "%{user} ha comentat"
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
+  user_faved_an_observation_by_you: "%{user} ha fet favorita una observació vostra"
   user_faved_this_observation: "%{user} ha marcat com a favorita aquesta observació"
   user_flagged_as_a_non_spammer_html: "%{user} marca com a no spammer"
   user_flagged_as_a_spammer_html: "%{user} marcat com spammer"
@@ -5607,6 +5631,7 @@ ca:
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Perquè esteu fent aquest canvi? (opcional)
+  why_are_you_making_this_change_cite_source_required: Per què heu fet aquest canvi? Si us plau, expliqueu i, si és possible, citeu una font. (obligatori)
   why_you_can_see_the_coordinates: Per què podeu veure les coordenades?
   who_can_add_observation_fields_to_my_obs: Qui pot afegir camps d'observació a les meves observacions?
   who_can_add_observations_to_this_project?: Qui pot afegir observacions a aquest projecte?
@@ -5674,6 +5699,7 @@ ca:
   year: Any
   year_in_review: "Revisió de l'any %{year}"
   year_in_review2: "Resum de l'any %{year}"
+  year_in_review_caps: "ANY EN REVISIÓ %{year}"
   year_month: any/mes
   year_on_site: "L'any %{year} a %{site}"
   'yes': "Sí­"
@@ -5704,6 +5730,8 @@ ca:
   yir_donate_banner_you_helped_inaturalist_thrive: Heu ajudat a millorar iNaturalist aquest any. Gràcies!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Necessita el teu Suport
+  yir_email_because_of_you: |
+    Gràcies a tu, aquest any hi ha més dades sobre la biodiversitat que l'any passat. l'Any en Revisió és el nostre regal per a tot el que heu fet per la biodiversitat a través d'iNaturalist.
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: L'Equip d'iNaturalist
   yir_generating_and_sharing: |
