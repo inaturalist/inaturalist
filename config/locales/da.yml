@@ -3211,6 +3211,19 @@ da:
   observation_accuracy_validator_email_subject2: "Vil du hjælpe os med Eksperiment %{version} til vurdering af korrektheden af iNaturalist-observationer?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Vil du hjælpe os med et <a href="%{url}">eksperiment %{version}</a> til vurdering af korrektheden af iNaturalist-observationer?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (selv kongerige). </li>
+    <li>Ses en “Potentiel uenighed”-popup…
+    <ul>
+    <li>og du er sikker på, at den er fejlidentificeret, klik på den orange knap,</li>
+    <li>eller hvis du er usikker ud over dit ID, klik på den grønne knap</li>
+    </ul>
+    </li>
+    <li>Gør dette senest pr. <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Her er <a href="%{sample_url}">delmængden af %{num_obs} observationer</a>*, som vi tror, du kan identificere baseret på din aktivitet på iNat. <b>Føj venligst det mest præcise ID, du kan, til hver af observationerne senest pr. %{validator_deadline_date}</b>.
+    *<i>Dette link åbner identifikationsværktøjet på iNaturalist-webstedet, hvilket kræver, at du er logget ind. Vi anbefaler at udføre denne opgave fra en computer, men det er også muligt fra en mobil webbrowser-app. Læses denne besked i iNaturalist Android-appen, så sørg for at åbne linket i en webbrowser-app (ikke selve iNat-appen). Der skal muligvis først logges ind på webstedet via webbrowser-appen.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Vi vil beregne nøjagtigheden ved at sammenligne dit ID med Observationstaksonen. Observationer, hvor du
     tidligere har tilføjet et ID, der fortsat har relevans, kan overspringes. Læs videre for mere information om, hvordan vi tæller enigheder og uenigheder.
