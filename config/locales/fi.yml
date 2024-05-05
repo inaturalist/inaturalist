@@ -4407,39 +4407,6 @@ fi:
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} on %{iconic_taxon}%{rank}, josta on 1 havainto"
     other: "%{taxon} on %{iconic_taxon}%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_amphibia_with_x_observations:
-    one: "%{taxon} is a sammakkoeläin%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a sammakkoeläin%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_aves_with_x_observations:
-    one: "%{taxon} is a lintu%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a lintu%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_mammalia_with_x_observations:
-    one: "%{taxon} is a nisäkäs%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a nisäkäs%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_reptilia_with_x_observations:
-    one: "%{taxon} is a matelija%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a matelija%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_plantae_with_x_observations:
-    one: "%{taxon} is a kasvi%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a kasvi%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_actinopterygii_with_x_observations:
-    one: "%{taxon} is a viuhkaeväis%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a viuhkaeväis%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_animalia_with_x_observations:
-    one: "%{taxon} is a eläin%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a eläin%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_insecta_with_x_observations:
-    one: "%{taxon} is a hyönteis%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a hyönteis%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_arachnida_with_x_observations:
-    one: "%{taxon} is a hämähäkkieläin%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a hämähäkkieläin%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_fungi_with_x_observations:
-    one: "%{taxon} is a sieni%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a sieni%{rank}, josta on %{count} havaintoa"
-  taxon_is_a_rank_of_mollusca_with_x_observations:
-    one: "%{taxon} is a nilviäis%{rank}, josta on 1 havainto"
-    other: "%{taxon} is a nilviäis%{rank}, josta on %{count} havaintoa"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} on eliökunta, josta on yksi havainto"
     other: "%{taxon} on eliökunta, josta on %{count} havaintoa"
