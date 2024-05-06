@@ -3234,9 +3234,24 @@ sv:
   observation_accuracy_experiment_precision: "Precision"
   observation_accuracy_experiment_if_every_sample: "Om varje provfynd var på en hög nivå såsom rike, skulle noggrannheten i iNaturalists dataset kunna vara mycket hög, men precisionen kanske var för låg för att göra dataset särskilt användbart. För att uppskatta precision, räknade vi antalet underliggande ändtaxa i iNaturalists taxonomi för varje taxon kopplat till varje provfynd. Vi beräknade precision såsom 1 dividerat med antalet ändtaxa. Om taxonet var ett ändtaxa blev precisionen 100%. Vi ignorerade ranger under art i precisionsberäkningen."
   observation_accuracy_experiment_in_the_example: "I exempelfiguren till höger skulle medelprecisionen av tre provfynd bli 51 %."
+  observation_accuracy_experiment_read_more_html: |
+    För att läsa mer om hur detta experiment genomfördes, se detta <a href="%{url}">blogginlägg</a>.
   observation_accuracy_validator_email_subject2: "Kan du tänka dig att hjälpa oss med Experiment %{version} för att uppskatta noggrannheten för iNaturalist-fynd?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Kan du tänka dig att hjälpa oss med ett <a href="%{url}">experiment (version %{version})</a> för att uppskatta noggrannheten för iNaturalist-fynd?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Bestäm alla fynd i länken nedan så dtaljerat du kan, även om de har forskningsklass, och även om din bästa bestämning är till en högre taxonomisk nivå (även rike).</li>
+    <li>Om du ser “Möjlig meningsskiljaktighet”-popuppen…
+    <ul>
+    <li>och du är säker på att det är felbestämt, klicka på den orangea knappen,</li>
+    <li>eller om du är osäker på mer än din bestämning, Klicka på den gröna knappen</li>
+    </ul>
+    </li>
+    <li>Gör detta senast <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Här är <a href="%{sample_url}">delmängd av %{num_obs} fynd</a>* som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till den mest detaljerade bestämningen du kan för vart och ett av fynden senast %{validator_deadline_date}</b>.
+    *<i>Denna länk kommer att öppna Bestämningsverktyget på iNaturalists webbplats, och kräver att du är inloggad. Vi rekommenderar att du utför denna uppgift på en dator, men det är möjligt på din mobils webbläsare. Om du läser detta meddelande inifrån iNaturalists Android-app, se till att öppna länken i en webbläsarapp (inte själva iNat-appen). Du kan behöva logga in på webbplatsen via webbläsarappen.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
     du bestämt tidigare om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
@@ -3253,6 +3268,10 @@ sv:
     för att lära dig mer om experimentets utformning.
   observation_accuracy_validator_email_with_gratitude: Stort tack,
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Vänligen svara inte på detta meddelande. Om du har frågor eller synpunkter kan du kommentera <a href="%{url}">detta blogginlägg</a> eller mejla <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Vänligen svara inte på detta meddelande. Om du har frågor eller synpunkter, mejla <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
   observation_aggregation: Aggregering av fynd
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6285,6 +6304,12 @@ sv:
         Tack för ditt intresse av att stödja iNaturalist! Att donera till
         iNaturalist är tillfälligt avaktiverat medan vi uppdaterar våra
         donationssystem. Vänligen kolla snart igen.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klicka här för att skicka ett bekräftelsemejl igen.
+      please_add_an_email_and_password: Lägg till e-post och lösenord så att du inte förlorar åtkomst till ditt konto
+      please_click_the_link_sent_to_email_to_confirm_html: Klicka på länken som skickades till <span class="email">%{email}</span> för att bekräfta din e-postadress.
+      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig.
+      your_site_account_has_no_email: Ditt %{site_name}-konto har ingen e-postadress kopplad till det.
     flags:
       show:
         flaggable_content_desc: |
@@ -8246,6 +8271,7 @@ sv:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Riktat mot obekräftade användare
+        prefers_exclude_monthly_supporters: Exkludera månatliga bidragsgivare
         clients: Klienter
       assessment:
         description: Beskrivning
