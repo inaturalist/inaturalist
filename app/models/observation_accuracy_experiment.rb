@@ -416,7 +416,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def global_mop_up
     puts "global mop up..."
-    sample_subset = oae.observation_accuracy_samples.
+    sample_subset = observation_accuracy_samples.
       where( no_evidence: false ).
       left_outer_joins( :observation_accuracy_validators ).
       group( "observation_accuracy_samples.id" ).
