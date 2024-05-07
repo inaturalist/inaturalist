@@ -58,6 +58,7 @@ module INatAPIService
     "not_matching_project_rules_for",
     "not_user_id",
     "oauth_application_id",
+    "observation_accuracy_experiment_id",
     "on",
     "opacity",
     "outlink_source",
