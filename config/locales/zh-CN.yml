@@ -5844,6 +5844,12 @@ zh-CN:
         thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
       temporarily_unavailable: |
         感谢您有兴趣支持iNaturalist！因我站正在更新捐助系统，捐助iNaturalist当前不可用。请过一阵再来。
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: 点击这里重新发送验证邮件
+      please_add_an_email_and_password: 请添加电子邮件和密码以便您不会失去对您帐户的访问权限
+      please_click_the_link_sent_to_email_to_confirm_html: 请点击链接以发送<span class="email">%{email}</span>，从而确认您的电子邮箱地址。
+      please_confirm_that_email_is_the_best_contact_html: 请确认<span class="email">%{email}</span>是联系您的最好方式。
+      your_site_account_has_no_email: 你的%{site_name}账户没有绑定邮箱地址。
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -7402,6 +7408,7 @@ zh-CN:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: 针对未确认电子邮件地址的用户
+        prefers_exclude_monthly_supporters: 排除每月支持者
         clients: 客户端
       assessment:
         description: 描述
