@@ -580,18 +580,21 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
     obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
     num_obs = obs_ids.count
+    user.site ||= Site.default if user&.site.nil?
+    url = user.site&.url
     sample_url = FakeView.
       identify_observations_url(
+        host: url,
         place_id: "any",
         reviewed: "any",
         quality_grade: "needs_id,research,casual",
         id: obs_ids.join( "," )
       )
-    experiment_url = FakeView.observation_accuracy_experiment_url( self, params: { tab: "methods" } )
+    experiment_url = FakeView.observation_accuracy_experiment_url( self, params: { tab: "methods" }, host: url )
     delimited_num_obs = ApplicationController.helpers.number_with_delimiter( num_obs )
     subject = I18n.t( :observation_accuracy_validator_email_subject2, version: version )
     no_reply_string = if post_id && ( post = Post.find_by( id: post_id ) )
-      post_url = FakeView.post_url( post )
+      post_url = FakeView.post_url( post, host: url )
       I18n.t( :observation_accuracy_validator_email_please_do_not_reply_html, url: post_url )
     else
       I18n.t( :observation_accuracy_validator_email_please_do_not_reply_no_post_html )
@@ -715,23 +718,6 @@ class ObservationAccuracyExperiment < ApplicationRecord
     save!
 
     clear_experiment_caches
-  end
-
-  def get_sample_for_user_id( user_id )
-    validator = ObservationAccuracyValidator.
-      where( user_id: user_id, observation_accuracy_experiment_id: id ).first
-    return nil unless validator
-
-    samples = validator.observation_accuracy_samples
-    return nil unless samples.count.positive?
-
-    oids = samples.map( &:observation_id ).join( "," )
-    FakeView.identify_observations_url(
-      place_id: "any",
-      reviewed: "any",
-      quality_grade: "needs_id,research,casual",
-      id: oids
-    )
   end
 
   def get_top_level_stats( subset )
