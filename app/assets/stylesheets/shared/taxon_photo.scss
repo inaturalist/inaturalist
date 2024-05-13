@@ -6,6 +6,9 @@
     height: 100%;
     color: white;
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     opacity: 0;
     transition: opacity 0.2s linear;
     text-align: center;
@@ -44,6 +47,9 @@
     padding: 10px;
     background-color: rgba(0,0,0,0.4);
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     font-size: 90%;
     line-height: 20px;
     text-align: left;

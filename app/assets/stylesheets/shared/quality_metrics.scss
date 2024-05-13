@@ -13,6 +13,9 @@
   .grade {
     font-size: 18px;
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     margin: 25px 0px 25px;
   }
   .flag_link {

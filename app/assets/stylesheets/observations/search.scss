@@ -458,6 +458,9 @@ inat-taxon.split-taxon .icon {display: none;}
   background: none;
   border: 0px;
   font-weight: 100;
+  body.testing-font & {
+    font-weight: 400;
+  }
   color: #eee;
 }
 #stats-container .geo.selected {
@@ -471,6 +474,9 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #stats-container .stat-title {
   font-weight: 100;
+  body.testing-font & {
+    font-weight: 400;
+  }
   text-transform: uppercase;
   padding-bottom: 5px;
   letter-spacing: 0.04em;

@@ -324,6 +324,9 @@ a {
             font-size: 9px;
             margin-left: 3px;
             font-weight: 100;
+            body.testing-font & {
+              font-weight: 400;
+            }
           }
         }
         .header-about-edit {
@@ -517,6 +520,9 @@ a {
           background-color: #646464;
           padding: 1px 5px;
           font-weight: 100;
+          body.testing-font & {
+            font-weight: 400;
+          }
           display: block;
         }
       }

@@ -182,6 +182,9 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     .fa {
       font-size: 13px;
       font-weight: 100;
+      body.testing-font & {
+        font-weight: 400;
+      }
       line-height: 24px;
       vertical-align: text-top;
       margin-right: 5px;

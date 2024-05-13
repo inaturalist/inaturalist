@@ -250,6 +250,9 @@ body {
   }
   .navbar-title {
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     font-size: 2vw;
     line-height: 3.2vw;
     margin: 0;
@@ -311,6 +314,9 @@ body {
   .stat {
     text-transform: uppercase;
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     font-size: 1.7vw;
     height: 40%;
   }
@@ -340,6 +346,9 @@ body {
   text-align: center;
   h2 {
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     font-size: 2.8vw;
     text-transform: uppercase;
     margin: 2vw;
@@ -571,6 +580,9 @@ body {
   table {
     height: 95%;
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
     font-size: 1.7vw;
     th {
       font-weight: 600;

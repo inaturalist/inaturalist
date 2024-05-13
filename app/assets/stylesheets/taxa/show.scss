@@ -427,6 +427,9 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview.grid .viewmore a {
   background-color: #333;
   font-weight: 100;
+  body.testing-font & {
+    font-weight: 400;
+  }
   font-size: 20px;
   display: block;
   position: relative;
@@ -656,6 +659,9 @@ $introducedColor: #E4007C;
 .HighlightsTab .readmore {
   font-size: 18px;
   font-weight: 100;
+  body.testing-font & {
+    font-weight: 400;
+  }
   margin-left: 10px;
 }
 

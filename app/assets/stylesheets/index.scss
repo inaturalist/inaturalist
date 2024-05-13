@@ -475,6 +475,9 @@ span.button {
   .sciname.form,
   .sciname.hybrid {
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
   }
 }
 

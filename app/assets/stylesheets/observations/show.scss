@@ -314,6 +314,9 @@ a.UserImage,
             width: 100%;
             text-align: center;
             font-weight: 100;
+            body.testing-font & {
+              font-weight: 400;
+            }
           }
           .add-photo-span {
             top: auto;

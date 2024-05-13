@@ -77,6 +77,9 @@
     padding-inline-start: 41.3px;
     font-size: 15px;
     font-weight: 100;
+    body.testing-font & {
+      font-weight: 400;
+    }
   }
   .form-group.text-field {
     position: relative;
