@@ -5823,7 +5823,6 @@ sr:
             geom:
               cannot_be_blank: ne može biti prazno
               must_have_more_than_three_points: mora imati više od 3 poena
-              polygon_with_fewer_than_four_points: ima poligon sa manje od 4 tačke
         post:
           attributes:
             parent:

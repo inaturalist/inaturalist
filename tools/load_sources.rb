@@ -4,17 +4,6 @@
 # Run this with script/runner!
 #
 
-unless ubio = Source.find_by_title('uBio')
-  puts "Creating source for uBio..."
-  ubio = Source.new(
-    :in_text => 'uBio',
-    :citation => 'uBio. <http://www.ubio.org/>.',
-    :url => 'http://www.ubio.org',
-    :title => 'uBio'
-  )
-  ubio.save
-end
-
 unless col = Source.find_by_title('Catalogue of Life')
   puts "Creating source for Catalogue of Life..."
   col = Source.new(

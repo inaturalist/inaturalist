@@ -48,6 +48,7 @@
         var CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
+          email: "<%= current_user.email %>",
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
@@ -85,8 +86,9 @@
       <meta property="og:image" content="<%= image_url @site.shareable_image.url %>"/>
     <% end %>
   </head>
-<body class="browser">
+<body class="browser<%= ' testing-font' if @testing_font %>">
   <div id="bodywrapper">
+    <%= render partial: "shared/confirmation_banner" %>
     <% unless @headless -%>
       <%= render :partial => 'shared/header' %>
     <% end -%>
@@ -141,5 +143,8 @@
       ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
     }
   </script>
+  <%= javascript_include_tag "webpack/runtime-webpack" %>
+  <%= javascript_include_tag "webpack/react-main-webpack" %>
+  <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
 </body>
 </html>

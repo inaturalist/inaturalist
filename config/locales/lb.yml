@@ -3219,12 +3219,16 @@ lb:
             place_geometry:
               is_too_large_to_edit: ass ze grouss fir z'änneren
               is_too_large_to_import: ass ze grouss fir z'importéieren
+              cannot_be_blank: däerf net eidel sinn
+              invalid_point: huet een ongültege Punkt, z. B. Längegrad méi grouss wéi 180 oder Breedegrad manner wéi -90
+              must_have_more_than_three_points: muss méi wéi 3 Punkten hunn
+              polygon_with_less_than_four_points: huet ee Polygon mat manner wéi 4 Punkten
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: däerf net eidel sinn
               must_have_more_than_three_points: muss méi wei 3 Punkten hunn
-              polygon_with_fewer_than_four_points: huet ee Polygon mat manner wei 4 Punkten
+              polygon_with_less_than_four_points: huet ee Polygon mat manner wéi 4 Punkten
         project_observation:
           attributes:
             user_id:

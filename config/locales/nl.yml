@@ -2423,6 +2423,7 @@ nl:
     aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabisch
     armenian: Armeens
+    asturian: Asturisch
     basque: Baskisch
     belarusian: Wit-Russisch
     bengali: Bengaals
@@ -3196,18 +3197,6 @@ nl:
   observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Determineer alle waarnemingen in de onderstaande link zo nauwkeurig als je kunt, zelfs als ze van onderzoekskwaliteit zijn en zelfs als je beste ID zich op een veel hoger taxonomisch niveau bevindt (zelfs koninkrijk). </li>
-    <li>Als je de “Potential Disagreement” popup ziet…
-    <ul>
-    <li>en je er zeker van bent dat het verkeerd gedetermineerd is, klik dan op de oranje knop,</li>
-    <li>of als je niet zeker bent over je determinatie, klik je op de groene knop</li>
-    </ul>
-    </li>
-    <li>Doe dit voor <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Hier is de <a href="%{sample_url}">subset van %{num_obs} waarnemingen</a> waarvan we denken dat je die kan determineren op basis van je activiteit op iNaturalist. <b>Voeg alsjeblieft vóór %{validator_deadline_date} een zo nauwkeurig mogelijke determinatie toe aan elk van de waarnemingen</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
     je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
@@ -6786,6 +6775,70 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
+        quality_assessment_help3_html: |
+          <p>
+           De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
+           <strong>"ID nodig"</strong> als
+           </p>
+
+           <ul>
+           <li>de waarneming <strong>een datum heeft</strong></li>
+           <li>de waarneming <strong>een geolocatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+           <li>de waarneming <strong>geen mens is</strong></li>
+           </ul>
+           
+           <p>
+           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
+           </p>
+          <ul>
+          <li>
+          De %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
+          </strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
+          (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
+           onderfamilie-niveau ID of lager)
+          </li>
+          </ul>
+          <p>
+          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als aan bovenstaande vereisten niet is voldaan
+          </p>
+          <ul>
+          <li>
+          de <strong> locatie niet nauwkeurig lijkt </strong> (bijvoorbeeld apen in oceaan, nijlpaarden in kantoorgebouwen.)
+          </li>
+          <li>
+          het <strong>organisme is niet wild/verwilderd</strong> (bijvoorbeeld gevangen of gekweekt door mensen)
+          </li>
+          <li>
+          de waarneming <strong>toont geen aanwezigheid van het organisme</strong>, bijvoorbeeld foto's van water eigenschappen, rotsen, landschappen die geen organisme bevatten.
+          </li>
+          <li>
+          de waarneming <strong>toont geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
+          </li>
+          <li>
+          de waarneming <strong>toont geen bewijs voor één organisme op alle foto's.</strong>
+          (bijvoorbeeld er zijn vier foto's van vier verschillende organismen. Een foto dat het habitat toont van het organisme dat het onderwerp is van de waarneming is OK.)
+          </li>
+          <li>
+          de waarneming heeft niet langer een ID nodig <em>en</em> het gemeenschapsID is op familieniveau of hoger.
+          </li>
+          <li>
+          de waarnemer heeft het gemeenschapsID uitgeschakeld en het gemeenschapstaxon is geen voorouder of afstammeling van het taxon gerelateerd aan het ID van de waarnemer.
+          </li>
+          </ul>
+          <p>
+
+          En alsof dat nog niet ingewikkeld genoeg is, zijn er ook situaties waarin het systeem een ​​stem krijgt:
+          </p>
+          <ul>
+          <li>
+          Het systeem zal stemmen dat de waarneming niet wild/genaturaliseerd is
+          als er minstens 10 andere waarnemingen zijn van een genus of lager
+          de kleinste provincie-, staats- of land-equivalente plaats die
+          bevat deze waarneming en 80% of meer van die waarnemingen
+          zijn gemarkeerd als niet wild/genaturaliseerd.
+          </li>
+          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
@@ -8430,13 +8483,17 @@ nl:
               is_too_large_to_edit: is te groot om te bewerken
               is_too_large_to_import: is te groot om te importeren
               contains_too_many_observations: bevat te veel waarnemingen om te importeren
+              cannot_be_blank: mag niet leeg zijn
+              invalid_point: heeft een ongeldig punt, bijvoorbeeld lengtegraad groter dan 180 of breedtegraad minder dan -90
+              must_have_more_than_three_points: moet meer dan 3 punten hebben
+              polygon_with_less_than_four_points: heeft een veelhoek met minder dan 4 punten
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: mag niet leeg zijn
               invalid_point: heeft een ongeldig punt, bijvoorbeeld lengtegraad groter dan 180 of breedtegraad minder dan -90
               must_have_more_than_three_points: moet meer dan 3 punten hebben
-              polygon_with_fewer_than_four_points: heeft een veelhoek met minder dan 4 punten
+              polygon_with_less_than_four_points: heeft een veelhoek met minder dan 4 punten
         post:
           attributes:
             parent:

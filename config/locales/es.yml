@@ -8168,7 +8168,6 @@ es:
               cannot_be_blank: no puede estar en blanco
               invalid_point: tiene un punto no válido, por ejemplo, longitud mayor a 180 o latitud menor que -90
               must_have_more_than_three_points: debe tener más de tres puntos
-              polygon_with_fewer_than_four_points: tiene un polígono con menos de 4 puntos
         post:
           attributes:
             parent:

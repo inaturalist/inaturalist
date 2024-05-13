@@ -320,6 +320,10 @@ hu:
   add_evidence_of_presence_track_annotation: '"Megjelenési bizonyíték: Nyom" hozzáadása'
   add_evidence_of_presence_bone_annotation: '"Megjelenési bizonyíték: Csont" hozzáadása'
   add_evidence_of_presence_molt_annotation: '"Megjelenési bizonyíték: Levedlett kültakaró" hozzáadása'
+  add_evidence_of_presence_leafmine_annotation: '"Megjelenési bizonyíték: Levélakna" hozzáadása'
+  add_evidence_of_presence_hair_annotation: '"Megjelenési bizonyíték: Szőr" hozzáadása'
+  add_evidence_of_presence_egg_annotation: '"Megjelenési bizonyíték: Tojás vagy pete" hozzáadása'
+  add_evidence_of_presence_construction_annotation: '"Megjelenési bizonyíték: Építmény" hozzáadása'
   #As in a Taxon Framework Relationship
   add_relationship: 'Kapcsolat hozzáadása'
   #As in a Guide Section
@@ -568,7 +572,7 @@ hu:
   are_you_sure_leave_this_project: Biztos, hogy kilépsz ebből a projektből?
   are_you_sure_merge_these_places: Biztosan összevonod ezeket a helyeket? Ezt nem lehet visszafordítani.
   are_you_sure_remove_photo: "Biztosan eltávolítod ezt a fényképet?"
-  are_you_sure_remove_relationship: Biztosan törlöd ezt a kapcsolatot? Többé nem fogod ezt a személy követni és visszavonod a rejtett koordinátáidnak a hozzáférési jogát ha ezeket engedélyezted.
+  are_you_sure_remove_relationship: Biztosan törlöd ezt a kapcsolatot? Ezzel többé nem fogod ezt a személyt követni, és visszavonod a rejtett koordinátáidnak a megosztását vele.
   are_you_sure_remove_taxon_from_list: "Biztosan eltávolítod ezt a taxont a listáról?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Biztos vagy benne? Ez újratölti az oldalt, ezért néhány változtatásod elveszhet.
@@ -1015,6 +1019,12 @@ hu:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Levedlett kültakaró
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Levélakna
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Szőr
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Építmény
   controlled_term_definitions:
     alive: Az organizmus él és nem mutatja hamarosan bekövetkező halál jelét
     cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
@@ -1025,6 +1035,10 @@ hu:
     fruiting: A gyümölcs látszik és még mindig a növényen van
     male: Bizonyított, hogy az élőlény hímivarsejtet tud termelni ivaros szaporodáshoz
     molt: Levedlett bőr vagy más kültakaró
+    leafmine: Bizonyíték arra, hogy az élőlény a levél alső és felső epidermisze között táplálkozott
+    hair: Szőr, amely már elvált az élőlénytől, amely azt viselte
+    egg: Egész tojás vagy pete, vagy annak része
+    construction: Egy állat által más anyagokból létrehozott vagy kiásott struktúra
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
   controls: Vezérlők
@@ -1127,9 +1141,9 @@ hu:
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
   curator_application_inelligible2: |
-    Ahhoz hogy honlapkurátor kérelmedet beadd kell legyen egy fiókod legalább 60 napja, legalább 5 megjelölésed és 100 javító meghatározásod bárki megfigyeléséhez, akár a sajátodéhoz (eddig %{num_idents} meghatározásod van). Amikor eleget tettél ezeknek a követelményeknek fordulj ide vissza és beadhatod a kérelmedet.
+    Honlapkurátori kérelem beadásához legalább 60 napnál régebbi fiókkal, legalább 5 megjelölésed és legalább 100 javító meghatározással (bárki megfigyeléséhez, akár a te jelenlegi %{num_idents} megfigyelésedhez) kell rendelkezned. Amikor eleget tettél ezeknek a követelményeknek, gyere vissza ide és add be a kérelmedet.
   curator_application_inelligible_error2: |
-    Ahhoz hogy honlapkurátor kérelmedet beadd kell legyen egy fiókod legalább 60 napja, legalább 5 megjelölésed és 100 javító meghatározásod bárki megfigyeléséhez, akár a sajátodéhoz.
+    Honlapkurátori kérelem beadásához legalább 60 napnál régebbi fiókkal, legalább 5 megjelölésed és 100 javító meghatározással (bárki megfigyeléséhez, akár a sajátodéhoz is) kell rendelkezned.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Kurátori jelentkezés beküldve
   #Header
@@ -1546,6 +1560,7 @@ hu:
   extinct: kihalt
   extinct_in_the_wild: Vadon kihalt
   evidence_of_organism: Bizonyíték az organizmusra
+  evidence_related_to_single_subject: A bizonyíték egyetlen organizmusra utal
   facebook: Facebook
   failed_to_find_your_location: Nem találtuk a helyedet.
   failed_to_repair_photo: "Nem sikerült a fotó javtása: %{errors}"
@@ -1679,7 +1694,7 @@ hu:
   follow: Követés
   #Text for a button to follow updates on an observation
   follow_observation: Megfigyelés követése
-  follow_receive_updates_about_new_observations: Kövesd (kapj értesítést új megfigyelésekről)
+  follow_receive_updates_about_new_observations: Követés (értesítést kapsz új megfigyelésekről)
   #Text for a button to follow updates from a specific user
   follow_user: "%{user} követése"
   followers: Követők
@@ -2057,7 +2072,7 @@ hu:
     hebrew: Héber
     herero: Herero
     hiligaynon: Hiligaynon
-    hodges_number: Hodges szám
+    hodges_number: Hodges-szám
     hokkien: Hokkien
     hungarian: magyar
     icelandic: Izlandi
@@ -4699,7 +4714,7 @@ hu:
   wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
   we_also_support2: |
-    Támogatujk fotók importálását <a href="http://flickr.com">Flickr</a>-ról
+    Támogatjuk fotók importálását <a href="http://flickr.com">Flickr</a>-ról
     és <a href="http://photos.google.com">Google Photos</a>-ról is.
   we_can_only_understand_csv_in: Csak a következő formátumú CSV-t értjük meg
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
@@ -4958,7 +4973,7 @@ hu:
         thank_you_for_being_a_monthly_supporter: Köszönjük a rendszeres támogatásodat!
         thank_you_for_being_a_monthly_supporter_caps: KÖSZÖNJÜK A RENDSZERES TÁMOGATÁSODAT!
       temporarily_unavailable: |
-        Köszönjük, hogy támogatni szeretnéd az iNaturalistot! Az adományozást az iNaturalisthoz pillanatnyilag felfüggesztettük ameddig frissítjük az adományozó rendszerünket. Kérünk látogass vissza hamarosan.
+        Köszönjük, hogy támogatni szeretnéd az iNaturalistot! A rendszerünk frissítése alatt az adományozást pillanatnyilag felfüggesztettük. Kérünk látogass vissza hamarosan.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -4990,7 +5005,7 @@ hu:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Valós előfordulás
-          true_presences_definition2: Azok a helyek, ahol mind a Közelben előfordulható taxonok térképe és a Taxonintervallum egyaránt megjósolják, hogy a taxon létezik
+          true_presences_definition2: Azok a helyek, ahol a Valószínűsíthető előfordulási térkép és a Taxonintervallum egyaránt megjósolják, hogy a taxon ott létezik
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Hamis előfordulás
@@ -5442,9 +5457,11 @@ hu:
         active_desc: Meghatárott, megfigyelt, hozzászólt vagy posztolt az elmúlt 30 napban
         android_desc_html: Létrehozva az <a href="%{url}">iNaturalist Android alkalmazásával</a>
         avg_ttcid: Átlag TTCID
+        avg_ttid: Átlag TTID
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
         iphone_desc_html: Létrehozva az <a href="%{url}">iNaturalist iPhone alkalmazásból</a>
         med_ttcid: Med TTCID
+        med_ttid: Medián TTID
         new_users_desc: Regisztrált ezen a napon
         obs_1_day: "Megfigyelés (1 nap)"
         obs_1_day_desc: "Egy nap alatt létrehozott megfigyelések"
@@ -5463,9 +5480,9 @@ hu:
         recent_w_7_obs: Legújabb 7+ megfigyeléssel
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
         time_to_id_desc: Azonosításhoz szükséges idő (órában, 1 hetes mozgó ablak)
-        TTCID: Közösségi azonosítási idő
+        TTCID: Közösségi azonosítási idő (TTCID)
         TTCID_desc: Azonosításhoz szükséges idő valaki mástól, ami egyezik a közösségi taxonnal.
-        TTID: Azonosítási idő
+        TTID: Azonosítási idő (TTID)
         TTID_desc: Azonosításhoz szükséges idő valaki mástól
         TTID_note: |
           Ezek a statisztikák az egy héttel ezelőtti megfigyelésekből készültek. Ez azt jelenti, hogy ezekből kimaradtak az ezutáni azonosítások, ezért a számok kisebbek, mintha újra le lennének számolva a jelenben. Ugyanakkor elég jól szemléltetik, hogy milyen gyors a közösség az azonosításban az egyhetes intervallumot tekintve. Megjegyzendő, hogy ezek az adatok csak képekkel rendelkező megfigyelésekre érvényesek.
@@ -6124,7 +6141,7 @@ hu:
         exclusion: foglalt
         greater_than:
           one: nagyobb kell legyen mint %{count}
-          other: nagyobb kell legyen, mint %{count}
+          other: legalább %{count} kell legyen
         inclusion: nem szerepel a listán
         invalid: érvénytelen
         new_project_owner_must_be_a_manager: Az új projekt tulajdonosa admin kell legyen
@@ -6217,13 +6234,17 @@ hu:
               is_too_large_to_edit: túl nagy a módodításhoz
               is_too_large_to_import: túl nagy az importáláshoz
               contains_too_many_observations: túl sok megfigyelést tartalmaz az importáláshoz
+              cannot_be_blank: nem lehet üres
+              invalid_point: hibás pontja van, pl. 180-nál nagyobb hosszúság, vagy -90-nél kisebb szélesség
+              must_have_more_than_three_points: háromnál több pontja kell legyen
+              polygon_with_less_than_four_points: egy sokszöget tartalmaz kevesebb, mint 4 ponttal
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: nem lehet üres
               invalid_point: hibás pontja van, pl. 180-ál nagyobb hosszúság, vagy -90-nél kisebb szélesség
               must_have_more_than_three_points: háromnál több pontja kell legyen
-              polygon_with_fewer_than_four_points: egy sokszöget tartalmaz kevesebb, mint 4 ponttal
+              polygon_with_less_than_four_points: egy sokszöget tartalmaz kevesebb, mint 4 ponttal
         post:
           attributes:
             parent:

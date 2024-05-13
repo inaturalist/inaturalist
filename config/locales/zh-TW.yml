@@ -1881,7 +1881,7 @@ zh-TW:
   geoprivacy_is_private: 位置隱私為私有
   geoprivacy_is_private_desc: 觀察者選擇隱藏座標。
   georeferenced: 地理參考？
-  get_started: 入門
+  get_started: 開始建立
   getting_started_guide: 入門指南
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
@@ -3707,7 +3707,7 @@ zh-TW:
   project_icon: 專案圖示
   project_journal: 專案日誌
   project_id_or_url_slug: 專案 ID 或 URL slug，例如：333 或 my-project
-  project_list: 專案清單
+  project_list: 專案名錄
   project_list_defaults:
     title: "%{owner_name} 的名錄"
     description: '%{owner_name} 的物種列表'
@@ -5318,7 +5318,7 @@ zh-TW:
   you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
   you_cant_compare_a_list_with_nothing: 您不能比較沒有任何內容的名錄！
-  you_cant_delete_a_project_list: "您不能刪除專案清單"
+  you_cant_delete_a_project_list: "您不能刪除專案名錄"
   you_cant_delete_observation_fields_that_people_are_using: "您不可刪除正被其他人使用的觀察欄位"
   you_cant_do_that_for_the_default_check_list_place: 您不能對地點的預設名錄作此行為！
   you_cant_flag_that: 您不能標記那
@@ -5668,7 +5668,7 @@ zh-TW:
           自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
       show:
         project_list_desc: |
-          專案清單列出了由專案策展人所手動添加，以及代表著在專案裡研究等級觀察記錄的物種分類群。
+          專案名錄列出了由專案策展人所手動新增，以及代表著在專案裡研究等級觀察紀錄的物種分類群。
     messages:
       from: 發送人
       to: 接收人
@@ -6176,9 +6176,8 @@ zh-TW:
           </ol>
         project_list_desc_html: |
           <p class="description">
-          您可建立自定的特定分類群專案列表並連結至您的專案。
-          這在添加觀察至您的專案時，限制需經由「必須是在專案列表上的物種分類」
-          規則以符合是您清單上的物種分類時很有用。
+          您可建立自定的物種分類群專案名錄並連結至您的專案。
+          這樣做可以透過設定「必須屬於專案名錄中的物種分類群」規則，來限制只有名錄上的物種才能新增觀察紀錄至您的專案中。
           </p>
         rules:
           captive: 被捕獲/培育
@@ -6190,9 +6189,9 @@ zh-TW:
           identified: 被鑑定
           in_taxon: 在物種分類
           observed_in_place: 被觀察於地點
-          on_list: 成為在專案列表上的物種分類之一
+          on_list: 屬於專案名錄中的物種分類群
           verifiable: 可證實
-          wild: 被野化/歸化
+          wild: 野化/歸化
         start_time_desc: "您的 bioblitz 起始時間。格式：YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: 任一
@@ -6248,6 +6247,8 @@ zh-TW:
         display_project_name: 顯示專案名稱
         do_you_need_features_from_traditional: |
           您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？
+        do_you_need_features_from_traditional2: |
+          您需要傳統專案的功能嗎？例如像自定義觀察欄位或是新增無法自動篩選出來的個別觀察紀錄？
         duplicate_project: 重複專案
         include_annotated_observations: |
           僅包含有註解特定屬性的觀察記錄（例：生命階段），或是特定屬性與其內容（例：生命階段 = 成體）。
@@ -7259,7 +7260,6 @@ zh-TW:
               cannot_be_blank: 不可留空
               invalid_point: 有不正確的點位，例如：經度大於 180 或緯度小於 -90
               must_have_more_than_three_points: 必須要多於三個點
-              polygon_with_fewer_than_four_points: 具有少於四個點的多邊形
         post:
           attributes:
             parent:

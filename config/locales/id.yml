@@ -3094,19 +3094,6 @@ id:
   observation_accuracy_validator_email_subject2: "Bisakah kamu membantu kami dalam Eksperimen %{version} untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Bisakah kamu membantu kami dengan <a href="%{url}">eksperimen (versi %{version})</a> untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
-    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
-    <ul>
-    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
-    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
-    </ul>
-    </li>
-    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
-    </ol>
-    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
-    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Kami akan menghitung akurasinya dengan membandingkan ID Anda dengan Takson Pengamatan. Anda bisa melewati pengamatan-pengamatan yang sudah Anda tambahkan ID sebelumnya jika ID tersebut masih relevan. Untuk lebih banyak info mengenai bagaimana kami menghitung kesetujuan dan ketidaksetujuan, teruslah membaca.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -8046,13 +8033,17 @@ id:
               is_too_large_to_edit: terlalu besar untuk diubah
               is_too_large_to_import: terlalu besar untuk diimpor
               contains_too_many_observations: mengandung terlalu banyak pengamatan untuk diimpor
+              cannot_be_blank: tidak boleh kosong
+              invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
+              must_have_more_than_three_points: harus memiliki lebih dari 3 titik
+              polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: tidak boleh kosong
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
-              polygon_with_fewer_than_four_points: memiliki poligon yang titiknya kurang dari 4
+              polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         post:
           attributes:
             parent:

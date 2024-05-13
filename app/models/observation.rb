@@ -3171,6 +3171,7 @@ class Observation < ApplicationRecord
 
   def publicly_viewable_observation_photos
     observation_photos.select do |op|
+      op.photo &&
       ! ( op.photo.is_a?( LocalPhoto ) && op.photo.processing? ) &&
       !op.photo.flagged? &&
       !op.photo.hidden?

@@ -3446,12 +3446,14 @@ en:
   observation_accuracy_experiment_precision: "Precision"
   observation_accuracy_experiment_if_every_sample: "If every sample observation was at a coarse taxon such as kingdom, the accuracy of the iNaturalist dataset might be very high, but the precision might be too low to make the dataset very useful. To estimate precision, we counted the number of leaf descendants in the iNaturalist taxonomy for each taxon associated with each sample observation. We calculated precision as 1 divided by the number of leaf descendants. If the taxon was a leaf taxon the precision is 100%. We ignored ranks below species in the precision calculation."
   observation_accuracy_experiment_in_the_example: "In the example figure to the right the average precision of three sample observations would be 51%."
+  observation_accuracy_experiment_read_more_html: |
+    To read more about orchestrating this experiment see the accompanying <a href="%{url}">blog post</a>.
   observation_accuracy_validator_email_subject2: "Will you help us with Experiment %{version} to estimate the accuracy of iNaturalist observations?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Will you help us with an <a href="%{url}">experiment (version %{version})</a> to estimate the accuracy of iNaturalist observations?
-  observation_accuracy_validator_email_if_so2_html: |
+  observation_accuracy_validator_email_if_so3_html: |
     <ol>
-    <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom). </li>
+    <li>Identify all observations in the link below as finely as you can, even if they are Research Grade, and even if your finest ID is at a higher taxonomic level (even kingdom).</li>
     <li>If you see the “Potential Disagreement” popup…
       <ul>
         <li>and you are confident it’s mis-ID’d click the orange button,</li>
@@ -3460,7 +3462,8 @@ en:
      </li>
      <li>Do this by <b>%{validator_deadline_date}</b></li>
     </ol>
-    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a> that we think you can identify based on your activity on iNat. <b>Please add the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
+    Here is the <a href="%{sample_url}">subset of %{num_obs} observations</a>* that we think you can identify based on your activity on iNat. <b>Please add the finest ID you can to each of the observations by %{validator_deadline_date}</b>.
+    *<i>This link will open up the Identify tool on the iNaturalist website which requires you to be logged in. We recommend doing this task from a computer, but it is possible from your mobile browser app. If you are reading this message inside the iNaturalist Android app, make sure to open the link in a browser app (not the iNat app itself). You may have to log in to the website through the browser app.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     We’ll calculate accuracy by comparing your ID to the Observation Taxon. You can skip observations where you’ve previously added an ID if that ID is still relevant. For more on how we will count agreements and disagreements, keep reading.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -3473,6 +3476,10 @@ en:
     We're so grateful for your help as an identifier on iNaturalist, and thank you very much for participating in this study. Please read <a href="%{url}">the methods</a> to learn more about the experiment design.
   observation_accuracy_validator_email_with_gratitude: With gratitude,
   observation_accuracy_validator_email_the_inaturalist_team: The iNaturalist Team
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Please do not reply to this message. If you have questions or feedback please comment on <a href="%{url}">this blog post</a> or email <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Please do not reply to this message. If you have questions or feedback please email <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
   # Attributes an observation to a user. %{user} can be a username or a full
@@ -6711,6 +6718,15 @@ en:
         Thank you for your interest in supporting iNaturalist! Donating to
         iNaturalist is temporarily unavailable while we update our donation
         systems. Please check back soon.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Click here to resend a confirmation email
+      please_add_an_email_and_password:
+        Please add an email and password so you don't lose access to your account
+      please_click_the_link_sent_to_email_to_confirm_html:
+        Please click the link sent to <span class="email">%{email}</span> to confirm your email address.
+      please_confirm_that_email_is_the_best_contact_html:
+        Please confirm that <span class="email">%{email}</span> is the best way to contact you.
+      your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:
         flaggable_content_desc: |
@@ -9382,6 +9398,7 @@ en:
         # Preference for an announcement that is only shown to users who have
         # not confirmed their email address
         prefers_target_unconfirmed_users: Target unconfirmed users
+        prefers_exclude_monthly_supporters: Exclude monthly supporters
         clients: Clients
       assessment:
         description: Description

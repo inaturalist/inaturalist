@@ -13,6 +13,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  &.testing-font {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
   color: #333;
 }
 html, body {height: 100%;}
@@ -37,6 +40,9 @@ html, body {height: 100%;}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
   margin-bottom: 0.5em;
 }
 
@@ -83,16 +89,30 @@ a:hover {
 }
 
 /* UI Elements -- Labels, button text, that kind of thing */
-.ui, .ui p { font-family: Whitney, "Trebuchet MS", Arial, sans-serif; }
+.ui, .ui p {
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
+}
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
-.ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: Whitney, "Trebuchet MS", Arial, sans-serif; }
+.ui-tooltip p, .qtip p, .qtip-content p {
+  font-size: 100%;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
+}
 .ui-tooltip {
   padding: 0px;
 }
 
 .tinyui {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
   font-size: 8pt;
 }
 
@@ -164,7 +184,12 @@ input[type="file"]:focus {
   border-color: #ccc;
 }
 
-input,select,textarea{font-family:Whitney,"Trebuchet MS",Arial,sans-serif;}
+input,select,textarea{
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
+}
 form .field{margin-bottom:10px;}
 
 .twocolform .field {position:relative; padding-left: 110px;}
@@ -401,6 +426,9 @@ span.button {
 .errorExplanation h2, 
 .errorExplanation li {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
 }
 
 .errorExplanation h2 {
@@ -1408,6 +1436,9 @@ body, .infowindow .observation {
 
 .ui-chooser-input, .ui-chooser-choice { 
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
   padding: 4px 5px 3px; 
   margin: 0; 
   border-color: #ccc; 
@@ -1884,6 +1915,9 @@ user-icon .icon-person:before {
 }
 .ui-dialog.confirm-modal p {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  body.testing-font & {
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
+  }
   font-size: 13px;
 }
 .ui-dialog.confirm-modal p .taxon {

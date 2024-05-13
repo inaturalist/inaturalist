@@ -8,9 +8,6 @@ base: &base
         session_key: _inaturalist_session
         secret: <%= ENV.fetch("INAT_SECRET_KEY_BASE") { "INAT_SECRET_KEY_BASE" } %>
 
-    ubio:
-        key: <%= ENV.fetch("INAT_UBIO_KEY") { "INAT_UBIO_KEY" } %>
-
     tile_servers:
         elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
 

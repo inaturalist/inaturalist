@@ -2983,18 +2983,6 @@ ja:
   observation_accuracy_validator_email_subject2: "iNaturalistの観察記録の精度を推定するための実験 %{version} にご協力いただけませんか？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     iNaturalistの観察記録の精度を見積もるための <a href="%{url}">実験（バージョン %{version} ）</a>にご協力いただけませんか？
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>たとえそれが研究グレードであっても、またあなたの最も細かいIDがより高い分類学的レベル（王国であっても）であっても、以下のリンクにあるすべての観察記録をできる限り細かく同定してください。</li>
-    <li>「不一致の可能性」のポップアップが表示されたら...
-    <ul>
-    <li>誤同定だと確信がある場合は、オレンジ色のボタンをクリックしてください、</li>
-    <li>または、自分のIDがわからない場合は、緑色のボタンをクリックしてください。</li>
-    </ul>
-    </li>
-    <li>これを <b>%{validator_deadline_date}</b> までに行ってください。</li>
-    </ol>
-    以下は、iNatでのあなたの活動に基づいて、あなたが同定できると思われる <a href="%{sample_url}"> %{num_obs} の観察記録のサブセット</a> です。<b>それぞれの観察記録に、できる限り細かいIDを %{validator_deadline_date} までに追加してください。</b>
   observation_accuracy_validator_email_we_will_calculate: |
     私たちは、あなたの同定と観察記録分類群を比較して精度を計算します。もしその同定がまだ関連していれば、以前に同定を追加した観察記録をスキップすることができます。一致と不一致をどのようにカウントするかについては、このまま読み進めてください。
   observation_accuracy_validator_email_ids_equal_to: |
@@ -6894,11 +6882,16 @@ ja:
               is_too_large_to_edit: 編集するには大きすぎます
               is_too_large_to_import: 大きすぎるため、インポートできません
               contains_too_many_observations: インポートするには観察記録が多すぎます
+              cannot_be_blank: 空白にはできません
+              invalid_point: は無効な点です。例えば、経度が180度より大きい、緯度が-90度より小さいなど。
+              must_have_more_than_three_points: 3以上の点が必要です
+              polygon_with_less_than_four_points: 点が4つ未満の多角形があります
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: 空白にはできません
               must_have_more_than_three_points: 3点以上である必要があります
+              polygon_with_less_than_four_points: 点が4つ未満の多角形があります
         post:
           attributes:
             parent:

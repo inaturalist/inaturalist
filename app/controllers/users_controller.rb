@@ -213,56 +213,29 @@ class UsersController < ApplicationController
   end
 
   # Methods below here are added by iNaturalist
-  
   def index
     @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
-    unless fragment_exist?(@recently_active_key)
-      @updates = []
-      [Observation, Identification, Post, Comment].each do |klass|
-        if klass == Observation && !@site.prefers_site_only_users?
-          @updates += Observation.page_of_results( d1: 1.week.ago.to_s )
-        else
-          scope = klass.limit(30).
-            order("#{klass.table_name}.created_at DESC").
-            where("#{klass.table_name}.created_at > ?", 1.week.ago).
-            joins(:user).
-            where("users.id IS NOT NULL")
-          scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-          @updates += scope.all
-        end
-      end
-      Observation.preload_associations(@updates, :user)
-      @updates.delete_if do |u|
-        ( u.is_a?( Post ) && u.draft? ) ||
-        ( u.is_a?( Identification ) && u.taxon_change_id ) ||
-        ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
-      end
-      hash = {}
-      @updates.sort_by(&:created_at).each do |record|
-        hash[record.user_id] = record
-      end
-      @updates = hash.values.sort_by(&:created_at).reverse[0..11]
-    end
+    @updates = @site.users_index_recent_activity
 
     @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_4"
-    unless fragment_exist?(@leaderboard_key)
-      @most_observations = most_observations(:per => 'month')
-      @most_species = most_species(:per => 'month')
-      @most_identifications = most_identifications(:per => 'month')
-      @most_observations_year = most_observations(:per => 'year')
-      @most_species_year = most_species(:per => 'year')
-      @most_identifications_year = most_identifications(:per => 'year')
+    unless fragment_exist?( @leaderboard_key )
+      @most_observations = most_observations( per: "month" )
+      @most_species = most_species( per: "month" )
+      @most_identifications = most_identifications( per: "month" )
+      @most_observations_year = most_observations( per: "year" )
+      @most_species_year = most_species( per: "year" )
+      @most_identifications_year = most_identifications( per: "year" )
     end
 
     @curators_key = "users_index_curators_#{I18n.locale}_site_#{@site.id}_4"
-    unless fragment_exist?(@curators_key)
-      @curators = User.curators.limit(500).includes(:roles).order( "updated_at DESC" )
-      @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-      @curators = @curators.reject(&:is_admin?)
-      @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
-      @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
-      @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
-      @curators = @curators.sort_by do |u|
+    unless fragment_exist?( @curators_key )
+      @curators = User.curators.limit( 500 ).includes( :roles ).order( "updated_at DESC" )
+      @curators = @curators.where( "users.site_id = ?", @site ) if @site&.prefers_site_only_users?
+      @curators = @curators.reject( &:is_admin? )
+      @updated_taxa_counts = Taxon.where( "updater_id IN (?)", @curators ).group( :updater_id ).count
+      @taxon_change_counts = TaxonChange.where( "user_id IN (?)", @curators ).group( :user_id ).count
+      @resolved_flag_counts = Flag.where( "resolver_id IN (?)", @curators ).group( :resolver_id ).count
+      @curators = @curators.sort_by do | u |
         -1 * (
           @resolved_flag_counts[u.id].to_i +
           @updated_taxa_counts[u.id].to_i +
@@ -271,7 +244,7 @@ class UsersController < ApplicationController
       end
     end
 
-    respond_to do |format|
+    respond_to do | format |
       format.html
     end
   end
