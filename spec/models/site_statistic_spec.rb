@@ -46,7 +46,8 @@ describe SiteStatistic do
       expect( data['users']['count'] ).to eq 4
       expect( data['projects']['count'] ).to eq 1
       expect( data['taxa']['species_counts'] ).to eq 1
-      expect( data['identifier']['percent_id'] ).to eq 1
+      # 2024-03-13: identifier stats have been disabled, so this value should be 0
+      expect( data['identifier']['percent_id'] ).to eq 0
     end
 
     it "should generate stats for another day" do

@@ -607,6 +607,29 @@ class SiteStatistic < ApplicationRecord
   end
 
   def self.identifier_stats(at_time = Time.now)
+    if ss = SiteStatistic.last
+      return ss.data["identifier"]
+    end
+    return {
+      "avg_ttid" => 0,
+      "med_ttid" => 0,
+      "min_ttid" => 0,
+      "max_ttid" => 0,
+      "avg_ttcid" => 0,
+      "med_ttcid" => 0,
+      "min_ttcid" => 0,
+      "max_ttcid" => 0,
+      "percent_id" => 0,
+      "percent_cid" => 0,
+      "percent_cid_to_genus" => 0
+    }
+  end
+
+  # this method is now too slow to run in a production environment. If we want to maintain
+  # identifier statistics like this in production, we need to be able to fetch it with more
+  # performant queries. Preserving this method for now until we refactor it, or decide to
+  # remove this stats section entirely (pleary 2024-03-13)
+  def self.legacy_identifier_stats(at_time = Time.now)
     at_time = at_time.utc
     sql = <<-SQL
     SELECT 
