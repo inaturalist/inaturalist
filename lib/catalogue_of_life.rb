@@ -1,6 +1,6 @@
 #
 # Wrapper class for the CoL ReSTish web service methods.  This class doesn't 
-# do much more than pass along requests to uBio and return Hpricot objects.  
+# do much more than pass along requests to CoL and return Hpricot objects.  
 # You have been warned.
 #
 class CatalogueOfLife
