@@ -1,7 +1,8 @@
-class ObservationField < ApplicationRecord
+# frozen_string_literal: true
 
+class ObservationField < ApplicationRecord
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid

@@ -1,8 +1,9 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Place < ApplicationRecord
   acts_as_flaggable
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid

@@ -26,7 +26,7 @@ class Taxon < ApplicationRecord
   attr_accessor :current_user
 
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
