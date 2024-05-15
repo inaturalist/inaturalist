@@ -1205,6 +1205,11 @@ zh-CN:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: 为什么你想成为馆长？
   #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    如果您想要编辑 iNaturalist 的分类法，请提供一个示例或两个
+    的分类学更改， 并包含您的拟议更改的来源。 如果适用，请在 <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">馆长指南</a>中引述适当的分类权限。 如果您不列出任何来源，您的提议将不被考虑。
+  #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     如果你想要编辑常用名，请为你想更改的内容提供一两个例子
   #Prompt for information when applying to be a curator
@@ -1536,7 +1541,7 @@ zh-CN:
   dont_use_double_quotes: 不要在其他地方使用双引号
   #Prompt shown when you are dragging a file somewhere and should release it to
   #add the file as, for example, a new photo in the Uploader
-  drop_it: 放弃它
+  drop_it: 拖拽上传
   download: 下载
   download_caps: 下载
   download_bulk_import_template_html: |
@@ -2719,6 +2724,8 @@ zh-CN:
   most_observed_introduced_species: 最多观察的外来种
   most_observed_threatened_species: 最多观察的受威胁物种
   move_input_children_to_output?: 移动子项至输出？
+  moving_child_out_of_old_parent_would_narrow_html: |
+    将%{child}移除出%{old_parent}会导致%{old_parent}的范围缩小。%{old_parent}下共有%{id_count}个鉴定。
   multiple: 多重
   multiple_select_option: '-- 多重 --'
   multiple_taxa_for_taxon_change: "复合分类单元（交换/合并输入，分别输出）"
@@ -3023,6 +3030,8 @@ zh-CN:
   observation_accuracy_experiment_precision: "精确度"
   observation_accuracy_experiment_if_every_sample: "如果每个样本观察都处于界这样的粗略分类群，iNaturalist 数据集的准确度可能很高，但精确度可能太低，无法使数据集有价值。 为了估计精确度，我们计算了与每个样本观察相关的每个分类群的 iNaturalist 分类学中叶子后代的数量。 我们计算的精确度为1除以子集后代人数。 如果分类单元是子分类单元，精度为100%。我们忽略了精确计算中低于种一级别的层级。"
   observation_accuracy_experiment_in_the_example: "在右侧的示例中，三个样本观察的平均精确度为51%。"
+  observation_accuracy_experiment_read_more_html: |
+    要阅读更多关于本次实验组织的信息，请参阅伴随的 <a href="%{url}">博客文章</a>。
   observation_accuracy_validator_email_subject2: "您是否会帮助我们进行实验%{version}，以估计iNaturalist观察的准确度？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     您是否会帮助我们进行一次<a href="%{url}">实验（版本%{version}）</a>，以估计iNaturalist观察的准确度？
@@ -3038,6 +3047,10 @@ zh-CN:
     我们十分感激您在 iNaturalist 上帮助鉴定，也十分感谢您参与本次研究。请先阅读<a href="%{url}">方法</a>以了解有关实验设计的更多问题。
   observation_accuracy_validator_email_with_gratitude: "此致  \n敬礼，"
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist 团队
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>请不要回复这条信息。如果你有问题或反馈，请在<a href="%{url}">这一博客帖子</a>下评论，或发邮件给<a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>请不要回复这条信息。如果你有问题或反馈，请发邮件给<a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "添加观察到项目“%{project}”"
   observation_aggregation: 观察聚合
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4458,6 +4471,8 @@ zh-CN:
   site_taxon_page: "%{site_name}分类单元页"
   sites_affiliation_about_desc_html: |
     如果您的组织有兴趣加入iNaturalist网络，您可以在%{start_tag_join}这里%{end_tag_join}找到更多详情。
+  sites_affiliation_examples_canada_cdc_html: |
+    %{start_tag_inat_canada}iNaturalist加拿大%{end_tag_inat_canada}能够将 iNaturalist的数据纳入由保护数据中心 (CDC) 管理的安全的、省一级的系统中。这些系统在进行评估（每年两次）时使用，以确定物种的危险状态，以及确定受威胁和濒危物种的关键栖息地。因此，还可以找到并减少道​​路上濒危物种死亡的热点；划定并最终保护关键生物多样性区域；再次确认数十年来未曾报道过的物种的存在。
   sites_affiliation_examples_ecuardor_bndb_html: |
     %{start_tag_ecuador}iNaturalist厄瓜多尔%{end_tag_ecuador}将数据提供给厄瓜多尔国家生物多样性数据库（BNDB），这是包含科研数据和公民科学数据的大型储存站点。其目的是整合现有知识和数据，为加深世论对厄瓜多尔植物志和动物志的了解做出帮助。
   sites_affiliation_examples_mexico_nbis_html: |
@@ -4480,6 +4495,8 @@ zh-CN:
     你可以在%{start_tag_network}iNaturalist网络%{end_tag_network}查看当前的成员列表。
   sites_affiliation_overview_in_order_to_advance: |
     为了促进各自地区的研究和保护，网络成员可以得到iNaturalist所分享的数据。 它们有责任评估数据请求的有效性和适当性及其潜在后果； 也有责任以书面表态形式确保此种数据的安全性，不以任何方式公开。 或共享或超出原定目的地进行使用；他们会记录所有共享的实例以及相关的结果、结果或预期用途；并每年一次地向iNaturalist报告。
+  sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
+    %{start_tag_network}iNaturalist网络%{end_tag_network}是%{start_tag_global}全球iNaturalist社群%{end_tag_global}中的一系列本地化网站。
   sites_affiliation_overview_when_you_affiliate: |
     当您与 iNaturalist 网络成员关联时， 您的电子邮件地址和您已遮盖或设为私有的真实位置就会与网络成员共享。 这将让你的观察能更好地对对当地的保护工作产生价值。 如果您生活在或经常访问一个属于某网络成员的区域，鼓励您关联这一网络成员，以便于数据共享。
   sites_affiliation_overview_you_can_continue_html: |
@@ -4782,6 +4799,8 @@ zh-CN:
   taxon_range_iucn_relationship_iucn_red_list_map_unsuitable: 这不是国际自然保护联盟（IUCN）的红色列表范围图，因为该地图不匹配
   taxon_range_iucn_relationship_taxon_not_on_the_iucn_red_list: 这不是国际自然保护联盟（IUCN）的红色列表范围图，因为这个分类单元不在IUCN的红色列表中
   taxon_range_guidelines_each_taxon_can_have: 每个分类单元只能有一个分类单元范围。分类单元范围必须代表全球分布。
+  taxon_range_guidelines_the_iucn_red_list_html: |
+    %{link_start_tag}IUCN 红色名录%{link_end_tag} 是分类单元范围的典型来源。请说明您是否要添加 IUCN 红色名录范围，如果不是，您添加的内容与 IUCN 红色名录有何关系。这将有助于通知自动更新源自 IUCN 红色名录的范围的流程。如果您要添加 IUCN 红色名录范围，请在来源中正确注明 IUCN 红色名录版本（例如 2021-2）。
   taxon_range_guidelines_if_you_are_not_uploading: "如果你没在上传国际自然保护联盟（IUCN）红色清单范围地图，这应该是由于："
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: 国际自然保护联盟红色名录范围图与此分类单元不匹配
   taxon_range_guidelines_for_example_you_have_manually_narrowed: |
@@ -5844,6 +5863,12 @@ zh-CN:
         thank_you_for_being_a_monthly_supporter_caps: 感谢您成为每月支持者！
       temporarily_unavailable: |
         感谢您有兴趣支持iNaturalist！因我站正在更新捐助系统，捐助iNaturalist当前不可用。请过一阵再来。
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: 点击这里重新发送验证邮件
+      please_add_an_email_and_password: 请添加电子邮件和密码以便您不会失去对您帐户的访问权限
+      please_click_the_link_sent_to_email_to_confirm_html: 请点击链接以发送<span class="email">%{email}</span>，从而确认您的电子邮箱地址。
+      please_confirm_that_email_is_the_best_contact_html: 请确认<span class="email">%{email}</span>是联系您的最好方式。
+      your_site_account_has_no_email: 你的%{site_name}账户没有绑定邮箱地址。
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -6354,6 +6379,70 @@ zh-CN:
           您的观察导出失败。请访问<a href="%{url}">观察导出页面</a>以查看您导出的观察列表。
       parental_consent:
         subject: 您的孩子会想要使用 iNaturalist
+        content_html: |
+          <p>
+          您的子女正在使用<strong>Seek by iNaturalist</strong>教育营用，并希望于iNaturalist公民科学平台分享数据。由于在iNaturalist上发布数据会包含可能暴露个人信息的数据，iNaturalist在未经家长许可的情况下不允许13岁以下的儿童适用。
+          </p>
+          <p>
+          <strong>Seek by iNaturalist</strong>可以在不创建账号的情况下使用，这种情况下就不会暴露个人信息，但您的子女在这种情况下就不能向iNaturalist提交观察。iNaturalist是一个由参与者分享针对生物的观察和鉴定，从而对大众进行自然教育并为科学界生成生物多样性数据的公民科学社交网络平台。
+          </p>
+          <p>
+          如果您打算许可您的子女使用iNaturalist，我们需要您：
+          </p>
+          <ol>
+          <li>
+          <p>
+          通过这条链接创建您的子女将使用的iNaturalist账号：
+          <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          在您创建您子女的账号之后，我们会要求您支付一笔微小的捐款（1美元）以验证您的成年人身份。请确保在注册时输入的“家长邮箱”和捐助时的是同一个。
+          </p>
+          </li>
+          <li>
+          <p>
+          一旦我们接收到捐助款，我们就将为您发送另一封邮件，告知您您子女的账号已经激活，您就可以使用您所创建的iNaturalist用户名和密码来登录您子女的Seek app。
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist收集下列个人信息资料：
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong>邮箱地址（私有）：</strong> 每个iNaturalist账号都会绑定一个邮箱地址，这个地址不会公开。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>用户名（公共，必需）：</strong>每个iNaturalist账号都有一个公开的用户名和用户识别数字。用户名不需要和用户的真实姓名一致，但它可以通过公开评论和私信的方式加以联络。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>IP地址（私有，必需）：</strong> iNaturalist存储但不会公开用户的IP地址，这一地址可以用于确认用户的大致位置（精度到市一级）。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>头像图片（公开，可选）：</strong> iNaturalist账户可以选择设置头像图片，这些图片往往是用户的照片。
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong>观察地址（公开或私有，必需）：</strong> iNaturalist观察包含其观察地点的位置信息。它可以被公开或是设为私有，但默认是公开的。
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist还允许用户分享公开的图片、公开评论、或发送私信。上述用户生成内容中也可能包括个人身份信息。
+          </p>
+          <p>
+          在<a href="%{privacy_policy_url}">这里</a>了解更多关于iNaturalist隐私政策的信息。
+          </p>
       photos_missing:
         subject: 一些照片需要修复
         we_have_been_housekeeping: |
@@ -7402,6 +7491,7 @@ zh-CN:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: 针对未确认电子邮件地址的用户
+        prefers_exclude_monthly_supporters: 排除每月支持者
         clients: 客户端
       assessment:
         description: 描述

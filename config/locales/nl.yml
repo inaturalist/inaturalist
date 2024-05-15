@@ -3194,9 +3194,24 @@ nl:
   observation_accuracy_experiment_precision: "Precisie"
   observation_accuracy_experiment_if_every_sample: "Als elke steekproefwaarneming bij een grof taxon zoals koninkrijk zat, zou de nauwkeurigheid van de iNaturalist dataset wel eens heel hoog kunnen zijn, maar de precisie is misschien te laag om de data zeer nuttig te maken. Om precisie in te schatten, hebben we het aantal blad-nakomelingen in de iNaturalist taxonomie geteld voor elk taxon geassocieerd met elke steekproefwaarneming. We hebben precisie berekend als 1 gedeeld door het aantal blad-nakomelingen. Als het taxon een blad taxon was, is de precisie 100%. We hebben rangen onder het niveau van soorten genegeerd in de precisieberekening."
   observation_accuracy_experiment_in_the_example: "In het voorbeeldfiguur rechts zou de gemiddelde precisie van drie steekproeven 51 procent bedragen."
+  observation_accuracy_experiment_read_more_html: |
+    Lees meer over het proces van dit experiment, zie de begeleidende <a href="%{url}">blogpost</a>.
   observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Determineer alle waarnemingen in de onderstaande link zo nauwkeurig als je kunt, zelfs als ze van onderzoekskwaliteit zijn en zelfs als je beste ID zich op een veel hoger taxonomisch niveau bevindt (zelfs koninkrijk). </li>
+    <li>Als je de “Potential Disagreement” popup ziet…
+    <ul>
+    <li>en je er zeker van bent dat het verkeerd gedetermineerd is, klik dan op de oranje knop,</li>
+    <li>of als je niet zeker bent over je determinatie, klik je op de groene knop</li>
+    </ul>
+    </li>
+    <li>Doe dit voor <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Hier is de <a href="%{sample_url}">subset van %{num_obs} waarnemingen</a>* waarvan we denken dat je die kan determineren op basis van je activiteit op iNaturalist. <b>Voeg alsjeblieft vóór %{validator_deadline_date} een zo nauwkeurig mogelijke determinatie toe aan elk van de waarnemingen</b>. 
+    *<i>Deze link zal de Identify tool op de iNaturalist website openen en vereist dat je ingelogd bent. We raden aan om deze taak vanaf een computer te doen, maar het is ook mogelijk om hiervoor een mobile browserapp te gebruiken. Als je dit bericht leeft in de iNaturalist Android app, wees er dan zeker van om de link in de browserapp te openen ( niet in de iNat app zelf). Het kan zijn dat je eerst in moet loggen in de website via de browser app.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
     je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
@@ -3210,6 +3225,10 @@ nl:
     We zijn zo dankbaar voor jouw hulp als een determineerder op iNaturalist en bedanken je zeer voor je deelname aan deze studie. Lees <a href="%{url}">de methoden</a> om meer te leren over het ontwerp van het experiment.
   observation_accuracy_validator_email_with_gratitude: Met dankbaarheid,
   observation_accuracy_validator_email_the_inaturalist_team: Het iNaturalist Team
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Gelieve niet te reageren op dit bericht. Als je vragen of feedback hebt, reageer dan op <a href="%{url}">deze blog post</a> of e-mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Beantwoord dit bericht niet. Als je vragen of feedback hebt, stuur dan een e-mail naar <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6218,6 +6237,12 @@ nl:
         Bedankt voor het ondersteunen van iNaturalist! Doneren aan
         iNaturalist is tijdelijk niet mogelijk omdat we onze donatie
         systemen bijwerken. Kom alsjeblieft snel terug.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik hier om de bevestigingsmail opnieuw te verzenden.
+      please_add_an_email_and_password: Voeg een e-mailadres en wachtwoord toe zodat jij je toegang tot je account niet verliest
+      please_click_the_link_sent_to_email_to_confirm_html: Klik op de link die is verzonden naar <span class="email">%{email}</span> om jouw e-mailadres te bevestigen.
+      please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen.
+      your_site_account_has_no_email: Jouw %{site_name} account heeft geen gekoppeld e-mailadres.
     flags:
       show:
         flaggable_content_desc: |
@@ -8165,6 +8190,7 @@ nl:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
+        prefers_exclude_monthly_supporters: Sluit maandelijkse supporters uit
         clients: Client
       assessment:
         description: Beschrijving

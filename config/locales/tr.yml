@@ -3114,6 +3114,8 @@ tr:
   observation_accuracy_experiment_precision: "İsabetlilik"
   observation_accuracy_experiment_if_every_sample: "Her örneklem gözlemi âlem gibi kaba bir sınıfta olsaydı, iNaturalist veri setinin doğruluğu çok yüksek olabilirdi ancak isabetlilik veri setini çok kullanışlı hale getirmek için çok düşük olabilirdi. İsabetliliği tahmin etmek için her örneklem gözlemiyle ilişkili her sınıf için iNaturalist sınıflandırmasındaki yaprak (leaf) alt soyların sayısını saydık. İsabetliliği, 1'in yaprak alt soyundan gelenlerin sayısına bölünmesiyle hesapladık. Eğer sınıf bir yaprak sınıfı ise isabetlilik %100'dür. İsabetlilik hesaplamasında türlerin altındaki düzeyleri göz ardı ettik."
   observation_accuracy_experiment_in_the_example: "Sağdaki örnek şekilde, üç örneklem gözleminin ortalama isabetliliği %51 olacaktır."
+  observation_accuracy_experiment_read_more_html: |
+    Bu deneyin düzenlenmesi hakkında daha çok bilgi için <a href="%{url}">blog yazısına</a> bakın.
   observation_accuracy_validator_email_subject2: "iNaturalist gözlemlerinin doğruluğunu tahmin etmek için %{version} Deneyi ile bize yardımcı olur musun?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     iNaturalist gözlemlerinin doğruluğunu tahmin etmek için bir <a href="%{url}">deneyde (sürüm %{version})</a> bize yardımcı olur musun?
@@ -3129,6 +3131,10 @@ tr:
     iNaturalist'te bir tanımlayıcı olarak yardımın için çok minnettarız ve bu çalışmaya katıldığın için çok teşekkür ederiz. Deney tasarımı hakkında daha çok bilgi edinmek için lütfen <a href="%{url}">yöntemleri</a> oku.
   observation_accuracy_validator_email_with_gratitude: Teşekkürlerimizle,
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist Ekibi
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Lütfen bu iletiyi yanıtlamayın. Eğer bir sorun varsa veya geri dönüş yapacaksan lütfen <a href="%{url}">bu blog gönderisine</a> yorum yap veya <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b> adresine e-posta gönder.
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Lütfen bu iletiyi yanıtlamayın. Eğer sorun varsa veya geri dönüş yapacaksan lütfen <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b> adresine e-posta gönder.
   observation_added_to_the_project: "Gözlem \"%{project}\" projesine eklendi"
   observation_aggregation: Gözlem yığınlama
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -5985,6 +5991,12 @@ tr:
         thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
       temporarily_unavailable: |
         iNaturalist'i desteklemeye gösterdiğin ilgi için teşekkür ederiz! Bağış sistemlerimizi güncellerken iNaturalist'e bağış yapmak geçici olarak mümkün değildir. Lütfen yakında tekrar kontrol edin.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Doğrulama e-postasını tekrar göndermek için buraya tıkla.
+      please_add_an_email_and_password: Hesabına erişimini kaybetmemek için lütfen bir e-posta ve şifre ekle
+      please_click_the_link_sent_to_email_to_confirm_html: E-posta adresini doğrulamak için lütfen <span class="email">%{email}</span> adresine gönderilen bağlantıya tıkla.
+      please_confirm_that_email_is_the_best_contact_html: Lütfen <span class="email">%{email}</span> adresinin iletişim kurmak için en iyi yol olduğundan emin ol.
+      your_site_account_has_no_email: '%{site_name} hesabın, bir e-posta adresine sahip değil.'
     flags:
       show:
         flaggable_content_desc: |
@@ -7801,6 +7813,7 @@ tr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
+        prefers_exclude_monthly_supporters: Aylık destekçileri hariç tut
         clients: İstemciler
       assessment:
         description: Açıklama
