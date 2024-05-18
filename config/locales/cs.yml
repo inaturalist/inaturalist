@@ -451,9 +451,9 @@ cs:
   #"one" refers to a photo
   add_one_now: Přidat nyní
   add_place: Přidat místo
-  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živé nebo mrtvé: Živé"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živé nebo mrtvé: Nelze určit“'
-  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živé nebo mrtvé: Mrtvé"'
+  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Živý"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
+  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Mrtvý"'
   add_plant_phenology_budding_annotation: 'Přidat anotaci „Fenologie rostliny: pučení“'
   add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostliny: pučící květ“'
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
@@ -1290,8 +1290,8 @@ cs:
     #Evidence of an egg of an organism
     egg: Vejce
     juvenile: Mládě
-    alive_or_dead: Živé nebo mrtvé
-    alive: Živé
+    alive_or_dead: Živý nebo mrtvý
+    alive: Živý
     dead: Mrtvý
     cannot_be_determined: Nelze určit
     evidence_of_presence: Důkazy přítomnosti
@@ -1313,6 +1313,8 @@ cs:
     molt: Svlečka
     #Evidence of hair no longer attached to the organism from which it originated
     hair: Srst
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstrukce
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
     bone: |
@@ -6327,6 +6329,9 @@ cs:
         Děkujeme vám za váš zájem o podporu iNaturalist! Přispění na
         iNaturalist je dočasně nedostupné, jelikož aktualizujeme naše dárcovské systémy.
         Prosíme, zkuste to brzy znovu.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikněte zde pro opětovné odeslání potvrzovacího e-mailu
+      please_add_an_email_and_password: Prosím, přidejte e-mail a heslo, abyste neztratili přístup ke svému účtu
     flags:
       show:
         flaggable_content_desc: |
@@ -7577,7 +7582,7 @@ cs:
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
-          "Alive or Dead=Alive": Živé
+          "Alive or Dead=Alive": Živý
           "Alive or Dead=Dead": Mrtvý
           "Plant Phenology=Budding": Pučení
           "Plant Phenology=Flower Budding": Květinové pučení
@@ -8537,6 +8542,7 @@ cs:
             action:
               not_supported_for_this_kind_of_content: není podporováno pro tento druh obsahu
             base:
+              only_staff_and_hiding_curators_can_unhide: Pouze zaměstnanci a kurátoři, kteří skryjí obsah, jej mohou znovu odkrýt
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
