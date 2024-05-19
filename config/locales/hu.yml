@@ -1769,7 +1769,7 @@ hu:
   guide_was_successfully_created: Az útmutató sikeresen létrehozva.
   guide_was_successfully_published: Az útmutató sikeresen közzé téve.
   guide_was_successfully_updated: Az útmutató sikeresen frissítve.
-  guidelines: Irányelvek
+  guidelines: Szabályok
   has_already_been_flagged_by: már bejelentette
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
   has_one_or_more_faves: Legalább egyvalaki kedvelte
@@ -5630,10 +5630,10 @@ hu:
       form:
         new_name_guidelines_html: |
           <ul>
-          <li><p>Csak olyan neveket addj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
-          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomféléket "sólyom"-nak.</p></li>
-          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska)</p></li>
-          <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni</p></li>
+          <li><p>Csak olyan neveket adj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
+          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfajokat "sólyom"-nak. </p></li>
+          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska). Ha egy taxonnak nincs magyar neve (ami gyakori a nemzetségek szintjén, akkor ne hozz létre taxonnevet a taxon fajainak listázásával. Teljesen rendben van, ha a taxonnév latinul jelenik meg (elfogadott magyar név híján).</p></li>
+          <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni.</p></li>
           <li><p>Ha új szókészletet töltesz fel (ez ritkán fordul elő, mivel a magyar mint szókészlet már szerepel!), akkor azt angolul nevezd el, különben lehetetlen lesz számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.</p></li>
           <li><p>A lefordított köznevek alapértelmezettként fognak megjelenni, ha a felhasználó azon a nyelven használja a felületet (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
           <a class="readmore" href="/pages/translate">További információ a felhasználó felület fordításáról</a>
