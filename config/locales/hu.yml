@@ -1773,7 +1773,7 @@ hu:
   has_already_been_flagged_by: már bejelentette
   has_id_supported_by_two_or_more: Két vagy több meghatározás egyezik
   has_one_or_more_faves: Legalább egyvalaki kedvelte
-  has_photo: Van fénykép
+  has_photo: Fényképpel
   has_photos: Fényképpel
   has_photo_and_sound: Van fénykép és hang
   has_photos_or_sounds: Hanggal
@@ -1865,6 +1865,7 @@ hu:
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
   inaturalist_is_an_independent_nonprofit: |
     Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
+  computer_vision_suggestion: Gépi képfelismerés javaslata
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
@@ -3487,6 +3488,7 @@ hu:
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   press: Sajtó
   preview: Előnézet
+  preview_observations_with_these_observation_requirements: Megfigyelések előnézete ezekkel a követelményekkel
   previewing: "Előnézet..."
   previous_date_short: Előző
   prev: Előző
@@ -4763,7 +4765,7 @@ hu:
   who_helped_user_the_most: "%{user} tőlük kapott a legtöbb segítséget"
   who_user_helped_the_most: "%{user} nekik segített a legtöbbet"
   why_the_coordinates_are_obscured: Miért rejtettek a koordináták
-  with_annotation: Megjelöléssel
+  with_annotation: Attribútum
   without_annotation: Megjelölés nélkül
   widget: Modul
   widget_code: Modul kódrészlet
@@ -5341,6 +5343,7 @@ hu:
       project_type: Projekttípus
       collection: Gyűjtő
       umbrella: Ernyő
+      tracks_multiple_projects: több projektet egyesít
       collection_and_umbrellas_do_not_support: |
         A gyűjtő- és ernyőprojektek jelenleg nem férhetnek hozzá a rejtett koordinátákhoz.
       confirm_leave:
@@ -5373,6 +5376,10 @@ hu:
           curators: a projekt kurátorai
         trust_allow_members_to_trust: |-
           Engedélyezed a tagoknak, hogy láthatóvá tehessék rejtett koordinátáikat a projekt számára
+        trust_help_desc: |-
+          Ha szeretnéd látni a rejtett koordinátákat a kittakart megfigyelésekhez, ez a beállítás lehetővé teszi a projekthez csatlakozóknak, hogy megbízzanak a projekt adminjaiban, hogy azok hozzáférjenek ezekhez a rejtett koordinátákhoz. A projekt tagjai hozzáférést adhatnak a projektben megjelenő megfigyeléseik bármelyikének a rejtett koordinátáihoz, vagy csak a veszélyeztetettségi szint miatt kitakart megfigyelésekhez.
+        trust_help_notification2: |-
+          Ez azonban minden megbízó projekttagot értesít arról, ha megváltoztatod a projekt követelményeit, így újraértékelhetik, hogy a megváltozott követelmények fényében továbbra is megbíznak-e benned. A rejtett koordinátákhoz való hozzáférésed egy hétre visszavonásra kerül a megfigyelési követelmények módosítása után, hogy a tagoknak legyen idejük erre.
       new:
         a_project_allows_you_to_gather: |
           A gyűjtőprojektekkel megfigyeléseket lehet gyűjteni és vizualizálni az iNaturalist keresőfunkciói alapján. Minden olyan megfigyelés hozzáadódik a projekthez, amely megfelel a projekt paramétereinek.
@@ -5392,6 +5399,8 @@ hu:
           Szükséged van a hagyományos projektek funkcióira, mint például a pontos koordináták, egyéni adatmezők vagy a megfigyelések manuális hozzáadása?
         do_you_need_features_from_traditional2: |
           Szükséged van a hagyományos projektek funkcióira, mint például az egyéni adatmezők vagy az olyan megfigyelések hozzáadásának lehetősége, amelyeket nem lehet szűrőkkel listázni?
+        include_annotated_observations: |
+          Csak olyan megfigyelések felvétele, amelyek rendelkeznek attribútummal (pl. életszakasz), vagy attribútum-értékkel (pl. életszakasz = felnőtt). Projektenként egy attribútum adható meg.
         leaderboards_among_individuals: <strong>Egyének</strong> szerinti toplisták
         leaderboards_among_projects_and_bioblitzes: |
           <strong>Projektek</strong> szerinti toplisták
@@ -5399,12 +5408,15 @@ hu:
         name_placeholder: Csodálatos szitakötők, a Szigetköz madarai, stb.
         no_need_to_rely_on_manual_addition: |
           Manuálisan nem lehet megfigyeléseket hozzáadni
+        note_these_users_will_be_able_to_edit: |
+          Megjegyzés: ezek a felhasználók a projekt ÖSSZES részletét szerkeszthetik, beleértve az adminisztrátorokat is. Az adminisztrátoroknak a projekt meglévő tagjainak kell lenniük.
         note_you_can_delete_the_time: |
           (Megjegyzés: kitörölheted az időzónát és a pontos időt ha egész napokat akarsz figyelembe venni.)
         note_about_unselected_filters: |
           Megjegyzés: ha nem választasz ki taxont, helyet vagy felhasználót, alapértelmezetten minden szerepelni fog a projektben.
         only_display_member_observations: |
           Csak projekttagok megfigyeléseit tartalmazza a projekt (azon felhasználókét, akik csatlakoztak a projekthez)
+        optionally_filter_media: Opcionális. Képpel, hanggal vagy mindkettővel rendelkező megfigyelésekre szűrhetsz.
         or_drag_and_drop: (vagy húzd ide)
         project_background_color: A projekt leírásának háttérszíne
         project_background_color_help: Használj egy sötét árnyalatot, hogy a fehérrel szedett szöveg olvasható legyen.
@@ -5419,11 +5431,15 @@ hu:
         project_summary_help: |
           Ajd meg egy lényegretörő leírást. Kb. az első 200 karatker lesz látható jobbra a projekt kezdőoldalán, ezért ebbe a részbe férjen bele a lényeg!
         project_summary_placeholder: Fedezd fel és kövesd a Szigetköz madarait...
+        select_quality_grade: |
+          Legalább egy minőségi szintet válassz ki. <a href="%{url}">További információ</a> az adatminőségről.
         specify_project_filters: |
           Add meg azokat a szűrőket, amelyek alapján a megfigyeléseket ki akarod listázni ebben a projektben. Kiválaszthatsz több fajt (vagy taxont), helyet, dátumot és egyéb feltételt.
         start_and_end_times_for_bioblitzes: Kezdő- és befejezési dátummal rendelkeznek (bioblitz-szerű eseményekhez)
         umbrella_project_features: "Ernyőprojekt-funkciók:"
         unique_url_for_outreach: Egyedi URL a népszerűsítéshez
+        use_this_for_a_time_limited_event: |
+          Használd ezt egy időben korlátozott eseményhez, bioblitzhez vagy szezonális projekthez. Válassz ki egyetlen dátumot, dátumtartományt, vagy azt, hogy az év mely hónapjaiban kell készülnie a megfigyeléseknek (az évtől függetlenül). Győződj meg róla, hogy a megfelelő időpontokat és időzónákat választottad ki, vagy töröld az idő/időzóna szöveget a nap során bármikor készített megfigyelések felvételéhez. Hagyd üresen a Kezdés dátuma vagy a Befejezés dátuma mezőket, ha csak egyetlen dátumra szeretnéd korlátozni a projektet.
         users_can_follow_your_project: A felhasználók követhetik azokat a Bejegyzések révén
         use_this_link_to_create_html: |
           <a href="%{url}">Kattints ide</a> egy hagyományos projekt létrehozásához.
@@ -5632,7 +5648,7 @@ hu:
           <ul>
           <li><p>Csak olyan neveket adj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
           <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfajokat "sólyom"-nak. </p></li>
-          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska). Ha egy taxonnak nincs magyar neve (ami gyakori a nemzetségek szintjén, akkor ne hozz létre taxonnevet a taxon fajainak listázásával. Teljesen rendben van, ha a taxonnév latinul jelenik meg (elfogadott magyar név híján).</p></li>
+          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska).</p></li>
           <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni.</p></li>
           <li><p>Ha új szókészletet töltesz fel (ez ritkán fordul elő, mivel a magyar mint szókészlet már szerepel!), akkor azt angolul nevezd el, különben lehetetlen lesz számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.</p></li>
           <li><p>A lefordított köznevek alapértelmezettként fognak megjelenni, ha a felhasználó azon a nyelven használja a felületet (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
