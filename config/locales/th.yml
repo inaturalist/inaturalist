@@ -1024,6 +1024,9 @@ th:
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: เลิกเชื่อมต่อ
   distance_traveled_value: "ระยะทาง: %{distance} เมตร"
   documentation_for_developers_html: เอกสารสำหรับ<a href="/pages/developers">ผู้พัฒนา</a>
   #Button text to donate to iNaturalist. Please try to keep translations as
@@ -1228,6 +1231,7 @@ th:
     tutorials: แนะนำการใช้งาน
   from_a_place: จากสถานที่
   from_eol_collection: จาก EOL collection
+  from_flickr_etc: จาก Flickr และอื่น ๆ
   from_list: จากรายการ
   from_photos: จากรูปถ่าย
   from_place: จากสถานที่
