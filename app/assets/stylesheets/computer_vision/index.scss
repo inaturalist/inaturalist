@@ -1,11 +1,6 @@
 @import "../shared/split_taxon";
 
 @font-face {
-  font-family: Whitney;
-  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
-}
-
-@font-face {
   font-family: Lato;
   src: url("fonts/Lato/Lato-Regular.eot"); /* IE9 Compat Modes */
   src: url("fonts/Lato/Lato-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
@@ -18,10 +13,7 @@
 }
 
 body {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  &.testing-font {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 
 a {

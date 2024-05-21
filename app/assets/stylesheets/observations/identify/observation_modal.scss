@@ -41,6 +41,12 @@ body > [role="dialog"] .ObservationModal {
         border-left: 2px solid #ddd;
         background-color: $light-grey;
       }
+      .linky {
+        vertical-align: baseline;
+      }
+      .FlagAnItem {
+        padding-bottom: 20px;
+      }
     }
     .btn-primary {
       background-color: $inat-green;
@@ -765,10 +771,7 @@ body > [role="dialog"] .ObservationModal {
 
   .ui-autocomplete {
     .ac-result {
-      font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-      body.testing-font & {
-        font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-      }
+      font-family: Lato, "Trebuchet MS", Arial, sans-serif;
       .ac-label {
         color: #555;
         .title {

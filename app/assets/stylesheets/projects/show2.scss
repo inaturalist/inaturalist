@@ -281,6 +281,9 @@ a {
               padding-left: 3px;
             }
           }
+          button {
+            vertical-align: baseline;
+          }
         }
         .header-about-button {
           position: absolute;
@@ -323,10 +326,7 @@ a {
           i {
             font-size: 9px;
             margin-left: 3px;
-            font-weight: 100;
-            body.testing-font & {
-              font-weight: 400;
-            }
+            font-weight: 400;
           }
         }
         .header-about-edit {
@@ -519,10 +519,7 @@ a {
           color: #eee;
           background-color: #646464;
           padding: 1px 5px;
-          font-weight: 100;
-          body.testing-font & {
-            font-weight: 400;
-          }
+          font-weight: 400;
           display: block;
         }
       }

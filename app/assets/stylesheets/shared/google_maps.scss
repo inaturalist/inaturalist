@@ -4,7 +4,7 @@ body > [role="dialog"],
 body > .popover,
 body > div > .popover {
   .gm-style {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif !important;
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
     .gm-style-mtc,
     .gm-style-iw,
     .gm-style-iw a,
@@ -15,7 +15,7 @@ body > div > .popover {
     span,
     label,
     a {
-      font-family: Whitney, "Trebuchet MS", Arial, sans-serif !important;
+      font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
     }
     label {
       margin-bottom: 0 !important;
@@ -52,6 +52,9 @@ body > div > .popover {
     // restyle the divider between zoom controls
     .gmnoprint > div > div:nth-child(2) {
       width: auto !important;
+    }
+    .gm-style-iw {
+      font-weight: 400;
     }
   }
 
@@ -218,28 +221,5 @@ body > div > .popover {
     display: inline-block;
     max-width: 160px;
     margin-left: 4px;
-  }
-
-}
-
-body.testing-font,
-body.testing-font > div > [role="dialog"],
-body.testing-font > [role="dialog"],
-body.testing-font > .popover,
-body.testing-font > div > .popover {
-  .gm-style {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
-    .gm-style-mtc,
-    .gm-style-iw,
-    .gm-style-iw a,
-    .gm-style-iw span,
-    .gm-style-iw label,
-    .gm-style-iw div,
-    div,
-    span,
-    label,
-    a {
-      font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
-    }
   }
 }

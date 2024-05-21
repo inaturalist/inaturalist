@@ -181,11 +181,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     }
     .fa {
       font-size: 13px;
-      font-weight: 100;
-      body.testing-font & {
-        font-weight: 400;
-      }
-      line-height: 24px;
+      font-weight: 400;
+      line-height: 30px;
       vertical-align: text-top;
       margin-right: 5px;
       cursor: pointer;
@@ -263,7 +260,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 }
 
 .bootstrap .badge.green {
-  padding: 3px 7px 1px 7px;
+  padding: 2px 7px 3px 7px;
   vertical-align: inherit;
   background-color: $inat-green;
   font-size: 14px;
@@ -416,7 +413,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 #TaxaList .tree > li > .name-row {
   font-size: 18px;
   padding: 3px 0px 4px 0px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 #TaxaList .tree ul.nested li:last-child {
@@ -601,10 +598,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 .ui-autocomplete {
   .ac-result, .category {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-    body.testing-font & {
-      font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-    }
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
       color: #333;
     }
