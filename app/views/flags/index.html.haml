@@ -1,4 +1,3 @@
-- items = [@flags, @moderator_actions].flatten.compact.sort_by(&:created_at).reverse
 - content_for(:title) do
   - @title = t( :flags_for_x_html, x: link_to( @object.try_methods(:to_plain_s, :to_s), @object ) )
   =raw strip_tags @title
@@ -15,8 +14,10 @@
           - translated_model_name = t( "activerecord.models.#{@model.name}", default: translate_with_consistent_case( @model.name.underscore, default: @model.name ) )
           = t :flags_explanation, :site_name => @site.name
           = t :flagged_thing_explanation, thing: translated_model_name, vow_or_con: translated_model_name[0].downcase, gender: @model.name.underscore
-      - if items.empty?
+      - if @items.empty?
         %ul
           %li.quiet.description= t :no_flags
       - else
-        = render partial: "flag_table", locals: { flags: items, site: @site}
+        = render partial: "flag_table", locals: { flags: @items, site: @site}
+      .text-center
+        = will_paginate @items
