@@ -7,9 +7,9 @@ class StatsController < ApplicationController
     only: [:generate_year],
     if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
-    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments],
+    only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments, :daily_active_user_model],
     unless: -> { authenticated_with_oauth? }
-  before_action :admin_required, only: [:user_segments]
+  before_action :admin_required, only: [:user_segments, :daily_active_user_model]
   before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   prepend_around_action :enable_replica, only: [:index, :summary]
@@ -23,6 +23,10 @@ class StatsController < ApplicationController
     respond_to do | format |
       format.json do
         fetch_statistics
+        @stats = @stats.map do | stat |
+          stat[:data] = stat[:data].except( "daily_active_user_model" )
+          stat
+        end
         render json: @stats, except: :id, callback: params[:callback]
       end
       format.html do
@@ -30,6 +34,10 @@ class StatsController < ApplicationController
           @start_date = @end_date - 1.year
         end
         fetch_statistics
+        @stats = @stats.map do | stat |
+          stat[:data] = stat[:data].except( "daily_active_user_model" )
+          stat
+        end
         render layout: "bootstrap"
       end
     end
@@ -251,7 +259,7 @@ class StatsController < ApplicationController
       species_count_response = INatAPIService.observations_species_counts( node_params )
       species_count = species_count_response&.total_results || 0
       observations_count_response = INatAPIService.observations( node_params )
-      observations_count =  observations_count_response&.total_results || 0
+      observations_count = observations_count_response&.total_results || 0
       identifiers_count_response = INatAPIService.get( "/observations/identifiers", node_params )
       identifiers_count = identifiers_count_response&.total_results || 0
       observers_count_response = INatAPIService.get( "/observations/observers", node_params )
@@ -434,6 +442,15 @@ class StatsController < ApplicationController
         render layout: "bootstrap"
       end
     end
+  end
+
+  def daily_active_user_model
+    stats_record = SiteStatistic.order( "created_at asc" ).last
+    redirect_to "/" and return unless stats_record
+
+    @record_date = stats_record.created_at.strftime( "%Y-%m-%d" )
+    @daily_active_user_model = stats_record.data["daily_active_user_model"]
+    render layout: "bootstrap"
   end
 
   private
