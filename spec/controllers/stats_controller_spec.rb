@@ -8,6 +8,7 @@ describe StatsController do
       make_default_site
       OauthApplication.make!( name: "iNaturalist Android App" )
       OauthApplication.make!( name: "iNaturalist iPhone App" )
+      allow_any_instance_of( SiteStatistic ).to receive( :daily_active_user_model_stats ).and_return {}
       [Time.now, 1.day.ago, 1.week.ago].each do | t |
         Observation.make!( taxon: Taxon.make!( rank: "species" ),
           created_at: t )
