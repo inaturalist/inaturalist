@@ -324,7 +324,7 @@ zh-CN:
   add_evidence_of_presence_hair_annotation: '添加“出现记录的证据：毛发”的注释'
   add_evidence_of_presence_egg_annotation: '添加“出现记录的证据：卵”的注释'
   add_evidence_of_presence_construction_annotation: '添加“出现记录的证据：构造物”的注释'
-  add_established_not_established: '增加“建立：未建立”注释'
+  add_established_not_established: '增加“定殖：未定殖”注释'
   #As in a Taxon Framework Relationship
   add_relationship: '添加关系'
   #As in a Guide Section
@@ -1098,9 +1098,9 @@ zh-CN:
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: 构造物
     #Does the observation belong to a non-established population or not
-    established: 已建立
+    established: 已定殖
     #Organism is not a member of an established population
-    not_established: 未建立
+    not_established: 未定殖
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
     bone: |
@@ -1675,7 +1675,7 @@ zh-CN:
     naturalised: 归化
   establishment_means: 定殖途径
   establishment_means_describes_how: |
-    确立意思是描述如何在一个地区建立分类单元。
+    定殖途径是描述一个分类单元如何在一个地方确立定殖的方式。
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
   establishment_means_descriptions:
     native: 在这个区域演化而来或通过非人为手段抵达的情况
@@ -5453,7 +5453,7 @@ zh-CN:
   we_had_a_problem_flagging_that_item: "我们标记该项目时遇到问题：%{flag_error}"
   we_had_trouble_saving_comment: "我们无法保存该评论："
   we_have_no_conservation_status_for_this_taxon: 我们没有关于这个分类单元的保护状态
-  we_have_no_establishment_data_for_this_taxon: "我们没有关于此分类单元的建立数据"
+  we_have_no_establishment_data_for_this_taxon: "我们没有关于此分类单元的定殖数据"
   we_support_flickr: 我们目前支持Flickr用于图片存储，并将很快添加其他图片存储。
   weather: 天气
   website: 网站
@@ -6111,9 +6111,9 @@ zh-CN:
     listed_taxa:
       establishment_field:
         confirmation: |
-          您确定要这样做吗？这将改变属于该地点之内的所有地点的所有列出的分类群的建立方式。您可能会撤消掉大量工作。
+          您确定要这样做吗？这将改变属于该地点之内的所有地点的所有列出的分类群的定殖途径。您可能会撤消掉大量工作。
         description_html: |
-          这将在<a href="%{place_url}">%{place_name}</a>的所有后代地点将此类别的<em>所有</em>清单的建立方式更改为<strong>“%{establishment_means}”</strong>。只有馆长才能使用此工具。将建立方式更改为“引入”将具有大致相同的效果，但它不会更改现有的值，而只会填写空缺的值。
+          这将在<a href="%{place_url}">%{place_name}</a>的所有后代地点将此类别的<em>所有</em>清单的定殖途径更改为<strong>“%{establishment_means}”</strong>。只有馆长才能使用此工具。将建立方式更改为“引入”将具有大致相同的效果，但它不会更改现有的值，而只会填写空缺的值。
     lists:
       edit:
         lifelist_titles_cannot_be_changed: 生命列表的标题不能更改
