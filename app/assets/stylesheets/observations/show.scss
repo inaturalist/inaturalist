@@ -406,7 +406,7 @@ a.UserImage,
               padding: 15px;
               border-radius: 50px;
               display: inline-block;
-              padding: 5px 9px;
+              padding: 5px 9px 7px;
               pointer-events: auto;
               .btn:hover, .fa:hover {
                 text-decoration: none;
@@ -602,6 +602,9 @@ a.UserImage,
         &.fa-trash {
           color: $fail-red;
         }
+      }
+      & > button {
+        padding-top: 4px;
       }
     }
   }
