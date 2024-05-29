@@ -32,7 +32,7 @@
 #TaxonHeader h1 {
   margin-top: 10px;
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
 
   .btn-flags {
     margin-left: 10px;
@@ -43,6 +43,7 @@
 
 #TaxonHeader .taxon .display-name {
   color: black;
+  font-weight: 200;
 }
 
 #TaxonHeader .has-com-name {
@@ -426,10 +427,7 @@ $photoPreviewThumbGutterTop: 3px;
 }
 .PhotoPreview.grid .viewmore a {
   background-color: #333;
-  font-weight: 100;
-  body.testing-font & {
-    font-weight: 400;
-  }
+  font-weight: 400;
   font-size: 20px;
   display: block;
   position: relative;
@@ -658,10 +656,7 @@ $introducedColor: #E4007C;
 }
 .HighlightsTab .readmore {
   font-size: 18px;
-  font-weight: 100;
-  body.testing-font & {
-    font-weight: 400;
-  }
+  font-weight: 400;
   margin-left: 10px;
 }
 

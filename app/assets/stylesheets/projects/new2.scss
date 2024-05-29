@@ -505,21 +505,3 @@ body>div>.popover[role="tooltip"].popover-error {
   padding: 15px;
   background: white;
 }
-
-@media (min-width: 768px) {
-  .bootstrap .container {
-    width: auto;
-  }
-}
-
-@media (min-width: 992px) {
-  .bootstrap .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200) {
-  .bootstrap .container {
-    width: 1170px;
-  }
-}

@@ -1,5 +1,4 @@
 - @i18n ||= I18n
-- font_family = ( @user && @user.is_admin? && @user.in_test_group?( "font" ) ) ? "Lato" : "Whitney"
 !!!
 %html
   %head
@@ -23,7 +22,7 @@
         color: white;
       }
       body {
-        font-family: #{font_family}, Helvetica;
+        font-family: Lato, Helvetica;
         line-height: 1.4em;
         background-color: #74ac00;
       }
@@ -41,7 +40,7 @@
       .container {
         background-color: #74ac00;
         color: white;
-        font-weight: 100;
+        font-weight: 400;
       }
       .content {
         max-width: 600px;

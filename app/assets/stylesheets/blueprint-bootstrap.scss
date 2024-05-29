@@ -1,34 +1,10 @@
 @font-face {
   font-family: 'Glyphicons Halflings';
-
   src: url('/fonts/glyphicons-halflings-regular.eot');
   src: url('/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('/fonts/glyphicons-halflings-regular.woff') format('woff'), url('/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
-$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
-@font-face { 
-  font-family: Whitney; 
-  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
-}
-@font-face { 
-  font-family: Whitney; 
-  font-weight: bold;
-  src: url('/fonts/Whitney-Medium-Pro.otf') format("opentype");
-} 
-@font-face { 
-  font-family: Whitney; 
-  font-weight: 100;
-  src: url('/fonts/Whitney-Light-Pro.otf') format("opentype");
-} 
-@font-face { 
-  font-family: Whitney; 
-  font-weight: 600;
-  src: url('/fonts/Whitney-Semibold-Pro.otf') format("opentype");
-} 
-@font-face { 
-  font-family: Whitney; 
-  font-weight: 800;
-  src: url('/fonts/Whitney-Bold-Pro.otf') format("opentype");
-}
+
+$font-stack: Lato, "Trebuchet MS", Arial, sans-serif;
 
 @font-face {
   font-family: Lato;
@@ -157,10 +133,6 @@ body .bootstrap {
   color: #333333;
   background-color: #ffffff;
   font-family: $font-stack;
-}
-
-body.testing-font .bootstrap {
-  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 
 .bootstrap {

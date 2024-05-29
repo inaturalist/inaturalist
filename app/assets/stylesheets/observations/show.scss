@@ -123,6 +123,7 @@ button.linky,
   color: $bootstrap-link-color;
   cursor: pointer;
   background: transparent;
+  vertical-align: baseline;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
@@ -192,10 +193,7 @@ input.failed, textarea.failed {
 
 .ui-autocomplete {
   .ac-result, .category {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-    body.testing-font & {
-      font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-    }
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
       color: #333;
     }
@@ -313,10 +311,7 @@ a.UserImage,
             top: 280px;
             width: 100%;
             text-align: center;
-            font-weight: 100;
-            body.testing-font & {
-              font-weight: 400;
-            }
+            font-weight: 400;
           }
           .add-photo-span {
             top: auto;
@@ -411,7 +406,7 @@ a.UserImage,
               padding: 15px;
               border-radius: 50px;
               display: inline-block;
-              padding: 5px 9px;
+              padding: 5px 9px 7px;
               pointer-events: auto;
               .btn:hover, .fa:hover {
                 text-decoration: none;
@@ -608,6 +603,9 @@ a.UserImage,
           color: $fail-red;
         }
       }
+      & > button {
+        padding-top: 4px;
+      }
     }
   }
   .middle_left {
@@ -647,6 +645,7 @@ a.UserImage,
         line-height: 40px;
         color: #000;
         white-space: normal;
+        font-weight: 200;
       }
       &.genus .comname.secondary-names,
       &.species .comname.secondary-names,
@@ -813,6 +812,9 @@ time {
         color: $bootstrap-link-color;
         cursor: pointer;
         margin-right: 5px;
+        > .btn {
+          vertical-align: baseline;
+        }
       }
       .obscured {
         color: #aaa;
@@ -1627,7 +1629,7 @@ time {
     text-align: center;
     a {
       color: $bootstrap-link-color;
-      font-weight: 200;
+      font-weight: 400;
     }
     &.in {
     }
@@ -2211,7 +2213,7 @@ time {
     background: $inat-green;
     border-radius: 15px;
     cursor: pointer;
-    padding-top: 3px;
+    padding-top: 2px;
     text-align: center;
     &.disabled {
       opacity: 0.3;
@@ -2334,11 +2336,11 @@ body > [role="dialog"] .easyzoom > a > img {
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding-block: 2px 1px;
+  padding-block: 3px 3px;
   padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
-  line-height: 17px !important;
+  line-height: 16px !important;
   z-index: 1;
   margin-inline-end: 20px;
   // added
@@ -2350,7 +2352,7 @@ body > [role="dialog"] .easyzoom > a > img {
   position: absolute;
   display: block;
   bottom: 0;
-  border: 10px solid $border-grey;
+  border: 11px solid $border-grey;
   border-inline-end-width: 5px;
   border-inline-end-color: transparent;
   inset-inline-end: -15px;

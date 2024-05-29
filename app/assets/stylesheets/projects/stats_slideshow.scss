@@ -8,20 +8,6 @@
     background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
 }
-@font-face {
-  font-family: Whitney;
-  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
-}
-@font-face {
-  font-family: Whitney;
-  font-weight: 100;
-  src: url('/fonts/Whitney-Light-Pro.otf') format("opentype");
-}
-@font-face {
-  font-family: Whitney;
-  font-weight: 700;
-  src: url('/fonts/Whitney-Semibold-Pro.otf') format("opentype");
-}
 
 @font-face {
   font-family: Lato;
@@ -150,10 +136,7 @@ html, body, #app, #app > div, .navbar > div, .navbar > div > div, .navbar a,
   display: block;
 }
 body {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  &.testing-font {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   color: white;
   background-color: black;
 }
@@ -249,10 +232,7 @@ body {
     }
   }
   .navbar-title {
-    font-weight: 100;
-    body.testing-font & {
-      font-weight: 400;
-    }
+    font-weight: 400;
     font-size: 2vw;
     line-height: 3.2vw;
     margin: 0;
@@ -313,10 +293,7 @@ body {
   }
   .stat {
     text-transform: uppercase;
-    font-weight: 100;
-    body.testing-font & {
-      font-weight: 400;
-    }
+    font-weight: 400;
     font-size: 1.7vw;
     height: 40%;
   }
@@ -345,10 +322,7 @@ body {
 .vertical-barchart {
   text-align: center;
   h2 {
-    font-weight: 100;
-    body.testing-font & {
-      font-weight: 400;
-    }
+    font-weight: 400;
     font-size: 2.8vw;
     text-transform: uppercase;
     margin: 2vw;
@@ -375,7 +349,7 @@ body {
       }
       .taxon {
         font-size: 1.4vw;
-        font-weight: 200;
+        font-weight: 400;
         margin: 0px -30%;
         color: rgba(255, 255, 255, 0.7);
         width: 160%;
@@ -488,7 +462,7 @@ body {
       .count {
         color: rgba(255,255,255,0.75);
         font-size: 1.5vw;
-        font-weight: 300;
+        font-weight: 400;
      }
     }
   }
@@ -545,7 +519,7 @@ body {
       .count {
         color: rgba(255,255,255,0.75);
         font-size: 1.5vw;
-        font-weight: 300;
+        font-weight: 400;
       }
     }
   }
@@ -579,10 +553,7 @@ body {
   }
   table {
     height: 95%;
-    font-weight: 100;
-    body.testing-font & {
-      font-weight: 400;
-    }
+    font-weight: 400;
     font-size: 1.7vw;
     th {
       font-weight: 600;
@@ -602,7 +573,7 @@ body {
       &.index {
         text-align: center;
         font-size: 2.2vw;
-        font-weight: 200;
+        font-weight: 400;
         width: 3vw;
       }
       &.index, &.observations, &.species {
