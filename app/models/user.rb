@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   include HasJournal
 
   before_validation :set_uuid

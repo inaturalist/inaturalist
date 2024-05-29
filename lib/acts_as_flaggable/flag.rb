@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Flag < ApplicationRecord
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid

@@ -3,7 +3,7 @@
 class Post < ApplicationRecord
   acts_as_spammable fields: [:title, :body],
     comment_type: "blog-post"
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid

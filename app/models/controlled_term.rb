@@ -1,8 +1,8 @@
-#encoding: utf-8
-class ControlledTerm < ApplicationRecord
+# frozen_string_literal: true
 
+class ControlledTerm < ApplicationRecord
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
