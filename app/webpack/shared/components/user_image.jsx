@@ -11,7 +11,7 @@ const UserImage = ( { user, linkTarget } ) => {
     />
   );
   const style = {
-    backgroundImage: user && user.icon_url ? `url( '${user.icon_url}' )` : ""
+    backgroundImage: user && user.icon_url ? `url( '${user.icon_url.replace( "https://pleary-privatephototest.s3.amazonaws.com", "https://static.inaturalist.org" )}' )` : ""
   };
   if ( user ) {
     return (
