@@ -195,7 +195,7 @@ hu:
   about_trusting_projects: A projektekmegbízhatóságáról
   about_trusting_projects_options_any: Az összes megfigyelésed ebben a projektben
   about_trusting_projects_options_any_desc: |-
-    Ez magában foglalja azokat a megfigyeléseket is, ahol a pozíció láthatóságánál a „kitakart” vagy „rejtett” opciót választottad, például a saját hátsó kertedből származó megfigyeléseket, vagy azokat is, amelyeket nem szeretnél, hogy mások ismerjenek.
+    Ez magában foglalja azokat a megfigyeléseket is, ahol a hely láthatóságánál a „kitakart” vagy „rejtett” opciót választottad, például a saját hátsó kertedből származó megfigyeléseket, vagy azokat is, amelyeket nem szeretnél, hogy mások ismerjenek.
   about_trusting_projects_overview: |-
     A rejtett koordinátáidhoz való hozzáférést biztosítva lehetővé teszed a projekt kurátorai számára, hogy lássák a megfigyeléseid valódi, ki nem takart helyét ebben a projektben. Ez rendkívül fontos olyan helyzetekben, amikor a kutatóknak szükségük van a pontos koordinátákra az elemzéshez és döntéshozatalhoz.
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
@@ -1738,10 +1738,10 @@ hu:
   geomodel_expected_nearby_label_is_derived: |
     "A közelben előfordulhat" megjelölés a Geomodellből származik.
     <a href="%{url}">További információ a Geomodellről</a>
-  geoprivacy: Pozíció láthatósága
+  geoprivacy: Hely láthatósága
   geoprivacy_is_obscured: A helymegjelenítés kitakart
   geoprivacy_is_obscured_desc: A megfigyelő úgy döntött, hogy kitakarja a koordinátákat.
-  geoprivacy_is_private: A pozíció nem publikus
+  geoprivacy_is_private: A hely rejtett
   geoprivacy_is_private_desc: A megfigyelő úgy döntött, hogy elrejti a koordinátákat.
   get_started: Elkezdem
   getting_started_guide: Első lépések
@@ -2257,6 +2257,7 @@ hu:
     uk: Ukrán
     zh-CN: Kínai (egyszerűsített)
     zh-TW: Kínai (hagyományos)
+  locality_notes: Megjegyzés a helyhez
   localized_species_accounts: Fajok lokalizált megjelenítése
   location: Hely
   location_is_accurate: A hely pontos
@@ -2330,7 +2331,7 @@ hu:
   mark_all_as_unreviewed: Mind megjelölése átnézetlenként
   maverick: Különvélemény
   maximum_positional_accuracy_including_unknown: |
-    A pozíció maximális pontossága, beleértve a pontossági adatokkal nem rendelkező megfigyeléseket is
+    A hely maximális pontossága, beleértve a pontossági adatokkal nem rendelkező megfigyeléseket is
   media: Média
   #Used to join media types required by a project, e.g. photos *and* sounds.
   #If a single word won't work, a symbol like "+" would be fine.
@@ -3068,7 +3069,9 @@ hu:
     Engedélyezem a megadott személyes adataim átvitelét az Amerikai Egyesült Államokba
   data_transfer_consent_child_label: |
     Engedélyezem, hogy a gyermekem személyes adatait át lehessen vinni az Amerikai Egyesült Államokba
-  pin_verb: Rögzítés
+  pin_verb: Hely eltárolása
+  pinned_locations_desc: |
+    Későbbi használatra együttesen eltárolhatod ezeket a koordinátákat, pontosságot, láthatósági beállítást és a helyhez fűzött megjegyzést.
   place: Terület
   placeholder: Helykitöltő
   place_autocomplete_placeholder: Zion Nemzeti Park, Miami, stb.
@@ -3793,8 +3796,8 @@ hu:
   remove_this_section: E paragrafus eltávolítása
   remove_manager: Menedzser eltávolítása
   remove_observations:
-    one: Törölsz 1 megfigyelést?
-    other: Törölsz %{count} megfigyelést?
+    one: Eltávolítasz 1 megfigyelést?
+    other: Eltávolítasz %{count} megfigyelést?
   remove_photo: Fénykép eltávolítása
   remove_place: Terület eltávolítása
   remove_range: Intervallum eltávoltása
@@ -5028,6 +5031,7 @@ hu:
   your_projects: Projektjeid
   your_google_account: Google-fiókod
   your_google_account_info: Google-fiókod adatai
+  your_pinned_locations: Tárolt helyeid
   your_profile_was_successfully_updated: A profilod sikeresen módosítva.
   your_recent_projects: Legutóbbi projektjeid
   your_relationships: Kapcsolataid
@@ -5372,7 +5376,7 @@ hu:
         date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
-          A pozíció láthatósága oszlop angolul kell legyen és lehet üres vagy az "obscured" vagy "private" értékeket tartalmazhatja.
+          A hely láthatósága oszlop angolul kell legyen, és lehet üres vagy az "obscured" vagy "private" értékeket tartalmazhatja.
       show:
         ancestor_disagreements_desc2: |
           Azon meghatározási taxonok száma, amelyek a felsőbb szintű taxonokon belül esnek, de nem értenek egyet a taxon szintű meghatározással (például "egyetértek a nemzetséggel, de szerintem ez egy másik faj").
@@ -6130,7 +6134,7 @@ hu:
         authority: Hatóság
         place_id: Terület
         url: URL
-        geoprivacy: Pozíció láthatósága
+        geoprivacy: Hely láthatósága
       flag:
         #The reason the item was flagged
         reason: Ok
