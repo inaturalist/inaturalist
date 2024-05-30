@@ -1182,7 +1182,7 @@ th:
   flag_as_spammer: รายงานว่าเป็นสแปม
   flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
   #Label for the date/time when a flag was created
-  flag_created: สร้างรายงานเมื่อ
+  flag_created: รายงานเมื่อ
   flag_for_check_list_title_html: |
     รายงานรายการตรวจสอบ: %{title}
   flag_for_curation: รายงานอนุกรมวิธาน
@@ -1205,9 +1205,11 @@ th:
   flagged_: ถูกรายงาน
   flagged_for_curation: รายงานอนุกรมวิธานแล้ว
   flagged_taxon: หน่วยอนุกรมวิธานที่ถูกรายงาน
+  flagged_thing_explanation: "ผู้ใช้งานได้รายงาน%{thing}นี้เนื่องจาก"
   flagger: ผู้รายงาน
   flags: รายงาน
   flags_with_count: รายงาน (%{count})
+  flags_explanation: "ผู้ใช้ %{site_name} จะรายงานสิ่งที่ต้องการให้ผู้ดูแลและ/หรือแอดมินเว็บไซต์มาตรวจสอบ"
   flags_for_x_html: การรายงานสำหรับ %{x}
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
