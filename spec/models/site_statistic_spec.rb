@@ -10,6 +10,12 @@ describe SiteStatistic do
 
   elastic_models( Observation, Identification, User, Project )
 
+  before :each do
+    allow( SiteStatistic ).to( receive( :daily_active_user_model_stats ) do
+      {}
+    end )
+  end
+
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do
       expect( SiteStatistic.stats_generated_for_day?).to be false

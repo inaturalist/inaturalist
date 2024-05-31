@@ -557,4 +557,21 @@ class SegmentationStatistic < ApplicationRecord
       )
     }
   end
+
+  #
+  # Daily Active User Model Metrics
+  #
+
+  # Generate the daily active user model data
+  def self.generate_daily_active_user_model_data( start_date, end_date, use_database: false )
+    segmentation_data = {}
+    current_date = end_date
+    num_days = ( end_date.to_date - start_date.to_date ).to_i
+    num_days.times do
+      users_from_kibana_data( current_date, segmentation_data )
+      current_date -= 1.day
+    end
+    users_from_db( end_date, segmentation_data ) if use_database
+    segmentation_data
+  end
 end

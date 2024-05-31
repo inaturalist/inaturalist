@@ -5,18 +5,23 @@ require "spec_helper"
 describe StatsController do
   describe "index" do
     before :all do
-      make_default_site
-      OauthApplication.make!( name: "iNaturalist Android App" )
-      OauthApplication.make!( name: "iNaturalist iPhone App" )
-      [Time.now, 1.day.ago, 1.week.ago].each do | t |
-        Observation.make!( taxon: Taxon.make!( rank: "species" ),
-          created_at: t )
-      end
-      ( 0..7 ).to_a.each do | i |
-        SiteStatistic.generate_stats_for_day( i.days.ago )
-        # I was hitting an error "too many open files" when running this locally,
-        # but forcing garbage collection seems to help
-        GC.start
+      RSpec::Mocks.with_temporary_scope do
+        make_default_site
+        OauthApplication.make!( name: "iNaturalist Android App" )
+        OauthApplication.make!( name: "iNaturalist iPhone App" )
+        [Time.now, 1.day.ago, 1.week.ago].each do | t |
+          Observation.make!( taxon: Taxon.make!( rank: "species" ),
+            created_at: t )
+        end
+        allow( SiteStatistic ).to( receive( :daily_active_user_model_stats ) do
+          {}
+        end )
+        ( 0..7 ).to_a.each do | i |
+          SiteStatistic.generate_stats_for_day( i.days.ago )
+          # I was hitting an error "too many open files" when running this locally,
+          # but forcing garbage collection seems to help
+          GC.start
+        end
       end
     end
 
