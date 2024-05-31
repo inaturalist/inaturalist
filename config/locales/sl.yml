@@ -103,8 +103,8 @@ sl:
     few: "%{count} napačne določitve te vrste v tem %{rank}"
     other: "%{count} napačnih določitev te vrste v tem %{rank}"
   x_observations:
-    one: "%{count} opažanje"
-    two: "%{count} opažanji"
+    one: "%{count} opazovanje"
+    two: "%{count} opazovanji"
     few: "%{count} opazovanja"
     other: "%{count} opazovanj"
   x_observations_:
@@ -4326,7 +4326,7 @@ sl:
   submission_model: Model predložitve
   submission_model_description: Kdo lahko dodaja opazovanja v vaš projekt?
   submit_observations:
-    one: Predloži opazovanje
+    one: Predloži %{count} opazovanje
     two: Predloži %{count} opazovanji
     few: Predloži %{count} opazovanja
     other: Predloži %{count} opazovanj
