@@ -65,7 +65,7 @@ button.left-nav-item {
 
 button.selected {
   color: $inat-green;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   outline:none;
 }
@@ -123,7 +123,7 @@ button.selected {
 
 label.radio-button {
   margin-left: 10px;
-  font-weight: bold !important;
+  font-weight: 600 !important;
 }
 
 #ApplicationsTable {
@@ -506,7 +506,7 @@ select.dropdown {
     min-height: 34px;
     cursor: grab;
     margin-bottom: 5px;
-    font-weight: 700;
+    font-weight: 600;
     display: flex;
     &.dragging {
       opacity: 0.3;
