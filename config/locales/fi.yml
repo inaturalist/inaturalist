@@ -54,6 +54,9 @@ fi:
   x_misidentifications_of_this_species:
     one: "1 virheellinen tämän lajin tunnistus"
     other: "%{count} virheellistä tämän lajin tunnistusta"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} virheellinen tunnistus tässä suvussa"
+    other: "%{count} virheellistä tunnistusta tässä suvussa"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -86,6 +89,9 @@ fi:
   x_people:
     one: "%{count} henkilö"
     other: "%{count} henkilöt"
+  x_people_html:
+    one: '<span class="count">%{count}</span> henkilö'
+    other: '<span class="count">%{count}</span> henkilöä'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi tunnistuksessa käyttäjää %{user} <strong>%{y}</strong>"
   x_photos:
     one: "1 kuva"
@@ -405,6 +411,8 @@ fi:
   added_by: Lisännyt
   added_by_user_on_date_html: "Lisännyt %{user} %{date}"
   added_on_datetime: "Lisätty %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rooli lisätty
   added_to_favorites_html: |
     Lisätty <a href="%{url}">suosikkeihin</a>
   adding: "Lisätään..."
@@ -2128,6 +2136,7 @@ fi:
     sivuston kuraattori. Jos luulet, että tämä on erehdys,
     <a href="mailto:%{help_email}" class="contact"ota yhteyttä meihin</a>.
     <a href="%{manage_flags_path}">Hallitse lippuja</a>
+  jobs: Työpaikat
   join: Liity
   join_and_add_an_observation_to_project_html: Liity ja lisää havainto projektiin %{project}
   join_project: Liity tähän projektiin
@@ -2897,6 +2906,7 @@ fi:
   observation_accuracy_experiment_uncertain: "Epävarma"
   observation_accuracy_experiment_read_more_html: |
     Lisätietoja tämän kokeilun järjestämisestä on oheisessa <a href="%{url}">blogiviestissä</a>.
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-tiimi
   observation_accuracy_validator_email_please_do_not_reply_html: |
     <b>Älä vastaa tähän viestiin. Jos sinulla on kysyttävää tai palautetta, kommentoi <a href="%{url}">tätä blogia</a> tai lähetä sähköpostia: <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
@@ -4407,6 +4417,36 @@ fi:
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} on %{iconic_taxon}%{rank}, josta on 1 havainto"
     other: "%{taxon} on %{iconic_taxon}%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} on sammakkoeläin%{rank}, josta on 1 havainto"
+    other: "%{taxon} on sammakkoeläin%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} on lintu%{rank}, josta on 1 havainto"
+    other: "%{taxon} on lintu%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} on nisäkäs%{rank}, josta on 1 havainto"
+    other: "%{taxon} on nisäkäs%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} on kasvi%{rank}, josta on 1 havainto"
+    other: "%{taxon} on kasvi%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} on viuhkaeväis%{rank}, josta on 1 havainto"
+    other: "%{taxon} on viuhkaeväis%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} on eläin%{rank}, josta on 1 havainto"
+    other: "%{taxon} on eläin%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} on hyönteis%{rank}, josta on 1 havainto"
+    other: "%{taxon} on hyönteis%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} on hämähäkkieläin%{rank}, josta on 1 havainto"
+    other: "%{taxon} on hämähäkkieläin%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} on sieni%{rank}, jolla on 1 havainto"
+    other: "%{taxon} on sieni%{rank}, jolla on %{count} havaintoa"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} on nilviäis%{rank}, josta on 1 havainto"
+    other: "%{taxon} on nilviäis%{rank}, josta on %{count} havaintoa"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} on eliökunta, josta on yksi havainto"
     other: "%{taxon} on eliökunta, josta on %{count} havaintoa"
@@ -4493,6 +4533,7 @@ fi:
   terms: Ehdot
   terms_and_rules_html: "Ehdot &amp; säännöt"
   terms_new_users: "Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän projektiin liittymistä."
+  terms_service: Käyttöehdot
   terrain: maasto
   text: Teksti
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
