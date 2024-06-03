@@ -1255,6 +1255,14 @@ he:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: השלה
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: שיער
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: בנייה
+    #Does the observation belong to a non-established population or not
+    established: מבוסס
+    #Organism is not a member of an established population
+    not_established: לא מבוסס
   controlled_term_definitions:
     alive: היצור חי ולא מראה סימנים של סכנת מוות מיידית
     bone: |
@@ -1269,7 +1277,10 @@ he:
     gall: רקמת צמח מעוותת הגדלה כתוצאה מנוכחות אורגניזם טפיל
     male: ממצאים מעידים על כך שיצורים רבים מסוגלים לייצר זרע לשימוש ברבייה מינית
     molt: נשל או שלד חיצוני
+    hair: שיער שאינו מחובר יותר ליצור ממנו הוא הגיע
+    egg: ביצה שלמה או חלק מביצה
     no_evidence_of_flowering: המדיה לא נותנת מידע על מבנים מתרבים
+    not_established: היצור שייך לאוכלוסיה לא מבוססת כגון חיית מחמד משוחררת/שברחה, טרמפיסטים ונודדים.
     organism: אורגניזם שלם או חלק ממנו
     scat: חומר גללי (לא כולל צנפות)
     teneral: בוגר אשר יצא לאחרונה אך טרם הגיע לצורתו הבוגרת הסופית
@@ -1585,6 +1596,8 @@ he:
   deviation: סטייה
   devise:
     confirmations:
+      confirmed: |
+        כתובת הדוא"ל שלך אושרה בהצלחה
       send_instructions: "בעוד כמה דקות תקבל.י הודעת דוא\"ל עם הוראות כיצד לאמת את כתובת הדוא\"ל שלך."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -2813,6 +2826,8 @@ he:
   moderator_actions_unhide2: בטל הסתרה
   #Action a moderator can take to suspend a user; verb
   moderator_actions_suspend: השעיה
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: ביטול השעיה
   moderator_note_desc: |
     הערות מנהל.ת הן רשומה של תגובות מנהל.ת או חששות מבוססי-ראיות אודות יוזר מסוים, למשל אם הוא חשבון בדוי פוטנציאלי. נא לא להכניס דעות אישיות או שמועות אודות היוזר.
   #Person who executed a moderator action or flagged something
@@ -3157,6 +3172,18 @@ he:
     קואורדינטות גלויות מוצגות כנקודה אקראית בתוך תא של 0.2x0.2 מעלות אורך/רוחב שמכיל את הקואורדינטות האמיתיות
   observation: תצפית
   observation_: תצפית
+  observation_accuracy_experiment_the_sample_for: "הדגימה עבור ניסוי זה עוד לא יוצרה"
+  observation_accuracy_experiment_our_accuracy_estimate: "הערכת הדיוק שלנו כתוצאה מניסוי זה הינה נכונה ב-%{percent}."
+  observation_accuracy_experiment_iconic_taxon_name: "שם טקסון אייקוני"
+  observation_accuracy_experiment_continent: "יבשת"
+  observation_accuracy_experiment_year: "שנה"
+  observation_accuracy_experiment_quality_grade: "רמת איכות"
+  observation_accuracy_experiment_show_frequency: "הצגת תדירות"
+  observation_accuracy_experiment_research_grade_results: "תוצאות בדרגת מחקר"
+  observation_accuracy_experiment_verifiable_results: "תוצאות הניתנות לאימות"
+  observation_accuracy_experiment_all_results: "כל התוצאות"
+  observation_accuracy_experiment_methods: "שיטות"
+  observation_accuracy_experiment_sample_generated: "ייצור הדגימה: %{date}"
   observation_accuracy_validator_email_subject2: "האם תעזרו לנו בניסוי %{version} להעריך את הדיוק של תצפיות iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     האם תעזרו לנו <a href="%{url}">בניסוי (גרסה %{version})</a> להעריך את הדיוק של תצפיות iNaturalist?
@@ -7740,6 +7767,11 @@ he:
           trillion: טריליארד
           unit: '[empty string]'
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half" this would be written as
+        #"1,000,002.5" in English, and "," is the delimiter. This should not be
+        #the same as the separator.
+        delimiter: ''
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -7755,6 +7787,12 @@ he:
           kb: KB
           mb: MB
           tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
   support:
     array:
       last_word_connector: ', וגם'
