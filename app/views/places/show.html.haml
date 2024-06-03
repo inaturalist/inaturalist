@@ -149,9 +149,7 @@
           .loading.status
             = t(:loading_wikipedia_description)
           .noresults.description{:style => "display:none"}
-            = t(:there_is_no_wikipedia_page_matching) + " #{@place.wikipedia_name} "+ t(:would_you_like_to)
-            = link_to t(:start_one).downcase, wikipedia_url
-            ?
+            =t :there_isnt_a_wikipedia_article_titled_x_html, x: @place.wikipedia_name
 / end maintabs
 .clear
 - if @place.user
