@@ -63,7 +63,7 @@ Rails.application.configure do
     protocol: "https"
   }
   smtp_config_path = File.open( "#{Rails.root}/config/smtp.yml" )
-  ActionMailer::Base.smtp_settings = YAML.safe_load( smtp_config_path ).symbolize_keys
+  ActionMailer::Base.smtp_settings = YAML.load( smtp_config_path ).symbolize_keys
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default( charset: "utf-8" )
