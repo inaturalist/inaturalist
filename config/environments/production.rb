@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
@@ -18,8 +20,9 @@ Rails.application.configure do
   config.log_level = :info
 
   # Use a different cache store in production
-  config.cache_store = :mem_cache_store, CONFIG.memcached,
-    { compress: true, value_max_bytes: 1024 * 1024 * 3 }
+  config.cache_store = :mem_cache_store, CONFIG.memcached, {
+    compress: true, value_max_bytes: 1024 * 1024 * 3
+  }
 
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
@@ -37,7 +40,7 @@ Rails.application.configure do
   # Compress JavaScripts and CSS
   # Choose the compressors to use (if any)
   config.assets.compress = true
-  config.assets.js_compressor = Uglifier.new(mangle: false)
+  config.assets.js_compressor = Uglifier.new( mangle: false )
   config.assets.css_compressor = :yui
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
@@ -56,13 +59,14 @@ Rails.application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  # config.action_mailer.default_url_options = { :host => URI.parse(CONFIG.site_url).host }
-  # config.action_mailer.asset_host = config.action_controller.asset_host
-  smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
-  ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
+  config.action_mailer.default_url_options = {
+    protocol: "https"
+  }
+  smtp_config_path = File.open( "#{Rails.root}/config/smtp.yml" )
+  ActionMailer::Base.smtp_settings = YAML.safe_load( smtp_config_path ).symbolize_keys
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.default( charset: "utf-8" )
 
   # Enable threaded mode
   # config.threadsafe!
@@ -71,5 +75,4 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   config.log_formatter = CustomLogFormatter.new
-
 end
