@@ -110,7 +110,11 @@ class MapDetails extends React.Component {
         { I18n.t( "geoprivacy_is_obscured_desc" ) }
       </li>
     );
-    const clipboardButton = (
+    const hasCoords = (
+      ( observation.latitude || observation.latitude === 0 )
+      && ( observation.longitude || observation.longitude === 0 )
+    );
+    const clipboardButton = hasCoords ? (
       <OverlayTrigger
         key={`clipboard-tooltip-${this.state.latLngCopied}`}
         delayShow={this.state.latLngCopied ? 0 : 1000}
@@ -140,7 +144,7 @@ class MapDetails extends React.Component {
           }}
           onClick={() => {
             navigator.clipboard.writeText( [
-              observation.latitude, observation.latitude
+              observation.latitude, observation.longitude
             ].join( ", " ) );
             this.setState( { latLngCopied: true } );
             setTimeout( ( ) => {
@@ -153,7 +157,7 @@ class MapDetails extends React.Component {
           />
         </button>
       </OverlayTrigger>
-    );
+    ) : null;
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -161,10 +165,10 @@ class MapDetails extends React.Component {
             <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "latlon" ) } ) }</span>
             { " " }
             <span id="latlng" className="value">
-              {[
+              { hasCoords ? ( [
                 _.round( observation.latitude, 5 ),
                 _.round( observation.longitude, 5 )
-              ].join( ", " )}
+              ].join( ", " ) ) : ""}
             </span>
             { clipboardButton }
           </div>
