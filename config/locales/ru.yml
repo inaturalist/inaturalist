@@ -3260,9 +3260,24 @@ ru:
   observation_accuracy_experiment_precision: "Точность"
   observation_accuracy_experiment_if_every_sample: "Если бы каждое выборочное наблюдение относилось к самому общему таксону, такому как королевство, точность набора данных iNaturalist могла бы быть очень высокой, но, чтобы сделать набор данных очень полезным, точность должна бы быть низкой. Чтобы оценить точность, мы подсчитали количество потомков листьев в таксономическом дереве iNaturalist для каждого таксона, связанного с каждым образцом наблюдения. Мы рассчитали точность как 1, делённая на количество потомков-листьев. Если таксон является листовым таксоном, точность составляет 100%. При расчете точности мы игнорировали ранги ниже видов."
   observation_accuracy_experiment_in_the_example: "В примере на рисунке справа средняя точность трёх выборок составит 51%."
+  observation_accuracy_experiment_read_more_html: |
+    Подробнее об организации этого эксперимента читайте в сопроводительной записи <a href="%{url}">в блоге</a>.
   observation_accuracy_validator_email_subject2: "Не поможете ли вы нам с помощью этой версии %{version} эксперимента оценить достоверность наблюдений iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Не поможете ли вы нам в <a href="%{url}">эксперименте (версия %{version})</a> оценить достоверность наблюдений iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Идентифицируйте все наблюдения по ссылке ниже как можно точнее, даже если они относятся к исследовательскому уровню, и даже если ваш лучший идентификатор находится на более высоком таксономическом уровне (даже если это королевство). </li>
+    <li>Если вы видите всплывающее окно “Потенциальное несогласие”…
+    <ul>
+    <li>и вы уверены, что это ошибка, нажмите на оранжевую кнопку,</li>
+    <li>или, если вы не уверены в своем идентификаторе, нажмите зеленую кнопку</li>
+    </ul>
+    </li>
+    <li>Сделайте это до <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Здесь находится <a href="%{sample_url}">подборка %{num_obs} наблюдений</a>* которуе, как мы предполагаем, основываясь на вашей активности в iNat, вы можете идентифицировать. <b>Пожалуйста, добавьте как можно более точный идентификатор к каждому из наблюдений, выполнив это до даты %{validator_deadline_date}</b>.
+    *<i>По этой ссылке откроется инструмент идентификации на веб-сайте iNaturalist, для чего вам необходимо авторизоваться. Мы рекомендуем выполнять эту задачу с компьютера, но это возможно и с помощью приложения для мобильного браузера. Если вы читаете это сообщение в приложении iNaturalist для Android, обязательно откройте ссылку в приложении для браузера (а не в самом приложении iNat). Возможно, вам придется сначала авторизоваться на веб-сайте через приложение для браузера.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Мы рассчитаем достоверность, сравнив ваш идентификатор с таксоном наблюдения. Вы можете пропустить наблюдения, в которые вы ранее добавили идентификатор, если этот идентификатор все еще актуален. Для получения дополнительной информации о том, как мы будем учитывать соглашения и разногласия, продолжайте чтение.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -3275,6 +3290,11 @@ ru:
     Мы очень признательны вам за вашу помощь как эксперта iNaturalist, а также за участие в этом исследовании. Пожалуйста, прочтите <a href="%{url}">о методах</a>, если вы хотите узнать больше об этом эксперименте.
   observation_accuracy_validator_email_with_gratitude: С благодарностью,
   observation_accuracy_validator_email_the_inaturalist_team: Команда iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Пожалуйста, не отвечайте на это сообщение. Если у вас есть вопросы или пожелания, прокомментируйте <a href="%{url}">эту запись в блоге</a> или напишите по электронной почте <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Пожалуйста, не отвечайте на это сообщение. Если у вас есть вопросы или пожелания, 
+     напишите нам по электронной почте <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6245,6 +6265,12 @@ ru:
       temporarily_unavailable: |
         Спасибо за ваш интерес к поддержке iNaturalist! Пожертвование
         iNaturalist временно недоступно, пока мы обновляем наши системы пожертвования. Пожалуйста, зайдите позже.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Нажмите здесь, чтобы отправить письмо активации еще раз.
+      please_add_an_email_and_password: Пожалуйста, укажите адрес электронной почты и пароль, чтобы не потерять доступ к своей учетной записи
+      please_click_the_link_sent_to_email_to_confirm_html: Пожалуйста, перейдите по ссылке, отправленной на адрес <span class="email">%{email}</span>, чтобы подтвердить свой адрес электронной почты.
+      please_confirm_that_email_is_the_best_contact_html: Пожалуйста, подтвердите, что <span class="email">%%{email}</span> - это лучший способ связаться с вами.
+      your_site_account_has_no_email: Отсутствует адрес электронной почты, связанный с вашей учетной записью %{site_name}.
     flags:
       show:
         flaggable_content_desc: |
@@ -8144,6 +8170,7 @@ ru:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Предназначено пользователям, которые не подтвердили свой е-мейл
+        prefers_exclude_monthly_supporters: Исключая ежемесячных спонсоров
         clients: Клиенты
       assessment:
         description: Описание

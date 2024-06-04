@@ -3204,9 +3204,24 @@ pt-BR:
   observation_accuracy_experiment_precision: "Precisão"
   observation_accuracy_experiment_if_every_sample: "Se toda observação da amostra estivesse em um táxon mais grosseiro tal como reino, a exatidão do conjunto de dados do iNaturalis seria alta, mas a precisão poderia ser muito baixa para ser útil. Para estimar a precisão, computamos o número de \"folhas descendentes\" na taxonomia do iNaturalist para cada observação da amostra. A precisão é calculada como o inverso do número de \"folhas descendentes\". Se o taxon for um taxon \"folha\", a precisão é 100%"
   observation_accuracy_experiment_in_the_example: "No exemplo à direita, a precisão média de três observações da amostra seria de 51%."
+  observation_accuracy_experiment_read_more_html: |
+    Para ler mais sobre como foi a orquestração deste experimento, veja a seguinte <a href="%{url}">postagem no blog</a>.
   observation_accuracy_validator_email_subject2: "Você nos ajudaria em um experimento %{version} para avaliar a precisão das observações do iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Você nos ajudaria em um experimento <a href="%{url}">(versão %{version})</a> para estimar a precisão das observações do iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Identifique todas as observações no link abaixo, da forma mais precisa que puder, mesmo que sejam Nivel Pesquisa e ainda que sua melhor sugestão seja de um nível taxonomico mais elevado (reino, por exemplo).</li>
+    <li>Se aparecer um pop-up "Potencial Desacordo"…
+    <ul>
+    <li>e voce está seguro de que se trata de uma ID equivocada, clique no botão laranja,</li>
+    <li>ou se voce esta inseguro sobre sua ID, clieque no botão verde</li>
+    </ul>
+    </li>
+    <li>Faça isto até <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Aqui está o <a href="%{sample_url}">conjunto de %{num_obs} observações</a>* que supomos que voce pode identificar baseado nas suas atividades no iNat. <b>Por favor identifique da forma mais precisa que puder até %{validator_deadline_date}</b>.
+    *<i>Este link vai abrir a janela da aba de identificação no site do iNaturalist que exige que voce esteja logado. Recomendamos o uso de um computador para esta tarefa, Mas ela é possível através do navegador do seu celular. Se estiver lendo esta mensagem através do app iNaturalist para Android, assegure-se de abrir o link no navegador, e não no próprio app iNat. Voce vai precisar se logar no site através do navegador.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Vamos calcular a exatidão comparando a sua ID com a ID da Observação. Você pode saltar observações para as quais você já sugeriu uma ID se ela ainda for relevante. Para mais informações sobre como vamos computar concordâncias e discordâncias, continue a leitura.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -3219,6 +3234,10 @@ pt-BR:
     Estamos muito gratos pela sua ajuda como identificador no iNaturalist, e agradecemos por participar deste estudo. Por favor, leia <a href="%{url}">métodos </a> para saber mais sobre o funcionamento deste experimento.
   observation_accuracy_validator_email_with_gratitude: Com gratidão,
   observation_accuracy_validator_email_the_inaturalist_team: A equipe iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Por favor não responda esta mensagem. Se tiver questionamentos ou comentários, comente nesta <a href="%{url}">postagem no blog</a> ou mande e-mail para <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Por favor não responda esta mensagem. Se tiver questionamentos ou comentários, envie e-mail para <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Observação adicionada ao projeto \"%{project}\""
   observation_aggregation: Observações associadas
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6224,6 +6243,12 @@ pt-BR:
       temporarily_unavailable: |
         Obrigado pelo seu interesse em apoiar o iNaturalist! Doações para o
         iNaturalist estão temporariamente suspensas enquanto atualizamos a nosso sistema de doações. Por favor, volte mais tarde.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Clique aqui para solicitar o reenvio de e-mail de confirmação
+      please_add_an_email_and_password: Por favor, adicione um e-mail e senha para que você não perca o acesso à sua conta
+      please_click_the_link_sent_to_email_to_confirm_html: Por favor, clique no link enviado para <span class="email">%{email}</span> e confirme o seu endereço de e-mail.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirme que <span class="email">%{email}</span> é a melhor maneira de entrar em contato com você.
+      your_site_account_has_no_email: Sua conta %{site_name} não tem um endereço de e-mail associado a ela.
     flags:
       show:
         flaggable_content_desc: |
@@ -8199,6 +8224,7 @@ pt-BR:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Para usuário não confirmados
+        prefers_exclude_monthly_supporters: Excluir apoiadores mensais
         clients: Clientes
       assessment:
         description: Descrição

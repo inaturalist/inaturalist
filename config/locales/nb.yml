@@ -314,6 +314,7 @@ nb:
   add_notes_about_this_taxon: Legg til notater om dette taksonet på dette stedet, f.eks. hvor og når det forekommer.
   add_obs_from_a_link: "Legg til obs fra liste: %{link}"
   add_obs_from_a_list: Legg til obs fra en liste
+  add_observation_fields: Legg til observasjonsfelt
   add_observations: Legg til observasjoner
   add_observations_by_checking_off: Legg til observasjoner ved å krysse av arter på en liste.
   add_observations_project: Legg til observasjoner til dette prosjektet
@@ -349,6 +350,7 @@ nb:
   add_evidence_of_presence_track_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: spor"'
   add_evidence_of_presence_bone_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: bein"'
   add_evidence_of_presence_molt_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: ham"'
+  add_evidence_of_presence_hair_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: hår"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Legg til relasjon'
   #As in a Guide Section
@@ -1127,6 +1129,8 @@ nb:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ham
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hår
   controlled_term_definitions:
     alive: Organisme lever og viser ikke tegn på en snarlig død
     bone: |
@@ -1141,6 +1145,7 @@ nb:
     gall: Unormal tilvekst på plantemateriale på grunn av parasittisk organisme
     male: Bevis indikerer at organismen kan produsere sperm for bruk ved seksuell reproduksjon
     molt: Avsatt hud eller eksoskjelett
+    egg: Helt egg eller deler av et egg
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
     organism: Hel eller del av organisme
     scat: Avføring (ikke spyboller eller andre oppstøtinger)
@@ -1458,6 +1463,8 @@ nb:
   deviation: Avvik
   devise:
     confirmations:
+      confirmed: |
+        Din e-postadresse har blitt bekreftet.
       send_instructions: "Du vil motta en e-post med instruksjoner på hvordan du bekrefter din e-postadresse om noen minutter."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -2656,6 +2663,12 @@ nb:
     Dette inkluderer moderatorhandlinger (f.eks. skjuling og visning av kommentarer), notater, og markeringer på alt denne brukeren har skapt bortsett fra taksa. Dette er <strong>kun synlig for kuratorer</strong> og <strong>kurator kan ikke se deres egen historikk</strong>, så notater om en person skal aldri være synlige for den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Vis
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspender
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Opphev suspendering
   moderator_note_desc: |
     Moderatornotater er dokumentasjon av moderasjonssvar eller bevisbaserte bekymringer rundt en bruker, sånn som om de kan være en dobbeltkonto. Vennligst ikke inkluder personlige meninger eller rykter om brukeren.
   #Person who executed a moderator action or flagged something
