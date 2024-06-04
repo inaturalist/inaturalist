@@ -62,49 +62,86 @@
 #charts {
   background-color: transparent;
   border-radius: 4px 4px 0 0;
-}
-
-#charts a {
-  color: #333;
-}
-
-#charts .nav-tabs {
-  margin-bottom: 0;
-  margin-top: -1px;
-}
-#charts .tab-pane {
-  position: relative;
-}
-#charts .no-content {
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  margin-top: -20px;
-  margin-left: 20px;
-}
-#charts .tab-content {
-  background-color: white;
-  padding: 20px;
-  border-left: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  border-right: 1px solid #ddd;
-}
-
-#charts a[role="tab"]:hover {
-  background-color: white;
-  opacity: 1;
-}
-#charts a,
-#charts a:focus,
-#charts a:active {   
-  border-color: none;
-  box-shadow: none;
-  outline: 0 none;
-}
-#charts .help-btn i {
-  font-size: 20px;
-  line-height: 25px;
-  color: #999;
+  height: 392px;
+  display: flex;
+  flex-direction: column;
+  .item-label {
+    color: #4a4a4a;
+    font-size: 13px;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  a {
+    color: #333;
+  }
+  .nav-tabs {
+    margin-bottom: 0;
+    margin-top: -1px;
+  }
+  .no-content {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -20px;
+    margin-left: 20px;
+  }
+  .tab-content {
+    background-color: white;
+    padding: 20px 20px 5px 5px;
+    border: 1px solid #ddd;
+    position: relative;
+    flex-grow: 1;
+    .tab-pane-container {
+      height: 100%;
+      .tab-pane {
+        position: relative;
+        height: 100%;
+        display: none;
+        &.active {
+          display: block;
+        }
+      }
+    }
+  }
+  a, a:focus, a:active {
+    outline: 0 none;
+    text-decoration: none;
+  }
+  .nav-tabs {
+    border: none;
+    li {
+      list-style: none;
+      a {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: white;
+        padding: 5px 12px;
+        margin: 0px 8px 8px 0px;
+      }
+      &.active a {
+        background-color: $inat-green;
+        border-color: $inat-green;
+        color: white;
+      }
+    }
+  }
+  .help-btn i {
+    font-size: 20px;
+    line-height: 25px;
+    color: #999;
+  }
+  .chart-controls {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    .btn {
+      padding: 6px 8px;
+    }
+  }
 }
 #ChartsHelpModal .modal-title {
   line-height: 1;
@@ -114,7 +151,8 @@
   stroke-width: 2px;
 }
 .FrequencyChart {
-  height: 300px;
+  height: 100%;
+  max-height: 100%;
 }
 .FrequencyChart .bb-axis line,
 .FrequencyChart .bb-axis path {
@@ -364,7 +402,7 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 580px;
+  height: 590px;
 }
 .PhotoPreview .photo-bg {
   position: absolute;
