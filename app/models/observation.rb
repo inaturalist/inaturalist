@@ -10,32 +10,33 @@ class Observation < ApplicationRecord
     :identifications => {:notification => "activity", :include_owner => true}
   }
   notifies_subscribers_of :user, :notification => "created_observations",
-    :queue_if => lambda { |observation| !observation.bulk_import }
+    unless: lambda {| observation | observation.bulk_import }
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::ORGANIZER
   earns_privilege UserPrivilege::COORDINATE_ACCESS
-  
+
   # Why aren't we using after_save? Because we need this to run before the
   # after_create created by notifies_subscribers_of :public_places runs
   after_create :update_observations_places
   after_update :update_observations_places
-  
+
   notifies_subscribers_of :public_places,
     notification: "new_observations",
     on: :create,
-    queue_if: lambda {|observation|
-      observation.georeferenced? && !observation.bulk_import
+    unless: lambda {| observation |
+      !observation.georeferenced? || observation.bulk_import
     },
-    if: lambda {|observation, place, subscription|
+    if: lambda {| observation, _place, subscription |
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
       return true if observation.taxon_id == subscription.taxon_id
-      observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+
+      observation.taxon.ancestor_ids.include?( subscription.taxon_id )
     },
-    before_notify: lambda{|observation|
-      Observation.preload_associations( observation, [ :taxon, {
+    before_notify: lambda {| observation |
+      Observation.preload_associations( observation, [:taxon, {
         observations_places: {
           place: :update_subscriptions_with_unsuspended_users
         }
@@ -43,11 +44,14 @@ class Observation < ApplicationRecord
     }
   notifies_subscribers_of :taxon_and_ancestors,
     notification: "new_observations",
-    queue_if: lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
-    if: lambda {|observation, taxon, subscription|
+    unless: lambda {| observation |
+      observation.taxon_id.blank? || observation.bulk_import
+    },
+    if: lambda {| observation, taxon, subscription |
       return true if observation.taxon_id == taxon.id
       return false if observation.taxon.blank?
-      observation.taxon.ancestor_ids.include?(subscription.resource_id)
+
+      observation.taxon.ancestor_ids.include?( subscription.resource_id )
     }
   notifies_users :mentioned_users,
     on: :save,

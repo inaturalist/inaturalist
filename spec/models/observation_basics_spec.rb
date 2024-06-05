@@ -1148,7 +1148,6 @@ describe Observation do
       end
 
       it "should not notify the observer if voted out" do
-        # ,queue_if: lambda { |record| record.vote_scope.blank? }
         o = Observation.make!
         without_delay do
           expect do
