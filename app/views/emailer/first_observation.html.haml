@@ -18,22 +18,20 @@
 - if @post_url.present?
   - post_link = link_to "this month’s News Highlights", @post_url
   %p
-    = "You can read about some of the science and conservation stories behind #{user_site.name} observations in #{post_link}."
-
+    = "You can read about some of the science and conservation stories behind #{user_site.name} observations in "
+    = post_link
+    = "."
 %img{ src: "https://static.inaturalist.org/wiki_page_attachments/3931-original.png", style: "display: block; margin: 20px auto;" }
 - if @followers.any?
-  %p Here's what some of the top observers nearby have found in the last week:
+  %p Click on the profile pictures of these nearby observers to see what they've found nearby this week:
   %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
     %tr
       %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
         - @followers.each do |to_follow|
           %div{ style: "width: 110px; text-align: center; margin: 10px;" }
-            = link_to user_url(to_follow[:user]) do
+            - merged_params = @search_params.merge(user_id: to_follow[:user].id)
+            = link_to observations_url(merged_params) do
               %div{ style: "width: 110px; height: 110px; overflow: hidden; border-radius: 50%; margin: 0 auto; background-image: url('#{to_follow[:user].icon.url(:medium)}'); background-size: cover; background-position: center; border: 4px solid #74AC00;" }
-            %p{ style: "margin: 0; padding-top: 10px; width: 110px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
-              = link_to to_follow[:user].login, user_url(to_follow[:user])
-              - merged_params = @search_params.merge(user_id: to_follow[:user].id)
-              %div
-                = link_to "#{to_follow[:count]} observations", observations_url(merged_params)
-
+            %p{ style: "margin: 0; padding-top: 10px; width: 110px; text-align: center; word-wrap: break-word; overflow: hidden;" }
+              = link_to to_follow[:user].published_name, user_url( to_follow[:user] )
 = render "footer"
