@@ -21,13 +21,15 @@
     = "You can read about some of the science and conservation stories behind #{user_site.name} observations in #{post_link}."
 
 %img{ src: "https://static.inaturalist.org/wiki_page_attachments/3931-original.png", style: "display: block; margin: 20px auto;" }
-- if @followers.count.positive?
-  %p= "Here's what some of the top observers nearby have found in the last week:"
-  %tr
-    %td{ valign: "top", class: "bodyContent", "mc:edit": "body_content00", style: "color: #505050; font-family: Helvetica; font-size: 16px; line-height: 150%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; text-align: left;" }
-      %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
-        %tr
-          %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
-            - @followers.each do | to_follow |
-              = render( partial: "users/followees", locals: { friend: to_follow } )
+- if @followers.any?
+  %p Here's what some of the top observers nearby have found in the last week:
+  %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
+    %tr
+      %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
+        - @followers.each do | to_follow |
+          %div{ style: "width: 118px; margin: 10px; text-align: center;" }
+            = link_to( image_tag( to_follow.icon.url( :thumb ), class: "media-object img-circle followee", width: 50 ), user_url( to_follow ) )
+            %h4= link_to to_follow.login, user_url( to_follow )
+            %p= link_to "#{to_follow.observations_count} observations", observations_path( user_id: to_follow.id )
+
 = render "footer"

@@ -368,7 +368,7 @@ class Emailer < ActionMailer::Base
       order( published_at: :desc ).first
     url = @user.site&.url
     @post_url = if most_recent_post
-      FakeView.post_url( post, host: url )
+      FakeView.post_url( most_recent_post, host: url )
     end
 
     latitude = observation.latitude || observation.private_latitude || nil
