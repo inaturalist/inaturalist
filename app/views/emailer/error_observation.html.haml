@@ -11,7 +11,7 @@
 %p= "There is some key information you can edit to make this observation more likely to be seen by the community and used for science and conservation:"
 %ul
   - @errors.each do | error |
-    %li= error
+    %li= error.gsub( "_", " " ).capitalize
 %p
 = link_to "Are you able to edit your observation?", observation_url( @observation )
 
