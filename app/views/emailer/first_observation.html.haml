@@ -30,6 +30,6 @@
           %div{ style: "width: 118px; margin: 10px; text-align: center;" }
             = link_to( image_tag( to_follow.icon.url( :thumb ), class: "media-object img-circle followee", width: 50 ), user_url( to_follow ) )
             %h4= link_to to_follow.login, user_url( to_follow )
-            %p= link_to "#{to_follow.observations_count} observations", observations_path( user_id: to_follow.id )
+            %p= link_to "#{to_follow.observations_count} observations", observations_url( user_id: to_follow.id )
 
 = render "footer"
