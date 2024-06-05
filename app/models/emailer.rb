@@ -373,7 +373,8 @@ class Emailer < ActionMailer::Base
 
     latitude = observation.latitude || observation.private_latitude || nil
     longitude = observation.longitude || observation.private_longitude || nil
-    @search_params = { radius: 50, verifiable: true, lat: latitude, lng: longitude, d1: 1.week.ago.to_s, d2: Time.now }
+    @search_params = { radius: 50, verifiable: true, lat: latitude, lng: longitude,
+                       d1: 1.week.ago.to_s, d2: Time.now, subview: "grid" }
     follower_ids = Observation.
       elastic_user_observation_counts( Observation.params_to_elastic_query( @search_params ), 4 )[:counts]
     follower_ids = follower_ids.reject {| r | r["user_id"] == user.id }
