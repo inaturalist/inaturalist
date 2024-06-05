@@ -7,18 +7,18 @@
       %div{ style: "width:110px; height:110px; overflow:hidden; border-radius:50%; margin: 10px auto; margin-right:10px;background-image:url('#{observation_image_url( @observation, size: "medium" )}'); background-size:cover; background-position:center; border: 4px solid #74AC00;" }
 
 %p= "Hello, #{@user.published_name}!"
-
-%p
-  = "Congratulations on posting "
-  = link_to "your first observation", observation_url( @observation )
-  = " to #{user_site.name}!"
-%p= "However, there is some key information you can add to make it more likely to get input from the community and be used for science and conservation."
-%p="Your observation is missing:"
+%p= "Thank you for posting this observation to #{user_site.name}!"
+%p= "There is some key information you can add to make this observation more likely to be seen by the community and used for science and conservation:"
 %ul
   - @errors.each do | error |
     %li= error
-%p= "which prevents it from becoming Research Grade and makes it less likely to get attention from the #{user_site.name} community"
+%p
+= link_to "Are you able to add these to your observation?", observation_url( @observation )
+
+%p= "Updating these will make it likely to Research Grade which is shared with scientists and represents an important source of biodiversity data for science and conservation."
 %p= "Did you know that Research Grade observations posted to #{user_site.name} are shared with scientists and represent an important source of biodiversity data for science and conservation?"
-%p= "We hope you'll continue to post to #{user_site.name}. Will you try posting another observation that addressess the issues listed above?"
+%p= "We hope you'll continue to post observations to #{user_site.name}!"
+
+%img{ src: "https://static.inaturalist.org/wiki_page_attachments/3930-original.png", style: "display: block; margin: 20px auto; max-width: 100%; height: auto;" }
 
 = render "footer"

@@ -8,12 +8,11 @@
 
 %p= "Hello, #{@user.published_name}!"
 
+%p= "Thank you for  posting this  observation to #{user_site.name}!"
+%p= "While #{user_site.name} is a great place to learn about captive animals and cultivated plants, did you know that observations of <b>wild organisms</b> can become <b>Research Grade</b> observations shared with scientists and represent an important source of biodiversity data for science and conservation?"
 %p
-  = "Congratulations on posting "
-  = link_to "your first observation", observation_url( @observation )
-  = " to #{user_site.name}!"
-%p= "While #{user_site.name} is a great place to learn about captive animals and cultivated plants, did you know that observations of wild organisms can become  Research Grade observations shared with scientists and represent an important source of biodiversity data for science and conservation?"
-%p= "Will you try observing a wild species to share with us? Here are some wild plants we think you can find nearby:"
+  = link_to "Are you ready to make your first observation?", user_site.url
+  = " Here are some wild plants we think you can find nearby:"
 %tr
   %td{ valign: "top", class: "bodyContent", "mc:edit": "body_content00", style: "color: #505050; font-family: Helvetica; font-size: 16px; line-height: 150%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; text-align: left;" }
     %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }

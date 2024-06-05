@@ -361,6 +361,25 @@ class Emailer < ActionMailer::Base
     @user = user
     @observation = observation
 
+    most_recent_post = Post.where(
+      parent_id: 1,
+      parent_type: "Site"
+    ).where( "title LIKE ?", "% News Highlights" ).
+      order( published_at: :desc ).first
+    url = @user.site&.url
+    @post_url = if most_recent_post
+      FakeView.post_url( post, host: url )
+    end
+
+    latitude = observation.latitude || observation.private_latitude || nil
+    longitude = observation.longitude || observation.private_longitude || nil
+    search_params = { radius: 50, verifiable: true, lat: latitude, lng: longitude, d1: 1.week.ago.to_s, d2: Time.now }
+    follower_ids = Observation.
+      elastic_user_observation_counts( Observation.params_to_elastic_query( search_params ), 4 )[:counts].
+      map {| u | u["user_id"] }
+    follower_ids.delete( user.id )
+    @followers = User.where( "id IN (?)", follower_ids )
+
     # Mail settings
     subject = "Congratulations on posting a Research Grade observation to #{site_name}!"
     set_locale
@@ -456,7 +475,7 @@ class Emailer < ActionMailer::Base
     }
   end
 
-  def get_filtered_species( latitude, longitude, current_month, taxon_id = nil )
+  def get_filtered_species( latitude, longitude, current_month, taxon_id: nil )
     dangerous_taxa = CONFIG.dangerous_taxa_list_id.blank? ? nil : CONFIG.dangerous_taxa_list_id
     query_params = {
       verifiable: true,

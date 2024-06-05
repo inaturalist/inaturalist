@@ -14,8 +14,20 @@
   = " to #{user_site.name}!"
 %p= "While #{user_site.name} is a great place to learn about captive animals and cultivated plants, did you know that observations of wild organisms can become  Research Grade observations shared with scientists and represent an important source of biodiversity data for science and conservation?"
 %p= "Research Grade observations have been vetted by the community and are shared with scientist"
-%p= "Did you know that, according to the Global Biodiversity Information Facility, more than half of all biodiversity records for most species this century come from #{user_site.name} Research Grade observations?"
-%p= "You can read about some of the science and conservation stories behind #{user_site.name} observations  in this month’s News Highlights."
+%p= "Did you know that, according to the Global Biodiversity Information Facility, more than half of all biodiversity records for most species this decade come from #{user_site.name} Research Grade observations?"
+- if @post_url.present?
+  - post_link = link_to "this month’s News Highlights", @post_url
+  %p
+    = "You can read about some of the science and conservation stories behind #{user_site.name} observations in #{post_link}."
 
-%img{ src: "https://static.inaturalist.org/wiki_page_attachments/3788-original.png", style: "display: block; margin: 20px auto;" }
+%img{ src: "https://static.inaturalist.org/wiki_page_attachments/3931-original.png", style: "display: block; margin: 20px auto;" }
+- if @followers.count.positive?
+  %p= "Here's what some of the top observers nearby have found in the last week:"
+  %tr
+    %td{ valign: "top", class: "bodyContent", "mc:edit": "body_content00", style: "color: #505050; font-family: Helvetica; font-size: 16px; line-height: 150%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; text-align: left;" }
+      %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
+        %tr
+          %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
+            - @followers.each do | to_follow |
+              = render( partial: "users/followees", locals: { friend: to_follow } )
 = render "footer"

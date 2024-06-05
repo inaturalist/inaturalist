@@ -233,9 +233,13 @@ needs_id = obs_data.
   keys
 research = obs_data.select {| _, v | v[:research]&.positive? }.keys
 no_obs = ( active_0_new_users.keys - casual - needs_id - research )
-captives = get_captives( end_date, casual )
-error = casual - captives
-
+if casual.count.positive?
+  captives = get_captives( end_date, casual )
+  error = casual - captives
+else
+  captives = []
+  error = []
+end
 cohort = current_day.to_date.to_s
 cohort_data[cohort] ||= {}
 initialize_and_set( cohort_data, cohort, no_obs, "no_obs" )
@@ -379,7 +383,7 @@ end
 
     next unless group == "A"
 
-    puts "sending...#{user.id}"
+    puts "sending...#{user.id} #{observation.id}"
     Emailer.captive_observation( user, observation ).deliver_now
   end
 
