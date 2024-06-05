@@ -26,12 +26,14 @@
   %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
     %tr
       %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
-        - @followers.each do | to_follow |
-          = link_to user_url( to_follow ) do
-            %div{ style: "width:110px; height:110px; overflow:hidden; border-radius:50%; margin:0 auto; margin-right:10px; background-image:url('#{to_follow.icon.url( :medium )}'); background-size:cover; background-position:center; border: 4px solid #74AC00;" }
-            %p{ style: "margin:0; padding-top:10px; width: 110px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
-              %div= link_to to_follow.login, user_url( to_follow )
-              - merged_params = @search_params.merge( user_id: to_follow.id )
-              %div= link_to "#{to_follow.observations_count} observations", observations_url( merged_params )
+        - @followers.each do |to_follow|
+          %div{ style: "width: 110px; text-align: center; margin: 10px;" }
+            = link_to user_url(to_follow[:user]) do
+              %div{ style: "width: 110px; height: 110px; overflow: hidden; border-radius: 50%; margin: 0 auto; background-image: url('#{to_follow[:user].icon.url(:medium)}'); background-size: cover; background-position: center; border: 4px solid #74AC00;" }
+            %p{ style: "margin: 0; padding-top: 10px; width: 110px; text-align: center; word-wrap: break-word; height: 80px; overflow: hidden;" }
+              = link_to to_follow[:user].login, user_url(to_follow[:user])
+              - merged_params = @search_params.merge(user_id: to_follow[:user].id)
+              %div
+                = link_to "#{to_follow[:count]} observations", observations_url(merged_params)
 
 = render "footer"

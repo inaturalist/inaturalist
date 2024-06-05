@@ -373,12 +373,13 @@ class Emailer < ActionMailer::Base
 
     latitude = observation.latitude || observation.private_latitude || nil
     longitude = observation.longitude || observation.private_longitude || nil
-    search_params = { radius: 50, verifiable: true, lat: latitude, lng: longitude, d1: 1.week.ago.to_s, d2: Time.now }
+    @search_params = { radius: 50, verifiable: true, lat: latitude, lng: longitude, d1: 1.week.ago.to_s, d2: Time.now }
     follower_ids = Observation.
-      elastic_user_observation_counts( Observation.params_to_elastic_query( search_params ), 4 )[:counts].
-      map {| u | u["user_id"] }
-    follower_ids.delete( user.id )
-    @followers = User.where( "id IN (?)", follower_ids )
+      elastic_user_observation_counts( Observation.params_to_elastic_query( @search_params ), 4 )[:counts]
+    follower_ids = follower_ids.reject {| r | r["user_id"] == user.id }
+    @followers = follower_ids.map do | r |
+      { user: User.find_by( id: r["user_id"] ), count: r["count_all"] }
+    end
 
     # Mail settings
     subject = "Congratulations on posting a Research Grade observation to #{site_name}!"
