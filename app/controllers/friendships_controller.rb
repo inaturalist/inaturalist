@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
 
   def index
     @friendships = current_user.friendships.page( params[:page] )
-    if @q = params[:q]
+    if ( @q = params[:q] )
       @friendships = @friendships.joins( :friend ).where( "users.login ilike ?", "%#{@q}%" )
     end
     @trusted = params[:trusted]
@@ -54,7 +54,7 @@ class FriendshipsController < ApplicationController
           flash[:error] = @friendship.errors.full_messages.to_sentence
           redirect_back_or_default( person_path( current_user ) )
         end
-        format.json { render status: :unprocessable_entity, json: @friendship.errors.full_messages.to_sentence }
+        format.json { render status: :unprocessable_entity, json: @friendship.errors }
       end
     end
   end
