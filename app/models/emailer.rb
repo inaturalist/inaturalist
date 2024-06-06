@@ -366,7 +366,7 @@ class Emailer < ActionMailer::Base
       parent_type: "Site"
     ).where( "title LIKE ?", "% News Highlights" ).
       order( published_at: :desc ).first
-    url = @user.site&.url
+    url = @user.site&.url || Site.default.url
     @post_url = if most_recent_post
       FakeView.post_url( most_recent_post, host: url )
     end
