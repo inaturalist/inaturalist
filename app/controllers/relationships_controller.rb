@@ -4,13 +4,18 @@
 # model name Friendship
 class RelationshipsController < FriendshipsController
   def create
-    @relationship = current_user.friendships.new( approved_create_params )
+    if ( existing = current_user.friendships.where( friend_id: approved_create_params[:friend_id] ).first )
+      @relationship = existing
+      @relationship.assign_attributes( approved_create_params )
+    else
+      @relationship = current_user.friendships.new( approved_create_params )
+    end
     respond_to do | format |
       format.json do
         if @relationship.save
           render json: { relationship: @relationship }
         else
-          render status: :unprocessable_entity, json: @relationship.errors.full_messages.to_sentence
+          render status: :unprocessable_entity, json: @relationship.errors
         end
       end
     end
