@@ -299,7 +299,7 @@ end
   # intervention 2: error
   subjects = cohort_data[cohort].select do | _, v |
     v[slot] == "error" && prev_slots.all? do | prev_slot |
-      ["no_obs", "captives", "needs_id"].include?( v[prev_slot] )
+      ["no_obs"].include?( v[prev_slot] )
     end
   end
 

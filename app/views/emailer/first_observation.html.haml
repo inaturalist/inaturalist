@@ -12,9 +12,9 @@
   = "Congratulations on posting "
   = link_to "your first Research Grade observation", observation_url( @observation )
   = " to #{user_site.name}!"
-%p= "Research Grade observations have been vetted by the community and are shared with scientist"
+%p= "Research Grade observations have been vetted by the community and are shared with scientists."
 %p= "Did you know that, according to the Global Biodiversity Information Facility, more than half of all biodiversity records for most species this decade come from #{user_site.name} Research Grade observations?"
-%img{ src: "https://static.inaturalist.org/wiki_page_attachments/3931-original.png", style: "display: block; margin: 20px auto;" }
+%img{ src: "https://static.inaturalist.org/wiki_page_attachments/3931-original.png", style: "display: block; margin: 20px auto; max-width: 100%; height: auto;" }
 - if @post_url.present?
   %hr
   - post_link = link_to "this month’s News Highlights", @post_url
@@ -22,17 +22,4 @@
     = "You can read about some of the science and conservation stories behind #{user_site.name} observations in "
     = post_link
     = "."
-- if @followers.any?
-  %hr
-  %p= "Click through to see what these #{user_site.name} community members have found nearby this week:"
-  %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }
-    %tr
-      %div{ style: "display: flex; flex-wrap: wrap; justify-content: center; max-width: 598px;" }
-        - @followers.each do | to_follow |
-          %div{ style: "width: 110px; text-align: center; margin: 10px;" }
-            - merged_params = @search_params.merge( user_id: to_follow[:user].id )
-            = link_to observations_url( merged_params ) do
-              %div{ style: "width: 110px; height: 110px; overflow: hidden; border-radius: 50%; margin: 0 auto; background-image: url('#{to_follow[:user].icon.url(:medium)}'); background-size: cover; background-position: center; border: 4px solid #74AC00;" }
-            %p{ style: "margin: 0; padding-top: 10px; width: 110px; text-align: center; word-wrap: break-word; overflow: hidden;" }
-              = link_to to_follow[:user].published_name, observations_url( merged_params )
 = render "footer"
