@@ -16,15 +16,8 @@ class Post < ApplicationRecord
   }
   notifies_subscribers_of :parent, {
     on: [:update, :create],
-    queue_if: lambda {| post |
-      conditions = { notifier_type: "Post", notifier_id: post.id }
-      existing_updates_count = UpdateAction.where( conditions ).count
-      # destroy existing updates if user *unpublishes* a post
-      if post.draft? && existing_updates_count.positive?
-        UpdateAction.delete_and_purge( conditions )
-        return false
-      end
-      return !post.draft? && existing_updates_count.zero? && post.saved_change_to_published_at?
+    unless: lambda {| post |
+      post.draft? || !post.saved_change_to_published_at?
     },
     if: lambda {| post, project, subscription |
       return true unless post.parent_type == "Project"
@@ -56,6 +49,7 @@ class Post < ApplicationRecord
 
   before_save :skip_update_for_draft
   after_save :update_user_counter_cache
+  after_save :destroy_updates_if_unpublished
   after_destroy :update_user_counter_cache
 
   scope :published, -> { where( "published_at IS NOT NULL" ) }
@@ -160,6 +154,12 @@ class Post < ApplicationRecord
       User.where( id: user_id ).update_all( journal_posts_count: user.journal_posts.published.count )
     end
     true
+  end
+
+  def destroy_updates_if_unpublished
+    return if published?
+
+    UpdateAction.delete_and_purge( { notifier_type: "Post", notifier_id: id } )
   end
 
   def to_s
