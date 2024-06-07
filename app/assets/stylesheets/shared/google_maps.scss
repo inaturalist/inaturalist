@@ -56,6 +56,20 @@ body > div > .popover {
     .gm-style-iw {
       font-weight: 400;
     }
+    .gm-style-iw-ch {
+      padding-top: 13px !important;
+    }
+    .gm-ui-hover-effect {
+      position: absolute !important;
+      right: 0;
+      height: 22px !important;
+      width: 22px !important;
+      & > span {
+        width: 18px !important;
+        height: 18px !important;
+        margin: 2px !important;
+      }
+    }
   }
 
   .gmapv3control.overlaycontrol.open {

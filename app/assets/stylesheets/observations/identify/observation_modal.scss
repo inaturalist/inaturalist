@@ -65,7 +65,7 @@ body > [role="dialog"] .ObservationModal {
     position: relative;
     .SplitTaxon.taxon,
     .quality_grade {
-      font-weight: bold;
+      font-weight: 600;
     }
     .SplitTaxon {
       margin-inline-end: 80px;
@@ -270,7 +270,7 @@ body > [role="dialog"] .ObservationModal {
       margin-bottom: 0;
     }
     .btn {
-      font-weight: bold;
+      font-weight: 600;
     }
     .btn-link,
     .btn-link:hover {

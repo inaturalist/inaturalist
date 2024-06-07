@@ -23,7 +23,7 @@ $changed-color: #74ac00;
   }
 
   .FiltersButtonContainer {
-    width: 901px !important;
+    width: 920px !important;
 
     > button.btn-default {
       background-color: $bg-color;
@@ -190,7 +190,7 @@ $changed-color: #74ac00;
 
     label.sectionlabel {
       display: block;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 16px;
       .text-muted {
         font-weight: normal;

@@ -494,7 +494,7 @@ a.UserImage,
         }
         .bold_label {
           display: block;
-          font-weight: bold;
+          font-weight: 600;
         }
         .date {
           font-size: 13px;
@@ -855,7 +855,7 @@ time {
   padding: 20px;
   display: inline-block;
   .attr {
-    font-weight: 700;
+    font-weight: 600;
   }
   .places {
     h4 {
@@ -1266,7 +1266,7 @@ time {
   width: 100%;
   h3 {
     & > span a {
-      font-weight: 700;
+      font-weight: 600;
     }
     .links {
       float: right;
@@ -1445,7 +1445,7 @@ time {
       .title {
         font-size: 14px;
         line-height: 14px;
-        font-weight: 700;
+        font-weight: 600;
         text-overflow: ellipsis;
         display: block;
         overflow: hidden;
@@ -1522,7 +1522,7 @@ time {
       margin-bottom: 5px;
       .display-name {
         color: #000;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
     .photo {
