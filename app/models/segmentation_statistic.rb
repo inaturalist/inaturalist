@@ -19,7 +19,7 @@ class SegmentationStatistic < ApplicationRecord
     SegmentationStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).exists?
   end
 
-  def self.generate_segmentation_int( start_date, end_date, use_database: false )
+  def self.generate_segmentation_data_for_interval( start_date, end_date, use_database: false )
     segmentation_data = {}
     current_date = end_date
     num_days = ( end_date.to_date - start_date.to_date ).to_i

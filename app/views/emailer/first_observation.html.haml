@@ -17,9 +17,8 @@
 %img{ src: "https://static.inaturalist.org/wiki_page_attachments/3931-original.png", style: "display: block; margin: 20px auto; max-width: 100%; height: auto;" }
 - if @post_url.present?
   %hr
-  - post_link = link_to "this month’s News Highlights", @post_url
+  - post_link = link_to "this month’s News Highlights.", @post_url
   %p
     = "You can read about some of the science and conservation stories behind #{user_site.name} observations in "
     = post_link
-    = "."
 = render "footer"

@@ -79,8 +79,8 @@ def build_filter( start_time, end_time, users, captives: false )
         bool: {
           should: [
             { term: { captive: true } },
-            { term: { "taxon.id": 43_584 } },
-            { term: { "taxon.id": 43_583 } }
+            { term: { "taxon.id": Taxon::HUMAN } },
+            { term: { "taxon.id": Taxon::HOMO } }
           ],
           minimum_should_match: 1
         }
@@ -220,10 +220,11 @@ end
 # now sort out current day
 start_time = Time.now
 end_date = current_day
-ad = SegmentationStatistic.generate_segmentation_int( end_date - 1.day, end_date, use_database: true )
-active_0_new_users = ad.select {| _, v | v[:created_at].zero? }
+start_date = end_date - 1.day
+active_users = SegmentationStatistic.generate_segmentation_data_for_interval( start_date, end_date, use_database: true )
+active_new_users = active_users.select {| _, v | v[:created_at].zero? }
 
-obs_data = get_obs( end_date, active_0_new_users.keys )
+obs_data = get_obs( end_date, active_new_users.keys )
 
 casual = obs_data.
   select {| _, v | ( v[:needs_id].nil? || v[:needs_id].zero? ) && ( v[:research].nil? || v[:research].zero? ) }.
@@ -232,7 +233,7 @@ needs_id = obs_data.
   select {| _, v | ( !v[:needs_id].nil? && v[:needs_id].positive? ) && ( v[:research].nil? || v[:research].zero? ) }.
   keys
 research = obs_data.select {| _, v | v[:research]&.positive? }.keys
-no_obs = ( active_0_new_users.keys - casual - needs_id - research )
+no_obs = ( active_new_users.keys - casual - needs_id - research )
 if casual.count.positive?
   captives = get_captives( end_date, casual )
   error = casual - captives
