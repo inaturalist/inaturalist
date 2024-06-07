@@ -367,6 +367,7 @@ class FiltersButton extends React.Component {
                 + ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
               }
               onChange={e => updateSearchParams( { order: e.target.value } )}
+              value={params.order}
             >
               <option value="asc">
                 { I18n.t( "ascending" ) }
