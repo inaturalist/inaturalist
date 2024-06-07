@@ -346,6 +346,8 @@ class Taxon < ApplicationRecord
   )
 
   LIFE = Taxon.roots.find_by_name( "Life" )
+  HUMAN = Taxon.find_by_name( "Homo sapiens" )
+  HOMO = Taxon.find_by_name( "Homo" )
 
   IUCN_NOT_EVALUATED = 0
   IUCN_DATA_DEFICIENT = 5
