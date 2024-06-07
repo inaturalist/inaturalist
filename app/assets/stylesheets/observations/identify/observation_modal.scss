@@ -553,7 +553,7 @@ body > [role="dialog"] .ObservationModal {
     border: 0 transparent;
     border-bottom: 3px solid transparent;
     color: #555;
-    font-weight: bold;
+    font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     display: block;
@@ -638,7 +638,7 @@ body > [role="dialog"] .ObservationModal {
           .permalink,
           .FollowButton button {
             color: black;
-            font-weight: bold;
+            font-weight: 600;
           }
           a.permalink:focus,
           .FollowButton button:focus,
