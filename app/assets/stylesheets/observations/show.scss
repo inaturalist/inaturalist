@@ -846,6 +846,18 @@ time {
       .btn-more:hover, .btn-more:focus {
         text-decoration: none;
       }
+      .btn.clipboard-copy {
+        vertical-align: top;
+        margin: -1px 10px 0px 6px;
+        background: #f0f0f0;
+        outline: none;
+        &:hover {
+          background: #e6e6e6;
+        }
+      }
+      .tooltip.top {
+        margin-left: 2px;
+      }
     }
   }
 }

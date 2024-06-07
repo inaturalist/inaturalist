@@ -134,15 +134,15 @@ class LocationChooserMap extends React.Component {
     this.moveCircle( latLng, radius, { geocode: true } );
   }
 
-  handlePlacesChanged( input, place ) {
+  handlePlacesChanged( input, place, customLat = null, customLng = null ) {
     const { updateState } = this.props;
     if ( _.isEmpty( place ) ) {
       return;
     }
     let searchQuery;
-    let lat;
-    let lng;
-    let searchedForCoord = false;
+    let lat = customLat;
+    let lng = customLng;
+    let searchedForCoord = ( customLat && customLng );
     if ( input ) {
       searchQuery = input.value;
       const searchCoord = searchQuery.split( "," ).map( piece => parseFloat( piece, 16 ) );
@@ -160,7 +160,7 @@ class LocationChooserMap extends React.Component {
       }
     }
     let notes;
-    let radius;
+    let radius = 0;
 
     const { geometry } = place;
     const { viewport } = geometry;
