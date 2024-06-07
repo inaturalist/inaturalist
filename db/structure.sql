@@ -5343,7 +5343,8 @@ CREATE TABLE public.users (
     unlock_token character varying,
     oauth_application_id integer,
     data_transfer_consent_at timestamp without time zone,
-    unconfirmed_email character varying
+    unconfirmed_email character varying,
+    annotated_observations_count integer DEFAULT 0
 );
 
 
@@ -10718,6 +10719,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124214436'),
 ('20240222032444'),
 ('20240326135332'),
-('20240429211140');
+('20240429211140'),
+('20240606154217');
 
 

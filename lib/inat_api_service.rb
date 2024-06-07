@@ -1,4 +1,4 @@
-#encoding: utf-8
+# frozen_string_literal: true
 
 require "inat_api_service/v2/client"
 
@@ -11,6 +11,7 @@ module INatAPIService
     "acc_above",
     "acc_below",
     "acc_below_or_unknown",
+    "annotation_user_id",
     "apply_project_rules_for",
     "border_opacity",
     "cache",
@@ -111,47 +112,47 @@ module INatAPIService
     "without_taxon_id",
     "without_term_value_id",
     "year"
-  ]
+  ].freeze
 
-  def self.geoip_lookup(params={}, options = {})
+  def self.geoip_lookup( params = {}, options = {} )
     options[:authorization] ||= JsonWebToken.applicationToken
-    return INatAPIService.get("/geoip_lookup", params, options)
+    INatAPIService.get( "/geoip_lookup", params, options )
   end
 
-  def self.identifications(params={}, options = {})
-    return INatAPIService.get("/identifications", params, options)
+  def self.identifications( params = {}, options = {} )
+    INatAPIService.get( "/identifications", params, options )
   end
 
-  def self.identifications_categories(params={}, options = {})
-    return INatAPIService.get("/identifications/categories", params, options)
+  def self.identifications_categories( params = {}, options = {} )
+    INatAPIService.get( "/identifications/categories", params, options )
   end
 
-  def self.observations(params={}, options = {})
-    return INatAPIService.get("/observations", params, options)
+  def self.observations( params = {}, options = {} )
+    INatAPIService.get( "/observations", params, options )
   end
 
-  def self.observations_observers(params={}, options = {})
-    return INatAPIService.get("/observations/observers", params, options)
+  def self.observations_observers( params = {}, options = {} )
+    INatAPIService.get( "/observations/observers", params, options )
   end
 
-  def self.observations_species_counts(params={}, options = {})
-    return INatAPIService.get("/observations/species_counts", params, options)
+  def self.observations_species_counts( params = {}, options = {} )
+    INatAPIService.get( "/observations/species_counts", params, options )
   end
 
-  def self.observations_popular_field_values(params={}, options = {})
-    return INatAPIService.get("/observations/popular_field_values", params, options)
+  def self.observations_popular_field_values( params = {}, options = {} )
+    INatAPIService.get( "/observations/popular_field_values", params, options )
   end
 
-  def self.projects(params={}, options = {})
-    return INatAPIService.get("/projects", params, options)
+  def self.projects( params = {}, options = {} )
+    INatAPIService.get( "/projects", params, options )
   end
 
-  def self.project(id, params={}, options = {})
-    return INatAPIService.get("/projects/#{id}", params, options)
+  def self.project( id, params = {}, options = {} )
+    INatAPIService.get( "/projects/#{id}", params, options )
   end
 
-  def self.taxa(params={}, options={})
-    return INatAPIService.get("/taxa", params, options)
+  def self.taxa( params = {}, options = {} )
+    INatAPIService.get( "/taxa", params, options )
   end
 
   def self.get_json( path, params = {}, options = {} )
@@ -161,21 +162,21 @@ module INatAPIService
     endpoint = options[:endpoint] || INatAPIService::ENDPOINT
     url = endpoint + path
     headers = {}
-    auth_user = params.delete(:authenticate)
-    if auth_user && auth_user.is_a?( User )
+    auth_user = params.delete( :authenticate )
+    if auth_user.is_a?( User )
       headers["Authorization"] = auth_user.api_token
     end
-    authorization = options.delete(:authorization)
+    authorization = options.delete( :authorization )
     if authorization && !headers["Authorization"]
       headers["Authorization"] = authorization
     end
-    uri = URI.parse(url)
-    if !params.blank? && params.is_a?(Hash)
-      uri.query = URI.encode_www_form( Hash[URI.decode_www_form( uri.query || "" )].merge( params ) )
+    uri = URI.parse( url )
+    if !params.blank? && params.is_a?( Hash )
+      uri.query = URI.encode_www_form( URI.decode_www_form( uri.query || "" ).to_h.merge( params ) )
     end
     begin
-      timed_out = Timeout::timeout( options[:timeout] ) do
-        http = Net::HTTP.new(uri.host, uri.port)
+      Timeout.timeout( options[:timeout] ) do
+        http = Net::HTTP.new( uri.host, uri.port )
         http.use_ssl = true if uri.scheme == "https"
         # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
         response = http.get( uri.request_uri, headers )
@@ -186,7 +187,7 @@ module INatAPIService
     rescue => e
       Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{options[:retries]}) failed: #{e}"
     end
-    if options[:retries].is_a?(Integer) && options[:retries] > 0
+    if options[:retries].is_a?( Integer ) && options[:retries].positive?
       retry_options = options.dup
       retry_options[:retries] -= 1
       if options[:retry_delay]
@@ -201,8 +202,10 @@ module INatAPIService
   def self.get( path, params = {}, options = {} )
     json = get_json( path, params, options )
     return unless json
-    parsed_json = JSON.parse( json ) || { }
+
+    parsed_json = JSON.parse( json ) || {}
     return parsed_json if options[:json]
+
     OpenStruct.new_recursive( parsed_json )
   end
 end
