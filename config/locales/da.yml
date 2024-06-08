@@ -1234,6 +1234,8 @@ da:
   copy_and_paste_the_following_code_to: Kopiér og indsæt følgende kode for at integrere denne vurdering på en anden webside.
   copy_and_paste_this_into_your_own_html: Kopiér og indsæt dette i din egen HTML.
   copy_guide_taxon_to: Kopiér guide takson til ...
+  copy_to_clipboard: Kopiér til udklipsholder
+  copied!: Kopieret!
   copyright:
     some_rights_reserved: nogle rettigheder forbeholdes
     some_rights_reserved_by: "(c) %{name}, nogle rettigheder forbeholdes (%{license_short})"
@@ -2372,6 +2374,8 @@ da:
   last_seen: Sidst set
   last_year: Sidste år
   lat: Bre.
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lgd.gr./brd.gr.
   latitude: Breddegrad
   latitude_in_decimals: 'Breddegrad i decimale grader f.eks. 38.123'
   latitude_slash_y_coord_slash_northing: Breddegrad / y koordinat / nordlig
@@ -4902,7 +4906,6 @@ da:
   start_a_new_project: Start et nyt projekt
   start_a_project: Start et projekt
   start_date_time: Start dato / tidspunkt
-  start_one: start en
   start_one_now: Start en nu
   start_typing_field_name: Indtast feltnavn ...
   start_typing_place_name: Indtast navn på sted ...
@@ -4932,8 +4935,6 @@ da:
   studies_that_used_inaturalist_data_in_year: Studier der brugte iNaturalist data i %{year}
   stuff_just_added: "Ting du lige har tilføjet ..."
   subject_resolved_noun_html: "%{subject} løst %{noun}"
-  subject_affecting_stuff_html: "%{subject} påvirker %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} oprettede @gender{n:et|en} %{thing} der påvirker %{stuff}"
   submission_model: Registreringsmodel
   submission_model_description: Hvem kan tilføje observationer til dit projekt?
   submit_observations:
@@ -5075,6 +5076,8 @@ da:
   taxon_deleted: Takson slettet
   taxon_doesnt_have_a_range: Takson har har ikke et område
   taxon_drop: takson drop
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taksondrop påvirker %{taxon}
   taxon_id: Takson ID
   taxon_ids: Takson IDer
   taxon_map:
@@ -5098,6 +5101,9 @@ da:
   taxon_framework_taxon: Taksonramme takson
   taxon_history_notice: Historik blev indført februar 2022, så ingen historik findes før denne dato.
   taxon_merge: takson sammenlægning
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taksonsammenfletning påvirker %{taxon}
   taxon_name: Takson navn
   taxon_name_must_match_an_existing_taxon_in_our_database: Takson navn skal matche et eksisterende takson i vores database
   taxon_observed_by_html: |
@@ -5140,9 +5146,17 @@ da:
   taxon_search: Takson søgning
   taxon_search_results_for: Takson søgeresultater for
   taxon_split: takson deling
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taksonopdeling påvirker %{taxon}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: takson stadie
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taksonfase påvirker %{taxon}
   taxon_swap: takson skifte
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taksonombytning påvirker %{taxon}
   taxon_swap_only_has_one_input: kun ét input tilladt for et skifte
   taxon_swap_has_inputs_and_outputs: byt skal have både input og output
   taxon_name_was_deleted: Taksonnavn blev slettet
@@ -5226,7 +5240,6 @@ da:
   there_are_x_synonyms_html:
     one: "Der er <span class='count'>1</span> synonym</span>"
     other: "Der er <span class='count'>%{count}</span> synonymer</span>"
-  there_is_no_wikipedia_page_matching: Der er ingen matchende Wikipedia side
   there_isnt_a_wikipedia_article_titled_x_html: |
     Der er ikke en Wikipedia artikel eller et link %{x} Måske vil du gerne <a href='http://en.wikipedia.org/wiki/%{x}'>lave en</a>?
   there_merge_problems_with_the_merge: "Der var problemer med sammenlægningen: %{merged_errors}"
@@ -5635,6 +5648,16 @@ da:
     %{user} mener, at dette er en omfattende liste over %{taxon} på %{place}
   user_blocked: Bruger blokeret
   user_commented: "%{user} kommenterede"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} har committed et taksondrop, der påvirker %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_an_observation_by_you: "%{user} gjorde en af dine observationer til favorit"
