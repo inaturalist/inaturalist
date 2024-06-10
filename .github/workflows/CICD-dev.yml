@@ -41,7 +41,7 @@ jobs:
 
   refresh-dev-staging-deployment:
     name: Refresh Dev Staging Deployment
-    needs: pre-build
+    needs: build-and-push-dev-docker-image
     runs-on: ubuntu-20.04
     steps:
     - name: Refresh Dev inaturalist

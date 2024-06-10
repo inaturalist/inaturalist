@@ -47,7 +47,7 @@ jobs:
     - name: Refresh Main inaturalist
       uses: actions/github-script@v6
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
+        github-token: ${{secrets.STAGING_DEPLOYMENT_PERSONAL_ACCESS_TOKEN}}
         script: |-
           await github.rest.actions.createWorkflowDispatch({
               owner: "inaturalist",
