@@ -41,7 +41,7 @@ jobs:
 
   refresh-dev-staging-deployment:
     name: Refresh Dev Staging Deployment
-    needs: build-and-push-dev-docker-image
+    needs: pre-build
     runs-on: ubuntu-20.04
     steps:
     - name: Refresh Dev inaturalist
@@ -56,7 +56,7 @@ jobs:
               ref: "main",
               inputs: {
                 "service-type": "rails",
-                "service-version": ${{ github.ref_name }}
+                "service-version": "${{ github.ref_name }}"
               },
           }).catch(error => error).then(response => {
             core.debug(response);
