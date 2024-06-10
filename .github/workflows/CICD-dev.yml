@@ -45,11 +45,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - name: Refresh Dev inaturalist
-      uses: actions/github-script@v7
+      uses: actions/github-script@v6
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |-
-          await github.actions.createWorkflowDispatch({
+          await github.rest.actions.createWorkflowDispatch({
               owner: "inaturalist",
               repo: "staging-deployment",
               workflow_id: "CD-workflow-dispatch.yml",
