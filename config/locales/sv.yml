@@ -1245,6 +1245,8 @@ sv:
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
   copy_guide_taxon_to: Kopiera guidetaxon till...
+  copy_to_clipboard: Kopiera till urklipp
+  copied!: Kopierad!
   copyright:
     some_rights_reserved: vissa rättigheter förbehållna
     some_rights_reserved_by: "(c) %{name}, vissa rättigheter förbehållna (%{license_short})"
@@ -2402,6 +2404,8 @@ sv:
   last_seen: Senast sedd
   last_year: Senaste året
   lat: Lat
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Long
   latitude: Latitud
   latitude_in_decimals: 'Latitud i decimalgrader, t.ex. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / y-koord / nordlig
@@ -5075,6 +5079,8 @@ sv:
   taxon_deleted: Taxon raderat.
   taxon_doesnt_have_a_range: Taxon saknar område
   taxon_drop: taxoninaktivering
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taxoninaktivering som påverkar %{taxon}
   taxon_id: TaxonID
   taxon_ids: TaxonID:n
   taxon_map:
@@ -5098,6 +5104,9 @@ sv:
   taxon_framework_taxon: Taxonkontextens taxon
   taxon_history_notice: Historik introducerades i februari 2022, så ingen historik är tillgänglig före detta datum.
   taxon_merge: taxonhopslagning
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxonhopslagning som påverkar %{taxon}
   taxon_name: Taxon namn
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnamn måste matcha ett befintligt taxon i vår databas
   taxon_observed_by_html: |
@@ -5135,9 +5144,17 @@ sv:
   taxon_search: Taxonsök
   taxon_search_results_for: Resultat av taxonsök för
   taxon_split: taxonuppdelning
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxonuppdelning som påverkar %{taxon}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxonförberedelse
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxonförberedelse som påverkar %{taxon}
   taxon_swap: taxonbyte
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxonbyte som påverkar %{taxon}
   taxon_swap_only_has_one_input: endast en inmatning tillåten för ett byte
   taxon_swap_has_inputs_and_outputs: ett byte måste ha både in- och utdata
   taxon_name_was_deleted: Taxonnamnet har raderats.
@@ -5614,6 +5631,16 @@ sv:
     %{user} anser att detta är en fullständig lista över %{taxon} i %{place}
   user_blocked: Användare blockerad
   user_commented: "%{user} kommenterade"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
   user_faved_an_observation_by_you: "%{user} favoritmarkerade ett av dina fynd"
