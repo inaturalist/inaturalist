@@ -324,6 +324,7 @@ hu:
   add_evidence_of_presence_hair_annotation: '"Megjelenési bizonyíték: Szőr" hozzáadása'
   add_evidence_of_presence_egg_annotation: '"Megjelenési bizonyíték: Tojás vagy pete" hozzáadása'
   add_evidence_of_presence_construction_annotation: '"Megjelenési bizonyíték: Építmény" hozzáadása'
+  add_established_not_established: '"Helyben nem meghonosodott" megjelölés hozzáadása'
   #As in a Taxon Framework Relationship
   add_relationship: 'Kapcsolat hozzáadása'
   #As in a Guide Section
@@ -1027,6 +1028,10 @@ hu:
     hair: Szőr
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: Építmény
+    #Does the observation belong to a non-established population or not
+    established: Helyben meghonosodott
+    #Organism is not a member of an established population
+    not_established: Helyben nem meghonosodott
   controlled_term_definitions:
     alive: Az organizmus él és nem mutatja hamarosan bekövetkező halál jelét
     cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
@@ -1041,6 +1046,7 @@ hu:
     hair: Szőr, amely már elvált az élőlénytől, amely azt viselte
     egg: Egész tojás vagy pete, vagy annak része
     construction: Egy állat által más anyagokból létrehozott vagy kiásott struktúra
+    not_established: Az élőlény az adott helyen még meg nem honosodott populációhoz tartozik, például szabadonengedett vagy elszökött házi kedvenc, szállítmányokkal érkező élőlények, valamint kóbor állatok.
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
   controls: Vezérlők
