@@ -2213,6 +2213,8 @@ zh-CN:
   last_seen: 上次看见
   last_year: 去年
   lat: 纬度
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: 经纬度
   latitude: 纬度
   latitude_in_decimals: '以十进制度数表示的纬度，例如：38.123'
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
@@ -6728,7 +6730,7 @@ zh-CN:
       project_user_curator_coordinate_access_labels:
         observer: 是的，但只在我自行添加观察至项目时。
         any: 是的，无论是谁将观察添加到项目中都无所谓。
-        none: 编号
+        none: 否。
       curator_coordinate_access_label: |
         您是否希望项目馆长可以看到私人/模糊的观察坐标？
       curator_coordinate_access_note: |
