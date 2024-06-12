@@ -2903,7 +2903,13 @@ th:
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
   #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_user_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
   user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
@@ -2911,9 +2917,12 @@ th:
   user_added_an_x: "%{user} เพิ่ม%{x}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
+  user_faved_an_observation_by_you: "%{user} ชอบการสังเกตของคุณ"
   user_faved_this_observation: "%{user} ชอบการสังเกตนี้"
   user_flagged_as_a_non_spammer_html: "%{user} ถูกทำเครื่องหมายว่าไม่ใช่ผู้ส่งสแปม"
   user_flagged_as_a_spammer_html: "%{user} ถูกรายงานว่าเป็นผู้ส่งสแปม"
