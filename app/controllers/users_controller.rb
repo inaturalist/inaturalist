@@ -450,9 +450,13 @@ class UsersController < ApplicationController
   end
   
   def dashboard
-    @has_updates = (current_user.recent_notifications.count > 0)
+    @has_updates = ( current_user.recent_notifications.count > 0 )
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
+    @needs_id_pilot = ObservationAccuracyExperiment.find_by( version: "Needs ID Pilot" )
+    if @needs_id_pilot.present? && current_user.prefers_needs_id_pilot == true
+      @needs_id_pilot_url = fetch_needs_id_pilot_url( @needs_id_pilot, current_user )
+    end
     if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
       cache_key = "dashboard-discourse-data-#{@site.id}"
       begin
@@ -1310,4 +1314,13 @@ protected
     end
   end
 
+  def fetch_needs_id_pilot_url( needs_id_pilot, user )
+    validator = needs_id_pilot.observation_accuracy_validators.find_by( user_id: user.id )
+    return unless validator
+
+    obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
+    return if obs_ids.blank?
+
+    identify_observations_url( place_id: "any", id: obs_ids.join( "," ) )
+  end
 end

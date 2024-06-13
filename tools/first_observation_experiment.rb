@@ -18,6 +18,90 @@ EOS
   opt :cohort_data_path, "Path to the cohort data file.", type: :string, short: "-t"
 end
 
+def score_obs( observation_id, jwt_token )
+  api_url = "https://api.inaturalist.org/v1/computervision/score_observation/#{observation_id}"
+  uri = URI( api_url )
+  http = Net::HTTP.new( uri.host, uri.port )
+  http.use_ssl = true
+  request = Net::HTTP::Get.new( uri.request_uri )
+  request["Authorization"] = "Bearer #{jwt_token}"
+  response = http.request( request )
+  if response.code.to_i == 200
+    data = JSON.parse( response.body )
+  else
+    puts "Request failed with status code #{response.code}: #{response.body}"
+  end
+  data
+end
+
+def get_improving_identifiers( user_id, place_ids )
+  filter = [
+    {
+      bool: {
+        must: [
+          { term: { category: "improving" } },
+          { term: { "taxon.rank": "species" } },
+          { term: { own_observation: false } },
+          { term: { "user.id": user_id } }
+        ]
+      }
+    }
+  ]
+
+  aggregation = {
+    taxon_id: {
+      terms: {
+        field: "taxon.id",
+        size: 10_000,
+        min_doc_count: 3
+      },
+      aggs: {
+        place_ids: {
+          terms: {
+            field: "observation.place_ids",
+            size: 10_000,
+            min_doc_count: 1
+          }
+        }
+      }
+    }
+  }
+
+  response = Identification.elastic_search(
+    size: 0,
+    filters: filter,
+    aggregate: aggregation
+  ).response.aggregations.taxon_id.buckets
+
+  results = response.map do | taxon_bucket |
+    {
+      taxon_id: taxon_bucket["key"],
+      place_ids: taxon_bucket.place_ids.buckets.map {| place_bucket | place_bucket["key"] } & place_ids
+    }
+  end
+  results.map {| a | [a[:taxon_id], a[:place_ids]] }.to_h
+end
+
+def get_place_obs( oids, place_ids )
+  batch_size = 500
+  total_elapsed_time = 0
+  observation_places = []
+  ( 0..oids.length - 1 ).step( batch_size ) do | i |
+    start_time = Time.now
+    observation_ids = oids[i, batch_size]
+    batch_observation_places = ObservationsPlace.
+      where( observation_id: observation_ids, place_id: place_ids ).
+      pluck( :observation_id, :place_id )
+    observation_places.concat( batch_observation_places )
+    end_time = Time.now
+    elapsed_time = end_time - start_time
+    total_elapsed_time += elapsed_time
+  end
+  puts "Total time: #{total_elapsed_time} seconds"
+  puts "Average time per batch: #{total_elapsed_time / ( oids.length.to_f / batch_size )} seconds"
+  observation_places.to_h
+end
+
 def get_obs( day, users )
   filter = build_filter( day.beginning_of_day, day.end_of_day, users )
   agg = build_agg( users )
@@ -159,7 +243,7 @@ end
 
 headers = ["cohort", "user_id", "day0", "day1", "day2", "day3", "day4", "day5", "day6", "day7", "day8",
            "retention", "observer_appeal_intervention_group", "first_observation_intervention_group",
-           "error_intervention_group", "captive_intervention_group"]
+           "error_intervention_group", "captive_intervention_group", "needs_id_intervention_group"]
 
 # Load existing user data or create a new CSV file with headers
 raw_cohort_data = []
@@ -287,6 +371,7 @@ subjects.each do | key, value |
   Emailer.observer_appeal( user, latitude: geoip_latitude, longitude: geoip_longitude ).deliver_now
 end
 
+observations = []
 ( 0..7 ).each do | d |
   cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
   slot = "day#{d}"
@@ -388,7 +473,29 @@ end
     Emailer.captive_observation( user, observation ).deliver_now
   end
 
-  # intervention 4: research
+  # intervention 4: needs_id
+  subjects = cohort_data[cohort].select do | _, v |
+    v[slot] == "needs_id"
+  end
+
+  subjects.each do | key, value |
+    user = User.where( id: key.to_s.to_i ).first
+    next unless user
+
+    group = rand( 2 ).zero? ? "A" : "B"
+    value["needs_id_intervention_group"] = group
+
+    next unless group == "A"
+
+    observations.concat(
+      Observation.
+        where( user_id: user.id, quality_grade: "needs_id" ).
+        limit( 3 ).
+        pluck( :id, :taxon_id )
+    )
+  end
+
+  # intervention 5: research
   subjects = cohort_data[cohort].select do | _, v |
     v[slot] == "research" && prev_slots.all? {| prev_slot | v[prev_slot] != "research" }
   end
@@ -428,6 +535,85 @@ CSV.open( OPTS.cohort_data_path, "w" ) do | csv |
       end
       csv << row
     end
+  end
+end
+
+@needs_id_pilot = ObservationAccuracyExperiment.find_by( version: "Needs ID Pilot" )
+if @needs_id_pilot
+  place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
+  place_obs = get_place_obs( observations.map {| a | a[0] }, place_ids )
+  place_hash = place_obs.to_h
+  taxon_hash = observations.to_h
+  rank_hash = Taxon.find( observations.map {| a | a[1] }.uniq.compact ).pluck( :id, :rank_level ).to_h
+  api_token = JsonWebToken.encode( user_id: 477 )
+  new_taxon_hash = {}
+  observations.each do | row |
+    obs_id = row[0]
+    old_taxon_id = taxon_hash[obs_id]
+    if ( old_taxon_id.nil? || rank_hash[old_taxon_id] > 10 ) && new_taxon_hash[obs_id].nil?
+      begin
+        data = score_obs( obs_id, api_token )
+        taxa = data["results"].select {| r | r["taxon"]["rank"] == "species" }.map {| r | r["taxon"]["id"] }
+        taxon_id = taxa[0]
+        new_taxon_hash[obs_id] = taxon_id
+      rescue
+        puts "no photos"
+        new_taxon_hash[obs_id] = old_taxon_id
+      end
+    else
+      new_taxon_hash[obs_id] = old_taxon_id
+    end
+  end
+
+  observations.map {| a | a[0] }.select do | obs |
+    place_id = place_hash[obs]
+    taxon_id = new_taxon_hash[obs]
+    next unless taxon_id
+
+    store_obs << { id: obs, place_id: place_id, taxon_id: taxon_id }
+  end
+
+  ObservationAccuracySample.where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+    where( "observation_id NOT IN (?)", store_obs.map {| row | row[:id] }.uniq ).destroy_all
+  store_obs.each do | row |
+    sample = ObservationAccuracySample.
+      where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+      where( observation_id: row[:id] ).first
+    next unless sample
+
+    sample = ObservationAccuracySample.new(
+      observation_accuracy_experiment_id: @needs_id_pilot.id,
+      observation_id: row[:id]
+    )
+    sample.save!
+  end
+
+  acvite_iders = Preference.where( owner_type: "User", name: "needs_id_pilot", value: true ).pluck( :owner_id )
+  ObservationAccuracyValidator.where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+    where( "user_id NOT IN (?)", acvite_iders ).destroy_all
+  acvite_iders.each do | user_id |
+    validator = ObservationAccuracyValidator.
+      where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+      where( user_id: user_id ).first
+    unless validator
+      validator = ObservationAccuracyValidator.new(
+        observation_accuracy_experiment_id: @needs_id_pilot.id,
+        user_id: user_id
+      )
+      validator.save!
+    end
+
+    id_matches = get_improving_identifiers( user_id, place_ids )
+    filtered_obs_ids = store_obs.select do | obs |
+      place_id = obs[:place_id]
+      taxon_id = obs[:taxon_id]
+      id_matches[taxon_id]&.include?( place_id )
+    end
+    obs_ids = filtered_obs_ids.map {| a | a[:id] }.sample( 30 )
+    samples = ObservationAccuracySample.
+      where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+      where( "observation_id IN (?)", obs_ids )
+    validator.observation_accuracy_samples << samples
   end
 end
 

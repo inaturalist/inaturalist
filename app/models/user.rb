@@ -111,6 +111,7 @@ class User < ApplicationRecord
   preference :edit_observations_order, :string, default: "created_at"
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
+  preference :needs_id_pilot, :boolean, default: nil
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
