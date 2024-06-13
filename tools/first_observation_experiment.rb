@@ -79,8 +79,8 @@ def build_filter( start_time, end_time, users, captives: false )
         bool: {
           should: [
             { term: { captive: true } },
-            { term: { "taxon.id": Taxon::HUMAN } },
-            { term: { "taxon.id": Taxon::HOMO } }
+            { term: { "taxon.id": Taxon::HUMAN.id } },
+            { term: { "taxon.id": Taxon::HOMO.id } }
           ],
           minimum_should_match: 1
         }
@@ -249,21 +249,19 @@ initialize_and_set( cohort_data, cohort, captives, "captives" )
 initialize_and_set( cohort_data, cohort, needs_id, "needs_id" )
 initialize_and_set( cohort_data, cohort, research, "research" )
 
-# get retention if day 8
-retention_cohort = ( current_day - 8.days ).to_date.to_s
-if cohort_data[retention_cohort]
+# get retention for the last 8 cohorts
+( 0..8 ).reverse_each do | d |
+  retention_cohort = ( current_day - d.days ).to_date.to_s
+  next unless cohort_data[retention_cohort]
+
+  cohort_data[retention_cohort].map {| _, v | v["retention"] = nil }
   retention_user_ids = cohort_data[retention_cohort].keys.map {| key | key.to_s.to_i }
-  retention_users = ad.select {| k, _ | retention_user_ids.include? k }
+  retention_users = active_users.select {| k, _ | retention_user_ids.include? k }
   retention_users.each_key do | id |
     user_id = id.to_s.to_sym
     cohort_data[retention_cohort][user_id]["retention"] = true
   end
 end
-
-end_time = Time.now
-duration = end_time - start_time
-puts "Finished at #{end_time}"
-puts "Time taken to run the script: #{duration} seconds"
 
 # now do some interventions for the current day
 # intervention 1: no_obs
@@ -289,7 +287,7 @@ subjects.each do | key, value |
   Emailer.observer_appeal( user, latitude: geoip_latitude, longitude: geoip_longitude ).deliver_now
 end
 
-( 0..8 ).each do | d |
+( 0..7 ).each do | d |
   cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
   slot = "day#{d}"
   prev_slots = ( 0...d ).map {| q | "day#{q}" }
@@ -342,13 +340,15 @@ end
       end
 
     elsif !observation.appropriate?
-      errors << "copyright"
+      errors << "evidence"
     end
+    errors = errors.uniq
 
     next unless errors.count.positive?
 
     group = rand( 2 ).zero? ? "A" : "B"
     value["error_intervention_group"] = group
+
     next unless group == "A"
 
     puts "sending...#{user.id}"
@@ -430,3 +430,8 @@ CSV.open( OPTS.cohort_data_path, "w" ) do | csv |
     end
   end
 end
+
+end_time = Time.now
+duration = end_time - start_time
+puts "Finished at #{end_time}"
+puts "Time taken to run the script: #{duration} seconds"
