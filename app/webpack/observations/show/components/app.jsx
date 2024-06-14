@@ -220,6 +220,8 @@ const App = ( {
                         deleteObservation( );
                       } else if ( key === "license" ) {
                         setLicensingModalState( { show: true } );
+                      } else if ( key === "interpolate" ) {
+                        window.location = `/observations/${observation.id}/edit?interpolate_coordinates=true`;
                       }
                     }}
                   >
@@ -241,6 +243,12 @@ const App = ( {
                       <i className="fa fa-copyright" />
                       { I18n.t( "edit_license" ) }
                     </MenuItem>
+                    { !observation.latitude && (
+                      <MenuItem eventKey="interpolate">
+                        <i className="fa fa-map-marker" />
+                        { I18n.t( "interpolate_coordinates" ) }
+                      </MenuItem>
+                    ) }
                     <li role="separator" className="divider" />
                     <MenuItem eventKey="delete">
                       <i className="fa fa-trash" />
