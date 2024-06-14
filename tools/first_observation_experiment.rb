@@ -556,11 +556,8 @@ if @needs_id_pilot
         taxa = data["results"].select {| r | r["taxon"]["rank"] == "species" }.map {| r | r["taxon"]["id"] }
         taxon_id = taxa[0]
         new_taxon_hash[obs_id] = taxon_id
-      rescue Faraday::ClientError => e
-        raise unless e.response[:status] == 422
-
-        error_message = JSON.parse( e.response[:body] )["error"]
-        puts "Request failed with status code 422: #{error_message}"
+      rescue NoMethodError
+        puts "no photos"
         new_taxon_hash[obs_id] = old_taxon_id
       end
     else
@@ -599,7 +596,7 @@ if @needs_id_pilot
     top_iders
   ).pluck( :owner_id )
   ObservationAccuracyValidator.where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
-    where( "user_id NOT IN (?)", acvite_iders ).destroy_all
+    where( "user_id NOT IN (?)", active_iders ).destroy_all
   active_iders.each do | user_id |
     validator = ObservationAccuracyValidator.
       where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
