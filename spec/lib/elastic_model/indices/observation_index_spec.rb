@@ -756,10 +756,22 @@ describe "Observation Index" do
         filters: [ { range: { id: { gte: 99 } } } ])
     end
 
-    it "filters by not_id" do
+    it "filters by single not_id integer" do
       expect(
         Observation.params_to_elastic_query( { not_id: 123 } )
-      ).to include( inverse_filters: [{ term: { id: 123 } }] )
+      ).to include( inverse_filters: [{ terms: { id: [123] } }] )
+    end
+
+    it "filters by single not_id array" do
+      expect(
+        Observation.params_to_elastic_query( { not_id: [123, 456] } )
+      ).to include( inverse_filters: [{ terms: { id: [123, 456] } }] )
+    end
+
+    it "filters by single not_id csv" do
+      expect(
+        Observation.params_to_elastic_query( { not_id: "123,456" } )
+      ).to include( inverse_filters: [{ terms: { id: [123, 456] } }] )
     end
   end
 

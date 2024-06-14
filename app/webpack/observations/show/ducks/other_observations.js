@@ -15,6 +15,8 @@ const OTHER_OBSERVATIONS_DEFAULT_STATE = {
 
 const OTHER_OBSERVATION_FIELDS = {
   id: true,
+  latitude: true,
+  obscured: true,
   photos: {
     id: true,
     uuid: true,

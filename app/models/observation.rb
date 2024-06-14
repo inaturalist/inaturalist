@@ -3191,8 +3191,14 @@ class Observation < ApplicationRecord
 
     base_params = { user_id: user.id, with_geo: true, order_by: "observed_on", not_id: id }
     prev_obs = Observation.elastic_query( base_params.merge( d2: time_observed_at, order: "desc" ) ).first
-    next_obs = Observation.elastic_query( base_params.merge( d1: time_observed_at, order: "asc" ) ).first
-    return unless prev_obs && next_obs
+    return unless prev_obs
+
+    next_obs = Observation.elastic_query( base_params.merge(
+      d1: time_observed_at,
+      order: "asc",
+      not_id: [id, prev_obs.id]
+    ) ).first
+    return unless next_obs
 
     prev_lat = prev_obs.private_latitude || prev_obs.latitude
     prev_lon = prev_obs.private_longitude || prev_obs.longitude
@@ -3204,6 +3210,9 @@ class Observation < ApplicationRecord
       ( next_obs.time_observed_at - time_observed_at ) /
       ( next_obs.time_observed_at - prev_obs.time_observed_at )
     )
+    # If for some reason prev and next have identification time_observed_at
+    # values, weight will be NaN and we will assume even weighting
+    weight = 0.5 if weight.nan?
     new_lat = ( ( 1 - weight ) * next_lat ) + ( weight * prev_lat )
     new_lon = ( ( 1 - weight ) * next_lon ) + ( weight * prev_lon )
     self.latitude = new_lat

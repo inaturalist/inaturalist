@@ -785,14 +785,16 @@ time {
     background: #f8f8f8;
     height: 230px;
     text-align: center;
-    font-size: 18px;
-    color: $text-grey;
     padding-top: 75px;
     border-bottom: 1px solid $border-grey;;
     .fa {
       display: block;
       font-size: 60px;
       color: #ccc;
+    }
+    span {
+      font-size: 18px;
+      color: $text-grey;
     }
   }
   .map_details {

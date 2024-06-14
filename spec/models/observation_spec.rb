@@ -2133,25 +2133,29 @@ describe Observation, "interpolate_coordinates" do
   end
 
   it "should be time-weighted" do
-    o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    _o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
     o2 = create :observation, user: user, observed_on_string: "2020-02-01 14:30"
-    o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
-    expect( o1.time_zone ).to eq "UTC"
-    expect( o2.time_zone ).to eq "UTC"
-    expect( o3.time_zone ).to eq "UTC"
+    _o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
     expect( o2.latitude ).to be_blank
     o2.interpolate_coordinates
     expect( o2.latitude ).to eq 0.75
   end
 
   it "should work for observations that already have coordinates" do
-    o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    _o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
     o2 = create :observation, user: user, observed_on_string: "2020-02-01 14:00", latitude: 0.1, longitude: 0.1
-    o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
-    expect( o1.time_zone ).to eq "UTC"
-    expect( o2.time_zone ).to eq "UTC"
-    expect( o3.time_zone ).to eq "UTC"
+    _o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
     expect( o2.latitude ).not_to be_blank
+    o2.interpolate_coordinates
+    expect( o2.latitude ).to eq 0.5
+  end
+
+  it "should assume even weight if prev/next times are identical" do
+    o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    o2 = create :observation, user: user, observed_on_string: "2020-02-01 13:00"
+    o3 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 1, longitude: 1
+    expect( o1.time_observed_at ).to eq o3.time_observed_at
+    expect( o2.latitude ).to be_blank
     o2.interpolate_coordinates
     expect( o2.latitude ).to eq 0.5
   end

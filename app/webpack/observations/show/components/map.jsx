@@ -7,7 +7,6 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon, taxonLayerForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
-import ErrorBoundary from "../../../shared/components/error_boundary";
 
 /* global LIFE_TAXON */
 
@@ -22,12 +21,14 @@ class Map extends React.Component {
     const {
       observation,
       observationPlaces,
+      canInterpolate,
       config,
       updateCurrentUser
     } = this.props;
     let geoprivacyIconClass = "fa fa-map-marker";
     let geoprivacyTitle = I18n.t( "location_is_public" );
     let geoprivacyLabel = I18n.t( "location_unknown" );
+    let interpolateButton;
     // Note this is based on the currently confusing nature of obscured, which
     // at present means coordinates_obscured? OR geoprivacy == "obscured", so if
     // there are no coordinates and geoprivacy is obscured, we set the
@@ -55,6 +56,18 @@ class Map extends React.Component {
     } else if ( !observation.latitude && !observation.private_geojson ) {
       geoprivacyIconClass = "icon-no-location";
       geoprivacyLabel = I18n.t( "location_unknown" );
+      if ( canInterpolate ) {
+        interpolateButton = (
+          <div>
+            <a
+              className="linky"
+              href={`/observations/${observation.id}/edit?interpolate_coordinates=true`}
+            >
+              { I18n.t( "guess_location_from_other_observations?" ) }
+            </a>
+          </div>
+        );
+      }
     }
     let placeGuess = I18n.t( "location_unknown" );
     if ( observation ) {
@@ -70,7 +83,8 @@ class Map extends React.Component {
           <div className="TaxonMap empty">
             <div className="no_location">
               <i className="fa fa-map-marker" />
-              { geoprivacyLabel }
+              <span>{ geoprivacyLabel }</span>
+              { interpolateButton }
             </div>
           </div>
           <div className="map_details">
@@ -168,9 +182,9 @@ class Map extends React.Component {
       const obscured = observation.obscured && !observation.private_geojson
         && (
           <span className="obscured">
-            { "(" }
+            (
             { I18n.t( "obscured" ) }
-            { ")" }
+            )
           </span>
         );
       const showLength = observation.obscured ? 22 : 32;
@@ -186,7 +200,8 @@ class Map extends React.Component {
             >
               { I18n.t( "show" ) }
             </button>
-          </div> );
+          </div>
+        );
       }
       placeGuessElement = (
         <div>
@@ -235,6 +250,7 @@ class Map extends React.Component {
 Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
+  canInterpolate: PropTypes.bool,
   config: PropTypes.object,
   updateCurrentUser: PropTypes.func
 };
