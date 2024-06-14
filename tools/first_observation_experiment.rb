@@ -19,7 +19,7 @@ EOS
 end
 
 def score_obs( observation_id, jwt_token )
-  api_url = "https://api.inaturalist.org/v1/computervision/score_observation/#{observation_id}"
+  api_url = "https://stagingapi.inaturalist.org/v1/computervision/score_observation/#{observation_id}"
   uri = URI( api_url )
   http = Net::HTTP.new( uri.host, uri.port )
   http.use_ssl = true
@@ -556,8 +556,11 @@ if @needs_id_pilot
         taxa = data["results"].select {| r | r["taxon"]["rank"] == "species" }.map {| r | r["taxon"]["id"] }
         taxon_id = taxa[0]
         new_taxon_hash[obs_id] = taxon_id
-      rescue
-        puts "no photos"
+      rescue Faraday::ClientError => e
+        raise unless e.response[:status] == 422
+
+        error_message = JSON.parse( e.response[:body] )["error"]
+        puts "Request failed with status code 422: #{error_message}"
         new_taxon_hash[obs_id] = old_taxon_id
       end
     else
@@ -565,6 +568,7 @@ if @needs_id_pilot
     end
   end
 
+  store_obs = []
   observations.map {| a | a[0] }.select do | obs |
     place_id = place_hash[obs]
     taxon_id = new_taxon_hash[obs]
@@ -579,7 +583,7 @@ if @needs_id_pilot
     sample = ObservationAccuracySample.
       where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
       where( observation_id: row[:id] ).first
-    next unless sample
+    next if sample
 
     sample = ObservationAccuracySample.new(
       observation_accuracy_experiment_id: @needs_id_pilot.id,
@@ -588,10 +592,15 @@ if @needs_id_pilot
     sample.save!
   end
 
-  acvite_iders = Preference.where( owner_type: "User", name: "needs_id_pilot", value: true ).pluck( :owner_id )
+  top_iders = INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
+  top_iders.concat( User.admins.pluck( :id ).uniq ).uniq
+  active_iders = Preference.where(
+    "owner_type = 'User' AND name = 'needs_id_pilot' AND value = 't' AND owner_id IN (?)",
+    top_iders
+  ).pluck( :owner_id )
   ObservationAccuracyValidator.where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
     where( "user_id NOT IN (?)", acvite_iders ).destroy_all
-  acvite_iders.each do | user_id |
+  active_iders.each do | user_id |
     validator = ObservationAccuracyValidator.
       where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
       where( user_id: user_id ).first
@@ -602,7 +611,6 @@ if @needs_id_pilot
       )
       validator.save!
     end
-
     id_matches = get_improving_identifiers( user_id, place_ids )
     filtered_obs_ids = store_obs.select do | obs |
       place_id = obs[:place_id]
