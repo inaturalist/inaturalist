@@ -1109,6 +1109,9 @@ class Observation < ApplicationRecord
     if p[:id_below]
       search_filters << { range: { id: { lt: p[:id_below] } } }
     end
+    if p[:not_id].to_i.positive?
+      inverse_filters << { term: { id: p[:not_id].to_i } }
+    end
 
     { filters: search_filters,
       inverse_filters: inverse_filters,

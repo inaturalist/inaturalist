@@ -3189,9 +3189,9 @@ class Observation < ApplicationRecord
   def interpolate_coordinates
     return unless time_observed_at
 
-    scope = user.observations.where( "latitude IS NOT NULL or private_latitude IS NOT NULL" )
-    prev_obs = scope.where( "time_observed_at < ?", time_observed_at ).order( "time_observed_at DESC" ).first
-    next_obs = scope.where( "time_observed_at > ?", time_observed_at ).order( "time_observed_at ASC" ).first
+    base_params = { user_id: user.id, with_geo: true, order_by: "observed_on", not_id: id }
+    prev_obs = Observation.elastic_query( base_params.merge( d2: time_observed_at, order: "desc" ) ).first
+    next_obs = Observation.elastic_query( base_params.merge( d1: time_observed_at, order: "asc" ) ).first
     return unless prev_obs && next_obs
 
     prev_lat = prev_obs.private_latitude || prev_obs.latitude

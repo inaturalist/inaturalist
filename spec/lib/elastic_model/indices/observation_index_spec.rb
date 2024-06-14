@@ -756,6 +756,11 @@ describe "Observation Index" do
         filters: [ { range: { id: { gte: 99 } } } ])
     end
 
+    it "filters by not_id" do
+      expect(
+        Observation.params_to_elastic_query( { not_id: 123 } )
+      ).to include( inverse_filters: [{ term: { id: 123 } }] )
+    end
   end
 
   describe "prepare_batch_for_index" do
