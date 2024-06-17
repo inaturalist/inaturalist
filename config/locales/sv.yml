@@ -5106,7 +5106,7 @@ sv:
   taxon_merge: taxonhopslagning
   #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_merge_affecting_taxa: Taxonhopslagning som påverkar %{taxon}
+  taxon_merge_affecting_taxa: Taxonhopslagning som påverkar %{taxa}
   taxon_name: Taxon namn
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnamn måste matcha ett befintligt taxon i vår databas
   taxon_observed_by_html: |
@@ -5146,7 +5146,7 @@ sv:
   taxon_split: taxonuppdelning
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_split_affecting_taxa: Taxonuppdelning som påverkar %{taxon}
+  taxon_split_affecting_taxa: Taxonuppdelning som påverkar %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxonförberedelse
   #Notification about a taxon stage, @vow_or_con operates on %{taxon}
@@ -5154,7 +5154,7 @@ sv:
   taxon_swap: taxonbyte
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
-  taxon_swap_affecting_taxa: Taxonbyte som påverkar %{taxon}
+  taxon_swap_affecting_taxa: Taxonbyte som påverkar %{taxa}
   taxon_swap_only_has_one_input: endast en inmatning tillåten för ett byte
   taxon_swap_has_inputs_and_outputs: ett byte måste ha både in- och utdata
   taxon_name_was_deleted: Taxonnamnet har raderats.
