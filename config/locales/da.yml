@@ -5148,7 +5148,7 @@ da:
   taxon_split: takson deling
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_split_affecting_taxa: Taksonopdeling påvirker %{taxon}
+  taxon_split_affecting_taxa: Taksonopdeling påvirker %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: takson stadie
   #Notification about a taxon stage, @vow_or_con operates on %{taxon}
@@ -5156,7 +5156,7 @@ da:
   taxon_swap: takson skifte
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
-  taxon_swap_affecting_taxa: Taksonombytning påvirker %{taxon}
+  taxon_swap_affecting_taxa: Taksonombytning påvirker %{taxa}
   taxon_swap_only_has_one_input: kun ét input tilladt for et skifte
   taxon_swap_has_inputs_and_outputs: byt skal have både input og output
   taxon_name_was_deleted: Taksonnavn blev slettet
