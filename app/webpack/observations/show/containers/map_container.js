@@ -18,10 +18,18 @@ function mapStateToProps( state ) {
       && state.config.currentUser.id === state.observation.user.id
       && state.observation.time_observed_at
       && state.otherObservations
-      && state.otherObservations.earlierUserObservations
-      && state.otherObservations.laterUserObservations
-      && state.otherObservations.earlierUserObservations.filter( coordinatesObscured ).length > 0
-      && state.otherObservations.laterUserObservations.filter( coordinatesObscured ).length > 0
+      && state.otherObservations.earlierUserObservationsByObserved
+      && state.otherObservations.laterUserObservationsByObserved
+      && state
+        .otherObservations
+        .earlierUserObservationsByObserved
+        .filter( coordinatesObscured )
+        .length > 0
+      && state
+        .otherObservations
+        .laterUserObservationsByObserved
+        .filter( coordinatesObscured )
+        .length > 0
     ),
     config: state.config
   };
