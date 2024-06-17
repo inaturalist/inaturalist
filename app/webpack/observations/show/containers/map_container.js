@@ -13,6 +13,7 @@ function mapStateToProps( state ) {
     canInterpolate: (
       state.config
       && state.config.currentUser
+      && state.config.currentUser.roles.indexOf( "admin" ) >= 0
       && state.observation
       && state.observation.user
       && state.config.currentUser.id === state.observation.user.id
