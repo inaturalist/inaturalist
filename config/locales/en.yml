@@ -2265,6 +2265,9 @@ en:
   grid_tooltip: Show grid view
   group: Group
   grouping: Grouping
+  # Link that lets the user guess the location of an observation that does not
+  # have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Guess location from other observations?
   guides: Guides
   guide_compiled_by: Guide compiled by
   guide_deleted: Guide deleted
