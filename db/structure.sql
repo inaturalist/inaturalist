@@ -620,6 +620,52 @@ ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
+-- Name: cohort_lifecycles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cohort_lifecycles (
+    id bigint NOT NULL,
+    cohort date,
+    user_id bigint NOT NULL,
+    day0 character varying,
+    day1 character varying,
+    day2 character varying,
+    day3 character varying,
+    day4 character varying,
+    day5 character varying,
+    day6 character varying,
+    day7 character varying,
+    retention boolean,
+    observer_appeal_intervention_group character varying,
+    first_observation_intervention_group character varying,
+    error_intervention_group character varying,
+    captive_intervention_group character varying,
+    needs_id_intervention_group character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: cohort_lifecycles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cohort_lifecycles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohort_lifecycles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cohort_lifecycles_id_seq OWNED BY public.cohort_lifecycles.id;
+
+
+--
 -- Name: colors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5647,6 +5693,13 @@ ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audit
 
 
 --
+-- Name: cohort_lifecycles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_lifecycles ALTER COLUMN id SET DEFAULT nextval('public.cohort_lifecycles_id_seq'::regclass);
+
+
+--
 -- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6599,6 +6652,14 @@ ALTER TABLE ONLY public.atlases
 
 ALTER TABLE ONLY public.audits
     ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cohort_lifecycles cohort_lifecycles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_lifecycles
+    ADD CONSTRAINT cohort_lifecycles_pkey PRIMARY KEY (id);
 
 
 --
@@ -7803,6 +7864,13 @@ CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at
 --
 
 CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
+
+
+--
+-- Name: index_cohort_lifecycles_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cohort_lifecycles_on_user_id ON public.cohort_lifecycles USING btree (user_id);
 
 
 --
@@ -10235,6 +10303,14 @@ CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
 
 
 --
+-- Name: cohort_lifecycles fk_rails_a1298bf168; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_lifecycles
+    ADD CONSTRAINT fk_rails_a1298bf168 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -10718,6 +10794,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124214436'),
 ('20240222032444'),
 ('20240326135332'),
-('20240429211140');
+('20240429211140'),
+('20240618044707');
 
 
