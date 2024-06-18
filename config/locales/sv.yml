@@ -2087,6 +2087,9 @@ sv:
   grid_tooltip: Visa rutnätsvy
   group: Grupp
   grouping: Gruppering
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Gissa fyndplats utifrån andra fynd?
   guides: Guider
   guide_compiled_by: Guide sammanställd av
   guide_deleted: Guide borttagen
