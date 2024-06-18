@@ -1150,6 +1150,8 @@ id:
   copy_and_paste_the_following_code_to: Salin dan letakkan kode berikut untuk menanamkan penilaian ini ke halaman web lain.
   copy_and_paste_this_into_your_own_html: Salin dan letakkan ini ke HTML anda
   copy_guide_taxon_to: Salin panduan takson ke...
+  copy_to_clipboard: Salin ke papan klip
+  copied!: Berhasil disalin!
   copyright:
     some_rights_reserved: beberapa hak dilindungi
     some_rights_reserved_by: "(c) %{name}, some rights reservebeberapa hak dilindung (%{license_short})"
@@ -1974,6 +1976,9 @@ id:
   grid_tooltip: Tampilkan tampilan grid
   group: Kelompok
   grouping: Pengelompokan
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Terka lokasi dari pengamatan lain?
   guides: Panduan
   guide_compiled_by: Panduan yang disusun oleh
   guide_deleted: Panduan dihapus
@@ -2266,6 +2271,8 @@ id:
   last_seen: Terakhir dilihat
   last_year: Tahun Lalu
   lat: Lin
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lintang/Bujur
   latitude: Garis Lintang
   latitude_in_decimals: 'Garis lintang dalam derajat berangka desimal, contoh 38.123'
   latitude_slash_y_coord_slash_northing: Garis lintang / koordinat y / utara
@@ -4914,7 +4921,12 @@ id:
   taxon_split: pemisahan takson
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: aktivasi takson
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Tahap takson yang memengaruhi %{taxon}
   taxon_swap: penukaran takson
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Penukaran takson yang memengaruhi %{taxa}
   taxon_swap_only_has_one_input: hanya satu masukan diperbolehkan untuk penukaran
   taxon_swap_has_inputs_and_outputs: penukaran harus memiliki input dan output
   taxon_name_was_deleted: Nama takson telah dihapus.
@@ -5384,6 +5396,16 @@ id:
     %{user} meyakini bahwa ini adalah daftar komprehensif dari %{taxon} di %{place}
   user_blocked: Pengguna diblokir
   user_commented: "%{user} berkomentar"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
   user_disagrees_this_is_taxon: "%{user} tidak setuju ini adalah %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} tidak setuju dengan identifikasi sebelumnya yang lebih terperinci"
   user_faved_an_observation_by_you: "%{user} memfavoritkan salah satu pengamatan Anda"
