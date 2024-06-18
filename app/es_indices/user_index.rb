@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include ActsAsElasticModel
 
   scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
-    mappings(dynamic: true) do
+    mappings( dynamic: true ) do
       indexes :activity_count, type: "integer"
       indexes :created_at, type: "date"
       indexes :icon, type: "keyword", index: false
@@ -13,6 +15,7 @@ class User < ApplicationRecord
       end
       indexes :identifications_count, type: "integer"
       indexes :journal_posts_count, type: "integer"
+      indexes :annotated_observations_count, type: "integer"
       indexes :login, analyzer: "ascii_snowball_analyzer"
       indexes :login_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
@@ -36,7 +39,7 @@ class User < ApplicationRecord
     end
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json( options = {} )
     json = {
       id: id,
       login: login,
@@ -48,26 +51,26 @@ class User < ApplicationRecord
       obs_count = [observations_count.to_i, 0].max
       ident_count = [identifications_count.to_i, 0].max
       post_count = [journal_posts_count.to_i, 0].max
-      json.merge!({
+      json.merge!( {
         login_autocomplete: login,
         login_exact: login,
         name: name,
         name_autocomplete: name,
         orcid: orcid,
-        icon: icon.file? ? icon.url(:thumb) : nil,
+        icon: icon.file? ? icon.url( :thumb ) : nil,
         observations_count: obs_count,
         identifications_count: ident_count,
         journal_posts_count: post_count,
         activity_count: obs_count + ident_count + post_count,
         species_count: species_count,
+        annotated_observations_count: annotated_observations_count,
         universal_search_rank: obs_count,
-        roles: roles.map(&:name).uniq,
+        roles: roles.map( &:name ).uniq,
         site_id: site_id,
         email: email,
         last_ip: last_ip
-      })
+      } )
     end
     json
   end
-
 end
