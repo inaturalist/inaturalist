@@ -2072,6 +2072,9 @@ nl:
   grid_tooltip: Toon rooster weergave
   group: Groep
   grouping: Groeperen
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Interpoleer de locatie met behulp van andere waarnemingen?
   guides: Gidsen
   guide_compiled_by: Gids samengesteld door
   guide_deleted: Gids verwijderd
@@ -5595,7 +5598,9 @@ nl:
   user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
-  user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
+  user_added_x_observations2_html:
+    one: "%{user} heeft %{count} waarneming toegevoegd"
+    other: "%{user} heeft %{count} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
   user_already_app_owner: Gebruiker is al eigenaar van een app
   user_autocomplete_placeholder: kueda, simon123, enz.
@@ -5606,13 +5611,13 @@ nl:
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxon}"
+  user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
+  user_committed_taxon_merge_affecting_taxa: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxon}"
+  user_committed_taxon_stage_affecting_taxon: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
