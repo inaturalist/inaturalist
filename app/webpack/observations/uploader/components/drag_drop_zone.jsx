@@ -219,7 +219,6 @@ class DragDropZone extends Component {
       // normal click
       newSelected = { [obsCard.id]: true };
     }
-
     selectObsCards( newSelected );
   }
 
