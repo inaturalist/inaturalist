@@ -5386,7 +5386,8 @@ id:
   user_added_an_x_to_noun_by_you_html: "%{user} menambahkan sebuah %{x} kepada %{noun} oleh Anda"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} menambahkan %{x} kepada %{noun}"
-  user_added_x_observations_html: "%{user} menambahkan %{x} pengamatan"
+  user_added_x_observations2_html:
+    other: "%{user} menambahkan %{count} pengamatan"
   user_already_authenticated: Pengguna sudah terautentikasi
   user_already_app_owner: Pengguna sudah merupakan pemilik aplikasi
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5403,7 +5404,7 @@ id:
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxon}"
+  user_committed_taxon_stage_affecting_taxon: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
   user_disagrees_this_is_taxon: "%{user} tidak setuju ini adalah %{taxon}"
