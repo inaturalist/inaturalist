@@ -5624,7 +5624,9 @@ sv:
   user_added_an_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
-  user_added_x_observations_html: "%{user} lade till %{x} fynd"
+  user_added_x_observations2_html:
+    one: "%{user} lade till %{count} fynd"
+    other: "%{user} lade till %{count} fynd"
   user_already_authenticated: Användaren är redan autentiserad
   user_already_app_owner: Användaren är redan en appägare
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5641,7 +5643,7 @@ sv:
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  user_committed_taxon_stage_affecting_taxon: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
