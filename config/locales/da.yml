@@ -2069,6 +2069,9 @@ da:
   grid_tooltip: Vis gittervisning
   group: Gruppe
   grouping: Gruppering
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Gæt placering fra andre observationer?
   guides: Guider
   guide_compiled_by: Guide udarbejdet af
   guide_deleted: Guide slettet
@@ -5638,7 +5641,9 @@ da:
   user_added_an_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
-  user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
+  user_added_x_observations2_html:
+    one: "%{user} tilføjede %{count} observation"
+    other: "%{user} tilføjede %{count} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
   user_already_app_owner: Bruger er allerede en app-ejer
   user_autocomplete_placeholder: kueda, simon123, osv.
@@ -5655,7 +5660,7 @@ da:
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxon}"
+  user_committed_taxon_stage_affecting_taxon: "%{user} har udført et taksondrop, der påvirker %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
