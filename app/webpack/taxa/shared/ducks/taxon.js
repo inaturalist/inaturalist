@@ -215,8 +215,35 @@ export function showPhotoChooserIfSignedIn( ) {
   };
 }
 
+const termIsRelevantForTaxon = ( term, taxon ) => {
+  // if there are taxon requirements, this taxon or its ancestors must be among them
+  if ( !_.isEmpty( term.taxon_ids )
+    && _.isEmpty(
+      _.intersection(
+        _.flatten( [taxon.ancestor_ids, taxon.id] ),
+        term.taxon_ids
+      )
+    )
+  ) {
+    return false;
+  }
+
+  // if there are taxon exceptions, this taxon or its ancestors must not be among them
+  if ( !_.isEmpty( term.excepted_taxon_ids )
+    && !_.isEmpty(
+      _.intersection(
+        _.flatten( [taxon.ancestor_ids, taxon.id] ),
+        term.excepted_taxon_ids
+      )
+    )
+  ) {
+    return false;
+  }
+  return true;
+};
+
 export function fetchTerms( options = { histograms: false } ) {
-  return ( dispatch, getState ) => {
+  return async ( dispatch, getState ) => {
     const s = getState( );
     const { testingApiV2 } = s.config;
     const params = { taxon_id: s.taxon.taxon.id, per_page: 50 };
@@ -237,11 +264,14 @@ export function fetchTerms( options = { histograms: false } ) {
         controlled_attribute: {
           id: true,
           label: true,
-          taxon_ids: true
+          taxon_ids: true,
+          excepted_taxon_ids: true
         },
         controlled_value: {
           id: true,
-          label: true
+          label: true,
+          taxon_ids: true,
+          excepted_taxon_ids: true
         },
         unannotated: "all"
       };
@@ -252,12 +282,7 @@ export function fetchTerms( options = { histograms: false } ) {
         return memo;
       }, {} );
       const relevantResults = _.filter( r.results, f => (
-        !f.controlled_attribute.taxon_ids
-        || _.intersection(
-          s.taxon.taxon.ancestor_ids,
-          f.controlled_attribute.taxon_ids
-        ).length > 0
-        || f.controlled_attribute.taxon_ids.length === 0
+        termIsRelevantForTaxon( f.controlled_attribute, s.taxon.taxon )
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
       // If there's data about how many observations do *not* have annotations
