@@ -298,6 +298,8 @@ nl:
   add_annotations_for_controlled_attribute:
     sex: Aantekeningen voor "Geslacht" toevoegen
     plant_phenology: Aantekeningen voor "Plantenfenologie" toevoegen
+    flowers_and_fruits: Voeg aantekeningen toe voor "Bloemen en vruchten"
+    leaves: Voeg aantekeningen toe voor "Bladeren"
     life_stage: Aantekeningen voor "Levenstadium" toevoegen
     evidence_of_presence: Voeg aantekeningen toe voor "Bewijs van Aanwezigheid"
   add_another_flag: Nog een melding toevoegen
@@ -354,6 +356,13 @@ nl:
   add_plant_phenology_flowering_annotation: 'Aantekening "Plantenfenologie: Bloeiend" toevoegen'
   add_plant_phenology_fruiting_annotation: 'Aantekening "Plantenfenologie: Vruchtdragend" toevoegen'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Aantekening "Plantenfenologie: Geen bewijs voor bloei" toevoegen'
+  add_flowers_and_fruits_flower_buds_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: bloemknoppen"'
+  add_flowers_and_fruits_flowers_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: bloemen"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: vruchten en zaden"'
+  add_leaves_breaking_leaf_buds: 'Voeg aantekeningen toe voor "Bladeren: uitlopende bladknoppen"'
+  add_leaves_green_leaves: 'Voeg aantekeningen toe voor "Bladeren: groene bladeren"'
+  add_leaves_colored_leaves: 'Voeg aantekeningen toe voor "Bladeren: gekleurde bladeren"'
+  add_leaves_no_live_leaves: 'Voeg aantekeningen toe voor "Bladeren: geen levende bladeren"'
   add_life_stage_adult_annotation: 'Aantekening "Levenstadium: Volwassen" toevoegen'
   add_life_stage_teneral_annotation: 'Aantekening "Levenstadium: teneraal" toevoegen'
   add_life_stage_subimago_annotation: 'Aantekening "Levenstadium: subimago" toevoegen'
@@ -1144,6 +1153,10 @@ nl:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Elke
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Elke
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Alle
@@ -1153,10 +1166,20 @@ nl:
     male: Mannelijk
     female: Vrouwelijk
     plant_phenology: Plantenfenologie
+    flowers_and_fruits: Bloemen en vruchten
     budding: Ontluikend
     flower_budding: Bloemknoppen
     flowering: Bloeiend
     fruiting: Vruchtdragend
+    no_flowers_or_fruits: Geen bloemen of vruchten
+    flower_buds: Bloemknoppen
+    flowers: Bloemen
+    fruits_or_seeds: Vruchten of zaden
+    leaves: Bladeren
+    breaking_leaf_buds: Uitlopen van bladknoppen
+    green_leaves: Groene Bladeren
+    colored_leaves: Gekleurde Bladeren
+    no_live_leaves: Geen levende bladeren
     life_stage: Levensstadium
     adult: Volwassen
     teneral: Net verveld
@@ -1210,6 +1233,13 @@ nl:
     flower_budding: Bloemknoppen zijn zichtbaar maar niet open
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
+    flowers: Ten minste één open bloem
+    flower_buds: Ten minste één gesloten bloemknop
+    fruits_or_seeds: Ten minste één vrucht of zaad
+    breaking_leaf_buds: Tenminste één knop met zijn eerste nieuwe blad of naald niet volledig ontvouwd
+    green_leaves: Ten minste één groen blad of naald (of roodachtig als dit de normale gezonde kleur is)
+    colored_leaves: Ten minste één blad of naald heeft een laat seizoen of een kleur van droogte
+    no_live_leaves: Er zijn geen uitlopende bladknoppen of groene of gekleurde bladeren of naalden zichtbaar
     gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
     male: Bewijs geeft aan dat organisme sperma kan produceren voor gebruik in seksuele voortplanting
     molt: Afgeworpen huid of exoskelet
@@ -1218,6 +1248,7 @@ nl:
     egg: Heel ei of een deel van een ei
     construction: Iets gemaakt door een dier, gemaakt met of opgegraven van andere materialen
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
+    no_flowers_or_fruits: Er zijn geen bloemen, vruchten of zaden (geheel of gedeeltelijk) zichtbaar
     not_established: Het organisme behoort tot een ongevestigde populatie, waaronder vrijgelaten/ontsnapte huisdieren, lifters en dwaalgasten
     organism: Heel of gedeeltelijk organisme
     scat: Feces (geen uileballen of andere uitgebraakte dingen)
@@ -7572,6 +7603,7 @@ nl:
           Endemische soorten komen alleen voor op een specifieke plaats, en nergens anders.
         about_taxon_curators_desc: |
           Deze mensen onderhouden het gedeelte van de taxonomische boom waartoe dit taxon behoort. Als je dingen wilt wijzigen, meld dit taxon dan alsjeblieft, of neem contact op met één van deze mensen.
+        charts_caps: GRAFIEKEN
         charts_help_seasonality: |
           Deze grafiek toont het aantal waarnemingen van dit taxon gegroepeerd per
           maand. Houd er rekening mee dat dit een aantal waarnemingen zijn, dus zij
@@ -7614,7 +7646,14 @@ nl:
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
           "Plant Phenology=No Evidence of Flowering": Geen bewijs voor bloei
-          "Life Stage=Adult": Volwassen
+          "Flowers and Fruits=Flower Buds": Bloemknoppen
+          "Flowers and Fruits=Flowers": Bloemen
+          "Flowers and Fruits=Fruits or Seeds": Vruchten of zaden
+          "Flowers and Fruits=No Flowers or Fruits": Geen bloemen of vruchten
+          "Leaves=Breaking Leaf Buds": Uitlopen van bladknoppen
+          "Leaves=Green Leaves": Groene Bladeren
+          "Leaves=Colored Leaves": Gekleurde Bladeren
+          "Leaves=No Live Leaves": Geen levende bladeren
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juveniel
