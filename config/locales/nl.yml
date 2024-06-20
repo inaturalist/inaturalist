@@ -872,7 +872,7 @@ nl:
   card: Kaart
   casual: onvolledig
   casual_: Onvolledig
-  casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality">Lees meer over kwaliteitsbeoordelingen</a>'
+  casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality"> Meer informatie over kwaliteitsbeoordelingen</a>'
   categories: Categorieën
   cc_0_description: "Deze licentie geeft je werk vrij in het publieke domein, zodat anderen je werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor commerciële doeleinden, allemaal zonder toestemming te vragen of jouw naam te vermelden. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen voor maximale verspreiding en gebruik van het materiaal."
   cc_0_name: Geen auteursrecht (CC0)
@@ -1243,6 +1243,8 @@ nl:
   copy_and_paste_the_following_code_to: Kopieer en plak de volgende programmeercode om deze beoordeling aan een andere website toe te voegen
   copy_and_paste_this_into_your_own_html: Kopieer en plak dit in je eigen HTML.
   copy_guide_taxon_to: Kopieer taxongids naar...
+  copy_to_clipboard: Naar klembord kopiëren
+  copied!: Gekopieerd!
   copyright:
     some_rights_reserved: sommige rechten voorbehouden
     some_rights_reserved_by: "(c) %{name}, sommige rechten voorbehouden (%{license_short})"
@@ -2380,6 +2382,8 @@ nl:
   last_seen: Laatst gezien
   last_year: Vorig jaar
   lat: Lat
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Breedte/Lengte
   latitude: Breedtegraad
   latitude_in_decimals: 'Breedtegraad in decimale graden, bijvoorbeeld 38.123'
   latitude_slash_y_coord_slash_northing: Breedtegraad / y coord / noordwaarde
@@ -4875,7 +4879,6 @@ nl:
   start_a_new_project: Begin een nieuw project
   start_a_project: Een project beginnen
   start_date_time: Start datum / tijd
-  start_one: om er één te starten
   start_one_now: Start Eén Nu!
   start_typing_field_name: Type een veldnaam ...
   start_typing_place_name: Type een plaatsnaam...
@@ -4905,8 +4908,6 @@ nl:
   studies_that_used_inaturalist_data_in_year: Studies die iNaturalist-gegevens in %{year} hebben gebruikt
   stuff_just_added: "Stuff die je zojuist hebt toegevoegd ..."
   subject_resolved_noun_html: "%{subject} lost %{noun} op"
-  subject_affecting_stuff_html: "%{subject} van invloed op %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} heeft een %{thing} vastgelegd met gevolgen voor %{stuff}"
   submission_model: Registratiemodel
   submission_model_description: Wie kan waarnemingen toevoegen aan je project?
   submit_observations:
@@ -5046,6 +5047,8 @@ nl:
   taxon_deleted: Taxon verwijderd.
   taxon_doesnt_have_a_range: Taxon heeft geen verspreidingsgebied
   taxon_drop: taxonverwijdering
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taxon verwijdering heeft gevolgen voor %{taxon}
   taxon_id: Taxon-ID
   taxon_ids: Taxon ID's
   taxon_map:
@@ -5069,6 +5072,9 @@ nl:
   taxon_framework_taxon: Taxonkader-taxon
   taxon_history_notice: Geschiedenis is in februari 2022 geïntroduceerd dus er is vóór die datum geen geschiedenis beschikbaar.
   taxon_merge: taxon samenvoegen
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxon samenvoegen heeft gevolgen voor %{taxa}
   taxon_name: Taxon naam
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnaam moet overeenkomen met een bestaand taxon in onze database
   taxon_observed_by_html: |
@@ -5105,9 +5111,17 @@ nl:
   taxon_search: Taxon Opzoeken
   taxon_search_results_for: Taxon zoekresultaten voor
   taxon_split: taxonsplitsing
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxon splitsing heeft gevolgen voor %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxonpublicatie
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxonstadium heeft gevolgen voor %{taxon}
   taxon_swap: taxonwissel
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxon swap heeft gevolgen voor %{taxa}
   taxon_swap_only_has_one_input: slechts één invoer toegestaan voor een swap
   taxon_swap_has_inputs_and_outputs: swap moet zowel invoer als uitvoer hebben
   taxon_name_was_deleted: Taxon naam verwijderd.
@@ -5187,7 +5201,6 @@ nl:
   there_are_x_synonyms_html:
     one: "Er is <span class='count'>1</span> synoniem</span>"
     other: "Er zijn <span class='count'>%{count}</span> synoniemen</span>"
-  there_is_no_wikipedia_page_matching: Er is geen overeenkomende Wikipedia-pagina
   there_isnt_a_wikipedia_article_titled_x_html: |
     Er is geen Wikipedia-artikel of doorverwijspagina met de titel '%{x}'. Misschien zou je er eentje <a href='http://nl.wikipedia.org/wiki/%{x}'>aan willen maken</a>?
   there_merge_problems_with_the_merge: "Er waren problemen met de samenvoeging: %{merged_errors}"
@@ -5592,6 +5605,16 @@ nl:
     %{user} denkt dat dit een volledige lijst is van %{taxon} in %{place}
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   user_faved_an_observation_by_you: "%{user} heeft een waarneming van jou als favoriet opgeslagen"
@@ -7909,7 +7932,7 @@ nl:
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
         observations_to_date:
-          one: "Waarneming tot"
+          one: "Waarneming tot nu toe"
           other: "Waarnemingen tot"
         species_observed:
           one: "Waargenomen soort"

@@ -1,0 +1,213 @@
+- content_for(:title) do
+  = @title = "Daily Active User Model"
+.container
+  .row
+    .col-12
+      %h1 Daily Active User Model
+      = "on #{@record_date}"
+  .row
+    .col-12 
+      %svg{ width: "960", height: "620", fontFamily: "arial" }
+        %defs
+          %marker{ id: 'head-green', orient: "auto", markerWidth: '3', markerHeight: '4', refX: '0.1', refY: '2' }
+            %path{ d: 'M0,0 V4 L2,2 Z', fill: "lightgreen" }
+          %marker{ id: 'head-blue', orient: "auto", markerWidth: '3', markerHeight: '4', refX: '0.1', refY: '2' }
+            %path{ d: 'M0,0 V4 L2,2 Z', fill: "lightblue" }
+          %marker{ id: 'head-orange', orient: "auto", markerWidth: '3', markerHeight: '4', refX: '0.1', refY: '2' }
+            %path{ d: 'M0,0 V4 L2,2 Z', fill: "orange" }
+          %marker{ id: 'head-pink', orient: "auto", markerWidth: '3', markerHeight: '4', refX: '0.1', refY: '2' }
+            %path{ d: 'M0,0 V4 L2,2 Z', fill: "lightpink" }
+          %marker{ id: 'head-coral', orient: "auto", markerWidth: '3', markerHeight: '4', refX: '0.1', refY: '2' }
+            %path{ d: 'M0,0 V4 L2,2 Z', fill: "lightcoral" }
+
+        %rect{ x: "90", y: "40", width: "250", height: "65", fill: "lightgreen", stroke: "black" }
+        %text{ x: "95", y: "60", "text-anchor": "start", "font-size": "18" } Reactivated Users
+        %text{ x: "95", y: "75", "text-anchor": "start", "font-size": "12" } first day back
+        %text{ x: "335", y: "95", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["reactivated_users"] ) }
+
+        %rect{ x: "370", y: "40", width: "250", height: "65", fill: "lightgreen", stroke: "black" }
+        %text{ x: "375", y: "60", "text-anchor": "start", "font-size": "18" } New Users
+        %text{ x: "375", y: "75", "text-anchor": "start", "font-size": "12" } first day in the app
+        %text{ x: "615", y: "95", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["new_users"] ) }
+
+        %rect{ x: "650", y: "40", width: "250", height: "65", fill: "lightgreen", stroke: "black" }
+        %text{ x: "655", y: "60", "text-anchor": "start", "font-size": "18" } Reengaged Users
+        %text{ x: "655", y: "75", "text-anchor": "start", "font-size": "12" } first day back
+        %text{ x: "895", y: "95", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["reengaged_users"] ) }
+
+        %rect{ x: "420", y: "160", width: "250", height: "120", fill: "lightblue", stroke: "black" }
+        %text{ x: "425", y: "180", "text-anchor": "start", "font-size": "18" } Current Users
+        %text{ x: "425", y: "195", "text-anchor": "start", "font-size": "12" } active today and at least one other
+        %text{ x: "425", y: "210", "text-anchor": "start", "font-size": "12" } time in the prior 7 days
+        %text{ x: "665", y: "270", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["curent_users"] ) }
+
+        %rect{ x: "90", y: "335", width: "400", height: "65", fill: "orange", stroke: "black" }
+        %text{ x: "95", y: "355", "text-anchor": "start", "font-size": "18" } At risk WAUs
+        %text{ x: "95", y: "370", "text-anchor": "start", "font-size": "12" } inactive today, but active in last 1-6 days
+        %text{ x: "485", y: "390", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["at_risk_waus"] ) }
+
+        %rect{ x: "90", y: "430", width: "500", height: "65", fill: "lightpink", stroke: "black" }
+        %text{ x: "95", y: "450", "text-anchor": "start", "font-size": "18" } At risk MAUs
+        %text{ x: "95", y: "465", "text-anchor": "start", "font-size": "12" } inactive today, inactive last 1-6 days, but active in last 7-29 days
+        %text{ x: "585", y: "485", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["at_risk_maus"] ) }
+
+        %rect{ x: "90", y: "525", width: "600", height: "65", fill: "lightcoral", stroke: "black" }
+        %text{ x: "95", y: "545", "text-anchor": "start", "font-size": "18" } Unengaged Users
+        %text{ x: "95", y: "560", "text-anchor": "start", "font-size": "12" } inactive today and last 29 days
+        %text{ x: "685", y: "580", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["unengaged_users"] ) }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-green)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightgreen',
+          d: 'M90,465,60,465,60,75,80,75'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-orange)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'orange',
+          d: 'M210,105,210,325'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-blue)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightblue',
+          d: 'M310,105,310,205,410,205'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-blue)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightblue',
+          d: 'M310,335,310,235,410,235'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-orange)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'orange',
+          d: 'M390,105,390,325'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-orange)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'orange',
+          d: 'M460,280,460,325'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-blue)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightblue',
+          d: 'M570,105,570,150'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-blue)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightblue',
+          d: 'M710,105,710,205,680,205'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-blue)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightblue',
+          d: 'M670,235,710,235,710,255,680,255'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-green)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightgreen',
+          d: 'M690,560,930,560,930,75,910,75'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-orange)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'orange',
+          d: 'M840,105,840,370,500,370'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-pink)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightpink',
+          d: 'M460,400,460,420'
+        }
+
+        %path{
+          id: 'arrow-line',
+          'marker-end': 'url(#head-coral)',
+          'stroke-width': '3',
+          fill: 'none',
+          stroke: 'lightcoral',
+          d: 'M560,495,560,515'
+        }
+
+        %text{ x: "5", y: "200", "text-anchor": "start", "font-size": "12" } iMAURR
+        %text{ x: "5", y: "215", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["imaurr"]).round(2)}
+
+        %text{ x: "155", y: "150", "text-anchor": "start", "font-size": "12" } 1-RURR
+        %text{ x: "155", y: "165", "text-anchor": "start", "font-size": "12" } #{(1 - @daily_active_user_model["rurr"]).round(2)}
+
+        %text{ x: "265", y: "150", "text-anchor": "start", "font-size": "12" } RURR
+        %text{ x: "265", y: "165", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["rurr"]).round(2)}
+
+        %text{ x: "252", y: "270", "text-anchor": "start", "font-size": "12" } iWAURR
+        %text{ x: "252", y: "285", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["iwaurr"]).round(2)}
+
+        %text{ x: "400", y: "130", "text-anchor": "start", "font-size": "12" } 1-NURR
+        %text{ x: "400", y: "145", "text-anchor": "start", "font-size": "12" } #{(1 - @daily_active_user_model["nurr"]).round(2)}
+
+        %text{ x: "580", y: "130", "text-anchor": "start", "font-size": "12" } NURR
+        %text{ x: "580", y: "145", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["nurr"]).round(2)}
+
+        %text{ x: "470", y: "305", "text-anchor": "start", "font-size": "12" } 1-CURR
+        %text{ x: "470", y: "320", "text-anchor": "start", "font-size": "12" } #{(1 - @daily_active_user_model["curr"]).round(2)}
+
+        %text{ x: "720", y: "130", "text-anchor": "start", "font-size": "12" } SURR
+        %text{ x: "720", y: "145", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["surr"]).round(2)}
+
+        %text{ x: "720", y: "245", "text-anchor": "start", "font-size": "12" } CURR
+        %text{ x: "720", y: "260", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["curr"]).round(2)}
+
+        %text{ x: "850", y: "130", "text-anchor": "start", "font-size": "12" } 1-SURR
+        %text{ x: "850", y: "145", "text-anchor": "start", "font-size": "12" } #{(1 - @daily_active_user_model["surr"]).round(2)}
+
+        %text{ x: "800", y: "535", "text-anchor": "start", "font-size": "12" } Reengagement Rate
+        %text{ x: "800", y: "550", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["rr"]).round(2)}
+
+        %text{ x: "472", y: "420", "text-anchor": "start", "font-size": "12" } WAU Loss Rate
+        %text{ x: "565", y: "420", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["wau"]).round(2)}
+
+        %text{ x: "572", y: "515", "text-anchor": "start", "font-size": "12" } MAU Loss Rate
+        %text{ x: "665", y: "515", "text-anchor": "start", "font-size": "12" } #{(@daily_active_user_model["mau"]).round(2)}

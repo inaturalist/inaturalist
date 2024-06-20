@@ -91,6 +91,9 @@
       a:hover {
         color: #23527c;
       }
+      .rank {
+        vertical-align: bottom;
+      }
     }
     li.current > .row-content .SplitTaxon,
     li.current > .row-content .SplitTaxon a {
@@ -99,6 +102,9 @@
     .SplitTaxon.has-com-name .secondary-name,
     i {
       font-size: smaller;
+    }
+    .SplitTaxon a {
+      vertical-align: bottom;
     }
   }
   .sciname.species,

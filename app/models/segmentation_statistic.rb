@@ -19,6 +19,19 @@ class SegmentationStatistic < ApplicationRecord
     SegmentationStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).exists?
   end
 
+  def self.generate_segmentation_data_for_interval( start_date, end_date, use_database: false )
+    segmentation_data = {}
+    current_date = end_date
+    num_days = ( end_date.to_date - start_date.to_date ).to_i
+    num_days.times do
+      puts "Processing #{current_date}..."
+      users_from_kibana_data( current_date, segmentation_data )
+      current_date -= 1.day
+    end
+    users_from_db( end_date, segmentation_data ) if use_database
+    segmentation_data
+  end
+
   # private
 
   NUMBER_OF_DAYS = 30
@@ -556,5 +569,22 @@ class SegmentationStatistic < ApplicationRecord
         "After 10 years"
       )
     }
+  end
+
+  #
+  # Daily Active User Model Metrics
+  #
+
+  # Generate the daily active user model data
+  def self.generate_daily_active_user_model_data( start_date, end_date, use_database: false )
+    segmentation_data = {}
+    current_date = end_date
+    num_days = ( end_date.to_date - start_date.to_date ).to_i
+    num_days.times do
+      users_from_kibana_data( current_date, segmentation_data )
+      current_date -= 1.day
+    end
+    users_from_db( end_date, segmentation_data ) if use_database
+    segmentation_data
   end
 end

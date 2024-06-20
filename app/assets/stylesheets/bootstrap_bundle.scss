@@ -60,37 +60,13 @@ $font-stack: Lato, "Trebuchet MS", Arial, sans-serif;
 
 @font-face {
   font-family: Lato;
-  src: url("fonts/Lato/Lato-Bold.eot"); /* IE9 Compat Modes */
-  src: url("fonts/Lato/Lato-Bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("fonts/Lato/Lato-Bold.woff2") format("woff2"), /* Modern Browsers */
-       url("fonts/Lato/Lato-Bold.woff") format("woff"), /* Modern Browsers */
-       url("fonts/Lato/Lato-Bold.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 600;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: Lato;
-  src: url("fonts/Lato/Lato-BoldItalic.eot"); /* IE9 Compat Modes */
-  src: url("fonts/Lato/Lato-BoldItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-       url("fonts/Lato/Lato-BoldItalic.woff2") format("woff2"), /* Modern Browsers */
-       url("fonts/Lato/Lato-BoldItalic.woff") format("woff"), /* Modern Browsers */
-       url("fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
-  font-style: italic;
-  font-weight: 600;
-  text-rendering: optimizeLegibility;
-}
-
-@font-face {
-  font-family: Lato;
   src: url("fonts/Lato/Lato-Medium.eot"); /* IE9 Compat Modes */
   src: url("fonts/Lato/Lato-Medium.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
        url("fonts/Lato/Lato-Medium.woff2") format("woff2"), /* Modern Browsers */
        url("fonts/Lato/Lato-Medium.woff") format("woff"), /* Modern Browsers */
        url("fonts/Lato/Lato-Medium.ttf") format("truetype");
   font-style: normal;
-  font-weight: 700;
+  font-weight: 600;
   text-rendering: optimizeLegibility;
 }
 
@@ -101,6 +77,30 @@ $font-stack: Lato, "Trebuchet MS", Arial, sans-serif;
        url("fonts/Lato/Lato-MediumItalic.woff2") format("woff2"), /* Modern Browsers */
        url("fonts/Lato/Lato-MediumItalic.woff") format("woff"), /* Modern Browsers */
        url("fonts/Lato/Lato-MediumItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 600;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url("fonts/Lato/Lato-Bold.eot"); /* IE9 Compat Modes */
+  src: url("fonts/Lato/Lato-Bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("fonts/Lato/Lato-Bold.woff2") format("woff2"), /* Modern Browsers */
+       url("fonts/Lato/Lato-Bold.woff") format("woff"), /* Modern Browsers */
+       url("fonts/Lato/Lato-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url("fonts/Lato/Lato-BoldItalic.eot"); /* IE9 Compat Modes */
+  src: url("fonts/Lato/Lato-BoldItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("fonts/Lato/Lato-BoldItalic.woff2") format("woff2"), /* Modern Browsers */
+       url("fonts/Lato/Lato-BoldItalic.woff") format("woff"), /* Modern Browsers */
+       url("fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
   font-style: italic;
   font-weight: 700;
   text-rendering: optimizeLegibility;
@@ -310,4 +310,20 @@ body > div > .popover {
 
 .bootstrap .popover {
   font-family: $font-stack;
+}
+
+.bootstrap label,
+body>div>[role="dialog"] label,
+body>[role="dialog"] label,
+body>.popover label,
+body>div>.popover label {
+  font-weight: 600;
+}
+
+.bootstrap .label,
+body>div>[role="dialog"] .label,
+body>[role="dialog"] .label,
+body>.popover .label,
+body>div>.popover .label {
+  font-weight: 600;
 }

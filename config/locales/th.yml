@@ -1024,6 +1024,9 @@ th:
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: เลิกเชื่อมต่อ
   distance_traveled_value: "ระยะทาง: %{distance} เมตร"
   documentation_for_developers_html: เอกสารสำหรับ<a href="/pages/developers">ผู้พัฒนา</a>
   #Button text to donate to iNaturalist. Please try to keep translations as
@@ -1171,6 +1174,7 @@ th:
   find_unsuitable_observations: ค้นหาการสังเกตทั้งหมด
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
+  first_inat_observation: "การสังเกตแรกใน %{site_name}"
   first_observer: ผู้สังเกตคนแรก
   #Verb form, as in "Flag this item"
   flag: รายงาน
@@ -1178,7 +1182,7 @@ th:
   flag_as_spammer: รายงานว่าเป็นสแปม
   flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
   #Label for the date/time when a flag was created
-  flag_created: สร้างรายงานเมื่อ
+  flag_created: รายงานเมื่อ
   flag_for_check_list_title_html: |
     รายงานรายการตรวจสอบ: %{title}
   flag_for_curation: รายงานอนุกรมวิธาน
@@ -1201,9 +1205,11 @@ th:
   flagged_: ถูกรายงาน
   flagged_for_curation: รายงานอนุกรมวิธานแล้ว
   flagged_taxon: หน่วยอนุกรมวิธานที่ถูกรายงาน
+  flagged_thing_explanation: "ผู้ใช้งานได้รายงาน%{thing}นี้เนื่องจาก"
   flagger: ผู้รายงาน
   flags: รายงาน
   flags_with_count: รายงาน (%{count})
+  flags_explanation: "ผู้ใช้ %{site_name} จะรายงานสิ่งที่ต้องการให้ผู้ดูแลและ/หรือแอดมินเว็บไซต์มาตรวจสอบ"
   flags_for_x_html: การรายงานสำหรับ %{x}
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
@@ -1228,6 +1234,7 @@ th:
     tutorials: แนะนำการใช้งาน
   from_a_place: จากสถานที่
   from_eol_collection: จาก EOL collection
+  from_flickr_etc: จาก Flickr และอื่น ๆ
   from_list: จากรายการ
   from_photos: จากรูปถ่าย
   from_place: จากสถานที่
@@ -2589,8 +2596,6 @@ th:
   store: ร้านค้า
   store_caps: ร้านค้า
   studies_that_used_inaturalist_data_in_year: การศึกษาที่ใช้ข้อมูลจาก iNaturalist ในปี %{year}
-  subject_affecting_stuff_html: "%{subject}ที่ส่งผลต่อ %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} ได้%{thing}ที่ส่งผลต่อ %{stuff}"
   submit_observations:
     other: ส่ง %{count} การสังเกต
   submitted: ส่งเมื่อ
@@ -2898,7 +2903,13 @@ th:
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
   #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_user_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
   user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
@@ -2906,9 +2917,12 @@ th:
   user_added_an_x: "%{user} เพิ่ม%{x}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
+  user_faved_an_observation_by_you: "%{user} ชอบการสังเกตของคุณ"
   user_faved_this_observation: "%{user} ชอบการสังเกตนี้"
   user_flagged_as_a_non_spammer_html: "%{user} ถูกทำเครื่องหมายว่าไม่ใช่ผู้ส่งสแปม"
   user_flagged_as_a_spammer_html: "%{user} ถูกรายงานว่าเป็นผู้ส่งสแปม"
@@ -3020,6 +3034,7 @@ th:
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครมองเห็นพิกัดนี้ได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
+  who_can_see_the_coordinates_projects: ผู้ดูแลโครงการต่อไปนี้
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับอนุญาตจากผู้สังเกตให้มองเห็นพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
@@ -3084,6 +3099,9 @@ th:
   you_are_subscribed_to_comments_on_this_flag: คุณติดตามความคิดเห็นในรายงานนี้แล้ว
   you_are_subscribed_to_comments_on_this_post: คุณติดตามความคิดเห็นในโพสต์นี้แล้ว
   you_can_only_block_three_users: คุณบล็อกผู้ใช้ได้เพียงสามคนเท่านั้น
+  you_curate_a_project_that_contains_this_observation: คุณกำลังดูแลโครงการที่มีการสังเกตนี้
+  you_curate_a_project_that_contains_this_observation_desc: |
+    คุณสามารถมองเห็นพิกัดการสังเกตที่ถูกปิดบังเมื่อกำลังดูแลโครงการที่มีการสังเกตนั้น โดยผู้สังเกตอนุญาตให้ผู้ดูแลโครงการมองเห็นพิกัดได้
   you_didnt_select_any_observations: คุณไม่ได้เลือกการสังเกตใด ๆ
   you_didnt_select_any_photos_to_tag: คุณไม่ได้เลือกรูปภาพที่จะแท็ก!
   you_faved_this: เพิ่มเข้ารายการโปรดแล้ว!
@@ -3130,6 +3148,8 @@ th:
       pdf_layout_notes:
         journal: |
           แบ่งหน้าโดยให้ข้อมูลชนิดอยู่ฝั่งซ้ายและช่องว่างสำหรับการบันทึกอยู่ฝั่งขวา ข้อมูลชนิดจะถูกตัดออกบางส่วนเพื่อให้พอดีกับหน้า
+      pdf_generation_notice: |
+        โปรดรอสักครู่ การสร้างไฟล์ PDFs ขนาดใหญ่จะต้องใช้เวลาหลายนาที
       sorts:
         alphaname: เรียงชื่อวิทยาศาสตร์ตามตัวอักษร
         alphadisplay: เรียงชื่อที่แสดงตามตัวอักษร

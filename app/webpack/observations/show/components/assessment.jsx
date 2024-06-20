@@ -90,7 +90,7 @@ class Assessment extends React.Component {
           </div>
           <Panel expanded={open} onToggle={() => {}}>
             <Panel.Collapse>
-              <InnerWrapper>
+              <InnerWrapper config={config}>
                 <Row>
                   <Col xs={7}>
                     <QualityMetricsContainer />

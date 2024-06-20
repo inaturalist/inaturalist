@@ -30,9 +30,9 @@ class Flag < ApplicationRecord
     include_owner: true,
     include_notifier: true,
     on: :update,
-    queue_if: proc {| flag |
+    unless: proc {| flag |
       # existing flag whose comment has been changed
-      !flag.saved_change_to_id && flag.saved_change_to_comment
+      flag.saved_change_to_id || !flag.saved_change_to_comment
     }
   auto_subscribes :resolver, on: :update, if: proc {| record, _resource |
     record.saved_change_to_resolved? && !record.resolver.blank? &&

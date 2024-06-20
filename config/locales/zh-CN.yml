@@ -128,14 +128,14 @@ zh-CN:
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: 关于
   about_charts: 关于图表
-  about_community_taxa: 关于社群分类群
+  about_community_taxa: 关于社群分类单元
   about_complete_taxa: 关于比较分类群
   about_conservation_status: 保护状态
   about_editing_observation_fields: 关于编辑观察字段
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: 关于确立意思
+  about_establishment_means: 关于定殖途径
   about_license_options: 关于许可证选项
   about_licenses: 关于许可协议
   #Header for a section describing taxon names
@@ -324,7 +324,7 @@ zh-CN:
   add_evidence_of_presence_hair_annotation: '添加“出现记录的证据：毛发”的注释'
   add_evidence_of_presence_egg_annotation: '添加“出现记录的证据：卵”的注释'
   add_evidence_of_presence_construction_annotation: '添加“出现记录的证据：构造物”的注释'
-  add_established_not_established: '增加“建立：未建立”注释'
+  add_established_not_established: '增加“定殖：未定殖”注释'
   #As in a Taxon Framework Relationship
   add_relationship: '添加关系'
   #As in a Guide Section
@@ -350,7 +350,7 @@ zh-CN:
   add_to_project: 添加至项目
   add_to_your_list: 加入到您的列表
   add_your_email_to_get: |
-    添加您的电子邮件以获取来自社区的对您的观察的反馈。
+    添加您的电子邮件以获取来自社群的对您的观察的反馈。
     如果您不希望分享它，请尽快核对！
   add_your_own_observations_at: "在 %{site_name} 添加您的个人观察"
   added: 提交日期
@@ -943,8 +943,8 @@ zh-CN:
   #committing refers to committing a taxon swap
   committing_this_swap_may_result: 提交此更改可能导致非预期的鉴定分歧。请先分析它们，这可能需要一段时间。
   common_name: 常用名
-  community: 社区
-  community_curated: 社区策划
+  community: 社群
+  community_curated: 社群策划
   community_guidelines: 社群指引
   community_id_heading: 社群鉴定
   community_id_at_species_or_lower?: 社群鉴定是否到种一级或更低？
@@ -1010,7 +1010,7 @@ zh-CN:
   conservation_status_deleted: 保存状态已删除
   conservation_status_updated: 保存状态已更新
   conservation_status_descriptions:
-    status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒临灭绝或极度濒危。
+    status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒危或极危。
     description: 简单描述为什么列出这个。
     authority: |
       宣称了这一状态的组织。在添加新机构前，请使用自动填写来选择既有的机构。您如果想把*自己*列为机构的话可以跳过这个部分。
@@ -1098,9 +1098,9 @@ zh-CN:
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: 构造物
     #Does the observation belong to a non-established population or not
-    established: 已建立
+    established: 已定殖
     #Organism is not a member of an established population
-    not_established: 未建立
+    not_established: 未定殖
   controlled_term_definitions:
     alive: 生物还活着，并且没有死亡的征兆
     bone: |
@@ -1120,7 +1120,7 @@ zh-CN:
     egg: 整个卵或卵的一部分
     construction: 由动物在其他材料上所创造、制造或挖掘出的东西
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
-    not_established: 生物属于未被确立的种群，包括释放/逃脱的宠物、协助扩散的生物和流浪生物。
+    not_established: 生物属于未定殖的种群，包括释放/逃脱的宠物、协助扩散的生物和流浪生物。
     organism: 整个或部分生物体
     scat: 排泄物（非鸮类食丸或其它呕吐物）
     teneral: 最近羽化但尚未达发育到最终成虫形态的成虫
@@ -1138,6 +1138,8 @@ zh-CN:
   copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
   copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
   copy_guide_taxon_to: 把指南的分类单元复制到……
+  copy_to_clipboard: 复制到剪贴板
+  copied!: 已复制！
   copyright:
     some_rights_reserved: 保留部分权利
     some_rights_reserved_by: "(c) %{name}，保留部分权利（%{license_short}）"
@@ -1184,7 +1186,7 @@ zh-CN:
   created_on: 创建于
   creative_commons_flickr_tagged: 知识共享Flickr照片已标记
   creative_commons_unless_otherwise_noted: "知识共享，除非另有声明。"
-  critically_endangered: 极度濒危
+  critically_endangered: 极危
   css_description: 这将在页面的所有其他CSS都包含后才包含。
   csv: CSV
   csv_file: CSV文件
@@ -1667,7 +1669,7 @@ zh-CN:
   error_updating_photo: "上传图片时出错：%{photo_errors}"
   establishment:
     endemic: 特有
-    establishment: 确立
+    establishment: 定殖
     introduced: 外来
     invasive: 攻击性
     managed: 管理
@@ -1675,7 +1677,7 @@ zh-CN:
     naturalised: 归化
   establishment_means: 定殖途径
   establishment_means_describes_how: |
-    确立意思是描述如何在一个地区建立分类单元。
+    定殖途径是描述一个分类单元如何在一个地方确立定殖的方式。
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
   establishment_means_descriptions:
     native: 在这个区域演化而来或通过非人为手段抵达的情况
@@ -2183,7 +2185,7 @@ zh-CN:
   jump_to_letter: 跳转至信件
   just_a_reminder: 提醒一下，您可能已经向项目馆长授予了查看此项目中私人观察者的地理位置的权限。
   just_added!: 添加了！
-  keep_editing: 保持编辑
+  keep_editing: 继续编辑
   keyboard_shortcuts: 键盘快捷键
   kml: KML
   kml_file_size_error: "KML 大小必须小于 1 MB"
@@ -2211,6 +2213,8 @@ zh-CN:
   last_seen: 上次看见
   last_year: 去年
   lat: 纬度
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: 经纬度
   latitude: 纬度
   latitude_in_decimals: '以十进制度数表示的纬度，例如：38.123'
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
@@ -3398,7 +3402,7 @@ zh-CN:
   photos_locked: 照片已锁定
   photos_locked_desc: 只有网站员工可以更改此分类单元的默认照片
   photos_of_taxon_html: "%{taxon}的照片"
-  photos_or_sounds: 照片或音
+  photos_or_sounds: 照片或音频
   photos_or_sounds?: 照片或声音？
   photos_size:
     small: 小
@@ -3853,7 +3857,7 @@ zh-CN:
     yemen: 也门
     zambia: 赞比亚
     zimbabwe: 津巴布韦
-  places_of_interest: 名胜古迹
+  places_of_interest: 感兴趣的地方
   places_merged_successfully: 地点已成功合并！
   places_warning_export_complex_boundary_html: |
     如果您在尝试从一个复杂的边界中导出观察，请考虑<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">转而从GBIF下载它们</a>，在那里你可以手动绘制边界；或者你通过iNat已有的地方或者勾选框先进行导出，然后再自行筛选数据。
@@ -4614,7 +4618,6 @@ zh-CN:
   start_a_new_project: 开始一个新项目
   start_a_project: 发起一个项目
   start_date_time: 开始日期/时间
-  start_one: 开始一个
   start_one_now: 马上开始吧！
   start_typing_field_name: 开始输入字段名称...
   start_typing_place_name: 开始输入地点名称...
@@ -4644,8 +4647,6 @@ zh-CN:
   studies_that_used_inaturalist_data_in_year: 在%{year} 用到过iNaturalist数据的研究
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
-  subject_affecting_stuff_html: "%{subject} 正在影响 %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} 提交了涉及%{stuff}的%{thing}"
   submission_model: 提交模式
   submission_model_description: 谁可以添加观察至您的项目？
   submit_observations:
@@ -4895,7 +4896,6 @@ zh-CN:
   there_are_no_current_ids: 当前可能被削弱的父分类群里没有任何鉴定。
   there_are_x_synonyms_html:
     other: "有 <span class='count'>%{count}</span> 个同义词</span>"
-  there_is_no_wikipedia_page_matching: 没有匹配的维基百科页面
   there_isnt_a_wikipedia_article_titled_x_html: |
     没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
   there_merge_problems_with_the_merge: "合并出现问题：%{merged_errors}"
@@ -5136,7 +5136,7 @@ zh-CN:
   trust_with_private_coordinates: 信任并向其显示您的隐藏坐标
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
   twitter: 推特
-  two_thirds: 第2/3个
+  two_thirds: 2/3比例
   #As in a category, not as in a keyboard
   type: 类型
   type_authority: 类型机构……
@@ -5453,7 +5453,7 @@ zh-CN:
   we_had_a_problem_flagging_that_item: "我们标记该项目时遇到问题：%{flag_error}"
   we_had_trouble_saving_comment: "我们无法保存该评论："
   we_have_no_conservation_status_for_this_taxon: 我们没有关于这个分类单元的保护状态
-  we_have_no_establishment_data_for_this_taxon: "我们没有关于此分类单元的建立数据"
+  we_have_no_establishment_data_for_this_taxon: "我们没有关于此分类单元的定殖数据"
   we_support_flickr: 我们目前支持Flickr用于图片存储，并将很快添加其他图片存储。
   weather: 天气
   website: 网站
@@ -6111,9 +6111,9 @@ zh-CN:
     listed_taxa:
       establishment_field:
         confirmation: |
-          您确定要这样做吗？这将改变属于该地点之内的所有地点的所有列出的分类群的建立方式。您可能会撤消掉大量工作。
+          您确定要这样做吗？这将改变属于该地点之内的所有地点的所有列出的分类群的定殖途径。您可能会撤消掉大量工作。
         description_html: |
-          这将在<a href="%{place_url}">%{place_name}</a>的所有后代地点将此类别的<em>所有</em>清单的建立方式更改为<strong>“%{establishment_means}”</strong>。只有馆长才能使用此工具。将建立方式更改为“引入”将具有大致相同的效果，但它不会更改现有的值，而只会填写空缺的值。
+          这将在<a href="%{place_url}">%{place_name}</a>的所有后代地点将此类别的<em>所有</em>清单的定殖途径更改为<strong>“%{establishment_means}”</strong>。只有馆长才能使用此工具。将建立方式更改为“引入”将具有大致相同的效果，但它不会更改现有的值，而只会填写空缺的值。
     lists:
       edit:
         lifelist_titles_cannot_be_changed: 生命列表的标题不能更改
@@ -6730,7 +6730,7 @@ zh-CN:
       project_user_curator_coordinate_access_labels:
         observer: 是的，但只在我自行添加观察至项目时。
         any: 是的，无论是谁将观察添加到项目中都无所谓。
-        none: 编号
+        none: 否。
       curator_coordinate_access_label: |
         您是否希望项目馆长可以看到私人/模糊的观察坐标？
       curator_coordinate_access_note: |
@@ -6853,6 +6853,8 @@ zh-CN:
         growth_by_country_desc_html: |
           增长发生在哪里？ 这张地图和图表试图按国家进行细分，结果证明这很复杂，因为各国的增长可能非常不平衡。 在这里，我们选择忽略美国并默认使用对数刻度来强调其他国家/地区之间的差异。 如果一个国家/地区颜色为黑色，则意味着该国家/地区没有显着贡献百分比，或者今年没有增长，或者今年没有比去年更多的观察结果（将鼠标悬停在某个国家/地区上可以查看更多详细信息）。 <strong>“占总增长的百分比”</strong>表示全球增长有多少来自特定国家/地区，例如 如果2018年有20个观察，2017年有10个观察，那就是10个增长观察，如果其中5个观察来自贝宁，那么贝宁贡献了总增长的50%。 <strong>“增长百分比”</strong>是指该国今年的观察数量占该国去年观察数量的百分比，因此，如果老挝去年有 10 个观察，但今年有 20 个，则结果为 100% 增长，如果去年为 0，今年为 1，那就是无限%增长。
         growth_by_country_title: 按国家/地区显示增长
+        growth_desc: |
+          在%{site_name}网站上的“观察”和“分类群”表格可能包括和%{site_name}并不相关联的人士的贡献，而“用户”表格只会在和%{site_name}相关联的用户加入iNaturalist时显示。
         growth_in_year_obs: "%{year}年增长率（观察）"
         growth_title: 增长
         #Label when a mark on a chart has a value that is too small to
@@ -6913,6 +6915,9 @@ zh-CN:
           “完整”的分类单元包含符合iNaturalist的分类策略的<em>所有</em>已知的后代分类群，无论它们是否被观察到。目前只有站点超管才能宣称某个分类群业已完整。
         complete_rank_desc_html: |
           该分类单元完成的等级，例如，如果这个家族包含其所有属，但不包括其所有物种，那么这将被设定为“属”。物种是默认的。
+        wikipedia_summary_desc_html: |
+          基于<a target="_blank"
+          href="%{url}">维基百科</a>页面的关于该分类单元的简介会由我站进行无限期缓存，直到手动更新为止。更新这一简介也会立刻更新我站对上述维基百科内容的缓存，以供显示在网站上，这会在一个星期后自动刷新。
       show:
         about_names_desc: |
           <p>

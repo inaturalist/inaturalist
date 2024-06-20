@@ -1375,6 +1375,8 @@ en:
   copy_and_paste_the_following_code_to: Copy and paste the following code to embed this assessment into another web page.
   copy_and_paste_this_into_your_own_html: Copy and paste this into your own HTML.
   copy_guide_taxon_to: Copy guide taxon to...
+  copy_to_clipboard: Copy to clipboard
+  copied!: Copied!
   copyright:
     some_rights_reserved: some rights reserved
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
@@ -2263,6 +2265,9 @@ en:
   grid_tooltip: Show grid view
   group: Group
   grouping: Grouping
+  # Link that lets the user guess the location of an observation that does not
+  # have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Guess location from other observations?
   guides: Guides
   guide_compiled_by: Guide compiled by
   guide_deleted: Guide deleted
@@ -2597,6 +2602,8 @@ en:
   last_seen: Last seen
   last_year: Last Year
   lat: Lat
+  # shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Lon
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
@@ -5233,7 +5240,6 @@ en:
   start_a_new_project: Start a New Project
   start_a_project: Start a Project
   start_date_time: Start Date / Time
-  start_one: Start One
   start_one_now: Start One Now!
   start_typing_field_name: Start typing field name...
   start_typing_place_name: Start typing place name...
@@ -5263,8 +5269,6 @@ en:
   studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
-  subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} committed @vow_or_con{vow:an|a} %{thing} affecting %{stuff}"
   submission_model: Submission Model
   submission_model_description: Who can add observations to your project?
   submit_observations:
@@ -5409,6 +5413,8 @@ en:
   taxon_deleted: Taxon deleted.
   taxon_doesnt_have_a_range: Taxon doesn't have a range
   taxon_drop: taxon drop
+  # Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taxon drop affecting %{taxon}
   taxon_id: Taxon ID
   taxon_ids: Taxon IDs
   taxon_map:
@@ -5432,6 +5438,9 @@ en:
   taxon_framework_taxon: Taxon framework taxon
   taxon_history_notice:  History was introduced in February 2022, so no history is available prior to that date.
   taxon_merge: taxon merge
+  # Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  # is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxon merge affecting %{taxa}
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
   taxon_observed_by_html: |
@@ -5474,9 +5483,17 @@ en:
   taxon_search: Taxon Search
   taxon_search_results_for: Taxon Search results for
   taxon_split: taxon split
+  # Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  # is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxon split affecting %{taxa}
   # A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxon stage
+  # Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxon stage affecting %{taxon}
   taxon_swap: taxon swap
+  # Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  # a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxon swap affecting %{taxa}
   taxon_swap_only_has_one_input: only one input allowed for a swap
   taxon_swap_has_inputs_and_outputs: swap must have both inputs and outputs
   taxon_name_was_deleted: Taxon name was deleted.
@@ -5563,7 +5580,6 @@ en:
   there_are_x_synonyms_html:
     one: "There is <span class='count'>1</span> synonym</span>"
     other: "There are <span class='count'>%{count}</span> synonyms</span>"
-  there_is_no_wikipedia_page_matching: There is no Wikipedia page matching
   there_isnt_a_wikipedia_article_titled_x_html: |
     There isn't a Wikipedia article or redirect titled '%{x}'.  Perhaps you'd
     like to <a href='http://en.wikipedia.org/wiki/%{x}'>make one</a>?
@@ -5979,7 +5995,9 @@ en:
   user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
   # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
-  user_added_x_observations_html: "%{user} added %{x} observations"
+  user_added_x_observations2_html:
+    one: "%{user} added %{count} observation"
+    other: "%{user} added %{count} observations"
   user_already_authenticated: User is already authenticated
   user_already_app_owner: User is already an app owner
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5989,6 +6007,16 @@ en:
     %{user} believes this is a comprehensive list of %{taxon} in %{place}
   user_blocked: User blocked
   user_commented: "%{user} commented"
+  # Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} committed a taxon drop affecting %{taxon}"
+  # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
+  # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
+  # Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon: "%{user} committed a taxon drop affecting %{taxon}"
+  # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
   user_faved_an_observation_by_you: "%{user} faved an observation by you"
