@@ -28,7 +28,7 @@
           %p
             =t :observation_accuracy_experiment_validators
             - @validators << {name: "", id: 0} if ( @experiment.responding_validators > 20 )
-            = @validators.map { |user| link_to(user[:name], user_path(user[:id])) }.join(", ").html_safe
+            = @validators.map { |user| link_to( user[:name], user_path( user[:id] ) ) }.join( ", " ).html_safe
             - if @experiment.responding_validators > 20
               %span#additional-validators
                 =t :observation_accuracy_experiment_additional_validators, number: @experiment.responding_validators - 20

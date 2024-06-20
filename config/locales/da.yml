@@ -354,6 +354,11 @@ da:
   add_evidence_of_presence_track_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Spor"'
   add_evidence_of_presence_bone_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Knogle"'
   add_evidence_of_presence_molt_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Ham"'
+  add_evidence_of_presence_leafmine_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Bladlarve"'
+  add_evidence_of_presence_hair_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Hår"'
+  add_evidence_of_presence_egg_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Æg"'
+  add_evidence_of_presence_construction_annotation: 'Tilføj anmærkningen "Bevis for tilstedeværelse: Konstruktion"'
+  add_established_not_established: 'Tilføj "Etableret: Uetableret"-annotation'
   #As in a Taxon Framework Relationship
   add_relationship: 'Tilføj forbindelse'
   #As in a Guide Section
@@ -1154,6 +1159,7 @@ da:
     no_evidence_of_flowering: Intet bevis på Blomstring
     nymph: Nymfe
     larva: Larve
+    #Evidence of an egg of an organism
     egg: Æg
     juvenile: Juvenil
     alive_or_dead: Levende eller Død
@@ -1177,6 +1183,16 @@ da:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ham
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Bladlarve
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hår
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktion
+    #Does the observation belong to a non-established population or not
+    established: Etableret
+    #Organism is not a member of an established population
+    not_established: Uetableret
   controlled_term_definitions:
     alive: Organisme lever og viser ingen tegn på forestående død
     bone: |
@@ -1191,7 +1207,12 @@ da:
     gall: Deform udvækst af plantevæv forårsaget af parasitisk organisme
     male: Bevis indikerer, at organismen kan producere sæd til brug i seksuel reproduktion
     molt: Afstødt hud eller exoskelet
+    leafmine: Bevis for spisning mellem hudlagene af et blad
+    hair: Hår, der ikke længere er fastgjort til den organisme, det stammer fra
+    egg: Helt — eller dele af et — æg
+    construction: Noget skabt af et dyr, fremstillet med — eller udgravet af — andre materialer
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
+    not_established: Organisme tilhører en uetableret bestand, herunder frigivne/undslupne kæledyr, vandrere og omstrejfere.
     organism: Hel eller partiel organisme
     scat: Fækalt materiale (ikke uglegylp eller andet gylgningsmateriale)
     teneral: Udvokset, der for nylig er kommet frem, men endnu ikke har opnået sin endelige voksne form
@@ -1213,6 +1234,8 @@ da:
   copy_and_paste_the_following_code_to: Kopiér og indsæt følgende kode for at integrere denne vurdering på en anden webside.
   copy_and_paste_this_into_your_own_html: Kopiér og indsæt dette i din egen HTML.
   copy_guide_taxon_to: Kopiér guide takson til ...
+  copy_to_clipboard: Kopiér til udklipsholder
+  copied!: Kopieret!
   copyright:
     some_rights_reserved: nogle rettigheder forbeholdes
     some_rights_reserved_by: "(c) %{name}, nogle rettigheder forbeholdes (%{license_short})"
@@ -2351,6 +2374,8 @@ da:
   last_seen: Sidst set
   last_year: Sidste år
   lat: Bre.
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lgd.gr./brd.gr.
   latitude: Breddegrad
   latitude_in_decimals: 'Breddegrad i decimale grader f.eks. 38.123'
   latitude_slash_y_coord_slash_northing: Breddegrad / y koordinat / nordlig
@@ -3185,23 +3210,24 @@ da:
   observation_accuracy_experiment_precision: "Præcision"
   observation_accuracy_experiment_if_every_sample: "Var hver prøveobservation på en grov takson, såsom rige, ville nøjagtigheden af iNaturalist-datasættet kunne være meget høj, men præcisionen kunne være for lav til at gøre datasættet specielt nyttigt. For at anslå præcisionen har vi talt antallet af bladefterkommere i iNaturalist-taksonomien for hver takson for hver prøveobservation. Vi beregnede præcision som 1 divideret med antallet af bladefterkommere. Var taksonen en bladtakson, er præcisionen 100%. Vi ignorerede rangeringer under arter i præcisionsberegningen."
   observation_accuracy_experiment_in_the_example: "I eksemplet til højre, ville den gns. præcision af tre prøveobservationer være 51%."
+  observation_accuracy_experiment_read_more_html: |
+    For at læse mere om at arrangere dette eksperiment, se det medfølgende <a href="%{url}">blogindlæg</a>.
   observation_accuracy_validator_email_subject2: "Vil du hjælpe os med Eksperiment %{version} til vurdering af korrektheden af iNaturalist-observationer?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Vil du hjælpe os med et <a href="%{url}">eksperiment %{version}</a> til vurdering af korrektheden af iNaturalist-observationer?
-  observation_accuracy_validator_email_if_so2_html: |
+  observation_accuracy_validator_email_if_so3_html: |
     <ol>
-    <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (endda kongerige). </li>
-    <li>Vises en “Potentiel uenighed”-pop op…,
+    <li>Identificér alle observationer i nedenstående link så præcist som muligt, selv hvis de er Forskningskvalitet, og selv hvis dit mest præcise ID er på et højere taksonomisk niveau (selv kongerige). </li>
+    <li>Ses en “Potentiel uenighed”-popup…
     <ul>
-    <li>og du er sikker på, at det er en fejlidentifikation, klik på den orange knap,</li>
-    <li>eller hvis du er usikker udover dit ID, klik på den grønne knap</li>
+    <li>og du er sikker på, at den er fejlidentificeret, klik på den orange knap,</li>
+    <li>eller hvis du er usikker ud over dit ID, klik på den grønne knap</li>
     </ul>
     </li>
-    <li>Gør dette senest <b>%{validator_deadline_date}</b></li>
+    <li>Gør dette senest pr. <b>%{validator_deadline_date}</b></li>
     </ol>
-    Her er <a href="%{sample_url}">delmængden af %{num_obs} observationer</a>,
-    som vi tror, at du kan identificere baseret på din aktivitet på iNat. <b>Tilføj 
-    dit mest præcise ID til hver af observationerne senest %{validator_deadline_date}</b>.
+    Her er <a href="%{sample_url}">delmængden af %{num_obs} observationer</a>*, som vi tror, du kan identificere baseret på din aktivitet på iNat. <b>Føj venligst det mest præcise ID, du kan, til hver af observationerne senest pr. %{validator_deadline_date}</b>.
+    *<i>Dette link åbner identifikationsværktøjet på iNaturalist-webstedet, hvilket kræver, at du er logget ind. Vi anbefaler at udføre denne opgave fra en computer, men det er også muligt fra en mobil webbrowser-app. Læses denne besked i iNaturalist Android-appen, så sørg for at åbne linket i en webbrowser-app (ikke selve iNat-appen). Der skal muligvis først logges ind på webstedet via webbrowser-appen.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Vi vil beregne nøjagtigheden ved at sammenligne dit ID med Observationstaksonen. Observationer, hvor du
     tidligere har tilføjet et ID, der fortsat har relevans, kan overspringes. Læs videre for mere information om, hvordan vi tæller enigheder og uenigheder.
@@ -3218,6 +3244,10 @@ da:
     meget for at deltage i denne undersøgelse. Læs endelig <a href="%{url}">metoderne</a>, for at vide mere om dette eksperiment.
   observation_accuracy_validator_email_with_gratitude: Med taknemmelighed
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Besvar venligst ikke denne besked. Ved spørgsmål eller feedback, kommentér venligst <a href="%{url}">dette blogindlæg</a> eller e-mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Besvar venligst ikke denne besked. Ved spørgsmål eller feedback, e-mail venligst <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Observation tilføjet til projektet %{project}"
   observation_aggregation: Observationssammenlægning
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4876,7 +4906,6 @@ da:
   start_a_new_project: Start et nyt projekt
   start_a_project: Start et projekt
   start_date_time: Start dato / tidspunkt
-  start_one: start en
   start_one_now: Start en nu
   start_typing_field_name: Indtast feltnavn ...
   start_typing_place_name: Indtast navn på sted ...
@@ -4906,8 +4935,6 @@ da:
   studies_that_used_inaturalist_data_in_year: Studier der brugte iNaturalist data i %{year}
   stuff_just_added: "Ting du lige har tilføjet ..."
   subject_resolved_noun_html: "%{subject} løst %{noun}"
-  subject_affecting_stuff_html: "%{subject} påvirker %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} oprettede @gender{n:et|en} %{thing} der påvirker %{stuff}"
   submission_model: Registreringsmodel
   submission_model_description: Hvem kan tilføje observationer til dit projekt?
   submit_observations:
@@ -5049,6 +5076,8 @@ da:
   taxon_deleted: Takson slettet
   taxon_doesnt_have_a_range: Takson har har ikke et område
   taxon_drop: takson drop
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taksondrop påvirker %{taxon}
   taxon_id: Takson ID
   taxon_ids: Takson IDer
   taxon_map:
@@ -5072,6 +5101,9 @@ da:
   taxon_framework_taxon: Taksonramme takson
   taxon_history_notice: Historik blev indført februar 2022, så ingen historik findes før denne dato.
   taxon_merge: takson sammenlægning
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taksonsammenfletning påvirker %{taxa}
   taxon_name: Takson navn
   taxon_name_must_match_an_existing_taxon_in_our_database: Takson navn skal matche et eksisterende takson i vores database
   taxon_observed_by_html: |
@@ -5114,9 +5146,17 @@ da:
   taxon_search: Takson søgning
   taxon_search_results_for: Takson søgeresultater for
   taxon_split: takson deling
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taksonopdeling påvirker %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: takson stadie
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taksonfase påvirker %{taxon}
   taxon_swap: takson skifte
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taksonombytning påvirker %{taxa}
   taxon_swap_only_has_one_input: kun ét input tilladt for et skifte
   taxon_swap_has_inputs_and_outputs: byt skal have både input og output
   taxon_name_was_deleted: Taksonnavn blev slettet
@@ -5200,7 +5240,6 @@ da:
   there_are_x_synonyms_html:
     one: "Der er <span class='count'>1</span> synonym</span>"
     other: "Der er <span class='count'>%{count}</span> synonymer</span>"
-  there_is_no_wikipedia_page_matching: Der er ingen matchende Wikipedia side
   there_isnt_a_wikipedia_article_titled_x_html: |
     Der er ikke en Wikipedia artikel eller et link %{x} Måske vil du gerne <a href='http://en.wikipedia.org/wiki/%{x}'>lave en</a>?
   there_merge_problems_with_the_merge: "Der var problemer med sammenlægningen: %{merged_errors}"
@@ -5609,6 +5648,16 @@ da:
     %{user} mener, at dette er en omfattende liste over %{taxon} på %{place}
   user_blocked: Bruger blokeret
   user_commented: "%{user} kommenterede"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} har committed et taksondrop, der påvirker %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_an_observation_by_you: "%{user} gjorde en af dine observationer til favorit"
@@ -6269,6 +6318,12 @@ da:
       temporarily_unavailable: |
         Tak for din interesse i at støtte iNaturalist! Donering til
         iNaturalist er midlertidigt utilgængelig, da vi opdaterer vores donationssystemer. Tjek venligst snart tilbage.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik hér for at sende en bekræftelsesmail igen.
+      please_add_an_email_and_password: Tilføj en e-mail og adgangskode, så kontoadgangen ikke ikke mistes
+      please_click_the_link_sent_to_email_to_confirm_html: Klik på linket sendt til <span class="email">%{email}</span> for at bekræfte din e-mailadresse.
+      please_confirm_that_email_is_the_best_contact_html: Bekræft venligst, at <span class="email">%{email}</span> er den bedste måde at kontakte dig på.
+      your_site_account_has_no_email: Din %{site_name}-konto har ingen tilknyttet e-mailadresse.
     flags:
       show:
         flaggable_content_desc: |
@@ -8493,6 +8548,7 @@ da:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
+        prefers_exclude_monthly_supporters: Udeluk månedlige supportere
         clients: Kunder
       assessment:
         description: Beskrivelse
@@ -8813,13 +8869,17 @@ da:
               is_too_large_to_edit: er for stor til at redigere
               is_too_large_to_import: er for stor til import
               contains_too_many_observations: indeholder for mange observationer til import
+              cannot_be_blank: er obligatorisk
+              invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
+              must_have_more_than_three_points: skal have flere end 3 punkter
+              polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: er obligatorisk
               invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
               must_have_more_than_three_points: skal have flere end 3 punkter
-              polygon_with_fewer_than_four_points: har en polygon med færre end 4 punkter
+              polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
         post:
           attributes:
             parent:

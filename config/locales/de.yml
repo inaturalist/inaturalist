@@ -355,6 +355,11 @@ de:
   add_evidence_of_presence_track_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Spur"'
   add_evidence_of_presence_bone_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Knochen"'
   add_evidence_of_presence_molt_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Häutung"'
+  add_evidence_of_presence_leafmine_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Blattmine"'
+  add_evidence_of_presence_hair_annotation: 'Angabe hinzufügen "Anwesenheitsnachweis: Haar"'
+  add_evidence_of_presence_egg_annotation: 'Angabe ''Anwesenheitsnachweis: Ei'' hinzufügen'
+  add_evidence_of_presence_construction_annotation: 'Angabe ''Anwesenheitsnachweis: Konstruktion'' hinzufügen'
+  add_established_not_established: 'Angabe hinzufügen "Etablierung: nicht etabliert"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Beziehung hinzufügen'
   #As in a Guide Section
@@ -1081,6 +1086,7 @@ de:
     no_evidence_of_flowering: Nicht blühend
     nymph: Nymphe
     larva: Larve
+    #Evidence of an egg of an organism
     egg: Ei
     juvenile: Juvenil
     alive_or_dead: Lebendig oder tot
@@ -1104,6 +1110,16 @@ de:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Häutung
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Blattmine
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Haar
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktion
+    #Does the observation belong to a non-established population or not
+    established: etabliert
+    #Organism is not a member of an established population
+    not_established: nicht etabliert
   controlled_term_definitions:
     alive: Der Organismus ist lebendig und zeigt keine Anzeichen eines nahenden Todes
     bone: |
@@ -1118,7 +1134,12 @@ de:
     gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
     male: Die Belege deuten darauf hin, dass der Organismus Spermien für die sexuelle Fortpflanzung produzieren kann
     molt: Abgeworfene Haut oder Exoskelett
+    leafmine: Fraßspuren innerhalb des Blattgewebes
+    hair: Haare, die nicht mehr mit dem Organismus verbunden sind
+    egg: Ganzes Ei oder ein Teil eines Eis
+    construction: Eine von einem Tier verursachte Konstruktion, die mit oder aus Materialien hergestellt wurde
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
+    not_established: Organismus ist aus einer nicht-etablierten Population, einschließlich blinden Passagieren, Irrgästen oder freilaufenden/entflohenen Haustieren
     organism: Kompletter oder unvollständiger Organismus
     scat: Kot und Losung (keine Gewölle oder andere hervorgewürgte Bestandteile)
     teneral: Ein ausgewachsenes Individuum, das aber noch nicht fertig ausgefärbt ist
@@ -2243,7 +2264,7 @@ de:
   leave_a_comment: Einen Kommentar hinterlassen
   leave_this_project: Dieses Projekt verlassen
   #Terminal nodes in a taxonomic tree
-  leaves: Taxon-Enden
+  leaves: '''End-Taxa'''
   legacy_authentication_notice_html: |
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
@@ -3045,17 +3066,6 @@ de:
   observation_accuracy_validator_email_subject2: "Möchtest du uns bei Experiment %{version} unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Möchtest du uns bei einem <a href="%{url}">Experiment (Version %{version})</a> unterstützen, um die Genauigkeit von iNaturalist-Beobachtungen zu beurteilen?
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol><li>Bestimme alle Beobachtungen im unten angegebenen Link so genau wie möglich, auch wenn sie bereits Forschungsqualität besitzen, und auch wenn deine genaueste ID nur auf höherer taxonomischer Ebene möglich ist (sogar 'Reich'). </li>
-    <li>Wenn sich das "Besteht Einwand...?" Pop-up Fenster öffnet… 
-    <ul>
-    <li>und du dir sicher bist dass die Beobachtung falsch bestimmt wurde, klicke die orangene Option,</li>
-    <li>oder wenn du unsicher bist, wähle die grüne Option</li>
-    </ul>
-    </li>
-    <li>Bitte die Bestimmungen bis zum <b>%{validator_deadline_date}</b> abschließen</li>
-    </ol>
-    Hier ist deine <a href="%{sample_url}"><a href="%{sample_url}">Auswahl von %{num_obs} Beobachtungen</a>, von der wir aufgrund deiner iNat-Aktivität vermuten, dass du sie identifizieren könntest. <b>Bitte deine genauestmögliche ID bis zum %{validator_deadline_date} abgeben</b>.
   observation_accuracy_validator_email_we_will_calculate: |
     Wir berechnen die Genauigkeit, indem wir deine Bestimmung mit dem Beobachtungstaxon vergleichen. Du kannst Beobachtungen überspringen, bei denen du zuvor bereits eine ID hinzugefügt hast - es sei denn du möchtest dieses ID nun revidieren. Lies weiter, wenn du mehr darüber erfahren möchtest, wie wir Zustimmungen und Widersprüche evaluieren werden.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -4121,7 +4131,7 @@ de:
     variety: Varietät
     form: Form
     infrahybrid: Infrahybrid
-    leaves: Taxon-Enden
+    leaves: '''End-Taxa'''
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: eine Form von
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
@@ -4674,7 +4684,6 @@ de:
   start_a_new_project: Neues Projekt beginnen
   start_a_project: Ein Projekt beginnen
   start_date_time: Start Datum / Uhrzeit
-  start_one: einen beginnen
   start_one_now: Jetzt eins beginnen!
   start_typing_field_name: Name des Feldes eingeben....
   start_typing_place_name: Gebietsnamen eingeben...
@@ -4704,8 +4713,6 @@ de:
   studies_that_used_inaturalist_data_in_year: Publikationen, die im Jahr %{year} iNaturalist-Daten verwendet haben
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
-  subject_affecting_stuff_html: "%{subject} mit Einfluss auf %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} hat @gender{n:ein|f:eine|m:einen|ein} %{thing} von %{stuff} durchgeführt"
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
   submit_observations:
@@ -4978,7 +4985,6 @@ de:
   there_are_x_synonyms_html:
     one: "Es existiert <span class='count'>1</span> Synonym</span>"
     other: "Es existieren <span class='count'>%{count}</span> Synonyme</span>"
-  there_is_no_wikipedia_page_matching: Es gibt keinen passenden Wikipedia-Eintrag
   there_isnt_a_wikipedia_article_titled_x_html: |
     Es gibt keinen Wikipedia-Artikel oder keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
   there_merge_problems_with_the_merge: "Es gab Probleme mit der Zusammenführung: %{merged_errors}"
@@ -6233,7 +6239,7 @@ de:
         date_added_newest: Datum hinzugefügt (absteigend)
         date_added_oldest: Datum hinzugefügt (aufsteigend)
         ancestry: Vorfahren
-        show: Zeigen
+        show: Anzeigen
         children: Unterkategorien
         simplified_tree: Vereinfachte Baumstruktur
         full_taxonomy: Komplette Taxonomie
@@ -6938,7 +6944,7 @@ de:
           Wähle die Filter aus, die für Beobachtungen im jeweiligen Projekt gelten sollen.
           Es können mehrere Arten (oder Taxa), Gebiete, Daten oder andere Kriterien ausgewählt werden, damit 
           Beobachtungen automatisch aufgenommen werden.
-        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für Bioblitz-artige Veranstaltungen)
+        start_and_end_times_for_bioblitzes: Start- und Enddatum/-zeiten (für "Bioblitze" und ähnliche Veranstaltungen)
         traditional_projects_cannot_be_copied: Traditionelles Projekt kann nicht kopiert werden
         trusting_members_will_be_notified: |
           Du hast die Projektanforderungen geändert oder das Nutzervertrauen aktiviert. Dieses
@@ -8131,13 +8137,17 @@ de:
               is_too_large_to_edit: ist zu groß zum Bearbeiten
               is_too_large_to_import: ist zu groß zum importieren
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
+              cannot_be_blank: darf nicht leer sein
+              invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
+              must_have_more_than_three_points: muss mehr als 3 Punkte haben
+              polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: darf nicht leer sein
               invalid_point: Standort ist ungültig, z.B. Längengrad größer 180 oder Breite kleiner als -90
               must_have_more_than_three_points: muss mehr als 3 Punkte haben
-              polygon_with_fewer_than_four_points: hat ein Polygon mit weniger als 4 Punkten
+              polygon_with_less_than_four_points: hat ein Polygon mit weniger als 4 Punkten
         post:
           attributes:
             parent:

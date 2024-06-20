@@ -1384,7 +1384,8 @@ export function onFileDrop( droppedFiles, rejectedFiles, dropEvent ) {
           params,
           { same_origin: true }
         ) );
-      } else if ( f.type.match( /^audio\// ) ) {
+      } else if ( f.type.match( /^(audio|video)\// ) ) {
+        // some mp4 audio files are detected as video/mp4
         newSounds.push( { file_url: f.preview } );
         const params = {
           "observation_sound[observation_id]": observation.id,

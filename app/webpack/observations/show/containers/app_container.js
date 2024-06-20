@@ -7,8 +7,7 @@ import { setLicensingModalState } from "../ducks/licensing_modal";
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
-    config: state.config,
-    controlledTerms: state.controlledTerms.terms
+    config: state.config
   };
 }
 

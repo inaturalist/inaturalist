@@ -32,6 +32,7 @@ class Annotation < ApplicationRecord
 
   after_commit :index_observation, on: [:create, :update, :destroy]
   after_commit :touch_resource, on: [:create, :destroy]
+  after_commit :update_user_counter_cache
 
   attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
 
@@ -185,6 +186,17 @@ class Annotation < ApplicationRecord
     return true if resource&.user == target_user
 
     false
+  end
+
+  def update_user_counter_cache
+    return unless user
+    return if user.destroyed?
+    return if bulk_delete
+
+    User.delay(
+      unique_hash: { "User::update_annotated_observations_counter_cache": user_id },
+      run_at: 5.minutes.from_now
+    ).update_annotated_observations_counter_cache( user_id )
   end
 
   def self.reassess_annotations_for_taxon_ids( taxon_ids )

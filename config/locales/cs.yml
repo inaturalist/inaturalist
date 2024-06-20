@@ -438,6 +438,7 @@ cs:
   add_notes_about_this_taxon: Vložit poznámky o taxonu na tomto místě, tzn. kde a kdy se vysktl.
   add_obs_from_a_link: "Vložit pozorování ze seznamu: %{link}"
   add_obs_from_a_list: Vložit pozorování ze ze seznamu
+  add_observation_fields: Přidat pole pozorování
   add_observations: Vložit pozorování
   add_observations_by_checking_off: Přidat pozorování odškrtnutím druhu v seznamu.
   add_observations_project: Vložit poorování do tohoto projektu
@@ -450,9 +451,9 @@ cs:
   #"one" refers to a photo
   add_one_now: Přidat nyní
   add_place: Přidat místo
-  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živé nebo mrtvé: Živé"'
-  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živé nebo mrtvé: Nelze určit“'
-  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živé nebo mrtvé: Mrtvé"'
+  add_alive_or_dead_alive_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Živý"'
+  add_alive_or_dead_cannot_be_determined_annotation: 'Přidat anotaci „Živý nebo mrtvý: Nelze určit“'
+  add_alive_or_dead_dead_annotation: 'Přidat anotaci "Živý nebo Mrtvý: Mrtvý"'
   add_plant_phenology_budding_annotation: 'Přidat anotaci „Fenologie rostliny: pučení“'
   add_plant_phenology_flower_budding_annotation: 'Přidejte anotaci „Fenologie rostliny: pučící květ“'
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
@@ -473,6 +474,11 @@ cs:
   add_evidence_of_presence_track_annotation: 'Přidat anotaci „Důkaz přítomnosti: stopa“'
   add_evidence_of_presence_bone_annotation: 'Přidat anotaci „Důkaz přítomnosti: kost“'
   add_evidence_of_presence_molt_annotation: 'Přidat anotaci „Důkaz přítomnosti: svlečka“'
+  add_evidence_of_presence_leafmine_annotation: 'Přidat anotaci "Důkaz přítomnosti: okus"'
+  add_evidence_of_presence_hair_annotation: 'Přidat anotaci "Důkaz přítomnosti: chlupy"'
+  add_evidence_of_presence_egg_annotation: 'Přidat anotaci "Důkaz přítomnosti: vejce"'
+  add_evidence_of_presence_construction_annotation: 'Přidat anotaci "Důkaz přítomnosti: stavba"'
+  add_established_not_established: 'Přidat anotaci "Založeno: nezaloženo"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Přidat vztah'
   #As in a Guide Section
@@ -1286,10 +1292,11 @@ cs:
     no_evidence_of_flowering: Žádný důkaz o kvetení
     nymph: Nymfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Vejce
     juvenile: Mládě
-    alive_or_dead: Živé nebo mrtvé
-    alive: Živé
+    alive_or_dead: Živý nebo mrtvý
+    alive: Živý
     dead: Mrtvý
     cannot_be_determined: Nelze určit
     evidence_of_presence: Důkazy přítomnosti
@@ -1309,6 +1316,16 @@ cs:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Svlečka
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Okus
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Srst
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstrukce
+    #Does the observation belong to a non-established population or not
+    established: Založeno
+    #Organism is not a member of an established population
+    not_established: Nezaloženo
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
     bone: |
@@ -1324,7 +1341,12 @@ cs:
     gall: Deformovaný výrůst rostlinných tkání způsobený parazitickým organismem
     male: Důkazy naznačují, že organismus může produkovat sperma pro použití při sexuální reprodukci
     molt: Odhozená kůže nebo exoskelet
+    leafmine: Důkazy okusu mezi krajními vrstvami listu
+    hair: Chlupy, které již nejsou spojeny s organismem, z něhož pocházejí.
+    egg: Celé vejce nebo část vejce
+    construction: Něco vytvořené zvířetem, vyrobené z jiných materiálů nebo vytěžené z jiných materiálů
     no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
+    not_established: Organismus patří k nepůvodní populaci, včetně vypuštěných nebo uniklých zvířat v zájmovém chovu, migrujících krajinou a toulavých zvířat.
     organism: Celý organismus nebo jeho část
     scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
     teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
@@ -1661,6 +1683,8 @@ cs:
   deviation: Odchylka
   devise:
     confirmations:
+      confirmed: |
+        Vaše e-mailová adresa byla úspěšně potvrzena.
       send_instructions: "Za několik minut obdržíte e-mail s pokyny, jak potvrdit vaši e-mailovou adresu."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1954,6 +1978,7 @@ cs:
   extinct_in_the_wild: vyhynulý v přírodě
   extra_properties: Další vlastnosti
   evidence_of_organism: Důkaz o organismu
+  evidence_related_to_single_subject: Důkazy týkající se jediného subjektu
   facebook: Facebook
   failed_to_find_your_location: Vaše lokalita nebyla nalezena.
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
@@ -2910,6 +2935,12 @@ cs:
     Patří sem akce moderátora (např. skrývání nebo rušení skrývání komentářů), poznámky a příznaky u všeho, co tento uživatel vytvořil, kromě taxonů. Toto je <strong>viditelné pouze pro kurátory</strong> a <strong>kurátoři nemohou prohlížet svou vlastní historii</strong>, takže poznámky o dané osobě by nikdy neměly být viditelné pro tuto osobu.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skrýt
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Odkrýt
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Pozastavit
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Obnovit
   moderator_note_desc: |
     Moderátorské poznámky jsou záznamy o reakcích moderátorů nebo o obavách ohledně uživatele, například o tom, zda se nejedná o falešný účet. Neuvádějte prosím osobní názory nebo pomluvy o uživateli.
   #Person who executed a moderator action or flagged something
@@ -3261,29 +3292,77 @@ cs:
   observation_: pozorování
   observation_accuracy_experiment_the_sample_for: "Vzorek pro tento experiment ještě nebyl vytvořen."
   observation_accuracy_experiment_our_accuracy_estimate: "Na základě tohoto experimentu odhadujeme správnost (accuracy) na %{percent}."
+  observation_accuracy_experiment_our_goak: "Náš cíl pro odhadovanou přesnost (Správnost) a přesnost podskupiny výzkumného stupně je vyšší než 95 % (čárkovaná čára)"
   observation_accuracy_experiment_precision_results: "Výsledná přesnost podle podmnožiny"
   observation_accuracy_experiment_taxon_rank_level: "Taxonomická kategorie"
+  observation_accuracy_experiment_taxon_observations_count: "Počet pozorování taxonu"
   observation_accuracy_experiment_iconic_taxon_name: "Ikonický taxon"
   observation_accuracy_experiment_continent: "Světadíl"
   observation_accuracy_experiment_year: "Rok"
   observation_accuracy_experiment_quality_grade: "Úroveň kvality"
   observation_accuracy_experiment_show_frequency: "zobrazit frekvenci"
+  observation_accuracy_experiment_click_on_bars: "Kliknutím na lišty prozkoumáte podmnožiny."
+  observation_accuracy_experiment_bars_will: "Na sloupce bude možné kliknout po uplynutí lhůty pro validaci vzorků."
   observation_accuracy_experiment_accuracy_results: "Výsledná správnost podle podmnožiny"
+  observation_accuracy_experiment_as_observations: "Při ověřování pozorování z tohoto vzorku se bude snižovat procento nejistoty a zvyšovat procento správných a nesprávných pozorování."
+  observation_accuracy_experiment_experiment_still: "Experiment stále probíhá. Statistiky budou denně aktualizovány až do termínu pro ověření vzorků %{date}"
   observation_accuracy_experiment_observation_accuracy_experiment: "Experiment na správnost pozorování"
   observation_accuracy_experiment_validators: "Validátoři:"
   observation_accuracy_experiment_show_additional_validators: "(zobrazit další validátory)"
   observation_accuracy_experiment_hide_additional_validators: "(skrýt další validátory)"
   observation_accuracy_experiment_additional_validators: "(%{number} dalších validátorů)"
+  observation_accuracy_experiment_abstract: "Abstrakt: Vygenerovali jsme vzorek pozorování %{sample_generation_date} a koordinovali jsme tým ověřovatelů, aby posoudili jeho přesnost %{deadline_date}. Všechny níže uvedené výsledky ukazují vlastnosti pozorování vzorku v době, kdy byl vzorek generován (např. výzkumná třída či ne). Přesnost pozorování vzorku byla posouzena %{assessment_date}. Pro více detailů se podívejte na záložku metody."
   observation_accuracy_experiment_research_grade_results: "Výsledky pro Výzkumný stupeň"
   observation_accuracy_experiment_verifiable_results: "Ověřitelné výsledky"
   observation_accuracy_experiment_all_results: "Všechny výsledky"
   observation_accuracy_experiment_methods: "Metodika"
   observation_accuracy_experiment_step_1: "Krok 1: vytvoření a rozřazení vzorku"
+  observation_accuracy_experiment_from_the2: "Z databáze pozorování (A) iNaturalist jsme vytvořili náhodný vzorek (B). Subvzorky byly přiděleny kandidátským osobám provádějícím validaci (C) na základě níže popsaných kritérií. Zaměřili jsme se na přiřazení každého pozorování vzorku více kandidátským ověřovatelům ( \"cílová redundance ověřovatele\" )."
+  observation_accuracy_experiment_sample_generated: "Vzorek generován: %{date}"
+  observation_accuracy_experiment_sample_size: "Velikost vzorku: %{number}"
+  observation_accuracy_experiment_target_validator: "Cílová redundance validátora: %{number}"
+  observation_accuracy_experiment_number_of: "Počet kandidátských ověřovatelů: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Střední velikost dílčího vzorku na jednoho kandidáta ověřovatele: %{number}"
+  observation_accuracy_experiment_mean_number: "Průměrný počet ověřovatelů na jedno pozorování vzorku: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kritéria pro kandidáty na validátora"
+  observation_accuracy_experiment_if_an_identifier: "Pokud identifikátor provedl alespoň 3 zlepšení identifikace taxonu, považovali jsme je za kvalifikované k ověření tohoto taxonu. Zlepšení identifikace jsou prvním návrhem taxonu, se kterým komunita následně souhlasí."
+  observation_accuracy_experiment_if_an_identifier_continent: "Pokud identifikátor provedl alespoň 3 zlepšení identifikace taxonu na kontinentu, považovali jsme je za způsobilé k ověření tohoto taxonu na tomto kontinentu. Zlepšení identifikace jsou prvním návrhem taxonu, se kterým komunita následně souhlasí."
+  observation_accuracy_experiment_for_example: "Například, identifikátor 1 přidá k pozorování ID typu A. Pokud identifikátor 2 později přidá hlavní ID B, identifikátor 1 na A se stává vylepšujícím ID. Pokud identifikátor 3 později přidá k B podpůrné ID, zlepšující se ID identifikátoru 2 se stává identifikátorem B."
+  observation_accuracy_experiment_step_2: "Krok 2: Ověření vzorků"
+  observation_accuracy_experiment_we_contacted: "Kontaktovali jsme kandidáty na validátory a požádali je o doplnění identifikací do jejich dílčích vzorků. Graf vpravo seskupuje pozorování vzorku podle počtu validátorů."
+  observation_accuracy_experiment_number_percent_of: "Počet zúčastněných validátorů: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Procento validovaného vzorku: %{percent}"
+  observation_accuracy_experiment_step_3: "Krok 3: Bodování vzorků pozorování z validací"
+  observation_accuracy_experiment_we_scored: "Pozorování ve vzorku jsme hodnotili jako správná, nejistá nebo nesprávná porovnáním identifikací validátorů s taxony jednotlivých pozorování ve vzorku. Identifikace shodné nebo přesnější než taxon pozorování vzorku byly hodnoceny jako správné. Nesouhlasné hrubší identifikace byly hodnoceny jako nejisté, stejně jako scénáře, kdy se neshodlo více validátorů. Nesouhlasné hrubší identifikace nebo identifikace na různých větvích byly hodnoceny jako nesprávné."
   observation_accuracy_experiment_correct: "Správně"
   observation_accuracy_experiment_uncertain: "Nejisté"
+  observation_accuracy_experiment_incorrect2: "Nesprávný"
   observation_accuracy_experiment_step_4: "Krok 4: výpočet správnosti a přesnosti"
   observation_accuracy_experiment_accuracy: "Správnost (accuracy)"
+  observation_accuracy_experiment_we_calculated: "Přesnost jsme vypočítali jako procento správnosti pro celý vzorek i podsoubory, jako je například podsoubor Research Grade. Vypočítali jsme také procento nejistoty a procento nesprávnosti. V příkladovém obrázku vpravo by procento správných bylo 83, procento nejistých 6 a procento nesprávných 11."
   observation_accuracy_experiment_precision: "Přesnost (precision)"
+  observation_accuracy_experiment_if_every_sample: "Pokud by se každé pozorování vzorku určovalo jenom obecně, jako je například říše, mohlo by být hodně dat přesných, ale ne určitých. Aby byl datový soubor užitečný, musí se pozorování určit přesněji. Pro odhad přesnosti jsme spočítali počet organismů v taxonomii iNaturalist pro každý taxon spojený s každým pozorováním vzorku. Přesnost jsme vypočítali jako podíl 1 a počet organismů. Pokud byl taxon mateřským taxonem (druh), přesnost je 100%. Při výpočtu přesnosti jsme ignorovali poddruhy."
+  observation_accuracy_experiment_in_the_example: "V příkladu na obrázku vpravo by průměrná přesnost tří výběrových pozorování činila 51 %."
+  observation_accuracy_experiment_read_more_html: |
+    Více informací o uspořádání tohoto experimentu naleznete v přiloženém <a href="%{url}">příspěvku na blogu</a>.
+  observation_accuracy_validator_email_subject2: "Pomůžete nám s experimentem %{version} odhadnout přesnost pozorování iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Pomůžete nám s <a href="%{url}">experimentem (verze %{version})</a> k odhadu přesnosti pozorování na iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Urči všechna pozorování níže co nejpřesněji i přes to, že jsou na výzkumném stupni a bylo by vaše nejlepší určení na nejvyšší taxonomické úrovni (říše).</li>
+    <li>Pokud se zobrazí vyskakovací okno „Potenciální neshoda“…
+    <ul>
+    <li>a vy jste si jisti, že je tato identifikace, klikněte na oranžové tlačítko,</li>
+    <li>nebo pokud jste si nejistí vaší identifikací, klikněte na zelené tlačítko</li>
+    </ul>
+    </li>
+    <li>Udělejte tak do <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Zde je <a href="%{sample_url}">souhrn %{num_obs} pozorování</a>* u kterých si myslíme, že byste je dokákazal určit. Podle vaší minulé aktivity na iNat. <b>Prosíme o nejpřesnější určení těchto pozorování do %{validator_deadline_date}</b>.
+    *<i>Tento odkaz vás přenese na stránku iNaturalist a otevře nástroj pro určování pozorování, což vyžaduje přihlášení se. Doporučujeme toto dělat na počítači, ale je možné to dělat i z prohlížeči na telefonu. Pokud tuto zprávu čtete z mobilní aplikace iNaturalist, ujistěte se, že otevřete tento odkaz v prohlížeči. Možná se budete muset přihlásit do aplikce v prohlížeči.</i>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Přesnost vypočítáme porovnáním Vašeho ID s taxonem pozorování. Můžete přeskočit pozorování, kde jste dříve přidali ID, pokud je toto ID stále relevantní. Pro více informací o tom, jak budeme počítat shody a neshody, pokračujte ve čtení.
   observation_accuracy_validator_email_ids_equal_to: |
     Stejná identifikace (A) nebo konkrétnější (B), než taxon pozorování, bude započítána mezi Shody.
   observation_accuracy_validator_email_with_gratitude: S vděčností,
@@ -4922,7 +5001,6 @@ cs:
   start_a_new_project: Začít nový projekt
   start_a_project: Začít projekt
   start_date_time: Datum / čas zahájení
-  start_one: začít
   start_one_now: Začít teď!
   start_typing_field_name: Začít psát název pole...
   start_typing_place_name: Začít psát název místa...
@@ -4952,8 +5030,6 @@ cs:
   studies_that_used_inaturalist_data_in_year: Studie používající data iNaturalist v roce %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
-  subject_affecting_stuff_html: "%{subject} ovlivňující %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} provedl %{thing} ovlivňující %{stuff}"
   submission_model: Model pro předložení
   submission_model_description: Kdo může přidávat pozorování k vašemu projektu?
   submit_observations:
@@ -5216,6 +5292,7 @@ cs:
   text_editing_controls: Ovládací prvky pro úpravu textu
   thanks!: Děkujeme!
   thanks_from_all_of_us_here_at: Poděkování od nás všech z
+  that_account_is_already_connected: Tento účet je již připojen s jiným uživatelem
   that_photo_doesnt_exist: Tato fotka neexistuje.
   that_observation_doesnt_exist: Toto pozorování neexistuje.
   that_observation_doesnt_have_any_photos: "Toto pozorování nemá žádné fotky."
@@ -5260,7 +5337,6 @@ cs:
     few: "Tady jsou <span class='count'>%{count}</span> synonym</span>"
     many: "Tady jsou <span class='count'>%{count}</span> synonym</span>"
     other: "Tady jsou <span class='count'>%{count}</span> synonyma</span>"
-  there_is_no_wikipedia_page_matching: Žádná odpovídající stránka na Wikipedii
   there_isnt_a_wikipedia_article_titled_x_html: |
     Na Wikipedii není žádný článek ani odkaz s názvem  '%{x}'.  Chcete <a href='http://en.wikipedia.org/wiki/%{x}'>ho vytvořit</a>?
   there_merge_problems_with_the_merge: "Při slučování nastaly problémy: %{merged_errors}"
@@ -6295,6 +6371,10 @@ cs:
         Děkujeme vám za váš zájem o podporu iNaturalist! Přispění na
         iNaturalist je dočasně nedostupné, jelikož aktualizujeme naše dárcovské systémy.
         Prosíme, zkuste to brzy znovu.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikněte zde pro opětovné odeslání potvrzovacího e-mailu
+      please_add_an_email_and_password: Prosím, přidejte e-mail a heslo, abyste neztratili přístup ke svému účtu
+      your_site_account_has_no_email: Váš %{site_name} účet nemá přiřazenou e-mailovou adresu.
     flags:
       show:
         flaggable_content_desc: |
@@ -7545,7 +7625,7 @@ cs:
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
-          "Alive or Dead=Alive": Živé
+          "Alive or Dead=Alive": Živý
           "Alive or Dead=Dead": Mrtvý
           "Plant Phenology=Budding": Pučení
           "Plant Phenology=Flower Budding": Květinové pučení
@@ -8210,6 +8290,7 @@ cs:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Jen pro nepotvrzené uživatele
+        prefers_exclude_monthly_supporters: Bez měsíčních podporovatelů
         clients: Klienti
       assessment:
         description: Popis
@@ -8505,6 +8586,7 @@ cs:
             action:
               not_supported_for_this_kind_of_content: není podporováno pro tento druh obsahu
             base:
+              only_staff_and_hiding_curators_can_unhide: Pouze zaměstnanci a kurátoři, kteří skryjí obsah, jej mohou znovu odkrýt
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
@@ -8547,13 +8629,17 @@ cs:
               is_too_large_to_edit: je příliš velký k nahrání
               is_too_large_to_import: je příliš velký k nahrání
               contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
+              cannot_be_blank: nemůže být prázdné
+              invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
+              must_have_more_than_three_points: musí mít více než 3 body
+              polygon_with_less_than_four_points: má polygon s méně než 4 body
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: nemůže být prázdné
               invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
               must_have_more_than_three_points: musí mít více než 3 body
-              polygon_with_fewer_than_four_points: má mnohoúhelník s méně než 4 body
+              polygon_with_less_than_four_points: má polygon s méně než 4 body
         post:
           attributes:
             parent:

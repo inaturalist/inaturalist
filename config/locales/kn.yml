@@ -926,6 +926,7 @@ kn:
     no_evidence_of_flowering: ಹೂವಾಗುತ್ತಿರುವ ಕುರುಹುಗಳಿಲ್ಲ
     nymph: ಅಪ್ಸರೆ ಹುಳು
     larva: ಮರಿಹುಳು
+    #Evidence of an egg of an organism
     egg: ಮೊಟ್ಟೆ
     juvenile: ಹದಿವಯಸ್ಕ
     alive_or_dead: ಜೀವಿತ ಅಥವಾ ಮೃತ
@@ -1204,6 +1205,8 @@ kn:
   deviation: ಮಾರ್ಗಾಂತರ
   devise:
     confirmations:
+      confirmed: |
+        ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಖಚಿತಪಡಿಸಲಾಗಿದೆ.
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -3810,7 +3813,6 @@ kn:
   start_a_new_project: ಹೊಸ ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_a_project: ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_date_time: ಪ್ರಾರಂಭದ ದಿನಾಂಕ / ಸಮಯ
-  start_one: ಒಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_one_now: ಈಗಲೇ ಒಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ!
   start_typing_field_name: ಆವರಣದ ಹೆಸರನ್ನು ನಮೂದಿಸಲು ಆರಂಭಿಸಿ...
   start_typing_place_name: ಸ್ಥಳದ ಹೆಸರನ್ನು ನಮೂದಿಸಲು ಆರಂಭಿಸಿ...
@@ -4024,6 +4026,7 @@ kn:
   text_editing_controls: ಪಠ್ಯ ಸಂಪಾದನೆ ನಿಯಂತ್ರಕಗಳು
   thanks!: ಧನ್ಯವಾದಗಳು!
   thanks_from_all_of_us_here_at: ಇಲ್ಲಿನ ನಮ್ಮೆಲ್ಲರ ಧನ್ಯವಾದಗಳು
+  that_account_is_already_connected: ಅ ಖಾತೆಯನ್ನು ಈಗಾಗಲೇ ಬೇರೊಬ್ಬ ಬಳಕೆದಾರರ ಜೊತೆ ಹೊಂದಿಸಲಾಗಿದೆ.
   that_photo_doesnt_exist: ಆ ಚಿತ್ರ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.
   that_observation_doesnt_exist: ಆ ವೀಕ್ಷಣೆ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.
   that_observation_doesnt_have_any_photos: "ಆ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಯಾವುದೇ ಚಿತ್ರಗಳಿಲ್ಲ."
@@ -4060,7 +4063,6 @@ kn:
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ವಿದೆ"
     other: "<span class='count'>%{count}</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ಗಳಿವೆ"
-  there_is_no_wikipedia_page_matching: ಸರಿಹೊಂದುವ ವಿಕಿಪೀಡಿಯಾ ಪುಟ ಯಾವುದೂ ಇಲ್ಲ
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' ಶೀರ್ಷಿಕೆಯುಳ್ಳ ಯಾವುದೇ ವಿಕಿಪೀಡಿಯಾ ಲೇಖನ ಅಥವಾ ಮರುನಿರ್ದೇಶಿಕೆಗಳಿಲ್ಲ. ಬಹುಶಃ <a href='http://en.wikipedia.org/wiki/%{x}'>ಒಂದನ್ನು ರಚಿಸಿ</a> ಲು ಬಯಸುವಿರಾ?
   there_merge_problems_with_the_merge: "ವಿಲೀನಗೊಳಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ: %{merged_errors}"
@@ -5925,7 +5927,6 @@ kn:
               cannot_be_blank: ಖಾಲಿಯಿರಲಾಗದು
               invalid_point: ಅಸಿಂಧುವಾದ ಬಿಂದುಗಳನ್ನು ಹೊಂದಿದೆ, ಉದಾ. ಅಕ್ಷಾಂಶ 180 ಗಿಂತ ಹೆಚ್ಚಿದೆ ಅಥವಾ ರೇಖಾಂಶ -90 ಕ್ಕಿಂತ ಕಡಿಮೆಯಿದೆ
               must_have_more_than_three_points: 3 ಬಿಂದುಗಳಿಗಿಂತ ಹೆಚ್ಚಿರಲೇಬೇಕು
-              polygon_with_fewer_than_four_points: 4 ಬಿಂದುಗಳಿಗಿಂತ ಕಡಿಮೆಯಿರುವ ಬಹುಭುಜಾಕೃತಿಯನ್ನು ಹೊಂದಿದೆ
         post:
           attributes:
             parent:

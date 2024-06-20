@@ -123,7 +123,7 @@ a {
     }
   }
   &.btn-white {
-    font-weight: 700;
+    font-weight: 600;
     padding: 5px 15px;
     border-radius: 30px;
     background: white;
@@ -281,6 +281,9 @@ a {
               padding-left: 3px;
             }
           }
+          button {
+            vertical-align: baseline;
+          }
         }
         .header-about-button {
           position: absolute;
@@ -310,7 +313,7 @@ a {
           }
         }
         .header-link-btn {
-          font-weight: 700;
+          font-weight: 600;
           font-size: 15px;
           cursor: pointer;
           &:hover,
@@ -323,7 +326,7 @@ a {
           i {
             font-size: 9px;
             margin-left: 3px;
-            font-weight: 100;
+            font-weight: 400;
           }
         }
         .header-about-edit {
@@ -447,7 +450,7 @@ a {
       }
       &.standalone {
         margin-left: 10px;
-        font-weight: 700;
+        font-weight: 600;
         &.export {
           float: right;
         }
@@ -516,7 +519,7 @@ a {
           color: #eee;
           background-color: #646464;
           padding: 1px 5px;
-          font-weight: 100;
+          font-weight: 400;
           display: block;
         }
       }
@@ -558,7 +561,7 @@ a {
     }
     .SplitTaxon {
       .display-name {
-        font-weight: 700;
+        font-weight: 600;
       }
       .sciname, .display-name {
         color: inherit;
@@ -769,7 +772,7 @@ a {
           padding: 0 9px;
         }
         .display-name {
-          font-weight: 700;
+          font-weight: 600;
           color: inherit;
           font-size: 16px;
         }
@@ -975,7 +978,7 @@ a {
     text-align: center;
     top: 80px;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
     pointer-events: none;
     word-spacing: 400px;
   }
@@ -1024,7 +1027,7 @@ a {
       margin-right: 2px;
     }
     .userlink {
-      font-weight: 700;
+      font-weight: 600;
     }
     tr {
       td:first-child {

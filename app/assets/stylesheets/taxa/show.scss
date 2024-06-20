@@ -32,7 +32,7 @@
 #TaxonHeader h1 {
   margin-top: 10px;
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 200;
 
   .btn-flags {
     margin-left: 10px;
@@ -43,6 +43,7 @@
 
 #TaxonHeader .taxon .display-name {
   color: black;
+  font-weight: 200;
 }
 
 #TaxonHeader .has-com-name {
@@ -361,7 +362,7 @@ $leaderItemImageDim: 56px;
     font-size: 18px;
   }
   .name {
-    font-weight: bold;
+    font-weight: 600;
     white-space: nowrap;
     a {
       color: black;
@@ -457,14 +458,14 @@ $photoPreviewThumbGutterTop: 3px;
 }
 .PhotoPreview .viewmore {
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
 }
 .PhotoPreview .viewmore a {
   display: block;
 }
 .PhotoPreview.grid .viewmore a {
   background-color: #333;
-  font-weight: 100;
+  font-weight: 400;
   font-size: 20px;
   display: block;
   position: relative;
@@ -633,7 +634,7 @@ $introducedColor: #E4007C;
 
 .TaxonPageTabs .nav-tabs > li > a {
   color: #555;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 18px;
   padding: 20px 30px 16px;
 }
@@ -663,6 +664,11 @@ $introducedColor: #E4007C;
     font-style: italic;
     margin-top: 20px;
   }
+  &.conabio_description {
+    .form-group.row {
+      display: none;
+    }
+  }
 }
 .ArticlesTab .taxon_description_header {
   display: none;
@@ -688,7 +694,7 @@ $introducedColor: #E4007C;
 }
 .HighlightsTab .readmore {
   font-size: 18px;
-  font-weight: 100;
+  font-weight: 400;
   margin-left: 10px;
 }
 
@@ -774,6 +780,7 @@ $nav-btn-dim: 40px;
   line-height: 30px;
   text-align: center;
   left: -100px;
+  padding-bottom: 11px;
 }
 .PhotoModal .nav-button.next {
   left: auto;
@@ -882,7 +889,7 @@ $nav-btn-dim: 40px;
 .TaxonThumbnail .taxon .display-names {
   display: block;
   font-size: 120%;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .TaxonThumbnail .taxon .secondary-name {

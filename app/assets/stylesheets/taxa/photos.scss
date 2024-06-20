@@ -39,6 +39,9 @@
 
   #layout-control {
     min-width: 80px;
+    .btn-default {
+      padding: 6px 12px 9px;
+    }
   }
 
   #filters {

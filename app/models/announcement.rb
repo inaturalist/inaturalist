@@ -21,6 +21,7 @@ class Announcement < ApplicationRecord
 
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
+  preference :exclude_monthly_supporters, :boolean
 
   scope :in_locale, lambda {| locale |
     where( "(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale )
@@ -34,7 +35,7 @@ class Announcement < ApplicationRecord
   before_validation :compact_clients
 
   def valid_placement_clients
-    if clients.any? do |client|
+    if clients.any? do | client |
       !Announcement::CLIENTS[placement] || !Announcement::CLIENTS[placement].include?( client )
     end
       errors.add( :clients, :must_be_valid_for_specified_placement )
@@ -63,9 +64,12 @@ class Announcement < ApplicationRecord
 
   def targeted_to_user?( user )
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
+    return false if user&.monthly_donor? && prefers_exclude_monthly_supporters
+
     if prefers_target_unconfirmed_users
       return user && !user.confirmed?
     end
+
     true
   end
 

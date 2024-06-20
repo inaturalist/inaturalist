@@ -688,8 +688,8 @@ class YearStatistic < ApplicationRecord
     run_cmd "composite -gravity center #{circle_icon_path} #{ellipse_montage_path} #{montage_with_icon_path}"
 
     # Add the text
-    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
-    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+    light_font_path = File.join( Rails.root, "public", "fonts", "Lato-Light.ttf" )
+    medium_font_path = File.join( Rails.root, "public", "fonts", "Lato-Medium.ttf" )
     final_path = File.join( work_path, "final.jpg" )
     owner = if user
       user.name.blank? ? user.login : user.name

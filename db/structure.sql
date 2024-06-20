@@ -2589,7 +2589,8 @@ CREATE TABLE public.observation_accuracy_experiments (
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     version character varying,
-    consider_location boolean DEFAULT false
+    consider_location boolean DEFAULT false,
+    post_id integer
 );
 
 
@@ -3997,6 +3998,36 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: segmentation_statistics; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.segmentation_statistics (
+    id bigint NOT NULL,
+    created_at timestamp without time zone,
+    data json
+);
+
+
+--
+-- Name: segmentation_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.segmentation_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: segmentation_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.segmentation_statistics_id_seq OWNED BY public.segmentation_statistics.id;
+
+
+--
 -- Name: sessions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5312,7 +5343,8 @@ CREATE TABLE public.users (
     unlock_token character varying,
     oauth_application_id integer,
     data_transfer_consent_at timestamp without time zone,
-    unconfirmed_email character varying
+    unconfirmed_email character varying,
+    annotated_observations_count integer DEFAULT 0
 );
 
 
@@ -6194,6 +6226,13 @@ ALTER TABLE ONLY public.rules ALTER COLUMN id SET DEFAULT nextval('public.rules_
 --
 
 ALTER TABLE ONLY public.saved_locations ALTER COLUMN id SET DEFAULT nextval('public.saved_locations_id_seq'::regclass);
+
+
+--
+-- Name: segmentation_statistics id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.segmentation_statistics ALTER COLUMN id SET DEFAULT nextval('public.segmentation_statistics_id_seq'::regclass);
 
 
 --
@@ -7225,6 +7264,14 @@ ALTER TABLE ONLY public.rules
 
 ALTER TABLE ONLY public.saved_locations
     ADD CONSTRAINT saved_locations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: segmentation_statistics segmentation_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.segmentation_statistics
+    ADD CONSTRAINT segmentation_statistics_pkey PRIMARY KEY (id);
 
 
 --
@@ -10670,6 +10717,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124195835'),
 ('20240124214427'),
 ('20240124214436'),
-('20240222032444');
+('20240222032444'),
+('20240326135332'),
+('20240429211140'),
+('20240606154217');
 
 

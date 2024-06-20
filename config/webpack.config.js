@@ -9,7 +9,11 @@ const config = {
   context: path.resolve( webpackAssetsPath ),
   entry: {
     "computer-vision": {
-      import: "./computer_vision/webpack-entry",
+      import: "./computer_vision/demo/webpack-entry",
+      dependOn: ["react-main", "react-dropzone"]
+    },
+    "computer-vision-eval": {
+      import: "./computer_vision/eval/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]
     },
     "geo-model-explain": {
@@ -75,6 +79,10 @@ const config = {
     "users-edit": {
       import: "./users/edit/webpack-entry",
       dependOn: ["react-main", "react-dnd", "react-dropzone"]
+    },
+    "users-confirmation-banner": {
+      import: "./users/confirmation_banner/webpack-entry",
+      dependOn: ["react-main"]
     },
     "react-main": {
       import: [

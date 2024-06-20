@@ -1138,6 +1138,7 @@ lv:
     no_evidence_of_flowering: Nekas neliecina par ziedēšanu
     nymph: Kukaiņu nimfa
     larva: Cirmenis
+    #Evidence of an egg of an organism
     egg: Ola
     juvenile: Nepieaudzis
     alive_or_dead: Dzīvs vai miris
@@ -4368,7 +4369,6 @@ lv:
   start_a_new_project: Izveidot jaunu projektu
   start_a_project: Izveidot projektu
   start_date_time: Sākuma datums / laiks
-  start_one: Sākt
   start_one_now: Sākt tagad!
   start_typing_field_name: Ieraksti lauka nosaukumu...
   start_typing_place_name: Ieraksti vietas nosaukumu...
@@ -4394,8 +4394,6 @@ lv:
   studies_that_used_inaturalist_data_in_year: Pētījumi, kuros tika izmantoti iNaturalist dati %{year}. gadā
   stuff_just_added: "Tevis nesen pievienotais"
   subject_resolved_noun_html: "%{subject} atrisināja %{noun}"
-  subject_affecting_stuff_html: "%{subject} ietekmē %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} izmainīja %{thing}, ietekmējot %{stuff}"
   submission_model: Pievienošanas piemērs
   submission_model_description: Kam atļauts pievienot novērojumus tavam projektam?
   submit_observations:
@@ -4668,7 +4666,6 @@ lv:
     zero: "Pastāv <span class='count'>%{count}</span> sinonīmi</span>"
     one: "Pastāv <span class='count'>1</span> sinonīms</span>"
     other: "Pastāv <span class='count'>%{count}</span> sinonīmi</span>"
-  there_is_no_wikipedia_page_matching: Nav atbilstošas Vikipēdijas lapas
   there_isnt_a_wikipedia_article_titled_x_html: |
     Nav Vikipēdijas raksta vai pārvirzīšanas lapas ar nosaukumu "%{x}". Varbūt vēlies <a href='http://en.wikipedia.org/wiki/%{x}'>to izveidot</a>?
   there_merge_problems_with_the_merge: "Radās problēmas ar apvienošanu: %{merged_errors}"
@@ -7325,7 +7322,6 @@ lv:
               cannot_be_blank: nevar būt neaizpildīts
               invalid_point: kļūdains punkts, garumam jābūt lielākam par 180 vai arī platumam jābūt mazākam par -90
               must_have_more_than_three_points: jābūt vairāk par trīs punktiem
-              polygon_with_fewer_than_four_points: ar poligonu, kam ir mazāk par četriem punktiem
         post:
           attributes:
             parent:

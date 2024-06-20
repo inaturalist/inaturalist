@@ -1,7 +1,9 @@
 class SiteStatistic < ApplicationRecord
-
-  STAT_TYPES = [ :observations, :users, :projects,
-    :taxa, :identifications, :identifier, :platforms, :platforms_cumulative ]
+  STAT_TYPES = [
+    :observations, :users, :projects,
+    :taxa, :identifications, :identifier, :platforms,
+    :platforms_cumulative, :daily_active_user_model
+  ]
 
   def self.generate_stats_for_day(at_time = Time.now, options = {})
     at_time = at_time.utc.end_of_day
@@ -607,6 +609,29 @@ class SiteStatistic < ApplicationRecord
   end
 
   def self.identifier_stats(at_time = Time.now)
+    if ss = SiteStatistic.last
+      return ss.data["identifier"]
+    end
+    return {
+      "avg_ttid" => 0,
+      "med_ttid" => 0,
+      "min_ttid" => 0,
+      "max_ttid" => 0,
+      "avg_ttcid" => 0,
+      "med_ttcid" => 0,
+      "min_ttcid" => 0,
+      "max_ttcid" => 0,
+      "percent_id" => 0,
+      "percent_cid" => 0,
+      "percent_cid_to_genus" => 0
+    }
+  end
+
+  # this method is now too slow to run in a production environment. If we want to maintain
+  # identifier statistics like this in production, we need to be able to fetch it with more
+  # performant queries. Preserving this method for now until we refactor it, or decide to
+  # remove this stats section entirely (pleary 2024-03-13)
+  def self.legacy_identifier_stats(at_time = Time.now)
     at_time = at_time.utc
     sql = <<-SQL
     SELECT 
@@ -759,4 +784,109 @@ class SiteStatistic < ApplicationRecord
     }
   end
 
+  def self.daily_active_user_model_stats( at_time = Time.now )
+    at_time = at_time.utc
+    day_0 = at_time.end_of_day - 1.day
+
+    # Define the date sets
+    # Define date ranges for each case
+    date_ranges = [
+      { d1: day_0 - 1.day, d2: day_0, use_db: true }, # Active 0
+      { d1: day_0 - 2.days, d2: day_0 - 1.day, use_db: true }, # Active 1
+      { d1: day_0 - 7.days, d2: day_0 - 2.days }, # Active 2-6
+      { d1: day_0 - 8.days, d2: day_0 - 7.days }, # Active 7
+      { d1: day_0 - 9.days, d2: day_0 - 8.days }, # Active 8
+      { d1: day_0 - 30.days, d2: day_0 - 9.days }, # Active 9-29
+      { d1: day_0 - 31.days, d2: day_0 - 30.days }, # Active 30
+      { d1: day_0 - 32.days, d2: day_0 - 31.days } # Active 31
+    ]
+
+    # Generate data for each case
+    active_data = date_ranges.map do | date_range |
+      SegmentationStatistic.generate_daily_active_user_model_data(
+        date_range[:d1],
+        date_range[:d2],
+        use_database: date_range[:use_db]
+      )
+    end
+
+    # Extract required data for analysis
+    active_0, active_1, active_2_6, active_7, active_8, active_9_29, active_30, active_31 = active_data
+    active_0_new_users = active_0.select {| _, v | v[:created_at].zero? }.keys
+    active_1_new_users = active_1.select {| _, v | v[:created_at].zero? }.keys
+
+    # Extract required data for analysis
+    # Day 0
+    dau_0 = active_0.keys
+    current_users_d0 = dau_0 & ( active_1.keys | active_2_6.keys )
+    new_sensu_lato_d0 = dau_0 - ( active_1.keys | active_2_6.keys )
+    at_risk_waus_d0 = ( active_1.keys | active_2_6.keys ) - current_users_d0 - new_sensu_lato_d0
+    at_risk_maus_d0 = ( active_7.keys | active_8.keys | active_9_29.keys ) -
+      at_risk_waus_d0 - current_users_d0 - new_sensu_lato_d0
+    new_users_d0 = new_sensu_lato_d0 & active_0_new_users
+    new_other_d0 = new_sensu_lato_d0 - new_users_d0
+
+    # Day 1
+    dau_1 = active_1.keys
+    current_users_d1 = dau_1 & ( active_2_6.keys | active_7.keys )
+    new_sensu_lato_d1 = dau_1 - ( active_2_6.keys | active_7.keys )
+    at_risk_waus_d1 = ( active_2_6.keys | active_7.keys ) - current_users_d1 - new_sensu_lato_d1
+    at_risk_maus_d1 = ( active_8.keys | active_9_29.keys | active_30.keys ) -
+      at_risk_waus_d1 - current_users_d1 - new_sensu_lato_d1
+    new_users_d1 = new_sensu_lato_d1 & active_1_new_users
+    new_other_d1 = ( new_sensu_lato_d1 - new_users_d1 )
+
+    # Reengaged and reactivated
+    at_risk_maus_d2 = ( active_9_29.keys | active_30.keys | active_31.keys ) -
+      ( active_2_6.keys | active_7.keys | active_8.keys )
+    reactivated_users_d0 = new_other_d0 & at_risk_maus_d1
+    reengaged_users_d0 = new_other_d0 - reactivated_users_d0
+    reactivated_users_d1 = new_other_d1 & at_risk_maus_d2
+    reengaged_users_d1 = new_other_d1 - reactivated_users_d1
+
+    # Unengaged users
+    total_user_count = User.where( "suspended_at IS NULL" ).count
+    unengaged_users_d0 = total_user_count - current_users_d0.count - at_risk_waus_d0.count - at_risk_maus_d0.count -
+      new_users_d0.count - reactivated_users_d0.count - reengaged_users_d0.count
+
+    # Calculate counts
+    curent_users = current_users_d0.count
+    at_risk_waus = at_risk_waus_d0.count
+    at_risk_maus = at_risk_maus_d0.count
+    new_users = new_users_d0.count
+    reactivated_users = reactivated_users_d0.count
+    reengaged_users = reengaged_users_d0.count
+    unengaged_users = unengaged_users_d0
+
+    # Calculate rates
+    nurr = ( current_users_d0 & new_users_d1 ).count / new_users_d1.count.to_f
+    surr = ( current_users_d0 & reengaged_users_d1 ).count / reengaged_users_d1.count.to_f
+    rurr = ( current_users_d0 & reactivated_users_d1 ).count / reactivated_users_d1.count.to_f
+    curr = ( current_users_d0 & current_users_d1 ).count / current_users_d1.count.to_f
+    iwaurr = ( current_users_d0 & at_risk_waus_d1 ).count / at_risk_waus_d1.count.to_f
+    wau = ( at_risk_maus_d0 & at_risk_waus_d1 ).count / at_risk_waus_d1.count.to_f
+    imaurr = ( reactivated_users_d0 & at_risk_maus_d1 ).count / at_risk_maus_d1.count.to_f
+    mau = ( at_risk_maus_d1 - at_risk_maus_d0 - reactivated_users_d0 ).count / at_risk_maus_d1.count.to_f
+    rr = reengaged_users_d0.count / unengaged_users_d0.to_f
+
+    {
+      date: day_0,
+      curent_users: curent_users,
+      at_risk_waus: at_risk_waus,
+      at_risk_maus: at_risk_maus,
+      new_users: new_users,
+      reactivated_users: reactivated_users,
+      reengaged_users: reengaged_users,
+      unengaged_users: unengaged_users,
+      nurr: nurr,
+      surr: surr,
+      rurr: rurr,
+      curr: curr,
+      iwaurr: iwaurr,
+      wau: wau,
+      imaurr: imaurr,
+      mau: mau,
+      rr: rr
+    }
+  end
 end

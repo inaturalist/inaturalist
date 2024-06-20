@@ -324,6 +324,11 @@ id:
   add_evidence_of_presence_track_annotation: 'Tambahkan catatan "Bukti Keberadaan: jejak"'
   add_evidence_of_presence_bone_annotation: 'Tambahkan catatan "Bukti Keberadaan: tulang"'
   add_evidence_of_presence_molt_annotation: 'Tambahkan catatan "Bukti Keberadaan: kulit"'
+  add_evidence_of_presence_leafmine_annotation: 'Tambahkan catatan "Bukti Keberadaan: korokan daun"'
+  add_evidence_of_presence_hair_annotation: 'Tambahkan catatan "Bukti Keberadaan: rambut"'
+  add_evidence_of_presence_egg_annotation: 'Tambahkan catatan "Bukti Keberadaan: telur"'
+  add_evidence_of_presence_construction_annotation: 'Tambahkan catatan "Bukti Keberadaan: bangunan"'
+  add_established_not_established: 'Tambahkan anotasi "Menetap: tidak tetap"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Tambahkan hubungan'
   #As in a Guide Section
@@ -1066,6 +1071,7 @@ id:
     no_evidence_of_flowering: Tidak Ada Tanda Berbunga
     nymph: Nimfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Telur
     juvenile: Remaja
     alive_or_dead: Hidup atau Mati
@@ -1089,6 +1095,16 @@ id:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Kulit
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Korokan daun
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Rambut
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Bangunan
+    #Does the observation belong to a non-established population or not
+    established: Tetap
+    #Organism is not a member of an established population
+    not_established: Tidak Tetap
   controlled_term_definitions:
     alive: Organisme hidup dan tidak memperlihatkan tanda-tanda akan mati
     bone: |
@@ -1103,7 +1119,12 @@ id:
     gall: Pertumbuhan jaringan tumbuhan berlebihan yang disebabkan oleh organisme parasit
     male: Bukti menunjukkan bahwa organismenya bisa menghasilkan sperma untuk digunakan dalam reproduksi seksual
     molt: Kulit yang dibuang atau eksoskeleton
+    leafmine: Bukti bagian kulit daun yang dimakan
+    hair: Rambut yang jatuh dari organisme asalnya
+    egg: Telur utuh atau bagian dari telur
+    construction: Sesuatu yang dibuat oleh binatang, dibuat dengan atau diambil dari material lain
     no_evidence_of_flowering: Media tidak menunjukkan adanya bukti struktur organ reproduksi
+    not_established: Organisme yang tergolong ke dalam populasi termasuk hewan peliharaan yang dilepaskan/kabur, hewan yang ikut terbawa ke tempat lain, dan pengembara.
     organism: Organisme penuh atau sebagian
     scat: Unsur tinja (bukan pelet burung hantu atau zat muntahan lainnya)
     teneral: Individu dewasa yang baru muncul tetapi belum mencapai rupa dewasa yang sepenuhnya
@@ -3070,22 +3091,24 @@ id:
   observation_accuracy_experiment_precision: "Presisi"
   observation_accuracy_experiment_if_every_sample: "Jika setiap pengamatan sampel berada pada takson yang kurang spesifik, seperti kingdom, akurasi iNaturalist dataset mungkin menjadi tinggi, tapi presisinya mungkin menjadi sangat rendah sehingga datasetnya kurang berguna. Untuk memperkirakan presisi, kami menghitung jumlah keturunan daun (ujung) pada taksonomi iNaturalist untuk masing-masing takson yang diasosiasikan dengan masing-masing pengamatan sampel. Perhitungan presisi kami adalah 1 dibagi jumlah keturunan daun. Jika taksonnya merupakan takson daun, presisinya 100%. Kami mengabaikan kategori-kategori di bawah spesies di dalam perhitungan presisi ini."
   observation_accuracy_experiment_in_the_example: "Pada gambar contoh di kanan, rerata presisi dari tiga pengamatan sampel adalah 51%."
+  observation_accuracy_experiment_read_more_html: |
+    Untuk membaca lebih lanjut tentang orkestrasi percobaan ini, lihat <a href="%{url}">postingan blog</a> ini.
   observation_accuracy_validator_email_subject2: "Bisakah kamu membantu kami dalam Eksperimen %{version} untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Bisakah kamu membantu kami dengan <a href="%{url}">eksperimen (versi %{version})</a> untuk mengestimasi akurasi pengamatan-pengamatan iNaturalist?
-  observation_accuracy_validator_email_if_so2_html: |
+  observation_accuracy_validator_email_if_so3_html: |
     <ol>
-    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, bahkan walaupun sudah Kelas Riset dan ID terspesifiknya masih ada pada tingkat taksonomi yang relatif tinggi (bahkan kingdom sekalipun). </li>
-    <li>Jika kamu melihat tampilan “Kemungkinan Ketidaksepakatan”…
+    <li>Identifikasi semua pengamatan pada tautan di bawah ini sespesifik mungkin, meskipun mereka Kelas Riset, bahkan jika ID paling spesifik Anda berada pada tingkat taksonomi yang masih tinggi (seperti tingkat kerajaan).</li>
+    <li>Jika Anda melihat popup "Potensi Ketidaksetujuan"…
     <ul>
-    <li>dan kamu yakin IDnya salah, klik tombol oranye,</li>
-    <li>atau jika kamu tidak yakin, klik tombol hijau</li>
+    <li>dan Anda yakin ID-nya salah, klik tombol jingga,</li>
+    <li>atau jika Anda tidak yakin dengan ID selain IDmu, klik tombol hijau</li>
     </ul>
     </li>
-    <li>Lakukan hal ini sebelum <b>%{validator_deadline_date}</b></li>
+    <li>Selesaikan sebelum <b>%{validator_deadline_date}</b></li>
     </ol>
-    Ini adalah suatu <a href="%{sample_url}">subset dari %{num_obs} pengamatan</a>
-    yang kami pikir bisa kamu identifikasi berdasarkan aktivitasmu di iNat. <b>Harap tambahkan ID sespesifik mungkin untuk setiap pengamatan sebelum %{validator_deadline_date}</b>.
+    Berikut adalah <a href="%{sample_url}">subset berisi %{num_obs} pengamatan</a>* yang kami pikir Anda bisa identifikasi berdasarkan aktivitas Anda di iNat. <b>Harap isi ID paling spesifik yang Anda bisa untuk masing-masing pengamatan sebelum %{validator_deadline_date}</b>.
+    *<i>Tautan ini akan membuka alat Identifikasi di situs web iNaturalist di mana Anda harus masuk menggunakan akun Anda. Kami menyarankan Anda untuk melakukan tugas ini dari komputer, tapi Anda bisa membukanya juga melalui aplikasi peramban di ponsel Anda. Jika Anda membaca pesan ini di aplikasi Android iNaturalist, pastikan Anda membuka tautannya di aplikasi peramban (bukan di aplikasi iNatnya). Anda mungkin harus masuk ke situsnya di aplikasi peramban menggunakan akun Anda.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Kami akan menghitung akurasinya dengan membandingkan ID Anda dengan Takson Pengamatan. Anda bisa melewati pengamatan-pengamatan yang sudah Anda tambahkan ID sebelumnya jika ID tersebut masih relevan. Untuk lebih banyak info mengenai bagaimana kami menghitung kesetujuan dan ketidaksetujuan, teruslah membaca.
   observation_accuracy_validator_email_ids_equal_to: |
@@ -3099,6 +3122,10 @@ id:
     banyak atas partisipasimu dalam penelitian ini. Silakan membaca <a href="%{url}">metode-metodenya</a> jika kamu tertarik untuk mengetahui lebih lanjut mengenai desain eksperimen ini.
   observation_accuracy_validator_email_with_gratitude: Dengan terima kasih,
   observation_accuracy_validator_email_the_inaturalist_team: Tim iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Jangan membalas pesan ini. Jika Anda memiliki pertanyaan atau saran, silakan taruh komentar Anda pada <a href="%{url}">postingan blog ini</a> atau kirim email ke <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Jangan membalas pesan ini. Jika Anda memiliki pertanyaan atau saran, silakan kirim email ke <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Pengamatan yang ditambahkan ke proyek \"%{project}\""
   observation_aggregation: Kumpulan Pengamatan
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4681,7 +4708,6 @@ id:
   start_a_new_project: Mulai Proyek Baru
   start_a_project: Mulai Sebuah Proyek
   start_date_time: Tanggal / Waktu Mulai
-  start_one: Mulai Satu
   start_one_now: Mulai Satu Sekarang!
   start_typing_field_name: Mulailah mengetik nama bidang...
   start_typing_place_name: Mulailah mengetik nama tempat...
@@ -4711,8 +4737,6 @@ id:
   studies_that_used_inaturalist_data_in_year: Penelitian Yang Menggunakan Data iNaturalist pada %{year}
   stuff_just_added: "Barang yang baru saja Anda tambahkan..."
   subject_resolved_noun_html: "%{subject} menyelesaikan %{noun}"
-  subject_affecting_stuff_html: "%{subject} yang memengaruhi %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} mengubah %{thing} sehingga memengaruhi %{stuff}"
   submission_model: Model Pengiriman
   submission_model_description: Siapa yang dapat menambahkan pengamatan ke proyek Anda?
   submit_observations:
@@ -4963,7 +4987,6 @@ id:
   there_are_no_current_ids: Saat ini, tidak ada ID induk takson yang berkemungkinan untuk dipangkas.
   there_are_x_synonyms_html:
     other: "Ada <span class='count'>%{count}</span> sinonim</span>"
-  there_is_no_wikipedia_page_matching: Tidak ada halaman Wikipedia yang cocok
   there_isnt_a_wikipedia_article_titled_x_html: |
     Tidak ada artikel Wikipedia atau pengalihan yang berjudul '%{x}'. Mungkin Anda ingin <a href='http://en.wikipedia.org/wiki/%{x}'>membuatnya</a>?
   there_merge_problems_with_the_merge: "Ada masalah penggabungan dengan gabungan: %{merged_errors}"
@@ -6001,6 +6024,12 @@ id:
         thank_you_for_being_a_monthly_supporter_caps: TERIMA KASIH SUDAH MENJADI PENDUKUNG BULANAN!
       temporarily_unavailable: |
         Terima kasih atas ketertarikan Anda dalam mendukung iNaturalist! Sumbangan ke iNaturalist sedang tidak tersedia selagi kami memperbarui sistem sumbangan kami. Kembali lagi nanti ya.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik di sini untuk mengirim ulang email konfirmasi
+      please_add_an_email_and_password: Silakan masukkan email dan kata sandi supaya Anda tidak kehilangan akses ke akun Anda
+      please_click_the_link_sent_to_email_to_confirm_html: 'Silahkan klik tautan yang dikirim ke <span class="email">%{email}</span> untuk mengonfirmasi alamat email Anda:'
+      please_confirm_that_email_is_the_best_contact_html: Harap mengonfirmasi bahwa <span class="email">%{email}</span> adalah cara terbaik untuk menghubungi Anda.
+      your_site_account_has_no_email: Akun %{site_name} kamu tidak memiliki alamat email yang terhubung dengan akunnya.
     flags:
       show:
         flaggable_content_desc: |
@@ -6522,6 +6551,63 @@ id:
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
         join_project_desc_html: |
           Bergabung dengan proyek memberikan kurator proyek kemampuan untuk melihat koordinat tersembunyi pengamatan ini atau pengamatan lainnya di proyek itu dan dengan melakukan tindakan ini, Anda dianggap setuju dengan <a href="%{url}" target="_blank">ketentuan</a> proyek.
+        quality_assessment_help3_html: |
+          <p>
+          Penilaian kualitas data adalah ringkasan keakuratan dari suatu pengamatan. Semua 
+          pengamatan mulai dari tingkat <strong>"kasual"</strong>, dan menjadi 
+          <strong>"butuh ID"</strong> ketika
+          </p>
+
+          <ul>
+          <li>pengamatan <strong>memiliki tanggal</strong></li>
+          <li>pengamatan <strong>memiliki referensi geografis</strong> (yaitu memiliki koordinat lintang/bujur)</li>
+          <li>pengamatan <strong>memiliki foto atau suara</strong></li>
+          <li>pengamatan <strong>bukan manusia</strong></li>
+          </ul>
+          <p>Pengamatan menjadi <strong>"kelas riset"</strong> ketika</p>
+          <ul>
+          <li>komunitas %{site_name} <strong>setuju pada ID bertingkat spesies atau 
+          lebih rendah</strong>, yaitu ketika lebih dari 2/3 pengidentifikasi setuju dengan suatu 
+          takson (jika komunitas telah memilih bahwa Takson Komunitas tidak dapat ditingkatkan lagi, 
+          ia akan kembali ke ID bertingkat subfamili atau lebih rendah)
+          </li>
+          </ul>
+          <p>
+          Pengamatan akan kembali ke tingkat <strong>"kasual"</strong> jika kondisi di atas tidak terpenuhi atau komunitas setuju bahwa
+          </p>
+          <ul>
+          <li>
+          <strong>lokasinya tidak terlihat akurat</strong> (misalkan monyet di tengah lautan, 
+          kuda nil di gedung kantor, dll.)
+          </li>
+          <li>
+          <strong>organismenya tidak alami/dinaturalisasi</strong> (misalkan dalam penangkaran atau dibudidayakan manusia)
+          </li>
+          <li>
+          pengamatannya <strong>tidak menunjukkan bukti organisme</strong>, misalkan gambar perairan, 
+          bebatuan, pemandangan yang tidak menyertakan organisme, dll.</li>
+          <li>
+          pengamatan <strong>tidak menunjukkan bukti baru (~100 tahun) dari organismenya</strong> (misalkan fosil; jejak, kotoran, dan daun mati diperbolehkan)
+          </li>
+          <li>
+          pengamatan <strong>tidak menunjukkan bukti terkait suatu subjek</strong> (misalkan memiliki empat foto organisme yang tidak berkaitan. Foto yang menunjukkan habitat subjek pengamatan diperbolehkan.)
+          </li>
+          <li>
+          pengamatan tidak lagi membutuhkan ID <em>dan</em> ID komunitas berada pada tingkat famili atau di atasnya
+          </li>
+          <li>
+          pengamat telah memilih untuk menonaktifkan ID komunitas dan takson 
+          ID komunitas bukan leluhur atau keturunan dari takson yang terkait 
+          dengan ID pengamat
+          </li>
+          </ul>
+          <p>
+          Dan jika itu belum cukup rumit, ada juga situasi di mana sistem mendapatkan hak suara:
+          </p>
+          <ul>
+          <li>
+          Sistem akan memilih bahwa suatu pengamatan tidak alami/dinaturalisasi jika terdapat setidaknya 10 pengamatan lain dari suatu genus atau lebih rendah di tempat setara kabupaten, negara bagian, atau negara terkecil yang mencakup pengamatan ini dan 80% atau lebih dari pengamatan tersebut telah ditandai sebagai tidak alami/dinaturalisasi.</li>
+          </ul>
         score_desc: "nilai = jumlah kumulatif / (jumlah kumulatif + jumlah pertentangan + pertentangan induk)"
         observation_flagged_notice_html: |
           Pengamatan ini telah ditandai sebagai spam dan sudah tidak terlihat lagi secara publik. Anda dapat melihatnya karena Anda membuatnya, atau Anda merupakan kurator situs. Jika menurut Anda ini adalah sebuah kesalahan, silakan <a href="mailto:%{help_email}" class="contact">menghubungi kami</a>. <a href="/observations/%{observation_id}/flags">Kelola tanda</a>
@@ -7718,6 +7804,7 @@ id:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Target pengguna yang belum dikonfirmasi
+        prefers_exclude_monthly_supporters: Kecualikan pendukung bulanan
         clients: Klien
       assessment:
         description: Deskripsi
@@ -8025,13 +8112,17 @@ id:
               is_too_large_to_edit: terlalu besar untuk diubah
               is_too_large_to_import: terlalu besar untuk diimpor
               contains_too_many_observations: mengandung terlalu banyak pengamatan untuk diimpor
+              cannot_be_blank: tidak boleh kosong
+              invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
+              must_have_more_than_three_points: harus memiliki lebih dari 3 titik
+              polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: tidak boleh kosong
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
-              polygon_with_fewer_than_four_points: memiliki poligon yang titiknya kurang dari 4
+              polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
         post:
           attributes:
             parent:

@@ -91,8 +91,10 @@ function setFiltersFromQuery(query) {
     if ($.isArray(v)) {
       v2 = v.join(',')
       $('#filters :input[name="'+k+'[]"]').not(':checkbox, :radio').val(v2)
+      $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v2)
     } else {
       $('#filters :input[name="'+k+'"]').not(':checkbox, :radio').val(v)
+      $('#filters :input[name="'+k+'[]"]').not(':checkbox, :radio').val(v)
     }
     if ( k === "place_id" ) {
       if ( v === "any" ) {

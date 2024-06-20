@@ -617,6 +617,8 @@ Rails.application.routes.draw do
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
+      get :user_segments
+      get :daily_active_user_model
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -691,6 +693,12 @@ Rails.application.routes.draw do
   resources :conservation_statuses, only: [:create, :destroy]
 
   resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
+    collection do
+      get :index
+    end
+  end
+
+  resource :computer_vision_eval, only: :index, controller: :computer_vision_eval do
     collection do
       get :index
     end

@@ -438,6 +438,9 @@ pl:
   add_evidence_of_presence_track_annotation: 'Dodaj adnotację „Ślad obecności: trop”'
   add_evidence_of_presence_bone_annotation: 'Dodaj adnotację „Ślad obecności: kość”'
   add_evidence_of_presence_molt_annotation: 'Dodaj adnotację „Ślad obecności: wylinka”'
+  add_evidence_of_presence_leafmine_annotation: 'Dodaj adnotację „Ślad obecności: miny na liściach”'
+  add_evidence_of_presence_hair_annotation: 'Dodaj adnotację „Ślad obecności: sierść”'
+  add_evidence_of_presence_egg_annotation: 'Dodaj adnotację „Ślad obecności: jajo”'
   #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
   #As in a Guide Section
@@ -1163,6 +1166,7 @@ pl:
     no_evidence_of_flowering: Brak śladów kwitnienia
     nymph: Nimfa
     larva: Larwa
+    #Evidence of an egg of an organism
     egg: Jajo
     juvenile: Osobnik młodociany
     alive_or_dead: Żywy czy martwy
@@ -1186,6 +1190,10 @@ pl:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Wylinka
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Miny na liściach
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Sierść
   controlled_term_definitions:
     alive: Organizm żyje i nie wykazuje żadnych oznak zbliżającej się śmierci
     cannot_be_determined: Nie można ustalić na podstawie przedstawionych dowodów
@@ -1194,6 +1202,9 @@ pl:
     flowering: Kwiaty widoczne, otwarte i nadal przymocowane do rośliny
     fruiting: Owoc widoczny i nadal przymocowany do rośliny
     molt: Zrzucona skóra lub egzoszkielet
+    leafmine: Ślady żerowania pomiędzy warstwami epidermy liścia
+    egg: Całe jajo lub część jaja
+    construction: Coś stworzonego przez zwierzę, zbudowane z lub wydrążone z innych materiałów
     organism: Cały lub częściowy organizm
     teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
     track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
@@ -3538,6 +3549,7 @@ pl:
   resend_confirmation_email: Wyślij ponownie e-mail z potwierdzeniem
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
+  reset_filters_short: Resetuj
   reset_brightness: Resetuj jasność
   reset_search_filters: Resetuj filtry wyszukiwania
   resolved: Rozstrzygnięto
@@ -3549,6 +3561,8 @@ pl:
     Liczba stron razy liczba wyników na stronie nie może przekroczyć 10000. Spróbuj
     zastosować filtry, aby zmniejszyć liczbę wyników.
   review_all: Przejrzyj wszystkie
+  review_identifications_of_taxon_html: |
+    Przejrzyj oznaczenia <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Przejrzane
   revoke_privacy_consent_warning: "Jedynym sposobem na cofnięcie tej zgody jest usunięcie konta i wszystkich powiązanych danych."
   rg_observations: Obserwacje SB

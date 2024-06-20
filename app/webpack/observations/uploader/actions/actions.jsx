@@ -33,7 +33,8 @@ const actions = class actions {
   static fileCounts( files ) {
     return {
       photos: _.filter( files, f => /^image\//.test( f.type ) ).length,
-      sounds: _.filter( files, f => /^audio\//.test( f.type ) ).length
+      // some mp4 audio files are detected as video/mp4
+      sounds: _.filter( files, f => /^(audio|video)\//.test( f.type ) ).length
     };
   }
 
@@ -151,7 +152,8 @@ const actions = class actions {
           obsCards[obsCard.id] = obsCard;
           dispatch( actions.processNewImage( files[id] ) );
           i += 1;
-        } else if ( f.type.match( /^audio\// ) ) {
+        } else if ( f.type.match( /^(audio|video)\// ) ) {
+          // some mp4 audio files are detected as video/mp4
           const id = ( startTime + i );
           const obsCard = new ObsCard( { id } );
           files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
@@ -189,7 +191,8 @@ const actions = class actions {
           files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
           dispatch( actions.processNewImage( files[id] ) );
           i += 1;
-        } else if ( f.type.match( /^audio\// ) ) {
+        } else if ( f.type.match( /^(audio|video)\// ) ) {
+          // some mp4 audio files are detected as video/mp4
           const id = ( startTime + i );
           files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
           i += 1;
@@ -688,7 +691,8 @@ const actions = class actions {
           dispatch( actions.updateFile( nextToUpload, {
             uploadState: "failed"
           } ) );
-        } else if ( nextToUpload.type.match( /audio/ ) ) {
+        } else if ( nextToUpload.type.match( /(audio|video)/ ) ) {
+          // some mp4 audio files are detected as video/mp4
           dispatch( actions.uploadSound( nextToUpload ) );
         } else {
           dispatch( actions.uploadImage( nextToUpload ) );

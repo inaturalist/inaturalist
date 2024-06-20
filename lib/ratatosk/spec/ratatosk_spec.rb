@@ -25,10 +25,9 @@ describe Ratatosk::Ratatosk, "creation" do
     expect(ratatosk.name_providers).to include(col_name_provider)
   end
 
-  it "shold accept an array of name provider prefixes as a param" do
-    ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col, :ubio])
+  it "should accept an array of name provider prefixes as a param" do
+    ratatosk = Ratatosk::Ratatosk.new(:name_providers => [:col])
     expect( ratatosk.name_providers.first.class ).to eq Ratatosk::NameProviders::ColNameProvider
-    expect( ratatosk.name_providers.last.class ).to eq Ratatosk::NameProviders::UBioNameProvider
   end
 end
 

@@ -996,6 +996,7 @@ eu:
     no_evidence_of_flowering: Loratzearen ebidentziarik ez
     nymph: Ninfa
     larva: Larba
+    #Evidence of an egg of an organism
     egg: Arrautza
     juvenile: Gaztea
     alive_or_dead: Bizirik edo hilda
@@ -2429,7 +2430,6 @@ eu:
   start: Hasiera
   start_a_new_project: Proiektu berria hasi
   start_a_project: Proiektua hasi
-  start_one: Bat hasi
   start_one_now: Hasi bat orain!
   start_typing_field_name: Eremuaren izena sartzen hasi...
   start_typing_place_name: Lekuaren izena sartzen hasi...
@@ -2442,8 +2442,6 @@ eu:
   stop_following_user: "Honi jarraitzeari utzi: %{user}"
   stuff_just_added: "Gehitu berri duzuna..."
   subject_resolved_noun_html: "%{subject} ebazten du %{noun}"
-  subject_affecting_stuff_html: "%{subject} eratiten du %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} agindu zuen %{thing} eragiten duena %{stuff}"
   submitted: Bidalita
   subscribe_to_a_taxon: Harpidetu taxon batera
   subscribe_to_a_place: Harpidetu toki batera
@@ -2534,7 +2532,6 @@ eu:
   the_world_is_full_of_interesting_places: |
     Mundua leku interesgarriz beteta dago; horietako bakoitzak bizitza-forma arraro eta zoragarriak ditu. Batzuk munduaren beste puntan daude eta beste batzuk, berriz, bertan. %{site_name} lekuak planetako edozein txokotan bizia topatzeko aukera emango dizu. Hasi arakatzen!
   then_keybord_sequence: gero
-  there_is_no_wikipedia_page_matching: Wikipedia-n ez dago bat datorren orrialderik
   there_isnt_a_wikipedia_article_titled_x_html: |
     Wikipedia-n ez dago lotura duen artikulurik izen honekin: '%{x}. Gustatuko litzaizuke bat <a href='http://en.wikipedia.org/wiki/%{x}'>sortzea</a>?
   there_merge_problems_with_the_merge: "Arazoak sortzen dira lekuak konbinatzean: %{merged_errors}"

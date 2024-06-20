@@ -10,6 +10,12 @@ describe SiteStatistic do
 
   elastic_models( Observation, Identification, User, Project )
 
+  before :each do
+    allow( SiteStatistic ).to( receive( :daily_active_user_model_stats ) do
+      {}
+    end )
+  end
+
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do
       expect( SiteStatistic.stats_generated_for_day?).to be false
@@ -46,7 +52,8 @@ describe SiteStatistic do
       expect( data['users']['count'] ).to eq 4
       expect( data['projects']['count'] ).to eq 1
       expect( data['taxa']['species_counts'] ).to eq 1
-      expect( data['identifier']['percent_id'] ).to eq 1
+      # 2024-03-13: identifier stats have been disabled, so this value should be 0
+      expect( data['identifier']['percent_id'] ).to eq 0
     end
 
     it "should generate stats for another day" do

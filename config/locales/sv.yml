@@ -365,6 +365,11 @@ sv:
   add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
   add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
   add_evidence_of_presence_molt_annotation: 'Lägg till "Stöd för förekomst: ömsskinn/exuvium"-anteckning'
+  add_evidence_of_presence_leafmine_annotation: 'Lägg till "Stöd för förekomst: bladmina"-anteckning'
+  add_evidence_of_presence_hair_annotation: 'Lägg till "Stöd för förekomst: hår"-anteckning'
+  add_evidence_of_presence_egg_annotation: 'Lägg till "Stöd för förekomst: ägg"-anteckning'
+  add_evidence_of_presence_construction_annotation: 'Lägg till "Stöd för förekomst: konstruktion"-anteckning'
+  add_established_not_established: 'Lägg till "Förekomst: ej bofast"-notering'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
   #As in a Guide Section
@@ -1167,6 +1172,7 @@ sv:
     no_evidence_of_flowering: Inga tecken på blomning
     nymph: Nymf
     larva: Larv
+    #Evidence of an egg of an organism
     egg: Ägg
     juvenile: Juvenil
     alive_or_dead: Levande eller död
@@ -1190,6 +1196,16 @@ sv:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ömsskinn/exuvium
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Bladmina
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hår
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktion
+    #Does the observation belong to a non-established population or not
+    established: Bofast
+    #Organism is not a member of an established population
+    not_established: Ej bofast
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
     bone: |
@@ -1204,7 +1220,12 @@ sv:
     gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
     male: Det finns stöd för att organismen kan producera spermier för användning i sexuell fortplantning
     molt: Kvarlämning av skinn eller exoskelett
+    leafmine: Ätspår mellan epidermislagren av ett blad
+    hair: Hår som inte längre är fäst vid den organism som det kommer från
+    egg: Helt ägg eller del av ett ägg
+    construction: Något som skapats av ett djur, gjort med eller grävt ur andra material
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
+    not_established: Organismen tillhör en ej bofast population, inkluderande utsläppta/förrymda husdjur, fripassagerare och kringstrykare.
     organism: Hela eller delar av en organism
     scat: Avföring (inte spybollar eller andra uppstötningar)
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
@@ -1224,6 +1245,8 @@ sv:
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
   copy_guide_taxon_to: Kopiera guidetaxon till...
+  copy_to_clipboard: Kopiera till urklipp
+  copied!: Kopierad!
   copyright:
     some_rights_reserved: vissa rättigheter förbehållna
     some_rights_reserved_by: "(c) %{name}, vissa rättigheter förbehållna (%{license_short})"
@@ -2381,6 +2404,8 @@ sv:
   last_seen: Senast sedd
   last_year: Senaste året
   lat: Lat
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Long
   latitude: Latitud
   latitude_in_decimals: 'Latitud i decimalgrader, t.ex. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / y-koord / nordlig
@@ -3213,23 +3238,24 @@ sv:
   observation_accuracy_experiment_precision: "Precision"
   observation_accuracy_experiment_if_every_sample: "Om varje provfynd var på en hög nivå såsom rike, skulle noggrannheten i iNaturalists dataset kunna vara mycket hög, men precisionen kanske var för låg för att göra dataset särskilt användbart. För att uppskatta precision, räknade vi antalet underliggande ändtaxa i iNaturalists taxonomi för varje taxon kopplat till varje provfynd. Vi beräknade precision såsom 1 dividerat med antalet ändtaxa. Om taxonet var ett ändtaxa blev precisionen 100%. Vi ignorerade ranger under art i precisionsberäkningen."
   observation_accuracy_experiment_in_the_example: "I exempelfiguren till höger skulle medelprecisionen av tre provfynd bli 51 %."
+  observation_accuracy_experiment_read_more_html: |
+    För att läsa mer om hur detta experiment genomfördes, se detta <a href="%{url}">blogginlägg</a>.
   observation_accuracy_validator_email_subject2: "Kan du tänka dig att hjälpa oss med Experiment %{version} för att uppskatta noggrannheten för iNaturalist-fynd?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Kan du tänka dig att hjälpa oss med ett <a href="%{url}">experiment (version %{version})</a> för att uppskatta noggrannheten för iNaturalist-fynd?
-  observation_accuracy_validator_email_if_so2_html: |
+  observation_accuracy_validator_email_if_so3_html: |
     <ol>
-    <li>Bestäm alla fynd i länken nedan så bra du kan, även om de har Forskningsklass, till oc med om din bästa bestämning är på en högre taxonomisk nivå (även rike). </li>
-    <li>Om du ser “Möjlig meningsskiljaktighet” poppa upp…
+    <li>Bestäm alla fynd i länken nedan så dtaljerat du kan, även om de har forskningsklass, och även om din bästa bestämning är till en högre taxonomisk nivå (även rike).</li>
+    <li>Om du ser “Möjlig meningsskiljaktighet”-popuppen…
     <ul>
     <li>och du är säker på att det är felbestämt, klicka på den orangea knappen,</li>
-    <li>eller om du är osäker på något exaktare än din egen bestämning, klicka på den gröna knappen</li>
+    <li>eller om du är osäker på mer än din bestämning, Klicka på den gröna knappen</li>
     </ul>
     </li>
-    <li>Gör detta till <b>%{validator_deadline_date}</b></li>
+    <li>Gör detta senast <b>%{validator_deadline_date}</b></li>
     </ol>
-    Här är den <a href="%{sample_url}">delmängd %{num_obs} fynd</a>
-    som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till
-    den bästa bestämning du kan för varje fynd till %{validator_deadline_date}</b>.
+    Här är <a href="%{sample_url}">delmängd av %{num_obs} fynd</a>* som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till den mest detaljerade bestämningen du kan för vart och ett av fynden senast %{validator_deadline_date}</b>.
+    *<i>Denna länk kommer att öppna Bestämningsverktyget på iNaturalists webbplats, och kräver att du är inloggad. Vi rekommenderar att du utför denna uppgift på en dator, men det är möjligt på din mobils webbläsare. Om du läser detta meddelande inifrån iNaturalists Android-app, se till att öppna länken i en webbläsarapp (inte själva iNat-appen). Du kan behöva logga in på webbplatsen via webbläsarappen.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
     du bestämt tidigare om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
@@ -3246,6 +3272,10 @@ sv:
     för att lära dig mer om experimentets utformning.
   observation_accuracy_validator_email_with_gratitude: Stort tack,
   observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Vänligen svara inte på detta meddelande. Om du har frågor eller synpunkter kan du kommentera <a href="%{url}">detta blogginlägg</a> eller mejla <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Vänligen svara inte på detta meddelande. Om du har frågor eller synpunkter, mejla <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
   observation_aggregation: Aggregering av fynd
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4881,7 +4911,6 @@ sv:
   start_a_new_project: Starta ett nytt projekt
   start_a_project: Starta ett projekt
   start_date_time: Startdatum / -tid
-  start_one: Starta en
   start_one_now: Starta en nu!
   start_typing_field_name: Börja skriva fältnamn...
   start_typing_place_name: Börja skriva loklnamn...
@@ -4911,8 +4940,6 @@ sv:
   studies_that_used_inaturalist_data_in_year: Studier som använde iNaturalist-data under %{year}
   stuff_just_added: "Saker du just lagt till..."
   subject_resolved_noun_html: "%{subject} löst %{noun}"
-  subject_affecting_stuff_html: "%{subject} påverkar %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} skapade @gender{n:ett|en} %{thing} som påverkar %{stuff}"
   submission_model: Insändningsmodell
   submission_model_description: Vem kan lägga till fynd till ditt projekt?
   submit_observations:
@@ -5052,6 +5079,8 @@ sv:
   taxon_deleted: Taxon raderat.
   taxon_doesnt_have_a_range: Taxon saknar område
   taxon_drop: taxoninaktivering
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taxoninaktivering som påverkar %{taxon}
   taxon_id: TaxonID
   taxon_ids: TaxonID:n
   taxon_map:
@@ -5075,6 +5104,9 @@ sv:
   taxon_framework_taxon: Taxonkontextens taxon
   taxon_history_notice: Historik introducerades i februari 2022, så ingen historik är tillgänglig före detta datum.
   taxon_merge: taxonhopslagning
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxonhopslagning som påverkar %{taxa}
   taxon_name: Taxon namn
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnamn måste matcha ett befintligt taxon i vår databas
   taxon_observed_by_html: |
@@ -5112,9 +5144,17 @@ sv:
   taxon_search: Taxonsök
   taxon_search_results_for: Resultat av taxonsök för
   taxon_split: taxonuppdelning
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxonuppdelning som påverkar %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxonförberedelse
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxonförberedelse som påverkar %{taxon}
   taxon_swap: taxonbyte
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxonbyte som påverkar %{taxa}
   taxon_swap_only_has_one_input: endast en inmatning tillåten för ett byte
   taxon_swap_has_inputs_and_outputs: ett byte måste ha både in- och utdata
   taxon_name_was_deleted: Taxonnamnet har raderats.
@@ -5191,7 +5231,6 @@ sv:
   there_are_x_synonyms_html:
     one: "Det finns <span class='count'>1</span> synonym</span>"
     other: "Det finns <span class='count'>%{count}</span> synonymer</span>"
-  there_is_no_wikipedia_page_matching: Det finns ingen matchande Wikipedia-sida
   there_isnt_a_wikipedia_article_titled_x_html: |
     Det finns ingen Wikipedia-artikel eller omdirigering med titeln '%{x}'. Kanske vill du <a href='http://en.wikipedia.org/wiki/%{x}'>göra en</a>?
   there_merge_problems_with_the_merge: "Det blev problem med sammanslagningen: %{merged_errors}"
@@ -5592,6 +5631,16 @@ sv:
     %{user} anser att detta är en fullständig lista över %{taxon} i %{place}
   user_blocked: Användare blockerad
   user_commented: "%{user} kommenterade"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user} bekräftade en taxoninaktivering som påverkar %{taxa}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
   user_faved_an_observation_by_you: "%{user} favoritmarkerade ett av dina fynd"
@@ -6278,6 +6327,12 @@ sv:
         Tack för ditt intresse av att stödja iNaturalist! Att donera till
         iNaturalist är tillfälligt avaktiverat medan vi uppdaterar våra
         donationssystem. Vänligen kolla snart igen.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klicka här för att skicka ett bekräftelsemejl igen.
+      please_add_an_email_and_password: Lägg till e-post och lösenord så att du inte förlorar åtkomst till ditt konto
+      please_click_the_link_sent_to_email_to_confirm_html: Klicka på länken som skickades till <span class="email">%{email}</span> för att bekräfta din e-postadress.
+      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig.
+      your_site_account_has_no_email: Ditt %{site_name}-konto har ingen e-postadress kopplad till det.
     flags:
       show:
         flaggable_content_desc: |
@@ -8239,6 +8294,7 @@ sv:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Riktat mot obekräftade användare
+        prefers_exclude_monthly_supporters: Exkludera månatliga bidragsgivare
         clients: Klienter
       assessment:
         description: Beskrivning
@@ -8557,13 +8613,17 @@ sv:
               is_too_large_to_edit: är för stor för att redigeras
               is_too_large_to_import: är för stor för att importeras
               contains_too_many_observations: innehåller för många fynd för import
+              cannot_be_blank: kan inte vara tomt
+              invalid_point: har en ogiltig punkt, t.ex. längdgrad större än 180 eller breddgrad mindre än -90
+              must_have_more_than_three_points: måste ha mer än 3 punkter
+              polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: kan inte vara tomt
               invalid_point: har en ogiltig punkt, t.ex. longitud större än 180 eller latitud mindre än -90
               must_have_more_than_three_points: måste ha mer än 3 punkter
-              polygon_with_fewer_than_four_points: har en polygon med färre än 4 punkter
+              polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
         post:
           attributes:
             parent:

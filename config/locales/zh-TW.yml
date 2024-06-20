@@ -264,6 +264,7 @@ zh-TW:
   add_notes_about_this_taxon: 為此地本物種分類新增註解，例如在何時、何地發生。
   add_obs_from_a_link: "從生物名錄中新增觀察紀錄: %{link}"
   add_obs_from_a_list: 從一個生物名錄中新增觀察紀錄
+  add_observation_fields: 新增觀察欄位
   add_observations: 新增多個觀察紀錄。
   add_observations_by_checking_off: 從生物名錄中挑選物種以新增觀察紀錄。
   add_observations_project: 新增多個觀察紀錄到本專案
@@ -299,6 +300,8 @@ zh-TW:
   add_evidence_of_presence_track_annotation: '新增「出現記錄的證據：足跡」註記'
   add_evidence_of_presence_bone_annotation: '新增「出現記錄的證據：骨頭」註記'
   add_evidence_of_presence_molt_annotation: '新增「出現記錄的證據：蛻皮」註記'
+  add_evidence_of_presence_leafmine_annotation: '新增「出現記錄的證據：潛葉」註記'
+  add_evidence_of_presence_construction_annotation: '新增「出現記錄的證據：構造物」註記'
   #As in a Taxon Framework Relationship
   add_relationship: '添加關聯'
   #As in a Guide Section
@@ -1038,6 +1041,7 @@ zh-TW:
     no_evidence_of_flowering: 沒有開花的跡象
     nymph: 若蟲
     larva: 幼蟲
+    #Evidence of an egg of an organism
     egg: 卵
     juvenile: 亞成體
     alive_or_dead: 活體或死亡
@@ -1061,6 +1065,12 @@ zh-TW:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: 蛻皮
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: 潛葉
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: 毛髮
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: 構造物
   controlled_term_definitions:
     alive: 還是活著的生物，而且看不出有立即死亡的徵兆
     bone: |
@@ -1075,6 +1085,8 @@ zh-TW:
     gall: 由寄生生物引發的植物組織變形生長
     male: 證據代表生物體可以產生精子來進行有性生殖
     molt: 蛻下的表皮或外骨骼
+    leafmine: 在葉肉之間取食的證據
+    construction: 由動物建構或挖開其他物質產生的構造物
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
     organism: 整個或部分生物體
     scat: 糞便類（非貓頭鷹的食繭或其他嘔吐物）
@@ -1818,6 +1830,8 @@ zh-TW:
   #Adjective, as in a fluid layout of images
   fluid: 流動
   follow: 追蹤
+  #Text for a button to follow updates on an observation
+  follow_observation: 追蹤此觀察紀錄
   follow_receive_updates_about_new_observations: 追蹤（接收有關新觀察的更新）
   #Text for a button to follow updates from a specific user
   follow_user: "關注 %{user}"
@@ -1867,7 +1881,7 @@ zh-TW:
   geoprivacy_is_private: 位置隱私為私有
   geoprivacy_is_private_desc: 觀察者選擇隱藏座標。
   georeferenced: 地理參考？
-  get_started: 入門
+  get_started: 開始建立
   getting_started_guide: 入門指南
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
@@ -3596,6 +3610,10 @@ zh-TW:
   places_merged_successfully: 合併地點成功！
   places_warning_export_complex_boundary_html: |
     如果您嘗試要從一個複雜的區域邊界中匯出觀察紀錄，請考慮從<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF</a>來下載，在 GBIF 網站上您可以繪出任意的邊界，或是使用現有的地點或邊界框來篩選並下載資料。
+  places_warning_look_for_existing2_html: |
+    搜尋<a href="/search?source[]=places">現有的地點</a>以確保您不會重複建立。我們已經建立了各大洲、國家以及大部分行政區域邊界的地點。
+  places_warning_please_keep_in_mind: |
+    請銘記以下限制：
   places_warning_projects_can_have_multiple_places: |
     如果您試著要建立一個地點邊界給某專案使用的話，其實專案可以同時選擇多個地點。舉例來說，如果您想要建立一個專案給紐西蘭和澳洲使用，您可以在專案設定中加入這兩個地點而非建立一個包含兩個國家的地點。
   places_warning_new_places_are_slow_html: |
@@ -3689,7 +3707,7 @@ zh-TW:
   project_icon: 專案圖示
   project_journal: 專案日誌
   project_id_or_url_slug: 專案 ID 或 URL slug，例如：333 或 my-project
-  project_list: 專案清單
+  project_list: 專案名錄
   project_list_defaults:
     title: "%{owner_name} 的名錄"
     description: '%{owner_name} 的物種列表'
@@ -4339,7 +4357,6 @@ zh-TW:
   start_a_new_project: 開始一個新專案
   start_a_project: 開始一個專案
   start_date_time: 起始日期/時間
-  start_one: 開始一個
   start_one_now: 現在來開始一個！
   start_typing_field_name: 開始輸入欄位名稱…
   start_typing_place_name: 開始輸入地點名稱…
@@ -4365,8 +4382,6 @@ zh-TW:
   studies_that_used_inaturalist_data_in_year: 在 %{year} 使用到 iNaturalist 資料的研究
   stuff_just_added: "您剛添加的東西..."
   subject_resolved_noun_html: "%{subject}解決了%{noun}"
-  subject_affecting_stuff_html: "%{subject}正在影響%{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject}已提交影響%{stuff}的@vow_or_con{vow:an|a}%{thing}"
   submission_model: 提交模組
   submission_model_description: 誰可以添加觀察至您的專案？
   submit_observations:
@@ -4606,7 +4621,6 @@ zh-TW:
   then_keybord_sequence: 接著
   there_are_x_synonyms_html:
     other: "有 <span class='count'>%{count}</span> 個同種異名</span>"
-  there_is_no_wikipedia_page_matching: 沒有符合的維基百科頁面
   there_isnt_a_wikipedia_article_titled_x_html: |
     維基百科沒有名為「%{x}」的條目或重定向。您也許想<a href='http://zh.wikipedia.org/wiki/%{x}'>創建一條</a>？
   there_merge_problems_with_the_merge: "有合併問題：%{merged_errors}"
@@ -5300,7 +5314,7 @@ zh-TW:
   you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
   you_cant_compare_a_list_with_nothing: 您不能比較沒有任何內容的名錄！
-  you_cant_delete_a_project_list: "您不能刪除專案清單"
+  you_cant_delete_a_project_list: "您不能刪除專案名錄"
   you_cant_delete_observation_fields_that_people_are_using: "您不可刪除正被其他人使用的觀察欄位"
   you_cant_do_that_for_the_default_check_list_place: 您不能對地點的預設名錄作此行為！
   you_cant_flag_that: 您不能標記那
@@ -5650,7 +5664,7 @@ zh-TW:
           自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
       show:
         project_list_desc: |
-          專案清單列出了由專案策展人所手動添加，以及代表著在專案裡研究等級觀察記錄的物種分類群。
+          專案名錄列出了由專案策展人所手動新增，以及代表著在專案裡研究等級觀察紀錄的物種分類群。
     messages:
       from: 發送人
       to: 接收人
@@ -6061,6 +6075,8 @@ zh-TW:
         view_original_html: |
           您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
+      kml_field_desc3: |
+        地點邊界的 KML檔。您可以使用 Google 地圖、Google 地球或大多數 GIS 應用程式製作一個。必須至少有一個多邊形，小於 1 MB（網站策展人為 5 MB），且面積小於約 700,000 平方公里（大約相當於索馬利亞或美國德克薩斯州的大小）。
       edit:
         complex_boundary_note_html: |
           此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a> 來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
@@ -6103,6 +6119,8 @@ zh-TW:
           如果要防止專案策展人查看您的隱藏座標是您留下的唯一原因。
       edit:
         admins_must_be_existing_members: 管理者必須是該專案的現有成員。
+        admins_can_only_be_added_after_creation: |
+          管理員在專案建立後才可以新增。
         aggregation_pending: 等待聚集
         new_place_desc_html: |
           嘗試看看<a href="%{places_url}" target="_blank">我們的現有地點</a>並確認您有獲得正確地點名稱。若您無法找出您所要的地點，可以考慮<a href="%{new_place_url}" target="_blank">創建一個新地點</a>，但請確認不會弄出與現有地點重複的內容。
@@ -6154,9 +6172,8 @@ zh-TW:
           </ol>
         project_list_desc_html: |
           <p class="description">
-          您可建立自定的特定分類群專案列表並連結至您的專案。
-          這在添加觀察至您的專案時，限制需經由「必須是在專案列表上的物種分類」
-          規則以符合是您清單上的物種分類時很有用。
+          您可建立自定的物種分類群專案名錄並連結至您的專案。
+          這樣做可以透過設定「必須屬於專案名錄中的物種分類群」規則，來限制只有名錄上的物種才能新增觀察紀錄至您的專案中。
           </p>
         rules:
           captive: 被捕獲/培育
@@ -6168,9 +6185,9 @@ zh-TW:
           identified: 被鑑定
           in_taxon: 在物種分類
           observed_in_place: 被觀察於地點
-          on_list: 成為在專案列表上的物種分類之一
+          on_list: 屬於專案名錄中的物種分類群
           verifiable: 可證實
-          wild: 被野化/歸化
+          wild: 野化/歸化
         start_time_desc: "您的 bioblitz 起始時間。格式：YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: 任一
@@ -6226,6 +6243,8 @@ zh-TW:
         display_project_name: 顯示專案名稱
         do_you_need_features_from_traditional: |
           您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？
+        do_you_need_features_from_traditional2: |
+          您需要傳統專案的功能嗎？例如像自定義觀察欄位或是新增無法自動篩選出來的個別觀察紀錄？
         duplicate_project: 重複專案
         include_annotated_observations: |
           僅包含有註解特定屬性的觀察記錄（例：生命階段），或是特定屬性與其內容（例：生命階段 = 成體）。
@@ -6738,6 +6757,13 @@ zh-TW:
         same_day_geoprivacy_protection: 同日位置隱私保護
         taxon_change_desc: |
           當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
+        taxon_name_priorities:
+          common_name_lexicons: 俗名的語言
+          common_name_lexicons_description: 預設情況下，俗名會顯示在您帳號的語言/地區設定中。若要查看其他語言中的俗名，或優先顯示特定地區使用的名稱（例如英文（澳洲）或西班牙文（哥斯大黎加）），請新增該語言的俗名。一次最多可以顯示三種語言的俗名。如果您選擇的語言中沒有俗名，則該語言將不會顯示出來。
+          for_multiple_common_name_lexicons_drag_and_drop: 拖拉下方的設定來自訂多種語言的俗名顯示順序。
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: 最多三種語言的俗名都已經新增了
         this_only_applies_to_traditional_projects: |
           這僅會套用到傳統專案。您不能從基本上有保存搜尋的收藏或綜合專案裡排除掉觀察。您可<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">按此</a>來了解更多。
       recent:
@@ -7237,7 +7263,6 @@ zh-TW:
               cannot_be_blank: 不可留空
               invalid_point: 有不正確的點位，例如：經度大於 180 或緯度小於 -90
               must_have_more_than_three_points: 必須要多於三個點
-              polygon_with_fewer_than_four_points: 具有少於四個點的多邊形
         post:
           attributes:
             parent:

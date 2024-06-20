@@ -306,4 +306,27 @@ describe Annotation do
       expect( a.deleteable_by?( o.user ) ).to be true
     end
   end
+
+  describe "user counter cache" do
+    it "increases count on create, with delay" do
+      annotation = make_annotation!
+      user = annotation.user
+      expect( user.annotated_observations_count ).to eq 0
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+    end
+
+    it "decreases count on destroy, with delay" do
+      annotation = make_annotation!
+      user = annotation.user
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+      annotation.destroy
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      user.reload
+      expect( user.annotated_observations_count ).to eq 0
+    end
+  end
 end

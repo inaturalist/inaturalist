@@ -258,6 +258,7 @@ th:
   add_notes_about_this_taxon: เพิ่มหมายเหตุเกี่ยวกับอนุกรมวิธานในสถานที่นี้ เช่น เกิดขึ้นที่ไหนและเมื่อไหร่
   add_obs_from_a_link: "เพิ่มการสังเกตจากลิงก์: %{link}"
   add_obs_from_a_list: เพิ่มการสังเกตจากรายการ
+  add_observation_fields: เพิ่มข้อมูลเสริมการสังเกต
   add_observations: เพิ่มการสังเกต
   add_observations_by_checking_off: เพิ่มข้อสังเกตโดยการตรวจสอบสายพันธุ์จากรายการ
   add_observations_project: เพิ่มการสังเกตในโครงการนี้
@@ -293,6 +294,9 @@ th:
   add_evidence_of_presence_track_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: รอยตามทาง"'
   add_evidence_of_presence_bone_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: กระดูก"'
   add_evidence_of_presence_molt_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: คราบ"'
+  add_evidence_of_presence_leafmine_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: รอยชอนใบ"'
+  add_evidence_of_presence_hair_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: ขน"'
+  add_evidence_of_presence_construction_annotation: 'เพิ่มหมายเหตุ "หลักฐานที่พบ: สิ่งที่สัตว์สร้าง"'
   #As in a Taxon Framework Relationship
   add_relationship: 'เพิ่มความสัมพันธ์'
   #As in a Guide Section
@@ -814,6 +818,7 @@ th:
     no_evidence_of_flowering: ไม่พบการออกดอก
     nymph: ตัวอ่อน
     larva: ตัวอ่อน
+    #Evidence of an egg of an organism
     egg: ไข่
     juvenile: วัยอ่อน
     alive_or_dead: มีชีวิตหรือตาย
@@ -837,12 +842,20 @@ th:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: คราบ
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: รอยชอนใบ
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: ขน
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: สิ่งที่สัตว์สร้าง
   controlled_term_definitions:
     feather: ขนที่หลุดออกจากตัวนก
     flower_budding: เห็นตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
+    hair: เส้นขนที่หลุดจากตัวสัตว์
+    construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
     no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
@@ -1011,6 +1024,9 @@ th:
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: เลิกเชื่อมต่อ
   distance_traveled_value: "ระยะทาง: %{distance} เมตร"
   documentation_for_developers_html: เอกสารสำหรับ<a href="/pages/developers">ผู้พัฒนา</a>
   #Button text to donate to iNaturalist. Please try to keep translations as
@@ -1036,8 +1052,10 @@ th:
   draw_rectangular_boundary: วาดขอบเขตสี่เหลี่ยม
   duplicate_verb: คัดลอก
   duration_value: "ระยะเวลา: %{duration} นาที"
+  each_place_displays_all_species_inat_knows: "แต่ละหน้าสถานที่จะแสดงข้อมูลชนิดทั้งหมดที่ %{site_name} รู้จักในสถานที่นั้น รวมถึงข้อมูลเกี่ยวกับความชุกชุม สถานะการอนุรักษ์ และผู้ใช้งานคนแรกที่มีการสังเกตในสถานที่นั้นบน %{site_name} คุณสามารถใช้ตัวกรองแยกดูตามกลุ่มอนุกรมวิธาน สี สถานะการอนุรักษ์ หรือใช้การค้นหาแบบธรรมดาได้เช่นกัน"
   edit: แก้ไข
   edit_a_batch_of_observations: แก้ไขหลายการสังเกต
+  edit_account_settings_and_profile: "แก้ไขการตั้งค่าบัญชี &amp; โปรไฟล์"
   edit_license: แก้ไขสัญญาอนุญาต
   edit_multiple_locations: แก้ไขหลายตำแหน่ง
   edit_multiple_species: แก้ไขหลายชนิด
@@ -1045,6 +1063,7 @@ th:
   edit_observations: แก้ไขการสังเกต
   edit_photos: แก้ไขรูปภาพ
   edit_photos_for_observation_id: "แก้ไขรูปภาพของการสังเกต %{obs_id}"
+  edit_place: แก้ไขสถานที่
   edit_project: แก้ไขโครงการ
   edit_remove: แก้ไข/ลบ
   edit_taxa: แก้ไขหน่วยอนุกรมวิธาน
@@ -1073,6 +1092,7 @@ th:
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
   email: อีเมล
   email_notifications: การแจ้งเตือนทางอีเมล
+  embed_place_widget: ฝังวิดเจ็ตสถานที่
   embed_widget_project: ฝังวิดเจตสำหรับโครงการนี้ในเว็บไซต์ของคุณ
   encompassing_places: สถานที่ครอบคลุม
   end: สิ้นสุด
@@ -1122,7 +1142,7 @@ th:
   extinct_in_the_wild: สูญพันธุ์ในธรรมชาติ
   evidence_of_organism: มีหลักฐานของสิ่งมีชีวิต
   evidence_related_to_single_subject: หลักฐานแสดงถึงสิ่งมีชีวิตเพียงชนิดเดียว
-  facebook: Facebook
+  facebook: เฟซบุ๊ก
   'false': 'เท็จ'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: รายการโปรด
@@ -1140,8 +1160,10 @@ th:
   filter_by_place: กรองตามสถานที่
   filters: ตัวกรอง
   find_a_guide: ค้นหาคู่มือ
+  find_a_post: ค้นหาโพสต์
   find_a_place: ค้นหาสถานที่
   find_guides: ค้นหาคู่มือสำรวจ
+  find_posts_for: "ค้นหาโพสต์: %{journal_name}"
   find_new_place_to_explore: ค้นหาสถานที่ใหม่เพื่อสำรวจ
   find_observations: ค้นหาการสังเกต
   find_photos: ค้นหาภาพ
@@ -1152,6 +1174,7 @@ th:
   find_unsuitable_observations: ค้นหาการสังเกตทั้งหมด
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
+  first_inat_observation: "การสังเกตแรกใน %{site_name}"
   first_observer: ผู้สังเกตคนแรก
   #Verb form, as in "Flag this item"
   flag: รายงาน
@@ -1159,7 +1182,7 @@ th:
   flag_as_spammer: รายงานว่าเป็นสแปม
   flag_as_non_spammer: รายงานว่าไม่เป็นสแปม
   #Label for the date/time when a flag was created
-  flag_created: สร้างรายงานเมื่อ
+  flag_created: รายงานเมื่อ
   flag_for_check_list_title_html: |
     รายงานรายการตรวจสอบ: %{title}
   flag_for_curation: รายงานอนุกรมวิธาน
@@ -1182,9 +1205,11 @@ th:
   flagged_: ถูกรายงาน
   flagged_for_curation: รายงานอนุกรมวิธานแล้ว
   flagged_taxon: หน่วยอนุกรมวิธานที่ถูกรายงาน
+  flagged_thing_explanation: "ผู้ใช้งานได้รายงาน%{thing}นี้เนื่องจาก"
   flagger: ผู้รายงาน
   flags: รายงาน
   flags_with_count: รายงาน (%{count})
+  flags_explanation: "ผู้ใช้ %{site_name} จะรายงานสิ่งที่ต้องการให้ผู้ดูแลและ/หรือแอดมินเว็บไซต์มาตรวจสอบ"
   flags_for_x_html: การรายงานสำหรับ %{x}
   flags_on_users_content: "รายงานเนื้อหาของ %{user}"
   flickr_has_no_creative_commons: Flickr ไม่มีรูปที่มีสัญญาอนุญาตครีเอทีฟคอมมอนส์จากสถานที่นี้
@@ -1209,6 +1234,7 @@ th:
     tutorials: แนะนำการใช้งาน
   from_a_place: จากสถานที่
   from_eol_collection: จาก EOL collection
+  from_flickr_etc: จาก Flickr และอื่น ๆ
   from_list: จากรายการ
   from_photos: จากรูปถ่าย
   from_place: จากสถานที่
@@ -1312,6 +1338,7 @@ th:
   import_date_time_location_taxonomic: "นำเข้าข้อมูลวันที่ เวลา ตำแหน่ง คำอธิบาย และอนุกรมวิธานจากรูปนี้"
   import_observations: นำเข้าการสังเกต
   improving: แนะนำคนแรก
+  in_place_x: ใน %{place}
   #As in a reason to flag something
   inappropriate: ไม่เหมาะสม
   #Label for messages you've received
@@ -1332,6 +1359,7 @@ th:
   info: ข้อมูล
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
+  instagram: อินสตาแกรม
   introduced: ต่างถิ่น
   introduced_in_place: "ชนิดพันธุ์ต่างถิ่นใน %{place}"
   is_not_following_anyone: ไม่ได้ติดตามใคร
@@ -1911,7 +1939,7 @@ th:
   or_all_caps: หรือ
   order: อันดับ
   order_by: เรียงลำดับตาม
-  organism_is_wild: สิ่งมีชีวิตพบตามธรรมชาติ
+  organism_is_wild: สิ่งมีชีวิตพบในธรรมชาติ
   organisms: สิ่งมีชีวิต
   other: อื่น ๆ
   other_animals: สัตว์อื่น ๆ
@@ -1992,6 +2020,8 @@ th:
       historical_town: เมืองประวัติศาสตร์
       Open_Space: พื้นที่เปิด
       open_space: พื้นที่เปิด
+      Point_of_Interest: จุดสนใจ
+      point_of_interest: จุดสนใจ
       Province: จังหวัด
       province: จังหวัด
       Region: ภูมิภาค
@@ -2454,6 +2484,14 @@ th:
   selected_photos: รูปที่เลือก
   selected_taxon: หน่วยอนุกรมวิธานที่ถูกเลือก
   select_this_taxon: เลือกหน่วยอนุกรมวิธานนี้
+  send: ส่ง
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: ส่งและลงชื่อออก
+  send_confirmation_email: ส่งอีเมลยืนยัน
+  sending: กำลังส่ง...
+  #Label for messages you've sent
+  sent: ส่งแล้ว
   set_license: ตั้งค่าสัญญาอนุญาต
   share: แชร์
   share_colon: "แชร์:"
@@ -2558,13 +2596,12 @@ th:
   store: ร้านค้า
   store_caps: ร้านค้า
   studies_that_used_inaturalist_data_in_year: การศึกษาที่ใช้ข้อมูลจาก iNaturalist ในปี %{year}
-  subject_affecting_stuff_html: "%{subject}ที่ส่งผลต่อ %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} ได้%{thing}ที่ส่งผลต่อ %{stuff}"
   submit_observations:
     other: ส่ง %{count} การสังเกต
   submitted: ส่งเมื่อ
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
+  subscribe_to_observations_from_this_place_html: <a>ติดตาม</a>การสังเกตจากสถานที่นี้
   subscribe_to_observations_in_a_taxon: ติดตามทุกการสังเกตของสิ่งมีชีวิตชนิดหนึ่งหรือกลุ่มของสิ่งมีชีวิต (เช่น 'แมงป่อง')
   subscribe_to_observations_in_a_place: ติดตามทุกการสังเกตที่พบในสถานที่นี้ คุณสามารถเพิ่มตัวกรองหน่วยอนุกรมวิธานได้ด้วย เช่น 'แมงป่องจาก Texas'
   subscriptions: การติดตาม
@@ -2574,6 +2611,7 @@ th:
   sync_obs_with_photo_metadata: "ซิงก์การสังเกตกับข้อมูลอภิพันธุ์?"
   table_of_contents: สารบัญ
   tags: แท็ก
+  take_me_flickr!: ใช่ ไปที่ Flickr!
   taxa: หน่วยอนุกรมวิธาน
   taxa_with_unknown_relationships: หน่วยอนุกรมวิธานที่ไม่ทราบความสัมพันธ์
   taxa_info: ข้อมูลหน่วยอนุกรมวิธาน
@@ -2814,6 +2852,7 @@ th:
   trust: ความไว้วางใจ
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
   try_adding_species_form: ลองเพิ่มบางชนิดโดยใช้รูปแบบในหน้านี้
+  twitter: ทวิตเตอร์
   type_place_name: พิมพ์ชื่อสถานที่
   type_species_name: "พิมพ์ชื่อชนิด"
   uicn_red_list_status: "สถานะบัญชีแดง IUCN:"
@@ -2864,7 +2903,13 @@ th:
   user_added_a_comment_html: "%{user} เพิ่มความคิดเห็น"
   user_added_a_flag_html: "%{user} เพิ่มการรายงาน"
   #@gender operates on %{x}
+  user_added_a_x_to_noun_by_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_by_user_html: "%{user} เพิ่ม%{x}ไปที่%{noun}ของ %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  #@gender operates on %{x}
+  user_added_a_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_an_identification_html: "%{user} เพิ่มการจำแนก"
   user_added_an_observation_field_value_html: "%{user} เพิ่มข้อมูลเสริมการสังเกต"
   user_added_an_observation_html: "%{user} เพิ่มการสังเกต"
@@ -2872,9 +2917,12 @@ th:
   user_added_an_x: "%{user} เพิ่ม%{x}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
+  #@gender operates on %{x}
+  user_added_an_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
   user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
+  user_faved_an_observation_by_you: "%{user} ชอบการสังเกตของคุณ"
   user_faved_this_observation: "%{user} ชอบการสังเกตนี้"
   user_flagged_as_a_non_spammer_html: "%{user} ถูกทำเครื่องหมายว่าไม่ใช่ผู้ส่งสแปม"
   user_flagged_as_a_spammer_html: "%{user} ถูกรายงานว่าเป็นผู้ส่งสแปม"
@@ -2900,7 +2948,7 @@ th:
   view_all_caps: ดูทั้งหมด
   view_all_fields: ดูข้อมูลเสริมทั้งหมด
   view_all_flags: ดูรายงานทั้งหมด
-  view_all_members: ดูสมาชิกทุกคน
+  view_all_members: ดูสมาชิกทั้งหมด
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
     other: "ดูทั้งหมด %{count}"
@@ -2986,6 +3034,7 @@ th:
   who_can_add_observations_to_this_project?: ใครเพิ่มการสังเกตเข้าโครงการนี้ได้บ้าง?
   who_can_see_the_coordinates: ใครมองเห็นพิกัดนี้ได้บ้าง?
   who_can_see_the_coordinates_observer: ผู้ที่สร้างการสังเกตนี้
+  who_can_see_the_coordinates_projects: ผู้ดูแลโครงการต่อไปนี้
   who_can_see_the_coordinates_trusted: ผู้ที่ได้รับอนุญาตจากผู้สังเกตให้มองเห็นพิกัด
   who_helped_user_the_most: "คนที่ช่วย %{user} มากที่สุด"
   who_user_helped_the_most: "คนที่ %{user} ช่วยมากที่สุด"
@@ -3009,6 +3058,8 @@ th:
   #This might be shown if there is a character limit in a text field, in which
   #it would mean "x of y characters remaining"
   x_of_y_short: "%{x} / %{y}"
+  x_of_count_confirmed:
+    other: "ยืนยันแล้ว %{x} จาก %{count}"
   x_project_journal: "%{name} ของ %{project}"
   x_site_is_a_social_network_for_naturalist: |
     %{site} เป็นเครือข่ายสังคมสำหรับนักธรรมชาติวิทยา! บันทึกการสังเกตของพืชและสัตว์ แชร์ให้เพื่อนและนักวิจัย และเรียนรู้เกี่ยวกับโลกธรรมชาติ
@@ -3048,6 +3099,9 @@ th:
   you_are_subscribed_to_comments_on_this_flag: คุณติดตามความคิดเห็นในรายงานนี้แล้ว
   you_are_subscribed_to_comments_on_this_post: คุณติดตามความคิดเห็นในโพสต์นี้แล้ว
   you_can_only_block_three_users: คุณบล็อกผู้ใช้ได้เพียงสามคนเท่านั้น
+  you_curate_a_project_that_contains_this_observation: คุณกำลังดูแลโครงการที่มีการสังเกตนี้
+  you_curate_a_project_that_contains_this_observation_desc: |
+    คุณสามารถมองเห็นพิกัดการสังเกตที่ถูกปิดบังเมื่อกำลังดูแลโครงการที่มีการสังเกตนั้น โดยผู้สังเกตอนุญาตให้ผู้ดูแลโครงการมองเห็นพิกัดได้
   you_didnt_select_any_observations: คุณไม่ได้เลือกการสังเกตใด ๆ
   you_didnt_select_any_photos_to_tag: คุณไม่ได้เลือกรูปภาพที่จะแท็ก!
   you_faved_this: เพิ่มเข้ารายการโปรดแล้ว!
@@ -3094,6 +3148,8 @@ th:
       pdf_layout_notes:
         journal: |
           แบ่งหน้าโดยให้ข้อมูลชนิดอยู่ฝั่งซ้ายและช่องว่างสำหรับการบันทึกอยู่ฝั่งขวา ข้อมูลชนิดจะถูกตัดออกบางส่วนเพื่อให้พอดีกับหน้า
+      pdf_generation_notice: |
+        โปรดรอสักครู่ การสร้างไฟล์ PDFs ขนาดใหญ่จะต้องใช้เวลาหลายนาที
       sorts:
         alphaname: เรียงชื่อวิทยาศาสตร์ตามตัวอักษร
         alphadisplay: เรียงชื่อที่แสดงตามตัวอักษร

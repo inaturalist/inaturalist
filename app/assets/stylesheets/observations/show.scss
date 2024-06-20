@@ -123,6 +123,7 @@ button.linky,
   color: $bootstrap-link-color;
   cursor: pointer;
   background: transparent;
+  vertical-align: baseline;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
@@ -192,7 +193,7 @@ input.failed, textarea.failed {
 
 .ui-autocomplete {
   .ac-result, .category {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
       color: #333;
     }
@@ -310,7 +311,7 @@ a.UserImage,
             top: 280px;
             width: 100%;
             text-align: center;
-            font-weight: 100;
+            font-weight: 400;
           }
           .add-photo-span {
             top: auto;
@@ -405,7 +406,7 @@ a.UserImage,
               padding: 15px;
               border-radius: 50px;
               display: inline-block;
-              padding: 5px 9px;
+              padding: 5px 9px 7px;
               pointer-events: auto;
               .btn:hover, .fa:hover {
                 text-decoration: none;
@@ -493,7 +494,7 @@ a.UserImage,
         }
         .bold_label {
           display: block;
-          font-weight: bold;
+          font-weight: 600;
         }
         .date {
           font-size: 13px;
@@ -602,6 +603,9 @@ a.UserImage,
           color: $fail-red;
         }
       }
+      & > button {
+        padding-top: 4px;
+      }
     }
   }
   .middle_left {
@@ -641,6 +645,7 @@ a.UserImage,
         line-height: 40px;
         color: #000;
         white-space: normal;
+        font-weight: 200;
       }
       &.genus .comname.secondary-names,
       &.species .comname.secondary-names,
@@ -780,14 +785,16 @@ time {
     background: #f8f8f8;
     height: 230px;
     text-align: center;
-    font-size: 18px;
-    color: $text-grey;
     padding-top: 75px;
     border-bottom: 1px solid $border-grey;;
     .fa {
       display: block;
       font-size: 60px;
       color: #ccc;
+    }
+    span {
+      font-size: 18px;
+      color: $text-grey;
     }
   }
   .map_details {
@@ -807,6 +814,9 @@ time {
         color: $bootstrap-link-color;
         cursor: pointer;
         margin-right: 5px;
+        > .btn {
+          vertical-align: baseline;
+        }
       }
       .obscured {
         color: #aaa;
@@ -838,6 +848,18 @@ time {
       .btn-more:hover, .btn-more:focus {
         text-decoration: none;
       }
+      .btn.clipboard-copy {
+        vertical-align: top;
+        margin: -1px 10px 0px 6px;
+        background: #f0f0f0;
+        outline: none;
+        &:hover {
+          background: #e6e6e6;
+        }
+      }
+      .tooltip.top {
+        margin-left: 6px;
+      }
     }
   }
 }
@@ -847,7 +869,7 @@ time {
   padding: 20px;
   display: inline-block;
   .attr {
-    font-weight: 700;
+    font-weight: 600;
   }
   .places {
     h4 {
@@ -1258,7 +1280,7 @@ time {
   width: 100%;
   h3 {
     & > span a {
-      font-weight: 700;
+      font-weight: 600;
     }
     .links {
       float: right;
@@ -1437,7 +1459,7 @@ time {
       .title {
         font-size: 14px;
         line-height: 14px;
-        font-weight: 700;
+        font-weight: 600;
         text-overflow: ellipsis;
         display: block;
         overflow: hidden;
@@ -1514,7 +1536,7 @@ time {
       margin-bottom: 5px;
       .display-name {
         color: #000;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
     .photo {
@@ -1621,7 +1643,7 @@ time {
     text-align: center;
     a {
       color: $bootstrap-link-color;
-      font-weight: 200;
+      font-weight: 400;
     }
     &.in {
     }
@@ -2328,11 +2350,11 @@ body > [role="dialog"] .easyzoom > a > img {
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding-block: 2px 1px;
+  padding-block: 3px 3px;
   padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
-  line-height: 17px !important;
+  line-height: 16px !important;
   z-index: 1;
   margin-inline-end: 20px;
   // added
@@ -2344,7 +2366,7 @@ body > [role="dialog"] .easyzoom > a > img {
   position: absolute;
   display: block;
   bottom: 0;
-  border: 10px solid $border-grey;
+  border: 11px solid $border-grey;
   border-inline-end-width: 5px;
   border-inline-end-color: transparent;
   inset-inline-end: -15px;

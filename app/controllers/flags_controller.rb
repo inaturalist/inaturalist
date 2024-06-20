@@ -13,17 +13,20 @@ class FlagsController < ApplicationController
       @object = find_object
       if @object
         # The default acts_as_flaggable index route
-        @object = @object.becomes(Photo) if @object.is_a?(Photo)
-        @object = @object.becomes(Sound) if @object.is_a?(Sound)
-        @flags = @object.flags.includes(:user, :resolver).
-          paginate(page: params[:page]).
-          order(id: :desc)
-        @unresolved = @flags.select {|f| not f.resolved }
-        @resolved = @flags.select {|f| f.resolved }
-        @moderator_actions = if @object.respond_to?(:moderator_actions)
+        @object = @object.becomes( Photo ) if @object.is_a?( Photo )
+        @object = @object.becomes( Sound ) if @object.is_a?( Sound )
+        @flags = @object.flags.includes( :user, :resolver )
+        @moderator_actions = if @object.respond_to?( :moderator_actions )
           @object.moderator_actions.limit( 100 ).to_a
         end
-        respond_to do |format|
+
+        @items = [@flags, @moderator_actions].flatten.
+          compact.
+          sort_by( &:created_at ).
+          reverse.
+          paginate( page: params[:page] )
+
+        respond_to do | format |
           format.html { render layout: "bootstrap" }
         end
         return

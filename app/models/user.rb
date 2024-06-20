@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   include HasJournal
 
   before_validation :set_uuid
@@ -1417,6 +1419,42 @@ class User < ApplicationRecord
         user.elastic_index!
       end
     end
+  end
+
+  def self.update_annotated_observations_counter_cache( user, options = {} )
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    return unless user
+
+    result = Observation.elastic_search(
+      filters: [{
+        nested: {
+          path: "annotations",
+          query: {
+            bool: {
+              filter: [{
+                term: {
+                  "annotations.user_id": user.id
+                }
+              }]
+            }
+          }
+        }
+      }],
+      size: 0,
+      track_total_hits: true
+    )
+    count = result&.response ? result.response.hits.total.value : 0
+    return if user.annotated_observations_count == count
+
+    User.where( id: user.id ).update_all( annotated_observations_count: count )
+    return if options[:skip_indexing]
+
+    user.reload
+    user.elastic_index!
   end
 
   def to_plain_s

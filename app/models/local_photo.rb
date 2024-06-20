@@ -1,9 +1,10 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class LocalPhoto < Photo
   include LogsDestruction
   after_create :set_urls
   after_update :change_photo_bucket_if_needed
-  
+
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
     record.rotation.blank? ? "-auto-orient" : nil

@@ -572,6 +572,7 @@
 <input type="hidden" name="list_id" id="list_id" value="<%= @list.try(:id) %>"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
+<input type="hidden" name="week" id="week"/>
 
 <% if @spam -%>
   <input type="hidden" name="spam" id="spam" value="<%= @spam %>" />

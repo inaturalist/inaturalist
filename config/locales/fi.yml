@@ -1,4 +1,8 @@
 fi:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} muutos"
+    other: "%{count} muutosta"
   x_comments:
     one: '1 kommentti'
     other: '%{count} kommenttia'
@@ -50,6 +54,9 @@ fi:
   x_misidentifications_of_this_species:
     one: "1 virheellinen tämän lajin tunnistus"
     other: "%{count} virheellistä tämän lajin tunnistusta"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} virheellinen tunnistus tässä suvussa"
+    other: "%{count} virheellistä tunnistusta tässä suvussa"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -82,6 +89,9 @@ fi:
   x_people:
     one: "%{count} henkilö"
     other: "%{count} henkilöt"
+  x_people_html:
+    one: '<span class="count">%{count}</span> henkilö'
+    other: '<span class="count">%{count}</span> henkilöä'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} ihmistä</strong> auttoi tunnistuksessa käyttäjää %{user} <strong>%{y}</strong>"
   x_photos:
     one: "1 kuva"
@@ -351,6 +361,11 @@ fi:
   add_evidence_of_presence_track_annotation: 'Lisää "Todiste läsnäolosta: jälki" -kommentti'
   add_evidence_of_presence_bone_annotation: 'Lisää "Todiste läsnäolosta: luu" -kommentti'
   add_evidence_of_presence_molt_annotation: 'Lisää "Todiste läsnäolosta: nahka" -kommentti'
+  add_evidence_of_presence_leafmine_annotation: 'Lisää "Todiste läsnäolosta: lehtimiina" -kommentti'
+  add_evidence_of_presence_hair_annotation: 'Lisää "Todiste läsnäolosta: karva" -kommentti'
+  add_evidence_of_presence_egg_annotation: 'Lisää "Todiste läsnäolosta: muna" -kommentti'
+  add_evidence_of_presence_construction_annotation: 'Lisää "Todiste läsnäolosta: rakennelma" -kommentti'
+  add_established_not_established: 'Lisää "Vakiintunut: ei vakiintunut" -merkintä'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lisää suhde'
   #As in a Guide Section
@@ -396,6 +411,8 @@ fi:
   added_by: Lisännyt
   added_by_user_on_date_html: "Lisännyt %{user} %{date}"
   added_on_datetime: "Lisätty %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rooli lisätty
   added_to_favorites_html: |
     Lisätty <a href="%{url}">suosikkeihin</a>
   adding: "Lisätään..."
@@ -530,6 +547,7 @@ fi:
   alphabetical_order: Aakkosjärjestys
   already_have_an_account_log_in_html: Onko sinulla jo käyttäjätunnus? <strong>Kirjaudu sisään.</strong>
   amphibians: sammakkoeläimet
+  analyze_ids: Analysoi tunnistuksia
   ancestor_taxon: Ylempi taksoni
   and_other_taxa: "&amp; muut taksonit"
   android: Android
@@ -1054,6 +1072,7 @@ fi:
     no_evidence_of_flowering: Ei näyttöä kukinnasta
     nymph: Nymfi
     larva: Toukka
+    #Evidence of an egg of an organism
     egg: Muna
     juvenile: Nuori
     alive_or_dead: Elävä vai kuollut
@@ -1077,6 +1096,16 @@ fi:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Nahka
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Lehtimiina
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Karva
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Rakennelma
+    #Does the observation belong to a non-established population or not
+    established: Vakiintunut
+    #Organism is not a member of an established population
+    not_established: Ei vakiintunut
   controlled_term_definitions:
     alive: Eliö on elossa eikä ole kuolemassa
     bone: |
@@ -1089,7 +1118,12 @@ fi:
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
     gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
     molt: Hylätty nahka tai ulkoinen tukiranka
+    leafmine: Todisteet syömisestä lehden sisällä.
+    hair: Karva, joka ei ole enää kiinni eliössä, josta se on peräisin.
+    egg: Kokonainen muna tai munan osa
+    construction: Eläimen luoma, muista materiaaleista tehty tai niistä kaivettu rakennelma.
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
+    not_established: Eliö on osa vakiintumatonta populaatiota kuten karanneet lemmikit, harhailijat.
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
     track: Eliön jälki maassa tai lumessa
@@ -1556,6 +1590,7 @@ fi:
   edit_account_settings_and_profile: "Muokkaa tiliä &amp; profiilia"
   edit_assessment: Muokkaa arviointia
   edit_atlas: Muokkaa atlasta
+  edit_atlas_for_taxon_html: Muokkaa taksonin %{taxon} altasta
   edit_body: Muokkaa kappaletta
   edit_comment: Muokkaa kommenttiasi
   edit_complete_set_for_taxon_in_place_html: "Muuta tietoja kohdassa Kaikki lajit, jotka kuuluvat taksonille %{taxon} paikassa %{place}"
@@ -1649,6 +1684,9 @@ fi:
   establishment_means: Lajin alkuperä
   establishment_means_describes_how: |
     Vakiintumistapa kuvaa sitä kuinka taksoni (esim. laji) on vakiintunut alueelle. Katso DarwinCore luokittelu<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisätietoa terminologiasta</a>.
+  establishment_means_descriptions:
+    endemic: kotoperäinen eikä esiinny missään muualla
+    introduced: saapunut alueelle ihmisen toiminnan seurauksena
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     Arvioi, mitkä lähtötaksonin tunnistukset korvataan kohdetaksonin tunnistuksilla
@@ -1688,6 +1726,7 @@ fi:
   extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
   evidence_of_organism: Näyttö eliöstä
+  evidence_related_to_single_subject: Havainnon dokumentaatio koskee yhtä eliötä
   facebook: Facebook
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: "Kuvan korjaus epäonnistui: %{errors}"
@@ -1758,6 +1797,7 @@ fi:
   flag_as_non_spammer: Liputa ei-spammaajaksi
   #Label for the date/time when a flag was created
   flag_created: Huomautus (lippu) luotu
+  flag_deleted: Lippu poistettu
   flag_description: Liputa tämä sisältö jotta kuraattorit tietävät jonkin olevan vialla.
   flag_for_check_list_title_html: |
     Lippu lajiluettelolle: %{title}
@@ -2096,6 +2136,7 @@ fi:
     sivuston kuraattori. Jos luulet, että tämä on erehdys,
     <a href="mailto:%{help_email}" class="contact"ota yhteyttä meihin</a>.
     <a href="%{manage_flags_path}">Hallitse lippuja</a>
+  jobs: Työpaikat
   join: Liity
   join_and_add_an_observation_to_project_html: Liity ja lisää havainto projektiin %{project}
   join_project: Liity tähän projektiin
@@ -2178,18 +2219,24 @@ fi:
   lexicon: Sanakirja
   lexicons:
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albania
     aou_4_letter_codes: AOU 4-kirjainkoodit
     aou_6_letter_codes: AOU 6-kirjainkoodit
     arabic: Arabia
     armenian: Armenia
+    asturian: asturia
+    basque: baski
     belarusian: Valkovenäjä
     bengali: Bengali
+    bikol: bikol
     bulgarian: Bulgaria
+    carolinian: karoliini
     catalan: Katalaani
     cebuano: Cebuano
     chinese_simplified: Kiina (yksinkertaistettu)
     chinese_traditional: Kiina (perinteinen)
+    chuvash: tšuvassi
     creole_french: kreoli (Ranska)
     creole_portuguese: kreoli (Portugali)
     croatian: Kroatia
@@ -2201,6 +2248,7 @@ fi:
     esperanto: esperanto
     estonian: Viro
     faroese: Fääri
+    fijian: fidži
     finnish: Suomi
     french: Ranska
     galician: Galicia
@@ -2210,12 +2258,15 @@ fi:
     gujarati: Gujarati
     hawaiian: Havaiji
     hebrew: Heprea
+    herero: herero
     hiligaynon: Hiligaino
+    hill_mari: vuorimari
     hokkien: Hokkien
     hungarian: Unkari
     icelandic: Islanti
     ilokano: Ilokano
     indonesian: Indonesia
+    irish: iiri
     italian: Italia
     japanese: Japani
     kannada: Kannada
@@ -2223,7 +2274,9 @@ fi:
     korean: Korea
     latvian: Latvia
     lithuanian: Liettua
+    lozi: lozi
     luxembourgish: Luksemburgi
+    malagasy: malagassi
     malay: Malaiji
     malayalam: Malajalam
     maltese: Malta
@@ -2262,6 +2315,9 @@ fi:
     vietnamese: Vietnam
     visayan: Visaya
     waray_waray: Waray-waray
+    xhosa: xhosa
+    zapoteco: zapoteekki
+    zulu: zulu
   less: Vähemmän
   #Button show less text
   less__context_text: Vähemmän
@@ -2525,6 +2581,8 @@ fi:
     kyseiselle henkilölle.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Piilota
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Peru piilotus
   moderator_note_desc: |
     Valvojan muistiinpanot ovat tietoja moderaatiotoimista tai näyttöön perustuvia huolia käyttäjästä, kuten siitä, onko kyseessä mahdollisesti valehenkilötili. Älä sisällytä käyttäjää koskevia henkilökohtaisia mielipiteitä tai mielipiteitä.
   #Person who executed a moderator action or flagged something
@@ -2614,6 +2672,13 @@ fi:
   multiple_select_option: "\n-- useita --"
   multiple_taxa_for_taxon_change: "Useita taksoneja (input vaihdolle/yhdistämiselle ja output jakamiselle)"
   multiple_taxon_ids_separated_by_commas: 'Useiden taksonien IDt erotellaan pilkuilla esim 123,654'
+  #Project rule for an umbrella project. %{project} is the title of the project
+  #the observation must be in
+  must_be_in_project: täytyy olla projektissa %{project}
+  must_be_in_taxon: täytyy olla taksonissa %{taxon}
+  must_be_not_in_taxon: ei saa olla taksonissa %{taxon}
+  must_be_not_observed_by_user: ei saa olla käyttäjän %{user} havaitsema
+  must_be_not_observed_in_place: ei saa olla havaittu paikassa %{place}
   must_be_observed_after: tulee olla havaittu %{operand} jälkeen
   must_be_observed_before: tulee olla havaittu ennen %{operand}
   must_be_less_than_x_MB: "On oltava pienempi kuin %{x} MB"
@@ -2734,6 +2799,7 @@ fi:
   no_identifications_added:
     current_user: Et ole lisännyt tunnistuksia kenenkään havaintoihin.
     user: "%{user} ei ole lisännyt tunnistuksia kenenkään havaintoihin."
+  no_ids: "Tunnistusten määrä"
   no_ids_have_been_suggested_yet: Tunnistusta ei ole vielä ehdotettu
   no_its_as_good_as_it_can_be: Ei, se on niin hyvä kuin se voi olla
   no_favorites_added:
@@ -2833,6 +2899,18 @@ fi:
     Julkiset koordinaatit näytetään satunnaisena pisteenä 0,2 asteen lat/lon -solussa, joka sisältää todelliset koordinaatit.
   observation: Havainto
   observation_: havainto
+  observation_accuracy_experiment_year: "Vuosi"
+  observation_accuracy_experiment_quality_grade: "Laatutaso"
+  observation_accuracy_experiment_all_results: "Kaikki tulokset"
+  observation_accuracy_experiment_correct: "Oikea"
+  observation_accuracy_experiment_uncertain: "Epävarma"
+  observation_accuracy_experiment_read_more_html: |
+    Lisätietoja tämän kokeilun järjestämisestä on oheisessa <a href="%{url}">blogiviestissä</a>.
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-tiimi
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Älä vastaa tähän viestiin. Jos sinulla on kysyttävää tai palautetta, kommentoi <a href="%{url}">tätä blogia</a> tai lähetä sähköpostia: <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Älä vastaa tähän viestiin. Jos sinulla on kysymyksiä tai palautetta, lähetä sähköpostia osoitteeseen <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Havainto lisätty projektiin \"%{project}\""
   observation_belongs_to_project_requiring_field: |
     Havainto kuuluu projektiin, joka vaatii tätä kenttää. Havainto
@@ -4243,7 +4321,6 @@ fi:
   start_a_new_project: Aloita uusi projekti
   start_a_project: Aloita projekti
   start_date_time: Aloituspäivä / aika
-  start_one: Aloita yksi
   start_one_now: Aloita yksi nyt!
   start_typing_field_name: Aloita kirjoittamalla nimi kenttään...
   start_typing_place_name: Aloita kirjoittamalla paikan nimi...
@@ -4336,6 +4413,39 @@ fi:
   taxon_autocomplete_placeholder: Linnut, nokkosperhonen, yms.
   taxon_geoprivacy: Taksonin sijainnin tietosuoja
   taxon_is_a_rank: "%{taxon} on %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} on %{iconic_taxon}%{rank}, josta on 1 havainto"
+    other: "%{taxon} on %{iconic_taxon}%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} on sammakkoeläin%{rank}, josta on 1 havainto"
+    other: "%{taxon} on sammakkoeläin%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} on lintu%{rank}, josta on 1 havainto"
+    other: "%{taxon} on lintu%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} on nisäkäs%{rank}, josta on 1 havainto"
+    other: "%{taxon} on nisäkäs%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} on kasvi%{rank}, josta on 1 havainto"
+    other: "%{taxon} on kasvi%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} on viuhkaeväis%{rank}, josta on 1 havainto"
+    other: "%{taxon} on viuhkaeväis%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} on eläin%{rank}, josta on 1 havainto"
+    other: "%{taxon} on eläin%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} on hyönteis%{rank}, josta on 1 havainto"
+    other: "%{taxon} on hyönteis%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} on hämähäkkieläin%{rank}, josta on 1 havainto"
+    other: "%{taxon} on hämähäkkieläin%{rank}, josta on %{count} havaintoa"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} on sieni%{rank}, jolla on 1 havainto"
+    other: "%{taxon} on sieni%{rank}, jolla on %{count} havaintoa"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} on nilviäis%{rank}, josta on 1 havainto"
+    other: "%{taxon} on nilviäis%{rank}, josta on %{count} havaintoa"
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} on eliökunta, josta on yksi havainto"
     other: "%{taxon} on eliökunta, josta on %{count} havaintoa"
@@ -4422,6 +4532,7 @@ fi:
   terms: Ehdot
   terms_and_rules_html: "Ehdot &amp; säännöt"
   terms_new_users: "Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän projektiin liittymistä."
+  terms_service: Käyttöehdot
   terrain: maasto
   text: Teksti
   #Describes buttons that let you control blocks of text, e.g. blockquotes, lists, etc.
@@ -4461,7 +4572,6 @@ fi:
   there_are_x_synonyms_html:
     one: "Täällä on <span class='count'>1</span> synonyymi</span>"
     other: "Täällä on <span class='count'>%{count}</span> synonyymiä</span>"
-  there_is_no_wikipedia_page_matching: Vastaavaa Wikipedia-sivua ei löytynyt
   there_isnt_a_wikipedia_article_titled_x_html: |
     Wikipedia-artikkelia tai uudelleenohjausta '%{x}' ei ole.  Ehkä haluaisit <a href='http://fi.wikipedia.org/wiki/%{x}'>luoda sellaisen</a>?
   there_was_a_problem_creating_this_account: |
@@ -5253,6 +5363,12 @@ fi:
         become_a_monthly_supporter_of_inaturalist_caps: KUUKAUSILAHJOITTAJAKSI
         thank_you_for_being_a_monthly_supporter: Kiitos, että olet kuukausilahjoittaja!
         thank_you_for_being_a_monthly_supporter_caps: KIITOS, ETTÄ OLET KUUKAUSILAHJOITTAJA!
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikkaa tästä lähettääksesi vahvistussähköpostin uudelleen
+      please_add_an_email_and_password: Lisää sähköposti ja salasana, jotta et menetä pääsyä tiliisi
+      please_click_the_link_sent_to_email_to_confirm_html: Ole hyvä ja klikkaa osoitteeseen <span class="email">%{email}</span> lähetettyä linkkiä vahvistaaksesi sähköpostiosoitteesi
+      please_confirm_that_email_is_the_best_contact_html: Vahvista, että osoite <span class="email">%{email}</span> on paras tapa sinun tavoittamiseksi
+      your_site_account_has_no_email: '%{site_name} tiliisi ei ole liitetty sähköpostiosoitetta.'
     flags:
       show:
         flaggable_content_desc: |
@@ -5733,6 +5849,8 @@ fi:
           Jos ainut syy lähtöösi on estää projektin kuraattoreita näkemästä piilotettuja koordinaattejasi.
       edit:
         admins_must_be_existing_members: Vain projektin jäsenistä voidaan tehdä ylläpitäjiä.
+        admins_can_only_be_added_after_creation: |
+          Ylläpitäjiä voi lisätä projektin tallentamisen jälkeen.
         new_place_desc_html: |
           Yritä katsella 
           <a href="%{places_url}" target="_blank">nykyisistä paikoistamme</a> ja varmista, että paikan nimi on oikein. Jos et 
@@ -5890,6 +6008,8 @@ fi:
           Määrittele suodattimet, joilla havainnot valitaan projektiisi. Voit valita useita lajeja tai taksoneita, paikkoja, päivämääriä tai muita kriteereitä. Kriteerit täyttävät havainnot tulevat mukaan projektiin automaattisesti.
         start_and_end_times_for_bioblitzes: Alku- ja loppupäivä/aika (bioblitz-tyyppisiin tapahtumiin)
         traditional_projects_cannot_be_copied: Perinteistä projektia ei voi kopioida
+        trusting_members_will_be_notified: |
+          Olet muuttanut projektin vaatimuksia tai laittanut käyttäjäluottamuksen päälle. Tästä lähtee notifikaatio kaikille niille projektin käyttäjille, jotka ovat jo valinneet luottavansa projektin. Tällöin heillä on mahdollisuus päättää haluavatko he edelleen luottaa projektiin ja sen uusiin vaatimuksiin.
         umbrella_project_features: "Sateenvarjoprojektin ominaisuudet:"
         unique_url_for_outreach: Yksilöllinen www-osoite tiedotusta varten
         use_this_for_a_time_limited_event: |
@@ -6113,6 +6233,12 @@ fi:
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
+          "Life Stage=Adult": Aikuinen
+          "Life Stage=Egg": Muna
+          "Life Stage=Larva": Toukka
+          "Life Stage=Juvenile": Nuori
+          "Life Stage=Nymph": Nymfi
+          "Life Stage=Pupa": Kotelo
           "Sex=Female": Naaras
           "Sex=Male": Koiras
           unannotated: Ei annotaatiota
@@ -6237,6 +6363,8 @@ fi:
         same_day_geoprivacy_protection: Saman päivän sijainnin suojaus
         taxon_change_desc: |
           Kun taksoneita yhdistetään tai uudelleennimetään %{site_name}:ssa havaintosi, taksoniluettelosi, määrityksesi ym. päivitetään automaattisesti vastaamaan uutta taksonia, mikäli muutos on yksiselitteinen. Jos et hyväksy tätä tai muutos on epämääräinen (esim. taksoni jaetaan kahtia), saat viestin muutoksesta. Viestissä on linkki työkaluun, jolla voit itse halutessasi päivittää sisältösi.
+        taxon_name_priorities:
+          select_a_lexicon: Valitse sanasto
         this_only_applies_to_traditional_projects: |
           Tämä pätee ainoastaan perinteisiin projekteihin. Koonti- tai sateenvarjoprojekteista ei voi sulkea pois havaintoja - ne ovat käytännössä tallennettuja hakuehtoja. <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">Lue lisää (englanniksi)</a>.
       recent:
@@ -6559,6 +6687,7 @@ fi:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Sivuston tunniste
+        prefers_exclude_monthly_supporters: Jätä pois kuukausittaiset tukijat
       assessment:
         description: Kuvaus
       assessment_section:
@@ -6783,19 +6912,27 @@ fi:
               dna_only_atcg: "DNA voi sisältää vain merkit A, T, C tai G"
             observation_id:
               user_only_accepts_fields_from_site_curators: käyttäjä hyväksyy kentät vain sivuston kuraattoreilta
+        observations_export_flow_task:
+          attributes:
+            base:
+              must_have_query: Kysely ei voi olla tyhjä
         place:
           attributes:
             place_geometry:
               is_too_large_to_edit: on liian iso muokattavaksi
               is_too_large_to_import: on liian iso tuotavaksi
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
+              cannot_be_blank: ei voi olla tyhjä
+              invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
+              must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
+              polygon_with_less_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: ei voi olla tyhjä
               invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
               must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
-              polygon_with_fewer_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
+              polygon_with_less_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
         post:
           attributes:
             parent:
@@ -6926,9 +7063,25 @@ fi:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         check_list: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        family: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         favorite: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        flag: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter). Here "form" is the infraspecific taxonomic rank.
+        form: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        hybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         identification: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        infraorder: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         journal: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6940,6 +7093,10 @@ fi:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         observation_field: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        order: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        phylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         place: "@m"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         post: "@n"
@@ -6948,7 +7105,23 @@ fi:
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         project: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        section: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         species: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subclass: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subfamily: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        suborder: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subphylum: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subsection: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subspecies: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         taxon: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
@@ -6969,6 +7142,7 @@ fi:
         default: "@n"
   #Title of a section warning the user about something
   warning_title: Varoitus
+  wikimedia: Wikimedia
   wild: Villi
   will_paginate:
     previous_label: "&#8592; Edellinen"

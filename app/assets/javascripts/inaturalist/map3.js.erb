@@ -9,6 +9,7 @@ var loadMap3 = function(){
  * @author: kueda
  */
 
+
 // requires GoogleMap classes
 if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
   return;
@@ -41,7 +42,7 @@ google.maps.Map.prototype.createMarker = function(lat, lng, options) {
 google.maps.Map.prototype.removeMarker = function(marker) {
   // gracefully clear the listeners out of memory
   google.maps.event.clearInstanceListeners(marker);
-  
+
   // remove the marker from the map
   marker.setMap(null);
   this.removeOverlay(marker);
@@ -154,7 +155,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   // return the observation for futher use
   return observation;
 };
-  
+
 google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
   if (this.observations[observation.id]) {
@@ -356,7 +357,7 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
         observation.user.login
       )
     )
-  }else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
+  } else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
     if( typeof(observation.identifications[0].user) != 'undefined' ){
       wrapper.append(
         ', by ',
