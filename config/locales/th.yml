@@ -223,6 +223,7 @@ th:
   add_annotations_for_controlled_attribute:
     sex: เพิ่มหมายเหตุสำหรับ "เพศ"
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
+    flowers_and_fruits: เพิ่มหมายเหตุสำหรับ "การออกดอกและผล"
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
   add_another_flag: เพิ่มอีกรายงาน
@@ -279,6 +280,10 @@ th:
   add_plant_phenology_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดดอก"'
   add_plant_phenology_fruiting_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดผล"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): ไม่มีหลักฐานของการเกิดดอก"'
+  add_flowers_and_fruits_flower_buds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: แตกตาดอก"'
+  add_flowers_and_fruits_flowers_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกดอก"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกผลหรือเมล็ด"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'เพิ่มหมายเหตุ "การออกดอกและผล: ไม่ออกดอกหรือผล"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
@@ -797,6 +802,10 @@ th:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: ไม่ระบุ
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: ไม่ระบุ
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: ไม่ระบุ
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: ไม่ระบุ
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: ไม่ระบุ
@@ -806,10 +815,15 @@ th:
     male: เพศผู้
     female: เพศเมีย
     plant_phenology: ชีพลักษณ์ของพืช
+    flowers_and_fruits: การออกดอกและผล
     budding: แตกตา
     flower_budding: แตกตาดอก
     flowering: ออกดอก
     fruiting: ออกผล
+    leaves: ใบ
+    green_leaves: ใบเขียว
+    colored_leaves: ใบเปลี่ยนสี
+    no_live_leaves: ใบร่วงทั้งหมด
     life_stage: ระยะการเจริญ
     adult: ตัวเต็มวัย
     teneral: หลังลอกคราบ
@@ -853,6 +867,8 @@ th:
     flower_budding: เห็นตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
+    green_leaves: มีใบเขียวหรือใบรูปเข็มอย่างน้อยหนึ่งใบ (หรือมีสีออกแดงซึ่งเป็นสีปกติและสุขภาพดี)
+    no_live_leaves: ไม่มีการแตกใบอ่อนหรือใบเขียวหรือใบเปลี่ยนสีหรือใบรูปเข็มปรากฏให้เห็น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
     hair: เส้นขนที่หลุดจากตัวสัตว์
     construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
@@ -2263,6 +2279,7 @@ th:
     variety: พันธุ์
     form: แบบ
     infrahybrid: ลูกผสมฐาน
+    leaves: ใบ
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: สถานะของสสาร
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
@@ -3376,7 +3393,14 @@ th:
         frequency:
           research: ระดับงานวิจัย
           verifiable: ตรวจสอบได้
-          "Life Stage=Adult": ตัวเต็มวัย
+          "Flowers and Fruits=Flower Buds": แตกตาดอก
+          "Flowers and Fruits=Flowers": ออกดอก
+          "Flowers and Fruits=Fruits or Seeds": ออกผลหรือเมล็ด
+          "Flowers and Fruits=No Flowers or Fruits": ไม่ออกดอกหรือผล
+          "Leaves=Breaking Leaf Buds": แตกใบอ่อน
+          "Leaves=Green Leaves": ใบเขียว
+          "Leaves=Colored Leaves": ใบเปลี่ยนสี
+          "Leaves=No Live Leaves": ใบร่วงทั้งหมด
           "Life Stage=Egg": ไข่
           "Life Stage=Larva": ตัวอ่อน
           "Life Stage=Juvenile": วัยอ่อน
