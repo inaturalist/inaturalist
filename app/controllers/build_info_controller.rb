@@ -18,7 +18,7 @@ class BuildInfoController < ApplicationController
     @app_build_info_json = INatAPIService.get( 
       "/app_build_info", 
       { authenticate: current_user }, 
-      { endpoint: "http://api:4000/v2" }
+      { endpoint: INatAPIService::ENDPOINT.sub( "v1", "v2" ) }
     )
     render json: @app_build_info_json
   end
@@ -27,7 +27,7 @@ class BuildInfoController < ApplicationController
     @app_build_info_json = INatAPIService.get( 
       "/app_build_info", 
       { authenticate: current_user }, 
-      { endpoint: "http://api:4000/v2" }
+      { endpoint: INatAPIService::ENDPOINT.sub( "v1", "v2" ) }
     )
     respond_to do | format |
       format.html { render template: "admin/app_build_info", layout: "admin" }
