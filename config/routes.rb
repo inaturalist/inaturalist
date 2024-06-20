@@ -607,6 +607,10 @@ Rails.application.routes.draw do
     end
   end
 
+  get "build_info", to: "build_info#index"
+  get "app_build_info", to: "build_info#app_build_info"
+  get "admin/app_build_info", to: "build_info#app_build_info_html", as: "admin_app_build_info"
+
   resource :stats do
     collection do
       get :index
