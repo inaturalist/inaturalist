@@ -1940,6 +1940,9 @@ fi:
   grid_tooltip: Näytä ruudukkonäkymä
   group: Ryhmä
   grouping: Ryhmittely
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Arvioi sijainti muiden havaintojen perusteella?
   guides: Lajioppaat
   guide_compiled_by: Oppaan koonnut
   guide_deleted: Opas poistettu
@@ -6232,7 +6235,6 @@ fi:
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
-          "Life Stage=Adult": Aikuinen
           "Life Stage=Egg": Muna
           "Life Stage=Larva": Toukka
           "Life Stage=Juvenile": Nuori
