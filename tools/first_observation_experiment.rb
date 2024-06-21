@@ -184,7 +184,7 @@ end
 cohorts = cohort_data.keys.uniq
 
 current_day = Time.now.utc.end_of_day
-window_start = current_day - 8.days
+window_start = current_day - 7.days
 
 ( ( current_day - window_start ) / ( 60 * 60 * 24 ) ).to_i.times do | i |
   current_day_to_iterate = window_start + i.days
@@ -254,6 +254,7 @@ initialize_and_set( cohort_data, cohort, research, "research" )
   retention_cohort = ( current_day - d.days ).to_date.to_s
   next unless cohort_data[retention_cohort]
 
+  puts retention_cohort
   cohort_data[retention_cohort].map {| _, v | v["retention"] = nil }
   retention_user_ids = cohort_data[retention_cohort].keys.map {| key | key.to_s.to_i }
   retention_users = active_users.select {| k, _ | retention_user_ids.include? k }
