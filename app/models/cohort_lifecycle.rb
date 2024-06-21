@@ -22,6 +22,7 @@ class CohortLifecycle < ApplicationRecord
 
     process_current_day( active_users, current_day, cohort_data )
     process_retention( active_users, cohort_data, current_day )
+    process_interventions( current_day, cohort_data )
 
     save_cohort_data( cohort_data )
   end
@@ -79,6 +80,158 @@ class CohortLifecycle < ApplicationRecord
       retention_users.each_key do | id |
         user_id = id.to_s.to_sym
         cohort_data[retention_cohort][user_id]["retention"] = true
+      end
+    end
+  end
+
+  def process_interventions( current_day, cohort_data )
+    # intervention 1: no_obs
+    cohort = current_day.to_date.to_s
+    subjects = cohort_data[cohort].select {| _, v | v[:day0] == "no_obs" }
+    subjects.each do | key, value |
+      user = User.where( id: key.to_s.to_i ).first
+      next unless user
+
+      next unless user.locale =~ /en/
+
+      next if user.email.nil? || !user.suspended_at.nil?
+
+      geoip_response = INatAPIService.geoip_lookup( ip: user.last_ip )
+      next unless geoip_response&.results && geoip_response.results.city.present? && geoip_response.results.ll.present?
+
+      geoip_latitude, geoip_longitude = geoip_response.results.ll
+      group = rand( 2 ).zero? ? "A" : "B"
+      value[:observer_appeal_intervention_group] = group
+      next unless group == "A"
+
+      puts "sending...#{user.id}"
+      Emailer.observer_appeal( user, latitude: geoip_latitude, longitude: geoip_longitude ).deliver_now
+    end
+
+    ( 0..6 ).each do | d |
+      cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
+      slot = "day#{d}".to_s
+      prev_slots = ( 0...d ).map {| q | "day#{q}".to_s }
+
+      puts "#{cohort} #{slot}"
+      next unless cohort_data[cohort]
+
+      # intervention 2: error
+      subjects = cohort_data[cohort].select do | _, v |
+        v[slot] == "error" && prev_slots.all? do | prev_slot |
+          ["no_obs"].include?( v[prev_slot] )
+        end
+      end
+
+      subjects.each do | key, value |
+        user = User.where( id: key.to_s.to_i ).first
+        next unless user
+
+        next unless user.locale =~ /en/
+
+        next if user.email.nil? || !user.suspended_at.nil?
+
+        observation = Observation.where( user_id: user.id, quality_grade: "casual" ).first
+        next unless observation
+
+        error_key = {
+          "georeferenced" => "location",
+          "observed_on" => "date",
+          "recent" => "evidence"
+        }
+        errors = []
+        if !observation.georeferenced? || !observation.observed_on? ||
+            ( !observation.photos? && !observation.sounds? ) || observation.human? ||
+            !observation.quality_metrics_pass?
+
+          missing_fields = ["georeferenced", "observed_on"].reject {| field | observation.public_send( "#{field}?" ) }
+          missing_fields << "evidence" unless observation.photos? || observation.sounds?
+
+          if missing_fields.any?
+            errors.concat( missing_fields.map {| field | error_key.fetch( field, field ) } )
+          elsif ["recent", "evidence", "location", "date"].
+              any? {| field | quality_metric_observation_ids( [observation.id], field ).count == 1 }
+            errors.concat(
+              ["recent", "evidence", "location", "date"].
+              select {| field | quality_metric_observation_ids( [observation.id], field ).count == 1 }.
+              map {| field | error_key.fetch( field, field ) }
+            )
+          elsif quality_metric_observation_ids( [observation.id], "subject" ).count == 1
+            errors << "single_species"
+          end
+
+        elsif !observation.appropriate?
+          errors << "evidence"
+        end
+        errors = errors.uniq
+
+        next unless errors.count.positive?
+
+        group = rand( 2 ).zero? ? "A" : "B"
+        value[:error_intervention_group] = group
+
+        next unless group == "A"
+
+        puts "sending...#{user.id}"
+        Emailer.error_observation( user, observation, errors: errors ).deliver_now
+      end
+
+      # intervention 3: captive
+      subjects = cohort_data[cohort].select do | _, v |
+        v[slot] == "captives" && prev_slots.all? do | prev_slot |
+          ["no_obs", "error", "needs_id"].include?( v[prev_slot] )
+        end
+      end
+
+      subjects.each do | key, value |
+        user = User.where( id: key.to_s.to_i ).first
+        next unless user
+
+        next unless user.locale =~ /en/
+        next if user.email.nil? || !user.suspended_at.nil?
+
+        observation = Observation.
+          joins( :quality_metrics ).
+          where( user_id: user.id, quality_grade: "casual" ).
+          where( "latitude IS NOT NULL" ).
+          where( quality_metrics: { metric: ["wild"] } ).
+          group( "observations.id", "quality_metrics.metric" ).
+          having( "COUNT(CASE WHEN quality_metrics.agree THEN 1 ELSE NULL END) < " \
+            "COUNT(CASE WHEN quality_metrics.agree THEN NULL ELSE 1 END)" ).first
+        next unless observation
+
+        group = rand( 2 ).zero? ? "A" : "B"
+        value[:captive_intervention_group] = group
+
+        next unless group == "A"
+
+        puts "sending...#{user.id} #{observation.id}"
+        Emailer.captive_observation( user, observation ).deliver_now
+      end
+
+      # intervention 4: research
+      subjects = cohort_data[cohort].select do | _, v |
+        v[slot] == "research" && prev_slots.all? {| prev_slot | v[prev_slot] != "research" }
+      end
+
+      subjects.each do | key, value |
+        user = User.where( id: key.to_s.to_i ).first
+        next unless user
+
+        next unless user.locale =~ /en/
+
+        next if user.email.nil? || !user.suspended_at.nil?
+
+        observation = Observation.where( user_id: user.id, quality_grade: "research" ).first
+        next unless observation
+
+        group = rand( 2 ).zero? ? "A" : "B"
+        value[:first_observation_intervention_group] = group
+
+        next unless group == "A"
+
+        puts "sending...#{user.id}"
+        Emailer.first_observation( user, observation ).deliver_now
       end
     end
   end
