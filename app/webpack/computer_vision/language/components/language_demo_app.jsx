@@ -230,7 +230,7 @@ class ComputerVisionEvalApp extends Component {
                   type="text"
                   placeholder={I18n.t( "views.nls_demo.for_example_a_yellow_bug_with_black_spots" )}
                   disabled={this.props.votingEnabled}
-                  autocomplete="off"
+                  autoComplete="off"
                   onKeyDown={e => {
                     if ( e.keyCode === 13 ) {
                       this.performSearch( );

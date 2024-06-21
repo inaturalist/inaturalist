@@ -19,6 +19,8 @@ const DEFAULT_STATE = {
   iconicTaxa: { }
 };
 
+let lastSearchTime;
+
 export default function reducer( state = DEFAULT_STATE, action ) {
   let modified;
   switch ( action.type ) {
@@ -69,6 +71,9 @@ export function toggleVoting( ) {
 
 export function languageSearch( searchTerm, searchTaxon, params = { } ) {
   return async dispatch => {
+    const searchTime = new Date( ).getTime( );
+    lastSearchTime = searchTime;
+
     dispatch( setAttributes( {
       searchStatus: "searching",
       searchedTerm: searchTerm,
@@ -83,6 +88,10 @@ export function languageSearch( searchTerm, searchTaxon, params = { } ) {
       searchParams.taxon_id = searchTaxon.id;
     }
     inaturalistjs.computervision.language_search( searchParams ).then( response => {
+      if ( lastSearchTime !== searchTime ) {
+        // don't allow older searches to replace newer ones
+        return;
+      }
       // ensure each result has an observation, and the photo is associated with the observation
       response.results = _.filter( response.results, r => {
         if ( _.isEmpty( r.observation ) ) {
@@ -115,8 +124,7 @@ export function nextPage( options = { } ) {
       $( document ).scrollTop( 0 );
     }
     dispatch( languageSearch( languageDemo.searchedTerm, languageDemo.searchedTaxon, {
-      page: languageDemo.searchResponse.page + 1,
-      submissionAcknowledged: false
+      page: languageDemo.searchResponse.page + 1
     } ) );
   };
 }
@@ -131,8 +139,7 @@ export function previousPage( options = { } ) {
       $( document ).scrollTop( 0 );
     }
     dispatch( languageSearch( languageDemo.searchedTerm, languageDemo.searchedTaxon, {
-      page: languageDemo.searchResponse.page - 1,
-      submissionAcknowledged: false
+      page: languageDemo.searchResponse.page - 1
     } ) );
   };
 }
