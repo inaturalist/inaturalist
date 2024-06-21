@@ -14,11 +14,16 @@
         <span class="badge"><%= user.species_count %></span>
         <span class="glyphicon glyphicon-leaf"></span>
         <%= t(:species) %>
-      <% end %>      
+      <% end %>
       <%= link_to identifications_by_login_path(user.login), :class => 'list-group-item' do %>
         <span class="badge"><%= user.identifications_count %></span>
         <i class="icon icon-identification"></i>
         <%= t(:identifications) %>
+      <% end %>
+      <%= link_to observations_path( annotation_user_id: user.login, verifiable: "any", place_id: "any" ), class: "list-group-item" do %>
+        <span class="badge"><%= user.annotated_observations_count %></span>
+        <%= image_tag "folded-page.svg", class: "svg-icon" %>
+        <%= t(:annotations) %>
       <% end %>
       <%= link_to journal_by_login_path(user.login), :class => 'list-group-item' do %>
         <span class="badge"><%= user.journal_posts_count %></span>
