@@ -47,6 +47,16 @@ jobs:
           IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:latest
           BUILD_DATE=${{ env.BUILD_DATE }}
 
+    - name: Build/Push Main inaturalist-cleanup
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile-cleanup
+        push: true
+        tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.sha }}
+          ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:latest
+
   refresh-main-staging-deployment:
     name: Refresh Main Staging Deployment
     needs: build-and-push-main-docker-image

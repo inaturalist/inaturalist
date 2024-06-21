@@ -324,6 +324,7 @@ hu:
   add_evidence_of_presence_hair_annotation: '"Megjelenési bizonyíték: Szőr" hozzáadása'
   add_evidence_of_presence_egg_annotation: '"Megjelenési bizonyíték: Tojás vagy pete" hozzáadása'
   add_evidence_of_presence_construction_annotation: '"Megjelenési bizonyíték: Építmény" hozzáadása'
+  add_established_not_established: '"Helyben nem meghonosodott" megjelölés hozzáadása'
   #As in a Taxon Framework Relationship
   add_relationship: 'Kapcsolat hozzáadása'
   #As in a Guide Section
@@ -1027,6 +1028,10 @@ hu:
     hair: Szőr
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: Építmény
+    #Does the observation belong to a non-established population or not
+    established: Helyben meghonosodott
+    #Organism is not a member of an established population
+    not_established: Helyben nem meghonosodott
   controlled_term_definitions:
     alive: Az organizmus él és nem mutatja hamarosan bekövetkező halál jelét
     cannot_be_determined: Nem lehet meghatározni a megadott bizonyítékból
@@ -1041,6 +1046,7 @@ hu:
     hair: Szőr, amely már elvált az élőlénytől, amely azt viselte
     egg: Egész tojás vagy pete, vagy annak része
     construction: Egy állat által más anyagokból létrehozott vagy kiásott struktúra
+    not_established: Az élőlény az adott helyen még meg nem honosodott populációhoz tartozik, például szabadonengedett vagy elszökött házi kedvenc, szállítmányokkal érkező élőlények, valamint kóbor állatok.
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
   controls: Vezérlők
@@ -2942,6 +2948,7 @@ hu:
   organisms: Élőlények
   original: Eredeti
   original_flag: Eredeti bejelentés
+  originally_flagged_by: Eredetileg bejelentette
   original_page_url_for_this_photo: "E fotó eredeti oldal URL-je"
   organism_appears_captive_cultivated: Az élőlény fogságban lévő vagy kultivált
   other: Egyéb
@@ -4121,8 +4128,6 @@ hu:
   studies_that_used_inaturalist_data_in_year: Az iNaturalist adatait felhasználó %{year} évi kutatások
   stuff_just_added: "Dolgok amiket nemrég adtál hozzá"
   subject_resolved_noun_html: "%{subject} megoldotta %{noun}t"
-  subject_affecting_stuff_html: "%{subject} hatással van erre: %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} általi %{thing} érinti ezt: %{stuff}"
   submission_model_description: Ki adhat hozzá megfigyeléseket a projektedhez?
   submit_observations:
     one: Egy megfigyelés feltöltése
@@ -4312,7 +4317,6 @@ hu:
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> szinonima </span> van"
     other: "<span class='count'>%{count}</span> szinonima</span> van"
-  there_is_no_wikipedia_page_matching: Nincs megfelelő Wikipedia lap
   there_merge_problems_with_the_merge: "Hiba történt az egyesítéssel: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Gond volt az azonosítás mentésekor: %{error}"
   there_were_problems_importing_that_place: "Hiba történt a terület importálásakor: %{place_error}"

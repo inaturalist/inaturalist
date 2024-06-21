@@ -386,6 +386,8 @@ en:
   add_annotations_for_controlled_attribute:
     sex: Add Annotations for "Sex"
     plant_phenology: Add Annotations for "Plant Phenology"
+    flowers_and_fruits: Add Annotations for "Flowers and Fruits"
+    leaves: Add Annotations for "Leaves"
     life_stage: Add Annotations for "Life Stage"
     evidence_of_presence: Add Annotations for "Evidence of Presence"
   add_another_flag: Add Another Flag
@@ -442,6 +444,14 @@ en:
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Add "Plant Phenology: No Evidence of Flowering" annotation'
+  add_flowers_and_fruits_flower_buds_annotation: 'Add "Flowers and Fruits: Flower Buds" annotation'
+  add_flowers_and_fruits_flowers_annotation: 'Add "Flowers and Fruits: Flower Flowers" annotation'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Add "Flowers and Fruits: Fruits and Seeds" annotation'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Add "Flowers and Fruits: No Flowers or Fruits" annotation'
+  add_leaves_breaking_leaf_buds: 'Add "Leaves: Breaking Leaf Buds" annotation'
+  add_leaves_green_leaves: 'Add "Leaves: Green Leaves" annotation'
+  add_leaves_colored_leaves: 'Add "Leaves: Colored Leaves" annotation'
+  add_leaves_no_live_leaves: 'Add "Leaves: No Live Leaves" annotation'
   add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
   add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
   add_life_stage_subimago_annotation: 'Add "Life Stage: subimago" annotation'
@@ -1274,6 +1284,10 @@ en:
     # Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Any
     # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Any
+    # Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Any
     # Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Any
@@ -1283,16 +1297,27 @@ en:
     male: Male
     female: Female
     plant_phenology: Plant Phenology
+    flowers_and_fruits: Flowers and Fruits
     budding: Budding
     flower_budding: Flower Budding
     flowering: Flowering
     fruiting: Fruiting
+    no_flowers_or_fruits: No Flowers or Fruits
+    flower_buds: Flower Buds
+    flowers: Flowers
+    fruits_or_seeds: Fruits or Seeds
+    leaves: Leaves
+    breaking_leaf_buds: Breaking Leaf Buds
+    green_leaves: Green Leaves
+    colored_leaves: Colored Leaves
+    no_live_leaves: No Live Leaves
     life_stage: Life Stage
     adult: Adult
     teneral: Teneral
     subimago: Subimago
     pupa: Pupa
     no_evidence_of_flowering: No Evidence of Flowering
+    no_flowers_or_fruits: No Flowers or Fruits
     nymph: Nymph
     larva: Larva
     egg: Egg
@@ -1342,6 +1367,13 @@ en:
     flower_budding: Flower buds are visible but not open
     flowering: Flowers visible, open, and still attached to the plant
     fruiting: Fruit visible and still attached to the plant
+    flowers: At least one open flower
+    flower_buds: At least one closed flower bud
+    fruits_or_seeds: At least one fruit or seed
+    breaking_leaf_buds: At least one bud with its first new leaf or needle not fully unfolded
+    green_leaves: At least one green leaf or needle (or reddish if this is the normal healthy color)
+    colored_leaves: At least one leaf or needle has late season or drought color
+    no_live_leaves: No breaking leaf buds or green or colored leaves or needles are visible
     gall: Deformed plant tissue outgrowth caused by a parasitic organism
     male: Evidence indicates that organism can produce sperm for use in sexual reproduction
     molt: Discarded skin or exoskeleton
@@ -1350,6 +1382,7 @@ en:
     egg: Whole egg or part of an egg
     construction: Something created by an animal, made with or excavated from other materials
     no_evidence_of_flowering: Media provides no evidence of reproductive structures
+    no_flowers_or_fruits: No flowers, fruits, or seeds (in whole or part) are visible
     not_established: Organism belongs to an unestablished population including released/escaped pets, hitch-hikers and vagrants.
     organism: Whole or partial organism
     scat: Fecal matter (not owl pellets or other regurgitated matter)
@@ -2265,6 +2298,9 @@ en:
   grid_tooltip: Show grid view
   group: Group
   grouping: Grouping
+  # Link that lets the user guess the location of an observation that does not
+  # have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Guess location from other observations?
   guides: Guides
   guide_compiled_by: Guide compiled by
   guide_deleted: Guide deleted
@@ -5992,7 +6028,9 @@ en:
   user_added_an_x_to_noun_by_you_html: "%{user} added an %{x} to %{noun} by you"
   # @gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
-  user_added_x_observations_html: "%{user} added %{x} observations"
+  user_added_x_observations2_html:
+    one: "%{user} added %{count} observation"
+    other: "%{user} added %{count} observations"
   user_already_authenticated: User is already authenticated
   user_already_app_owner: User is already an app owner
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -6009,7 +6047,7 @@ en:
   # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
   # Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} committed a taxon drop affecting %{taxon}"
+  user_committed_taxon_stage_affecting_taxon: "%{user} committed a taxon drop affecting %{taxon}"
   # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
@@ -8547,6 +8585,7 @@ en:
           These people manage the part of the taxonomic tree that includes
           this taxon. If you want to make changes, please flag this taxon or
           contact one of these people.
+        charts_caps: CHARTS
         charts_help_seasonality: |
           This chart shows the number of observations of this taxon grouped by
           month. Keep in mind that these are numbers of observations, so they
@@ -8606,7 +8645,14 @@ en:
           "Plant Phenology=Flowering": Flowering
           "Plant Phenology=Fruiting": Fruiting
           "Plant Phenology=No Evidence of Flowering": No Evidence of Flowering
-          "Life Stage=Adult": Adult
+          "Flowers and Fruits=Flower Buds": Flower Buds
+          "Flowers and Fruits=Flowers": Flowers
+          "Flowers and Fruits=Fruits or Seeds": Fruits or Seeds
+          "Flowers and Fruits=No Flowers or Fruits": No Flowers or Fruits
+          "Leaves=Breaking Leaf Buds": Breaking Leaf Buds
+          "Leaves=Green Leaves": Green Leaves
+          "Leaves=Colored Leaves": Colored Leaves
+          "Leaves=No Live Leaves": No Live Leaves
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Juvenile

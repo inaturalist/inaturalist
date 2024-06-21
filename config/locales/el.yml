@@ -3801,7 +3801,6 @@ el:
   start_a_new_project: Ξεκινήστε ένα νέο Πρότζεκτ
   start_a_project: Ξεκινήστε ένα Πρότζεκτ
   start_date_time: Ημερομηνία αρχής / ώρα
-  start_one: εκκίνηση ενός
   start_one_now: εκκίνηση ενός τώρα!
   start_typing_field_name: Ξεκινήστε την πληκτρολόγηση μιας ονομασίας πεδίου...
   start_typing_place_name: Ξεκινήστε την πληκτρολόγηση της ονομασίας ενός τόπου...
@@ -3827,8 +3826,6 @@ el:
   studies_that_used_inaturalist_data_in_year: Μελέτες που χρησιμοποίησαν δεδομένα από iNaturalist κατά τη διάρκεια του %{year}
   stuff_just_added: "Υλικό που έχετε προσθέσει..."
   subject_resolved_noun_html: "%{subject} επιδιόρθωσε %{noun}"
-  subject_affecting_stuff_html: "%{subject} επηρεάζει %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} δεσμεύθηκε %{thing} επηρεάζοντας %{stuff}"
   submission_model: Μοντέλο Υποβολής
   submission_model_description: Ποιος μπορεί να προσθέσει παρατηρήσεις στο πρότζεκτ σας;
   submit_observations:
@@ -4053,7 +4050,6 @@ el:
   there_are_x_synonyms_html:
     one: "Υπάρχει<span class='count'>1</span>συνώνυμο</span>"
     other: "Υπάρχουν<span class='count'>%{count}</span>συνώνυμα</span>"
-  there_is_no_wikipedia_page_matching: Δεν υπάρχει διαθέσιμη σελίδα στη Βικιπαίδεια
   there_isnt_a_wikipedia_article_titled_x_html: |
     Δεν υπάρχει κάποιο άρθρο στην Wikipedia ή ανακατεύθυνση με τίτλο %{x}. Μήπως θα θέλατε να <a href='http://en.wikipedia.org/wiki/%{x}'> κάνετε ένα</a>?
   there_merge_problems_with_the_merge: "Προέκυψαν προβλήματα με τη συγχώνευση: %{merged_errors}"

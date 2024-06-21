@@ -47,6 +47,14 @@ jobs:
           IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:${{ github.ref_name }}
           BUILD_DATE=${{ env.BUILD_DATE }}
 
+    - name: Build/Push Dev inaturalist-cleanup
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile-cleanup
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.ref_name }}
+
   refresh-dev-staging-deployment:
     name: Refresh Dev Staging Deployment
     needs: build-and-push-dev-docker-image

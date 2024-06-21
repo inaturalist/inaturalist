@@ -11,7 +11,7 @@ var loadMap3 = function(){
 
 
 // requires GoogleMap classes
-if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
+if (typeof(google) == "undefined" || typeof(google.maps) == "undefined") {
   return;
 }
 
@@ -357,7 +357,7 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
         observation.user.login
       )
     )
-  }else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
+  } else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
     if( typeof(observation.identifications[0].user) != 'undefined' ){
       wrapper.append(
         ', by ',

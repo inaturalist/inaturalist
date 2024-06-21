@@ -157,7 +157,7 @@ def quality_metric_observation_ids( observation_ids, metrics )
     distinct.pluck( :observation_id )
 end
 
-headers = ["cohort", "user_id", "day0", "day1", "day2", "day3", "day4", "day5", "day6", "day7", "day8",
+headers = ["cohort", "user_id", "day0", "day1", "day2", "day3", "day4", "day5", "day6", "day7",
            "retention", "observer_appeal_intervention_group", "first_observation_intervention_group",
            "error_intervention_group", "captive_intervention_group"]
 
@@ -250,7 +250,7 @@ initialize_and_set( cohort_data, cohort, needs_id, "needs_id" )
 initialize_and_set( cohort_data, cohort, research, "research" )
 
 # get retention for the last 8 cohorts
-( 0..8 ).reverse_each do | d |
+( 0..7 ).reverse_each do | d |
   retention_cohort = ( current_day - d.days ).to_date.to_s
   next unless cohort_data[retention_cohort]
 
@@ -287,7 +287,7 @@ subjects.each do | key, value |
   Emailer.observer_appeal( user, latitude: geoip_latitude, longitude: geoip_longitude ).deliver_now
 end
 
-( 0..7 ).each do | d |
+( 0..6 ).each do | d |
   cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
   slot = "day#{d}"
   prev_slots = ( 0...d ).map {| q | "day#{q}" }
