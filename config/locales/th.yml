@@ -802,9 +802,9 @@ th:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: ไม่ระบุ
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_flowers_and_fruits: ไม่ระบุ
+    any_flowers_and_fruits: ระบุไม่ได้
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_leaves: ไม่ระบุ
+    any_leaves: ระบุไม่ได้
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: ไม่ระบุ
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -820,6 +820,8 @@ th:
     flower_budding: แตกตาดอก
     flowering: ออกดอก
     fruiting: ออกผล
+    no_flowers_or_fruits: ไม่ออกดอกหรือผล
+    flowers: ออกดอก
     leaves: ใบ
     green_leaves: ใบเขียว
     colored_leaves: ใบเปลี่ยนสี
@@ -867,12 +869,14 @@ th:
     flower_budding: เห็นตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
+    flowers: บานอย่างน้อยหนึ่งดอก
     green_leaves: มีใบเขียวหรือใบรูปเข็มอย่างน้อยหนึ่งใบ (หรือมีสีออกแดงซึ่งเป็นสีปกติและสุขภาพดี)
     no_live_leaves: ไม่มีการแตกใบอ่อนหรือใบเขียวหรือใบเปลี่ยนสีหรือใบรูปเข็มปรากฏให้เห็น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
     hair: เส้นขนที่หลุดจากตัวสัตว์
     construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
     no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
+    no_flowers_or_fruits: ไม่พบดอก ผล หรือเมล็ด (ทั้งหมดหรือบางส่วน)
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
@@ -3384,6 +3388,7 @@ th:
           สถานะการอนุรักษ์แสดงถึงระดับความเสี่ยงต่อการสูญพันธุ์ของสิ่งมีชีวิตแต่ละกลุ่ม
         about_establishment_desc: |
           "การเข้ามาตั้งถิ่นฐาน" หมายถึงวิธีการที่สิ่งมีชีวิตเข้ามาอาศัยในพื้นที่ปัจจุบัน ชนิดพันธุ์ต่างถิ่นคือชนิดที่ถูกนำเข้ามาโดยมนุษย์ ชนิดพันธุ์พื้นเมืองคือชนิดที่เข้ามาเองตามธรรมชาติ ชนิดพันธุ์เฉพาะถิ่นคือชนิดที่พบประจำถิ่นเดียวและไม่พบที่อื่น
+        charts_caps: แผนภูมิ
         charts_help_seasonality: |
           แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนของหน่วยอนุกรมวิธาน อย่าลืมว่าจำนวนการสังเกตขึ้นอยู่กับเวลาที่พบสิ่งมีชีวิตและความสนใจที่จะสังเกตของผู้คนด้วย เช่น การพบนกบ่อยมากในเดือนพฤษภาคมอาจเป็นเพราะผู้คนเลือกสำรวจในเดือน พ.ค. มากกว่าเดือนอื่น ๆ หรือแมลงปอที่พบในเดือนมิถุนายนบ่อยกว่าเดือนมกราคมอาจเป็นเพราะมีผู้สังเกตจากซีกโลกเหนือมากกว่าซีกโลกใต้ ซึ่งไม่ได้แปลว่าในเดือน มิ.ย. จะมีจำนวนแมลงปอมากกว่าเดือนอื่น ๆ จึงต้องตรวจสอบแผนที่ประกอบการพิจารณาแผนภูมิเหล่านี้ด้วย และไม่ควรเชื่อแผนภูมิที่มีจำนวนการสังเกตน้อย และ/หรือมีจำนวนการสังเกตที่ "ตรวจสอบได้" กับจำนวนการสังเกต "ระดับงานวิจัย" แตกต่างกันมากเกินไป
         charts_help_history: |
