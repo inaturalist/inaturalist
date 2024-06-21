@@ -54,6 +54,30 @@
   text-rendering: optimizeLegibility;
 }
 
+@font-face {
+  font-family: Lato;
+  src: url("fonts/Lato/Lato-Bold.eot"); /* IE9 Compat Modes */
+  src: url("fonts/Lato/Lato-Bold.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("fonts/Lato/Lato-Bold.woff2") format("woff2"), /* Modern Browsers */
+       url("fonts/Lato/Lato-Bold.woff") format("woff"), /* Modern Browsers */
+       url("fonts/Lato/Lato-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+
+@font-face {
+  font-family: Lato;
+  src: url("fonts/Lato/Lato-BoldItalic.eot"); /* IE9 Compat Modes */
+  src: url("fonts/Lato/Lato-BoldItalic.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("fonts/Lato/Lato-BoldItalic.woff2") format("woff2"), /* Modern Browsers */
+       url("fonts/Lato/Lato-BoldItalic.woff") format("woff"), /* Modern Browsers */
+       url("fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+
 body {
   font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   background: #eee;
@@ -88,6 +112,9 @@ a:hover, a:focus {
     border-left: 1px solid #ddd;
     padding-left: 15px;
     font-weight: 500;
+    a {
+      color: inherit;
+    }
   }
 }
 
@@ -120,6 +147,7 @@ a:hover, a:focus {
   }
   label {
     font-size: 18px;
+    font-weight: 500;
   }
   .search-input {
     position: relative;
@@ -129,7 +157,7 @@ a:hover, a:focus {
       top: 10px;
       padding-left: 5px;
       color: #ddd;
-      background: #fff;
+      background: inherit;
       z-index: 3;
     }
   }
@@ -141,7 +169,7 @@ a:hover, a:focus {
     flex-direction: column;
     justify-content: space-between;
     height: 85px;
-    padding: 1px 12px;
+    padding: 1px 15px;
     margin-bottom: 15px;
   }
 
@@ -187,11 +215,15 @@ a:hover, a:focus {
   }
 }
 
-.improve-panel {
+.improve-panel, .example-searches-panel {
   background: white;
   padding: 15px 20px;
   margin-bottom: 15px;
   font-size: 16px;
+  border-radius: 4px;
+}
+
+.improve-panel {
   i.fa {
     margin: 0px 5px;
   }
@@ -201,6 +233,23 @@ a:hover, a:focus {
     button {
       padding: 6px 35px;
     }
+  }
+}
+
+.example-searches-panel {
+  margin-top: 30px;
+  font-size: 17px;
+  button {
+    border: none;
+    background: none;
+    &:hover {
+      font-weight: 700;
+    }
+  }
+  ul {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 5px;
   }
 }
 
@@ -344,14 +393,12 @@ a:hover, a:focus {
   }
 }
 
-.about {
+.about, .support {
   margin: 0px auto;
   margin-top: 40px;
   padding: 0px;
-  text-align: left;
   font-size: 16px;
   border-top: 1px solid #ccc;
-  padding: 20px 40px 50px 40px;
   p {
     margin-bottom: 20px;
   }
@@ -360,7 +407,7 @@ a:hover, a:focus {
     margin: 0px auto;
     margin-top: 30px;
     .logo {
-      width: 25%;
+      width: 20%;
       display: inline-block;
       text-align: center;
       img {
@@ -368,6 +415,20 @@ a:hover, a:focus {
         height: 40px;
       }
     }
+  }
+}
+
+.about {
+  padding: 20px 40px 0px 40px;
+}
+
+.support {
+  padding: 40px 40px 60px 40px;
+  text-align: center;
+  font-size: 1.3em;
+  button {
+    border-radius: 30px;
+    padding: 10px 40px 12px 40px;
   }
 }
 
@@ -446,17 +507,17 @@ a:hover, a:focus {
     width: 66.66666667%;
     float: left;
   }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
+  .about .logos .logo img {
+    height: 30px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
+  }
+  .about .logos .logo img {
+    height: 40px;
   }
 }
 
@@ -473,6 +534,9 @@ a:hover, a:focus {
         height: 40px;
       }
     }
+  }
+  .support {
+    margin-top: 20px
   }
 }
 
@@ -497,10 +561,16 @@ a:hover, a:focus {
     .logo {
       width: 50%;
       margin-bottom: 40px;
+      &:last-child {
+        margin-bottom: 20px;
+      }
     }
   }
   button.identify {
     width: 100%;
+  }
+  .support {
+    margin-top: 0px
   }
 }
 
@@ -525,7 +595,8 @@ a:hover, a:focus {
     padding: 10px 10px 0px 10px;
     .logo {
       width: 100%;
-      &:last {
+      margin-bottom: 35px;
+      &:last-child {
         margin-bottom: 20px;
       }
     }

@@ -1,22 +1,30 @@
 import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ReactDOMServer from "react-dom/server";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import ObservationContainer from "../containers/observation_container";
 import ConfirmModalContainer from "../../../observations/show/containers/confirm_modal_container";
 
-/* global inaturalist, SITE_ICONS, BLOG_URL */
+/* global inaturalist, SITE_ICONS */
+/* eslint react/no-danger: 0 */
 
 class ComputerVisionEvalApp extends Component {
   constructor( props, context ) {
     super( props, context );
     this.state = {
-      searchTerm: null,
+      searchTerm: this.props.initialQuery,
       searchTaxon: null,
-      searchTaxonID: null,
+      searchTaxonID: this.props.initialTaxonID,
       queryModifiedSinceSearch: false,
       taxonModifiedSinceSearch: false
     };
+  }
+
+  componentDidMount( ) {
+    if ( this.props.initialQuery ) {
+      $( "#search_term" ).val( this.props.initialQuery );
+    }
   }
 
   setSearchTerm( searchTerm ) {
@@ -27,6 +35,14 @@ class ComputerVisionEvalApp extends Component {
   }
 
   setSearchTaxon( searchTaxon, searchTaxonID = null ) {
+    if ( !searchTaxon
+      && searchTaxonID
+      && !_.isEmpty( this.props.iconicTaxa )
+      && _.has( this.props.iconicTaxa, searchTaxonID )
+    ) {
+      searchTaxon = this.props.iconicTaxa[searchTaxonID];
+      searchTaxonID = null;
+    }
     this.setState( {
       searchTaxon,
       searchTaxonID,
@@ -35,11 +51,39 @@ class ComputerVisionEvalApp extends Component {
   }
 
   performSearch( ) {
-    this.props.languageSearch( this.state.searchTerm, this.state.searchTaxon );
+    let { searchTaxon } = this.state;
+    // when performing example searches, the taxon lookup can take a moment, but
+    // we want to search as soon as possible. In that case, send the state searchTaxonID
+    // which can be used for searching while the taxon lookup happens asynchronously
+    if ( _.isEmpty( searchTaxon ) && this.state.searchTaxonID ) {
+      searchTaxon = { id: this.state.searchTaxonID };
+    }
+    this.props.languageSearch( this.state.searchTerm, searchTaxon );
     this.setState( {
       queryModifiedSinceSearch: false,
       taxonModifiedSinceSearch: false
     } );
+  }
+
+  performExampleSearch( searchTerm, taxonID ) {
+    $( "#search_term" ).val( searchTerm );
+    this.setSearchTerm( searchTerm );
+    this.setSearchTaxon( null, taxonID );
+    setTimeout( ( ) => {
+      this.performSearch( );
+    } );
+  }
+
+  reset( ) {
+    $( "#search_term" ).val( "" );
+    this.setState( {
+      searchTerm: null,
+      searchTaxon: null,
+      searchTaxonID: null,
+      queryModifiedSinceSearch: true,
+      taxonModifiedSinceSearch: true
+    } );
+    this.props.resetState( );
   }
 
   // eslint-disable-next-line class-methods-use-this
@@ -54,7 +98,15 @@ class ComputerVisionEvalApp extends Component {
               </a>
             </div>
             <div className="title">
-              Vision Language Demo
+              <a
+                href="/language_demo"
+                onClick={e => {
+                  e.preventDefault( );
+                  this.reset( );
+                }}
+              >
+                { I18n.t( "views.nls_demo.vision_language_demo" ) }
+              </a>
             </div>
           </div>
         </div>
@@ -69,6 +121,7 @@ class ComputerVisionEvalApp extends Component {
         bootstrapClear
         searchExternal={false}
         resetOnChange={false}
+        placeholder={I18n.t( "filter_by_species" )}
         initialSelection={this.state.searchTaxon}
         initialTaxonID={this.state.searchTaxonID}
         disabled={this.props.votingEnabled}
@@ -100,12 +153,6 @@ class ComputerVisionEvalApp extends Component {
                     this.setSearchTaxon( null );
                     return;
                   }
-                  if ( !_.isEmpty( this.props.iconicTaxa )
-                    && _.has( this.props.iconicTaxa, t.id )
-                  ) {
-                    this.setSearchTaxon( this.props.iconicTaxa[t.id] );
-                    return;
-                  }
                   this.setSearchTaxon( null, t.id );
                 }}
               >
@@ -121,11 +168,11 @@ class ComputerVisionEvalApp extends Component {
   }
 
   formActionButtons( ) {
-    let improveButtonText = "Help Us Improve";
+    let improveButtonText = I18n.t( "views.nls_demo.help_us_improve" );
     if ( this.props.votingEnabled ) {
-      improveButtonText = "Cancel";
+      improveButtonText = I18n.t( "cancel" );
     } else if ( this.props.submissionAcknowledged ) {
-      improveButtonText = "Thank you!";
+      improveButtonText = I18n.t( "thank_you!" );
     }
     const searchChanged = (
       this.state.searchTerm !== this.props.searchedTerm
@@ -137,7 +184,7 @@ class ComputerVisionEvalApp extends Component {
       <div className="col-md-2 action-buttons">
         <button
           type="button"
-          className="btn btn btn-primary search"
+          className="btn btn-primary search"
           disabled={
             _.isEmpty( this.state.searchTerm )
             || this.props.votingEnabled
@@ -173,7 +220,7 @@ class ComputerVisionEvalApp extends Component {
           <div className="col-md-8">
             <div className="form-group">
               <label htmlFor="search_term">
-                What do you want to search for?
+                { I18n.t( "views.nls_demo.what_do_you_want_to_search_for" ) }
               </label>
               <div className="search-input">
                 <input
@@ -181,8 +228,9 @@ class ComputerVisionEvalApp extends Component {
                   name="search_term"
                   id="search_term"
                   type="text"
-                  placeholder="e.g. a yellow bug with black spots"
+                  placeholder={I18n.t( "views.nls_demo.for_example_a_yellow_bug_with_black_spots" )}
                   disabled={this.props.votingEnabled}
+                  autocomplete="off"
                   onKeyDown={e => {
                     if ( e.keyCode === 13 ) {
                       this.performSearch( );
@@ -231,14 +279,19 @@ class ComputerVisionEvalApp extends Component {
           <div className="col-md-2" />
           <div className="col-md-8">
             <div className="improve-panel">
-              To help us improve this model we would like to know which of the images on this page
-              are relevant to your search &quot;
-              {this.props.searchedTerm}
-              &quot;. Please mark each image as relevant
-              <i className="fa fa-thumbs-o-up" />
-              if it matches your search and not relevant
-              <i className="fa fa-thumbs-o-down" />
-              if it doesn&apos;t. When you are finished, please click submit.
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.nls_demo.to_help_us_improve", {
+                    searched_term: this.props.searchedTerm,
+                    thumbs_up_icon: ReactDOMServer.renderToString(
+                      <i className="fa fa-thumbs-o-up" />
+                    ),
+                    thumbs_down_icon: ReactDOMServer.renderToString(
+                      <i className="fa fa-thumbs-o-down" />
+                    )
+                  } )
+                }}
+              />
               <div className="improve-submit">
                 <button
                   className="btn btn-success"
@@ -248,7 +301,7 @@ class ComputerVisionEvalApp extends Component {
                     this.props.submitVotes( { scrollTop: true } );
                   }}
                 >
-                  Submit
+                  { I18n.t( "submit" ) }
                 </button>
               </div>
             </div>
@@ -303,7 +356,7 @@ class ComputerVisionEvalApp extends Component {
               type="button"
               onClick={( ) => this.props.voteRemainingUp( )}
             >
-              Vote remaining up
+              { I18n.t( "views.nls_demo.mark_remaining_as_relevant" ) }
               <i className="fa fa-thumbs-o-up" />
             </button>
             <button
@@ -311,7 +364,7 @@ class ComputerVisionEvalApp extends Component {
               type="button"
               onClick={( ) => this.props.voteRemainingDown( )}
             >
-              Vote remaining down
+              { I18n.t( "views.nls_demo.mark_remaining_as_not_relevant" ) }
               <i className="fa fa-thumbs-o-down" />
             </button>
             { options.showSubmit && (
@@ -324,7 +377,7 @@ class ComputerVisionEvalApp extends Component {
                   this.props.submitVotes( { scrollTop: true } );
                 }}
               >
-                Submit
+                { I18n.t( "submit" ) }
               </button>
             ) }
           </div>
@@ -350,6 +403,7 @@ class ComputerVisionEvalApp extends Component {
                 || this.props.votingEnabled
               }
               onClick={( ) => this.props.previousPage( { scrollTop: options.scrollTop } )}
+              title={I18n.t( "previous_page" )}
             >
               <i className="fa fa-long-arrow-left" />
             </button>
@@ -362,6 +416,7 @@ class ComputerVisionEvalApp extends Component {
                 || this.props.votingEnabled
               }
               onClick={( ) => this.props.nextPage( { scrollTop: options.scrollTop } )}
+              title={I18n.t( "next_page" )}
             >
               <i className="fa fa-long-arrow-right" />
             </button>
@@ -375,7 +430,7 @@ class ComputerVisionEvalApp extends Component {
                 type="button"
                 onClick={( ) => this.props.viewInIdentify( )}
               >
-                View these observations in Identify
+                { I18n.t( "views.nls_demo.view_these_observations_in_identify" ) }
               </button>
             </div>
           </div>
@@ -384,62 +439,80 @@ class ComputerVisionEvalApp extends Component {
     );
   }
 
+  exampleSearches( ) {
+    if ( !_.isEmpty( this.props.searchedTerm ) ) {
+      return null;
+    }
+    const exampleSearches = [{
+      searchTerm: "A bird eating fruit",
+      searchTaxonID: 3
+    }, {
+      searchTerm: "A houseplant in a pot",
+      searchTaxonID: 47126
+    }, {
+      searchTerm: "Mating dragonflies",
+      searchTaxonID: 47792
+    }, {
+      searchTerm: "Un poisson sur la plage",
+      searchTaxonID: 47178
+    }, {
+      searchTerm: "Drinking at a waterhole"
+    }];
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-md-2" />
+          <div className="col-md-8">
+            <div className="example-searches-panel">
+              { I18n.t( "views.nls_demo.try_one_of_these_example_searches_colon" ) }
+              <ul>
+                { _.map( exampleSearches, ( exampleSearch, index ) => (
+                  <li key={`example-search-${index}`}>
+                    <button
+                      type="button"
+                      onClick={() => this.performExampleSearch(
+                        exampleSearch.searchTerm,
+                        exampleSearch.searchTaxonID
+                      )}
+                    >
+                      { exampleSearch.searchTerm }
+                    </button>
+                  </li>
+                ) ) }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // eslint-disable-next-line class-methods-use-this
   about( ) {
     const microsoftURL = "https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/";
-    const umassURL = "https://www.umass.edu/";
-    const edinburghURL = "https://www.ed.ac.uk/";
-    const mitURL = "https://www.mit.edu/";
-    /* eslint-disable react/jsx-one-expression-per-line */
+    const umassURL = "https://www.cics.umass.edu/people/van-horn-grant";
+    const edinburghURL = "https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html";
+    const mitURL = "https://www.eecs.mit.edu/people/sara-beery/";
+    const uclURL = "https://www.ucl.ac.uk/";
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-2" />
           <div className="col-md-8">
             <div className="about">
-              <p>
-                <a href="https://www.inaturalist.org">
-                  iNaturalist
-                </a>{" "}
-                has teamed up with researchers at{" "}
-                <a href={microsoftURL} target="_blank" rel="noopener noreferrer">
-                  Microsoft AI for Good Lab
-                </a>,{" "}
-                <a href={umassURL} target="_blank" rel="noopener noreferrer">
-                  University of Massachusetts
-                </a>,{" "}
-                <a href={edinburghURL} target="_blank" rel="noopener noreferrer">
-                  University of Edinburgh
-                </a>, and{" "}
-                <a href={mitURL} target="_blank" rel="noopener noreferrer">
-                  MIT
-                </a>{" "}
-                to begin exploring how Vision Language
-                models can help search iNaturalist observations. This demo compares your
-                text with a sample of 10 million iNaturalist photos and orders the results
-                from most to least relevant.
-              </p>
-              <p>
-                You can use this demo as a new way to find interesting iNaturalist observations
-                and annotate or add them to your project.
-              </p>
-              <p>
-                You can also use this demo to help us improve the Vision Language model behind
-                this demo by telling us which of the returned images was relevant to your
-                search text.
-              </p>
-              <p>
-                This demo is using a third-party Vision Language CLIP model that was not trained
-                on iNaturalist data or by the iNaturalist team. It may produce inaccurate, biased,
-                or offensive results.{" "}
-                <a href={BLOG_URL}>
-                  Read more on the iNaturalist Blog.
-                </a>
-              </p>
+              <p
+                dangerouslySetInnerHTML={{ __html: I18n.t( "views.nls_demo.inaturalist_has_teamed" ) }}
+              />
+              <p
+                dangerouslySetInnerHTML={{ __html: I18n.t( "views.nls_demo.this_demo_tool" ) }}
+              />
+              <p
+                dangerouslySetInnerHTML={{ __html: I18n.t( "views.nls_demo.you_can_also_use_this_demo" ) }}
+              />
               <div className="logos">
                 <div className="logo">
-                  <a href={microsoftURL} target="_blank" rel="noopener noreferrer">
-                    <img src={SITE_ICONS.microsoft} alt="Microsoft AI for Good Lab" />
+                  <a href={umassURL} target="_blank" rel="noopener noreferrer">
+                    <img src={SITE_ICONS.umass} alt="UMass Amherst" />
                   </a>
                 </div>
                 <div className="logo">
@@ -448,22 +521,48 @@ class ComputerVisionEvalApp extends Component {
                   </a>
                 </div>
                 <div className="logo">
-                  <a href={umassURL} target="_blank" rel="noopener noreferrer">
-                    <img src={SITE_ICONS.umass} alt="UMass Amherst" />
+                  <a href={uclURL} target="_blank" rel="noopener noreferrer">
+                    <img src={SITE_ICONS.ucl} alt="University College London" />
                   </a>
                 </div>
                 <div className="logo">
                   <a href={mitURL} target="_blank" rel="noopener noreferrer">
-                    <img src={SITE_ICONS.mit} alt="MIT" />
+                    <img src={SITE_ICONS.mit} alt="Massachusetts Institute of Technology" />
+                  </a>
+                </div>
+                <div className="logo">
+                  <a href={microsoftURL} target="_blank" rel="noopener noreferrer">
+                    <img src={SITE_ICONS.microsoft} alt="Microsoft AI for Good Lab" />
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div className="row">
+          <div className="col-md-2" />
+          <div className="col-md-8">
+            <div className="support">
+              <p>
+                { I18n.t( "views.nls_demo.if_youd_like_to_support_this_work" ) }
+              </p>
+              <a
+                href="https://www.inaturalist.org/donate?utm_campaign=nls-demo&utm_medium=web&utm_source=inaturalist.org&utm_content=button&utm_term=donate-to-inaturalist"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button
+                  type="button"
+                  className="btn btn-success btn-lg"
+                >
+                  { I18n.t( "donate_to_inaturalist" ) }
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     );
-    /* eslint-enable react/jsx-one-expression-per-line */
   }
 
   render( ) {
@@ -477,6 +576,7 @@ class ComputerVisionEvalApp extends Component {
         { this.observationsGrid( ) }
         { this.votingActionButtons( { showSubmit: true } ) }
         { this.pagination( { showIdentify: true, scrollTop: true } ) }
+        { this.exampleSearches( ) }
         { this.about( ) }
         <ConfirmModalContainer
           hideCancel
@@ -507,6 +607,9 @@ ComputerVisionEvalApp.propTypes = {
   viewInIdentify: PropTypes.func,
   submissionAcknowledged: PropTypes.bool,
   acknowledgeSubmission: PropTypes.func,
+  resetState: PropTypes.func,
+  initialQuery: PropTypes.string,
+  initialTaxonID: PropTypes.number,
   config: PropTypes.object
 };
 

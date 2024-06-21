@@ -9,7 +9,8 @@ import {
   voteRemainingUp,
   voteRemainingDown,
   viewInIdentify,
-  acknowledgeSubmission
+  acknowledgeSubmission,
+  resetState
 } from "../reducers/language_demo_reducer";
 
 const mapStateToProps = state => ( {
@@ -44,6 +45,9 @@ const mapDispatchToProps = dispatch => ( {
   },
   acknowledgeSubmission: ( ) => {
     dispatch( acknowledgeSubmission( ) );
+  },
+  resetState: ( ) => {
+    dispatch( resetState( ) );
   }
 } );
 

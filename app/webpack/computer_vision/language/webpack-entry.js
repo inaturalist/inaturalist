@@ -41,9 +41,22 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
 
 store.dispatch( fetchIconicTaxa( ) );
 
+const urlParams = new URLSearchParams( window.location.search );
+const initialQuery = urlParams.get( "q" );
+const initialTaxonID = Number( urlParams.get( "taxon_id" ) );
+if ( !_.isEmpty( initialQuery ) ) {
+  const initialTaxon = initialTaxonID ? { id: initialTaxonID } : null;
+  store.dispatch( languageSearch( initialQuery, initialTaxon ) );
+}
+
+history.replaceState( { }, null, window.location.pathname );
+
 render(
   <Provider store={store}>
-    <LanguageDemoContainer />
+    <LanguageDemoContainer
+      initialQuery={initialQuery}
+      initialTaxonID={initialTaxonID}
+    />
   </Provider>,
   document.getElementById( "app" )
 );

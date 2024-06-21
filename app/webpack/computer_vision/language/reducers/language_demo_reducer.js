@@ -98,6 +98,9 @@ export function languageSearch( searchTerm, searchTaxon, params = { } ) {
         searchResponse: response,
         votes: { }
       } ) );
+    } ).catch( e => {
+      console.log( e );
+      dispatch( resetState( ) );
     } );
   };
 }
@@ -201,7 +204,7 @@ export function submitVotes( options = { } ) {
     } );
     dispatch( setConfirmModalState( {
       show: true,
-      message: "Thank you for your submission!"
+      message: I18n.t( "views.nls_demo.thank_you_for_your_submission!" )
     } ) );
   };
 }
