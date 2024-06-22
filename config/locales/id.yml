@@ -1794,6 +1794,7 @@ id:
   filter: Saringan
   filter_by_curator_identification: Saring menurut Identifikasi Kurator
   filter_by_place: Saring menurut Lokasi
+  filter_by_species: Saring menurut spesies
   filter_by_taxon: Saring menurut Takson
   filter_by_place_taxon_and_color: Saring menurut tempat, takson, dan warna menggunakan kontrol.
   filter_list_by_this_taxon: Saring daftar menurut takson ini
@@ -4746,6 +4747,7 @@ id:
   subject_resolved_noun_html: "%{subject} menyelesaikan %{noun}"
   submission_model: Model Pengiriman
   submission_model_description: Siapa yang dapat menambahkan pengamatan ke proyek Anda?
+  submit: Kirim
   submit_observations:
     other: Kirimkan %{count} pengamatan
   submitted: Dikirimkan
@@ -4957,6 +4959,7 @@ id:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Kontrol format teks
   text_editing_controls: Kontrol penyuntingan teks
+  thank_you!: Terima kasih!
   thanks!: Terima kasih!
   thanks_from_all_of_us_here_at: Terima kasih dari kami semua di
   that_account_is_already_connected: Akun tersebut sudah terhubung dengan pengguna lain
@@ -6344,6 +6347,17 @@ id:
           Anda menandai percakapan ini pada %{date}. Tanda ini akan tetap ada meskipun Anda menghapus salinan dari percakapan ini, jadi hal ini aman untuk dilakukan jika Anda tidak mau melihat ini lagi.
         privacy_notice_html: |
           Saat pesan diatur untuk pribadi di antara Anda dan penerimanya, staf iNaturalist dapat melihat pesan-pesan ini juga, dan mereka akan melakukannya ketika ada pesan yang ditandai untuk moderasi. Jika Anda membutuhkan komunikasi yang benar-benar pribadi, silakan mencari mekanisme komunikasi lainnya yang mendukung enkripsi yang kuat.
+    nls_demo:
+      vision_language_demo: Demo Bahasa Penglihatan
+      what_do_you_want_to_search_for: Apa yang ingin Anda cari?
+      for_example_a_yellow_bug_with_black_spots: 'Contoh: Serangga kuning berbintik hitam'
+      try_one_of_these_example_searches_colon: "Coba salah satu contoh pencarian ini:"
+      help_us_improve: Bantu kami untuk berkembang
+      mark_remaining_as_relevant: Tandai sisanya sebagai relevan
+      mark_remaining_as_not_relevant: Tandai sisanya sebagai tidak relevan
+      view_these_observations_in_identify: Lihat pengamatan-pengamatan ini di Identifikasi
+      if_youd_like_to_support_this_work: Jika Anda ingin mendukung pekerjaan ini
+      thank_you_for_your_submission!: Terima kasih atas kiriman Anda!
     oauth:
       authorizations:
         new:
