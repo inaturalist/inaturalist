@@ -285,6 +285,8 @@ de:
   add_annotations_for_controlled_attribute:
     sex: 'Angaben hinzufügen für: "Geschlecht"'
     plant_phenology: 'Angaben hinzufügen zu: "Pflanzenphänologie"'
+    flowers_and_fruits: Angabe für "Blüten und Früchte" hinzufügen
+    leaves: Angabe für "Blätter" hinzufügen
     life_stage: 'Angaben hinzufügen zu: "Entwicklungsstadium"'
     evidence_of_presence: Angaben hinzufügen für "Anwesenheitsnachweis"
   add_another_flag: Weitere Meldung hinzufügen
@@ -341,6 +343,14 @@ de:
   add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
   add_plant_phenology_fruiting_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Fruchttragend"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Angabe hinzufügen "Phänologie (Pflanze): Nicht blühend"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Angabe hinzufügen "Blüten & Früchte: Blütenknospe"'
+  add_flowers_and_fruits_flowers_annotation: 'Angabe hinzufügen: "Blüten & Früchte: Blüten"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Angabe hinzufügen "Blüten & Früchte: Früchte & Samen"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Angabe hinzufügen "Blüten & Früchte: keine Blüten oder Früchte"'
+  add_leaves_breaking_leaf_buds: 'Angabe hinzufügen "Blätter: Blattknospen"'
+  add_leaves_green_leaves: 'Angabe hinzufügen "Blätter: grüne Blätter"'
+  add_leaves_colored_leaves: 'Angabe hinzufügen "Blätter: verfärbte Blätter"'
+  add_leaves_no_live_leaves: 'Angabe hinzufügen "Blätter: keine lebenden Blätter"'
   add_life_stage_adult_annotation: 'Angabe hinzufügen "Entwicklungssstadium: Adult"'
   add_life_stage_teneral_annotation: 'Angabe hinzufügen "Lebensstadium: Frisch geschlüpft"'
   add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
@@ -5375,8 +5385,8 @@ de:
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
   user_added_x_observations2_html:
-    one: "%{user} hat %{x} Beobachtung hinzugefügt"
-    other: "%{user} hat %{x} Beobachtungen hinzugefügt"
+    one: "%{user} hat %{count} Beobachtung hinzugefügt"
+    other: "%{user} hat %{count} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -7253,6 +7263,14 @@ de:
           "Plant Phenology=Flowering": blühend
           "Plant Phenology=Fruiting": Fruchttragend
           "Plant Phenology=No Evidence of Flowering": Nicht blühend
+          "Flowers and Fruits=Flower Buds": Blütenknospen
+          "Flowers and Fruits=Flowers": Blüten
+          "Flowers and Fruits=Fruits or Seeds": Früchte oder Samen
+          "Flowers and Fruits=No Flowers or Fruits": Keine Blüten oder Früchte
+          "Leaves=Breaking Leaf Buds": Blattknospen
+          "Leaves=Green Leaves": grüne Blätter
+          "Leaves=Colored Leaves": verfärbte Blätter
+          "Leaves=No Live Leaves": keine lebenden Blätter
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": juvenil
