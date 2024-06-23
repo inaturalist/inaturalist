@@ -1808,6 +1808,7 @@ zh-CN:
   filter: 过滤器
   filter_by_curator_identification: 按馆长的鉴定进行筛选
   filter_by_place: 按地点筛选
+  filter_by_species: 按物种筛选
   filter_by_taxon: 按分类单元过滤
   filter_by_place_taxon_and_color: 按地点、分类单元和颜色标注进行筛选
   filter_list_by_this_taxon: 按这一分类单元筛选列表
@@ -4730,6 +4731,7 @@ zh-CN:
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
   submission_model: 提交模式
   submission_model_description: 谁可以添加观察至您的项目？
+  submit: 提交
   submit_observations:
     other: 提交 %{count} 个观察
   submitted: 提交日期
@@ -4912,6 +4914,8 @@ zh-CN:
   taxon_split_affecting_taxa: 有关%{taxa}的分类单元拆分
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: 分类单元分阶段
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: 有关%{taxon}的分类单元构建
   taxon_swap: 分类单元交换
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
@@ -4946,6 +4950,7 @@ zh-CN:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: 文本格式控制
   text_editing_controls: 文本编辑控制
+  thank_you!: 谢谢！
   thanks!: 谢谢 ！
   thanks_from_all_of_us_here_at: 社区对您表示感谢！来自大家的
   that_account_is_already_connected: 该帐户已经连接到另一个用户
@@ -6257,6 +6262,17 @@ zh-CN:
           您于 %{date} 标记了此对话。这个标记在您删除此对话的副本后仍然存在，所以如果您不想再看到它的话，删除它是没问题的。
         privacy_notice_html: |
           虽然消息在您和收件人之间是私密的，iNaturalist 工作人员也可以在消息被标记为适度时查看它们。如果您需要真正的私人通讯，请查看支持强化加密的其他通讯机制。
+    nls_demo:
+      vision_language_demo: 视觉语言演示
+      what_do_you_want_to_search_for: 您希望搜索什么？
+      for_example_a_yellow_bug_with_black_spots: 例如：一个带黑点的黄色虫子
+      try_one_of_these_example_searches_colon: "请尝试其中一个搜索实例："
+      help_us_improve: 帮助我们改进
+      mark_remaining_as_relevant: 标记剩余为相关
+      mark_remaining_as_not_relevant: 标记剩余为无关
+      view_these_observations_in_identify: 在鉴定中查看这些观察
+      if_youd_like_to_support_this_work: 如果您想支持此工作
+      thank_you_for_your_submission!: 感谢您的提交！
     oauth:
       authorizations:
         new:
@@ -6317,6 +6333,8 @@ zh-CN:
         taxa_observed_in_all_queries: 在所有查询中观察到的分类群
         taxa_observed_in_only_one_query: 只在一个查询中观察到分类群
         total_taxa: 全部分类群
+        total_taxa_desc: |
+          这是查询中表示的“叶”分类单元的总数。有时您会看到比此更多的非零计数行，因为有来自其他查询的更高级别的分类单元。例如，如果查询 1 有对智人的观察，查询 2 有对人属的观察，则这两个分类单元都会出现在表中，但这表示查询 1 中人属的额外一行，它没有将其包括在总数中，因为它只计算了该属中的智人物种，因为那是树的该部分的“叶”。
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: 垂直
         #Count of how many taxa several observation searches have in common
