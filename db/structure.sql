@@ -2156,6 +2156,41 @@ ALTER SEQUENCE public.identifications_id_seq OWNED BY public.identifications.id;
 
 
 --
+-- Name: language_demo_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.language_demo_logs (
+    id bigint NOT NULL,
+    user_id integer,
+    search_term character varying,
+    taxon_id integer,
+    page integer,
+    votes json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: language_demo_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.language_demo_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: language_demo_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.language_demo_logs_id_seq OWNED BY public.language_demo_logs.id;
+
+
+--
 -- Name: list_rules; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5343,7 +5378,8 @@ CREATE TABLE public.users (
     unlock_token character varying,
     oauth_application_id integer,
     data_transfer_consent_at timestamp without time zone,
-    unconfirmed_email character varying
+    unconfirmed_email character varying,
+    annotated_observations_count integer DEFAULT 0
 );
 
 
@@ -5938,6 +5974,13 @@ ALTER TABLE ONLY public.guides ALTER COLUMN id SET DEFAULT nextval('public.guide
 --
 
 ALTER TABLE ONLY public.identifications ALTER COLUMN id SET DEFAULT nextval('public.identifications_id_seq'::regclass);
+
+
+--
+-- Name: language_demo_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.language_demo_logs ALTER COLUMN id SET DEFAULT nextval('public.language_demo_logs_id_seq'::regclass);
 
 
 --
@@ -6935,6 +6978,14 @@ ALTER TABLE ONLY public.guides
 
 ALTER TABLE ONLY public.identifications
     ADD CONSTRAINT identifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: language_demo_logs language_demo_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.language_demo_logs
+    ADD CONSTRAINT language_demo_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -10718,6 +10769,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240124214436'),
 ('20240222032444'),
 ('20240326135332'),
-('20240429211140');
+('20240429211140'),
+('20240530162451'),
+('20240606154217');
 
 

@@ -37,6 +37,10 @@ class PhotoBrowser extends React.Component {
         $( slide ).attr( "role", null );
       }
     } );
+    const initialPhoto = _.find( this.refs.gallery.props.items, i => i.initialPhoto === true );
+    if ( initialPhoto ) {
+      this.setState( { slideIndex: initialPhoto.mediaViewerIndex } );
+    }
   }
 
   componentDidUpdate( prevProps ) {
@@ -235,7 +239,8 @@ class PhotoBrowser extends React.Component {
         zoom: original,
         thumbnail: square,
         mediaViewerIndex,
-        description
+        description,
+        initialPhoto: photo.initialPhoto === true
       };
       mediaViewerIndex += 1;
       return slideDetails;

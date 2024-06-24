@@ -128,7 +128,7 @@ zh-CN:
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: 关于
   about_charts: 关于图表
-  about_community_taxa: 关于社群分类群
+  about_community_taxa: 关于社群分类单元
   about_complete_taxa: 关于比较分类群
   about_conservation_status: 保护状态
   about_editing_observation_fields: 关于编辑观察字段
@@ -350,7 +350,7 @@ zh-CN:
   add_to_project: 添加至项目
   add_to_your_list: 加入到您的列表
   add_your_email_to_get: |
-    添加您的电子邮件以获取来自社区的对您的观察的反馈。
+    添加您的电子邮件以获取来自社群的对您的观察的反馈。
     如果您不希望分享它，请尽快核对！
   add_your_own_observations_at: "在 %{site_name} 添加您的个人观察"
   added: 提交日期
@@ -943,8 +943,8 @@ zh-CN:
   #committing refers to committing a taxon swap
   committing_this_swap_may_result: 提交此更改可能导致非预期的鉴定分歧。请先分析它们，这可能需要一段时间。
   common_name: 常用名
-  community: 社区
-  community_curated: 社区策划
+  community: 社群
+  community_curated: 社群策划
   community_guidelines: 社群指引
   community_id_heading: 社群鉴定
   community_id_at_species_or_lower?: 社群鉴定是否到种一级或更低？
@@ -1138,6 +1138,8 @@ zh-CN:
   copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
   copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
   copy_guide_taxon_to: 把指南的分类单元复制到……
+  copy_to_clipboard: 复制到剪贴板
+  copied!: 已复制！
   copyright:
     some_rights_reserved: 保留部分权利
     some_rights_reserved_by: "(c) %{name}，保留部分权利（%{license_short}）"
@@ -2183,7 +2185,7 @@ zh-CN:
   jump_to_letter: 跳转至信件
   just_a_reminder: 提醒一下，您可能已经向项目馆长授予了查看此项目中私人观察者的地理位置的权限。
   just_added!: 添加了！
-  keep_editing: 保持编辑
+  keep_editing: 继续编辑
   keyboard_shortcuts: 键盘快捷键
   kml: KML
   kml_file_size_error: "KML 大小必须小于 1 MB"
@@ -2211,6 +2213,8 @@ zh-CN:
   last_seen: 上次看见
   last_year: 去年
   lat: 纬度
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: 经纬度
   latitude: 纬度
   latitude_in_decimals: '以十进制度数表示的纬度，例如：38.123'
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
@@ -3398,7 +3402,7 @@ zh-CN:
   photos_locked: 照片已锁定
   photos_locked_desc: 只有网站员工可以更改此分类单元的默认照片
   photos_of_taxon_html: "%{taxon}的照片"
-  photos_or_sounds: 照片或音
+  photos_or_sounds: 照片或音频
   photos_or_sounds?: 照片或声音？
   photos_size:
     small: 小
@@ -3853,7 +3857,7 @@ zh-CN:
     yemen: 也门
     zambia: 赞比亚
     zimbabwe: 津巴布韦
-  places_of_interest: 名胜古迹
+  places_of_interest: 感兴趣的地方
   places_merged_successfully: 地点已成功合并！
   places_warning_export_complex_boundary_html: |
     如果您在尝试从一个复杂的边界中导出观察，请考虑<a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">转而从GBIF下载它们</a>，在那里你可以手动绘制边界；或者你通过iNat已有的地方或者勾选框先进行导出，然后再自行筛选数据。
@@ -4614,7 +4618,6 @@ zh-CN:
   start_a_new_project: 开始一个新项目
   start_a_project: 发起一个项目
   start_date_time: 开始日期/时间
-  start_one: 开始一个
   start_one_now: 马上开始吧！
   start_typing_field_name: 开始输入字段名称...
   start_typing_place_name: 开始输入地点名称...
@@ -4644,8 +4647,6 @@ zh-CN:
   studies_that_used_inaturalist_data_in_year: 在%{year} 用到过iNaturalist数据的研究
   stuff_just_added: "您刚刚添加的东西"
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
-  subject_affecting_stuff_html: "%{subject} 正在影响 %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} 提交了涉及%{stuff}的%{thing}"
   submission_model: 提交模式
   submission_model_description: 谁可以添加观察至您的项目？
   submit_observations:
@@ -4895,7 +4896,6 @@ zh-CN:
   there_are_no_current_ids: 当前可能被削弱的父分类群里没有任何鉴定。
   there_are_x_synonyms_html:
     other: "有 <span class='count'>%{count}</span> 个同义词</span>"
-  there_is_no_wikipedia_page_matching: 没有匹配的维基百科页面
   there_isnt_a_wikipedia_article_titled_x_html: |
     没有维基百科条目或重定向的标题叫做“%{x}”。您可能想<a href='http://zh.wikipedia.org/wiki/%{x}'>制作一个</a>？
   there_merge_problems_with_the_merge: "合并出现问题：%{merged_errors}"
@@ -5136,7 +5136,7 @@ zh-CN:
   trust_with_private_coordinates: 信任并向其显示您的隐藏坐标
   try_adding_species_form: 尝试使用此页面上的表单添加一些物种。
   twitter: 推特
-  two_thirds: 第2/3个
+  two_thirds: 2/3比例
   #As in a category, not as in a keyboard
   type: 类型
   type_authority: 类型机构……
@@ -6730,7 +6730,7 @@ zh-CN:
       project_user_curator_coordinate_access_labels:
         observer: 是的，但只在我自行添加观察至项目时。
         any: 是的，无论是谁将观察添加到项目中都无所谓。
-        none: 编号
+        none: 否。
       curator_coordinate_access_label: |
         您是否希望项目馆长可以看到私人/模糊的观察坐标？
       curator_coordinate_access_note: |

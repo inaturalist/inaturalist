@@ -12,7 +12,7 @@ import {
 } from "../actions/taxon";
 import { fetchTerms } from "../../shared/ducks/taxon";
 
-const TERMS_TO_CHART = ["Life Stage", "Plant Phenology", "Sex"];
+const TERMS_TO_CHART = ["Life Stage", "Flowers and Fruits", "Sex", "Leaves"];
 
 function mapStateToProps( state ) {
   // process columns for seasonality

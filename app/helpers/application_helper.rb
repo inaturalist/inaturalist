@@ -1067,26 +1067,26 @@ module ApplicationHelper
     case update.resource_type
     when "User"
       if update.notifier_type == "Post"
-        post = notifier
         title = if options[:skip_links]
           resource.login
         else
-          link_to_user(resource)
+          link_to_user( resource )
         end
-        article = if options[:count] && options[:count].to_i == 1
-          t(:x_wrote_a_new_post_html, :x => title)
+        if options[:count] && options[:count].to_i == 1
+          t( :x_wrote_a_new_post_html, x: title)
         else
-          t(:x_wrote_y_new_posts_html, :x => title, :y => options[:count])
+          t( :x_wrote_y_new_posts_html, x: title, y: options[:count] )
         end
+      elsif options[:count].to_i == 1
+        t( :user_added_an_observation_html,
+          user: options[:skip_links] ? resource.login : link_to( resource.login, url_for_resource_with_host( resource ) ) )
       else
-        if options[:count].to_i == 1
-          t(:user_added_an_observation_html, 
-            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
+        user = if options[:skip_links]
+          resource.login
         else
-          t(:user_added_x_observations_html,
-            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
-            :x => options[:count])
+          link_to( resource.login, url_for_resource_with_host( resource ) )
         end
+        t( :user_added_x_observations2_html, user: user, count: options[:count] )
       end
     when "Observation"
       if notifier.is_a?(ObservationFieldValue)
