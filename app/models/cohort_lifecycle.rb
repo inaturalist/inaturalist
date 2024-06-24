@@ -5,7 +5,7 @@ class CohortLifecycle < ApplicationRecord
 
   validates :user_id, presence: true
 
-  def process_cohort
+  def self.process_cohort
     current_day = Time.now.utc.end_of_day
     window_start = current_day - 7.days
     current_days_to_iterate = ( window_start.to_date..current_day.to_date ).map( &:to_s )
@@ -27,7 +27,7 @@ class CohortLifecycle < ApplicationRecord
     save_cohort_data( cohort_data )
   end
 
-  def prepare_cohort_data( raw_cohort_data )
+  def self.prepare_cohort_data( raw_cohort_data )
     cohort_data = {}
     raw_cohort_data.each do | cohort |
       cohort_time = cohort.cohort.to_s
@@ -40,7 +40,7 @@ class CohortLifecycle < ApplicationRecord
     cohort_data
   end
 
-  def process_days( cohorts, current_day, window_start, cohort_data )
+  def self.process_days( cohorts, current_day, window_start, cohort_data )
     ( ( current_day - window_start ) / ( 60 * 60 * 24 ) ).to_i.times do | i |
       current_day_to_iterate = window_start + i.days
       cohorts.each do | cohort |
@@ -58,7 +58,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def process_current_day( active_users, current_day, cohort_data )
+  def self.process_current_day( active_users, current_day, cohort_data )
     active_new_users = active_users.select {| _, v | v[:created_at].zero? }
     obs_data = get_obs( current_day, current_day, active_new_users.keys )
     timespan = [current_day, current_day]
@@ -69,7 +69,7 @@ class CohortLifecycle < ApplicationRecord
     apply_categorized_data_to_cohort( cohort_data, cohort, categorized_data, 0 )
   end
 
-  def process_retention( active_users, cohort_data, current_day )
+  def self.process_retention( active_users, cohort_data, current_day )
     ( 0..7 ).reverse_each do | d |
       retention_cohort = ( current_day - d.days ).to_date.to_s
       next unless cohort_data[retention_cohort]
@@ -84,7 +84,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def process_interventions( current_day, cohort_data )
+  def self.process_interventions( current_day, cohort_data )
     # intervention 1: no_obs
     cohort = current_day.to_date.to_s
     subjects = cohort_data[cohort].select {| _, v | v[:day0] == "no_obs" }
@@ -236,7 +236,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def save_cohort_data( cohort_data )
+  def self.save_cohort_data( cohort_data )
     cohort_data.each do | cohort_date, users |
       users.each do | user, data |
         user_id = user.to_s.to_i
@@ -246,9 +246,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  private
-
-  def categorize_obs_data( obs_data, timespan, user_ids )
+  def self.categorize_obs_data( obs_data, timespan, user_ids )
     casual = obs_data.
       select do | _, v |
         ( v[:needs_id].nil? || v[:needs_id].zero? ) &&
@@ -268,7 +266,7 @@ class CohortLifecycle < ApplicationRecord
     { casual: casual, needs_id: needs_id, research: research, no_obs: no_obs, captives: captives, error: error }
   end
 
-  def apply_categorized_data_to_cohort( cohort_data, cohort, categorized_data, cohort_day )
+  def self.apply_categorized_data_to_cohort( cohort_data, cohort, categorized_data, cohort_day )
     categorized_data.each do | category, user_ids |
       user_ids.each do | id |
         user_id_sym = id.to_s.to_sym
@@ -282,21 +280,21 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def get_obs( start_date, end_date, users )
+  def self.get_obs( start_date, end_date, users )
     filter = build_filter( start_date.beginning_of_day, end_date.end_of_day, users )
     agg = build_agg( users )
     obs_data = fetch_obs_data( filter, agg )
     build_result_hash( obs_data )
   end
 
-  def get_captives( start_date, end_date, users )
+  def self.get_captives( start_date, end_date, users )
     filter = build_filter( start_date.beginning_of_day, end_date.end_of_day, users, captives: true )
     agg = build_agg( users )
     obs_data = fetch_obs_data( filter, agg )
     obs_data.map {| a | a["key"] }
   end
 
-  def build_filter( start_time, end_time, users, captives: false )
+  def self.build_filter( start_time, end_time, users, captives: false )
     filter = [
       { range: { created_at: { gte: start_time, lte: end_time } } },
       { terms: { "user.id": users } }
@@ -327,7 +325,7 @@ class CohortLifecycle < ApplicationRecord
     ]
   end
 
-  def build_agg( users )
+  def self.build_agg( users )
     {
       user_id: {
         terms: {
@@ -346,7 +344,7 @@ class CohortLifecycle < ApplicationRecord
     }
   end
 
-  def fetch_obs_data( filter, agg )
+  def self.fetch_obs_data( filter, agg )
     Observation.elastic_search(
       size: 0,
       filters: filter,
@@ -354,7 +352,7 @@ class CohortLifecycle < ApplicationRecord
     ).response.aggregations.user_id.buckets
   end
 
-  def build_result_hash( obs_data )
+  def self.build_result_hash( obs_data )
     result_hash = {}
 
     obs_data.each do | observation |
