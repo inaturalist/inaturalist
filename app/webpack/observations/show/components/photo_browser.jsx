@@ -22,6 +22,7 @@ class PhotoBrowser extends React.Component {
     this.state = {
       slideIndex: 0
     };
+    this.galleryRef = React.createRef( );
   }
 
   componentDidMount( ) {
@@ -37,7 +38,15 @@ class PhotoBrowser extends React.Component {
         $( slide ).attr( "role", null );
       }
     } );
-    const initialPhoto = _.find( this.refs.gallery.props.items, i => i.initialPhoto === true );
+    const photos = (
+      this.galleryRef
+      && this.galleryRef.current
+      && this.galleryRef.current.props
+      && this.galleryRef.current.props.items
+    )
+      ? this.galleryRef.current.props.items
+      : [];
+    const initialPhoto = _.find( photos, i => i.initialPhoto === true );
     if ( initialPhoto ) {
       this.setState( { slideIndex: initialPhoto.mediaViewerIndex } );
     }
@@ -393,7 +402,7 @@ class PhotoBrowser extends React.Component {
       contents = (
         <ImageGallery
           key={`media-for-${observation.id}`}
-          ref="gallery"
+          ref={this.galleryRef}
           items={images}
           showThumbnails={showThumbnails}
           lazyLoad={false}
@@ -406,7 +415,7 @@ class PhotoBrowser extends React.Component {
           renderCustomControls={this.addPhotoButton}
           onClick={e => {
             if ( !$( e.target ).is( "img" ) ) { return; }
-            const index = this.refs.gallery.state.currentIndex;
+            const index = this.galleryRef.current.state.currentIndex;
             if ( _.has( images[index], "mediaViewerIndex" ) ) {
               setMediaViewerState( {
                 show: true,
