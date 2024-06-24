@@ -6268,9 +6268,13 @@ zh-CN:
       for_example_a_yellow_bug_with_black_spots: 例如：一个带黑点的黄色虫子
       try_one_of_these_example_searches_colon: "请尝试其中一个搜索实例："
       help_us_improve: 帮助我们改进
+      to_help_us_improve: 为了帮助我们改进此模型，我们希望知道此页面上的哪些图像与您搜索的“%{searched_term}”相关。如果某幅图像与您的搜索相匹配，请将其标记为相关 %{thumbs_up_icon}，如果不匹配，请将其标记为不相关 %{thumbs_down_icon}。完成后，请单击提交。
       mark_remaining_as_relevant: 标记剩余为相关
       mark_remaining_as_not_relevant: 标记剩余为无关
       view_these_observations_in_identify: 在鉴定中查看这些观察
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> 已经与 <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">马萨诸塞大学阿默斯特分校</a>、 <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">爱丁堡大学</a>、 <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">伦敦大学</a> 、<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">麻省理工学院</a>的研究人员建立了团队，并得到 <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI为善实验室</a> 的慷慨支持，以更好地了解视觉语言模式帮助组织的潜力， 探索并解释 iNaturalist的观察。
+      this_demo_tool: 这个演示工具可以让您输入搜索词组(例如"吃水果的鸟")，并将它与1000万张iNaturalist 照片相比较。 结果是按照相关性从高到低排列的。 您可以使用这个演示作为一种寻找有趣的 iNaturalist 观察记录来注释或添加到您的项目的新的方式。
+      you_can_also_use_this_demo: 您还可以使用此演示来帮助我们评估支持此演示的 Vision Language 模型，方法是告诉我们返回的哪些图像与您的搜索词相关。此演示使用的是第三方 <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP 模型</a>，该模型未在 iNaturalist 数据上或由 iNaturalist 团队进行训练。有时，该工具可能会产生不准确、有偏见或令人反感的结果。<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">在 iNaturalist 博客上阅读更多内容</a>。
       if_youd_like_to_support_this_work: 如果您想支持此工作
       thank_you_for_your_submission!: 感谢您的提交！
     oauth:
@@ -6498,6 +6502,59 @@ zh-CN:
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
+        quality_assessment_help3_html: |
+          <p>
+          数据质量评估是一项对观察的准确度的总结。所有的观察最初都被定为<strong>“非正式”</strong>级别，在满足以下条件时才会被定为<strong>“需要鉴定”</strong> 级别：
+          </p>
+
+          <ul>
+          <li>观察<strong>拥有日期</strong></li>
+          <li>观察<strong>存在地理参考性</strong>（即拥有经纬度坐标）</li>
+          <li>观察<strong>有图片或声音</strong></li>
+          <li>观察<strong>对象不是人类</strong></li>
+          </ul>
+          <p>
+          满足下列条件的观察会被定为<strong>“研究级别”</strong>：
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>社群同意的物种或更低级别的鉴定</strong>，即当超过 2/3 的鉴定者同意某个分类单元时（如果社群投票认为社群分类单元无法再改进，则为亚科级鉴定或更低级别）
+          </li>
+          </ul>
+          <p>
+          如果上述条件不满足或社区同意下列情况，观察结果将恢复为<strong>“非正式”</strong>级别：
+          </p>
+          <ul>
+          <li>
+          <strong>地点似乎不准确</strong>（比如在大海正中央出现了猴子观察，在办公楼里出现河马观察等）
+          </li>
+          <li>
+          <strong>生物体不是野生/归化的</strong>（比如被人类所饲育或栽培的）
+          </li>
+          <li>
+          观察<strong>未呈现出生物体的存在证据</strong>，比如不包括生物体的关于水体、岩石、地形的图片等。
+          </li>
+          <li>
+          观察结果<strong>未提供该生物的近期（~100 年）证据</strong>（例如化石，但足迹、粪便和枯叶是可以的）
+          </li>
+          <li>
+          观察<strong>未呈现出对某一个特定对象的证据</strong>（如其包含四张涉及不同生物体的图片。有一张展现观察对象的生境的照片是允许的。）
+          </li>
+          <li>
+          观察不再需要鉴定，<em>且</em>社群鉴定处于科或科以上级别
+          </li>
+          <li>
+          观察者已选择退出社群鉴定，并且社群鉴定的分类单元不是与观察者鉴定相关联的分类单元的祖先或后代
+          </li>
+          </ul>
+          <p>
+          如果这还不够复杂的话，还有一些情况需要系统投票：
+          </p>
+          <ul>
+          <li>
+          如果在包含此观察结果的最小县、州或国家同等地点，有至少 10 个其他同属或更低属的观察结果，并且这些观察结果中有 80% 或更多被标记为非野生/非归化，则系统将投票判定该观察结果为非野生/非归化。
+          </li>
+          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
