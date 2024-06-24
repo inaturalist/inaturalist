@@ -59,7 +59,9 @@ autocompleter.setTitle = function( result, options ) {
   } else {
     result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
   }
-  result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags( result.title ) );
+  result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags(
+    _.first( result.title.split( " · " ) )
+  ) );
 };
 
 autocompleter.setSubtitle = function( result, options ) {

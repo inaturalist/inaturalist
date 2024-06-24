@@ -54,6 +54,7 @@ module INatAPIService
     "native",
     "nelat",
     "nelng",
+    "not_in_list_id",
     "not_in_place",
     "not_in_project",
     "not_matching_project_rules_for",
@@ -184,7 +185,7 @@ module INatAPIService
           return response.body.force_encoding( "utf-8" )
         end
       end
-    rescue => e
+    rescue StandardError => e
       Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{options[:retries]}) failed: #{e}"
     end
     if options[:retries].is_a?( Integer ) && options[:retries].positive?

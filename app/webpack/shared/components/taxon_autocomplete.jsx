@@ -25,8 +25,10 @@ class TaxonAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    const { initialTaxonID } = this.props;
-    if ( initialTaxonID !== prevProps.initialTaxonID ) {
+    const { initialTaxonID, initialSelection } = this.props;
+    if ( initialTaxonID !== prevProps.initialTaxonID
+      || initialSelection !== prevProps.initialSelection
+    ) {
       this.fetchTaxon( );
     }
   }
@@ -78,7 +80,8 @@ class TaxonAutocomplete extends React.Component {
       value,
       inputClassName,
       onChange,
-      placeholder
+      placeholder,
+      disabled
     } = this.props;
     return (
       <span className={`TaxonAutocomplete ${className}`}>
@@ -91,6 +94,7 @@ class TaxonAutocomplete extends React.Component {
             onChange={onChange}
             placeholder={placeholder}
             autoComplete="off"
+            disabled={disabled}
           />
         </div>
         <input type="hidden" name="taxon_id" />
@@ -125,12 +129,14 @@ TaxonAutocomplete.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
   position: PropTypes.object,
   placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
   config: PropTypes.object
 };
 
 TaxonAutocomplete.defaultProps = {
   placeholder: I18n.t( "search_species" ),
-  config: {}
+  config: {},
+  disabled: false
 };
 
 export default TaxonAutocomplete;
