@@ -239,9 +239,10 @@ a:hover, a:focus {
 .example-searches-panel {
   margin-top: 30px;
   font-size: 17px;
-  button {
-    border: none;
-    background: none;
+  a {
+    color: inherit;
+    padding: 1px 6px;
+    display: inline-block;
     &:hover {
       font-weight: 700;
     }

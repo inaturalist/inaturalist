@@ -341,7 +341,8 @@ export function viewInIdentify( ) {
       languageDemo.searchResponse.results,
       r => ( r.observation.id )
     ) );
-    const url = `/observations/identify?quality_grade=needs_id,casual,research&reviewed=any&id=${observationIDs.join( "," )}`;
+    const url = "/observations/identify?quality_grade=needs_id,casual,research"
+      + `&reviewed=any&place_id=any&id=${observationIDs.join( "," )}`;
     window.open( url, "_blank", "noopener,noreferrer" );
   };
 }

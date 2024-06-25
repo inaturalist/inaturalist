@@ -92,7 +92,7 @@ class ComputerVisionEvalApp extends Component {
             </div>
             <div className="title">
               <a
-                href="/language_demo"
+                href="/vision_language_demo"
                 onClick={e => {
                   e.preventDefault( );
                   this.reset( );
@@ -449,7 +449,7 @@ class ComputerVisionEvalApp extends Component {
       searchTerm: "Mating dragonflies",
       searchTaxonID: 47792
     }, {
-      searchTerm: "Un poisson tropical avec des couleurs fades",
+      searchTerm: "Un poisson tropical avec des couleurs vives",
       searchTaxonID: 47178
     }, {
       searchTerm: "Drinking at a waterhole"
@@ -462,19 +462,28 @@ class ComputerVisionEvalApp extends Component {
             <div className="example-searches-panel">
               { I18n.t( "views.nls_demo.try_one_of_these_example_searches_colon" ) }
               <ul>
-                { _.map( exampleSearches, ( exampleSearch, index ) => (
-                  <li key={`example-search-${index}`}>
-                    <button
-                      type="button"
-                      onClick={() => this.performExampleSearch(
-                        exampleSearch.searchTerm,
-                        exampleSearch.searchTaxonID
-                      )}
-                    >
-                      { exampleSearch.searchTerm }
-                    </button>
-                  </li>
-                ) ) }
+                { _.map( exampleSearches, ( exampleSearch, index ) => {
+                  let href = `/vision_language_demo?q=${exampleSearch.searchTerm.replace( / /g, "+" )}`;
+                  if ( exampleSearch.searchTaxonID ) {
+                    href += `&taxon_id=${exampleSearch.searchTaxonID}`;
+                  }
+                  return (
+                    <li key={`example-search-${index}`}>
+                      <a
+                        href={href}
+                        onClick={e => {
+                          e.preventDefault( );
+                          this.performExampleSearch(
+                            exampleSearch.searchTerm,
+                            exampleSearch.searchTaxonID
+                          );
+                        }}
+                      >
+                        { exampleSearch.searchTerm }
+                      </a>
+                    </li>
+                  );
+                } ) }
               </ul>
             </div>
           </div>
