@@ -12,8 +12,13 @@ import React from "react";
 import moment from "moment";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
+import inatjs from "inaturalistjs";
 
-import languageDemoReducer, { languageSearch, fetchIconicTaxa } from "./reducers/language_demo_reducer";
+import languageDemoReducer, {
+  fetchIconicTaxa,
+  matchBrowserState,
+  loadFromURL
+} from "./reducers/language_demo_reducer";
 import LanguageDemoContainer from "./containers/language_demo_container";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
@@ -39,24 +44,25 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( { currentUser: CURRENT_USER } ) );
 }
 
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+inatjs.setConfig( {
+  apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+  writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+} );
+store.dispatch( setConfig( { testingApiV2: true } ) );
+
 store.dispatch( fetchIconicTaxa( ) );
-
-const urlParams = new URLSearchParams( window.location.search );
-const initialQuery = urlParams.get( "q" );
-const initialTaxonID = Number( urlParams.get( "taxon_id" ) );
-if ( !_.isEmpty( initialQuery ) ) {
-  const initialTaxon = initialTaxonID ? { id: initialTaxonID } : null;
-  store.dispatch( languageSearch( initialQuery, initialTaxon ) );
-}
-
-history.replaceState( { }, null, window.location.pathname );
 
 render(
   <Provider store={store}>
-    <LanguageDemoContainer
-      initialQuery={initialQuery}
-      initialTaxonID={initialTaxonID}
-    />
+    <LanguageDemoContainer />
   </Provider>,
   document.getElementById( "app" )
 );
+
+store.dispatch( loadFromURL( ) );
+
+window.onpopstate = e => {
+  store.dispatch( matchBrowserState( e.state || { } ) );
+};

@@ -15,50 +15,44 @@ class ComputerVisionEvalApp extends Component {
     this.state = {
       searchTerm: this.props.initialQuery,
       searchTaxon: null,
-      searchTaxonID: this.props.initialTaxonID,
       queryModifiedSinceSearch: false,
       taxonModifiedSinceSearch: false
     };
   }
 
-  componentDidMount( ) {
-    if ( this.props.initialQuery ) {
+  componentDidUpdate( prevProps ) {
+    if ( prevProps.initialQuery !== this.props.initialQuery ) {
       $( "#search_term" ).val( this.props.initialQuery );
+      this.setSearchTerm( this.props.initialQuery, { modified: false } );
+    }
+    if ( prevProps.initialTaxon !== this.props.initialTaxon
+    ) {
+      this.setSearchTaxon( this.props.initialTaxon, { modified: false } );
     }
   }
 
-  setSearchTerm( searchTerm ) {
+  setSearchTerm( searchTerm, options = { } ) {
     this.setState( {
       searchTerm,
-      queryModifiedSinceSearch: true
+      queryModifiedSinceSearch: options.modified !== false
     } );
   }
 
-  setSearchTaxon( searchTaxon, searchTaxonID = null ) {
-    if ( !searchTaxon
-      && searchTaxonID
+  setSearchTaxon( searchTaxon, options = { } ) {
+    if ( searchTaxon
       && !_.isEmpty( this.props.iconicTaxa )
-      && _.has( this.props.iconicTaxa, searchTaxonID )
+      && _.has( this.props.iconicTaxa, searchTaxon.id )
     ) {
-      searchTaxon = this.props.iconicTaxa[searchTaxonID];
-      searchTaxonID = null;
+      searchTaxon = this.props.iconicTaxa[searchTaxon.id];
     }
     this.setState( {
       searchTaxon,
-      searchTaxonID,
-      taxonModifiedSinceSearch: true
+      taxonModifiedSinceSearch: options.modified !== false
     } );
   }
 
   performSearch( ) {
-    let { searchTaxon } = this.state;
-    // when performing example searches, the taxon lookup can take a moment, but
-    // we want to search as soon as possible. In that case, send the state searchTaxonID
-    // which can be used for searching while the taxon lookup happens asynchronously
-    if ( _.isEmpty( searchTaxon ) && this.state.searchTaxonID ) {
-      searchTaxon = { id: this.state.searchTaxonID };
-    }
-    this.props.languageSearch( this.state.searchTerm, searchTaxon );
+    this.props.languageSearch( this.state.searchTerm, this.state.searchTaxon );
     this.setState( {
       queryModifiedSinceSearch: false,
       taxonModifiedSinceSearch: false
@@ -68,7 +62,7 @@ class ComputerVisionEvalApp extends Component {
   performExampleSearch( searchTerm, taxonID ) {
     $( "#search_term" ).val( searchTerm );
     this.setSearchTerm( searchTerm );
-    this.setSearchTaxon( null, taxonID );
+    this.setSearchTaxon( { id: taxonID } );
     setTimeout( ( ) => {
       this.performSearch( );
     } );
@@ -79,7 +73,6 @@ class ComputerVisionEvalApp extends Component {
     this.setState( {
       searchTerm: null,
       searchTaxon: null,
-      searchTaxonID: null,
       queryModifiedSinceSearch: true,
       taxonModifiedSinceSearch: true
     } );
@@ -122,8 +115,10 @@ class ComputerVisionEvalApp extends Component {
         searchExternal={false}
         resetOnChange={false}
         placeholder={I18n.t( "filter_by_species" )}
-        initialSelection={this.state.searchTaxon}
-        initialTaxonID={this.state.searchTaxonID}
+        initialSelection={this.state.searchTaxon && this.state.searchTaxon.name
+          ? this.state.searchTaxon : null}
+        initialTaxonID={this.state.searchTaxon && !this.state.searchTaxon.name
+          ? this.state.searchTaxon.id : null}
         disabled={this.props.votingEnabled}
         afterSelect={result => {
           this.setSearchTaxon( result.item );
@@ -153,7 +148,7 @@ class ComputerVisionEvalApp extends Component {
                     this.setSearchTaxon( null );
                     return;
                   }
-                  this.setSearchTaxon( null, t.id );
+                  this.setSearchTaxon( { id: t.id } );
                 }}
               >
                 <i
@@ -178,7 +173,8 @@ class ComputerVisionEvalApp extends Component {
       this.state.searchTerm !== this.props.searchedTerm
     ) || this.state.queryModifiedSinceSearch;
     const taxonChanged = (
-      this.state.searchTaxon !== this.props.searchedTaxon
+      ( this.state.searchTaxon && this.state.searchTaxon.id )
+      !== ( this.props.searchedTaxon && this.props.searchedTaxon.id )
     ) || this.state.taxonModifiedSinceSearch;
     return (
       <div className="col-md-2 action-buttons">
@@ -453,7 +449,7 @@ class ComputerVisionEvalApp extends Component {
       searchTerm: "Mating dragonflies",
       searchTaxonID: 47792
     }, {
-      searchTerm: "Un poisson sur la plage",
+      searchTerm: "Un poisson tropical avec des couleurs fades",
       searchTaxonID: 47178
     }, {
       searchTerm: "Drinking at a waterhole"
@@ -504,7 +500,11 @@ class ComputerVisionEvalApp extends Component {
                 dangerouslySetInnerHTML={{ __html: I18n.t( "views.nls_demo.inaturalist_has_teamed" ) }}
               />
               <p
-                dangerouslySetInnerHTML={{ __html: I18n.t( "views.nls_demo.this_demo_tool" ) }}
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "views.nls_demo.this_demo_tool2", {
+                    defaultValue: I18n.t( "views.nls_demo.this_demo_tool" )
+                  } )
+                }}
               />
               <p
                 dangerouslySetInnerHTML={{ __html: I18n.t( "views.nls_demo.you_can_also_use_this_demo" ) }}
@@ -609,7 +609,7 @@ ComputerVisionEvalApp.propTypes = {
   acknowledgeSubmission: PropTypes.func,
   resetState: PropTypes.func,
   initialQuery: PropTypes.string,
-  initialTaxonID: PropTypes.number,
+  initialTaxon: PropTypes.object,
   config: PropTypes.object
 };
 

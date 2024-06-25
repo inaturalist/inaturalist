@@ -7180,11 +7180,12 @@ en:
         <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a>
         to better understand the potential for Vision Language Models to help organize, explore,
         and explain iNaturalist observations.
-      this_demo_tool:
-        This demo tool lets you type in a search phrase (such as "a bird eating fruit"), and compares
-        it with 10 million iNaturalist photos. Results are ordered from most to least relevant.
-        You can use this demo as a new way to find interesting iNaturalist observations to annotate
-        or add to your project.
+      this_demo_tool2:
+        This demo tool lets you type in a search phrase (such as
+        "<a href="/language_demo?q=a+bird+eating+fruit&taxon_id=3">a bird eating fruit</a>"),
+        and compares it with 10 million iNaturalist photos. Results are ordered from most to least
+        relevant. You can use this demo as a new way to find interesting iNaturalist observations
+        to annotate or add to your project.
       you_can_also_use_this_demo:
         You can also use this demo to help us evaluate the Vision Language model powering this demo
         by telling us which of the returned images was relevant to your search phrase. This demo is
