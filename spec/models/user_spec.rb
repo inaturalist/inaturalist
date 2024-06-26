@@ -80,7 +80,7 @@ describe User, "associations" do
   it { is_expected.to have_many(:user_privileges).inverse_of(:user).dependent :delete_all }
   it { is_expected.to have_one(:flickr_identity).dependent :delete }
   it { is_expected.to have_one(:soundcloud_identity).dependent :delete }
-  it { is_expected.to have_one(:user_daily_active_categories).dependent :delete }
+  it { is_expected.to have_one(:user_daily_active_category).dependent :delete }
   it { is_expected.to have_one(:user_parent).dependent(:destroy).inverse_of :user }
 end
 
