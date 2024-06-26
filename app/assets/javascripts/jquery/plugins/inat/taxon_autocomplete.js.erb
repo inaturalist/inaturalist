@@ -56,10 +56,8 @@ autocompleter.setTitle = function( result, options ) {
       return iNatModels.Taxon.titleCaseName( taxonName.name )
     } );
     result.title = names.join( " · " );
-  } else if ( result.preferred_common_name ) {
-    result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
   } else {
-    result.title = "";
+    result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name || "";
   }
   result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags(
     _.first( result.title.split( " · " ) )

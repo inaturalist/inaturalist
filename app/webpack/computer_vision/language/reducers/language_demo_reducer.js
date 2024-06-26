@@ -290,7 +290,7 @@ export function submitVotes( options = { } ) {
         score: result.score
       } );
     } );
-    fetch( "/language_demo/record_votes", {
+    fetch( "/vision_language_demo/record_votes", {
       method: "POST",
       headers: {
         Accept: "application/json",

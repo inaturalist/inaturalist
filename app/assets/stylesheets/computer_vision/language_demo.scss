@@ -243,6 +243,7 @@ a:hover, a:focus {
     color: inherit;
     padding: 1px 6px;
     display: inline-block;
+    vertical-align: top;
     &:hover {
       font-weight: 700;
     }
