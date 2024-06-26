@@ -284,6 +284,7 @@ th:
   add_flowers_and_fruits_flowers_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกดอก"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกผลหรือเมล็ด"'
   add_flowers_and_fruits_no_flower_or_fruits: 'เพิ่มหมายเหตุ "การออกดอกและผล: ไม่ออกดอกหรือผล"'
+  add_leaves_breaking_leaf_buds: 'เพิ่มหมายเหตุ "ใบ: แตกใบอ่อน"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
@@ -821,8 +822,11 @@ th:
     flowering: ออกดอก
     fruiting: ออกผล
     no_flowers_or_fruits: ไม่ออกดอกหรือผล
+    flower_buds: แตกตาดอก
     flowers: ออกดอก
+    fruits_or_seeds: ออกผลหรือเมล็ด
     leaves: ใบ
+    breaking_leaf_buds: แตกใบอ่อน
     green_leaves: ใบเขียว
     colored_leaves: ใบเปลี่ยนสี
     no_live_leaves: ใบร่วงทั้งหมด
@@ -866,10 +870,12 @@ th:
     construction: สิ่งที่สัตว์สร้าง
   controlled_term_definitions:
     feather: ขนที่หลุดออกจากตัวนก
-    flower_budding: เห็นตาดอกที่ยังไม่บาน
+    flower_budding: พบตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
     flowers: บานอย่างน้อยหนึ่งดอก
+    flower_buds: พบตาดอกที่หุบอยู่อย่างน้อยหนึ่งตา
+    fruits_or_seeds: พบอย่างน้อยหนึ่งผลหรือเมล็ด
     green_leaves: มีใบเขียวหรือใบรูปเข็มอย่างน้อยหนึ่งใบ (หรือมีสีออกแดงซึ่งเป็นสีปกติและสุขภาพดี)
     no_live_leaves: ไม่มีการแตกใบอ่อนหรือใบเขียวหรือใบเปลี่ยนสีหรือใบรูปเข็มปรากฏให้เห็น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
