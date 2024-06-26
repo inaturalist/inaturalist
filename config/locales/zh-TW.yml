@@ -285,7 +285,7 @@ zh-TW:
   add_alive_or_dead_alive_annotation: '新增註解「活體或死亡：活體」'
   add_alive_or_dead_cannot_be_determined_annotation: '新增註解「活體或死亡：無法判斷」'
   add_alive_or_dead_dead_annotation: '新增註解「活體或死亡：死亡」'
-  add_plant_phenology_budding_annotation: '新增「植物物候：發新芽」的註解'
+  add_plant_phenology_budding_annotation: '新增「植物物候：萌新芽」的註解'
   add_plant_phenology_flower_budding_annotation: '新增註解「植物物候：花苞」'
   add_plant_phenology_flowering_annotation: '新增「植物物候學：開花」的註解'
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
@@ -295,8 +295,8 @@ zh-TW:
   add_flowers_and_fruits_fruits_and_seeds_annotation: '新增「花與果實：果實和種子」註解'
   add_flowers_and_fruits_no_flower_or_fruits: '新增「花與果實：沒有花或果實」註解'
   add_leaves_breaking_leaf_buds: '新增「葉：開展中的葉芽」註解'
-  add_leaves_green_leaves: '新增「葉：綠色葉」註解'
-  add_leaves_colored_leaves: '新增「葉：有色彩葉（非綠色）」註解'
+  add_leaves_green_leaves: '新增「葉：綠葉」註解'
+  add_leaves_colored_leaves: '新增「葉：有色葉（紅、黃色或其他非綠色）」註解'
   add_leaves_no_live_leaves: '新增「葉：無活葉」註解'
   add_life_stage_adult_annotation: '新增「生命階段：成體」的註解'
   add_life_stage_teneral_annotation: '新增「生命階段：初羽化」的註解'
@@ -1052,7 +1052,7 @@ zh-TW:
     female: 雌性
     plant_phenology: 植物物候
     flowers_and_fruits: 花與果實
-    budding: 發芽
+    budding: 萌新芽
     flower_budding: 花芽
     flowering: 開花
     fruiting: 結果
@@ -1062,8 +1062,8 @@ zh-TW:
     fruits_or_seeds: 果實或種子
     leaves: 葉子
     breaking_leaf_buds: 展開中的葉芽
-    green_leaves: 綠色葉
-    colored_leaves: 有色葉（綠色以外）
+    green_leaves: 綠葉
+    colored_leaves: 有色葉（紅、黃色或綠色以外）
     no_live_leaves: 無活葉
     life_stage: 生命階段
     adult: 成體
@@ -1124,7 +1124,7 @@ zh-TW:
     breaking_leaf_buds: 至少有一個葉芽的第一片新葉或針葉未完全展開
     green_leaves: 至少有一片綠葉或綠色針葉（如果一般呈現紅色是健康狀態的話也可以）
     colored_leaves: 至少有一片葉子或針葉呈現晚季（秋冬）或乾旱時呈現的顏色
-    no_live_leaves: 看不見任何葉芽、綠色葉、有色葉或針葉存在
+    no_live_leaves: 看不見任何葉芽、綠葉、有色葉或針葉存在
     gall: 由寄生生物引發的植物組織變形生長
     male: 證據代表生物體可以產生精子來進行有性生殖
     molt: 蛻下的表皮或外骨骼
@@ -6624,7 +6624,7 @@ zh-TW:
           檢視 iNaturalist 國際網路成員的年度回顧。
         include_usa: 包含美國
         growth_by_country_desc_html: |
-          成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
+          增長是在哪裡發生的呢？增長的結果會複雜難懂，是因為按國家來區分增長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有增長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>「% 總成長」</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 筆觀察紀錄、2017 有 10 筆觀察紀錄，這代表增加了 10 筆觀察紀錄，假如當中有 5 筆觀察紀錄是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>「% 成長」</strong>代表某國家此年度觀察紀錄數量與去年觀察紀錄數量增加的百分比，假如寮國去年有 10 筆觀察紀錄而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
         growth_by_country_title: 按國家區分的成長
         growth_desc: |
           「觀察紀錄」和「分類群」的圖表中也許會包含不屬於%{site_name}
@@ -6732,6 +6732,9 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
+          "Flowers and Fruits=Flower Buds": 花芽
+          "Leaves=Breaking Leaf Buds": 萌新芽
+          "Leaves=Colored Leaves": 有色葉
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼蟲
           "Life Stage=Juvenile": 亞成體
