@@ -5215,8 +5215,8 @@ CREATE TABLE public.user_daily_active_categories (
     user_id integer,
     today_category character varying,
     yesterday_category character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
 );
 
 
@@ -9984,13 +9984,6 @@ CREATE INDEX index_udac_on_tc_yc ON public.user_daily_active_categories USING bt
 
 
 --
--- Name: index_udac_on_uid; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_udac_on_uid ON public.user_daily_active_categories USING btree (user_id);
-
-
---
 -- Name: index_update_actions_unique; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10016,6 +10009,13 @@ CREATE INDEX index_user_blocks_on_override_user_id ON public.user_blocks USING b
 --
 
 CREATE INDEX index_user_blocks_on_user_id ON public.user_blocks USING btree (user_id);
+
+
+--
+-- Name: index_user_daily_active_categories_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_daily_active_categories_on_user_id ON public.user_daily_active_categories USING btree (user_id);
 
 
 --
