@@ -13,7 +13,7 @@ describe StatsController do
           Observation.make!( taxon: Taxon.make!( rank: "species" ),
             created_at: t )
         end
-        allow( SiteStatistic ).to( receive( :daily_active_user_model_data ) do
+        allow( SiteStatistic ).to( receive( :generate_daily_active_user_model_data ) do
           {
             curent_users: [],
             at_risk_waus: [],

@@ -11,7 +11,7 @@ describe SiteStatistic do
   elastic_models( Observation, Identification, User, Project )
 
   before :each do
-    allow( SiteStatistic ).to( receive( :daily_active_user_model_data ) do
+    allow( SiteStatistic ).to( receive( :generate_daily_active_user_model_data ) do
       {
         curent_users: [],
         at_risk_waus: [],
