@@ -76,28 +76,49 @@ const annotationShortcuts = [
     value: "Egg"
   },
 
-  // Plant Phenology
+  // Flowers and Fruits
   {
     shortcut: "p u",
-    term: "Plant Phenology",
-    value: "Flower Budding"
+    term: "Flowers and Fruits",
+    value: "Flower Buds"
   },
   {
     shortcut: "p l",
-    term: "Plant Phenology",
-    value: "Flowering"
+    term: "Flowers and Fruits",
+    value: "Flowers"
   },
   {
     shortcut: "p r",
-    term: "Plant Phenology",
-    value: "Fruiting"
+    term: "Flowers and Fruits",
+    value: "Fruits or Seeds"
   },
   {
     shortcut: "p n",
-    term: "Plant Phenology",
-    value: "No Evidence of Flowering"
+    term: "Flowers and Fruits",
+    value: "No Flowers or Fruits"
   },
 
+  // Leaves
+  {
+    shortcut: "v n",
+    term: "Leaves",
+    value: "No Live Leaves"
+  },
+  {
+    shortcut: "v b",
+    term: "Leaves",
+    value: "Breaking Leaf Buds"
+  },
+  {
+    shortcut: "v g",
+    term: "Leaves",
+    value: "Green Leaves"
+  },
+  {
+    shortcut: "v c",
+    term: "Leaves",
+    value: "Colored Leaves"
+  },
   // Sex
   {
     shortcut: "s f",

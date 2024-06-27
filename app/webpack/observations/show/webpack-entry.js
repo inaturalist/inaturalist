@@ -128,6 +128,7 @@ if ( testFeature ) {
 store.dispatch( fetchObservation( obsId, {
   fetchAll: true,
   replaceState: true,
+  initialPhotoID: urlParams.get( "photo_id" ),
   callback: ( ) => {
     render(
       <Provider store={store}>

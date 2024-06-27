@@ -1591,6 +1591,28 @@ describe User do
     end
   end
 
+  describe "update_annotated_observations_counter_cache" do
+    it "updates counter based on annotations" do
+      annotation = make_annotation!
+      user = annotation.user
+      expect( user.annotated_observations_count ).to eq 0
+      User.update_annotated_observations_counter_cache( user )
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+    end
+
+    it "counts annotated observations not individual annotations" do
+      annotation1 = make_annotation!
+      user = annotation1.user
+      make_annotation!( resource: annotation1.resource, user: user )
+      expect( user.annotated_observations_count ).to eq 0
+      User.update_annotated_observations_counter_cache( user )
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+      expect( Annotation.where( user: user ).count ).to eq 2
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {

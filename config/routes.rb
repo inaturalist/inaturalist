@@ -704,6 +704,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :vision_language_demo, only: :index, controller: :language_demo do
+    collection do
+      get :index
+      post :record_votes
+    end
+  end
+
   resources :computer_vision_demo_uploads do
     member do
       post :score

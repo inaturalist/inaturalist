@@ -10,82 +10,11 @@
 @import "../shared/quality_metrics";
 @import "../shared/split_taxon";
 @import "../shared/user_with_icon";
+@import "../shared/easyzoom";
 @import "../users/user_image";
 @import "../users/user_popover";
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
-
-// react images ids and class names. get ready for this to change again in the future
-#lightboxBackdrop {
-  [class*="content_"],
-  [class*="figure_"],
-  .easyzoom,
-  .easyzoom > a {
-    height: 100%;
-  }
-  [class*="spinner_"] {
-    display: none;
-  }
-  [class*="content_"] {
-    position: absolute !important;
-    left: 0;
-    top: 0;
-  }
-  [class*="content_"] {
-    [class*="header_"] {
-      margin: 0 10px;
-      position: absolute;
-      inset-inline-end: 0;
-    }
-    width: 100%;
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto !important;
-    }
-    .easyzoom {
-      cursor: default;
-      & > a {
-        cursor: default;
-        img {
-          cursor: zoom-in !important;
-        }
-      }
-      .easyzoom-flyout {
-        z-index: 2001;
-        cursor: zoom-out !important;
-        img {
-          margin: 0px !important;
-          padding: 0px;
-        }
-        &.short img {
-          margin-top: auto !important;
-          margin-bottom: auto !important;
-        }
-        &.narrow img {
-          margin-left: auto !important;
-          margin-right: auto !important;
-        }
-      }
-    }
-  }
-}
-
-[dir = "rtl"] #lightboxBackdrop {
-  button[class*="left"] {
-    left: unset;
-    right: 0;
-    transform: rotate(180deg)
-  }
-  button[class*="right"] {
-    right: unset;
-    left: 0;
-    transform: rotate(180deg)
-  }
-}
 
 @mixin editor-textarea {
   textarea {
@@ -2288,62 +2217,6 @@ time {
     max-width: 100%;
   }
 }
-
-
-
-
-
-.easyzoom-flyout {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  z-index: 2;
-}
-.easyzoom-flyout img {
-  vertical-align: bottom;
-}
-.image-gallery-content .easyzoom-flyout img {
-  height: auto;
-  width: auto;
-  opacity: 1;
-  cursor: zoom-out;
-}
-
-.easyzoom-zoomed img {
-  visibility: hidden;
-}
-
-
-.easyzoom,
-.easyzoom > a {
-  display: inline-block;
-  width: 100%;
-  cursor: zoom-in;
-}
-body > [role="dialog"] .easyzoom > a > img {
-  vertical-align: bottom;
-}
-
-.easyzoom.is-loading img {
-  cursor: progress;
-}
-
-.easyzoom-notice {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 150;
-  width: 10em;
-  margin: -1em 0 0 -5em;
-  line-height: 2em;
-  text-align: center;
-  color: white;
-  text-shadow: 0 0 5px black;
-}
-
 
 
 

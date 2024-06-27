@@ -16,7 +16,7 @@ import observationsReducer from "./ducks/observations";
 import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import { fetchTaxonAssociates } from "./actions/taxon";
-import { windowStateForTaxon } from "../shared/util";
+import { windowStateForTaxon, tabFromLocationHash } from "../shared/util";
 
 const { Taxon } = inatjs;
 
@@ -75,7 +75,7 @@ if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
   } ) );
 }
 store.dispatch( setConfig( {
-  chosenTab: serverPayload.chosenTab || "articles"
+  chosenTab: tabFromLocationHash( ) || serverPayload.chosenTab || "articles"
 } ) );
 if ( serverPayload.ancestorsShown ) {
   store.dispatch( setConfig( {

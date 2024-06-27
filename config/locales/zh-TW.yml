@@ -60,6 +60,8 @@ zh-TW:
     other: "%{count} 個其它"
   x_people:
     other: "%{count} 個人"
+  x_people_html:
+    other: '<span class="count">%{count}</span>人'
   x_people_helped_user_with_y_ids_html: "<strong>%{x}</strong> 個人以 <strong>%{y}</strong> 個鑑定幫助了%{user}"
   x_photos:
     other: "%{count} 張照片"
@@ -200,6 +202,7 @@ zh-TW:
   active_taxon_status: 有效的
   active_users: 有效的使用者
   activity: 動態
+  activity_on_a_flag_for_x: '%{x} 的旗號標記動態'
   adapted_by_name_from_a_work_by_original: "被 %{name} 套用來自 %{original} 的作業"
   add: 新增
   add_a_batch_of_observations: 新增一批觀察記錄
@@ -229,6 +232,8 @@ zh-TW:
   add_annotations_for_controlled_attribute:
     sex: 新增「性別」註解
     plant_phenology: 新增「植物物候」註解
+    flowers_and_fruits: 新增「花與果實」註解
+    leaves: 新增「葉」註解
     life_stage: 新增「生命階段」註解
     evidence_of_presence: 加入註記至「出現證據」中
   add_another_flag: 新增其它標記
@@ -285,6 +290,14 @@ zh-TW:
   add_plant_phenology_flowering_annotation: '新增「植物物候學：開花」的註解'
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
   add_plant_phenology_no_evidence_of_flowering_annotation: '新增「植物物候：沒有開花的證據」註記'
+  add_flowers_and_fruits_flower_buds_annotation: '新增「花與果實：花芽」註解'
+  add_flowers_and_fruits_flowers_annotation: '新增「花與果實：開花的花」註解'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '新增「花與果實：果實和種子」註解'
+  add_flowers_and_fruits_no_flower_or_fruits: '新增「花與果實：沒有花或果實」註解'
+  add_leaves_breaking_leaf_buds: '新增「葉：開展中的葉芽」註解'
+  add_leaves_green_leaves: '新增「葉：綠色葉」註解'
+  add_leaves_colored_leaves: '新增「葉：有色彩葉（非綠色）」註解'
+  add_leaves_no_live_leaves: '新增「葉：無活葉」註解'
   add_life_stage_adult_annotation: '新增「生命階段：成體」的註解'
   add_life_stage_teneral_annotation: '新增「生命階段：初羽化」的註解'
   add_life_stage_subimago_annotation: '新增「生命階段：亞成蟲」註解'
@@ -301,7 +314,10 @@ zh-TW:
   add_evidence_of_presence_bone_annotation: '新增「出現記錄的證據：骨頭」註記'
   add_evidence_of_presence_molt_annotation: '新增「出現記錄的證據：蛻皮」註記'
   add_evidence_of_presence_leafmine_annotation: '新增「出現記錄的證據：潛葉」註記'
+  add_evidence_of_presence_hair_annotation: '新增「出現記錄的證據：毛髮」註記'
+  add_evidence_of_presence_egg_annotation: '新增「出現記錄的證據：卵」註記'
   add_evidence_of_presence_construction_annotation: '新增「出現記錄的證據：構造物」註記'
+  add_established_not_established: '新增「定殖：未定殖建立族群」註解'
   #As in a Taxon Framework Relationship
   add_relationship: '添加關聯'
   #As in a Guide Section
@@ -342,6 +358,8 @@ zh-TW:
   added_by: 新增自
   added_by_user_on_date_html: "由 %{user} 於 %{date} 所新增"
   added_on_datetime: "在 %{datetime} 加入"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: 已新增角色
   added_to_favorites_html: |
     已加入至<a href="%{url}">最愛</a>
   adding: "正在新增……"
@@ -1020,6 +1038,10 @@ zh-TW:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: 任一物候
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: 任一
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: 任一
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: 任一生命階段
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: 任一
@@ -1029,10 +1051,20 @@ zh-TW:
     male: 雄性
     female: 雌性
     plant_phenology: 植物物候
+    flowers_and_fruits: 花與果實
     budding: 發芽
     flower_budding: 花芽
     flowering: 開花
     fruiting: 結果
+    no_flowers_or_fruits: 沒有開花或結果
+    flower_buds: 花芽
+    flowers: 開花
+    fruits_or_seeds: 果實或種子
+    leaves: 葉子
+    breaking_leaf_buds: 展開中的葉芽
+    green_leaves: 綠色葉
+    colored_leaves: 有色葉（綠色以外）
+    no_live_leaves: 無活葉
     life_stage: 生命階段
     adult: 成體
     teneral: 初羽化
@@ -1071,6 +1103,10 @@ zh-TW:
     hair: 毛髮
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: 構造物
+    #Does the observation belong to a non-established population or not
+    established: 已定殖建立族群
+    #Organism is not a member of an established population
+    not_established: 尚未定殖建立族群
   controlled_term_definitions:
     alive: 還是活著的生物，而且看不出有立即死亡的徵兆
     bone: |
@@ -1082,12 +1118,23 @@ zh-TW:
     flower_budding: 花苞可見但未開展
     flowering: 花朵可見，開展且仍然連在植株上
     fruiting: 果實可見且仍然連在植株上
+    flowers: 至少有一朵開展的花
+    flower_buds: 至少有一朵閉合的花芽
+    fruits_or_seeds: 至少有一顆果實或種子
+    breaking_leaf_buds: 至少有一個葉芽的第一片新葉或針葉未完全展開
+    green_leaves: 至少有一片綠葉或綠色針葉（如果一般呈現紅色是健康狀態的話也可以）
+    colored_leaves: 至少有一片葉子或針葉呈現晚季（秋冬）或乾旱時呈現的顏色
+    no_live_leaves: 看不見任何葉芽、綠色葉、有色葉或針葉存在
     gall: 由寄生生物引發的植物組織變形生長
     male: 證據代表生物體可以產生精子來進行有性生殖
     molt: 蛻下的表皮或外骨骼
     leafmine: 在葉肉之間取食的證據
+    hair: 不再附著於其來源生物上的毛髮
+    egg: 完整或部分的蛋
     construction: 由動物建構或挖開其他物質產生的構造物
     no_evidence_of_flowering: 媒體沒有提供繁殖構造的證據
+    no_flowers_or_fruits: 看不到花、果實或種子（全部或部分）
+    not_established: 生物屬於尚未定殖族群的種類，包含被釋放/逃逸的寵物、搭順風車者和流浪者。
     organism: 整個或部分生物體
     scat: 糞便類（非貓頭鷹的食繭或其他嘔吐物）
     teneral: 成蟲最近剛破蛹而出，但是尚未變成最終型態的成蟲
@@ -1107,6 +1154,8 @@ zh-TW:
   copy_and_paste_the_following_code_to: 複製並貼上以下代碼來內嵌此評估至其它網頁。
   copy_and_paste_this_into_your_own_html: 複製貼上至您自己的 HTML。
   copy_guide_taxon_to: 複製指南物種分類至...
+  copy_to_clipboard: 複製到剪貼簿
+  copied!: 已複製！
   copyright:
     some_rights_reserved: 保留部分權利
     some_rights_reserved_by: "(c) %{name}，保留部份權利%{license_short}"
@@ -1403,6 +1452,8 @@ zh-TW:
   deviation: 偏差
   devise:
     confirmations:
+      confirmed: |
+        你的電郵地址已成功確認。
       send_instructions: "您將在幾分鐘後收到一封電子郵件，內有驗證帳號的步驟說明。"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1690,6 +1741,7 @@ zh-TW:
   extinct_in_the_wild: 在野外絕種
   extra_properties: 額外屬性
   evidence_of_organism: 生物證據
+  evidence_related_to_single_subject: 與單一觀察對象相關的證據
   facebook: Facebook
   failed_to_find_your_location: 無法找到您的位置。
   failed_to_repair_photo: "修復照片失敗：%{errors}"
@@ -1728,6 +1780,7 @@ zh-TW:
   filter: 篩選
   filter_by_curator_identification: 依策展人鑑定篩選
   filter_by_place: 依地點篩選
+  filter_by_species: 依地點篩選
   filter_by_taxon: 按物種分類篩選
   filter_by_place_taxon_and_color: 依地點、物種分類、和色彩來使用控制篩選。
   filter_list_by_this_taxon: 依此物種分類篩選名錄
@@ -1764,6 +1817,7 @@ zh-TW:
   flag_created: 標記已建立
   flag_deleted: 標記已刪除
   flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
+  flag_comment_description: 請針對此旗號標記撰寫一個選填的評論，以進一步解釋為什麼您要新增此標記，並提供支持此證據的連結。
   flag_for_check_list_title_html: |
     標記此物種名錄：%{title}
   flag_for_comment_id_html: 標記此 <a href="%{url}">評論 %{id}</a>
@@ -1794,6 +1848,7 @@ zh-TW:
     標記此使用者：%{title}
   flag_it!: 加上旗號標記！
   flag_marked_as_resolved_html: '<span class="meta">的旗號標記項目</span> <strong>已被解決。</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">旗號標記為</span><strong>未解決。</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: 項目
   flag_reason: "&ldquo;我正標記此%{record}，因為其變動原因為："
@@ -1906,6 +1961,9 @@ zh-TW:
   grid_tooltip: 顯示網格檢視
   group: 群組
   grouping: 分組中
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: 從其他的觀察紀錄猜測地點？
   guides: 指南
   guide_compiled_by: 指南完成由
   guide_deleted: 指南已刪除
@@ -1985,7 +2043,20 @@ zh-TW:
   home: 首頁
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "要調整的小時："
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    然而，此觀察紀錄未獲得再使用的授權，不會與尊重授權選擇的資料庫共享。
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    您可在您的<a class="linky" href="/users/edit#content">帳號設定</a>中更改偏好的授權方式。
   however_there_were_some_issues: "然而，這裡有一些狀況：%{issues}"
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    不過，您可能希望對上述無意中產生不同鑑定意見的觀察紀錄進行評論，以提醒鑑定者%{old_parent}的範圍已經縮小。
   i_dont_know_but_i_am_sure_this_is_taxon: 我不清楚，但我確定這是%{taxon}
   icon: 圖示
   icon_size: 圖示大小
@@ -1999,6 +2070,10 @@ zh-TW:
         首先建議此分類群來讓社群後續同意。這有助於改進社群的分類群。
       maverick: |
         不是社群分類群的祖先或後裔，即代表著社群不同意此分類群。
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "變更分類關係後，分類群<strong>E</strong>的鑑定2將與分類群<strong>B</strong>的鑑定1無意中產生不同看法。"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "進行分類群置換後，分類群<strong>E</strong>的鑑定2將與分類群<strong>B</strong>的鑑定1無意中產生不同看法。"
   id_withdrawn: 鑑定撤回
   ids_by_taxon: 按分類群的鑑定
   identify: 鑑定
@@ -2034,6 +2109,14 @@ zh-TW:
   ids_made_for_others: 個替其他人所做的鑑定
   if_for_some_reason_a_user_doesnt_agree: |
     若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生涯名錄、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    如果縮減上階層分類群的範圍導致超過10筆個無意的不同看法，您應該在將子分類群移動以替換上階層分類單元<strong>(B)</strong>的現有鑑定（且不產生不同看法）後，將上階層分類群拆分。
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    如果縮減上階層分類群的範圍導致超過10筆個無意的不同看法，您應該在將子分類群置換以替換上階層分類單元<strong>(B)</strong>的現有鑑定（且不產生不同看法）後，將上階層分類群拆分。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
@@ -2141,6 +2224,7 @@ zh-TW:
   journal: 日誌
   journal_archives_for: 期刊歸檔用於
   journal_post: 日誌發佈文章
+  journal_post_: 日誌發佈文章
   journal_post_deleted: 日誌發佈文章已刪除。
   journal_posts: 日誌發佈文章
   jpg_png_or_gif: "JPG、PNG、或 GIF"
@@ -2175,6 +2259,8 @@ zh-TW:
   last_seen: 上次看見
   last_year: 去年
   lat: 緯度
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: 緯度/經度
   latitude: 緯度
   latitude_in_decimals: '帶小數點的緯度，例如：38.123'
   latitude_slash_y_coord_slash_northing: 緯度/y 軸/北距
@@ -2213,16 +2299,22 @@ zh-TW:
     afrikaans: 南非語
     alabama: 阿拉巴馬語(Alabama)
     albanian: 阿爾巴尼亞語
+    aou_4_letter_codes: AOU 4字代碼
+    aou_6_letter_codes: AOU 6字代碼
     arabic: 阿拉伯文
     armenian: 亞美尼亞文
     asturian: 阿斯圖里亞斯語(Asturian)
+    basque: 巴斯克語
     belarusian: 白羅斯文
     bengali: 孟加拉語
+    bikol: 比科爾語
     bulgarian: 保加利亞文
+    carolinian: 加羅林語
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
     chinese_simplified: 簡體中文
     chinese_traditional: 繁體中文
+    chuvash: 楚瓦什語
     creole_french: 克里奧爾語 (法語)
     creole_portuguese: 克里奧爾語 (葡萄牙語)
     croatian: 克羅埃西亞文
@@ -2234,26 +2326,38 @@ zh-TW:
     esperanto: 世界語
     estonian: 愛沙尼亞語
     faroese: 法羅文
+    fijian: 斐濟語
     finnish: 芬蘭語
     french: 法語
     galician: 加利西亞文
     gela: Gela 語
+    georgian: 喬治亞語
     german: 德語
     greek: 希臘語
+    gujarati: 古加拉特語
     hawaiian: 夏威夷語
     hebrew: 希伯來語
+    herero: 赫雷羅語
     hiligaynon: Hiligaynon 語
+    hill_mari: 西馬里語
+    hodges_number: 霍奇斯碼
+    hokkien: 福建話
     hungarian: 匈牙利文
     icelandic: 冰島語
     ilokano: 伊洛卡諾語
     indonesian: 印尼文
+    irish: 愛爾蘭語
     italian: 義大利語
     japanese: 日語
     kannada: 康納達文
+    kazakh: 哈薩克語
     korean: 韓語
+    kweyol: 克里奧語
     latvian: 拉脫維亞文
     lithuanian: 立陶宛語
+    lozi: 洛兹語
     luxembourgish: 盧森堡語
+    malagasy: 馬達加斯加語
     malay: 馬來文
     malayalam: 馬拉雅拉姆文
     maltese: 馬爾他語
@@ -2263,30 +2367,54 @@ zh-TW:
     misima_paneati: Misima-paneati 語
     mongolian: 蒙古文
     nahuatl: 納瓦特爾文
+    navajo: 納瓦荷語
+    ndebele: 恩德貝勒語
     norwegian: 挪威語
     occitan: 奧克語
     ojibwe: 奧傑布瓦文
     palauan: 帕勞文
     pangasinan: 邦阿西楠語
+    persian: 波斯語
     polish: 波蘭語
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
     russian: 俄語
+    santali: 桑塔利語
     scientific_names: 學名
+    serbian: 塞爾維亞語
+    shona: 紹納語
     sinhala: 僧伽羅語
     slovak: 斯洛伐克語
     slovenian: 斯洛維尼亞文
+    sotho: 梭蘇語
+    sotho_northern: 北梭蘇語
     spanish: 西班牙語
+    swahili: 斯瓦西里語
+    swati: 史瓦帝尼語
     swedish: 瑞典語
     tagalog: 他加祿語
     tahitian: 大溪地語
+    tamil: 坦米爾語
     thai: 泰文
     tokelauan: 托克勞語
+    totonaco: 托托納克語
+    tsonga: 宋加語
+    tswana: 茨瓦納語
     turkish: 土耳其語
+    u_s_d_a_symbol: 美國農業部代碼(USDA Symbol)
     ukrainian: 烏克蘭語
+    uyghur: 維吾爾語
+    venda: 溫達語
+    vermont_flora_codes: 佛蒙特植物誌代碼(Vermont Flora Codes)
+    vietnamese: 越南語
     visayan: 維薩亞斯文
     waray_waray: 瓦瑞瓦瑞語
+    xhosa: 科薩語
+    zapoteco: 薩波特克語
+    zulu: 祖魯語
   less: 較少
+  #Button show less text
+  less__context_text: 較少
   licensed_site_photos: "已授權的 %{site_name} 照片"
   license: 許可協議
   licensing: 許可協議
@@ -2295,6 +2423,10 @@ zh-TW:
   life_list: "%{user}的生涯名錄"
   linear_scale_label: 線性
   link: 連結
+  #Text for a link that provides an example of how an application can send a
+  #user to iNat to authorize the app's use of their iNat account. "Link" is
+  #a noun.
+  link_to_authorization_code: 驗證碼的連結
   link_your_flickr_account: 連結您的 Flickr 帳號
   link_your_google_account: 連結您的 Google 帳號
   linked_flickr: "您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。"
@@ -2314,6 +2446,10 @@ zh-TW:
     taxonomic: 分類上的
     photo: 照片
   list_was_successfully_created: 已成功建立名錄。
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}、%{two}，和%{three}"
+  list_with_two_items: "%{one} 和 %{two}"
   listed_taxa: 列出的分類群
   listed_taxon: 列出的分類群
   listed_taxon_updated: 列出的分類群已更新
@@ -2347,6 +2483,7 @@ zh-TW:
     de: 德語
     el: 希臘語
     en: 英語
+    en-GB: 英語 (英國)
     eo: 世界語
     es: 西班牙語
     es-AR: 西班牙文 (阿根廷)
@@ -2360,15 +2497,19 @@ zh-TW:
     fr-CA: 法文 (加拿大)
     gl: 加利西亞語
     he: 希伯來文
+    hr: 克羅埃西亞語
     hu: 匈牙利
     id: 印尼語
     it: 義大利語
     ja: 日語
+    ka: 喬治亞語
+    kk: 哈薩克語
     kn: 康納達文
     ko: 韓語
     lb: 盧森堡語
     lt: 立陶宛語
     lv: 拉脫維亞文
+    mi: 毛利語
     mk: 馬其頓語
     mr: 馬拉提文
     nb: 書面挪威文 (挪威博克莫爾語)
@@ -2378,9 +2519,11 @@ zh-TW:
     pt: 葡萄牙文
     pt-BR: 葡萄牙語 (巴西)
     ru: 俄語
+    sat: 桑塔利語
     sk: 斯洛伐克語
     sl: 斯洛維尼亞文
     sq: 阿爾巴尼亞
+    sr: 塞爾維亞語
     sv: 瑞典語
     th: 泰國
     tr: 土耳其語
@@ -2428,6 +2571,8 @@ zh-TW:
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
   lowest_rank: 最低級別
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: 作為管理員
   #Header for main content section of the project detail page when editing custom project data.
   main_content: 主要內容
@@ -4384,6 +4529,7 @@ zh-TW:
   subject_resolved_noun_html: "%{subject}解決了%{noun}"
   submission_model: 提交模組
   submission_model_description: 誰可以添加觀察至您的專案？
+  submit: 送出
   submit_observations:
     other: 提交 %{count} 個觀察
   submitted: 提交
@@ -4582,6 +4728,7 @@ zh-TW:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: 文字格式控制
   text_editing_controls: 文字編輯控制
+  thank_you!: 感謝！
   thanks!: 感謝！
   thanks_from_all_of_us_here_at: 感謝所有每一位來自於
   that_photo_doesnt_exist: 照片不存在
@@ -4964,7 +5111,6 @@ zh-TW:
   user_added_an_x_to_noun_by_you_html: "%{user} 新增一筆 %{x} 至您的 %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}添加一個%{x}至%{noun}"
-  user_added_x_observations_html: "%{user}添加%{x}個觀察"
   user_already_authenticated: 使用者已驗證
   user_autocomplete_placeholder: kueda、simon123 等等。
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -5681,6 +5827,18 @@ zh-TW:
           當您和收件者之間私訊時，iNaturalist 工作人員可以檢視這些訊息，
           而且當訊息被標記為審核時也會如此進行。如果您真的需要私人通訊，
           請參考其他支援高強度加密的通訊機制。
+    nls_demo:
+      vision_language_demo: 視覺語言模型示範
+      what_do_you_want_to_search_for: 您想要找尋什麼？
+      for_example_a_yellow_bug_with_black_spots: 例：一隻黃色有黑斑的蟲
+      try_one_of_these_example_searches_colon: "試著用這些範例之一來搜尋"
+      help_us_improve: 協助我们改善
+      to_help_us_improve: 我們想要知道在此頁面中哪張照片和您搜尋的&quot;%{searched_term}&quot;是有關的，以協助我們改善此模型。如果該照片符合您的搜尋，請在每張相關的照片上按%{thumbs_up_icon}，若無關聯則請按%{thumbs_down_icon}。當您完成標記後，請按提交。
+      mark_remaining_as_relevant: 將剩餘部分標記為相關
+      mark_remaining_as_not_relevant: 將剩餘部分標記為不相關
+      view_these_observations_in_identify: 在鑑定頁面中檢視這些觀察紀錄
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">愛自然（iNaturalist）</a>和<a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer"> 麻薩諸塞大學阿默斯特分校（University of Massachusetts Amherst）</a>、<a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer"> 愛丁堡大學（University of Edinburgh）</a>、<a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">倫敦大學學院（University of College London）</a>與<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">麻省理工學院（MIT）</a>等研究人員組成合作團隊，並在<a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">微軟AI為善實驗室（Microsoft AI for Good Lab）</a>慷慨的捐助下，致力於更深入地了解視覺語言模型在整理、探索和解讀 iNaturalist 觀察紀錄方面的潛力。
+      this_demo_tool: 這個示範工具讓你可以輸入搜尋詞句（例如「正在吃水果的鳥」），並將其與千萬張《愛自然》 照片比較。結果按相關性從高到低排序。您可以使用這個示範工具來以新的方式尋找有趣的 《愛自然》 觀察紀錄，以便註記或新增到你的專案中。
     oauth:
       authorizations:
         new:
@@ -6561,7 +6719,6 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
-          "Life Stage=Adult": 成體
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼蟲
           "Life Stage=Juvenile": 亞成體

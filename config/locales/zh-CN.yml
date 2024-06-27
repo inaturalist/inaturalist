@@ -249,6 +249,8 @@ zh-CN:
   add_annotations_for_controlled_attribute:
     sex: 添加用于“性”的注释
     plant_phenology: 为“植物物候学”添加注释
+    flowers_and_fruits: 添加关于"开花和挂果"的注释
+    leaves: 添加关于“叶片”的注释
     life_stage: 为“生命阶段”添加注释
     evidence_of_presence: 添加注释到“存在的证据”中
   add_another_flag: 添加其他标记
@@ -305,6 +307,14 @@ zh-CN:
   add_plant_phenology_flowering_annotation: '添加“植物物候学：开花阶段”注释'
   add_plant_phenology_fruiting_annotation: '添加“植物物候学：附果阶段”注释'
   add_plant_phenology_no_evidence_of_flowering_annotation: '添加“植物物候学：没有开花迹象”的注释'
+  add_flowers_and_fruits_flower_buds_annotation: '添加“开花和挂果：花芽”注释'
+  add_flowers_and_fruits_flowers_annotation: '添加“开花和挂果：开花”注释'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '添加“开花和挂果：果实或种子”注释'
+  add_flowers_and_fruits_no_flower_or_fruits: '添加“开花和挂果：无花无果”注释'
+  add_leaves_breaking_leaf_buds: '添加“叶片：叶芽萌发”注释'
+  add_leaves_green_leaves: '添加“叶片：绿叶”注释'
+  add_leaves_colored_leaves: '添加“叶片：有色叶”注释'
+  add_leaves_no_live_leaves: '添加“叶片：无活叶”注释'
   add_life_stage_adult_annotation: '添加“生命阶段：成人”注释'
   add_life_stage_teneral_annotation: '添加“生命阶段：幼虫”注释'
   add_life_stage_subimago_annotation: '添加“生命阶段：亚成虫”注释'
@@ -900,6 +910,12 @@ zh-CN:
   choose_what_kind_of_change_youre_creating: "选择您正在创建什么类型的更新。"
   cid_d_to_genus: 被社群鉴定到至属一级
   citation: 引用
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    当通过将子项<strong>(E)</strong>移动到分类树的另一部分来削弱父项<strong>(B)</strong>时，就会发生意外的分歧，导致父项的现有鉴定被解释为与移动子项的现有鉴定不一致。
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    当通过将子项<strong>(E)</strong>交换到分类树的另一部分来削弱父项<strong>(B)</strong>时，就会发生意外的分歧，导致父项的现有鉴定被解释为与交换子项的现有鉴定不一致。
   classification: 分类
   clear: 清除
   clear_filters: 清除筛选
@@ -1046,6 +1062,10 @@ zh-CN:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: 全部
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: 任意
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: 全部
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: 全部
@@ -1055,10 +1075,20 @@ zh-CN:
     male: 雄性
     female: 雌性
     plant_phenology: 植物物候学
+    flowers_and_fruits: 开花和挂果
     budding: 发芽
     flower_budding: 花芽阶段
     flowering: 开花阶段
     fruiting: 附果阶段
+    no_flowers_or_fruits: 无花无果
+    flower_buds: 花芽
+    flowers: 开花
+    fruits_or_seeds: 果实或种子
+    leaves: 叶片
+    breaking_leaf_buds: 叶芽萌发
+    green_leaves: 绿叶
+    colored_leaves: 有色叶
+    no_live_leaves: 无活叶
     life_stage: 生命阶段
     adult: 成体
     teneral: 幼体
@@ -1112,6 +1142,13 @@ zh-CN:
     flower_budding: 花苞可见但未绽放
     flowering: 花朵可见，已绽放，并且仍然连接在植株上
     fruiting: 果实可见并仍连接在植株上
+    flowers: 至少有一朵花开放
+    flower_buds: 至少有一个闭合的花芽
+    fruits_or_seeds: 至少有一颗果实或种子
+    breaking_leaf_buds: 至少有一个包含未完全展开的新叶或新针叶的叶芽
+    green_leaves: 至少有一片绿叶或绿色针叶（如果是健康颜色的话也可以是红叶）
+    colored_leaves: 至少一片叶片或针叶为晚季或干旱颜色
+    no_live_leaves: 看不到任何叶芽、绿叶或有色叶
     gall: 植物因受病原刺激或虫害而出现的局部增生
     male: 证据表明该生物能够产生用于有性生殖的精子
     molt: 蜕下的皮或外骨骼
@@ -1120,6 +1157,7 @@ zh-CN:
     egg: 整个卵或卵的一部分
     construction: 由动物在其他材料上所创造、制造或挖掘出的东西
     no_evidence_of_flowering: 媒体没有显示出繁殖结构
+    no_flowers_or_fruits: 看不到任何花、果实或种子（部分或全部）
     not_established: 生物属于未定殖的种群，包括释放/逃脱的宠物、协助扩散的生物和流浪生物。
     organism: 整个或部分生物体
     scat: 排泄物（非鸮类食丸或其它呕吐物）
@@ -1134,6 +1172,8 @@ zh-CN:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: 仅适用于有完整坐标的
+  coords_viewable_for_proj_desc: |
+    仅显示此项目中您可以看到“真实”坐标的观测结果，包括未被遮挡的观测结果、信任您的人所遮挡的观测结果、信任此项目的人所遮挡的观测结果以及仅信任此项目以查看被濒危分类群遮挡的观测结果的人所遮挡的观测结果。
   copy: 复制
   copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
   copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
@@ -1243,6 +1283,10 @@ zh-CN:
   curator_application_success: 馆长申请已提交
   #Header
   curator_application_what_curators_can_do: 馆长可以做什么
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: '按照<a href="/pages/curator+guide#policies" target="_blank">馆长指南的“政策”部分</a>中列出的政策编辑 iNaturalist 的分类法。这意味着他们可以在 iNaturalist 上添加、拆分、交换、合并、停用和删除分类单元。他们还可以编辑保护状态和分类单元地理隐私，以及编辑和管理任何用户添加的通用名称。'
   curator_application_what_curators_can_do_hide_comments_html: |
     对违反了 <a
     href="/pages/community+guidelines" target="_blank">社区
@@ -1764,6 +1808,7 @@ zh-CN:
   filter: 过滤器
   filter_by_curator_identification: 按馆长的鉴定进行筛选
   filter_by_place: 按地点筛选
+  filter_by_species: 按物种筛选
   filter_by_taxon: 按分类单元过滤
   filter_by_place_taxon_and_color: 按地点、分类单元和颜色标注进行筛选
   filter_list_by_this_taxon: 按这一分类单元筛选列表
@@ -1944,6 +1989,9 @@ zh-CN:
   grid_tooltip: 显示缩略图预览
   group: 组
   grouping: 分组
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: 从其他观察中猜测位置？
   guides: 指南
   guide_compiled_by: 此指南由下列用户编辑
   guide_deleted: 指南已删除
@@ -1972,6 +2020,14 @@ zh-CN:
   header_your_projects: 您的项目
   header_your_profile: 你的个人资料
   heads_up: 小心
+  heads_up_automatable_draft_split_notice_html: |
+    <strong>注意：</strong>提交此更改后，将根据地图集把鉴定重新分配给输出分类单元。如果部分或全部输出缺少地图集，或者给定记录的地图集重叠，则鉴定将被替换为最近的共同祖先分类单元 (%{taxon}) 。
+  heads_up_non_automatable_draft_split_notice_html: |
+    <strong>注意：</strong>此分类单元拆分过程中输出的分类单元要么没有图集，要么没有共同的祖先，因此在提交此拆分时，其输入分类单元的相关记录不能自动分配给输出分类单元，因此社区必须为这些记录添加新的鉴定。
+  heads_up_automatable_split_notice_html: |
+    <strong>注意：</strong>受此拆分影响的部分或全部鉴定可能已被 %{taxon} 鉴定所替换。当我们无法自动将鉴定分配给某个输出分类单元时，就会发生这种情况。
+  heads_up_observose_taxon_change_html: |
+    <strong>注意：</strong>此更改涉及的一个或多个输入分类单元具有超过 %{observose_taxon_threshold} 个下游观察。只有超管或该分类单元框架的各馆长才能提交此更改。
   heads_up_taxon_change_inputs_covered_by_framework_html: |
     <strong>注意：</strong> 此更改所涉及的一个或多个输入分类单元在一个 <a href="%{framework_url}">分类单元框架</a>内。 只有管理该分类单元框架的超管或馆长才可以进行影响到覆盖分类单元的更改。 请联系该分类单元的馆长来执行此更改。
   heads_up_there_are_other_draft_taxon_changes_html:
@@ -2036,6 +2092,10 @@ zh-CN:
         此分类单元被社群所采纳的第一个提议。这有助于完善社区分类单元。
       maverick: |
         分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_move_html: "分类单元 <strong>E</strong> 的 ID 2 在祖先发生变化后将与分类单元 <strong>B</strong> 的 ID 1 产生意外不一致。"
+  #Disagreements are identifications that disagree with other identifications on the same observation. ID 1, taxon B, etc. refer to items in a figure.
+  id_two_of_taxon_swap_html: "分类单元 <strong>E</strong> 的 ID 2 在分类单元互换后将与分类单元 <strong>B</strong> 的 ID 1 产生意外不一致。"
   id_withdrawn: 鉴定撤回
   ids_by_taxon: 鉴定（按分类单元排序）
   identify: 鉴定
@@ -2071,6 +2131,14 @@ zh-CN:
   ids_made_for_others: 为其他人做出的鉴定
   if_for_some_reason_a_user_doesnt_agree: |
     如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    如果削弱父级将导致超过10个意外的分歧，则您应在移动子级之后拆分父级，以将父级<strong>(B)</strong>的现有鉴定替换为不存在分歧的鉴定结果。
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    如果削弱父级将导致超过10个意外的分歧，则您应在交换子级之后拆分父级，以将父级<strong>(B)</strong>的现有鉴定替换为不存在分歧的鉴定结果。
   if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
   if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
@@ -3003,6 +3071,7 @@ zh-CN:
   observation_accuracy_experiment_show_additional_validators: "(显示额外的验证节点)"
   observation_accuracy_experiment_hide_additional_validators: "(隐藏额外的验证节点)"
   observation_accuracy_experiment_additional_validators: "（%{number}个额外的验证节点）"
+  observation_accuracy_experiment_abstract: "摘要：我们在 %{sample_generation_date} 生成了一个观察样本，并协调了一个验证团队在 %{deadline_date} 之前评估其准确性。下面显示的所有结果都显示了生成样本时样本观察的特征（例如是否为研究级）。样本观察的准确性在 %{assessment_date} 进行了评估。有关更多详细信息，请参阅方法选项卡。"
   observation_accuracy_experiment_research_grade_results: "研究级别结果"
   observation_accuracy_experiment_verifiable_results: "可验证结果"
   observation_accuracy_experiment_all_results: "所有结果"
@@ -3039,6 +3108,19 @@ zh-CN:
   observation_accuracy_validator_email_subject2: "您是否会帮助我们进行实验%{version}，以估计iNaturalist观察的准确度？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     您是否会帮助我们进行一次<a href="%{url}">实验（版本%{version}）</a>，以估计iNaturalist观察的准确度？
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>尽可能细致地鉴定下面链接中的所有观察结果，即使它们已经达到了研究等级，即使您最好的的鉴定处于更高的分类级别（甚至是界一级）。</li>
+    <li>如果您看到“潜在分歧”弹出窗口……
+    <ul>
+    <li>并且您确信它是错误鉴定，请单击橙色按钮，</li>
+    <li>或者如果您不确定超出您的鉴定的内容，请单击绿色按钮</li>
+    </ul>
+    </li>
+    <li>在 <b>%{validator_deadline_date} 之前完成此操作</b></li>
+    </ol>
+    以下是我们认为您可以根据您在 iNat 上的活动识别的 <a href="%{sample_url}">%{num_obs} 个观察结果的子集</a>*。<b>请在 %{validator_deadline_date} 之前为每个观察结果添加您能找到的最精细鉴定</b>。
+    *<i>此链接将打开 iNaturalist 网站上的识别工具，需要您登录。我们建议使用电脑执行此任务，但也可以在您的移动浏览器应用程序中执行。如果您在 iNaturalist Android 应用程序中阅读此消息，请确保在浏览器应用程序中打开链接（而不是 iNat 应用程序本身）。您可能必须通过浏览器应用程序登录网站。</i>
   observation_accuracy_validator_email_we_will_calculate: |
     我们将通过将您的鉴定结果与观察分类单元进行比较来计算精度。您可以跳过您以前添加过鉴定的观察，如果这一观察仍然相关的话。 要查看我们是如何计算协议和分歧的更多信息，请继续阅读。
   observation_accuracy_validator_email_ids_equal_to: |
@@ -4649,6 +4731,7 @@ zh-CN:
   subject_resolved_noun_html: "%{subject} 解决了 %{noun}"
   submission_model: 提交模式
   submission_model_description: 谁可以添加观察至您的项目？
+  submit: 提交
   submit_observations:
     other: 提交 %{count} 个观察
   submitted: 提交日期
@@ -4763,6 +4846,8 @@ zh-CN:
   taxon_deleted: 分类单元已删除。
   taxon_doesnt_have_a_range: 分类单元没有范围
   taxon_drop: 分类单元分段
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: 有关%{taxon}的分类单元撤销
   taxon_id: 分类单元ID
   taxon_ids: 分类单元ID
   taxon_map:
@@ -4786,6 +4871,9 @@ zh-CN:
   taxon_framework_taxon: 分类单元框架分类
   taxon_history_notice: 历史功能是2022年2月引入的，因此在此时之前没有历史记录。
   taxon_merge: 分类单元合并
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: 有关%{taxa}的分类单元合并
   taxon_name: 分类单元名称
   taxon_name_must_match_an_existing_taxon_in_our_database: 分类单元名称必须与我们数据库中的现有分类单元匹配
   taxon_observed_by_html: |
@@ -4821,9 +4909,17 @@ zh-CN:
   taxon_search: 分类单元搜索
   taxon_search_results_for: 类群搜索结果：
   taxon_split: 分类单元分组
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: 有关%{taxa}的分类单元拆分
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: 分类单元分阶段
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: 有关%{taxon}的分类单元构建
   taxon_swap: 分类单元交换
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: 有关%{taxa}的分类单元互换
   taxon_swap_only_has_one_input: 只允许一次输入为一次交换
   taxon_swap_has_inputs_and_outputs: 交换必须既有输入又有输出
   taxon_name_was_deleted: 类群名称已删除。
@@ -4854,6 +4950,7 @@ zh-CN:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: 文本格式控制
   text_editing_controls: 文本编辑控制
+  thank_you!: 谢谢！
   thanks!: 谢谢 ！
   thanks_from_all_of_us_here_at: 社区对您表示感谢！来自大家的
   that_account_is_already_connected: 该帐户已经连接到另一个用户
@@ -5276,7 +5373,8 @@ zh-CN:
   user_added_an_x_to_noun_by_you_html: "%{user} 将 %{x} 添加到你的 %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}将%{x}添加至%{noun}"
-  user_added_x_observations_html: "%{user}添加了%{x}个观察"
+  user_added_x_observations2_html:
+    other: "%{user}添加了%{count}个观察"
   user_already_authenticated: 用户已通过身份验证
   user_already_app_owner: 用户已经是应用程序所有者
   user_autocomplete_placeholder: 柯达、西蒙123等
@@ -5286,6 +5384,16 @@ zh-CN:
     %{user} 认为这是一个 %{taxon} 在 %{place} 的完整列表
   user_blocked: 用户已屏蔽
   user_commented: "%{user} 已评论"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user}提交了一项有关%{taxon}的分类单元撤销"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa: "%{user}提交了一项有关%{taxa}的分类单元撤销"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa: "%{user}提交了一项有关%{taxa}的分类单元撤销"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon: "%{user}提交了一项有关%{taxon}的分类单元撤销"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa: "%{user}提交了一项有关%{taxa}的分类单元撤销"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意先前更精确的识别"
   user_faved_an_observation_by_you: "%{user} 收藏了你的观察"
@@ -5341,6 +5449,20 @@ zh-CN:
     </ul>
     <p>
     如果您还是无法收到验证邮件，请通过<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>联系我们，让我们来帮助您。
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>您即将退出</h3>
+    <p>
+    发送确认电子邮件后您将退出，并且在您点击电子邮件中的链接之前您将无法登录您的帐户，因此<strong class="bg-warning">请务必确保您已正确输入电子邮件地址。</strong>
+    </p>
+    <p>
+    以下是我们将向其发送确认的电子邮件地址：
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>如果您取消订阅了所有电子邮件...</h4>
+    <p>
+    如果您取消订阅我们发送的<em>所有</em>电子邮件，我们将无法向您发送确认电子邮件。要重新订阅，您需要找到我们发送的先前电子邮件，单击取消订阅链接，然后选择重新接收电子邮件。如果您无法执行此操作，请使用您在此处输入的电子邮件地址发送电子邮件至
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>，以便我们为您提供帮助。
     </p>
   users_favorites: "%{user}的收藏夹"
   users_highlights_and_stats_from_year_on_site: "来自%{site}在%{year}年的%{user}的要点与统计数据"
@@ -5871,6 +5993,8 @@ zh-CN:
       your_site_account_has_no_email: 你的%{site_name}账户没有绑定邮箱地址。
     flags:
       show:
+        flaggable_content_desc: |
+          可标记内容是创建标记时标记对象的主要文本属性。只有馆长和员工可以看到它。只有员工可以看到它的内容消息。
         flags_that_should_not_be_resolved_desc_html: |
           只有在信息并非骚扰信息或版权侵犯的情况下，才能解除<code>骚扰</code>和<code>版权侵犯</code>标记。
     geo_model:
@@ -6138,6 +6262,21 @@ zh-CN:
           您于 %{date} 标记了此对话。这个标记在您删除此对话的副本后仍然存在，所以如果您不想再看到它的话，删除它是没问题的。
         privacy_notice_html: |
           虽然消息在您和收件人之间是私密的，iNaturalist 工作人员也可以在消息被标记为适度时查看它们。如果您需要真正的私人通讯，请查看支持强化加密的其他通讯机制。
+    nls_demo:
+      vision_language_demo: 视觉语言演示
+      what_do_you_want_to_search_for: 您希望搜索什么？
+      for_example_a_yellow_bug_with_black_spots: 例如：一个带黑点的黄色虫子
+      try_one_of_these_example_searches_colon: "请尝试其中一个搜索实例："
+      help_us_improve: 帮助我们改进
+      to_help_us_improve: 为了帮助我们改进此模型，我们希望知道此页面上的哪些图像与您搜索的“%{searched_term}”相关。如果某幅图像与您的搜索相匹配，请将其标记为相关 %{thumbs_up_icon}，如果不匹配，请将其标记为不相关 %{thumbs_down_icon}。完成后，请单击提交。
+      mark_remaining_as_relevant: 标记剩余为相关
+      mark_remaining_as_not_relevant: 标记剩余为无关
+      view_these_observations_in_identify: 在鉴定中查看这些观察
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> 已经与 <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">马萨诸塞大学阿默斯特分校</a>、 <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">爱丁堡大学</a>、 <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">伦敦大学</a> 、<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">麻省理工学院</a>的研究人员建立了团队，并得到 <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI为善实验室</a> 的慷慨支持，以更好地了解视觉语言模式帮助组织的潜力， 探索并解释 iNaturalist的观察。
+      this_demo_tool: 这个演示工具可以让您输入搜索词组(例如"吃水果的鸟")，并将它与1000万张iNaturalist 照片相比较。 结果是按照相关性从高到低排列的。 您可以使用这个演示作为一种寻找有趣的 iNaturalist 观察记录来注释或添加到您的项目的新的方式。
+      you_can_also_use_this_demo: 您还可以使用此演示来帮助我们评估支持此演示的 Vision Language 模型，方法是告诉我们返回的哪些图像与您的搜索词相关。此演示使用的是第三方 <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP 模型</a>，该模型未在 iNaturalist 数据上或由 iNaturalist 团队进行训练。有时，该工具可能会产生不准确、有偏见或令人反感的结果。<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">在 iNaturalist 博客上阅读更多内容</a>。
+      if_youd_like_to_support_this_work: 如果您想支持此工作
+      thank_you_for_your_submission!: 感谢您的提交！
     oauth:
       authorizations:
         new:
@@ -6198,6 +6337,8 @@ zh-CN:
         taxa_observed_in_all_queries: 在所有查询中观察到的分类群
         taxa_observed_in_only_one_query: 只在一个查询中观察到分类群
         total_taxa: 全部分类群
+        total_taxa_desc: |
+          这是查询中表示的“叶”分类单元的总数。有时您会看到比此更多的非零计数行，因为有来自其他查询的更高级别的分类单元。例如，如果查询 1 有对智人的观察，查询 2 有对人属的观察，则这两个分类单元都会出现在表中，但这表示查询 1 中人属的额外一行，它没有将其包括在总数中，因为它只计算了该属中的智人物种，因为那是树的该部分的“叶”。
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: 垂直
         #Count of how many taxa several observation searches have in common
@@ -6240,6 +6381,38 @@ zh-CN:
         taking_a_while: "这需要一段时间。 请尝试以下选项之一。"
         date_range_help: "以YYYY-MM-DD的格式记录最早和最晚的观察日期，例如：2015-01-17"
         created_on_help: "观察创建的时间，而不是已观察，例如2015-01-17、2015-01、2015"
+        other_options_html: |
+          <h3>其他选项</h3>
+          <p>
+          大量导出会减慢我们的底层速度，并使我们更难发布新的更改。以下是一些其他可供考虑的选项：
+          </p>
+          <ul>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF：</a>
+          GBIF 吸收了我们大部分研究级、许可的观察结果，并且他们的导出工具非常出色。GBIF 导出还附带一个 <a href="https://www.doi.org/">DOI</a>，如果您根据导出的数据发表研究，您可以引用它，这些引用对我们非常有帮助，因为它们让我们了解 iNat 数据的使用方式。
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="http://www.inaturalist.org/observations/gbif-observations-dwca.zip">GBIF 的 DarwinCore
+          Archive (DwC-A)</a>：这是我们为 GBIF 生成的 <a
+          href="https://github.com/gbif/ipt/wiki/DwCAHowToGuide#what-is-darwin-core-archive-dwc-a">DwC-A</a>
+          文件，因此它不应包含GBIF 中没有的任何内容，但如果您想要整个存档，您可以下载它。这是一个非常大的 zip 文件，包含以CSV格式记录的数据，每周更新。
+          </p>
+          </li>
+          <li>
+          <p>
+          <a
+          rel="nofollow noreferrer noopener"
+          href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge at FGVC 2017</a>：链接到 675,000 张获得许可的iNaturalist 照片，涵盖 5,089 个物种，用于计算机视觉训练。创建于 2017 年 6 月，尚未更新。
+          </p>
+          </li>
+          </ul>
       field_descriptions:
         id: "用于观察的唯一标识符"
         species_guess: "观察者输入的被观察分类单元的名字"
@@ -6329,6 +6502,59 @@ zh-CN:
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
+        quality_assessment_help3_html: |
+          <p>
+          数据质量评估是一项对观察的准确度的总结。所有的观察最初都被定为<strong>“非正式”</strong>级别，在满足以下条件时才会被定为<strong>“需要鉴定”</strong> 级别：
+          </p>
+
+          <ul>
+          <li>观察<strong>拥有日期</strong></li>
+          <li>观察<strong>存在地理参考性</strong>（即拥有经纬度坐标）</li>
+          <li>观察<strong>有图片或声音</strong></li>
+          <li>观察<strong>对象不是人类</strong></li>
+          </ul>
+          <p>
+          满足下列条件的观察会被定为<strong>“研究级别”</strong>：
+          </p>
+          <ul>
+          <li>
+          %{site_name} <strong>社群同意的物种或更低级别的鉴定</strong>，即当超过 2/3 的鉴定者同意某个分类单元时（如果社群投票认为社群分类单元无法再改进，则为亚科级鉴定或更低级别）
+          </li>
+          </ul>
+          <p>
+          如果上述条件不满足或社区同意下列情况，观察结果将恢复为<strong>“非正式”</strong>级别：
+          </p>
+          <ul>
+          <li>
+          <strong>地点似乎不准确</strong>（比如在大海正中央出现了猴子观察，在办公楼里出现河马观察等）
+          </li>
+          <li>
+          <strong>生物体不是野生/归化的</strong>（比如被人类所饲育或栽培的）
+          </li>
+          <li>
+          观察<strong>未呈现出生物体的存在证据</strong>，比如不包括生物体的关于水体、岩石、地形的图片等。
+          </li>
+          <li>
+          观察结果<strong>未提供该生物的近期（~100 年）证据</strong>（例如化石，但足迹、粪便和枯叶是可以的）
+          </li>
+          <li>
+          观察<strong>未呈现出对某一个特定对象的证据</strong>（如其包含四张涉及不同生物体的图片。有一张展现观察对象的生境的照片是允许的。）
+          </li>
+          <li>
+          观察不再需要鉴定，<em>且</em>社群鉴定处于科或科以上级别
+          </li>
+          <li>
+          观察者已选择退出社群鉴定，并且社群鉴定的分类单元不是与观察者鉴定相关联的分类单元的祖先或后代
+          </li>
+          </ul>
+          <p>
+          如果这还不够复杂的话，还有一些情况需要系统投票：
+          </p>
+          <ul>
+          <li>
+          如果在包含此观察结果的最小县、州或国家同等地点，有至少 10 个其他同属或更低属的观察结果，并且这些观察结果中有 80% 或更多被标记为非野生/非归化，则系统将投票判定该观察结果为非野生/非归化。
+          </li>
+          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
@@ -6942,6 +7168,7 @@ zh-CN:
           “定殖途径”描述物种如何到达目前发生的地点。外来意味着它是因为人类活动而到达的，而原生意味着它是在没有人类帮助的情况下到达的。特有物种只发生在特定的地点，其他地点均不存。
         about_taxon_curators_desc: |
           这些人管理包含此分类单元的分类树的一部分。如果您想进行更改，请标记此分类或联系其中一个人。
+        charts_caps: 图表
         charts_help_seasonality: |
           此图表显示按月分组的此分类单元的观察数量。请记住，这些是观察的数量，因此它们受到观察生物体的时间和人们懒得观察它们的影响。因此，一只鸟可能在五月似乎非常活跃，但这也可能是由于5月份有更多人观看，他们在后来的几个月里往往会忽视这一物种。同样，如果你在6月看到的蜻蜓比1月份更多，这可能是因为我们在北半球观察的人数多于南半球，而不是因为蜻蜓在6月更活跃，所以在考虑这些图表时请查看地图。当“可验证”和“研究级”观察数量之间的观察数量较少和/或存在较大差异时，对这些图表持怀疑态度总是一个好主意。
         charts_help_history: |
@@ -6963,7 +7190,14 @@ zh-CN:
           "Plant Phenology=Flowering": 开花阶段
           "Plant Phenology=Fruiting": 附果阶段
           "Plant Phenology=No Evidence of Flowering": 没有开花迹象
-          "Life Stage=Adult": 成虫
+          "Flowers and Fruits=Flower Buds": 花芽
+          "Flowers and Fruits=Flowers": 开花
+          "Flowers and Fruits=Fruits or Seeds": 果实或种子
+          "Flowers and Fruits=No Flowers or Fruits": 无花无果
+          "Leaves=Breaking Leaf Buds": 叶芽萌发
+          "Leaves=Green Leaves": 绿叶
+          "Leaves=Colored Leaves": 有色叶
+          "Leaves=No Live Leaves": 无活叶
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼虫
           "Life Stage=Juvenile": 幼期
