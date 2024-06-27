@@ -4,7 +4,7 @@ class CreateCohortLifecycles < ActiveRecord::Migration[6.1]
   def change
     create_table :cohort_lifecycles do | t |
       t.date :cohort, default: nil
-      t.references :user, null: false, foreign_key: true
+      t.references :user, null: false
       t.string :day0, default: nil
       t.string :day1, default: nil
       t.string :day2, default: nil
@@ -22,5 +22,6 @@ class CreateCohortLifecycles < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+    add_index :cohort_lifecycles, [:cohort, :user_id], unique: true
   end
 end

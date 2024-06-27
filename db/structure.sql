@@ -7918,6 +7918,13 @@ CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_
 
 
 --
+-- Name: index_cohort_lifecycles_on_cohort_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_cohort_lifecycles_on_cohort_and_user_id ON public.cohort_lifecycles USING btree (cohort, user_id);
+
+
+--
 -- Name: index_cohort_lifecycles_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10351,14 +10358,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING b
 --
 
 CREATE INDEX user_index ON public.audits USING btree (user_id, user_type);
-
-
---
--- Name: cohort_lifecycles fk_rails_a1298bf168; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.cohort_lifecycles
-    ADD CONSTRAINT fk_rails_a1298bf168 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --

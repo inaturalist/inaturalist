@@ -150,13 +150,18 @@ class CohortLifecycle < ApplicationRecord
           if missing_fields.any?
             errors.concat( missing_fields.map {| field | error_key.fetch( field, field ) } )
           elsif ["recent", "evidence", "location", "date"].
-              any? {| field | quality_metric_observation_ids( [observation.id], field ).count == 1 }
-            errors.concat(
-              ["recent", "evidence", "location", "date"].
-              select {| field | quality_metric_observation_ids( [observation.id], field ).count == 1 }.
-              map {| field | error_key.fetch( field, field ) }
-            )
-          elsif quality_metric_observation_ids( [observation.id], "subject" ).count == 1
+              any? do | field |
+                ObservationAccuracyExperiment.
+                    quality_metric_observation_ids( [observation.id], field ).
+                    count == 1
+              end
+            subset = ["recent", "evidence", "location", "date"].select do | field |
+              ObservationAccuracyExperiment.
+                quality_metric_observation_ids( [observation.id], field ).
+                count == 1
+            end
+            errors.concat( subset.map {| field | error_key.fetch( field, field ) } )
+          elsif ObservationAccuracyExperiment.quality_metric_observation_ids( [observation.id], "subject" ).count == 1
             errors << "single_species"
           end
 

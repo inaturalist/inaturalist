@@ -22,7 +22,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     generate_sample if generate_sample_now
   end
 
-  def quality_metric_observation_ids( observation_ids, metrics )
+  def self.quality_metric_observation_ids( observation_ids, metrics )
     QualityMetric.
       select( :observation_id ).
       where( observation_id: observation_ids, metric: metrics ).
