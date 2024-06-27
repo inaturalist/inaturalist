@@ -110,8 +110,8 @@ class CohortLifecycle < ApplicationRecord
 
     ( 0..6 ).each do | d |
       cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
-      slot = "day#{d}".to_s
-      prev_slots = ( 0...d ).map {| q | "day#{q}".to_s }
+      slot = "day#{d}".to_sym
+      prev_slots = ( 0...d ).map {| q | "day#{q}".to_sym }
 
       puts "#{cohort} #{slot}"
       next unless cohort_data[cohort]
