@@ -852,7 +852,7 @@ class SiteStatistic < ApplicationRecord
       new_users_d0 - reactivated_users_d0 - reengaged_users_d0
 
     # Calculate counts
-    curent_users = current_users_d0.count
+    current_users = current_users_d0.count
     at_risk_waus = at_risk_waus_d0.count
     at_risk_maus = at_risk_maus_d0.count
     new_users = new_users_d0.count
@@ -872,7 +872,7 @@ class SiteStatistic < ApplicationRecord
     rr = reengaged_users_d0.count / unengaged_users_d0.count.to_f
 
     {
-      curent_users: current_users_d0,
+      current_users: current_users_d0,
       at_risk_waus: at_risk_waus_d0,
       at_risk_maus: at_risk_maus_d0,
       new_users: new_users_d0,
@@ -881,7 +881,7 @@ class SiteStatistic < ApplicationRecord
       unengaged_users: unengaged_users_d0,
       statistic: {
         date: day_0,
-        curent_users: curent_users,
+        current_users: current_users,
         at_risk_waus: at_risk_waus,
         at_risk_maus: at_risk_maus,
         new_users: new_users,
@@ -902,7 +902,7 @@ class SiteStatistic < ApplicationRecord
   end
 
   def self.update_user_daily_categories( daily_active_user_model_data )
-    update_user_daily_category( daily_active_user_model_data[:curent_users], :curent_user )
+    update_user_daily_category( daily_active_user_model_data[:current_users], :current_user )
     update_user_daily_category( daily_active_user_model_data[:at_risk_waus], :at_risk_wau )
     update_user_daily_category( daily_active_user_model_data[:at_risk_maus], :at_risk_mau )
     update_user_daily_category( daily_active_user_model_data[:new_users], :new_user )

@@ -15,7 +15,7 @@ describe StatsController do
         end
         allow( SiteStatistic ).to( receive( :generate_daily_active_user_model_data ) do
           {
-            curent_users: [],
+            current_users: [],
             at_risk_waus: [],
             at_risk_maus: [],
             new_users: [],
