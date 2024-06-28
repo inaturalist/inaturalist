@@ -5253,6 +5253,39 @@ ALTER SEQUENCE public.user_blocks_id_seq OWNED BY public.user_blocks.id;
 
 
 --
+-- Name: user_daily_active_categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_daily_active_categories (
+    id bigint NOT NULL,
+    user_id integer,
+    today_category character varying,
+    yesterday_category character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_daily_active_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_daily_active_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_daily_active_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_daily_active_categories_id_seq OWNED BY public.user_daily_active_categories.id;
+
+
+--
 -- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6548,6 +6581,13 @@ ALTER TABLE ONLY public.user_blocks ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: user_daily_active_categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_daily_active_categories ALTER COLUMN id SET DEFAULT nextval('public.user_daily_active_categories_id_seq'::regclass);
+
+
+--
 -- Name: user_mutes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7639,6 +7679,14 @@ ALTER TABLE ONLY public.update_actions
 
 ALTER TABLE ONLY public.user_blocks
     ADD CONSTRAINT user_blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_daily_active_categories user_daily_active_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_daily_active_categories
+    ADD CONSTRAINT user_daily_active_categories_pkey PRIMARY KEY (id);
 
 
 --
@@ -10004,6 +10052,13 @@ CREATE INDEX index_trip_taxa_on_trip_id ON public.trip_taxa USING btree (trip_id
 
 
 --
+-- Name: index_udac_on_tc_yc; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_udac_on_tc_yc ON public.user_daily_active_categories USING btree (today_category, yesterday_category);
+
+
+--
 -- Name: index_update_actions_unique; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10029,6 +10084,13 @@ CREATE INDEX index_user_blocks_on_override_user_id ON public.user_blocks USING b
 --
 
 CREATE INDEX index_user_blocks_on_user_id ON public.user_blocks USING btree (user_id);
+
+
+--
+-- Name: index_user_daily_active_categories_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_daily_active_categories_on_user_id ON public.user_daily_active_categories USING btree (user_id);
 
 
 --
@@ -10847,6 +10909,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240429211140'),
 ('20240530162451'),
 ('20240606154217'),
-('20240618044707');
+('20240618044707'),
+('20240620100000');
 
 
