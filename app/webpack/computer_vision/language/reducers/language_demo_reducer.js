@@ -7,6 +7,40 @@ const RESET_STATE = "language_demo/RESET_STATE";
 const SET_ATTRIBUTES = "language_demo/SET_ATTRIBUTES";
 const UPDATE_STATE = "language_demo/UPDATE_STATE";
 
+const MAX_PAGES = 5;
+
+const LANGUAGE_SEARCH_FIELDS = {
+  photo_id: true,
+  score: true,
+  observation: {
+    id: true,
+    photos: {
+      id: true,
+      url: true
+    },
+    taxon: {
+      id: true,
+      name: true,
+      rank: true,
+      rank_level: true,
+      preferred_common_name: true
+    },
+    user: {
+      login: true,
+      icon_url: true
+    }
+  }
+};
+
+const ICONIC_TAXON_FIELDS = {
+  id: true,
+  name: true,
+  preferred_common_name: true,
+  default_photo: {
+    square_url: true
+  }
+};
+
 const DEFAULT_STATE = {
   searchStatus: null,
   searchedTerm: null,
@@ -25,7 +59,10 @@ export default function reducer( state = DEFAULT_STATE, action ) {
   let modified;
   switch ( action.type ) {
     case RESET_STATE:
-      return { ...DEFAULT_STATE };
+      return {
+        ...DEFAULT_STATE,
+        iconicTaxa: state.iconicTaxa
+      };
     case SET_ATTRIBUTES:
       return Object.assign( { }, state, action.attributes );
     case UPDATE_STATE:
@@ -41,7 +78,51 @@ export default function reducer( state = DEFAULT_STATE, action ) {
   return state;
 }
 
-export function resetState( ) {
+const pushToBrowserState = ( searchTerm, searchTaxon, params = { }, options = { } ) => {
+  const browserParams = { };
+  const browserState = { };
+  if ( searchTerm ) {
+    browserParams.q = searchTerm;
+    browserState.q = searchTerm;
+    if ( searchTaxon ) {
+      browserParams.taxon_id = searchTaxon.id;
+      if ( searchTaxon.name ) {
+        browserState.taxon = {
+          id: searchTaxon.id,
+          name: searchTaxon.name,
+          preferred_common_name: searchTaxon.preferred_common_name,
+          default_photo: searchTaxon.default_photo ? {
+            id: searchTaxon.default_photo.id,
+            square_url: searchTaxon.default_photo.square_url
+          } : null
+        };
+      } else {
+        browserState.taxon = {
+          id: searchTaxon.id
+        };
+      }
+    }
+    if ( params.page && params.page !== 1 ) {
+      browserParams.page = params.page;
+      browserState.page = params.page;
+    }
+  }
+
+  let url = `${window.location.origin}${window.location.pathname}`;
+  if ( !_.isEmpty( browserParams ) ) {
+    url = `${url}?${$.param( browserParams )}`;
+  }
+  if ( options.replaceState ) {
+    history.replaceState( browserState, null, url );
+    return;
+  }
+  history.pushState( browserState, null, url );
+};
+
+export function resetState( options = { } ) {
+  if ( !options.skipSetState ) {
+    pushToBrowserState( null, null );
+  }
   return { type: RESET_STATE };
 }
 
@@ -69,10 +150,14 @@ export function toggleVoting( ) {
   };
 }
 
-export function languageSearch( searchTerm, searchTaxon, params = { } ) {
+export function languageSearch( searchTerm, searchTaxon, params = { }, options = { } ) {
   return async dispatch => {
     const searchTime = new Date( ).getTime( );
     lastSearchTime = searchTime;
+
+    if ( !options.skipSetState ) {
+      pushToBrowserState( searchTerm, searchTaxon, params );
+    }
 
     dispatch( setAttributes( {
       searchStatus: "searching",
@@ -82,7 +167,8 @@ export function languageSearch( searchTerm, searchTaxon, params = { } ) {
     } ) );
     const searchParams = {
       ...params,
-      q: searchTerm
+      q: searchTerm,
+      fields: LANGUAGE_SEARCH_FIELDS
     };
     if ( searchTaxon ) {
       searchParams.taxon_id = searchTaxon.id;
@@ -108,8 +194,12 @@ export function languageSearch( searchTerm, searchTaxon, params = { } ) {
         votes: { }
       } ) );
     } ).catch( e => {
-      console.log( e );
-      dispatch( resetState( ) );
+      dispatch( setAttributes( {
+        searchStatus: null,
+        searchedTerm: null,
+        searchResponse: null,
+        votes: { }
+      } ) );
     } );
   };
 }
@@ -164,7 +254,9 @@ export function voteOnPhoto( photoID, vote ) {
 
 export function fetchIconicTaxa( ) {
   return dispatch => {
-    inaturalistjs.taxa.iconic( ).then( r => {
+    inaturalistjs.taxa.iconic( {
+      fields: ICONIC_TAXON_FIELDS
+    } ).then( r => {
       dispatch( updateState( {
         iconicTaxa: _.keyBy( r.results, "id" )
       } ) );
@@ -198,7 +290,7 @@ export function submitVotes( options = { } ) {
         score: result.score
       } );
     } );
-    fetch( "/language_demo/record_votes", {
+    fetch( "/vision_language_demo/record_votes", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -249,7 +341,8 @@ export function viewInIdentify( ) {
       languageDemo.searchResponse.results,
       r => ( r.observation.id )
     ) );
-    const url = `/observations/identify?quality_grade=needs_id,casual,research&reviewed=any&id=${observationIDs.join( "," )}`;
+    const url = "/observations/identify?quality_grade=needs_id,casual,research"
+      + `&reviewed=any&place_id=any&id=${observationIDs.join( "," )}`;
     window.open( url, "_blank", "noopener,noreferrer" );
   };
 }
@@ -261,5 +354,59 @@ export function acknowledgeSubmission( ) {
       submissionAcknowledged: true,
       votes: { }
     } ) );
+  };
+}
+
+export function loadFromURL( ) {
+  return dispatch => {
+    const urlParams = new URLSearchParams( window.location.search );
+    const initialQuery = urlParams.get( "q" );
+    const initialTaxonID = Number( urlParams.get( "taxon_id" ) );
+    let page = Number( urlParams.get( "page" ) );
+    if ( !_.includes( _.range( 1, MAX_PAGES ), page ) ) {
+      page = null;
+    }
+    if ( !_.isEmpty( initialQuery ) ) {
+      const initialTaxon = initialTaxonID ? { id: initialTaxonID } : null;
+      dispatch( setAttributes( {
+        initialQuery,
+        initialTaxon
+      } ) );
+      dispatch( languageSearch(
+        initialQuery,
+        initialTaxon,
+        { page },
+        { skipSetState: true }
+      ) );
+      pushToBrowserState(
+        initialQuery,
+        initialTaxon,
+        page ? { page } : { },
+        { replaceState: true }
+      );
+    }
+  };
+}
+
+export function matchBrowserState( state ) {
+  return dispatch => {
+    if ( !state.q ) {
+      dispatch( setAttributes( {
+        initialQuery: null,
+        initialTaxon: null
+      } ) );
+      dispatch( resetState( { skipSetState: true } ) );
+      return;
+    }
+    dispatch( setAttributes( {
+      initialQuery: state.q,
+      initialTaxon: state.taxon ? new inaturalistjs.Taxon( state.taxon ) : null
+    } ) );
+    dispatch( languageSearch(
+      state.q,
+      state.taxon,
+      state.page ? { page: state.page } : { },
+      { skipSetState: true }
+    ) );
   };
 }

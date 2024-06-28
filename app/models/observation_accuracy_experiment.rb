@@ -22,7 +22,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
     generate_sample if generate_sample_now
   end
 
-  def quality_metric_observation_ids( observation_ids, metrics )
+  def self.quality_metric_observation_ids( observation_ids, metrics )
     QualityMetric.
       select( :observation_id ).
       where( observation_id: observation_ids, metric: metrics ).
@@ -537,9 +537,9 @@ class ObservationAccuracyExperiment < ApplicationRecord
     has_cid = Observation.
       where( "id IN ( ? ) AND community_taxon_id IS NOT NULL AND community_taxon_id = taxon_id", o ).
       pluck( :id )
-    captive = quality_metric_observation_ids( o, "wild" )
-    no_evidence = quality_metric_observation_ids( o, ["evidence"] )
-    other_dqa_issue = quality_metric_observation_ids( o, ["location", "date", "recent"] )
+    captive = ObservationAccuracyExperiment.quality_metric_observation_ids( o, "wild" )
+    no_evidence = ObservationAccuracyExperiment.quality_metric_observation_ids( o, ["evidence"] )
+    other_dqa_issue = ObservationAccuracyExperiment.quality_metric_observation_ids( o, ["location", "date", "recent"] )
 
     puts "Processing sample"
     obs_data = observations.map do | obs |

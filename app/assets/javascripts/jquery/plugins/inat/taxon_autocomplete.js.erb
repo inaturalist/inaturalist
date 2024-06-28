@@ -57,7 +57,7 @@ autocompleter.setTitle = function( result, options ) {
     } );
     result.title = names.join( " · " );
   } else {
-    result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
+    result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name || "";
   }
   result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags(
     _.first( result.title.split( " · " ) )

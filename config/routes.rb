@@ -704,7 +704,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :language_demo, only: :index, controller: :language_demo do
+  resource :vision_language_demo, only: :index, controller: :language_demo do
     collection do
       get :index
       post :record_votes
