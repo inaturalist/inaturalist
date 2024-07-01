@@ -196,8 +196,31 @@ da:
   about_this_bioblitz: Om denne bioblitz
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
-  about_trips_html: |
-    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværelse-fravær kriterium ved at føje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværelse-fravær data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt ifm. videnskabelige analyser såsom udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur føjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på mållisten, som kunne observeres inden for søgeområdet og intervallet tolkes som tilstedeværelse. Derimod tolkes arter, som ikke kunne observere, som fravær. Klik på 'Tabellér tilstedeværelse-fravær data fra tur' for at generere en tabel over tilstedeværelse-fravær registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Læs mere</a></p>
+  about_trips2_html: |
+    <h4>
+    Ture muliggør indsamling af tilstedeværelse-fravær data ved at føje kontekst til
+    observationerne
+    </h4>
+    <p>
+    <strong>Hvorfor</strong> Tilstedeværelse-fravær data omfatter oplysninger om
+    prøveudtagningsindsats, som er nyttig til videnskabelige analyser såsom distributionsmodellering (rå iNaturalist-observationer er 'alene tilstedeværelse'-data).
+    </p>
+    <p>
+    <strong>Hvordan</strong> En tur tilføjer kontekst til observationerne ved at registrere:
+    </p>
+    <ul>
+    <li><strong>Hvad</strong>, der blev søgt efter (målliste)</li>
+    <li><strong>Hvor</strong>, der blev søgt (søgeområde)</li>
+    <li><strong>Hvornår</strong>, der blev søgt (søgeinterval)</li>
+    </ul>
+    <p>
+    Arter på mållisten, som man var i stand til at observere inden for
+    søgeområde og interval, tolkes som tilstedeværelser. Arter på
+    mållisten, som man ikke var i stand til at observere, tolkes som
+    fravær. Klik på 'Tabulér tilstedeværelse-fravær data fra ture' for at generere en
+    tabel over tilstedeværelse-fravær registreringer for en art fra ture og tilhørende
+    observationer. <a href='%{url}'>Læs mere</a>
+    </p>
   about_trusting_projects: Om Tillid til Projekter
   about_trusting_projects_options_any: Alle dine observationer i dette projekt
   about_trusting_projects_options_any_desc: |-
@@ -342,6 +365,7 @@ da:
   add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I frugt"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Tilføj anmærkningen "Plantefenologi: Intet bevis på Blomstring"'
   add_flowers_and_fruits_flower_buds_annotation: 'Tilføj "Blomster og Frugter: Blomsterknopper" anmærkning'
+  add_flowers_and_fruits_flowers_annotation: 'Tilføj "Blomster og Frugter: Blomster"-anmærkning'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Tilføj "Blomster og Frugter: Frugter og Frø" anmærkning'
   add_flowers_and_fruits_no_flower_or_fruits: 'Tilføj "Blomster og Frugter: Ingen Blomster eller Frugter" anmærkning'
   add_leaves_breaking_leaf_buds: 'Tilføj "Blade: Udspringende Bladknopper" anmærkning'
@@ -5021,6 +5045,7 @@ da:
   synonyms: Synonymer
   table: Liste
   table_of_contents: Indholdsfortegnelse
+  tabulate_presence_absence_data_from_trips: Tabulér Tilstedeværelse-Fravær data fra Ture
   #Noun, as in "add a tag to this observation"
   tag: Tag
   tagging: 'Tagger...'
@@ -5690,13 +5715,13 @@ da:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} har committed et taksondrop, der påvirker %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} har udført en taksonsammenfletning, der påvirker %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} har udført en taksonopdeling, der påvirker %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon: "%{user} har udført et taksondrop, der påvirker %{taxon}"
+  user_committed_taxon_stage_affecting_taxon2: "%{user} har udført en taksontrin, der påvirker %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} har udført en taksonombytning, der påvirker %{taxa}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_an_observation_by_you: "%{user} gjorde en af dine observationer til favorit"
