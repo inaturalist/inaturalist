@@ -1061,6 +1061,8 @@ hu:
   copy: Másolás
   copy_and_paste_this_into_your_own_html: Másolás és beillesztés saját HTML-be.
   copy_guide_taxon_to: Másold az útmutató taxont ide...
+  copy_to_clipboard: Másolás a vágólapra
+  copied!: Másolva!
   copyright:
     some_rights_reserved: néhány jog fenntartva
     some_rights_reserved_by: "(c) %{name}, néhány jog fenntartva (%{license_short})"
@@ -2007,6 +2009,8 @@ hu:
   last_seen: Utoljára látva
   last_year: Tavaly
   lat: Szél
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Szél./Hossz.
   latitude: Szélességi kör
   latitude_in_decimals: 'Szélességi kör tizedes fokokban, például 38.123'
   latitude_slash_y_coord_slash_northing: Szélességi kör / y koordináta / északra pozitív
@@ -4242,6 +4246,8 @@ hu:
   taxon_change_title_taxon_swap: Taxoncsere %{id}
   taxon_deleted: Taxon törölve.
   taxon_doesnt_have_a_range: A taxonnak nincs intervalluma
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: '%{taxon}t érintő taxontörlés'
   taxon_id: Taxonazonosító
   taxon_ids: Taxonazonosítók
   taxon_map:
@@ -4253,6 +4259,9 @@ hu:
   taxon_framework_deviations_with_count_html: "Eltérések: %{count}"
   taxon_history_notice: Az előzményeket 2022 februárjában vezették be, ezért nincs előzmény e dátum előtt.
   taxon_merge: taxonösszevonás
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: '%{taxa}t érintő taxonösszevonás'
   taxon_name: Taxon neve
   taxon_name_must_match_an_existing_taxon_in_our_database: A táblázatban taxonnévnek egyeznie kell az adatbázisunk taxonneveivel
   taxon_observed_by_html: |
@@ -4271,7 +4280,15 @@ hu:
   taxon_schemes: "Taxonrendszerek"
   taxon_search: Taxon keresése
   taxon_split: taxonfelosztás
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: '%{taxa}t érintő taxonfelosztás'
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: '%{taxon}t érintő taxonaktiválás'
   taxon_swap: taxoncsere
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: '%{taxa}t érintő taxoncsere'
   taxon_name_was_deleted: A taxon neve törölve.
   taxon_name_was_successfully_updated: A taxonnév sikeresen frissítve.
   taxon_was_successfully_updated: A taxon sikeresen frissítve.
@@ -4643,6 +4660,8 @@ hu:
     %{user} szerint ez %{place} átfogó %{taxon}-listája
   user_blocked: Felhasználó letiltva
   user_commented: "Megjegyzés %{user} felhasználótól"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon}t érintő taxontörlést hajtott végre"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   user_faved_an_observation_by_you: "%{user} kedvelte ezt a megfigyelésedet"
