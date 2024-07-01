@@ -196,8 +196,6 @@ es-MX:
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
-  about_trips_html: |
-    <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones</h4><p><strong>Por qué</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos solamente de presencia').</p> <p><strong>Cómo</strong> Un viaje añade contexto a tus observaciones grabando:</p> <ul> <li><strong>Qué</strong> buscó (lista objetivo)</li> <li><strong>Dónde</strong> buscó (área de búsqueda)</li> <li><strong>Cuándo</strong> buscó (intervalo de búsqueda)</li> </ul> <p>Las especies en tu lista objetivo que pudiste observar dentro del área de búsqueda y el intervalo se interpretan como presencias. Mientras que las especies en tu lista objetivo que no has podido observar se interpretan como ausencias. Has clic en 'Tabulate Presence Ausence Data From Trips' para generar una tabla de registros presencia-ausencia de especies en viajes y observaciones asociadas. <a href='%{url}'>Más información</a></p>
   about_trusting_projects: Sobre la confianza de proyectos
   about_trusting_projects_options_any: Todas tus observaciones en este proyecto
   about_trusting_projects_options_any_desc: |-
@@ -336,7 +334,6 @@ es-MX:
   add_plant_phenology_fruiting_annotation: 'Añade anotación "fenología de la planta: fructificando"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Agregar anotación "Fenología de la planta: sin evidencias de floración"'
   add_flowers_and_fruits_flower_buds_annotation: 'Añade anotación "Flores y Frutos: Botones Florales"'
-  add_flowers_and_fruits_flowers_annotation: 'Añade anotación "Flores y Frutos: Flor/Flores"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Añade anotación "Flores y Frutos: Frutos y Semillas"'
   add_flowers_and_fruits_no_flower_or_fruits: 'Añade anotación "Flores y Frutos: Sin Flores o Frutos"'
   add_leaves_breaking_leaf_buds: 'Añadir anotación "Hojas: Renuevos de hojas"'
@@ -5538,6 +5535,9 @@ es-MX:
   user_added_an_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} agregó %{count} observación"
+    other: "%{user} agregó %{count} observaciones"
   user_already_authenticated: El usuario ya está verificado
   user_already_app_owner: El usuario ya es Dueño de Aplicación
   user_autocomplete_placeholder: roget, kueda, etc.
@@ -6514,6 +6514,7 @@ es-MX:
       #prompt, search text with an image prompt, or search images given another
       #image as a prompt
       vision_language_demo: Demo de Idioma de Visión
+      what_do_you_want_to_search_for: '¿Qué deseas buscar?'
       #NOTE: please do not translate "A yellow bug with black spots" in the URL
       #or the text here. This UI interacts with a machine-learning model that
       #will return different results for different strings, and translations
