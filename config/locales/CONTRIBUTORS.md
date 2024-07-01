@@ -52,6 +52,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [bojof](https://crowdin.com/profile/bojof)
 * [gniquyij](https://crowdin.com/profile/gniquyij)
 * [He Yifei 何一非 (hesyifei)](https://crowdin.com/profile/hesyifei)
+* [Hsishu](https://crowdin.com/profile/Hsishu)
 * [IMNobody](https://crowdin.com/profile/IMNobody)
 * [Konrad Kałużyński (kkaluzynski)](https://crowdin.com/profile/kkaluzynski)
 * [Lin, Cheng-Tao (mutolisp)](https://crowdin.com/profile/mutolisp)
@@ -82,6 +83,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Lin, Cheng-Tao (mutolisp)](https://crowdin.com/profile/mutolisp)
 
 ### Croatian (`hr`)
+* [AdrianM2004](https://crowdin.com/profile/AdrianM2004)
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
 * [mirije](https://crowdin.com/profile/mirije)
 
@@ -97,6 +99,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Petra Caltová (caltovapetra)](https://crowdin.com/profile/caltovapetra)
 * [Petra2017](https://crowdin.com/profile/Petra2017)
 * [radana](https://crowdin.com/profile/radana)
+* [Rasa123 Vlk (Rasavlk)](https://crowdin.com/profile/Rasavlk)
 * [TheKakarinka (lenkakremlickova)](https://crowdin.com/profile/lenkakremlickova)
 
 ### Danish (`da`)
@@ -113,6 +116,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Marcel Hospers (marcelhospers)](https://crowdin.com/profile/marcelhospers)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
+* [R (thomas.gyselinck)](https://crowdin.com/profile/thomas.gyselinck)
 * [Robbert van 't Veldt (rvantveldt)](https://crowdin.com/profile/rvantveldt)
 * [Wouter Koch (wouter.koch)](https://crowdin.com/profile/wouter.koch)
 
@@ -148,6 +152,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Jani Järvi (jani.jarvi)](https://crowdin.com/profile/jani.jarvi)
 * [Jani Uusitalo (uusijani)](https://crowdin.com/profile/uusijani)
 * [Janne Uusitalo (janneuu)](https://crowdin.com/profile/janneuu)
+* [Joel (TheJzoli)](https://crowdin.com/profile/TheJzoli)
 * [Kari Lahti (karimlah)](https://crowdin.com/profile/karimlah)
 * [karimlahti](https://crowdin.com/profile/karimlahti)
 * [kuuannii](https://crowdin.com/profile/kuuannii)
@@ -183,6 +188,8 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [PunkiToast](https://crowdin.com/profile/PunkiToast)
 * [StrangeGhost](https://crowdin.com/profile/StrangeGhost)
 * [Super Nuva (supernuva07)](https://crowdin.com/profile/supernuva07)
+* [sylvain-m](https://crowdin.com/profile/sylvain-m)
+* [sylvain-morin](https://crowdin.com/profile/sylvain-morin)
 * [sylvain.morin](https://crowdin.com/profile/sylvain.morin)
 * [T. E. D. (t_e_d)](https://crowdin.com/profile/t_e_d)
 * [Thomas BLANC (thb5309)](https://crowdin.com/profile/thb5309)
@@ -265,6 +272,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 ### Indonesian (`id`)
 * [Ahkamun Najah (moenmoens)](https://crowdin.com/profile/moenmoens)
 * [alfonsustoribio](https://crowdin.com/profile/alfonsustoribio)
+* [BigHornbill](https://crowdin.com/profile/BigHornbill)
 * [Haura Nabila Rinaldi (hauranblr)](https://crowdin.com/profile/hauranblr)
 * [Ipan Subastian (ipansubastian)](https://crowdin.com/profile/ipansubastian)
 * [Kevin Matthew (kevinma28)](https://crowdin.com/profile/kevinma28)
@@ -351,6 +359,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 
 ### Norwegian Bokmal (`nb`)
 * [Aleksander Røberg-Larsen (saaviio)](https://crowdin.com/profile/saaviio)
+* [Daniel Kristensen (dankri0274)](https://crowdin.com/profile/dankri0274)
 * [Janss0n](https://crowdin.com/profile/Janss0n)
 * [joeviper](https://crowdin.com/profile/joeviper)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
@@ -381,6 +390,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Jane Widness (jwidness)](https://crowdin.com/profile/jwidness)
 * [ldacosta](https://crowdin.com/profile/ldacosta)
 * [Luis Ferreira (luis.bferreira)](https://crowdin.com/profile/luis.bferreira)
+* [RuiMC](https://crowdin.com/profile/RuiMC)
 
 ### Portuguese, Brazilian
 * [Alessandro De Almeida (agostini55)](https://crowdin.com/profile/agostini55)
@@ -389,6 +399,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Clara Matos (claracerqueira)](https://crowdin.com/profile/claracerqueira)
 * [deboas](https://crowdin.com/profile/deboas)
 * [Evandro Carneiro (euvandro86)](https://crowdin.com/profile/euvandro86)
+* [Fernando Schumann (fsessegolo)](https://crowdin.com/profile/fsessegolo)
 * [gabsfitz](https://crowdin.com/profile/gabsfitz)
 * [henriqueandrades](https://crowdin.com/profile/henriqueandrades)
 * [Jane Widness (jwidness)](https://crowdin.com/profile/jwidness)
@@ -404,7 +415,9 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Melonoone](https://crowdin.com/profile/Melonoone)
 
 ### Russian (`ru`)
+* [Boris (borisv)](https://crowdin.com/profile/borisv)
 * [Dimitǎr Boevski (exonie)](https://crowdin.com/profile/exonie)
+* [Egor Malov (yegorm)](https://crowdin.com/profile/yegorm)
 * [Fenixs](https://crowdin.com/profile/Fenixs)
 * [gurkburk](https://crowdin.com/profile/gurkburk)
 * [hk5183](https://crowdin.com/profile/hk5183)
@@ -413,6 +426,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Konrad Kałużyński (kkaluzynski)](https://crowdin.com/profile/kkaluzynski)
 * [Marcel Hospers (optilete)](https://crowdin.com/profile/optilete)
 * [Marino Linic (MarinoLinic)](https://crowdin.com/profile/MarinoLinic)
+* [Nikita Gerasin (NikitaGerasin)](https://crowdin.com/profile/NikitaGerasin)
 * [Nikita Nedelko (QuantumDrive)](https://crowdin.com/profile/QuantumDrive)
 * [shikhalev](https://crowdin.com/profile/shikhalev)
 * [Алексей Серегин (apseregin)](https://crowdin.com/profile/apseregin)
@@ -454,6 +468,7 @@ Many people have contributed translations to the iNaturalist Rails app over the 
 * [Carlos Velazco (carlos.velazco)](https://crowdin.com/profile/carlos.velazco)
 * [Carolina Soto Vargas (csoto)](https://crowdin.com/profile/csoto)
 * [cassi (boucur)](https://crowdin.com/profile/boucur)
+* [catfisshh](https://crowdin.com/profile/catfisshh)
 * [cgalindo](https://crowdin.com/profile/cgalindo)
 * [Cristina Villaverde (villaverde)](https://crowdin.com/profile/villaverde)
 * [Eduardo Martínez (gmartied)](https://crowdin.com/profile/gmartied)
