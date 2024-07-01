@@ -196,24 +196,6 @@ fi:
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
-  about_trips_html: |
-    <h4>
-    Tallennettaessa tietoja Retkenä, voi "laji havaittu" -tiedon lisäksi tallentaa myös "lajia ei havaittu" -tietoja (nollahavainto) lisäämällä sisältöä havaitoihisin.
-    </h4>
-    <p>
-    <strong>Why</strong> Havaittu-ei havaittu tiedonkeruu viestii aineiston käyttäjälle havaintotiedon kattavasta keräystavasta ja lisää tiedon käytettävyyttä etenkin tieteellisissä analyyseissä kuten eliölajien levinneisyyden mallinuksessa. (tavallisesti iNaturalist- havainnot sisältävät vain havaittu-tietoa).
-    </p>
-    <p>
-    <strong>How</strong> Retken avulla voi lisätä sisältöä havaintoosi tallennetamalla:
-    </p>
-    <ul>
-    <li><strong>Mitä</strong> olit etsimässä (lista kohdelajeista)</li>
-    <li><strong>Missä</strong> olit havainnoimassa (havaintoalue)</li>
-    <li><strong>Milloin</strong> olit havainnoimassa (havaintoaikaväli)</li>
-    </ul>
-    <p>
-    Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
-    </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_trusting_projects_options_any_desc: |-
@@ -349,7 +331,6 @@ fi:
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisää merkintä "Kasvin fenologia: ei näyttöä kukinnasta"'
   add_flowers_and_fruits_flower_buds_annotation: 'Lisää "Kukat ja hedelmät: kukan nuput" -merkintä'
-  add_flowers_and_fruits_flowers_annotation: 'Lisää "Kukat ja hedelmät: kukat" -merkintä'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Lisää "Kukat ja hedelmät: hedelmät ja siemenet" -merkintä'
   add_flowers_and_fruits_no_flower_or_fruits: 'Lisää "Kukat ja hedelmät: ei kukkia tai hedelmiä" -merkintä'
   add_leaves_breaking_leaf_buds: 'Lisää "Lehdet: aukeavat lehden silmut" -merkintä'
@@ -3364,8 +3345,8 @@ fi:
       miscellaneous: sekalainen
       Municipality: Kunta
       municipality: kunta
-      Nationality: Kunta
-      nationality: kunta
+      Nationality: Kansallisuus
+      nationality: kansallisuus
       Nearby_Building: Läheinen rakennus
       nearby_building: läheinen rakennus
       Open_Space: Avoin paikka
