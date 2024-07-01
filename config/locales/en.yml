@@ -267,7 +267,7 @@ en:
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
   about_this_project: About this Project
-  about_trips_html: |
+  about_trips2_html: |
     <h4>
       Trips enable the collection of presence-absence data by adding context to
       your observations
@@ -289,7 +289,7 @@ en:
       Species on your target list that you were able to observe within the
       search area and interval are interpreted as presences. While species on
       your target list that you were unable to observe are interpreted as
-      absences. Click 'Tabulate Presence Absence Data From Trips' to generate a
+      absences. Click 'Tabulate Presence-Absence Data From Trips' to generate a
       table of presence-absence records for a species from trips and associated
       observations. <a href='%{url}'>Learn more</a>
     </p>
@@ -445,7 +445,7 @@ en:
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Add "Plant Phenology: No Evidence of Flowering" annotation'
   add_flowers_and_fruits_flower_buds_annotation: 'Add "Flowers and Fruits: Flower Buds" annotation'
-  add_flowers_and_fruits_flowers_annotation: 'Add "Flowers and Fruits: Flower Flowers" annotation'
+  add_flowers_and_fruits_flowers_annotation: 'Add "Flowers and Fruits: Flowers" annotation'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Add "Flowers and Fruits: Fruits and Seeds" annotation'
   add_flowers_and_fruits_no_flower_or_fruits: 'Add "Flowers and Fruits: No Flowers or Fruits" annotation'
   add_leaves_breaking_leaf_buds: 'Add "Leaves: Breaking Leaf Buds" annotation'
@@ -5354,6 +5354,7 @@ en:
   synonyms: Synonyms
   table: Table
   table_of_contents: Table of contents
+  tabulate_presence_absence_data_from_trips: Tabulate Presence-Absence Data from Trips
   # Noun, as in "add a tag to this observation"
   tag: tag
   tagging: 'Tagging...'
@@ -6046,13 +6047,13 @@ en:
   # Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} committed a taxon drop affecting %{taxon}"
   # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} committed a taxon merge affecting %{taxa}"
   # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} committed a taxon split affecting %{taxa}"
   # Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon: "%{user} committed a taxon drop affecting %{taxon}"
+  user_committed_taxon_stage_affecting_taxon2: "%{user} committed a taxon stage affecting %{taxon}"
   # Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa: "%{user} committed a taxon drop affecting %{taxa}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} committed a taxon swap affecting %{taxa}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
   user_faved_an_observation_by_you: "%{user} faved an observation by you"

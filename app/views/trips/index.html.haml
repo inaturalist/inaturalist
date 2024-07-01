@@ -63,7 +63,7 @@
           %h3.panel-title
             = "About Trips"
         .panel-body
-          %p= t( :about_trips_html, { url: "/pages/trips" } )
+          %p= t( :about_trips2_html, { url: "/pages/trips" } )
           =image_tag "https://static.inaturalist.org/wiki_page_attachments/1191-original.png", class: "panel_img"
   .row
     .col-xs-3
@@ -77,10 +77,11 @@
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), trips_url, class: "minor button"
     .col-xs-9
-      = link_to t( :new_trip ), new_trip_path, :class => "default button right"
-      = link_to t( :tabulate_presence_absence_data_from_trips ), tabulate_trips_path, :class => "white button left"
+      %div
+        = link_to t( :tabulate_presence_absence_data_from_trips ), tabulate_trips_path, :class => "btn btn-default"
+        = link_to t( :new_trip ), new_trip_path, class: "btn btn-primary pull-right"
       - if @trips.empty?
-        %p.description= t :no_trips
+        %p.nocontent.description.center-block= t :no_trips
       - else
         %table{ class: "table table-striped" }
           %thead
