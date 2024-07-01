@@ -197,9 +197,9 @@ de:
   about_this_bioblitz: Über diesen Bioblitz
   about_this_map: Über diese Karte
   about_this_project: Über dieses Projekt
-  about_trips_html: |
+  about_trips2_html: |
     <h4>Trips ermöglichen es, die An- oder Abwesenheit von Arten zu erfassen.
-    </h4><p><strong>Warum</strong> 'Trips'-Berichte enthalten neben reinen Daten zu An-/Abwesenheiten auch Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist-Beobachtungen enthalten nur 'Anwesenheits-Daten').</p> <p><strong>Wie</strong> Ein Trip fügt deinen Beobachtungen einen Kontext hinzu durch die Protokollierung von:</p> <ul> <li><strong>Was</strong> du gesucht hast (Liste mit Zielarten)</li> <li><strong>Wo</strong> du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong> du gesucht hast (Suchintervall)</li> </ul> </ul> <p> Arten auf deiner Zielliste, die du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als 'vorhanden' interpretiert, während Arten auf deiner Zielliste, die du nicht beobachten konntest, als 'abwesend' interpretiert werden. Klicke auf 'Tabulate Presence Ausence Data From Trips'', um eine Tabelle mit Daten über die An-/Abwesenheit für eine Art zu erstellen. <a href='%{url}'>Learn more here</a></p>
+    </h4><p><strong>Warum</strong> 'Trips'-Berichte enthalten neben reinen Daten zu An-/Abwesenheiten auch Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist-Beobachtungen enthalten nur 'Anwesenheits-Daten').</p> <p><strong>Wie</strong> Ein Trip fügt deinen Beobachtungen einen Kontext hinzu durch die Protokollierung von:</p> <ul> <li><strong>Was</strong> du gesucht hast (Liste mit Zielarten)</li> <li><strong>Wo</strong> du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong> du gesucht hast (Suchintervall)</li> </ul> <p> Arten auf deiner Zielliste, die du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als 'vorhanden' interpretiert, während Arten auf deiner Zielliste, die du nicht beobachten konntest, als 'abwesend' interpretiert werden. Klicke auf 'An-/Abwesenheitsdaten von Trips tabellarisch darstellen', um eine Tabelle mit Daten über die An-/Abwesenheit für eine Art zu erstellen. <a href='%{url}'>Learn more here</a></p>
   about_trusting_projects: Über vertrauenswürdige Projekte
   about_trusting_projects_options_any: Alle deine Beobachtungen in diesem Projekt
   about_trusting_projects_options_any_desc: |-
@@ -4773,6 +4773,7 @@ de:
   synonyms: Synonyme
   table: Tabelle
   table_of_contents: Inhaltsverzeichnis
+  tabulate_presence_absence_data_from_trips: An-/Abwesenheitsdaten von Trips tabellarisch darstellen
   #Noun, as in "add a tag to this observation"
   tag: Tag
   tagging: 'Tagge...'
@@ -5395,8 +5396,12 @@ de:
     %{user} glaubt, dass dies eine umfassende Liste von %{taxon} in %{place} ist
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
-  #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon: "%{user} hat ein Taxon-Drop mit Auswirkungen auf %{taxon} durchgeführt"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} hat eine Taxon-Vereinigung mit Auswirkungen auf %{taxa} durchgeführt"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} hat eine Taxon-Auftrennung mit Auswirkungen auf %{taxa} durchgeführt"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} hat einen Taxon-Tausch mit Auswirkungen auf %{taxa} durchgeführt"
   user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   user_faved_an_observation_by_you: "%{user} hat eine Beobachtung von dir favorisiert"
