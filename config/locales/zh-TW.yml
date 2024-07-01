@@ -151,8 +151,6 @@ zh-TW:
   about_this_bioblitz: 有關此 bioblitz
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
-  about_trips_html: |
-    <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
   about_trusting_projects: 關於信任專案
   about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
   about_trusting_projects_options_any_desc: |-
@@ -291,7 +289,6 @@ zh-TW:
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
   add_plant_phenology_no_evidence_of_flowering_annotation: '新增「植物物候：沒有開花的證據」註記'
   add_flowers_and_fruits_flower_buds_annotation: '新增「花與果實：花芽」註解'
-  add_flowers_and_fruits_flowers_annotation: '新增「花與果實：開花的花」註解'
   add_flowers_and_fruits_fruits_and_seeds_annotation: '新增「花與果實：果實和種子」註解'
   add_flowers_and_fruits_no_flower_or_fruits: '新增「花與果實：沒有花或果實」註解'
   add_leaves_breaking_leaf_buds: '新增「葉：開展中的葉芽」註解'
@@ -2619,6 +2616,9 @@ zh-TW:
   matching_species_will_shown_up_here: 符合的物種將會顯示於此。若 %{place} 含有其一物種，在地圖上將會顯示出範圍。
   maverick: 對此分類群具不同看法
   media: 多媒體
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: 和
   media_type: 多媒體類型
   medium: 中
   meet: 會見
@@ -2656,6 +2656,9 @@ zh-TW:
     注意關於請求給予標本或隱藏的座標。試著確認提出請求者的身分，若他們要求您提供標本，要求查看他們的許可證。
   messages_new_correspondent_personal: |
     不要揭露有關您的個人資訊給不信任的第三者。
+  messages_new_correspondent_actions_html: |
+    如果您懷疑此人違反了我們的<a href="%{tos_url}" target="_blank">使用條款</a>或未依照我們的<a href="%{guidelines_url}" target="_blank">社群指南</a>行事，請在下方標記此訊息。
+  minimum_positional_accuracy: 最小位置精度
   misidentifications: 判讀錯誤
   misleading_or_illegal_content_html: |
     誤導、不合法內容、種族或民族歧視等等其它。更多有關我們對於「適當」內容的定義，請查看
@@ -2666,6 +2669,14 @@ zh-TW:
   moderation_history_for_user_html: '%{user} 的調停歷史記錄'
   moderation_history_desc_html: |
     這包含了版主的執行項目 (例：隱藏或取消隱藏評論）、註記以及標註此使用者的所有項目（除了建立分類群外）。這<strong>僅有策展人可見</strong>，而<strong>策展人無法閱覽他們自己的歷史紀錄</strong> ，所以註記某人絕不會被他/她所看到。
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: 隱藏
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: 取消隱藏
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: 停用
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: 取消停用
   moderator_note_desc: |
     版主註記是關於版主處理某使用者的反應或是基於證據的關注項目，像是為什麼他們會是可能的殭屍帳號。請不要包含對於此使用者的個人意見或謠傳。
   #Person who executed a moderator action or flagged something
@@ -2716,6 +2727,8 @@ zh-TW:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "'YY MMM"
   month: 月
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: 每月支助者
   monthly_supporter_since_date_html: |
     <a href="%{url}">每月捐款者</a> since %{date}
   months: 月
@@ -2992,6 +3005,8 @@ zh-TW:
     公共座標是以包含實際座標所在的 0.2 度緯/經度單元範圍內，來顯示出的隨機點。
   observation: 觀察
   observation_: 觀察
+  observation_accuracy_experiment_research_grade_results: "研究等級結果"
+  observation_accuracy_experiment_verifiable_results: "可證實的結果"
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -5852,6 +5867,8 @@ zh-TW:
       view_these_observations_in_identify: 在鑑定頁面中檢視這些觀察紀錄
       this_demo_tool2: 這個示範工具讓你可以輸入搜尋詞句（例如「<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">正在吃水果的鳥</a>」），並將其與千萬張《愛自然》 照片比較。結果依照最相關性到最不相關來排序。您可以使用這個示範工具來以新的方式尋找您有興趣的 《愛自然》 觀察紀錄，以便增加註解或新增到你的專案中。
       you_can_also_use_this_demo: 您也可以使用這個示範工具來幫助我們評估此視覺語言模型，使用方式是告訴我們哪些照片與您搜尋語句相關。這個示範工具是使用第三方<a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">視覺語言CLIP模型（Vision Language CLIP model）</a>，而該模型未使用《愛自然》平台的資料，也非由《愛自然》團隊來訓練。有時候該工具會產生不正確、有偏頗或令人感到被冒犯的結果。在<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">愛自然的部落格</a>上閱讀詳細說明。 #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: 如果您想支持此工作
+      thank_you_for_your_submission!: 謝謝您的提交！
     oauth:
       authorizations:
         new:
@@ -6734,6 +6751,7 @@ zh-TW:
           "Plant Phenology=Fruiting": 結果
           "Flowers and Fruits=Flower Buds": 花芽
           "Leaves=Breaking Leaf Buds": 萌新芽
+          "Leaves=Green Leaves": 綠葉
           "Leaves=Colored Leaves": 有色葉
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼蟲
@@ -6931,9 +6949,16 @@ zh-TW:
         taxon_change_desc: |
           當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
         taxon_name_priorities:
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: 新增一處地點（選填）
+          common_name_lexicon_display_order: 顯示俗名語言的順序
           common_name_lexicons: 俗名的語言
           common_name_lexicons_description: 預設情況下，俗名會顯示在您帳號的語言/地區設定中。若要查看其他語言中的俗名，或優先顯示特定地區使用的名稱（例如英文（澳洲）或西班牙文（哥斯大黎加）），請新增該語言的俗名。一次最多可以顯示三種語言的俗名。如果您選擇的語言中沒有俗名，則該語言將不會顯示出來。
           for_multiple_common_name_lexicons_drag_and_drop: 拖拉下方的設定來自訂多種語言的俗名顯示順序。
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: 與使用者語言/地區偏好設定相同
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: 最多三種語言的俗名都已經新增了
