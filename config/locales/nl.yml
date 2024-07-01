@@ -197,11 +197,11 @@ nl:
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
   about_this_project: Over dit project
-  about_trips_html: |
-    <h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>
+  about_trips2_html: |
+    <h4>Routes maken het verzamelen van nulwaarnemingen mogelijk door het toevoegen van context aan je waarnemingen</h4>
 
     <p><strong>Waarom</strong>
-    Aanwezigheid/afwezigheidsgegevens bevatten informatie over steekproefinspanning die nuttig zijn voor wetenschappelijke analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
+    Aanwezigheid/afwezigheidsgegevens bevatten informatie over de onderzoeksinspanning die nuttig is voor wetenschappelijke analyses zoals distributiemodellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
 
     <p><strong>Hoe</strong>
     Een route voegt context aan je waarnemingen toe door extra informatie over:</p>
@@ -211,7 +211,7 @@ nl:
     <li><strong>Wanneer</strong> je zocht (zoekinterval)</li> 
     </ul>
 
-    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
+    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Zet de Aan- en Afwezigheidsgegevens van Routes in een tabel' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
     <a href='%{url}'>Meer informatie</a></p>
   about_trusting_projects: Over het vertrouwen van projecten
   about_trusting_projects_options_any: Al je waarnemingen in dit project
@@ -4995,6 +4995,7 @@ nl:
   synonyms: Synoniemen
   table: Tabel
   table_of_contents: Inhoudsopgave
+  tabulate_presence_absence_data_from_trips: Zet de Aan- en Afwezigheidsgegevens van Routes in een tabel
   #Noun, as in "add a tag to this observation"
   tag: label
   tagging: 'Tagging ...'
@@ -5648,13 +5649,11 @@ nl:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxa}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} heeft het samenvoegen van een taxon bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
-  #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxon}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} heeft het splitsen van een taxon bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} heeft het wisselen van een taxon bevestigd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   user_faved_an_observation_by_you: "%{user} heeft een waarneming van jou als favoriet opgeslagen"
@@ -6628,7 +6627,7 @@ nl:
       view_these_observations_in_identify: Toon deze waarnemingen in Identify
       #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
       inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> werkt samen met onderzoekers van <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Universiteit van Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Universiteit van Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Universiteitscollege London</a> <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> en met royale steun van <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI voor Good Lab</a> om beter te begrijpen wat de mogelijkheden in de toekomst zijn voor Vision Language Models om iNaturalist waarnemingen.te helpen organiseren, verkennen en uit te leggen. #interacts with a machine-learning model that will return different results for different # strings, and translations are different strings. The model was primarily trained on English # text and may return inaccuracte results in different languages
-      this_demo_tool2: Met deze demo tool kun je een zoekzin typen (zoals "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">een vogel die vruchten eet</a>") en deze vergelijken met 10 miljoen iNaturalist foto's. Resultaten worden gesorteerd op relevantie. Je kunt deze demo gebruiken als een nieuwe manier om interessante iNaturalist waarnemingen te vinden om aantekeningen te maken of toe te voegen aan je project.
+      this_demo_tool2: Met deze demo tool kun je een zoekzin typen (zoals "<a href="/vision_language_demo?q=een+vogel+die+vruchten+eet&taxon_id=3">een vogel die vruchten eet</a>") en deze vergelijken met 10 miljoen iNaturalist foto's. Resultaten worden gesorteerd op relevantie. Je kunt deze demo gebruiken als een nieuwe manier om interessante iNaturalist waarnemingen te vinden om aantekeningen te maken of toe te voegen aan je project.
       you_can_also_use_this_demo: Je kunt deze demo ook gebruiken om ons te helpen het Vision Language model te evalueren door ons te vertellen welke van de geretourneerde afbeeldingen relevant zijn voor jouw zoekzin. Deze demo gebruikt een derde partij <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP model</a> die niet is getraind op iNaturalist data of door het iNaturalist team. Soms kan de tool een onnauwkeurig, partijdig, vooringenomen of aanstootgevend resultaat opleveren. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lees meer op de iNaturalist Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Als je dit werk wilt ondersteunen
       thank_you_for_your_submission!: Bedankt voor jouw inzending.
