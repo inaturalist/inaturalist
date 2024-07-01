@@ -168,8 +168,6 @@ fr-CA:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
-  about_trips_html: |
-    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur « Données tabulées de présence/absence pour les voyages » pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty

@@ -196,24 +196,6 @@ tr:
   about_this_bioblitz: Bu bioblitz hakkında
   about_this_map: Bu Harita Hakkında
   about_this_project: Bu Proje Hakkında
-  about_trips_html: |
-    <h4>
-    Geziler, gözlemlerine bağlam ekleyerek varlık-yokluk verilerinin toplanmasını sağlar.
-    </h4>
-    <p>
-    <strong>Neden</strong> varlık-yokluk verileri dağılım modellemesi gibi bilimsel analizler için yararlı olan örnekleme çabası hakkında bilgi içerir? (ham iNaturalist gözlemleri 'yalnızca varlık' verileridir).
-    </p>
-    <p>
-    <strong>Nasıl</strong> bir gezi, kayıtla gözlemlerine içerik ekler:
-    </p>
-    <ul>
-    <li><strong>Ne</strong> aradın? (hedef listesi)</li>
-    <li><strong>Nerede</strong> aradın? (arama alanı)</li>
-    <li><strong>Ne zaman</strong> aradın? (arama zamanı)</li>
-    </ul>
-    <p>
-    Hedef listende bulunan ve arama alanı ve zamanı içinde gözlemleyebildiğin türler var olarak yorumlanır. Hedef listende gözlemleyemediğin türler ise yok olarak yorumlanır. Gezilerden ve ilgili gözlemlerden bir tür için varlık-yokluk kaydının bir tablosunu oluşturmak için 'Gezilerden Varlık Yokluk Verilerini Tablolaştır' seçeneğine tıklayın. <a href='%{url}'>Daha fazla bilgi edin</a>
-    </p>
   about_trusting_projects: Güvenilir Projeler Hakkında
   about_trusting_projects_options_any: Bu projedeki tüm gözlemlerin
   about_trusting_projects_options_any_desc: |-
@@ -2006,6 +1988,9 @@ tr:
   grid_tooltip: Izgara görünümü göster
   group: Grup
   grouping: Gruplandırma
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Diğer gözlemlerden konumu tahmin etmek ister misiniz?
   guides: Rehberler
   guide_compiled_by: 'Rehberi derleyen:'
   guide_deleted: Rehber silindi

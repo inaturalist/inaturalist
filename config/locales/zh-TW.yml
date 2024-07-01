@@ -151,8 +151,6 @@ zh-TW:
   about_this_bioblitz: 有關此 bioblitz
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
-  about_trips_html: |
-    <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p> <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li> <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a></p>
   about_trusting_projects: 關於信任專案
   about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
   about_trusting_projects_options_any_desc: |-
@@ -285,18 +283,17 @@ zh-TW:
   add_alive_or_dead_alive_annotation: '新增註解「活體或死亡：活體」'
   add_alive_or_dead_cannot_be_determined_annotation: '新增註解「活體或死亡：無法判斷」'
   add_alive_or_dead_dead_annotation: '新增註解「活體或死亡：死亡」'
-  add_plant_phenology_budding_annotation: '新增「植物物候：發新芽」的註解'
+  add_plant_phenology_budding_annotation: '新增「植物物候：萌新芽」的註解'
   add_plant_phenology_flower_budding_annotation: '新增註解「植物物候：花苞」'
   add_plant_phenology_flowering_annotation: '新增「植物物候學：開花」的註解'
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
   add_plant_phenology_no_evidence_of_flowering_annotation: '新增「植物物候：沒有開花的證據」註記'
   add_flowers_and_fruits_flower_buds_annotation: '新增「花與果實：花芽」註解'
-  add_flowers_and_fruits_flowers_annotation: '新增「花與果實：開花的花」註解'
   add_flowers_and_fruits_fruits_and_seeds_annotation: '新增「花與果實：果實和種子」註解'
   add_flowers_and_fruits_no_flower_or_fruits: '新增「花與果實：沒有花或果實」註解'
   add_leaves_breaking_leaf_buds: '新增「葉：開展中的葉芽」註解'
-  add_leaves_green_leaves: '新增「葉：綠色葉」註解'
-  add_leaves_colored_leaves: '新增「葉：有色彩葉（非綠色）」註解'
+  add_leaves_green_leaves: '新增「葉：綠葉」註解'
+  add_leaves_colored_leaves: '新增「葉：有色葉（紅、黃色或其他非綠色）」註解'
   add_leaves_no_live_leaves: '新增「葉：無活葉」註解'
   add_life_stage_adult_annotation: '新增「生命階段：成體」的註解'
   add_life_stage_teneral_annotation: '新增「生命階段：初羽化」的註解'
@@ -1052,7 +1049,7 @@ zh-TW:
     female: 雌性
     plant_phenology: 植物物候
     flowers_and_fruits: 花與果實
-    budding: 發芽
+    budding: 萌新芽
     flower_budding: 花芽
     flowering: 開花
     fruiting: 結果
@@ -1062,8 +1059,8 @@ zh-TW:
     fruits_or_seeds: 果實或種子
     leaves: 葉子
     breaking_leaf_buds: 展開中的葉芽
-    green_leaves: 綠色葉
-    colored_leaves: 有色葉（綠色以外）
+    green_leaves: 綠葉
+    colored_leaves: 有色葉（紅、黃色或綠色以外）
     no_live_leaves: 無活葉
     life_stage: 生命階段
     adult: 成體
@@ -1124,7 +1121,7 @@ zh-TW:
     breaking_leaf_buds: 至少有一個葉芽的第一片新葉或針葉未完全展開
     green_leaves: 至少有一片綠葉或綠色針葉（如果一般呈現紅色是健康狀態的話也可以）
     colored_leaves: 至少有一片葉子或針葉呈現晚季（秋冬）或乾旱時呈現的顏色
-    no_live_leaves: 看不見任何葉芽、綠色葉、有色葉或針葉存在
+    no_live_leaves: 看不見任何葉芽、綠葉、有色葉或針葉存在
     gall: 由寄生生物引發的植物組織變形生長
     male: 證據代表生物體可以產生精子來進行有性生殖
     molt: 蛻下的表皮或外骨骼
@@ -1780,7 +1777,7 @@ zh-TW:
   filter: 篩選
   filter_by_curator_identification: 依策展人鑑定篩選
   filter_by_place: 依地點篩選
-  filter_by_species: 依地點篩選
+  filter_by_species: 依物種篩選
   filter_by_taxon: 按物種分類篩選
   filter_by_place_taxon_and_color: 依地點、物種分類、和色彩來使用控制篩選。
   filter_list_by_this_taxon: 依此物種分類篩選名錄
@@ -2619,6 +2616,9 @@ zh-TW:
   matching_species_will_shown_up_here: 符合的物種將會顯示於此。若 %{place} 含有其一物種，在地圖上將會顯示出範圍。
   maverick: 對此分類群具不同看法
   media: 多媒體
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: 和
   media_type: 多媒體類型
   medium: 中
   meet: 會見
@@ -2656,6 +2656,9 @@ zh-TW:
     注意關於請求給予標本或隱藏的座標。試著確認提出請求者的身分，若他們要求您提供標本，要求查看他們的許可證。
   messages_new_correspondent_personal: |
     不要揭露有關您的個人資訊給不信任的第三者。
+  messages_new_correspondent_actions_html: |
+    如果您懷疑此人違反了我們的<a href="%{tos_url}" target="_blank">使用條款</a>或未依照我們的<a href="%{guidelines_url}" target="_blank">社群指南</a>行事，請在下方標記此訊息。
+  minimum_positional_accuracy: 最小位置精度
   misidentifications: 判讀錯誤
   misleading_or_illegal_content_html: |
     誤導、不合法內容、種族或民族歧視等等其它。更多有關我們對於「適當」內容的定義，請查看
@@ -2666,6 +2669,14 @@ zh-TW:
   moderation_history_for_user_html: '%{user} 的調停歷史記錄'
   moderation_history_desc_html: |
     這包含了版主的執行項目 (例：隱藏或取消隱藏評論）、註記以及標註此使用者的所有項目（除了建立分類群外）。這<strong>僅有策展人可見</strong>，而<strong>策展人無法閱覽他們自己的歷史紀錄</strong> ，所以註記某人絕不會被他/她所看到。
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: 隱藏
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: 取消隱藏
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: 停用
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: 取消停用
   moderator_note_desc: |
     版主註記是關於版主處理某使用者的反應或是基於證據的關注項目，像是為什麼他們會是可能的殭屍帳號。請不要包含對於此使用者的個人意見或謠傳。
   #Person who executed a moderator action or flagged something
@@ -2716,6 +2727,8 @@ zh-TW:
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     month_year_short: "'YY MMM"
   month: 月
+  #title for section describing people who donate to iNat every month
+  monthly_supporters: 每月支助者
   monthly_supporter_since_date_html: |
     <a href="%{url}">每月捐款者</a> since %{date}
   months: 月
@@ -2992,6 +3005,8 @@ zh-TW:
     公共座標是以包含實際座標所在的 0.2 度緯/經度單元範圍內，來顯示出的隨機點。
   observation: 觀察
   observation_: 觀察
+  observation_accuracy_experiment_research_grade_results: "研究等級結果"
+  observation_accuracy_experiment_verifiable_results: "可證實的結果"
   observation_added_to_the_project: "觀察已添加至專案「%{project}」"
   observation_aggregation: 觀察聚集
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -5828,17 +5843,32 @@ zh-TW:
           而且當訊息被標記為審核時也會如此進行。如果您真的需要私人通訊，
           請參考其他支援高強度加密的通訊機制。
     nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
       vision_language_demo: 視覺語言模型示範
       what_do_you_want_to_search_for: 您想要找尋什麼？
+      #NOTE: please do not translate "A yellow bug with black spots" in the URL
+      #or the text here. This UI interacts with a machine-learning model that
+      #will return different results for different strings, and translations
+      #are different strings. The model was primarily trained on English text
+      #and may return inaccuracte results in different languages
       for_example_a_yellow_bug_with_black_spots: 例：一隻黃色有黑斑的蟲
       try_one_of_these_example_searches_colon: "試著用這些範例之一來搜尋"
-      help_us_improve: 協助我们改善
-      to_help_us_improve: 我們想要知道在此頁面中哪張照片和您搜尋的&quot;%{searched_term}&quot;是有關的，以協助我們改善此模型。如果該照片符合您的搜尋，請在每張相關的照片上按%{thumbs_up_icon}，若無關聯則請按%{thumbs_down_icon}。當您完成標記後，請按提交。
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model)
+      help_us_improve: 協助我們改善
+      to_help_us_improve: 我們想要知道在此頁面中哪張照片和您搜尋的&quot;%{searched_term}&quot;是有關的，以協助我們改善此模型。如果該照片符合您的搜尋，請在每張相關的照片上按%{thumbs_up_icon}，若無關聯則請按%{thumbs_down_icon}。當您完成標記後，請按提交。 #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: 將剩餘部分標記為相關
+      #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: 將剩餘部分標記為不相關
+      #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: 在鑑定頁面中檢視這些觀察紀錄
-      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">愛自然（iNaturalist）</a>和<a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer"> 麻薩諸塞大學阿默斯特分校（University of Massachusetts Amherst）</a>、<a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer"> 愛丁堡大學（University of Edinburgh）</a>、<a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">倫敦大學學院（University of College London）</a>與<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">麻省理工學院（MIT）</a>等研究人員組成合作團隊，並在<a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">微軟AI為善實驗室（Microsoft AI for Good Lab）</a>慷慨的捐助下，致力於更深入地了解視覺語言模型在整理、探索和解讀 iNaturalist 觀察紀錄方面的潛力。
-      this_demo_tool: 這個示範工具讓你可以輸入搜尋詞句（例如「正在吃水果的鳥」），並將其與千萬張《愛自然》 照片比較。結果按相關性從高到低排序。您可以使用這個示範工具來以新的方式尋找有趣的 《愛自然》 觀察紀錄，以便註記或新增到你的專案中。
+      this_demo_tool2: 這個示範工具讓你可以輸入搜尋詞句（例如「<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">正在吃水果的鳥</a>」），並將其與千萬張《愛自然》 照片比較。結果依照最相關性到最不相關來排序。您可以使用這個示範工具來以新的方式尋找您有興趣的 《愛自然》 觀察紀錄，以便增加註解或新增到你的專案中。
+      you_can_also_use_this_demo: 您也可以使用這個示範工具來幫助我們評估此視覺語言模型，使用方式是告訴我們哪些照片與您搜尋語句相關。這個示範工具是使用第三方<a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">視覺語言CLIP模型（Vision Language CLIP model）</a>，而該模型未使用《愛自然》平台的資料，也非由《愛自然》團隊來訓練。有時候該工具會產生不正確、有偏頗或令人感到被冒犯的結果。在<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">愛自然的部落格</a>上閱讀詳細說明。 #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: 如果您想支持此工作
+      thank_you_for_your_submission!: 謝謝您的提交！
     oauth:
       authorizations:
         new:
@@ -6611,7 +6641,7 @@ zh-TW:
           檢視 iNaturalist 國際網路成員的年度回顧。
         include_usa: 包含美國
         growth_by_country_desc_html: |
-          成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
+          增長是在哪裡發生的呢？增長的結果會複雜難懂，是因為按國家來區分增長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有增長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>「% 總成長」</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 筆觀察紀錄、2017 有 10 筆觀察紀錄，這代表增加了 10 筆觀察紀錄，假如當中有 5 筆觀察紀錄是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>「% 成長」</strong>代表某國家此年度觀察紀錄數量與去年觀察紀錄數量增加的百分比，假如寮國去年有 10 筆觀察紀錄而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
         growth_by_country_title: 按國家區分的成長
         growth_desc: |
           「觀察紀錄」和「分類群」的圖表中也許會包含不屬於%{site_name}
@@ -6719,6 +6749,10 @@ zh-TW:
           "Plant Phenology=Flower Budding": 花芽
           "Plant Phenology=Flowering": 開花
           "Plant Phenology=Fruiting": 結果
+          "Flowers and Fruits=Flower Buds": 花芽
+          "Leaves=Breaking Leaf Buds": 萌新芽
+          "Leaves=Green Leaves": 綠葉
+          "Leaves=Colored Leaves": 有色葉
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼蟲
           "Life Stage=Juvenile": 亞成體
@@ -6915,9 +6949,16 @@ zh-TW:
         taxon_change_desc: |
           當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
         taxon_name_priorities:
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: 新增一處地點（選填）
+          common_name_lexicon_display_order: 顯示俗名語言的順序
           common_name_lexicons: 俗名的語言
           common_name_lexicons_description: 預設情況下，俗名會顯示在您帳號的語言/地區設定中。若要查看其他語言中的俗名，或優先顯示特定地區使用的名稱（例如英文（澳洲）或西班牙文（哥斯大黎加）），請新增該語言的俗名。一次最多可以顯示三種語言的俗名。如果您選擇的語言中沒有俗名，則該語言將不會顯示出來。
           for_multiple_common_name_lexicons_drag_and_drop: 拖拉下方的設定來自訂多種語言的俗名顯示順序。
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: 與使用者語言/地區偏好設定相同
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: 最多三種語言的俗名都已經新增了

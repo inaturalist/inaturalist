@@ -144,6 +144,7 @@ ko:
   add_an_identification: 동정 추가하기
   add_an_observation: 관찰 추가하기
   add_an_observation_of: "%{taxon} 관찰을 추가하기"
+  add_an_observation_to_project_html: '%{project}에 관찰 추가하기'
   add_another_flag: 다른 플래그 달기
   add_another_photo: 다른 사진 추가하기
   add_another_section: 다른 구역 추가하기
@@ -151,6 +152,8 @@ ko:
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: 자산 추가하기
   add_batch: 여러 개 추가하기
+  #Tool tip for a button that adds bold text to a text area
+  add_bold_text: 굵은 글씨 추가하기
   add_comma_separated_tags: "쉼표로 구분된 태그 추가하기"
   add_comment: 댓글 추가
   add_conservation_status: 보전 상태 추가하기
@@ -162,6 +165,8 @@ ko:
   add_link: 링크 추가
   add_higher_level_taxon: '상위 계층 분류군 추가하기 (예: "새")'
   add_id: 동정 추가하기
+  #Tool tip for a button that adds italic text to a text area
+  add_italic_text: 기울임꼴 추가하기
   add_new_lexicon: 새로운 언어 추가하기
   add_new_photos_by_their_ids: 플리커 ID를 이용해 새로운 사진 추가하기 (크리에이티브 커먼즈에 속해야 함!)
   add_new_place: 새로운 장소 추가하기
@@ -451,6 +456,8 @@ ko:
   blog_widget: 블로그 위젯
   blue_butterfly_etc: "파랑, 나비 등."
   body: 본문
+  #Text inserted into a textarea when the bold button is clicked but no text was selected
+  bold_text: 굵은 글씨
   breadcrumbs: 빵 부스러기
   brief_caption: 간결한 캡션
   browse: 찾아보기
