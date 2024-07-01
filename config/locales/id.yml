@@ -150,24 +150,6 @@ id:
   about_this_bioblitz: Tentang bioblitz ini
   about_this_map: Tentang Peta Ini
   about_this_project: Tentang Proyek Ini
-  about_trips_html: |
-    <h4>
-    Perjalanan memungkinkan pengumpulan data keberadaan/ketidakberadaan dengan menambahkan konteks kepada pengamatanmu
-    </h4>
-    <p>
-    <strong>Mengapa</strong> Data keberadaan/ketidakberadaan memiliki informasi tentang upaya pengambilan sampel yang berguna untuk analisis saintifik seperti pemodelan distribusi (pengamatan mentah iNaturalist hanya merupakan data 'keberadaan').
-    </p>
-    <p>
-    <strong>Bagaimana</strong> Sebuah perjalanan menambah konteks ke dalam pengamatanmu dengan mencatat:
-    </p>
-    <ul>
-    <li><strong>Apa</strong> yang kamu cari (daftar target)</li>
-    <li><strong>Di mana</strong> kamu mencarinya (area pencarian)</li>
-    <li><strong>Kapan</strong> kamu mencarinya (interval pencarian)</li>
-    </ul>
-    <p>
-    Spesies di dalam daftar targetmu yang dapat kamu amati di dalam area pencarian dan intervalnya ditafsirkan sebagai keberadaan. Sebaliknya, spesies yang terdaftar di dalam daftar targetmu yang tidak dapat kamu amati ditafsirkan sebagai ketidakberadaan. Ketuk 'Tabulasi Data Keberadaan/Ketidakberadaan Dari Perjalanan' untuk mendapatkan tabel catatan keberadaan/ketidakberadaan sebuah spesies dari perjalanan dan pengamatan yang terkait.<a href='%{url}'>Pelajari lebih lanjut</a>
-    </p>
   about_trusting_projects: Tentang Memercayai Proyek
   about_trusting_projects_options_any: Semua pengamatan Anda di proyek ini
   about_trusting_projects_options_any_desc: |-
@@ -312,7 +294,6 @@ id:
   add_plant_phenology_fruiting_annotation: 'Tambahkan catatan "Fenologi Tumbuhan: Berbuah"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Tambahkan catatan "Fenologi Tumbuhan: Tidak Ada Bukti Berbunga"'
   add_flowers_and_fruits_flower_buds_annotation: 'Tambahkan catatan "Bunga dan Buah: Kuncup Bunga"'
-  add_flowers_and_fruits_flowers_annotation: 'Tambahkan catatan "Bunga dan Buah: Bunga-bunga"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Tambahkan catatan "Bunga dan Buah: Buah dan Biji-bijian"'
   add_flowers_and_fruits_no_flower_or_fruits: 'Tambahkan catatan "Bunga dan Buah: Tanpa Bunga atau Buah"'
   add_leaves_breaking_leaf_buds: 'Tambahkan catatan "Dedaunan: Kuncup Daun Merekah"'
@@ -5442,14 +5423,6 @@ id:
   user_commented: "%{user} berkomentar"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxon}"
-  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
-  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
-  #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxon}"
-  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa: "%{user} menerapkan deaktivasi takson yang memengaruhi %{taxa}"
   user_disagrees_this_is_taxon: "%{user} tidak setuju ini adalah %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} tidak setuju dengan identifikasi sebelumnya yang lebih terperinci"
   user_faved_an_observation_by_you: "%{user} memfavoritkan salah satu pengamatan Anda"
