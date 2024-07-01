@@ -54,6 +54,11 @@ jobs:
         file: ./Dockerfile-cleanup
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.ref_name }}
+        build-args: |
+          GIT_BRANCH=${{ github.ref_name }}
+          GIT_COMMIT=${{ github.sha }}
+          IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.ref_name }}
+          BUILD_DATE=${{ env.BUILD_DATE }}
 
   refresh-dev-staging-deployment:
     name: Refresh Dev Staging Deployment

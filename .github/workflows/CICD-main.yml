@@ -56,6 +56,11 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.sha }}
           ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:latest
+        build-args: |
+          GIT_BRANCH=${{ github.ref_name }}
+          GIT_COMMIT=${{ github.sha }}
+          IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:latest
+          BUILD_DATE=${{ env.BUILD_DATE }}
 
   refresh-main-staging-deployment:
     name: Refresh Main Staging Deployment
