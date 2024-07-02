@@ -151,6 +151,24 @@ zh-CN:
   about_this_bioblitz: 关于此bioblitz
   about_this_map: 关于此地图
   about_this_project: 关于这个项目
+  about_trips2_html: |
+    <h4>
+    旅行功能使你能够通过添加观察场景的描述收集未出现-出现情况数据。
+    </h4>
+    <p>
+    <strong>为什么</strong>有些未出现或出现数据包含了可以帮助物种采样的信息。这些信息对于像物种分布模型等科学家们日后的分析有着极大的帮助。（未经处理的iNaturalist观察记录均为“仅出现”数据。）
+    </p>
+    <p>
+    <strong>怎么做</strong>你可以在探索过程中记录以下信息：
+    </p>
+    <ul>
+    <li><strong>有什么</strong>你在寻找（目标物种列表）</li>
+    <li><strong>在哪里</strong>你在（探索地点）寻找</li>
+    <li><strong>时间</strong>你寻找了（多长时间）</li>
+    </ul>
+    <p>
+    那些你能够在搜寻地点范围内找到的目标物种将被视为出现。与之相反，在你的目标物种列表上但并未被观察到的物种会被视为未出现。点击“将从旅行中得到的存在-不存在数据制成表格”以生成从有关观察中获得的物种出现记录表单。<a href='%{url}'>了解更多</a>
+    </p>
   about_trusting_projects: 关于信任的项目
   about_trusting_projects_options_any: 您在此项目中的所有观察
   about_trusting_projects_options_any_desc: |-
@@ -290,6 +308,7 @@ zh-CN:
   add_plant_phenology_fruiting_annotation: '添加“植物物候学：附果阶段”注释'
   add_plant_phenology_no_evidence_of_flowering_annotation: '添加“植物物候学：没有开花迹象”的注释'
   add_flowers_and_fruits_flower_buds_annotation: '添加“开花和挂果：花芽”注释'
+  add_flowers_and_fruits_flowers_annotation: '添加“开花和挂果：开花”注释'
   add_flowers_and_fruits_fruits_and_seeds_annotation: '添加“开花和挂果：果实或种子”注释'
   add_flowers_and_fruits_no_flower_or_fruits: '添加“开花和挂果：无花无果”注释'
   add_leaves_breaking_leaf_buds: '添加“叶片：叶芽萌发”注释'
@@ -4755,6 +4774,7 @@ zh-CN:
   synonyms: 同义词
   table: 表格
   table_of_contents: 目录
+  tabulate_presence_absence_data_from_trips: 将从旅行中得到的存在-不存在数据制成表格
   #Noun, as in "add a tag to this observation"
   tag: 标签
   tagging: '正在添加标签……'
@@ -5367,6 +5387,14 @@ zh-CN:
   user_commented: "%{user} 已评论"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user}提交了一项有关%{taxon}的分类单元撤销"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user}提交了一项有关%{taxa}的分类单元合并"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user}提交了一项有关%{taxa}的分类单元拆分"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user}提交了一项有关%{taxon}的分类单元构建"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user}提交了一项有关%{taxa}的分类单元互换"
   user_disagrees_this_is_taxon: "%{user}不同意这是%{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} 不同意先前更精确的识别"
   user_faved_an_observation_by_you: "%{user} 收藏了你的观察"
