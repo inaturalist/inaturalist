@@ -5695,10 +5695,10 @@ ru:
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_x_observations2_html:
-    one: "%{user} добавил %{x} наблюдение"
-    few: "%{user} добавил %{x} наблюдения"
-    many: "%{user} добавил %{x} наблюдений"
-    other: "%{user} добавил %{x} наблюдений"
+    one: "%{user} добавил %{count} наблюдение"
+    few: "%{user} добавил %{count} наблюдения"
+    many: "%{user} добавил %{count} наблюдений"
+    other: "%{user} добавил %{count} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
   user_already_app_owner: Пользователь уже является владельцем приложения
   user_autocomplete_placeholder: kueda, simon123, и др.
