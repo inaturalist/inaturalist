@@ -196,6 +196,27 @@ sv:
   about_this_bioblitz: Om denna bioblitz
   about_this_map: Om denna karta
   about_this_project: Om detta projekt
+  about_trips2_html: |
+    <h4>
+    Utflykter gör det möjligt att spara när-/frånvarodata genom att sätta dina fynd
+    i ett sammanhang
+    </h4>
+    <p>
+    <strong>Varför</strong> Närvaro/frånvaro-data inkluderar information om insats
+    vilket är användbart vid vetenskapliga analyser såsom modellering av utbredning
+    (vanliga iNaturalist-fynd är 'endast närvaro'-data).
+    </p>
+    <p>
+    <strong>Hur</strong> En utflykt sätter ditt fynd i ett sammanhang genom att spara:
+    </p>
+    <ul>
+    <li><strong>Det</strong> du letade efter (mållista)</li>
+    <li><strong>Var</strong> du letade (sökområde)</li>
+    <li><strong>När</strong> du letade (sökintervall)</li>
+    </ul>
+    <p>
+    Arter på din mållista som du kunde finna inom sökområdet och sökintervallet tolkas som närvarande. Samtidigt tolkas arter på din mållista som du inte hittade som frånvarande. Klicka på 'Tabulera när-/frånvarodata från utflykter' för att generera en tabell med när-/frånvaroposter för arter från utflykter med tillhörande fynd. <a href='%{url}'>Läs mer</a>
+    </p>
   about_trusting_projects: Om att lita på projekt
   about_trusting_projects_options_any: Alla dina fynd i detta projekt
   about_trusting_projects_options_any_desc: |-
@@ -335,6 +356,7 @@ sv:
   add_plant_phenology_fruiting_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
   add_flowers_and_fruits_flower_buds_annotation: 'Lägg till "Blommor och frukter: Blomma knoppar"-anteckning'
+  add_flowers_and_fruits_flowers_annotation: 'Lägg till "Blommor och frukter: Blommor"-anteckning'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Lägg till "Blommor och frukter: Frukter och frön"-anteckning'
   add_flowers_and_fruits_no_flower_or_fruits: 'Lägg till "Blommor och frukter: Inga Blommor eller frukter"-anteckning'
   add_leaves_breaking_leaf_buds: 'Lägg till "Blad: Uppsprickande bladknoppar"-anteckning'
@@ -5008,6 +5030,7 @@ sv:
   synonyms: Synonymer
   table: Tabell
   table_of_contents: Innehållsförteckning
+  tabulate_presence_absence_data_from_trips: Tabulera när-/frånvarodata från utflykter
   #Noun, as in "add a tag to this observation"
   tag: Tagg
   tagging: 'Taggar...'
@@ -5654,6 +5677,14 @@ sv:
   user_commented: "%{user} kommenterade"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} bekräftade en taxonsammanslagning som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} bekräftade en taxonuppdelning som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} bekräftade en taxonförberedelse som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} bekräftade ett taxonbyte som påverkar %{taxa}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
   user_faved_an_observation_by_you: "%{user} favoritmarkerade ett av dina fynd"
