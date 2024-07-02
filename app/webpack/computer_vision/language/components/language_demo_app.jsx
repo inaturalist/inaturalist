@@ -224,7 +224,10 @@ class ComputerVisionEvalApp extends Component {
                   name="search_term"
                   id="search_term"
                   type="text"
-                  placeholder={I18n.t( "views.nls_demo.for_example_a_yellow_bug_with_black_spots" )}
+                  placeholder={I18n.t(
+                    "views.nls_demo.for_example_query", {
+                      query_in_english: "A yellow bug with black spots"
+                  } )}
                   disabled={this.props.votingEnabled}
                   autoComplete="off"
                   onKeyDown={e => {
@@ -510,8 +513,9 @@ class ComputerVisionEvalApp extends Component {
               />
               <p
                 dangerouslySetInnerHTML={{
-                  __html: I18n.t( "views.nls_demo.this_demo_tool2", {
-                    defaultValue: I18n.t( "views.nls_demo.this_demo_tool" )
+                  __html: I18n.t( "views.nls_demo.this_demo_tool3", {
+                    url: "/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3",
+                    query_in_english: "a bird eating fruit"
                   } )
                 }}
               />
