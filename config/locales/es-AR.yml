@@ -171,8 +171,6 @@ es-AR:
   about_this_bioblitz: Acerca de este evento
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
-  about_trips_html: |
-    <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones</h4><p><strong>Por qué</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos 'sólo presencia').</p> <p><strong>Cómo</strong> Un viaje añade contexto a tus observaciones grabando:</p> <ul> <li><strong>Qué</strong> buscó (lista objetivo)</li> <li><strong>Dónde</strong> buscó (área de búsqueda)</li> <li><strong>Cuándo</strong> buscó (intervalo de búsqueda)</li> </ul> <p>Las especies en tu lista objetivo que pudiste observar dentro del área de búsqueda y el intervalo se interpretan como presencias. Mientras que las especies en tu lista objetivo que no has podido observar se interpretan como ausencias. Haga clic en 'Tabulate Presence Ausence Data From Trips' para generar una tabla de registros presencia-ausencia de especies en viajes y observaciones asociadas. <a href='%{url}'>Más información</a></p>
   about_trusting_projects: Acerca de confiar en proyectos
   about_trusting_projects_options_any: Todas tus observaciones en este proyecto
   about_trusting_projects_options_any_desc: |-
@@ -289,6 +287,7 @@ es-AR:
   add_notes_about_this_taxon: Agregar notas acerca de este taxón en este lugar, por ejemplo, dónde y cuándo ocurre.
   add_obs_from_a_link: "Agregar observaciones desde una lista %{link}"
   add_obs_from_a_list: Agregar observaciones desde una lista
+  add_observation_fields: Añadir Campos de Observación
   add_observations: Agregar observaciones
   add_observations_by_checking_off: Agregar observaciones seleccionando especies desde una lista.
   add_observations_project: Agregar observaciones a este proyecto
@@ -368,6 +367,8 @@ es-AR:
   added_by: Añadido por
   added_by_user_on_date_html: "Añadido por %{user} el %{date}"
   added_on_datetime: "Añadido el %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rol añadido
   added_to_favorites_html: |
     Agregado a <a href="%{url}">favoritos</a>
   adding: "Añadiendo..."
@@ -1118,6 +1119,10 @@ es-AR:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
+    #Does the observation belong to a non-established population or not
+    established: Establecido
+    #Organism is not a member of an established population
+    not_established: No establecido
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
     bone: |
@@ -1152,6 +1157,7 @@ es-AR:
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
   copy_guide_taxon_to: Copia de la guía de taxón para...
+  copied!: '¡Copiado!'
   copyright:
     some_rights_reserved: algunos derechos reservados
     some_rights_reserved_by: "(c) %{name}, algunos derechos reservados (%{license_short})"
@@ -2254,6 +2260,8 @@ es-AR:
   last_seen: Visto por última vez
   last_year: Año pasado
   lat: Latitud
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Lon
   latitude: Latitud
   latitude_in_decimals: 'Latitud en grados con decimales, ej. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / y coord / norte
@@ -2682,6 +2690,10 @@ es-AR:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspender
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Retirar suspensión
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -3026,6 +3038,7 @@ es-AR:
     Las coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales sólo son visibles para ti y los curadores de los proyectos a los que se agrega la observación.
   observation: Observación
   observation_: observación
+  observation_accuracy_experiment_year: "Año"
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -5268,6 +5281,9 @@ es-AR:
   user_added_an_x_to_noun_by_you_html: "%{user} añadió un/a %{x} a %{noun} tuyo"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} añadió una %{x} a %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} añadió %{count} observación"
+    other: "%{user} añadió %{count} observaciones"
   user_already_authenticated: El usuario ya está verificado
   user_already_app_owner: El usuario ya posee la app
   user_autocomplete_placeholder: roget, kueda, etc.
