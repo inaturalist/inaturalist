@@ -63,14 +63,42 @@ class DragDropZone extends Component {
     }
   }
 
+  static selectShiftRangeCards( firstSelectedID, secondSelectedID ) {
+    const {
+      selectedObsCards,
+      obsPositions
+    } = this.props;
+    const newSelected = Object.assign( { }, selectedObsCards );
+    // This works because the Shift-Click range is based off of the positions order
+    // It does this tracking if we found the first and second IDs in booleans
+    // When one is found, then we set everything to true until the next is found
+    let foundFirstSelected = false;
+    let foundSecondSelected = false;
+    for ( const id of obsPositions ) {
+      foundFirstSelected = foundFirstSelected || id === firstSelectedID;
+      foundSecondSelected = foundSecondSelected || id === secondSelectedID;
+
+      if ( foundFirstSelected || foundSecondSelected ) {
+        newSelected[id] = true;
+        if ( foundFirstSelected && foundSecondSelected ) {
+          // If we've found both, no need to keep searching
+          break;
+        }
+      }
+    }
+
+    return newSelected;
+  }
+
   constructor( props, context ) {
     super( props, context );
     this.fileChooser = this.fileChooser.bind( this );
     this.selectObsCards = this.selectObsCards.bind( this );
     this.unselectAll = this.unselectAll.bind( this );
     this.selectCard = this.selectCard.bind( this );
-    this.resize = DragDropZone.resize.bind( this );
     this.selectNone = this.selectNone.bind( this );
+    this.resize = DragDropZone.resize.bind( this );
+    this.selectShiftRangeCards = DragDropZone.selectShiftRangeCards.bind( this );
   }
 
   componentDidMount( ) {
@@ -166,7 +194,7 @@ class DragDropZone extends Component {
       selectedObsCards,
       commandKeyPressed,
       shiftKeyPressed,
-      obsCards,
+      obsPositions,
       selectObsCards
     } = this.props;
     let newSelected;
@@ -182,17 +210,11 @@ class DragDropZone extends Component {
       }
     } else if ( shiftKeyPressed && selectedIDs.length > 0 ) {
       // shift + click
-      const firstSelected = _.min( selectedIDs );
-      newSelected = Object.assign( { }, selectedObsCards );
-      _.each( obsCards, ( card, id ) => {
-        // select anything between the first selected and this selection
-        if (
-          ( obsCard.id < firstSelected && _.inRange( id, obsCard.id, firstSelected ) )
-          || ( obsCard.id > firstSelected && _.inRange( id, firstSelected, obsCard.id + 1 ) )
-        ) {
-          newSelected[id] = true;
-        }
-      } );
+
+      // We expect all values in selectedIDs to be ints _.keys just returned them all as strings
+      const firstSelected = +_.min( selectedIDs );
+
+      newSelected = this.selectShiftRangeCards( firstSelected, obsCard.id );
     } else {
       // normal click
       newSelected = { [obsCard.id]: true };
