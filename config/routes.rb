@@ -608,8 +608,8 @@ Rails.application.routes.draw do
   end
 
   get "build_info", to: "build_info#index"
-  get "app_build_info", to: "build_info#app_build_info"
-  get "admin/app_build_info", to: "build_info#app_build_info_html", as: "admin_app_build_info"
+  get "app_build_info", to: "build_info#app_build_info", defaults: { format: :json }
+  get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
 
   resource :stats do
     collection do
