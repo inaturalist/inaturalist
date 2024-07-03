@@ -196,8 +196,31 @@ da:
   about_this_bioblitz: Om denne bioblitz
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
-  about_trips_html: |
-    <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværelse-fravær kriterium ved at føje kontekst til dine observationer</h4><p><strong>Hvorfor</strong> Tilstedeværelse-fravær data inkluderer information om indsamlingsindsatsen, hvilket er nyttigt ifm. videnskabelige analyser såsom udbredelsesmodellering (rå iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong> En tur føjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong> du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li> <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på mållisten, som kunne observeres inden for søgeområdet og intervallet tolkes som tilstedeværelse. Derimod tolkes arter, som ikke kunne observere, som fravær. Klik på 'Tabellér tilstedeværelse-fravær data fra tur' for at generere en tabel over tilstedeværelse-fravær registreringer for en art fra ture og tilhørende observationer. <a href='%{url}'>Læs mere</a></p>
+  about_trips2_html: |
+    <h4>
+    Ture muliggør indsamling af tilstedeværelse-fravær data ved at føje kontekst til
+    observationerne
+    </h4>
+    <p>
+    <strong>Hvorfor</strong> Tilstedeværelse-fravær data omfatter oplysninger om
+    prøveudtagningsindsats, som er nyttig til videnskabelige analyser såsom distributionsmodellering (rå iNaturalist-observationer er 'alene tilstedeværelse'-data).
+    </p>
+    <p>
+    <strong>Hvordan</strong> En tur tilføjer kontekst til observationerne ved at registrere:
+    </p>
+    <ul>
+    <li><strong>Hvad</strong>, der blev søgt efter (målliste)</li>
+    <li><strong>Hvor</strong>, der blev søgt (søgeområde)</li>
+    <li><strong>Hvornår</strong>, der blev søgt (søgeinterval)</li>
+    </ul>
+    <p>
+    Arter på mållisten, som man var i stand til at observere inden for
+    søgeområde og interval, tolkes som tilstedeværelser. Arter på
+    mållisten, som man ikke var i stand til at observere, tolkes som
+    fravær. Klik på 'Tabulér tilstedeværelse-fravær data fra ture' for at generere en
+    tabel over tilstedeværelse-fravær registreringer for en art fra ture og tilhørende
+    observationer. <a href='%{url}'>Læs mere</a>
+    </p>
   about_trusting_projects: Om Tillid til Projekter
   about_trusting_projects_options_any: Alle dine observationer i dette projekt
   about_trusting_projects_options_any_desc: |-
@@ -283,6 +306,8 @@ da:
   add_annotations_for_controlled_attribute:
     sex: Tilføj noter for "køn"
     plant_phenology: Tilføj anmærkninger for "plantefænologi"
+    flowers_and_fruits: Føj anmærkninger til "Blomster og Frugter"
+    leaves: Føj anmærkninger til "Blade"
     life_stage: Tilføj noter for "livsstadie"
     evidence_of_presence: Føj anmærkninger til "Beviser for tilstedeværelse"
   add_another_flag: Tilføj endnu en markering
@@ -339,6 +364,14 @@ da:
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I frugt"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Tilføj anmærkningen "Plantefenologi: Intet bevis på Blomstring"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Tilføj "Blomster og Frugter: Blomsterknopper" anmærkning'
+  add_flowers_and_fruits_flowers_annotation: 'Tilføj "Blomster og Frugter: Blomster"-anmærkning'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Tilføj "Blomster og Frugter: Frugter og Frø" anmærkning'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Tilføj "Blomster og Frugter: Ingen Blomster eller Frugter" anmærkning'
+  add_leaves_breaking_leaf_buds: 'Tilføj "Blade: Udspringende Bladknopper" anmærkning'
+  add_leaves_green_leaves: 'Tilføj "Blade: Grønne Blade" anmærkning'
+  add_leaves_colored_leaves: 'Tilføj "Blade: Farvede Blade" anmærkning'
+  add_leaves_no_live_leaves: 'Tilføj "Blade: Ingen Levende Blade" anmærkning'
   add_life_stage_adult_annotation: 'Tilføj noten "Livsstadie: Voksen"'
   add_life_stage_teneral_annotation: 'Tilføj anmærkningen "Livsstadie: teneral"'
   add_life_stage_subimago_annotation: 'Tilføj noten "Livsstadie: subimago"'
@@ -1138,6 +1171,10 @@ da:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Enhver
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Erhvert
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Enhver
@@ -1147,10 +1184,20 @@ da:
     male: Hankøn
     female: Hunkøn
     plant_phenology: Plante fænologi
+    flowers_and_fruits: Blomster og Frugter
     budding: Knopbærende
     flower_budding: Blomstknopbærende
     flowering: Blomstrende
     fruiting: I frugt
+    no_flowers_or_fruits: Ingen Blomster eller Frugter
+    flower_buds: Blomstknopper
+    flowers: Blomster
+    fruits_or_seeds: Frugter eller Frø
+    leaves: Blade
+    breaking_leaf_buds: Udspringende Bladknopper
+    green_leaves: Grønne Blade
+    colored_leaves: Farvede Blade
+    no_live_leaves: Ingen Levende Blade
     life_stage: Livsstadie
     adult: Voksen
     teneral: Tenerel
@@ -1204,6 +1251,13 @@ da:
     flower_budding: Blomsterknopper er synlige, men ikke åbne
     flowering: Blomster synlige, åbne og stadig fastgjort til planten
     fruiting: Frugt synlig og stadig fastgjort til planten
+    flowers: Mindst én åben blomst
+    flower_buds: Mindst én lukket blomsterknop
+    fruits_or_seeds: Mindst én frugt eller ét frø
+    breaking_leaf_buds: Mindst én knop med dens første nye blad eller nål, ikke fuldt udfoldet
+    green_leaves: Mindst ét grønt (eller rødligt, hvis dette er dens normale sunde farve) blad eller nål
+    colored_leaves: Mindst ét blad eller nål har sen sæson eller tørke farve
+    no_live_leaves: Ingen udspringende bladknopper eller grønne/farvede blade eller nåle er synlige
     gall: Deform udvækst af plantevæv forårsaget af parasitisk organisme
     male: Bevis indikerer, at organismen kan producere sæd til brug i seksuel reproduktion
     molt: Afstødt hud eller exoskelet
@@ -1212,6 +1266,7 @@ da:
     egg: Helt — eller dele af et — æg
     construction: Noget skabt af et dyr, fremstillet med — eller udgravet af — andre materialer
     no_evidence_of_flowering: Medier leverer ingen beviser på reproduktionsstrukturer
+    no_flowers_or_fruits: Ingen blomster, frugter eller frø (hele eller dele) er synlige
     not_established: Organisme tilhører en uetableret bestand, herunder frigivne/undslupne kæledyr, vandrere og omstrejfere.
     organism: Hel eller partiel organisme
     scat: Fækalt materiale (ikke uglegylp eller andet gylgningsmateriale)
@@ -1884,6 +1939,7 @@ da:
   filter: Filtrér
   filter_by_curator_identification: Sortér efter kurator identifikation
   filter_by_place: Filtrer efter sted
+  filter_by_species: Filtrér efter art
   filter_by_taxon: Sortér efter takson
   filter_by_place_taxon_and_color: Sortér efter sted, takson, og farve ved hjælp af indstillingerne.
   filter_list_by_this_taxon: Sortér liste efter denne takson
@@ -2069,6 +2125,9 @@ da:
   grid_tooltip: Vis gittervisning
   group: Gruppe
   grouping: Gruppering
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Gæt placering fra andre observationer?
   guides: Guider
   guide_compiled_by: Guide udarbejdet af
   guide_deleted: Guide slettet
@@ -4937,6 +4996,7 @@ da:
   subject_resolved_noun_html: "%{subject} løst %{noun}"
   submission_model: Registreringsmodel
   submission_model_description: Hvem kan tilføje observationer til dit projekt?
+  submit: Indsend
   submit_observations:
     one: Indsend 1 observation
     other: Indsend %{count} observationer
@@ -4985,6 +5045,7 @@ da:
   synonyms: Synonymer
   table: Liste
   table_of_contents: Indholdsfortegnelse
+  tabulate_presence_absence_data_from_trips: Tabulér Tilstedeværelse-Fravær data fra Ture
   #Noun, as in "add a tag to this observation"
   tag: Tag
   tagging: 'Tagger...'
@@ -5187,6 +5248,7 @@ da:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstformateringskontroller
   text_editing_controls: Tekstredigeringskontroller
+  thank_you!: Tak!
   thanks!: Tak!
   thanks_from_all_of_us_here_at: Tak fra alle os her hos
   that_account_is_already_connected: Denne konto er allerede tilknyttet en anden bruger
@@ -5638,7 +5700,9 @@ da:
   user_added_an_x_to_noun_by_you_html: "%{user} tilføjede en %{x} til %{noun} af dig"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} tilføjede en %{x} til %{noun}"
-  user_added_x_observations_html: "%{user} tilføjede %{x} observationer"
+  user_added_x_observations2_html:
+    one: "%{user} tilføjede %{count} observation"
+    other: "%{user} tilføjede %{count} observationer"
   user_already_authenticated: Brugeren er allerede godkendt
   user_already_app_owner: Bruger er allerede en app-ejer
   user_autocomplete_placeholder: kueda, simon123, osv.
@@ -5651,13 +5715,13 @@ da:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} har committed et taksondrop, der påvirker %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} har udført en taksonsammenfletning, der påvirker %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} har udført en taksonopdeling, der påvirker %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxon}"
+  user_committed_taxon_stage_affecting_taxon2: "%{user} har udført en taksontrin, der påvirker %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa: "%{user} har committed et taksondrop, der påvirker %{taxa}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} har udført en taksonombytning, der påvirker %{taxa}"
   user_disagrees_this_is_taxon: "%{user} er uenig i denne %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} er uenig med tidligere, mere præcise identifikationer"
   user_faved_an_observation_by_you: "%{user} gjorde en af dine observationer til favorit"
@@ -6672,6 +6736,35 @@ da:
           markeret til moderering. Har du behov for reel privat
           kommunikation, så undersøg andre kommunikationsmuligheder, som
           understøtter stærk kryptering.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vision Language Demo
+      what_do_you_want_to_search_for: Hvorfor skal der søges efter?
+      #NOTE: please do not translate "A yellow bug with black spots" in the URL
+      #or the text here. This UI interacts with a machine-learning model that
+      #will return different results for different strings, and translations
+      #are different strings. The model was primarily trained on English text
+      #and may return inaccuracte results in different languages
+      for_example_a_yellow_bug_with_black_spots: f.eks. Et gult insekt med sorte pletter
+      try_one_of_these_example_searches_colon: "Prøv en af disse eksempelsøgninger:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model)
+      help_us_improve: Hjælp os med at blive bedre
+      to_help_us_improve: For at hjælpe os med at forbedre denne model vil vi gerne vide, hvilke af billederne på denne side, som er relevante for søgningen &quot;%{searched_term}&quot;. Markér venligst hvert billede som relevant %{thumbs_up_icon}, hvis det matcher søgningen, og som ikke relevant %{thumbs_down_icon}, hvis det ikke gør det. Når man er færdig, klik dernæst på Indsend. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Markér resterende som relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Markér resterende som ikke relevant
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Vis disse observationer i Identificér
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> er gået sammen med forskere på <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> og med generøs støtte fra <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a> for bedre at forstå potentialet for Vision Language Models til at hjælpe med at organisere, udforske og forklare iNaturalist-observationer. #interacts with a machine-learning model that will return different results for different # strings, and translations are different strings. The model was primarily trained on English # text and may return inaccuracte results in different languages
+      this_demo_tool2: Man kan med dette demoværktøj skrive en søgesætning (såsom "<a href="/vision_language_demo?q=en+fugl+der+spiser+frugt&taxon_id=3">en fugl, der spiser frugt</a>"), og sammenligner den med 10 millioner iNaturalist-fotos. Resultaterne er sorteret fra mest til mindst relevante. Man kan bruge denne demo som en ny måde at finde interessante iNaturalist-observationer at anmærke eller føje til sit projekt.
+      you_can_also_use_this_demo: Denne demo kan også bruge til at hjælpe os med at evaluere Vision Language-modellen, der driver demoen, ved at fortælle os, hvilke af de returnerede billeder, som var relevante for søgesætningen. Denne demo bruger en tredjeparts <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP-model</a>, der ikke er trænet i iNaturalist-data eller af iNaturalist-teamet. Værktøjet vil kunne producere unøjagtige, forudindtagede eller stødende resultater. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Læs mere på iNaturalist Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Vil man gerne støtte dette arbejde
+      thank_you_for_your_submission!: Tak for indsendelsen!
     oauth:
       authorizations:
         new:
@@ -7857,6 +7950,7 @@ da:
         about_taxon_curators_desc: |
           Disse personer administrerer den del af det taksonomiske træ, der indeholder
           denne takson. Hvis du vil foretage ændringer, skal du markere denne takson eller kontakte en af disse personer.
+        charts_caps: DIAGRAMMER
         charts_help_seasonality: |
           Dette diagram viser antallet af observationer af denne takson grupperet efter
           måned. Husk på, at dette blot er et antal observationer, som påvirkes både af, hvornår organismen kan observeres og hvornår andre personer har lyst at observere dem. Så en fugl kan synes at være meget aktiv i maj, men det kunne måske også skyldes at flere personer kigger på fugle i maj, og de selvsamme personer måske har en tendens til at ignorere denne art i de senere måneder. Det er det samme som, hvis du ser flere guldsmede i juni end i januar, er det måske fordi der er flere personer til at observere dem på den nordlige halvkugle end på den sydlige halvkugle og ikke fordi guldsmede er mere aktive i juni måned, så tjek observations kortet, når du ser på disse diagrammer. Det er altid en god idé, at være skeptisk over for disse diagrammer, specielt når der er lave antal af observationer og/eller store forskelle mellem antallet af "Verificerbare" og "Forskningskvalitet" observationer.
@@ -7895,7 +7989,14 @@ da:
           "Plant Phenology=Flowering": Blomsbærende
           "Plant Phenology=Fruiting": Frugtbærende
           "Plant Phenology=No Evidence of Flowering": Blomstring kan ikke påvises
-          "Life Stage=Adult": Voksen
+          "Flowers and Fruits=Flower Buds": Blomstknopper
+          "Flowers and Fruits=Flowers": Blomster
+          "Flowers and Fruits=Fruits or Seeds": Frugter eller Frø
+          "Flowers and Fruits=No Flowers or Fruits": Ingen Blomster eller Frugter
+          "Leaves=Breaking Leaf Buds": Udspringende Bladknopper
+          "Leaves=Green Leaves": Grønne Blade
+          "Leaves=Colored Leaves": Farvede Blade
+          "Leaves=No Live Leaves": Ingen Levende Blade
           "Life Stage=Egg": Æg
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Ung

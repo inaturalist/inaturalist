@@ -185,24 +185,6 @@ kk:
   about_this_bioblitz: Осы биоблиц туралы
   about_this_map: Бұл карта туралы
   about_this_project: Осы жоба туралы
-  about_trips_html: |
-    <h4>
-    Сапарлар бақылауларыңызға контекст қосу арқылы бар-жоқтығы туралы деректерді жинауға мүмкіндік береді
-    </h4>
-    <p>
-    <strong>Неге</strong> Бар-жоқтығы туралы деректер таралу бойынша модельдеу сияқты ғылыми талдаулар үшін пайдалы іріктеу әрекеті туралы ақпаратты қамтиды (өңделмеген iNaturalist бақылаулары «тек бар» деректері болып саналады).
-    </p>
-    <p>
-    <strong>Қалай</strong> Саяхат жазу арқылы бақылауларыңызға контекст қосады:
-    </p>
-    <ul>
-    <li><strong>Нені</strong> іздедіңіз (мақсатты тізім)</li>
-    <li><strong>Қайда</strong> іздедіңіз (іздеу аймағы)</li>
-    <li><strong>Қашан</strong> іздедіңіз (іздеу аралығы)</li>
-    </ul>
-    <p>
-    Іздеу аймағында және аралықта байқауға болатын мақсатты тізімдегі түрлер «бар» ретінде түсіндіріледі. Сіздің мақсатты тізіміңіздегі сіз бақылай алмаған түрлер «жоқ» деп түсіндіріледі. Саяхаттар мен байланысты бақылаулардағы түрдің бар-жоқтығы жазбаларының кестесін жасау үшін «Сапарлардағы бар-жоқығы туралы деректерді кестелеу» түймесін басыңыз. <a href='%{url}'>Толығырақ</a>
-    </p>
   about_trusting_projects: Сенімді жобалар туралы
   about_trusting_projects_options_any: Осы жобадағы сіздің барлық бақылауларыңыз
   about_trusting_projects_options_any_desc: |-
@@ -3247,7 +3229,6 @@ kk:
   user_added_an_observation_html: "%{user} бақылау қосты"
   #@gender operates on %{x}
   user_added_an_x: "%{user} %{x} қосты"
-  user_added_x_observations_html: "%{user} %{x} бақылау қосты"
   user_already_authenticated: Пайдаланушы аутентификациядан өтіп қойған
   user_already_app_owner: Пайдаланушы бұрыннан қолданба иесі
   user_autocomplete_placeholder: kueda, simon123 және т.б.
@@ -3577,7 +3558,6 @@ kk:
           "Plant Phenology=Flowering": Гүлдену
           "Plant Phenology=Fruiting": Жеміс беру
           "Plant Phenology=No Evidence of Flowering": Гүлденудің дәлелі жоқ
-          "Life Stage=Adult": Ересек
           "Life Stage=Egg": Жұмыртқа
           "Life Stage=Larva": Дернәсіл
           "Life Stage=Juvenile": Жас

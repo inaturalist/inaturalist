@@ -474,6 +474,15 @@ export function renderObservation( observation, options = { } ) {
         )
       )
     );
+    if ( options.initialPhotoID ) {
+      const matchingInitialPhoto = _.find(
+        observation.photos,
+        p => p.id === Number( options.initialPhotoID )
+      );
+      if ( matchingInitialPhoto ) {
+        matchingInitialPhoto.initialPhoto = true;
+      }
+    }
     dispatch( setObservation( observation ) );
     if ( taxonUpdated ) {
       dispatch( setIdentifiers( null ) );

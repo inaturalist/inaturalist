@@ -197,11 +197,11 @@ nl:
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
   about_this_project: Over dit project
-  about_trips_html: |
-    <h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>
+  about_trips2_html: |
+    <h4>Routes maken het verzamelen van nulwaarnemingen mogelijk door het toevoegen van context aan je waarnemingen</h4>
 
     <p><strong>Waarom</strong>
-    Aanwezigheid/afwezigheidsgegevens bevatten informatie over steekproefinspanning die nuttig zijn voor wetenschappelijke analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
+    Aanwezigheid/afwezigheidsgegevens bevatten informatie over de onderzoeksinspanning die nuttig is voor wetenschappelijke analyses zoals distributiemodellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
 
     <p><strong>Hoe</strong>
     Een route voegt context aan je waarnemingen toe door extra informatie over:</p>
@@ -211,7 +211,7 @@ nl:
     <li><strong>Wanneer</strong> je zocht (zoekinterval)</li> 
     </ul>
 
-    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
+    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Zet de Aan- en Afwezigheidsgegevens van Routes in een tabel' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
     <a href='%{url}'>Meer informatie</a></p>
   about_trusting_projects: Over het vertrouwen van projecten
   about_trusting_projects_options_any: Al je waarnemingen in dit project
@@ -294,11 +294,13 @@ nl:
   add_an_observation: Waarneming toevoegen
   add_an_observation_of: "Een waarneming toevoegen van %{taxon}"
   add_an_observation_to_project_html: Voeg een waarneming toe aan %{project}
-  add_annotations_for_x: Aantekeningen voor %{x} toevoegen
+  add_annotations_for_x: Voeg aantekeningen toe voor %{x}
   add_annotations_for_controlled_attribute:
-    sex: Aantekeningen voor "Geslacht" toevoegen
-    plant_phenology: Aantekeningen voor "Plantenfenologie" toevoegen
-    life_stage: Aantekeningen voor "Levenstadium" toevoegen
+    sex: Voeg aantekeningen toe voor "Geslacht"
+    plant_phenology: Voeg aantekeningen toe voor "Plantenfenologie"
+    flowers_and_fruits: Voeg aantekeningen toe voor "Bloemen en vruchten"
+    leaves: Voeg aantekeningen toe voor "Bladeren"
+    life_stage: Voeg aantekeningen toe voor "Levenstadium"
     evidence_of_presence: Voeg aantekeningen toe voor "Bewijs van Aanwezigheid"
   add_another_flag: Nog een melding toevoegen
   add_another_photo: Nog een foto toevoegen
@@ -354,6 +356,14 @@ nl:
   add_plant_phenology_flowering_annotation: 'Aantekening "Plantenfenologie: Bloeiend" toevoegen'
   add_plant_phenology_fruiting_annotation: 'Aantekening "Plantenfenologie: Vruchtdragend" toevoegen'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Aantekening "Plantenfenologie: Geen bewijs voor bloei" toevoegen'
+  add_flowers_and_fruits_flower_buds_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: bloemknoppen"'
+  add_flowers_and_fruits_flowers_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: bloemen"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: vruchten en zaden"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Voeg aantekeningen toe voor "Bloemen en vruchten: geen bloemen of vruchten"'
+  add_leaves_breaking_leaf_buds: 'Voeg aantekeningen toe voor "Bladeren: uitlopende bladknoppen"'
+  add_leaves_green_leaves: 'Voeg aantekeningen toe voor "Bladeren: groene bladeren"'
+  add_leaves_colored_leaves: 'Voeg aantekeningen toe voor "Bladeren: gekleurde bladeren"'
+  add_leaves_no_live_leaves: 'Voeg aantekeningen toe voor "Bladeren: geen levende bladeren"'
   add_life_stage_adult_annotation: 'Aantekening "Levenstadium: Volwassen" toevoegen'
   add_life_stage_teneral_annotation: 'Aantekening "Levenstadium: teneraal" toevoegen'
   add_life_stage_subimago_annotation: 'Aantekening "Levenstadium: subimago" toevoegen'
@@ -1144,6 +1154,10 @@ nl:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Elke
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Elke
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Alle
@@ -1153,10 +1167,20 @@ nl:
     male: Mannelijk
     female: Vrouwelijk
     plant_phenology: Plantenfenologie
+    flowers_and_fruits: Bloemen en vruchten
     budding: Ontluikend
     flower_budding: Bloemknoppen
     flowering: Bloeiend
     fruiting: Vruchtdragend
+    no_flowers_or_fruits: Geen bloemen of vruchten
+    flower_buds: Bloemknoppen
+    flowers: Bloemen
+    fruits_or_seeds: Vruchten of zaden
+    leaves: Bladeren
+    breaking_leaf_buds: Uitlopen van bladknoppen
+    green_leaves: Groene bladeren
+    colored_leaves: Gekleurde bladeren
+    no_live_leaves: Geen levende bladeren
     life_stage: Levensstadium
     adult: Volwassen
     teneral: Net verveld
@@ -1210,6 +1234,13 @@ nl:
     flower_budding: Bloemknoppen zijn zichtbaar maar niet open
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
+    flowers: Ten minste één open bloem
+    flower_buds: Ten minste één gesloten bloemknop
+    fruits_or_seeds: Ten minste één vrucht of zaad
+    breaking_leaf_buds: Tenminste één knop met zijn eerste nieuwe blad of naald niet volledig ontvouwd
+    green_leaves: Ten minste één groen blad of naald (of roodachtig als dit de normale gezonde kleur is)
+    colored_leaves: Ten minste één blad of naald heeft een laat seizoen of een kleur van droogte
+    no_live_leaves: Er zijn geen uitlopende bladknoppen of groene of gekleurde bladeren of naalden zichtbaar
     gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
     male: Bewijs geeft aan dat organisme sperma kan produceren voor gebruik in seksuele voortplanting
     molt: Afgeworpen huid of exoskelet
@@ -1218,6 +1249,7 @@ nl:
     egg: Heel ei of een deel van een ei
     construction: Iets gemaakt door een dier, gemaakt met of opgegraven van andere materialen
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
+    no_flowers_or_fruits: Er zijn geen bloemen, vruchten of zaden (geheel of gedeeltelijk) zichtbaar
     not_established: Het organisme behoort tot een ongevestigde populatie, waaronder vrijgelaten/ontsnapte huisdieren, lifters en dwaalgasten
     organism: Heel of gedeeltelijk organisme
     scat: Feces (geen uileballen of andere uitgebraakte dingen)
@@ -1887,6 +1919,7 @@ nl:
   filter: Filter
   filter_by_curator_identification: Filteren op curatordeterminatie
   filter_by_place: Filter op plaats
+  filter_by_species: Filteren op soort
   filter_by_taxon: Filter op taxon
   filter_by_place_taxon_and_color: Zoek op plaats, taxon, en kleur met behulp van de besturingselementen.
   filter_list_by_this_taxon: Zoek in lijst met dit taxon
@@ -2072,6 +2105,9 @@ nl:
   grid_tooltip: Toon rooster weergave
   group: Groep
   grouping: Groeperen
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Interpoleer de locatie met behulp van andere waarnemingen?
   guides: Gidsen
   guide_compiled_by: Gids samengesteld door
   guide_deleted: Gids verwijderd
@@ -4910,6 +4946,7 @@ nl:
   subject_resolved_noun_html: "%{subject} lost %{noun} op"
   submission_model: Registratiemodel
   submission_model_description: Wie kan waarnemingen toevoegen aan je project?
+  submit: Verzenden
   submit_observations:
     one: 1 waarneming verzenden
     other: '%{count} waarnemingen verzenden'
@@ -4958,6 +4995,7 @@ nl:
   synonyms: Synoniemen
   table: Tabel
   table_of_contents: Inhoudsopgave
+  tabulate_presence_absence_data_from_trips: Zet de Aan- en Afwezigheidsgegevens van Routes in een tabel
   #Noun, as in "add a tag to this observation"
   tag: label
   tagging: 'Tagging ...'
@@ -5152,6 +5190,7 @@ nl:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstvormgevings-elementen
   text_editing_controls: Tekstbewerkings-elementen
+  thank_you!: Bedankt!
   thanks!: Bedankt!
   thanks_from_all_of_us_here_at: Bedankt van ons allemaal hier bij
   that_account_is_already_connected: Dat account is al gekoppeld aan een andere gebruiker
@@ -5595,7 +5634,9 @@ nl:
   user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
-  user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
+  user_added_x_observations2_html:
+    one: "%{user} heeft %{count} waarneming toegevoegd"
+    other: "%{user} heeft %{count} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
   user_already_app_owner: Gebruiker is al eigenaar van een app
   user_autocomplete_placeholder: kueda, simon123, enz.
@@ -5606,15 +5647,13 @@ nl:
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxon}"
+  user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} heeft het samenvoegen van een taxon bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
-  #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxon}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} heeft het splitsen van een taxon bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa: "%{user} heeft een taxon verwijderd met gevolgen voor %{taxa}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} heeft het wisselen van een taxon bevestigd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   user_faved_an_observation_by_you: "%{user} heeft een waarneming van jou als favoriet opgeslagen"
@@ -6563,6 +6602,35 @@ nl:
           Je hebt dit gesprek gemeld op %{date}. De melding blijft bestaan, zelfs als je jouw kopie van dit gesprek verwijdert, dus het is veilig om dat te doen als je dit niet meer wilt zien.
         privacy_notice_html: |
           De berichten tussen jou en de ontvanger zijn privé, maar iNaturalist kan deze berichten ook bekijken en zal dit doen wanneer berichten zijn gemarkeerd voor moderatie. Als je echt privécommunicatie nodig hebt, kijk dan naar andere communicatiemechanismen met een sterke versleuteling.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vision Language Demo
+      what_do_you_want_to_search_for: Waar wil je naar zoeken?
+      #NOTE: please do not translate "A yellow bug with black spots" in the URL
+      #or the text here. This UI interacts with a machine-learning model that
+      #will return different results for different strings, and translations
+      #are different strings. The model was primarily trained on English text
+      #and may return inaccuracte results in different languages
+      for_example_a_yellow_bug_with_black_spots: b.v. Een geel beestje met zwarte vlekken
+      try_one_of_these_example_searches_colon: "Probeer één van deze voorbeeldzoekopdrachten:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model)
+      help_us_improve: Help ons om te verbeteren
+      to_help_us_improve: Om ons te helpen dit model te verbeteren willen we graag weten welke van de afbeeldingen op deze pagina relevant zijn voor je zoekopdracht &quot;%{searched_term}&quot;. Markeer elke afbeelding als relevant %{thumbs_up_icon} als deze overeenkomt met je zoekopdracht en met %{thumbs_down_icon} als deze niet relevant is. Klik op verzenden wanneer je klaar bent. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Markeer resterende als relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Markeer resterende als niet relevant
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Toon deze waarnemingen in Identify
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> werkt samen met onderzoekers van <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Universiteit van Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Universiteit van Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Universiteitscollege London</a> <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> en met royale steun van <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI voor Good Lab</a> om beter te begrijpen wat de mogelijkheden in de toekomst zijn voor Vision Language Models om iNaturalist waarnemingen.te helpen organiseren, verkennen en uit te leggen. #interacts with a machine-learning model that will return different results for different # strings, and translations are different strings. The model was primarily trained on English # text and may return inaccuracte results in different languages
+      this_demo_tool2: Met deze demo tool kun je een zoekzin typen (zoals "<a href="/vision_language_demo?q=een+vogel+die+vruchten+eet&taxon_id=3">een vogel die vruchten eet</a>") en deze vergelijken met 10 miljoen iNaturalist foto's. Resultaten worden gesorteerd op relevantie. Je kunt deze demo gebruiken als een nieuwe manier om interessante iNaturalist waarnemingen te vinden om aantekeningen te maken of toe te voegen aan je project.
+      you_can_also_use_this_demo: Je kunt deze demo ook gebruiken om ons te helpen het Vision Language model te evalueren door ons te vertellen welke van de geretourneerde afbeeldingen relevant zijn voor jouw zoekzin. Deze demo gebruikt een derde partij <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP model</a> die niet is getraind op iNaturalist data of door het iNaturalist team. Soms kan de tool een onnauwkeurig, partijdig, vooringenomen of aanstootgevend resultaat opleveren. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lees meer op de iNaturalist Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Als je dit werk wilt ondersteunen
+      thank_you_for_your_submission!: Bedankt voor jouw inzending.
     oauth:
       authorizations:
         new:
@@ -7567,6 +7635,7 @@ nl:
           Endemische soorten komen alleen voor op een specifieke plaats, en nergens anders.
         about_taxon_curators_desc: |
           Deze mensen onderhouden het gedeelte van de taxonomische boom waartoe dit taxon behoort. Als je dingen wilt wijzigen, meld dit taxon dan alsjeblieft, of neem contact op met één van deze mensen.
+        charts_caps: GRAFIEKEN
         charts_help_seasonality: |
           Deze grafiek toont het aantal waarnemingen van dit taxon gegroepeerd per
           maand. Houd er rekening mee dat dit een aantal waarnemingen zijn, dus zij
@@ -7609,7 +7678,14 @@ nl:
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
           "Plant Phenology=No Evidence of Flowering": Geen bewijs voor bloei
-          "Life Stage=Adult": Volwassen
+          "Flowers and Fruits=Flower Buds": Bloemknoppen
+          "Flowers and Fruits=Flowers": Bloemen
+          "Flowers and Fruits=Fruits or Seeds": Vruchten of zaden
+          "Flowers and Fruits=No Flowers or Fruits": Geen bloemen of vruchten
+          "Leaves=Breaking Leaf Buds": Uitlopen van bladknoppen
+          "Leaves=Green Leaves": Groene bladeren
+          "Leaves=Colored Leaves": Gekleurde bladeren
+          "Leaves=No Live Leaves": Geen levende bladeren
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juveniel

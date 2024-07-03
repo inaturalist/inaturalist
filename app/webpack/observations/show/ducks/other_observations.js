@@ -234,23 +234,29 @@ export function fetchMoreFromThisUser( ) {
     // If we don't have a date/time we can't interpolate
     if ( !obsDateTime ) return Promise.resolve();
 
-    const prevByObservedParams = Object.assign( {}, baseParams, {
+    const byObservedBaseParams = Object.assign( {}, baseParams, {
+      fields: Object.assign( {}, baseParams.fields, {
+        geojson: true,
+        obscured: true
+      } )
+    } );
+    const prevByObservedParams = Object.assign( {}, byObservedBaseParams, {
       order: "desc",
       d1: moment( observation.time_observed_at || observation.observed_on ).subtract( 1, "days" ).format( ),
       d2: obsDateTime.format(),
       geo: true,
       per_page: 1,
-      not_id: observation.id
+      not_id: testingApiV2 ? observation.uuid : observation.id
     } );
     const responseObservedBefore = await inatjs.observations.search( prevByObservedParams );
 
-    const nextByObservedParams = Object.assign( {}, baseParams, {
+    const nextByObservedParams = Object.assign( {}, byObservedBaseParams, {
       order: "asc",
       d1: obsDateTime.format(),
       d2: moment( observation.time_observed_at || observation.observed_on ).add( 1, "days" ).format( ),
       has_geo: true,
       per_page: 1,
-      not_id: observation.id
+      not_id: testingApiV2 ? observation.uuid : observation.id
     } );
     const responseObservedAfter = await inatjs.observations.search( nextByObservedParams );
     if (

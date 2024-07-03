@@ -269,24 +269,6 @@ uk:
   about_this_bioblitz: Про цей біобліц
   about_this_map: Про цю карту
   about_this_project: Про цей проект
-  about_trips_html: |
-    <h4>
-    Поїздки уможливлюють збір даних про наявність-відсутність, шляхом додавання контексту до ваших спостережень
-    </h4>
-    <p>
-    <strong>Чому</strong> Дані про наявність-відсутність видів включають відмості про обсяг дослідницького зусилля, що є важливим для наукових досліджень, таких як моделювання поширення видів (звичайні спостереження на iNaturalist інтерпретуються як дані "лише про нявність").
-    </p>
-    <p>
-    <strong>Як</strong> Поїздки додають контекст до ваших спостережень шляхом запису:
-    </p>
-    <ul>
-    <li><strong>Що</strong> ви шукали (цільовий список)</li>
-    <li><strong>Де</strong> ви шукали (територія інтересу)</li>
-    <li><strong>Коли</strong> ви шукали (інтервал пошуку)</li>
-    </ul>
-    <p>
-    Види з вашого цільового списку, які ви змогли спостерігати на території інтересу впродовж інтервалу пошуку трактуються як присутні. Види з цільового списку, які ви не змогли відмітити, трактуватимуться як відсутні. Натисніть 'Зведені дані наявності-відсутності з поїздок', щоб згенерувати таблицю записів про наявність-відсутність видів з поїздок та пов'язаних спостережень. <a href='%{url}'>Дізнатися більше</a>
-    </p>
   about_trusting_projects: Про Підтвердження довіри до проєктів
   about_trusting_projects_options_any: Всі ваші спостереження в цьому проєкті
   about_trusting_projects_options_any_desc: |-
@@ -4808,7 +4790,6 @@ uk:
   user_added_an_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
-  user_added_x_observations_html: "%{user} додав/додала %{x} спостережень"
   user_already_authenticated: Користувача вже було автентифіковано
   user_autocomplete_placeholder: kueda, simon123 тощо
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -6388,7 +6369,6 @@ uk:
           "Plant Phenology=Flower Budding": Бутонізація
           "Plant Phenology=Flowering": Цвітіння
           "Plant Phenology=Fruiting": Плодоношення
-          "Life Stage=Adult": Доросла особина
           "Life Stage=Egg": Яйце
           "Life Stage=Larva": Личинка
           "Life Stage=Juvenile": Молода особина

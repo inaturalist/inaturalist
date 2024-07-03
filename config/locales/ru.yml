@@ -179,7 +179,7 @@ ru:
     many: "<span class='count'>%{count}</span> ВИДОВ"
     other: "<span class='count'>%{count}</span> ВИДОВ"
   x_species_html:
-    one: "<span class='count'>%{count}</span>вид"
+    one: "<span class='count'>%{count}</span> вид"
     few: "<span class='count'>%{count}</span> вида"
     many: "<span class='count'>%{count}</span> видов"
     other: "<span class='count'>%{count}</span> видов"
@@ -288,8 +288,24 @@ ru:
   about_this_bioblitz: Об этом биоблице
   about_this_map: Об этой Карте
   about_this_project: Об этом Проекте
-  about_trips_html: |
-    <h4>Поездки позволяют собирать данные присутствия-отсутствия, добавляя контекст к вашим наблюдениям</h4><p><strong>Почему</strong> Данные о присутствии-отсутствии включают информацию об попытках отбора проб, которая полезна для научного анализа, такого как моделирование распределения (необработанные наблюдения iNaturalist являются данными «только присутствия»).</p> <p><strong>Как</strong> Поездка добавляет контекст к вашим наблюдениям путем записи:</p> <ul> <li><strong>Что</strong> Вы искали (целевой список)</li> <li><strong>Где</strong> вы искали (область поиска)</li> <li><strong>Когда</strong> вы искали (интервал поиска)</li> </ul> <p>Виды в вашем целевом списке, которые вы смогли наблюдать в области поиска и интервале, интерпретируются как присутствие. В то время как виды в вашем целевом списке, которые вы не смогли наблюдать, интерпретируются как отсутствие. Нажмите "Свести в таблицу данные о присутствии-отсутствии из поездок", чтобы создать таблицу записей об присутствии-отсутствии видов из поездок и связанных наблюдений. <a href='%{url}'>Подробнее</a></p>
+  about_trips2_html: |
+    <h4>
+    Поездки позволяют собирать данные о присутствии и отсутствии, добавляя контекст к вашим наблюдениям
+    </h4>
+    <p>
+    <strong>Why</strong> Данные о присутствии и отсутствии включают информацию о попытках отбора проб, что полезно для научных исследований, таких как моделирование распределения (необработанные наблюдения iNaturalist - это данные "только о присутствии").
+    </p>
+    <p>
+    <strong>How</strong> Поездка добавляет контекст к вашим наблюдениям, записывая следующие данные:
+    </p>
+    <ul>
+    <li><strong>Что</strong>вы искали (список целей)</li>
+    <li><strong>Где</strong> вы искали (регион поиска)</li>
+    <li><strong>Когда</strong> вы искали (интервал поиска)</li>
+    </ul>
+    <p>
+    Виды из вашего списка целей, которые вы смогли наблюдать в пределах области поиска и интервала, интерпретируются как присутствующие. В то время как виды из вашего целевого списка, которые вы не смогли увидеть, интерпретируются как отсутствующие. Нажмите "Свести в таблицу данные о присутствии и отсутствии в в поездках", чтобы создать таблицу записей о присутствии и отсутствии для видов из поездок и связанных с ними наблюдений.<a href='%{url}'>Подробнее здесь</a>
+    </p>
   about_trusting_projects: О доверительных проектах
   about_trusting_projects_options_any: Все ваши наблюдения в этом проекте
   about_trusting_projects_options_any_desc: |-
@@ -371,6 +387,8 @@ ru:
   add_annotations_for_controlled_attribute:
     sex: Добавить значения для "Пол"
     plant_phenology: Добавить значения для "Фенологии растений"
+    flowers_and_fruits: Заполните аннотации "Цветы и Плоды"
+    leaves: Заполните аннотации "Листья"
     life_stage: Добавить значения для "Стадия жизни"
     evidence_of_presence: Добавить значения для "Доказательство присутствия"
   add_another_flag: Добавить ещё один флаг
@@ -427,6 +445,14 @@ ru:
   add_plant_phenology_flowering_annotation: 'Добавить значение "Фенология растений: Цветение"'
   add_plant_phenology_fruiting_annotation: 'Добавить значение "Фенология растений: Плодоношение"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Добавить значение "Фенология растений: Нет доказательств цветения"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Заполните аннотации "Цветы и Плоды: Цветочный Бутон"'
+  add_flowers_and_fruits_flowers_annotation: 'Заполните аннотации "Цветы и Плоды"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Заполните аннотации "Цветы и Плоды: Плоды и Семена"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Заполните аннотации "Цветы и Плоды: Отсутствие цветов и плодов"'
+  add_leaves_breaking_leaf_buds: 'Заполните аннотации "Листья: Повреждённые листовые почки"'
+  add_leaves_green_leaves: 'Заполните аннотации "Листья: Зелёные листья"'
+  add_leaves_colored_leaves: 'Заполните аннотации "Листья: Окрашенные листья"'
+  add_leaves_no_live_leaves: 'Заполните аннотации "Листья: Отсутствие живых листьев"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Взрослый"'
   add_life_stage_teneral_annotation: 'Добавить значение "Стадия жизни: после линьки"'
   add_life_stage_subimago_annotation: 'Добавить значение "Стадия жизни: Субимаго"'
@@ -1229,6 +1255,10 @@ ru:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Любая
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Неважно
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Неважно
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Любая
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Любое
@@ -1238,10 +1268,20 @@ ru:
     male: Мужской
     female: Женский
     plant_phenology: Фенология Растений
+    flowers_and_fruits: Цветы и Плоды
     budding: Бутонизация
     flower_budding: Бутонизация цветов
     flowering: Цветение
     fruiting: Плодоношение
+    no_flowers_or_fruits: Отсутствие Цветов или Плодов
+    flower_buds: Цветочные почки
+    flowers: Цветы
+    fruits_or_seeds: Плоды или Семена
+    leaves: Листья
+    breaking_leaf_buds: Поврежденные листовые почки
+    green_leaves: Зелёные листья
+    colored_leaves: Окрашенные листья
+    no_live_leaves: Отсутствие листьев
     life_stage: Стадия жизни
     adult: Взрослый
     teneral: После линьки
@@ -1295,6 +1335,13 @@ ru:
     flower_budding: Цветочные почки видны, но не распустились
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
+    flowers: По крайней мере, один открытый цветок
+    flower_buds: По крайней мере, один закрытый цветочный бутон
+    fruits_or_seeds: По крайней мере, один плод или семя
+    breaking_leaf_buds: Как минимум, один бутон с первым новым листочком или иголочкой еще не полностью раскрылся
+    green_leaves: По крайней мере, один зеленый лист или иголка (или красноватые, если это нормальный здоровый цвет).
+    colored_leaves: По крайней мере, один лист или иголка окрашены в конце сезона или в засуху
+    no_live_leaves: Не видно распускающихся бутонов, зеленых или окрашенных листьев или иголок
     gall: Уродливый рост ткани растения, вызванный паразитическим организмом
     male: Свидетельства указывают на то, что организм может вырабатывать сперму для использования в половом размножении
     molt: Удалённая кожа или экзоскелет
@@ -1303,6 +1350,7 @@ ru:
     egg: Целое яйцо или часть яйца
     construction: Что-то, созданное животным, изготовленное из других материалов или извлеченное из раскопок
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
+    no_flowers_or_fruits: Нет видимых Цветов, Плодов или Семян (целых или частично целых)
     not_established: Организм принадлежит к неустановленной популяции, включая освобожденных/сбежавших домашних животных, путешествующие и блуждающие виды
     organism: Весь организм или его части
     scat: Фекалии (не погадки совы или другие срыгнутые вещества)
@@ -1324,6 +1372,8 @@ ru:
   copy_and_paste_the_following_code_to: Скопируйте и вставьте следующий код, чтобы разместить эту оценку на другой веб-странице.
   copy_and_paste_this_into_your_own_html: Скопируйте и вставьте это в ваш HTML.
   copy_guide_taxon_to: Скопировать руководство по таксону в...
+  copy_to_clipboard: Скопировать в буфер обмена
+  copied!: Скопировано!
   copyright:
     some_rights_reserved: некоторые права защищены
     some_rights_reserved_by: "(с) %{name}, некоторые права защищены (%{license_short})"
@@ -1954,6 +2004,7 @@ ru:
   filter: Фильтр
   filter_by_curator_identification: Фильтр по идентифиции, сделанной куратором
   filter_by_place: Фильтр по месту
+  filter_by_species: Фильтр по видам
   filter_by_taxon: Фильтр по таксону
   filter_by_place_taxon_and_color: Фильтр по месту, таксону и цвету с использованием элементов управления.
   filter_list_by_this_taxon: Фильтр списка по этому таксону
@@ -2140,6 +2191,9 @@ ru:
   grid_tooltip: Показать в виде сетки
   group: Группа
   grouping: Группировка
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Хотите вычислить местоположение по другим, имеющимся наблюдениям?
   guides: Руководства
   guide_compiled_by: Руководство составлено
   guide_deleted: Руководство удалено
@@ -2440,6 +2494,8 @@ ru:
   last_seen: Последнее наблюдение
   last_year: За последний год
   lat: Шир
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Шир/Долг
   latitude: Широта
   latitude_in_decimals: 'Широта в десятичных градусах, например, 38.123'
   latitude_slash_y_coord_slash_northing: Широта / y координата / северная
@@ -4930,6 +4986,7 @@ ru:
   subject_resolved_noun_html: "%{subject} разрешил %{noun}"
   submission_model: Модель представления
   submission_model_description: Кто может добавлять наблюдения к вашему проекту?
+  submit: Подтвердить
   submit_observations:
     one: Подтвердить 1 наблюдение
     few: Подтвердить %{count} наблюдения
@@ -4974,6 +5031,7 @@ ru:
   synonyms: Синонимы
   table: Таблица
   table_of_contents: Содержание
+  tabulate_presence_absence_data_from_trips: Свести в таблицу данные о присутствии и отсутствии в поездках
   #Noun, as in "add a tag to this observation"
   tag: Тег
   tagging: 'Присвоение тегов...'
@@ -5091,6 +5149,8 @@ ru:
   taxon_deleted: Таксон удалён.
   taxon_doesnt_have_a_range: Таксон не имеет ареала
   taxon_drop: Отбрасывание таксона
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Удаление таксона, влияющее на %{taxon}
   taxon_id: Идентификатор таксона
   taxon_ids: Идентификации таксона
   taxon_map:
@@ -5114,6 +5174,9 @@ ru:
   taxon_framework_taxon: Таксон основы таксона
   taxon_history_notice: История была введена в феврале 2022, поэтому до этой даты история не существует.
   taxon_merge: слияние таксонов
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Слияние таксонов, влияющее на %{taxa}
   taxon_name: Наименование таксона
   taxon_name_must_match_an_existing_taxon_in_our_database: Наименование таксона должно соответствовать существующему в нашей базе
   taxon_observed_by_html: |
@@ -5150,9 +5213,17 @@ ru:
   taxon_search: Поиск таксона
   taxon_search_results_for: Результаты поиска таксона для
   taxon_split: разделение таксона
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Изменение таксона, влияющее на %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: стадия жизни таксона
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Стадия таксона, влияющая на %{taxon}
   taxon_swap: замена таксона
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Слияние таксонов, влияющее на %{taxa}
   taxon_swap_only_has_one_input: для замены допускается только одно значение ввода
   taxon_swap_has_inputs_and_outputs: замена должна содержать как значения входа, так и значения вывода
   taxon_name_was_deleted: Наименование таксона было удалено.
@@ -5183,6 +5254,7 @@ ru:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Управление форматированием текста
   text_editing_controls: Управление редактированием текста
+  thank_you!: Спасибо!
   thanks!: Спасибо!
   thanks_from_all_of_us_here_at: Спасибо от всех нас, примкнувших к
   that_account_is_already_connected: Эта учетная запись уже занята
@@ -5622,7 +5694,11 @@ ru:
   user_added_an_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
-  user_added_x_observations_html: "%{user} добавил %{x} наблюдений"
+  user_added_x_observations2_html:
+    one: "%{user} добавил %{count} наблюдение"
+    few: "%{user} добавил %{count} наблюдения"
+    many: "%{user} добавил %{count} наблюдений"
+    other: "%{user} добавил %{count} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
   user_already_app_owner: Пользователь уже является владельцем приложения
   user_autocomplete_placeholder: kueda, simon123, и др.
@@ -5632,6 +5708,16 @@ ru:
     %{user} считает, что это полный список %{taxon} в %{place}
   user_blocked: Пользователь заблокирован
   user_commented: "%{user} прокомментировал"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} подтвердил удаление таксона, влияющее на %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} подтвердил слияние таксона, влияющую на %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} подтвердил слияние таксона, влияющую на %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} подтвердил стадию таксона, влияющую на %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} подтвердил замену таксонов, влияющую на %{taxa}"
   user_disagrees_this_is_taxon: "%{user} не  согласен с тем, что это %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не согласен с предыдущими более точными идентификациями"
   user_faved_an_observation_by_you: "Пользователь %{user} добавил к фаворитам ваше наблюдение"
@@ -6554,6 +6640,35 @@ ru:
           Вы отметили этот разговор %{date}. Флаг будет сохраняться даже в том случае, если вы удалите копию этого разговора, так что можно это сделать без опасений, если вы больше не хотите его видеть.
         privacy_notice_html: |
           Хотя сообщения являются конфиденциальными между вами и получателем, сотрудники iNaturalist также могут просматривать эти сообщения и будут делать это, когда сообщения будут помечены для модерации. Если вам требуется действительно личное общение, пожалуйста, изучите другие механизмы связи, которые поддерживают надежное шифрование.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Демонстрация визуального языка
+      what_do_you_want_to_search_for: Что вы хотите найти?
+      #NOTE: please do not translate "A yellow bug with black spots" in the URL
+      #or the text here. This UI interacts with a machine-learning model that
+      #will return different results for different strings, and translations
+      #are different strings. The model was primarily trained on English text
+      #and may return inaccuracte results in different languages
+      for_example_a_yellow_bug_with_black_spots: например, желтый жук с черными пятнами
+      try_one_of_these_example_searches_colon: "Попробуйте один из этих примеров поиска:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model)
+      help_us_improve: Помогите нам улучшить качество
+      to_help_us_improve: Чтобы помочь нам улучшить эту модель, мы хотели бы знать, какие изображения на этой странице соответствуют вашему запросу &quot;%{searched_term}&quot;. Пожалуйста, отметьте каждое изображение как соответствующее %{thumbs_up_icon}, если оно соответствует вашему запросу, и как не соответствующее %{thumbs_down_icon}, если нет. Когда вы закончите, нажмите «Отправить». #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Отметьте оставшиеся как соответствующие
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Отметьте оставшиеся как не соответствующие
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Просмотрите эти наблюдения в разделе "Идентификация"
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> объединился с исследователями <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Массачусетского университета в Амхерсте</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Эдинбургского университета</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Университетского колледжа Лондона</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> при щедрой поддержке со стороны <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">исследовательской группы Microsoft AI for Good Lab</a> для лучшего понимания потенциала моделей языка визуализации, что поможет систематизировать, исследовать и объяснять наблюдения iNaturalist. #interacts with a machine-learning model that will return different results for different # strings, and translations are different strings. The model was primarily trained on English # text and may return inaccuracte results in different languages
+      this_demo_tool2: Эта демонстрация позволяет вам ввести поисковую фразу (например, "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">птица ест фрукт</a>"), проводится сравнение с 10 миллионами фотографий iNaturalist. Результаты отсортированы от наиболее к наименее значимым. Вы можете использовать эту демонстрацию как новый способ поиска интересных наблюдений iNaturalist для добавления комментариев или добавления наблюдений в свой проект.
+      you_can_also_use_this_demo: Вы также можете использовать эту демонстрацию, чтобы помочь нам оценить визуальную языковую модель, используемую в этой демонстрации, сообщив нам, какие из найденных изображений соответствуют вашей поисковой фразе. В этой демонстрации используется сторонняя <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Модель визуального языка CLIP</a> которая не была обучена работе с данными iNaturalist или с командой iNaturalist. Иногда эта модель может выдавать неточные, предвзятые или сомнительные результаты.<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Подробнее можно прочесть об этом в блоге iNaturalist.</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Если вы хотите поддержать эту работу
+      thank_you_for_your_submission!: Спасибо за ваш вклад!
     oauth:
       authorizations:
         new:
@@ -7525,6 +7640,7 @@ ru:
           "Способ возникновения" описывает, как вид появился там, где он в настоящее время присутствует. Интродуцент означает, что он появился вследствие человеческой деятельности, в то время как естественный означает, что он появился без помощи человека. Эндемичные виды встречаются только в определенном месте и нигде больше.
         about_taxon_curators_desc: |
           Эти люди управляют частью таксономического дерева, которое включает этот таксон. Если вы хотите внести изменения, отметьте этот таксон или обратитесь к одному из этих людей.
+        charts_caps: СХЕМА
         charts_help_seasonality: |
           На этой диаграмме показано количество наблюдений этого таксона, сгруппированных по месяцам. Имейте в виду, что это количество наблюдений, поэтому на них влияет как то, когда организм можно наблюдать, так и то,  когда люди наблюдают. Таким образом, птица может показаться очень активной в мае, но это также может быть связано с тем, что больше людей её наблюдают в мае, но будут игнорировать этот вид в последующие месяцы. Аналогично, если вы видите больше стрекоз в июне, чем в январе, это, вероятно, связано с тем, что в северном полушарии наблюдает большее количество людей, чем в южном полушарии, а не потому, что стрекозы более активны в июне, поэтому проверьте карту при рассмотрении этих диаграмм. Всегда полезно скептически относиться к этим диаграммам, когда количество наблюдений невелико и/или когда имеются большие расхождения между числом наблюдений в статусе «Проверяемый» и «Исследовательский уровень».
         charts_help_history: |
@@ -7549,7 +7665,14 @@ ru:
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
           "Plant Phenology=No Evidence of Flowering": Нет доказательств цветения
-          "Life Stage=Adult": Взрослый
+          "Flowers and Fruits=Flower Buds": Цветочные почки
+          "Flowers and Fruits=Flowers": Цветы
+          "Flowers and Fruits=Fruits or Seeds": Плоды или Семена
+          "Flowers and Fruits=No Flowers or Fruits": Отсутствие Цветов или Плодов
+          "Leaves=Breaking Leaf Buds": Повреждённые листовые почки
+          "Leaves=Green Leaves": Зелёные листья
+          "Leaves=Colored Leaves": Окрашенные листья
+          "Leaves=No Live Leaves": Отсутствие листьев
           "Life Stage=Egg": Яйцо
           "Life Stage=Larva": Личинка
           "Life Stage=Juvenile": Молодой

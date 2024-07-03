@@ -39,7 +39,7 @@
         %text{ x: "425", y: "180", "text-anchor": "start", "font-size": "18" } Current Users
         %text{ x: "425", y: "195", "text-anchor": "start", "font-size": "12" } active today and at least one other
         %text{ x: "425", y: "210", "text-anchor": "start", "font-size": "12" } time in the prior 7 days
-        %text{ x: "665", y: "270", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["curent_users"] ) }
+        %text{ x: "665", y: "270", "text-anchor": "end", "font-size": "18" } #{ ApplicationController.helpers.number_with_delimiter( @daily_active_user_model["current_users"] ) }
 
         %rect{ x: "90", y: "335", width: "400", height: "65", fill: "orange", stroke: "black" }
         %text{ x: "95", y: "355", "text-anchor": "start", "font-size": "18" } At risk WAUs

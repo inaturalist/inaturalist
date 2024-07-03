@@ -197,8 +197,6 @@ fr:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
-  about_trips_html: |
-    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
   about_trusting_projects: Ce qu'on veut dire par "faire confiance à ce projet"
   about_trusting_projects_options_any: Toutes vos observations dans ce projet.
   about_trusting_projects_options_any_desc: |-
@@ -282,6 +280,8 @@ fr:
   add_annotations_for_controlled_attribute:
     sex: Ajouter des annotations pour « Sexe »
     plant_phenology: Ajouter des annotations sur la « phénologie végétale»
+    flowers_and_fruits: Ajouter des annotations pour « Fleurs et Fruits »
+    leaves: Ajouter des annotations pour « Feuilles »
     life_stage: Ajouter des annotations pour « stade de développement »
     evidence_of_presence: Ajouter des annotations pour « Signe de présence »
   add_another_flag: Ajouter un autre signalement
@@ -338,6 +338,13 @@ fr:
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits»'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucun indice de floraison"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Ajouter une annotation « Fleurs et Fruits : bouton floral »'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fruits et Graines »'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Ajouter une annotation « Fleurs et Fruits : pas de Fleurs ni de Fruits »'
+  add_leaves_breaking_leaf_buds: 'Ajouter une annotation « Feuilles : bourgeons foliaires en cours d’ouverture »'
+  add_leaves_green_leaves: 'Ajouter une annotation « Feuilles : Feuilles vertes »'
+  add_leaves_colored_leaves: 'Ajouter une annotation « Feuilles : Feuilles jaunissantes »'
+  add_leaves_no_live_leaves: 'Ajouter une annotation « Feuilles : pas de Feuilles vivantes »'
   add_life_stage_adult_annotation: 'Ajoute l''annotation «  Stade de développement : adulte »'
   add_life_stage_teneral_annotation: 'Ajoute l''annotation «  Stade de développement : post-exuvial »'
   add_life_stage_subimago_annotation: 'Ajouter l’annotation «  Stade de développement : subimago »'
@@ -1116,6 +1123,10 @@ fr:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Toutes
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Tout
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Tout
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Tous
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Tous
@@ -1125,10 +1136,20 @@ fr:
     male: Mâle
     female: Femelle
     plant_phenology: Phénologie végétale
+    flowers_and_fruits: Fleurs et Fruits
     budding: Bourgeonnement
     flower_budding: Bourgeonnement floral
     flowering: Floraison
     fruiting: Fructification
+    no_flowers_or_fruits: Pas de Fleurs ni de Fruits
+    flower_buds: Boutons floraux
+    flowers: Fleurs
+    fruits_or_seeds: Fruits ou graines
+    leaves: Feuilles
+    breaking_leaf_buds: Bourgeons foliaires en cours d’ouverture
+    green_leaves: Feuilles vertes
+    colored_leaves: Feuilles jaunissantes
+    no_live_leaves: Pas de feuilles vivantes
     life_stage: Stade
     adult: Adulte
     teneral: Ténéral
@@ -1172,10 +1193,19 @@ fr:
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
+    flowers: Au moins une fleur ouverte
+    flower_buds: Au moins un bouton floral fermé
+    fruits_or_seeds: Au moins un fruit ou une graine
+    breaking_leaf_buds: Au moins un bourgeon foliaire avec sa première nouvelle feuille ou aiguille non entièrement dépliée
+    green_leaves: Au moins une feuille ou une aiguille verte (ou rougeâtre si c'est la couleur normale pour une plante en bonne santé)
+    colored_leaves: Au moins une feuille ou une aiguille a une couleur de fin de saison ou de sécheresse
+    no_live_leaves: Aucun bourgeon foliaire en cours d’ouverture, ni feuilles ou aiguilles vertes ou colorées n'est visible
     gall: Excroissance d'un tissu végétal causée par un parasite
     male: Les informations indiquent que l'organisme peut produire du sperme pour la reproduction sexuelle
     molt: Dépouille ou exosquelette abandonné
+    egg: Œuf entier ou partie d'un œuf
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
+    no_flowers_or_fruits: Aucune fleur, fruit ou graine (en tout ou partie) n’est visible
     organism: Tout ou partie d'un organisme
     scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
     teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
@@ -1195,6 +1225,8 @@ fr:
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   copy_and_paste_this_into_your_own_html: Copiez et collez dans votre propre HTML.
   copy_guide_taxon_to: Copier le guide de taxons vers…
+  copy_to_clipboard: Copier dans le presse-papier
+  copied!: Copié !
   copyright:
     some_rights_reserved: certains droits réservés
     some_rights_reserved_by: "(c) %{name}, certains droits réservés (%{license_short})"
@@ -1838,6 +1870,7 @@ fr:
   filter: Filtrer
   filter_by_curator_identification: Filtrer par identification du chef de projet
   filter_by_place: Filtrer par lieu
+  filter_by_species: Filtrer par espèces
   filter_by_taxon: Filtrer par taxon
   filter_by_place_taxon_and_color: Filtrer par lieu, taxon et couleur au moyen des contrôles.
   filter_list_by_this_taxon: Filtrer la liste par ce taxon
@@ -2022,6 +2055,9 @@ fr:
   grid_tooltip: Afficher la vue en mode grille
   group: Groupe
   grouping: Regroupement
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Devinez l’emplacement à partir d’autres observations ?
   guides: Guides
   guide_compiled_by: Guide dressé par
   guide_deleted: Guide supprimé
@@ -2320,6 +2356,8 @@ fr:
   last_seen: Vu la dernière fois
   last_year: Année dernière
   lat: Lat.
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat./Long.
   latitude: Latitude
   latitude_in_decimals: 'Latitude en degrés décimaux, par ex. 38,123'
   latitude_slash_y_coord_slash_northing: Latitude/coord. y/ordonnée
@@ -3099,6 +3137,7 @@ fr:
   observation_accuracy_experiment_our_accuracy_estimate: "Notre estimation de la précision résultant de cette expérience est de %{percent}."
   observation_accuracy_experiment_our_goak: "Notre objectif pour la précision estimée (correcte) et la précision du sous-ensemble de Niveau de Recherche est supérieure à 95% (ligne pointillée)"
   observation_accuracy_experiment_precision_results: "Résultats de la précision par sous-ensemble"
+  observation_accuracy_experiment_taxon_rank_level: "Niveau de classement du taxon"
   observation_accuracy_experiment_taxon_observations_count: "Nombre d'observations de taxon"
   observation_accuracy_experiment_continent: "Continent"
   observation_accuracy_experiment_year: "Année"
@@ -4766,6 +4805,7 @@ fr:
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
   submission_model: Modèle d'enregistrement
   submission_model_description: Qui peut ajouter des observations à votre projet ?
+  submit: Soumettre
   submit_observations:
     one: Soumettre 1 observation
     other: Soumettre %{count} observations
@@ -4988,6 +5028,7 @@ fr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Outils de mise en forme
   text_editing_controls: Contrôles de modification de texte
+  thank_you!: Merci !
   thanks!: Merci !
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
   that_account_is_already_connected: Ce compte est déjà associé à un autre utilisateur
@@ -5432,7 +5473,6 @@ fr:
   user_added_an_x_to_noun_by_you_html: "%{user} a ajouté @gender{m:un|f:une|n:un(e)} %{x} à %{noun} par vous"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} a ajouté @gender{m:un|f:une|n:un(e)} %{x} à %{noun}"
-  user_added_x_observations_html: "%{user} a ajouté %{x} observations"
   user_already_authenticated: L'utilisateur est déjà authentifié
   user_already_app_owner: L'utilisateur est déjà propriétaire d'application
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -6407,6 +6447,28 @@ fr:
           peut également voir ces messages et les consultera lorsque les messages
           seront signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
           veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
+    nls_demo:
+      what_do_you_want_to_search_for: Que voulez-vous rechercher ?
+      #NOTE: please do not translate "A yellow bug with black spots" in the URL
+      #or the text here. This UI interacts with a machine-learning model that
+      #will return different results for different strings, and translations
+      #are different strings. The model was primarily trained on English text
+      #and may return inaccuracte results in different languages
+      for_example_a_yellow_bug_with_black_spots: 'par exemple : un insecte jaune avec des points noirs'
+      try_one_of_these_example_searches_colon: "Essayez l’un de ces exemples de recherches :"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model)
+      help_us_improve: Aidez-nous à améliorer
+      to_help_us_improve: Pour nous aider à améliorer ce modèle, nous aimerions savoir quelles images de cette page sont pertinentes pour votre recherche &quot;%{searched_term}&quot;. Veuillez marquer chaque image comme étant pertinente %{thumbs_up_icon} si elle correspond à votre recherche et non pertinente %{thumbs_down_icon} si elle ne l'est pas. Lorsque vous avez terminé, veuillez cliquer sur Envoyer. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Marquer le reste comme pertinent
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Marquer le reste comme non pertinent
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Voir ces observations dans Identification
+      this_demo_tool2: Cet outil vous permet de taper une phrase de recherche (comme "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">un oiseau mangeant des fruits</a>"), et la compare avec 10 millions de photos iNaturalist. Les résultats sont classés du plus pertinent au moins pertinent. Vous pouvez utiliser cette démo comme une nouvelle façon de chercher des observations iNaturalist intéressantes à annoter ou à ajouter à votre projet.
+      you_can_also_use_this_demo: Vous pouvez également utiliser cette démo pour nous aider à évaluer le modèle Vision Language qui alimente cette démo en nous indiquant les images retournées qui correspondent à votre phrase de recherche. Cette démo utilise un modèle <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP</a> qui n'a pas été entrainé sur les données iNaturalist ou par l'équipe iNaturalist. Parfois, l'outil peut produire des résultats inexacts, biaisés ou offensants. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">En savoir plus sur le blog iNaturalist</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Si vous souhaitez soutenir ce travail
+      thank_you_for_your_submission!: Merci pour votre contribution !
     oauth:
       authorizations:
         new:
@@ -7555,7 +7617,14 @@ fr:
           "Plant Phenology=Flowering": Floraison
           "Plant Phenology=Fruiting": Fructification
           "Plant Phenology=No Evidence of Flowering": Aucune preuve de floraison
-          "Life Stage=Adult": Adulte
+          "Flowers and Fruits=Flower Buds": Boutons floraux
+          "Flowers and Fruits=Flowers": Fleurs
+          "Flowers and Fruits=Fruits or Seeds": Fruits ou Graines
+          "Flowers and Fruits=No Flowers or Fruits": Pas de Fleurs ni de Fruits
+          "Leaves=Breaking Leaf Buds": Bourgeons foliaires en cours d’ouverture
+          "Leaves=Green Leaves": Feuilles vertes
+          "Leaves=Colored Leaves": Feuilles jaunissantes
+          "Leaves=No Live Leaves": Pas de feuilles vivantes
           "Life Stage=Egg": Œuf
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juvénile

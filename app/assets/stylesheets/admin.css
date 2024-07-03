@@ -50,3 +50,7 @@
 .unlock:after {
   content: ")";
 }
+.list-group-item .svg-icon {
+  height: 14px;
+  filter: invert(0.5);
+}

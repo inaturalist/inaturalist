@@ -196,8 +196,6 @@ es:
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
-  about_trips_html: |
-    <h4>Los viajes permiten recopilar datos de presencia-ausencia añadiendo un contexto a tus observaciones</h4><p><strong>Por qué</strong> Los datos de ausencia-presencia incluyen información sobre el esfuerzo de muestreo que es útil para análisis científicos como modelos de distribución (las observaciones en bruto de iNaturalist son datos 'sólo presencia').</p> <p><strong>Cómo</strong> Un viaje añade contexto a tus observaciones grabando:</p> <ul> <li><strong>Qué</strong> buscó (lista objetivo)</li> <li><strong>Dónde</strong> buscó (área de búsqueda)</li> <li><strong>Cuándo</strong> buscó (intervalo de búsqueda)</li> </ul> <p>Las especies en tu lista objetivo que pudiste observar dentro del área de búsqueda y el intervalo se interpretan como presencias. Mientras que las especies en tu lista objetivo que no has podido observar se interpretan como ausencias. Haga clic en 'Tabulate Presence Ausence Data From Trips' para generar una tabla de registros presencia-ausencia de especies en viajes y observaciones asociadas. <a href='%{url}'>Más información</a></p>
   about_trusting_projects: Acerca de confiar en proyectos
   about_trusting_projects_options_any: Todas tus observaciones en este proyecto
   about_trusting_projects_options_any_desc: |-
@@ -280,6 +278,8 @@ es:
   add_annotations_for_controlled_attribute:
     sex: Agregar anotaciones para "Género"
     plant_phenology: Agregar anotaciones para "Fenología de la planta"
+    flowers_and_fruits: Añadir anotaciones para "Flores y Frutos"
+    leaves: Agregar anotaciones para "Hojas"
     life_stage: Agregar anotaciones para "Etapa de vida"
     evidence_of_presence: Añadir Anotaciones de "Evidencia de Presencia"
   add_another_flag: Agregar otra marca
@@ -315,6 +315,7 @@ es:
   add_notes_about_this_taxon: Agregar notas acerca de este taxón en este lugar, por ejemplo, dónde y cuándo ocurre.
   add_obs_from_a_link: "Agregar observaciones desde una lista %{link}"
   add_obs_from_a_list: Agregar observaciones desde una lista
+  add_observation_fields: Añadir campos de observación
   add_observations: Agregar observaciones
   add_observations_by_checking_off: Agregar observaciones seleccionando especies desde una lista.
   add_observations_project: Agregar observaciones a este proyecto
@@ -335,6 +336,10 @@ es:
   add_plant_phenology_flowering_annotation: 'Agregar anotación «Fenología de la planta: floreciendo»'
   add_plant_phenology_fruiting_annotation: 'Agregar anotación "fenología de la planta: fructificando"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Agregar anotación "Fenología de la planta: sin evidencias de Floración"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Añade anotación "Flores y Frutos: Botones Florales"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Añade anotación "Flores y Frutos: Frutos y Semillas"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Añade anotación "Flores y Frutos: Sin Flores o Semillas"'
+  add_leaves_green_leaves: 'Añadir anotación "Hojas: Hojas Verdes"'
   add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
   add_life_stage_teneral_annotation: 'Agregar anotación "Etapa de vida: Imago tierno"'
   add_life_stage_subimago_annotation: 'Agregar anotación "Etapa de vida: sub-imago"'
@@ -350,6 +355,11 @@ es:
   add_evidence_of_presence_track_annotation: 'Añadir anotación "Evidencia de Presencia: huellas"'
   add_evidence_of_presence_bone_annotation: 'Añadir anotación "Evidencia de Presencia: huesos"'
   add_evidence_of_presence_molt_annotation: 'Añadir anotación "Evidencia de Presencia: muda"'
+  add_evidence_of_presence_leafmine_annotation: 'Añadir anotación "Evidencia de presencia: minas en hojas"'
+  add_evidence_of_presence_hair_annotation: 'Añadir anotación "Evidencia de presencia: pelo"'
+  add_evidence_of_presence_egg_annotation: 'Añadir anotación "Evidencia de presencia: huevo"'
+  add_evidence_of_presence_construction_annotation: 'Añadir anotación "Evidencia de presencia: construcción"'
+  add_established_not_established: 'Añadir anotación "Establecido: no"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Agregar relación'
   #As in a Guide Section
@@ -1116,10 +1126,14 @@ es:
     male: Macho
     female: Hembra
     plant_phenology: Fenología de la planta
+    flowers_and_fruits: Flores y Frutas
     budding: En germinación
     flower_budding: Yemas Florales
     flowering: Floración
     fruiting: Fructificación
+    flowers: Flores
+    leaves: Hojas
+    green_leaves: Hojas Verdes
     life_stage: Etapa de vida
     adult: Adulto
     teneral: Imago tierno
@@ -1152,6 +1166,16 @@ es:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Minas en hojas
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Pelo
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construcciones
+    #Does the observation belong to a non-established population or not
+    established: Establecido
+    #Organism is not a member of an established population
+    not_established: No establecido
   controlled_term_definitions:
     alive: El organismo está vivo y no muestra signos de muerte inminente
     bone: |
@@ -1163,10 +1187,16 @@ es:
     flower_budding: Las yemas florales son visibles pero no están abiertas
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
+    flowers: Al menos una flor abierta
     gall: Brote de tejido vegetal deformado causado por un organismo parásito o infección
     male: La evidencia muestra que el organismo puede producir esperma para la reproducción sexual
     molt: Restos de piel o exoesqueleto
+    leafmine: Pruebas de alimentación entre las capas dérmicas de una hoja
+    hair: Pelo que ya no está unido al organismo del que procede
+    egg: Huevo entero o parte de un huevo
+    construction: Algo creado por un animal, hecho con o excavado de otros materiales
     no_evidence_of_flowering: Las imágenes no muestran evidencias de estructuras reproductivas
+    not_established: El organismo pertenece a una población no establecida; incluye mascotas liberadas/escapadas, pasajeros y errantes.
     organism: Todo o parte de un Organismo
     scat: Materias fecales (no egagrópilas de rapaces u otros materiales regurgitados)
     teneral: Adulto que ha emergido de la pupa recientemente pero no ha alcanzado su forma adulta final
@@ -1186,6 +1216,8 @@ es:
   copy_and_paste_the_following_code_to: Copia y pega el siguiente código para incrustar esta evaluación en otra página web.
   copy_and_paste_this_into_your_own_html: Copiar y pegar en tu propio HTML.
   copy_guide_taxon_to: Copia de la guía de taxón para...
+  copy_to_clipboard: Copiar al portapapeles
+  copied!: '¡Copiado!'
   copyright:
     some_rights_reserved: algunos derechos reservados
     some_rights_reserved_by: "(c) %{name}, algunos derechos reservados (%{license_short})"
@@ -1490,6 +1522,8 @@ es:
   deviation: Desviación
   devise:
     confirmations:
+      confirmed: |
+        Tu dirección de correo electrónico ha sido confirmada con éxito.
       send_instructions: "En unos minutos vas a recibir un correo electrónico con instrucciones sobre cómo confirmar tu cuenta."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1778,6 +1812,7 @@ es:
   extinct_in_the_wild: Extinta en estado silvestre
   extra_properties: Propiedades extra
   evidence_of_organism: Evidencia de organismo
+  evidence_related_to_single_subject: Evidencia relativa a un único individuo
   facebook: Facebook
   failed_to_find_your_location: No ha sido posible encontrar tu ubicación.
   failed_to_repair_photo: "No se pudo reparar la foto: %{errors}"
@@ -2000,6 +2035,9 @@ es:
   grid_tooltip: Mostrar la vista de rejilla
   group: Grupo
   grouping: Agrupamiento
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: '¿Adivinar la ubicación a partir de otras observaciones?'
   guides: Guías
   guide_compiled_by: Guía compilada por
   guide_deleted: Guía eliminada
@@ -2306,6 +2344,8 @@ es:
   last_seen: Visto por última vez
   last_year: Año pasado
   lat: Latitud
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Lon
   latitude: Latitud
   latitude_in_decimals: 'Latitud en grados con decimales, ej. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / y coord / norte
@@ -2735,8 +2775,12 @@ es:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Volver a mostrar
   #Action a moderator can take to suspend a user; verb
   moderator_actions_suspend: Suspender
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Retirar suspensión
   moderator_note_desc: |
     Las notas de moderador son registros de respuestas de moderación o preocupaciones
     basadas en evidencias acerca de un usuario, tales como si son una posible cuenta falsa. Por favor, no incluya opiniones personales ni comentarios sobre el usuario.
@@ -3081,6 +3125,42 @@ es:
     Las coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales sólo son visibles para ti y los curadores de los proyectos a los que se agrega la observación.
   observation: Observación
   observation_: observación
+  observation_accuracy_experiment_the_sample_for: "La muestra de este experimento aún no ha sido generada"
+  observation_accuracy_experiment_our_accuracy_estimate: "Nuestra estimación de precisión resultante de este experimento es correcta en un %{percent}."
+  observation_accuracy_experiment_our_goak: "Nuestro objetivo de precisión estimada (Correcto) y Precisión del subconjunto de Nivel de Investigación es mayor que el 95% (línea discontinua)"
+  observation_accuracy_experiment_precision_results: "Resultados de precisión por subconjunto"
+  observation_accuracy_experiment_taxon_rank_level: "Nivel de rango de taxón"
+  observation_accuracy_experiment_taxon_observations_count: "Número de observaciones del taxón"
+  observation_accuracy_experiment_iconic_taxon_name: "Taxón icónico"
+  observation_accuracy_experiment_continent: "Continente"
+  observation_accuracy_experiment_year: "Año"
+  observation_accuracy_experiment_quality_grade: "Grado de calidad"
+  observation_accuracy_experiment_show_frequency: "mostrar frecuencia"
+  observation_accuracy_experiment_click_on_bars: "Haga clic en las barras para explorar los subconjuntos."
+  observation_accuracy_experiment_bars_will: "Se podrá hacer clic en las barras después de que haya pasado la fecha límite para validar las muestras."
+  observation_accuracy_experiment_accuracy_results: "Resultados de exactitud por subconjunto"
+  observation_accuracy_experiment_as_observations: "A medida que se validan las observaciones de esta muestra, el porcentaje incerteza disminuirá y el porcentaje correcto e incorrecto aumentará."
+  observation_accuracy_experiment_experiment_still: "Experimento en progreso. Las estadísticas se actualizarán diariamente hasta la fecha límite para validar muestras el %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experimento de exactitud de la observación"
+  observation_accuracy_experiment_validators: "Validadores:"
+  observation_accuracy_experiment_show_additional_validators: "(mostrar validadores adicionales)"
+  observation_accuracy_experiment_hide_additional_validators: "(ocultar validadores adicionales)"
+  observation_accuracy_experiment_additional_validators: "(%{number} de validadores adicionales)"
+  observation_accuracy_experiment_research_grade_results: "Resultados de Grado de Investigación"
+  observation_accuracy_experiment_verifiable_results: "Resultados verificables"
+  observation_accuracy_experiment_all_results: "Todos los resultados"
+  observation_accuracy_experiment_methods: "Métodos"
+  observation_accuracy_experiment_step_1: "Paso 1: Generación y asignación de la muestra"
+  observation_accuracy_experiment_from_the2: "A partir de la base de datos de observaciones de iNaturalist (A), generamos una muestra aleatoria (B). Se asignaron subconjuntos de la muestra a validadores candidatos (C) basándose en los criterios descritos a continuación. Procuramos asignar cada observación a varios validadores candidatos ( \"Objetivo redundancia de validadores\" )."
+  observation_accuracy_experiment_sample_generated: "Muestra generada: %{date}"
+  observation_accuracy_experiment_sample_size: "Tamaño de la muestra: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundancia de validadores: %{number}"
+  observation_accuracy_experiment_step_2: "Paso 2: Validando muestras"
+  observation_accuracy_experiment_correct: "Correcto"
+  observation_accuracy_experiment_uncertain: "Inseguro"
+  observation_accuracy_experiment_incorrect2: "Incorrecto"
+  observation_accuracy_experiment_accuracy: "Exactitud"
+  observation_accuracy_experiment_precision: "Precisión"
   observation_accuracy_validator_email_ids_equal_to: |
     Los IDs iguales (A) o más finos que (B) el taxón de observación serán marcados como Acuerdos.
   observation_accuracy_validator_email_with_gratitude: Con gratitud,
@@ -3809,6 +3889,7 @@ es:
     north_korea: Corea del Norte
     northern_cyprus: Chipre del norte
     norway: Noruega
+    oceania: Oceania
     oman: Omán
     pakistan: Pakistán
     palau: Palau
@@ -4852,6 +4933,8 @@ es:
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxón no tiene una área
   taxon_drop: dejar de taxón
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: La eliminación del taxón afecta %{taxon}
   taxon_id: Identificador de la especie o grupo
   taxon_ids: ID de Taxón
   taxon_map:
@@ -4875,6 +4958,9 @@ es:
   taxon_framework_taxon: Taxon de marco de taxon
   taxon_history_notice: El historial se introdujo en febrero de 2022, por lo que no hay históricos disponible antes de esa fecha.
   taxon_merge: fusión de taxón
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: La fusión del taxón afecta a %{taxa}
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe coincidir con un taxón existente en la base de datos.
   taxon_observed_by_html: |
@@ -4911,9 +4997,17 @@ es:
   taxon_search: Búsqueda de Taxón
   taxon_search_results_for: Resultados de búsqueda de Taxón para
   taxon_split: división de taxón
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: La división del taxón afecta a %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: montar de taxón
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: La activación del taxón afecta a %{taxon}
   taxon_swap: intercambio de taxón
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: El intercambio del taxón afecta a %{taxa}
   taxon_swap_only_has_one_input: solo se permite una entrada para un intercambio
   taxon_swap_has_inputs_and_outputs: el intercambio debe tener entradas y salidas
   taxon_name_was_deleted: El nombre del taxon fue eliminado.
@@ -4946,6 +5040,7 @@ es:
   text_editing_controls: Herramientas de edición de texto
   thanks!: '¡Gracias!'
   thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
+  that_account_is_already_connected: Esa cuenta ya está vinculada a otro usuario.
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: "Esa observación no tiene ninguna foto."
@@ -5370,7 +5465,6 @@ es:
   user_added_an_x_to_noun_by_you_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun} tuyo"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} añadió @gender{m:un|f:una|n:un/a} %{x} a %{noun}"
-  user_added_x_observations_html: "%{user} agregó %{x} observaciones"
   user_already_authenticated: El usuario ya está verificado
   user_already_app_owner: El usuario ya es dueño de una aplicación
   user_autocomplete_placeholder: roget, kueda, etc.
@@ -5380,6 +5474,8 @@ es:
     %{user} considera que esta es la lista exhaustiva de %{taxon} en %{place}
   user_blocked: Usuario bloqueado
   user_commented: "%{user} comentó"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} ha eliminado un taxón que afecta a %{taxon}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   user_faved_an_observation_by_you: "%{user} marcó como favorita una observación tuya"
@@ -5997,6 +6093,12 @@ es:
         thank_you_for_being_a_monthly_supporter_caps: '¡GRACIAS POR SER UN PATROCINADOR MENSUAL!'
       temporarily_unavailable: |
         ¡Gracias por su interés en apoyar a iNaturalist! Donar a iNaturalist no está disponible mientras actualizamos nuestros sistemas de donación. Por favor, vuelve más tarde.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Clique aquí para recibir un nuevo correo electrónico de confirmación
+      please_add_an_email_and_password: Por favor, añade un correo electrónico y una contraseña para no perder el acceso a tu cuenta.
+      please_click_the_link_sent_to_email_to_confirm_html: Por favor, haz clic en el enlace enviado a <span class="email">%{email}</span> para confirmar tu dirección de correo electrónico.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirma que <span class="email">%{email}</span> es la mejor forma de contactarte.
+      your_site_account_has_no_email: Tu cuenta en %{site_name} no tiene una dirección de correo electrónico asociada.
     flags:
       show:
         flaggable_content_desc: |
@@ -6046,6 +6148,7 @@ es:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Presencias verificadas:
+          true_presences_definition2: Áreas donde tanto el mapa de Esperado cerca como el Rango de distribución del taxón predicen la presencia del taxón
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Presencias Falsas:
@@ -6307,6 +6410,9 @@ es:
           si ya no quieres ver esto más.
         privacy_notice_html: |
           Aunque los mensajes son privados, el personal de iNaturalist puede verlos, y lo harán cuando hayan sido denunciados. Si necesitas una comunicación auténticamente privada, por favor, usa otros mecanismos que incluyan encriptación de alto nivel.
+    nls_demo:
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> se ha unido a investigadores de la <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>, y con generoso soporte de <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a> para entender mejor el potencial de los Modelos de Lenguaje de Visión para ayudar a organizar, explorar y explicar las observaciones de iNaturalist. #interacts with a machine-learning model that will return different results for different # strings, and translations are different strings. The model was primarily trained on English # text and may return inaccuracte results in different languages
     oauth:
       authorizations:
         new:
@@ -6556,6 +6662,52 @@ es:
           que violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto los curadores podrán ver las coordenadas ocultas de esta o cualquier observación en el proyecto y esto implica que estás de acuerdo con los <a href="%{url}" target="_blank">términos </a>del proyecto.
+        quality_assessment_help3_html: |
+          <p>La Evaluación de la calidad de datos es un resumen de la exactitud de una observación. Todas las observaciones comienzan con grado <strong>"casual"</strong> y se etiquetan como <strong>"Necesita ID"</strong> cuando:
+          </p>
+          <ul>
+          <li>la observación <strong>tiene fecha</strong>
+          </li>
+          <li>la observación <strong>está georreferenciada</strong> (es decir, tiene coordenadas lat/lon )
+          </li>
+          <li>la observación<strong>tiene fotos o sonidos</strong>
+          </li>
+          <li>la observación<strong>no es de un humano</strong>
+          </li>
+          </ul>
+          <p>
+          Las observaciones adquieren <strong>"Grado de investigación"</strong> cuando:
+          </p>
+          <ul>
+          <li>la <strong>comunidad de %{site_name} está de acuerdo con la ID a nivel de especie o inferior</strong>, es decir, cuando más de 2/3 de los identificadores están de acuerdo en un taxón (si la comunidad ha votado que el taxón de la comunidad no se puede mejorar, esto se revierte a ID a nivel de subfamilia o inferior).
+          </li>
+          </ul>
+          <p>
+          Las observaciones volverán a ser <strong>"casual"</strong> si no cumplen las condiciones anteriores o si la comunidad está de acuerdo en que:
+          </p>
+          <ul>
+          <li>la <strong>ubicación no parece precisa</strong> (p. ej., monos en medio del océano, hipopótamos en oficinas, etc.),
+          </li>
+          <li>el <strong>organismo no es salvaje/naturalizado</strong> (p. ej., en cautividad o cultivados por humanos),
+          </li>
+          <li>la observación <strong>no presenta evidencia de un organismo</strong>, p. ej., p.e. imágenes de fuentes de agua, rocas, paisajes, que no incluyen al organismo, etc.,
+          </li>
+          <li>la observación <strong>no presenta evidencia reciente del organismo(~100 años) </strong> (p. ej., fósiles. Pero rastros, excrementos y hojas muertas están bien),
+          </li>
+          <li>la observación <strong>no presenta evidencia relacionada con un solo tema</strong> (p. ej., tiene cuatro fotos de organismos no relacionados. Una foto que muestra el hábitat del sujeto de la observación está bien),
+          </li>
+          <li>la observación ya no necesita una ID <em>y</em> la ID de la comunidad es a nivel de familia o superior,
+          </li>
+          <li>el observador ha optado por no participar de la ID de la comunidad y la ID de la comunidad no es un ancestro o descendiente del taxón asociado con la ID del observador.
+          </li>
+          </ul>
+          <p>
+          Y si eso no fuera lo suficientemente complicado, hay situaciones en las que el sistema también tiene voto:
+          </p>
+          <ul>
+          <li>El sistema votará que la observación no es salvaje/naturalizada si hay al menos otras 10 observaciones de un género o categoría inferior en el lugar más pequeño equivalente a una provincia, estado o país que contiene esta observación y el 80% o más de esas observaciones se han marcado como no silvestre/naturalizado.
+          </li>
+          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -6903,6 +7055,7 @@ es:
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         do_you_need_features_from_traditional2: |
           ¿Necesita características de proyectos tradiciones, como campos de observaciones personalizados, o añadir observaciones personales que no se pueden filtrar automáticamente?
+        duplicate_project: Duplicar proyecto
         include_annotated_observations: |
           Incluye solo observaciones marcadas con un atributo particular (p.e, etapa de vida),
           o un atributo y valor en determinado (p.e. etapa de vida = adulto).
@@ -7108,6 +7261,8 @@ es:
           todos los años.
         compared_to_previous_years: Comparar con el año anterior
         donate_title: "Gracias a todos nuestros colaboradores"
+        donate_desc2_html: |
+          ¡Gracias por ser generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una organización sin ánimo de lucro 501(c)3 con sede en los Estados Unidos. Está respaldada por un <a href="%{team_url}">pequeño equipo</a> que se encarga del diseño y la ingeniería de software para web, móviles y <a href="%{seek_url}">Seek by iNaturalist</a>, además de gestionar el soporte comunitario, las colaboraciones y las integraciones que mantienen las cosas en funcionamiento (¡y creciendo rápidamente!). El programa depende de numerosas subvenciones y donaciones, incluidas las contribuciones caritativas de una fracción muy pequeña de contribuyentes. Estamos especialmente agradecidos con los donantes mensuales, cuyas contribuciones recurrentes nos ayudan a planificar el futuro. Puedes hacer donaciones en múltiples monedas para apoyar las principales operaciones de iNaturalist. ¡Gracias a todos por su participación en hacer del %{year} el año más grande de iNaturalist hasta ahora!
         donors: Donantes
         donors_guide_label_our_goal_is_1000: Nuestro objetivo es conseguir 1000 donantes recurrentes al mes
         inaturalist_network: Red de iNaturalist
@@ -7203,6 +7358,23 @@ es:
           Breve resumen de este taxón basado en su página de <a target="_blank"
           href="%{url}">Wikipedia</a> que guardamos indefinidamente hasta actualizarlo manualmente. La carga de este resumen también actualiza inmediatamente nuestra caché del contenido de Wikipedia que mostramos en el sitio web, que se actualiza automáticamente después de una semana.
       show:
+        about_names_desc: |
+          <p>
+          La mayoría de las categorías de organismos tienen "nombres comunes" en distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables a lo largo del tiempo, pero muchos organismos tienen varios nombres diferentes en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos sin ocasionar confusión. Los científicos abordan este problema utilizando un único "nombre científico" para cada categoría de organismo que cumple con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura biológica</a>. Pero, estos nombres normalmente se basan en el latín, un idioma que nadie habla, lo que los hace menos memorables que los nombres comunes para muchas personas. Además, los nombres científicos pueden reflejar la clasificación taxonómica de un organismo, lo que significa que pueden cambiar cuando los científicos desarrollan teorías más precisas sobre las relaciones evolutivas entre diferentes organismos, lo que reduce aún más su utilidad en la comunicación, incluso entre personas que conocen los nombres científicos.
+          </p>
+          <p>
+          Como dice el viejo dicho: "Los nombres comunes cambian de un lugar a otro, y los nombres científicos cambian de vez en cuando".
+          </p>
+          <p>
+          Intentamos abordar estas deficiencias mostrando tanto nombres comunes como científicos siempre que sea posible y elegimos nombres comunes basados en la configuración del idioma y la ubicación del usuario. Los nombres se organizan según su importancia global dentro de cada Idioma/Tipo. 
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Los nombres pueden agregarse a lugares (generalmente países) en casos donde diferentes países o regiones utilizan diferentes nombres comunes en el mismo idioma. Por ejemplo, México y Costa Rica pueden tener diferentes nombres en español para la misma especie.
+          </p>
+          <p>
+          Esta tabla muestra qué nombres se han agregado a qué lugares, y se organizan en orden de importancia para cada lugar. Si se agregan dos nombres en español a México, el primero de la lista será el que aparezca si prefieres ver nombres en español asociados con México.
+          </p>
         about_conservation_status_desc: |
           El estado de conservación sintetiza el riesgo de extinción de un grupo de organismos.
         about_establishment_desc: |
@@ -7234,7 +7406,6 @@ es:
           "Plant Phenology=Flowering": Floreciendo
           "Plant Phenology=Fruiting": Fructificando
           "Plant Phenology=No Evidence of Flowering": Sin evidencias de Floración
-          "Life Stage=Adult": Adulto
           "Life Stage=Egg": Huevo
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Juvenil
@@ -7392,6 +7563,9 @@ es:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        monthly_supporter_desc_html: |
+          Los patrocinadores mensuales de iNaturalist hacen contribuciones mensuales automáticas a iNaturalist (IRS EIN 92-1296468 de los Estados Unidos) para apoyar las actividades sin ánimo de lucro de iNaturalist y de la Red de iNaturalist.
+          <a href="%{url}"> Haz clic aquí para convertirte en un patrocinador mensual</a>. Cuando hayamos confirmado tu apoyo, podrás marcar esta casilla para mostrar esta condición en tu perfil. Nota: Las direcciones de correo electrónico en Donorbox y en iNaturalist deben coincidir para que podamos confirmar que te has convertido en un patrocinador mensual. Si son diferentes, cambia una para que sea idéntica a la otra.
         muting_desc_html: |
           <p>
           Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -7840,6 +8014,7 @@ es:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Para usuarios sin confirmación
+        prefers_exclude_monthly_supporters: Excluir seguidores mensuales
         clients: Clientes
       assessment:
         description: Descripción
@@ -8117,6 +8292,7 @@ es:
             action:
               not_supported_for_this_kind_of_content: no se admite para este tipo de contenido
             base:
+              only_staff_and_hiding_curators_can_unhide: Sólo el personal y los conservadores que ocultan el contenido pueden mostrarlo
               staff_cannot_be_suspended: No se puede suspender a miembros del personal
             user_id:
               must_be_a_curator: Debe ser un supervisor
@@ -8157,12 +8333,17 @@ es:
               is_too_large_to_edit: es demasiado grande para editarse
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para importar
+              cannot_be_blank: no puede estar vacío
+              invalid_point: tiene un punto no válido, por ejemplo, longitud mayor a 180 o latitud menor que -90
+              must_have_more_than_three_points: debe tener más de 3 puntos
+              polygon_with_less_than_four_points: tiene un polígono con menos de 4 puntos
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: no puede estar en blanco
               invalid_point: tiene un punto no válido, por ejemplo, longitud mayor a 180 o latitud menor que -90
               must_have_more_than_three_points: debe tener más de tres puntos
+              polygon_with_less_than_four_points: tiene un polígono con menos de 4 puntos
         post:
           attributes:
             parent:

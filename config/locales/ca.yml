@@ -197,8 +197,6 @@ ca:
   about_this_bioblitz: Quant aquest bioblitz
   about_this_map: Quant a aquest mapa
   about_this_project: Sobre aquest projecte
-  about_trips_html: |
-    <h4>Els viatges permeten recopilar dades de presència/absència donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les dades sobre presència/absència inclouen informació sobre esforç de mostreig que és útil per a l'anàlisi científica com els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
   about_trusting_projects: Sobre la Confiança en Projectes
   about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
   about_trusting_projects_options_any_desc: |-
@@ -5426,7 +5424,6 @@ ca:
   user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
-  user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
   user_already_app_owner: L'usuari ja és propietari d'una app
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -7064,7 +7061,6 @@ ca:
           "Plant Phenology=Flowering": Florint
           "Plant Phenology=Fruiting": Fructificant
           "Plant Phenology=No Evidence of Flowering": Sense evidència de Floració
-          "Life Stage=Adult": Adult
           "Life Stage=Egg": Ou
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Juvenil
@@ -8167,6 +8163,13 @@ ca:
         #Default gender for nouns that aren't listed here
         default: "@m"
       "@iconic_taxon":
+        Animalia: Animals
+        Actinopterygii: Actinopterigis
+        Aves: Aus
+        Reptilia: Rèptils
+        Amphibia: Amfibis
+        Mammalia: Mamífers
+        Arachnida: Aràcnids
         Insecta: Insectes
         Plantae: Plantes
         Fungi: Fongs

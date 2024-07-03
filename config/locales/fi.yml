@@ -196,24 +196,6 @@ fi:
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
-  about_trips_html: |
-    <h4>
-    Tallennettaessa tietoja Retkenä, voi "laji havaittu" -tiedon lisäksi tallentaa myös "lajia ei havaittu" -tietoja (nollahavainto) lisäämällä sisältöä havaitoihisin.
-    </h4>
-    <p>
-    <strong>Why</strong> Havaittu-ei havaittu tiedonkeruu viestii aineiston käyttäjälle havaintotiedon kattavasta keräystavasta ja lisää tiedon käytettävyyttä etenkin tieteellisissä analyyseissä kuten eliölajien levinneisyyden mallinuksessa. (tavallisesti iNaturalist- havainnot sisältävät vain havaittu-tietoa).
-    </p>
-    <p>
-    <strong>How</strong> Retken avulla voi lisätä sisältöä havaintoosi tallennetamalla:
-    </p>
-    <ul>
-    <li><strong>Mitä</strong> olit etsimässä (lista kohdelajeista)</li>
-    <li><strong>Missä</strong> olit havainnoimassa (havaintoalue)</li>
-    <li><strong>Milloin</strong> olit havainnoimassa (havaintoaikaväli)</li>
-    </ul>
-    <p>
-    Kohdelajiluettelon lajit, jotka havaitsit keruutapahtuman yhteydessä tulkitaan havainnoiksi. Kohdelajiluettelon lajit, joita et havainnut keruutapahtuman yhteydessä, tulkitaan ei-havainnoiksi (nollahavainnoiksi). Valitse "Taulukoi havaittu-ei havaittu tieto Retkestä" panike tehdäksesi taulukon, jossa havaintojen lisäksi esitetään nollahavainnot liittyen keruutapahtumaan ja kohdelajiluetteloon. <a href='%{url}'>Lisätietoja</a>
-    </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_trusting_projects_options_any_desc: |-
@@ -291,6 +273,8 @@ fi:
   add_annotations_for_controlled_attribute:
     sex: Lisää merkintä sukupuolesta
     plant_phenology: Lisää merkintä kasvin fenologiasta
+    flowers_and_fruits: Lisää merkinnät "Kukat ja hedelmät"
+    leaves: Lisää merkinnät "Lehdet"
     life_stage: Lisää merkintä elinvaiheesta
     evidence_of_presence: Lisää kommentti kohtaan "Todiste läsnäolosta"
   add_another_flag: Lisää toinen lippu
@@ -346,6 +330,13 @@ fi:
   add_plant_phenology_flowering_annotation: 'Lisää "Plant Phenology: Flowering" selitys'
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisää merkintä "Kasvin fenologia: ei näyttöä kukinnasta"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Lisää "Kukat ja hedelmät: kukan nuput" -merkintä'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Lisää "Kukat ja hedelmät: hedelmät ja siemenet" -merkintä'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Lisää "Kukat ja hedelmät: ei kukkia tai hedelmiä" -merkintä'
+  add_leaves_breaking_leaf_buds: 'Lisää "Lehdet: aukeavat lehden silmut" -merkintä'
+  add_leaves_green_leaves: 'Lisää "Lehdet: vihreitä lehtiä" -merkintä'
+  add_leaves_colored_leaves: 'Lisää "Lehdet: värillisiä lehtiä" -merkintä'
+  add_leaves_no_live_leaves: 'Lisää "Lehdet: ei eläviä lehtiä" -merkintä'
   add_life_stage_adult_annotation: 'Lisää "Life Stage: Adult" selitys'
   add_life_stage_teneral_annotation: 'Lisää "Life Stage: teneral" selitys'
   add_life_stage_subimago_annotation: 'Lisää "Life Stage: subimago" selitys'
@@ -1051,6 +1042,10 @@ fi:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Mikä tahansa
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Mitä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Mitä tahansa
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Mikä tahansa
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Mikä tahansa
@@ -1060,10 +1055,20 @@ fi:
     male: Koiras
     female: Naaras
     plant_phenology: Kasvin fenologia
+    flowers_and_fruits: Kukat ja hedelmät
     budding: Verso puhkeamassa
     flower_budding: Kukka puhkeamassa
     flowering: Kukinta
     fruiting: Hedelmiä
+    no_flowers_or_fruits: Ei kukkia tai hedelmiä
+    flower_buds: Kukan nuppuja
+    flowers: Kukkia
+    fruits_or_seeds: Hedelmiä tai siemeniä
+    leaves: Lehdet
+    breaking_leaf_buds: Aukeavat lehden silmut
+    green_leaves: Vihreät lehdet
+    colored_leaves: Värilliset lehdet
+    no_live_leaves: Ei eläviä lehtiä
     life_stage: Elinvaihe
     adult: Aikuinen
     teneral: Teneraali (vastakuoriutunut hyönteinen)
@@ -1116,6 +1121,13 @@ fi:
     flower_budding: Nuput näkyvissä, mutta eivät auenneita
     flowering: Kukat näkyvissä, auki ja vielä kiinni kasvissa
     fruiting: Hedelmät näkyvissä ja vielä kiinni kasvissa
+    flowers: Ainakin yksi avoin kukka
+    flower_buds: Ainakin yksi suljettu kukan nuppu
+    fruits_or_seeds: Ainakin yksi hedelmä tai siemen
+    breaking_leaf_buds: Ainakin yksi silmu, jossa ensimmäinen uusi lehti tai neulanen ei ole täysin avautunut
+    green_leaves: Ainakin yksi vihreä lehti tai neulanen (tai punertava, jos tämä on normaali terve väri)
+    colored_leaves: Ainakin yhdellä lehdellä tai neulasella on loppukauden tai kuivuuden väri
+    no_live_leaves: Ei aukeavia lehden silmuja, eikä vihreitä tai värillisiä lehtiä tai neulasia näkyvissä
     gall: Loiseliön aiheuttama kasvikudoksen epämuodostuma
     molt: Hylätty nahka tai ulkoinen tukiranka
     leafmine: Todisteet syömisestä lehden sisällä.
@@ -1123,6 +1135,7 @@ fi:
     egg: Kokonainen muna tai munan osa
     construction: Eläimen luoma, muista materiaaleista tehty tai niistä kaivettu rakennelma.
     no_evidence_of_flowering: Kuvissa ei näy genitaaleja
+    no_flowers_or_fruits: Kukkia, hedelmiä tai siemeniä (kokonaan tai osittain) ei ole näkyvissä
     not_established: Eliö on osa vakiintumatonta populaatiota kuten karanneet lemmikit, harhailijat.
     organism: Kokonainen eliö tai eliön osa
     scat: Jätökset (ei pöllöjen oksennuspallot tai muut vastaavat)
@@ -1763,6 +1776,7 @@ fi:
   filter: Suodata
   filter_by_curator_identification: Suodata kuraattorin tekemän tunnistuksen perusteella
   filter_by_place: Suodata paikan mukaan
+  filter_by_species: Suodata lajin mukaan
   filter_by_taxon: Suodata taksonin mukaan
   filter_by_place_taxon_and_color: Suodata paikan, taksonin ja värin mukaan käyttämällä ohjaimia.
   filter_list_by_this_taxon: Suodata luettelo tällä taksonilla
@@ -1940,6 +1954,9 @@ fi:
   grid_tooltip: Näytä ruudukkonäkymä
   group: Ryhmä
   grouping: Ryhmittely
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Arvioi sijainti muiden havaintojen perusteella?
   guides: Lajioppaat
   guide_compiled_by: Oppaan koonnut
   guide_deleted: Opas poistettu
@@ -3328,8 +3345,8 @@ fi:
       miscellaneous: sekalainen
       Municipality: Kunta
       municipality: kunta
-      Nationality: Kunta
-      nationality: kunta
+      Nationality: Kansallisuus
+      nationality: kansallisuus
       Nearby_Building: Läheinen rakennus
       nearby_building: läheinen rakennus
       Open_Space: Avoin paikka
@@ -4348,6 +4365,7 @@ fi:
   stuff_just_added: "Hetki sitten lisäämäsi jutut..."
   subject_resolved_noun_html: "%{subject} ratkaisi %{noun}:n"
   submission_model_description: Kuka voi lisätä havaintoja projektiisi?
+  submit: Lähetä
   submit_observations:
     one: Lähetä 1 havainto
     other: Lähetä %{count} havaintoa
@@ -4540,6 +4558,7 @@ fi:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstin muotoilu
   text_editing_controls: Tekstin muokkaus
+  thank_you!: Kiitos!
   thanks!: Kiitos!
   thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta täällä sivustolla
   that_photo_doesnt_exist: Kuvaa ei ole olemassa.
@@ -4897,7 +4916,6 @@ fi:
   user_added_an_x_to_noun_by_you_html: "%{x} sinulle käyttäjältä %{user} (%{noun})"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{x} käyttäjältä %{user} (%{noun})"
-  user_added_x_observations_html: "%{user} lisäsi %{x} havaintoa"
   user_already_authenticated: Käyttäjä on jo todennettu
   user_already_app_owner: Käyttäjä on jo sovelluksen omistaja
   user_autocomplete_placeholder: elliesimerkki, matti123, yms.
@@ -5526,6 +5544,33 @@ fi:
           Olet tehnyt huomautuksen (liputtanut) tähän keskusteluun päivämäärällä %{date}. Huomautus (lippu) säilyy järjestelmässä vaikka poistaisin oman kopion tästä keskustelusta, joten voit turvallisesti poistaa sen omasta näkymästäsi, jos haluat.
         privacy_notice_html: |
           Viestin näkevät sinä, vastaanottaja sekä iNaturalistin ylläpitäjät. Ylläpitäjät lukevat viestin, mikäli se merkitään tarkistusta vaativaksi (moderoitavaksi). Jos haluat viestiä täysin yksityisesti, käytä jotakin muuta viestintäkanavaa, jossa viestin voi salata.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vision Language -demo
+      what_do_you_want_to_search_for: Mitä haluat hakea?
+      #NOTE: please do not translate "A yellow bug with black spots" in the URL
+      #or the text here. This UI interacts with a machine-learning model that
+      #will return different results for different strings, and translations
+      #are different strings. The model was primarily trained on English text
+      #and may return inaccuracte results in different languages
+      for_example_a_yellow_bug_with_black_spots: Esim. keltainen hyönteinen mustilla pisteillä
+      try_one_of_these_example_searches_colon: "Kokeile yhtä näistä esimerkeistä:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model)
+      help_us_improve: Auta meitä parantamaan
+      to_help_us_improve: Auttaaksemme meitä parantamaan tätä mallia haluaisimme tietää, mitkä tämän sivun kuvista liittyvät hakuusi &quot;%{searched_term}&quot;. Merkitse jokainen kuva osuviksi %{thumbs_up_icon}, jos se vastaa hakuasi, ja ei osuviksi %{thumbs_down_icon}, jos se ei vastaa. Kun olet valmis, napsauta Lähetä. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Merkitse jäljellä olevat osuviksi
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Merkitse jäljellä olevat ei-osuviksi
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Näytä nämä havainnot Tunnistus-kohdassa
+      this_demo_tool2: Tämän esittelytyökalun avulla voit kirjoittaa hakulausekkeen (kuten "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">lintu syö hedelmiä</a>") ja vertailla sitä 10 miljoonaan iNaturalist-kuvaan. Tulokset on järjestetty parhaiten osuviin. Voit käyttää tätä demoa uutena tapana löytää mielenkiintoisia iNaturalist-havaintoja, joita voit merkitä tai lisätä projektiisi.
+      you_can_also_use_this_demo: Voit myös käyttää tätä demoa auttamaan meitä arvioimaan Vision Language -mallia, joka on tämän demon taustalla, kertomalla meille, mitkä kuvista oli osuvia hakulausekkeeseesi. Tämä demo käyttää kolmannen osapuolen <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP -mallia</a> jota ei ole koulutettu iNaturalist-aineistolla tai iNaturalist-tiimin toimesta. Joskus työkalu voi tuottaa epätarkkoja, puolueellisia tai loukkaavia tuloksia. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lue lisää iNaturalist-blogista</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Jos haluat tukea tätä työtä
+      thank_you_for_your_submission!: Kiitos osallistumisestasi!
     oauth:
       authorizations:
         new:
@@ -6215,6 +6260,7 @@ fi:
           Vakiintuneisuus kuvastaa sitä, miten laji saapui nykyiselle esiintymispaikalleen. Tulokas tarkoittaa ihmisen avustuksella saapunutta ja kotoperäinen puolestaan ilman ihmisen vaikutusta saapunutta lajia. Endeeminen laji esiintyy vain tietyssä paikassa, eikä missään muualla.
         about_taxon_curators_desc: |
           Nämä ihmiset hallinnoivat taksonomisen puun sitä osaa, joka sisältää tämän taksonin. Jos haluat tehdä muutoksia, liputa tämä taksoni tai ota yhteyttä johonkin näistä henkilöistä.
+        charts_caps: Taulukko
         charts_help_seasonality: |
           Tämä kaavio näyttää taksonin havaintojen lukumäärän kuukausittain. Huomaa, että nämä ovat havaintomääriä, joihin vaikuttaa sekä se, 
           milloin taksonia voi havaita että milloin niitä havainnoidaan. Lintu voi siis vaikuttaa hyvin aktiiviselta toukokuussa, mutta tähän saattaa olla
@@ -6233,7 +6279,14 @@ fi:
           "Plant Phenology=Flowering": Kukkiva
           "Plant Phenology=Fruiting": Hedelmiä
           "Plant Phenology=No Evidence of Flowering": Ei näyttöä kukinnasta
-          "Life Stage=Adult": Aikuinen
+          "Flowers and Fruits=Flower Buds": Kukan nuppuja
+          "Flowers and Fruits=Flowers": Kukkia
+          "Flowers and Fruits=Fruits or Seeds": Hedelmiä tai siemeniä
+          "Flowers and Fruits=No Flowers or Fruits": Ei kukkia tai hedelmiä
+          "Leaves=Breaking Leaf Buds": Aukeavat lehden silmut
+          "Leaves=Green Leaves": Vihreät lehdet
+          "Leaves=Colored Leaves": Värilliset lehdet
+          "Leaves=No Live Leaves": Ei eläviä lehtiä
           "Life Stage=Egg": Muna
           "Life Stage=Larva": Toukka
           "Life Stage=Juvenile": Nuori

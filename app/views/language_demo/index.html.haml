@@ -1,0 +1,34 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "jquery-ui"
+  = stylesheet_link_tag "autocomplete"
+  = stylesheet_link_tag "font-awesome"
+  = stylesheet_link_tag "fontastic-icons"
+  = stylesheet_link_tag "bootstrap"
+  = stylesheet_link_tag "computer_vision/language_demo"
+  %meta{ name: "viewport", content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.public_node_api_url || CONFIG.node_api_url }
+  = csrf_meta_tag
+  :javascript
+    var SITE_ICONS = {
+      microsoft: "#{ asset_url( "sites/logo-microsoft.svg" ) }",
+      edinburgh: "#{ asset_url( "sites/logo-university-of-edinburgh.svg" ) }",
+      umass: "#{ asset_url( "sites/logo-umass-amherst.png" ) }",
+      mit: "#{ asset_url( "sites/logo-mit.svg" ) }",
+      ucl: "#{ asset_url( "sites/logo-ucl.svg" ) }"
+    };
+    var BLOG_URL= "#{ Site.default.blog_url }";
+#app
+- content_for :delayed_js do
+  = javascript_include_tag "jquery/jquery-1.11.3.min.js"
+  = javascript_include_tag "jquery/jquery-ui-1.11.4.min.js"
+  = javascript_include_tag "jquery/plugins/jquery.ba-bbq.min"
+  = javascript_include_tag "inaturalist"
+  = javascript_include_tag "ang/models/taxon"
+  = javascript_include_tag "inaturalist/map3"
+  = javascript_include_tag "jquery/plugins/inat/generic_autocomplete"
+  = javascript_include_tag "jquery/plugins/inat/taxon_autocomplete"
+  = javascript_include_tag "webpack/runtime-webpack"
+  = javascript_include_tag "webpack/react-main-webpack"
+  = javascript_include_tag "webpack/react-dropzone-webpack"
+  = javascript_include_tag "webpack/language-demo-webpack"
+  = javascript_include_tag "bootstrap.min"

@@ -227,24 +227,6 @@ lv:
   about_this_bioblitz: Vairāk par "Bioblitz"
   about_this_map: Vairāk par šo karti
   about_this_project: Vairāk par šo projektu
-  about_trips_html: |
-    <h4>
-    Ceļojumi sniedz iespēju apkopot datus par organismu klātbūtni vai prombūtni, tādējādi pievienojot papildu informāciju novērojumiem
-    </h4>
-    <p>
-    <strong>Kādēļ</strong> Datus par organismu klātbūtni vai prombūtni iekļauj informāciju par paraugiem, kas noder zinātnieku veiktajai analīzei, piemēram, izplatības modelēšanai (nemodificēti iNaturalsit novērējumi ir dati, kas iekļauj tikai organismu klātbūtni).
-    </p>
-    <p>
-    <strong>Kā</strong> Ceļojumi sniedz papildu informāciju par novērojumiem, saglabājot datus par to:
-    </p>
-    <ul>
-    <li><strong>Ko</strong> meklēji (target list)</li>
-    <li><strong>Kur</strong> meklēji (search area)</li>
-    <li><strong>Kad</strong> meklēji (search interval)</li>
-    </ul>
-    <p>
-    Tavā sarakstā iekļautās sugas, ko izdodas novērot paredzētajā meklēšanas apgabālā un laika posmā tiek pievienotas pie organismiem klātbūtnē, bet nenovērotās pie organismiem prombūtnē. Nospied uz "sakārtot tabulā klātbūtnes un prombūtnes datus no ceļojumiem", lai ģenerētu tabulu ar klātbūtnes un prombūtnes datiem par ceļojumos sastaptajām sugām. <a href='%{url}'>Vairāk informācijas</a>
-    </p>
   about_trusting_projects: Vairāk par projektiem ar atklātām koordinātām
   about_trusting_projects_options_any: Visi tavi novērojumi šajā projektā
   about_trusting_projects_options_any_desc: |-
@@ -5046,7 +5028,6 @@ lv:
   user_added_an_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
-  user_added_x_observations_html: "%{user} pievienoja %{x} novērojumus"
   user_already_authenticated: Lietotājs jau ir autentificēts
   user_already_app_owner: Lietotājs jau ir lietotnes īpašnieks
   user_autocomplete_placeholder: kueda, simon123, utt.
@@ -6517,7 +6498,6 @@ lv:
           "Plant Phenology=Flower Budding": Ziedpumpuri
           "Plant Phenology=Flowering": Zied
           "Plant Phenology=Fruiting": Ar augļiem
-          "Life Stage=Adult": Pieaudzis
           "Life Stage=Egg": Ola
           "Life Stage=Larva": Cirmenis
           "Life Stage=Juvenile": Nepieaudzis

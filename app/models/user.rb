@@ -129,6 +129,7 @@ class User < ApplicationRecord
   has_one  :flickr_identity, :dependent => :delete
   # has_one  :picasa_identity, :dependent => :delete
   has_one  :soundcloud_identity, :dependent => :delete
+  has_one :user_daily_active_category, dependent: :delete
   has_many :observations, :dependent => :destroy
   has_many :deleted_observations
   has_many :deleted_photos
@@ -251,6 +252,7 @@ class User < ApplicationRecord
   has_many :site_admins, inverse_of: :user
   belongs_to :place, :inverse_of => :users
   belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
+  has_one :cohort_lifecycle, dependent: :delete
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login

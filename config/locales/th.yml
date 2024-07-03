@@ -223,6 +223,7 @@ th:
   add_annotations_for_controlled_attribute:
     sex: เพิ่มหมายเหตุสำหรับ "เพศ"
     plant_phenology: เพิ่มหมายเหตุสำหรับ "ชีพลักษณ์ของพืช"
+    flowers_and_fruits: เพิ่มหมายเหตุสำหรับ "การออกดอกและผล"
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
   add_another_flag: เพิ่มอีกรายงาน
@@ -279,6 +280,10 @@ th:
   add_plant_phenology_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดดอก"'
   add_plant_phenology_fruiting_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): การเกิดผล"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'เพิ่มคำอธิบายประกอบ "ชีพลักษณ์ของพืช (Plant Phenology): ไม่มีหลักฐานของการเกิดดอก"'
+  add_flowers_and_fruits_flower_buds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: แตกตาดอก"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'เพิ่มหมายเหตุ "การออกดอกและผล: ออกผลหรือเมล็ด"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'เพิ่มหมายเหตุ "การออกดอกและผล: ไม่ออกดอกหรือผล"'
+  add_leaves_breaking_leaf_buds: 'เพิ่มหมายเหตุ "ใบ: แตกใบอ่อน"'
   add_life_stage_adult_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวเต็มวัย"'
   add_life_stage_teneral_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: หลังลอกคราบ"'
   add_life_stage_subimago_annotation: 'เพิ่มหมายเหตุ "ระยะการเจริญ: ตัวรองตัวเต็มวัย"'
@@ -797,6 +802,10 @@ th:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: ไม่ระบุ
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: ระบุไม่ได้
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: ระบุไม่ได้
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: ไม่ระบุ
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: ไม่ระบุ
@@ -806,10 +815,20 @@ th:
     male: เพศผู้
     female: เพศเมีย
     plant_phenology: ชีพลักษณ์ของพืช
+    flowers_and_fruits: การออกดอกและผล
     budding: แตกตา
     flower_budding: แตกตาดอก
     flowering: ออกดอก
     fruiting: ออกผล
+    no_flowers_or_fruits: ไม่ออกดอกหรือผล
+    flower_buds: แตกตาดอก
+    flowers: ออกดอก
+    fruits_or_seeds: ออกผลหรือเมล็ด
+    leaves: ใบ
+    breaking_leaf_buds: แตกใบอ่อน
+    green_leaves: ใบเขียว
+    colored_leaves: ใบเปลี่ยนสี
+    no_live_leaves: ใบร่วงทั้งหมด
     life_stage: ระยะการเจริญ
     adult: ตัวเต็มวัย
     teneral: หลังลอกคราบ
@@ -850,13 +869,19 @@ th:
     construction: สิ่งที่สัตว์สร้าง
   controlled_term_definitions:
     feather: ขนที่หลุดออกจากตัวนก
-    flower_budding: เห็นตาดอกที่ยังไม่บาน
+    flower_budding: พบตาดอกที่ยังไม่บาน
     flowering: เห็นดอกบานและยังอยู่ติดกับลำต้น
     fruiting: เห็นผลที่ยังอยู่ติดกับลำต้น
+    flowers: บานอย่างน้อยหนึ่งดอก
+    flower_buds: พบตาดอกที่หุบอยู่อย่างน้อยหนึ่งตา
+    fruits_or_seeds: พบอย่างน้อยหนึ่งผลหรือเมล็ด
+    green_leaves: มีใบเขียวหรือใบรูปเข็มอย่างน้อยหนึ่งใบ (หรือมีสีออกแดงซึ่งเป็นสีปกติและสุขภาพดี)
+    no_live_leaves: ไม่มีการแตกใบอ่อนหรือใบเขียวหรือใบเปลี่ยนสีหรือใบรูปเข็มปรากฏให้เห็น
     molt: ผิวหนังหรือเปลือกนอกที่ลอกทิ้งไว้
     hair: เส้นขนที่หลุดจากตัวสัตว์
     construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
     no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
+    no_flowers_or_fruits: ไม่พบดอก ผล หรือเมล็ด (ทั้งหมดหรือบางส่วน)
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
@@ -1071,6 +1096,7 @@ th:
   edit_taxon_framework: แก้ไขโครงร่างของหน่วยอนุกรมวิธาน
   edit_your_account_and_profile_html: "แก้ไขบัญชีและโปรไฟล์ของคุณ"
   edit_your_default_settings: "แก้ไขการตั้งค่าเริ่มต้นของคุณ"
+  edit_your_global_project_settings: แก้ไขการตั้งค่าโครงการระดับโลกของคุณ
   edit_your_identification: แก้ไขการจำแนกของคุณ
   edit_your_settings_for_this_project: แก้ไขการตั้งค่าของคุณสำหรับโครงการนี้
   edited_by_name_html: "แก้ไขโดย %{name}"
@@ -1393,6 +1419,8 @@ th:
   last_observation_caps: การสังเกตล่าสุด
   last_year: ปีที่แล้ว
   lat: ละติจูด
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: พิกัด
   latitude: ละติจูด
   latitude_in_decimals: 'ละติจูดแบบองศาทศนิยม เช่น 38.123'
   latitude_slash_y_coord_slash_northing: ละจิจูด / แกน y / เหนือ
@@ -1503,6 +1531,7 @@ th:
     tokelauan: ภาษาโตเกเลา
     turkish: ภาษาตุรกี
     ukrainian: ภาษายูเครน
+    venda: ภาษาเวนดา
     vietnamese: ภาษาเวียดนาม
     visayan: ภาษาวิซายัน
     waray_waray: ภาษาวาไร-วาไร
@@ -1555,6 +1584,7 @@ th:
     lb: ภาษาลักเซมเบิร์ก
     lt: ภาษาลิทัวเนีย
     mi: เมารี
+    mk: ภาษามาซิโดเนีย
     nb: ภาษานอร์เวย์แบบบูกโมล
     nl: ภาษาดัตช์
     pl: ภาษาโปแลนด์
@@ -1827,6 +1857,7 @@ th:
   obscured_or_private: คลุมเครือหรือส่วนตัว
   obscured_description: |
     พิกัดที่แสดงให้ผู้อื่นเห็นเป็นจุดที่ถูกสุ่มภายในกรอบสี่เหลี่ยมขนาด 0.2 องศา โดยมีพิกัดจริงซ่อนอยู่ในกรอบนั้น
+  observation_accuracy_experiment_research_grade_results: "ผลระดับงานวิจัย"
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
   observation_attribution: การสังเกตโดย %{user}
@@ -2091,6 +2122,7 @@ th:
     luxembourg: ลักเซมเบิร์ก
     macao: มาเก๊า
     malaysia: มาเลเซีย
+    mexico: เม็กซิโก
     mongolia: มองโกเลีย
     morocco: โมร็อกโก
     myanmar: เมียนมา
@@ -2109,6 +2141,7 @@ th:
     philippines: ฟิลิปปินส์
     poland: โปแลนด์
     portugal: โปรตุเกส
+    romania: โรมาเนีย
     russia: รัสเซีย
     samoa: ซามัว
     saudi_arabia: ซาอุดิอาระเบีย
@@ -2263,6 +2296,7 @@ th:
     variety: พันธุ์
     form: แบบ
     infrahybrid: ลูกผสมฐาน
+    leaves: ใบ
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: สถานะของสสาร
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
@@ -2919,7 +2953,6 @@ th:
   user_added_an_x_to_noun_by_you_html: "%{user} ได้เพิ่ม%{x}ไปที่%{noun}ของคุณ"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} เพิ่ม%{x}ไปที่%{noun}"
-  user_added_x_observations_html: "%{user} เพิ่ม %{x} การสังเกต"
   user_commented: "%{user} แสดงความคิดเห็น"
   user_disagrees_this_is_taxon: "%{user} ไม่เห็นด้วยว่านี่เป็น %{taxon}"
   user_faved_an_observation_by_you: "%{user} ชอบการสังเกตของคุณ"
@@ -3368,6 +3401,7 @@ th:
           สถานะการอนุรักษ์แสดงถึงระดับความเสี่ยงต่อการสูญพันธุ์ของสิ่งมีชีวิตแต่ละกลุ่ม
         about_establishment_desc: |
           "การเข้ามาตั้งถิ่นฐาน" หมายถึงวิธีการที่สิ่งมีชีวิตเข้ามาอาศัยในพื้นที่ปัจจุบัน ชนิดพันธุ์ต่างถิ่นคือชนิดที่ถูกนำเข้ามาโดยมนุษย์ ชนิดพันธุ์พื้นเมืองคือชนิดที่เข้ามาเองตามธรรมชาติ ชนิดพันธุ์เฉพาะถิ่นคือชนิดที่พบประจำถิ่นเดียวและไม่พบที่อื่น
+        charts_caps: แผนภูมิ
         charts_help_seasonality: |
           แผนภูมินี้แสดงจำนวนการสังเกตรายเดือนของหน่วยอนุกรมวิธาน อย่าลืมว่าจำนวนการสังเกตขึ้นอยู่กับเวลาที่พบสิ่งมีชีวิตและความสนใจที่จะสังเกตของผู้คนด้วย เช่น การพบนกบ่อยมากในเดือนพฤษภาคมอาจเป็นเพราะผู้คนเลือกสำรวจในเดือน พ.ค. มากกว่าเดือนอื่น ๆ หรือแมลงปอที่พบในเดือนมิถุนายนบ่อยกว่าเดือนมกราคมอาจเป็นเพราะมีผู้สังเกตจากซีกโลกเหนือมากกว่าซีกโลกใต้ ซึ่งไม่ได้แปลว่าในเดือน มิ.ย. จะมีจำนวนแมลงปอมากกว่าเดือนอื่น ๆ จึงต้องตรวจสอบแผนที่ประกอบการพิจารณาแผนภูมิเหล่านี้ด้วย และไม่ควรเชื่อแผนภูมิที่มีจำนวนการสังเกตน้อย และ/หรือมีจำนวนการสังเกตที่ "ตรวจสอบได้" กับจำนวนการสังเกต "ระดับงานวิจัย" แตกต่างกันมากเกินไป
         charts_help_history: |
@@ -3377,7 +3411,14 @@ th:
         frequency:
           research: ระดับงานวิจัย
           verifiable: ตรวจสอบได้
-          "Life Stage=Adult": ตัวเต็มวัย
+          "Flowers and Fruits=Flower Buds": แตกตาดอก
+          "Flowers and Fruits=Flowers": ออกดอก
+          "Flowers and Fruits=Fruits or Seeds": ออกผลหรือเมล็ด
+          "Flowers and Fruits=No Flowers or Fruits": ไม่ออกดอกหรือผล
+          "Leaves=Breaking Leaf Buds": แตกใบอ่อน
+          "Leaves=Green Leaves": ใบเขียว
+          "Leaves=Colored Leaves": ใบเปลี่ยนสี
+          "Leaves=No Live Leaves": ใบร่วงทั้งหมด
           "Life Stage=Egg": ไข่
           "Life Stage=Larva": ตัวอ่อน
           "Life Stage=Juvenile": วัยอ่อน

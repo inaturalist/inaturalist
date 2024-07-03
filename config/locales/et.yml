@@ -24,6 +24,9 @@ et:
   x_identifications_:
     one: '1 määratlus'
     other: '%{count} määratlust'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> MÄÄRATLUS'
+    other: '<span class="count">%{count}</span> MÄÄRATLUST'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ et:
   x_observations_html:
     one: "<span class='count'>1</span> vaatlus"
     other: "<span class='count'>%{count}</span> vaatlust"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> VAATLUS"
+    other: "<span class='count'>%{count}</span> VAATLUST"
   x_observations_link_html:
     one: "<a href='%{url}'>1 vaatlus</a>"
     other: "<a href='%{url}'>%{count} vaatlust</a>"
@@ -83,6 +89,9 @@ et:
   x_people:
     one: "%{count} inimene"
     other: "%{count} inimest"
+  x_people_html:
+    one: '<span class="count">%{count}</span> isik'
+    other: '<span class="count">%{count}</span> isikut'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>"
   x_photos:
     one: "1 foto"
@@ -96,6 +105,9 @@ et:
   x_species:
     one: '1 liik'
     other: '%{count} liiki'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> LIIK"
+    other: "<span class='count'>%{count}</span> LIIKI"
   x_species_html:
     one: "<span class='count'>1</span> liik"
     other: "<span class='count'>%{count}</span> liiki"
@@ -105,6 +117,9 @@ et:
   x_suggestions_filtered_by_colon:
     one: "1 pakkumine filriga:"
     other: "%{count} pakkumist filtriga:"
+  x_taxa:
+    one: "%{count} takson"
+    other: "%{count} taksonit"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> vaadeldud takson"
     other: "<span class='count'>%{count}</span> vaadeldud taksonit"
@@ -114,6 +129,9 @@ et:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> teaduskõlbulik määratlus liigile või selle alamüksustele</span>"
     other: "<span class='count'>%{count}</span> teaduskõlbulik määratlust liigile või selle alamüksustele</span>"
+  x_sounds:
+    one: "%{count} heli"
+    other: "%{count} heli"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> kureeritud takson"
     other: "<span class='count'>%{count}</span> kureeritud taksonit"
@@ -178,22 +196,6 @@ et:
   about_this_bioblitz: Välkvaatlusest
   about_this_map: Sellest kaardist
   about_this_project: Sellest projektist
-  about_trips_html: |
-    <h4>Reiside abil saab koguda kohalolu-puudumise andmeid lisades vaatlustele konteksti</h4>
-    <p>
-    <strong>Miks</strong> Kohalolu-puudumise andmed sisaldavad infot valimi mahu kohta, mida saab kasutada teaduslikuks analüüsiks, muuhulgas leviku modelleerimine (iNaturalist vaatluste toor-andmed näitavad ainult olemasolus).
-    </p>
-    <p>
-    <strong>Kuidas</strong> Reis lisab su vaatlustele konteksti, sest salvestatakse:
-    </p>
-    <ul>
-    <li><strong>Mida</strong> sa otsisid (eesmärkide nimekiri)</li>
-    <li><strong>Kus</strong> sa otsisid (otsinguala)</li>
-    <li><strong>Kuna</strong> sa otsisid (otsingu ajavahemik)</li>
-    </ul>
-    <p>
-    Sinu eesmärkide nimekirjas olevad liigid, mida sul õnnestus otsinguala sees ja otsingu ajavahemikul vaadelda, loetakse kohal olnud liikideks. Liigid, mida vaadelda ei õnnestunud, loetakse puuduvateks. Vajuta nupule 'Koonda reiside kohalolnud / puudunud andmed', mille tulemusena luuakse reiside liigipõhine kohalolu / puudumise andmete tabel koos seotud vaatlustega. <a href='%{url}'>Loe veel</a>
-    </p>
   about_trusting_projects: Projektide usaldamisest
   about_trusting_projects_options_any: Kõiki sinu selles projektis osalevad vaatlused
   about_trusting_projects_options_any_desc: |-
@@ -1935,6 +1937,9 @@ et:
   grid_tooltip: Näita ruudustikuna
   group: Grupp
   grouping: Grupeerimine
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Arva asukohta teiste vaatluste järgi?
   guides: Juhendid
   guide_compiled_by: Juhendi koostanud
   guide_deleted: Juhend kustatud
@@ -4240,6 +4245,8 @@ et:
   taxon_deleted: Takson kustutatud.
   taxon_doesnt_have_a_range: Taksonil pole piirkonda
   taxon_drop: taksoni kustutus
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taksoni eemaldus, mis mõjutab taksonit %{taxon}
   taxon_id: Taksoni määratlus
   taxon_ids: Taksoni määratlused
   taxon_map:
@@ -4548,11 +4555,12 @@ et:
   user_added_an_x_to_noun_by_html: "Kasutaja %{user} lisas %{x} asjale %{noun}, mille on loonud %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Kasutaja %{user} lisas %{x} asjale %{noun}"
-  user_added_x_observations_html: "Kasutaja %{user} lisas %{x} vaatlust"
   user_already_authenticated: Kasutajakonto on juba tõestatud
   user_autocomplete_placeholder: kueda, simon123, jne.
   user_blocked: Kasutaja blokeeritud
   user_commented: "%{user} kommenteeris"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "Kasutaja %{user} lisas taksoni eemalduse, mis mõjutab taksonit %{taxon}"
   user_disagrees_this_is_taxon: "Kasutaja %{user} ei nõustu, et tegmist on taksoniga %{taxon}"
   user_disagrees_with_previous_finer_identifications: "Kasutaja %{user} pole nõus varasema täpsema määratlusega"
   user_faved_this_observation: "Kasutaja %{user} märkis selle vaatluse enda lemmikuks"
@@ -5116,6 +5124,8 @@ et:
     messages:
       from: Kellelt
       to: Kellele
+    nls_demo:
+      this_demo_tool2: See näitlik tööriist laseb sul kirjutada inglise keelse otsingulause (näiteks "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">a bird eating fruit</a>") ning võrdleb seda iNaturalisti 10 miljoni fotoga. Saad seda tööriista kasutada uute huvitavate iNaturalisti vaatluste otsimiseks, millele märkmeid lisada või mida oma projektile lisada.
     observations:
       community_id:
         agreement: Leping
@@ -5649,7 +5659,6 @@ et:
           "Plant Phenology=Flowering": Õitsev
           "Plant Phenology=Fruiting": Viljakandev
           "Plant Phenology=No Evidence of Flowering": Õitsemine pole tuvastatav
-          "Life Stage=Adult": Täiskasvanu
           "Life Stage=Juvenile": Nooruk
           "Sex=Female": Naissoost
           "Sex=Male": Meesoost

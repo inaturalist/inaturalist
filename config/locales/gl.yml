@@ -180,25 +180,6 @@ gl:
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Acerca deste mapa
   about_this_project: Acerca deste Proxecto
-  about_trips_html: |
-    <h4>
-    As excursións permiten a recolla de dados de presencia - ausencia, engadindo contexto ás túas oservacións.
-    </h4>
-    <p>
-    <strong>Porqué </strong> Os dados de presencia - ausencia inclúen información sobre o esforzo de mostraxe, o que é útil para as análises científicas como a modelaxe da distribución (as observacións en cru de INaturalist son só dados de presencia).
-    </p>
-    <p>
-    <strong>Cómo </strong> Unha excursión engade contexto ás túas observacións mediante o rexistro de:
-    </p>
-    <ul>
-    <li><strong>Qué </strong> buscaches (lista de obxectivos)</li>
-    <li><strong>Ónde</strong> buscaches (área de busca)</li>
-    <li><strong>Cándo </strong> buscaches (intervalo de busca)</li>
-    </ul>
-    <p>
-    As especies na túa lista de obxectivos que conseguiches observar dentro da área e do intervalo de busca son interpretados como presencias, mentres que as especies na túa lista de obxectivos que non conseguiches observar son interpretadas como ausencias.
-    Preme 'Tabular Dados de Presencia Ausencia Das Excursións' para xerar unha tabla de rexistros de presencia-ausencia para unha especie, de excursións e observacións asociadas. <a href='%{url}'>Saber máis</a>
-    </p>
   about_trusting_projects: Sobre Confiar nos Proxectos
   about_trusting_projects_options_any: Tódalas túas observacións neste proxecto
   about_trusting_projects_options_any_desc: |-
@@ -4558,7 +4539,6 @@ gl:
   user_added_an_x_to_noun_by_you_html: "%{user} engadíu un %{x} a %{noun} teu"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} engadíu unha %{x} a %{noun}"
-  user_added_x_observations_html: "%{user} engadíu %{x} observacións"
   user_already_authenticated: O usuario xa está verificado
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -5968,7 +5948,6 @@ gl:
           "Plant Phenology=Flower Budding": Flores Agromando
           "Plant Phenology=Flowering": Floración
           "Plant Phenology=Fruiting": Fructificando
-          "Life Stage=Adult": Adulto
           "Life Stage=Egg": Ovo
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Xuvenil
