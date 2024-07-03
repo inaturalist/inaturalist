@@ -6270,12 +6270,6 @@ zh-CN:
       #image as a prompt
       vision_language_demo: 视觉语言演示
       what_do_you_want_to_search_for: 您希望搜索什么？
-      #NOTE: please do not translate "A yellow bug with black spots" in the URL
-      #or the text here. This UI interacts with a machine-learning model that
-      #will return different results for different strings, and translations
-      #are different strings. The model was primarily trained on English text
-      #and may return inaccuracte results in different languages
-      for_example_a_yellow_bug_with_black_spots: 例如：一个带黑点的黄色虫子
       try_one_of_these_example_searches_colon: "请尝试其中一个搜索实例："
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
@@ -6287,8 +6281,7 @@ zh-CN:
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: 在鉴定中查看这些观察
       #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
-      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a>和<a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">马萨诸塞大学阿默斯特分校</a>、<a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">爱丁堡大学</a>、<a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">伦敦大学学院</a>、<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">麻省理工大学</a>的研究者合作，并得到了来自<a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">微软AI为善实验室</a>的慷慨支持，以更好地研究视觉语言模型，已帮助我们组织、探索和解释iNaturalist上的观察。 #interacts with a machine-learning model that will return different results for different # strings, and translations are different strings. The model was primarily trained on English # text and may return inaccuracte results in different languages
-      this_demo_tool2: 这个演示工具可以让您输入搜索词组(例如“<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">吃水果的鸟"</a>”)，并将它与1000万张iNaturalist 照片相比较。 结果是按照相关性从高到低排列的。 您可以使用这个演示作为一种寻找有趣的 iNaturalist 观察记录来注释或添加到您的项目的新的方式。
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a>和<a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">马萨诸塞大学阿默斯特分校</a>、<a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">爱丁堡大学</a>、<a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">伦敦大学学院</a>、<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">麻省理工大学</a>的研究者合作，并得到了来自<a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">微软AI为善实验室</a>的慷慨支持，以更好地研究视觉语言模型，已帮助我们组织、探索和解释iNaturalist上的观察。 #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
       you_can_also_use_this_demo: 您还可以使用此演示来帮助我们评估支持此演示的 Vision Language 模型，方法是告诉我们返回的哪些图像与您的搜索词相关。此演示使用的是第三方 <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP 模型</a>，该模型未在 iNaturalist 数据上或由 iNaturalist 团队进行训练。有时，该工具可能会产生不准确、有偏见或令人反感的结果。<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">在 iNaturalist 博客上阅读更多内容</a>。 #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: 如果您想支持此工作
       thank_you_for_your_submission!: 感谢您的提交！
