@@ -28,7 +28,10 @@ jobs:
     
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-    
+
+    - name: Set build date
+      run: echo "BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_ENV
+
     - name: Build/Push Main inaturalist
       uses: docker/build-push-action@v5
       with:
@@ -38,6 +41,11 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:${{ github.sha }}
           ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:latest
+        build-args: |
+          GIT_BRANCH=${{ github.ref_name }}
+          GIT_COMMIT=${{ github.sha }}
+          IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:latest
+          BUILD_DATE=${{ env.BUILD_DATE }}
 
     - name: Build/Push Main inaturalist-cleanup
       uses: docker/build-push-action@v5
@@ -48,6 +56,11 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.sha }}
           ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:latest
+        build-args: |
+          GIT_BRANCH=${{ github.ref_name }}
+          GIT_COMMIT=${{ github.sha }}
+          IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:latest
+          BUILD_DATE=${{ env.BUILD_DATE }}
 
   refresh-main-staging-deployment:
     name: Refresh Main Staging Deployment
@@ -74,7 +87,7 @@ jobs:
               core.setFailed(`create workflow_dispatch received status code ${response.status}`);
             }
           });
-     
+
   notify-slack:
     name: Notify Slack
     needs: build-and-push-main-docker-image
