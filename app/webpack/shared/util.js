@@ -124,7 +124,7 @@ const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
   // For some time zones, moment cannot output something nice like PDT and
   // instead does something like -08. In this situations, we print a full offset
   // like -08:00 instead
-  if ( parseInt( d.format( "z" ), 0 ) && parseInt( d.format( "z" ), 0 ) !== 0 ) {
+  if ( parseInt( d.format( "z" ), 10 ) && parseInt( d.format( "z" ), 10 ) !== 0 ) {
     format = I18n.t( "momentjs.datetime_with_offset" );
   }
   return d.format( format );
