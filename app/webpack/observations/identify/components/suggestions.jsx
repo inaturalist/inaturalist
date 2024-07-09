@@ -149,6 +149,7 @@ class Suggestions extends React.Component {
           disableArrowKeys
           showFullscreenButton={false}
           showPlayButton={false}
+          slideDuration={0}
           slideIndex={detailPhotoIndex}
           currentIndex={detailPhotoIndex}
           renderItem={item => (
