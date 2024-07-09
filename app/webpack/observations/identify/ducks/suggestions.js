@@ -81,12 +81,13 @@ export default function reducer(
       const { observation } = action;
       const isFeaturedObs = observation.uuid === state.query.featured_observation_uuid
         || observation.id === state.query.featured_observation_id;
+      const isTaxonChange = observation.taxon && state.query.taxon_id !== observation.taxon.id;
       newState.query = {
         source: state.query.source,
         order_by: state.query.order_by
       };
-      // If observation currently in query (tab change in modal), preserve taxon and place filters
-      if ( observation && isFeaturedObs ) {
+      // If observation currently in query (tab change in modal), preserve taxon and place filters. Except if a taxon change is detected.
+      if ( observation && isFeaturedObs && !isTaxonChange ) {
         newState.query = Object.assign( newState.query, {
           taxon: state.query.taxon,
           taxon_id: state.query.taxon_id,
@@ -279,6 +280,8 @@ export function fetchSuggestions( query ) {
       // can't show misidentifications of nothing
       return null;
     }
+
+    console.log(newQuery)
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
     const sanitizedQuery = sanitizeQuery( newQuery );
