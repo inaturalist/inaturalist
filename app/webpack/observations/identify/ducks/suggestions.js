@@ -86,7 +86,8 @@ export default function reducer(
         source: state.query.source,
         order_by: state.query.order_by
       };
-      // If observation currently in query (tab change in modal), preserve taxon and place filters. Except if a taxon change is detected.
+      // If observation currently in query (tab change in modal), preserve taxon and place filters,
+      // except if a taxon change is detected.
       if ( observation && isFeaturedObs && !isTaxonChange ) {
         newState.query = Object.assign( newState.query, {
           taxon: state.query.taxon,
@@ -281,7 +282,6 @@ export function fetchSuggestions( query ) {
       return null;
     }
 
-    console.log(newQuery)
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
     const sanitizedQuery = sanitizeQuery( newQuery );
