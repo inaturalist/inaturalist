@@ -338,7 +338,6 @@ fr:
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits»'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucun indice de floraison"'
-  add_flowers_and_fruits_flower_buds_annotation: 'Ajouter une annotation « Fleurs et Fruits : bouton floral »'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fruits et Graines »'
   add_flowers_and_fruits_no_flower_or_fruits: 'Ajouter une annotation « Fleurs et Fruits : pas de Fleurs ni de Fruits »'
   add_leaves_breaking_leaf_buds: 'Ajouter une annotation « Feuilles : bourgeons foliaires en cours d’ouverture »'
@@ -6449,12 +6448,6 @@ fr:
           veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
     nls_demo:
       what_do_you_want_to_search_for: Que voulez-vous rechercher ?
-      #NOTE: please do not translate "A yellow bug with black spots" in the URL
-      #or the text here. This UI interacts with a machine-learning model that
-      #will return different results for different strings, and translations
-      #are different strings. The model was primarily trained on English text
-      #and may return inaccuracte results in different languages
-      for_example_a_yellow_bug_with_black_spots: 'par exemple : un insecte jaune avec des points noirs'
       try_one_of_these_example_searches_colon: "Essayez l’un de ces exemples de recherches :"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
@@ -6465,7 +6458,6 @@ fr:
       mark_remaining_as_not_relevant: Marquer le reste comme non pertinent
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Voir ces observations dans Identification
-      this_demo_tool2: Cet outil vous permet de taper une phrase de recherche (comme "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">un oiseau mangeant des fruits</a>"), et la compare avec 10 millions de photos iNaturalist. Les résultats sont classés du plus pertinent au moins pertinent. Vous pouvez utiliser cette démo comme une nouvelle façon de chercher des observations iNaturalist intéressantes à annoter ou à ajouter à votre projet.
       you_can_also_use_this_demo: Vous pouvez également utiliser cette démo pour nous aider à évaluer le modèle Vision Language qui alimente cette démo en nous indiquant les images retournées qui correspondent à votre phrase de recherche. Cette démo utilise un modèle <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP</a> qui n'a pas été entrainé sur les données iNaturalist ou par l'équipe iNaturalist. Parfois, l'outil peut produire des résultats inexacts, biaisés ou offensants. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">En savoir plus sur le blog iNaturalist</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Si vous souhaitez soutenir ce travail
       thank_you_for_your_submission!: Merci pour votre contribution !

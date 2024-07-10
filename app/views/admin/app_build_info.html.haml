@@ -1,0 +1,52 @@
+%h1 Build Information
+
+%h3 Rails
+%table
+  %thead
+  %tbody
+    %tr
+      %td Git Branch
+      %td= @app_build_info_json[:rails][:git_branch]
+    %tr
+      %td Git Commit
+      %td= @app_build_info_json[:rails][:git_commit]
+    %tr
+      %td Image Tag
+      %td= @app_build_info_json[:rails][:image_tag]
+    %tr
+      %td Build Date
+      %td= @app_build_info_json[:rails][:build_date]
+
+%h3 API
+%table
+  %thead
+  %tbody
+    %tr
+      %td Git Branch
+      %td= @app_build_info_json[:api][:git_branch]
+    %tr
+      %td Git Commit
+      %td= @app_build_info_json[:api][:git_commit]
+    %tr
+      %td Image Tag
+      %td= @app_build_info_json[:api][:image_tag]
+    %tr
+      %td Build Date
+      %td= @app_build_info_json[:api][:build_date]
+
+%h3 Vision
+%table
+  %thead
+  %tbody
+    %tr
+      %td Git Branch
+      %td= @app_build_info_json[:vision][:git_branch]
+    %tr
+      %td Git Commit
+      %td= @app_build_info_json[:vision][:git_commit]
+    %tr
+      %td Image Tag
+      %td= @app_build_info_json[:vision][:image_tag]
+    %tr
+      %td Build Date
+      %td= @app_build_info_json[:vision][:build_date]

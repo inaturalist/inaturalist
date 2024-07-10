@@ -5849,12 +5849,6 @@ zh-TW:
       #image as a prompt
       vision_language_demo: 視覺語言模型示範
       what_do_you_want_to_search_for: 您想要找尋什麼？
-      #NOTE: please do not translate "A yellow bug with black spots" in the URL
-      #or the text here. This UI interacts with a machine-learning model that
-      #will return different results for different strings, and translations
-      #are different strings. The model was primarily trained on English text
-      #and may return inaccuracte results in different languages
-      for_example_a_yellow_bug_with_black_spots: 例：一隻黃色有黑斑的蟲
       try_one_of_these_example_searches_colon: "試著用這些範例之一來搜尋"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
@@ -5865,7 +5859,6 @@ zh-TW:
       mark_remaining_as_not_relevant: 將剩餘部分標記為不相關
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: 在鑑定頁面中檢視這些觀察紀錄
-      this_demo_tool2: 這個示範工具讓你可以輸入搜尋詞句（例如「<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">正在吃水果的鳥</a>」），並將其與千萬張《愛自然》 照片比較。結果依照最相關性到最不相關來排序。您可以使用這個示範工具來以新的方式尋找您有興趣的 《愛自然》 觀察紀錄，以便增加註解或新增到你的專案中。
       you_can_also_use_this_demo: 您也可以使用這個示範工具來幫助我們評估此視覺語言模型，使用方式是告訴我們哪些照片與您搜尋語句相關。這個示範工具是使用第三方<a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">視覺語言CLIP模型（Vision Language CLIP model）</a>，而該模型未使用《愛自然》平台的資料，也非由《愛自然》團隊來訓練。有時候該工具會產生不正確、有偏頗或令人感到被冒犯的結果。在<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">愛自然的部落格</a>上閱讀詳細說明。 #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: 如果您想支持此工作
       thank_you_for_your_submission!: 謝謝您的提交！

@@ -5551,12 +5551,6 @@ fi:
       #image as a prompt
       vision_language_demo: Vision Language -demo
       what_do_you_want_to_search_for: Mitä haluat hakea?
-      #NOTE: please do not translate "A yellow bug with black spots" in the URL
-      #or the text here. This UI interacts with a machine-learning model that
-      #will return different results for different strings, and translations
-      #are different strings. The model was primarily trained on English text
-      #and may return inaccuracte results in different languages
-      for_example_a_yellow_bug_with_black_spots: Esim. keltainen hyönteinen mustilla pisteillä
       try_one_of_these_example_searches_colon: "Kokeile yhtä näistä esimerkeistä:"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
@@ -5567,7 +5561,6 @@ fi:
       mark_remaining_as_not_relevant: Merkitse jäljellä olevat ei-osuviksi
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Näytä nämä havainnot Tunnistus-kohdassa
-      this_demo_tool2: Tämän esittelytyökalun avulla voit kirjoittaa hakulausekkeen (kuten "<a href="/vision_language_demo?q=a+bird+eating+fruit&taxon_id=3">lintu syö hedelmiä</a>") ja vertailla sitä 10 miljoonaan iNaturalist-kuvaan. Tulokset on järjestetty parhaiten osuviin. Voit käyttää tätä demoa uutena tapana löytää mielenkiintoisia iNaturalist-havaintoja, joita voit merkitä tai lisätä projektiisi.
       you_can_also_use_this_demo: Voit myös käyttää tätä demoa auttamaan meitä arvioimaan Vision Language -mallia, joka on tämän demon taustalla, kertomalla meille, mitkä kuvista oli osuvia hakulausekkeeseesi. Tämä demo käyttää kolmannen osapuolen <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP -mallia</a> jota ei ole koulutettu iNaturalist-aineistolla tai iNaturalist-tiimin toimesta. Joskus työkalu voi tuottaa epätarkkoja, puolueellisia tai loukkaavia tuloksia. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lue lisää iNaturalist-blogista</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Jos haluat tukea tätä työtä
       thank_you_for_your_submission!: Kiitos osallistumisestasi!

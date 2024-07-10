@@ -149,15 +149,11 @@ class FlagsController < ApplicationController
     end
 
     @create_comment = false
-    if @flag = Flag.where( create_options.except( "initial_comment_body" ) ).where( resolved: true ).first
-      @flag.resolved = false
-    else
-      @flag = @object.flags.build(create_options)
-      @create_comment = create_options.key?( :initial_comment_body ) && create_options[:initial_comment_body].length > 0
-      if @create_comment
-        @comment_attributes = { parent: @flag, user: current_user, body: create_options[:initial_comment_body] }
-        @flag.comments.build( @comment_attributes )
-      end
+    @flag = @object.flags.build(create_options)
+    @create_comment = create_options.key?( :initial_comment_body ) && create_options[:initial_comment_body].length > 0
+    if @create_comment
+      @comment_attributes = { parent: @flag, user: current_user, body: create_options[:initial_comment_body] }
+      @flag.comments.build( @comment_attributes )
     end
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]

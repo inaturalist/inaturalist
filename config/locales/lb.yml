@@ -2806,12 +2806,6 @@ lb:
           Wärend Messagen tëscht Iech an dem Empfänger privat sinn, kann d'iNaturalist Personal dës Messagen och kucken, a wäert dat maache wann Messagë fir Moderatioun gemellt gi sinn. Wann Dir wierklech privat wëllt kommunizéieren, benotzt w.e.g. aner Kommunikatiounsmethoden déi eng staark Verschlësslung ënnerstëtzt.
     nls_demo:
       what_do_you_want_to_search_for: Wouno wëllt Dir sichen?
-      #NOTE: please do not translate "A yellow bug with black spots" in the URL
-      #or the text here. This UI interacts with a machine-learning model that
-      #will return different results for different strings, and translations
-      #are different strings. The model was primarily trained on English text
-      #and may return inaccuracte results in different languages
-      for_example_a_yellow_bug_with_black_spots: z. B. e gielt Insekt mat schwaarze Punkten
     oauth:
       authorizations:
         new:

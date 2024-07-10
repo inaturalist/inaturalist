@@ -25,7 +25,7 @@
     var n = normalizeCount( count, locale ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if ( mod10 === 1 && mod100 !== 11 ) {
       return ["one"];
     }
@@ -47,7 +47,7 @@
 
   function westSlavic( count, locale ) {
     var n = normalizeCount( count, locale ) || 0;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if ( n === 1 ) return ["one"];
     if ( n >= 2 && n <= 4 && isWhole ) return ["few"];
     return ["other"];
@@ -55,7 +55,7 @@
 
   function oneUptoTwoOther( count, locale ) {
     var n = normalizeCount( count, locale ) || 0;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     return n && n >= 0 && n < 2 && isWhole ? ["one"] : ["other"];
   }
 
@@ -64,7 +64,7 @@
     var frac = ( n % 1 );
 
     if ( frac > 0 ) {
-      n = parseInt( frac.toString( ).split( "." )[1], 2 );
+      n = parseInt( frac.toString( ).split( "." )[1], 10 );
     }
 
     var mod10 = n % 10;
@@ -94,7 +94,7 @@
   I18n.pluralization.ar = function ( count ) {
     var n = normalizeCount( count, "ar" ) || 0;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 0 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if ( n === 0 ) {
       return ["zero"];
     }
@@ -134,7 +134,7 @@
     var n = normalizeCount( count, "lt" ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if (
       mod10 === 1
       && !( mod100 >= 11 && mod100 <= 19 )
@@ -155,7 +155,7 @@
   I18n.pluralization.mi = other;
   I18n.pluralization.mk = function ( count ) {
     var n = normalizeCount( count, "mk" ) || 0;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if (
       n % 10 === 1
       && n !== 11
@@ -170,7 +170,7 @@
     var n = normalizeCount( count, "pl" ) || 0;
     var mod10 = n % 10;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if ( n === 1 ) {
       return ["one"];
     }
@@ -192,7 +192,7 @@
   I18n.pluralization.ro = function ( count ) {
     var n = normalizeCount( count, "ro" ) || 0;
     var mod100 = n % 100;
-    var isWhole = parseInt( n, 2 ) === n;
+    var isWhole = parseInt( n, 10 ) === n;
     if ( n === 1 ) {
       return ["one"];
     }
