@@ -4,7 +4,7 @@ ENV RAILS_ENV=development
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip openjdk-17-jdk
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -\
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -\
   && apt-get update -qq && apt-get install -qq --no-install-recommends \
     nodejs \
   && apt-get upgrade -qq \
