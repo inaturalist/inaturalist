@@ -322,7 +322,9 @@ CREATE TABLE public.announcements (
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
     dismissible boolean DEFAULT false,
-    clients text[] DEFAULT '{}'::text[]
+    clients text[] DEFAULT '{}'::text[],
+    target_group_type character varying,
+    target_group_partition character varying
 );
 
 
@@ -5286,6 +5288,38 @@ ALTER SEQUENCE public.user_daily_active_categories_id_seq OWNED BY public.user_d
 
 
 --
+-- Name: user_donations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_donations (
+    id bigint NOT NULL,
+    user_id integer,
+    donated_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_donations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_donations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_donations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
+
+
+--
 -- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6588,6 +6622,13 @@ ALTER TABLE ONLY public.user_daily_active_categories ALTER COLUMN id SET DEFAULT
 
 
 --
+-- Name: user_donations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_donations ALTER COLUMN id SET DEFAULT nextval('public.user_donations_id_seq'::regclass);
+
+
+--
 -- Name: user_mutes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7687,6 +7728,14 @@ ALTER TABLE ONLY public.user_blocks
 
 ALTER TABLE ONLY public.user_daily_active_categories
     ADD CONSTRAINT user_daily_active_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_donations user_donations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_donations
+    ADD CONSTRAINT user_donations_pkey PRIMARY KEY (id);
 
 
 --
@@ -10094,6 +10143,20 @@ CREATE UNIQUE INDEX index_user_daily_active_categories_on_user_id ON public.user
 
 
 --
+-- Name: index_user_donations_on_donated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_donations_on_donated_at ON public.user_donations USING btree (donated_at);
+
+
+--
+-- Name: index_user_donations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_donations_on_user_id ON public.user_donations USING btree (user_id);
+
+
+--
 -- Name: index_user_mutes_on_muted_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10910,6 +10973,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240530162451'),
 ('20240606154217'),
 ('20240618044707'),
-('20240620100000');
+('20240620100000'),
+('20240709175116'),
+('20240715141936');
 
 

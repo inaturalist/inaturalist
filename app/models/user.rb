@@ -206,6 +206,7 @@ class User < ApplicationRecord
     foreign_key: "subject_user_id", inverse_of: :subject_user,
     dependent: :destroy
   has_many :taxon_name_priorities, dependent: :destroy
+  has_many :user_donations, dependent: :delete_all
 
   file_options = {
     processors: [:deanimator],

@@ -9776,9 +9776,16 @@ en:
               # clients attribute that is not a valid client for the
               # annoumcement's placement attribute. This might be used in a
               # sentence like "clients must be valid for specified
-              # placement". Only site admins will see this texxt, so it's ok
+              # placement". Only site admins will see this text, so it's ok
               # if it's not translated perfectly.
               must_be_valid_for_specified_placement: must be valid for specified placement
+            target_group_partition:
+              # Error message shown when an Announcement has a value in the
+              # target_group_partition attribute that is not a valid partition in the
+              # annoumcement's target group type. This might be used in a
+              # sentence like "Target group partition must be valid for specified target group".
+              # Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: must be valid for specified target group
         application:
           attributes:
             redirect_uri:

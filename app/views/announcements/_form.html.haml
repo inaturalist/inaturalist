@@ -8,6 +8,7 @@
 - content_for :extrajs do
   :javascript
     var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
+    var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe }
   = javascript_include_tag "announcements/form"
 = form_for @announcement, :builder => DefaultFormBuilder do |f|
   = f.error_messages
@@ -17,6 +18,11 @@
     multiple: true,                                                  |
     description: t( "views.announcements.clients_desc" ),            |
     size: [clients.length + 1, 5].min }                              |
+  = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
+  - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
+  = f.select :target_group_partition, target_group_partitions,              |
+    { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
+    { disabled: target_group_partitions.empty? }                            |
   :ruby
     month_names = I18n.t( "date.month_names" )
     if month_names.is_a?( Hash )
