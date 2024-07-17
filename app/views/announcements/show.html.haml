@@ -38,6 +38,10 @@
           prefers_target_staff                |
           prefers_target_unconfirmed_users    |
           prefers_exclude_monthly_supporters  |
+          include_donor_start_date            |
+          include_donor_end_date              |
+          exclude_donor_start_date            |
+          exclude_donor_end_date              |
         ).each do |a|                         |
           %tr
             %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )

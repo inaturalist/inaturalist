@@ -109,5 +109,47 @@ describe Announcement do
       expect( a.targeted_to_user?( User.make!( created_at: "2024-01-01 00:00:02" ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( created_at: "2024-01-01 00:00:03" ) ) ).to be false
     end
+
+    it "can target donors by donation date" do
+      a = Announcement.make!( include_donor_start_date: Date.today )
+      expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be true
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be false
+      expect( a.targeted_to_user?( User.make! ) ).to be false
+      expect( a.targeted_to_user?( nil ) ).to be false
+
+      a = Announcement.make!( include_donor_end_date: 1.day.ago )
+      expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
+      expect( a.targeted_to_user?( User.make! ) ).to be false
+      expect( a.targeted_to_user?( nil ) ).to be false
+
+      a = Announcement.make!( include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago )
+      expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 20.days.ago ).user ) ).to be false
+      expect( a.targeted_to_user?( User.make! ) ).to be false
+      expect( a.targeted_to_user?( nil ) ).to be false
+    end
+
+    it "can exclude donors by donation date" do
+      a = Announcement.make!( exclude_donor_start_date: Date.today )
+      expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
+      expect( a.targeted_to_user?( User.make! ) ).to be true
+      expect( a.targeted_to_user?( nil ) ).to be true
+
+      a = Announcement.make!( exclude_donor_end_date: 1.day.ago )
+      expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be true
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be false
+      expect( a.targeted_to_user?( User.make! ) ).to be true
+      expect( a.targeted_to_user?( nil ) ).to be true
+
+      a = Announcement.make!( exclude_donor_start_date: 10.days.ago, exclude_donor_end_date: 1.day.ago )
+      expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be true
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be false
+      expect( a.targeted_to_user?( UserDonation.make!( donated_at: 20.days.ago ).user ) ).to be true
+      expect( a.targeted_to_user?( User.make! ) ).to be true
+      expect( a.targeted_to_user?( nil ) ).to be true
+    end
   end
 end

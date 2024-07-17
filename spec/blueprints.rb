@@ -568,6 +568,11 @@ UserBlock.blueprint do
   blocked_user { User.make! }
 end
 
+UserDonation.blueprint do
+  user { User.make! }
+  donated_at { Time.now }
+end
+
 UserMute.blueprint do
   user { User.make! }
   muted_user { User.make! }

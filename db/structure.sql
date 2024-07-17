@@ -324,7 +324,11 @@ CREATE TABLE public.announcements (
     dismissible boolean DEFAULT false,
     clients text[] DEFAULT '{}'::text[],
     target_group_type character varying,
-    target_group_partition character varying
+    target_group_partition character varying,
+    include_donor_start_date date,
+    include_donor_end_date date,
+    exclude_donor_start_date date,
+    exclude_donor_end_date date
 );
 
 
@@ -10975,6 +10979,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240618044707'),
 ('20240620100000'),
 ('20240709175116'),
-('20240715141936');
+('20240715141936'),
+('20240716190326');
 
 

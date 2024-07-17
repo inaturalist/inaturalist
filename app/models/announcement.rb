@@ -123,6 +123,17 @@ class Announcement < ApplicationRecord
       end
     end
 
+    return false if ( include_donor_start_date || include_donor_end_date ) && (
+      !user || user.user_donations.
+        where( "donated_at >= ?", include_donor_start_date || Date.new( 2018, 1, 1 ) ).
+        where( "donated_at <= ?", include_donor_end_date || Time.now ).none?
+    )
+
+    return false if ( exclude_donor_start_date || exclude_donor_end_date ) &&
+      user && user.user_donations.
+        where( "donated_at >= ?", exclude_donor_start_date || Date.new( 2018, 1, 1 ) ).
+        where( "donated_at <= ?", exclude_donor_end_date || Time.now ).any?
+
     if prefers_target_unconfirmed_users
       return user && !user.confirmed?
     end

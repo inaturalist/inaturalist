@@ -38,6 +38,17 @@
   = f.check_box :prefers_target_staff, label_after: true
   = f.check_box :prefers_target_unconfirmed_users, label_after: true
   = f.check_box :prefers_exclude_monthly_supporters, label_after: true
+  - donors_start_year = 2018
+  - donors_end_year = Time.now.year + 1
+  = f.date_select :include_donor_start_date, use_month_names: month_names,
+    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+  = f.date_select :include_donor_end_date, use_month_names: month_names,
+    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+  = f.date_select :exclude_donor_start_date, use_month_names: month_names,
+    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+  = f.date_select :exclude_donor_end_date, use_month_names: month_names,
+    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+
   = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ) }
   = f.text_area :body
   .actions.buttons
