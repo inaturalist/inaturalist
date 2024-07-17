@@ -389,8 +389,8 @@ nl:
   #As in a Guide Section
   add_section: Voeg een Sectie toe
   add_several_observations_at_once: Voeg meerdere waarnemingen tegelijk toe.
-  add_sex_female_annotation: 'Aantekening "Geslacht: vrouwelijk" toevoegen'
-  add_sex_male_annotation: 'Aantekening "Geslacht: Mannelijk" toevoegen'
+  add_sex_female_annotation: 'Aantekening "Geslacht: vrouw" toevoegen'
+  add_sex_male_annotation: 'Aantekening "Geslacht: Man" toevoegen'
   add_sex_cannot_be_determined_annotation: 'Aantekening "Geslacht: kan niet worden vastgesteld" toevoegen'
   add_some_now: Nu een aantal toevoegen
   add_tag: Label toevoegen
@@ -1164,7 +1164,7 @@ nl:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Alle
     sex: Geslacht
-    male: Mannelijk
+    male: Man
     female: Vrouwelijk
     plant_phenology: Plantenfenologie
     flowers_and_fruits: Bloemen en vruchten
@@ -8521,7 +8521,7 @@ nl:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
         application:
@@ -8778,8 +8778,8 @@ nl:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: mannelijk
-        f: vrouwelijk
+        m: man
+        f: vrouw
         "n": onzijdig
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@m"
