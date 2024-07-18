@@ -662,8 +662,8 @@ module DarwinCore
         params[:min_id] = chunk_start_id
         params[:max_id] = [chunk_start_id + search_chunk_size - 1, end_id].min
         try_and_try_again( [
-                  Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-                  Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
+                  Elastic::Transport::Transport::Errors::ServiceUnavailable,
+                  Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
           Observation.search_in_batches( params.merge(
             per_page: 1000
           ), logger: logger ) do |batch|
@@ -689,6 +689,14 @@ module DarwinCore
               ! ( ( @opts[:community_taxon] && observation.community_taxon.blank? ) ||
                   ( max_observation_created && observation.created_at > max_observation_created ) ||
                   ( last_seen_observation_id && observation.id <= last_seen_observation_id ) )
+            end
+            unless @opts[:include_humans] || ::Taxon::HOMO.blank? || ::Taxon::HUMAN.blank?
+              filtered_obs = filtered_obs.select do | observation |
+                observation.taxon_id != ::Taxon::HOMO.id &&
+                  observation.taxon_id != ::Taxon::HUMAN.id &&
+                  observation.community_taxon_id != ::Taxon::HOMO.id &&
+                  observation.community_taxon_id != ::Taxon::HUMAN.id
+              end
             end
             batch.uniq!
             batch.sort!

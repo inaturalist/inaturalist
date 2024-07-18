@@ -441,7 +441,7 @@ class SiteDataExporter
           [
             Patron::TimeoutError,
             Faraday::TimeoutError,
-            Elasticsearch::Transport::Transport::Errors::TooManyRequests
+            Elastic::Transport::Transport::Errors::TooManyRequests
           ]
         ) do
           Observation.elastic_paginate( base_es_params.merge( filters: batch_filters ) )

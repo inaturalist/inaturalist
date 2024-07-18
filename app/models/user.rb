@@ -645,7 +645,7 @@ class User < ApplicationRecord
     observations.update_all( site_id: site_id, updated_at: Time.now )
     # update ES-indexed observations in place with update_by_query as the site_id
     # will not affect any other attributes that necessitate a full reindex
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+    try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Observation.__elasticsearch__.client.update_by_query(
         index: Observation.index_name,
         refresh: Rails.env.test?,

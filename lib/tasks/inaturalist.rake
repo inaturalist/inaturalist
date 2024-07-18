@@ -56,7 +56,7 @@ namespace :inaturalist do
     return unless last_id_to_delete
     UpdateAction.delete_and_purge( "id <= #{ last_id_to_delete }" )
     # delete anything that may be left in Elasticsearch
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+    try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
         body: { query: { range: { id: { lte: last_id_to_delete } } } })
     end
