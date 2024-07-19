@@ -6,7 +6,7 @@ import inatjs, {
 } from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
-import { resetControlledTerms } from "./controlled_terms";
+import { resetControlledTerms, fetchControlledTerms } from "./controlled_terms";
 import {
   fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
@@ -487,6 +487,7 @@ export function renderObservation( observation, options = { } ) {
     if ( taxonUpdated ) {
       dispatch( setIdentifiers( null ) );
       dispatch( setMoreFromClade( [] ) );
+      dispatch( fetchControlledTerms( { reload: true } ) );
     }
     if ( taxonUpdated || fetchAll ) {
       dispatch( fetchTaxonSummary( ) );
