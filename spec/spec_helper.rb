@@ -243,7 +243,7 @@ def enable_elastic_indexing( *args )
   classes.each do | klass |
     try_and_try_again(
       [
-        Elasticsearch::Transport::Transport::Errors::Conflict,
+        Elastic::Transport::Transport::Errors::Conflict,
         Faraday::ConnectionFailed
       ], sleep: 0.1, tries: 20
     ) do
@@ -265,7 +265,7 @@ def disable_elastic_indexing( *args )
     klass.send :skip_callback, :touch, :after, :elastic_index!
     try_and_try_again(
       [
-        Elasticsearch::Transport::Transport::Errors::Conflict,
+        Elastic::Transport::Transport::Errors::Conflict,
         Faraday::ConnectionFailed
       ], sleep: 0.1, tries: 20
     ) do

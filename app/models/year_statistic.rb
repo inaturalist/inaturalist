@@ -837,9 +837,9 @@ class YearStatistic < ApplicationRecord
       bucketer,
       [histogram_params],
       [
-        Elasticsearch::Transport::Transport::Errors::BadRequest,
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Elasticsearch::Transport::Transport::Errors::TooManyRequests,
+        Elastic::Transport::Transport::Errors::BadRequest,
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::TooManyRequests,
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
@@ -1102,7 +1102,7 @@ class YearStatistic < ApplicationRecord
       streak_bucketer,
       base_query,
       [
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },

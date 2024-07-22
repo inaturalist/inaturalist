@@ -609,6 +609,51 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs['coordinateUncertaintyInMeters'] ).to eq o.uncertainty_cell_diagonal_meters.to_s
   end
 
+  describe "excluding humans" do
+    before( :all ) do
+      Taxon.instance_eval { remove_const( "HOMO" ) }
+      Taxon::HOMO = Taxon.make!( name: "Homo" )
+      Taxon.instance_eval { remove_const( "HUMAN" ) }
+      Taxon::HUMAN = Taxon.make!( name: "Homo sapiens" )
+    end
+
+    it "excludes observations of Homo by default" do
+      Observation.make!( taxon: Taxon::HOMO )
+      archive = DarwinCore::Archive.new( quality_grade: "any" )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be true
+    end
+
+    it "excludes observations of Homo sapiens by default" do
+      Observation.make!( taxon: Taxon::HUMAN )
+      archive = DarwinCore::Archive.new( quality_grade: "any" )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be true
+    end
+
+    it "includes observations of Homo if requested" do
+      Observation.make!( taxon: Taxon::HOMO )
+      archive = DarwinCore::Archive.new( quality_grade: "any", include_humans: true )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be false
+    end
+
+    it "includes observations of Homo sapiens if requested" do
+      Observation.make!( taxon: Taxon::HUMAN )
+      archive = DarwinCore::Archive.new( quality_grade: "any", include_humans: true )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be false
+    end
+  end
+
   describe "annotation filters" do
     before( :all ) do
       @sex_attribute = make_controlled_term_with_label( "Sex" )
