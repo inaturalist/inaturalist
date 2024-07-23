@@ -389,8 +389,8 @@ nl:
   #As in a Guide Section
   add_section: Voeg een Sectie toe
   add_several_observations_at_once: Voeg meerdere waarnemingen tegelijk toe.
-  add_sex_female_annotation: 'Aantekening "Geslacht: vrouwelijk" toevoegen'
-  add_sex_male_annotation: 'Aantekening "Geslacht: Mannelijk" toevoegen'
+  add_sex_female_annotation: 'Aantekening "Geslacht: vrouw" toevoegen'
+  add_sex_male_annotation: 'Aantekening "Geslacht: Man" toevoegen'
   add_sex_cannot_be_determined_annotation: 'Aantekening "Geslacht: kan niet worden vastgesteld" toevoegen'
   add_some_now: Nu een aantal toevoegen
   add_tag: Label toevoegen
@@ -1164,7 +1164,7 @@ nl:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Alle
     sex: Geslacht
-    male: Mannelijk
+    male: Man
     female: Vrouwelijk
     plant_phenology: Plantenfenologie
     flowers_and_fruits: Bloemen en vruchten
@@ -6609,6 +6609,12 @@ nl:
       #image as a prompt
       vision_language_demo: Vision Language Demo
       what_do_you_want_to_search_for: Waar wil je naar zoeken?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: bijv. %{query_in_english}
       try_one_of_these_example_searches_colon: "Probeer één van deze voorbeeldzoekopdrachten:"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
@@ -8521,9 +8527,16 @@ nl:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: moet geldig zijn voor de opgegeven doelgroep
         application:
           attributes:
             redirect_uri:
@@ -8778,8 +8791,8 @@ nl:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: mannelijk
-        f: vrouwelijk
+        m: man
+        f: vrouw
         "n": onzijdig
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@m"

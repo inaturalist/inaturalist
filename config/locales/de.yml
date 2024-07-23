@@ -1076,6 +1076,10 @@ de:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Beliebig
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Beliebig
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Beliebig
@@ -1085,10 +1089,20 @@ de:
     male: Männlich
     female: Weiblich
     plant_phenology: Phänologie (Pflanze)
+    flowers_and_fruits: Blüten und Früchte
     budding: Knospend
     flower_budding: Knospend
     flowering: Blühend
     fruiting: Fruchttragend
+    no_flowers_or_fruits: Keine Blüten oder Früchte
+    flower_buds: Blütenknospen
+    flowers: Blüten
+    fruits_or_seeds: Früchte oder Samen
+    leaves: Blätter
+    breaking_leaf_buds: Blattknospen
+    green_leaves: grüne Blätter
+    colored_leaves: verfärbte Blätter
+    no_live_leaves: keine lebenden Blätter
     life_stage: Entwicklungsstufe
     adult: Adult
     teneral: frisch gehäutet
@@ -1142,6 +1156,13 @@ de:
     flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
     flowering: Blüten sichtbar, geöffnet und noch fest mit der Pflanze verbunden
     fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
+    flowers: Mindestens eine geöffnete Blüte
+    flower_buds: Mindestens eine geschlossene Blütenknospe
+    fruits_or_seeds: Mindestens eine Frucht oder ein Samen
+    breaking_leaf_buds: Wenigstens eine Knospe mit den ersten Blättern/Nadeln noch nicht komplett entfaltet
+    green_leaves: Zumindest ein grünes Blatt/Nadel (oder rötlich, falls das die normale Blattfarbe ist)
+    colored_leaves: Wenigstens ein Blatt oder eine Nadel mit herbstlicher oder trockenheitsbedingter Verfärbung
+    no_live_leaves: keine Blattknospen oder Blätter/Nadeln sind sichtbar
     gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
     male: Die Belege deuten darauf hin, dass der Organismus Spermien für die sexuelle Fortpflanzung produzieren kann
     molt: Abgeworfene Haut oder Exoskelett
@@ -1150,6 +1171,7 @@ de:
     egg: Ganzes Ei oder ein Teil eines Eis
     construction: Eine von einem Tier verursachte Konstruktion, die mit oder aus Materialien hergestellt wurde
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
+    no_flowers_or_fruits: Keine Blüten, Früchte oder Samen (ganz oder teilweise) sichtbar
     not_established: Organismus ist aus einer nicht-etablierten Population, einschließlich blinden Passagieren, Irrgästen oder freilaufenden/entflohenen Haustieren
     organism: Kompletter oder unvollständiger Organismus
     scat: Kot und Losung (keine Gewölle oder andere hervorgewürgte Bestandteile)
@@ -1172,6 +1194,8 @@ de:
   copy_and_paste_the_following_code_to: Kopiere und füge den folgenden Code ein, um diese Bewertung in eine andere Webseite einzubetten.
   copy_and_paste_this_into_your_own_html: Dies in dein eigenes HTML kopieren und einfügen.
   copy_guide_taxon_to: Taxon-Guide kopieren nach...
+  copy_to_clipboard: In Zwischenablage kopieren
+  copied!: Erfolgreich kopiert!
   copyright:
     some_rights_reserved: einige Rechte vorbehalten
     some_rights_reserved_by: "(c) %{name}, einige Rechte vorbehalten (%{license_short})"

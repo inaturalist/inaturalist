@@ -338,6 +338,7 @@ fr:
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits»'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucun indice de floraison"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Ajouter une annotation « Fleurs et Fruits : boutons floraux »'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fruits et Graines »'
   add_flowers_and_fruits_no_flower_or_fruits: 'Ajouter une annotation « Fleurs et Fruits : pas de Fleurs ni de Fruits »'
   add_leaves_breaking_leaf_buds: 'Ajouter une annotation « Feuilles : bourgeons foliaires en cours d’ouverture »'
@@ -6458,6 +6459,8 @@ fr:
       mark_remaining_as_not_relevant: Marquer le reste comme non pertinent
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Voir ces observations dans Identification
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> s'est associé à des chercheurs de <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University of College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>, et avec le soutien généreux de <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI pour Good Lab</a> pour mieux comprendre le potentiel des Modèles de Langage de Vision pour aider à organiser, explorer, et expliquer les observations d'iNaturalist. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
       you_can_also_use_this_demo: Vous pouvez également utiliser cette démo pour nous aider à évaluer le modèle Vision Language qui alimente cette démo en nous indiquant les images retournées qui correspondent à votre phrase de recherche. Cette démo utilise un modèle <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP</a> qui n'a pas été entrainé sur les données iNaturalist ou par l'équipe iNaturalist. Parfois, l'outil peut produire des résultats inexacts, biaisés ou offensants. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">En savoir plus sur le blog iNaturalist</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Si vous souhaitez soutenir ce travail
       thank_you_for_your_submission!: Merci pour votre contribution !
@@ -8528,7 +8531,7 @@ fr:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: doit être valide pour l'emplacement spécifié
         application:
