@@ -69,15 +69,15 @@
             %li= link_to t( :site_stats ), stats_path
           %li.divider{ role: "separator" }
           %li= link_to t( :help ), @site.help_url
-          - if @site&.getting_started_url
+          - if !@site&.getting_started_url.blank?
             %li= link_to t( :getting_started ), @site.getting_started_url
-          - if @site&.understanding_projects_url
+          - if !@site&.understanding_projects_url.blank?
             %li= link_to t( :understanding_projects ), @site.understanding_projects_url
-          - if @site&.educators_guide_url
+          - if !@site&.educators_guide_url.blank?
             %li= link_to t( :educators_guide ), @site.educators_guide_url
-          - if @site&.video_tutorials_url
+          - if !@site&.video_tutorials_url.blank?
             %li= link_to t( :video_tutorials ), @site.video_tutorials_url
-          - if @site&.curator_guide_url
+          - if !@site&.curator_guide_url.blank?
             %li= link_to t( :curator_guide ), @site.curator_guide_url
   - if logged_in?
     .navtabs.add-obs
