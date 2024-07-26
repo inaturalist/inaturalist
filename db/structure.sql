@@ -8971,6 +8971,13 @@ CREATE INDEX index_observation_reviews_on_user_id ON public.observation_reviews 
 
 
 --
+-- Name: index_observation_sounds_on_observation_id_and_sound_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_observation_sounds_on_observation_id_and_sound_id ON public.observation_sounds USING btree (observation_id, sound_id);
+
+
+--
 -- Name: index_observation_sounds_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10980,6 +10987,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240620100000'),
 ('20240709175116'),
 ('20240715141936'),
-('20240716190326');
+('20240716190326'),
+('20240724160440');
 
 
