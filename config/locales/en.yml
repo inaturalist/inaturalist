@@ -2584,6 +2584,11 @@ en:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_place_a_duplicate: Is this place a duplicate?
+  # Form field label for setting a scientific name as the currently "accepted"
+  # scientific name for a taxon. "Accepted" in this case is a term used in
+  # taxonomic nomenclature to indicate the name that is the preferred scientific
+  # name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Is this scientific name currently accepted?
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
   # Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: italic text
@@ -5005,6 +5010,8 @@ en:
   share_colon: "Share:"
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
+  # Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Should this common name be shown by default for this taxon?
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
   show_hidden_content: Show Hidden Content

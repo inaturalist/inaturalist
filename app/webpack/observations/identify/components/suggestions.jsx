@@ -325,7 +325,7 @@ class Suggestions extends React.Component {
                   </a>
                 </div>
               ) : null }
-              { response.results.map( r => (
+              { _.uniqBy( response.results, r => r.taxon.id ).map( r => (
                 <SuggestionRow
                   key={`suggestion-row-${r.taxon.id}`}
                   taxon={r.taxon}
