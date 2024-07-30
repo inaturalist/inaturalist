@@ -125,6 +125,7 @@ class Project < ApplicationRecord
         indexes :updated_at, type: "date"
       end
       indexes :slug, analyzer: "keyword_analyzer"
+      indexes :slug_keyword, type: "keyword"
       indexes :spam, type: "boolean"
       indexes :subproject_ids, type: "integer"
       indexes :terms, type: "text", index: false
@@ -186,6 +187,7 @@ class Project < ApplicationRecord
       hide_title: !!prefers_hide_title,
       description: description,
       slug: slug,
+      slug_keyword: slug,
       project_type: project_type,
       banner_color: preferred_banner_color,
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
