@@ -1469,6 +1469,8 @@ da:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Du kan forme passende adfærd på iNaturalist og overholde Fællesskabsretningslinjer. Sammen med kuratorprivilegier følger forventningen om din ageren som en eksemplarisk iNaturalist-bruger.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kurator Guide
   curators_changed_for_x_html: "Kuratorer ændret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
@@ -1814,6 +1816,8 @@ da:
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Underviser Guide
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
@@ -2101,6 +2105,8 @@ da:
   geoprivacy_is_private_desc: Observatør har valgt at skjule koordinaterne.
   georeferenced: Georefererede?
   get_started: Kom igang
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Komme i gang
   getting_started_guide: Kom godt i gang
   #Prompt to donate money on a montly basis
   give_monthly_caps: GIV MÅNEDLIGT
@@ -2377,6 +2383,11 @@ da:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Er beviserne tilstrækkelige til at bekræfte, at dette er %{taxon}
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller fornærmende?'
   is_this_place_a_duplicate: Er dette sted en kopi?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Accepteres dette videnskabelige navn p.t.?
   it_can_now_be_used_for_research: Den kan nu bruges til forskning og vises på andre web-sider
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv tekst
@@ -4721,6 +4732,8 @@ da:
   share_colon: "Del:"
   short_code_for_this_place: Forkortelse for dette sted, f.eks. US for United States
   short_or_abbreviated_title_for_display: Kort eller forkortet titel til visning i pladsbegrænsede områder. Maks. 10 tegn.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Skal dette almindelige navn vises som standard for denne takson?
   show: Vis
   show_active_and_inactive_taxa: Vis aktive og inaktive taksa
   show_hidden_content: Vis skjult indhold
@@ -5568,6 +5581,8 @@ da:
   unable_to_save_comment: Beklager, kommentaren kunne ikke gemmes.
   unblock: Ophæv blokering
   unclassified: Uklassificeret
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Forståelse af Projekter
   ungrafted_taxa: Ikke podede taksa
   unhide_content: Skjul ikke indhold
   unhide_desc: |
