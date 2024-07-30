@@ -1364,6 +1364,8 @@ id:
   curator_application_you_should_apply_if_you_can_behave: |
     Anda dapat memperagakan tingkah laku yang sesuai dalam iNaturalist dan tunduk kepada Pedoman
     Komunitas. Dengan adanya kuasa kuratorial, Anda juga diharapkan agar menjadi pengguna iNaturalist yang teladan.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Panduan Kurator
   curators_changed_for_x_html: "Kurator diubah untuk %{x}"
   curators: Kurator
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
@@ -1701,6 +1703,8 @@ id:
   editing_this: Mengubah %{elem}
   editing_x_in_y: "Mengubah %{x} di %{y}"
   editors: Penyunting
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Panduan Guru
   either_that_user_doesnt_exist_or: "Entah pengguna tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk Kelas Riset
   email: Email
@@ -1985,6 +1989,8 @@ id:
   geoprivacy_is_private_desc: Pengamat telah memilih untuk menyembunyikan koordinatnya.
   georeferenced: Memiliki georeferensi?
   get_started: Mulai
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Memulai
   getting_started_guide: Panduan Untuk Memulai
   #Prompt to donate money on a montly basis
   give_monthly_caps: BERIKAN TIAP BULAN
@@ -2250,6 +2256,11 @@ id:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Apakah bukti-bukti yang disediakan cukup untuk mengonfirmasi bahwa ini adalah %{taxon}?
   is_this_offensive_html: 'Apakah ini <a href="/help#inappropriate">tidak pantas</a>, spam, atau serangan?'
   is_this_place_a_duplicate: Apakah tempat ini merupakan duplikasi?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Apakah nama ilmiah ini diterima saat ini?
   it_can_now_be_used_for_research: Sekarang, ini dapat digunakan untuk penelitian dan ditampilkan di laman lain
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: teks bercetak miring
@@ -4549,6 +4560,8 @@ id:
   share_colon: "Bagikan:"
   short_code_for_this_place: Kode pendek untuk tempat ini, contohnya US untuk United States
   short_or_abbreviated_title_for_display: Judul pendek atau singkatan untuk ditampilkan di area yang memiliki ruang terbatas. Maks 10 karakter.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Apakah nama umum ini harus ditampilkan sebagai yang utama untuk takson ini?
   show: Tampilkan
   show_active_and_inactive_taxa: Tampilkan taksa aktif dan tidak aktif
   show_hidden_content: Tampilkan Konten Tersembunyi
@@ -5305,6 +5318,8 @@ id:
   unable_to_save_comment: Maaf, kami tidak dapat menyimpan komentar ini.
   unblock: Cabut Blokiran
   unclassified: Tidak diklasifikasi
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Memahami Proyek
   ungrafted_taxa: Taksa Yang Tidak Dicangkok
   unhide_content: Tampilkan Konten
   unhide_desc: |
