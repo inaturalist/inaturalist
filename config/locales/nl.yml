@@ -2366,6 +2366,11 @@ nl:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?
   is_this_offensive_html: 'Is dit <a href="/help#inappropriate">ongepast</a>, spam, of aanstootgevend?'
   is_this_place_a_duplicate: Is deze plaats een duplicaat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Is deze wetenschappelijk naam momenteel aanvaard?
   it_can_now_be_used_for_research: Het kan nu worden gebruikt voor onderzoek en getoond worden op andere websites
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Cursieve tekst
