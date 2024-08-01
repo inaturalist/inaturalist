@@ -1455,6 +1455,8 @@ sv:
     Du kan uppföra dig lämpligt på iNaturalist och följa Communityns riktlinjer.
     Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
     exemplarisk användare av iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Förvaltarguide
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
   curators: Förvaltare
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
@@ -1810,6 +1812,8 @@ sv:
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Lärarguide
   either_that_user_doesnt_exist_or: "Antingen existerar inte den användaren, eller så följer du den redan."
   eligible_for_research_grade: Berättigad till forskningsklass
   email: E-post
@@ -2097,6 +2101,8 @@ sv:
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
   get_started: Kom igång
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kom igång
   getting_started_guide: Komma igång-guide
   #Prompt to donate money on a montly basis
   give_monthly_caps: GE MÅNADSVIS
@@ -2387,6 +2393,11 @@ sv:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
   is_this_place_a_duplicate: Är denna fyndplats en dubblett?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Är detta vetenskapliga namn accepterat för närvarande?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv text
@@ -4732,6 +4743,8 @@ sv:
   share_colon: "Dela:"
   short_code_for_this_place: Ange en fyndplats om denna länk endast gäller för taxa från en viss fyndplats. Lämna det tomt om den gäller taxa i hela världen.
   short_or_abbreviated_title_for_display: Kort eller förkortad rubrik för visning i små utrymmen. Max 10 tecken.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Borde detta vardagliga namn visas som standard för detta taxon?
   show: Visa
   show_active_and_inactive_taxa: Visa accepterade och ickeaccpeterade taxa
   show_hidden_content: Visa dolt innehåll
@@ -5534,6 +5547,8 @@ sv:
   unable_to_save_comment: Tyvärr lyckades vi inte spara kommentaren.
   unblock: Avblockera
   unclassified: Oklassificerad
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Så funkar projekt
   ungrafted_taxa: Oplacerade taxa
   unhide_content: Visa innehåll igen
   unhide_desc: |
@@ -5786,6 +5801,7 @@ sv:
   values: Värden
   verbing_x_of_y: "%{verb} %{x} av %{y}..."
   verifiable_observations_by_observation_date: Verifierbara fynd efter observationsdatum
+  video_tutorials: Videohandledning
   view: Visa
   view_all: Visa alla
   view_all_caps: VISA ALLA
@@ -5863,7 +5879,6 @@ sv:
   view_your_personal_year_in_review_caps: "VISA DIN PERSONLIGA SUMMERING AV %{year}"
   view_yours: Visa dina
   view_all_of_your_observations_from_x: "Visa alla dina fynd från %{x}"
-  video_tutorials: Videohandledning
   visually_similar: Visuellt liknande
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: Hurra! Inga oplacerade taxa!

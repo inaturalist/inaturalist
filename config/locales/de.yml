@@ -416,6 +416,8 @@ de:
   added_by: Hinzugefügt von
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
   added_on_datetime: "Hinzugefügt am %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Hinzugefügte Rolle
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
@@ -1368,6 +1370,8 @@ de:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     du angemessenes Verhalten auf iNaturalist beurteilen kannst und dich an die Community-Richtlinien hältst. Mit den Befugnissen eines Kurators geht auch eine Vorbildwirkung einher.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Leitfaden für Kuratoren
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
@@ -1700,6 +1704,8 @@ de:
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Leitfaden für Lehrende
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
@@ -1981,6 +1987,8 @@ de:
   geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
   get_started: Projekt erstellen
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Erste Schritte
   getting_started_guide: Anleitung für den Einstieg
   #Prompt to donate money on a montly basis
   give_monthly_caps: MONATLICH SPENDEN
@@ -5280,6 +5288,8 @@ de:
   unable_to_save_comment: Leider konnten wir den Kommentar nicht speichern.
   unblock: Entsperren
   unclassified: Nicht klassifiziert
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: iNaturalist-Projekte verstehen
   ungrafted_taxa: nicht zugeordnete Taxa
   unhide_content: Inhalt wieder sichtbar machen
   unhide_desc: |
@@ -5514,6 +5524,7 @@ de:
   values: Werte
   verbing_x_of_y: "%{verb} %{x} von %{y}..."
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
+  video_tutorials: Videoanleitungen
   view: Ansehen
   view_all: Alle ansehen
   view_all_caps: ALLE ANZEIGEN
@@ -5591,7 +5602,6 @@ de:
   view_your_personal_year_in_review_caps: "SIEH DIR DEINEN PERSÖNLICHEN JAHRESRÜCKBLICK %{year} AN"
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: "Zeige alle deine Beobachtungen aus %{x}"
-  video_tutorials: Videoanleitungen
   visually_similar: Sieht ähnlich aus
   vulnerable: gefährdet
   w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeordneten Taxa!

@@ -1449,6 +1449,8 @@ nl:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Je toont het juiste gedrag op iNaturalist en je houd je aan de Gemeenschapsrichtlijnen. Als je de curatoriale rechten hebt wordt verwacht dat je een voorbeeldige gebruiker van iNaturalist zult zijn.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Curator gids
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
   curators: Curatoren
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
@@ -1794,6 +1796,8 @@ nl:
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Docentenhandleiding
   either_that_user_doesnt_exist_or: "Deze gebruiker bestaat niet of je bent hem reeds aan het volgen."
   eligible_for_research_grade: Komt in aanmerking voor onderzoekskwaliteit
   email: E-mail
@@ -2079,6 +2083,8 @@ nl:
   geoprivacy_is_private_desc: Waarnemer heeft ervoor gekozen om de coördinaten te verbergen.
   georeferenced: Gegeorefereerd?
   get_started: Aan de slag
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Hoe begin ik?
   getting_started_guide: Aan de slag-gids
   #Prompt to donate money on a montly basis
   give_monthly_caps: GEEF MAANDELIJKS
@@ -2360,6 +2366,11 @@ nl:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?
   is_this_offensive_html: 'Is dit <a href="/help#inappropriate">ongepast</a>, spam, of aanstootgevend?'
   is_this_place_a_duplicate: Is deze plaats een duplicaat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Is deze wetenschappelijk naam momenteel aanvaard?
   it_can_now_be_used_for_research: Het kan nu worden gebruikt voor onderzoek en getoond worden op andere websites
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Cursieve tekst
@@ -4688,6 +4699,8 @@ nl:
   share_colon: "Delen:"
   short_code_for_this_place: Korte code voor deze plaats, bijvoorbeeld VS voor de Verenigde Staten
   short_or_abbreviated_title_for_display: Korte of afgekorte titel voor weergave in beperkte ruimte. Maximaal 10 tekens.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Moet deze lokale naam standaard worden weergegeven voor dit taxon?
   show: Weergeven
   show_active_and_inactive_taxa: Actieve en inactieve taxa weergeven
   show_hidden_content: Verborgen inhoud tonen
@@ -5505,6 +5518,8 @@ nl:
   unable_to_save_comment: Helaas konden we de opmerking niet opslaan.
   unblock: Deblokkeren
   unclassified: Niet gerangschikt
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projecten begrijpen
   ungrafted_taxa: Loshangende taxa
   unhide_content: Inhoud tonen
   unhide_desc: |
@@ -5748,6 +5763,7 @@ nl:
   values: Waarden
   verbing_x_of_y: "%{x} van %{y} %{verb}..."
   verifiable_observations_by_observation_date: Verifieerbare waarnemingen op datum van waarneming
+  video_tutorials: Videohandleidingen
   view: Bekijken
   view_all: Alles weergeven
   view_all_caps: ALLES TONEN
@@ -5825,7 +5841,6 @@ nl:
   view_your_personal_year_in_review_caps: "BEKIJK JE PERSOONLIJK %{year} JAAROVERZICHT"
   view_yours: Bekijk die van jou
   view_all_of_your_observations_from_x: "Bekijk al je waarnemingen van %{x}"
-  video_tutorials: Videohandleidingen
   visually_similar: Visueel vergelijkbaar
   vulnerable: Kwetsbaar
   w00t_no_ungrafted_taxa: w00t! Geen loshangende taxa!
@@ -6618,7 +6633,7 @@ nl:
       try_one_of_these_example_searches_colon: "Probeer één van deze voorbeeldzoekopdrachten:"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
-      help_us_improve: Help ons om te verbeteren
+      help_us_improve: Geef ons tips
       to_help_us_improve: Om ons te helpen dit model te verbeteren willen we graag weten welke van de afbeeldingen op deze pagina relevant zijn voor je zoekopdracht &quot;%{searched_term}&quot;. Markeer elke afbeelding als relevant %{thumbs_up_icon} als deze overeenkomt met je zoekopdracht en met %{thumbs_down_icon} als deze niet relevant is. Klik op verzenden wanneer je klaar bent. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Markeer resterende als relevant
       #text for a button where a user can mark images as not relevant to their search term

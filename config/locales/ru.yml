@@ -1541,6 +1541,8 @@ ru:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Вы можете сформировать соответствующее поведение на iNaturalist и соблюдать правила сообщества. Наряду с кураторскими полномочиями мы ожидаем, что вы будете образцовым пользователем iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Руководство куратора
   curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
@@ -1880,6 +1882,8 @@ ru:
   editing_this: Редактирование %{elem}
   editing_x_in_y: "Редактирование %{x} в %{y}"
   editors: Редакторы
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Руководство преподавателя
   either_that_user_doesnt_exist_or: "Эти пользователи либо не существуют, либо вы уже на них подписаны."
   eligible_for_research_grade: Доступно для Исследовательского уровня
   email: Адрес электронной почты
@@ -2167,6 +2171,8 @@ ru:
   geoprivacy_is_private_desc: Наблюдатель решил скрыть координаты.
   georeferenced: Имеет геопривязку?
   get_started: Начать
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Начало
   getting_started_guide: Руководство по началу работы
   #Prompt to donate money on a montly basis
   give_monthly_caps: ВНОСИТЬ ЕЖЕМЕСЯЧНО
@@ -2438,6 +2444,11 @@ ru:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Достаточно ли доказательств, подтверждающих, что это %{taxon}?
   is_this_offensive_html: 'Является ли это <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_place_a_duplicate: Не является ли это место задвоенным?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Если это научное наименование, является ли оно в настоящее время общепринятым?
   it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и быть представлено на других веб-сайтах
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: текст курсивом
@@ -4751,6 +4762,8 @@ ru:
   share_colon: "Поделиться:"
   short_code_for_this_place: Краткое обозначение этого места, например, US для Соединенных штатов
   short_or_abbreviated_title_for_display: Сокращенное название или аббревиатура для отображения в области с ограниченным пространством. Максимум 10 символов.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Показывать ли это общее имя по умолчанию для данного таксона?
   show: Показать
   show_active_and_inactive_taxa: Показать активные и неактивные таксоны
   show_hidden_content: Показать скрытый контент
@@ -5560,6 +5573,8 @@ ru:
   unable_to_save_comment: К сожалению, мы не смогли сохранить комментарий.
   unblock: Разблокировать
   unclassified: Неклассифицированные
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Понимание проектов
   ungrafted_taxa: Непривязанные таксоны
   unhide_content: Отобразить контент
   unhide_desc: |
@@ -5808,6 +5823,7 @@ ru:
   values: Значения
   verbing_x_of_y: "%{verb} %{x} из %{y}..."
   verifiable_observations_by_observation_date: Подтверждаемые наблюдения по дате наблюдения
+  video_tutorials: Видеопособия
   view: Просмотр
   view_all: Посмотреть все
   view_all_caps: ПОСМОТРЕТЬ ВСЕ
@@ -5887,7 +5903,6 @@ ru:
   view_your_personal_year_in_review_caps: "ПОСМОТРЕТЬ ВАШ ПЕРСОНАЛЬНЫЙ ОБЗОР ЗА %{year} ГОД"
   view_yours: Посмотреть ваши
   view_all_of_your_observations_from_x: "Посмотреть все ваши наблюдения из %{x}"
-  video_tutorials: Видеопособия
   visually_similar: Визуально похожие
   vulnerable: Уязвимый
   w00t_no_ungrafted_taxa: w00t!  Нет непривязанных таксонов!
@@ -6647,6 +6662,12 @@ ru:
       #image as a prompt
       vision_language_demo: Демонстрация визуального языка
       what_do_you_want_to_search_for: Что вы хотите найти?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: например, %{query_in_english}
       try_one_of_these_example_searches_colon: "Попробуйте один из этих примеров поиска:"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model)
@@ -6659,6 +6680,7 @@ ru:
       view_these_observations_in_identify: Просмотрите эти наблюдения в разделе "Идентификация"
       #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
       inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> объединился с исследователями <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Массачусетского университета в Амхерсте</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Эдинбургского университета</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Университетского колледжа Лондона</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> при щедрой поддержке со стороны <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">исследовательской группы Microsoft AI for Good Lab</a> для лучшего понимания потенциала моделей языка визуализации, что поможет систематизировать, исследовать и объяснять наблюдения iNaturalist. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Эта демонстрация позволяет вам ввести поисковую фразу (например, "<a href="%{url}">%{query_in_english}</a>"), проводится сравнение с 10 миллионами фотографий iNaturalist. Результаты отсортированы от наиболее к наименее значимым. Вы можете использовать эту демонстрацию как новый способ поиска интересных наблюдений iNaturalist для добавления аннотаций или добавления наблюдений в свой проект.
       you_can_also_use_this_demo: Вы также можете использовать эту демонстрацию, чтобы помочь нам оценить визуальную языковую модель, используемую в этой демонстрации, сообщив нам, какие из найденных изображений соответствуют вашей поисковой фразе. В этой демонстрации используется сторонняя <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Модель визуального языка CLIP</a> которая не была обучена работе с данными iNaturalist или с командой iNaturalist. Иногда эта модель может выдавать неточные, предвзятые или сомнительные результаты.<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Подробнее можно прочесть об этом в блоге iNaturalist.</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Если вы хотите поддержать эту работу
       thank_you_for_your_submission!: Спасибо за ваш вклад!
@@ -8542,6 +8564,13 @@ ru:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: должно быть действительным для указанного места размещения
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: должно быть действительным для указанной целевой группы
         application:
           attributes:
             redirect_uri:

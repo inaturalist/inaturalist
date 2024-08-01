@@ -339,6 +339,7 @@ fr:
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits»'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucun indice de floraison"'
   add_flowers_and_fruits_flower_buds_annotation: 'Ajouter une annotation « Fleurs et Fruits : boutons floraux »'
+  add_flowers_and_fruits_flowers_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fleurs »'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fruits et Graines »'
   add_flowers_and_fruits_no_flower_or_fruits: 'Ajouter une annotation « Fleurs et Fruits : pas de Fleurs ni de Fruits »'
   add_leaves_breaking_leaf_buds: 'Ajouter une annotation « Feuilles : bourgeons foliaires en cours d’ouverture »'
@@ -4850,6 +4851,7 @@ fr:
   synonyms: Synonymes
   table: Tableau
   table_of_contents: Table des matières
+  tabulate_presence_absence_data_from_trips: Mettre en tableau les données de présence-absence à partir de trajets
   #Noun, as in "add a tag to this observation"
   tag: Attribut
   tagging: 'Étiquetage en cours…'
@@ -5473,6 +5475,9 @@ fr:
   user_added_an_x_to_noun_by_you_html: "%{user} a ajouté @gender{m:un|f:une|n:un(e)} %{x} à %{noun} par vous"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} a ajouté @gender{m:un|f:une|n:un(e)} %{x} à %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} a ajouté %{count} observation"
+    other: "%{user} a ajouté %{count} observations"
   user_already_authenticated: L'utilisateur est déjà authentifié
   user_already_app_owner: L'utilisateur est déjà propriétaire d'application
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5482,6 +5487,12 @@ fr:
     %{user} pense qu'il s'agit d'une liste complète de %{taxon} dans %{place}
   user_blocked: Utilisateur bloqué
   user_commented: "%{user} a commenté"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} a effectué une fusion de taxons affectant %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} a effectué une séparation de taxons affectant %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} a effectué un échange de taxons affectant %{taxa}"
   user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_an_observation_by_you: "%{user} a ajouté une de vos observations à ses favoris"
@@ -5571,6 +5582,7 @@ fr:
   values: Valeurs
   verbing_x_of_y: "%{verb} %{x} de %{y}…"
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
+  video_tutorials: Tutoriels vidéo
   view: Afficher
   view_all: Afficher tout
   view_all_caps: TOUT AFFICHER
@@ -5648,7 +5660,6 @@ fr:
   view_your_personal_year_in_review_caps: "VOIR VOTRE RÉTROSPECTIVE PERSONNELLE DE L'ANNÉE %{year}"
   view_yours: Afficher les vôtres
   view_all_of_your_observations_from_x: "Afficher toutes vos observations depuis %{x}"
-  video_tutorials: Tutoriels vidéo
   visually_similar: Visuellement semblable
   vulnerable: Vulnérable
   w00t_no_ungrafted_taxa: Hourra! Pas de taxons non greffés!

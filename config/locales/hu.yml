@@ -253,6 +253,8 @@ hu:
   add_annotations_for_controlled_attribute:
     sex: '"Nem" megjelölés hozzáadása'
     plant_phenology: Megjelölés hozzáadása a "Fenológiai fázishoz"
+    flowers_and_fruits: '"Virág és termés" megjelölés hozzáadása'
+    leaves: '"Levelek" megjelölés hozzáadása'
     life_stage: '"Életszakasz" megjelölés hozzáadása'
     evidence_of_presence: '"Megjelenési bizonyíték" megjelölés hozzáadása'
   add_another_flag: Még egy bejelentés
@@ -305,6 +307,14 @@ hu:
   add_plant_phenology_flowering_annotation: '"Fenológiai fázis: Virágzó" hozzáadása'
   add_plant_phenology_fruiting_annotation: '"Fenológiai fázis: Termő" hozzáadása'
   add_plant_phenology_no_evidence_of_flowering_annotation: '"Fenológiai fázis: Virágzás bizonyítéka hiányzik" hozzáadása'
+  add_flowers_and_fruits_flower_buds_annotation: '"Virág és termés: bimózó" megjelölés hozzáadása'
+  add_flowers_and_fruits_flowers_annotation: '"Virág és termés: virágzó" megjelölés hozzáadása'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '"Virág és termés: termés és mag" megjelölés hozzáadása'
+  add_flowers_and_fruits_no_flower_or_fruits: '"Virág és termés: nincs virág és termés" megjelölés hozzáadása'
+  add_leaves_breaking_leaf_buds: '"Levelek: Kihajtó rügy" megjelölés hozzáadása'
+  add_leaves_green_leaves: '"Levelek: Zöld levelek" megjelölés hozzáadása'
+  add_leaves_colored_leaves: '"Levelek: Színes levelek" megjelölés hozzáadása'
+  add_leaves_no_live_leaves: '"Levelek: Nincsenek levelek" megjelölés hozzáadása'
   add_life_stage_adult_annotation: '"Életszakasz: Felnőtt" megjelölés hozzáadása'
   add_life_stage_teneral_annotation: '"Életszakasz: Frissen kikelt" megjelölés hozzáadása'
   add_life_stage_subimago_annotation: '"Életszakasz: Szubimágó" megjelölés hozzáadása'
@@ -977,6 +987,10 @@ hu:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Bármely
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Bármilyen
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Bármilyen
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Bármely
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Bármely
@@ -986,10 +1000,18 @@ hu:
     male: Hím
     female: Nőstény
     plant_phenology: Növényfenológia
+    flowers_and_fruits: Virág és termés
     budding: Rügyező
     flower_budding: Bimbózó
     flowering: Virágzó
     fruiting: Termő
+    no_flowers_or_fruits: Nincs virág és termés
+    flowers: Virágok
+    fruits_or_seeds: Virág vagy mag
+    leaves: Levelek
+    green_leaves: Zöld levelek
+    colored_leaves: Színes levelek
+    no_live_leaves: Nincsenek élő levelek
     life_stage: Életszakasz
     adult: Felnőtt
     teneral: Frissen kikelt
@@ -1040,12 +1062,18 @@ hu:
     flower_budding: A virágbimbók látszanak, de nincsenek kinyílva
     flowering: A virág látszik, ki van nyílva, még mindig a növényen van
     fruiting: A gyümölcs látszik és még mindig a növényen van
+    flowers: Legalább egy kinyílt virág
+    fruits_or_seeds: Legalább egy virág vagy mag
+    green_leaves: Legalább egy zöld levél vagy tűlevél (lehet vöröses, ha ez a természetes egészséges színe)
+    colored_leaves: Legalább az egyik levél vagy tűlevél az évszak késői színét vette fel vagy kiszáradt színű
+    no_live_leaves: Nincsenek kihajtó rügyek és nem látszanak zöld vagy színes levelek
     male: Bizonyított, hogy az élőlény hímivarsejtet tud termelni ivaros szaporodáshoz
     molt: Levedlett bőr vagy más kültakaró
     leafmine: Bizonyíték arra, hogy az élőlény a levél alső és felső epidermisze között táplálkozott
     hair: Szőr, amely már elvált az élőlénytől, amely azt viselte
     egg: Egész tojás vagy pete, vagy annak része
     construction: Egy állat által más anyagokból létrehozott vagy kiásott struktúra
+    no_flowers_or_fruits: Nem látható virág, termés vagy mag (akár részben vagy teljesen)
     not_established: Az élőlény az adott helyen még meg nem honosodott populációhoz tartozik, például szabadonengedett vagy elszökött házi kedvenc, szállítmányokkal érkező élőlények, valamint kóbor állatok.
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
@@ -1179,8 +1207,11 @@ hu:
   #Header followed by a list
   curator_application_you_should_apply_if: |
     Csak akkor jelentkezhetsz kurátornak, ha:
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kurátor útmutató
   curators_changed_for_x_html: "%{x} kurátorai megváltoztak"
   curators: Kurátorok
+  curator_identification: Kurátor meghatározása
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
   custom_boundary: Tetszőleges határolókeret
@@ -1498,6 +1529,8 @@ hu:
   editing_this: '%{elem} szerkesztése'
   editing_x_in_y: "%{x} szerkesztése itt: %{y}"
   editors: Szerkesztők
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Oktató útmutató
   either_that_user_doesnt_exist_or: "Vagy nem létezik az a felhasználó vagy már követed őt."
   eligible_for_research_grade: Tudományosszint-potenciál
   email: Email
@@ -1753,6 +1786,8 @@ hu:
   geoprivacy_is_private: A hely rejtett
   geoprivacy_is_private_desc: A megfigyelő úgy döntött, hogy elrejti a koordinátákat.
   get_started: Elkezdem
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Első lépések
   getting_started_guide: Első lépések
   #Prompt to donate money on a montly basis
   give_monthly_caps: ADAKOZZ HAVONTA
@@ -4730,6 +4765,7 @@ hu:
   value: Érték
   values: Értékek
   verifiable_observations_by_observation_date: Megerősíthető megfigyelések a megfigyelés dátuma szerint
+  video_tutorials: Videó bemutatók
   view: Megtekintés
   view_all: Összes
   view_all_caps: MIND MEGTEKINTÉSE
@@ -4797,7 +4833,6 @@ hu:
   view_your_personal_year_in_review_caps: "TOVÁBB A %{year}. ÉVI EGYÉNI VISSZATEKINTŐDHÖZ"
   view_yours: Sajátok
   view_all_of_your_observations_from_x: "Megfigyeléseid megtekintése innen: %{x}"
-  video_tutorials: Videó bemutatók
   visually_similar: Kinézetre hasonló
   vulnerable: Sebezhető
   w_photos_only: fotókkal
@@ -5785,6 +5820,14 @@ hu:
           "Plant Phenology=Flowering": Virágzó
           "Plant Phenology=Fruiting": Termő
           "Plant Phenology=No Evidence of Flowering": A virágzás bizonyítéka hiányzik
+          "Flowers and Fruits=Flower Buds": Bimbózó
+          "Flowers and Fruits=Flowers": Virág
+          "Flowers and Fruits=Fruits or Seeds": Virág vagy mag
+          "Flowers and Fruits=No Flowers or Fruits": Nincs virág sem termés
+          "Leaves=Breaking Leaf Buds": Kihajtó rügyek
+          "Leaves=Green Leaves": Zöld levelek
+          "Leaves=Colored Leaves": Színes levelek
+          "Leaves=No Live Leaves": Nincsenek élő levelek
           "Life Stage=Egg": Pete, tojás
           "Life Stage=Larva": Lárva
           "Life Stage=Juvenile": Fiatal
