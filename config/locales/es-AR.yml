@@ -1077,6 +1077,10 @@ es-AR:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Cualquiera
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Cualquiera
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Cualquiera
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Cualquiera
@@ -1086,10 +1090,20 @@ es-AR:
     male: Masculino
     female: Femenino
     plant_phenology: Fenología de la planta
+    flowers_and_fruits: Flores y Frutas
     budding: En germinación
     flower_budding: Yemas Florales
     flowering: Floración
     fruiting: Fructificacón
+    no_flowers_or_fruits: Sin flores ni frutas
+    flower_buds: Pimpollos
+    flowers: Flores
+    fruits_or_seeds: Frutos o semillas
+    leaves: Hojas
+    breaking_leaf_buds: Rompientes de hojas
+    green_leaves: Hojas Verdes
+    colored_leaves: Hojas de colores
+    no_live_leaves: Sin hojas vivas
     life_stage: Etapa de vida
     adult: Adulto
     teneral: Imago tierno
@@ -1122,6 +1136,12 @@ es-AR:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Minas en hojas
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Pelo
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construcción
     #Does the observation belong to a non-established population or not
     established: Establecido
     #Organism is not a member of an established population
@@ -1137,9 +1157,17 @@ es-AR:
     flower_budding: Los cogollos de flores son visibles pero no están abiertos
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Frutas visibles y todavía unidas a la planta
+    flowers: Al menos una flor abierta
+    flower_buds: Al menos una flor abierta
+    fruits_or_seeds: Al menos un fruto o semilla
+    breaking_leaf_buds: Al menos un pimpollo con su primera hoja o aguja nueva no completamente desplegada
+    green_leaves: Al menos una hoja o aguja verde (o rojizo si este es el color normal saludable)
+    colored_leaves: Al menos una hoja o aguja tiene un color de temporada o sequía tarde
+    no_live_leaves: No son visibles los capullos de hojas rotas o las hojas o agujas verdes o coloreadas
     gall: Brote de tejido vegetal deformado causado por un organismo parásito o infección
     male: La evidencia muestra que el organismo puede producir esperma para la reproducción sexual
     molt: Piel descartada o exoesqueleto
+    leafmine: Evidencia de alimentación entre las capas dérmicas de una hoja
     hair: Pelo que ya no está unido al organismo que lo originó
     no_evidence_of_flowering: Los medios no proporcionan pruebas de estructuras reproductivas
     organism: Organismo total o parcial
@@ -2214,6 +2242,11 @@ es-AR:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: '¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?'
   is_this_offensive_html: '¿Esto es <a href="/help#inappropriate">inapropiado</a>, spam u ofensivo?'
   is_this_place_a_duplicate: '¿Está duplicado este lugar?'
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: '¿Está aceptado actualmente este nombre científico?'
   it_can_now_be_used_for_research: Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Texto cursiva
@@ -3050,6 +3083,8 @@ es-AR:
   observation: Observación
   observation_: observación
   observation_accuracy_experiment_year: "Año"
+  observation_accuracy_validator_email_with_gratitude: Con gratitud,
+  observation_accuracy_validator_email_the_inaturalist_team: El equipo de iNaturalist
   observation_added_to_the_project: "Observación añadida al proyecto %{project}"
   observation_aggregation: Agregado de observación
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -5312,13 +5347,13 @@ es-AR:
   user_blocked: Usuario bloqueado
   user_commented: "%{user} comentó"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxon}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxon}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_stage_affecting_taxon2: "%{user} ha eliminado un taxón que afecta a %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxon}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxa}"
   user_disagrees_this_is_taxon: "%{user} no está de acuerdo que es %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} no está de acuerdo con identificaciones anteriores más finas."
   user_faved_an_observation_by_you: "%{user} marcó como favorita una observación tuya"
