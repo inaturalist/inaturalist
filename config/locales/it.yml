@@ -1477,6 +1477,8 @@ it:
   deviation: Scostamento
   devise:
     confirmations:
+      confirmed: |
+        Il tuo indirizzo e-mail è stato confermato correttamente.
       send_instructions: "Entro qualche minuto riceverai un messaggio email con le istruzioni per confermare il tuo indirizzo mail."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1766,6 +1768,7 @@ it:
   extinct_in_the_wild: Estinta in Natura
   extra_properties: Proprietà aggiuntive
   evidence_of_organism: Evidenza della presenza dell'organismo
+  evidence_related_to_single_subject: Evidenze relative ad un soggetto singolo
   facebook: Facebook
   failed_to_find_your_location: Impossibile trovare la tua posizione.
   failed_to_repair_photo: "Errore nel riparare la foto: %{errors}"
@@ -1804,6 +1807,7 @@ it:
   filter: Filtra
   filter_by_curator_identification: Filtra in base all'identificazione dei curatori
   filter_by_place: Filtra per luogo
+  filter_by_species: Filtra per specie
   filter_by_taxon: Filtra per taxon
   filter_by_place_taxon_and_color: Filtra per luogo, taxon, e colore utilizzando i controlli.
   filter_list_by_this_taxon: Filtra la lista per questo taxon
@@ -1986,6 +1990,9 @@ it:
   grid_tooltip: Mostra la visualizzazione a griglia
   group: Gruppo
   grouping: Raggruppamento
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Indovina la posizione da altre osservazioni?
   guides: Guide
   guide_compiled_by: Guida realizzata da
   guide_deleted: Guida rimossa
@@ -2704,6 +2711,12 @@ it:
     a quella persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Nascondi
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Mostra
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Sospendi
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Riattiva
   moderator_note_desc: |
     Le note dei moderatori sono registrazioni di risposte di moderazione o di preoccupazioni
     basate su prove circa un utente, ad esempio se sono un possibile account sockpuppet. Si prega di non includere le opinioni personali o dicerie sull'utente.
@@ -3073,6 +3086,7 @@ it:
   observation_accuracy_experiment_all_results: "Tutti i risultati"
   observation_accuracy_experiment_methods: "Metodi"
   observation_accuracy_experiment_step_1: "Passo 1: Generazione del Campione e Assegnazione"
+  observation_accuracy_experiment_from_the2: "Dal database di iNaturalist di osservazioni (A), abbiamo generato un campione casuale (B). I sottocampioni sono stati assegnati a validatori candidati (C) basati sui criteri descritti qui sotto. Abbiamo assegnato ogni osservazione campione a più validatori candidati (\"Ridondanza validatore Target\")"
   observation_accuracy_experiment_sample_generated: "Campione generato: %{date}"
   observation_accuracy_experiment_sample_size: "Dimensione del campione: %{number}"
   observation_accuracy_experiment_target_validator: "Ridondanza Validatore Target: %{number}"
@@ -3081,6 +3095,7 @@ it:
   observation_accuracy_experiment_mean_number: "Numero medio di validatori per osservazione del campione: %{number}"
   observation_accuracy_experiment_validator_candidate: "Criteri del validatore candidato"
   observation_accuracy_experiment_if_an_identifier: "Se un identificatore aveva fatto almeno 3 identificazioni di miglioramento su un taxon, li abbiamo considerati qualificati per convalidare quel taxon. Le identificazioni di miglioramento sono i primi suggerimenti di un taxon che la comunità successivamente accetta."
+  observation_accuracy_experiment_if_an_identifier_continent: "Se un identificatore ha effettuato almeno 3 identificazioni migliorative su un taxon in un continente, lo consideravamo qualificato per convalidare quel taxon in quel continente. Le identificazioni migliorative sono le prime proposte di un taxon che la comunità successivamente conferma."
   observation_accuracy_experiment_for_example: "Ad esempio, l'identificatore 1 aggiunge una ID di A ad un'osservazione. Se l'Identificatore 2 aggiunge successivamente una ID iniziale di B, l'Identificatore 1 su A diventa una ID di miglioramento. Se l'identificatore 3 aggiunge successivamente una ID di supporto a B, l'identificatore 2 su B diventa una ID di miglioramento."
   observation_accuracy_experiment_step_2: "Passaggio 2: Validazione dei campioni"
   observation_accuracy_experiment_we_contacted: "Abbiamo contattato i validatori candidati e abbiamo chiesto loro di aggiungere identificazioni ai loro sottocampioni. Il grafico a destra raggruppa l'osservazione del campione con il numero di validatori."
@@ -3099,6 +3114,8 @@ it:
   observation_accuracy_experiment_in_the_example: "Nella figura di esempio a destra la precisione media di tre osservazioni del campione sarebbe del 51%."
   observation_accuracy_validator_email_ids_equal_to: |
     Le identificazioni pari al (A), o più precise del (B), Taxon d'Osservazione, saranno considerate come Accordi.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Siamo molto grati per il tuo aiuto come identificatore su iNaturalist e ti ringraziamo molto per aver partecipato a questo studio. Per piacere leggi <a href="%{url}"> i metodi</a> per approfondire sul design di questo esperimento
   observation_accuracy_validator_email_with_gratitude: Con gratitudine,
   observation_accuracy_validator_email_the_inaturalist_team: Il Team di iNaturalist
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
@@ -4710,6 +4727,7 @@ it:
   subject_resolved_noun_html: "%{subject} ha risolto %{noun}"
   submission_model: Modello di invio
   submission_model_description: Chi può aggiungere osservazioni al tuo progetto?
+  submit: Invia
   submit_observations:
     one: Invia 1 osservazione
     other: Invia %{count} osservazioni
@@ -4936,6 +4954,7 @@ it:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Controlli di formattazione testo
   text_editing_controls: Controlli di modifica testo
+  thank_you!: Grazie!
   thanks!: Grazie!
   thanks_from_all_of_us_here_at: Grazie da tutti noi a
   that_photo_doesnt_exist: La foto non esiste.
@@ -6007,6 +6026,9 @@ it:
         thank_you_for_being_a_monthly_supporter_caps: GRAZIE PER ESSERE UN SOSTENITORE MENSILE!
       temporarily_unavailable: |
         Grazie per il tuo interesse nel supportare iNaturalist! Le donazioni a iNaturalist non sono temporaneamente disponibili, mentre aggiorniamo il nostro sistema di donazioni. Ti preghiamo di ricontrollare presto.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Clicca qui per richiedere nuovamente un'email di conferma
+      please_add_an_email_and_password: Si prega di aggiungere una e-mail e una password in modo da non perdere l'accesso al tuo account
     flags:
       show:
         flaggable_content_desc: |
