@@ -7188,7 +7188,8 @@ en:
       for_example_query: e.g. %{query_in_english}
       try_one_of_these_example_searches_colon: "Try one of these example searches:"
       # shortened text for a button requesting users help us improve the model
-      # being using, hence the missing subject (implied to be the model)
+      # being using, hence the missing subject (implied to be the model). Try
+      # to keep it under 20 characters
       help_us_improve: Help us improve
       to_help_us_improve:
         To help us improve this model we would like to know which of the images on this page are

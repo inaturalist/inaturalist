@@ -171,6 +171,11 @@ a:hover, a:focus {
     height: 85px;
     padding: 1px 15px;
     margin-bottom: 15px;
+
+    button {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .iconic-taxa-selectors {
