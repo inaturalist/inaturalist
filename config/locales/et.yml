@@ -5124,6 +5124,14 @@ et:
     messages:
       from: Kellelt
       to: Kellele
+    nls_demo:
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: nt %{query_in_english}
+      this_demo_tool3: See näitlik tööriist laseb sul kirjutada inglise keelse otsingulause (näiteks <a href="%{url}">%{query_in_english}</a>") ning võrdleb seda iNaturalisti 10 miljoni fotoga. Tulemused reastatakse kõige täpsemast kõige vähem täpsemani. Saad seda tööriista kasutada uute huvitavate iNaturalisti vaatluste otsimiseks, millele märkmeid lisada või mida oma projektile lisada.
     observations:
       community_id:
         agreement: Leping
