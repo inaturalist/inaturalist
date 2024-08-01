@@ -140,6 +140,7 @@ class FiltersButton extends React.Component {
       { value: "observed_on", label: "date_observed_" },
       { value: "updated_at", label: "date_updated" },
       { value: "votes", label: "faves" },
+      { value: "geo_score", label: "Geo Score" },
       { value: "random", label: "random" }
     ];
     const canShowObservationFields = ( ) => (
@@ -354,7 +355,7 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { I18n.t( field.label ) }
+                  { I18n.t( field.label, { defaultValue: field.label } ) }
                 </option>
               ) ) }
             </select>

@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Observation < ApplicationRecord
 
   include ActsAsElasticModel
@@ -335,6 +336,7 @@ class Observation < ApplicationRecord
   has_many :observation_reviews, :dependent => :destroy
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
+  has_one :observation_geo_score, dependent: :delete
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
 
@@ -3482,5 +3484,4 @@ class Observation < ApplicationRecord
       unique_hash: { "Observation::elastic_index": id }
     ).elastic_index!( ids: [id] )
   end
-
 end
