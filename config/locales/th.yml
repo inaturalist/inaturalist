@@ -940,6 +940,8 @@ th:
     แก้ไขสถานที่ที่สร้างโดยผู้ใช้งานและอัปโหลดไฟล์ KML ที่ใหญ่กว่า 1 MB (แต่เล็กกว่า 5 MB)
   #Header
   curator_application_what_curators_cannot_do: สิ่งที่ผู้ดูแลทำไม่ได้
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: คู่มือผู้ดูแล
   curators: ผู้ดูแล
   curator_identification: การจำแนกโดย Curator
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
@@ -1115,6 +1117,8 @@ th:
   editing_taxon_name_for_taxon_html: แก้ไขชื่อ "%{name}" สำหรับ %{taxon}
   editing_this: แก้ไข %{elem}
   editing_x_in_y: "แก้ไข %{x} ใน %{y}"
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: คู่มือครู/วิทยากร
   eligible_for_research_grade: มีคุณสมบัติเป็นระดับงานวิจัย
   email: อีเมล
   email_notifications: การแจ้งเตือนทางอีเมล
@@ -1280,6 +1284,8 @@ th:
   geoprivacy_is_private: การเปิดเผยพิกัดเป็นส่วนตัว
   georeferenced: อ้างอิงพิกัด?
   get_started: สร้างโครงการ
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: การเริ่มต้นใช้งาน
   getting_started_guide: คู่มือเริ่มต้นใช้งาน
   #Prompt to donate money once
   give_now_caps: บริจาคเลย
@@ -1332,6 +1338,7 @@ th:
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "จำนวนชั่วโมงที่ปรับ"
   i_dont_know_but_i_am_sure_this_is_taxon: ฉันไม่รู้ แต่ฉันแน่ใจว่านี่คือ%{taxon}
+  id: การจำแนก
   id_categories:
     tooltips:
       leading: |
@@ -1772,6 +1779,7 @@ th:
   nearby_observations_: การสังเกตในบริเวณใกล้เคียง
   needs_id: รอจำแนกชนิด
   needs_id_: รอจำแนกชนิด
+  needs_id_expandable_html: "<span class='full'>รอ</span>จำแนกชนิด"
   needs_id_tooltip_html: 'การสังเกตที่ "รอจำแนกชนิด" มีสื่อ ตำแหน่ง และวันที่ แต่ยังขาดความเห็นพ้องของชุมชนในการจำแนกที่ระดับชนิด <a href="https://www.inaturalist.org/pages/help#quality">เรียนรู้เพิ่มเติมเกี่ยวกับระดับคุณภาพข้อมูล</a>'
   #Column header in a table listing iNaturalist Network members
   network_member: สมาชิกเครือข่าย
@@ -2902,6 +2910,8 @@ th:
   uicn_red_list_status: "สถานะบัญชีแดง IUCN:"
   umbrella_projects: โครงการครอบคลุม
   unclassified: ไม่ถูกจัดจำแนก
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: การใช้งานโครงการ
   unknown: ไม่ทราบ
   unknown_error: ข้อผิดพลาดที่ไม่รู้จัก
   unknown_rank: '(ลำดับที่ไม่รู้จัก)'
@@ -2987,6 +2997,7 @@ th:
   value: ค่า
   values: ค่า
   verifiable_observations_by_observation_date: การสังเกตที่ตรวจสอบได้ตามวันที่สังเกต
+  video_tutorials: วีดีโอแนะนำการใช้งาน
   view: ดู
   view_all: ดูทั้งหมด
   view_all_caps: ดูทั้งหมด
@@ -3162,6 +3173,7 @@ th:
   your_favorites: รายการโปรดของคุณ
   your_hard_drive: อุปกรณ์ของคุณ
   your_home: หน้าหลักของคุณ
+  your_id: การจำแนกของคุณ
   your_identification: การจำแนกของคุณ
   your_membership: การเป็นสมาชิกของคุณ
   your_name_was_saved: บันทึกชื่อที่คุณตั้งแล้ว
