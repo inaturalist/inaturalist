@@ -2383,6 +2383,11 @@ pt-BR:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: A evidência fornecida é suficiente para confirmar que é %{taxon}?
   is_this_offensive_html: 'Esta observação é <a href="/help#inappropriate">inapropriada</a>, spam, ou ofensiva?'
   is_this_place_a_duplicate: Este local está duplicado?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Este nome científico é atualmente aceito?
   it_can_now_be_used_for_research: Pode agora ser utilizada para pesquisa ou visualizada em outros sites
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: texto em itálico
@@ -4722,6 +4727,8 @@ pt-BR:
   share_colon: "Compartilhar:"
   short_code_for_this_place: Abreviação para este local, exemplo EUA para Estados Unidos
   short_or_abbreviated_title_for_display: Texto abreviado para exibir como título em áreas com espaço limitado. Máximo 10 caracteres.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Este nome comum deveria ser mostrado por padrão para este táxon?
   show: Exibir
   show_active_and_inactive_taxa: Exibir espécies ativas e inativas
   show_hidden_content: Mostrar conteúdo oculto
@@ -5670,6 +5677,9 @@ pt-BR:
   user_added_an_x_to_noun_by_you_html: "%{user} adicionou um %{x} a %{noun} por você"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou uma %{x} a %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} adicionou %{count} observação"
+    other: "%{user} adicionou %{count} observações"
   user_already_authenticated: O usuário já está autenticado
   user_already_app_owner: O usuário já é um proprietário de aplicativo
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -8183,7 +8193,7 @@ pt-BR:
         other: about %{count} horas
       about_x_months:
         one: cerca de 1 mês
-        other: about %{count} meses
+        other: cerca de %{count} meses
       about_x_years:
         one: cerca de 1 ano
         other: about %{count} anos
