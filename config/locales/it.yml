@@ -5004,7 +5004,7 @@ it:
   taxon_merge: unione del taxon
   #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_merge_affecting_taxa: Unione di taxon interessa %{taxon}
+  taxon_merge_affecting_taxa: Unione di taxon interessa %{taxa}
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve corrispondere a uno di quelli del nostro database
   taxon_observed_by_html: |
@@ -5044,11 +5044,11 @@ it:
   taxon_split: divisione del taxon
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_split_affecting_taxa: Divisione di taxon interessa %{taxon}
+  taxon_split_affecting_taxa: Divisione di taxon interessa %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organizzazione del taxon
   #Notification about a taxon stage, @vow_or_con operates on %{taxon}
-  taxon_stage_affecting_taxon: Fase di taxon interessa %{taxa}
+  taxon_stage_affecting_taxon: Fase di taxon interessa %{taxon}
   taxon_swap: scambio del taxon
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
@@ -5515,8 +5515,8 @@ it:
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha aggiunto una %{x} a %{noun}"
   user_added_x_observations2_html:
-    one: "%{user} ha aggiunto %{x} osservazione"
-    other: "%{user} ha aggiunto %{x} osservazioni"
+    one: "%{user} ha aggiunto %{count} osservazione"
+    other: "%{user} ha aggiunto %{count} osservazioni"
   user_already_authenticated: L'utente è già autenticato
   user_already_app_owner: L'utente è già un proprietario dell'app
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5529,13 +5529,13 @@ it:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} ha attuato un'eliminazione di taxon che interessa %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa2: "%{user} ha attuato un'unione di taxon che interessa %{taxon}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} ha attuato un'unione di taxon che interessa %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa2: "%{user} ha attuato una divisione di taxon che interessa %{taxon}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} ha attuato una divisione di taxon che interessa %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_stage_affecting_taxon2: "%{user} ha attuato una fase di taxon che interessa %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa2: "%{user} ha attuato uno scambio di taxon che interessa %{taxon}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} ha attuato uno scambio di taxon che interessa %{taxa}"
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} non è d'accordo con le identificazioni precedenti di maggior dettaglio"
   user_faved_an_observation_by_you: "%{user} ha messo tra i preferiti una tua osservazione"
