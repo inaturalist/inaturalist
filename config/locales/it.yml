@@ -3198,15 +3198,39 @@ it:
   observation_accuracy_experiment_in_the_example: "Nella figura di esempio a destra la precisione media di tre osservazioni del campione sarebbe del 51%."
   observation_accuracy_experiment_read_more_html: |
     Per saperne di più sull'orchestrazione di questo esperimento vedi il <a href="%{url}">post del blog</a> associato.
-  observation_accuracy_validator_email_subject2: "Ci aiuterai con un esperimento per stimare la precisione delle osservazioni di iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Ci aiuterai con un <a href="%{url}">esperimento (version %{version})</a> per stimare la precisione delle osservazioni di iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Identifica tutte le osservazioni nel link qui sotto con la massima precisione possibil, anche se sono di Livello Ricerca, e anche se il tuo migliore ID è ad un livello tassonomico superiore (anche regno).</li>
+    <li>Se vedi il popup “Disaccordo Potenziale”…
+    <ul>
+    <li>e sei sicuro che l'ID è errata clicca sul pulsante arancione,</li>
+    <li>o se non sei sicuro al di là della tua ID, clicca sul pulsante verde</li>
+    </ul>
+    </li>
+    <li>Fai questo entro il <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Ecco il sottoinsieme <a href="%{sample_url}">di %{num_obs} osservazioni</a>* che pensiamo che tu possa identificare in base alla tua attività su iNat. <b>Sei pregato di aggiungere la miglior ID possibile a ciascuna delle osservazioni entro il %{validator_deadline_date}</b>.
+    *<i>Questo link aprirà lo strumento Identifica sul sito iNaturalist che richiede l'accesso. Si consiglia di fare questo lavoro da un computer, ma è possibile anche dal browser su un dispositivo mobile. Se stai leggendo questo messaggio all'interno dell'app iNaturalist Android, assicurati di aprire il link in un'applicazione browser (non l'app iNat stessa). Potrebbe essere necessario accedere al sito web tramite l'app browser.</i>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Calcoleremo la precisione confrontando la tua ID con il Taxon di Osservazione. Puoi saltare le osservazioni dove
+    hai precedentemente aggiunto una ID se tale ID è ancora rilevante. Per saperne di più su come conteggiare accordi e disaccordi, continuare a leggere.
   observation_accuracy_validator_email_ids_equal_to: |
     Le identificazioni pari al (A), o più precise del (B), Taxon d'Osservazione, saranno considerate come Accordi.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Le ID su diversi rami (C) o più grossolane del Taxon dell'Osservazione in cui scegli "No, ma…" nella finestra di dialogo 'Disaccordo Potenziale' (D) saranno conteggiate come disaccordi.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Le identificazioni più grossolane del Taxon d'Osservazione, in cui selezioni 'Non lo so, ma…' nella
+    finestra di 'Disaccordo potenziale' (E), saranno contate come Incerte.
   observation_accuracy_validator_email_we_are_so_grateful2_html: |
     Siamo molto grati per il tuo aiuto come identificatore su iNaturalist e ti ringraziamo molto per aver partecipato a questo studio. Per piacere leggi <a href="%{url}"> i metodi</a> per approfondire sul design di questo esperimento
   observation_accuracy_validator_email_with_gratitude: Con gratitudine,
   observation_accuracy_validator_email_the_inaturalist_team: Il Team di iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Si prega di non rispondere a questo messaggio. Se avete domande o feedback commentate su <a href="%{url}">questo post del blog</a> o mandate una e-mail a <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Si prega di non rispondere a questo messaggio. Se avete domande o feedback mandate una e-mail a <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Osservazione aggiunta al progetto \"%{project}\""
   observation_aggregation: Aggregazione di osservazioni
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4583,6 +4607,8 @@ it:
   share_colon: "Condividi:"
   short_code_for_this_place: Codice breve per questo luogo, ad esempio, US per gli Stati Uniti
   short_or_abbreviated_title_for_display: Titolo corto o abbreviato per la visualizzazione in aree a spazio limitato. Max 10 caratteri.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Questo nome comune deve essere mostrato per impostazione predefinita per questo taxon?
   show: Mostra
   show_active_and_inactive_taxa: Mostra taxa attivi e inattivi
   show_hidden_content: Mostra contenuti nascosti
@@ -5021,6 +5047,8 @@ it:
   taxon_split_affecting_taxa: Divisione di taxon interessa %{taxon}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organizzazione del taxon
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Fase di taxon interessa %{taxa}
   taxon_swap: scambio del taxon
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
@@ -5504,6 +5532,8 @@ it:
   user_committed_taxon_merge_affecting_taxa2: "%{user} ha attuato un'unione di taxon che interessa %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} ha attuato una divisione di taxon che interessa %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} ha attuato una fase di taxon che interessa %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa2: "%{user} ha attuato uno scambio di taxon che interessa %{taxon}"
   user_disagrees_this_is_taxon: "%{user} non concorda che sia %{taxon}"
@@ -6144,6 +6174,9 @@ it:
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Clicca qui per richiedere nuovamente un'email di conferma
       please_add_an_email_and_password: Si prega di aggiungere una e-mail e una password in modo da non perdere l'accesso al tuo account
+      please_click_the_link_sent_to_email_to_confirm_html: Sei pregato di cliccare il link mandato a <span class="email">%{email}</span> per confermare il tuo indirizzo email.
+      please_confirm_that_email_is_the_best_contact_html: Conferma che <span class="email">%{email}</span> è il modo migliore per contattarti.
+      your_site_account_has_no_email: Il tuo account %{site_name} non ha un indirizzo email ad esso associato.
     flags:
       show:
         flaggable_content_desc: |
@@ -6440,12 +6473,18 @@ it:
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
       help_us_improve: Aiutaci a migliorare
+      to_help_us_improve: Per aiutarci a migliorare questo modello vorremmo sapere quale delle immagini in questa pagina sono rilevanti per la tua ricerca &quot;%{searched_term}&quot;. Per favore contrassegna ogni immagine come %{thumbs_up_icon} pertinente se corrisponde alla tua ricerca e non pertinente %{thumbs_down_icon} se non lo fa. Quando hai finito, fai clic su Invia. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Segna rimanenti come rilevanti
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Segna rimanenti come non rilevanti
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Visualizza queste osservazioni in Identifica
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> ha collaborato con ricercatori della <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University College London</a> <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>, e con un generoso supporto da <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI per Good Lab</a> per comprendere meglio il potenziale de Modelli di Linguaggio Visivo per aiutare a organizzare, esplorare, e spiegare le osservazioni iNaturalist. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Questo strumento demo ti permette di digitare una frase di ricerca (come "<a href="%{url}">%{query_in_english}</a>"), e la confronta con 10 milioni di foto iNaturalist. I risultati sono ordinati dalla più alla meno rilevante. Puoi usare questa demo come un nuovo modo per trovare interessanti osservazioni iNaturalist per annotare o aggiungere al tuo progetto.
+      you_can_also_use_this_demo: Puoi anche usare questa demo per aiutarci a valutare il modello di Linguaggio Visivo che alimenta questa demo dicendoci quale delle immagini restituite era rilevante per la tua frase di ricerca. Questa demo utilizza un modello CLIP di terze parti <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Linguaggio visivo</a> che non è stato addestrato sui dati iNaturalist o dal team iNaturalist. A volte lo strumento può produrre risultati imprecisi, parziali o offensivi. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Leggi di più sul Blog iNaturalist</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Se vuoi supportare questo lavoro
+      thank_you_for_your_submission!: Grazie per il tuo invio!
     oauth:
       authorizations:
         new:
@@ -6699,6 +6738,62 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
+        quality_assessment_help3_html: |
+          <p>
+          La valutazione della qualità dei dati è un riassunto dell'accuratezza di un osservazione. Tutte le osservazioni
+          iniziano ad un livello <strong>"casuale"</strong>, e diventano
+          <strong>"serve ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>l'osservazione <strong>ha una data</strong></li>
+          <li>l'osservazione <strong>è georeferenziata</strong> (i.e. ha coordinate lat/lon)</li>
+          <li>l'osservazione <strong>ha foto o suoni</strong></li>
+          <li>l'osservazione <strong>non è un umano</strong></li>
+          </ul>
+          <p>
+          Le osservazioni diventano <strong>"livello ricerca"</strong> quando
+          </p>
+          <ul>
+          <li>
+          la %{site_name} <strong>comunità è d'accordo sulla ID a livello di specie o inferiore</strong>, i.e. quando più dei 2/3 di identificatori è d'accordo su un taxon (se la comunità ha votato che il Taxon della Comunità non può essere più affinato, questo torna a livello della ID della sotto-famiglia o inferiore)
+          </li>
+          </ul>
+          <p>
+          Le osservazioni tornano a <strong>"casuale"</strong> se non sono soddisfatte le condizioni qui sopra o la comunità è d'accordo che
+          </p>
+          <ul>
+          <li>
+          la <strong>località non pare accurata</strong> (ad esempio scimmie in mezzo all'oceano,
+          ippopotami negli edifici per uffici, ecc.)
+          </li>
+          <li>
+          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio in cattività o coltivato dall'uomo)
+          </li>
+          <li>
+          l'osservazione <strong>non presenta prove di un organismo</strong>, per esempio. immagini di giochi d'acqua, rocce, paesaggi che non includono l'organismo, ecc.
+          </li>
+          <li>
+          l'osservazione <strong>non presenta prove recenti (~ 100 anni) dell'organismo</strong> (ad esempio fossili, ma tracce, escrementi e foglie morte sono ok)
+          </li>
+          <li>
+          l'osservazione <strong>non presenta prove relative a un soggetto</strong> (ad esempio, contiene quattro foto di organismi non correlati. Una foto che mostra l'habitat del soggetto dell'osservazione va bene.)
+          </li>
+          <li>
+          l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a livello di famiglia o sopra
+          </li>
+          <li>
+          l'osservatore ha rinunciato all'ID della comunità e la ID della comunità per il taxon non è un antenato o un discendente del taxon associato con l'ID dell'osservatore
+          </li>
+          </ul>
+          <p>
+          E se ciò non fosse abbastanza complicato, ci sono anche situazioni in cui il sistema ottiene un voto:</p>
+          <ul>
+          <li>
+          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se ci sono almeno altre 10 osservazioni di un genere o inferiore
+          il più piccolo luogo equivalente a una contea, uno stato o un paese contiene questa osservazione e l'80% o più di tali osservazioni sono stati contrassegnate come non selvatiche/naturalizzate.
+          </li>
+          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
