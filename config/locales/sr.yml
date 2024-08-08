@@ -4735,7 +4735,8 @@ sr:
       for_example_query: npr. %{query_in_english}
       try_one_of_these_example_searches_colon: "Probaj neke od ovih pretraga:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Pomozi nam da unapredimo
       mark_remaining_as_relevant: Označi ostatak kao važno
       #text for a button where a user can mark images as not relevant to their search term

@@ -6462,7 +6462,8 @@ fr:
       what_do_you_want_to_search_for: Que voulez-vous rechercher ?
       try_one_of_these_example_searches_colon: "Essayez l’un de ces exemples de recherches :"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Aidez-nous à améliorer
       to_help_us_improve: Pour nous aider à améliorer ce modèle, nous aimerions savoir quelles images de cette page sont pertinentes pour votre recherche &quot;%{searched_term}&quot;. Veuillez marquer chaque image comme étant pertinente %{thumbs_up_icon} si elle correspond à votre recherche et non pertinente %{thumbs_down_icon} si elle ne l'est pas. Lorsque vous avez terminé, veuillez cliquer sur Envoyer. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Marquer le reste comme pertinent

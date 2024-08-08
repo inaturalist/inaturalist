@@ -6418,7 +6418,8 @@ id:
       for_example_query: seperti %{query_in_english}
       try_one_of_these_example_searches_colon: "Coba salah satu contoh pencarian ini:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Bantu kami untuk berkembang
       to_help_us_improve: Untuk membantu kami meningkatkan model ini, kami ingin mengetahui foto-foto mana saja di halaman ini yang relevan terhadap pencarian &quot;%{searched_term}&quot; Anda. Harap pilih relevan %{thumbs_up_icon} untuk gambar yang sesuai dengan pencarian Anda dan tidak relevan %{thumbs_down_icon} jika gambarnya tidak sesuai. Saat Anda sudah selesai, silakan klik kirim. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Tandai sisanya sebagai relevan

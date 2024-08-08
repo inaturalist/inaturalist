@@ -6766,7 +6766,8 @@ da:
       for_example_query: f.eks. %{query_in_english}
       try_one_of_these_example_searches_colon: "Prøv en af disse eksempelsøgninger:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Hjælp os med at blive bedre
       to_help_us_improve: For at hjælpe os med at forbedre denne model vil vi gerne vide, hvilke af billederne på denne side, som er relevante for søgningen &quot;%{searched_term}&quot;. Markér venligst hvert billede som relevant %{thumbs_up_icon}, hvis det matcher søgningen, og som ikke relevant %{thumbs_down_icon}, hvis det ikke gør det. Når man er færdig, klik dernæst på Indsend. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Markér resterende som relevant
