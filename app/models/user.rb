@@ -14,26 +14,24 @@ class User < ApplicationRecord
   end
 
   acts_as_voter
-  acts_as_spammable fields: [ :description ],
-                    comment_type: "signup"
+  acts_as_spammable fields: [:description],
+    comment_type: "signup"
   has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
-  JEDI_MASTER_ROLE = 'admin'
-  
-  devise :database_authenticatable, :registerable, :suspendable,
-         :recoverable, :rememberable, :confirmable, :validatable, 
-         :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  # handle_asynchronously :send_devise_notification
-  
-  # licensing extras
-  attr_accessor   :make_observation_licenses_same
-  attr_accessor   :make_photo_licenses_same
-  attr_accessor   :make_sound_licenses_same
+  JEDI_MASTER_ROLE = "admin"
 
-  attr_accessor :html
-  attr_accessor :pi_consent
-  attr_accessor :data_transfer_consent
+  devise :database_authenticatable, :registerable, :suspendable,
+    :recoverable, :rememberable, :confirmable, :validatable,
+    :encryptable, :lockable, encryptor: :restful_authentication_sha1
+
+  # licensing extras
+  attr_accessor :make_observation_licenses_same,
+    :make_photo_licenses_same,
+    :make_sound_licenses_same,
+    :html,
+    :pi_consent,
+    :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -49,23 +47,23 @@ class User < ApplicationRecord
   preference :user_observation_email_notification, :boolean, default: true
   preference :taxon_or_place_observation_email_notification, :boolean, default: true
 
-  preference :lists_by_login_sort, :string, :default => "id"
-  preference :lists_by_login_order, :string, :default => "asc"
-  preference :per_page, :integer, :default => 30
-  preference :gbif_sharing, :boolean, :default => true
+  preference :lists_by_login_sort, :string, default: "id"
+  preference :lists_by_login_order, :string, default: "asc"
+  preference :per_page, :integer, default: 30
+  preference :gbif_sharing, :boolean, default: true
   preference :observation_license, :string
   preference :photo_license, :string
   preference :sound_license, :string
-  preference :automatic_taxonomic_changes, :boolean, :default => true
-  preference :receive_mentions, :boolean, :default => true
+  preference :automatic_taxonomic_changes, :boolean, default: true
+  preference :receive_mentions, :boolean, default: true
   preference :observations_view, :string
   preference :observations_search_subview, :string
   preference :observations_search_map_type, :string, default: "terrain"
-  preference :community_taxa, :boolean, :default => true
+  preference :community_taxa, :boolean, default: true
   PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
-  preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  preference :observation_fields_by, :string, default: PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
   PROJECT_ADDITION_BY_ANY = "any"
   PROJECT_ADDITION_BY_JOINED = "joined"
   PROJECT_ADDITION_BY_NONE = "none"
@@ -92,7 +90,7 @@ class User < ApplicationRecord
   preference :hide_obs_show_copyright, default: false
   preference :hide_obs_show_quality_metrics, default: false
   preference :hide_obs_show_expanded_cid, default: true
-  preference :common_names, :boolean, default: true 
+  preference :common_names, :boolean, default: true
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
@@ -111,10 +109,13 @@ class User < ApplicationRecord
   preference :edit_observations_order, :string, default: "created_at"
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
+  preference :identify_map_zoom_level, :integer
+  preference :suggestions_source, :string
+  preference :suggestions_sort, :string
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
-    identification_email_notification 
+    identification_email_notification
     mention_email_notification
     message_email_notification
     project_journal_post_email_notification
@@ -123,14 +124,13 @@ class User < ApplicationRecord
     taxon_change_email_notification
     user_observation_email_notification
     taxon_or_place_observation_email_notification
-  )
-  
-  has_many  :provider_authorizations, :dependent => :delete_all
-  has_one  :flickr_identity, :dependent => :delete
-  # has_one  :picasa_identity, :dependent => :delete
-  has_one  :soundcloud_identity, :dependent => :delete
+  ).freeze
+
+  has_many :provider_authorizations, dependent: :delete_all
+  has_one  :flickr_identity, dependent: :delete
+  has_one  :soundcloud_identity, dependent: :delete
   has_one :user_daily_active_category, dependent: :delete
-  has_many :observations, :dependent => :destroy
+  has_many :observations, dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds

@@ -455,7 +455,7 @@ function fetchCurrentObservation( observation = null ) {
 
 function showNextObservation( ) {
   return ( dispatch, getState ) => {
-    const { observations, currentObservation } = getState();
+    const { observations, currentObservation, config } = getState();
     let nextObservation;
     if ( currentObservation.visible ) {
       let nextIndex = _.findIndex( observations.results, o => (
@@ -476,6 +476,10 @@ function showNextObservation( ) {
       dispatch( showFinishedModal( ) );
     }
     dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
+    if ( !config.mapZoomLevelLocked
+      && !_.isNumber( config.currentUser.preferred_identify_map_zoom_level ) ) {
+      dispatch( setConfig( { mapZoomLevel: undefined } ) );
+    }
   };
 }
 

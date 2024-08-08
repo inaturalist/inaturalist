@@ -1,5 +1,6 @@
+import _ from "lodash";
 import { connect } from "react-redux";
-import { updateCurrentUser, setConfig } from "../../../shared/ducks/config";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
 import {
@@ -13,7 +14,9 @@ import {
   showPrevObservation,
   updateCurrentObservation,
   fetchDataForTab,
-  chooseSuggestedTaxon
+  chooseSuggestedTaxon,
+  setMapZoomLevel,
+  setMapZoomLevelLocked
 } from "../actions";
 import {
   increaseBrightness,
@@ -44,17 +47,23 @@ function mapStateToProps( state ) {
       currentObsBrightnessKeys[key] = state.brightnesses[key];
     }
   } );
-
+  let mapZoomLevelLocked = false;
+  if ( _.isNumber( state.config.currentUser.preferred_identify_map_zoom_level ) ) {
+    mapZoomLevelLocked = true;
+  } else if ( state.config.mapZoomLevelLocked !== undefined ) {
+    ( { mapZoomLevelLocked } = state.config );
+  }
   return {
     images,
     blind: state.config.blind,
     brightnesses: currentObsBrightnessKeys,
     controlledTerms: state.controlledTerms.terms,
     currentUser: state.config.currentUser,
-    mapZoomLevel: state.config.mapZoomLevel,
-    mapZoomLevelLocked: state.config.mapZoomLevelLocked === undefined
-      ? false
-      : state.config.mapZoomLevelLocked,
+    mapZoomLevel:
+      _.isNumber( state.config.currentUser.preferred_identify_map_zoom_level )
+        ? state.config.currentUser.preferred_identify_map_zoom_level
+        : state.config.mapZoomLevel,
+    mapZoomLevelLocked,
     officialAppIds: state.config.officialAppIds === undefined
       ? []
       : state.config.officialAppIds,
@@ -106,8 +115,8 @@ function mapDispatchToProps( dispatch ) {
     ),
     updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
     updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( "obsIdentifyIdComment", content ) ),
-    onMapZoomChanged: ( e, map ) => dispatch( setConfig( { mapZoomLevel: map.getZoom( ) } ) ),
-    setMapZoomLevelLocked: locked => dispatch( setConfig( { mapZoomLevelLocked: locked } ) ),
+    onMapZoomChanged: ( e, map ) => dispatch( setMapZoomLevel( map.getZoom( ) ) ),
+    setMapZoomLevelLocked: locked => dispatch( setMapZoomLevelLocked( locked ) ),
     increaseBrightness: ( ) => dispatch( increaseBrightness( ) ),
     decreaseBrightness: ( ) => dispatch( decreaseBrightness( ) ),
     resetBrightness: ( ) => dispatch( resetBrightness( ) )
