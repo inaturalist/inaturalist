@@ -171,6 +171,7 @@ class Map extends React.Component {
                 : google.maps.ControlPosition.TOP_LEFT
             )
           }}
+          minZoom={1}
           currentUser={config.currentUser}
           updateCurrentUser={updateCurrentUser}
         />

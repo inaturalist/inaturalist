@@ -807,17 +807,24 @@ class UsersController < ApplicationController
       /^preferred_*/,
       /^header_search_open$/
     ]
-    updates = params.to_unsafe_h.select {|k,v|
-      allowed_patterns.detect{|p| 
-        k.match(p)
-      }
-    }.symbolize_keys
-    updates.each do |k,v|
-      v = true if v.yesish? && v != "1"
-      v = false if v.noish?
+    updates = params.to_unsafe_h.select do | k, _v |
+      allowed_patterns.detect do | p |
+        k.match( p )
+      end
+    end.symbolize_keys
+    updates.each do | k, v |
+      is_numeric_preference = false
+      if k =~ /^(prefers_|preferred_)/
+        preference_key = k.to_s.sub( /^(prefers_|preferred_)/, "" )
+        is_numeric_preference = User.preference_definitions[preference_key]&.number?
+      end
+      unless is_numeric_preference
+        v = true if v.yesish? && v != "1"
+        v = false if v.noish?
+      end
       session[k] = v
-      if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
-        current_user.update(k => v)
+      if ( k =~ /^prefers_/ || k =~ /^preferred_/ ) && logged_in? && current_user.respond_to?( k )
+        current_user.update( k => v )
       end
     end
     head :no_content

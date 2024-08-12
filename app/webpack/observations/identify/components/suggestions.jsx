@@ -91,7 +91,8 @@ class Suggestions extends React.Component {
       prevTaxon,
       nextTaxon,
       config,
-      updateCurrentUser
+      updateCurrentUser,
+      updateSuggestionSession
     } = this.props;
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
@@ -229,10 +230,10 @@ class Suggestions extends React.Component {
                 postIconClass="fa fa-angle-down"
                 hideClear
                 setChoice={orderBy => {
-                  setQuery( { ...query, order_by: orderBy } );
+                  setQuery( { ...query, order_by: orderBy }, { updateSuggestionSession } );
                 }}
                 clearChoice={( ) => {
-                  setQuery( { ...query, order_by: null } );
+                  setQuery( { ...query, order_by: null }, { updateSuggestionSession } );
                 }}
               />
               <div className="column-header">
@@ -251,10 +252,16 @@ class Suggestions extends React.Component {
                   postIconClass="fa fa-angle-down"
                   hideClear
                   setChoice={source => {
-                    setQuery( Object.assign( { }, query, { source } ) );
+                    setQuery(
+                      Object.assign( { }, query, { source } ),
+                      { updateSuggestionSession }
+                    );
                   }}
                   clearChoice={( ) => {
-                    setQuery( Object.assign( { }, query, { source: null } ) );
+                    setQuery(
+                      Object.assign( { }, query, { source: null } ),
+                      { updateSuggestionSession }
+                    );
                   }}
                 />
                 <TaxonChooserPopover
@@ -468,7 +475,8 @@ Suggestions.propTypes = {
   prevTaxon: PropTypes.object,
   nextTaxon: PropTypes.object,
   config: PropTypes.object,
-  updateCurrentUser: PropTypes.func
+  updateCurrentUser: PropTypes.func,
+  updateSuggestionSession: PropTypes.bool
 };
 
 Suggestions.defaultProps = {
@@ -477,7 +485,8 @@ Suggestions.defaultProps = {
     results: []
   },
   detailPhotoIndex: 0,
-  config: {}
+  config: {},
+  updateSuggestionSession: true
 };
 
 export default Suggestions;
