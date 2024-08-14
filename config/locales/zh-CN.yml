@@ -2232,6 +2232,11 @@ zh-CN:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
   is_this_offensive_html: '这是一条<a href="/help#inappropriate">不当内容</a>、垃圾信息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: 这个学名目前是否接受？
   it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: 斜体文本
@@ -4504,6 +4509,8 @@ zh-CN:
   share_colon: "分享："
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   short_or_abbreviated_title_for_display: 在空间有限的区域显示简短或缩写的标题。 最多10个字符。
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: 这个分类单元是否默认显示这个通用名？
   show: 显示
   show_active_and_inactive_taxa: 显示有效和无效的分类群
   show_hidden_content: 显示隐藏内容
@@ -6286,7 +6293,8 @@ zh-CN:
       for_example_query: 如%{query_in_english}
       try_one_of_these_example_searches_colon: "请尝试其中一个搜索实例："
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: 帮助我们改进
       to_help_us_improve: 为了帮助我们改进此模型，我们希望知道此页面上的哪些图像与您搜索的“%{searched_term}”相关。如果某幅图像与您的搜索相匹配，请将其标记为相关 %{thumbs_up_icon}，如果不匹配，请将其标记为不相关 %{thumbs_down_icon}。完成后，请单击提交。 #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: 标记剩余为相关
@@ -7986,6 +7994,13 @@ zh-CN:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: 必须对指定的位置有效
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: 必须对指定的目标群组有效
         application:
           attributes:
             redirect_uri:

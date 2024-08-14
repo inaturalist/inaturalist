@@ -6670,7 +6670,8 @@ ru:
       for_example_query: например, %{query_in_english}
       try_one_of_these_example_searches_colon: "Попробуйте один из этих примеров поиска:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Помогите нам улучшить качество
       to_help_us_improve: Чтобы помочь нам улучшить эту модель, мы хотели бы знать, какие изображения на этой странице соответствуют вашему запросу &quot;%{searched_term}&quot;. Пожалуйста, отметьте каждое изображение как соответствующее %{thumbs_up_icon}, если оно соответствует вашему запросу, и как не соответствующее %{thumbs_down_icon}, если нет. Когда вы закончите, нажмите «Отправить». #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Отметьте оставшиеся как соответствующие

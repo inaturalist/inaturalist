@@ -331,6 +331,7 @@ fi:
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisää merkintä "Kasvin fenologia: ei näyttöä kukinnasta"'
   add_flowers_and_fruits_flower_buds_annotation: 'Lisää "Kukat ja hedelmät: kukan nuput" -merkintä'
+  add_flowers_and_fruits_flowers_annotation: 'Lisää "Kukat ja hedelmät: kukat" -merkintä'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Lisää "Kukat ja hedelmät: hedelmät ja siemenet" -merkintä'
   add_flowers_and_fruits_no_flower_or_fruits: 'Lisää "Kukat ja hedelmät: ei kukkia tai hedelmiä" -merkintä'
   add_leaves_breaking_leaf_buds: 'Lisää "Lehdet: aukeavat lehden silmut" -merkintä'
@@ -1326,6 +1327,8 @@ fi:
   curator_application_you_should_apply_if_you_can_behave: |
     Osaat toimia asianmukaisesti ja noudatat yhteisösääntöjä. Yhdessä kuraattorivaltuuksien kanssa tulee oletus siitä, että
     olet esimerkillinen iNaturalist-käyttäjä.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuraattorin opas
   curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
   curators: Kuraattorit
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
@@ -1656,6 +1659,8 @@ fi:
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Opettajan opas
   either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
   eligible_for_research_grade: Sovelias tutkimustasolle
   email: Sähköposti
@@ -1930,6 +1935,8 @@ fi:
   geoprivacy_is_private_desc: Havainnoija on piilottanut koordinaatit.
   georeferenced: Paikannettu?
   get_started: Aloita
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kuinka päästä alkuun
   getting_started_guide: Aloitusopas
   #Prompt to donate money on a montly basis
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
@@ -2144,6 +2151,11 @@ fi:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Onko havainto dokumentoitu riittävästi (valokuvin, äänin) jotta voitaisiin vahvistaa että se on %{taxon}?
   is_this_offensive_html: 'Onko tämä <a href="/help#inappropriate">sopimaton</a>, roskapostia, tai loukkaava?'
   is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Onko tämä tieteellinen nimi hyväksytty nykyisin?
   it_can_now_be_used_for_research: Havainto jaetaan GBIF:iin ja sitä voidaan käyttää tutkimukseen myös sen kautta.
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursivoitu teksti
@@ -4189,6 +4201,8 @@ fi:
   share_colon: "Jaa:"
   short_code_for_this_place: Lyhyt koodi tälle paikalle, esim. US Yhdysvalloille
   short_or_abbreviated_title_for_display: Lyhyt tai lyhennetty otsikko näytettäväksi avaruus-rajoitetuilla alueilla. Enintään 10 merkkiä.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Pitäisikö tämä yleiskielinen nimi näkyä oletuksena taksonilla?
   show: Näytä
   show_active_and_inactive_taxa: Näytä aktiiviset ja epäaktiiviset taksonit
   show_hidden_content: Näytä piilotettu sisältö
@@ -4810,6 +4824,8 @@ fi:
   umbrella_projects: Sateenvarjoprojektit
   unblock: Poista esto
   unclassified: Luokittelematon
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Tutustu projekteihin
   ungrafted_taxa: Liittämätön taksoni
   unhide_content: Peru sisällön piilottaminen
   unique_observers: yksilölliset havainnoijat
@@ -5551,9 +5567,16 @@ fi:
       #image as a prompt
       vision_language_demo: Vision Language -demo
       what_do_you_want_to_search_for: Mitä haluat hakea?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: esim. %{query_in_english}
       try_one_of_these_example_searches_colon: "Kokeile yhtä näistä esimerkeistä:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Auta meitä parantamaan
       to_help_us_improve: Auttaaksemme meitä parantamaan tätä mallia haluaisimme tietää, mitkä tämän sivun kuvista liittyvät hakuusi &quot;%{searched_term}&quot;. Merkitse jokainen kuva osuviksi %{thumbs_up_icon}, jos se vastaa hakuasi, ja ei osuviksi %{thumbs_down_icon}, jos se ei vastaa. Kun olet valmis, napsauta Lähetä. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Merkitse jäljellä olevat osuviksi
@@ -5561,6 +5584,7 @@ fi:
       mark_remaining_as_not_relevant: Merkitse jäljellä olevat ei-osuviksi
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Näytä nämä havainnot Tunnistus-kohdassa
+      this_demo_tool3: Tämän esittelytyökalun avulla voit kirjoittaa hakulausekkeen (kuten "<a href="%{url}">%{query_in_english}</a>") ja vertailla sitä 10 miljoonaan iNaturalist-kuvaan. Tulokset on järjestetty parhaiten osuviin. Voit käyttää tätä demoa uutena tapana löytää mielenkiintoisia iNaturalist-havaintoja, joita voit merkitä tai lisätä projektiisi.
       you_can_also_use_this_demo: Voit myös käyttää tätä demoa auttamaan meitä arvioimaan Vision Language -mallia, joka on tämän demon taustalla, kertomalla meille, mitkä kuvista oli osuvia hakulausekkeeseesi. Tämä demo käyttää kolmannen osapuolen <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP -mallia</a> jota ei ole koulutettu iNaturalist-aineistolla tai iNaturalist-tiimin toimesta. Joskus työkalu voi tuottaa epätarkkoja, puolueellisia tai loukkaavia tuloksia. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lue lisää iNaturalist-blogista</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Jos haluat tukea tätä työtä
       thank_you_for_your_submission!: Kiitos osallistumisestasi!
