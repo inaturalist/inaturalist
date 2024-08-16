@@ -1428,6 +1428,44 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
   infoWindowOpenTime = new Date( );
 };
 
+iNaturalist.Map.MapTypeId = iNaturalist.Map.MapTypeId || {};
+// Note that OSM doesn't seem to translate the names "OpenStreetMap" or "OSM"
+// in its own interface, so we're hardcoding it here
+iNaturalist.Map.MapTypeId.OSM = "OSM";
+// https://wiki.openstreetmap.org/wiki/Google_Maps_Example
+iNaturalist.Map.OsmMapType = new google.maps.ImageMapType( {
+  getTileUrl: function(coord, zoom) {
+    var tilesPerGlobe = 1 << zoom;
+    var x = coord.x % tilesPerGlobe;
+    if (x < 0) x = tilesPerGlobe + x;
+    return "https://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
+  },
+  tileSize: new google.maps.Size( 256, 256 ),
+  name: iNaturalist.Map.MapTypeId.OSM,
+  // Required, even though not documented
+  maxZoom: 19
+} );
+iNaturalist.Map.createOsmAttributionControl = function( position ) {
+  var div = document.createElement( "div" );
+  div.setAttribute( "id", "OsmAttributionControl" );
+  div.style.padding = "0 6px";
+  div.style.fontSize = "10px";
+  div.style.height = "14px";
+  div.style.lineHeight = "14px";
+  div.style.marginBottom = "1px";
+  if ( position === google.maps.ControlPosition.BOTTOM_RIGHT ) {
+    div.style.marginBottom = "0px";
+    div.style.marginRight = "0.1px";
+  }
+  div.style.backgroundColor = "rgba(255, 255, 255, 0.6)";
+  const content = jQuery.parseHTML( I18n.t( "base_map_copyright_openstreetmap_html", {
+    startTag: "<a href='https://www.openstreetmap.org/copyright' target='_blank' rel='nofollow noopener'>",
+    endTag: "</a>"
+  } ) );
+  $( div ).append( content );
+  return div;
+}
+
 // Static constants
 iNaturalist.Map.ICONS = {
   DodgerBlue34: new google.maps.MarkerImage("<%= asset_path('mapMarkers/mm_34_DodgerBlue.png') %>"),

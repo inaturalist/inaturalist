@@ -112,6 +112,10 @@
                     %label
                       %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "satellite" }
                       {{ shared.t('satellite') | capitalize }}
+                  %li.radio
+                    %label
+                      %input{ type: "radio", name: "mapType", "ng-model" => "mapType", value: "OSM" }
+                      OSM
                   %li.divider{ role: "separator" }
                   %li{:class => "checkbox {{ mapTerrain ? 'disabled' : '' }}"}
                     %label

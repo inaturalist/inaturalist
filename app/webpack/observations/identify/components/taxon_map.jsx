@@ -22,6 +22,15 @@
     mapStyle: undefined
     mapType: undefined
     mapTypeControl: true
+    mapTypeControlOptions: {
+      mapTypeIds: [
+        google.maps.MapTypeId.ROADMAP,
+        google.maps.MapTypeId.TERRAIN,
+        google.maps.MapTypeId.SATELLITE,
+        google.maps.MapTypeId.HYBRID,
+        iNaturalist.Map.MapTypeId.OSM
+      ]
+    }
     maxX: undefined
     maxY: undefined
     minX: undefined
@@ -60,8 +69,9 @@
     taxonPlacesLayerLabel: "Checklist places"
     taxonRangeLayerDescription: undefined
     taxonRangeLayerLabel: "Range"
-    urlCoords: undefined
-    zoomControl: true
+    urlCoords: undefined,
+    zoomControl: true,
+    zoomControlOptions: { position: google.maps.ControlPosition.BLOCK_START_INLINE_START },
     zoomLevel: 8
   }
 */
