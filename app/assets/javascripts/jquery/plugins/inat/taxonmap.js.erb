@@ -233,7 +233,7 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
 
   if ( !map.mapTypeListener ) {
     map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", function ( ) {
-      const mapTypeId = this.getMapTypeId( );
+      var mapTypeId = this.getMapTypeId( );
       setMapTypeAndUpdateSession( options, mapTypeId );
       // Note that Google does not change the orientation of its own
       // attribution in RTL, so we don't need to do so either. However it

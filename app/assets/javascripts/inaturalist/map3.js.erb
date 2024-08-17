@@ -1458,7 +1458,7 @@ iNaturalist.Map.createOsmAttributionControl = function( position ) {
     div.style.marginRight = "0.1px";
   }
   div.style.backgroundColor = "rgba(255, 255, 255, 0.6)";
-  const content = jQuery.parseHTML( I18n.t( "base_map_copyright_openstreetmap_html", {
+  var content = jQuery.parseHTML( I18n.t( "base_map_copyright_openstreetmap_html", {
     startTag: "<a href='https://www.openstreetmap.org/copyright' target='_blank' rel='nofollow noopener'>",
     endTag: "</a>"
   } ) );
