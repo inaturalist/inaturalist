@@ -412,9 +412,23 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
   }
 ], {name: "Map (no labels)"});
 
+iNaturalist.Map.MapTypeId = iNaturalist.Map.MapTypeId || {};
+// Note that OSM doesn't seem to translate the names "OpenStreetMap" or "OSM"
+// in its own interface, so we're hardcoding it here
+iNaturalist.Map.MapTypeId.OSM = "OSM";
+
 iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   zoom: 1,
   mapTypeId: google.maps.MapTypeId.TERRAIN,
+  mapTypeControlOptions: {
+    mapTypeIds: [
+      google.maps.MapTypeId.ROADMAP,
+      google.maps.MapTypeId.TERRAIN,
+      google.maps.MapTypeId.SATELLITE,
+      google.maps.MapTypeId.HYBRID,
+      iNaturalist.Map.MapTypeId.OSM
+    ]
+  },
   streetViewControl: false,
   rotateControl: false,
   backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
@@ -445,6 +459,7 @@ iNaturalist.Map.createMap = function(options) {
   
   var map;
   iNaturalist.log( { "map-placement": placement || "unknown" } );
+  console.log( "[DEBUG map3.js.erb] options: ", options );
   if (typeof options.div == 'string') {
     map = new google.maps.Map(document.getElementById(options.div), options);
   }
@@ -502,6 +517,14 @@ iNaturalist.Map.createMap = function(options) {
       )
       map.fitBounds(bounds)
     }
+  }
+
+  map.mapTypes.set( iNaturalist.Map.MapTypeId.OSM, iNaturalist.Map.OsmMapType );
+  google.maps.event.addListener( map, "maptypeid_changed", function () {
+    iNaturalist.Map.toggleOsmAttributionForMap( this );
+  } );
+  if ( options.mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {;
+    iNaturalist.Map.toggleOsmAttributionForMap( map );
   }
   
   return map;
@@ -1428,10 +1451,7 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
   infoWindowOpenTime = new Date( );
 };
 
-iNaturalist.Map.MapTypeId = iNaturalist.Map.MapTypeId || {};
-// Note that OSM doesn't seem to translate the names "OpenStreetMap" or "OSM"
-// in its own interface, so we're hardcoding it here
-iNaturalist.Map.MapTypeId.OSM = "OSM";
+
 // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
 iNaturalist.Map.OsmMapType = new google.maps.ImageMapType( {
   getTileUrl: function(coord, zoom) {
@@ -1464,7 +1484,32 @@ iNaturalist.Map.createOsmAttributionControl = function( position ) {
   } ) );
   $( div ).append( content );
   return div;
-}
+};
+iNaturalist.Map.toggleOsmAttributionForMap = function ( map ) {
+  var mapTypeId = map.getMapTypeId( );
+  // Note that Google does not change the orientation of its own
+  // attribution in RTL, so we don't need to do so either. However it
+  // does help to put it next to the other attribution elements when
+  // there's space
+  var position = google.maps.ControlPosition.RIGHT_BOTTOM;
+  if ( map.getDiv().offsetWidth > 500 ) {
+    position = google.maps.ControlPosition.BOTTOM_RIGHT;
+  }
+  if ( mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {
+    map.controls[position].insertAt(
+      0,
+      iNaturalist.Map.createOsmAttributionControl( position )
+    );
+  } else {
+    var targetIdx = -1;
+    map.controls[position].forEach( function ( ctrl, idx ) {
+      if ( ctrl.getAttribute( "id" ) === "OsmAttributionControl" ) {
+        targetIdx = idx;
+      }
+    } );
+    if ( targetIdx >= 0 ) map.controls[position].removeAt( targetIdx );
+  }
+};
 
 // Static constants
 iNaturalist.Map.ICONS = {

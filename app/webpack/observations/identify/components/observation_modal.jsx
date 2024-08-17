@@ -225,8 +225,7 @@ class ObservationModal extends React.Component {
             onZoomChanged={onMapZoomChanged}
             mapTypeControl
             mapTypeControlOptions={{
-              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_RIGHT
+              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU
             }}
             showAccuracy
             showAllLayer={false}

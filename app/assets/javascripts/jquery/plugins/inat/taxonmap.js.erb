@@ -68,19 +68,6 @@ inatTaxonMap.setup = function ( elt, opts ) {
   options.taxonLayers = options.taxonLayers || $( elt ).data( "taxon-layers" );
   options.mapTypeControl = ( options.mapTypeControl !== false && $( elt ).data( "map-type-control" ) !== true );
   options.mapTypeControlOptions = options.mapTypeControlOptions || $( elt ).data( "map-type-control-options" );
-  // eslint-disable-next-line prefer-object-spread
-  options.mapTypeControlOptions = Object.assign(
-    {
-      mapTypeIds: [
-        google.maps.MapTypeId.ROADMAP,
-        google.maps.MapTypeId.TERRAIN,
-        google.maps.MapTypeId.SATELLITE,
-        google.maps.MapTypeId.HYBRID,
-        iNaturalist.Map.MapTypeId.OSM
-      ]
-    },
-    options.mapTypeControlOptions
-  );
   options.zoomControl = ( options.zoomControl !== false && $( elt ).data( "zoom-control" ) !== false );
   options.zoomControlOptions = options.zoomControlOptions || $( elt ).data( "map-type-control-options" );
   // eslint-disable-next-line prefer-object-spread
@@ -158,7 +145,7 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
   var map;
   // eslint-disable-next-line prefer-object-spread
   var mapTypeControlOptions = Object.assign(
-    {},
+    iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS.mapTypeControlOptions,
     options.mapTypeControlOptions
   );
   if ( $( "html[dir='rtl']" ).length > 0 ) {
@@ -201,8 +188,6 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     } ) );
   }
 
-  map.mapTypes.set( "OSM", iNaturalist.Map.OsmMapType );
-
   // eslint-disable-next-line prefer-destructuring
   var preserveViewport = options.preserveViewport;
   if ( options.minX ) {
@@ -235,28 +220,6 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", function ( ) {
       var mapTypeId = this.getMapTypeId( );
       setMapTypeAndUpdateSession( options, mapTypeId );
-      // Note that Google does not change the orientation of its own
-      // attribution in RTL, so we don't need to do so either. However it
-      // does help to put it next to the other attribution elements when
-      // there's space
-      var position = google.maps.ControlPosition.RIGHT_BOTTOM;
-      if ( map.getDiv().offsetWidth > 500 ) {
-        position = google.maps.ControlPosition.BOTTOM_RIGHT;
-      }
-      if ( mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {
-        map.controls[position].insertAt(
-          0,
-          iNaturalist.Map.createOsmAttributionControl( position )
-        );
-      } else {
-        var targetIdx = -1;
-        map.controls[position].forEach( function ( ctrl, idx ) {
-          if ( ctrl.getAttribute( "id" ) === "OsmAttributionControl" ) {
-            targetIdx = idx;
-          }
-        } );
-        if ( targetIdx >= 0 ) map.controls[position].removeAt( targetIdx );
-      }
     } );
   }
 
