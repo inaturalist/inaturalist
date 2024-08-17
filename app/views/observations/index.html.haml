@@ -119,7 +119,7 @@
                   %li.divider{ role: "separator" }
                   %li{:class => "checkbox {{ mapTerrain ? 'disabled' : '' }}"}
                     %label
-                      %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled": "mapTerrain" }
+                      %input{ type: "checkbox", name: "mapLabels", "ng-model" => "mapLabels", "ng-disabled": "mapTerrain || mapType == 'OSM'" }
                       {{ shared.t('labels') | capitalize }}
                   %li{:class => "checkbox {{ mapType == 'map' ? '' : 'disabled' }}"}
                     %label
