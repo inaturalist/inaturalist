@@ -459,7 +459,6 @@ iNaturalist.Map.createMap = function(options) {
   
   var map;
   iNaturalist.log( { "map-placement": placement || "unknown" } );
-  console.log( "[DEBUG map3.js.erb] options: ", options );
   if (typeof options.div == 'string') {
     map = new google.maps.Map(document.getElementById(options.div), options);
   }
@@ -519,7 +518,7 @@ iNaturalist.Map.createMap = function(options) {
     }
   }
 
-  map.mapTypes.set( iNaturalist.Map.MapTypeId.OSM, iNaturalist.Map.OsmMapType );
+  map.mapTypes.set( iNaturalist.Map.MapTypeId.OSM, iNaturalist.Map.createOsmMapTypeForMap( map ) );
   google.maps.event.addListener( map, "maptypeid_changed", function () {
     iNaturalist.Map.toggleOsmAttributionForMap( this );
   } );
@@ -1452,19 +1451,25 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
 };
 
 
-// https://wiki.openstreetmap.org/wiki/Google_Maps_Example
-iNaturalist.Map.OsmMapType = new google.maps.ImageMapType( {
-  getTileUrl: function(coord, zoom) {
-    var tilesPerGlobe = 1 << zoom;
-    var x = coord.x % tilesPerGlobe;
-    if (x < 0) x = tilesPerGlobe + x;
-    return "https://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
-  },
-  tileSize: new google.maps.Size( 256, 256 ),
-  name: iNaturalist.Map.MapTypeId.OSM,
-  // Required, even though not documented
-  maxZoom: 19
-} );
+iNaturalist.Map.createOsmMapTypeForMap = function ( map ) {
+  var name = map.getDiv().offsetWidth > 500
+    ? "OpenStreetMap"
+    : "OSM";
+  // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
+  return new google.maps.ImageMapType( {
+    getTileUrl: function(coord, zoom) {
+      var tilesPerGlobe = 1 << zoom;
+      var x = coord.x % tilesPerGlobe;
+      if (x < 0) x = tilesPerGlobe + x;
+      return "https://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
+    },
+    tileSize: new google.maps.Size( 256, 256 ),
+    name: name,
+    alt: I18n.t( "show_openstreetmap" ),
+    // Required, even though not documented
+    maxZoom: 19
+  } );
+}
 iNaturalist.Map.createOsmAttributionControl = function( position ) {
   var div = document.createElement( "div" );
   div.setAttribute( "id", "OsmAttributionControl" );
