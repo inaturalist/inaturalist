@@ -688,6 +688,11 @@ class User < ApplicationRecord
     # update this has_one relationship on user_parent
     UserParent.where( user_id: reject.id ).update_all( user_id: id )
 
+    # retain the earliest created_at date
+    if reject.created_at < created_at
+      update_columns( created_at: reject.created_at )
+    end
+
     # Conditions should match index_votes_on_unique_obs_fave
     reject.votes
           .joins( "JOIN votes AS keeper_votes USING (votable_type, votable_id)" )

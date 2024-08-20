@@ -74,6 +74,7 @@ class QualityMetrics extends React.Component {
   needsIDRow( ) {
     const {
       config,
+      observation,
       unvoteMetric,
       voteMetric
     } = this.props;
@@ -109,7 +110,7 @@ class QualityMetrics extends React.Component {
         <input
           type="checkbox"
           id="improveYes"
-          disabled={needsIDInfo.loading}
+          disabled={needsIDInfo.loading || !observation.communityTaxon}
           // Sometimes userVotedFor becomes null, which tells React that the
           // checkbox is uncontrolled, which displeases it, so we default to false
           checked={needsIDInfo.userVotedFor || false}
@@ -128,7 +129,7 @@ class QualityMetrics extends React.Component {
         <input
           type="checkbox"
           id="improveNo"
-          disabled={needsIDInfo.loading}
+          disabled={needsIDInfo.loading || !observation.communityTaxon}
           checked={needsIDInfo.userVotedAgainst || false}
           onChange={( ) => {
             if ( needsIDInfo.userVotedAgainst ) {
@@ -141,7 +142,7 @@ class QualityMetrics extends React.Component {
       )
       : null;
     return (
-      <tr className="improve">
+      <tr className={`improve${!observation.communityTaxon ? " disabled" : ""}`}>
         <td className="metric_title" colSpan={3}>
           <i className="fa fa-gavel" />
           { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
@@ -259,10 +260,11 @@ class QualityMetrics extends React.Component {
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const checkIcon = ( <i className="fa fa-check check" /> );
     const xIcon = ( <i className="fa fa-times check" /> );
-    const hasMedia = (
+    const mediaCount = (
       ( observation.photos ? observation.photos.length : 0 )
       + ( observation.sounds ? observation.sounds.length : 0 )
-    ) > 0;
+    );
+    const hasMedia = mediaCount > 0;
     const communityTaxonAtLeastSpecies = (
       observation.communityTaxon
       && observation.communityTaxon.rank_level <= 10
@@ -287,9 +289,9 @@ class QualityMetrics extends React.Component {
     const wildCells = this.voteCellsForMetric( "wild" );
     const locationCells = this.voteCellsForMetric( "location", { disableVoting: !locationSpecified } );
     const dateCells = this.voteCellsForMetric( "date", { disableVoting: !observation.observed_on } );
-    const evidenceCells = this.voteCellsForMetric( "evidence" );
+    const evidenceCells = this.voteCellsForMetric( "evidence", { disableVoting: !hasMedia } );
     const recentCells = this.voteCellsForMetric( "recent" );
-    const subjectCells = this.voteCellsForMetric( "subject" );
+    const subjectCells = this.voteCellsForMetric( "subject", { disableVoting: mediaCount < 2 } );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     const rankText = needsIDInfo.mostDisagree
       ? I18n.t( "community_id_is_precise" )
@@ -377,7 +379,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ wildCells.agreeCell }</td>
               <td className="disagree">{ wildCells.disagreeCell }</td>
             </tr>
-            <tr className={evidenceCells.loading ? "disabled" : ""}>
+            <tr className={evidenceCells.loading || !hasMedia ? "disabled" : ""}>
               <td className="metric_title">
                 <i className="fa icon-icn-dna" />
                 { I18n.t( "evidence_of_organism" ) }
@@ -393,7 +395,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ recentCells.agreeCell }</td>
               <td className="disagree">{ recentCells.disagreeCell }</td>
             </tr>
-            <tr className={subjectCells.loading ? "disabled" : ""}>
+            <tr className={subjectCells.loading || mediaCount < 2 ? "disabled" : ""}>
               <td className="metric_title">
                 <i className="fa icon-icn-subject" />
                 { I18n.t( "evidence_related_to_single_subject" ) }
