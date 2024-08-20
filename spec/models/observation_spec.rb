@@ -1729,6 +1729,76 @@ describe Observation do
       expect( Observation.find_by_id( @dupe.id ) ).not_to be_blank
     end
   end
+
+  describe "reassess_annotations" do
+    before do
+      @attribute = make_controlled_term_with_label
+      @value = make_controlled_term_with_label( nil, is_value: true )
+      @attribute.controlled_term_values << ControlledTermValue.new(
+        controlled_attribute: @attribute,
+        controlled_value: @value
+      )
+      @value.reload
+      @attribute.reload
+      @family = Taxon.make!( rank: Taxon::FAMILY )
+      @genus1 = Taxon.make!( rank: Taxon::GENUS, parent: @family )
+      @genus2 = Taxon.make!( rank: Taxon::GENUS, parent: @family )
+      @genus1_species = Taxon.make!( rank: Taxon::SPECIES, parent: @genus1 )
+      @genus2_species = Taxon.make!( rank: Taxon::SPECIES, parent: @genus2 )
+      @attribute.controlled_term_taxa.create!( taxon: @genus1 )
+    end
+
+    it "marks annotations as mismatch after taxon change" do
+      observation = Observation.make!( taxon: @genus1 )
+      Annotation.make!(
+        resource: observation,
+        controlled_attribute: @attribute,
+        controlled_value: @value
+      )
+      expect( observation.annotations.count ).to eq 1
+      expect( observation.annotations.first.term_taxon_mismatch ).to eq false
+      expect( observation.as_indexed_json[:annotations].size ).to eq 1
+      expect( Observation.page_of_results(
+        id: observation.id,
+        term_id: @attribute.id,
+        term_value_id: @value.id
+      ).count ).to eq 1
+
+      Identification.make!( observation: observation, taxon: @genus2 )
+      expect( observation.annotations.count ).to eq 1
+      expect( observation.annotations.first.term_taxon_mismatch ).to eq true
+      expect( observation.as_indexed_json[:annotations].size ).to eq 0
+      expect( Observation.page_of_results(
+        id: observation.id,
+        term_id: @attribute.id,
+        term_value_id: @value.id
+      ).count ).to eq 0
+    end
+
+    it "unmarks annotations as mismatch after taxon change" do
+      observation = Observation.make!( taxon: @genus1 )
+      Annotation.make!(
+        resource: observation,
+        controlled_attribute: @attribute,
+        controlled_value: @value
+      )
+      expect( observation.annotations.first.term_taxon_mismatch ).to eq false
+
+      genus2_id = Identification.make!( observation: observation, taxon: @genus2 )
+      expect( observation.annotations.first.term_taxon_mismatch ).to eq true
+
+      genus2_id.destroy
+      observation.reload
+      expect( observation.annotations.count ).to eq 1
+      expect( observation.annotations.first.term_taxon_mismatch ).to eq false
+      expect( observation.as_indexed_json[:annotations].size ).to eq 1
+      expect( Observation.page_of_results(
+        id: observation.id,
+        term_id: @attribute.id,
+        term_value_id: @value.id
+      ).count ).to eq 1
+    end
+  end
 end
 
 describe Observation, "probably_captive?" do

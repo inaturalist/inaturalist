@@ -284,7 +284,8 @@ CREATE TABLE public.annotations (
     user_id integer,
     observation_field_value_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    term_taxon_mismatch boolean DEFAULT false
 );
 
 
@@ -10980,6 +10981,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240620100000'),
 ('20240709175116'),
 ('20240715141936'),
-('20240716190326');
+('20240716190326'),
+('20240819213348');
 
 
