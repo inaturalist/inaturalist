@@ -427,7 +427,8 @@ iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
       google.maps.MapTypeId.SATELLITE,
       google.maps.MapTypeId.HYBRID,
       iNaturalist.Map.MapTypeId.OSM
-    ]
+    ],
+    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
   },
   streetViewControl: false,
   rotateControl: false,
@@ -1452,7 +1453,7 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
 
 
 iNaturalist.Map.createOsmMapTypeForMap = function ( map ) {
-  var name = map.getDiv().offsetWidth > 500
+  var name = map.getDiv().offsetWidth > 300
     ? "OpenStreetMap"
     : "OSM";
   // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
