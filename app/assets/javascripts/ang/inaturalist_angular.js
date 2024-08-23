@@ -174,7 +174,8 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
       date: "=",
       timezone: "=",
       obscured: "=",
-      short: "="
+      short: "=",
+      viewersTimezone: "="
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
@@ -188,7 +189,9 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
                : I18n.t( "momentjs.month_year" )
            );
         }
-        var date = moment(scope.date),
+        var displayTimezone = scope.viewersTimezone
+          ? moment.tz.guess( ) : scope.timezone || "UTC";
+        var date = moment.tz( scope.time || scope.date, displayTimezone ),
             now = moment(new Date()),
             dateString;
         if (date.isSame(now, 'day')) {
@@ -203,11 +206,27 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
       scope.timeString = function() {
         if ( !scope.time ) return "";
         if ( scope.obscured ) return "";
-        scope.timezone = scope.timezone || "UTC";
-        return moment.tz( scope.time.replace( /[+-]\d\d:\d\d/, "" ), scope.timezone ).format( "LT z" );
+        var displayTimezone = scope.viewersTimezone
+          ? moment.tz.guess( ) : scope.timezone || "UTC";
+        var d = moment.tz( scope.time, displayTimezone );
+        return d.format( "LT z" );
+      }
+      scope.titleText = function() {
+        if ( !scope.time ) {
+          return null;
+        }
+        var displayTimezone = scope.viewersTimezone
+          ? moment.tz.guess( ) : scope.timezone || "UTC";
+        var momentTime = moment.tz( scope.time, displayTimezone );
+        if ( scope.obscured ) {
+          return momentTime.format( I18n.t( "momentjs.month_year" ) );
+        } else {
+          return momentTime.format( );
+        }
       }
     },
-    template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'
+    template: '<span class="date">{{ dateString() }}</span>'
+      + '<span class="time" title="{{ titleText() }}">{{ timeString() }}</span>'
   }
 }]);
 

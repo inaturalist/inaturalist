@@ -35,6 +35,7 @@
     placeLayerDescription: undefined
     placeLayerLabel: "Place boundary"
     placeLayers: undefined
+    scrollwheel: true
     showAccuracy: true
     showAllLayer: true
     showLegend: false

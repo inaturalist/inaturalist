@@ -417,6 +417,7 @@ class Suggestions extends React.Component {
                     observations={[observation]}
                     gestureHandling="auto"
                     reloadKey={`taxondetail-${detailTaxon.id}`}
+                    scrollwheel={false}
                     taxonLayers={[
                       taxonLayerForTaxon( detailTaxon, {
                         currentUser: config.currentUser,
