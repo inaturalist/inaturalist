@@ -9,7 +9,8 @@ $(document).ready(function() {
     div: $('#map').get(0),
     zoom: typeof ( OBSERVATION ) === "object" && OBSERVATION.zoom_level || 2,
     bounds: BOUNDS,
-    gestureHandling: "auto"
+    gestureHandling: "auto",
+    disableFullscreen: true
   })
   window.map = map;
 
