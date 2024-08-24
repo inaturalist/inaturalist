@@ -7,7 +7,7 @@ $(document).ready(function() {
   $('.observed_on_string').iNatDatepicker();
   var map = iNaturalist.Map.createMap({
     div: $('#map').get(0),
-    mapTypeId: google.maps.MapTypeId.HYBRID,
+    zoom: typeof ( OBSERVATION ) === "object" && OBSERVATION.zoom_level || 2,
     bounds: BOUNDS,
     gestureHandling: "auto"
   })
@@ -25,6 +25,8 @@ $(document).ready(function() {
     if (PROJECT.map_type) {
       map.setMapTypeId(PROJECT.map_type)
     }
+  } else if ( typeof ( CURRENT_USER ) === "object" ) {
+    map.setMapTypeId( iNaturalist.Map.preferredMapTypeId( CURRENT_USER ) )
   }
   if (typeof(PLACE) != 'undefined' && PLACE) {
     window.map.addPlaceLayer({ place: PLACE });

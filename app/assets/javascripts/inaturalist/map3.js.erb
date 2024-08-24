@@ -437,7 +437,10 @@ iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   gestureHandling: "greedy",
   controlSize: 26,
   scaleControl: true,
-  tilt: 0
+  tilt: 0,
+  zoomControlOptions: {
+    position: google.maps.ControlPosition.BLOCK_START_INLINE_START
+  }
 };
 
 iNaturalist.Map.API_PARAMS = function( ) {
