@@ -68,7 +68,7 @@ class LocationChooserMap extends React.Component {
     const map = iNaturalist.Map.createMap( {
       ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
       div: $( ".map-inner", domNode ).get( 0 ),
-      zoom: zoom || 1,
+      zoom: zoom || 2,
       center: existingCenter || { lat: 30, lng: 15 },
       disableFullscreen: true,
       mapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser )

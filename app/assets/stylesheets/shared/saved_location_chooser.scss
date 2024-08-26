@@ -113,6 +113,7 @@
 @media (max-width: 970px) {
   .SavedLocationChooser {
     top: 60px;
-    left: 54px;
+    left: inherit;
+    right: 16px;
   }
 }
