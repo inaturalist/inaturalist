@@ -1754,6 +1754,9 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
       || defaultMapType === google.maps.MapTypeId.HYBRID ) {
       $scope.$parent.mapType = "satellite";
     }
+    if ( defaultMapType === iNaturalist.Map.MapTypeId.OSM ) {
+      $scope.$parent.mapType = iNaturalist.Map.MapTypeId.OSM;
+    }
     if ( defaultMapType === iNaturalist.Map.MapTypes.LIGHT_NO_LABELS
       || defaultMapType === google.maps.MapTypeId.SATELLITE ) {
       $scope.$parent.mapLabels = false;
@@ -1959,6 +1962,8 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
           ? iNaturalist.Map.MapTypes.LIGHT
           : iNaturalist.Map.MapTypes.LIGHT_NO_LABELS;
       }
+    } else if ( mapType === iNaturalist.Map.MapTypeId.OSM ) {
+      mapTypeId = iNaturalist.Map.MapTypeId.OSM;
     } else {
       mapTypeId = mapLabels ? google.maps.MapTypeId.HYBRID : google.maps.MapTypeId.SATELLITE;
     }

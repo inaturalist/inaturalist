@@ -69,6 +69,12 @@ inatTaxonMap.setup = function ( elt, opts ) {
   options.mapTypeControl = ( options.mapTypeControl !== false && $( elt ).data( "map-type-control" ) !== true );
   options.mapTypeControlOptions = options.mapTypeControlOptions || $( elt ).data( "map-type-control-options" );
   options.zoomControl = ( options.zoomControl !== false && $( elt ).data( "zoom-control" ) !== false );
+  options.zoomControlOptions = options.zoomControlOptions || $( elt ).data( "zoom-control-options" );
+  // eslint-disable-next-line prefer-object-spread
+  options.zoomControlOptions = Object.assign(
+    { position: google.maps.ControlPosition.BLOCK_START_INLINE_START },
+    options.zoomControlOptions
+  );
   options.scrollwheel = ( options.scrollwheel !== false && $( elt ).data( "scrollwheel" ) !== false );
   options.overlayMenu = ( options.overlayMenu !== false && $( elt ).data( "overlay-menu" ) !== false );
   options.enableShowAllLayer = ( options.enableShowAllLayer !== false && $( elt ).data( "enable-show-all-layer" ) !== false );
@@ -139,7 +145,7 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
   var map;
   // eslint-disable-next-line prefer-object-spread
   var mapTypeControlOptions = Object.assign(
-    {},
+    iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS.mapTypeControlOptions,
     options.mapTypeControlOptions
   );
   if ( $( "html[dir='rtl']" ).length > 0 ) {
@@ -210,6 +216,13 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     map._overlayControl = new iNaturalist.OverlayControl( map );
   }
 
+  if ( !map.mapTypeListener ) {
+    map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", function ( ) {
+      var mapTypeId = this.getMapTypeId( );
+      setMapTypeAndUpdateSession( options, mapTypeId );
+    } );
+  }
+
   // Set custom map type
   if ( options.mapType ) {
     map.setMapTypeId( options.mapType );
@@ -220,12 +233,6 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
     if ( map.getMapTypeId( ) !== preferredMapTypeId ) {
       map.setMapTypeId( preferredMapTypeId );
     }
-  }
-
-  if ( !map.mapTypeListener ) {
-    map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", function ( ) {
-      setMapTypeAndUpdateSession( options, this.getMapTypeId( ) );
-    } );
   }
 
   if ( options.showLegend && !map._legend ) {
