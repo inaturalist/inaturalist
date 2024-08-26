@@ -816,6 +816,7 @@ sv:
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
   badges: Märken
+  base_map_copyright_openstreetmap_html: Grundkarta ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -4763,6 +4764,8 @@ sv:
   show_no_annotation: Visa "Ingen anteckning"
   show_off_your_recent_observations: Visa upp dina senaste fynd på din egen blogg eller hemsida!
   show_only: Visa endast
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Visa OpenStreetMap
   show_relative_proportions_of_all_observations: Visa relativ andel av alla fynd
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Visa ackumulerat
