@@ -6,6 +6,8 @@ import {
   UPDATE_CURRENT_OBSERVATION
 } from "../actions/current_observation_actions";
 
+/* global LIFE_TAXON */
+
 const RESET = "observations-identify/suggestions/RESET";
 const START_LOADING = "observations-identify/suggestions/START_LOADING";
 const STOP_LOADING = "observations-identify/suggestions/STOP_LOADING";
@@ -263,7 +265,13 @@ export function updateWithObservation( observation ) {
 }
 
 function sanitizeQuery( query ) {
-  return _.pick( query, ["place_id", "taxon_id", "source", "order_by", "featured_observation_id"] );
+  let sanitizedQuery = _.pick( query, [
+    "place_id", "taxon_id", "source", "order_by", "featured_observation_id"
+  ] );
+  if ( sanitizedQuery.taxon_id && sanitizedQuery.taxon_id === LIFE_TAXON.id ) {
+    sanitizedQuery = _.omit( sanitizedQuery, "taxon_id" );
+  }
+  return sanitizedQuery;
 }
 
 export function reset( ) {
