@@ -605,20 +605,20 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def update
     @display_user = current_user
     @login = @display_user.login
     @original_user = @display_user
-    
+
     return add_friend unless params[:friend_id].blank?
     return remove_friend unless params[:remove_friend_id].blank?
     return update_password unless (params[:password].blank? && params[:commit] !~ /password/i)
-    
+
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     @display_user.icon = nil if params[:icon_delete]
-    
+
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
@@ -626,6 +626,7 @@ class UsersController < ApplicationController
     place_id_changed = @display_user.will_save_change_to_place_id?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
     prefers_no_site_changed = @display_user.prefers_no_site_changed?
+    @display_user.wait_for_index_refresh = true
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -666,7 +667,6 @@ class UsersController < ApplicationController
           end
         end
         format.json do
-          User.refresh_es_index
           if @display_user.encrypted_password_previously_changed?
             flash[:success] = I18n.t( "devise.registrations.updated_but_not_signed_in" )
           end
