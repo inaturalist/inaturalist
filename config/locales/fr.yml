@@ -5523,12 +5523,14 @@ fr:
     %{user} pense qu'il s'agit d'une liste complète de %{taxon} dans %{place}
   user_blocked: Utilisateur bloqué
   user_commented: "%{user} a commenté"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} a effectué une suppression de taxon affectant %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_merge_affecting_taxa2: "%{user} a effectué une fusion de taxons affectant %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} a effectué une séparation de taxons affectant %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon2: "%{user} a mis le taxon %{taxa} en attente"
+  user_committed_taxon_stage_affecting_taxon2: "%{user} a mis le taxon %{taxon} en attente"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa2: "%{user} a effectué un échange de taxons affectant %{taxa}"
   user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
