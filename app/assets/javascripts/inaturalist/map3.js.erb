@@ -1456,7 +1456,7 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
 
 
 iNaturalist.Map.createOsmMapTypeForMap = function ( map ) {
-  var name = map.getDiv().offsetWidth > 300
+  var name = map.getDiv().offsetWidth > 600
     ? "OpenStreetMap"
     : "OSM";
   // https://wiki.openstreetmap.org/wiki/Google_Maps_Example

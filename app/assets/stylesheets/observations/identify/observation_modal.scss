@@ -75,7 +75,8 @@ body > [role="dialog"] .ObservationModal {
       inset-inline-end: 0;
     }
     .SplitTaxon.taxon {
-      & > .display-name, .display-names {
+      & > .display-name,
+      .display-names {
         font-size: 180%;
         line-height: 26px;
         display: inline-block;
@@ -83,8 +84,7 @@ body > [role="dialog"] .ObservationModal {
         color: black;
       }
       &.has-com-name > .display-name,
-      &.has-com-name > .secondary-name,
-      &.has-com-name .secondary-names {
+      &.has-com-name > .display-names {
         display: block;
       }
     }
