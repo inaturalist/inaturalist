@@ -168,13 +168,25 @@ function( $http, $rootScope, $filter ) {
 
 // prints a date like "Today 12:34 PM" with some stylable wrapper elements
 iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
+  function displayTimezone( useViewersTimezone, defaultTimezone ) {
+    if ( useViewersTimezone ) {
+      var guessedTimezone = moment.tz.guess( );
+      // confirm that what moment.tz.guess( ) returns is a timezone known by momentjs
+      if ( moment.tz.names( ).includes( guessedTimezone ) ) {
+        return guessedTimezone;
+      }
+    }
+    return defaultTimezone || "UTC";
+  }
+
   return {
     scope: {
       time: "=",
       date: "=",
       timezone: "=",
       obscured: "=",
-      short: "="
+      short: "=",
+      viewersTimezone: "="
     },
     link: function(scope, elt, attr) {
       scope.dateString = function() {
@@ -188,7 +200,8 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
                : I18n.t( "momentjs.month_year" )
            );
         }
-        var date = moment(scope.date),
+        var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
+        var date = moment.tz( scope.time || scope.date, timezone ),
             now = moment(new Date()),
             dateString;
         if (date.isSame(now, 'day')) {
@@ -203,11 +216,25 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
       scope.timeString = function() {
         if ( !scope.time ) return "";
         if ( scope.obscured ) return "";
-        scope.timezone = scope.timezone || "UTC";
-        return moment.tz( scope.time.replace( /[+-]\d\d:\d\d/, "" ), scope.timezone ).format( "LT z" );
+        var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
+        var d = moment.tz( scope.time, timezone );
+        return d.format( "LT z" );
+      }
+      scope.titleText = function() {
+        if ( !scope.time ) {
+          return null;
+        }
+        var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
+        var momentTime = moment.tz( scope.time, timezone );
+        if ( scope.obscured ) {
+          return momentTime.format( I18n.t( "momentjs.month_year" ) );
+        } else {
+          return momentTime.format( );
+        }
       }
     },
-    template: '<span class="date">{{ dateString() }}</span><span class="time">{{ timeString() }}</span>'
+    template: '<span class="date">{{ dateString() }}</span>'
+      + '<span class="time" title="{{ titleText() }}">{{ timeString() }}</span>'
   }
 }]);
 

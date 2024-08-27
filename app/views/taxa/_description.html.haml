@@ -111,7 +111,7 @@
             }}
           WIKI
         end
-        wikitext = if @taxon.rank_level && @taxon.rank_level < Taxon::SPECIES_LEVEL
+        wikitext = if @taxon.rank_level && @taxon.rank_level < Taxon::SPECIES_LEVEL && @taxon.species
           <<-WIKI
             #REDIRECT [[#{@taxon.species.name}]]
           WIKI

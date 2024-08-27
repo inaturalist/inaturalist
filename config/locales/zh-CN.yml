@@ -2136,7 +2136,7 @@ zh-CN:
   ids: "鉴定"
   ids_made_for_others: 为其他人做出的鉴定
   if_for_some_reason_a_user_doesnt_agree: |
-    如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
+    如果出于某种原因，你不同意社群鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社群中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   if_narrowing_a_parent_for_moves_html: |
@@ -2668,18 +2668,18 @@ zh-CN:
   #As in members of a project
   members: 成员
   membership_model: 成员模型
-  mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
-  mentioned_you_in_noun_by_html: "%{user} 在 %{noun} 通过 %{by} 提到了您"
-  mentioned_you_in_noun_by_user_html: "%{user} 通过 %{by} 在 %{noun} 中提到了您"
+  mentioned_you_in_noun_html: "%{user} 在 %{noun} 中提到了您"
+  mentioned_you_in_noun_by_html: "%{user} 在 %{by} 的 %{noun} 中提到了您"
+  mentioned_you_in_noun_by_user_html: "%{user} 在 %{by} 的 %{noun} 中提到了您"
   mentioned_you_in_noun_by_you_html: "%{user} 在您的 %{noun} 中提到了您"
   mentioned_you_in_a_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
-  mentioned_you_in_a_x_on_noun_by_html: "%{user} 在 %{noun} 中的 %{x} 通过 %{by} 提到了您"
-  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} 通过 %{by} 在 %{noun} 中的 %{x} 提到了您"
-  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} 通过您在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} 在 %{by} 的 %{noun} 中的 %{x} 里提到了您"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} 在 %{by} 的 %{noun} 中的 %{x} 里提到了您"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} 在您的 %{noun} 中的 %{x} 里提到了您"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} 在 %{noun} 上的 %{x} 通过 %{by} 提到了您"
-  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} 通过 %{by} 在 %{noun} 中的 %{x} 提到了您"
-  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} 通过您在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} 在 %{by} 的 %{noun} 中的 %{x} 里提到了您"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} 在您的 %{noun} 中的 %{x} 里提到了您"
   merge: 合并
   merge_it_with_another_place: 将其与另一个地点合并
   merge_two_places_together: 合并两个地点。清单上的所有物种都将被合并，所有地理数据也将被合并。
@@ -5748,7 +5748,7 @@ zh-CN:
   yir_email_with_gratitude: "此致  \n敬礼，"
   yir_email_year_on_inaturalist_globally_caps: "INATURALIST全球%{year}年度回顾"
   yir_email_you_are_part_of_something: |
-    您是伟大事业的一部分！ 每个发布观察结果、添加标识并传播 iNaturalist 信息的人都会对生物多样性产生影响。 通过我们的集体努力，我们正在以前所未有的规模提供生物多样性数据和见解。 感谢您成为 iNaturalist 社区的一员！
+    您是伟大事业的一部分！ 每个发布观察结果、添加鉴定并传播 iNaturalist 信息的人都会对生物多样性产生影响。 通过我们的集体努力，我们正在以前所未有的规模提供生物多样性数据和见解。 感谢您成为 iNaturalist 社区的一员！
   yir_email_you_make_a_difference: |
     您通过 iNaturist 为生物多样性做出了贡献。 感谢您所做的一切！
   #@vow_or_con works on %{username}. %{created_date} will use the date.long
@@ -6333,10 +6333,10 @@ zh-CN:
         score: 分数
         explanation: |
           <p>
-          如果由于某种原因用户不同意社区分类，他们可以拒绝它，这意味着他们的ID只能用于链接到其他观察，更新生物清单等。这也意味着他们的观察只能在当社区同意的时候才可以达到研究级别。
+          如果由于某种原因用户不同意社群分类，他们可以拒绝它，这意味着他们的鉴定只能用于链接到其他观察，更新生物清单等。这也意味着这一观察只能在社群同意时才可以达到研究级别。
           </p>
           <p>
-          但是，社区ID仍会被显示，因此所有人都可以看到已建议的不同ID。
+          但是，社群鉴定仍会被显示，因此所有人都可以看到已建议的不同鉴定。
           </p>
         you_have_opted_out: 您已选择退出社区标识
         opt_in_for_this_observation: 选择加入此观察
@@ -7400,7 +7400,7 @@ zh-CN:
           joined: 您加入的项目
           none: "没有，只有您可以将您的观察添加到项目中"
         prefers_community_taxa_desc: |
-          %{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。
+          %{site_name}跟踪您认为您的观察以及社群认为的结果。如果您认为社群的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加鉴定，但是您的观察仍然以您的鉴定为基准。这也意味着除非您同意社区鉴定，否则您的观察将不能符合研究级别。
         prefers_coordinate_interpolation_protection_desc: |
           当您将观察的地理位置设置为“隐藏”或“私有”时，同一天内您所有其他的观测也将应用同样的地理位置隐私设置，使其他人更难基于同一时间内您的观察来猜测真正的坐标。
         prefers_no_tracking_label: 不要使用第三方服务收集稳定性和使用数据

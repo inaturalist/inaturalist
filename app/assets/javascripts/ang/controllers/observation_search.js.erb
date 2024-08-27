@@ -409,7 +409,7 @@ var SearchController = function (
       scope.moreFiltersHidden = false;
       return;
     }
-    if ( !$scope.clickedMoreFiltersOpen === false ) {
+    if ( $scope.clickedMoreFiltersOpen === false ) {
       scope.moreFiltersHidden = true;
       return;
     }
@@ -419,7 +419,7 @@ var SearchController = function (
         moreFiltersHidden = false;
       }
     } );
-    if ( pageInit && $scope.clickedMoreFiltersOpen === null && !moreFiltersHidden ) {
+    if ( pageInit && !moreFiltersHidden ) {
       $scope.clickedMoreFiltersOpen = true;
     }
     scope.moreFiltersHidden = moreFiltersHidden;
@@ -507,7 +507,7 @@ var SearchController = function (
           nelat: $scope.params.nelat,
           nelng: $scope.params.nelng
         };
-      } else if ( $scope.params.lat && $scope.params.lng && $scope.params.radius ) {
+      } else if ( $scope.params.lat && $scope.params.lng ) {
         $scope.drawing.currentShape = "circle";
         $scope.drawing.disabled = true;
       }

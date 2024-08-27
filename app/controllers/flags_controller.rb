@@ -129,7 +129,7 @@ class FlagsController < ApplicationController
 
   def new
     @flag = Flag.new(params[:flag])
-    @object = @model.find(params[@object_key])
+    @object = find_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
