@@ -70,11 +70,6 @@ inatTaxonMap.setup = function ( elt, opts ) {
   options.mapTypeControlOptions = options.mapTypeControlOptions || $( elt ).data( "map-type-control-options" );
   options.zoomControl = ( options.zoomControl !== false && $( elt ).data( "zoom-control" ) !== false );
   options.zoomControlOptions = options.zoomControlOptions || $( elt ).data( "zoom-control-options" );
-  // eslint-disable-next-line prefer-object-spread
-  options.zoomControlOptions = Object.assign(
-    { position: google.maps.ControlPosition.BLOCK_START_INLINE_START },
-    options.zoomControlOptions
-  );
   options.scrollwheel = ( options.scrollwheel !== false && $( elt ).data( "scrollwheel" ) !== false );
   options.overlayMenu = ( options.overlayMenu !== false && $( elt ).data( "overlay-menu" ) !== false );
   options.enableShowAllLayer = ( options.enableShowAllLayer !== false && $( elt ).data( "enable-show-all-layer" ) !== false );
