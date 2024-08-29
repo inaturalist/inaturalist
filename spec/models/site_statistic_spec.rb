@@ -23,6 +23,8 @@ describe SiteStatistic do
         statistic: {}
       }
     end )
+    allow( UserInstallationStatistic ).to receive( :calculate_all_retention_metrics ).and_return( {} )
+    allow( UserInstallationStatistic ).to receive( :update_today_installation_ids ).and_return( {} )
   end
 
   describe "stats_generated_for_day?" do
