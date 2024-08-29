@@ -1,5 +1,6 @@
 class OauthApplication < Doorkeeper::Application
   has_many :observations
+  has_many :user_installations
   has_attached_file :image, 
     styles: { medium: "300x300>", thumb: "100x100>", mini: "16x16#" },
     default_url: "/attachment_defaults/:class/:style.png",
@@ -37,6 +38,10 @@ class OauthApplication < Doorkeeper::Application
 
   def self.seek_app
     @@seek_app ||= OauthApplication.where( name: "Seek" ).first
+  end
+
+  def self.inat_nex_app
+    @@inat_next_app ||= OauthApplication.where(name: "iNat Next").first
   end
 
   def set_scopes

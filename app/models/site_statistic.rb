@@ -16,11 +16,13 @@ class SiteStatistic < ApplicationRecord
     site_statistic_data = STAT_TYPES.to_h {| st | [st, send( "#{st}_stats", at_time )] }
     daily_active_user_model_data = generate_daily_active_user_model_data( at_time )
     site_statistic_data[:daily_active_user_model] = daily_active_user_model_data[:statistic]
+    site_statistic_data[:retention_metrics] = UserInstallationStatistic.calculate_all_retention_metrics( at_time )
     SiteStatistic.create!(
       data: site_statistic_data,
       created_at: at_time.beginning_of_day
     )
     update_user_daily_categories( daily_active_user_model_data )
+    UserInstallationStatistic.update_today_installation_ids( at_time )
   end
 
   def self.generate_stats_for_date_range(start_time, end_time = Time.now, options = {})

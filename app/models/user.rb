@@ -130,6 +130,7 @@ class User < ApplicationRecord
   has_one  :flickr_identity, dependent: :delete
   has_one  :soundcloud_identity, dependent: :delete
   has_one :user_daily_active_category, dependent: :delete
+  has_many :user_installations
   has_many :observations, dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
