@@ -213,7 +213,7 @@ class UserInstallationStatistic < ApplicationRecord
     retention_7_day = if today_minus_7_created_installations.zero?
       nil
     else
-      today_minus_7_created_installations_active_today / today_minus_7_created_installations
+      100 * today_minus_7_created_installations_active_today.to_f / today_minus_7_created_installations
     end
 
     # 14 day retention:
@@ -226,7 +226,7 @@ class UserInstallationStatistic < ApplicationRecord
     retention_14_day = if today_minus_14_created_installations.zero?
       nil
     else
-      today_minus_14_created_installations_active_today / today_minus_14_created_installations
+      100 * today_minus_14_created_installations_active_today.to_f / today_minus_14_created_installations
     end
 
     # 28 day retention:
@@ -239,7 +239,7 @@ class UserInstallationStatistic < ApplicationRecord
     retention_28_day = if today_minus_28_created_installations.zero?
       nil
     else
-      today_minus_28_created_installations_active_today / today_minus_28_created_installations
+      100 * today_minus_28_created_installations_active_today.to_f / today_minus_28_created_installations
     end
 
     # 1 week retention:
@@ -252,7 +252,7 @@ class UserInstallationStatistic < ApplicationRecord
     retention_1_week = if today_minus_7_created_installations.zero?
       nil
     else
-      today_minus_7_created_installations_active_this_week / today_minus_7_created_installations
+      100 * today_minus_7_created_installations_active_this_week.to_f / today_minus_7_created_installations
     end
 
     # 2 weeks retention:
@@ -265,7 +265,7 @@ class UserInstallationStatistic < ApplicationRecord
     retention_2_weeks = if today_minus_14_created_installations.zero?
       nil
     else
-      today_minus_14_created_installations_active_this_week / today_minus_14_created_installations
+      100 * today_minus_14_created_installations_active_this_week.to_f / today_minus_14_created_installations
     end
 
     # 4 weeks retention:
@@ -278,7 +278,7 @@ class UserInstallationStatistic < ApplicationRecord
     retention_4_weeks = if today_minus_28_created_installations.zero?
       nil
     else
-      today_minus_28_created_installations_active_this_week / today_minus_28_created_installations
+      100 * today_minus_28_created_installations_active_this_week.to_f / today_minus_28_created_installations
     end
 
     {
