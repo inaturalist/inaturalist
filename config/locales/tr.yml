@@ -7224,32 +7224,6 @@ tr:
           Sıralamaya sahip sınıfın adı. İnfraspesifik sıralar için rütbe ikili terimden sonra eklenir.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Başka yerlerde kullanılan isimleri eklemeyi deneyin. Lütfen yeni isimler oluşturmayın.</p></li>
-          <li><p>Yinelenen isimler eklemeyin. ör. birçok şahine "şahin" ismini vermeyin</p></li>
-          <li><p>Daha yüksek seviyeli sınıflar için, tüm soy ağacını içeren, "balıkçıllar ve yakınları" veya "sağlıklı familya" gibi isimler kullanmayı deneyin</p></li>
-          <li>
-          <p>
-          İsim olmayan bilgileri eklemeyin, ör. ismin nasıl kullanılması 
-          gerektiğini düşündüğünüz fikir hakkında parantez içi bilgi
-          </p>
-          </li>
-          <li>
-          <p>
-          Yeni sözcükler İngilizce olmalı. Lütfen "French, Français" gibi çevrilmiş 
-          dil isimleri eklemeyin, çünkü bu siteyi farklı dillerde kullanan kişilere yerel 
-          isimler göstermemizi zorlaştırır veya imkansız hale getirir.
-          </p>
-          </li>
-          <li>
-          <p>
-          Tercüme edilmiş dillerle ilişkilendirilmiş yaygın isimler, o dilin varsayılan yaygın 
-          ismi olarak görünecektir (Yer tercihlerinin etkisinin engellenmesi, isim sıralaması, vb.).
-          <a class="readmore" href="/pages/translate">Çeviri hakkında daha fazla bilgi edinin</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:
