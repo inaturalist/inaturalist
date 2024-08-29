@@ -8072,21 +8072,34 @@ da:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <Ul>
-          <li> <p> Prøv at tilføje navne, der er blevet brugt andetsteds. Opfind venligst ikke nye navne.</P></li>
-           <li> <p> Tilføj ikke dubletter, f.eks. navngiv ikke mange høge "høg"</p</li>
-           <li><p> For taksa på højere niveau, prøv at bruge navne, der omfatter alle efterkommere, som "hejrefugle" eller "Lyngfamilie"</p></li>
+          <ul>
+          <li><p>Prøv at tilføje navne, som er blevet brugt andetsteds. Opfind venligst ikke nye navne.</p></li>
+          <li><p>Tilføj ikke dubletnavne, navngiv f.eks. ikke mange høge som "høg"</p></li>
+          <li><p>For taksa på højere niveau, prøv at bruge navne, som omfatter alle efterkommere, som "hejrefugle" eller "lyngfamilie"</p></li>
           <li>
           <p>
-             Tilføj ikke oplysninger, der ikke er selve navnet, f.eks. oplysninger i parentes om, hvordan du mener, at navnet skal bruges
+          Tilføj ikke oplysninger, som ikke er selve navnet, f.eks.
+          oplysningeri parentes om, hvordan man mener, at navnet
+          skal bruges
           </p>
           </li>
           <li>
           <p>
-              Leksikaer skal være på engelsk. Tilføj venligst ikke oversatte sprognavne som "Fransk, Français", fordi det bare vil gøre det svært eller umuligt for os at vise lokale navne for de personer, der bruger websiden på forskellige sprog
-            </p>
-           </li>
-          </Ul>
+          Nye leksikaer skal være på engelsk. Tilføj venligst ikke oversatte
+          sprognavne, såsom "Fransk, Français", da det bare vil gøre det
+          svært eller umuligt for os at vise lokaliserede navne for dem,
+          som bruger webstedet på forskellige sprog.
+          </p>
+          </li>
+          <li>
+          <p>
+          Almindelige navne forbundet med oversatte sprog vises som
+          det almindelige standard navn for det sprog (bortset fra
+          stedpræferencer, navnerækkefølge mv.).
+          <a class="readmore" href="/pages/translate">Læs mere om oversættelse</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Tilføj et navn til et sted for at give det prioritet for websteder og brugere af det sted. Hvis der er flere navne per sted, kan du prioritere
           dem <a href="%{url}"> her </a>. Tilføj venligst <strong> ikke </strong> navne til HVERT sted hvor navnet bruges, kun til steder, der konflikter med
