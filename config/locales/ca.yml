@@ -7148,24 +7148,6 @@ ca:
           El nom del tàxon està en el rang.Per a rangs infraespecífics, el rang s'insereix desprès del binomial.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Intenteu afegir noms que efectivament estiguin en ús. Si us plau, no inventeu nous noms.</p></li>
-          <li><p>No afegir noms duplicats, per exemple, no poseu diversos falcons "falcó"</p></li>
-          <li><p>Per a tàxons de més alt nivell de tàxons, proveu d'utilitzar noms que incloguin tots els descendents, com "garses i similars" o "Família dels Brucs"<p></li>
-          <li>
-          <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom</p>
-          </li>
-          <li>
-          <p>Els nous lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
-          </li>
-          <li>
-          <p>
-          Els noms comuns associats a traduccions apareixen com a noms per defecte per aquest idioma (amb independpencia de l'efecte del lloc de preferència, l'ordre dels noms...).
-          <a class="readmore" href="/pages/translate">Llegiu més sobre les traduccions</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Afegir un nom a un lloc per donar-li prioritat per aquest lloc i els seus usuaris. Si hi ha diversos noms pel mateix lloc pot prioritzar-los <a href="%{url}">aquí</a>. Si us plau, <strong>no</strong> afegiu noms per TOTS els
           llocs on el nom és utilitzat, només per a llocs que presentin conflictes amb altres llocs.
