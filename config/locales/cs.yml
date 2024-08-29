@@ -7640,23 +7640,6 @@ cs:
           Název taxonu s kategorií. Pro infraspecifické kategorie je kategorie vložena za binominální nomenklaturou.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-            <li><p>Zkuste přidat názvy, které se používají jinde. Nevymýšlejte prosím nové názvy.</p></li>
-            <li><p>Nepřidávejte zdvojené názvy, např. nepojmenovávejte několik jestřábů „jestřáb“</p></li>
-            <li><p>Pro taxony vyšší úrovně se snažte používat názvy, které zahrnují všechny následné, například „volavky a příbuzné rody“ nebo „čeleď vřesovcovité“
-          </p></li>
-           \ <li>
-              <p>
-                Nepřidávejte jiné informace než název, např. vsunuté informace o tom, jak by se podle vás měl název používat
-              </p>
-            </li>
-           \ <li>
-              <p>
-                Slovníky by měly být v angličtině. Nepřidávejte prosím přeložené názvy jazyků, např. „French, francouzština“, protože to nám jen stíží nebo znemožní zobrazování lokalizovaných názvů lidem, kteří stránku používají v jiných jazycích. 
-              </p>
-            </li>
-          </ul>
         places_help_html: |
           Přidáním názvu místa mu dáte prioritu pro stránky a uživatele z tohoto místa. Pokud k místu patří několik názvů, můžete je seřadit podle priority <a href="%{url}">zde</a>. <strong>Nepřidávejte</strong> prosím názvy pro KAŽDÉ místo, kde se název používá, pouze pro místa, která jsou v rozporu s jinými místy.
       taxon:
