@@ -6776,28 +6776,6 @@ nb:
           Navnet til taksonet med rangen. For infra-artsranger, legges rang inn etter binomialen.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Prøv å legge til navn som har blitt brukt andre steder. Vennligst ikke finn på nye navn.</p></li>
-          <li><p>Ikke legg til duplikater, f.eks. ikke kall flere ørner "ørn"</p></li>
-          <li><p>For høyere taksa, prøv å bruke navn som inkluderer alle underliggende taksa, som "pelikanlignende fugler" eller "lyngfamilien"</p></li>
-          <li>
-          <p>
-          Ikke legg til informasjon som ikke er navnet, f.eks. informasjon mellom parentes om hvordan du mener navnet bør brukes
-          </p>
-          </li>
-          <li>
-          <p>
-          Nye leksikoner skal være på engelsk. Vennligst ikke legg til oversatte navn til språk som "French, Fransk" fordi det bare vil gjøre det vanskelig eller umulig for oss å vise lokaliserte navn for folk som bruker siden på ulike språk.
-          </p>
-          </li>
-          <li>
-          <p>
-          Populærnavn knyttet til oversatte språk vil vises som standardnavn for det språket (med behold av effekten av stedsvalg, rekkefølgen av navn, osv.).
-          <a class="readmore" href="/pages/translate">Les mer om oversetting</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Legg til et navn til et sted for å gi det prioritet for sider og brukere fra det stedet. Hvis det er flere navn per sted kan du prioritere de <a href="%{url}">her</a>. Vennligst <strong>ikke</strong> legg til navn for ALLE steder hvor navnet brukes, kun for steder som er i strid med andre steder.
       taxon:
