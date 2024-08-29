@@ -5856,18 +5856,6 @@ hu:
           <i>lupus</i>ra. Ez jó nagy felfordulást okozhat, úgyhogy óvatosan használd.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Csak olyan neveket adj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
-          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfajokat "sólyom"-nak. </p></li>
-          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska).</p></li>
-          <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni.</p></li>
-          <li><p>Ha új szókészletet töltesz fel (ez ritkán fordul elő, mivel a magyar mint szókészlet már szerepel!), akkor azt angolul nevezd el, különben lehetetlen lesz számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.</p></li>
-          <li><p>A lefordított köznevek alapértelmezettként fognak megjelenni, ha a felhasználó azon a nyelven használja a felületet (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
-          <a class="readmore" href="/pages/translate">További információ a felhasználó felület fordításáról</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           A nevet opcionálisan földrajzi területhez rendelheted, ezzel a név elsőbbségben részesül az adott terület honlapjai és felhasználói számára. Ha több név van egy területhez, sorrendiséget állíthatsz be <a href="%{url}">itt</a>. Kérjük <strong>ne adj hozzá</strong> nevet MINDEN területhez külön-külön, ahol az adott nevet használják, csak olyan területekhez, ahol eltérő a név más területekhez képest.
     users:
