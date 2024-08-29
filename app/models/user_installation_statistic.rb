@@ -48,7 +48,7 @@ class UserInstallationStatistic < ApplicationRecord
     {
       iNaturalistAndroid: calculate_retention_metrics( at_time, "iNaturalistAndroid" ),
       iNaturalistiOS: calculate_retention_metrics( at_time, "iNaturalistiOS" ),
-      iNaturalistReactNative: calculate_retention_metrics( at_time, "iNaturalistReactNative" )      
+      iNaturalistReactNative: calculate_retention_metrics( at_time, "iNaturalistReactNative" )
     }
   end
 

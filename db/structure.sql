@@ -5329,7 +5329,7 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id integer,
+    installation_id character varying(255),
     oauth_application_id integer,
     user_id integer,
     created_at date,
