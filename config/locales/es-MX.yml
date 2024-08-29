@@ -7678,12 +7678,6 @@ es-MX:
           El nombre del taxón con el rango. Para rangos infraespecificos, rango se  inserta después del binomio.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li>Trata de añadir nombres que se han utilizado en otros lugares. Por favor, no inventes nuevos nombres.</li>
-          <li>No agregues nombres duplicados, por ejemplo, no menciones a numerosos halcones "halcón"</li>
-          <li>Para taxa superiores de nivel, trata de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
-          </ul>
         places_help_html: |
           Añade un nombre para un lugar para darle prioridad para los sitios y los usuarios de ese lugar. Si hay varios nombres por lugar se puede dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
           <strong>no agregues nombres de todos los lugares donde se utiliza el nombre</strong>, sólo para los lugares que entran en conflicto con otros lugares.
