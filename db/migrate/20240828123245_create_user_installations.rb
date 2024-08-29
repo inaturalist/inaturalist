@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class CreateUserInstallations < ActiveRecord::Migration[6.1]
   def change
-    create_table :user_installations do |t|
+    create_table :user_installations do | t |
       t.string :installation_id
       t.integer :oauth_application_id
       t.integer :user_id

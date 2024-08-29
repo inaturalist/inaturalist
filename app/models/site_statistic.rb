@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteStatistic < ApplicationRecord
   STAT_TYPES = [
     :observations, :users, :projects,
@@ -5,11 +7,11 @@ class SiteStatistic < ApplicationRecord
     :platforms_cumulative
   ]
 
-  def self.generate_stats_for_day(at_time = Time.now, options = {})
+  def self.generate_stats_for_day( at_time = Time.now, options = {} )
     at_time = at_time.utc.end_of_day
     if options[:force]
-      SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).delete_all
-    elsif stats_generated_for_day?(at_time)
+      SiteStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).delete_all
+    elsif stats_generated_for_day?( at_time )
       return
     end
     sleep 1
@@ -25,21 +27,21 @@ class SiteStatistic < ApplicationRecord
     UserInstallationStatistic.update_today_installation_ids( at_time )
   end
 
-  def self.generate_stats_for_date_range(start_time, end_time = Time.now, options = {})
+  def self.generate_stats_for_date_range( start_time, end_time = Time.now, options = {} )
     start_time = start_time.utc.end_of_day
     end_time = end_time.utc.end_of_day
     until end_time < start_time
-      generate_stats_for_day(end_time, options)
+      generate_stats_for_day( end_time, options )
       end_time -= 1.day
     end
   end
 
-  def self.stats_generated_for_day?(at_time = Time.now)
-    SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).exists?
+  def self.stats_generated_for_day?( at_time = Time.now )
+    SiteStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).exists?
   end
 
   def self.first_stat
-    @@first_stat ||= SiteStatistic.order("created_at asc").first
+    @@first_stat ||= SiteStatistic.order( "created_at asc" ).first
   end
 
   private

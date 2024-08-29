@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-class UserInstallationStatistic < ApplicationRecord
 
+class UserInstallationStatistic < ApplicationRecord
   def self.update_today_installation_ids( at_time = Time.now )
     installation_data = {}
     get_installation_activity_from_kibana_data( at_time, "iNaturalistAndroid", installation_data )
@@ -70,7 +70,7 @@ class UserInstallationStatistic < ApplicationRecord
   # Generate multiple queries (1 by hour of data) to avoid reaching ES max bucket size
   def self.get_installation_activity_from_kibana_data( day, application_id, installation_activity_data )
     kibana_es_client = Elasticsearch::Client.new( host: CONFIG.kibana_es_uri )
-    puts "installation activity_from_kibana_data = " + day.to_s + " / " + application_id
+    puts "installation activity_from_kibana_data = #{day} / #{application_id}"
     oauth_application_id = convert_application_id_into_oauth_application_id( application_id )
     start_time = day.beginning_of_day
     24.times.each do
@@ -200,62 +200,86 @@ class UserInstallationStatistic < ApplicationRecord
     today_minus_14_created_installations = today_minus_14_installation_creation_data.count
     today_minus_28_created_installations = today_minus_28_installation_creation_data.count
 
-    today_installation_ids = today_installation_activity_data.values.map { |data| data[:installation_id] }
-    this_week_installation_ids = this_week_installation_activity_data.values.map { |data| data[:installation_id] }
+    today_installation_ids = today_installation_activity_data.values.map {| data | data[:installation_id] }
+    this_week_installation_ids = this_week_installation_activity_data.values.map {| data | data[:installation_id] }
 
     # 7 day retention
     # users that installed the app on day "today-7"
     # and connected today
-    retention_7_day_installation_data = today_minus_7_installation_creation_data.select do |user_installation|
+    retention_7_day_installation_data = today_minus_7_installation_creation_data.select do | user_installation |
       today_installation_ids.include?( user_installation.installation_id )
     end
     today_minus_7_created_installations_active_today = retention_7_day_installation_data.count
-    retention_7_day = today_minus_7_created_installations_active_today / today_minus_7_created_installations
+    retention_7_day = if today_minus_7_created_installations.zero?
+      nil
+    else
+      today_minus_7_created_installations_active_today / today_minus_7_created_installations
+    end
 
     # 14 day retention:
     # users that installed the app on day "today-14"
     # and connected today
-    retention_14_day_installation_data = today_minus_14_installation_creation_data.select do |user_installation|
+    retention_14_day_installation_data = today_minus_14_installation_creation_data.select do | user_installation |
       today_installation_ids.include?( user_installation.installation_id )
     end
     today_minus_14_created_installations_active_today = retention_14_day_installation_data.count
-    retention_14_day = today_minus_14_created_installations_active_today / today_minus_14_created_installations
+    retention_14_day = if today_minus_14_created_installations.zero?
+      nil
+    else
+      today_minus_14_created_installations_active_today / today_minus_14_created_installations
+    end
 
     # 28 day retention:
     # users that installed the app on day "today-28"
     # and connected today
-    retention_28_day_installation_data = today_minus_28_installation_creation_data.select do |user_installation|
+    retention_28_day_installation_data = today_minus_28_installation_creation_data.select do | user_installation |
       today_installation_ids.include?( user_installation.installation_id )
     end
     today_minus_28_created_installations_active_today = retention_28_day_installation_data.count
-    retention_28_day = today_minus_28_created_installations_active_today / today_minus_28_created_installations
+    retention_28_day = if today_minus_28_created_installations.zero?
+      nil
+    else
+      today_minus_28_created_installations_active_today / today_minus_28_created_installations
+    end
 
     # 1 week retention:
     # users that installed the app on day "today-7"
     # and connected at least once between today-7 and today
-    retention_1_week_installation_data = today_minus_7_installation_creation_data.select do |user_installation|
+    retention_1_week_installation_data = today_minus_7_installation_creation_data.select do | user_installation |
       this_week_installation_ids.include?( user_installation.installation_id )
     end
     today_minus_7_created_installations_active_this_week = retention_1_week_installation_data.count
-    retention_1_week = today_minus_7_created_installations_active_this_week / today_minus_7_created_installations
+    retention_1_week = if today_minus_7_created_installations.zero?
+      nil
+    else
+      today_minus_7_created_installations_active_this_week / today_minus_7_created_installations
+    end
 
     # 2 weeks retention:
     # users that installed the app on day "today-14"
     # and connected at least once between today-7 and today
-    retention_2_weeks_installation_data = today_minus_14_installation_creation_data.select do |user_installation|
+    retention_2_weeks_installation_data = today_minus_14_installation_creation_data.select do | user_installation |
       this_week_installation_ids.include?( user_installation.installation_id )
     end
     today_minus_14_created_installations_active_this_week = retention_2_weeks_installation_data.count
-    retention_2_weeks = today_minus_14_created_installations_active_this_week / today_minus_14_created_installations
+    retention_2_weeks = if today_minus_14_created_installations.zero?
+      nil
+    else
+      today_minus_14_created_installations_active_this_week / today_minus_14_created_installations
+    end
 
     # 4 weeks retention:
     # users that installed the app on day "today-28"
     # and connected at least once between today-7 and today
-    retention_4_weeks_installation_data = today_minus_28_installation_creation_data.select do |user_installation|
+    retention_4_weeks_installation_data = today_minus_28_installation_creation_data.select do | user_installation |
       this_week_installation_ids.include?( user_installation.installation_id )
     end
     today_minus_28_created_installations_active_this_week = retention_4_weeks_installation_data.count
-    retention_4_weeks = today_minus_28_created_installations_active_this_week / today_minus_28_created_installations
+    retention_4_weeks = if today_minus_28_created_installations.zero?
+      nil
+    else
+      today_minus_28_created_installations_active_this_week / today_minus_28_created_installations
+    end
 
     {
       retention: {
@@ -285,5 +309,4 @@ class UserInstallationStatistic < ApplicationRecord
       }
     }
   end
-
 end
