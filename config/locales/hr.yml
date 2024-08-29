@@ -8230,30 +8230,6 @@ hr:
           Naziv taksona s razinom. Za infraspecifične razine, razina se umeće nakon binomijalnog naziva.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Pokušajte dodati imena koja su već korištena negdje drugdje. Molimo nemojte izmišljati nova imena.</p></li>
-          <li><p>Nemojte dodavati duplicirana imena, npr. nemojte imenovati brojne sokolove "sokol"</p></li>
-          <li><p>Za više razine taksona, pokušajte koristiti imena koja uključuju sve potomke, kao što su "čaplje i saveznici" ili "obitelj vrijeska"</p></li>
-          <li>
-          <p>
-          Nemojte dodavati informacije koje nisu ime, npr. zagrade s informacijama o tome kako mislite da bi se ime trebalo koristiti
-          </p>
-          </li>
-          <li>
-          <p>
-          Novi leksikoni trebaju biti na engleskom. Molimo nemojte dodavati prevedena imena jezika kao što su "French, Français" jer će to samo otežati ili onemogućiti prikaz lokaliziranih imena za ljude
-          koji koriste stranicu na različitim jezicima.
-          </p>
-          </li>
-          <li>
-          <p>
-          Uobičajena imena povezana s prevedenim jezicima pojavit će se
-          kao zadano uobičajeno ime za taj jezik (izuzevši učinak preferencija mjesta, redoslijed imena, itd.).
-          <a class="readmore" href="/pages/translate">Saznajte više o prevođenju</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Dodajte ime mjestu kako biste mu dali prioritet za stranice i korisnike iz tog mjesta. Ako postoji više imena po mjestu, možete ih prioritizirati <a href="%{url}">ovdje</a>. Molimo <strong>nemojte</strong> dodavati imena za SVAKO mjesto gdje se ime koristi, samo za mjesta koja su u sukobu s drugim mjestima.
       taxon:
