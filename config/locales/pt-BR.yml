@@ -7751,29 +7751,6 @@ pt-BR:
           O nome do táxon com o rank. Para intervalos infraespecíficos, a classificação é inserida após o binômio.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li><p>Tente incluir nomes que já foram utilizados anteriormente. Por favor não invente novos nomes.</p></li>
-          <li><p>Não submeta observações com nomes duplicados, por exemplo, não nomeie diversas fotos de falcões como "falcão"</p></li>
-          <li><p>Para táxons superiores, tente utilizar nomes que incluam todos os descendentes</p></li>
-          <li>
-          <p>
-          Não adicione informações que não seja o nome, e.g., informação entre parêntesis sobre como você acha que o nome deve ser usado
-          </p>
-          </li>
-          <li>
-          <p>
-          Novos léxicos devem ser em inglês. Por favor não adicione nomes traduzidos de línguas como "French, francês" porque isso somente nos vai dificultar ou impossibilitar de mostrar nomes localizados para pessoas que usam o site em diferentes línguas.
-          </p>
-          </li>
-          <li>
-          <p>
-          Nomes comuns associados com línguas traduzidas aparecerão como o nome comum padrão para aquela língua (exceto considerando o efeito de preferências de lugar, ordem de nomes, etc.).
-          <a class="readmore" href="/pages/translate">Aprenda mais sobre tradução</a>
-          </p>
-          </li>
-          </ul>
-          </ul>
         places_help_html: |
           Adicione um nome ao local para dar prioridade aos sites e usuários deste lugar. Se por acaso tiver vários nomes por lugar você pode indicar quais são os nomes mais prioritários <a href="%{url}">aqui</a>. Por favor <strong>não</strong> adicione nomes para TODO local onde o nome é utilizado, mas somente onde existe conflito com outros lugares.
       taxon:
