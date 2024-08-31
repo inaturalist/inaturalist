@@ -7846,6 +7846,34 @@ sv:
           Namnet på taxon med rangen. För ranger under art, infogas rangen efter binomial-delen.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Försök att lägga till namn som har använts någon annanstans. Snälla, uppfinn inte nya namn.</p></li>
+          <li><p>Lägg inte till dubblettnamn, t.ex. ge inte flera hökar namnet "hök"</p></li>
+          <li><p>För taxa på högre nivå, försök att använda namn som inkluderar alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
+          <li>
+          <p>
+          Lägg inte till information som inte är en del av namnet, t.ex.
+          information inom parentes om hur du tycker att namnet ska användas
+          </p>
+          </li>
+          <li>
+          <p>
+          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga
+          namn som "French, Français" eftersom det bara kommer att göra det
+          svårt eller omöjligt för oss att visa lokaliserade namn för personer som
+          använder webbplatsen på andra språk.
+          </p>
+          </li>
+          <li>
+          <p>
+          Vardagliga namn som är kopplade till översatta språk kommer att visas
+          som vardagligt standardnamn på det språket (bortsett från påverkan av
+          platsinställningar, namnsortering etc.).
+          <a class="readmore" href="/pages/translate">Läs mer om översättning</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Lägg till ett namn till en fyndplats för att ge det prioritet för webbplatser och användare från den fyndplatsen. Om det finns flera namn per fyndplats kan du prioritera mellan dem <a href="%{url}">här</a>. Lägg <strong>inte</strong> till namn för VARJE fyndplats som namnet används på, bara till fyndplatser där det finns en konflikt med andra fyndplatser.
       taxon:
