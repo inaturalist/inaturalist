@@ -3,9 +3,10 @@
 class UserInstallationStatistic < ApplicationRecord
   def self.update_today_installation_ids( at_time = Time.now )
     installation_data = {}
-    get_installation_activity_from_kibana_data( at_time, "iNaturalistAndroid", installation_data )
-    get_installation_activity_from_kibana_data( at_time, "iNaturalistiOS", installation_data )
-    get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", installation_data )
+    get_installation_activity_from_kibana_data( at_time, "iNaturalistAndroid", "Android", installation_data )
+    get_installation_activity_from_kibana_data( at_time, "iNaturalistiOS", "iOS", installation_data )
+    get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", "Android", installation_data )
+    get_installation_activity_from_kibana_data( at_time, "iNaturalistReactNative", "iOS", installation_data )
     installation_data.keys.in_groups_of( 1000, false ).each do | installation_ids |
       User.transaction do
         existing_records = UserInstallation.where( installation_id: installation_ids )
@@ -46,9 +47,10 @@ class UserInstallationStatistic < ApplicationRecord
 
   def self.calculate_all_retention_metrics( at_time = Time.now )
     {
-      iNaturalistAndroid: calculate_retention_metrics( at_time, "iNaturalistAndroid" ),
-      iNaturalistiOS: calculate_retention_metrics( at_time, "iNaturalistiOS" ),
-      iNaturalistReactNative: calculate_retention_metrics( at_time, "iNaturalistReactNative" )
+      iNaturalistAndroid: calculate_retention_metrics( at_time, "iNaturalistAndroid", "Android" ),
+      iNaturalistiOS: calculate_retention_metrics( at_time, "iNaturalistiOS", "iOS" ),
+      iNaturalistReactNativeAndroid: calculate_retention_metrics( at_time, "iNaturalistReactNative", "Android" ),
+      iNaturalistReactNativeiOS: calculate_retention_metrics( at_time, "iNaturalistReactNative", "iOS" )
     }
   end
 
@@ -68,7 +70,7 @@ class UserInstallationStatistic < ApplicationRecord
   # - Get installation id
   # - Get associated user id if available
   # Generate multiple queries (1 by hour of data) to avoid reaching ES max bucket size
-  def self.get_installation_activity_from_kibana_data( day, application_id, installation_activity_data )
+  def self.get_installation_activity_from_kibana_data( day, application_id, platform_id, installation_activity_data )
     kibana_es_client = Elasticsearch::Client.new( host: CONFIG.kibana_es_uri )
     puts "installation activity_from_kibana_data = #{day} / #{application_id}"
     oauth_application_id = convert_application_id_into_oauth_application_id( application_id )
@@ -96,11 +98,10 @@ class UserInstallationStatistic < ApplicationRecord
               },
               {
                 bool: {
-                  must: {
-                    term: {
-                      "parsed_user_agent.name": application_id
-                    }
-                  }
+                  must: [
+                    { term: { "parsed_user_agent.name": application_id } },
+                    { term: { "parsed_user_agent.os.name": platform_id } }
+                  ]
                 }
               }
             ]
@@ -135,6 +136,7 @@ class UserInstallationStatistic < ApplicationRecord
         installation = installation_activity_data[installation_id]
         installation ||= default_installation( installation_id )
         installation[:oauth_application_id] = oauth_application_id
+        installation[:platform_id] = platform_id
         installation[:user_id] = bucket["key"]["user_id"]
         installation_activity_data[installation_id] = installation
       end
@@ -143,22 +145,28 @@ class UserInstallationStatistic < ApplicationRecord
     end
   end
 
-  def self.get_installation_activity_data( start_date, end_date, application_id )
+  def self.get_installation_activity_data( start_date, end_date, application_id, platform_id )
     installation_activity_data = {}
     current_date = end_date
     num_days = ( end_date.to_date - start_date.to_date ).to_i
     num_days.times do
-      get_installation_activity_from_kibana_data( current_date, application_id, installation_activity_data )
+      get_installation_activity_from_kibana_data(
+        current_date,
+        application_id,
+        platform_id,
+        installation_activity_data
+      )
       current_date -= 1.day
     end
     installation_activity_data
   end
 
-  def self.get_installation_creation_data( creation_date, application_id )
+  def self.get_installation_creation_data( creation_date, application_id, platform_id )
     UserInstallation.where(
-      "created_at=? AND oauth_application_id=?",
+      "created_at=? AND oauth_application_id=? AND platform_id=?",
       creation_date,
-      convert_application_id_into_oauth_application_id( application_id )
+      convert_application_id_into_oauth_application_id( application_id ),
+      platform_id
     )
   end
 
@@ -169,29 +177,43 @@ class UserInstallationStatistic < ApplicationRecord
     when "iNaturalistiOS"
       OauthApplication.inaturalist_iphone_app&.id
     when "iNaturalistReactNative"
-      OauthApplication.inat_nex_app&.id
+      OauthApplication.inat_next_app&.id
     else
       0
     end
   end
 
-  def self.calculate_retention_metrics( at_time = Time.now, application_id )
+  def self.calculate_retention_metrics( at_time = Time.now, application_id, platform_id )
     day_0 = at_time.utc.end_of_day - 1.day
 
     today_installation_activity_data = get_installation_activity_data(
       day_0 - 1.day,
       day_0,
-      application_id
+      application_id,
+      platform_id
     )
     this_week_installation_activity_data = get_installation_activity_data(
       day_0 - 8.days,
       day_0,
-      application_id
+      application_id,
+      platform_id
     )
 
-    today_minus_7_installation_creation_data = get_installation_creation_data( day_0 - 7.days, application_id )
-    today_minus_14_installation_creation_data = get_installation_creation_data( day_0 - 14.days, application_id )
-    today_minus_28_installation_creation_data = get_installation_creation_data( day_0 - 28.days, application_id )
+    today_minus_7_installation_creation_data = get_installation_creation_data(
+      day_0 - 7.days,
+      application_id,
+      platform_id
+    )
+    today_minus_14_installation_creation_data = get_installation_creation_data(
+      day_0 - 14.days,
+      application_id,
+      platform_id
+    )
+    today_minus_28_installation_creation_data = get_installation_creation_data(
+      day_0 - 28.days,
+      application_id,
+      platform_id
+    )
 
     today_active_installations = today_installation_activity_data.count
     this_week_active_installations = this_week_installation_activity_data.count

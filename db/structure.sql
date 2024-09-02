@@ -5331,6 +5331,7 @@ CREATE TABLE public.user_installations (
     id bigint NOT NULL,
     installation_id character varying(255),
     oauth_application_id integer,
+    platform_id character varying(255),
     user_id integer,
     created_at date,
     first_logged_in_at date

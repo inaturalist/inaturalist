@@ -42,7 +42,7 @@ class OauthApplication < Doorkeeper::Application
     @@seek_app ||= OauthApplication.where( name: "Seek" ).first
   end
 
-  def self.inat_nex_app
+  def self.inat_next_app
     @@inat_next_app ||= OauthApplication.where( name: "iNat Next" ).first
   end
 
