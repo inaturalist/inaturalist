@@ -18,12 +18,14 @@ class UserInstallationStatistic < ApplicationRecord
             UserInstallation.new(
               installation_id: installation_id,
               oauth_application_id: installation_from_kibana[:oauth_application_id],
+              platform_id: installation_from_kibana[:platform_id],
               created_at: at_time
             )
           else
             UserInstallation.new(
               installation_id: installation_id,
               oauth_application_id: installation_from_kibana[:oauth_application_id],
+              platform_id: installation_from_kibana[:platform_id],
               created_at: at_time,
               user_id: installation_from_kibana[:user_id],
               first_logged_in_at: at_time
@@ -61,6 +63,7 @@ class UserInstallationStatistic < ApplicationRecord
     {
       installation_id: installation_id,
       oauth_application_id: 0,
+      platform_id: "",
       user_id: 0
     }
   end
