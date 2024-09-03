@@ -7723,6 +7723,27 @@ fr:
           Le nom du tacon avec son rang. Pour des rangs infraspécifiques, le rang est affiché après le binôme.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul> 
+          <li><p>Essayez d'ajouter des noms qui ont été utilisés ailleurs. N'inventez pas de nouveaux noms.</p></li> 
+          <li><p>N'ajoutez pas de noms en double, par exemple ne nommez pas de nombreux faucons "faucon"</p></li> 
+          <li><p>Pour les taxons de niveau supérieur, essayez d'utiliser des noms qui incluent tous les descendants, comme "hérons et alliés" ou "famille des bruyères"</p></li> 
+          <li> 
+          <p>N'ajoutez pas d'informations qui ne sont pas le nom, par exemple des informations entre parenthèses sur la façon dont vous pensez que le nom doit être utilisé 
+          </p> 
+          </li>
+          <li> 
+          <p>
+          Les nouveaux lexiques doivent être rédigés en anglais. N'ajoutez pas de noms de langues traduites comme "French, français", car cela rendrait difficile, voire impossible, l'affichage des noms localisés pour les personnes qui utilisent le site dans différentes langues. 
+          </p> 
+          </li> 
+          <li> 
+          <p>
+          Les noms communs associés aux langues traduites apparaîtront comme le nom commun par défaut pour cette langue (sous réserve de l'effet des préférences de lieu, de l'ordre des noms, etc.) 
+          <a class="readmore" href="/pages/translate">En savoir plus sur la traduction</a> 
+          </p> 
+          </li> 
+          </ul>
         places_help_html: |
           Ajoutez un nom à un lieu pour lui donner priorité pour les sites et les utilisateurs de ce lieu. S’il y a plusieurs noms par lieu, vous pouvez les prioriser <a href="%{url}">ici</a>. Veuillez <strong>ne pas</strong> ajouter de noms pour TOUS
           les lieux où le nom est utilisé, mais uniquement pour les lieux qui rentrent en conflit avec
