@@ -1,14 +1,15 @@
 #encoding: utf-8
+
 class UsersController < ApplicationController
   before_action -> { doorkeeper_authorize! :login, :write },
-    only: [ :edit ],
-    if: lambda { authenticate_with_oauth? }
+    only: [:edit],
+    if: -> { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
     only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute, :block, :unblock ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
-    only: [ :destroy ],
-    if: lambda { authenticate_with_oauth? }
+    only: [:destroy],
+    if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships,
@@ -166,11 +167,11 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     if params[:confirmation].blank? || params[:confirmation_code].blank? || ( params[:confirmation] && params[:confirmation] != params[:confirmation_code] )
       msg = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
-      respond_to do |format|
+      respond_to do | format |
         format.html do
           flash[:error] = msg
           redirect_to delete_users_path
@@ -181,14 +182,22 @@ class UsersController < ApplicationController
       end
       return
     end
-    @user.delay(priority: USER_PRIORITY,
-      unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
-    sign_out(@user) if current_user == @user
-    respond_to do |format|
+    @user.delay(
+      priority: USER_PRIORITY,
+      unique_hash: { "User::sane_destroy": @user.id }
+    ).sane_destroy
+    sign_out( @user ) if current_user == @user
+    respond_to do | format |
       format.html do
-        flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
-          "(it may take up to an hour to completely delete all associated content)"
-        redirect_to root_path
+        flash[:notice] = t(
+          :user_has_been_removed_from_site,
+          username: @user.login,
+          site_name: @site.name,
+          vow_or_con: @site.name[0].downcase
+        )
+        # Mobile clients that handle account deletion in a webview need this
+        # parameter to detect if deletion was successful
+        redirect_to root_path( account_deleted: true )
       end
       format.json { head :no_content }
     end
