@@ -196,6 +196,29 @@ fi:
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
+  about_trips2_html: |
+    <h4>Matkojen avulla voit kerätä läsnä-poissa -dataa lisäämällä
+    kontekstin havaintoihisi</h4>
+    <p>
+    <strong>Miksi</strong> Läsnä-poissa oleva data sisältää tietoa otantaponnistuksesta, 
+    mikä on hyödyllistä tieteellisissä analyyseissä, kuten levinneisyysmallinnuksessa 
+    (raakatason iNaturalist-havainnot ovat vain läsnä -dataa).
+    </p>
+    <p>
+    <strong>Kuinka</strong> Matka lisää kontekstin havaintoihisi tallentamalla:
+    </p>
+    <ul>
+    <li><strong>Mitä</strong> etsit (kohdelista)</li>
+    <li><strong>Missä</strong> etsit (etsintäalue)</li>
+    <li><strong>Milloin</strong> etsit (etsintäjakso)</li>
+    </ul>
+    <p>
+    Lajien, jotka ovat kohdelistallasi ja jotka pystyit havaitsemaan etsintäalueella 
+    ja -jaksolla, tulkitaan olevan läsnä. Lajien, jotka ovat kohdelistallasi mutta 
+    joita et pystynyt havaitsemaan, tulkitaan olevan poissa. Klikkaa 'Luo läsnä-poissa 
+    dataa matkoista' luodaksesi taulukon lajin läsnä-poissa -tiedoista matkojen 
+    ja niihin liittyvien havaintojen perusteella. <a href='%{url}'>Lue lisää</a>
+    </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_trusting_projects_options_any_desc: |-
@@ -4431,6 +4454,7 @@ fi:
   synonyms: Synonyymit
   table: Taulukko
   table_of_contents: Sisällysluettelo
+  tabulate_presence_absence_data_from_trips: '''Luo läsnä-poissa dataa matkoista'
   #Noun, as in "add a tag to this observation"
   tag: Tagi
   tagging: 'Tageja lisätään...'
