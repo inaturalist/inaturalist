@@ -5672,6 +5672,8 @@ nl:
   user_committed_taxon_merge_affecting_taxa2: "%{user} heeft het samenvoegen van een taxon bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} heeft het splitsen van een taxon bevestigd met gevolgen voor %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} heeft de voorbereiding van een taxon bevestigd met gevolgen voor %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa2: "%{user} heeft het wisselen van een taxon bevestigd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
