@@ -10301,6 +10301,13 @@ CREATE INDEX index_users_on_place_id ON public.users USING btree (place_id);
 
 
 --
+-- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_remember_token ON public.users USING btree (remember_token);
+
+
+--
 -- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10974,6 +10981,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240222032444'),
 ('20240326135332'),
 ('20240429211140'),
+('20240430163539'),
 ('20240530162451'),
 ('20240606154217'),
 ('20240618044707'),

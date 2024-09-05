@@ -6080,6 +6080,9 @@ en:
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_has_been_removed_from_site: |
+    %{username} has been removed from %{site_name} (it may take up to an hour
+     to completely delete all associated content)
   user_has_opted_out_of_community_id: User has opted-out of Community Taxon
   user_hasnt_joined_any_projects: "%{user} hasn't joined any projects"
   user_helped_x_people_with_y_ids_html: "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>"
