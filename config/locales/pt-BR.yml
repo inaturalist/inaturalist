@@ -274,6 +274,8 @@ pt-BR:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Adicionar uma lista de marcadores
   add_a_comment: Adicione um comentário
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Entrar Estado de Conservação
   add_a_field: Adicione um campo
   add_a_flag: Adicionar Sinalização
   #Tool tip for a button that adds a link to a text area
@@ -809,6 +811,7 @@ pt-BR:
   back_to_your_observations: Voltar para suas observações
   back_to_your_profile: Voltar ao perfil
   badges: Insígnias
+  base_map_copyright_openstreetmap_html: Mapa base ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -4745,6 +4748,8 @@ pt-BR:
   show_no_annotation: Mostrar "Sem Anotação"
   show_off_your_recent_observations: Exponha as suas observações recentes no seu próprio blog ou website!
   show_only: 'Mostrar somente:'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Mostrar OpenStreetMap
   show_relative_proportions_of_all_observations: Mostrar a proporção relativa de todas as observações
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar total acumulado
@@ -7751,6 +7756,28 @@ pt-BR:
           O nome do táxon com o rank. Para intervalos infraespecíficos, a classificação é inserida após o binômio.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Tente utilizar nomes que já foram utilizados anteriormente. Por favor não invente novos nomes.</p></li>
+          <li><p>Não adicione nomes duplicados, por exemplo, não nomeie diversas falcões como "falcão"</p></li>
+          <li><p>Para táxons superiores, tente utilizar nomes que incluam todos os descendentes, tais como "garças e aliados" ou "familia dos gafanhotos"</p></li>
+          <li>
+          <p>
+          Não adicione informações que não seja o nome, e.g., informação entre parêntesis sobre como você acha que o nome deve ser usado
+          </p>
+          </li>
+          <li>
+          <p>
+          Novos léxicos devem ser em inglês. Por favor não adicione nomes traduzidos de línguas como "French, francês" porque isso somente vai dificultar ou impossibilitar de mostrar nomes locais para as pessoas que usam o site em diferentes línguas.
+          </p>
+          </li>
+          <li>
+          <p>
+          Nomes comuns associados com línguas traduzidas aparecerão como o nome comum padrão para aquela língua (bloqueando o efeito de preferências de lugar, ordem de nomes, etc.).
+          <a class="readmore" href="/pages/translate">Aprenda mais sobre tradução</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Adicione um nome ao local para dar prioridade aos sites e usuários deste lugar. Se por acaso tiver vários nomes por lugar você pode indicar quais são os nomes mais prioritários <a href="%{url}">aqui</a>. Por favor <strong>não</strong> adicione nomes para TODO local onde o nome é utilizado, mas somente onde existe conflito com outros lugares.
       taxon:
