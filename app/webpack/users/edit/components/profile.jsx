@@ -51,7 +51,7 @@ const Profile = ( {
   };
 
   const unconfirmedEmailAlert = (
-    <div className="alert alert-warning">
+    <div className="alert alert-warning alert-mini">
       <span
         dangerouslySetInnerHTML={{
           __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
@@ -83,7 +83,7 @@ const Profile = ( {
   } else if ( !profile.confirmed_at ) {
     emailConfirmation = (
       <div
-        className={`alert alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
+        className={`alert alert-mini alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
       >
         {
           profile.confirmation_sent_at
