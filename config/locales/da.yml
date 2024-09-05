@@ -5748,6 +5748,9 @@ da:
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
+  user_has_been_removed_from_site: |
+    %{username} er blevet fjernet fra %{site_name} (det kan tage op til en time
+    for helt at slette alt tilknyttet indhold)
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
   user_hasnt_joined_any_projects: "%{user} er ikke tilmeldt noget projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjalp <strong>%{x} personer</strong> med <strong>%{y} IDs</strong>"
