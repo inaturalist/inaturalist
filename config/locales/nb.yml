@@ -277,6 +277,8 @@ nb:
   add_annotations_for_controlled_attribute:
     sex: Legg til merknader for "Kjønn"
     plant_phenology: Legg til merknader for "Plantefenologi"
+    flowers_and_fruits: Legg til merknader for "Blomster og frukter"
+    leaves: Legg til merknader for "Blader"
     life_stage: Legg til merkander for "Livsstadium"
     evidence_of_presence: Legg til anmerkninger for "Bevis for tilstedeværelse"
   add_another_flag: Legg til enda en markering
@@ -333,6 +335,10 @@ nb:
   add_plant_phenology_flowering_annotation: 'Legg til merknaden "Plantefenologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Legg til merknaden "Plantefenologi: Fruktbærende"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Legg til merknaden "Plantefenologi: Ingen bevis for blomstring"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Legg til "Blomster og frukter: Blomsterknopper"-merknad'
+  add_flowers_and_fruits_flowers_annotation: 'Legg til "Blomster og frukter: Blomster"-merknad'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Legg til "Blomster og frukter: Frukter og frø"-merknad'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Legg til "Blomster og frukter: Ingen blomster eller frukter"-merknad'
   add_life_stage_adult_annotation: 'Legg til merknaden "Livsstadium: Voksen"'
   add_life_stage_teneral_annotation: 'Legg til merknaden "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Legg til merknaden "Livsstadium: subimago"'
@@ -1091,10 +1097,19 @@ nb:
     male: Hannkjønn
     female: Hunnkjønn
     plant_phenology: Plantefenologi
+    flowers_and_fruits: Blomster og frukter
     budding: Knopper
     flower_budding: Blomsterknopper
     flowering: Blomstrende
     fruiting: Fruktbærende
+    no_flowers_or_fruits: Ingen blomster eller frukter
+    flower_buds: Blomsterknopper
+    flowers: Blomster
+    fruits_or_seeds: Frukt eller frø
+    leaves: Blader
+    green_leaves: Grønne blader
+    colored_leaves: Fargede blader
+    no_live_leaves: Ingen levende blader
     life_stage: Livsstadium
     adult: Voksen
     teneral: Teneral
@@ -1164,6 +1179,8 @@ nb:
   copy_and_paste_the_following_code_to: Kopier og lim følgende kode for å inkludere denne vurderingen på et annet nettsted.
   copy_and_paste_this_into_your_own_html: Kopier og lim dette inn i din egen html.
   copy_guide_taxon_to: Kopier taksonguide til...
+  copy_to_clipboard: Kopier til utklippstavlen
+  copied!: Kopiert!
   copyright:
     some_rights_reserved: noen rettigheter forbeholdt
     some_rights_reserved_by: "(c) %{name}, noen rettigheter forbeholdt (%{license_short})"
@@ -3019,6 +3036,10 @@ nb:
   observation_accuracy_experiment_quality_grade: "Kvalitetsgrad"
   observation_accuracy_experiment_show_frequency: "vis frekvens"
   observation_accuracy_experiment_click_on_bars: "Klikk på stolper for å utforske delsett."
+  observation_accuracy_experiment_validators: "Validatorer:"
+  observation_accuracy_experiment_show_additional_validators: "(vis flere validatorer)"
+  observation_accuracy_experiment_hide_additional_validators: "(skjul ytterligere validatorer)"
+  observation_accuracy_experiment_additional_validators: "(%{number} ytterligere validatorer)"
   observation_accuracy_experiment_verifiable_results: "Verifiserbare resultater"
   observation_accuracy_experiment_all_results: "Alle resultater"
   observation_accuracy_experiment_methods: "Metoder"
@@ -4748,6 +4769,7 @@ nb:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstformaterings-elementer
   text_editing_controls: Tekstredigerings-elementer
+  thank_you!: Tusen takk!
   thanks!: Takk!
   thanks_from_all_of_us_here_at: Takk fra oss alle i
   that_photo_doesnt_exist: Det bildet finnes ikke.
@@ -4878,6 +4900,14 @@ nb:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: Colombiansk tid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Sentraltid (USA og Canada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Stillehavstid (Mexico)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemalatid
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlanterhavstid (Canada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: Boliviansk tid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_lima: Peruviansk tid
@@ -4973,6 +5003,8 @@ nb:
   time_zone_pacific_apia: Samoansk tid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Newzealandsk tid
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hawaii- og Aleutenetid
   #As in the title of a book or a blog post
   title: tittel
   title_and_description: "Tittel & beskrivelse"
@@ -5908,6 +5940,11 @@ nb:
           Du har markert denne samtalen på %{date}. Markeringen vil være der selv hvis du sletter din kopi av denne samtalen, så det er trygt å gjøre det hvis du ikke ønsker å se dette mere.
         privacy_notice_html: |
           Mens meldinger er private mellom deg og mottakeren, kan iNaturalist ansatte se disse meldingene også, og vil gjøre det når meldinger har blitt markert for moderering. Hvis du trenger ordentlig privat kommunikasjon, vennligst se på andre kommunikasjonsmekanismer som støtter sterk kryptering.
+    nls_demo:
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Hjelp oss med å bli bedre
     oauth:
       authorizations:
         new:
@@ -6640,6 +6677,11 @@ nb:
         website_desc_html: |
           Laget med <a href="https://www.inaturalist.org">iNaturalist </a> eller nettsider i <a href="%{url}">iNaturalist-nettverket</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Legg til begge
+        added_only_identifications: La kun til identifikasjoner
+        added_only_observations: La kun til observasjoner
         compare_desc: |
           Hvordan ble dette året sammenlignet med dine foregående år? Med tre år med
           bruk eller mer kan vi begynne å sammenligne årlige aktivitetstall.
@@ -6739,6 +6781,10 @@ nb:
           "Plant Phenology=Flowering": Blomstrende
           "Plant Phenology=Fruiting": Fruktbærende
           "Plant Phenology=No Evidence of Flowering": Ingen bevis for blomstring
+          "Flowers and Fruits=Flower Buds": Blomsterknopper
+          "Flowers and Fruits=Flowers": Blomster
+          "Flowers and Fruits=Fruits or Seeds": Frukter eller frø
+          "Flowers and Fruits=No Flowers or Fruits": Ingen blomster eller frukter
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juvenil
