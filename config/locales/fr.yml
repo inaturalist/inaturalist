@@ -1202,6 +1202,16 @@ fr:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Mue
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Mine dans une feuille
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Poils
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construction
+    #Does the observation belong to a non-established population or not
+    established: Établi
+    #Organism is not a member of an established population
+    not_established: Non établi
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     bone: |
@@ -4973,6 +4983,8 @@ fr:
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
   taxon_drop: perte de taxon
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Suppression du taxon affectant %{taxon}
   taxon_id: Identifiant de taxon
   taxon_ids: IDs de taxon
   taxon_map:
@@ -4996,6 +5008,9 @@ fr:
   taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Fusion de taxons affectant %{taxa}
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre à un taxon existant dans notre base de données
   taxon_observed_by_html: |
@@ -5031,9 +5046,17 @@ fr:
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
   taxon_split: séparation de taxon
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Fractionnement du taxon affectant %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organisation du taxon
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Mise en attente du taxon affectant %{taxon}
   taxon_swap: échange de taxon
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Échange de taxons affectant %{taxa}
   taxon_swap_only_has_one_input: limite d'un taxon en entrée pour un échange
   taxon_swap_has_inputs_and_outputs: un échange doit avoir des entrées et des sorties
   taxon_name_was_deleted: Le nom du taxon a été supprimé.
