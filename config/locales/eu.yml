@@ -24,6 +24,9 @@ eu:
   x_identifications_:
     one: 'Identifikazio %{count}'
     other: '%{count} Identifikazio'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFIKAZIOA'
+    other: '<span class="count">%{count}</span> IDENTIFIKAZIOAK'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -51,6 +54,9 @@ eu:
   x_misidentifications_of_this_species:
     one: "%{count} espezie honen identifikazio desegoki"
     other: "espezie honen %{count} identifikazio desegoki"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} espezieen identifikazio desegokia genero horretan"
+    other: "%{count} espezieen identifikazio desegokiak genero horretan"
   x_observations:
     one: "1 behaketa"
     other: "%{count} behaketa"
@@ -60,6 +66,9 @@ eu:
   x_observations_html:
     one: "<span class='count'>1</span> behaketa"
     other: "<span class='count'>%{count}</span> behaketak"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> BEHAKETA"
+    other: "<span class='count'>%{count}</span> BEHAKETAK"
   x_others:
     one: "bestelako %{count}"
     other: "%{count} bestelako"
@@ -211,6 +220,8 @@ eu:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Buletdun zerrenda gehitu
   add_a_comment: Iruzkina gehitu
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Gehitu kontserbazio-egoera
   add_a_field: Eremua gehitu
   add_a_flag: Bandera bat gehitu
   #Tool tip for a button that adds a link to a text area
@@ -233,6 +244,8 @@ eu:
   add_annotations_for_controlled_attribute:
     sex: Gehitu iruzkinak "Sexu"ari buruz
     plant_phenology: Gehitu oharpenak "Landarearen fenologia"ri buruz
+    flowers_and_fruits: Gehitu iruzkinak "Loreak eta fruituak"ari buruz
+    leaves: Gehitu iruzkinak "Hostoak"ari buruz
     life_stage: Gehitu oharpenak "Bizitzaren etapa"ri buruz
     evidence_of_presence: Gehitu oharpenak "Espeziea egotearen susmoa" kategoriari buruz
   add_another_flag: Beste bandera bat gehitu
@@ -1328,6 +1341,7 @@ eu:
   except: salbu
   existing_flags: Existitzen diren banderak
   exit_full_screen: "Irten pantaila osotik"
+  expected_nearby: Inguruan esperokoa da
   explore: Esploratu
   export: Esportatu
   extinct: iraungia
@@ -1864,6 +1878,8 @@ eu:
   not_seeing_what_looking_for: Ez duzu bila zabiltzana topatzen?
   note: Oharra
   number_of_observations: Behaketa kopurua
+  number_of_observers_value: "Behatzaile-kopurua: %{number}"
+  number_of_observers: "Behatzaile-kopurua"
   obs: Beh.
   obscured: Lausoa
   obscured_description: |
@@ -2179,6 +2195,10 @@ eu:
   range: Maila
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: maila
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
+  rank_position: Maila
   ranks:
     kingdom: Erreinua
     phylum: Filuma
@@ -2582,6 +2602,7 @@ eu:
   tools: Tresnak
   top_contributors: Parte-hartzaile nagusiak
   top_identifiers_of_taxon: '%{taxon} taxonaren identifikatzaile nagusiak'
+  top_observers: Behatzaile nagusiak
   total: Guztira
   total_members: Kideak guztira
   total_observations: Behaketak guztira
@@ -2901,6 +2922,9 @@ eu:
     shared:
       not_found:
         sorry_that_doesnt_exist: Sentitzen dugu, hori ez da existitzen!
+    stats:
+      index:
+        observers_desc: Egun honetan behaketa bat gehitu da
     users:
       dashboard:
         taxon_change_desc: |
