@@ -84,7 +84,7 @@ const Content = ( {
 
   return (
     <div className="row">
-      <div className="col-md-5 col-xs-10">
+      <div className="col-md-5 col-sm-10">
         <SettingsItem>
           <h4>{I18n.t( "project_settings" )}</h4>
           <div className="stacked">
@@ -194,8 +194,7 @@ const Content = ( {
           />
         </SettingsItem>
       </div>
-      <div className="col-md-1" />
-      <div className="col-md-5 col-xs-10">
+      <div className="col-md-5 col-md-offset-1 col-sm-10">
         <SettingsItem>
           <h4>{I18n.t( "names" )}</h4>
           <label htmlFor="user_prefers_common_names">

@@ -25,10 +25,10 @@ const Relationships = ( {
 
     return (
       <tr key={friendUser.login}>
-        <td className="col-xs-4">
+        <td className="">
           <UserFollowing user={friendUser} />
         </td>
-        <td className="table-row col-xs-4">
+        <td className="table-row ">
           <RelationshipsCheckboxContainer
             name="following"
             label={I18n.t( "following" )}
@@ -47,7 +47,7 @@ const Relationships = ( {
             </em>
           </div>
         </td>
-        <td className="table-row col-xs-4">
+        <td className="table-row ">
           <em className="stacked">
             {I18n.t( "added_on_datetime", { datetime: moment( user.created_at ).format( "LL" ) } ) }
           </em>
@@ -57,7 +57,7 @@ const Relationships = ( {
               className="btn btn-default btn-remove-relationship"
               onClick={( ) => showModal( user.id, friendUser.login )}
             >
-              {I18n.t( "remove_relationship" )}
+              {I18n.t( "remove" )}
             </button>
           </div>
         </td>
@@ -131,7 +131,7 @@ const Relationships = ( {
   );
 
   return (
-    <div>
+    <div className="Relationships">
       <h4>{I18n.t( "relationships_user_settings" )}</h4>
       {showFilters( )}
       {relationships.length === 0 && showEmptyState( )}

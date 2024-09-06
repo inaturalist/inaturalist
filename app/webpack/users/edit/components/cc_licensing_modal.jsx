@@ -38,11 +38,10 @@ const CreativeCommonsLicensingModal = ( { show, onClose } ) => {
       </Modal.Header>
       <Modal.Body>
         <div className="row">
-          <div className="col-xs-5">
+          <div className="col-sm-5">
             {createLicenseList( ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa"] )}
           </div>
-          <div className="col-xs-1" />
-          <div className="col-xs-5">
+          <div className="col-sm-5 col-sm-offset-1">
             {createLicenseList( ["cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"] )}
           </div>
         </div>
