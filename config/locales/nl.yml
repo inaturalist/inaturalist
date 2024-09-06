@@ -806,6 +806,7 @@ nl:
   back_to_your_observations: Terug naar je waarnemingen
   back_to_your_profile: Terug naar je profiel
   badges: Badges
+  base_map_copyright_openstreetmap_html: Basiskaart ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -4719,6 +4720,8 @@ nl:
   show_no_annotation: Toon "Geen aantekening"
   show_off_your_recent_observations: Schep op over je recente waarnemingen op je eigen blog of website!
   show_only: Toon alleen
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Toon OpenStreetMap
   show_relative_proportions_of_all_observations: Relatieve verhoudingen van alle waarnemingen tonen
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Lopend totaal weergeven
@@ -5669,6 +5672,8 @@ nl:
   user_committed_taxon_merge_affecting_taxa2: "%{user} heeft het samenvoegen van een taxon bevestigd met gevolgen voor %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} heeft het splitsen van een taxon bevestigd met gevolgen voor %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} heeft de voorbereiding van een taxon bevestigd met gevolgen voor %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa2: "%{user} heeft het wisselen van een taxon bevestigd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
@@ -6645,6 +6650,7 @@ nl:
       view_these_observations_in_identify: Toon deze waarnemingen in Identify
       #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
       inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> werkt samen met onderzoekers van <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Universiteit van Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Universiteit van Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Universiteitscollege London</a> <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> en met royale steun van <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI voor Good Lab</a> om beter te begrijpen wat de mogelijkheden in de toekomst zijn voor Vision Language Models om iNaturalist waarnemingen.te helpen organiseren, verkennen en uit te leggen. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Met deze demo tool kun je een zoekzin typen (such as "<a href="%{url}">%{query_in_english}</a>") en deze vergelijken met 10 miljoen iNaturalist foto's. Resultaten worden gesorteerd op relevantie. Je kunt deze demo gebruiken als een nieuwe manier om interessante iNaturalist waarnemingen te vinden om aantekeningen te maken of toe te voegen aan je project.
       you_can_also_use_this_demo: Je kunt deze demo ook gebruiken om ons te helpen het Vision Language model te evalueren door ons te vertellen welke van de geretourneerde afbeeldingen relevant zijn voor jouw zoekzin. Deze demo gebruikt een derde partij <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP model</a> die niet is getraind op iNaturalist data of door het iNaturalist team. Soms kan de tool een onnauwkeurig, partijdig, vooringenomen of aanstootgevend resultaat opleveren. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lees meer op de iNaturalist Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Als je dit werk wilt ondersteunen
       thank_you_for_your_submission!: Bedankt voor jouw inzending.
@@ -7749,21 +7755,21 @@ nl:
       form:
         new_name_guidelines_html: |
           <ul>
-            <li><p>Probeer namen toe te voegen die elders in gebruik zijn. Maak geen nieuwe namen.</p> 
-            </li>
+            <li><p>Voeg namen toe die elders al in gebruik zijn. Maak geen nieuwe namen.</p> 
+           </li>
             <li><p>Voeg geen dubbele namen toe, bijv. noem niet meer dan één havik "havik"</p> 
-            </li>
-            <li><p>Probeer bij taxa op een hoger niveau namen te gebruiken die alle afstammelingen bevatten, zoals<BR>
-              'Rallen, koeten en waterhoentjes' bij Rallidae,<BR>
-              'Fregatvogels, genten, aalscholvers en slangenhalsvogels' bij Suliformes,<BR> 
-              'Schoenlappers, parelmoervlinders en zandoogjes' bij Nymphalidae of<BR>
-              'Kleine pages, vuurvlinders en blauwtjes' bij Lycaenidae</p>
-            </li>
+           </li>
+           <li><p>Probeer bij taxa op een hoger niveau namen te gebruiken die alle afstammelingen bevatten, zoals<BR>
+           'Rallen, koeten en waterhoentjes' bij Rallidae,<BR>
+           'Fregatvogels, genten, aalscholvers en slangenhalsvogels' bij Suliformes,<BR> 
+           'Schoenlappers, parelmoervlinders en zandoogjes' bij Nymphalidae of<BR>
+           'Kleine pages, vuurvlinders en blauwtjes' bij Lycaenidae</p>
+           </li>
             <li><p>Voeg geen informatie toe die geen naam is, bijvoorbeeld verklarende informatie (tussen haakjes) over hoe de naam gebruikt zou moet worden</p>
             </li>
-            <li><p>Nieuwe lexicons moeten in het Engels zijn. Voeg geen vertalingen toe van taalnamen zoals "Dutch, Nederlands" omdat dat dit het moeilijk of onmogelijk voor ons zal maken om gelokaliseerde namen voor mensen te tonen die de site in verschillende talen gebruiken.</p>
+            <li><p>Nieuwe lexicons zijn in het Engels. Voeg geen vertalingen toe van taalnamen zoals "Dutch, Nederlands" omdat dat dit het moeilijk of onmogelijk voor ons zal maken om gelokaliseerde namen voor mensen te tonen die de site in verschillende talen gebruiken.</p>
             </li>
-            <li><p>Lokale namen die zijn gekoppeld aan vertaalde talen verschijnen als de standaard lokale naam voor die taal (met behoud van het effect van plaatsvoorkeuren, naamvolgorde, etc.). <a class="readmore" href="/pages/translate">Meer informatie over het vertalen voor iNaturalist</a></p>
+            <li><p>Lokale (volks)namen die zijn gekoppeld aan vertaalde talen verschijnen als de standaard lokale (volks)naam voor die taal (met behoud van het effect van plaatsvoorkeuren, naamvolgorde, etc.). <a class="readmore" href="/pages/translate">Meer informatie over het vertalen voor iNaturalist</a></p>
             </li>
           </ul>
         places_help_html: |

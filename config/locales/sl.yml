@@ -5800,34 +5800,6 @@ sl:
         trending_desc: Najbolj opazovani taksoni v zadnjem mesecu.
         trending_in_place_desc_html: Najbolj opazovani taksoni v zadnjem mesecu v <a href="%{url}">%{place}</a>
         wanted_desc: Vrste iz tega taksona, ki še nimajo opazovanj.
-    taxon_names:
-      form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Dodajajte imena, ki so v uporabi. Prosimo, da si ne izmišljate novih imen.</p></li>
-          <li><p>Ne dodajajte podvojenih imen. Npr. ne poimenujte več vrst sokolov "sokol"</p></li>
-          <li><p>Za višjenivojske taksone poskusite uporabiti imena, ki vsebujejo vse naslednike, npr. "čaplje in zavezniki"</p></li>
-          <li>
-          <p>
-          Ne dodajajte informacij, ki niso del imena. Naprimer o temu 
-          kako vi mislite, da bi se moralo ime uporabljati.
-          </p>
-          </li>
-          <li>
-          <p>
-          Imena slovarjev morajo biti v angleščini. Prosimo ne prevajajte imen slovarjev,
-          ker boste s tem onemogočili prikaz prevedenih imen za tiste, ki uporabljajo
-          spletišče v drugih jezikih.
-          </p>
-          </li>
-          <li>
-          <p>
-          Občna imena, ki so povezana z prevedenim jezikom se bodo pojavila
-          kot privzeta imena za ta jezik.
-          <a class="readmore" href="/pages/translate">Več o prevajanju</a>
-          </p>
-          </li>
-          </ul>
     users:
       dashboard:
         taxon_change_desc: |
