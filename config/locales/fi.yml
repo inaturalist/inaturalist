@@ -4165,7 +4165,7 @@ fi:
   scientific_name: Tieteellinen nimi
   search: Hae
   search_all_fields: etsi kaikista kentistä
-  search_by_name_or_email: Hae nimellä tai sähköpostilla
+  search_by_name_or_email: Hae nimellä
   search_by_taxon_name_or_observation_id: Hae taksonin nimellä tai havainnon ID:llä
   search_by_taxon_name_or_flickr_photo_id: Hae taksonin nimellä tai Flick-kuvan tunnisteella
   search_catalogue_of_life: 'Hae <a href="http://www.catalogueoflife.org">Catalogue of Life</a> -sivustolta'
@@ -4970,6 +4970,8 @@ fi:
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
+  user_has_been_removed_from_site: |
+    %{username} on poistettu %{site_name} -verkostosta (voi kestää jopa tunnin, ennen kuin kaikki siihen liittyvä sisältö on poistettu kokonaan)
   user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
   user_hasnt_joined_any_projects: "%{user} ei ole liittynyt mihinkään projektiin"
   user_helped_x_people_with_y_ids_html: "%{user} auttoi <strong>%{x} käyttäjää</strong> <strong>%{y} tunnistamaan havaintoja</strong>"
