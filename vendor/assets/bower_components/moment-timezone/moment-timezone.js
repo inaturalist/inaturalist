@@ -1,6 +1,6 @@
 //! moment-timezone.js
-//! version : 0.5.0
-//! author : Tim Wood
+//! version : 0.5.35
+//! Copyright (c) JS Foundation and other contributors
 //! license : MIT
 //! github.com/moment/moment-timezone
 
@@ -8,30 +8,40 @@
 	"use strict";
 
 	/*global define*/
-	if (typeof define === 'function' && define.amd) {
-		define(['moment'], factory);                 // AMD
-	} else if (typeof module === 'object' && module.exports) {
+	if (typeof module === 'object' && module.exports) {
 		module.exports = factory(require('moment')); // Node
+	} else if (typeof define === 'function' && define.amd) {
+		define(['moment'], factory);                 // AMD
 	} else {
 		factory(root.moment);                        // Browser
 	}
 }(this, function (moment) {
 	"use strict";
 
-	// Do not load moment-timezone a second time.
-	if (moment.tz !== undefined) {
-		logError('Moment Timezone ' + moment.tz.version + ' was already loaded ' + (moment.tz.dataVersion ? 'with data from ' : 'without any data') + moment.tz.dataVersion);
-		return moment;
+	// Resolves es6 module loading issue
+	if (moment.version === undefined && moment.default) {
+		moment = moment.default;
 	}
 
-	var VERSION = "0.5.0",
+	// Do not load moment-timezone a second time.
+	// if (moment.tz !== undefined) {
+	// 	logError('Moment Timezone ' + moment.tz.version + ' was already loaded ' + (moment.tz.dataVersion ? 'with data from ' : 'without any data') + moment.tz.dataVersion);
+	// 	return moment;
+	// }
+
+	var VERSION = "0.5.35",
 		zones = {},
 		links = {},
+		countries = {},
 		names = {},
 		guesses = {},
-		cachedGuess,
+		cachedGuess;
 
-		momentVersion = moment.version.split('.'),
+	if (!moment || typeof moment.version !== 'string') {
+		logError('Moment Timezone requires Moment.js. See https://momentjs.com/timezone/docs/#/use-it/browser/');
+	}
+
+	var momentVersion = moment.version.split('.'),
 		major = +momentVersion[0],
 		minor = +momentVersion[1];
 
@@ -161,6 +171,13 @@
 			}
 		},
 
+		countries : function () {
+			var zone_name = this.name;
+			return Object.keys(countries).filter(function (country_code) {
+				return countries[country_code].zones.indexOf(zone_name) !== -1;
+			});
+		},
+
 		parse : function (timestamp) {
 			var target  = +timestamp,
 				offsets = this.offsets,
@@ -192,9 +209,23 @@
 		},
 
 		offset : function (mom) {
+			logError("zone.offset has been deprecated in favor of zone.utcOffset");
+			return this.offsets[this._index(mom)];
+		},
+
+		utcOffset : function (mom) {
 			return this.offsets[this._index(mom)];
 		}
 	};
+
+	/************************************
+		Country object
+	************************************/
+
+	function Country (country_name, zone_names) {
+		this.name = country_name;
+		this.zones = zone_names;
+	}
 
 	/************************************
 		Current Timezone
@@ -202,14 +233,17 @@
 
 	function OffsetAt(at) {
 		var timeString = at.toTimeString();
-		var abbr = timeString.match(/\(.+\)/);
+		var abbr = timeString.match(/\([a-z ]+\)/i);
 		if (abbr && abbr[0]) {
 			// 17:56:31 GMT-0600 (CST)
 			// 17:56:31 GMT-0600 (Central Standard Time)
-			abbr = abbr[0].match(/[A-Z]/g).join('');
+			abbr = abbr[0].match(/[A-Z]/g);
+			abbr = abbr ? abbr.join('') : undefined;
 		} else {
 			// 17:56:31 CST
-			abbr = timeString.match(/[A-Z]{3,5}/g)[0];
+			// 17:56:31 GMT+0800 (台北標準時間)
+			abbr = timeString.match(/[A-Z]{3,5}/g);
+			abbr = abbr ? abbr[0] : undefined;
 		}
 
 		if (abbr === 'GMT') {
@@ -228,8 +262,8 @@
 	}
 
 	ZoneScore.prototype.scoreOffsetAt = function (offsetAt) {
-		this.offsetScore += Math.abs(this.zone.offset(offsetAt.at) - offsetAt.offset);
-		if (this.zone.abbr(offsetAt.at).match(/[A-Z]/g).join('') !== offsetAt.abbr) {
+		this.offsetScore += Math.abs(this.zone.utcOffset(offsetAt.at) - offsetAt.offset);
+		if (this.zone.abbr(offsetAt.at).replace(/[^A-Z]/g, '') !== offsetAt.abbr) {
 			this.abbrScore++;
 		}
 	};
@@ -280,7 +314,10 @@
 		if (a.abbrScore !== b.abbrScore) {
 			return a.abbrScore - b.abbrScore;
 		}
-		return b.zone.population - a.zone.population;
+		if (a.zone.population !== b.zone.population) {
+			return b.zone.population - a.zone.population;
+		}
+		return b.zone.name.localeCompare(a.zone.name);
 	}
 
 	function addToGuesses (name, offsets) {
@@ -318,6 +355,21 @@
 	}
 
 	function rebuildGuess () {
+
+		// use Intl API when available and returning valid time zone
+		try {
+			var intlName = Intl.DateTimeFormat().resolvedOptions().timeZone;
+			if (intlName && intlName.length > 3) {
+				var name = names[normalizeName(intlName)];
+				if (name) {
+					return name;
+				}
+				logError("Moment Timezone found " + intlName + " from the Intl api, but did not have that data loaded.");
+			}
+		} catch (e) {
+			// Intl unavailable, fall back to manual guessing.
+		}
+
 		var offsets = userOffsets(),
 			offsetsLength = offsets.length,
 			guesses = guessesForUserOffsets(offsets),
@@ -365,13 +417,12 @@
 			normalized = normalizeName(name);
 			zones[normalized] = packed[i];
 			names[normalized] = name;
-			if (split[5]) {
-				addToGuesses(normalized, split[2].split(' '));
-			}
+			addToGuesses(normalized, split[2].split(' '));
 		}
 	}
 
 	function getZone (name, caller) {
+
 		name = normalizeName(name);
 
 		var zone = zones[name];
@@ -410,6 +461,10 @@
 		return out.sort();
 	}
 
+	function getCountryNames () {
+		return Object.keys(countries);
+	}
+
 	function addLink (aliases) {
 		var i, alias, normal0, normal1;
 
@@ -431,9 +486,49 @@
 		}
 	}
 
+	function addCountries (data) {
+		var i, country_code, country_zones, split;
+		if (!data || !data.length) return;
+		for (i = 0; i < data.length; i++) {
+			split = data[i].split('|');
+			country_code = split[0].toUpperCase();
+			country_zones = split[1].split(' ');
+			countries[country_code] = new Country(
+				country_code,
+				country_zones
+			);
+		}
+	}
+
+	function getCountry (name) {
+		name = name.toUpperCase();
+		return countries[name] || null;
+	}
+
+	function zonesForCountry(country, with_offset) {
+		country = getCountry(country);
+
+		if (!country) return null;
+
+		var zones = country.zones.sort();
+
+		if (with_offset) {
+			return zones.map(function (zone_name) {
+				var zone = getZone(zone_name);
+				return {
+					name: zone_name,
+					offset: zone.utcOffset(new Date())
+				};
+			});
+		}
+
+		return zones;
+	}
+
 	function loadData (data) {
 		addZone(data.zones);
 		addLink(data.links);
+		addCountries(data.countries);
 		tz.dataVersion = data.version;
 	}
 
@@ -446,7 +541,8 @@
 	}
 
 	function needsOffset (m) {
-		return !!(m._a && (m._tzm === undefined));
+		var isUnixTimestamp = (m._f === 'X' || m._f === 'x');
+		return !!(m._a && (m._tzm === undefined) && !isUnixTimestamp);
 	}
 
 	function logError (message) {
@@ -479,6 +575,7 @@
 	tz._zones       = zones;
 	tz._links       = links;
 	tz._names       = names;
+	tz._countries	= countries;
 	tz.add          = addZone;
 	tz.link         = addLink;
 	tz.load         = loadData;
@@ -492,6 +589,8 @@
 	tz.needsOffset  = needsOffset;
 	tz.moveInvalidForward   = true;
 	tz.moveAmbiguousForward = false;
+	tz.countries    = getCountryNames;
+	tz.zonesForCountry = zonesForCountry;
 
 	/************************************
 		Interface with Moment.js
@@ -515,23 +614,28 @@
 			mom._z = zone;
 		}
 		if (mom._z) {
-			offset = mom._z.offset(mom);
+			offset = mom._z.utcOffset(mom);
 			if (Math.abs(offset) < 16) {
 				offset = offset / 60;
 			}
 			if (mom.utcOffset !== undefined) {
+				var z = mom._z;
 				mom.utcOffset(-offset, keepTime);
+				mom._z = z;
 			} else {
 				mom.zone(offset, keepTime);
 			}
 		}
 	};
 
-	fn.tz = function (name) {
+	fn.tz = function (name, keepTime) {
 		if (name) {
+			if (typeof name !== 'string') {
+				throw new Error('Time zone name must be a string, got ' + name + ' [' + typeof name + ']');
+			}
 			this._z = getZone(name);
 			if (this._z) {
-				moment.updateOffset(this);
+				moment.updateOffset(this, keepTime);
 			} else {
 				logError("Moment Timezone has no data for " + name + ". See http://momentjs.com/timezone/docs/#/data-loading/.");
 			}
@@ -554,9 +658,18 @@
 		};
 	}
 
-	fn.zoneName = abbrWrap(fn.zoneName);
-	fn.zoneAbbr = abbrWrap(fn.zoneAbbr);
-	fn.utc      = resetZoneWrap(fn.utc);
+	function resetZoneWrap2 (old) {
+		return function () {
+			if (arguments.length > 0) this._z = null;
+			return old.apply(this, arguments);
+		};
+	}
+
+	fn.zoneName  = abbrWrap(fn.zoneName);
+	fn.zoneAbbr  = abbrWrap(fn.zoneAbbr);
+	fn.utc       = resetZoneWrap(fn.utc);
+	fn.local     = resetZoneWrap(fn.local);
+	fn.utcOffset = resetZoneWrap2(fn.utcOffset);
 
 	moment.tz.setDefault = function(name) {
 		if (major < 2 || (major === 2 && minor < 9)) {
