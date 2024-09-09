@@ -218,6 +218,12 @@ iNatAPI.directive('inatCalendarDate', ["shared", function(shared) {
         if ( scope.obscured ) return "";
         var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
         var d = moment.tz( scope.time, timezone );
+        // For some time zones, moment cannot output something nice like PDT and
+        // instead does something like -08. In this situations, we print a full offset
+        // like -08:00 instead
+        if ( parseInt( d.format( "z" ), 10 ) && parseInt( d.format( "z" ), 10 ) !== 0 ) {
+          return d.format( "LT Z" );
+        }
         return d.format( "LT z" );
       }
       scope.titleText = function() {

@@ -238,6 +238,7 @@ GEM
     bindata (2.5.0)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
+    bower-rails (0.12.0)
     builder (3.3.0)
     bundler-audit (0.9.1)
       bundler (>= 1.2.0, < 3)
@@ -733,6 +734,7 @@ DEPENDENCIES
   bcrypt_pbkdf
   better_errors
   binding_of_caller
+  bower-rails
   bundler-audit
   byebug
   capistrano
