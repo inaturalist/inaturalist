@@ -32,6 +32,7 @@ class Annotation < ApplicationRecord
 
   after_commit :index_observation, on: [:create, :update, :destroy]
   after_commit :touch_resource, on: [:create, :destroy]
+  after_commit :update_user_counter_cache
 
   attr_accessor :skip_indexing, :bulk_delete, :wait_for_obs_index_refresh
 
@@ -180,6 +181,24 @@ class Annotation < ApplicationRecord
     controlled_value.try(:label)
   end
 
+  def deleteable_by?( target_user )
+    return true if user == target_user
+    return true if resource&.user == target_user
+
+    false
+  end
+
+  def update_user_counter_cache
+    return unless user
+    return if user.destroyed?
+    return if bulk_delete
+
+    User.delay(
+      unique_hash: { "User::update_annotated_observations_counter_cache": user_id },
+      run_at: 5.minutes.from_now
+    ).update_annotated_observations_counter_cache( user_id )
+  end
+
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
     [taxon_ids].flatten.each do |taxon_id|
       Annotation.reassess_annotations_for_taxon_id( taxon_id )
@@ -187,41 +206,39 @@ class Annotation < ApplicationRecord
   end
 
   def self.reassess_annotations_for_taxon_id( taxon )
-    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
-    Annotation.
-        joins(
-          controlled_attribute: {
-            controlled_term_taxa: :taxon
-          }
-        ).
-        where( taxon.subtree_conditions ).
-        includes(
-          { resource: :taxon },
-          controlled_value: [
-            :excepted_taxa,
-            :taxa,
-            :controlled_term_taxa
-          ],
-          controlled_attribute: [
-            :excepted_taxa,
-            :taxa,
-            :controlled_term_taxa
-          ]
-        ).
-        find_each do |a|
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    Annotation.joins(
+      controlled_attribute: {
+        controlled_term_taxa: :taxon
+      }
+    ).where( taxon.subtree_conditions ).includes(
+      { resource: :taxon },
+      controlled_value: [
+        :excepted_taxa,
+        :taxa,
+        :controlled_term_taxa
+      ],
+      controlled_attribute: [
+        :excepted_taxa,
+        :taxa,
+        :controlled_term_taxa
+      ]
+    ).find_each do | a |
       # run the validation methods which might be affected by taxon changes
       a.attribute_belongs_to_taxon
       a.value_belongs_to_taxon
       # if any of them added errors, the annotation is no longer valid and should be destroyed
       a.destroy if a.errors.any?
     end
-    
   end
 
   def self.reassess_annotations_for_attribute_id( attribute_id )
-    Annotation.where( controlled_attribute_id: attribute_id ).find_each do |a|
+    Annotation.where( controlled_attribute_id: attribute_id ).includes(
+      { resource: :taxon },
+      :controlled_value,
+      :controlled_attribute
+    ).find_each do | a |
       a.destroy unless a.valid?
     end
   end
-
 end

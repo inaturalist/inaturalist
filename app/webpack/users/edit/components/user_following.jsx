@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import UserImage from "../../../shared/components/user_image";
 
 const UserFollowing = ( { user } ) => (
-  <div className="flex-no-wrap relationship-profile-image">
+  <div className="UserFollowing flex-no-wrap">
     <UserImage user={user} />
-    <div>
+    <div className="names">
       <a href={`/people/${user.login}`}>{user.login}</a>
       <div>{user.name}</div>
     </div>

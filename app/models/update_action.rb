@@ -30,8 +30,9 @@ class UpdateAction < ApplicationRecord
     notifier_user ||= notifier.try(:user)
     if notifier_user
       excepted_user_ids = UserBlock.
-        where( "user_id = ? OR blocked_user_id = ?", notifier_user.id, notifier_user.id ).
-        pluck(:user_id, :blocked_user_id).flatten.uniq
+        where( "user_id = ?", notifier_user.id ).pluck( :blocked_user_id )
+      excepted_user_ids += UserBlock.
+        where( "blocked_user_id = ?", notifier_user.id ).pluck( :user_id )
       excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
       return user_ids -= excepted_user_ids.uniq
     end
@@ -214,9 +215,10 @@ class UpdateAction < ApplicationRecord
     grouped_updates.sort_by {|key, updates| updates.last.sort_by_date.to_i * -1}
   end
 
-  def self.user_viewed_updates(updates, user_id)
+  def self.user_viewed_updates( updates, user_id, options = {} )
     updates = updates.to_a.compact
     return if updates.blank?
+
     update_script = {
       script: {
         source: "
@@ -232,8 +234,8 @@ class UpdateAction < ApplicationRecord
     }
     UpdateAction.__elasticsearch__.client.bulk(
       index: UpdateAction.index_name,
-      refresh: Rails.env.test?,
-      body: updates.map do |update|
+      refresh: options[:wait_for_index_refresh] ? "wait_for" : Rails.env.test?,
+      body: updates.map do | update |
         [{
           update: {
             _id: update.id,

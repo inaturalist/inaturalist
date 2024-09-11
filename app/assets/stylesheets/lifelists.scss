@@ -33,8 +33,18 @@
   display: flex;
 }
 
+#ConfirmationBanner + #header + #wrapper {
+  #app {
+    top: 94px;
+  }
+}
+
 body.modal-open #app {
   right: 15px;
+}
+
+body .bootstrap .taxon a {
+  color: inherit;
 }
 
 #Lifelist {
@@ -175,8 +185,8 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     }
     .fa {
       font-size: 13px;
-      font-weight: 100;
-      line-height: 24px;
+      font-weight: 400;
+      line-height: 30px;
       vertical-align: text-top;
       margin-right: 5px;
       cursor: pointer;
@@ -249,12 +259,12 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
     color: $inat-green;
   }
   &.featured-ancestor .display-name {
-    font-weight: 600;
+    font-weight: 700;
   }
 }
 
 .bootstrap .badge.green {
-  padding: 3px 7px 1px 7px;
+  padding: 2px 7px 3px 7px;
   vertical-align: inherit;
   background-color: $inat-green;
   font-size: 14px;
@@ -292,7 +302,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       margin-top: 3px;
     }
     .attr {
-      font-weight: 700;
+      font-weight: 600;
       margin-right: 4px;
       &:after {
         content: ":"
@@ -407,7 +417,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 #TaxaList .tree > li > .name-row {
   font-size: 18px;
   padding: 3px 0px 4px 0px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 #TaxaList .tree ul.nested li:last-child {
@@ -507,7 +517,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
       border-radius: 20px;
       background: #ddd;
       border: none;
-      font-weight: 700;
+      font-weight: 600;
       padding: 5px 12px;
       font-size: 12px;
       margin-top: 5px;
@@ -592,7 +602,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
 
 .ui-autocomplete {
   .ac-result, .category {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
       color: #333;
     }
@@ -635,7 +645,7 @@ div, span, .bootstrap .btn, .bootstrap .btn:focus,.bootstrap .btn:active:focus {
         color: inherit;
       }
       .SplitTaxon > .display-name, .display-names {
-        font-weight: 700;
+        font-weight: 600;
         color: inherit;
         font-size: 16px;
       }

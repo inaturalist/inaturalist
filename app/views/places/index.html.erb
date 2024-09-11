@@ -36,7 +36,7 @@
         minZoom: 2,
         bounds: BOUNDS,
         mapTypeId: iNaturalist.Map.preferredMapTypeId( CURRENT_USER )
-      })
+      });
       for (var i=0; i < places.length; i++) {
         var place = places[i],
             icon = iNaturalist.Map.createPlaceIcon({color: 'DodgerBlue', character: i+1}),

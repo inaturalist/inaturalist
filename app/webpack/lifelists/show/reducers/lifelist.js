@@ -141,11 +141,14 @@ function updateBrowserStateHistory( initial = false ) {
 export function fetchAllCommonNames( callback ) {
   return ( dispatch, getState ) => {
     const { lifelist } = getState( );
-    const idsToLookup = _.uniq( _.map( _.filter(
-      lifelist.taxa, t => !t.common_name_loaded
-    ), t => t.id ) );
+    const idsToLookup = _.uniq(
+      _.map(
+        _.filter( lifelist.taxa, taxon => !taxon.common_name_loaded ),
+        taxon => taxon.id
+      )
+    );
     if ( _.isEmpty( idsToLookup ) ) {
-      return;
+      callback( );
     }
     inatjs.taxa.lifelist_metadata( {
       observed_by_user_id: lifelist.user.login,

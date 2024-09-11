@@ -24,6 +24,7 @@ const ObsCard = class ObsCard {
       observation_field_values: [],
       projects: [],
       changedFields: { },
+      validationErrors: { },
       uuid: uuidv4()
     };
     Object.assign( this, defaultAttrs, attrs );
@@ -187,6 +188,22 @@ const ObsCard = class ObsCard {
         ) );
       } );
     };
+  }
+
+  validate( ) {
+    this.validationErrors = { };
+    if ( _.size( this.files ) === 0 ) {
+      this.validationErrors.media = true;
+    }
+    if ( !this.taxon_id && !this.species_guess ) {
+      this.validationErrors.taxon = true;
+    }
+    if ( !this.date ) {
+      this.validationErrors.date = true;
+    }
+    if ( ( !this.latitude || !this.longitude ) ) {
+      this.validationErrors.location = true;
+    }
   }
 };
 

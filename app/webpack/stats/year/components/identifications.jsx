@@ -80,7 +80,7 @@ const Identifications = ( {
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
-                window.open( url, "_blank" );
+                window.open( url, "_blank", "noopener,noreferrer" );
               } : null}
               margin={{ left: 60 }}
             />
@@ -100,6 +100,7 @@ const Identifications = ( {
                 <UserWithIcon
                   user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}
                   subtitle={I18n.t( "x_identifications", { count: d.count } )}
+                  skipSubtitleLink
                   subtitleIconClass=" "
                   key={`idents-users-helped-${d.user.id}`}
                 />
@@ -151,6 +152,7 @@ const Identifications = ( {
                 <UserWithIcon
                   user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}
                   subtitle={I18n.t( "x_identifications", { count: d.count } )}
+                  skipSubtitleLink
                   subtitleIconClass=" "
                   key={`idents-users-who-helped-${d.user.id}`}
                 />

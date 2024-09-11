@@ -249,6 +249,7 @@ class ExportModal extends Component {
           className="hidden"
           ref={r => { this.csvLink = r; }}
           target="_blank"
+          rel="noopener noreferrer"
         />
       </Modal>
     );

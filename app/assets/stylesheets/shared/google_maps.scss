@@ -4,7 +4,7 @@ body > [role="dialog"],
 body > .popover,
 body > div > .popover {
   .gm-style {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif !important;
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
     .gm-style-mtc,
     .gm-style-iw,
     .gm-style-iw a,
@@ -15,7 +15,7 @@ body > div > .popover {
     span,
     label,
     a {
-      font-family: Whitney, "Trebuchet MS", Arial, sans-serif !important;
+      font-family: Lato, "Trebuchet MS", Arial, sans-serif !important;
     }
     label {
       margin-bottom: 0 !important;
@@ -53,6 +53,25 @@ body > div > .popover {
     .gmnoprint > div > div:nth-child(2) {
       width: auto !important;
     }
+    .gm-style-iw {
+      font-weight: 400;
+    }
+    .gm-style-iw-ch {
+      padding-top: 13px !important;
+    }
+    .gm-ui-hover-effect {
+      position: absolute !important;
+      right: 0;
+      height: 22px !important;
+      width: 22px !important;
+      top: 0 !important;
+      right: 0 !important;
+      & > span {
+        width: 18px !important;
+        height: 18px !important;
+        margin: 2px !important;
+      }
+    }
   }
 
   .gmapv3control.overlaycontrol.open {
@@ -70,7 +89,7 @@ body > div > .popover {
     position: relative;
     .legend-left {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
     }
     &.for_taxon {
       .legend-left {
@@ -78,16 +97,16 @@ body > div > .popover {
       }
     }
     .legend-right {
-      margin-left: 18px;
+      margin-inline-start: 18px;
     }
     &.with-legend-mark {
       .legend-right {
-        margin-left: 33px;
+        margin-inline-start: 33px;
       }
     }
     .legend-mark {
       display: inline-block;
-      margin-left: 5px;
+      margin-inline-start: 5px;
       vertical-align: top;
       width: 12px;
       height: 12px;
@@ -219,5 +238,4 @@ body > div > .popover {
     max-width: 160px;
     margin-left: 4px;
   }
-
 }

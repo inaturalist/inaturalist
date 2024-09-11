@@ -26,7 +26,7 @@ const dragDropZone = ( state = defaultState, action ) => {
   switch ( action.type ) {
     case types.APPEND_OBS_CARDS: {
       const newCardIds = _.without(
-        _.map( action.obsCards, ( card, id ) => parseInt( id, 0 ) ),
+        _.map( action.obsCards, ( card, id ) => parseInt( id, 10 ) ),
         state.obsPositions
       );
       return update( state, {
@@ -51,6 +51,10 @@ const dragDropZone = ( state = defaultState, action ) => {
         if ( cardIDs[obsCard.id] ) {
           attrs.updatedAt = time;
           attrs.galleryIndex = 1;
+          attrs.validationErrors = obsCard.validationErrors;
+          if ( obsCard.validationErrors.media && _.size( attrs.files ) > 0 ) {
+            delete attrs.validationErrors.media;
+          }
         }
         updatedState = update( updatedState, {
           obsCards: {
@@ -62,7 +66,8 @@ const dragDropZone = ( state = defaultState, action ) => {
     }
 
     case types.UPDATE_OBS_CARD: {
-      if ( state.obsCards[action.obsCard.id] === undefined ) {
+      const obsCard = state.obsCards[action.obsCard.id];
+      if ( obsCard === undefined ) {
         return state;
       }
       const { attrs } = action;
@@ -77,6 +82,19 @@ const dragDropZone = ( state = defaultState, action ) => {
       }
       // if false, keep it false, or don't override the value if modified is true
       if ( attrs.modified === false ) { delete attrs.modified; }
+      attrs.validationErrors = obsCard.validationErrors;
+      if ( obsCard.validationErrors.files && attrs.files.length > 0 ) {
+        delete attrs.validationErrors.files;
+      }
+      if ( obsCard.validationErrors.taxon && ( attrs.taxon_id || attrs.species_guess ) ) {
+        delete attrs.validationErrors.taxon;
+      }
+      if ( obsCard.validationErrors.date && attrs.date ) {
+        delete attrs.validationErrors.date;
+      }
+      if ( obsCard.validationErrors.location && attrs.latitude && attrs.longitude ) {
+        delete attrs.validationErrors.location;
+      }
 
       let newState = update( state, {
         obsCards: {
@@ -332,14 +350,14 @@ const dragDropZone = ( state = defaultState, action ) => {
           [obsCard.id]: { $set: obsCard }
         },
         obsPositions: {
-          $push: [parseInt( obsCard.id, 0 )]
+          $push: [parseInt( obsCard.id, 10 )]
         }
       } );
     }
 
     case types.INSERT_CARDS_BEFORE: {
       let newPositions = [];
-      const cardIds = action.cardIds.map( cardId => parseInt( cardId, 0 ) );
+      const cardIds = action.cardIds.map( cardId => parseInt( cardId, 10 ) );
       _.each( state.obsPositions, cardId => {
         if ( cardId === action.beforeCardId ) {
           newPositions = newPositions.concat( cardIds );

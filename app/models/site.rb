@@ -276,6 +276,10 @@ class Site < ApplicationRecord
   preference :twitter_url, :string
   preference :instagram_url, :string
   preference :blog_url, :string
+  preference :understanding_projects_url, :string
+  preference :educators_guide_url, :string
+  preference :video_tutorials_url, :string
+  preference :curator_guide_url, :string
 
   preference :twitter_username, :string
 
@@ -553,6 +557,34 @@ class Site < ApplicationRecord
         end
       end
       observations
+    end
+  end
+
+  def users_index_recent_activity
+    Rails.cache.fetch( "Site::#{id}::users_index_recent_activity", expires_in: 1.hour ) do
+      updates = []
+      [Observation, Identification, Post, Comment].each do | klass |
+        scope = klass.limit( 30 ).
+          order( "#{klass.table_name}.id DESC" ).
+          includes( :user )
+        if prefers_site_only_users?
+          scope = scope.joins( :user )
+          scope = scope.where( "users.site_id = ?", id )
+        end
+        updates += scope.all
+      end
+      Observation.preload_associations( updates, :user )
+      updates.delete_if do | u |
+        u.user.blank? ||
+          ( u.is_a?( Post ) && u.draft? ) ||
+          ( u.is_a?( Identification ) && u.taxon_change_id ) ||
+          ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
+      end
+      user_activity_hash = {}
+      updates.sort_by( &:created_at ).each do | record |
+        user_activity_hash[record.user_id] = record
+      end
+      user_activity_hash.values.sort_by( &:created_at ).reverse[0..11]
     end
   end
 end

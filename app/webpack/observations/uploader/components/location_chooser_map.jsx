@@ -5,7 +5,7 @@ import _ from "lodash";
 import util from "../models/util";
 import { objectToComparable } from "../../../shared/util";
 import PhotoMarkerOverlayView from "./photo_marker_overlay_view";
-import GooglePlacesSearchBox from "./google_places_search_box";
+import GooglePlacesAutocomplete from "./google_places_autocomplete";
 
 let lastCenterChange = new Date().getTime();
 
@@ -65,11 +65,12 @@ class LocationChooserMap extends React.Component {
       zoom
     } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
-    const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
+    const map = iNaturalist.Map.createMap( {
       ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
-      zoom: zoom || 1,
+      div: $( ".map-inner", domNode ).get( 0 ),
+      zoom: zoom || 2,
       center: existingCenter || { lat: 30, lng: 15 },
-      fullscreenControl: true,
+      disableFullscreen: true,
       mapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser )
     } );
     this.map = map;
@@ -134,12 +135,15 @@ class LocationChooserMap extends React.Component {
     this.moveCircle( latLng, radius, { geocode: true } );
   }
 
-  handlePlacesChanged( input, places ) {
+  handlePlacesChanged( input, place, customLat = null, customLng = null ) {
     const { updateState } = this.props;
+    if ( _.isEmpty( place ) ) {
+      return;
+    }
     let searchQuery;
-    let lat;
-    let lng;
-    let searchedForCoord = false;
+    let lat = customLat;
+    let lng = customLng;
+    let searchedForCoord = ( customLat && customLng );
     if ( input ) {
       searchQuery = input.value;
       const searchCoord = searchQuery.split( "," ).map( piece => parseFloat( piece, 16 ) );
@@ -157,36 +161,13 @@ class LocationChooserMap extends React.Component {
       }
     }
     let notes;
-    let radius;
-    let viewport;
-    if ( places.length > 0 ) {
-      const { geometry } = places[0];
-      ( { viewport } = geometry );
-      lat = lat || geometry.location.lat( );
-      lng = lng || geometry.location.lng( );
-      // Set the locality notes using political entity names and omitting
-      // street-level information
-      const storeStreetAddress = false; // disabling until we figure out what we really want
-      if (
-        storeStreetAddress
-        && places[0].address_components
-        && places[0].address_components.length > 0
-      ) {
-        const goodTypes = ["political", "neighborhood"];
-        const goodComponents = _.filter(
-          places[0].address_components,
-          p => _.intersection( p.types, goodTypes ).length > 0
-        );
-        notes = goodComponents
-          .map( p => ( p.short_name || p.long_name ) )
-          .join( ", " );
-        if ( places[0].name && !places[0].name.match( /^\d+/ ) ) {
-          notes = `${places[0].name}, ${notes}`;
-        }
-      } else {
-        notes = places[0].formatted_address;
-      }
-    }
+    let radius = 0;
+
+    const { geometry } = place;
+    const { viewport } = geometry;
+    lat = lat || geometry.location.lat( );
+    lng = lng || geometry.location.lng( );
+    notes = place.formatted_address;
     if ( typeof ( google ) !== "undefined" ) {
       if ( viewport && !searchedForCoord ) {
         // radius is the largest distance from geom center to one of the bounds corners
@@ -243,10 +224,7 @@ class LocationChooserMap extends React.Component {
       lng,
       obsCard: currentCard,
       obsCards,
-      radius,
-      show,
-      center,
-      fitCurrentCircle
+      radius
     } = this.props;
 
     // Determine if we should re-render the overlays
@@ -446,7 +424,7 @@ class LocationChooserMap extends React.Component {
     return (
       <div className="LocationChooserMap map">
         <div className="map-inner" />
-        <GooglePlacesSearchBox
+        <GooglePlacesAutocomplete
           bounds={bounds}
           onPlacesChanged={this.handlePlacesChanged}
         />

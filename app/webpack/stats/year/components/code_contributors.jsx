@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { Row, Col } from "react-bootstrap";
+import CodeContributor from "./code_contributor";
 
 const CodeContributors = ( { data } ) => {
   const pullRequestsByUser = {};
@@ -42,29 +43,7 @@ const CodeContributors = ( { data } ) => {
         <Row key={`code-contributors-${row.map( d => d.user.login ).join( "-" )}`}>
           { row.map( d => (
             <Col xs={12} sm={12 / numCols} key={`code-contributors-${d.user.login}`}>
-              <div className="CodeContribitor stacked flex-row">
-                <div className="text-center">
-                  <a
-                    className="userimage UserImage stacked"
-                    href={d.user.html_url}
-                    style={{
-                      backgroundImage: `url('${d.user.avatar_url}')`
-                    }}
-                  >
-                    { " " }
-                  </a>
-                </div>
-                <div>
-                  <h4><a href={d.user.html_url}><span>{ d.user.login }</span></a></h4>
-                  <ul>
-                    { d.pullRequests.map( pr => (
-                      <li key={pr.html_url}>
-                        <a href={pr.html_url}>{ pr.title }</a>
-                      </li>
-                    ) ) }
-                  </ul>
-                </div>
-              </div>
+              <CodeContributor userData={d} />
             </Col>
           ) ) }
         </Row>

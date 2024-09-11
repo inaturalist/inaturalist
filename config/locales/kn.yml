@@ -672,12 +672,10 @@ kn:
   bioblitz: ಬಯೋಬ್ಲಿಟ್ಜ್
   birds: ಹಕ್ಕಿಗಳು
   birthday: ಜನ್ಮದಿನ
-  black: ಕಪ್ಪು
   block: ನಿರ್ಬಂಧಿಸಿ
   block_removed: ನಿರ್ಬಂಧ ತೆಗೆದುಹಾಕಲಾಗಿದೆ
   blocked_users: ನಿರ್ಬಂಧಿತ ಬಳಕೆದಾರರು
   blog_widget: ಬ್ಲಾಗ್ ವಿಜೆಟ್
-  blue: ನೀಲಿ
   blue_butterfly_etc: "ನೀಲಿ, ಚಿಟ್ಟೆ, ಇತ್ಯಾದಿ."
   body: ಪೂರ್ಣಪಾಠ
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -686,7 +684,6 @@ kn:
   bold_text: ದಪ್ಪಕ್ಷರ
   breadcrumbs: ಬ್ರೆಡ್‍ಕ್ರಂಬ್‍ಗಳು
   brief_caption: ಸಂಕ್ಷಿಪ್ತ ಶೀರ್ಷಿಕೆ
-  brown: ಕಂದು
   browse: ಬ್ರೌಸ್‌ಮಾಡಿ
   browse_all_projects: ಎಲ್ಲಾ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ
   browse_all_species: ಎಲ್ಲಾ ಪ್ರಭೇದಗಳನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ
@@ -929,6 +926,7 @@ kn:
     no_evidence_of_flowering: ಹೂವಾಗುತ್ತಿರುವ ಕುರುಹುಗಳಿಲ್ಲ
     nymph: ಅಪ್ಸರೆ ಹುಳು
     larva: ಮರಿಹುಳು
+    #Evidence of an egg of an organism
     egg: ಮೊಟ್ಟೆ
     juvenile: ಹದಿವಯಸ್ಕ
     alive_or_dead: ಜೀವಿತ ಅಥವಾ ಮೃತ
@@ -979,6 +977,7 @@ kn:
   copy_and_paste_the_following_code_to: ಇನ್ನಿತರ ಜಾಲತಾಣ ಪುಟಗಳಲ್ಲಿ ಈ ಮೌಲ್ಯಮಾಪನವನ್ನು ಅಡಕಗೊಳಿಸಲು ಈ ಕೆಳಗಿನ ಕೋಡ್ ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಅಂಟಿಸಿ.
   copy_and_paste_this_into_your_own_html: ಇದನ್ನು ನಿಮ್ಮದೇ HTML ಗೆ ನಕಲಿಸಿ ಮತ್ತು ಅಂಟಿಸಿ.
   copy_guide_taxon_to: ಕೈಪಿಡಿ ಜೀವಿವರ್ಗವನ್ನು ಇಲ್ಲಿಗೆ ನಕಲಿಸಿ...
+  copy_to_clipboard: ಕ್ಲಿಪ್‌ಬೋರ್ಡಿಗೆ ನಕಲಿಸಿ
   copyright:
     some_rights_reserved: ಕೆಲವು ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ
     some_rights_reserved_by: "(c) %{name}, ಕೆಲವು ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ (%{license_short})"
@@ -1207,6 +1206,8 @@ kn:
   deviation: ಮಾರ್ಗಾಂತರ
   devise:
     confirmations:
+      confirmed: |
+        ನಿಮ್ಮ ಮಿಂಚೆ ವಿಳಾಸವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಖಚಿತಪಡಿಸಲಾಗಿದೆ.
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1365,8 +1366,8 @@ kn:
   either_that_user_doesnt_exist_or: "ಆ ಬಳಕೆದಾರರು ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ ಅಥವಾ ನೀವು ಅವರನ್ನು ಈಗಾಗಲೇ ಅನುಸರಿಸುತ್ತಿರುವಿರಿ."
   eligible_for_research_grade: ಸಂಶೋಧನಾ ದರ್ಜೆಗೆ ಅರ್ಹವಾಗಿದೆ
   email: ಮಿಂಚೆ
-  email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_address_for_comments_and_other_feedback: ಪ್ರತಿಕ್ರಿಯೆ ಮತ್ತು ಅಭಿಪ್ರಾಯಗಳಿಗಾಗಿ ಮಿಂಚೆ ವಿಳಾಸ
+  email_description: iNaturalist ನಲ್ಲಿ ನಿಮ್ಮ ಮಿಂಚೆಯನ್ನು ಇತರೆ ಬಳಕೆದಾರರ ಜೊತೆ ಹಂಚಿಕೊಂಡಿಲ್ಲ.
   email_notifications: ಮಿಂಚೆ ಅಧಿಸೂಚನೆಗಳು
   embed: 'ಅಡಕಗೊಳಿಸಿ'
   embed_place_widget: ಸ್ಥಳ ವಿಜೆಟ್ ಅನ್ನು ಅಡಕಗೊಳಿಸಿ
@@ -1407,6 +1408,7 @@ kn:
   everywhere: ಎಲ್ಲೆಲ್ಲಿಯೂ
   exact: ನಿಖರವಾದ
   exact_date: ನಿಖರವಾದ ದಿನಾಂಕ
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: ಕರಾರುವಾಕ್ಕಾದ ಶ್ರೇಣಿ
   except: ಹೊರತು
   exclude_places: ಸ್ಥಳಗಳನ್ನು ಹೊರತುಪಡಿಸಿ
@@ -1502,6 +1504,7 @@ kn:
   flickr_tags: ಫ್ಲಿಕರ್ ಟ್ಯಾಗ್‍ಗಳು
   follow: ಅನುಸರಿಸಿ
   follow_receive_updates_about_new_observations: ಅನುಸರಿಸಿ ( ಹೊಸ ವೀಕ್ಷಣೆಗಳ ಬಗ್ಗೆ ನವೀಕರಣಗಳನ್ನು ಪಡೆಯಿರಿ)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} ಅವರನ್ನು ಅನುಸರಿಸಿ"
   followers: ಹಿಂಬಾಲಕರು
   following: ಅನುಸರಿಸಲಾಗುತ್ತಿದೆ
@@ -1610,6 +1613,8 @@ kn:
   hide_running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತವನ್ನು ಮರೆಮಾಡಿ
   hide_uncountable_species: ಎಣಿಸಲಾಗದ ಪ್ರಭೇದಗಳನ್ನು ಮರೆಮಾಡಿ
   high: ಉನ್ನತ
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: ಅತ್ಯುನ್ನತ ಶ್ರೇಣಿ
   highlights_and_stats_from_year_on_site: "%{year} ನಲ್ಲಿ %{site} ನ ಮುಖ್ಯಾಂಶಗಳು ಮತ್ತು ಅಂಕಿಅಂಶಗಳು"
   history: ಇತಿಹಾಸ
@@ -1746,6 +1751,7 @@ kn:
   journal: ನಿಯತಕಾಲಿಕೆ
   journal_archives_for: ಇದಕ್ಕಾಗಿ ನಿಯತಕಾಲಿಕೆ ಸಂಗ್ರಹಣೆಗಳು
   journal_post: ನಿಯತಕಾಲಿಕೆಯ ಲೇಖನ
+  journal_post_: ನಿಯತಕಾಲಿಕೆಯ ಲೇಖನ
   journal_post_deleted: ನಿಯತಕಾಲಿಕೆ ಪೋಸ್ಟ್ ಅಳಿಸಲಾಗಿದೆ.
   journal_posts: ನಿಯತಕಾಲಿಕೆಯ ಲೇಖನಗಳು
   jpg_png_or_gif: "JPG, PNG, or GIF"
@@ -2034,6 +2040,8 @@ kn:
   looks_like_no_species_in_guide: ನಿಮ್ಮ ಕೈಪಿಡಿಯಲ್ಲಿ ಇನ್ನೂ ಯಾವುದೇ ಪ್ರಭೇಧ ಇರುವಂತೆ ಕಂಡುಬರುತ್ತಿಲ್ಲ.
   lookup: ಹುಡುಕಿ
   low: ಕೆಳಹಂತ
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: ಕೆಳಹಂತದ ದರ್ಜೆ
   make_admin: ನಿರ್ವಾಹಕರನ್ನಾಗಿ ಮಾಡಿ
   #Header for main content section of the project detail page when editing custom project data.
@@ -2257,7 +2265,6 @@ kn:
   needs_id_: ID ಅಗತ್ಯವಿದೆ
   needs_id_expandable_html: "ID<span class='full'>ಅಗತ್ಯವಿದೆ</span>"
   needs_id_tooltip_html: '"ID ಅಗತ್ಯವಿದೆ" ವೀಕ್ಷಣೆಗಳು ಮಾಧ್ಯಮ, ಸ್ಥಳ ಮತ್ತು ದಿನಾಂಕವನ್ನು ಹೊಂದಿರುತ್ತವೆ, ಆದರೆ ನಿಖರವಾದ ಗುರುತಿಸುವಿಕೆಗೆ ಇನ್ನೂ ಸಮುದಾಯದ ಒಮ್ಮತದ ಅಗತ್ಯವಿರುತ್ತದೆ. <a href="https://www.inaturalist.org/pages/help#quality">ಗುಣಮಟ್ಟದ ದರ್ಜೆಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ</a>'
-  needs_to_be_identified: ಗುರುತಿಸುವಿಕೆಯ ಅಗತ್ಯವಿದೆ
   #Column header in a table listing iNaturalist Network members
   network_member: ಜಾಲದ ಸದಸ್ಯರು
   new: ಹೊಸತು
@@ -2615,7 +2622,9 @@ kn:
   only_the_project_admin_can_delete_this_project: ಈ ಪ್ರಾಯೋಜನೆಯನ್ನು ಪ್ರಾಯೋಜನೆಯ ನಿರ್ವಾಹಕರು ಮಾತ್ರ ಅಳಿಸಬಹುದು.
   only_view_nearby_suggestions: ಸಮೀಪದ ಸಲಹೆಗಳನ್ನು ಮಾತ್ರ ವೀಕ್ಷಿಸಿ
   only_you: ನೀವು ಮಾತ್ರ
+  #Geoprivacy status in which no privacy has been applied
   open: ತೆರೆಯಿರಿ
+  #Geoprivacy status in which no privacy has been applied
   open_: ತೆರೆಯಿರಿ
   open_description: "ಜೀವಿವರ್ಗ ಅಪಾಯದಂಚಿನಲ್ಲಿ ಇಲ್ಲದಿದ್ದಲ್ಲಿ ಎಲ್ಲರೂ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಬಹುದು."
   open_street_map: OpenStreetMap
@@ -2626,7 +2635,6 @@ kn:
   #sign in with Apple OR Google
   or_all_caps: ಅಥವಾ
   or_choose_high_level_taxa: "... ಅಥವಾ ಕೆಲವು ಉನ್ನತ-ಮಟ್ಟದ ಜೀವಿವರ್ಗಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ"
-  orange: ಕಿತ್ತಳೆ
   order: ಗಣ
   organism_is_wild: ಜೀವಿಯು ವನ್ಯಜೀವಿಯಾಗಿದೆ
   organisms: ಜೀವಿಗಳು
@@ -2728,7 +2736,6 @@ kn:
   pi_consent_child_label: |
     ನನ್ನ ಕಂದನ ಖಾತೆ ನಿರ್ವಹಣೆ ಸಲುವಾಗಿ ನನ್ನ ಕಂದನ ಬಗೆಗಿನ ಸೀಮಿತವಾದ ವೈಯಕ್ತಿಕ ಮಾಹಿತಿಯನ್ನು iNaturalist ಗೆ ಸಂಗ್ರಹಿಸುವುದಕ್ಕೆ ಮತ್ತು ಸಂಸ್ಕರಿಸುವುದಕ್ಕೆ ನಾನು ಸಮ್ಮತಿ ನೀಡುತ್ತೇನೆ.
   pin_verb: ಪಿನ್ ಮಾಡಿ
-  pink: ಗುಲಾಬಿ
   pinned_locations_desc: |
     ಆನಂತರದ ಬಳಕೆಗಾಗಿ ನಿರ್ದೇಶಾಂಕಗಳು, ನಿಖರತೆ, ಭೂಗೌಪ್ಯತೆ ಮತ್ತು ಸ್ಥಳದ ಟಿಪ್ಪಣಿಗಳ ಸಂಯೋಜನೆಯನ್ನು ಪಿನ್ ಮಾಡಿ.
   place: ಸ್ಥಳ
@@ -3263,7 +3270,6 @@ kn:
   provider_authorizations: ಪೂರೈಕೆದಾರರ ದೃಢೀಕರಣಗಳು
   public_domain: ಸಾರ್ವಜನಿಕ ಡೊಮೈನ್
   publish: ಪ್ರಕಟಿಸಿ
-  purple: ನೇರಳೆ
   quality_grade: ಗುಣಮಟ್ಟದ ದರ್ಜೆ
   quality_grade_: ಗುಣಮಟ್ಟದ ದರ್ಜೆ
   quality_grade_colon: "ಗುಣಮಟ್ಟದ ದರ್ಜೆ:"
@@ -3273,7 +3279,11 @@ kn:
   radius_km: ತ್ರಿಜ್ಯ (km)
   radius_value: "ತ್ರಿಜ್ಯ (m):%{radius}"
   range: ವ್ಯಾಪ್ತಿ
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ಶ್ರೇಣಿ
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: ಶ್ರೇಣಿ
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3432,7 +3442,6 @@ kn:
   recently_resolved: ಇತ್ತೀಚೆಗೆ ಪರಿಹರಿಸಿದ್ದು
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: ದಾಖಲೆ
-  red: ಕೆಂಪು
   redo_search_in_map: ಭೂಪಟದಲ್ಲಿ ಹುಡುಕಾಟವನ್ನು ಮತ್ತೆ ಮಾಡಿ
   redo_search_in_map_area: ಭೂಪಟದ ಪ್ರದೇಶದಲ್ಲಿ ಹುಡುಕಾಟವನ್ನು ಮತ್ತೆ ಮಾಡಿ
   refresh: ಹೊಸತಾಗಿಸಿ
@@ -3805,7 +3814,6 @@ kn:
   start_a_new_project: ಹೊಸ ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_a_project: ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_date_time: ಪ್ರಾರಂಭದ ದಿನಾಂಕ / ಸಮಯ
-  start_one: ಒಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_one_now: ಈಗಲೇ ಒಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ!
   start_typing_field_name: ಆವರಣದ ಹೆಸರನ್ನು ನಮೂದಿಸಲು ಆರಂಭಿಸಿ...
   start_typing_place_name: ಸ್ಥಳದ ಹೆಸರನ್ನು ನಮೂದಿಸಲು ಆರಂಭಿಸಿ...
@@ -3980,6 +3988,7 @@ kn:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: ಈ ಜೀವಿವರ್ಗ IUCN ಕೆಂಪುಪಟ್ಟಿಯಲ್ಲಿಲ್ಲ
   taxon_range_guidelines_learn_more_about_taxon_ranges: ಜೀವಿವರ್ಗದ ವ್ಯಾಪ್ತಿಗಳ ಬಗ್ಗೆ ಹೆಚ್ಚು ತಿಳಿಯಿರಿ
   taxon_range_updated_notice: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಯನ್ನು ಯಶಸ್ವಿಯಾಗಿ ರಚಿಸಲಾಗಿದೆ. ಅದು ಭೂಪಟದ ಮೇಲೆ ಪ್ರದರ್ಶಿತವಾಗಲು ದಯವಿಟ್ಟು ಕೆಲವು ನಿಮಿಷಗಳ ಸಮಯ ನೀಡಿ.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: ಜೀವಿವರ್ಗದ ಶ್ರೇಣಿಗಳು
   taxon_removed_from_list: ಪಟ್ಟಿಯಿಂದ ಜೀವಿವರ್ಗವನ್ನು ತೆಗೆದುಹಾಕಲಾಗಿದೆ.
   taxon_scheme: ಜೀವಿವರ್ಗದ ಕಾರ್ಯಯೋಜನೆ
@@ -4018,6 +4027,7 @@ kn:
   text_editing_controls: ಪಠ್ಯ ಸಂಪಾದನೆ ನಿಯಂತ್ರಕಗಳು
   thanks!: ಧನ್ಯವಾದಗಳು!
   thanks_from_all_of_us_here_at: ಇಲ್ಲಿನ ನಮ್ಮೆಲ್ಲರ ಧನ್ಯವಾದಗಳು
+  that_account_is_already_connected: ಅ ಖಾತೆಯನ್ನು ಈಗಾಗಲೇ ಬೇರೊಬ್ಬ ಬಳಕೆದಾರರ ಜೊತೆ ಹೊಂದಿಸಲಾಗಿದೆ.
   that_photo_doesnt_exist: ಆ ಚಿತ್ರ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.
   that_observation_doesnt_exist: ಆ ವೀಕ್ಷಣೆ ಅಸ್ತಿತ್ವದಲ್ಲಿಲ್ಲ.
   that_observation_doesnt_have_any_photos: "ಆ ವೀಕ್ಷಣೆಯಲ್ಲಿ ಯಾವುದೇ ಚಿತ್ರಗಳಿಲ್ಲ."
@@ -4054,7 +4064,6 @@ kn:
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ವಿದೆ"
     other: "<span class='count'>%{count}</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ಗಳಿವೆ"
-  there_is_no_wikipedia_page_matching: ಸರಿಹೊಂದುವ ವಿಕಿಪೀಡಿಯಾ ಪುಟ ಯಾವುದೂ ಇಲ್ಲ
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' ಶೀರ್ಷಿಕೆಯುಳ್ಳ ಯಾವುದೇ ವಿಕಿಪೀಡಿಯಾ ಲೇಖನ ಅಥವಾ ಮರುನಿರ್ದೇಶಿಕೆಗಳಿಲ್ಲ. ಬಹುಶಃ <a href='http://en.wikipedia.org/wiki/%{x}'>ಒಂದನ್ನು ರಚಿಸಿ</a> ಲು ಬಯಸುವಿರಾ?
   there_merge_problems_with_the_merge: "ವಿಲೀನಗೊಳಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ: %{merged_errors}"
@@ -4262,7 +4271,6 @@ kn:
   unknown: ಅಪರಿಚಿತ
   unknown_error: ಅಪರಿಚಿತ ದೋಷ
   unknown_rank: '(ಅಪರಿಚಿತ ಶ್ರೇಣಿ)'
-  unfollow: ಅನುಸರಣೆ ನಿಲ್ಲಿಸಿ
   unlink_your_google_account: ನಿಮ್ಮ Google ಖಾತೆಯ ಜೋಡಣೆ ತೆಗೆದುಹಾಕಿ
   unlink_your_flickr_account: "ನಿಮ್ಮ Flickr ಖಾತೆಯ ಜೋಡಣೆ ತೆಗೆದುಹಾಕಿ"
   unmute: ಮೌನ ರದ್ದುಗೊಳಿಸಿ
@@ -4367,7 +4375,6 @@ kn:
   user_added_an_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
-  user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ
   user_autocomplete_placeholder: ಸಲೀಂ, ಆಲಿ123, ಇತ್ಯಾದಿ
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -4417,6 +4424,7 @@ kn:
   valid_options_are: ಮಾನ್ಯವಾದ ಆಯ್ಕೆಗಳು
   verbing_x_of_y: "%{verb} %{y} ರಲ್ಲಿ %{x}..."
   verifiable_observations_by_observation_date: ವೀಕ್ಷಣೆಯ ದಿನಾಂಕದಂತೆ ಪರಿಶೀಲಿಸಬಲ್ಲ ವೀಕ್ಷಣೆಗಳು
+  video_tutorials: ವಿಡಿಯೋ ಬೋಧಕಗಳು
   view: ವೀಕ್ಷಿಸಿ
   view_all: ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
   view_all_caps: ಎಲ್ಲವನ್ನೂ ನೋಡಿ
@@ -4472,7 +4480,6 @@ kn:
   view_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_yours: ನಿಮ್ಮದನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_of_your_observations_from_x: "%{x} ರಿಂದ ನಿಮ್ಮ ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-  video_tutorials: ವಿಡಿಯೋ ಬೋಧಕಗಳು
   visually_similar: ನೋಟದೋಲಿಕೆ
   vulnerable: ದುರ್ಬಲ
   w_photos_only: ಚಿತ್ರಗಳ ಸಹಿತ
@@ -4528,7 +4535,6 @@ kn:
   where_were_they?: ಅವು ಎಲ್ಲಿದ್ದವು?
   where_were_you?: ನೀವು ಎಲ್ಲಿದ್ದಿರಿ?
   which_projects_can_add_your_observations?: ಯಾವ ಸಾಂಪ್ರದಾಯಿಕ ಪ್ರಾಯೋಜನೆಗಳು ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಬಹುದು?
-  white: ಬಿಳಿ
   why_you_can_see_the_coordinates: ನಿಮಗೆ ನಿರ್ದೇಶಾಂಕಗಳನ್ನು ನೋಡಲು ಏಕೆ ಸಾಧ್ಯವಾಗುತ್ತಿದೆ
   who_can_add_observation_fields_to_my_obs: ನನ್ನ ವೀಕ್ಷಣೆಗಳಿಗೆ ಯಾರು ವೀಕ್ಷಣೆ ಆವರಣಗಳನ್ನು ಸೇರಿಸಬಹುದು?
   who_can_add_observations_to_this_project?: ಈ ಪ್ರಾಯೋಜನೆಗೆ ಯಾರು ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಬಹುದು?
@@ -4590,7 +4596,6 @@ kn:
   year_in_review2: "ಪರಿಶೀಲನೆಯಲ್ಲಿರುವ ವರ್ಷ %{year}"
   year_month: ವರ್ಷ/ತಿಂಗಳು
   year_on_site: "%{site} %{year} ರಲ್ಲಿ ವರ್ಷ"
-  yellow: ಹಳದಿ
   'yes': "ಹೌದು"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5298,7 +5303,6 @@ kn:
           "Plant Phenology=Flower Budding": ಹೂವು ಮೊಗ್ಗಾಗುತ್ತಿದೆ
           "Plant Phenology=Flowering": ಹೂವಾಗುತ್ತಿದೆ
           "Plant Phenology=Fruiting": ಹಣ್ಣಾಗುತ್ತಿದೆ
-          "Life Stage=Adult": ವಯಸ್ಕ
           "Life Stage=Egg": ಮೊಟ್ಟೆ
           "Life Stage=Larva": ಮರಿಹುಳು
           "Life Stage=Juvenile": ಹದಿವಯಸ್ಕ
@@ -5922,7 +5926,6 @@ kn:
               cannot_be_blank: ಖಾಲಿಯಿರಲಾಗದು
               invalid_point: ಅಸಿಂಧುವಾದ ಬಿಂದುಗಳನ್ನು ಹೊಂದಿದೆ, ಉದಾ. ಅಕ್ಷಾಂಶ 180 ಗಿಂತ ಹೆಚ್ಚಿದೆ ಅಥವಾ ರೇಖಾಂಶ -90 ಕ್ಕಿಂತ ಕಡಿಮೆಯಿದೆ
               must_have_more_than_three_points: 3 ಬಿಂದುಗಳಿಗಿಂತ ಹೆಚ್ಚಿರಲೇಬೇಕು
-              polygon_with_fewer_than_four_points: 4 ಬಿಂದುಗಳಿಗಿಂತ ಕಡಿಮೆಯಿರುವ ಬಹುಭುಜಾಕೃತಿಯನ್ನು ಹೊಂದಿದೆ
         post:
           attributes:
             parent:

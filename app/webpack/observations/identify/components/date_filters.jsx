@@ -146,7 +146,7 @@ const DateFilters = ( {
               onChange={values => {
                 updateSearchParams( { [monthField]: values } );
               }}
-              defaultValue={params[monthField] || []}
+              defaultValue={params[monthField] ? _.flatten( [params[monthField]] ) : []}
               data={
                 _.map( monthNames, ( month, i ) => (
                   {

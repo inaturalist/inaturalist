@@ -220,7 +220,7 @@ body {
   }
 }
 inat-taxon.split-taxon .display-name {
-  font-weight: bold;
+  font-weight: 600;
   display: block;
   font-size: 15px;
   color: black;
@@ -242,7 +242,7 @@ inat-taxon.split-taxon .icon {display: none;}
   border-radius: 120px;
   width: 48px;
   height: 48px;
-  line-height: 45px;
+  line-height: 37px;
   font-size: 32px;
   background-size: cover;
   background-position: center;
@@ -318,7 +318,7 @@ inat-taxon.split-taxon .icon {display: none;}
 .btn [class^="icon-"],
 .btn [class*=" icon-"] {
   position: relative;
-  top: -1px;
+  top: -3px;
 }
 #map-legend-control {
   position: absolute;
@@ -399,6 +399,7 @@ inat-taxon.split-taxon .icon {display: none;}
   border-color: $btn-grey;
   color: #eee;
   position: relative;
+  padding: 5px 12px 7px;
 }
 .bootstrap #filter-container > button:hover { color: white; }
 .bootstrap #filter-container > button.btn-default .badge {
@@ -434,7 +435,12 @@ inat-taxon.split-taxon .icon {display: none;}
   width: 900px;
 }
 #filters .dropdown-menu { background-color: #eee; padding: 0px;}
-.primary-filters .ac-chooser { display: inline-block; }
+.primary-filters .ac-chooser {
+  display: inline-block;
+  .ac-select-thumb {
+    line-height: 30px;
+  }
+}
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
 #filter-container { margin-inline-start: 10px; }
@@ -460,26 +466,28 @@ inat-taxon.split-taxon .icon {display: none;}
   line-height: 75px;
   background: none;
   border: 0px;
-  font-weight: 100;
+  font-weight: 400;
   color: #eee;
 }
 #stats-container .geo.selected {
   color: #fff;
   border: 2px solid $btn-orange;
-  padding: 5px;
+  padding: 3px 5px 5px;
 }
 #stats-container .glyphicon-remove-sign {
   margin-inline-start: 5px;
   font-size: 0.7em;
+  top: 0px;
 }
 #stats-container .stat-title {
-  font-weight: 100;
+  font-weight: 400;
   text-transform: uppercase;
   padding-bottom: 5px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   color: #eee;
   font-size: 14px;
   position: relative;
+
 }
 #stats-container .stat-title i {
   line-height: 18px;
@@ -498,7 +506,7 @@ inat-taxon.split-taxon .icon {display: none;}
   inset-inline-start: 0.5px;
 }
 #stats-container .stat-value {
-  font-weight: bold;
+  font-weight: 600;
   font-size: 20px;
   line-height: 25px;
 }
@@ -559,8 +567,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 
 #obs-container .observation .created_at {
-  width: 36px;
-  text-align: center;
+  margin-left: 10px;
 }
 
 #obs-container .media-object {
@@ -618,7 +625,7 @@ inat-taxon.split-taxon .icon {display: none;}
 
 .bootstrap label.sectionlabel {
   display: block;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 16px;
 }
 
@@ -715,7 +722,7 @@ inat-taxon.split-taxon .icon {display: none;}
   margin-inline-start: 14px;
 }
 .dropdown-menu.places .name {
-  font-weight: 700;
+  font-weight: 600;
 }
 .dropdown-menu.places .place:hover {
   text-decoration: underline;
@@ -748,7 +755,7 @@ inat-taxon.split-taxon .icon {display: none;}
 
   #primary-map-controls {
     float: left;
-    margin-inline-end: 12px;
+    margin-inline-end: 10px;
     padding-bottom: 2px;
   }
 
@@ -800,7 +807,7 @@ inat-taxon.split-taxon .icon {display: none;}
     border-bottom-left-radius: 0;
   }
   .btn-redo-search {
-    padding: 7px 7px 5px !important;
+    padding: 6px 7px 6px !important;
     .glyphicon {
       margin-inline-end: 2px;
       color: white;
@@ -827,13 +834,13 @@ inat-taxon.split-taxon .icon {display: none;}
   }
 }
 .btn .glyphicon {
-  top: 3px;
+  top: 1px;
 }
 #view-controls .btn .glyphicon {
   top: 2px;
 }
 #subview-controls .btn-default, .btn.places {
-  padding: 7px 12px 5px;
+  padding: 6px 12px 6px;
 }
 #view-controls.open .btn-default.places {
   color: #fff;
@@ -844,15 +851,16 @@ inat-taxon.split-taxon .icon {display: none;}
   background-color: $btn-orange;
   color: white;
   margin-inline-start: 5px;
+  padding: 5px 12px 7px;
 }
 .quality_grade {
   display: inline-block;
   background-color: #ddd;
-  padding-block: 2px 1px;
+  padding-block: 2px 2px;
   padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
-  line-height: 17px !important;
+  line-height: 16px !important;
   z-index: 1;
   margin-inline-end: 20px;
 }
@@ -982,7 +990,7 @@ inat-taxon.split-taxon .icon {display: none;}
 #result-table .img.iconic i {
   display: inline-block;
   font-size: 50px;
-  line-height: 70px;
+  line-height: 65px;
   color: white;
 }
 #result-table .img.iconic .sound-icon,
@@ -992,7 +1000,7 @@ inat-taxon.split-taxon .icon {display: none;}
 #result-table .img.sound .sound-icon {
   display: inline-block;
   font-size: 50px;
-  line-height: 70px;
+  line-height: 75px;
   color: #eee;
   opacity: 0.8;
 }
@@ -1006,7 +1014,7 @@ $photo-count-line-width: 1px;
   bottom: 8px;
   color: #eee;
   background-color: rgba(0,0,0,0.5);
-  padding: 3px;
+  padding: 2px 1px 2px;
   font-weight: 500;
   display: block;
   border: $photo-count-line-width solid #eee;
@@ -1014,7 +1022,7 @@ $photo-count-line-width: 1px;
   width: $photo-count-square-width;
   height: $photo-count-square-width;
   line-height: $photo-count-square-width / 2 + $photo-count-square-offset;
-  font-size: $photo-count-square-width * 0.65;
+  font-size: $photo-count-square-width * 0.60;
 }
 #result-grid .photo .photo-count:after {
   content: "";
@@ -1059,7 +1067,7 @@ $photo-count-line-width: 1px;
   width: 38px;
   height: 38px;
   font-size: 25px;
-  line-height: 37px;
+  line-height: 32px;
   border: 0 transparent;
   margin-inline-end: 5px;
 }
@@ -1132,7 +1140,7 @@ $photo-count-line-width: 1px;
 .plain-table {
   margin-top: 20px;
 }
-.plain-table th { white-space: nowrap; font-weight: bold;}
+.plain-table th { white-space: nowrap; font-weight: 600;}
 .plain-table th.user {
   width: 100%;
 }
@@ -1202,7 +1210,7 @@ $photo-count-line-width: 1px;
 .bootstrap .btn-icon-stupidity i.fa {
   margin: 4px 1.5px;
 }
-.btn .glyphicon-minus { right: 1px; }
+.btn .glyphicon-minus { inset-inline-end: 1px; }
 
 #filters-observation-fields .observation-field,
 #filters-observation-fields .observation-field button {

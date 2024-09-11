@@ -16,7 +16,9 @@ import {
   showNextPhoto,
   showPrevTab,
   showNextTab,
-  toggleKeyboardShortcuts
+  toggleKeyboardShortcuts,
+  addProjects,
+  addObservationFields
 } from "./actions";
 import { increaseBrightness, decreaseBrightness } from "./ducks/brightnesses";
 
@@ -74,28 +76,49 @@ const annotationShortcuts = [
     value: "Egg"
   },
 
-  // Plant Phenology
+  // Flowers and Fruits
   {
     shortcut: "p u",
-    term: "Plant Phenology",
-    value: "Flower Budding"
+    term: "Flowers and Fruits",
+    value: "Flower Buds"
   },
   {
     shortcut: "p l",
-    term: "Plant Phenology",
-    value: "Flowering"
+    term: "Flowers and Fruits",
+    value: "Flowers"
   },
   {
     shortcut: "p r",
-    term: "Plant Phenology",
-    value: "Fruiting"
+    term: "Flowers and Fruits",
+    value: "Fruits or Seeds"
   },
   {
     shortcut: "p n",
-    term: "Plant Phenology",
-    value: "No Evidence of Flowering"
+    term: "Flowers and Fruits",
+    value: "No Flowers or Fruits"
   },
 
+  // Leaves
+  {
+    shortcut: "v n",
+    term: "Leaves",
+    value: "No Live Leaves"
+  },
+  {
+    shortcut: "v b",
+    term: "Leaves",
+    value: "Breaking Leaf Buds"
+  },
+  {
+    shortcut: "v g",
+    term: "Leaves",
+    value: "Green Leaves"
+  },
+  {
+    shortcut: "v c",
+    term: "Leaves",
+    value: "Colored Leaves"
+  },
   // Sex
   {
     shortcut: "s f",
@@ -165,6 +188,26 @@ const annotationShortcuts = [
     shortcut: "e g",
     term: "Evidence of Presence",
     value: "Gall"
+  },
+  {
+    shortcut: "e e",
+    term: "Evidence of Presence",
+    value: "Egg"
+  },
+  {
+    shortcut: "e h",
+    term: "Evidence of Presence",
+    value: "Hair"
+  },
+  {
+    shortcut: "e l",
+    term: "Evidence of Presence",
+    value: "Leafmine"
+  },
+  {
+    shortcut: "e c",
+    term: "Evidence of Presence",
+    value: "Construction"
   }
 ];
 
@@ -174,6 +217,26 @@ const focusCommentIDInput = ( ) => {
     .find( "textarea,input:visible" )
     .first( )
     .focus( );
+};
+
+const focusProjects = ( ) => {
+  setTimeout( ( ) => {
+    $( ".Projects .panel-collapse" )
+      .not( "[aria-expanded=false]" )
+      .find( ".ac-chooser input" )
+      .first( )
+      .focus( );
+  }, 200 );
+};
+
+const focusObservationFields = ( ) => {
+  setTimeout( ( ) => {
+    $( ".ObservationFields .panel-collapse" )
+      .not( "[aria-expanded=false]" )
+      .find( ".ac-chooser input" )
+      .first( )
+      .focus( );
+  }, 200 );
 };
 
 const setupKeyboardShortcuts = dispatch => {
@@ -193,6 +256,8 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "shift+right", showNextTab, dispatch );
   bindShortcut( ["command+up", "alt+up"], increaseBrightness, dispatch );
   bindShortcut( ["command+down", "alt+down"], decreaseBrightness, dispatch );
+  bindShortcut( "shift+p", addProjects, dispatch, { callback: focusProjects } );
+  bindShortcut( "shift+f", addObservationFields, dispatch, { callback: focusObservationFields } );
   _.forEach( annotationShortcuts, as => {
     bind( as.shortcut, ( ) => {
       dispatch( addAnnotationFromKeyboard( as.term, as.value ) );

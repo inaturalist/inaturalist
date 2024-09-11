@@ -37,7 +37,7 @@ class IdentificationForm extends React.Component {
           e.preventDefault();
           // Note that data( "uiAutocomplete" ).selectedItem seems to disappear when
           // you re-focus on the taxon field, which can lead to some confusion b/c
-          // it still looks like the taoxn is selected in that state
+          // it still looks like the taxon is selected in that state
           const idTaxon = $( ".IdentificationForm:visible:first input[name='taxon_name']" ).data( "autocomplete-item" );
           if ( !idTaxon ) {
             return;

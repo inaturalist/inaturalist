@@ -222,13 +222,10 @@ br:
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
   bg_color: Liv an drekleur
   birds: laboused
-  black: du
   blog_widget: Widged bloc'h
-  blue: glas
   blue_butterfly_etc: "glas, balafenn ha kement zo..."
   body: Korf
   brief_caption: Alc'hwez berr
-  brown: Gell
   browse: Furchal
   browse_all_projects: Furchal an holl raktresoù
   browse_all_species: Furchal an holl spesadoù
@@ -518,6 +515,7 @@ br:
   events_only: Darvoudoù hepken
   everyone: An holl dud
   everywhere: E pep lec'h
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
   exit_full_screen: "Kuitaat ar mod skramm leun"
@@ -581,6 +579,7 @@ br:
   flickr_style: Stil Flickr
   flickr_tagger: Liketenniñ al luc'hskeudennoù Flickr
   flickr_tags: Liketennoù Flickr
+  #Text for a button to follow updates from a specific user
   follow_user: "Heuliañ %{user}"
   following: Emaoc'h o heuliañ
   for_a_taxon: evit un takson
@@ -600,7 +599,6 @@ br:
   global_names: Anvioù hollek
   go: Mont
   go_back: Distreiñ
-  grant_role: "%{grant} (%roll} %{role}"
   grid: Kael
   grid_tooltip: Diskwel ar gwel er mod kael
   group: Strollad
@@ -618,6 +616,8 @@ br:
   hex_color_eg: Liv e niver c'hwezekredel, da sk. 65644F
   hi_user: "Demat, %{user}"
   high: uhel
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Renk uhelañ
   home: Degemer
   however_there_were_some_issues: "Un nebeud kudennoù zo bet, koulskoude : %{issues}"
@@ -751,6 +751,8 @@ br:
   longitude_slash_x_coord_slash_easting: Hedred / daveenn x/ absisenn
   look_up_name: "Klask an anv"
   lookup: Klask
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Renk an izelañ
   mammals: bronneged
   manage_all_your_subscriptions: Merañ ho holl goumanantoù
@@ -855,10 +857,10 @@ br:
   ok: "Mat eo"
   on_day: "gweredekaet"
   one_of_your_lists: "Unan eus ho rolloù..."
+  #Geoprivacy status in which no privacy has been applied
   open: digor
   or: pe
   or_choose_high_level_taxa: "... pe dibabit adalek taksonoù a renk uhel"
-  orange: orañjez
   order: Urzh
   order_by: Rummañ dre
   organisms: Aozadurioù
@@ -898,7 +900,6 @@ br:
     large: bras
     original: Orin
   photos_updated: Luc'hskeudennoù hizivaet
-  pink: roz
   place: Lec'h
   place_deleted: Lec'h dilamet
   place_geo:

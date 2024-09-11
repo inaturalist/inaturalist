@@ -71,7 +71,6 @@ opts = Optimist.options do
   opt :places_for_site, "Export observations associated with this site's place and export places (lower priority than place_id)", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
-  opt :with_taxa, "Include a taxa.csv file if the core is observations", type: :boolean
   opt :post_taxon_archive_to_url, "Post the second archive with taxa.csv to this URL", type: :string
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
   opt :community_taxon, "Use the community taxon for the taxon associated with the occurrence, not the default taxon",
@@ -92,6 +91,7 @@ opts = Optimist.options do
   opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
   opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
   opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings
+  opt :include_humans, "Include observations of humans", type: :boolean, default: false
   opt :processes, "Number of processes to use with the parallel gem", type: :integer
 end
 

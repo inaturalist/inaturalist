@@ -19,18 +19,24 @@ class FlickrPhoto < Photo
       end
     end
   end
-  
-  def self.flickraw_for_user(user)
-    return flickr unless (user && user.flickr_identity)
-    f = FlickRaw::Flickr.new
+
+  def self.flickr_for_user( user )
+    f = Flickr.new( Flickr.api_key, Flickr.shared_secret )
+    return f unless user&.flickr_identity
+
     f.access_token = user.flickr_identity.token
     f.access_secret = user.flickr_identity.secret
     f
   end
-  
-  def self.get_api_response(native_photo_id, options = {})
-    f = options[:user] ? flickraw_for_user(options[:user]) : flickr
+
+  def self.get_api_response( native_photo_id, options = {} )
+    f = if options[:user]
+      flickr_for_user( options[:user] )
+    else
+      Flickr.new( Flickr.api_key, Flickr.shared_secret )
+    end
     user_id = options[:user].id if options[:user] && options[:user].is_a?(User)
+    f.photos.getInfo(:photo_id => native_photo_id)
     r = Rails.cache.fetch("flickr_photos_getInfo_#{native_photo_id}_#{user_id}", :expires_in => 5.minutes) do
       f.photos.getInfo(:photo_id => native_photo_id)
     end
@@ -38,7 +44,7 @@ class FlickrPhoto < Photo
       r = f.photos.getInfo(:photo_id => native_photo_id)
     end
     r
-  rescue FlickRaw::FailedResponse => e
+  rescue Flickr::FailedResponse => e
     if e.message =~ /Invalid auth token/
       flickr.photos.getInfo(:photo_id => native_photo_id)
     elsif e.message =~ /invalid ID/
@@ -49,10 +55,10 @@ class FlickrPhoto < Photo
   end
   
   def self.new_from_api_response(api_response, options = {})
-    new_from_flickraw(api_response, options)
+    new_from_flickr(api_response, options)
   end
   
-  def self.new_from_flickraw(fp, options = {})
+  def self.new_from_flickr(fp, options = {})
     if fp.respond_to?(:urls)
       urls = fp.urls.index_by{|u| u.type}
       photopage_url = urls['photopage']._content rescue nil
@@ -68,7 +74,7 @@ class FlickrPhoto < Photo
     options[:license] ||= fp.license if fp.respond_to?(:license)
     
     # Set sizes
-    # fp could be an OpenStruct or a FlickRaw::Response
+    # fp could be an OpenStruct or a Flickr::Response
     h = (fp.to_hash || fp.to_h).symbolize_keys
     if h[:url_sq]
       options[:remote_square_url]   ||= h[:url_sq]
@@ -85,7 +91,7 @@ class FlickrPhoto < Photo
       options[:remote_small_url]    ||= "http://farm#{fp.farm}.staticflickr.com/#{fp.server}/#{fp.id}_#{fp.secret}_m.jpg"
     elsif options[:remote_square_url].blank?
       unless sizes = options.delete(:sizes)
-        f = FlickrPhoto.flickraw_for_user(options[:user])
+        f = FlickrPhoto.flickr_for_user(options[:user])
         sizes = FlickrCache.fetch(f, "photos", "getSizes", photo_id: fp.id)
       end
       sizes = sizes.blank? ? {} : sizes.index_by{|s| s.label} rescue {}
@@ -107,10 +113,10 @@ class FlickrPhoto < Photo
   # the URLs.
   #
   def sync
-    f = FlickrPhoto.flickraw_for_user(user)
+    f = FlickrPhoto.flickr_for_user(user)
     sizes = begin
       f.photos.getSizes(:photo_id => native_photo_id)
-    rescue FlickRaw::FailedResponse => e
+    rescue Flickr::FailedResponse => e
       raise e unless e =~ /Photo not found/
       nil
     end
@@ -186,11 +192,11 @@ class FlickrPhoto < Photo
 
   def repair(options = {})
     errors = {}
-    f = FlickrPhoto.flickraw_for_user(user)
+    f = FlickrPhoto.flickr_for_user(user)
     begin
       sizes = begin
         f.photos.getSizes(:photo_id => native_photo_id)
-      rescue FlickRaw::FailedResponse => e
+      rescue Flickr::FailedResponse => e
         raise e unless e.message =~ /Invalid auth token/
         flickr.photos.getSizes(:photo_id => native_photo_id)
       end
@@ -203,7 +209,7 @@ class FlickrPhoto < Photo
       if changed?
         save unless options[:no_save]
       end
-    rescue FlickRaw::FailedResponse => e
+    rescue Flickr::FailedResponse => e
       if e.message =~ /Photo not found/
         errors[:photo_missing_from_flickr] = "photo not found #{self}"
       else
@@ -228,7 +234,7 @@ class FlickrPhoto < Photo
 
   def self.add_comment(user, flickr_photo_id, comment_text)
     return nil if user.flickr_identity.nil?
-    flickr = FlickrPhoto.flickraw_for_user(user)
+    flickr = FlickrPhoto.flickr_for_user(user)
     flickr.photos.comments.addComment(
       :user_id => user.flickr_identity.flickr_user_id, 
       :auth_token => user.flickr_identity.token,
@@ -242,7 +248,7 @@ class FlickrPhoto < Photo
     find_options[:include] ||= [{:user => :flickr_identity}, :taxon_photos, :observation_photos]
     find_options[:batch_size] ||= 100
     find_options[:sleep] ||= 10
-    flickr = FlickRaw::Flickr.new
+    flickr = Flickr.new( Flickr.api_key, Flickr.shared_secret )
     updated = 0
     destroyed = 0
     invalids = 0

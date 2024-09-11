@@ -1,5 +1,4 @@
 class ControlledTermsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :admin_required
 
@@ -8,15 +7,19 @@ class ControlledTermsController < ApplicationController
   end
 
   def create
-    label_attrs = params[:controlled_term].delete(:controlled_term_label)
-    term = ControlledTerm.new(params[:controlled_term])
+    label_attrs = params[:controlled_term].delete( :controlled_term_label )
+    term = ControlledTerm.new( params[:controlled_term] )
+    controlled_term_label = term.labels.build( label_attrs )
     term.user = current_user
     if term.save
       if label_attrs
-        term.labels << ControlledTermLabel.create(label_attrs)
+        term.labels << controlled_term_label
       end
     else
       flash[:error] = term.errors.full_messages.to_sentence
+      if term.errors[:labels] && !controlled_term_label.valid?
+        flash[:error] = controlled_term_label.errors.full_messages.join( ", " )
+      end
     end
 
     redirect_to :controlled_terms

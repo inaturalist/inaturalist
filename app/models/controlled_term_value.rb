@@ -1,5 +1,4 @@
 class ControlledTermValue < ApplicationRecord
-
   belongs_to :controlled_attribute, class_name: "ControlledTerm"
   belongs_to :controlled_value, class_name: "ControlledTerm"
   validates_presence_of :controlled_value_id
@@ -12,5 +11,4 @@ class ControlledTermValue < ApplicationRecord
     ControlledTerm.elastic_index!( ids: [controlled_attribute_id, controlled_value_id].compact )
     true
   end
-
 end

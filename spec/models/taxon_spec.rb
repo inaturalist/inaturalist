@@ -108,6 +108,16 @@ describe Taxon, "creation" do
     expect( taxon.name ).to eq "× Chitalpa"
   end
 
+  it "should capitalize hybrid names for species rank" do
+    taxon = Taxon.make!( name: "× chitalpa", rank: Taxon::SPECIES )
+    expect( taxon.name ).to eq "× Chitalpa"
+  end
+
+  it "should capitalize hybrid names for hybrid rank" do
+    taxon = Taxon.make!( name: "× chitalpa tashkentensis", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "× Chitalpa tashkentensis"
+  end
+
   it "should capitalize Foo x Bar style genushybrids correctly" do
     taxon = Taxon.make!( name: "foo × bar", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "Foo × Bar"
@@ -1375,15 +1385,15 @@ describe Taxon, "editable_by?" do
     Taxon.make!
   end
   it "should be editable by admins if class" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).to be_protected_attributes_editable_by( admin )
   end
   it "should be editable by curators if below threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON - 10 )
     expect( t ).to be_protected_attributes_editable_by( curator )
   end
   it "should not be editable by curators if above threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do

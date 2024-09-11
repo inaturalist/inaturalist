@@ -74,7 +74,7 @@ class ObservationsController < ApplicationController
   before_action :photo_identities_required, :only => [:import_photos]
   before_action :load_prefs, :only => [:index, :project, :by_login]
 
-  prepend_around_action :enable_replica, only: [:by_login, :show, :taxon_summary]
+  prepend_around_action :enable_replica, only: [:index, :by_login, :show, :taxon_summary]
 
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
@@ -125,10 +125,10 @@ class ObservationsController < ApplicationController
       @observations = h[:observations]
     end
     respond_to do |format|
-
       format.html do
         if showing_partial
-          pagination_headers_for(@observations)
+          Observation.preload_for_component( @observations, logged_in: !!current_user )
+          pagination_headers_for( @observations )
           return render_observations_partial(params[:partial])
         end
         # one of the few things we do in Rails. Look up the taxon_name param
@@ -206,7 +206,7 @@ class ObservationsController < ApplicationController
         end
       end
     end
-  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+  rescue Elastic::Transport::Transport::Errors::InternalServerError => e
     raise e unless e.message =~ /window is too large/
     msg = "Too many results. Try using smaller searches or the id_above parameter."
     response.headers["X-Error"] = msg
@@ -1329,7 +1329,7 @@ class ObservationsController < ApplicationController
       end
       
     end
-  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+  rescue Elastic::Transport::Transport::Errors::InternalServerError => e
     raise e unless e.message =~ /window is too large/
     msg = "Too many results. Try using smaller searches or the id_above parameter."
     response.headers["X-Error"] = msg
@@ -1977,7 +1977,7 @@ class ObservationsController < ApplicationController
         @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
       end
     else
-      @observation.user_viewed_updates(current_user.id)
+      @observation.user_viewed_updates( current_user.id, wait_for_index_refresh: true )
     end
   end
 
@@ -2140,6 +2140,7 @@ class ObservationsController < ApplicationController
     @observed_on = search_params[:observed_on]
     @observed_on_year = search_params[:observed_on_year]
     @observed_on_month = [ search_params[:observed_on_month] ].flatten.first
+    @observed_on_week = search_params[:observed_on_week]
     @observed_on_day = search_params[:observed_on_day]
     @ofv_params = search_params[:ofv_params]
     @site_uri = params[:site] unless params[:site].blank?
@@ -2202,12 +2203,12 @@ class ObservationsController < ApplicationController
   # Tries to create a new observation from the specified Flickr photo ID and
   # update the existing @observation with the new properties, without saving
   def sync_flickr_photo
-    flickr = get_flickraw
+    flickr = get_flickr
     begin
       fp = flickr.photos.getInfo(:photo_id => params[:flickr_photo_id])
-      @flickr_photo = FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-    rescue FlickRaw::FailedResponse => e
-      Rails.logger.debug "[DEBUG] FlickRaw failed to find photo " +
+      @flickr_photo = FlickrPhoto.new_from_flickr(fp, :user => current_user)
+    rescue Flickr::FailedResponse => e
+      Rails.logger.debug "[DEBUG] Flickr failed to find photo " +
         "#{params[:flickr_photo_id]}: #{e}\n#{e.backtrace.join("\n")}"
       @flickr_photo = nil
     rescue Timeout::Error => e

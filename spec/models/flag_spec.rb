@@ -186,6 +186,42 @@ describe Flag, "update" do
     expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
   end
 
+  it "should generate an update for the user even if they added a comment" do
+    t = Taxon.make!
+    f = Flag.make!( flaggable: t )
+    Comment.make!( parent: f, body: "comment body", user: f.user )
+    u = make_curator
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq false
+    without_delay do
+      f.update( resolver: u, comment: "foo", resolved: true )
+    end
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
+  end
+
+  it "should generate an update for the user even if they have blocked other users" do
+    t = Taxon.make!
+    f = Flag.make!( flaggable: t )
+    u = make_curator
+    UserBlock.make!( user: User.make!, blocked_user: f.user )
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq false
+    without_delay do
+      f.update( resolver: u, comment: "foo", resolved: true )
+    end
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
+  end
+
+  it "should generate an update for the user even if other users have blocked them" do
+    t = Taxon.make!
+    f = Flag.make!( flaggable: t )
+    u = make_curator
+    UserBlock.make!( user: f.user, blocked_user: User.make! )
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq false
+    without_delay do
+      f.update( resolver: u, comment: "foo", resolved: true )
+    end
+    expect( UpdateAction.unviewed_by_user_from_query( f.user_id, resource: f ) ).to eq true
+  end
+
   it "should autosubscribe the resolver" do
     t = Taxon.make!
     f = Flag.make!( flaggable: t )

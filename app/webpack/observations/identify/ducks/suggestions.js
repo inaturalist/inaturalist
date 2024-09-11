@@ -1,9 +1,12 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
+import { updateSession } from "../../show/ducks/users";
 
 import {
   UPDATE_CURRENT_OBSERVATION
 } from "../actions/current_observation_actions";
+
+/* global LIFE_TAXON */
 
 const RESET = "observations-identify/suggestions/RESET";
 const START_LOADING = "observations-identify/suggestions/START_LOADING";
@@ -78,15 +81,25 @@ export default function reducer(
       }
       break;
     case UPDATE_WITH_OBSERVATION: {
-      const { observation } = action;
+      const { observation, config } = action;
       const isFeaturedObs = observation.uuid === state.query.featured_observation_uuid
         || observation.id === state.query.featured_observation_id;
+      const isTaxonChange = observation.taxon && state.query.taxon_id !== observation.taxon.id;
       newState.query = {
         source: state.query.source,
         order_by: state.query.order_by
       };
-      // If observation currently in query (tab change in modal), preserve taxon and place filters
-      if ( observation && isFeaturedObs ) {
+      if ( config && config.currentUser ) {
+        if ( config.currentUser.preferred_suggestions_sort ) {
+          newState.query.order_by = config.currentUser.preferred_suggestions_sort;
+        }
+        if ( config.currentUser.preferred_suggestions_source ) {
+          newState.query.source = config.currentUser.preferred_suggestions_source;
+        }
+      }
+      // If observation currently in query (tab change in modal), preserve taxon and place filters,
+      // except if a taxon change is detected.
+      if ( observation && isFeaturedObs && !isTaxonChange ) {
         newState.query = Object.assign( newState.query, {
           taxon: state.query.taxon,
           taxon_id: state.query.taxon_id,
@@ -176,7 +189,7 @@ function stopLoading( ) {
   return { type: STOP_LOADING };
 }
 
-export function updateQuery( query ) {
+export function updateQuery( query, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const { testingApiV2 } = s.config;
@@ -233,6 +246,10 @@ export function updateQuery( query ) {
         } );
     }
     dispatch( setQuery( newQuery ) );
+    if ( options.updateSuggestionSession ) {
+      dispatch( updateSession( { preferred_suggestions_sort: newQuery.order_by || null } ) );
+      dispatch( updateSession( { preferred_suggestions_source: newQuery.source || null } ) );
+    }
   };
 }
 
@@ -241,11 +258,20 @@ export function setDetailTaxon( taxon, options = null ) {
 }
 
 export function updateWithObservation( observation ) {
-  return { type: UPDATE_WITH_OBSERVATION, observation };
+  return function ( dispatch, getState ) {
+    const state = getState( );
+    dispatch( { type: UPDATE_WITH_OBSERVATION, observation, config: state.config } );
+  };
 }
 
 function sanitizeQuery( query ) {
-  return _.pick( query, ["place_id", "taxon_id", "source", "order_by", "featured_observation_id"] );
+  let sanitizedQuery = _.pick( query, [
+    "place_id", "taxon_id", "source", "order_by", "featured_observation_id"
+  ] );
+  if ( sanitizedQuery.taxon_id && sanitizedQuery.taxon_id === LIFE_TAXON.id ) {
+    sanitizedQuery = _.omit( sanitizedQuery, "taxon_id" );
+  }
+  return sanitizedQuery;
 }
 
 export function reset( ) {
@@ -279,6 +305,7 @@ export function fetchSuggestions( query ) {
       // can't show misidentifications of nothing
       return null;
     }
+
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
     const sanitizedQuery = sanitizeQuery( newQuery );

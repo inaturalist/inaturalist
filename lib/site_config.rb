@@ -35,7 +35,7 @@ module SiteConfig
 
     def all_yaml
       # load the entire config.yml into a hash
-      YAML.load(File.open(path))
+      YAML.load(ERB.new(File.read(path)).result)
     end
 
   end

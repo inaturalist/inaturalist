@@ -9,7 +9,6 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
-
 --
 -- Name: postgis; Type: EXTENSION; Schema: -; Owner: -
 --
@@ -322,7 +321,14 @@ CREATE TABLE public.announcements (
     updated_at timestamp without time zone,
     locales text[] DEFAULT '{}'::text[],
     dismiss_user_ids integer[] DEFAULT '{}'::integer[],
-    dismissible boolean DEFAULT false
+    dismissible boolean DEFAULT false,
+    clients text[] DEFAULT '{}'::text[],
+    target_group_type character varying,
+    target_group_partition character varying,
+    include_donor_start_date date,
+    include_donor_end_date date,
+    exclude_donor_start_date date,
+    exclude_donor_end_date date
 );
 
 
@@ -617,6 +623,52 @@ CREATE SEQUENCE public.audits_id_seq
 --
 
 ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
+
+
+--
+-- Name: cohort_lifecycles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.cohort_lifecycles (
+    id bigint NOT NULL,
+    cohort date,
+    user_id bigint NOT NULL,
+    day0 character varying,
+    day1 character varying,
+    day2 character varying,
+    day3 character varying,
+    day4 character varying,
+    day5 character varying,
+    day6 character varying,
+    day7 character varying,
+    retention boolean,
+    observer_appeal_intervention_group character varying,
+    first_observation_intervention_group character varying,
+    error_intervention_group character varying,
+    captive_intervention_group character varying,
+    needs_id_intervention_group character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: cohort_lifecycles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.cohort_lifecycles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: cohort_lifecycles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.cohort_lifecycles_id_seq OWNED BY public.cohort_lifecycles.id;
 
 
 --
@@ -2156,6 +2208,41 @@ ALTER SEQUENCE public.identifications_id_seq OWNED BY public.identifications.id;
 
 
 --
+-- Name: language_demo_logs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.language_demo_logs (
+    id bigint NOT NULL,
+    user_id integer,
+    search_term character varying,
+    taxon_id integer,
+    page integer,
+    votes json,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: language_demo_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.language_demo_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: language_demo_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.language_demo_logs_id_seq OWNED BY public.language_demo_logs.id;
+
+
+--
 -- Name: list_rules; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2567,6 +2654,141 @@ CREATE SEQUENCE public.oauth_applications_id_seq
 --
 
 ALTER SEQUENCE public.oauth_applications_id_seq OWNED BY public.oauth_applications.id;
+
+
+--
+-- Name: observation_accuracy_experiments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_experiments (
+    id bigint NOT NULL,
+    sample_size integer,
+    taxon_id integer,
+    validator_redundancy_factor integer,
+    improving_id_threshold integer,
+    recent_window character varying,
+    sample_generation_date timestamp without time zone,
+    validator_contact_date timestamp without time zone,
+    validator_deadline_date timestamp without time zone,
+    assessment_date timestamp without time zone,
+    responding_validators integer DEFAULT 0,
+    validated_observations integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    version character varying,
+    consider_location boolean DEFAULT false,
+    post_id integer
+);
+
+
+--
+-- Name: observation_accuracy_experiments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_experiments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_experiments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_experiments_id_seq OWNED BY public.observation_accuracy_experiments.id;
+
+
+--
+-- Name: observation_accuracy_samples; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    observation_id integer,
+    taxon_id integer,
+    quality_grade character varying,
+    year integer,
+    iconic_taxon_name character varying,
+    continent character varying,
+    taxon_observations_count integer,
+    taxon_rank_level integer,
+    descendant_count integer,
+    correct integer,
+    reviewers integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    sounds_only boolean,
+    has_cid boolean,
+    captive boolean,
+    no_evidence boolean,
+    other_dqa_issue boolean
+);
+
+
+--
+-- Name: observation_accuracy_samples_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_samples_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_samples_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_samples_id_seq OWNED BY public.observation_accuracy_samples.id;
+
+
+--
+-- Name: observation_accuracy_samples_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_samples_validators (
+    observation_accuracy_sample_id bigint NOT NULL,
+    observation_accuracy_validator_id bigint NOT NULL
+);
+
+
+--
+-- Name: observation_accuracy_validators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_accuracy_validators (
+    id bigint NOT NULL,
+    observation_accuracy_experiment_id integer,
+    user_id integer,
+    email_date timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    validation_count integer
+);
+
+
+--
+-- Name: observation_accuracy_validators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_accuracy_validators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_accuracy_validators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_accuracy_validators_id_seq OWNED BY public.observation_accuracy_validators.id;
 
 
 --
@@ -3863,6 +4085,36 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: segmentation_statistics; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.segmentation_statistics (
+    id bigint NOT NULL,
+    created_at timestamp without time zone,
+    data json
+);
+
+
+--
+-- Name: segmentation_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.segmentation_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: segmentation_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.segmentation_statistics_id_seq OWNED BY public.segmentation_statistics.id;
+
+
+--
 -- Name: sessions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5007,6 +5259,105 @@ ALTER SEQUENCE public.user_blocks_id_seq OWNED BY public.user_blocks.id;
 
 
 --
+-- Name: user_daily_active_categories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_daily_active_categories (
+    id bigint NOT NULL,
+    user_id integer,
+    today_category character varying,
+    yesterday_category character varying,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_daily_active_categories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_daily_active_categories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_daily_active_categories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_daily_active_categories_id_seq OWNED BY public.user_daily_active_categories.id;
+
+
+--
+-- Name: user_donations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_donations (
+    id bigint NOT NULL,
+    user_id integer,
+    donated_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_donations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_donations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_donations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
+
+
+--
+-- Name: user_installations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_installations (
+    id bigint NOT NULL,
+    installation_id character varying(255),
+    oauth_application_id integer,
+    platform_id character varying(255),
+    user_id integer,
+    created_at date,
+    first_logged_in_at date
+);
+
+
+--
+-- Name: user_installations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_installations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_installations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_installations_id_seq OWNED BY public.user_installations.id;
+
+
+--
 -- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5178,7 +5529,8 @@ CREATE TABLE public.users (
     unlock_token character varying,
     oauth_application_id integer,
     data_transfer_consent_at timestamp without time zone,
-    unconfirmed_email character varying
+    unconfirmed_email character varying,
+    annotated_observations_count integer DEFAULT 0
 );
 
 
@@ -5345,6 +5697,42 @@ ALTER SEQUENCE public.wiki_pages_id_seq OWNED BY public.wiki_pages.id;
 
 
 --
+-- Name: year_statistic_localized_shareable_images; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.year_statistic_localized_shareable_images (
+    id bigint NOT NULL,
+    year_statistic_id integer NOT NULL,
+    locale character varying NOT NULL,
+    shareable_image_file_name character varying,
+    shareable_image_content_type character varying,
+    shareable_image_file_size bigint,
+    shareable_image_updated_at timestamp without time zone,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: year_statistic_localized_shareable_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.year_statistic_localized_shareable_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: year_statistic_localized_shareable_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.year_statistic_localized_shareable_images_id_seq OWNED BY public.year_statistic_localized_shareable_images.id;
+
+
+--
 -- Name: year_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5443,6 +5831,13 @@ ALTER TABLE ONLY public.atlases ALTER COLUMN id SET DEFAULT nextval('public.atla
 --
 
 ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audits_id_seq'::regclass);
+
+
+--
+-- Name: cohort_lifecycles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_lifecycles ALTER COLUMN id SET DEFAULT nextval('public.cohort_lifecycles_id_seq'::regclass);
 
 
 --
@@ -5740,6 +6135,13 @@ ALTER TABLE ONLY public.identifications ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: language_demo_logs id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.language_demo_logs ALTER COLUMN id SET DEFAULT nextval('public.language_demo_logs_id_seq'::regclass);
+
+
+--
 -- Name: list_rules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5814,6 +6216,27 @@ ALTER TABLE ONLY public.oauth_access_tokens ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.oauth_applications ALTER COLUMN id SET DEFAULT nextval('public.oauth_applications_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_experiments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_experiments ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_experiments_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_samples id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_samples ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_samples_id_seq'::regclass);
+
+
+--
+-- Name: observation_accuracy_validators id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_validators ALTER COLUMN id SET DEFAULT nextval('public.observation_accuracy_validators_id_seq'::regclass);
 
 
 --
@@ -6003,6 +6426,13 @@ ALTER TABLE ONLY public.rules ALTER COLUMN id SET DEFAULT nextval('public.rules_
 --
 
 ALTER TABLE ONLY public.saved_locations ALTER COLUMN id SET DEFAULT nextval('public.saved_locations_id_seq'::regclass);
+
+
+--
+-- Name: segmentation_statistics id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.segmentation_statistics ALTER COLUMN id SET DEFAULT nextval('public.segmentation_statistics_id_seq'::regclass);
 
 
 --
@@ -6223,6 +6653,27 @@ ALTER TABLE ONLY public.user_blocks ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: user_daily_active_categories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_daily_active_categories ALTER COLUMN id SET DEFAULT nextval('public.user_daily_active_categories_id_seq'::regclass);
+
+
+--
+-- Name: user_donations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_donations ALTER COLUMN id SET DEFAULT nextval('public.user_donations_id_seq'::regclass);
+
+
+--
+-- Name: user_installations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installations ALTER COLUMN id SET DEFAULT nextval('public.user_installations_id_seq'::regclass);
+
+
+--
 -- Name: user_mutes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6276,6 +6727,13 @@ ALTER TABLE ONLY public.wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.wiki_pages ALTER COLUMN id SET DEFAULT nextval('public.wiki_pages_id_seq'::regclass);
+
+
+--
+-- Name: year_statistic_localized_shareable_images id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.year_statistic_localized_shareable_images ALTER COLUMN id SET DEFAULT nextval('public.year_statistic_localized_shareable_images_id_seq'::regclass);
 
 
 --
@@ -6363,6 +6821,14 @@ ALTER TABLE ONLY public.atlases
 
 ALTER TABLE ONLY public.audits
     ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cohort_lifecycles cohort_lifecycles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.cohort_lifecycles
+    ADD CONSTRAINT cohort_lifecycles_pkey PRIMARY KEY (id);
 
 
 --
@@ -6702,6 +7168,14 @@ ALTER TABLE ONLY public.identifications
 
 
 --
+-- Name: language_demo_logs language_demo_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.language_demo_logs
+    ADD CONSTRAINT language_demo_logs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: list_rules list_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6787,6 +7261,30 @@ ALTER TABLE ONLY public.oauth_access_tokens
 
 ALTER TABLE ONLY public.oauth_applications
     ADD CONSTRAINT oauth_applications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_experiments observation_accuracy_experiments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_experiments
+    ADD CONSTRAINT observation_accuracy_experiments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_samples observation_accuracy_samples_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_samples
+    ADD CONSTRAINT observation_accuracy_samples_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_accuracy_validators observation_accuracy_validators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_accuracy_validators
+    ADD CONSTRAINT observation_accuracy_validators_pkey PRIMARY KEY (id);
 
 
 --
@@ -7003,6 +7501,14 @@ ALTER TABLE ONLY public.rules
 
 ALTER TABLE ONLY public.saved_locations
     ADD CONSTRAINT saved_locations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: segmentation_statistics segmentation_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.segmentation_statistics
+    ADD CONSTRAINT segmentation_statistics_pkey PRIMARY KEY (id);
 
 
 --
@@ -7262,6 +7768,30 @@ ALTER TABLE ONLY public.user_blocks
 
 
 --
+-- Name: user_daily_active_categories user_daily_active_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_daily_active_categories
+    ADD CONSTRAINT user_daily_active_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_donations user_donations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_donations
+    ADD CONSTRAINT user_donations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_installations user_installations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installations
+    ADD CONSTRAINT user_installations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_mutes user_mutes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7323,6 +7853,14 @@ ALTER TABLE ONLY public.wiki_page_versions
 
 ALTER TABLE ONLY public.wiki_pages
     ADD CONSTRAINT wiki_pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: year_statistic_localized_shareable_images year_statistic_localized_shareable_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.year_statistic_localized_shareable_images
+    ADD CONSTRAINT year_statistic_localized_shareable_images_pkey PRIMARY KEY (id);
 
 
 --
@@ -7527,6 +8065,20 @@ CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at
 --
 
 CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
+
+
+--
+-- Name: index_cohort_lifecycles_on_cohort_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_cohort_lifecycles_on_cohort_and_user_id ON public.cohort_lifecycles USING btree (cohort, user_id);
+
+
+--
+-- Name: index_cohort_lifecycles_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_cohort_lifecycles_on_user_id ON public.cohort_lifecycles USING btree (user_id);
 
 
 --
@@ -8286,6 +8838,27 @@ CREATE INDEX index_moderator_notes_on_user_id ON public.moderator_notes USING bt
 
 
 --
+-- Name: index_oa_samples_oa_validators; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_samples_oa_validators ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_sample_id, observation_accuracy_validator_id);
+
+
+--
+-- Name: index_oa_validators_oa_samples; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oa_validators_oa_samples ON public.observation_accuracy_samples_validators USING btree (observation_accuracy_validator_id, observation_accuracy_sample_id);
+
+
+--
+-- Name: index_oas_on_oae_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_oas_on_oae_id ON public.observation_accuracy_samples USING btree (observation_accuracy_experiment_id);
+
+
+--
 -- Name: index_oauth_access_grants_on_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8325,6 +8898,20 @@ CREATE INDEX index_oauth_applications_on_owner_id_and_owner_type ON public.oauth
 --
 
 CREATE UNIQUE INDEX index_oauth_applications_on_uid ON public.oauth_applications USING btree (uid);
+
+
+--
+-- Name: index_oav_on_oae_id_uid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_oav_on_oae_id_uid ON public.observation_accuracy_validators USING btree (user_id, observation_accuracy_experiment_id);
+
+
+--
+-- Name: index_observation_accuracy_samples_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_accuracy_samples_on_observation_id ON public.observation_accuracy_samples USING btree (observation_id);
 
 
 --
@@ -9567,6 +10154,13 @@ CREATE INDEX index_trip_taxa_on_trip_id ON public.trip_taxa USING btree (trip_id
 
 
 --
+-- Name: index_udac_on_tc_yc; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_udac_on_tc_yc ON public.user_daily_active_categories USING btree (today_category, yesterday_category);
+
+
+--
 -- Name: index_update_actions_unique; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9592,6 +10186,48 @@ CREATE INDEX index_user_blocks_on_override_user_id ON public.user_blocks USING b
 --
 
 CREATE INDEX index_user_blocks_on_user_id ON public.user_blocks USING btree (user_id);
+
+
+--
+-- Name: index_user_daily_active_categories_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_daily_active_categories_on_user_id ON public.user_daily_active_categories USING btree (user_id);
+
+
+--
+-- Name: index_user_donations_on_donated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_donations_on_donated_at ON public.user_donations USING btree (donated_at);
+
+
+--
+-- Name: index_user_donations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_donations_on_user_id ON public.user_donations USING btree (user_id);
+
+
+--
+-- Name: index_user_installations_on_installation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_installations_on_installation_id ON public.user_installations USING btree (installation_id);
+
+
+--
+-- Name: index_user_installations_on_installation_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installations_on_installation_id_and_user_id ON public.user_installations USING btree (installation_id, user_id);
+
+
+--
+-- Name: index_user_installations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installations_on_user_id ON public.user_installations USING btree (user_id);
 
 
 --
@@ -9735,6 +10371,13 @@ CREATE INDEX index_users_on_place_id ON public.users USING btree (place_id);
 
 
 --
+-- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_remember_token ON public.users USING btree (remember_token);
+
+
+--
 -- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9851,6 +10494,13 @@ CREATE INDEX index_wiki_pages_on_creator_id ON public.wiki_pages USING btree (cr
 --
 
 CREATE UNIQUE INDEX index_wiki_pages_on_path ON public.wiki_pages USING btree (path);
+
+
+--
+-- Name: index_year_statistic_localized_shareable_images_on_ys_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_year_statistic_localized_shareable_images_on_ys_id ON public.year_statistic_localized_shareable_images USING btree (year_statistic_id);
 
 
 --
@@ -10385,6 +11035,30 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230504154236'),
 ('20230504154248'),
 ('20230504154302'),
-('20230907210748');
+('20230907210748'),
+('20231017190352'),
+('20231025144604'),
+('20240109034635'),
+('20240109035846'),
+('20240109035854'),
+('20240110183622'),
+('20240114022417'),
+('20240124195720'),
+('20240124195743'),
+('20240124195835'),
+('20240124214427'),
+('20240124214436'),
+('20240222032444'),
+('20240326135332'),
+('20240429211140'),
+('20240430163539'),
+('20240530162451'),
+('20240606154217'),
+('20240618044707'),
+('20240620100000'),
+('20240709175116'),
+('20240715141936'),
+('20240716190326'),
+('20240828123245');
 
 

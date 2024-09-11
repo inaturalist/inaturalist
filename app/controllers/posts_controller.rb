@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   before_action :load_new_post, only: %i[new create]
   before_action :owner_required, only: %i[create edit update destroy]
 
+  prepend_around_action :enable_replica, only: [:index, :show]
+
   # Might want to try this if /journal becomes a problem.
   # caches_action :browse,
   #   expires_in: 15.minutes,

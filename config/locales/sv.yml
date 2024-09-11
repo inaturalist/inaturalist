@@ -24,6 +24,9 @@ sv:
   x_identifications_:
     one: '%{count} bestämning'
     other: '%{count} bestämningar'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ARTBESTÄMNING'
+    other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -68,6 +71,9 @@ sv:
   x_observations_html:
     one: "<span class='count'>%{count}</span> fynd"
     other: "<span class='count'>%{count}</span> fynd"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> FYND"
+    other: "<span class='count'>%{count}</span> FYND"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} fynd</a>"
     other: "<a href='%{url}'>%{count} fynd</a>"
@@ -83,6 +89,9 @@ sv:
   x_people:
     one: "%{count} person"
     other: "%{count} personer"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> personer'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personer</strong> hjälpte %{user} med <strong>%{y} bestämningar</strong>"
   x_photos:
     one: "%{count} bild"
@@ -96,6 +105,9 @@ sv:
   x_species:
     one: '%{count} art'
     other: '%{count} arter'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ART"
+    other: "<span class='count'>%{count}</span> ARTER"
   x_species_html:
     one: "<span class='count'>%{count}</span> art"
     other: "<span class='count'>%{count}</span> arter"
@@ -184,15 +196,18 @@ sv:
   about_this_bioblitz: Om denna bioblitz
   about_this_map: Om denna karta
   about_this_project: Om detta projekt
-  about_trips_html: |
+  about_trips2_html: |
     <h4>
-    Resor gör det möjligt att spara närvaro/frånvaro-data genom att lägga till omständigheterna kring dina fynd
+    Utflykter gör det möjligt att spara när-/frånvarodata genom att sätta dina fynd
+    i ett sammanhang
     </h4>
     <p>
-    <strong>Varför</strong> Närvaro/frånvaro-data innehåller information om insats vilket är användbart vid vetenskapliga analyser såsom modellering av utbredning (vanliga iNaturalist-fynd är 'endast närvaro'-data).
+    <strong>Varför</strong> Närvaro/frånvaro-data inkluderar information om insats
+    vilket är användbart vid vetenskapliga analyser såsom modellering av utbredning
+    (vanliga iNaturalist-fynd är 'endast närvaro'-data).
     </p>
     <p>
-    <strong>Hur</strong> En resa ger sammanhang till ditt fynd genom att spara:
+    <strong>Hur</strong> En utflykt sätter ditt fynd i ett sammanhang genom att spara:
     </p>
     <ul>
     <li><strong>Det</strong> du letade efter (mållista)</li>
@@ -200,7 +215,7 @@ sv:
     <li><strong>När</strong> du letade (sökintervall)</li>
     </ul>
     <p>
-    Arter på din mållista som du kunde finna inom sökområdet och sökintervallet tolkas som närvarande. Samtidigt tolkas arter på din mållista som du inte hittade som frånvarande. Klicka på 'Tabulera närvaro/frånvaro-data från resor' för att generera en tabell med närvaro/frånvaro-data för arter från resor med tillhörande fynd. <a href='%{url}'>Läs mer</a>
+    Arter på din mållista som du kunde finna inom sökområdet och sökintervallet tolkas som närvarande. Samtidigt tolkas arter på din mållista som du inte hittade som frånvarande. Klicka på 'Tabulera när-/frånvarodata från utflykter' för att generera en tabell med när-/frånvaroposter för arter från utflykter med tillhörande fynd. <a href='%{url}'>Läs mer</a>
     </p>
   about_trusting_projects: Om att lita på projekt
   about_trusting_projects_options_any: Alla dina fynd i detta projekt
@@ -252,6 +267,7 @@ sv:
   active_taxon_status: Aktivt
   active_users: Aktiva användare
   activity: Aktivitet
+  activity_on_a_flag_for_x: Flaggaktivitet för %{x}
   adapted_by_name_from_a_work_by_original: "Antaget av %{name} från ett verk av %{original}"
   add: Lägg till
   add_a_batch_of_observations: Lägg till flera fynd
@@ -259,6 +275,8 @@ sv:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Lägg till en punktlista
   add_a_comment: Lägg till en kommentar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Lägg till en bevarandestatus
   add_a_field: Lägg till ett fält
   add_a_flag: Lägg till en flagga
   #Tool tip for a button that adds a link to a text area
@@ -281,6 +299,8 @@ sv:
   add_annotations_for_controlled_attribute:
     sex: Lägg till anteckningar för "Kön"
     plant_phenology: Lägg till anteckningar för "Växtfenologi"
+    flowers_and_fruits: Lägg till anteckningar för "Blommor och frukter"
+    leaves: Lägg till anteckningar för "Blad"
     life_stage: Lägg till anteckningar för "Livsform"
     evidence_of_presence: Lägg till anteckningar om "Stöd för förekomst"
   add_another_flag: Lägg till ytterligare en flagga
@@ -316,6 +336,7 @@ sv:
   add_notes_about_this_taxon: Lägg till anteckning om detta taxon på denna fyndplats, t.ex. var och när det påträffas.
   add_obs_from_a_link: "Lägg till obs från lista: %{link}"
   add_obs_from_a_list: Lägg till obs från en lista
+  add_observation_fields: Lägg till observationsfält
   add_observations: Lägg till fynd
   add_observations_by_checking_off: Lägg till fynd genom att markera arter i en lista.
   add_observations_project: Lägg till fynd till detta projekt
@@ -336,6 +357,14 @@ sv:
   add_plant_phenology_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Blomning"'
   add_plant_phenology_fruiting_annotation: 'Lägg till anteckningen "Växtfenologi: I frukt"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lägg till anteckningen "Växtfenologi: Inga tecken på blomning"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Lägg till "Blommor och frukter: Blomma knoppar"-anteckning'
+  add_flowers_and_fruits_flowers_annotation: 'Lägg till "Blommor och frukter: Blommor"-anteckning'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Lägg till "Blommor och frukter: Frukter och frön"-anteckning'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Lägg till "Blommor och frukter: Inga Blommor eller frukter"-anteckning'
+  add_leaves_breaking_leaf_buds: 'Lägg till "Blad: Uppsprickande bladknoppar"-anteckning'
+  add_leaves_green_leaves: 'Lägg till "Blad: Gröna blad"-anteckning'
+  add_leaves_colored_leaves: 'Lägg till "Blad: Färgade blad"-anteckning'
+  add_leaves_no_live_leaves: 'Lägg till "Blad: Inga levande blad"-anteckning'
   add_life_stage_adult_annotation: 'Lägg till anteckningen "Livsstadium: Adult"'
   add_life_stage_teneral_annotation: 'Lägg till anteckningen "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Lägg till anteckningen "Livsstadium: subimago"'
@@ -351,6 +380,11 @@ sv:
   add_evidence_of_presence_track_annotation: 'Lägg till "Stöd för förekomst: spår"-anteckning'
   add_evidence_of_presence_bone_annotation: 'Lägg till "Stöd för förekomst: benrester"-anteckning'
   add_evidence_of_presence_molt_annotation: 'Lägg till "Stöd för förekomst: ömsskinn/exuvium"-anteckning'
+  add_evidence_of_presence_leafmine_annotation: 'Lägg till "Stöd för förekomst: bladmina"-anteckning'
+  add_evidence_of_presence_hair_annotation: 'Lägg till "Stöd för förekomst: hår"-anteckning'
+  add_evidence_of_presence_egg_annotation: 'Lägg till "Stöd för förekomst: ägg"-anteckning'
+  add_evidence_of_presence_construction_annotation: 'Lägg till "Stöd för förekomst: konstruktion"-anteckning'
+  add_established_not_established: 'Lägg till "Förekomst: ej bofast"-notering'
   #As in a Taxon Framework Relationship
   add_relationship: 'Lägg till en relation'
   #As in a Guide Section
@@ -395,6 +429,8 @@ sv:
   added_by: Tillagd av
   added_by_user_on_date_html: "Tillagd av %{user} den %{date}"
   added_on_datetime: "Tillagd den %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Lade till roll
   added_to_favorites_html: |
     Tillagd i <a href="%{url}">favoriter</a>
   adding: "Lägger till..."
@@ -692,6 +728,7 @@ sv:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Är du säker på att du vill ta bort detta fynd från %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Är du säker på att du vill ta bort detta taxon från %{place}s checklista?"
+  are_you_sure_you_want_to_flag_as_spammer: Är du säker på att du vill flagga den här användaren som en spammare?
   associated_observations: Tillhörande fynd
   associated_taxa: Tillhörande taxa
   attention: Märk väl
@@ -779,6 +816,7 @@ sv:
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
   badges: Märken
+  base_map_copyright_openstreetmap_html: Grundkarta ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -814,13 +852,11 @@ sv:
   bioblitz: Bioblitz
   birds: fåglar
   birthday: Födelsedag
-  black: svart
   block: Blockera
   blocking_description: Blockering förhindrar kommunikation mellan dig och en annan användare. Det är till för situationer där en annan användare kan äventyra din säkerhet, som stalking eller andra kränkande beteenden.
   block_removed: Blockering togs bort
   blocked_users: Blockerade användare
   blog_widget: Blogg-widget
-  blue: blå
   blue_butterfly_etc: "blå, fjäril, etc."
   body: Innehåll
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -834,7 +870,6 @@ sv:
   #shown
   breadcrumbs_description: "Detta kommer att ersätta h1 och standard åtgärdsanrop, se alltså till att inkludera dem om de är viktiga för detta projekt och kom ihåg att max tillåten bredd är 950px"
   brief_caption: Kort bildtext
-  brown: brun
   browse: Bläddra
   browse_all_projects: Bläddra bland alla projekt
   browse_all_species: Bläddra bland alla arter
@@ -1057,14 +1092,13 @@ sv:
     ingå i automatiserade förslag med "Visuellt liknande"-etiketten.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Väntar
-  computer_vision_model_pending_desc: |
+  computer_vision_model_pending_desc2: |
     Den nuvarande bildigenkänningsmodellen känner inte till detta taxon, så även om
-    det kan inkluderas i automatiserade förslag med "Närliggande"-etiketten,
-    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven på
-    modellinkludering förändras med varje modell, men generellt bygger inkludering på
-    antal observationer, så för att öka chansen att detta taxon blir
-    inkluderat till nästa modellträning, lägga till eller bestäm fler fynd
-    av detta taxon.
+    det kan inkluderas i automatiserade förslag med "Förväntad i närheten"-etiketten,
+    kommer det inte att ha "Visuellt liknande"-etiketten. Kraven för att inkluderas
+    i modellen förändras vissesrligen med varje modell, men generellt bygger inkludering
+    på antal observationer, så för att öka chansen att detta taxon blir inkluderat i nästa
+    modellträning, lägg till eller bestäm fler fynd av detta taxon.
   concept_status: Konceptets status
   confidential: Konfidentiell
   configure: Konfigurera
@@ -1133,6 +1167,10 @@ sv:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Alla
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Vilken som
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Vilken som
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Alla
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Alla
@@ -1142,10 +1180,20 @@ sv:
     male: Hane
     female: Hona
     plant_phenology: Växtfenologi
+    flowers_and_fruits: Blommor och frukter
     budding: Knoppbristning
     flower_budding: Blomknopp
     flowering: Blomning
     fruiting: I frukt
+    no_flowers_or_fruits: Inga blommor eller frukter
+    flower_buds: Blomknoppar
+    flowers: Blommor
+    fruits_or_seeds: Frukter eller frön
+    leaves: Blad
+    breaking_leaf_buds: Uppsprickande bladknoppar
+    green_leaves: Gröna blad
+    colored_leaves: Färgade blad
+    no_live_leaves: Inga levande blad
     life_stage: Livsstadium
     adult: Adult
     teneral: Teneral
@@ -1154,6 +1202,7 @@ sv:
     no_evidence_of_flowering: Inga tecken på blomning
     nymph: Nymf
     larva: Larv
+    #Evidence of an egg of an organism
     egg: Ägg
     juvenile: Juvenil
     alive_or_dead: Levande eller död
@@ -1177,6 +1226,16 @@ sv:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ömsskinn/exuvium
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Bladmina
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hår
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstruktion
+    #Does the observation belong to a non-established population or not
+    established: Bofast
+    #Organism is not a member of an established population
+    not_established: Ej bofast
   controlled_term_definitions:
     alive: Levande organism som inte uppvisar tecken på snar död
     bone: |
@@ -1184,12 +1243,27 @@ sv:
     cannot_be_determined: Kan inte bestämmas utifrån angiven information
     dead: Död organism eller visar tecken på snar död
     feather: En eller flera fjädrar som inte sitter fast på en organism
+    female: Det finns stöd för att organismen kan producera ägg för användning i sexuell fortplantning
     flower_budding: Blomknoppar är synliga men inte öppna
     flowering: Blommor synliga, öppna och fortfarande kvar på växten
     fruiting: Frukt synlig och kvarsittande
+    flowers: Minst en öppen blomma
+    flower_buds: Minst en stängd blomknopp
+    fruits_or_seeds: Minst en frukt eller ett frö
+    breaking_leaf_buds: Minst en knopp med sitt första nya blad eller barr inte helt utvecklat
+    green_leaves: Minst ett grönt blad eller barr (eller rödaktigt om detta är den normala friska färgen)
+    colored_leaves: Minst ett blad eller barr har färg som sent på säsongen eller i torka
+    no_live_leaves: Inga uppsprickande bladknoppar eller gröna eller färgade blad eller barr är synliga
     gall: Onormal tillväxtförändring på en växt orsakad av en parasiterande organism
+    male: Det finns stöd för att organismen kan producera spermier för användning i sexuell fortplantning
     molt: Kvarlämning av skinn eller exoskelett
+    leafmine: Ätspår mellan epidermislagren av ett blad
+    hair: Hår som inte längre är fäst vid den organism som det kommer från
+    egg: Helt ägg eller del av ett ägg
+    construction: Något som skapats av ett djur, gjort med eller grävt ur andra material
     no_evidence_of_flowering: Inga tecken på reproduktiva strukturer i media
+    no_flowers_or_fruits: Inga blommor, frukter eller frön (hela eller delvisa) syns
+    not_established: Organismen tillhör en ej bofast population, inkluderande utsläppta/förrymda husdjur, fripassagerare och kringstrykare.
     organism: Hela eller delar av en organism
     scat: Avföring (inte spybollar eller andra uppstötningar)
     teneral: Adult som nyligen kläckts men ännu inte fått sitt slutliga adulta utseende
@@ -1209,6 +1283,8 @@ sv:
   copy_and_paste_the_following_code_to: Kopiera och klistra in följande kod för att infoga denna bedömning på en annan webbsida.
   copy_and_paste_this_into_your_own_html: Kopiera och klistra in detta i din egen HTML.
   copy_guide_taxon_to: Kopiera guidetaxon till...
+  copy_to_clipboard: Kopiera till urklipp
+  copied!: Kopierad!
   copyright:
     some_rights_reserved: vissa rättigheter förbehållna
     some_rights_reserved_by: "(c) %{name}, vissa rättigheter förbehållna (%{license_short})"
@@ -1382,6 +1458,8 @@ sv:
     Du kan uppföra dig lämpligt på iNaturalist och följa Communityns riktlinjer.
     Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
     exemplarisk användare av iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Förvaltarguide
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
   curators: Förvaltare
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
@@ -1519,8 +1597,7 @@ sv:
   devise:
     confirmations:
       confirmed: |
-        Din e-postadress har bekräftats. Du kan nu logga in
-        här på webbplatsen eller i iNaturalists eller Seeks mobilapp.
+        Din e-postadress har nu bekräftats.
       send_instructions: "Du kommer att få ett mejl med instruktioner för hur du bekräftar din e-postadress inom några minuter."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1738,62 +1815,20 @@ sv:
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Lärarguide
   either_that_user_doesnt_exist_or: "Antingen existerar inte den användaren, eller så följer du den redan."
   eligible_for_research_grade: Berättigad till forskningsklass
   email: E-post
-  email_description: Din e-post delas inte med andra användare på iNaturalist
   email_address_for_comments_and_other_feedback: E-postadress för kommentarer och annan respons
-  email_conf_banner_email_delivered_click_link: |
-    Bekräftelsemejl levererat. Klicka på länken i meddelandet.
-  email_conf_banner_add_to_contacts_html: |
-    <strong>Lägg till <code>%{email}</code> i din lista över kontakter och
-    <a href="%{url}">begär ett bekräftelsemejl till</a>.</strong> Om din e-postleverantör
-    blockerade bekräftelsemejlet, kanske detta kan övertyga dem om att
-    du faktiskt vill ha e-post från oss.
-  email_conf_banner_check_your_spam_folder_html: <strong>Kolla din skräppostmapp</strong>
-  email_conf_banner_contact_us_html: Fungerar fortfarande inte? Skicka mejl till oss på %{email} så vi kan hjälpa dig.
-  email_conf_banner_please_click: |
-    Klicka på länken i ditt mejl för att bekräfta din e-postadress.
-  email_conf_banner_search_for_emails_html: <strong>Leta efter mejl från <code>%{email}</code></strong>
-  #%{date} will be formatted with time.formats.long
-  email_conf_banner_we_delivered_todos: |
-    Vi levererade ett bekräftelsemejl till dig den %{date}. Om du inte
-    fick det, är här några saker du kan göra:
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Kära %{user},
+  email_description: Din e-post delas inte med andra användare på iNaturalist
   email_conf_required_after_grace_period: |
     E-postbekräftelse krävs från och med %{requirement_date} och du har inte
     bekräftat din e-postadress innan avstängningen. Vänligen återställ ditt lösenord
     för att komma åt ditt konto.
-  email_conf_faq_html: |
-    Om du har frågor, se dessa <a href="%{url}">Vanliga frågor och svar</a>.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Vänligen bekräfta din e-postadress%{link_end_tag}</strong>.
-    Alla användare måste bekräfta sin e-postadress före %{date}. Efter det
-    datumet kommer alla som inte har bekräftat sin e-postadress inte längre kunna
-    logga in såvida de inte återställer sitt lösenord. För att bekräfta din e-postadress,
-    gå till %{link_start_tag}kontoinställningar%{link_end_tag}.
-  #Subject of an email prompting people to confirm their email address before
-  #we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_confirm_your_site_email_address_before_date: Bekräfta din %{site_name} e-postadress innan %{date} #Paragraph in an email prompting people to confirm their email address before # we start requiring confirmation. @vow_or_con should work for %{site_name}
-  email_confirmation_reminder_please_confirm: |
-    Vänligen bekräfta din e-postadress för att försäkra dig om fortsatt tillgång till
-    ditt konto. %{site_name} och mobilapparna iNaturalist och
-    Seek av iNaturalist kopplar ihop människor med naturen och varandra genom
-    att dela fynd av biologisk mångfald. Tack för att du är en del av iNaturalist-communityn!
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_we_will_require: |
-    Vi kommer att kräva bekräftade e-postadresser för alla konton med början
-    %{requirement_date}. Vänligen ta dig tid att bekräfta den nu.
-  #Paragraph in an email prompting people to confirm their email address before
-  #we start requiring confirmation.
-  email_confirmation_reminder_any_questions_html: |
-    Om du har några frågor, vänligen se
-    <a href="%{faq_url}">Vanliga frågor</a>. Tack för att du tog dig tid att anknyta
-    till naturen och %{site_name}.
-  #Header in email prompting people to confirm their email address before we
-  #start requiring confirmation. This preceeds some details about the
-  #recipient's account.
-  email_confirmation_reminder_account_details: Kontouppgifter
   email_copyright2: "&copy; %{year} iNaturalist, alla rättigheter förbehållna"
   email_notifications: E-postaviseringar
   embed: 'Bädda in'
@@ -1841,6 +1876,7 @@ sv:
   everywhere: överallt
   exact: Exakt
   exact_date: Exakt datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exakt rang
   except: förutom
   exclude_places: Uteslut fyndplatser
@@ -1868,6 +1904,7 @@ sv:
   extinct_in_the_wild: Utdöd i vilt tillstånd
   extra_properties: Ytterligare egenskaper
   evidence_of_organism: Belägg för organism
+  evidence_related_to_single_subject: Stöd kopplat till ett enstaka område
   facebook: Facebook
   failed_to_find_your_location: Kunde inte att hitta din position.
   failed_to_repair_photo: "Lyckades inte reparera bild: %{errors}"
@@ -1907,6 +1944,7 @@ sv:
   filter: Filter
   filter_by_curator_identification: Filtrera på förvaltares bestämning
   filter_by_place: Filtrera på fyndplats
+  filter_by_species: Filtrera på art
   filter_by_taxon: Filtrera på taxon
   filter_by_place_taxon_and_color: Filtrera på fyndplats, taxon och färg med kontrollerna.
   filter_list_by_this_taxon: Filtrera listan på detta taxon
@@ -1974,6 +2012,7 @@ sv:
     Flagga för användare: %{title}
   flag_it!: Flagga det!
   flag_marked_as_resolved_html: '<span class="meta">Flagga markerad som</span> <strong>löst.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Flagga markerad som</span> <strong>olöst.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Jag flaggar detta %{record} eftersom"
@@ -2010,7 +2049,10 @@ sv:
   #Adjective, as in a fluid layout of images
   fluid: responsiv
   follow: Följ
+  #Text for a button to follow updates on an observation
+  follow_observation: Följ fynd
   follow_receive_updates_about_new_observations: Följ (få uppdateringar om nya fynd)
+  #Text for a button to follow updates from a specific user
   follow_user: "Följ %{user}"
   followers: Följare
   following: Följer
@@ -2048,6 +2090,8 @@ sv:
   generate_taxonomic_tags_for_flickr: Generera taxonomiska taggningar för dina Flickr-bilder.
   generate_widget: Generera widget
   generate_your_stats: Generera din statistik
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERERA DITT %{year} ÅRET SOM GÅTT
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
   geomodel_expected_nearby_label_is_derived: |
@@ -2060,6 +2104,8 @@ sv:
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
   get_started: Kom igång
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kom igång
   getting_started_guide: Komma igång-guide
   #Prompt to donate money on a montly basis
   give_monthly_caps: GE MÅNADSVIS
@@ -2081,12 +2127,14 @@ sv:
   graft: Ympa
   graft_taxon: Ympa %{taxon}
   grafting_attemps_to_insert_this_taxon: Ympning försöker lägga till detta taxon till vårt taxonomiska träd, hitta ett befintligt föräldrataxon eller skapa alla nödvändiga mellanliggande taxa för att kunna lägga det till ett befintligt taxon på högre nivå.
-  grant_role: "%{grant} %{role} roll"
   grid: Rutnät
   grid_layout: Rutnätslayout
   grid_tooltip: Visa rutnätsvy
   group: Grupp
   grouping: Gruppering
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Gissa fyndplats utifrån andra fynd?
   guides: Guider
   guide_compiled_by: Guide sammanställd av
   guide_deleted: Guide borttagen
@@ -2169,6 +2217,8 @@ sv:
   hide_running_total: Dölj löpande total
   hide_uncountable_species: Dölj arter som inte kan räknas
   high: Hög
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Högsta rang
   highlights_and_stats_from_year_on_site: "Höjdpunkter och statistik från %{year} på %{site}"
   history: Historik
@@ -2233,6 +2283,9 @@ sv:
   identification_withdrawn: Bestämning ångrad.
   identifications: Bestämningar
   inaturalist_global_year_in_review: "Summering av %{year} för iNaturalist globalt"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist är en oberoende 501(c)(3), skattebefriad, icke vinstdrivande
+    organisation baserad i Amerikas förenta stater (Tax ID: 92-1296468).
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2343,6 +2396,11 @@ sv:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
   is_this_place_a_duplicate: Är denna fyndplats en dubblett?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Är detta vetenskapliga namn accepterat för närvarande?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv text
@@ -2364,6 +2422,7 @@ sv:
   journal: Dagbok
   journal_archives_for: Dagboksarkiv för
   journal_post: Dagboksinlägg
+  journal_post_: dagboksinlägg
   journal_post_deleted: Dagboksinlägg raderat.
   journal_posts: Dagboksinlägg
   jpg_png_or_gif: "JPG, PNG eller GIF"
@@ -2398,6 +2457,8 @@ sv:
   last_seen: Senast sedd
   last_year: Senaste året
   lat: Lat
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Long
   latitude: Latitud
   latitude_in_decimals: 'Latitud i decimalgrader, t.ex. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / y-koord / nordlig
@@ -2706,6 +2767,8 @@ sv:
   looks_like_no_species_in_guide: Du verkar inte ha några arter i din guide än.
   lookup: Sök
   low: Låg
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Lägsta rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2822,8 +2885,12 @@ sv:
     för den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Dölj
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Ta fram
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Stäng av
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Återaktivera
+  moderator_actions_unsuspend: Återaktivera
   moderator_note_desc: |
     Moderatoranteckningar är dokumentation av modereringssvar eller evidensbaserad
     oro för en användare, t.ex. att de representerar ett möjligt falskt dubblettkonto. Vänligen inkludera inte personliga åsikter eller hörsägen om användaren.
@@ -2974,7 +3041,6 @@ sv:
   needs_id_: Behöver bestämmas
   needs_id_expandable_html: "<span class='full'>Behöver </span>bestämmas"
   needs_id_tooltip_html: '"Behöver bestämning"-fynd har media, fyndplats och datum, men kräver fortfarande att communityn är överens om en exakt artbestämning. <a href="https://www.inaturalist.org/pages/help#quality">Läs mer om kvalitetsklasser</a>'
-  needs_to_be_identified: Behöver bestämmas
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, en del av det internationella iNaturalist-
@@ -3172,6 +3238,97 @@ sv:
     Publika koordinater visas som en slumpmässig punkt inom en 0,2 grader stor lat/long-cell som innehåller de exakta koordinaterna.
   observation: Fynd
   observation_: fynd
+  observation_accuracy_experiment_the_sample_for: "Urvalet för detta experiment har ännu inte genererats"
+  observation_accuracy_experiment_our_accuracy_estimate: "Vår noggrannhetsuppskattning baserat på detta experiment ger %{percent} korrekt."
+  observation_accuracy_experiment_our_goak: "Vårt mål för den uppskattade Noggrannheten (Korrekt) och Precisionen av delmängd med Forskningsklass är högre än 95% (streckad linje)"
+  observation_accuracy_experiment_precision_results: "Precisionsresultat per delmängd"
+  observation_accuracy_experiment_taxon_rank_level: "Nivå för taxonrang"
+  observation_accuracy_experiment_taxon_observations_count: "Fyndantal för taxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Ikoniskt taxonnamn"
+  observation_accuracy_experiment_continent: "Kontinent"
+  observation_accuracy_experiment_year: "År"
+  observation_accuracy_experiment_quality_grade: "Kvalitetsklass"
+  observation_accuracy_experiment_show_frequency: "visa frekvens"
+  observation_accuracy_experiment_click_on_bars: "Klicka på staplar för att utforska delmängderna."
+  observation_accuracy_experiment_bars_will: "Staplar kommer vara klickbara efter deadline för att verifiera prover har passerats."
+  observation_accuracy_experiment_accuracy_results: "Noggrannhetsresultat efter delmängd"
+  observation_accuracy_experiment_as_observations: "Eftersom fynd från detta urval verifieras, kommer andelen osäkra att minska och andelen korrekta och felaktiga att öka."
+  observation_accuracy_experiment_experiment_still: "Experimentet pågår fortfarande. Statistik uppdateras dagligen fram till deadline för verifiering av prover den %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Fyndnoggrannhetsexperiment"
+  observation_accuracy_experiment_validators: "Verifierare:"
+  observation_accuracy_experiment_show_additional_validators: "(visa ytterligare verifierare)"
+  observation_accuracy_experiment_hide_additional_validators: "(dölj ytterligare verifierare)"
+  observation_accuracy_experiment_additional_validators: "(%{number} ytterligare verifierare)"
+  observation_accuracy_experiment_abstract: "Sammanfattning: Vi genererade ett urval av fynd den %{sample_generation_date} och samordnade ett team av verifierare för att bedöma deras noggrannhet till %{deadline_date}. Alla resultat som visas nedan uppvisar egenskaper hos provfynden vid tidpunkten då provet genererades (till exempel Forskningsklass eller inte). Provfynden noggrannhet bedömdes den %{assessment_date}. Se fliken metoder för mer information."
+  observation_accuracy_experiment_research_grade_results: "Resultat för Forskningsklass"
+  observation_accuracy_experiment_verifiable_results: "Verifierbara resultat"
+  observation_accuracy_experiment_all_results: "Alla resultat"
+  observation_accuracy_experiment_methods: "Metoder"
+  observation_accuracy_experiment_step_1: "Steg 1: Provgenerering och Tilldelning"
+  observation_accuracy_experiment_from_the2: "Från iNaturalists fynddatabas (A), genererade vi ett slumpmässigt urval (B). Delprover tilldelades potentiella verifierare (C) baserat på de kriterier som beskrivs nedan. Vi försökte tilldela varje provfynd till flera potentiella verifierare ( \"Målverifierarredundans\" )."
+  observation_accuracy_experiment_sample_generated: "Genererat prov: %{date}"
+  observation_accuracy_experiment_sample_size: "Provstorlek: %{number}"
+  observation_accuracy_experiment_target_validator: "Målverifierarredundans: %{number}"
+  observation_accuracy_experiment_number_of: "Antal potentiella verifierare: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Delprovs medelstorlek per potentiell verifierare: %{number}"
+  observation_accuracy_experiment_mean_number: "Medelantal verifierare per provfynd: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kriterier för potentiella verifierare:"
+  observation_accuracy_experiment_if_an_identifier: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon, ansåg vi att de var kvalificerade att verifiera detta taxon. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
+  observation_accuracy_experiment_if_an_identifier_continent: "Om en bestämmare hade gjort minst 3 förbättrade bestämningar för ett taxon på en kontinent, ansåg vi att de var kvalificerade att verifiera detta taxon inom denna kontinent. Förbättrande bestämningar är det första taxonförslaget som communityn sedan håller med om."
+  observation_accuracy_experiment_for_example: "Till exempel, Bestämmare 1 lägger till en bestämning av A till ett fynd. Om Bestämmare 2 sedan lägger till en ledande bestämning av B, blir Bestämmare 1's bestämning av A en förbättrande bestämning. Om Bestämmare 3 sedan lägger till en stödjande bestämning till B, blir Bestämmare 2's bestämning en förbättrande bestämning."
+  observation_accuracy_experiment_step_2: "Steg 2: Provverifiering"
+  observation_accuracy_experiment_we_contacted: "Vi kontaktade potentiella verifierare och bad dem att lägga till bestämningar till sina delprover. Grafen till höger grupperar provfynd efter antalet verifierare."
+  observation_accuracy_experiment_number_percent_of: "Antal medverkande verifierare: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Procent verifierade prover: %{percent}"
+  observation_accuracy_experiment_step_3: "Steg 3: Poängsättning av provfynd från verifieringar"
+  observation_accuracy_experiment_we_scored: "Vi räknade fynd i urvalet som korrekta, osäkra eller felaktiga genom att jämföra verifierarnas bestämningar med varje provfynds taxon. Bestämningar som matchade provets fyndaxon, eller exaktare, räknades som korrekt. Icke-oeniga bestämningar till högre nivå räknades som osäkra, liksom fall där flera verifierare var oense. Oense bestämningar till högre nivå eller bestämningar till olika grenar räknades som felaktiga."
+  observation_accuracy_experiment_correct: "Korrekt"
+  observation_accuracy_experiment_uncertain: "Osäker"
+  observation_accuracy_experiment_incorrect2: "Felaktig"
+  observation_accuracy_experiment_step_4: "Steg 4: Beräkning av noggrannhet och precision"
+  observation_accuracy_experiment_accuracy: "Noggrannhet"
+  observation_accuracy_experiment_we_calculated: "Vi beräknade Noggrannhet som andelen korrekta för hela urvalet inklusive delprover såsom Forskningsklass-delprovet. Vi beräknade också andelen osäkra och felaktiga. I exempelfiguren till höger, skulle andelen korrekta vara 83 %, andelen osäkra 6 och andelen felaktiga 11."
+  observation_accuracy_experiment_precision: "Precision"
+  observation_accuracy_experiment_if_every_sample: "Om varje provfynd var på en hög nivå såsom rike, skulle noggrannheten i iNaturalists dataset kunna vara mycket hög, men precisionen kanske var för låg för att göra dataset särskilt användbart. För att uppskatta precision, räknade vi antalet underliggande ändtaxa i iNaturalists taxonomi för varje taxon kopplat till varje provfynd. Vi beräknade precision såsom 1 dividerat med antalet ändtaxa. Om taxonet var ett ändtaxa blev precisionen 100%. Vi ignorerade ranger under art i precisionsberäkningen."
+  observation_accuracy_experiment_in_the_example: "I exempelfiguren till höger skulle medelprecisionen av tre provfynd bli 51 %."
+  observation_accuracy_experiment_read_more_html: |
+    För att läsa mer om hur detta experiment genomfördes, se detta <a href="%{url}">blogginlägg</a>.
+  observation_accuracy_validator_email_subject2: "Kan du tänka dig att hjälpa oss med Experiment %{version} för att uppskatta noggrannheten för iNaturalist-fynd?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Kan du tänka dig att hjälpa oss med ett <a href="%{url}">experiment (version %{version})</a> för att uppskatta noggrannheten för iNaturalist-fynd?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Bestäm alla fynd i länken nedan så dtaljerat du kan, även om de har forskningsklass, och även om din bästa bestämning är till en högre taxonomisk nivå (även rike).</li>
+    <li>Om du ser “Möjlig meningsskiljaktighet”-popuppen…
+    <ul>
+    <li>och du är säker på att det är felbestämt, klicka på den orangea knappen,</li>
+    <li>eller om du är osäker på mer än din bestämning, Klicka på den gröna knappen</li>
+    </ul>
+    </li>
+    <li>Gör detta senast <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Här är <a href="%{sample_url}">delmängd av %{num_obs} fynd</a>* som vi tror att du kan bestämma baserat på din aktivitet på iNat. <b>Lägg till den mest detaljerade bestämningen du kan för vart och ett av fynden senast %{validator_deadline_date}</b>.
+    *<i>Denna länk kommer att öppna Bestämningsverktyget på iNaturalists webbplats, och kräver att du är inloggad. Vi rekommenderar att du utför denna uppgift på en dator, men det är möjligt på din mobils webbläsare. Om du läser detta meddelande inifrån iNaturalists Android-app, se till att öppna länken i en webbläsarapp (inte själva iNat-appen). Du kan behöva logga in på webbplatsen via webbläsarappen.</i>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Vi beräknar noggrannhet genom att jämföra din bestämning med fyndets taxon. Du kan hoppa över fynd 
+    du bestämt tidigare om den bestämningen fortfarande är relevant. För mer information om hur vi kommer att räkna medhåll och meningsskiljaktigheter, fortsätt att läsa.
+  observation_accuracy_validator_email_ids_equal_to: |
+    För bestämningar lika med (A) eller exaktare än (B) kommer fyndets taxon att räknas som Överensstämmer.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Bestämningar på olika grenar (C) eller mindre exakt än fyndets taxon där du väljer 'Nej, men…' vid 'Möjlig meningsskiljaktighet'-frågan (D) kommer att räknas som Meningsskiljaktigheter.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Bestämningar som är mindre exakta än fyndets taxon där du väljer "Jag vet inte men…" ur
+    dialogrutan "Möjlig meningsskiljaktighet" (E) kommer att räknas som Osäkra.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Vi är verkligen tacksamma för din hjälp som artbestämmare på iNaturalist,
+    och stort tack för att du deltagit i denna studie. Läs <a href="%{url}">metoderna</a>
+    för att lära dig mer om experimentets utformning.
+  observation_accuracy_validator_email_with_gratitude: Stort tack,
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist-teamet
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Vänligen svara inte på detta meddelande. Om du har frågor eller synpunkter kan du kommentera <a href="%{url}">detta blogginlägg</a> eller mejla <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Vänligen svara inte på detta meddelande. Om du har frågor eller synpunkter, mejla <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Fynd tillagt till projektet \"%{project}\""
   observation_aggregation: Aggregering av fynd
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3306,6 +3463,7 @@ sv:
   observations_widget: Fynd-widget
   observations_with_this_field: Fynd med detta fält
   observations_with_this_field_and_value: Fynd med detta fält och värde
+  observations_without_this_field: Fynd utan detta fält
   observations_without_media: Fynd utan media
   observationcounts_refreshed: Fyndantal uppdaterat
   observed: Observerad
@@ -3403,7 +3561,9 @@ sv:
   only_the_project_admin_can_delete_this_project: Endast projektadministratören kan ta bort detta projekt.
   only_view_nearby_suggestions: Visa endast förslag i närheten
   only_you: Bara du
+  #Geoprivacy status in which no privacy has been applied
   open: öppen
+  #Geoprivacy status in which no privacy has been applied
   open_: Öppen
   open_description: "Alla kan se koordinaterna såvida detta taxon inte är hotat."
   open_street_map: OpenStreetMap
@@ -3414,12 +3574,12 @@ sv:
   #sign in with Apple OR Google
   or_all_caps: ELLER
   or_choose_high_level_taxa: "... eller välj från något taxon på högre nivå"
-  orange: orange
   order: Ordning
   order_by: Sortera efter
   organism_is_wild: Vild organism
   organisms: Organismer
   original: Original
+  original_flag: Ursprunglig flagga
   originally_flagged_by: Ursprungligen flaggad av
   originally_imported_from_url_html: "Ursprungligen importerad från <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Ursprungssidans URL för denna bild."
@@ -3585,7 +3745,6 @@ sv:
   data_transfer_consent_child_label: |
     Jag samtycker till att låta mitt barns personuppgifter överföras till USA
   pin_verb: Fäst
-  pink: rosa
   pinned_locations_desc: |
     Fäst denna kombination av koordinater, noggrannhet, koordinatsekretess och fyndplatsanteckningar för senare användning.
   place: Fyndplats
@@ -3915,6 +4074,7 @@ sv:
     north_korea: Nordkorea
     northern_cyprus: Nordcypern
     norway: Norge
+    oceania: Oceanien
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -4163,7 +4323,6 @@ sv:
     genom Google.
   public_domain: Allmängods
   publish: Publicera
-  purple: lila
   quality_grade: Kvalitetsnivå
   quality_grade_: Kvalitetsnivå
   quality_grade_colon: "Kvalitetsnivå:"
@@ -4174,7 +4333,11 @@ sv:
   radius_value: "Radie (m): %{radius}"
   random: Slumpmässig
   range: Intervall
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rang
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4346,7 +4509,6 @@ sv:
   recently_resolved: Nyligen lösta
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Uppgift
-  red: röd
   redo_search_in_map: Gör om kartsökningen
   redo_search_in_map_area: Gör om sökningen i kartområdet
   refresh: Ladda om
@@ -4401,6 +4563,8 @@ sv:
   remove_tags: Ta bort taggningar
   removed: Borttagen
   removed_project_user: Tog bort projektanvändare
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Tog bort roll
   removing: "Tar bort..."
   reorder_by_taxonomy: Ordna om efter taxonomi
   repair_broken_urls: Reparera brutna URL:er
@@ -4457,6 +4621,15 @@ sv:
   rotate_left: Rotera åt vänster
   rotate_right: Rotera åt höger
   row_singular_or_plural: Rad(er)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Testa höger-till-vänster layout? Du kan också använda test=rtl URL-parametern.
+    Observera att inte alla sidor har konverterats till höger-till-vänster layout
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Gick med i höger-till-vänster layout-test
   rules_and_formatting: "Regler och formatering"
   rules_for_adding_observations: Regler för att lägga till fynd
   rules_for_becoming_a_member: Regler för att bli medlem
@@ -4573,6 +4746,8 @@ sv:
   share_colon: "Dela:"
   short_code_for_this_place: Ange en fyndplats om denna länk endast gäller för taxa från en viss fyndplats. Lämna det tomt om den gäller taxa i hela världen.
   short_or_abbreviated_title_for_display: Kort eller förkortad rubrik för visning i små utrymmen. Max 10 tecken.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Borde detta vardagliga namn visas som standard för detta taxon?
   show: Visa
   show_active_and_inactive_taxa: Visa accepterade och ickeaccpeterade taxa
   show_hidden_content: Visa dolt innehåll
@@ -4589,6 +4764,8 @@ sv:
   show_no_annotation: Visa "Ingen anteckning"
   show_off_your_recent_observations: Visa upp dina senaste fynd på din egen blogg eller hemsida!
   show_only: Visa endast
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Visa OpenStreetMap
   show_relative_proportions_of_all_observations: Visa relativ andel av alla fynd
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Visa ackumulerat
@@ -4791,7 +4968,6 @@ sv:
   start_a_new_project: Starta ett nytt projekt
   start_a_project: Starta ett projekt
   start_date_time: Startdatum / -tid
-  start_one: Starta en
   start_one_now: Starta en nu!
   start_typing_field_name: Börja skriva fältnamn...
   start_typing_place_name: Börja skriva loklnamn...
@@ -4821,10 +4997,9 @@ sv:
   studies_that_used_inaturalist_data_in_year: Studier som använde iNaturalist-data under %{year}
   stuff_just_added: "Saker du just lagt till..."
   subject_resolved_noun_html: "%{subject} löst %{noun}"
-  subject_affecting_stuff_html: "%{subject} påverkar %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} skapade @gender{n:ett|en} %{thing} som påverkar %{stuff}"
   submission_model: Insändningsmodell
   submission_model_description: Vem kan lägga till fynd till ditt projekt?
+  submit: Skicka
   submit_observations:
     one: Skicka in 1 fynd
     other: Skicka in %{count} fynd
@@ -4873,6 +5048,7 @@ sv:
   synonyms: Synonymer
   table: Tabell
   table_of_contents: Innehållsförteckning
+  tabulate_presence_absence_data_from_trips: Tabulera när-/frånvarodata från utflykter
   #Noun, as in "add a tag to this observation"
   tag: Tagg
   tagging: 'Taggar...'
@@ -4962,6 +5138,8 @@ sv:
   taxon_deleted: Taxon raderat.
   taxon_doesnt_have_a_range: Taxon saknar område
   taxon_drop: taxoninaktivering
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taxoninaktivering som påverkar %{taxon}
   taxon_id: TaxonID
   taxon_ids: TaxonID:n
   taxon_map:
@@ -4985,6 +5163,9 @@ sv:
   taxon_framework_taxon: Taxonkontextens taxon
   taxon_history_notice: Historik introducerades i februari 2022, så ingen historik är tillgänglig före detta datum.
   taxon_merge: taxonhopslagning
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxonhopslagning som påverkar %{taxa}
   taxon_name: Taxon namn
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnamn måste matcha ett befintligt taxon i vår databas
   taxon_observed_by_html: |
@@ -5014,6 +5195,7 @@ sv:
     Använd beskrivningen för att förklara hur kartan härleddes och länka till relevanta flaggor, taxonomiska uppdelningar eller andra diskussioner om varför det publicerade utbredningsområdet från IUCNs Rödlista behövde justeras.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Läs mer om utbredningsområden
   taxon_range_updated_notice: Lyckades uppdatera utbredningsområde för taxon. Det kan ta ett par minuter innan ändringar syns på kartorna.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taxonranger
   taxon_removed_from_list: Taxon borttaget från listan.
   taxon_scheme: Checklista för taxa
@@ -5021,9 +5203,17 @@ sv:
   taxon_search: Taxonsök
   taxon_search_results_for: Resultat av taxonsök för
   taxon_split: taxonuppdelning
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxonuppdelning som påverkar %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxonförberedelse
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxonförberedelse som påverkar %{taxon}
   taxon_swap: taxonbyte
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxonbyte som påverkar %{taxa}
   taxon_swap_only_has_one_input: endast en inmatning tillåten för ett byte
   taxon_swap_has_inputs_and_outputs: ett byte måste ha både in- och utdata
   taxon_name_was_deleted: Taxonnamnet har raderats.
@@ -5054,8 +5244,10 @@ sv:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Textformateringskontroller
   text_editing_controls: Textredigeringskontroller
+  thank_you!: Tack!
   thanks!: Tack!
   thanks_from_all_of_us_here_at: Tack från alla här på
+  that_account_is_already_connected: Det kontot är redan kopplat till en annan användare
   that_photo_doesnt_exist: Den bilden finns inte.
   that_observation_doesnt_exist: Det fyndet finns inte.
   that_observation_doesnt_have_any_photos: "Det fyndet har inga bilder."
@@ -5099,7 +5291,6 @@ sv:
   there_are_x_synonyms_html:
     one: "Det finns <span class='count'>1</span> synonym</span>"
     other: "Det finns <span class='count'>%{count}</span> synonymer</span>"
-  there_is_no_wikipedia_page_matching: Det finns ingen matchande Wikipedia-sida
   there_isnt_a_wikipedia_article_titled_x_html: |
     Det finns ingen Wikipedia-artikel eller omdirigering med titeln '%{x}'. Kanske vill du <a href='http://en.wikipedia.org/wiki/%{x}'>göra en</a>?
   there_merge_problems_with_the_merge: "Det blev problem med sammanslagningen: %{merged_errors}"
@@ -5361,6 +5552,8 @@ sv:
   unable_to_save_comment: Tyvärr lyckades vi inte spara kommentaren.
   unblock: Avblockera
   unclassified: Oklassificerad
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Så funkar projekt
   ungrafted_taxa: Oplacerade taxa
   unhide_content: Visa innehåll igen
   unhide_desc: |
@@ -5370,7 +5563,10 @@ sv:
   unknown: Okänd
   unknown_error: Okänt fel
   unknown_rank: '(Okänd rang)'
-  unfollow: Sluta följa
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Sluta följa fynd
+  #Text for a button to stop following updates from a user
+  unfollow_user: Sluta följa användaren
   unlink_your_google_account: Koppla från ditt Google-konto
   unlink_your_flickr_account: "Koppla från ditt Flickr-konto"
   unmute: Ta bort "tysta"
@@ -5487,7 +5683,9 @@ sv:
   user_added_an_x_to_noun_by_you_html: "%{user} lade till en %{x} till %{noun} av dig"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} lade till en %{x} till %{noun}"
-  user_added_x_observations_html: "%{user} lade till %{x} fynd"
+  user_added_x_observations2_html:
+    one: "%{user} lade till %{count} fynd"
+    other: "%{user} lade till %{count} fynd"
   user_already_authenticated: Användaren är redan autentiserad
   user_already_app_owner: Användaren är redan en appägare
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5497,6 +5695,16 @@ sv:
     %{user} anser att detta är en fullständig lista över %{taxon} i %{place}
   user_blocked: Användare blockerad
   user_commented: "%{user} kommenterade"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} bekräftade en taxoninaktivering som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} bekräftade en taxonsammanslagning som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} bekräftade en taxonuppdelning som påverkar %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} bekräftade en taxonförberedelse som påverkar %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} bekräftade ett taxonbyte som påverkar %{taxa}"
   user_disagrees_this_is_taxon: "%{user} håller inte med om att detta är %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} håller inte med om tidigare mer precis bestämning"
   user_faved_an_observation_by_you: "%{user} favoritmarkerade ett av dina fynd"
@@ -5598,6 +5806,7 @@ sv:
   values: Värden
   verbing_x_of_y: "%{verb} %{x} av %{y}..."
   verifiable_observations_by_observation_date: Verifierbara fynd efter observationsdatum
+  video_tutorials: Videohandledning
   view: Visa
   view_all: Visa alla
   view_all_caps: VISA ALLA
@@ -5675,7 +5884,6 @@ sv:
   view_your_personal_year_in_review_caps: "VISA DIN PERSONLIGA SUMMERING AV %{year}"
   view_yours: Visa dina
   view_all_of_your_observations_from_x: "Visa alla dina fynd från %{x}"
-  video_tutorials: Videohandledning
   visually_similar: Visuellt liknande
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: Hurra! Inga oplacerade taxa!
@@ -5736,7 +5944,6 @@ sv:
   where_were_they?: Var befann de sig?
   where_were_you?: Var var du?
   which_projects_can_add_your_observations?: Till vilka traditionella projekt passar dina fynd?
-  white: vit
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Varför gör du denna förändring? (valfritt)
   why_are_you_making_this_change_cite_source_required: Varför gör du denna förändring? Förklara och citera en källa om möjligt. (Obligatoriskt)
@@ -5811,9 +6018,9 @@ sv:
   year: År
   year_in_review: "Året som gått %{year}"
   year_in_review2: "Summering av %{year}"
+  year_in_review_caps: "ÅRET SOM GÅTT %{year}"
   year_month: år/månad
   year_on_site: "År %{year} på %{site}"
-  yellow: gul
   'yes': "Ja"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5844,6 +6051,57 @@ sv:
   yir_donate_banner_you_helped_inaturalist_thrive: Du har hjälpt iNaturalist att frodas i år. Tack!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist behöver ditt stöd
+  yir_email_because_of_you: |
+    På grund av dig, finns det mer data om biologisk mångfald det här året än 
+    förra året. Året Som Gått är vår gåva till dig för allt du har gjort för biologisk
+    mångfald genom iNaturalist.
+  yir_email_log_in_to_generate: |
+    Logga in för att generera ditt personliga Året Som Gått och ta reda på det!
+  yir_email_of_your_observations:
+    one: Av din %{count} observation, vet du hur många som gjordes %{year}?
+    other: Av dina %{count} observationer, vet du hur många som gjordes %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ditt iNaturalist-Året Som Gått %{year} – fira ditt år av biologisk mångfald
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: iNaturalist-teamet
+  yir_email_the_year_isnt_over: |
+    Året är inte över ännu, och det är aldrig för sent att lägga upp äldre
+    fynd. När du delat fler fynd, se till att välja “Skapa statistik igen”
+    längst ner på ditt Året Som Gått för att se uppdateringarna.
+  yir_email_what_else_will_you_observe_caps: VAD MER KOMMER DU ATT SE?
+  yir_email_what_new_to_you: |
+    Vilka nya-för-dig-arter sparade du i år? Hur många användare hjälpte
+    dig med bestämningar (och hur många hjälpte du)?
+  yir_email_with_gratitude: Stort tack,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} PÅ INATURALIST GLOBALT"
+  yir_email_you_are_part_of_something: |
+    Du är del av något stort! Varje person som lägger upp fynd, lägger till
+    bestämningar och berättar om iNaturalist gör en skillnad för biologisk
+    mångfald. Genom vårt gemensamma arbete gör vi data och insikter om
+    biologisk mångfald tillgängliga i en aldrig tidigare skådad skala.
+    Tack för att du är en del av iNaturalist-communityn!
+  yir_email_you_make_a_difference: |
+    Du gör skillnad för biologisk mångfald genom iNaturalist. Tack för
+    allt du gör!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Du fick detta mejl eftersom %{email} är knutet till
+    https://www.inaturalist.org/people/%{username}, ett iNaturalist-konto
+    skapat %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Du fick detta mejl eftersom %{email} är knutet till
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    ett iNaturalist-konto skapat %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Ditt konto är anknutet till %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Ditt konto är anknutet till <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Att skapa och dela så mycket data om biologisk mångfald med sådan genomslagskraft och så snabbt och utan like har stadigt ökande kostnader
   yir_millions_of_people_used_inaturalist: |
@@ -5998,6 +6256,9 @@ sv:
       locales_desc: |
         CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något kommer meddelandet att visas för alla användare oavsett lokalisering. Att välja ett språk utan en region kommer *inte* att rikta det mot lokaliseringar i regioner, t.ex. om du valde en kommer det inte att visas för personer som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill 
         visa ett meddelande för alla medlemmar på en webbplats, lämna helt enkelt detta tomt.
+      clients_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något visas
+        tillkännagivandet för alla användare oavsett klient.
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
@@ -6130,6 +6391,12 @@ sv:
         Tack för ditt intresse av att stödja iNaturalist! Att donera till
         iNaturalist är tillfälligt avaktiverat medan vi uppdaterar våra
         donationssystem. Vänligen kolla snart igen.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klicka här för att skicka ett bekräftelsemejl igen.
+      please_add_an_email_and_password: Lägg till e-post och lösenord så att du inte förlorar åtkomst till ditt konto
+      please_click_the_link_sent_to_email_to_confirm_html: Klicka på länken som skickades till <span class="email">%{email}</span> för att bekräfta din e-postadress.
+      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig.
+      your_site_account_has_no_email: Ditt %{site_name}-konto har ingen e-postadress kopplad till det.
     flags:
       show:
         flaggable_content_desc: |
@@ -6191,10 +6458,10 @@ sv:
           figure_alt_text: Förväntad i närheten-kartan och Taxonutbredning jämförs
           combining_these_maps_produces: |
             Kombinationen av dessa kartor ger 3 typer av celler:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Sann förekomst:
-          true_presences_definition: Områden där både Förväntad i närheten-kartan och Taxonutbredningen förutspår att ett taxon finns
+          true_presences_definition2: Områden där både Förväntad i närheten-kartan och Taxonutbredningen förutspår att ett taxon finns
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Falsk förekomst:
@@ -6433,6 +6700,36 @@ sv:
           Du flaggade den här konversationen den %{date}. Flaggan kommer att bestå även om du tar bort din kopia av denna konversation, så det är säkert att göra det om du inte längre vill se detta.
         privacy_notice_html: |
           Även om meddelanden mellan dig och mottagaren är privata, kan iNaturalist-personal också läsa dessa meddelanden, och kommer att göra det när meddelanden har flaggats för moderering. Om du behöver verkligt privat kommunikation, se dig om efter andra kommunikationssätt som stöder stark kryptering.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vision Language-demo
+      what_do_you_want_to_search_for: Vad letar du efter?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: t.ex. %{query_in_english}
+      try_one_of_these_example_searches_colon: "Prova en av dessa exempelsökningar:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Hjälp oss att bli bättre
+      to_help_us_improve: För att hjälpa oss att förbättra denna modell skulle vi vilja veta vilka av bilderna på denna sida som är relevanta för din sökning &quot;%{searched_term}&quot;. Markera varje bild som relevant %{thumbs_up_icon} om den matchar din sökning och inte relevant %{thumbs_down_icon} om den inte gör det. När du är klar, klicka på skicka. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Markera resterande som relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Markera resterande som icke relevant
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Se dessa fynd i Artbestäm
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> samarbetar med forskare vid <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University of College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> samt med generöst stöd från <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a> för att bättre förstå potentialen hos Visuella språkmodeller för att hjälpa till att organisera, utforska och förklara iNaturalist-fynd. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Detta demoverktyg låter dig skriva in en sökfras (t.ex. "<a href="%{url}">%{query_in_english}</a>"), och jämför det med 10 miljoner iNaturalist-bilder. Resultaten sorteras från de mest till minst relevanta. Du kan använda denna demo som ett nytt sätt att hitta intressanta iNaturalist-fynd att kommentera eller lägga till i ditt projekt.
+      you_can_also_use_this_demo: Du kan också använda denna demo för att hjälpa oss att utvärdera den visuella språkmodellen bakom denna demo genom att berätta för oss vilken av de resulterande bilderna som var relevanta för din sökfras. Denna demo använder en tredje part <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP-modell</a> som inte tränades på iNaturalist-data eller av iNaturalist-teamet. Ibland kan verktyget producera felaktiga, partiska eller stötande resultat. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Läs mer på iNaturalist Bloggen</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Om du vill stödja detta arbete
+      thank_you_for_your_submission!: Tack för ditt bidrag!
     oauth:
       authorizations:
         new:
@@ -6687,18 +6984,18 @@ sv:
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
         join_project_desc_html: |
           Om du går med i projektet kommer det att ge projektförvaltarna möjlighet att se dolda koordinater för detta och alla andra fyndi projektet, och innebär att du godkänner projektets <a href="%{url}" target="_blank">villkor</a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
-          Bedömningen av datakvaliteten är en sammanfattning av ett fynds korrekthet. Alla
-          fynd börjar som <strong>"grund"</strong>klass, och blir
-          <strong>"behöver bestämning"</strong> när
+          Bedömningen av datakvaliteten är en sammanfattning av ett fynds noggrannhet. Alla
+          fynd börjar som <strong>"grund"</strong>klass, och
+          <strong>"behöver bestämmas"</strong> när
           </p>
 
           <ul>
-          <li>fyndet<strong>har ett datum</strong></li>
-          <li>fyndet<strong>är koordinatsatt</strong> (dvs har lat/long-koordinater)</li>
-          <li>fyndet<strong>har bilder eller ljud</strong></li>
-          <li>fyndet<strong>inte är en människa</strong></li>
+          <li>fyndet <strong>har ett datum</strong></li>
+          <li>fyndet <strong>är geopositionerat</strong> (dvs har lat/long-koordinater)</li>
+          <li>fyndet <strong>har bild eller ljud</strong></li>
+          <li>fyndet <strong>inte är en människa</strong></li>
           </ul>
           <p>
           fynd får <strong>"forskningsklass"</strong> när
@@ -6706,52 +7003,58 @@ sv:
           <ul>
           <li>
           %{site_name} <strong>communityn håller med om bestämning till artnivå eller
-          lägre</strong>, dvs när fler än 2/3 av bestämmarna är överens om ett
-          taxon (om communityn har röstat om att Community-bestämningen inte längre kan
-          förbättras, återgår den till underfamiljsbestämning eller lägre)
+          lägre</strong>, d.v.s. när fler än 2/3 av bestämmarna är överens om ett
+          taxon (om communityn har röstat att communityn-taxonet inte kan förbättras,
+          återgår det till underfamiljsbestämning eller lägre)
           </li>
           </ul>
           <p>
-          Fynd återgår till <strong>"grund"</strong> om ovanstående villkor inte är uppfyllda
-          eller communityn håller med om att
+          Fynd återgår till <strong>"grund"</strong>klass om ovanstående villkor inte är uppfyllda
+          eller communityn är överens
           </p>
           <ul>
           <li>
-           <strong>platsen ser inte
-          rätt ut</strong> (t.ex. apor mitt i havet,
+           <strong>platsen inte verkar vara
+          korrekt</strong> (t.ex. apor mitt i havet,
           flodhästar i kontorsbyggnader, etc.)
           </li>
           <li>
-          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlas av människan
-          eller intelligenta rymdvarelser)
+          organismen <strong>inte är vild/naturaliserad</strong> (t.ex. i fångenskap eller odlad)
           </li>
           <li>
-          fyndet <strong>inte utgör stöd för en
-          organism</strong>, t.ex. bilder av vattensamlingar,
+          fyndet är <strong>inte ett tecken på en
+          organism</strong>, t.ex. bilder av vattenmassor,
           klippor, landskap som inte inkluderar organismen, etc.
           </li>
           <li>
-          fyndet <strong>utgör inte stöd för organismern i modern tid (~100 år)</strong> (t.ex. fossil, men spår, avföring och döda blad
-          är okej)
+          fyndet <strong>utgör inte nutida (~100 år) stöd för
+          organismen</strong> (t.ex. fossil, men spår, avföring och döda blad
+          är ok)
           </li>
           <li>
-          fyndet behöver inte längre bestämmas <em>och</em> community-bestämningen är till familj eller högre
+          fyndet <strong>utgör inte stöd för en enstaka sak</strong>
+          (t.ex. det finns fyra bilder på orelaterade organismer. En bild som visar livsmiljön för
+          fyndets subjekt är OK.
           </li>
           <li>
-          observatören har valt bort community-bestämning samt community-
-          bestämningens taxon är inte en förfader eller ättling till det taxon
-          observatören bestämt
+          fyndet inte längre behöver bestämmas <em>och</em> community-bestämningen är till familj eller högre
+          </li>
+          <li>
+          observatören har valt bort community-bestämning och communityns
+          taxonbestämning inte är över- eller underliggande det taxon som är kopplat
+          till observatörens bestämning
+          </li>
           </ul>
           <p>
-          Och om det inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
+          Och om detta inte var tillräckligt komplicerat, finns det också situationer där systemet får en röst:
           </p>
           <ul>
           <li>
-          Systemet kommer att rösta för att fyndet inte är vilt/naturaliserat
+          Systemet kommer att rösta att fyndet inte är vilt/naturaliserat
           om det finns minst 10 andra fynd av ett släkte eller lägre i
-          den minsta län-, stat-, eller landmotsvarighet till plats som
-          innehåller detta fynd samt att 80% eller fler av dessa fynd
-          har markerats som inte vilt/naturaliserat.
+          det minsta motsvarighet till län, stat, eller land som
+          innehåller detta fynd och 80% eller fler av dessa fynd
+          har markerats som inte vilda/naturaliserade.
           </li>
           </ul>
         score_desc: "poäng = sammanräknat antal / (sammanräknat antal + oenigt antal + förfadersoenigheter)"
@@ -6980,6 +7283,8 @@ sv:
           Om den enda anledningen till att du lämnar är för att hindra projektförvaltare från att se dina dolda koordinater.
       edit:
         admins_must_be_existing_members: Administratörer måste vara befintliga medlemmar i projektet.
+        admins_can_only_be_added_after_creation: |
+          Administratörer kan endast läggas till efter att projektet har skapats.
         aggregation_pending: Inväntar aggregering
         new_place_desc_html: |
           Försök kolla igenom
@@ -7101,6 +7406,9 @@ sv:
         display_project_name: Visa projektnamn
         do_you_need_features_from_traditional: |
           Behöver du funktioner från traditionella projekt, såsom tillgång till exakta koordinater, anpassade fyndfält eller möjlighet att lägga till individuella fynd som inte kan filtreras automatiskt?
+        do_you_need_features_from_traditional2: |
+          Behöver du funktioner från traditionella projekt, såsom anpassade fyndfält
+          eller lägga till individuella fynd som inte kan filtreras automatiskt?
         duplicate_project: Dubblettprojekt
         include_annotated_observations: |
           Inkludera endast fynd med anteckning om ett visst attribut (t.ex. livsstadium), eller ett visst attribut och värde (t.ex. livsstadium = adult).
@@ -7290,6 +7598,19 @@ sv:
           Skapad via <a href="https://www.inaturalist.org">iNaturalist</a> 
           eller <a href="%{url}">iNaturalist Network</a>-webbplatser
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Lade till båda
+        added_only_identifications: Lade endast till bestämningar
+        added_only_observations: Lade endast till fynd
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Bredare inverkan
+        broader_impacts_desc: |
+          Flera externa partner importerar regelbundet iNaturalist-fynd för att
+          stödja vetenskap och naturvård. Dina fynd, bestämningar och val av
+          öppna licenser gör det möjligt för dessa organisationer att tillhandahålla
+          användbar information om biologisk mångfald till människor som
+          behöver det runt om i världen.
         compare_desc: |
           Hur var detta år jämfört med dina tidigare år? Med tre år av användning eller mer kan vi börja jämföra årliga aktivitetsmått. Den gröna stapeln visar i år, den vita lodräta stapeln visar förra året, och de grå bakgrundsområdena visar de lägsta och högsta åren, såväl som medel för alla år. Statistik inkluderar inte år där antalet var noll.
         compare_site_desc: |
@@ -7383,6 +7704,9 @@ sv:
           %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "VISA %{count} PUBLIKATION"
+          other: "VISA ALLA %{count} PUBLIKATIONER"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7442,6 +7766,7 @@ sv:
           "Invandringshistoria" beskriver hur en art kom dit den för närvarande är. Införd innebär att den kom in pga mänsklig aktivitet, medan inhemsk betyder att den kom in utan mänsklig hjälp. Endemiska arter förekommer endast på en specifik plats och ingen annanstans.
         about_taxon_curators_desc: |
           Dessa personer hanterar den del av det taxonomiska trädet som inkluderar detta taxon. Om du vill göra ändringar, vänligen flagga detta taxon eller kontakta någon av dessa personer.
+        charts_caps: DIAGRAM
         charts_help_seasonality: |
           Detta diagram visar antalet fynd av detta taxon grupperat efter månad. Tänk på att detta är fyndantal, så de påverkas både av när organismen kan bserveras och när människor bry sig om att observera dem. En fågel kan alltså tyckas vara mycket aktiv i maj, men det kan också bero på att fler personer skådar i maj men tenderar att ignorera den arten under följande månader. På samma sätt, om du ser fler trollsländor i juni än i januari, beror det förmodligen på att det finns fler personer som observerar på norra halvklotet än på
           det södra och inte för att trollsländor är mer aktiva i juni, så kolla kartan när du begrundar dessa diagram. Det är alltid en bra idé att vara skeptisk till dessa diagram när det finns få fynd och/eller stora skillnader mellan antalet "Verifierbara" fynd och sådana av "Forskningsklass".
@@ -7466,7 +7791,14 @@ sv:
           "Plant Phenology=Flowering": Blomning
           "Plant Phenology=Fruiting": I frukt
           "Plant Phenology=No Evidence of Flowering": Inga tecken på blomning
-          "Life Stage=Adult": Adult
+          "Flowers and Fruits=Flower Buds": Blomknoppar
+          "Flowers and Fruits=Flowers": Blommor
+          "Flowers and Fruits=Fruits or Seeds": Frukter eller frön
+          "Flowers and Fruits=No Flowers or Fruits": Inga blommor eller frukter
+          "Leaves=Breaking Leaf Buds": Uppsprickande bladknoppar
+          "Leaves=Green Leaves": Gröna blad
+          "Leaves=Colored Leaves": Färgade blad
+          "Leaves=No Live Leaves": Inga levande blad
           "Life Stage=Egg": Ägg
           "Life Stage=Larva": Larv
           "Life Stage=Juvenile": Juvenil
@@ -7516,22 +7848,28 @@ sv:
       form:
         new_name_guidelines_html: |
           <ul>
-          <li><p>Försök att lägga till namn som har använts någon annanstans. Vänligen uppfinn inte nya namn.</p></li>
-          <li><p>Lägg inte till dubblettnamn, t.ex. namnge inte flera hökar "hök"</p></li>
-          <li><p>För taxa på högre nivå, försök att använda namn som beskriver alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
+          <li><p>Försök att lägga till namn som har använts någon annanstans. Snälla, uppfinn inte nya namn.</p></li>
+          <li><p>Lägg inte till dubblettnamn, t.ex. ge inte flera hökar namnet "hök"</p></li>
+          <li><p>För taxa på högre nivå, försök att använda namn som inkluderar alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
           <li>
           <p>
-          Lägg inte till information som inte är en del av namnet, t.ex. information inom parentes om hur du tycker att namnet ska användas
+          Lägg inte till information som inte är en del av namnet, t.ex.
+          information inom parentes om hur du tycker att namnet ska användas
           </p>
           </li>
           <li>
           <p>
-          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
+          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga
+          namn som "French, Français" eftersom det bara kommer att göra det
+          svårt eller omöjligt för oss att visa lokaliserade namn för personer som
+          använder webbplatsen på andra språk.
           </p>
           </li>
           <li>
           <p>
-          Vardagliga namn som är kopplade till översatta språk kommer att visas som vardagligt standardnamn på det språket (bortsett från effekten av platsinställningar, namnsortering etc.).
+          Vardagliga namn som är kopplade till översatta språk kommer att visas
+          som vardagligt standardnamn på det språket (bortsett från påverkan av
+          platsinställningar, namnsortering etc.).
           <a class="readmore" href="/pages/translate">Läs mer om översättning</a>
           </p>
           </li>
@@ -7613,6 +7951,7 @@ sv:
           Om någon trakasserar eller förföljer dig på %{site_name},
           <a href="mailto:%{help_email}">vänligen meddela oss</a>. Om det visar sig vara ett brott mot våra Användarvillkor, eller något annat beteende som vi anser är olämpligt på vår webbplats, kommer vi att titta närmare på det.
           </p>
+        common_scientific_name_display_order: Visningsordning för vardagligt / vetenskapligt namn
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Om du ändrar dig kan du alltid <a href='/users/edit'>redigera dina inställningar</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7708,6 +8047,26 @@ sv:
         taxon_change_desc: |
           När taxa slås samman eller byter namn på %{site_name}, kommer dina fynd, listade taxa, bestämningar etc. automatiskt att uppdateras till dessa nya taxa om ändringen är entydig. Om du väljer bort det eller om ändringen är tvetydig (t.ex. vid en uppdelning), kommer du att få en uppdatering om ändringen med en länk till ett verktyg du kan använda
           för att manuellt uppdatera ditt innehåll om du vill.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Lägg till ett lexikon för vardagliga namn
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Lägg till en plats (valfritt)
+          common_name_lexicon_display_order: Visningsordning för vardagsnamnslexikon
+          common_name_lexicons: Vardagsnamnslexikon
+          common_name_lexicons_description: Som standard visas vardagligt namn på ditt kontos språk/lokalisering. Lägg till vardagsnamnslexikon ör att se namn ur andra lexikon, eller för att prioritera namn som används på specifika platser (såsom engelska (Australien) eller spanska (Costa Rica)). Högst 3 vardagliga namn kan visas samtidigt. Om det inte finns något vardagligt namn i ett lexikon du har valt, kommer det att utelämnas från visning.
+          for_multiple_common_name_lexicons_drag_and_drop: Dra och släpp i inställningarna nedan för att anpassa den ordning i vilken vardagsnamnslexikon visas.
+          same_as_locale: Samma som platsen
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Samma som preferens för användarspråk/plats
+          select_a_lexicon: Välj ett lexikon
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Max 3 vardagsnamnslexikon har redan lagts till
         this_only_applies_to_traditional_projects: |
           Det här gäller endast traditionella projekt. Du kan inte utesluta fynd från samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.
           Du kan läsa mer
@@ -8029,6 +8388,7 @@ sv:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Applikation
       Photo: Bild
+      Post: Dagboksinlägg
       TaxonLink: Taxonlänk
     attributes:
       announcement:
@@ -8042,6 +8402,8 @@ sv:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Riktat mot obekräftade användare
+        prefers_exclude_monthly_supporters: Exkludera månatliga bidragsgivare
+        clients: Klienter
       assessment:
         description: Beskrivning
       assessment_section:
@@ -8272,6 +8634,23 @@ sv:
           one: "%{count} fel hindrade denna %{model} från att sparas"
           other: '%{count} fel hindrade denna %{model} från att sparas'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this text, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: måste vara giltig för angiven placering
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: måste vara giltigt för angiven målgrupp
         application:
           attributes:
             redirect_uri:
@@ -8308,7 +8687,7 @@ sv:
             action:
               not_supported_for_this_kind_of_content: stöds inte för denna typ av innehåll
             base:
-              only_staff_can_unhide: Endast personal kan synliggöra dolt innehåll
+              only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
@@ -8349,13 +8728,17 @@ sv:
               is_too_large_to_edit: är för stor för att redigeras
               is_too_large_to_import: är för stor för att importeras
               contains_too_many_observations: innehåller för många fynd för import
+              cannot_be_blank: kan inte vara tomt
+              invalid_point: har en ogiltig punkt, t.ex. längdgrad större än 180 eller breddgrad mindre än -90
+              must_have_more_than_three_points: måste ha mer än 3 punkter
+              polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: kan inte vara tomt
               invalid_point: har en ogiltig punkt, t.ex. longitud större än 180 eller latitud mindre än -90
               must_have_more_than_three_points: måste ha mer än 3 punkter
-              polygon_with_fewer_than_four_points: har en polygon med färre än 4 punkter
+              polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
         post:
           attributes:
             parent:
@@ -8629,6 +9012,20 @@ sv:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Animalia
+        Actinopterygii: Actinopterygii
+        Aves: Aves
+        Reptilia: Reptilia
+        Amphibia: Amphibia
+        Mammalia: Mammalia
+        Arachnida: Arachnida
+        Insecta: Insecta
+        Plantae: Plantae
+        Fungi: Fungi
+        Protozoa: Protozoa
+        Mollusca: Mollusca
+        Chromista: Chromista
   #Title of a section warning the user about something
   warning_title: Varning
   wikimedia: Wikimedia

@@ -33,12 +33,12 @@ const HistoryComparison = ( {
       case "week_of_year":
         xAttr = "week";
         HistogramComponent = Histogram;
-        xParser = x => parseInt( x, 0 );
+        xParser = x => parseInt( x, 10 );
         break;
       case "month_of_year":
         xAttr = "month";
         HistogramComponent = Histogram;
-        xParser = x => parseInt( x, 0 );
+        xParser = x => parseInt( x, 10 );
         break;
       default:
         xAttr = "date";
@@ -72,7 +72,7 @@ const HistoryComparison = ( {
       if ( xAttr === "date" ) {
         allXValues = allXValues.map( isoParse );
       } else {
-        allXValues = allXValues.map( x => parseInt( x, 0 ) );
+        allXValues = allXValues.map( x => parseInt( x, 10 ) );
       }
       const allYValues = _.flatten( _.map( histories, history => _.values( history ) ) );
       const xExtent = extent( allXValues );

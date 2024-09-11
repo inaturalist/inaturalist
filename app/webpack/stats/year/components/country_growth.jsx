@@ -141,9 +141,9 @@ class CountryGrowth extends React.Component {
       }
     } );
     const dataScale = ( dataScaleType === "linear" ? d3.scaleLinear( ) : d3.scaleLog( ) )
-      .domain( [1, d3.max( _.map( worldFeatures, d => parseInt( d.properties[metric], 0 ) ) )] );
+      .domain( [1, d3.max( _.map( worldFeatures, d => parseInt( d.properties[metric], 10 ) ) )] );
     const colorizer = d => {
-      if ( parseInt( d.properties[metric], 0 ) <= 0 ) {
+      if ( parseInt( d.properties[metric], 10 ) <= 0 ) {
         return "#000000";
       }
       return d3.interpolateViridis( dataScale( d.properties[metric] ) );
@@ -274,7 +274,7 @@ class CountryGrowth extends React.Component {
     const barsContainer = d3.select( $( ".bars .chart", domNode ).get( 0 ) );
     const barData = _.sortBy(
       _.uniqBy(
-        _.filter( worldFeatures, c => parseInt( c.properties[metric], 0 ) > 0 ),
+        _.filter( worldFeatures, c => parseInt( c.properties[metric], 10 ) > 0 ),
         c => c.properties.iso_a2
       ),
       c => c.properties[metric] * -1

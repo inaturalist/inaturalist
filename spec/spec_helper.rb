@@ -25,7 +25,7 @@ include MakeHelpers
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
-Dir[Rails.root.join( "spec/support/**/*.rb" )].sort.each {| f | require f }
+Dir[Rails.root.join( "spec/support/**/*.rb" )].each {| f | require f }
 
 RSpec.configure do | config |
   # == Mock Framework
@@ -195,13 +195,13 @@ end
 class FlickrCache
   class << self
     alias real_request request
-    def request( flickraw, type, method, params )
+    def request( flickr, type, method, params )
       fname = "flickr.#{type}.#{method}(#{params})".gsub( /\W+/, "_" )
       fixture_path = File.expand_path( File.dirname( __FILE__ ) + "/fixtures/flickr_cache/#{fname}" )
       if File.exist?( fixture_path )
         File.open( fixture_path, &:read )
       else
-        response = real_request( flickraw, type, method, params )
+        response = real_request( flickr, type, method, params )
         File.open( fixture_path, "w" ) do | f |
           f << response
           puts "Cached #{fixture_path}. Check it in to prevent this happening in the future."
@@ -223,12 +223,30 @@ LocalPhoto.attachment_definitions[:file].tap do | d |
   end
 end
 
+VCR.configure do | config |
+  config.allow_http_connections_when_no_cassette = true
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into( :webmock )
+  config.ignore_localhost = true
+  config.filter_sensitive_data( "<AUTHORIZATION>" ) do | interaction |
+    interaction.request.headers["Authorization"]&.first
+  end
+  config.filter_sensitive_data( "<COOKIE>" ) do | interaction |
+    interaction.response.headers["Set-Cookie"]&.first
+  end
+end
+
 # Turn on elastic indexing for certain models. We do this selectively b/c
 # updating ES slows down the specs.
 def enable_elastic_indexing( *args )
   classes = [args].flatten
   classes.each do | klass |
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+    try_and_try_again(
+      [
+        Elastic::Transport::Transport::Errors::Conflict,
+        Faraday::ConnectionFailed
+      ], sleep: 0.1, tries: 20
+    ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
     klass.send :after_save, :elastic_index!
@@ -245,7 +263,12 @@ def disable_elastic_indexing( *args )
     klass.send :skip_callback, :save, :after, :elastic_index!
     klass.send :skip_callback, :destroy, :after, :elastic_delete!
     klass.send :skip_callback, :touch, :after, :elastic_index!
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+    try_and_try_again(
+      [
+        Elastic::Transport::Transport::Errors::Conflict,
+        Faraday::ConnectionFailed
+      ], sleep: 0.1, tries: 20
+    ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
   end
@@ -311,7 +334,7 @@ def load_time_zone_geometries
   zip_fname = File.basename( url )
   shp_fname = "combined-shapefile-with-oceans.shp"
   puts "checking if #{File.join( fixtures_path, shp_fname )} exists"
-  if File.exists?( File.join( fixtures_path, shp_fname ) )
+  if File.exist?( File.join( fixtures_path, shp_fname ) )
     puts "#{shp_fname} exists, skipping download"
   else
     puts "Downloading #{url}"

@@ -619,6 +619,7 @@ class Observation < ApplicationRecord
     # params to search based on value
     [ { http_param: :rank, es_field: "taxon.rank" },
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
+      { http_param: :observed_on_week, es_field: "observed_on_details.week" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
       { http_param: :day, es_field: "observed_on_details.day" },
@@ -639,12 +640,13 @@ class Observation < ApplicationRecord
     # own observations
     params_user_ids = [p[:user_id]].flatten.map(&:to_i)
     unless p[:place_id].blank? || p[:place_id] == "any"
+      place_id = p[:place_id].is_a?( String ) ? p[:place_id].split( "," ) : p[:place_id]
       if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
-        search_filters << { terms: { "private_place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "private_place_ids.keyword" => [place_id].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       else
-        search_filters << { terms: { "place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "place_ids.keyword" => [place_id].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       end
@@ -1106,6 +1108,14 @@ class Observation < ApplicationRecord
     end
     if p[:id_below]
       search_filters << { range: { id: { lt: p[:id_below] } } }
+    end
+    if p[:not_id]
+      not_ids = [p[:not_id]].flatten.
+        map {| id | id.to_s.split( "," ).map( &:to_i ) }.
+        flatten.compact
+      if not_ids.size.positive?
+        inverse_filters << { terms: { id: not_ids } }
+      end
     end
 
     { filters: search_filters,

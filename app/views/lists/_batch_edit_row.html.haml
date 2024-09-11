@@ -37,7 +37,7 @@
             :confirm => t(:are_you_sure_remove_taxon_from_list) |
             },                                                  |
             :class => "last inter removelink"                   |
-          = link_to t(:view), lt, :target => "_blank"
+          = link_to t(:view), lt, :target => "_blank", rel: "noopener noreferrer"
   %tr.message
     %td{:colspan => 6}
       = error

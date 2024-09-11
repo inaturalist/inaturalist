@@ -1,4 +1,5 @@
 class DataPartnersController < ApplicationController
+  before_action :authenticate_user!
   before_action :admin_required
   before_action :load_record, only: %w(show edit update destroy)
 

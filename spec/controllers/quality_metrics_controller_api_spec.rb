@@ -51,6 +51,13 @@ shared_examples_for "a QualityMetricsController" do
       expect( o.quality_metrics ).to be_blank
     end
 
+    it "should fail if the metric is about the date but the date does not exist" do
+      dateless = create( :observation, observed_on_string: "" )
+      expect( dateless.observed_on ).to be_blank
+      post :vote, as: :json, params: { id: dateless.id, metric: QualityMetric::DATE }
+      expect( response.status ).to eq 422
+    end
+
     describe "elastic index" do
       elastic_models( Observation )
 

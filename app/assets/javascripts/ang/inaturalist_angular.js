@@ -8,7 +8,9 @@
 /* global CURRENT_USER */
 
 var iNatAPI = angular.module( "iNatAPI", [] );
-iNatAPI.constant( "testingApiV2", ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
+iNatAPI.constant( "testingApiV2", (
+  CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" )
+    && CURRENT_USER.roles && CURRENT_USER.roles.includes( "admin" ) )
   || window.location.search.match( /test=apiv2/ ) );
 
 iNatAPI.factory( "shared", ["$http", "$rootScope", "$filter", "testingApiV2",
@@ -198,13 +200,25 @@ iNatAPI.factory( "shared", ["$http", "$rootScope", "$filter", "testingApiV2",
 
 // prints a date like "Today 12:34 PM" with some stylable wrapper elements
 iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
+  function displayTimezone( useViewersTimezone, defaultTimezone ) {
+    if ( useViewersTimezone ) {
+      var guessedTimezone = moment.tz.guess( );
+      // confirm that what moment.tz.guess( ) returns is a timezone known by momentjs
+      if ( moment.tz.names( ).includes( guessedTimezone ) ) {
+        return guessedTimezone;
+      }
+    }
+    return defaultTimezone || "UTC";
+  }
+
   return {
     scope: {
       time: "=",
       date: "=",
       timezone: "=",
       obscured: "=",
-      short: "="
+      short: "=",
+      viewersTimezone: "="
     },
     // eslint-disable-next-line no-unused-vars
     link: function ( scope, elt, attr ) {
@@ -220,7 +234,8 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
               : I18n.t( "momentjs.month_year" )
           );
         }
-        var date = moment( scope.date );
+        var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
+        var date = moment.tz( scope.time || scope.date, timezone );
         var now = moment( new Date( ) );
         var dateString;
         if ( date.isSame( now, "day" ) ) {
@@ -236,12 +251,31 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
       scope.timeString = function ( ) {
         if ( !scope.time ) return "";
         if ( scope.obscured ) return "";
-        // eslint-disable-next-line no-param-reassign
-        var timezone = scope.timezone || "UTC";
-        return moment.tz( scope.time.replace( /[+-]\d\d:\d\d/, "" ), timezone ).format( "LT z" );
+        var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
+        var d = moment.tz( scope.time, timezone );
+        // For some time zones, moment cannot output something nice like PDT and
+        // instead does something like -08. In this situations, we print a full offset
+        // like -08:00 instead
+        if ( parseInt( d.format( "z" ), 10 ) && parseInt( d.format( "z" ), 10 ) !== 0 ) {
+          return d.format( "LT Z" );
+        }
+        return d.format( "LT z" );
+      };
+      // eslint-disable-next-line no-param-reassign
+      scope.titleText = function ( ) {
+        if ( !scope.time ) {
+          return null;
+        }
+        var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
+        var momentTime = moment.tz( scope.time, timezone );
+        if ( scope.obscured ) {
+          return momentTime.format( I18n.t( "momentjs.month_year" ) );
+        }
+        return momentTime.format( );
       };
     },
-    template: "<span class=\"date\">{{ dateString() }}</span><span class=\"time\">{{ timeString() }}</span>"
+    template: "<span class=\"date\">{{ dateString() }}</span>"
+     + "<span class=\"time\" title=\"{{ titleText() }}\">{{ timeString() }}</span>"
   };
 }] );
 
@@ -281,7 +315,7 @@ iNatAPI.directive( "inatTaxon", ["shared", function ( shared ) {
         } else {
           names.push( scope.taxon.name );
         }
-        return names;
+        return _.uniq( names );
       };
       // eslint-disable-next-line no-param-reassign
       scope.secondaryNames = function ( ) {
@@ -298,7 +332,7 @@ iNatAPI.directive( "inatTaxon", ["shared", function ( shared ) {
         } else if ( scope.taxon.preferred_common_name ) {
           names.push( scope.taxon.name );
         }
-        return names;
+        return _.uniq( names );
       };
       // eslint-disable-next-line no-param-reassign
       scope.showRank = function ( ) {

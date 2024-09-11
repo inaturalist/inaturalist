@@ -98,7 +98,8 @@ class OauthApplicationsController < ApplicationController
   end
 
   def load_application
-    render_404 unless ( @application = OauthApplication.find_by_id( params[:id] ) )
+    return render_404 unless ( @application = OauthApplication.find_by_id( params[:id] ) )
+
     @application = @application.becomes( OauthApplication )
   end
 

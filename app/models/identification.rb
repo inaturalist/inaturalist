@@ -83,27 +83,33 @@ class Identification < ApplicationRecord
     LEADING,
     MAVERICK
   ]
-  
-  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
-    :queue_if => lambda {|ident| 
-      ident.taxon_change_id.blank?
+
+  notifies_subscribers_of :observation, notification: "activity", include_owner: true,
+    unless: lambda {| ident |
+      !ident.taxon_change_id.blank?
     },
-    :if => lambda {|notifier, subscribable, subscription|
+    if: lambda {| notifier, subscribable, subscription |
       return true unless notifier && subscribable && subscription
       return true if subscription.user && subscription.user.prefers_redundant_identification_notifications
-      subscribers_identification = subscribable.identifications.current.detect{|i| i.user_id == subscription.user_id}
+
+      subscribers_identification = subscribable.identifications.current.detect do | i |
+        i.user_id == subscription.user_id
+      end
       return true unless subscribers_identification
       return true unless notifier.body.blank?
+
       subscribers_identification.taxon_id != notifier.taxon_id
     }
-  auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
+
+  auto_subscribes :user, to: :observation, if: lambda {| ident, observation |
     ident.user_id != observation.user_id
   }
+
   notifies_users :mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
-    if: lambda {|u| u.prefers_receive_mentions? }
+    if: lambda {| u | u.prefers_receive_mentions? }
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::COORDINATE_ACCESS
@@ -257,6 +263,7 @@ class Identification < ApplicationRecord
     end
     observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.identifications.reload
+    Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
     observation.set_community_taxon(force: true)
     observation.set_taxon_geoprivacy
     observation.skip_identification_indexing = true
@@ -291,6 +298,7 @@ class Identification < ApplicationRecord
     end
     observation.skip_identifications = true
     observation.identifications.reload
+    Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
     observation.set_community_taxon
     attrs[:community_taxon] = observation.community_taxon
     observation.update(attrs)
@@ -493,14 +501,15 @@ class Identification < ApplicationRecord
       Identification.delay( run_at: 5.seconds.from_now ).
         update_categories_for_observation( observation_id )
     else
+      Identification.update_categories_for_observation( observation, {
+        wait_for_obs_index_refresh: wait_for_obs_index_refresh,
+        skip_indexing: skip_indexing
+      } )
       # update_categories_for_observation will reindex all the observation's
       # identifications, so we both do not need to re-index this individual
       # identification after that happens, and in fact that may result in
       # indexing stale data, e.g. a blank category
       self.skip_indexing = true
-      Identification.update_categories_for_observation( observation, {
-        wait_for_obs_index_refresh: wait_for_obs_index_refresh
-      } )
     end
     true
   end
@@ -609,9 +618,10 @@ class Identification < ApplicationRecord
     scope.find_each do |ident|
       next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       next unless taxon_change.automatable_for_output?( output_taxon.id )
+      ident.observation&.skip_update_observations_places = true
       new_ident = Identification.new(
-        observation_id: ident.observation_id,
-        taxon: output_taxon, 
+        observation: ident.observation,
+        taxon: output_taxon,
         user_id: ident.user_id,
         taxon_change: taxon_change,
         disagreement: false,
@@ -660,11 +670,21 @@ class Identification < ApplicationRecord
         obs.skip_indexing = true
         obs.skip_refresh_check_lists = true
         obs.skip_identifications = true
+        obs.skip_quality_metrics = true
         obs.save
         Identification.update_categories_for_observation( obs, skip_reload: true, skip_indexing: true )
         ident_ids += obs.identification_ids
       end
     end
+
+    if options[:records]
+      Observation.elastic_index!( ids: observation_ids.uniq.compact )
+      Identification.elastic_index!(
+        ids: Identification.where( observation_id: observation_ids.uniq.compact ).pluck( :id )
+      )
+      return
+    end
+
     # Get observations that may have received new identifications from this
     # change from a previous attempt to commit records for this change, in case
     # a previous attempt hit an error and stopped before indexing some records

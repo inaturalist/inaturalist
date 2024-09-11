@@ -179,10 +179,6 @@ class LeftMenu extends SelectionBasedComponent {
             : undefined }
           onChange={ dateString =>
             this.props.setState( { observationFieldValue: dateString } ) }
-          onSelection={ dateString =>
-            this.props.setState( { observationFieldValue: dateString,
-              observationFieldSelectedDate: dateString } )
-          }
         />
         <input
           type="text"
@@ -321,7 +317,7 @@ class LeftMenu extends SelectionBasedComponent {
           { observationFieldInput }
         </form>
         <p className="options">
-          <a href="/observation_fields" target="_blank">
+          <a href="/observation_fields" target="_blank" rel="noopener noreferrer">
             { I18n.t( "view_field_options" ) }
             <Glyphicon glyph="new-window" />
           </a>

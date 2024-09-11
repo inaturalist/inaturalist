@@ -80,6 +80,7 @@ describe User, "associations" do
   it { is_expected.to have_many(:user_privileges).inverse_of(:user).dependent :delete_all }
   it { is_expected.to have_one(:flickr_identity).dependent :delete }
   it { is_expected.to have_one(:soundcloud_identity).dependent :delete }
+  it { is_expected.to have_one(:user_daily_active_category).dependent :delete }
   it { is_expected.to have_one(:user_parent).dependent(:destroy).inverse_of :user }
 end
 
@@ -300,6 +301,74 @@ describe User do
           expect(u).not_to be_valid
         end
       end
+    end
+
+    describe "syncs place_id to taxon_name_priorities for admins" do
+      let( :admin_user ) { make_admin }
+      let( :non_admin_user ) { User.make! }
+      let( :place ) { make_place_with_geom }
+      let( :alt_place ) { make_place_with_geom }
+
+      it "does not yet add a taxon_name_priorities for non-admins" do
+        expect( non_admin_user.taxon_name_priorities.length ).to eq 0
+        non_admin_user.update( place: place )
+        expect( non_admin_user.taxon_name_priorities.length ).to eq 0
+      end
+
+      it "adds a taxon_name_priority when none exists" do
+        expect( admin_user.taxon_name_priorities.length ).to eq 0
+        admin_user.update( place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+      end
+
+      it "does not add a taxon_name_priority when one exists with a lexicon" do
+        admin_user.taxon_name_priorities.create( lexicon: "en", place: alt_place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq alt_place.id
+        admin_user.update( place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq alt_place.id
+      end
+
+      it "sets place_id for taxon_name_priorities when lexicon is nil" do
+        admin_user.taxon_name_priorities.create( lexicon: nil, place: alt_place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq alt_place.id
+        admin_user.update( place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+      end
+
+      it "removes taxon_name_priorities when place_id is set to nil" do
+        admin_user.update( place: place )
+        admin_user.taxon_name_priorities.delete_all
+        admin_user.taxon_name_priorities.create( lexicon: nil, place: place )
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to be_nil
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        admin_user.update( place: nil )
+        expect( admin_user.taxon_name_priorities.length ).to eq 0
+      end
+
+      it "does not remove taxon_name_priorities when the lexicon isn't nil" do
+        admin_user.update( place: place )
+        admin_user.taxon_name_priorities.delete_all
+        admin_user.taxon_name_priorities.create( lexicon: "en", place: place )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+        admin_user.update( place: nil )
+        expect( admin_user.taxon_name_priorities.length ).to eq 1
+        expect( admin_user.taxon_name_priorities[0].lexicon ).to eq "en"
+        expect( admin_user.taxon_name_priorities[0].place_id ).to eq place.id
+      end
+
     end
 
   end
@@ -959,6 +1028,17 @@ describe User do
       expect( keeper.project_users.count ).to eq 1
     end
 
+    it "retains the earliest created_at date" do
+      earlier_created_date = 1.year.ago
+      later_created_date = Time.now
+      reject.update_columns( created_at: earlier_created_date )
+      keeper.update_columns( created_at: later_created_date )
+      expect( keeper.created_at ).to be > reject.created_at
+      expect( keeper.created_at ).to eq later_created_date
+      keeper.merge( reject )
+      expect( keeper.created_at ).to eq earlier_created_date
+    end
+
     describe "matching identifications on the same observation" do
       let(:observation) { Observation.make! }
       let(:keeper_ident) { Identification.make!( observation: observation, user: keeper ) }
@@ -994,6 +1074,22 @@ describe User do
       o.vote_by voter: keeper, vote: true
       o.vote_by voter: reject, vote: true
       expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
+    end
+
+    describe "user_parents" do
+      it "should merge user_parents where this user is the child" do
+        up = UserParent.make!( user: reject )
+        keeper.merge( reject )
+        expect( keeper.user_parent ).not_to be_nil
+        expect( keeper.user_parent.id ).to eq up.id
+      end
+
+      it "should merge user_parents where this user is the parent" do
+        up = UserParent.make!( parent_user: reject )
+        keeper.merge( reject )
+        expect( keeper.parentages ).not_to be_empty
+        expect( keeper.parentages.first.id ).to eq up.id
+      end
     end
   end
 
@@ -1441,6 +1537,21 @@ describe User do
       User.create_from_omniauth( auth_info )
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
     end
+
+    describe "with oauth_application" do
+      it "should not set oauth_application_id for untrusted applications" do
+        oauth_application = OauthApplication.make!( trusted: false )
+        u = User.create_from_omniauth( auth_info, oauth_application )
+        expect( u.oauth_application_id ).to be_nil
+      end
+
+      it "should set oauth_application_id for trusted applications" do
+        oauth_application = OauthApplication.make!( trusted: true )
+        u = User.create_from_omniauth( auth_info, oauth_application )
+        expect( u.oauth_application_id ).to eq oauth_application.id
+      end
+    end
+
     describe "with an email in the name field" do
       let(:auth_info) { {
         "info" => {
@@ -1489,6 +1600,28 @@ describe User do
       expect( user ).not_to be_confirmed
       expect( user.created_at ).to be < User::EMAIL_CONFIRMATION_RELEASE_DATE
       expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
+    end
+  end
+
+  describe "update_annotated_observations_counter_cache" do
+    it "updates counter based on annotations" do
+      annotation = make_annotation!
+      user = annotation.user
+      expect( user.annotated_observations_count ).to eq 0
+      User.update_annotated_observations_counter_cache( user )
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+    end
+
+    it "counts annotated observations not individual annotations" do
+      annotation1 = make_annotation!
+      user = annotation1.user
+      make_annotation!( resource: annotation1.resource, user: user )
+      expect( user.annotated_observations_count ).to eq 0
+      User.update_annotated_observations_counter_cache( user )
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+      expect( Annotation.where( user: user ).count ).to eq 2
     end
   end
 

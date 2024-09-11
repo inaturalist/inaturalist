@@ -56,7 +56,7 @@ namespace :inaturalist do
     return unless last_id_to_delete
     UpdateAction.delete_and_purge( "id <= #{ last_id_to_delete }" )
     # delete anything that may be left in Elasticsearch
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+    try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
         body: { query: { range: { id: { lte: last_id_to_delete } } } })
     end
@@ -398,7 +398,8 @@ namespace :inaturalist do
       "yellow",
       "you_are_setting_this_project_to_aggregate",
       "i18n.inflections.@gender",
-      "i18n.inflections.@vow_or_con"
+      "i18n.inflections.@vow_or_con",
+      "i18n.inflections.@iconic_taxon"
     ]
     %w(
       all_rank_added_to_the_database
@@ -598,4 +599,10 @@ namespace :inaturalist do
     end
   end
 
+  desc "Unlock unfailed delayed jobs"
+  task unlock_unfailed_delayed_jobs: :environment do
+    Delayed::Job.where( "locked_at IS NOT NULL OR locked_by IS NOT NULL" ).
+      where( "failed_at IS NULL" ).
+      update( locked_by: nil, locked_at: nil )
+  end
 end

@@ -42,14 +42,14 @@ const store = createStore(
 const testingApiV2 = ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );

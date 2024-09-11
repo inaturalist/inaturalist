@@ -62,6 +62,12 @@ class TextEditor extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    window.onbeforeunload = function ( ) {
+      return null;
+    };
+  }
+
   render( ) {
     const {
       maxLength,

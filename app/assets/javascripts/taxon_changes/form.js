@@ -70,8 +70,8 @@ $( function () {
     $( "input[id^='taxon_change_taxon_change_taxa_attributes_']" ).each( function () {
       if ( $( this ).attr( "id" ).indexOf( "_taxon_id" ) >= 0 ) {
         var candidate = $( this ).val();
-        if ( $.isNumeric( candidate ) && parseInt( candidate, 0 ) > 0 ) {
-          outputIds.push( parseInt( candidate, 0 ) );
+        if ( $.isNumeric( candidate ) && parseInt( candidate, 10 ) > 0 ) {
+          outputIds.push( parseInt( candidate, 10 ) );
         }
       }
     } );
@@ -82,7 +82,7 @@ $( function () {
     };
     var currentId = $( "#current_id" ).val();
     if ( $.isNumeric( currentId ) ) {
-      parameters.id = parseInt( currentId, 0 );
+      parameters.id = parseInt( currentId, 10 );
     }
     event.preventDefault();
     spinnerNeeded = true;
@@ -104,14 +104,14 @@ $( function () {
             if ( v.id_count === 0 ) {
               countPiece = "0";
             } else {
-              countPiece = "<a href='" + v.url + "' target='_blank'>" + v.id_count + "</a>";
+              countPiece = "<a href='" + v.url + "' target='_blank' rel='noopener noreferrer'>" + v.id_count + "</a>";
             }
-            var taxonPiece = "<a href='" + v.taxon_url + "' target='_blank'>" + v.name + "</a>";
+            var taxonPiece = "<a href='" + v.taxon_url + "' target='_blank' rel='noopener noreferrer'>" + v.name + "</a>";
             var atlasPiece;
             if ( v.atlas_url === null ) {
               atlasPiece = v.atlas_string;
             } else {
-              atlasPiece = "<a href='" + v.atlas_url + "' target='_blank'>" + v.atlas_string + "</a>";
+              atlasPiece = "<a href='" + v.atlas_url + "' target='_blank' rel='noopener noreferrer'>" + v.atlas_string + "</a>";
             }
             var addedClass;
             if ( v.role === "warning" && v.id_count > 0 ) {

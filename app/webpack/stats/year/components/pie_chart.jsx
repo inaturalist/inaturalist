@@ -31,7 +31,11 @@ class PieChart extends React.Component {
     const color = d3.scaleOrdinal( d3.schemeCategory10 );
     const colorForDatum = datum => ( datum.color || color( datum.label ) );
 
-    const data = this.props.data;
+    let { data } = this.props;
+    let dataOrderedForChart = data;
+    if ( _.some( data, d => _.has( d, "chartDisplayOrder" ) ) ) {
+      dataOrderedForChart = _.sortBy( data, "chartDisplayOrder" );
+    }
 
     // Setup tips
     const angleInBottomHalf = angle => ( angle > ( Math.PI / 2 ) && angle < ( 1.5 * Math.PI ) );
@@ -57,7 +61,7 @@ class PieChart extends React.Component {
         }
         const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
         const percent = _.round( degrees / 360 * 100, 2 );
-        return `<strong>${d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
+        return `<strong>${d.data.fullLabel || d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
       } );
     svg.call( tip );
 
@@ -76,9 +80,9 @@ class PieChart extends React.Component {
       .outerRadius( radius - 10 )
       .innerRadius( innerRadius );
     const arcGroup = g.selectAll( ".arc" )
-      .data( pie( data ) )
+      .data( pie( dataOrderedForChart ) )
       .enter( ).append( "g" )
-        .attr( "class", "arc" );
+      .attr( "class", "arc" );
     const arc = arcGroup.append( "path" )
       .attr( "d", path )
       .attr( "class", d => d.data.label )

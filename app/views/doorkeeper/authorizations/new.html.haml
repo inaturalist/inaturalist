@@ -43,4 +43,4 @@
           = hidden_field_tag :code_challenge, @pre_auth.code_challenge
           = hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method
           = submit_tag t(:deny), :class => "btn btn-default"
-        = link_to t("views.oauth.authorizations.new.more_about_application", application: @pre_auth.client.name ), @pre_auth.client.application.becomes( OauthApplication ), target: "_blank", class: "btn btn-link"
+        = link_to t("views.oauth.authorizations.new.more_about_application", application: @pre_auth.client.name ), @pre_auth.client.application.becomes( OauthApplication ), target: "_blank", class: "btn btn-link", rel: "noopener noreferrer"

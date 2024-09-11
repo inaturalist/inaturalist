@@ -22,7 +22,7 @@
       %p=t "views.users.delete.still_want_to_delete_html", confirmation_code: confirmation_code
       = form_for current_user, method: :delete do |f|
         .form-group
-          = text_field_tag :confirmation, nil, placeholder: t( "views.users.delete.type_confirmation_code", confirmation_code: confirmation_code, default: "Type #{confirmation_code}" ), class: "form-control"
+          = text_field_tag :confirmation, nil, placeholder: t( "views.users.delete.type_confirmation_code", confirmation_code: confirmation_code, default: "Type #{confirmation_code}" ), class: "form-control", autocapitalize: "off"
           = hidden_field_tag :confirmation_code, confirmation_code
         = f.submit t(:delete_your_account), class: "btn btn-danger"
         = link_to t(:cancel), :back, class: "btn btn-default"

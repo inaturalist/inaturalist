@@ -4,8 +4,7 @@
     = f.hidden_field :taxon_id
   .checkbox
     %label
-      = f.check_box :exception
-      Exception
+      = f.check_box :exception, label: "Exception"
   .form-group
     = link_to_remove_association "Remove", f, class: "btn btn-danger btn-sm"
   = f.hidden_field :controlled_term_id

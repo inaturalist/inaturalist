@@ -238,7 +238,7 @@ class App extends React.Component {
               <span className="strong-label">
                 { I18n.t( "views.geo_model.explain.range_comparison.true_presences_colon" ) }
               </span>
-              { I18n.t( "views.geo_model.explain.range_comparison.true_presences_definition" ) }
+              { I18n.t( "views.geo_model.explain.range_comparison.true_presences_definition2" ) }
             </div>
           </div>
           <div className="row">

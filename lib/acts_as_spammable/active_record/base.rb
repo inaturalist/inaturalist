@@ -28,7 +28,7 @@ module ActiveRecord
           comment_type: options[:comment_type],
           blog_lang: I18N_SUPPORTED_LOCALES.join( "," )
 
-        validate :user_cannot_be_spammer
+        validate :user_cannot_be_spammer, on: :create
         after_save :evaluate_user_spammer_status, unless: proc {
           user_responsible && user_responsible.known_non_spammer?
         }
@@ -53,7 +53,8 @@ module ActiveRecord
         }
 
         define_method( :user_cannot_be_spammer ) do
-          if respond_to?( rakismet_user ) && send( rakismet_user ).is_a?( User ) && send( rakismet_user ).spammer?
+          if respond_to?( rakismet_user ) && send( rakismet_user ).is_a?( User ) &&
+              send( rakismet_user ).spammer?
             errors.add( rakismet_user, "cannot be spammer" )
           end
         end

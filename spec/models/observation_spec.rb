@@ -889,6 +889,36 @@ describe Observation do
       expect( o.place_state ).to eq p
       expect( o.place_state_name ).to eq p.name
     end
+
+    it "should return place county" do
+      p = make_place_with_geom( place_type: Place::PLACE_TYPE_CODES["County"] )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( o.intersecting_places ).not_to be_blank
+      expect( o.place_county ).to eq p
+      expect( o.place_county_name ).to eq p.name
+    end
+
+    it "should return place county by admin level if type is different" do
+      p = make_place_with_geom(
+        place_type: Place::PLACE_TYPE_CODES["Parish"],
+        admin_level: Place::COUNTY_LEVEL
+      )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( o.intersecting_places ).not_to be_blank
+      expect( o.place_county ).to eq p
+      expect( o.place_county_name ).to eq p.name
+    end
+
+    it "should return admin level place" do
+      p = make_place_with_geom(
+        place_type: Place::PLACE_TYPE_CODES["County"],
+        admin_level: Place::COUNTY_LEVEL
+      )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( o.intersecting_places ).not_to be_blank
+      expect( o.place_admin2 ).to eq p
+      expect( o.place_admin2_name ).to eq p.name
+    end
   end
 
   describe "community taxon" do
@@ -1269,6 +1299,41 @@ describe Observation do
         @o.reload
         expect( @o.community_taxon ).to eq @f
       end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw s2.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        i2 = Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        i2.update_attribute( :current, false )
+        i2.reload
+        expect( i2.current ).to eq false
+        @o.reload
+        @o.set_community_taxon( force: true )
+
+        expect( @o.community_taxon ).to eq @g2
+      end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        @o.reload
+        @o.set_community_taxon( force: true )
+
+        expect( @o.community_taxon ).to eq @f
+      end
     end
   end
 
@@ -1430,13 +1495,44 @@ describe Observation do
       end
 
       it "resets after hiding identifications" do
-        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
         i2 = Identification.make!( observation: @o, taxon: @s2 )
         @o = Observation.find( @o.id )
         expect( @o.taxon ).to eq @g1
         ModeratorAction.make!( resource: i2, action: ModeratorAction::HIDE )
         @o = Observation.find( @o.id )
         expect( @o.taxon ).to eq @s1
+      end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw s2.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        i2 = Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        i2.update_attribute( :current, false )
+        i2.reload
+        expect( i2.current ).to eq false
+        @o.reload
+
+        expect( @o.taxon ).to eq @g2
+      end
+
+      it "s1 s2 f.disagreement g2 s1.withdraw" do
+        i1 = Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s2 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @g2 )
+
+        i1.update_attribute( :current, false )
+        i1.reload
+        expect( i1.current ).to eq false
+        @o.reload
+
+        expect( @o.taxon ).to eq @f
       end
     end
   end
@@ -1829,6 +1925,22 @@ describe Observation, "taxon_geoprivacy" do
     expect( o ).not_to be_coordinates_private
     expect( o ).to be_coordinates_obscured
   end
+
+  it "does not consider hidden identifications" do
+    o = Observation.make!(
+      latitude: p.latitude,
+      longitude: p.longitude
+    )
+    expect( o.taxon_geoprivacy ).to be_nil
+    expect( o ).not_to be_coordinates_obscured
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
+    expect( o ).to be_coordinates_obscured
+    ModeratorAction.make!( resource: i, action: ModeratorAction::HIDE )
+    o.reload
+    expect( o.taxon_geoprivacy ).to be_nil
+    expect( o ).not_to be_coordinates_obscured
+  end
 end
 
 describe Observation, "set_observations_taxa_for_user" do
@@ -1982,13 +2094,72 @@ describe Observation, "sound_url" do
 
   it "should not return hidden sounds" do
     sound = LocalSound.make!( user: observation.user )
-    os = ObservationSound.make!( observation: observation, sound: sound )
+    ObservationSound.make!( observation: observation, sound: sound )
     ModeratorAction.make!( resource: sound, action: "hide" )
     expect( sound.hidden? ).to be true
     expect( observation.sound_url ).to be_nil
   end
 end
 
+describe Observation, "interpolate_coordinates" do
+  let( :user ) { create :user, time_zone: "UTC" }
+  it "should not work if a user only has 1 observation" do
+    o = create :observation, user: user, observed_on_string: "2020-02-01 14:00"
+    expect( o.latitude ).to be_blank
+    o.interpolate_coordinates
+    expect( o.latitude ).to be_blank
+  end
+
+  it "should not work if a user only has 2 observations" do
+    o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    o2 = create :observation, user: user, observed_on_string: "2020-02-01 14:00"
+    expect( o1.time_zone ).to eq "UTC"
+    expect( o2.time_zone ).to eq "UTC"
+    expect( o2.latitude ).to be_blank
+    o2.interpolate_coordinates
+    expect( o2.latitude ).to be_blank
+  end
+
+  it "should interpolate 0.5,0.5 between 0,0 and 1,1" do
+    o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    o2 = create :observation, user: user, observed_on_string: "2020-02-01 14:00"
+    o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
+    expect( o1.time_zone ).to eq "UTC"
+    expect( o2.time_zone ).to eq "UTC"
+    expect( o3.time_zone ).to eq "UTC"
+    expect( o2.latitude ).to be_blank
+    o2.interpolate_coordinates
+    expect( o2.latitude ).to eq 0.5
+  end
+
+  it "should be time-weighted" do
+    _o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    o2 = create :observation, user: user, observed_on_string: "2020-02-01 14:30"
+    _o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
+    expect( o2.latitude ).to be_blank
+    o2.interpolate_coordinates
+    expect( o2.latitude ).to eq 0.75
+  end
+
+  it "should work for observations that already have coordinates" do
+    _o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    o2 = create :observation, user: user, observed_on_string: "2020-02-01 14:00", latitude: 0.1, longitude: 0.1
+    _o3 = create :observation, user: user, observed_on_string: "2020-02-01 15:00", latitude: 1, longitude: 1
+    expect( o2.latitude ).not_to be_blank
+    o2.interpolate_coordinates
+    expect( o2.latitude ).to eq 0.5
+  end
+
+  it "should assume even weight if prev/next times are identical" do
+    o1 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 0, longitude: 0
+    o2 = create :observation, user: user, observed_on_string: "2020-02-01 13:00"
+    o3 = create :observation, user: user, observed_on_string: "2020-02-01 13:00", latitude: 1, longitude: 1
+    expect( o1.time_observed_at ).to eq o3.time_observed_at
+    expect( o2.latitude ).to be_blank
+    o2.interpolate_coordinates
+    expect( o2.latitude ).to eq 0.5
+  end
+end
 
 def setup_test_case_taxonomy
   # Tree:

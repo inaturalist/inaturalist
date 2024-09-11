@@ -89,13 +89,15 @@ const TopMenu = ( {
               : <Tooltip id="merge-tip">{ I18n.t( "uploader.tooltips.combine" ) }</Tooltip>
           }
         >
-          <NavItem
+          <button
+            type="button"
+            className="btn btn-primary navbar-btn"
             onClick={combineSelected}
             disabled={combineDisabled}
           >
             <Glyphicon glyph="resize-small" />
             { I18n.t( "combine" ) }
-          </NavItem>
+          </button>
         </OverlayTrigger>
         <OverlayTrigger
           placement="top"
@@ -106,14 +108,16 @@ const TopMenu = ( {
               : <Tooltip id="duplicate-tip">{ I18n.t( "uploader.tooltips.duplicate" ) }</Tooltip>
           }
         >
-          <NavItem
+          <button
+            type="button"
+            className="btn btn-primary navbar-btn"
             onClick={duplicateSelected}
             disabled={duplicateDisabled}
           >
             <i className="fa fa-files-o" />
             { " " }
             { I18n.t( "duplicate_verb" ) }
-          </NavItem>
+          </button>
         </OverlayTrigger>
         <OverlayTrigger
           placement="top"

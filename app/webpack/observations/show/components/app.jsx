@@ -46,7 +46,9 @@ import TagsContainer from "../containers/tags_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
+import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 import FlashMessage from "./flash_message";
+import AssessmentLazyLoad from "./assessment_lazy_load";
 
 moment.updateLocale( "en", {
   relativeTime: {
@@ -67,7 +69,10 @@ moment.updateLocale( "en", {
 } );
 
 const App = ( {
-  observation, config, controlledTerms, deleteObservation, setLicensingModalState
+  observation,
+  config,
+  deleteObservation,
+  setLicensingModalState
 } ) => {
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
@@ -108,7 +113,8 @@ const App = ( {
     isoDateObserved = observedAt.format( "YYYY-MM" );
   } else if ( observation.time_observed_at ) {
     formattedDateObserved = formattedDateTimeInTimeZone(
-      observation.time_observed_at, observation.observed_time_zone
+      observation.time_observed_at,
+      observation.observed_time_zone
     );
   } else if ( observation.observed_on ) {
     formattedDateObserved = moment( observation.observed_on ).format( "ll" );
@@ -122,19 +128,22 @@ const App = ( {
     formattedDateAdded = createdAt.format( I18n.t( "momentjs.month_year" ) );
     isoDateAdded = createdAt.format( "YYYY-MM" );
   }
-  const description = observation.description ? (
-    <Row>
-      <Col xs={12}>
-        <h3>
-          {
-            I18n.t( "notes", {
-              defaultValue: I18n.t( "activerecord.attributes.observation.description" )
-            } )
-          }
-        </h3>
-        <UserText text={observation.description} />
-      </Col>
-    </Row> ) : "";
+  const description = observation.description
+    ? (
+      <Row>
+        <Col xs={12}>
+          <h3>
+            {
+              I18n.t( "notes", {
+                defaultValue: I18n.t( "activerecord.attributes.observation.description" )
+              } )
+            }
+          </h3>
+          <UserText text={observation.description} />
+        </Col>
+      </Row>
+    )
+    : "";
   const qualityGrade = observation.quality_grade === "research"
     ? "research_grade"
     : observation.quality_grade;
@@ -146,24 +155,7 @@ const App = ( {
   } else {
     qualityGradeTooltipHtml = I18n.t( "research_grade_tooltip_html" );
   }
-  // Custom lazyload component for the DQA, where we want lazy loading to apply
-  // inside of the collapsible element
-  const AssessmentLazyLoad = props => (
-    <LazyLoad
-      debounce={false}
-      height={
-        !config.currentUser || !config.currentUser.prefers_hide_obs_show_quality_metrics
-          ? 670
-          : 70
-      }
-      verticalOffset={500}
-    >
-      {
-        // eslint-disable-next-line react/prop-types
-        props.children
-      }
-    </LazyLoad>
-  );
+
   return (
     <div id="ObservationShow">
       { config && config.testingApiV2 && (
@@ -335,7 +327,7 @@ const App = ( {
                   </Col>
                 </LazyLoad>
               </Row>
-              <Row className={_.isEmpty( controlledTerms ) ? "top-row" : ""}>
+              <Row>
                 <Col xs={12}>
                   <ProjectsContainer />
                 </Col>
@@ -426,14 +418,13 @@ const App = ( {
           </div>
         )
       }
+      <RtlTestGroupToggle config={config} />
     </div>
   );
 };
 
 App.propTypes = {
   config: PropTypes.object,
-  controlledTerms: PropTypes.array,
-  // leaveTestGroup: PropTypes.func,
   observation: PropTypes.object,
   deleteObservation: PropTypes.func,
   setLicensingModalState: PropTypes.func

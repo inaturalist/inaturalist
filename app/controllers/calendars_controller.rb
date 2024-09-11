@@ -1,6 +1,8 @@
 class CalendarsController < ApplicationController
   before_action :load_user_by_login
-  
+
+  prepend_around_action :enable_replica, only: [:index, :show, ]
+
   def index
     @year = (params[:year] || Time.now.year).to_i
     @observations = @selected_user.observations.on(@year).select(:id, :observed_on)

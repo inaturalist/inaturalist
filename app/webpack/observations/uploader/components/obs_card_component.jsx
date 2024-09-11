@@ -178,6 +178,7 @@ class ObsCardComponent extends Component {
     if ( obsCard.saveState === "saving" ) { className += " saving"; }
     if ( obsCard.saveState === "saved" ) { className += " saved"; }
     if ( obsCard.saveState === "failed" ) { className += " failed"; }
+    if ( !_.isEmpty( obsCard.validationErrors ) ) { className += " validation-error"; }
     const locationText = obsCard.locality_notes || (
       obsCard.latitude
       && `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}`
@@ -206,7 +207,7 @@ class ObsCardComponent extends Component {
         photoCountOrStatus = `${obsCard.galleryIndex || 1}/${fileCount}`;
       }
     }
-    const invalidDate = util.dateInvalid( obsCard.date );
+    const dateValidationError = util.dateInvalid( obsCard.date ) || obsCard.validationErrors.date;
 
     let locationIcon = <Glyphicon glyph="map-marker" />;
     if ( obsCard.geoprivacy === "obscured" ) {
@@ -300,6 +301,7 @@ class ObsCardComponent extends Component {
               visionParams={obsCard.visionParams( )}
               initialSelection={obsCard.selected_taxon}
               initialTaxonID={obsCard.taxon_id}
+              inputGroupClass={obsCard.validationErrors.taxon ? "has-error" : null}
               resetOnChange={false}
               afterSelect={r => {
                 if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
@@ -323,23 +325,24 @@ class ObsCardComponent extends Component {
               config={config}
             />
             <DateTimeFieldWrapper
-              key={`datetime${obsCard.selected_date}`}
-              reactKey={`datetime${obsCard.selected_date}`}
+              key={`datetime${obsCard.selected_date ? "" : "empty"}`}
+              reactKey={`datetime${obsCard.selected_date ? "" : "empty"}`}
               ref="datetime"
               inputFormat={inputFormat}
-              dateTime={obsCard.selected_date
-                ? moment( obsCard.selected_date, inputFormat ).format( "x" )
-                : undefined
+              dateTime={
+                obsCard.selected_date
+                  ? moment( obsCard.selected_date, inputFormat ).format( "x" )
+                  : undefined
               }
-              onChange={dateString => updateObsCard( obsCard, { date: dateString } )}
-              onSelection={
-                dateString => updateObsCard(
-                  obsCard, { date: dateString, selected_date: dateString }
-                )
-              }
+              onChange={dateString => {
+                updateObsCard( obsCard, {
+                  date: dateString,
+                  selected_date: dateString
+                } );
+              }}
             />
             <div
-              className={`input-group${invalidDate ? " has-error" : ""}`}
+              className={`input-group${dateValidationError ? " has-error" : ""}`}
               onClick={() => {
                 if ( this.refs.datetime ) {
                   this.refs.datetime.onClick( );
@@ -362,7 +365,7 @@ class ObsCardComponent extends Component {
               />
             </div>
             <div
-              className="input-group"
+              className={`input-group${obsCard.validationErrors.location ? " has-error" : ""}`}
               onClick={this.openLocationChooser}
             >
               <div className="input-group-addon input-sm">

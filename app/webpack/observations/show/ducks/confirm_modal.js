@@ -56,7 +56,8 @@ export function handleAPIError( e, message, options = { } ) {
           confirmText: "OK",
           message,
           errors: railsErrors,
-          onConfirm: options.onConfirm
+          onConfirm: options.onConfirm,
+          onCancel: options.onConfirm
         } ) );
       };
       if ( e.response.bodyUsed ) {

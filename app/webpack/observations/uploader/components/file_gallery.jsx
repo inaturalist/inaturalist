@@ -5,14 +5,21 @@ import { Glyphicon, Carousel } from "react-bootstrap";
 import FileGalleryItem from "./file_gallery_item";
 
 class FileGallery extends Component {
-
   render( ) {
+    const {
+      obsCard,
+      setState,
+      draggingProps,
+      confirmRemoveFile,
+      updateObsCard
+    } = this.props;
     let content;
-    const filesArray = _.values( this.props.obsCard.files );
+    const filesArray = _.values( obsCard.files );
     const count = filesArray.length;
     if ( count === 0 ) {
+      const mediaValidationError = obsCard.validationErrors.media;
       content = (
-        <div className="placeholder">
+        <div className={`placeholder${mediaValidationError ? " has-error" : ""}`}>
           <Glyphicon glyph="picture" />
         </div>
       );
@@ -20,21 +27,23 @@ class FileGallery extends Component {
       content = (
         <Carousel
           ref="carousel"
-          key={ `carousel${this.props.obsCard.id}${count}` }
-          interval={ 0 }
-          controls={ count > 1 }
-          indicators={ false }
-          onSlideEnd={ ( ) => this.props.updateObsCard( this.props.obsCard,
-            { galleryIndex: this.refs.carousel.state.activeIndex + 1 } ) }
+          key={`carousel${obsCard.id}${count}`}
+          interval={0}
+          controls={count > 1}
+          indicators={false}
+          onSlideEnd={( ) => updateObsCard(
+            obsCard,
+            { galleryIndex: this.refs.carousel.state.activeIndex + 1 }
+          )}
         >
-          { _.map( _.sortBy( this.props.obsCard.files, "sort" ), f => (
-            <Carousel.Item key={ `file${f.id}${count}` }>
+          { _.map( _.sortBy( obsCard.files, "sort" ), f => (
+            <Carousel.Item key={`file${f.id}${count}`}>
               <FileGalleryItem
-                obsCard={ this.props.obsCard }
-                file={ f }
-                setState={ this.props.setState }
-                draggingProps={ this.props.draggingProps }
-                confirmRemoveFile={ this.props.confirmRemoveFile }
+                obsCard={obsCard}
+                file={f}
+                setState={setState}
+                draggingProps={draggingProps}
+                confirmRemoveFile={confirmRemoveFile}
               />
             </Carousel.Item>
           ) ) }

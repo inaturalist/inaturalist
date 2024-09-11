@@ -242,7 +242,7 @@
           .btn.btn-inter.text-muted
             .text-muted
               =t :most_browser_print_pdf
-          = link_to t(:print_verb), guide_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-primary", :target => "_blank"
+          = link_to t(:print_verb), guide_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-primary", :target => "_blank", rel: "noopener noreferrer"
 
 - if @guide.editable_by?(current_user)
   #mobile_dialog.modal.fade

@@ -74,7 +74,9 @@ const normalizeParams = params => {
       newParams.createdDateType = "month";
     }
   }
-  if ( newParams.without_term_value_id && !newParams.term_id ) {
+  if ( newParams.without_term_value_id && !(
+    newParams.term_id || newParams.term_id_or_unknown
+  ) ) {
     delete newParams.without_term_value_id;
   }
   if (

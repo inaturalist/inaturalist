@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Photo < ApplicationRecord
   acts_as_flaggable
   has_one :photo_metadata, autosave: true, dependent: :destroy
@@ -22,7 +23,7 @@ class Photo < ApplicationRecord
     :remote_thumb_url
 
   include Shared::LicenseModule
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid

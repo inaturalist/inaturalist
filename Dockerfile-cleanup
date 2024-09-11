@@ -1,0 +1,15 @@
+FROM alpine:latest
+
+RUN apk add --no-cache logrotate
+
+RUN mkdir -p /var/rails/log
+RUN mkdir -p /var/rails/script
+
+# Configure logrotate hourly
+COPY docker/logrotate.conf /var/rails/script/logrotate.conf
+COPY docker/logrotate-cron.sh /var/rails/script/logrotate-cron.sh
+RUN chmod 400 /var/rails/script/logrotate.conf
+RUN crontab -l | { cat; echo "0 * * * * sh /var/rails/script/logrotate-cron.sh"; } | crontab -
+
+# Run cron
+CMD ["/bin/sh", "-c", "crond -f"]

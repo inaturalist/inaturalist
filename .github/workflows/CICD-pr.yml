@@ -1,0 +1,20 @@
+name: Rails CI/CD Pull Request
+
+on:
+  pull_request:
+
+jobs:
+  build-and-test:
+    uses: ./.github/workflows/CI-build-test.yml
+
+  notify-slack:
+    name: Notify Slack
+    needs: build-and-test
+    if: ${{ success() || failure() }}
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: iRoachie/slack-github-actions@v2.3.2
+      if: env.SLACK_WEBHOOK_URL != null
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_BUILDS_WEBHOOK_URL }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

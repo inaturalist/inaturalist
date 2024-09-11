@@ -109,7 +109,7 @@ const Requirements = ( {
   } else if ( project.rule_d1 ) {
     dateRules = I18n.t( "project_start_time_datetime", { datetime: dateToString( project.rule_d1 ) } );
   } else if ( project.rule_month ) {
-    const monthIndices = project.rule_month.split( "," ).map( m => parseInt( m, 0 ) );
+    const monthIndices = project.rule_month.split( "," ).map( m => parseInt( m, 10 ) );
     dateRules = monthIndices.map( m => I18n.t( "date.month_names" )[m] ).join( ", " );
   }
   let establishmentRules = I18n.t( "any_establishment" );
