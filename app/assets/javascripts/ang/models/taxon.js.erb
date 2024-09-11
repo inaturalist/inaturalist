@@ -50,8 +50,8 @@ iNatModels.Taxon.prototype.photoAttribution = function ( ) {
   return this.default_photo ? ( I18n.t( "photo" ) + ": " + this.default_photo.attribution ) : null;
 };
 
-iNatModels.Taxon.prototype.localizedPhotoAttribution = function ( opts = { } ) {
-  var options = _.extend( { }, opts );
+iNatModels.Taxon.prototype.localizedPhotoAttribution = function ( opts ) {
+  var options = _.extend( { }, opts || { } );
   var photo = this.default_photo;
   if ( !photo ) return null;
   var separator = options.separator || "";
@@ -227,8 +227,8 @@ iNatModels.Taxon.titleCaseName = function ( name ) {
   } ).join( " " );
 };
 
-iNatModels.Taxon.prototype.preferredCommonName = function ( opts = { } ) {
-  var options = _.extend( { }, opts );
+iNatModels.Taxon.prototype.preferredCommonName = function ( opts ) {
+  var options = _.extend( { }, opts || { } );
   options.locale = ( options.locale || I18n.locale || "en" ).split( "-" )[0];
   var nameInLocale;
   var nameInPlace;

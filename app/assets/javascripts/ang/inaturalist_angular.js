@@ -15,8 +15,8 @@ iNatAPI.constant( "testingApiV2", (
 
 iNatAPI.factory( "shared", ["$http", "$rootScope", "$filter", "testingApiV2",
   function ( $http, $rootScope, $filter, testingApiV2 ) {
-    var basicGet = function ( url, inputParams = { } ) {
-      var params = _.extend( { }, inputParams );
+    var basicGet = function ( url, inputParams ) {
+      var params = _.extend( { }, inputParams || { } );
       var config = {
         timeout: 60000 // 60 second timeout
       };
@@ -71,8 +71,8 @@ iNatAPI.factory( "shared", ["$http", "$rootScope", "$filter", "testingApiV2",
       return I18n.toNumber( num, { precision: 0 } );
     };
 
-    var t = function ( k, opts = { } ) {
-      var options = _.extend( { }, opts );
+    var t = function ( k, opts ) {
+      var options = _.extend( { }, opts || { } );
       return I18n.t( k, options );
     };
 

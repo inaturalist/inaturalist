@@ -9,3 +9,4 @@
 //= require moment-timezone/builds/moment-timezone-with-data-10-year-range.min
 //= require angular-moment/angular-moment
 //= require angular-truncate/src/truncate
+//= require rison/js/rison
