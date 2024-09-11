@@ -1,0 +1,21 @@
+{
+  "name": "rison",
+  "description": "URI friendly encoding for JSON structures",
+  "main": "js/rison.js",
+  "authors": [
+    "Metaweb Technologies <developers@freebase.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "rison"
+  ],
+  "homepage": "https://github.com/Nanonid/rison",
+  "ignore": [
+    "**/.*",
+    "python",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
