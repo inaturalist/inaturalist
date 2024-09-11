@@ -457,13 +457,13 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def dashboard
-    @has_updates = (current_user.recent_notifications.count > 0)
+    @has_updates = current_user.recent_notifications.count.positive?
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
-      cache_key = "dashboard-discourse-data-#{@site.id}"
+    if @site && !@site.discourse_url.blank? && ( @discourse_url = @site.discourse_url )
+      cache_key = "dashboard-discourse-data-20240911-#{@site.id}"
       begin
         if @site.discourse_category.blank?
           url = "#{@discourse_url}/latest.json?order=created"
@@ -472,19 +472,21 @@ class UsersController < ApplicationController
           url = "#{@discourse_url}/c/#{@site.discourse_category}.json?order=created"
           @discourse_topics_url = "#{@discourse_url}/c/#{@site.discourse_category}"
         end
-        unless @discourse_data = Rails.cache.read( cache_key )
+        unless ( @discourse_data = Rails.cache.read( cache_key ) )
           @discourse_data = {}
           @discourse_data[:categories] = JSON.parse(
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
-          )["category_list"]["categories"].index_by{|c| c["id"]}
+          )["category_list"]["categories"].index_by {| c | c["id"] }
           discourse_ignored_category_names = [
             "Forum Feedback",
+            "iNaturalist Next Bug Reports",
+            "iNaturalist Next Discussion",
             "Nature Talk"
           ]
-          discourse_ignored_category_ids = @discourse_data[:categories].values.select do |c|
+          discourse_ignored_category_ids = @discourse_data[:categories].values.select do | c |
             discourse_ignored_category_names.include?( c["name"] )
-          end.map{ |c| c["id"] }
+          end.map {| c | c["id"] }
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute(
               method: "get",
