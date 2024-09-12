@@ -227,7 +227,7 @@ hr:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: O sredstvima za uspostavu
+  about_establishment_means: O "Načinu dolaska"
   about_license_options: O opcijama licenciranja
   about_licenses: O licencama
   #Header for a section describing taxon names
@@ -420,7 +420,7 @@ hr:
   add_to_a_scheme: Dodajte u shemu
   add_to_a_project: Dodaj u projekt
   add_to_calendar: Dodaj u kalendar
-  add_to_checklist: Dodaj u popis
+  add_to_checklist: Dodaj u popis vrsta
   add_to_favorites: Dodaj u favorite
   add_to_list: Dodaj na popis
   add_to_project: Dodaj u projekt
@@ -677,7 +677,7 @@ hr:
   apply_fields: Primijeni polja
   apply_geoprivacy: Primijeni geopravila
   apply_darr: "Primijeni &darr;"
-  apply_establishment_means_to_descendant_places: "Primijeni sredstva osnivanja na potomke mjesta"
+  apply_establishment_means_to_descendant_places: "Primijeni način dolaska na niža mjesta"
   apply_these_settings_to_all: Primijeni ove postavke na sva dolje navedena opažanja.
   appropriate?: Prikladno?
   arachnids: paučnjaci
@@ -750,7 +750,7 @@ hr:
   are_you_sure_you_want_to_remove_these_x_taxa?: "Jeste li sigurni da želite ukloniti ovih %{x} taksona?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Jeste li sigurni da želite ukloniti ovo opažanje iz %{project}?
-  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Jeste li sigurni da želite ukloniti ovaj takson iz popisa %{place}?"
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Jeste li sigurni da želite ukloniti ovaj takson iz popisa vrsta za mjesto: %{place}?"
   are_you_sure_you_want_to_flag_as_spammer: Jeste li sigurni da želite označiti ovog korisnika kao spamera?
   associated_observations: Povezana opažanja
   associated_taxa: Povezani taksoni
@@ -990,7 +990,7 @@ hr:
   check_back_soon: Provjerite uskoro ponovno!
   check_here_to_autoload_description: Označite ovdje za automatsko učitavanje opisa s Wikipedije. Možda ćete htjeti odznačiti ovu opciju kada je znanstveno ime taksona također neznanstvena riječ ili uobičajena greška u pisanju, kao što je "Parus".
   check_here_to_autoload_photos: Označite ovdje za automatsko učitavanje fotografija s Flickra. Možda ćete htjeti odznačiti ovu opciju kada je znanstveno ime taksona također neznanstvena riječ ili uobičajena greška u pisanju, kao što je "Parus".
-  check_list: Provjeri listu
+  check_list: Provjeri popis
   check_list_description: Odaberite takson višeg ranga koji želite prikazati na ovoj listi, poput "Aves" za ptice ili "Amphibia" za vodozemce. Kada je postavljeno, ova lista neće dopuštati taksone koji nisu u tom taksonu. Na primjer, ako kreirate listu ptica, nećete moći dodavati žabe na nju.
   check_list_for_individual_taxa_that: 'Provjerite liste za pojedinačne taksone koji žive ovdje, npr. "Ptice %{place}".'
   check_list_for_taxon_html: "Provjerite listu za %{taxon}"
@@ -1006,7 +1006,7 @@ hr:
     Označite ovaj okvir ako želite primijeniti <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons Attribution - Nekomercijalnu licencu</a> za preneseni sadržaj. To znači da svatko može kopirati i ponovno koristiti vaše fotografije i/ili opažanja bez traženja dopuštenja sve dok vam odaju priznanje da ste vi autor te ne može koristiti radove u komercijalne svrhe. Licencu možete kasnije ukloniti ili ju zamijeniti nekom drugom, ali ovo je svakako najbolja opcija za dijeljenje sa znanstvenicima i istraživačima.
-  checklist: Lista provjera
+  checklist: popis vrsta
   choose_a_field: Odaberi polje
   choose_a_list_above: Odaberite listu iznad.
   choose_a_place: Odaberite mjesto
@@ -1108,15 +1108,15 @@ hr:
   comprehensive_list: Sveobuhvatan popis
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
-  computer_vision_model: Model računalnog vida
+  computer_vision_model: Model računalne vizije
   #Status of a taxon that the Computer Vision Model can recognize
   computer_vision_model_included: Takson uključen
   computer_vision_model_included_desc: |
-    Trenutni model računalnog vida prepoznaje ovaj takson, pa bi mogao biti uključen u automatske prijedloge s oznakom "Vizualno sličan".
+    Trenutni model računalne vizije prepoznaje ovaj takson, pa bi mogao biti uključen u automatske prijedloge s oznakom "Vizualno sličan".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: U tijeku uključivanja
   computer_vision_model_pending_desc2: |
-    Trenutni model računalnog vida ne prepoznaje ovaj takson, pa iako
+    Trenutni model računalne vizije ne prepoznaje ovaj takson, pa iako
     može biti uključen u automatske prijedloge s oznakom "Očekivano u blizini", neće imati oznaku "Vizualno sličan". Dok se zahtjevi za
     uključivanje modela mijenjaju s svakim modelom, općenito je uključivanje bazirano na
     broju opažanja, pa kako biste povećali šanse da ovaj takson bude uključen u sljedećem treniranju modela, dodajte ili identificirajte više opažanja
@@ -1857,27 +1857,27 @@ hr:
   end: Kraj
   end_date_time: Datum/Kraj vremena
   endangered: Ugroženo
-  endemic: Endemski
-  endemic_to_x: "Endemski za %{x}"
+  endemic: Endem
+  endemic_to_x: "Endem mjesta: %{x}"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: EOL
   eol_collection_url: "EOL URL kolekcije"
   error_updating_photo: "Greška pri ažuriranju fotografije: %{photo_errors}"
   establishment:
-    endemic: Endemičan
-    establishment: Dolazak
-    introduced: Uvedeno
-    invasive: Invazivan
-    managed: Upravljan
-    native: Autohtono
-    naturalised: Naturaliziran
+    endemic: Endem
+    establishment: Način dolaska
+    introduced: Uvedena vrsta
+    invasive: Invazivna vrsta
+    managed: Kontrolirana vrsta
+    native: Autohtona vrsta
+    naturalised: Naturalizirana vrsta
   establishment_means: Način dolaska
   establishment_means_describes_how: |
-    Sredstva osnivanja opisuju kako je takson uspostavljen na nekom području.
-    Pogledajte DarwinCore za <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">više informacija o terminologiji</a>.
+    "Način dolaska" opisuje kako je takson uspostavljen na nekom području.
+    Pogledaj DarwinCore za <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">više informacija o terminologiji</a>.
   establishment_means_descriptions:
     native: takson je evoluirao u ovoj regiji ili je u nju stigao prirodnim putem
-    endemic: autohtono i ne pojavljuje se nigdje drugdje
+    endemic: autohtona vrsta koja se ne pojavljuje nigdje drugdje
     introduced: takson je u regiju stigao antropogenim putem
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
@@ -1996,47 +1996,47 @@ hr:
   flag_as_spammer: Označi kao spammera
   flag_as_non_spammer: Označi kao ne-spammera
   #Label for the date/time when a flag was created
-  flag_created: Oznaka kreirana
-  flag_deleted: Oznaka izbrisana
+  flag_created: Prijava kreirana
+  flag_deleted: Prijava izbrisana
   flag_description: Označi ovaj sadržaj kako bi obavijestio kuratore da nešto nije u redu s njim.
   flag_comment_description: Dodajte opcionalni komentar ovoj oznaci koji dalje objašnjava zašto je dodajete i pruža linkove na prateće dokaze.
   flag_for_check_list_title_html: |
-    Oznaka za kontrolni popis: %{title}
-  flag_for_comment_id_html: Oznaka za <a href="%{url}">Komentar %{id}</a>
-  flag_for_comment_id_deleted: Oznaka za Komentar %{id} (izbrisano)
+    Prijava za popis vrsta: %{title}
+  flag_for_comment_id_html: Prijava za <a href="%{url}">Komentar %{id}</a>
+  flag_for_comment_id_deleted: 'Prijava za komentar: %{id} (izbrisano)'
   flag_for_curation: Prijavi za kuraciju
   flag_for_guide_title_html: |
-    Oznaka za vodič: %{title}
-  flag_for_identification_id_html: Oznaka za <a href="%{url}">Identifikaciju %{id}</a>
+    Prijava za vodič: %{title}
+  flag_for_identification_id_html: Prijava za <a href="%{url}">Identifikaciju %{id}</a>
   flag_for_life_list_title_html: |
-    Oznaka za životni popis: %{title}
+    Prijava za životni popis: %{title}
   flag_for_list_title_html: |
-    Oznaka za popis: %{title}
-  flag_for_message_id_html: Oznaka za <a href="%{url}">Poruku %{id}</a>
+    Prijava za popis: %{title}
+  flag_for_message_id_html: 'Prijava za <a href="%{url}">poruku: %{id}</a>'
   flag_for_observation_title_html: |
-    Oznaka za opažanje: %{title}
-  flag_for_photo_id_html: Oznaka za <a href="%{url}">Fotografiju %{id}</a>
+    Prijava za opažanje: %{title}
+  flag_for_photo_id_html: 'Prijava za <a href="%{url}">fotografiju: %{id}</a>'
   flag_for_place_title_html: |
-    Oznaka za mjesto: %{title}
+    Prijava za mjesto: %{title}
   flag_for_post_title_html: |
-    Oznaka za objavu: %{title}
+    Prijava za objavu: %{title}
   flag_for_project_title_html: |
-    Oznaka za projekt: %{title}
-  flag_for_guide_section_id_html: Oznaka za <a href="%{url}">Sekciju vodiča %{id}</a>
-  flag_for_sound_id_html: Oznaka za <a href="%{url}">Zvuk %{id}</a>
+    Prijava za projekt: %{title}
+  flag_for_guide_section_id_html: 'Prijava za <a href="%{url}">sekciju vodiča: %{id}</a>'
+  flag_for_sound_id_html: 'Prijava za <a href="%{url}">zvuk: %{id}</a>'
   flag_for_taxon_title_html: |
-    Oznaka za takson: %{title}
+    Prijava za takson: %{title}
   flag_for_user_title_html: |
-    Oznaka za korisnika: %{title}
+    Prijava za korisnika: %{title}
   flag_it!: Označi!
-  flag_marked_as_resolved_html: '<span class="meta">Oznaka označena kao</span> <strong>riješena.</strong>'
-  flag_marked_as_unresolved_html: '<span class="meta">Oznaka označena kao</span> <strong>neriješena.</strong>'
+  flag_marked_as_resolved_html: '<span class="meta">Prijava označena kao</span> <strong>riješena.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Prijava označena kao</span> <strong>neriješena.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Označavam ovaj %{record} jer"
   flag_resolution: Rezolucija
-  flag_saved: Oznaka spremljena
-  flag_saved_thanks_html: Oznaka spremljena. Hvala! <a href="%{url}" class="readmore">Pogledajte oznaku</a>
+  flag_saved: Prijava spremljena
+  flag_saved_thanks_html: Prijava spremljena. Hvala! <a href="%{url}" class="readmore">Pogledaj prijavu</a>
   flag_this_observation: Označi ovo opažanje
   flag_this_photo: Označi ovu fotografiju
   flag_this_place: Označi ovo mjesto
@@ -2199,7 +2199,7 @@ hr:
     other: "<strong>Upozorenje:</strong> postoji još %{count} nacrta promjene taksona s istim ulaznim taksonima:"
   heads_up_this_photo_has_been_flagged: "UPOZORENJE: ova fotografija je označena."
   heads_up_this_photo_is_already_associated_with: "Upozorenje: ova fotografija je već povezana s <a target='_blank' href='%{url}'>drugim opažanjem</a>"
-  heads_up_you_have_multiple: "Upozorenje: Imate više taksonomskih oznaka stroja za identične rangove. Obojene su dolje prema rangu."
+  heads_up_you_have_multiple: "Pozor: Imaš više taksonomskih oznaka stroja za identične rangove. Kodirane su bojom dolje prema rangu."
   help: Pomoć
   help_confirm_observations!: Pomozite potvrditi opažanja!
   help_translate!: Pomozite prevesti!
@@ -2856,7 +2856,7 @@ hr:
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} spomenuo vas je u %{x} na %{noun} od vas"
   merge: Spoji
   merge_it_with_another_place: Spoji s drugim mjestom
-  merge_two_places_together: Spoji dva mjesta zajedno. Sve vrste na popisima će biti spojene, kao i svi geografski podaci.
+  merge_two_places_together: Spoji dva mjesta zajedno. Sve vrste na popisima vrsta će biti spojene, kao i svi geografski podaci.
   merge_observation_field_x_into: 'Spoji polje opažanja "%{x}" u...'
   merging: Spajanje
   merging_places: Spajanje mjesta
@@ -3072,8 +3072,8 @@ hr:
   new_announcement: Nova najava
   new_application: Nova aplikacija
   new_assessment: Nova procjena
-  new_check_list: Novi popis
-  new_check_list_for: "Kreirajte novi popis za %{place} &raquo;"
+  new_check_list: Novi popis vrsta
+  new_check_list_for: "Kreirajte novi popis vrsta za %{place} &raquo;"
   new_check_list_record: "Ako želite označiti ovaj popis kao sveobuhvatan, kreirajte ga, dodajte taksone, a zatim ga uredite i ovdje ćete imati opciju označiti ga kao sveobuhvatan."
   new_comment_on_a_parent_by_user_link: Novi komentar na @vow_or_con{vow:an|a} %{parent} od %{user_link}
   new_conservation_status: Novi status zaštite
@@ -3491,14 +3491,14 @@ hr:
     irregular: Prisutnost nepredvidiva, uključujući skitnice; može biti česta u nekim godinama i odsutna u drugima
     present: Pojavljuje se u području
     uncommon: Redovito se pojavljuje, ali u malom broju; zahtijeva pažljivo pretraživanje odgovarajućeg staništa
-  occurrence_status_establishment_means: status pojavljivanja, način uspostavljanja
+  occurrence_status_establishment_means: status pojavljivanja, način dolaska
   occurrence_status_levels:
-    present: prisutan
+    present: prisutno
     common: često
     uncommon: neuobičajeno
     irregular: nepravilno
     doubtful: sumnjivo
-    absent: odsutan
+    absent: odsutno
   of_places: mjesta
   of_this_taxon: Ovaj takson
   offensive_inappropriate: Uvredljivo / Neprikladno
@@ -4825,7 +4825,7 @@ hr:
   small: malo
   site_admin_tools: Alati za administratore stranice
   #People who administrate a particular iNaturalist Network partner
-  site_admins: Administratori stranice
+  site_admins: admin
   site_name_place: "%{site_name} mjesto"
   site_observations_export_from_date: "%{site_name} izvoz opažanja od %{date}"
   site_site_admin: "%{site_name} administrator stranice"
@@ -5012,8 +5012,8 @@ hr:
     nzbrn_mammals: NZBRN Sisavci
     nzbrn_plants: NZBRN Biljke
     nzbrn_other: NZBRN Ostalo
-    catalogue_of_life_2012_annual_checklist: 'Katalog života: 2012 Godišnja kontrolna lista'
-    catalogue_of_life_2013_annual_checklist: 'Katalog života: 2013 Godišnja kontrolna lista'
+    catalogue_of_life_2012_annual_checklist: 'Katalog života: godišnji popis vrsta u 2012.'
+    catalogue_of_life_2013_annual_checklist: 'Katalog života: godišnji popis vrsta u 2013.'
   source_eg:
     title: 'npr. Zmije: Evolucija misterija u prirodi'
     in_text: 'npr. Greene, 2000'
@@ -5464,8 +5464,8 @@ hr:
   this_user_has_been_suspended: Ovaj korisnik je suspendiran
   this_user_has_been_suspended_message: |
     Ako je ovo vaš račun i mislite da je ovo učinjeno greškom, molimo <a href="mailto:%{email}">kontaktirajte nas</a>.
-  this_will_add_listed_taxa: Ovo će dodati navedene taksone iz opažanja. Ovo može potrajati pa molimo koristite štedljivo i na malim popisima
-  this_will_refresh_listed_taxa: Ovo će osvježiti navedene taksone na ovom popisu. Ovo može potrajati pa molimo koristite štedljivo i na malim popisima
+  this_will_add_listed_taxa: Ovo će dodati navedene taksone iz opažanja. Može potrajati pa molimo da koristiš ovaj alat štedljivo i na malim popisima vrsta
+  this_will_refresh_listed_taxa: Ovo će osvježiti navedene taksone na ovom popisu. Može potrajati pa molimo da koristiš ovaj alat štedljivo i na malim popisima vrsta
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Ovo će ukloniti mogućnost iNaturalista da pristupi ovom računu u vaše ime
     dok ponovno ne dopustite pristup. Možda ćete trebati promijeniti svoje postavke na
@@ -5904,10 +5904,10 @@ hr:
   verifiable_observations_by_observation_date: Provjerljiva opažanja po datumu opažanja
   video_tutorials: Video uputstva
   view: Pogledaj
-  view_all: Pogledaj sve
+  view_all: Vidi sve
   view_all_caps: PRIKAŽI SVE
   view_all_fields: Pogledaj sva polja
-  view_all_flags: Pogledaj sve prijave
+  view_all_flags: Vidi sve prijave
   view_all_members: Vidi sve članove
   #As in "View all 5" to view all 5 observations, comments, or other
   view_all_number:
@@ -5979,7 +5979,7 @@ hr:
   view_your_observations: Pogledaj svoja opažanja
   view_your_personal_year_in_review: "Pogledaj svoj osobni pregled godine %{year}"
   view_your_personal_year_in_review_caps: "POGLEDAJ SVOJ OSOBNI PREGLED GODINE %{year}"
-  view_yours: Pogledaj svoje
+  view_yours: Vidi svoje
   view_all_of_your_observations_from_x: "Pogledaj sva svoja opažanja iz %{x}"
   visually_similar: Vizualno slično
   vulnerable: Ranjivo
@@ -6000,7 +6000,7 @@ hr:
   we_had_a_problem_flagging_that_item: "Imali smo problem s označavanjem te stavke: %{flag_error}"
   we_had_trouble_saving_comment: "Imali smo problema s spremanjem tog komentara:"
   we_have_no_conservation_status_for_this_taxon: Nemamo status zaštite za ovaj takson
-  we_have_no_establishment_data_for_this_taxon: "Nemamo podatke o uspostavi za ovaj takson"
+  we_have_no_establishment_data_for_this_taxon: "Nemamo podatke o načinu dolaska za ovaj takson"
   we_support_flickr: Trenutno podržavamo Flickr za hosting slika i nadamo se da ćemo uskoro dodati druge hostove slika.
   weather: Vrijeme
   website: Web stranica
@@ -6534,7 +6534,7 @@ hr:
           Koristimo Geomodel za primjenu oznake "Očekivano u blizini" uz prijedloge i
           za ponderiranje tih prijedloga na temelju lokacije promatranja.
         the_geo_model_is_trained: |
-          Kao i model računalnog vida, Geomodel je treniran na iNaturalist promatranjima
+          Kao i model računalne vizije, Geomodel je treniran na iNaturalist promatranjima
           za isti skup vrsta s otprilike više od 100 fotografija. Geomodel ne daje
           savršene predikcije. Možeš pročitati više o tome kako je Geomodel izrađen
           <a href="%{url}">ovdje</a>.
@@ -6554,7 +6554,7 @@ hr:
         unthresholded_map:
           unthresholded_map: Karta bez praga
           we_use_the_unthresholded_map: |
-            Koristimo kartu bez praga za ponderiranje rezultata računalnog vida po lokaciji prilikom
+            Koristimo kartu bez praga za ponderiranje rezultata računalne vizije po lokaciji prilikom
             nuđenja prijedloga.
           for_example: |
             Na primjer, promatranje guštera u središtu Sjedinjenih Američkih Država moglo bi
@@ -6564,7 +6564,7 @@ hr:
           you_can_think: |
             Možeš razmišljati o karti bez praga kao o relativnoj vjerojatnosti da se vrsta
             pojavljuje unutar ćelije mreže.
-          figure_alt_text: Geomodel ponderira rezultate računalnog vida
+          figure_alt_text: Geomodel ponderira rezultate računalne vizije
         range_comparison:
           expected_nearby_vs_taxon_range: Očekivano u blizini vs Raspon taksona
           this_map_shows: |
@@ -6835,11 +6835,11 @@ hr:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Jeste li sigurni? Ovo će promijeniti način ustanovljenja za SVE
-          popisane taksone koji pripadaju mjestima unutar ovog mjesta. Mogli biste
-          poništiti puno posla.
+          Sigurno? Ovo će promijeniti način dolaska za SVE
+          popisane taksone koji pripadaju mjestima unutar ovog mjesta. Puno posla 
+          može biti poništeno.
         description_html: |
-          Ovo će promijeniti način ustanovljenja <em>svih</em> popisa ovog taksona na svim potomcima mjesta
+          Ovo će promijeniti način dolaska <em>svih</em> popisa ovog taksona na svim potomcima mjesta
           <a href="%{place_url}">%{place_name}</a>
           u <strong>"%{establishment_means}"</strong>. Samo
           kustosi mogu koristiti ovaj alat. Promjena načina ustanovljenja u
@@ -7834,7 +7834,7 @@ hr:
           Za početak, <a href="%{url}" class="readmore">kreirajte objavu</a>
           </p>
         curated_checklist_desc: |
-          Ovo je kurirani popis i broj taksona iz opažanja eksplicitno dodanih ovom
+          Ovo je kurirani popis vrsta i broj taksona iz opažanja eksplicitno dodanih ovom
           projektu, a ne sva opažanja zabilježena na mjestu i vremenu ovog
           događaja.
         make_sure_you_have_read_about_the_differences: |
@@ -8091,9 +8091,9 @@ hr:
         translators_prompt: |
           Ako želite pomoći u prevođenju, %{link_tag}saznajte kako%{link_tag_end}.
         view_all_publications_count_caps2:
-          one: "POGLEDAJTE %{count} PUBLIKACIJU"
-          few: "POGLEDAJTE SVE %{count} PUBLIKACIJE"
-          other: "POGLEDAJTE SVE %{count} PUBLIKACIJA"
+          one: "PROČITAJ %{count} PUBLIKACIJU"
+          few: "PROČITAJ SVE %{count} PUBLIKACIJE"
+          other: "PROČITAJ SVIH %{count} PUBLIKACIJA"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -9047,7 +9047,7 @@ hr:
         name: Ime
         parent_id: nadređeni
         place_type: Tip mjesta
-        prefers_check_lists: Dopušteni kontrolni popisi?
+        prefers_check_lists: Jesu li popisi vrsta dozvoljeni?
         woeid: WOEID
       site:
         logo: Logotip
