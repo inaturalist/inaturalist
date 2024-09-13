@@ -268,8 +268,8 @@ function fetchPhotosGroupedByParam( param, values ) {
         params[param] = groupName;
       } else {
         groupName = value.controlled_value.label;
-        params.term_id = parseInt( value.controlled_attribute.id, 0 );
-        params.term_value_id = parseInt( value.controlled_value.id, 0 );
+        params.term_id = parseInt( value.controlled_attribute.id, 10 );
+        params.term_value_id = parseInt( value.controlled_value.id, 10 );
       }
       dispatch( setPhotosGroup( groupName, [], groupObject ) );
       inatjs.observations.search( params ).then( response => {
@@ -405,11 +405,11 @@ export function hydrateFromUrlParams( params ) {
       newObservationParams.quality_grade = params.quality_grade;
     }
     if ( taxon && params.term_id && params.term_value_id ) {
-      const controlledAttrIDs = _.keys( taxon.fieldValues ).map( k => parseInt( k, 0 ) );
+      const controlledAttrIDs = _.keys( taxon.fieldValues ).map( k => parseInt( k, 10 ) );
       const controlledValueIDs = _.flatten( _.values( taxon.fieldValues ) )
         .map( v => v.controlled_value.id );
-      const attrRelevant = controlledAttrIDs.includes( parseInt( params.term_id, 0 ) );
-      const valueRelevant = controlledValueIDs.includes( parseInt( params.term_value_id, 0 ) );
+      const attrRelevant = controlledAttrIDs.includes( parseInt( params.term_id, 10 ) );
+      const valueRelevant = controlledValueIDs.includes( parseInt( params.term_value_id, 10 ) );
       if ( attrRelevant && valueRelevant ) {
         newObservationParams.term_id = params.term_id;
         newObservationParams.term_value_id = params.term_value_id;

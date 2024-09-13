@@ -7,6 +7,7 @@ class Announcement < ApplicationRecord
     welcome/index
     mobile/home
   ).freeze
+
   CLIENTS = {
     "mobile/home" => %w(
       inat-ios
@@ -15,9 +16,28 @@ class Announcement < ApplicationRecord
       inatrn
     )
   }.freeze
+
+  TARGET_GROUPS = {
+    "user_id_parity" => %w(
+      even
+      odd
+    ),
+    "created_second_parity" => %w(
+      even
+      odd
+    ),
+    "user_id_digit_sum_parity" => %w(
+      even
+      odd
+    )
+  }.freeze
+
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
+  validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
+  validates_presence_of :target_group_partition, if: :target_group_type?
+  validate :valid_target_group_partition, if: :target_group_type?
 
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
@@ -32,6 +52,7 @@ class Announcement < ApplicationRecord
   }
 
   before_save :compact_locales
+  before_save :clean_target_group
   before_validation :compact_clients
 
   def valid_placement_clients
@@ -40,6 +61,12 @@ class Announcement < ApplicationRecord
     end
       errors.add( :clients, :must_be_valid_for_specified_placement )
     end
+  end
+
+  def valid_target_group_partition
+    return if Announcement::TARGET_GROUPS[target_group_type]&.include?( target_group_partition )
+
+    errors.add( :target_group_partition, :must_be_valid_for_specified_target_group )
   end
 
   def session_key
@@ -54,6 +81,11 @@ class Announcement < ApplicationRecord
     self.clients = ( clients || [] ).reject( &:blank? ).compact
   end
 
+  def clean_target_group
+    self.target_group_type = nil if target_group_type.blank?
+    self.target_group_partition = nil if target_group_type.nil?
+  end
+
   def dismissed_by?( user )
     return false unless dismissible?
 
@@ -65,6 +97,42 @@ class Announcement < ApplicationRecord
   def targeted_to_user?( user )
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
     return false if user&.monthly_donor? && prefers_exclude_monthly_supporters
+    return false if target_group_type && user.blank?
+
+    case target_group_type
+    when "user_id_parity"
+      case target_group_partition
+      when "even"
+        return false if user.id.odd?
+      when "odd"
+        return false if user.id.even?
+      end
+    when "created_second_parity"
+      case target_group_partition
+      when "even"
+        return false if user.created_at.to_i.odd?
+      when "odd"
+        return false if user.created_at.to_i.even?
+      end
+    when "user_id_digit_sum_parity"
+      case target_group_partition
+      when "even"
+        return false if user.id.digits.sum.odd?
+      when "odd"
+        return false if user.id.digits.sum.even?
+      end
+    end
+
+    return false if ( include_donor_start_date || include_donor_end_date ) && (
+      !user || user.user_donations.
+        where( "donated_at >= ?", include_donor_start_date || Date.new( 2018, 1, 1 ) ).
+        where( "donated_at <= ?", include_donor_end_date || Time.now ).none?
+    )
+
+    return false if ( exclude_donor_start_date || exclude_donor_end_date ) &&
+      user && user.user_donations.
+        where( "donated_at >= ?", exclude_donor_start_date || Date.new( 2018, 1, 1 ) ).
+        where( "donated_at <= ?", exclude_donor_end_date || Time.now ).any?
 
     if prefers_target_unconfirmed_users
       return user && !user.confirmed?

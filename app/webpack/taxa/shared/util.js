@@ -18,7 +18,7 @@ const urlForPlace = p => `/places/${p.slug || p.id}`;
 const defaultObservationParams = ( state, options = { } ) => {
   const { config } = state;
   const params = {
-    verifiable: true,
+    photos: true,
     taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
     place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
     preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
@@ -212,6 +212,27 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
   };
 };
 
+const tabFromLocationHash = ( ) => {
+  const validTabs = [
+    "map",
+    "articles",
+    "highlights",
+    "interactions",
+    "taxonomy",
+    "status",
+    "similar",
+    "curation"
+  ];
+  const urlTabMatches = window.location.hash.match( /^#([a-z-]+)-tab$/ );
+  if ( urlTabMatches ) {
+    const tabMatch = urlTabMatches[1];
+    if ( _.includes( validTabs, tabMatch ) ) {
+      return tabMatch;
+    }
+  }
+  return null;
+};
+
 const RANK_LEVELS = {
   root: 100,
   kingdom: 70,
@@ -261,6 +282,7 @@ export {
   commasAnd,
   windowStateForTaxon,
   taxonLayerForTaxon,
+  tabFromLocationHash,
   RANK_LEVELS,
   MAX_TAXON_PHOTOS
 };

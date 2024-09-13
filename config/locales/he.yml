@@ -289,8 +289,6 @@ he:
   about_this_bioblitz: אודות ביו-בליץ זה
   about_this_map: אודות מפה זו
   about_this_project: אודות פרויקט זה
-  about_trips_html: |
-    <h4>סקרים מאפשר איסוף נתוני נוכחות/אי-נוכחות על ידי הוספת הקשר לתצפיות שלך </h4><p><strong>הסיבה</strong> שבגללה נתוני נוכחות/אי-נוכחות מכילים מידע אודות מאמץ הדיגום היא שמידע זה מאפשר לאמוד טוב יותר את תחומי התפוצה של המינים (הנתונים הגולמיים של iNaturalist הם נתוני נוכחות בלבד). </p> <p><strong>האופן</strong> שבו סקר מוסיף הקשר לתצפיותך הוא על ידי רישום:</p> <ul> <li><strong>מה</strong> חיפשת (מין מטרה)</li> <li><strong>היכן</strong> חיפשת (מרחב החיפוש)</li> <li><strong>מתי</strong> חיפשת (פרק זמן החיפוש)</li> </ul> <p>מינים ברשימת המטרה אשר הצלחת לצפות בהם במהלך מרחב וזמן הסקר מסומנים כנוכחים. מינים שהיו ברשימת המטרה ולא נצפו מדווחים כ"לא-נוכחים". הקליקו על 'צרו טבלת נוכחות/אי-נוכחות מנתוני סקרים' על מנת ליצור טבלת נתוני נוכחות/אי-נוכחות של של מינים מסקרים ומתצפיות המקושרות אליהם. <a href='%{url}'>מידע נוסף</a></p>
   about_trusting_projects: אודות אמון בפרויקטים
   about_trusting_projects_options_any: כל התצפיות שלך בפרויקט זה
   about_trusting_projects_options_any_desc: |-
@@ -1020,7 +1018,7 @@ he:
   changing_the_ancestry_to_that_parent: שינוי היוחסין להורה ההוא עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
   changing_the_geoprivacy: 'פרטיות המיקום קובעת איך אנשים אחרים יראו את המיקום של התצפיות שלך.'
   check_above_for_errors: בדוק לשגיאות
-  check_back_soon: לבדוק עוד מעט!
+  check_back_soon: בדקו שוב בקרוב!
   check_here_to_autoload_description: יש לבחור באפשרות זו כדי לטעון אוטומטית את התיאור מוויקיפדיה. ייתכן שעדיף לא לבחור את האפשרות הזאת במקרה שהשם המדעי של הטקסון הוא גם מילה לא־מדעית או שגיאת כתיב נפוצה.
   check_here_to_autoload_photos: יש לבחור באפשרות זו כדי לטעון תמונות מ־Flickr באופן אוטומטי. ייתכן שעדיף לא לבחור את האפשרות הזאת במקרה שהשם המדעי של הטקסון הוא גם מילה לא־מדעית או שגיאת כתיב נפוצה.
   check_list: רשימת מינים
@@ -4781,7 +4779,6 @@ he:
   start_a_new_project: פתיחת פרוייקט חדש
   start_a_project: פתיחת פרויקט
   start_date_time: תאריך / שעת התחלה
-  start_one: ליצור חדש
   start_one_now: להתחיל אחד עכשיו!
   start_typing_field_name: התחילו להקליד שם של שדה...
   start_typing_place_name: התחילו להקליד שם של מקום...
@@ -4811,8 +4808,6 @@ he:
   studies_that_used_inaturalist_data_in_year: מחקרים שהשתמשו בנתוני iNaturalist בשנת %{year}
   stuff_just_added: "דברים שהוספת כרגע..."
   subject_resolved_noun_html: "%{subject} נפתר %{noun}"
-  subject_affecting_stuff_html: "%{subject} משפיע על %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} מאושר @vow_or_con{vow:an|a} %{thing} משפיע על %{stuff}"
   submission_model: מודל הגשה
   submission_model_description: מי יכולים להוסיף תצפיות לפרוייקט שלך?
   submit_observations:
@@ -5111,7 +5106,6 @@ he:
     two: "ישנן <span class='count'>%{count}</span> מילים נרדפות</span>"
     many: "ישנן <span class='count'>%{count}</span> מילים נרדפות</span>"
     other: "ישנן <span class='count'>%{count}</span> מילים נרדפות</span>"
-  there_is_no_wikipedia_page_matching: אין דף ויקיפידיה תואם
   there_isnt_a_wikipedia_article_titled_x_html: |
     אין ערך ויקיפדיה או ניתוב מחדש בכותרת '%{x}'. אולי ברצונך <a href='http://en.wikipedia.org/wiki/%{x}'>ליצור כזה</a>?
   there_merge_problems_with_the_merge: "אירעו תקלות באיחוד: %{merged_errors}"
@@ -5504,7 +5498,6 @@ he:
   user_added_an_x_to_noun_by_you_html: "%{user} הוסיפ.ה %{x} ל%{noun} שלך"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} הוסיפ.ה %{x} ל%{noun}"
-  user_added_x_observations_html: "%{user} הוסיף %{x} תצפיות"
   user_already_authenticated: משתמש זה כבר אושר
   user_already_app_owner: היוזר כבר בעלים של אפליקציה
   user_autocomplete_placeholder: ronf, shlomit, וכו'
@@ -5599,6 +5592,7 @@ he:
   values: ערכים
   verbing_x_of_y: "%{verb} %{x} מ %{y}"
   verifiable_observations_by_observation_date: תצפיות בנות-אימות לפי תאריך התצפית
+  video_tutorials: מדריכי וידאו
   view: צפייה
   view_all: צפייה בהכל
   view_all_caps: להציג הכל
@@ -5678,7 +5672,6 @@ he:
   view_your_personal_year_in_review_caps: "צפייה בסיכום שנת %{year} האישי שלך"
   view_yours: צפייה בשלך
   view_all_of_your_observations_from_x: "הצגת כל התצפיות שלך מ%{x}"
-  video_tutorials: מדריכי וידאו
   visually_similar: דומים ויזואלית
   vulnerable: רגיש
   w00t_no_ungrafted_taxa: הידד! אין טקסונים מנותקים!
@@ -7246,7 +7239,6 @@ he:
           "Plant Phenology=Flowering": פורח
           "Plant Phenology=Fruiting": עם פירות
           "Plant Phenology=No Evidence of Flowering": אין עדות לפריחה
-          "Life Stage=Adult": בוגר
           "Life Stage=Egg": ביצה
           "Life Stage=Larva": זחל
           "Life Stage=Juvenile": צעיר
@@ -7284,28 +7276,6 @@ he:
           השם של הטקסון עם הדרגה. עבור דרגות אינפרא-ספציפיות, הדרגה מוכנסת אחרי הבינומיאל.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>נסו להוסיף שמות הנמצאים שימוש במקומות אחרים. נא לא להמציא שמות חדשים.</p></li>
-          <li><p>נא לא להוסיף שמות משוכפלים, למשל אין לתת לניצים מרובים את השם "נץ"</p></li>
-          <li><p>עבור טקסונים בדרגות גבוהות יותר, נסו להשתמש בשמות הכוללים את כל הצאצאים, למשל "אנפות וקרוביהן" או "משפחת האברשיים"</p></li>
-          <li>
-          <p>
-          אין להוסיף מידע שאינו השם, למשל מידע מוסגר המפרט איך לדעתך יהיה נכון להשתמש בשם 
-          </p>
-          </li>
-          <li>
-          <p>
-          על לקסיקונים חדשים להיות באנגלית. נא לא להוסיף שמות של שפות מתורגמות כמו "French, Français" כי זה רק יקשה או ימנע מעמנו להציג שמות מותאמים למקומות עבור א.נשים העושות.ים שימוש באתר בשפות שונות.
-          </p>
-          </li>
-          <li>
-          <p>
-          שמות עממים המשוייכים לשפות מתורגמות יופיעו בתור השם העממי ברירת המחדל עבור השפה ההיא (בחסימת האפשרות של העדפות מקום, סידור שמות וכו').
-          <a class="readmore" href="/pages/translate">למידע נוסף אודות תרגום</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           הוספת שם למקום תתן לו עדיפות עבור אתרים ויוזרים מהמקום ההוא. במידה ויש למקום שמות מרובים באפשרותך לתעדף ביניהם <a href="%{url}">כאן</a>. בבקשה <strong>לא</strong> להוסיף שמות על *כל* מקום שבו השם משמש, רק עבור מקומות שחולקים עם מקומות אחרים.
       taxon:

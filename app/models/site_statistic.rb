@@ -1,41 +1,47 @@
+# frozen_string_literal: true
+
 class SiteStatistic < ApplicationRecord
   STAT_TYPES = [
     :observations, :users, :projects,
     :taxa, :identifications, :identifier, :platforms,
-    :platforms_cumulative, :daily_active_user_model
+    :platforms_cumulative
   ]
 
-  def self.generate_stats_for_day(at_time = Time.now, options = {})
+  def self.generate_stats_for_day( at_time = Time.now, options = {} )
     at_time = at_time.utc.end_of_day
     if options[:force]
-      SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).delete_all
-    elsif stats_generated_for_day?(at_time)
+      SiteStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).delete_all
+    elsif stats_generated_for_day?( at_time )
       return
     end
     sleep 1
+    site_statistic_data = STAT_TYPES.to_h {| st | [st, send( "#{st}_stats", at_time )] }
+    daily_active_user_model_data = generate_daily_active_user_model_data( at_time )
+    site_statistic_data[:daily_active_user_model] = daily_active_user_model_data[:statistic]
+    site_statistic_data[:retention_metrics] = UserInstallationStatistic.calculate_all_retention_metrics( at_time )
     SiteStatistic.create!(
-      data: Hash[
-        STAT_TYPES.map{ |st| [ st, send("#{ st }_stats", at_time) ] }
-      ],
+      data: site_statistic_data,
       created_at: at_time.beginning_of_day
     )
+    update_user_daily_categories( daily_active_user_model_data )
+    UserInstallationStatistic.update_today_installation_ids( at_time )
   end
 
-  def self.generate_stats_for_date_range(start_time, end_time = Time.now, options = {})
+  def self.generate_stats_for_date_range( start_time, end_time = Time.now, options = {} )
     start_time = start_time.utc.end_of_day
     end_time = end_time.utc.end_of_day
     until end_time < start_time
-      generate_stats_for_day(end_time, options)
+      generate_stats_for_day( end_time, options )
       end_time -= 1.day
     end
   end
 
-  def self.stats_generated_for_day?(at_time = Time.now)
-    SiteStatistic.where("DATE(created_at) = DATE(?)", at_time.utc).exists?
+  def self.stats_generated_for_day?( at_time = Time.now )
+    SiteStatistic.where( "DATE(created_at) = DATE(?)", at_time.utc ).exists?
   end
 
   def self.first_stat
-    @@first_stat ||= SiteStatistic.order("created_at asc").first
+    @@first_stat ||= SiteStatistic.order( "created_at asc" ).first
   end
 
   private
@@ -784,7 +790,7 @@ class SiteStatistic < ApplicationRecord
     }
   end
 
-  def self.daily_active_user_model_stats( at_time = Time.now )
+  def self.generate_daily_active_user_model_data( at_time = Time.now )
     at_time = at_time.utc
     day_0 = at_time.end_of_day - 1.day
 
@@ -845,18 +851,18 @@ class SiteStatistic < ApplicationRecord
     reengaged_users_d1 = new_other_d1 - reactivated_users_d1
 
     # Unengaged users
-    total_user_count = User.where( "suspended_at IS NULL" ).count
-    unengaged_users_d0 = total_user_count - current_users_d0.count - at_risk_waus_d0.count - at_risk_maus_d0.count -
-      new_users_d0.count - reactivated_users_d0.count - reengaged_users_d0.count
+    total_user = User.where( "suspended_at IS NULL" ).pluck( :id )
+    unengaged_users_d0 = total_user - current_users_d0 - at_risk_waus_d0 - at_risk_maus_d0 -
+      new_users_d0 - reactivated_users_d0 - reengaged_users_d0
 
     # Calculate counts
-    curent_users = current_users_d0.count
+    current_users = current_users_d0.count
     at_risk_waus = at_risk_waus_d0.count
     at_risk_maus = at_risk_maus_d0.count
     new_users = new_users_d0.count
     reactivated_users = reactivated_users_d0.count
     reengaged_users = reengaged_users_d0.count
-    unengaged_users = unengaged_users_d0
+    unengaged_users = unengaged_users_d0.count
 
     # Calculate rates
     nurr = ( current_users_d0 & new_users_d1 ).count / new_users_d1.count.to_f
@@ -867,26 +873,64 @@ class SiteStatistic < ApplicationRecord
     wau = ( at_risk_maus_d0 & at_risk_waus_d1 ).count / at_risk_waus_d1.count.to_f
     imaurr = ( reactivated_users_d0 & at_risk_maus_d1 ).count / at_risk_maus_d1.count.to_f
     mau = ( at_risk_maus_d1 - at_risk_maus_d0 - reactivated_users_d0 ).count / at_risk_maus_d1.count.to_f
-    rr = reengaged_users_d0.count / unengaged_users_d0.to_f
+    rr = reengaged_users_d0.count / unengaged_users_d0.count.to_f
 
     {
-      date: day_0,
-      curent_users: curent_users,
-      at_risk_waus: at_risk_waus,
-      at_risk_maus: at_risk_maus,
-      new_users: new_users,
-      reactivated_users: reactivated_users,
-      reengaged_users: reengaged_users,
-      unengaged_users: unengaged_users,
-      nurr: nurr,
-      surr: surr,
-      rurr: rurr,
-      curr: curr,
-      iwaurr: iwaurr,
-      wau: wau,
-      imaurr: imaurr,
-      mau: mau,
-      rr: rr
+      current_users: current_users_d0,
+      at_risk_waus: at_risk_waus_d0,
+      at_risk_maus: at_risk_maus_d0,
+      new_users: new_users_d0,
+      reactivated_users: reactivated_users_d0,
+      reengaged_users: reengaged_users_d0,
+      unengaged_users: unengaged_users_d0,
+      statistic: {
+        date: day_0,
+        current_users: current_users,
+        at_risk_waus: at_risk_waus,
+        at_risk_maus: at_risk_maus,
+        new_users: new_users,
+        reactivated_users: reactivated_users,
+        reengaged_users: reengaged_users,
+        unengaged_users: unengaged_users,
+        nurr: nurr,
+        surr: surr,
+        rurr: rurr,
+        curr: curr,
+        iwaurr: iwaurr,
+        wau: wau,
+        imaurr: imaurr,
+        mau: mau,
+        rr: rr
+      }
     }
+  end
+
+  def self.update_user_daily_categories( daily_active_user_model_data )
+    update_user_daily_category( daily_active_user_model_data[:current_users], :current_user )
+    update_user_daily_category( daily_active_user_model_data[:at_risk_waus], :at_risk_wau )
+    update_user_daily_category( daily_active_user_model_data[:at_risk_maus], :at_risk_mau )
+    update_user_daily_category( daily_active_user_model_data[:new_users], :new_user )
+    update_user_daily_category( daily_active_user_model_data[:reactivated_users], :reactivated_user )
+    update_user_daily_category( daily_active_user_model_data[:reengaged_users], :reengaged_user )
+    update_user_daily_category( daily_active_user_model_data[:unengaged_users], :unengaged_user )
+  end
+
+  def self.update_user_daily_category( user_ids, new_category )
+    user_ids.in_groups_of( 1000, false ).each do | group_ids |
+      User.transaction do
+        existing_records = UserDailyActiveCategory.where( user_id: group_ids )
+        unrecorded_ids = group_ids - existing_records.map( &:user_id )
+        new_records = unrecorded_ids.map do | user_id |
+          UserDailyActiveCategory.new( user_id: user_id )
+        end
+        ( existing_records + new_records ).each do | user_dac |
+          user_dac.yesterday_category = user_dac.today_category
+          user_dac.today_category = new_category
+          next unless user_dac.changed?
+
+          user_dac.save!
+        end
+      end
+    end
   end
 end

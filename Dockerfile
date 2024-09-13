@@ -4,7 +4,7 @@ ENV RAILS_ENV=development
 
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip openjdk-17-jdk
 
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -\
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -\
   && apt-get update -qq && apt-get install -qq --no-install-recommends \
     nodejs \
   && apt-get upgrade -qq \
@@ -43,6 +43,21 @@ RUN mkdir /code/public/assets
 RUN mkdir /code/public/attachments
 RUN chown inaturalist:inaturalist /code/public/assets
 RUN chown inaturalist:inaturalist /code/public/attachments
+
+ARG GIT_BRANCH
+ARG GIT_COMMIT
+ARG IMAGE_TAG
+ARG BUILD_DATE
+
+ENV GIT_BRANCH=${GIT_BRANCH}
+ENV GIT_COMMIT=${GIT_COMMIT}
+ENV IMAGE_TAG=${IMAGE_TAG}
+ENV BUILD_DATE=${BUILD_DATE}
+
+RUN echo "GIT_BRANCH=${GIT_BRANCH}" > /code/build_info
+RUN echo "GIT_COMMIT=${GIT_COMMIT}" >> /code/build_info
+RUN echo "IMAGE_TAG=${IMAGE_TAG}" >> /code/build_info
+RUN echo "BUILD_DATE=${BUILD_DATE}" >> /code/build_info
 
 EXPOSE 3000
 

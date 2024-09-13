@@ -69,6 +69,7 @@ inatTaxonMap.setup = function ( elt, opts ) {
   options.mapTypeControl = ( options.mapTypeControl !== false && $( elt ).data( "map-type-control" ) !== true );
   options.mapTypeControlOptions = options.mapTypeControlOptions || $( elt ).data( "map-type-control-options" );
   options.zoomControl = ( options.zoomControl !== false && $( elt ).data( "zoom-control" ) !== false );
+  options.zoomControlOptions = options.zoomControlOptions || $( elt ).data( "zoom-control-options" );
   options.scrollwheel = ( options.scrollwheel !== false && $( elt ).data( "scrollwheel" ) !== false );
   options.overlayMenu = ( options.overlayMenu !== false && $( elt ).data( "overlay-menu" ) !== false );
   options.enableShowAllLayer = ( options.enableShowAllLayer !== false && $( elt ).data( "enable-show-all-layer" ) !== false );
@@ -139,7 +140,7 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
   var map;
   // eslint-disable-next-line prefer-object-spread
   var mapTypeControlOptions = Object.assign(
-    {},
+    iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS.mapTypeControlOptions,
     options.mapTypeControlOptions
   );
   if ( $( "html[dir='rtl']" ).length > 0 ) {
@@ -224,7 +225,8 @@ inatTaxonMap.setupGoogleMap = function ( elt ) {
 
   if ( !map.mapTypeListener ) {
     map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", function ( ) {
-      setMapTypeAndUpdateSession( options, this.getMapTypeId( ) );
+      var mapTypeId = this.getMapTypeId( );
+      setMapTypeAndUpdateSession( options, mapTypeId );
     } );
   }
 

@@ -63,7 +63,7 @@ class ModelTaxonomyUpdater
       Taxon.
         where( id: group_ids ).
         includes( :taxon_changes, :taxon_change_taxa ).each do | taxon |
-        next unless taxon.taxon_changes.any?
+        next unless taxon.taxon_changes_count.positive?
 
         taxon.current_synonymous_taxa( committed_after: @taxonomy_generated_at ).each do | synonym |
           @current_synonymous_taxa[taxon.id] ||= []

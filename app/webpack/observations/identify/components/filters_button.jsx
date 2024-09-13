@@ -361,7 +361,6 @@ class FiltersButton extends React.Component {
           </Col>
           <Col xs="6">
             <select
-              defaultValue="desc"
               className={
                 "params-order form-control"
                 + ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`

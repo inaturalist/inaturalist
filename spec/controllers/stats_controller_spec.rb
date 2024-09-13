@@ -13,9 +13,20 @@ describe StatsController do
           Observation.make!( taxon: Taxon.make!( rank: "species" ),
             created_at: t )
         end
-        allow( SiteStatistic ).to( receive( :daily_active_user_model_stats ) do
-          {}
+        allow( SiteStatistic ).to( receive( :generate_daily_active_user_model_data ) do
+          {
+            current_users: [],
+            at_risk_waus: [],
+            at_risk_maus: [],
+            new_users: [],
+            reactivated_users: [],
+            reengaged_users: [],
+            unengaged_users: [],
+            statistic: {}
+          }
         end )
+        allow( UserInstallationStatistic ).to receive( :calculate_all_retention_metrics ).and_return( {} )
+        allow( UserInstallationStatistic ).to receive( :update_today_installation_ids ).and_return( {} )
         ( 0..7 ).to_a.each do | i |
           SiteStatistic.generate_stats_for_day( i.days.ago )
           # I was hitting an error "too many open files" when running this locally,

@@ -197,8 +197,22 @@ fr:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
-  about_trips_html: |
-    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p> <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li> <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li> <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a></p>
+  about_trips2_html: |
+    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations
+    </h4>
+    <p>
+    <strong>Pourquoi ?</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes d'iNaturalist sont des données de 'présence uniquement').
+    </p> 
+    <p>
+    <strong>Comment ?</strong> Un voyage ajoute un contexte à vos observations en enregistrant :
+    </p> 
+    <ul> 
+    <li><strong>Ce que</strong> vous avez cherché (liste cible)</li>
+    <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li>
+    <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> 
+    </ul> 
+    <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a>
+    </p>
   about_trusting_projects: Ce qu'on veut dire par "faire confiance à ce projet"
   about_trusting_projects_options_any: Toutes vos observations dans ce projet.
   about_trusting_projects_options_any_desc: |-
@@ -260,6 +274,8 @@ fr:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Ajouter une liste à puces
   add_a_comment: Ajouter un commentaire
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Ajouter un Statut de Conservation
   add_a_field: Ajouter un champ
   add_a_flag: Ajouter un signalement
   #Tool tip for a button that adds a link to a text area
@@ -282,6 +298,8 @@ fr:
   add_annotations_for_controlled_attribute:
     sex: Ajouter des annotations pour « Sexe »
     plant_phenology: Ajouter des annotations sur la « phénologie végétale»
+    flowers_and_fruits: Ajouter des annotations pour « Fleurs et Fruits »
+    leaves: Ajouter des annotations pour « Feuilles »
     life_stage: Ajouter des annotations pour « stade de développement »
     evidence_of_presence: Ajouter des annotations pour « Signe de présence »
   add_another_flag: Ajouter un autre signalement
@@ -338,6 +356,14 @@ fr:
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie végétale : floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie végétale : fruits»'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Ajouter l''annotation "Phénologie végétale : aucun indice de floraison"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Ajouter une annotation « Fleurs et Fruits : boutons floraux »'
+  add_flowers_and_fruits_flowers_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fleurs »'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Ajouter une annotation « Fleurs et Fruits : Fruits et Graines »'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Ajouter une annotation « Fleurs et Fruits : pas de Fleurs ni de Fruits »'
+  add_leaves_breaking_leaf_buds: 'Ajouter une annotation « Feuilles : bourgeons foliaires en cours d’ouverture »'
+  add_leaves_green_leaves: 'Ajouter une annotation « Feuilles : Feuilles vertes »'
+  add_leaves_colored_leaves: 'Ajouter une annotation « Feuilles : Feuilles jaunissantes »'
+  add_leaves_no_live_leaves: 'Ajouter une annotation « Feuilles : pas de Feuilles vivantes »'
   add_life_stage_adult_annotation: 'Ajoute l''annotation «  Stade de développement : adulte »'
   add_life_stage_teneral_annotation: 'Ajoute l''annotation «  Stade de développement : post-exuvial »'
   add_life_stage_subimago_annotation: 'Ajouter l’annotation «  Stade de développement : subimago »'
@@ -767,6 +793,7 @@ fr:
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
   badges: Badges
+  base_map_copyright_openstreetmap_html: Carte de base ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1116,6 +1143,10 @@ fr:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Toutes
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Tout
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Tout
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Tous
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Tous
@@ -1125,10 +1156,20 @@ fr:
     male: Mâle
     female: Femelle
     plant_phenology: Phénologie végétale
+    flowers_and_fruits: Fleurs et Fruits
     budding: Bourgeonnement
     flower_budding: Bourgeonnement floral
     flowering: Floraison
     fruiting: Fructification
+    no_flowers_or_fruits: Pas de Fleurs ni de Fruits
+    flower_buds: Boutons floraux
+    flowers: Fleurs
+    fruits_or_seeds: Fruits ou graines
+    leaves: Feuilles
+    breaking_leaf_buds: Bourgeons foliaires en cours d’ouverture
+    green_leaves: Feuilles vertes
+    colored_leaves: Feuilles jaunissantes
+    no_live_leaves: Pas de feuilles vivantes
     life_stage: Stade
     adult: Adulte
     teneral: Ténéral
@@ -1161,6 +1202,16 @@ fr:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Mue
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Mine dans une feuille
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Poils
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construction
+    #Does the observation belong to a non-established population or not
+    established: Établi
+    #Organism is not a member of an established population
+    not_established: Non établi
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     bone: |
@@ -1172,10 +1223,19 @@ fr:
     flower_budding: Les bourgeons floraux sont visibles mais pas ouverts
     flowering: Fleurs visibles, ouvertes, et encore attachées à la plante
     fruiting: Fruit visible et toujours attaché à la plante
+    flowers: Au moins une fleur ouverte
+    flower_buds: Au moins un bouton floral fermé
+    fruits_or_seeds: Au moins un fruit ou une graine
+    breaking_leaf_buds: Au moins un bourgeon foliaire avec sa première nouvelle feuille ou aiguille non entièrement dépliée
+    green_leaves: Au moins une feuille ou une aiguille verte (ou rougeâtre si c'est la couleur normale pour une plante en bonne santé)
+    colored_leaves: Au moins une feuille ou une aiguille a une couleur de fin de saison ou de sécheresse
+    no_live_leaves: Aucun bourgeon foliaire en cours d’ouverture, ni feuilles ou aiguilles vertes ou colorées n'est visible
     gall: Excroissance d'un tissu végétal causée par un parasite
     male: Les informations indiquent que l'organisme peut produire du sperme pour la reproduction sexuelle
     molt: Dépouille ou exosquelette abandonné
+    egg: Œuf entier ou partie d'un œuf
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
+    no_flowers_or_fruits: Aucune fleur, fruit ou graine (en tout ou partie) n’est visible
     organism: Tout ou partie d'un organisme
     scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
     teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
@@ -1195,6 +1255,8 @@ fr:
   copy_and_paste_the_following_code_to: Copiez et collez le code suivant pour inclure cette évaluation dans une autre page Web.
   copy_and_paste_this_into_your_own_html: Copiez et collez dans votre propre HTML.
   copy_guide_taxon_to: Copier le guide de taxons vers…
+  copy_to_clipboard: Copier dans le presse-papier
+  copied!: Copié !
   copyright:
     some_rights_reserved: certains droits réservés
     some_rights_reserved_by: "(c) %{name}, certains droits réservés (%{license_short})"
@@ -1372,6 +1434,8 @@ fr:
   curator_application_you_should_apply_if_you_can_behave: |
     Vous êtes en mesure d'adopter un comportement approprié sur iNaturalist et de vous conformer aux
     règles de la communauté. On attend des personnes qui reçoivent les pouvoirs des responsables qu'elles soient des utilisateurs exemplaires d'iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guide du curateur
   curators_changed_for_x_html: "Responsables de l’organisation modifiés à %{x}"
   curators: Responsables de l’organisation
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
@@ -1712,6 +1776,8 @@ fr:
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Guide de l'éducateur
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
@@ -1838,6 +1904,7 @@ fr:
   filter: Filtrer
   filter_by_curator_identification: Filtrer par identification du chef de projet
   filter_by_place: Filtrer par lieu
+  filter_by_species: Filtrer par espèces
   filter_by_taxon: Filtrer par taxon
   filter_by_place_taxon_and_color: Filtrer par lieu, taxon et couleur au moyen des contrôles.
   filter_list_by_this_taxon: Filtrer la liste par ce taxon
@@ -1996,6 +2063,8 @@ fr:
   geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé ?
   get_started: Commencer
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Premiers pas
   getting_started_guide: Guide pour le débutant
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONNER MENSUELLEMENT
@@ -2022,6 +2091,9 @@ fr:
   grid_tooltip: Afficher la vue en mode grille
   group: Groupe
   grouping: Regroupement
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Devinez l’emplacement à partir d’autres observations ?
   guides: Guides
   guide_compiled_by: Guide dressé par
   guide_deleted: Guide supprimé
@@ -2262,6 +2334,11 @@ fr:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que c'est %{taxon} ?
   is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Ce nom scientifique est-il actuellement accepté ?
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et publiée sur d’autres sites web
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: texte en italique
@@ -2320,6 +2397,8 @@ fr:
   last_seen: Vu la dernière fois
   last_year: Année dernière
   lat: Lat.
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat./Long.
   latitude: Latitude
   latitude_in_decimals: 'Latitude en degrés décimaux, par ex. 38,123'
   latitude_slash_y_coord_slash_northing: Latitude/coord. y/ordonnée
@@ -3099,6 +3178,7 @@ fr:
   observation_accuracy_experiment_our_accuracy_estimate: "Notre estimation de la précision résultant de cette expérience est de %{percent}."
   observation_accuracy_experiment_our_goak: "Notre objectif pour la précision estimée (correcte) et la précision du sous-ensemble de Niveau de Recherche est supérieure à 95% (ligne pointillée)"
   observation_accuracy_experiment_precision_results: "Résultats de la précision par sous-ensemble"
+  observation_accuracy_experiment_taxon_rank_level: "Niveau de classement du taxon"
   observation_accuracy_experiment_taxon_observations_count: "Nombre d'observations de taxon"
   observation_accuracy_experiment_continent: "Continent"
   observation_accuracy_experiment_year: "Année"
@@ -4537,6 +4617,8 @@ fr:
   share_colon: "Partager:"
   short_code_for_this_place: Abréviation pour ce lieu, par ex. É.-U. pour États-Unis
   short_or_abbreviated_title_for_display: Titre court ou abrégé pour l’affichage dans des champs à espace réduit. 10 caractères maximum.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Ce nom commun doit-il être affiché par défaut pour ce taxon ?
   show: Afficher
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
   show_hidden_content: Afficher le contenu masqué
@@ -4553,6 +4635,8 @@ fr:
   show_no_annotation: Montrer « Pas d'annotation »
   show_off_your_recent_observations: Publiez vos observations récentes sur votre blog ou votre site web !
   show_only: 'Montrer seulement :'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Voir sur OpenStreetMap
   show_relative_proportions_of_all_observations: Afficher les proportions relatives de toutes les observations
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Afficher le total actuel
@@ -4735,7 +4819,6 @@ fr:
   start_a_new_project: Démarrer un nouveau projet
   start_a_project: Démarrer un projet
   start_date_time: Date / Heure de début
-  start_one: Démarrer un
   start_one_now: Démarrez-en un maintenant!
   start_typing_field_name: Commencez à taper le nom du champ…
   start_typing_place_name: Commencez à taper le nom du lieu…
@@ -4765,10 +4848,9 @@ fr:
   studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de iNaturalist en %{year}
   stuff_just_added: "Trucs que vous venez d’ajouter…"
   subject_resolved_noun_html: "%{subject} a réglé %{noun}"
-  subject_affecting_stuff_html: "%{subject} touchant %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} a validé @gender{m:un|une} %{thing} concernant %{stuff}"
   submission_model: Modèle d'enregistrement
   submission_model_description: Qui peut ajouter des observations à votre projet ?
+  submit: Soumettre
   submit_observations:
     one: Soumettre 1 observation
     other: Soumettre %{count} observations
@@ -4813,6 +4895,7 @@ fr:
   synonyms: Synonymes
   table: Tableau
   table_of_contents: Table des matières
+  tabulate_presence_absence_data_from_trips: Mettre en tableau les données de présence-absence à partir de trajets
   #Noun, as in "add a tag to this observation"
   tag: Attribut
   tagging: 'Étiquetage en cours…'
@@ -4900,6 +4983,8 @@ fr:
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
   taxon_drop: perte de taxon
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Suppression du taxon affectant %{taxon}
   taxon_id: Identifiant de taxon
   taxon_ids: IDs de taxon
   taxon_map:
@@ -4923,6 +5008,9 @@ fr:
   taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Fusion de taxons affectant %{taxa}
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre à un taxon existant dans notre base de données
   taxon_observed_by_html: |
@@ -4958,9 +5046,17 @@ fr:
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
   taxon_split: séparation de taxon
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Fractionnement du taxon affectant %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organisation du taxon
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Mise en attente du taxon affectant %{taxon}
   taxon_swap: échange de taxon
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Échange de taxons affectant %{taxa}
   taxon_swap_only_has_one_input: limite d'un taxon en entrée pour un échange
   taxon_swap_has_inputs_and_outputs: un échange doit avoir des entrées et des sorties
   taxon_name_was_deleted: Le nom du taxon a été supprimé.
@@ -4991,6 +5087,7 @@ fr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Outils de mise en forme
   text_editing_controls: Contrôles de modification de texte
+  thank_you!: Merci !
   thanks!: Merci !
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
   that_account_is_already_connected: Ce compte est déjà associé à un autre utilisateur
@@ -5046,7 +5143,6 @@ fr:
   there_are_x_synonyms_html:
     one: "Il y a <span class='count'>1</span> synonyme</span>"
     other: "Il y a <span class='count'>%{count}</span> synonymes</span>"
-  there_is_no_wikipedia_page_matching: Il n'y a pas de page Wikipédia correspondant à
   there_isnt_a_wikipedia_article_titled_x_html: |
     Il n’y a pas d’article Wikipédia ou de page redirigée appelée '%{x}'. Aimeriez-vous <a href='http://en.wikipedia.org/wiki/%{x}'>en créer un</a> ?
   there_merge_problems_with_the_merge: "Il y a eu des problèmes durant la fusion : %{merged_errors}"
@@ -5307,6 +5403,8 @@ fr:
   unable_to_save_comment: Malheureusement, nous n'avons pas pu enregistrer le commentaire.
   unblock: Débloquer
   unclassified: Non classifié
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Comprendre les Projets
   ungrafted_taxa: Taxons non greffés
   unhide_content: Démasquer le contenu
   unhide_desc: |
@@ -5436,7 +5534,9 @@ fr:
   user_added_an_x_to_noun_by_you_html: "%{user} a ajouté @gender{m:un|f:une|n:un(e)} %{x} à %{noun} par vous"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} a ajouté @gender{m:un|f:une|n:un(e)} %{x} à %{noun}"
-  user_added_x_observations_html: "%{user} a ajouté %{x} observations"
+  user_added_x_observations2_html:
+    one: "%{user} a ajouté %{count} observation"
+    other: "%{user} a ajouté %{count} observations"
   user_already_authenticated: L'utilisateur est déjà authentifié
   user_already_app_owner: L'utilisateur est déjà propriétaire d'application
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5446,6 +5546,16 @@ fr:
     %{user} pense qu'il s'agit d'une liste complète de %{taxon} dans %{place}
   user_blocked: Utilisateur bloqué
   user_commented: "%{user} a commenté"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} a effectué une suppression de taxon affectant %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} a effectué une fusion de taxons affectant %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} a effectué une séparation de taxons affectant %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} a mis le taxon %{taxon} en attente"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} a effectué un échange de taxons affectant %{taxa}"
   user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_an_observation_by_you: "%{user} a ajouté une de vos observations à ses favoris"
@@ -5535,6 +5645,7 @@ fr:
   values: Valeurs
   verbing_x_of_y: "%{verb} %{x} de %{y}…"
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
+  video_tutorials: Tutoriels vidéo
   view: Afficher
   view_all: Afficher tout
   view_all_caps: TOUT AFFICHER
@@ -5612,7 +5723,6 @@ fr:
   view_your_personal_year_in_review_caps: "VOIR VOTRE RÉTROSPECTIVE PERSONNELLE DE L'ANNÉE %{year}"
   view_yours: Afficher les vôtres
   view_all_of_your_observations_from_x: "Afficher toutes vos observations depuis %{x}"
-  video_tutorials: Tutoriels vidéo
   visually_similar: Visuellement semblable
   vulnerable: Vulnérable
   w00t_no_ungrafted_taxa: Hourra! Pas de taxons non greffés!
@@ -6411,6 +6521,31 @@ fr:
           peut également voir ces messages et les consultera lorsque les messages
           seront signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
           veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
+    nls_demo:
+      what_do_you_want_to_search_for: Que voulez-vous rechercher ?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: par exemple %{query_in_english}
+      try_one_of_these_example_searches_colon: "Essayez l’un de ces exemples de recherches :"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Aidez-nous à améliorer
+      to_help_us_improve: Pour nous aider à améliorer ce modèle, nous aimerions savoir quelles images de cette page sont pertinentes pour votre recherche &quot;%{searched_term}&quot;. Veuillez marquer chaque image comme étant pertinente %{thumbs_up_icon} si elle correspond à votre recherche et non pertinente %{thumbs_down_icon} si elle ne l'est pas. Lorsque vous avez terminé, veuillez cliquer sur Envoyer. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Marquer le reste comme pertinent
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Marquer le reste comme non pertinent
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Voir ces observations dans Identification
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> s'est associé à des chercheurs de <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University of College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>, et avec le soutien généreux de <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI pour Good Lab</a> pour mieux comprendre le potentiel des Modèles de Langage de Vision pour aider à organiser, explorer, et expliquer les observations d'iNaturalist. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Cet outil de démonstration vous permet de taper une phrase de recherche (comme "<a href="%{url}">%{query_in_english}</a>"), et la compare avec 10 millions de photos iNaturalist. Les résultats sont classés de la plus pertinente à la moins pertinente. Vous pouvez utiliser cette démo comme une nouvelle façon de trouver des observations iNaturalist intéressantes à annoter ou à ajouter à votre projet.
+      you_can_also_use_this_demo: Vous pouvez également utiliser cette démo pour nous aider à évaluer le modèle Vision Language qui alimente cette démo en nous indiquant les images retournées qui correspondent à votre phrase de recherche. Cette démo utilise un modèle <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP</a> qui n'a pas été entrainé sur les données iNaturalist ou par l'équipe iNaturalist. Parfois, l'outil peut produire des résultats inexacts, biaisés ou offensants. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">En savoir plus sur le blog iNaturalist</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Si vous souhaitez soutenir ce travail
+      thank_you_for_your_submission!: Merci pour votre contribution !
     oauth:
       authorizations:
         new:
@@ -7559,7 +7694,14 @@ fr:
           "Plant Phenology=Flowering": Floraison
           "Plant Phenology=Fruiting": Fructification
           "Plant Phenology=No Evidence of Flowering": Aucune preuve de floraison
-          "Life Stage=Adult": Adulte
+          "Flowers and Fruits=Flower Buds": Boutons floraux
+          "Flowers and Fruits=Flowers": Fleurs
+          "Flowers and Fruits=Fruits or Seeds": Fruits ou Graines
+          "Flowers and Fruits=No Flowers or Fruits": Pas de Fleurs ni de Fruits
+          "Leaves=Breaking Leaf Buds": Bourgeons foliaires en cours d’ouverture
+          "Leaves=Green Leaves": Feuilles vertes
+          "Leaves=Colored Leaves": Feuilles jaunissantes
+          "Leaves=No Live Leaves": Pas de feuilles vivantes
           "Life Stage=Egg": Œuf
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juvénile
@@ -7605,29 +7747,25 @@ fr:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <ul class="ui">
-          <li><p>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</p></li>
-          <li><p>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</p></li>
-          <li><p>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</p></li>
-          <li><p>
-          N’ajoutez pas d’information qui ne soit pas le nom, par ex. des informations
-          entre parenthèses sur comment vous pensez que le nom devrait être utilisé
-          </p></li>
-          <li>
-          <p>
-          Les nouveaux lexiques doivent être en anglais. Veuillez ne pas ajouter de noms de langue
-          traduits comme « French, Français » parce que cela rendra simplement
-          plus difficile ou impossible pour nous d’afficher les noms localisés aux personnes
-          qui utilisent ce site dans différentes langues.
-          </p>
+          <ul> 
+          <li><p>Essayez d'ajouter des noms qui ont été utilisés ailleurs. N'inventez pas de nouveaux noms.</p></li> 
+          <li><p>N'ajoutez pas de noms en double, par exemple ne nommez pas de nombreux faucons "faucon"</p></li> 
+          <li><p>Pour les taxons de niveau supérieur, essayez d'utiliser des noms qui incluent tous les descendants, comme "hérons et alliés" ou "famille des bruyères"</p></li> 
+          <li> 
+          <p>N'ajoutez pas d'informations qui ne sont pas le nom, par exemple des informations entre parenthèses sur la façon dont vous pensez que le nom doit être utilisé 
+          </p> 
           </li>
-          <li>
+          <li> 
           <p>
-          Les noms communs associés avec les langues traduites apparaîtront
-          comme le nom commun par défaut pour cette langue (à moins que les préférences de lieu, d’ordre des noms, etc. le modifient).
-          <a class="readmore" href="/pages/translate">En savoir plus sur la traduction</a>
-          </p>
-          </li>
+          Les nouveaux lexiques doivent être rédigés en anglais. N'ajoutez pas de noms de langues traduites comme "French, français", car cela rendrait difficile, voire impossible, l'affichage des noms localisés pour les personnes qui utilisent le site dans différentes langues. 
+          </p> 
+          </li> 
+          <li> 
+          <p>
+          Les noms communs associés aux langues traduites apparaîtront comme le nom commun par défaut pour cette langue (sous réserve de l'effet des préférences de lieu, de l'ordre des noms, etc.) 
+          <a class="readmore" href="/pages/translate">En savoir plus sur la traduction</a> 
+          </p> 
+          </li> 
           </ul>
         places_help_html: |
           Ajoutez un nom à un lieu pour lui donner priorité pour les sites et les utilisateurs de ce lieu. S’il y a plusieurs noms par lieu, vous pouvez les prioriser <a href="%{url}">ici</a>. Veuillez <strong>ne pas</strong> ajouter de noms pour TOUS
@@ -8471,7 +8609,7 @@ fr:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: doit être valide pour l'emplacement spécifié
         application:

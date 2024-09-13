@@ -65,11 +65,12 @@ class LocationChooserMap extends React.Component {
       zoom
     } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
-    const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
+    const map = iNaturalist.Map.createMap( {
       ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
-      zoom: zoom || 1,
+      div: $( ".map-inner", domNode ).get( 0 ),
+      zoom: zoom || 2,
       center: existingCenter || { lat: 30, lng: 15 },
-      fullscreenControl: true,
+      disableFullscreen: true,
       mapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser )
     } );
     this.map = map;

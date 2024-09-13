@@ -223,12 +223,12 @@ class ObservationFieldValue < ApplicationRecord
       controlled_value = ControlledTerm.first_term_by_label(stripped_value)
     elsif ( observation_field.name =~ /phenology/i && value =~ /^flower(s|ing)?$/i ) ||
           ( observation_field.name == "Plant flowering" && value == "Yes" )
-      controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
-      controlled_value = ControlledTerm.first_term_by_label( "Flowering" )
+      controlled_attribute = ControlledTerm.first_term_by_label( "Flowers and Fruits" )
+      controlled_value = ControlledTerm.first_term_by_label( "Flowers" )
     elsif observation_field.name =~ /phenology/i && value =~ /fruit(s|ing)?$/i &&
           value !~ /[0-9]/
-      controlled_attribute = ControlledTerm.first_term_by_label( "Plant Phenology" )
-      controlled_value = ControlledTerm.first_term_by_label( "Fruiting" )
+      controlled_attribute = ControlledTerm.first_term_by_label( "Flowers and Fruits" )
+      controlled_value = ControlledTerm.first_term_by_label( "Fruits or Seeds" )
     elsif ( observation_field.name =~ /life stage/i && value == "teneral" ) ||
           ( observation_field.name.downcase == "teneral" && value.downcase == "yes" )
       controlled_attribute = ControlledTerm.first_term_by_label( "Life Stage" )
@@ -267,37 +267,45 @@ class ObservationFieldValue < ApplicationRecord
       return unless value_term_label
       controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
       controlled_value = ControlledTerm.first_term_by_label( value_term_label )
-    elsif observation_field.name.downcase === "scat/excreta" && value.downcase == "yes"
+    elsif observation_field.name.downcase == "scat/excreta" && value.downcase == "yes"
       controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
       controlled_value = ControlledTerm.first_term_by_label( "scat" )
-    elsif observation_field.name.downcase === "scat?" && value.downcase == "yes"
+    elsif observation_field.name.downcase == "scat?" && value.downcase == "yes"
       controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
       controlled_value = ControlledTerm.first_term_by_label( "scat" )
-    elsif observation_field.name.downcase === "bone(s)" && value.downcase == "yes"
+    elsif observation_field.name.downcase == "bone(s)" && value.downcase == "yes"
       controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
       controlled_value = ControlledTerm.first_term_by_label( "bone" )
-    elsif observation_field.name.downcase === "tracks" && value.downcase == "yes"
+    elsif observation_field.name.downcase == "tracks" && value.downcase == "yes"
       controlled_attribute = ControlledTerm.first_term_by_label( "Evidence of Presence" )
       controlled_value = ControlledTerm.first_term_by_label( "track" )
     end
     return unless controlled_attribute && controlled_value
+
     { controlled_attribute: controlled_attribute,
       controlled_value: controlled_value }
   end
 
   def destroy_annotation
     return unless annotation && annotation.vote_score <= 0
+
     annotation.destroy
   end
 
   def fix_annotation_after_update
-    if annotation && annotation.vote_score <= 0
-      annotation.destroy
-      create_annotation
-    end
+    return unless annotation && annotation.vote_score <= 0
+
+    annotation.destroy
+    create_annotation
   end
 
-  def as_indexed_json(options={})
+  def modified?
+    return false unless updated_at && created_at
+
+    updated_at > created_at
+  end
+
+  def as_indexed_json
     json = {
       id: id,
       uuid: uuid,
@@ -336,5 +344,4 @@ class ObservationFieldValue < ApplicationRecord
     end
     Observation.elastic_index!( ids: obs_ids.to_a )
   end
-
 end

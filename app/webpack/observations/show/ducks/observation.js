@@ -6,7 +6,7 @@ import inatjs, {
 } from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
-import { resetControlledTerms } from "./controlled_terms";
+import { resetControlledTerms, fetchControlledTerms } from "./controlled_terms";
 import {
   fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
@@ -474,10 +474,20 @@ export function renderObservation( observation, options = { } ) {
         )
       )
     );
+    if ( options.initialPhotoID ) {
+      const matchingInitialPhoto = _.find(
+        observation.photos,
+        p => p.id === Number( options.initialPhotoID )
+      );
+      if ( matchingInitialPhoto ) {
+        matchingInitialPhoto.initialPhoto = true;
+      }
+    }
     dispatch( setObservation( observation ) );
     if ( taxonUpdated ) {
       dispatch( setIdentifiers( null ) );
       dispatch( setMoreFromClade( [] ) );
+      dispatch( fetchControlledTerms( { reload: true } ) );
     }
     if ( taxonUpdated || fetchAll ) {
       dispatch( fetchTaxonSummary( ) );

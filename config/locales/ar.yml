@@ -28,8 +28,6 @@ ar:
   about_this_bioblitz: حول هذا bioblitz
   about_this_map: عن هذه الخريطة
   about_this_project: عن هذا المشروع
-  about_trips_html: |
-    <h4>تُمكِّن الرحلات من جمع بيانات غياب الحضور عن طريق إضافة سياق إلى ملاحظاتك</h4><p><strong>لماذا</strong> تتضمن بيانات غياب الحضور معلومات حول جهد أخذ العينات مفيد للتحليلات العلمية مثل توزيع النمذجة (ملاحظات إيناتوراليست الخام هي بيانات "حضور فقط").</p> <p><strong>كيف</strong> تضيف الرحلة سياقا إلى ملاحظاتك عن طريق التسجيل:</p> <ul> <li><strong>ما</strong> الذي بحثت عنه (قائمة الأهداف)</li> <li><strong>أين</strong> بحثت (منطقة البحث)</li> <li><strong>متى</strong> بحثت (الفاصل الزمني للبحث)</li> </ul> <p>يتم تفسير الأنواع الموجودة في قائمة الأهداف التي تمكنت من مراقبتها داخل منطقة البحث والفاصل الزمني على أنها وجود، بينما يتم تفسير الأنواع الموجودة في قائمتك المستهدفة والتي لم تتمكن من ملاحظتها على أنها حالات غياب، انقر فوق "جدولة بيانات غياب الحضور من الرحلات" لإنشاء جدول لسجلات التواجد-الغياب لنوع من الرحلات والملاحظات المرتبطة بها. <a href='%{url}'>معرفة المزيد</a></p>
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -2917,7 +2915,6 @@ ar:
   start_a_new_project: بدء مشروع جديد
   start_a_project: بدء مشروع
   start_date_time: تاريخ / وقت البدء
-  start_one: بدء واحد
   start_one_now: ابدأ واحدا الآن!
   start_typing_field_name: بدء كتابة اسم الحقل...
   start_typing_place_name: ابدأ في كتابة اسم المكان...
@@ -2937,8 +2934,6 @@ ar:
   studies_that_used_inaturalist_data_in_year: الدراسات التي استخدمت بيانات إيناتوراليست في %{year}
   stuff_just_added: "العناصر التي أضفتها للتو..."
   subject_resolved_noun_html: "%{subject} حل %{noun}"
-  subject_affecting_stuff_html: "%{subject} يؤثر على %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} قام بـ@vow_or_con{vow:an|a} %{thing} % يؤثر على %{stuff}"
   submission_model: نموذج التقديم
   submission_model_description: من يمكنه إضافة ملاحظات إلى مشروعك؟
   submitted: قُدِّم
@@ -3101,7 +3096,6 @@ ar:
     البعض الآخر في الشارع فقط! %{site_name} تتيح لك الأماكن تصفح الحياة 
     من جميع أنحاء الكوكب، ابدأ الاستكشاف!
   then_keybord_sequence: ثم
-  there_is_no_wikipedia_page_matching: لا توجد صفحة ويكيبيديا مطابقة
   there_isnt_a_wikipedia_article_titled_x_html: |
     لا توجد مقالة أو تحويلة في ويكيبيديا بعنوان '%{x}'; ربما كنت ترغب في <a href='http://en.wikipedia.org/wiki/%{x}'>إنشاء واحدة</a>؟
   there_merge_problems_with_the_merge: "هناك مشكلات في الدمج: %{merged_errors}"
@@ -3324,7 +3318,6 @@ ar:
   user_added_an_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
-  user_added_x_observations_html: "أضاف %{user} %{x} ملاحظة"
   user_already_authenticated: المستخدم موثق بالفعل
   user_autocomplete_placeholder: kueda وsimon123 وما إلى ذلك.
   user_blocked: المستخدم ممنوع
@@ -3365,6 +3358,7 @@ ar:
   values: القيم
   verbing_x_of_y: "%{verb} %{x} ل%{y}..."
   verifiable_observations_by_observation_date: ملاحظات يمكن التحقق منها حسب تاريخ الملاحظة
+  video_tutorials: دروس الفيديو
   view: عرض
   view_all: اعرض الكل
   view_all_flags: عرض جميع الأعلام
@@ -3426,7 +3420,6 @@ ar:
   view_your_observations: عرض ملاحظاتك
   view_yours: عرض لك
   view_all_of_your_observations_from_x: "عرض كل ملاحظاتك من %{x}"
-  video_tutorials: دروس الفيديو
   visually_similar: مماثلة بصريا
   vulnerable: غير محصن
   w00t_no_ungrafted_taxa: حسنا! أصناف غير مطعمة!
@@ -4889,34 +4882,6 @@ ar:
           الرتبة بعد التسمية الثنائية.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-            <li><p>حاول إضافة أسماء تم استخدامها في مكان آخر، الرجاء عدم اختراع أسماء جديدة.</p></li>
-            <li><p>لا تضف أسماء مكررة، على سبيل المثال لا تسم العديد من الصقور بـ"صقر"</p></li>
-            <li><p>بالنسبة للأصناف الأعلى، حاول استخدام أسماء تتضمن جميع الأحفاد، مثل "بلشون أبيض كبير وحلفاؤه" أو "أسرة هيث"</p></li>
-            <li>
-              <p>
-               لا تضف معلومات غير الاسم، على سبيل المثال، 
-               معلومات بارانثية حول كيفية استخدام الاسم 
-              </p>
-            </li>
-            <li>
-              <p>
-               يجب أن تكون المعاجم الجديدة باللغة الإنجليزية; الرجاء عدم إضافة أسماء مترجمة
-               اللغة مثل "الفرنسية، فرانسيس" لأن ذلك سيجعل فقط
-               من الصعب أو المستحيل علينا أن نعرض أسماء محلية للأشخاص 
-               الذين يستخدمون الموقع بلغات مختلفة. 
-              </p>
-            </li>
-          <li>
-             <p>
-           \    ستظهر الأسماء الشائعة المرتبطة باللغات المترجمة 
-               على أنها الاسم الشائع الافتراضي لتلك اللغة (باستثناء
-               تأثير تفضيلات المكان، وترتيب الأسماء، وما إلى ذلك.).
-               <a class="readmore" href="/pages/translate">معرفة مزيد من المعلومات حول الترجمة</a>
-             </p>
-            </li>
-          </ul>
         places_help_html: |
           أضف اسما إلى مكان لإعطائه الأولوية للمواقع والمستخدمين من 
           هذا المكان، إذا كانت هناك أسماء متعددة في كل مكان، فيمكنك تحديد أولوياتها 

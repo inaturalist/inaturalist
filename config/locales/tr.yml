@@ -196,24 +196,6 @@ tr:
   about_this_bioblitz: Bu bioblitz hakkında
   about_this_map: Bu Harita Hakkında
   about_this_project: Bu Proje Hakkında
-  about_trips_html: |
-    <h4>
-    Geziler, gözlemlerine bağlam ekleyerek varlık-yokluk verilerinin toplanmasını sağlar.
-    </h4>
-    <p>
-    <strong>Neden</strong> varlık-yokluk verileri dağılım modellemesi gibi bilimsel analizler için yararlı olan örnekleme çabası hakkında bilgi içerir? (ham iNaturalist gözlemleri 'yalnızca varlık' verileridir).
-    </p>
-    <p>
-    <strong>Nasıl</strong> bir gezi, kayıtla gözlemlerine içerik ekler:
-    </p>
-    <ul>
-    <li><strong>Ne</strong> aradın? (hedef listesi)</li>
-    <li><strong>Nerede</strong> aradın? (arama alanı)</li>
-    <li><strong>Ne zaman</strong> aradın? (arama zamanı)</li>
-    </ul>
-    <p>
-    Hedef listende bulunan ve arama alanı ve zamanı içinde gözlemleyebildiğin türler var olarak yorumlanır. Hedef listende gözlemleyemediğin türler ise yok olarak yorumlanır. Gezilerden ve ilgili gözlemlerden bir tür için varlık-yokluk kaydının bir tablosunu oluşturmak için 'Gezilerden Varlık Yokluk Verilerini Tablolaştır' seçeneğine tıklayın. <a href='%{url}'>Daha fazla bilgi edin</a>
-    </p>
   about_trusting_projects: Güvenilir Projeler Hakkında
   about_trusting_projects_options_any: Bu projedeki tüm gözlemlerin
   about_trusting_projects_options_any_desc: |-
@@ -1200,6 +1182,7 @@ tr:
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştır.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'ne yapıştır.
   copy_guide_taxon_to: Rehber sınıfını şuraya kopyala...
+  copied!: Kopyalandı!
   copyright:
     some_rights_reserved: bazı hakları saklıdır
     some_rights_reserved_by: "(c) %{name}, bazı hakları saklıdır (%{license_short})"
@@ -2006,6 +1989,9 @@ tr:
   grid_tooltip: Izgara görünümü göster
   group: Grup
   grouping: Gruplandırma
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Diğer gözlemlerden konumu tahmin etmek ister misiniz?
   guides: Rehberler
   guide_compiled_by: 'Rehberi derleyen:'
   guide_deleted: Rehber silindi
@@ -4704,7 +4690,6 @@ tr:
   start_a_new_project: Yeni Bir Proje Başlat
   start_a_project: Bir Proje Başlat
   start_date_time: Başlangıç Tarihi / Zamanı
-  start_one: Birini Başlat
   start_one_now: Şimdi Birini Başlat!
   start_typing_field_name: Alan adını yazmaya başla...
   start_typing_place_name: Konum adını yazmaya başla...
@@ -4734,10 +4719,9 @@ tr:
   studies_that_used_inaturalist_data_in_year: '%{year} Yılında iNaturalist Verilerini Kullanan Çalışmalar'
   stuff_just_added: "Yeni eklediğin öğeler..."
   subject_resolved_noun_html: "%{noun}, %{subject} tarafından çözüldü"
-  subject_affecting_stuff_html: "%{subject}, %{stuff} öğesini etkiliyor"
-  subject_committed_thing_affecting_stuff_html: "%{subject}, %{stuff}'ı etkileyen %{thing} yaptı"
   submission_model: Gönderme Modeli
   submission_model_description: Projene kim gözlem ekleyebilir?
+  submit: Gönder
   submit_observations:
     one: 1 gözlem gönder
     other: '%{count} gözlemi gönder'
@@ -4957,6 +4941,7 @@ tr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Metin biçimlendirme kontrolleri
   text_editing_controls: Metin düzenleme kontrolleri
+  thank_you!: Teşekkürler!
   thanks!: Teşekkürler!
   thanks_from_all_of_us_here_at: Hepimiz adına teşekkürler
   that_account_is_already_connected: Bu hesap zaten başka bir kullanıcıya bağlı
@@ -5000,7 +4985,6 @@ tr:
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> eş anlamlı</span> var"
     other: "<span class='count'>%{count}</span> eş anlamlı</span> var"
-  there_is_no_wikipedia_page_matching: Eşleşen Vikipedi sayfası yok
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' başlıklı bir Vikipedi maddesi ya da yönlendirmesi yok. Belki <a href='http://en.wikipedia.org/wiki/%{x}'>bir tane</a> oluşturmak istersin?
   there_merge_problems_with_the_merge: "Birleştirme ile ilgili sorunlar oluştu: %{merged_errors}"
@@ -5385,7 +5369,6 @@ tr:
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
-  user_added_x_observations_html: "%{user}, %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
   user_already_app_owner: Kullanıcı zaten bir uygulama sahibi
   user_autocomplete_placeholder: kueda, simon123, vb.
@@ -5481,6 +5464,7 @@ tr:
   values: Değerler
   verbing_x_of_y: "%{verb} %{y} / %{x}..."
   verifiable_observations_by_observation_date: Gözlem Tarihine Göre Doğrulanabilir Gözlemler
+  video_tutorials: Öğretici Videolar
   view: Görüntüle
   view_all: Tümünü Görüntüle
   view_all_caps: HEPSİNİ GÖSTER
@@ -5558,7 +5542,6 @@ tr:
   view_your_personal_year_in_review_caps: "KİŞİSEL %{year} YILI DEĞERLENDİRMENİ GÖRÜNTÜLE"
   view_yours: Seninkini Görüntüle
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x} ile görüntüle"
-  video_tutorials: Öğretici Videolar
   visually_similar: Görsel Olarak Benzer
   vulnerable: Savunmasız
   w00t_no_ungrafted_taxa: Hayır! Aşılanmış sınıflar yok!
@@ -6268,6 +6251,11 @@ tr:
           Bu konuşmayı %{date} tarihinde işaretledin. Bu konuşmanın kopyasını silsen bile işaret kalıcı olacaktır, bu nedenle artık bunu görmek istemiyorsan bunu yapman güvenlidir.
         privacy_notice_html: |
           İletiler sen ve alıcı arasında özel olsa da, iNaturalist personeli de bu iletileri görüntüleyebilir ve iletiler moderasyon için işaretlendiğinde bu yapılacaktır. Gerçekten özel iletişim istiyorsan, lütfen güçlü şifrelemeyi destekleyen diğer iletişim mekanizmalarını araştır.
+    nls_demo:
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Geliştirmemize yardımcı olun
     oauth:
       authorizations:
         new:
@@ -7207,7 +7195,6 @@ tr:
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
           "Plant Phenology=No Evidence of Flowering": Çiçeklenme Belirtisi Yok
-          "Life Stage=Adult": Yetişkin
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Olgunlaşmamış
@@ -7245,32 +7232,6 @@ tr:
           Sıralamaya sahip sınıfın adı. İnfraspesifik sıralar için rütbe ikili terimden sonra eklenir.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Başka yerlerde kullanılan isimleri eklemeyi deneyin. Lütfen yeni isimler oluşturmayın.</p></li>
-          <li><p>Yinelenen isimler eklemeyin. ör. birçok şahine "şahin" ismini vermeyin</p></li>
-          <li><p>Daha yüksek seviyeli sınıflar için, tüm soy ağacını içeren, "balıkçıllar ve yakınları" veya "sağlıklı familya" gibi isimler kullanmayı deneyin</p></li>
-          <li>
-          <p>
-          İsim olmayan bilgileri eklemeyin, ör. ismin nasıl kullanılması 
-          gerektiğini düşündüğünüz fikir hakkında parantez içi bilgi
-          </p>
-          </li>
-          <li>
-          <p>
-          Yeni sözcükler İngilizce olmalı. Lütfen "French, Français" gibi çevrilmiş 
-          dil isimleri eklemeyin, çünkü bu siteyi farklı dillerde kullanan kişilere yerel 
-          isimler göstermemizi zorlaştırır veya imkansız hale getirir.
-          </p>
-          </li>
-          <li>
-          <p>
-          Tercüme edilmiş dillerle ilişkilendirilmiş yaygın isimler, o dilin varsayılan yaygın 
-          ismi olarak görünecektir (Yer tercihlerinin etkisinin engellenmesi, isim sıralaması, vb.).
-          <a class="readmore" href="/pages/translate">Çeviri hakkında daha fazla bilgi edinin</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:
@@ -8052,7 +8013,7 @@ tr:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: belirtilen yerleşim için geçerli olmalıdır
         application:

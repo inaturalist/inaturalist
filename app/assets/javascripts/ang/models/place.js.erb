@@ -1,19 +1,24 @@
+/* global _ */
+/* global I18n */
+
+// eslint-disable-next-line no-use-before-define
 var iNatModels = iNatModels || { };
 
-iNatModels.Place = function( attrs ) {
+iNatModels.Place = function ( attrs ) {
   var that = this;
-  _.each( attrs, function( value, attr ) {
-    that[ attr ] = value;
-  });
+  _.each( attrs, function ( value, attr ) {
+    that[attr] = value;
+  } );
 };
 
-iNatModels.Place.prototype.placeTypeLabel = function( ) {
-  if( !this.place_type ) { return; }
-  var label = iNatModels.Place.PLACE_TYPES[ this.place_type ];
-  if( label ) {
-    return I18n.t( "place_geo.geo_planet_place_types." +
-      label.replace( / /g, "_" ) );
+iNatModels.Place.prototype.placeTypeLabel = function ( ) {
+  if ( !this.place_type ) { return null; }
+  var label = iNatModels.Place.PLACE_TYPES[this.place_type];
+  if ( label ) {
+    return I18n.t( "place_geo.geo_planet_place_types."
+      + label.replace( / /g, "_" ) );
   }
+  return null;
 };
 
 iNatModels.Place.PLACE_TYPES = <%= Place::PLACE_TYPES.to_json %>;

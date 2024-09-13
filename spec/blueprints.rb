@@ -1,16 +1,20 @@
-require 'machinist/active_record'
-require 'faker'
+# frozen_string_literal: true
+
+require "machinist/active_record"
+require "faker"
 
 Announcement.blueprint do
   start { 1.day.ago }
-  send(:end) { 1.day.from_now }
+  send( :end ) { 1.day.from_now }
   body { Faker::Lorem.sentence }
   placement { "users/dashboard#sidebar" }
 end
+
 Annotation.blueprint do
   controlled_attribute { make_controlled_term_with_label }
   controlled_value { make_controlled_value_with_label( nil, controlled_attribute ) }
   resource { Observation.make! }
+  user { User.make! }
 end
 
 ApiEndpoint.blueprint do
@@ -562,6 +566,11 @@ end
 UserBlock.blueprint do
   user { User.make! }
   blocked_user { User.make! }
+end
+
+UserDonation.blueprint do
+  user { User.make! }
+  donated_at { Time.now }
 end
 
 UserMute.blueprint do

@@ -71,7 +71,7 @@ const Observations = ( {
     comparisonSeries.last_year = {
       title: I18n.t( "last_year" ),
       data: _.map( dayLastYearHistogram, ( value, date ) => {
-        const lastYear = parseInt( date.match( /\d{4}/ )[0], 0 );
+        const lastYear = parseInt( date.match( /\d{4}/ )[0], 10 );
         const newYear = lastYear + 1;
         const newDate = date.replace( lastYear, newYear );
         return { date: newDate, value };

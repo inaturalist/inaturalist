@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const ToggleSwitch = ( { checked, name, handleCheckboxChange } ) => (
-  <div className="col-xs-4 col-md-3 ToggleSwitch">
+  <div className="col-sm-3 ToggleSwitch">
     <div className="flex-no-wrap">
       <label htmlFor={name}>{I18n.t( "off_caps" )}</label>
       <label className="switch">

@@ -91,6 +91,7 @@ opts = Optimist.options do
   opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
   opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
   opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings
+  opt :include_humans, "Include observations of humans", type: :boolean, default: false
   opt :processes, "Number of processes to use with the parallel gem", type: :integer
 end
 

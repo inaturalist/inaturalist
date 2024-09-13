@@ -14,26 +14,24 @@ class User < ApplicationRecord
   end
 
   acts_as_voter
-  acts_as_spammable fields: [ :description ],
-                    comment_type: "signup"
+  acts_as_spammable fields: [:description],
+    comment_type: "signup"
   has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
-  JEDI_MASTER_ROLE = 'admin'
-  
-  devise :database_authenticatable, :registerable, :suspendable,
-         :recoverable, :rememberable, :confirmable, :validatable, 
-         :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  # handle_asynchronously :send_devise_notification
-  
-  # licensing extras
-  attr_accessor   :make_observation_licenses_same
-  attr_accessor   :make_photo_licenses_same
-  attr_accessor   :make_sound_licenses_same
+  JEDI_MASTER_ROLE = "admin"
 
-  attr_accessor :html
-  attr_accessor :pi_consent
-  attr_accessor :data_transfer_consent
+  devise :database_authenticatable, :registerable, :suspendable,
+    :recoverable, :rememberable, :confirmable, :validatable,
+    :encryptable, :lockable, encryptor: :restful_authentication_sha1
+
+  # licensing extras
+  attr_accessor :make_observation_licenses_same,
+    :make_photo_licenses_same,
+    :make_sound_licenses_same,
+    :html,
+    :pi_consent,
+    :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -49,23 +47,23 @@ class User < ApplicationRecord
   preference :user_observation_email_notification, :boolean, default: true
   preference :taxon_or_place_observation_email_notification, :boolean, default: true
 
-  preference :lists_by_login_sort, :string, :default => "id"
-  preference :lists_by_login_order, :string, :default => "asc"
-  preference :per_page, :integer, :default => 30
-  preference :gbif_sharing, :boolean, :default => true
+  preference :lists_by_login_sort, :string, default: "id"
+  preference :lists_by_login_order, :string, default: "asc"
+  preference :per_page, :integer, default: 30
+  preference :gbif_sharing, :boolean, default: true
   preference :observation_license, :string
   preference :photo_license, :string
   preference :sound_license, :string
-  preference :automatic_taxonomic_changes, :boolean, :default => true
-  preference :receive_mentions, :boolean, :default => true
+  preference :automatic_taxonomic_changes, :boolean, default: true
+  preference :receive_mentions, :boolean, default: true
   preference :observations_view, :string
   preference :observations_search_subview, :string
   preference :observations_search_map_type, :string, default: "terrain"
-  preference :community_taxa, :boolean, :default => true
+  preference :community_taxa, :boolean, default: true
   PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
-  preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  preference :observation_fields_by, :string, default: PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
   PROJECT_ADDITION_BY_ANY = "any"
   PROJECT_ADDITION_BY_JOINED = "joined"
   PROJECT_ADDITION_BY_NONE = "none"
@@ -92,7 +90,7 @@ class User < ApplicationRecord
   preference :hide_obs_show_copyright, default: false
   preference :hide_obs_show_quality_metrics, default: false
   preference :hide_obs_show_expanded_cid, default: true
-  preference :common_names, :boolean, default: true 
+  preference :common_names, :boolean, default: true
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
@@ -112,10 +110,13 @@ class User < ApplicationRecord
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
   preference :needs_id_pilot, :boolean, default: nil
+  preference :identify_map_zoom_level, :integer
+  preference :suggestions_source, :string
+  preference :suggestions_sort, :string
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
-    identification_email_notification 
+    identification_email_notification
     mention_email_notification
     message_email_notification
     project_journal_post_email_notification
@@ -124,13 +125,14 @@ class User < ApplicationRecord
     taxon_change_email_notification
     user_observation_email_notification
     taxon_or_place_observation_email_notification
-  )
-  
-  has_many  :provider_authorizations, :dependent => :delete_all
-  has_one  :flickr_identity, :dependent => :delete
-  # has_one  :picasa_identity, :dependent => :delete
-  has_one  :soundcloud_identity, :dependent => :delete
-  has_many :observations, :dependent => :destroy
+  ).freeze
+
+  has_many :provider_authorizations, dependent: :delete_all
+  has_one  :flickr_identity, dependent: :delete
+  has_one  :soundcloud_identity, dependent: :delete
+  has_one :user_daily_active_category, dependent: :delete
+  has_many :user_installations
+  has_many :observations, dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
@@ -206,6 +208,7 @@ class User < ApplicationRecord
     foreign_key: "subject_user_id", inverse_of: :subject_user,
     dependent: :destroy
   has_many :taxon_name_priorities, dependent: :destroy
+  has_many :user_donations, dependent: :delete_all
 
   file_options = {
     processors: [:deanimator],
@@ -252,6 +255,7 @@ class User < ApplicationRecord
   has_many :site_admins, inverse_of: :user
   belongs_to :place, :inverse_of => :users
   belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
+  has_one :cohort_lifecycle, dependent: :delete
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
@@ -643,7 +647,7 @@ class User < ApplicationRecord
     observations.update_all( site_id: site_id, updated_at: Time.now )
     # update ES-indexed observations in place with update_by_query as the site_id
     # will not affect any other attributes that necessitate a full reindex
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+    try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Observation.__elasticsearch__.client.update_by_query(
         index: Observation.index_name,
         refresh: Rails.env.test?,
@@ -685,6 +689,11 @@ class User < ApplicationRecord
     reject.friendships.where( friend_id: id ).each( &:destroy )
     # update this has_one relationship on user_parent
     UserParent.where( user_id: reject.id ).update_all( user_id: id )
+
+    # retain the earliest created_at date
+    if reject.created_at < created_at
+      update_columns( created_at: reject.created_at )
+    end
 
     # Conditions should match index_votes_on_unique_obs_fave
     reject.votes
@@ -1420,6 +1429,42 @@ class User < ApplicationRecord
         user.elastic_index!
       end
     end
+  end
+
+  def self.update_annotated_observations_counter_cache( user, options = {} )
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    return unless user
+
+    result = Observation.elastic_search(
+      filters: [{
+        nested: {
+          path: "annotations",
+          query: {
+            bool: {
+              filter: [{
+                term: {
+                  "annotations.user_id": user.id
+                }
+              }]
+            }
+          }
+        }
+      }],
+      size: 0,
+      track_total_hits: true
+    )
+    count = result&.response ? result.response.hits.total.value : 0
+    return if user.annotated_observations_count == count
+
+    User.where( id: user.id ).update_all( annotated_observations_count: count )
+    return if options[:skip_indexing]
+
+    user.reload
+    user.elastic_index!
   end
 
   def to_plain_s

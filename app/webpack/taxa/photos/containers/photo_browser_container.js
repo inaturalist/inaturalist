@@ -68,8 +68,8 @@ function mapDispatchToProps( dispatch ) {
     setTerm: ( term, value ) => {
       const clear = ( value === "any" );
       dispatch( updateObservationParamsAndUrl( {
-        term_id: clear ? null : parseInt( term, 0 ),
-        term_value_id: clear ? null : parseInt( value, 0 )
+        term_id: clear ? null : parseInt( term, 10 ),
+        term_value_id: clear ? null : parseInt( value, 10 )
       } ) );
       dispatch( reloadPhotos( ) );
     },

@@ -16,6 +16,10 @@ const config = {
       import: "./computer_vision/eval/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]
     },
+    "language-demo": {
+      import: "./computer_vision/language/webpack-entry",
+      dependOn: ["react-main"]
+    },
     "geo-model-explain": {
       import: "./geo_model/explain/webpack-entry",
       dependOn: ["react-main"]

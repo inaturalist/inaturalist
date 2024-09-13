@@ -241,29 +241,6 @@ lt:
   about_this_bioblitz: Apie šį bioblicą
   about_this_map: Apie šį žemėlapį
   about_this_project: Apie šį projektą
-  about_trips_html: |
-    <h4>
-    Kelionės leidžia rinkti stebėjimo duomenis, pridedant kontekstą prie
-    jūsų pastebėjimų.
-    </h4>
-    <p>
-    <strong>Todėl</strong> stebėjimo duomenys apima informaciją apie
-    mėginių ėmimo sąlygas, naudingas atliekant mokslinę analizę, pavyzdžiui, paskirstymo
-    modeliavimą (neapdoroti iNaturalistiniai stebėjimai yra „tik lokacijos" duomenys).
-    </p>
-    <p>
-    <strong>Kas</strong> saugoma kelionės duomenyse, norit sukurti kontekstinę stebėjimo informaciją:
-    </p>
-    <ul>
-    <li><strong>Ką</strong> jūs tikėjotės aptikti (stebėjimų sąrašas)</li>
-    <li><strong>Kur</strong> vykdėte stebėjimą (paieškos vieta)</li>
-    <li><strong>Kada</strong> vykdėte stebėjimą (stebėjimo intervalai)</li>
-    </ul>
-    <p>
-    Kelionės tikslų sąraše esančios rūšys, kurias aptikote planuotoje paieškos vietoje ir planuotu laiku, laikomos aptiktomis rūšimis. Tuo tarpu nepastebėtos, sąraše esančios rūšys yra laikomos neaptiktomis rūšimis. 
-    Spustelėkite „Pateikti aptikimo-neaptikimo duomenis lentelėje“, kad sukurtumėte
-    kelionių ir susijusių rūšių buvimo ir nebuvimo įrašų lentelę. <a href='%{url}'>Sužinokite daugiau</a>
-    </p>
   about_trusting_projects: Apie projekto duomenų prieinamumą
   about_trusting_projects_options_any: Visi jūsų stebėjimai šiame projekte
   about_trusting_projects_options_any_desc: |-
@@ -3659,7 +3636,6 @@ lt:
   start_a_new_project: Pradėti naują projektą
   start_a_project: Pradėti projektą
   start_date_time: Pradžios data / laikas
-  start_one: Pradėti
   start_one_now: Pradėti dabar!
   start_typing_field_name: Įveskite lauko pavadinimą...
   start_typing_place_name: Įveskite vietovės pavadinimą...
@@ -3685,7 +3661,6 @@ lt:
   studies_that_used_inaturalist_data_in_year: Tyrimai, kurie %{year} metais naudojo iNaturalist duomenis
   stuff_just_added: "Tai, ką ką tik pridėjote..."
   subject_resolved_noun_html: "%{subject} išsprendė %{noun}"
-  subject_affecting_stuff_html: "%{subject} paveikiantis %{stuff}"
   submission_model_description: Kas gali pridėti stebėjimų prie jūsų projekto?
   submit_observations:
     one: Pateikti 1 stebėjimą
@@ -3897,7 +3872,6 @@ lt:
     few: "Yra <span class='count'>%{count}</span> sinonimai</span>"
     many: "Yra <span class='count'>%{count}</span> sinonimai</span>"
     other: "Yra <span class='count'>%{count}</span> sinonimai</span>"
-  there_is_no_wikipedia_page_matching: Nėra tokio Vikipedijos straipsnio apie
   there_isnt_a_wikipedia_article_titled_x_html: |
     Vikipedijos straipsnio pavadinimu „%{x}“ nėra. Galbūt norėtumėte jį <a href='http://en.wikipedia.org/wiki/%{x}'>sukurti</a>?
   there_was_a_problem_creating_this_account: |
@@ -4084,7 +4058,6 @@ lt:
   user_added_an_x_to_noun_by_user_html: "%{user} pridėjo %{x} prie %{by} %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} pridėjo %{x} prie jūsų %{noun}"
-  user_added_x_observations_html: "%{user} pridėjo %{x} stebėjimus(-ų)"
   user_already_authenticated: Vartotojas jau autentifikuotas
   user_autocomplete_placeholder: kueda, simon123 ir t. t.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -4132,6 +4105,7 @@ lt:
   values: Reikšmės
   verbing_x_of_y: "%{verb}%{x} iš %{y}..."
   verifiable_observations_by_observation_date: Identifikuotini stebėjimai pagal stebėjimo datą
+  video_tutorials: Video pamokos
   view: Rodyti
   view_all: Rodyti viską
   view_all_flags: Rodyti visus pažymėjimus
@@ -4191,7 +4165,6 @@ lt:
   view_your_observations: Žiūrėti jūsų stebėjimus
   view_yours: Rodyti jūsų
   view_all_of_your_observations_from_x: "Žiūrėti visus %{x} stebėjimus"
-  video_tutorials: Video pamokos
   visually_similar: Vizualiai panašus
   vulnerable: Pažeidžiamas
   w_photos_only: su nuotraukomis
@@ -4654,7 +4627,6 @@ lt:
           "Plant Phenology=Flower Budding": Su sprogstančiais žiedais
           "Plant Phenology=Flowering": Žydi
           "Plant Phenology=Fruiting": Dera
-          "Life Stage=Adult": Suaugęs
           "Life Stage=Egg": Kiaušinis
           "Life Stage=Larva": Lerva
           "Life Stage=Juvenile": Jauniklis
@@ -4663,27 +4635,6 @@ lt:
           unannotated: Be papildomos informacijos
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Prašome pridėti tik pavadinimus, kurie iš tiesų yra kažkur naudojami. Prašome neišgalvoti pavadinimų patiems.</p></li>
-          <li><p>Nepridėkite dublikatų.</p></li>
-          <li>
-          <p>
-          Nepridėkite informacijos, kuri nėra pavadinimas, pvz.: papildoma informacija, kur ir kaip pavadinimas turi būti naudojamas.
-          </p>
-          </li>
-          <li>
-          <p>
-          Nauji leksikonai turi būti anglų kalba. Nepridėkite išverstų kalbų pavadinimų (pvz.: Français).
-          </p>
-          </li>
-          <li>
-          <p>
-          Tam tikros kalbos pavadinimai bus rodomi tinklalapyje, jeigu nustatymuose bus pasirinkta tinklalapio kalba arba vieta, kurioje kalbama ta kalba.
-          <a class="readmore" href="/pages/translate">Sužinokite daugiau apie vertimą</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Pridėkite vietoves, kad vartotojai iš šių vietovių pirmiausiai matytų šį pavadinimą. Jeigu vietovėje yra vartojami keli skirtingi pavadinimai, pirmenybę galite keisti <a href="%{url}">čia</a>. Prašome <strong>nepridėti</strong> visų vietovių, kur pavadinimas yra naudojamas. Pridėkite tik tas vietoves, kuriose naudojamas pavadinimas yra kitoks, nei kitur.
     users:

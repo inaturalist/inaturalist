@@ -310,6 +310,19 @@ const StatusTab = ( {
                   <i className="icon-link-external" />
                 </a>
               </p>
+              { isCurator ? (
+                <ul className="tab-links list-group">
+                  <li className="list-group-item internal">
+                    <a
+                      href={`/taxa/${taxon.id}/conservation_statuses/new`}
+                      rel="nofollow"
+                    >
+                      <i className="fa fa-plus accessory-icon" />
+                      { I18n.t( "add_a_conservation_status" ) }
+                    </a>
+                  </li>
+                </ul>
+              ) : null }
               <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
               <ul className="tab-links list-group iconified-list-group">
                 {

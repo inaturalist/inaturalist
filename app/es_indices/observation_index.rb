@@ -1109,6 +1109,14 @@ class Observation < ApplicationRecord
     if p[:id_below]
       search_filters << { range: { id: { lt: p[:id_below] } } }
     end
+    if p[:not_id]
+      not_ids = [p[:not_id]].flatten.
+        map {| id | id.to_s.split( "," ).map( &:to_i ) }.
+        flatten.compact
+      if not_ids.size.positive?
+        inverse_filters << { terms: { id: not_ids } }
+      end
+    end
 
     { filters: search_filters,
       inverse_filters: inverse_filters,

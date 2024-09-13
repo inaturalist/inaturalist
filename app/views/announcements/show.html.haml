@@ -23,9 +23,26 @@
         = link_to t(:back), announcements_path, class: "back crumb"
       %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
       %table#announcement.table.table-bordered
-        - %w(created_at updated_at placement clients start end site_ids locales dismissible? |
-          prefers_target_staff prefers_target_unconfirmed_users                              |
-          prefers_exclude_monthly_supporters).each do |a|                                    |
+        - %w(                                 |
+          created_at                          |
+          updated_at                          |
+          placement                           |
+          clients                             |
+          target_group_type                   |
+          target_group_partition              |
+          start                               |
+          end                                 |
+          site_ids                            |
+          locales                             |
+          dismissible?                        |
+          prefers_target_staff                |
+          prefers_target_unconfirmed_users    |
+          prefers_exclude_monthly_supporters  |
+          include_donor_start_date            |
+          include_donor_end_date              |
+          exclude_donor_start_date            |
+          exclude_donor_end_date              |
+        ).each do |a|                         |
           %tr
             %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
             %td= @announcement.send( a )

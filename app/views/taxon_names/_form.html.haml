@@ -1,4 +1,6 @@
 = content_for :extrajs do
+  :javascript
+    var SCIENTIFIC_NAMES_LEXICON = "#{ TaxonName::SCIENTIFIC_NAMES }";
   = javascript_include_tag "taxon_names/form"
 .row.stacked
   = form_for(@taxon_name, :builder => BootstrapFormBuilder, :url => @taxon_name.new_record? ? taxon_taxon_names_path(@taxon || @taxon_name.taxon) : @taxon_name) do |n|
@@ -28,7 +30,10 @@
                 "$('#new_lexicon_link').show();",                                        |
                 :class => "btn btn-default"
       = n.form_field :validity, :label => false do
-        = label_tag t(:if_this_is_a_scientific_name)
+        = label_tag t(:is_this_scientific_name_currently_accepted), nil,
+          id: "is_valid_scientific_name_label", hidden: @taxon_name.lexicon != TaxonName::SCIENTIFIC_NAMES
+        = label_tag t(:should_this_common_name_be_shown_by_default), nil,
+          id: "is_valid_common_name_label", hidden: @taxon_name.lexicon == TaxonName::SCIENTIFIC_NAMES
         .radio
           %label.inline
             = n.radio_button :is_valid, true.to_s, :skip_builder => true

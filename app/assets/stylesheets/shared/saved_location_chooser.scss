@@ -5,13 +5,13 @@
   font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   z-index: 0;
   top: 16px;
-  left: 440px;
+  left: 456px;
   width: 270px;
 
   .accessory {
     position: absolute;
     right: 2px;
-    top: 1px;
+    top: 3.5px;
     padding: 1px 3px;
     background-color: white;
   }
@@ -42,8 +42,7 @@
   input {
     border: 1px solid transparent;
     padding: 0px 12px;
-    // height: 28.5px;
-    height: 26px;
+    height: 31px;
   }
   .menu {
     z-index: -1;
@@ -111,9 +110,10 @@
     }
   }
 }
-@media (max-width: 880px) {
+@media (max-width: 970px) {
   .SavedLocationChooser {
     top: 60px;
-    left: 20px;
+    left: inherit;
+    right: 16px;
   }
 }

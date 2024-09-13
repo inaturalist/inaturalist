@@ -129,7 +129,7 @@ class FlagsController < ApplicationController
 
   def new
     @flag = Flag.new(params[:flag])
-    @object = @model.find(params[@object_key])
+    @object = find_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flag.flaggable ||= @object
     @flags = @object.flags.where(resolved: false).includes(:user)
@@ -149,15 +149,11 @@ class FlagsController < ApplicationController
     end
 
     @create_comment = false
-    if @flag = Flag.where( create_options.except( "initial_comment_body" ) ).where( resolved: true ).first
-      @flag.resolved = false
-    else
-      @flag = @object.flags.build(create_options)
-      @create_comment = create_options.key?( :initial_comment_body ) && create_options[:initial_comment_body].length > 0
-      if @create_comment
-        @comment_attributes = { parent: @flag, user: current_user, body: create_options[:initial_comment_body] }
-        @flag.comments.build( @comment_attributes )
-      end
+    @flag = @object.flags.build(create_options)
+    @create_comment = create_options.key?( :initial_comment_body ) && create_options[:initial_comment_body].length > 0
+    if @create_comment
+      @comment_attributes = { parent: @flag, user: current_user, body: create_options[:initial_comment_body] }
+      @flag.comments.build( @comment_attributes )
     end
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
@@ -170,10 +166,6 @@ class FlagsController < ApplicationController
       end
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
-    end
-
-    if @object.is_a?(Project)
-      Project.refresh_es_index
     end
 
     respond_to do |format|
@@ -216,9 +208,6 @@ class FlagsController < ApplicationController
       rescue Photo::MissingPhotoError
         "Flag resolved, but the photo in question is gone and cannot be restored"
       end
-      if @object.is_a?(Project)
-        Project.refresh_es_index
-      end
       format.html do
         flash[:notice] = msg
         redirect_back_or_default(@flag)
@@ -254,9 +243,6 @@ class FlagsController < ApplicationController
     end
     @object = @flag.flaggable
     @flag.destroy
-    if @object.is_a?(Project)
-      Project.refresh_es_index
-    end
     respond_to do |format|
       format.html do
         flash[:notice] = t(:flag_deleted)

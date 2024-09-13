@@ -221,6 +221,10 @@ pt:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Precisão (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Prec. acima de
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Prec. abaixo ou desc.
   account: Conta
   account_creation: Criação de Conta
   account_settings: Definições da conta
@@ -547,6 +551,7 @@ pt:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplicações
+  apply_app_owner: Aplicar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Submeter
@@ -3113,7 +3118,6 @@ pt:
   start_a_new_project: Iniciar um novo projeto
   start_a_project: Iniciar um projeto
   start_date_time: Data / Hora de Início
-  start_one: começar um
   start_one_now: Comece um agora!
   start_typing_field_name: Comece a digitar o nome do campo...
   start_typing_someones_name: "Comece a escrever o nome de alguém..."
@@ -3305,7 +3309,6 @@ pt:
   user_added_an_x_to_noun_by_html: "%{user} adicionou um(a) %{x} a(o) %{noun} de %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} adicionou um(a) %{x} ao %{noun}"
-  user_added_x_observations_html: "%{user} adicionou %{x} observações"
   user_already_authenticated: O utilizador já está autenticado
   user_blocked: Utilizador bloqueado
   user_commented: "%{user} comentou"
@@ -3567,7 +3570,6 @@ pt:
           seja atualizado manualmente. Atualizando este resumo também atualiza imediatamente o nosso cache do conteúdo da Wikipédia subjacente que mostramos no site e que é atualizado automaticamente após uma semana.
       show:
         frequency:
-          "Life Stage=Adult": Adulto
           "Life Stage=Egg": Ovo
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Juvenil

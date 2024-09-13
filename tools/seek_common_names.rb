@@ -6,6 +6,7 @@ require "optimist"
 # The official list of locales current supported by Seek can be found at:
 # https://github.com/inaturalist/SeekReactNative/blob/main/i18n.ts
 
+# Let the Seek team know if you change anything here then the app also needs to be updated
 SEEK_LOCALES = [
   "af",
   "ar",

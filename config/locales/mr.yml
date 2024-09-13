@@ -353,6 +353,8 @@ mr:
   added_by: नी जोडलेले
   added_by_user_on_date_html: "नी जोडलेले %{user} ला %{date}"
   added_on_datetime: "ला जोडलेले %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: प्रस्थापित केलेला हुद्दा
   added_to_favorites_html: |
     जोडलेले मध्ये <a href="%{url}">आवडीचे</a>
   adding: "जोडले जात आहे..."
@@ -1048,6 +1050,7 @@ mr:
     </p>
   #@vow_or_con should work with %{site}
   users_site_year_in_review: "%{user} चे %{year} %{site} पुनरावलोकनाचे वर्ष"
+  video_tutorials: माहितीपर व्हिडीओ
   view_all_caps: सर्व पहा
   view_all_fields: सर्व जागा पहा
   view_inaturalist_global_year_in_review: iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन पहा
@@ -1059,7 +1062,6 @@ mr:
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
   view_your_personal_year_in_review: "तुमचे वैयक्तिक %{year} पुनरावलोकनाचे वर्ष पहा"
   view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
-  video_tutorials: माहितीपर व्हिडीओ
   we_also_support2: |
     आम्ही <a href="http://flickr.com">Flickr</a> आणि <a href="http://photos.google.com">Google Photos</a> वरून फोटो आयात करण्यास देखील समर्थन देतो.
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon

@@ -197,8 +197,9 @@ de:
   about_this_bioblitz: Über diesen Bioblitz
   about_this_map: Über diese Karte
   about_this_project: Über dieses Projekt
-  about_trips_html: |
-    <h4>Trips ermöglichen die Erfassung von Daten über Fehlen/Vorhandensein, durch Hinzufügen von Kontext zu Ihren Beobachtungen</h4><p><strong>Warum</strong> Daten über Fehlen/Vorhandensein enthalten Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist Beobachtungen enthalten nur Daten über das Vorhandensein").</p> <p><strong>How</strong> Ein Trip fügt Deinen Beobachtungen einen Kontext hinzu, durch Protokollierung von:</p> <ul> <li><strong>Was</strong> Du gesucht hast (Zielliste)</li> <li><strong>Wo</strong> Du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong>Du gesucht hast (Suchintervall)</li> </ul> </ul> <p> Arten auf Deiner Zielliste, die Du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als vorhanden interpretiert. Während Arten auf Deiner Zielliste, die Du nicht beobachten konntest, als fehlend interpretiert werden. Klicke auf 'Zusammenfassen von Fehlen-Vorhandensein von Trips', um eine Tabelle mit Daten über das Fehlen-Vorhandensein für eine Spezies aus Trips und zugehörigen Beobachtungen zu erstellen. <a href='%{url}'>Mehr erfahren</a></p>
+  about_trips2_html: |
+    <h4>Trips ermöglichen es, die An- oder Abwesenheit von Arten zu erfassen.
+    </h4><p><strong>Warum</strong> 'Trips'-Berichte enthalten neben reinen Daten zu An-/Abwesenheiten auch Informationen über den Aufwand der Erfassung, die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind (normale iNaturalist-Beobachtungen enthalten nur 'Anwesenheits-Daten').</p> <p><strong>Wie</strong> Ein Trip fügt deinen Beobachtungen einen Kontext hinzu durch die Protokollierung von:</p> <ul> <li><strong>Was</strong> du gesucht hast (Liste mit Zielarten)</li> <li><strong>Wo</strong> du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong> du gesucht hast (Suchintervall)</li> </ul> <p> Arten auf deiner Zielliste, die du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als 'vorhanden' interpretiert, während Arten auf deiner Zielliste, die du nicht beobachten konntest, als 'abwesend' interpretiert werden. Klicke auf 'An-/Abwesenheitsdaten von Trips tabellarisch darstellen', um eine Tabelle mit Daten über die An-/Abwesenheit für eine Art zu erstellen. <a href='%{url}'>Learn more here</a></p>
   about_trusting_projects: Über vertrauenswürdige Projekte
   about_trusting_projects_options_any: Alle deine Beobachtungen in diesem Projekt
   about_trusting_projects_options_any_desc: |-
@@ -284,6 +285,8 @@ de:
   add_annotations_for_controlled_attribute:
     sex: 'Angaben hinzufügen für: "Geschlecht"'
     plant_phenology: 'Angaben hinzufügen zu: "Pflanzenphänologie"'
+    flowers_and_fruits: Angabe für "Blüten und Früchte" hinzufügen
+    leaves: Angabe für "Blätter" hinzufügen
     life_stage: 'Angaben hinzufügen zu: "Entwicklungsstadium"'
     evidence_of_presence: Angaben hinzufügen für "Anwesenheitsnachweis"
   add_another_flag: Weitere Meldung hinzufügen
@@ -340,6 +343,14 @@ de:
   add_plant_phenology_flowering_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Blühend"'
   add_plant_phenology_fruiting_annotation: 'Angabe hinzufügen "Pflanzenphänologie: Fruchttragend"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Angabe hinzufügen "Phänologie (Pflanze): Nicht blühend"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Angabe hinzufügen "Blüten & Früchte: Blütenknospe"'
+  add_flowers_and_fruits_flowers_annotation: 'Angabe hinzufügen: "Blüten & Früchte: Blüten"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Angabe hinzufügen "Blüten & Früchte: Früchte & Samen"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Angabe hinzufügen "Blüten & Früchte: keine Blüten oder Früchte"'
+  add_leaves_breaking_leaf_buds: 'Angabe hinzufügen "Blätter: Blattknospen"'
+  add_leaves_green_leaves: 'Angabe hinzufügen "Blätter: grüne Blätter"'
+  add_leaves_colored_leaves: 'Angabe hinzufügen "Blätter: verfärbte Blätter"'
+  add_leaves_no_live_leaves: 'Angabe hinzufügen "Blätter: keine lebenden Blätter"'
   add_life_stage_adult_annotation: 'Angabe hinzufügen "Entwicklungssstadium: Adult"'
   add_life_stage_teneral_annotation: 'Angabe hinzufügen "Lebensstadium: Frisch geschlüpft"'
   add_life_stage_subimago_annotation: 'Angabe hinzufügen "Lebensstadium: Subimago"'
@@ -405,6 +416,8 @@ de:
   added_by: Hinzugefügt von
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
   added_on_datetime: "Hinzugefügt am %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Hinzugefügte Rolle
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
@@ -1065,6 +1078,10 @@ de:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Beliebig
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Beliebig
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Beliebig
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Beliebig
@@ -1074,10 +1091,20 @@ de:
     male: Männlich
     female: Weiblich
     plant_phenology: Phänologie (Pflanze)
+    flowers_and_fruits: Blüten und Früchte
     budding: Knospend
     flower_budding: Knospend
     flowering: Blühend
     fruiting: Fruchttragend
+    no_flowers_or_fruits: Keine Blüten oder Früchte
+    flower_buds: Blütenknospen
+    flowers: Blüten
+    fruits_or_seeds: Früchte oder Samen
+    leaves: Blätter
+    breaking_leaf_buds: Blattknospen
+    green_leaves: grüne Blätter
+    colored_leaves: verfärbte Blätter
+    no_live_leaves: keine lebenden Blätter
     life_stage: Entwicklungsstufe
     adult: Adult
     teneral: frisch gehäutet
@@ -1131,6 +1158,13 @@ de:
     flower_budding: Blütenknospen sind sichtbar, aber nicht geöffnet
     flowering: Blüten sichtbar, geöffnet und noch fest mit der Pflanze verbunden
     fruiting: Frucht sichtbar und noch fest mit der Pflanze verbunden
+    flowers: Mindestens eine geöffnete Blüte
+    flower_buds: Mindestens eine geschlossene Blütenknospe
+    fruits_or_seeds: Mindestens eine Frucht oder ein Samen
+    breaking_leaf_buds: Wenigstens eine Knospe mit den ersten Blättern/Nadeln noch nicht komplett entfaltet
+    green_leaves: Zumindest ein grünes Blatt/Nadel (oder rötlich, falls das die normale Blattfarbe ist)
+    colored_leaves: Wenigstens ein Blatt oder eine Nadel mit herbstlicher oder trockenheitsbedingter Verfärbung
+    no_live_leaves: keine Blattknospen oder Blätter/Nadeln sind sichtbar
     gall: Durch einen parasitären Organismus verursachte Deformation von Pflanzengewebe
     male: Die Belege deuten darauf hin, dass der Organismus Spermien für die sexuelle Fortpflanzung produzieren kann
     molt: Abgeworfene Haut oder Exoskelett
@@ -1139,6 +1173,7 @@ de:
     egg: Ganzes Ei oder ein Teil eines Eis
     construction: Eine von einem Tier verursachte Konstruktion, die mit oder aus Materialien hergestellt wurde
     no_evidence_of_flowering: Die Fotos zeigen keinen Nachweis für reproduktive Strukturen
+    no_flowers_or_fruits: Keine Blüten, Früchte oder Samen (ganz oder teilweise) sichtbar
     not_established: Organismus ist aus einer nicht-etablierten Population, einschließlich blinden Passagieren, Irrgästen oder freilaufenden/entflohenen Haustieren
     organism: Kompletter oder unvollständiger Organismus
     scat: Kot und Losung (keine Gewölle oder andere hervorgewürgte Bestandteile)
@@ -1161,6 +1196,8 @@ de:
   copy_and_paste_the_following_code_to: Kopiere und füge den folgenden Code ein, um diese Bewertung in eine andere Webseite einzubetten.
   copy_and_paste_this_into_your_own_html: Dies in dein eigenes HTML kopieren und einfügen.
   copy_guide_taxon_to: Taxon-Guide kopieren nach...
+  copy_to_clipboard: In Zwischenablage kopieren
+  copied!: Erfolgreich kopiert!
   copyright:
     some_rights_reserved: einige Rechte vorbehalten
     some_rights_reserved_by: "(c) %{name}, einige Rechte vorbehalten (%{license_short})"
@@ -1333,6 +1370,8 @@ de:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     du angemessenes Verhalten auf iNaturalist beurteilen kannst und dich an die Community-Richtlinien hältst. Mit den Befugnissen eines Kurators geht auch eine Vorbildwirkung einher.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Leitfaden für Kuratoren
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
@@ -1555,7 +1594,7 @@ de:
   display_name: Namen anzeigen
   display_name_description: Dies ist der Name, der in deinem Profil angezeigt wird und auch für die Copyright-Zuordnung verwendet wird
   distance_traveled_value: "Zurückgelegte Strecke: %{distance} m"
-  distance_traveled: "Gereiste Entfernung (m)"
+  distance_traveled: "Zurückgelegte Strecke: (m)"
   documentation_for_developers_html: Dokumentation für <a href="/pages/developers">Entwickler</a>
   do_not_show_this_message_again: Diese Nachricht nicht erneut anzeigen
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
@@ -1625,7 +1664,7 @@ de:
   edit_multiple_locations: Mehrere Standorte bearbeiten
   edit_multiple_species: Mehrere Arten bearbeiten
   edit_notes: Anmerkungen bearbeiten
-  edit_observations: Beobachtungen bearbeiten
+  edit_observations: bearbeiten
   edit_photos: Fotos bearbeiten
   edit_photos_for_observation_id: "Fotos bearbeiten für Beobachtung %{obs_id}"
   edit_place: Gebiet bearbeiten
@@ -1665,6 +1704,8 @@ de:
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Leitfaden für Lehrende
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
@@ -1941,11 +1982,13 @@ de:
     <a href="%{url}">Erfahre mehr über das Geomodell hier</a>.
   geoprivacy: Geo-Privatsphäre
   geoprivacy_is_obscured: Geo-Privatsphäre ist verborgen
-  geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu verschleiern.
+  geoprivacy_is_obscured_desc: Der Beobachter hat sich dazu entschieden, die genauen Koordinaten zu verschleiern.
   geoprivacy_is_private: Geo-Privatsphäre ist privat
-  geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
+  geoprivacy_is_private_desc: Der Beobachter hat sich dazu entschieden, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
   get_started: Projekt erstellen
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Erste Schritte
   getting_started_guide: Anleitung für den Einstieg
   #Prompt to donate money on a montly basis
   give_monthly_caps: MONATLICH SPENDEN
@@ -1972,6 +2015,9 @@ de:
   grid_tooltip: Rasteransicht anzeigen
   group: Gruppe
   grouping: Gruppieren
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: vermutlichen Standort von anderen Beobachtungen verwenden?
   guides: Guides
   guide_compiled_by: Guide zusammengestellt von
   guide_deleted: Guide gelöscht
@@ -4684,7 +4730,6 @@ de:
   start_a_new_project: Neues Projekt beginnen
   start_a_project: Ein Projekt beginnen
   start_date_time: Start Datum / Uhrzeit
-  start_one: einen beginnen
   start_one_now: Jetzt eins beginnen!
   start_typing_field_name: Name des Feldes eingeben....
   start_typing_place_name: Gebietsnamen eingeben...
@@ -4714,8 +4759,6 @@ de:
   studies_that_used_inaturalist_data_in_year: Publikationen, die im Jahr %{year} iNaturalist-Daten verwendet haben
   stuff_just_added: "Dinge, die du gerade hinzugefügt hast...."
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
-  subject_affecting_stuff_html: "%{subject} mit Einfluss auf %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} hat @gender{n:ein|f:eine|m:einen|ein} %{thing} von %{stuff} durchgeführt"
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
   submit_observations:
@@ -4762,6 +4805,7 @@ de:
   synonyms: Synonyme
   table: Tabelle
   table_of_contents: Inhaltsverzeichnis
+  tabulate_presence_absence_data_from_trips: An-/Abwesenheitsdaten von Trips tabellarisch darstellen
   #Noun, as in "add a tag to this observation"
   tag: Tag
   tagging: 'Tagge...'
@@ -4769,7 +4813,7 @@ de:
   tags_are_a_way: 'Stichwörter sind eine Möglichkeit, deine Beobachtungen zu organisieren. Zum Beispiel kannst du alle deine Beobachtungen im Wald mit "Wald" versehen, um sie später leichter zu finden.'
   take_me_flickr!: Ja, bring mich zu Flickr!
   target_list_alert: Bist du sicher, dass du versucht hast, alle Arten zu beobachten, die von deiner Zielliste abgedeckt sind? Denke daran, dass alles, was von der Zielliste abgedeckt ist und nicht beobachtet wurde, als Abwesenheit interpretiert wird, so dass es sehr wichtig ist, dass die Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast
-  target_list_warning: Denke daran, dass alles, was von der Zielliste abgedeckt wird, innerhalb des Radius und der Dauer dieser Reise nicht beobachtet wurde, als Abwesenheit interpretiert wird. Es ist sehr wichtig, dass deine Zielliste genau die Menge der Arten widerspiegelt, die du zu entdecken versucht hast. Wenn du nicht versucht hast, eine Art auf deiner Zielliste oder jede von einer Gruppe abgedeckte Art auf deiner Zielliste zu finden, diese bitte entfernen.
+  target_list_warning: Denke daran, dass alle Arten/Taxa auf der Zielliste, die innerhalb des Radius und der Dauer dieses Trips nicht beobachtet wurden, als 'abwesend' interpretiert werden. Es ist sehr wichtig, dass deine Zielliste genau die Menge der Arten widerspiegelt, die du zu finden versucht hast. Wenn du nicht versucht hast, eine Art (oder jede von einem höheren Taxon abgedeckte Art) auf deiner Zielliste zu finden, diese bitte entfernen.
   task_deleted: Aufgabe gelöscht
   taxa: Taxa
   taxa_show_obs_photo_search_tip: |
@@ -4988,7 +5032,6 @@ de:
   there_are_x_synonyms_html:
     one: "Es existiert <span class='count'>1</span> Synonym</span>"
     other: "Es existieren <span class='count'>%{count}</span> Synonyme</span>"
-  there_is_no_wikipedia_page_matching: Es gibt keinen passenden Wikipedia-Eintrag
   there_isnt_a_wikipedia_article_titled_x_html: |
     Es gibt keinen Wikipedia-Artikel oder keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
   there_merge_problems_with_the_merge: "Es gab Probleme mit der Zusammenführung: %{merged_errors}"
@@ -5221,7 +5264,7 @@ de:
   'true': 'Wahr'
   trending: Im Trend
   trends: Im Trend
-  trip_target_list_info: 'Alle von dieser Zielliste abgedeckten Arten, die nicht innerhalb des Radius und der Dauer dieser Reise beobachtet wurden, werden als Abwesenheit interpretiert. <a href="/pages/trips">Weitere Informationen</a>.'
+  trip_target_list_info: 'Alle von dieser Zielliste abgedeckten Arten, die nicht innerhalb des Radius und der Dauer dieses Trips beobachtet wurden, werden als ''abwesend'' interpretiert. <a href="/pages/trips">Weitere Informationen</a>.'
   #Noun
   trust: Vertrauen
   trusted: Vertrauenswürdig
@@ -5245,6 +5288,8 @@ de:
   unable_to_save_comment: Leider konnten wir den Kommentar nicht speichern.
   unblock: Entsperren
   unclassified: Nicht klassifiziert
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: iNaturalist-Projekte verstehen
   ungrafted_taxa: nicht zugeordnete Taxa
   unhide_content: Inhalt wieder sichtbar machen
   unhide_desc: |
@@ -5374,7 +5419,9 @@ de:
   user_added_an_x_to_noun_by_you_html: "%{user}: %{x} zu %{noun} von dir hinzugefügt"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}: %{x} zu %{noun} hinzugefügt"
-  user_added_x_observations_html: "%{user} hat %{x} Beobachtungen hinzugefügt"
+  user_added_x_observations2_html:
+    one: "%{user} hat %{count} Beobachtung hinzugefügt"
+    other: "%{user} hat %{count} Beobachtungen hinzugefügt"
   user_already_authenticated: Der Benutzer ist bereits authentifiziert
   user_autocomplete_placeholder: kueda, simon123, etc.
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -5383,6 +5430,12 @@ de:
     %{user} glaubt, dass dies eine umfassende Liste von %{taxon} in %{place} ist
   user_blocked: Benutzer gesperrt
   user_commented: "%{user} hat kommentiert"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} hat eine Taxon-Vereinigung mit Auswirkungen auf %{taxa} durchgeführt"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} hat eine Taxon-Auftrennung mit Auswirkungen auf %{taxa} durchgeführt"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} hat einen Taxon-Tausch mit Auswirkungen auf %{taxa} durchgeführt"
   user_disagrees_this_is_taxon: "%{user} stimmt der Identifikation als %{taxon} nicht zu"
   user_disagrees_with_previous_finer_identifications: "%{user} stimmt mit vorherigen genaueren Bestimmungen nicht überein"
   user_faved_an_observation_by_you: "%{user} hat eine Beobachtung von dir favorisiert"
@@ -5414,7 +5467,7 @@ de:
     Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, die aufgrund von Schutzkategorien verschleiert wurden
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
-    Der Beobachter hat beschlossen, Dir die verborgenen Koordinaten all seiner Beobachtungen anzuvertrauen.
+    Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
   username: Benutzername
   username_description: Dies ist der Benutzername um dich anzumelden und mit dem dich andere Nutzer bei iNaturalist identifizieren können.
@@ -5471,6 +5524,7 @@ de:
   values: Werte
   verbing_x_of_y: "%{verb} %{x} von %{y}..."
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
+  video_tutorials: Videoanleitungen
   view: Ansehen
   view_all: Alle ansehen
   view_all_caps: ALLE ANZEIGEN
@@ -5548,7 +5602,6 @@ de:
   view_your_personal_year_in_review_caps: "SIEH DIR DEINEN PERSÖNLICHEN JAHRESRÜCKBLICK %{year} AN"
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: "Zeige alle deine Beobachtungen aus %{x}"
-  video_tutorials: Videoanleitungen
   visually_similar: Sieht ähnlich aus
   vulnerable: gefährdet
   w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeordneten Taxa!
@@ -6283,6 +6336,16 @@ de:
         privacy_notice_html: |
           Während Nachrichten zwischen dir und dem Empfänger privat sind, können Mitarbeiter von iNaturalist in diese Nachrichten Einsicht nehmen und werden dies tun, falls Nachrichten
           zur Moderation gemeldet wurden. Wenn wirklich private Kommunikation stattfinden soll, verwende bitte andere Kommunikationskanäle, die eine starke Verschlüsselung unterstützen.
+    nls_demo:
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: z.B. %{query_in_english}
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> hat sich mit Wissenschaftlern der <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">der University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">dem University College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">und dem MIT</a> zusammengetan, und großzügige Unterstützung von <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft KI for Good Lab</a> erhalten, um das Potenzial für Vision Language Models auszutesten, iNat-Beobachtungen zu erkunden, organisieren und ergründen. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: In diesem Demo-Tool können Suchbegriffe eingegeben werden (z.B. "<a href="%{url}">%{query_in_english}</a>") und mit 10 Millionen iNaturalist-Photos abgeglichen werden. Die Ergebnisse werden nach absteigender Relevanz geordnet. Du kannst dieses Demo-Tool verwenden um interessante Beobachtungen zu finden, sie zu annotieren oder zu einem Projekt hinzuzufügen.
     oauth:
       authorizations:
         new:
@@ -7249,7 +7312,14 @@ de:
           "Plant Phenology=Flowering": blühend
           "Plant Phenology=Fruiting": Fruchttragend
           "Plant Phenology=No Evidence of Flowering": Nicht blühend
-          "Life Stage=Adult": Adult
+          "Flowers and Fruits=Flower Buds": Blütenknospen
+          "Flowers and Fruits=Flowers": Blüten
+          "Flowers and Fruits=Fruits or Seeds": Früchte oder Samen
+          "Flowers and Fruits=No Flowers or Fruits": Keine Blüten oder Früchte
+          "Leaves=Breaking Leaf Buds": Blattknospen
+          "Leaves=Green Leaves": grüne Blätter
+          "Leaves=Colored Leaves": verfärbte Blätter
+          "Leaves=No Live Leaves": keine lebenden Blätter
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": juvenil
@@ -7294,23 +7364,23 @@ de:
       form:
         new_name_guidelines_html: |
           <ul>
-          Versuche Namen hinzuzufügen, die bereits an anderer Stelle verwendet wurden. Bitte erfinde keine neuen Namen.</p></li>
+          <li><p>Bitte nur Namen hinzufügen, die bereits an anderer Stelle verwendet wurden. Bitte erfinde keine neuen Namen.</p></li>
           <li><p>Füge keine doppelten Namen hinzu, z.B. nenne nicht mehrere Falken "Falke"</p></li>
-          <li><p>Für höhere Taxa versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse" enthalten.</p></li>
+          <li><p>Für höhere Taxa, versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse" enthalten.</p></li>
           <li>
           <p>
-          Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. beiläufige Informationen darüber wie der Name Ihrer Meinung nach verwendet werden sollte
+          Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. Informationen in Klammern darüber wie der Name verwendet werden sollte
           </p>
           </li>
           <li>
           <p>
-          Neue Lexika sollten in Englisch sein. Bitte füge keine übersetzten Sprachnamen wie "Französisch, Français" hinzu, da dies es uns erschwert oder unmöglich macht, lokalisierte Namen für Personen anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
+          Neue Lexika sollen immer einen englischen Namen haben. Bitte füge keine übersetzten Sprachnamen wie "French, Français" hinzu, da es sonst schwierig oder unmöglich wirdt, lokalisierte Namen für Benutzer anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
           </p>
           </li>
           <li>
           <p>
-          Umgangssprachliche Namen, die mit übersetzten Sprachen assoziiert sind, werden als Standardnamen für diese Sprache angezeigt (mit Ausnahme der Wirkung von Ortseinstellungen, der Reihenfolge der Namen usw.).
-          <a class="readmore" href="/pages/translate">Erfahre mehr übers Übersetzen</a>
+          Umgangssprachliche Namen in den übersetzten Sprachen werden als Standardnamen für diese Sprache angezeigt (Ausnahme: personifizierte Gebietseinstellungen oder ausgewählte Reihenfolge der Sprachen).
+          <a class="readmore" href="/pages/translate">Erfahre hier mehr über Übersetzungen</a>
           </p>
           </li>
           </ul>

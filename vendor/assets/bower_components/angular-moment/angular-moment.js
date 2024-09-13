@@ -1,4 +1,4 @@
-/* angular-moment.js / v1.0.0-beta.3 / (c) 2013, 2014, 2015 Uri Shaked / MIT Licence */
+/* angular-moment.js / v1.3.0 / (c) 2013, 2014, 2015, 2016, 2017, 2018 Uri Shaked / MIT Licence */
 
 'format amd';
 /* global define */
@@ -35,7 +35,7 @@
 		 * @description
 		 * angularMoment module provides moment.js functionality for angular.js apps.
 		 */
-		return angular.module('angularMoment', [])
+		angular.module('angularMoment', [])
 
 		/**
 		 * @ngdoc object
@@ -178,7 +178,9 @@
 				 * @description
 				 * Specify the format of the date when displayed as full date. null by default.
 				 */
-				fullDateFormat: null
+				fullDateFormat: null,
+
+				fullDateThresholdUnit: 'day'
 			})
 
 		/**
@@ -197,6 +199,8 @@
 					var titleFormat = amTimeAgoConfig.titleFormat;
 					var fullDateThreshold = amTimeAgoConfig.fullDateThreshold;
 					var fullDateFormat = amTimeAgoConfig.fullDateFormat;
+					var fullDateThresholdUnit = amTimeAgoConfig.fullDateThresholdUnit;
+
 					var localDate = new Date().getTime();
 					var modelName = attr.amTimeAgo;
 					var currentFrom;
@@ -226,8 +230,8 @@
 					}
 
 					function updateTime(momentInstance) {
-						var daysAgo = getNow().diff(momentInstance, 'day');
-						var showFullDate = fullDateThreshold && daysAgo >= fullDateThreshold;
+						var timeAgo = getNow().diff(momentInstance, fullDateThresholdUnit);
+						var showFullDate = fullDateThreshold && timeAgo >= fullDateThreshold;
 
 						if (showFullDate) {
 							element.text(momentInstance.format(fullDateFormat));
@@ -236,7 +240,7 @@
 						}
 
 						if (titleFormat && setTitleTime) {
-							element.attr('title', momentInstance.local().format(titleFormat));
+							element.attr('title', momentInstance.format(titleFormat));
 						}
 
 						if (!showFullDate) {
@@ -315,6 +319,11 @@
 
 					attr.$observe('amFullDateFormat', function (newValue) {
 						fullDateFormat = newValue;
+						updateMoment();
+					});
+
+					attr.$observe('amFullDateThresholdUnit', function (newValue) {
+						fullDateThresholdUnit = newValue;
 						updateMoment();
 					});
 
@@ -510,13 +519,13 @@
 		 * @module angularMoment
 		 */
 			.filter('amCalendar', ['moment', 'amMoment', 'angularMomentConfig', function (moment, amMoment, angularMomentConfig) {
-				function amCalendarFilter(value) {
+				function amCalendarFilter(value, referenceTime, formats) {
 					if (isUndefinedOrNull(value)) {
 						return '';
 					}
 
 					var date = amMoment.preprocessDate(value);
-					return date.isValid() ? date.calendar() : '';
+					return date.isValid() ? date.calendar(referenceTime, formats) : '';
 				}
 
 				// Since AngularJS 1.3, filters have to explicitly define being stateful
@@ -670,15 +679,59 @@
 				amAddFilter.$stateful = angularMomentConfig.statefulFilters;
 
 				return amAddFilter;
-			}]);
+			}])
+
+		/**
+		 * @ngdoc filter
+		 * @name angularMoment.filter:amStartOf
+		 * @module angularMoment
+		 * @function
+		 */
+			.filter('amStartOf', ['moment', 'angularMomentConfig', function (moment, angularMomentConfig) {
+				function amStartOfFilter(value, type) {
+
+					if (isUndefinedOrNull(value)) {
+						return '';
+					}
+
+					return moment(value).startOf(type);
+				}
+
+				amStartOfFilter.$stateful = angularMomentConfig.statefulFilters;
+
+				return amStartOfFilter;
+			}])
+
+		/**
+		 * @ngdoc filter
+		 * @name angularMoment.filter:amEndOf
+		 * @module angularMoment
+		 * @function
+		 */
+			.filter('amEndOf', ['moment', 'angularMomentConfig', function (moment, angularMomentConfig) {
+				function amEndOfFilter(value, type) {
+
+					if (isUndefinedOrNull(value)) {
+						return '';
+					}
+
+					return moment(value).endOf(type);
+				}
+
+				amEndOfFilter.$stateful = angularMomentConfig.statefulFilters;
+
+				return amEndOfFilter;
+ 			}]);
+
+		return 'angularMoment';
 	}
 
+	var isElectron = window && window.process && window.process.type;
 	if (typeof define === 'function' && define.amd) {
 		define(['angular', 'moment'], angularMoment);
-	} else if (typeof module !== 'undefined' && module && module.exports) {
-		angularMoment(require('angular'), require('moment'));
-		module.exports = 'angularMoment';
+	} else if (typeof module !== 'undefined' && module && module.exports && (typeof require === 'function') && !isElectron) {
+		module.exports = angularMoment(require('angular'), require('moment'));
 	} else {
-		angularMoment(angular, (typeof global !== 'undefined' ? global : window).moment);
+		angularMoment(angular, (typeof global !== 'undefined' && typeof global.moment !== 'undefined' ? global : window).moment);
 	}
 })();

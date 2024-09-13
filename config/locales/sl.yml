@@ -289,29 +289,6 @@ sl:
   about_this_bioblitz: O temu bioblitzu
   about_this_map: O temu zemljevidu
   about_this_project: O temu projektu
-  about_trips_html: |
-    <h4>
-    Izleti omogočajo zbiranje podatkov o prisotnosti/neprisotnosti z dodajanjem
-    konteksta vašim opazovanjem
-    </h4>
-    <p>
-    <strong>Zakaj</strong> Podatki o prisotnosti/neprisotnosti vključujejo informacije o
-    delu na vzorčenju, ki je koristno za znanstvene analize kot je distribucijsko modeliranje
-    (osnovna iNaturalist opazovanja so le o prisotnosti)
-    </p>
-    <p>
-    <strong>Kako</strong> Izlet doda kontekst vašim opazovanjem z beleženjem:
-    </p>
-    <ul>
-    <li><strong>Kaj</strong> ste iskali (seznam)</li>
-    <li><strong>Kje</strong> ste iskali (območje)</li>
-    <li><strong>Kdaj</strong> ste iskali (časovni interval)</li>
-    </ul>
-    <p>
-    Vrste iz vašega iskalnega seznama, ki ste jih opazili v iskanem območju in časovnem intervalu
-    so interpretirane kot prisotnosti. Pritisnite na 'Razvršanje podatkov o prisotnosti/odsotnosti iz izletov'
-    za generiranje tabele prisotnosti/odsotnosti za vrste in pripadajočih opazovanj. <a href='%{url}'>Izvedi več</a>
-    </p><<
   about_trusting_projects: O zaupanju projektom
   about_trusting_projects_options_any: Vsa vaša opazovanja v tem projektu
   about_trusting_projects_options_any_desc: |-
@@ -4291,7 +4268,6 @@ sl:
   start_a_new_project: Ustvari nov projekt
   start_a_project: Ustvari projekt
   start_date_time: Datum in čas pričetka
-  start_one: Zaženi ga
   start_one_now: Zaženi ga zdaj!
   start_typing_field_name: Začni vnašati ime polja...
   start_typing_place_name: Začni vnašati ime kraja...
@@ -4321,8 +4297,6 @@ sl:
   studies_that_used_inaturalist_data_in_year: Študije, ki so uporabile podatke iz iNaturalista v %{year}
   stuff_just_added: "Stvari, ki ste jih pravkar dodali..."
   subject_resolved_noun_html: "%{subject} razrešen %{noun}"
-  subject_affecting_stuff_html: "%{subject} vplivajoč na %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} predan @vow_or_con{vow:an|a} %{thing} vplivajoč na %{stuff}"
   submission_model: Model predložitve
   submission_model_description: Kdo lahko dodaja opazovanja v vaš projekt?
   submit_observations:
@@ -4769,7 +4743,6 @@ sl:
   user_added_an_x_to_noun_by_you_html: "%{user} je dodal %{x} za vaše %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} je dodal %{x} za %{noun}"
-  user_added_x_observations_html: "%{user} je dodal %{x} opazovanj"
   user_already_authenticated: Uporabnik je že prijavljen
   user_already_app_owner: Uporabnik je že lastnik aplikacije
   user_autocomplete_placeholder: Miha, simon123, itd.
@@ -4874,6 +4847,7 @@ sl:
   values: Vrednosti
   verbing_x_of_y: "%{verb} %{x} od %{y}..."
   verifiable_observations_by_observation_date: Preverljiva opazovanja po datumu opazovanja
+  video_tutorials: Video vodniki
   view: Poglej
   view_all: Prikaži vse
   view_all_caps: PRIKAŽI VSE
@@ -4953,7 +4927,6 @@ sl:
   view_your_personal_year_in_review_caps: "POGLEJTE VAŠ OSEBEN POVZETEK LETA %{year}"
   view_yours: Pokaži tvoje
   view_all_of_your_observations_from_x: "Poglej vsa svoja opazovanja iz %{x}"
-  video_tutorials: Video vodniki
   visually_similar: Vizualno podobno
   vulnerable: Ranljiva vrsta
   w00t_no_ungrafted_taxa: w00t!  Ni necepljenih taksonov!
@@ -5799,7 +5772,6 @@ sl:
           "Plant Phenology=Flowering": Cvetenje
           "Plant Phenology=Fruiting": Plodovi
           "Plant Phenology=No Evidence of Flowering": Ni znakov cvetenja
-          "Life Stage=Adult": Odrasel
           "Life Stage=Egg": Jajce
           "Life Stage=Larva": Ličinka
           "Life Stage=Juvenile": Mladica
@@ -5828,34 +5800,6 @@ sl:
         trending_desc: Najbolj opazovani taksoni v zadnjem mesecu.
         trending_in_place_desc_html: Najbolj opazovani taksoni v zadnjem mesecu v <a href="%{url}">%{place}</a>
         wanted_desc: Vrste iz tega taksona, ki še nimajo opazovanj.
-    taxon_names:
-      form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Dodajajte imena, ki so v uporabi. Prosimo, da si ne izmišljate novih imen.</p></li>
-          <li><p>Ne dodajajte podvojenih imen. Npr. ne poimenujte več vrst sokolov "sokol"</p></li>
-          <li><p>Za višjenivojske taksone poskusite uporabiti imena, ki vsebujejo vse naslednike, npr. "čaplje in zavezniki"</p></li>
-          <li>
-          <p>
-          Ne dodajajte informacij, ki niso del imena. Naprimer o temu 
-          kako vi mislite, da bi se moralo ime uporabljati.
-          </p>
-          </li>
-          <li>
-          <p>
-          Imena slovarjev morajo biti v angleščini. Prosimo ne prevajajte imen slovarjev,
-          ker boste s tem onemogočili prikaz prevedenih imen za tiste, ki uporabljajo
-          spletišče v drugih jezikih.
-          </p>
-          </li>
-          <li>
-          <p>
-          Občna imena, ki so povezana z prevedenim jezikom se bodo pojavila
-          kot privzeta imena za ta jezik.
-          <a class="readmore" href="/pages/translate">Več o prevajanju</a>
-          </p>
-          </li>
-          </ul>
     users:
       dashboard:
         taxon_change_desc: |
@@ -6578,7 +6522,7 @@ sl:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: mora biti veljaven za to postavitev
         application:
