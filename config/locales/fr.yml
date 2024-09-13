@@ -5562,6 +5562,9 @@ fr:
   user_faved_this_observation: "%{user} a mis cette observation en favori"
   user_flagged_as_a_non_spammer_html: "%{user} signalé comme non spammeur"
   user_flagged_as_a_spammer_html: "%{user} signalé comme spammeur"
+  user_has_been_removed_from_site: |
+    %{username} a été retiré de %{site_name} (cela peut prendre jusqu'à une heure
+    pour supprimer complètement le contenu associé)
   user_has_opted_out_of_community_id: L’utilisateur a refusé le taxon de la communauté
   user_hasnt_joined_any_projects: "%{user} n'a rejoint aucun projet"
   user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
