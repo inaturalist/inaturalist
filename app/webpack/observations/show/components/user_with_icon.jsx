@@ -6,6 +6,7 @@ const UserWithIcon = ( {
   hideSubtitle,
   skipSubtitleLink,
   subtitle,
+  subtitleLinkOverwrite,
   subtitleIconClass,
   user
 } ) => {
@@ -25,9 +26,10 @@ const UserWithIcon = ( {
        }
     </>
   );
+  const subtitleLinkDefault = `/observations?user_id=${user.login}&place_id=any&verifiable=any`;
   const subtitleLink = skipSubtitleLink
     ? subtitleContent
-    : <a href={`/observations?user_id=${user.login}&place_id=any&verifiable=any`}>{ subtitleContent }</a>;
+    : <a href={subtitleLinkOverwrite || subtitleLinkDefault}>{ subtitleContent }</a>;
 
   return (
     <div className="UserWithIcon">
