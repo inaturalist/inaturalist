@@ -54,6 +54,7 @@ UserWithIcon.propTypes = {
     PropTypes.string,
     PropTypes.number
   ] ),
+  subtitleLinkOverwrite: PropTypes.string,
   subtitleIconClass: PropTypes.string,
   hideSubtitle: PropTypes.bool,
   skipSubtitleLink: PropTypes.bool
