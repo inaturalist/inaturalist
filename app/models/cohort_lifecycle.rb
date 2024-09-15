@@ -492,11 +492,10 @@ class CohortLifecycle < ApplicationRecord
     observation_places.to_h
   end
 
-  def self.prepare_observations( observations )
+  def self.prepare_observations( observations, place_ids )
     admin = User.where( email: CONFIG.admin_user_email ).first
     return false unless admin
 
-    place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
     place_obs = get_place_obs( observations.map {| a | a[0] }, place_ids )
     place_hash = place_obs.to_h
     taxon_hash = observations.to_h
@@ -549,7 +548,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def self.assign_to_iders( needs_id_pilot )
+  def self.assign_to_iders( needs_id_pilot, place_ids, prepared_obs )
     # top_iders = INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
     # top_iders.concat( User.admins.pluck( :id ).uniq ).uniq
     admin_role = Role.find_by( name: "admin" )
@@ -592,11 +591,12 @@ class CohortLifecycle < ApplicationRecord
       @needs_id_pilot = ObservationAccuracyExperiment.new( version: "Needs ID Pilot" )
       @needs_id_pilot.save
     end
+    place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
     puts "\tpreparing observations..."
-    prepared_obs = prepare_observations( observations )
+    prepared_obs = prepare_observations( observations, place_ids )
     puts "\tstoring prepared observations..."
     store_prepared_observations( prepared_obs, @needs_id_pilot )
     puts "\tassigning to iders..."
-    assign_to_iders( @needs_id_pilot )
+    assign_to_iders( @needs_id_pilot, place_ids, prepared_obs )
   end
 end
