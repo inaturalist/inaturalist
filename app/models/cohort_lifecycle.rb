@@ -492,13 +492,7 @@ class CohortLifecycle < ApplicationRecord
     observation_places.to_h
   end
 
-  def self.process_needs_id( observations )
-    @needs_id_pilot = ObservationAccuracyExperiment.find_by( version: "Needs ID Pilot" )
-    unless @needs_id_pilot
-      @needs_id_pilot = ObservationAccuracyExperiment.new( version: "Needs ID Pilot" )
-      @needs_id_pilot.save
-    end
-
+  def self.prepare_observations( observations )
     admin = User.where( email: CONFIG.admin_user_email ).first
     return false unless admin
 
@@ -527,60 +521,82 @@ class CohortLifecycle < ApplicationRecord
       end
     end
 
-    store_obs = []
+    prepared_obs = []
     observations.map {| a | a[0] }.select do | obs |
       place_id = place_hash[obs]
       taxon_id = new_taxon_hash[obs]
       next unless taxon_id
 
-      store_obs << { id: obs, place_id: place_id, taxon_id: taxon_id }
+      prepared_obs << { id: obs, place_id: place_id, taxon_id: taxon_id }
     end
+    prepared_obs
+  end
 
-    ObservationAccuracySample.where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
-      where( "observation_id NOT IN (?)", store_obs.map {| row | row[:id] }.uniq ).destroy_all
-    store_obs.each do | row |
+  def self.store_prepared_observations( prepared_obs, needs_id_pilot )
+    ObservationAccuracySample.where( observation_accuracy_experiment_id: needs_id_pilot.id ).
+      where( "observation_id NOT IN (?)", prepared_obs.map {| row | row[:id] }.uniq ).destroy_all
+    prepared_obs.each do | row |
       sample = ObservationAccuracySample.
-        where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+        where( observation_accuracy_experiment_id: needs_id_pilot.id ).
         where( observation_id: row[:id] ).first
       next if sample
 
       sample = ObservationAccuracySample.new(
-        observation_accuracy_experiment_id: @needs_id_pilot.id,
+        observation_accuracy_experiment_id: needs_id_pilot.id,
         observation_id: row[:id]
       )
       sample.save!
     end
+  end
 
-    top_iders = INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
-    top_iders.concat( User.admins.pluck( :id ).uniq ).uniq
+  def self.assign_to_iders( needs_id_pilot )
+    # top_iders = INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
+    # top_iders.concat( User.admins.pluck( :id ).uniq ).uniq
+    admin_role = Role.find_by( name: "admin" )
+    top_iders = User.joins( :roles ).where( roles: { id: admin_role.id } ).pluck( :id )
     active_iders = Preference.where(
       "owner_type = 'User' AND name = 'needs_id_pilot' AND value = 't' AND owner_id IN (?)",
       top_iders
     ).pluck( :owner_id )
-    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+    ObservationAccuracyValidator.where( observation_accuracy_experiment_id: needs_id_pilot.id ).
       where( "user_id NOT IN (?)", active_iders ).destroy_all
     active_iders.each do | user_id |
       validator = ObservationAccuracyValidator.
-        where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+        where( observation_accuracy_experiment_id: needs_id_pilot.id ).
         where( user_id: user_id ).first
       unless validator
         validator = ObservationAccuracyValidator.new(
-          observation_accuracy_experiment_id: @needs_id_pilot.id,
+          observation_accuracy_experiment_id: needs_id_pilot.id,
           user_id: user_id
         )
         validator.save!
       end
       id_matches = get_improving_identifiers( user_id, place_ids )
-      filtered_obs_ids = store_obs.select do | obs |
+      filtered_obs_ids = prepared_obs.select do | obs |
         place_id = obs[:place_id]
         taxon_id = obs[:taxon_id]
         id_matches[taxon_id]&.include?( place_id )
       end
       obs_ids = filtered_obs_ids.map {| a | a[:id] }.sample( 30 )
       samples = ObservationAccuracySample.
-        where( observation_accuracy_experiment_id: @needs_id_pilot.id ).
+        where( observation_accuracy_experiment_id: needs_id_pilot.id ).
         where( "observation_id IN (?)", obs_ids )
       validator.observation_accuracy_samples << samples
     end
+  end
+
+  def self.process_needs_id( observations )
+    puts "processing needs_id..."
+    @needs_id_pilot = ObservationAccuracyExperiment.find_by( version: "Needs ID Pilot" )
+    unless @needs_id_pilot
+      @needs_id_pilot = ObservationAccuracyExperiment.new( version: "Needs ID Pilot" )
+      @needs_id_pilot.save
+    end
+    puts "\tpreparing observations..."
+    prepared_obs = prepare_observations( observations )
+    puts "\tstoring prepared observations..."
+    store_prepared_observations( prepared_obs, @needs_id_pilot )
+    puts "\tassigning to iders..."
+    assign_to_iders( @needs_id_pilot )
   end
 end
