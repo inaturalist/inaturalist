@@ -5711,6 +5711,9 @@ sv:
   user_faved_this_observation: "%{user} favoritmarkerade detta fynd"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
+  user_has_been_removed_from_site: |
+    %{username} har tagits bort från %{site_name} (det kan ta upp till en timme
+    att helt radera allt kopplat innehåll)
   user_has_opted_out_of_community_id: Användaren har valt bort Community-taxon
   user_hasnt_joined_any_projects: "%{user} har inte gått med i några projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjälpte <strong>%{x} personer</strong> med <strong>%{y} bestämningar</strong>"
@@ -5738,6 +5741,7 @@ sv:
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatören har valt att lita på dig med de dolda koordinaterna för alla sina fynd.
+  user_updated_an_observation_field_html: '%{user} uppdaterade ett värde för "%{field_name}" på ett fynd av %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
   username: Användarnamn
   username_description: Detta är det användarnamn du kommer att använda för att logga in, och andra användare kan använda för att identifiera dig på iNaturalist
