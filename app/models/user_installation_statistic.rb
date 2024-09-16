@@ -110,7 +110,8 @@ class UserInstallationStatistic < ApplicationRecord
               {
                 bool: {
                   must_not: [
-                    { term: { "hostname": "smilax" } }
+                    { term: { "http_host": "stagingapi.inaturalist.org" } },
+                    { term: { "http_host": "stagingtiles.inaturalist.org" } }
                   ]
                 }
               }
