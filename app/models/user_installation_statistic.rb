@@ -113,6 +113,7 @@ class UserInstallationStatistic < ApplicationRecord
         aggs: {
           composite_agg: {
             composite: {
+              size: 65_000,
               sources: [
                 {
                   x_installation_id: { terms: { field: "x_installation_id" } }
