@@ -106,6 +106,13 @@ class UserInstallationStatistic < ApplicationRecord
                     { term: { "parsed_user_agent.os.name": platform_id } }
                   ]
                 }
+              },
+              {
+                bool: {
+                  must_not: [
+                    { term: { "hostname": "smilax" } }
+                  ]
+                }
               }
             ]
           }
