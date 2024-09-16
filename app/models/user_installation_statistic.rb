@@ -196,7 +196,7 @@ class UserInstallationStatistic < ApplicationRecord
   end
 
   def self.calculate_retention_metrics( at_time = Time.now, application_id, platform_id )
-    day_0 = at_time.utc.end_of_day - 1.day
+    day_0 = at_time.utc.end_of_day
 
     today_installation_activity_data = get_installation_activity_data(
       day_0 - 1.day,
@@ -205,7 +205,7 @@ class UserInstallationStatistic < ApplicationRecord
       platform_id
     )
     this_week_installation_activity_data = get_installation_activity_data(
-      day_0 - 8.days,
+      day_0 - 7.days,
       day_0,
       application_id,
       platform_id
