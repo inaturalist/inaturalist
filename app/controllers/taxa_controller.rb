@@ -192,11 +192,16 @@ class TaxaController < ApplicationController
         return render_404 unless @node_taxon_json
         @node_place_json = ( place_id.blank? || place_id == 0 ) ?
           nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
-        @chosen_tab = session[:preferred_taxon_page_tab]
-        @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+        @chosen_tab = current_user.preferred_taxon_page_tab if logged_in?
+        @chosen_tab = session[:preferred_taxon_page_tab] if @chosen_tab.blank?
+        @ancestors_shown = if logged_in?
+          current_user.preferred_taxon_page_ancestors_shown
+        else
+          session[:preferred_taxon_page_ancestors_shown]
+        end
         render layout: "bootstrap", action: "show"
       end
-      
+
       format.xml do
         render :xml => @taxon.to_xml(
           :include => [:taxon_names, :iconic_taxon], 

@@ -112,6 +112,8 @@ class User < ApplicationRecord
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
+  preference :taxon_page_tab, :string
+  preference :taxon_page_ancestors_shown, :boolean, default: false
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
