@@ -1501,6 +1501,7 @@ class User < ApplicationRecord
       self.suspended_by_user = moderator_action.user
       suspend!
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.spammer = false
       self.suspended_by_user = nil
       unsuspend!
     end
