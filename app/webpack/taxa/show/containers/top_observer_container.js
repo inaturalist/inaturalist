@@ -19,7 +19,7 @@ function mapStateToProps( state ) {
   }
   const urlParams = defaultObservationParams( state );
   urlParams.view = "observers";
-  delete urlParams.preferred_place_id;
+  urlParams.place_id = urlParams.place_id || "any";
   return Object.assign( props, {
     name: leader.user.login,
     noContent: false,
