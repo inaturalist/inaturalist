@@ -1687,7 +1687,15 @@ module ApplicationHelper
     i18n.t( key, **options ).strip
   end
 
-  def matomo_js
+  def matomo_js( current_user )
+    user_segment = ""
+    if current_user
+      if current_user.login.start_with?("s")
+        user_segment = "power"
+      else
+        user_segment = "casual"
+      end
+    end    
     raw <<-HTML
       <!-- Matomo -->
       <script>
@@ -1700,6 +1708,7 @@ module ApplicationHelper
         var u="https://matomo-vpn.inaturalist.org/";
         _paq.push(['setTrackerUrl', u+'matomo.php']);
         _paq.push(['setSiteId', '1']);
+        _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
       })();
