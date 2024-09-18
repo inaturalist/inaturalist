@@ -54,7 +54,7 @@
       <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
     <% end %>
     <% if !( current_user && current_user.prefers_no_tracking? ) %>
-      <%= google_maps_async_js %>
+      <%= matomo_js %>
     <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
