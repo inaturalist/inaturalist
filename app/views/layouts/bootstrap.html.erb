@@ -12,6 +12,9 @@
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %></title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
+    <% if !current_user || ( current_user && !current_user.prefers_no_tracking? ) %>
+      <%= matomo_tag_js( ) %>
+    <% end %>
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +56,7 @@
     <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
       <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
     <% end %>
-    <% if !( current_user && current_user.prefers_no_tracking? ) %>
+    <% if !current_user || ( current_user && !current_user.prefers_no_tracking? ) %>
       <%= matomo_js( current_user ) %>
     <% end %>
     <%= yield :extrahead %>
