@@ -1695,20 +1695,25 @@ module ApplicationHelper
       else
         user_segment = "casual"
       end
-    end    
+    end
+    user_id = "unkown"
+    if current_user
+      user_id = current_user.id
+    end  
     raw <<-HTML
       <!-- Matomo -->
       <script>
       var _paq = window._paq = window._paq || [];
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["setDoNotTrack", true]);
+      _paq.push(['setUserId', '#{user_id}']);
+      _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
         var u="https://matomo-vpn.inaturalist.org/";
         _paq.push(['setTrackerUrl', u+'matomo.php']);
         _paq.push(['setSiteId', '1']);
-        _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
         g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
       })();
