@@ -307,7 +307,7 @@ class Observation < ApplicationRecord
         indexes :vote_flag, type: "boolean"
         indexes :vote_scope, type: "keyword"
       end
-      indexes :geo_score, type: "scaled_float", scaling_factor: 100_000
+      indexes :geo_score, type: "scaled_float", scaling_factor: 1_000_000
     end
   end
 

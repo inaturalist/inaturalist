@@ -41,7 +41,7 @@ unless OPTS.model_synonyms_path
 end
 
 unless OPTS.updated_minutes_ago || OPTS.update_all
-  puts "You must either a `updated_minutes_ago` or `update_all` option"
+  puts "You must specify either a `updated_minutes_ago` or `update_all` option"
   exit( 0 )
 end
 
