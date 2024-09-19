@@ -354,7 +354,7 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { I18n.t( field.label ) }
+                  { I18n.t( field.label, { defaultValue: field.label } ) }
                 </option>
               ) ) }
             </select>

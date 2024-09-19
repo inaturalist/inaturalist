@@ -2866,6 +2866,36 @@ ALTER SEQUENCE public.observation_fields_id_seq OWNED BY public.observation_fiel
 
 
 --
+-- Name: observation_geo_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_geo_scores (
+    id bigint NOT NULL,
+    observation_id integer,
+    geo_score double precision
+);
+
+
+--
+-- Name: observation_geo_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_geo_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_geo_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_geo_scores_id_seq OWNED BY public.observation_geo_scores.id;
+
+
+--
 -- Name: observation_links; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6254,6 +6284,13 @@ ALTER TABLE ONLY public.observation_fields ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: observation_geo_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_geo_scores ALTER COLUMN id SET DEFAULT nextval('public.observation_geo_scores_id_seq'::regclass);
+
+
+--
 -- Name: observation_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7301,6 +7338,14 @@ ALTER TABLE ONLY public.observation_field_values
 
 ALTER TABLE ONLY public.observation_fields
     ADD CONSTRAINT observation_fields_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_geo_scores observation_geo_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_geo_scores
+    ADD CONSTRAINT observation_geo_scores_pkey PRIMARY KEY (id);
 
 
 --
@@ -8947,6 +8992,13 @@ CREATE INDEX index_observation_field_values_on_user_id ON public.observation_fie
 --
 
 CREATE UNIQUE INDEX index_observation_field_values_on_uuid ON public.observation_field_values USING btree (uuid);
+
+
+--
+-- Name: index_observation_geo_scores_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.observation_geo_scores USING btree (observation_id);
 
 
 --
@@ -11059,6 +11111,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240709175116'),
 ('20240715141936'),
 ('20240716190326'),
+('20240731161955'),
 ('20240828123245');
 
 
