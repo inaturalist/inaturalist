@@ -140,7 +140,6 @@ class FiltersButton extends React.Component {
       { value: "observed_on", label: "date_observed_" },
       { value: "updated_at", label: "date_updated" },
       { value: "votes", label: "faves" },
-      { value: "geo_score", label: "Geo Score" },
       { value: "random", label: "random" }
     ];
     const canShowObservationFields = ( ) => (

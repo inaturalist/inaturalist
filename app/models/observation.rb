@@ -425,7 +425,8 @@ class Observation < ApplicationRecord
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :reassess_geo_score
 
   before_update :set_quality_grade
 
@@ -1289,6 +1290,14 @@ class Observation < ApplicationRecord
       self.iconic_taxon_id = nil
     end
     true
+  end
+
+  def reassess_geo_score
+    return unless observation_geo_score
+    return unless coordinates_changed? || taxon_id_changed?
+
+    observation_geo_score.destroy
+    self.observation_geo_score = nil
   end
 
   def replace_inactive_taxon

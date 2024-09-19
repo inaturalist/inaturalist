@@ -307,7 +307,7 @@ class Observation < ApplicationRecord
         indexes :vote_flag, type: "boolean"
         indexes :vote_scope, type: "keyword"
       end
-      indexes :geo_score_test1, type: "scaled_float", scaling_factor: 1_000_000
+      indexes :geo_score, type: "scaled_float", scaling_factor: 100_000
     end
   end
 
@@ -421,7 +421,7 @@ class Observation < ApplicationRecord
         flags: flags.map(&:as_indexed_json),
         quality_metrics: quality_metrics.map(&:as_indexed_json),
         spam: known_spam? || owned_by_spammer?,
-        geo_score_test1: observation_geo_score&.geo_score
+        geo_score: observation_geo_score&.geo_score
       })
 
       add_taxon_statuses(json, t) if t && json[:taxon]
