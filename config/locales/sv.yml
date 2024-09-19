@@ -275,6 +275,8 @@ sv:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Lägg till en punktlista
   add_a_comment: Lägg till en kommentar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Lägg till en bevarandestatus
   add_a_field: Lägg till ett fält
   add_a_flag: Lägg till en flagga
   #Tool tip for a button that adds a link to a text area
@@ -814,6 +816,7 @@ sv:
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
   badges: Märken
+  base_map_copyright_openstreetmap_html: Grundkarta ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1455,6 +1458,8 @@ sv:
     Du kan uppföra dig lämpligt på iNaturalist och följa Communityns riktlinjer.
     Med förvaltarbefogenheterna kommer en förväntan om att du ska vara en
     exemplarisk användare av iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Förvaltarguide
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
   curators: Förvaltare
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
@@ -1810,6 +1815,8 @@ sv:
   editing_this: Redigerar %{elem}
   editing_x_in_y: "Redigerar %{x} i %{y}"
   editors: Redigerare
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Lärarguide
   either_that_user_doesnt_exist_or: "Antingen existerar inte den användaren, eller så följer du den redan."
   eligible_for_research_grade: Berättigad till forskningsklass
   email: E-post
@@ -2097,6 +2104,8 @@ sv:
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
   get_started: Kom igång
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kom igång
   getting_started_guide: Komma igång-guide
   #Prompt to donate money on a montly basis
   give_monthly_caps: GE MÅNADSVIS
@@ -2387,6 +2396,11 @@ sv:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Finns det stöd nog för att bekräfta att detta är %{taxon}?
   is_this_offensive_html: 'Är detta <a href="/help#inappropriate">olämpligt</a>, spam eller stötande?'
   is_this_place_a_duplicate: Är denna fyndplats en dubblett?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Är detta vetenskapliga namn accepterat för närvarande?
   it_can_now_be_used_for_research: Den kan nu användas för forskning och visas på andra webbplatser
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv text
@@ -4732,6 +4746,8 @@ sv:
   share_colon: "Dela:"
   short_code_for_this_place: Ange en fyndplats om denna länk endast gäller för taxa från en viss fyndplats. Lämna det tomt om den gäller taxa i hela världen.
   short_or_abbreviated_title_for_display: Kort eller förkortad rubrik för visning i små utrymmen. Max 10 tecken.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Borde detta vardagliga namn visas som standard för detta taxon?
   show: Visa
   show_active_and_inactive_taxa: Visa accepterade och ickeaccpeterade taxa
   show_hidden_content: Visa dolt innehåll
@@ -4748,6 +4764,8 @@ sv:
   show_no_annotation: Visa "Ingen anteckning"
   show_off_your_recent_observations: Visa upp dina senaste fynd på din egen blogg eller hemsida!
   show_only: Visa endast
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Visa OpenStreetMap
   show_relative_proportions_of_all_observations: Visa relativ andel av alla fynd
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Visa ackumulerat
@@ -5534,6 +5552,8 @@ sv:
   unable_to_save_comment: Tyvärr lyckades vi inte spara kommentaren.
   unblock: Avblockera
   unclassified: Oklassificerad
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Så funkar projekt
   ungrafted_taxa: Oplacerade taxa
   unhide_content: Visa innehåll igen
   unhide_desc: |
@@ -5691,6 +5711,9 @@ sv:
   user_faved_this_observation: "%{user} favoritmarkerade detta fynd"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
+  user_has_been_removed_from_site: |
+    %{username} har tagits bort från %{site_name} (det kan ta upp till en timme
+    att helt radera allt kopplat innehåll)
   user_has_opted_out_of_community_id: Användaren har valt bort Community-taxon
   user_hasnt_joined_any_projects: "%{user} har inte gått med i några projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjälpte <strong>%{x} personer</strong> med <strong>%{y} bestämningar</strong>"
@@ -5718,6 +5741,7 @@ sv:
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatören har valt att lita på dig med de dolda koordinaterna för alla sina fynd.
+  user_updated_an_observation_field_html: '%{user} uppdaterade ett värde för "%{field_name}" på ett fynd av %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
   username: Användarnamn
   username_description: Detta är det användarnamn du kommer att använda för att logga in, och andra användare kan använda för att identifiera dig på iNaturalist
@@ -5786,6 +5810,7 @@ sv:
   values: Värden
   verbing_x_of_y: "%{verb} %{x} av %{y}..."
   verifiable_observations_by_observation_date: Verifierbara fynd efter observationsdatum
+  video_tutorials: Videohandledning
   view: Visa
   view_all: Visa alla
   view_all_caps: VISA ALLA
@@ -5863,7 +5888,6 @@ sv:
   view_your_personal_year_in_review_caps: "VISA DIN PERSONLIGA SUMMERING AV %{year}"
   view_yours: Visa dina
   view_all_of_your_observations_from_x: "Visa alla dina fynd från %{x}"
-  video_tutorials: Videohandledning
   visually_similar: Visuellt liknande
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: Hurra! Inga oplacerade taxa!
@@ -6695,7 +6719,8 @@ sv:
       for_example_query: t.ex. %{query_in_english}
       try_one_of_these_example_searches_colon: "Prova en av dessa exempelsökningar:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Hjälp oss att bli bättre
       to_help_us_improve: För att hjälpa oss att förbättra denna modell skulle vi vilja veta vilka av bilderna på denna sida som är relevanta för din sökning &quot;%{searched_term}&quot;. Markera varje bild som relevant %{thumbs_up_icon} om den matchar din sökning och inte relevant %{thumbs_down_icon} om den inte gör det. När du är klar, klicka på skicka. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Markera resterande som relevant
@@ -7827,22 +7852,28 @@ sv:
       form:
         new_name_guidelines_html: |
           <ul>
-          <li><p>Försök att lägga till namn som har använts någon annanstans. Vänligen uppfinn inte nya namn.</p></li>
-          <li><p>Lägg inte till dubblettnamn, t.ex. namnge inte flera hökar "hök"</p></li>
-          <li><p>För taxa på högre nivå, försök att använda namn som beskriver alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
+          <li><p>Försök att lägga till namn som har använts någon annanstans. Snälla, uppfinn inte nya namn.</p></li>
+          <li><p>Lägg inte till dubblettnamn, t.ex. ge inte flera hökar namnet "hök"</p></li>
+          <li><p>För taxa på högre nivå, försök att använda namn som inkluderar alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
           <li>
           <p>
-          Lägg inte till information som inte är en del av namnet, t.ex. information inom parentes om hur du tycker att namnet ska användas
+          Lägg inte till information som inte är en del av namnet, t.ex.
+          information inom parentes om hur du tycker att namnet ska användas
           </p>
           </li>
           <li>
           <p>
-          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
+          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga
+          namn som "French, Français" eftersom det bara kommer att göra det
+          svårt eller omöjligt för oss att visa lokaliserade namn för personer som
+          använder webbplatsen på andra språk.
           </p>
           </li>
           <li>
           <p>
-          Vardagliga namn som är kopplade till översatta språk kommer att visas som vardagligt standardnamn på det språket (bortsett från effekten av platsinställningar, namnsortering etc.).
+          Vardagliga namn som är kopplade till översatta språk kommer att visas
+          som vardagligt standardnamn på det språket (bortsett från påverkan av
+          platsinställningar, namnsortering etc.).
           <a class="readmore" href="/pages/translate">Läs mer om översättning</a>
           </p>
           </li>

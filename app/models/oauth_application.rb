@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class OauthApplication < Doorkeeper::Application
   has_many :observations
-  has_attached_file :image, 
+  has_many :user_installations
+  has_attached_file :image,
     styles: { medium: "300x300>", thumb: "100x100>", mini: "16x16#" },
     default_url: "/attachment_defaults/:class/:style.png",
     storage: :s3,
@@ -15,7 +18,7 @@ class OauthApplication < Doorkeeper::Application
 
   before_create :set_scopes
 
-  validates_attachment_content_type :image, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+  validates_attachment_content_type :image, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     :message => "must be JPG, PNG, or GIF"
   validate :redirect_uri_has_no_params
 
@@ -28,20 +31,23 @@ class OauthApplication < Doorkeeper::Application
   end
 
   def self.inaturalist_android_app
-    @@inaturalist_android_app ||= OauthApplication.where(name: "iNaturalist Android App").first
+    @@inaturalist_android_app ||= OauthApplication.where( name: "iNaturalist Android App" ).first
   end
 
   def self.inaturalist_iphone_app
-    @@inaturalist_iphone_app ||= OauthApplication.where(name: "iNaturalist iPhone App").first
+    @@inaturalist_iphone_app ||= OauthApplication.where( name: "iNaturalist iPhone App" ).first
   end
 
   def self.seek_app
     @@seek_app ||= OauthApplication.where( name: "Seek" ).first
   end
 
+  def self.inat_next_app
+    @@inat_next_app ||= OauthApplication.where( name: "iNat Next" ).first
+  end
+
   def set_scopes
     self.scopes = Doorkeeper.configuration.default_scopes if self.scopes.blank?
     true
   end
-
 end

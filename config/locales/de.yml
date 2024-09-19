@@ -416,6 +416,8 @@ de:
   added_by: Hinzugefügt von
   added_by_user_on_date_html: "Von %{user} am %{date} hinzugefügt"
   added_on_datetime: "Hinzugefügt am %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Hinzugefügte Rolle
   added_to_favorites_html: |
     Zu <a href="%{url}">Favoriten</a> hinzugefügt
   adding: "Füge hinzu…"
@@ -1368,6 +1370,8 @@ de:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     du angemessenes Verhalten auf iNaturalist beurteilen kannst und dich an die Community-Richtlinien hältst. Mit den Befugnissen eines Kurators geht auch eine Vorbildwirkung einher.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Leitfaden für Kuratoren
   curators_changed_for_x_html: "Kuratoren für %{x} geändert"
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt entfernen und deine Bestimmungen werden neben den projektspezifischen Ansichten angezeigt. Des Weiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten und verdeckten Beiträgen zu diesem Projekt.
@@ -1700,6 +1704,8 @@ de:
   editing_this: '%{elem} bearbeiten'
   editing_x_in_y: "Bearbeiten von %{x} in %{y}"
   editors: Autoren
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Leitfaden für Lehrende
   either_that_user_doesnt_exist_or: "Entweder existiert dieser Benutzer nicht oder du folgst ihm bereits."
   eligible_for_research_grade: Geeignet für Forschungsqualität
   email: E-Mail
@@ -1976,11 +1982,13 @@ de:
     <a href="%{url}">Erfahre mehr über das Geomodell hier</a>.
   geoprivacy: Geo-Privatsphäre
   geoprivacy_is_obscured: Geo-Privatsphäre ist verborgen
-  geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu verschleiern.
+  geoprivacy_is_obscured_desc: Der Beobachter hat sich dazu entschieden, die genauen Koordinaten zu verschleiern.
   geoprivacy_is_private: Geo-Privatsphäre ist privat
-  geoprivacy_is_private_desc: Der Beobachter hat beschlossen, die Koordinaten zu verbergen.
+  geoprivacy_is_private_desc: Der Beobachter hat sich dazu entschieden, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
   get_started: Projekt erstellen
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Erste Schritte
   getting_started_guide: Anleitung für den Einstieg
   #Prompt to donate money on a montly basis
   give_monthly_caps: MONATLICH SPENDEN
@@ -5280,6 +5288,8 @@ de:
   unable_to_save_comment: Leider konnten wir den Kommentar nicht speichern.
   unblock: Entsperren
   unclassified: Nicht klassifiziert
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: iNaturalist-Projekte verstehen
   ungrafted_taxa: nicht zugeordnete Taxa
   unhide_content: Inhalt wieder sichtbar machen
   unhide_desc: |
@@ -5457,7 +5467,7 @@ de:
     Benutzer vertraut diesem Projekt Beobachtungen mit verborgenen Koordinaten an, die aufgrund von Schutzkategorien verschleiert wurden
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
-    Der Beobachter hat beschlossen, Dir die verborgenen Koordinaten all seiner Beobachtungen anzuvertrauen.
+    Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
   username: Benutzername
   username_description: Dies ist der Benutzername um dich anzumelden und mit dem dich andere Nutzer bei iNaturalist identifizieren können.
@@ -5514,6 +5524,7 @@ de:
   values: Werte
   verbing_x_of_y: "%{verb} %{x} von %{y}..."
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
+  video_tutorials: Videoanleitungen
   view: Ansehen
   view_all: Alle ansehen
   view_all_caps: ALLE ANZEIGEN
@@ -5591,7 +5602,6 @@ de:
   view_your_personal_year_in_review_caps: "SIEH DIR DEINEN PERSÖNLICHEN JAHRESRÜCKBLICK %{year} AN"
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: "Zeige alle deine Beobachtungen aus %{x}"
-  video_tutorials: Videoanleitungen
   visually_similar: Sieht ähnlich aus
   vulnerable: gefährdet
   w00t_no_ungrafted_taxa: Juhuu! Keine nicht zugeordneten Taxa!
@@ -7354,23 +7364,23 @@ de:
       form:
         new_name_guidelines_html: |
           <ul>
-          Versuche Namen hinzuzufügen, die bereits an anderer Stelle verwendet wurden. Bitte erfinde keine neuen Namen.</p></li>
+          <li><p>Bitte nur Namen hinzufügen, die bereits an anderer Stelle verwendet wurden. Bitte erfinde keine neuen Namen.</p></li>
           <li><p>Füge keine doppelten Namen hinzu, z.B. nenne nicht mehrere Falken "Falke"</p></li>
-          <li><p>Für höhere Taxa versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse" enthalten.</p></li>
+          <li><p>Für höhere Taxa, versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse" enthalten.</p></li>
           <li>
           <p>
-          Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. beiläufige Informationen darüber wie der Name Ihrer Meinung nach verwendet werden sollte
+          Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. Informationen in Klammern darüber wie der Name verwendet werden sollte
           </p>
           </li>
           <li>
           <p>
-          Neue Lexika sollten in Englisch sein. Bitte füge keine übersetzten Sprachnamen wie "Französisch, Français" hinzu, da dies es uns erschwert oder unmöglich macht, lokalisierte Namen für Personen anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
+          Neue Lexika sollen immer einen englischen Namen haben. Bitte füge keine übersetzten Sprachnamen wie "French, Français" hinzu, da es sonst schwierig oder unmöglich wirdt, lokalisierte Namen für Benutzer anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
           </p>
           </li>
           <li>
           <p>
-          Umgangssprachliche Namen, die mit übersetzten Sprachen assoziiert sind, werden als Standardnamen für diese Sprache angezeigt (mit Ausnahme der Wirkung von Ortseinstellungen, der Reihenfolge der Namen usw.).
-          <a class="readmore" href="/pages/translate">Erfahre mehr übers Übersetzen</a>
+          Umgangssprachliche Namen in den übersetzten Sprachen werden als Standardnamen für diese Sprache angezeigt (Ausnahme: personifizierte Gebietseinstellungen oder ausgewählte Reihenfolge der Sprachen).
+          <a class="readmore" href="/pages/translate">Erfahre hier mehr über Übersetzungen</a>
           </p>
           </li>
           </ul>

@@ -119,6 +119,7 @@ synonyms = {
   "Gujarati" => ["Gujarātī. ગુજરાતી,", "ગુજરાતી"],
   "Hill Mari" => ["Western Mari"],
   "Hokkien" => ["臺灣閩南語"],
+  TaxonName::HUNGARIAN => ["Magyar"],
   TaxonName::ITALIAN => ["Italiano"],
   "Indonesian" => ["Bahasa Indonesia"],
   "Irish" => ["Irish Gaelic"],

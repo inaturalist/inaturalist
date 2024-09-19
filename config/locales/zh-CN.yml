@@ -1348,6 +1348,8 @@ zh-CN:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     您可以在 iNaturalist 上塑造适当的行为并遵守社群准则。 在策展权力的同时，我们还期望您成为 iNaturalist 的模范用户。
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: 馆长指南
   curators_changed_for_x_html: "为%{x}工作的馆长已更改"
   curators: 馆长
   curators_can_remove_observations_from: 馆长可以从项目中删除观察结果，并将其标识与项目特定视图的观察结果一起显示。馆长也可以看到这个项目中私人贡献者和匿名贡献者的真实地理位置。
@@ -1683,6 +1685,8 @@ zh-CN:
   editing_this: 正在编辑 %{elem}
   editing_x_in_y: "正在%{y}编辑%{x}中"
   editors: 编辑者
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: 教师指南
   either_that_user_doesnt_exist_or: "不存在这一用户或您已经在关注。"
   eligible_for_research_grade: 符合研究级资格
   email: 电子邮件
@@ -1965,6 +1969,8 @@ zh-CN:
   geoprivacy_is_private_desc: 观察者选择隐藏坐标。
   georeferenced: 有地理参考么？
   get_started: 开始
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: 入门
   getting_started_guide: 入门指导
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
@@ -2130,7 +2136,7 @@ zh-CN:
   ids: "鉴定"
   ids_made_for_others: 为其他人做出的鉴定
   if_for_some_reason_a_user_doesnt_agree: |
-    如果出于某种原因，你不同意社区鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社区中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
+    如果出于某种原因，你不同意社群鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社群中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
   if_narrowing_a_parent_for_moves_html: |
@@ -2226,6 +2232,11 @@ zh-CN:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
   is_this_offensive_html: '这是一条<a href="/help#inappropriate">不当内容</a>、垃圾信息或攻击性内容么？'
   is_this_place_a_duplicate: 此地点是否重复？
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: 这个学名目前是否接受？
   it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: 斜体文本
@@ -2657,18 +2668,18 @@ zh-CN:
   #As in members of a project
   members: 成员
   membership_model: 成员模型
-  mentioned_you_in_noun_html: "%{user} 在 %{noun} 提到了您"
-  mentioned_you_in_noun_by_html: "%{user} 在 %{noun} 通过 %{by} 提到了您"
-  mentioned_you_in_noun_by_user_html: "%{user} 通过 %{by} 在 %{noun} 中提到了您"
+  mentioned_you_in_noun_html: "%{user} 在 %{noun} 中提到了您"
+  mentioned_you_in_noun_by_html: "%{user} 在 %{by} 的 %{noun} 中提到了您"
+  mentioned_you_in_noun_by_user_html: "%{user} 在 %{by} 的 %{noun} 中提到了您"
   mentioned_you_in_noun_by_you_html: "%{user} 在您的 %{noun} 中提到了您"
   mentioned_you_in_a_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
   mentioned_you_in_an_x_on_noun_html: "%{user} 在 %{noun} 中的 %{x} 提到了您"
-  mentioned_you_in_a_x_on_noun_by_html: "%{user} 在 %{noun} 中的 %{x} 通过 %{by} 提到了您"
-  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} 通过 %{by} 在 %{noun} 中的 %{x} 提到了您"
-  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} 通过您在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_a_x_on_noun_by_html: "%{user} 在 %{by} 的 %{noun} 中的 %{x} 里提到了您"
+  mentioned_you_in_a_x_on_noun_by_user_html: "%{user} 在 %{by} 的 %{noun} 中的 %{x} 里提到了您"
+  mentioned_you_in_a_x_on_noun_by_you_html: "%{user} 在您的 %{noun} 中的 %{x} 里提到了您"
   mentioned_you_in_an_x_on_noun_by_html: "%{user} 在 %{noun} 上的 %{x} 通过 %{by} 提到了您"
-  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} 通过 %{by} 在 %{noun} 中的 %{x} 提到了您"
-  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} 通过您在 %{noun} 中的 %{x} 提到了您"
+  mentioned_you_in_an_x_on_noun_by_user_html: "%{user} 在 %{by} 的 %{noun} 中的 %{x} 里提到了您"
+  mentioned_you_in_an_x_on_noun_by_you_html: "%{user} 在您的 %{noun} 中的 %{x} 里提到了您"
   merge: 合并
   merge_it_with_another_place: 将其与另一个地点合并
   merge_two_places_together: 合并两个地点。清单上的所有物种都将被合并，所有地理数据也将被合并。
@@ -3368,7 +3379,7 @@ zh-CN:
   only_view_nearby_suggestions: 只查看附近的建议
   only_you: 只有您
   #Geoprivacy status in which no privacy has been applied
-  open: 打开
+  open: 公开
   #Geoprivacy status in which no privacy has been applied
   open_: 公开
   open_description: "任何人可以查看观察，除非分类受到威胁。"
@@ -4498,6 +4509,8 @@ zh-CN:
   share_colon: "分享："
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   short_or_abbreviated_title_for_display: 在空间有限的区域显示简短或缩写的标题。 最多10个字符。
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: 这个分类单元是否默认显示这个通用名？
   show: 显示
   show_active_and_inactive_taxa: 显示有效和无效的分类群
   show_hidden_content: 显示隐藏内容
@@ -5249,6 +5262,8 @@ zh-CN:
   unable_to_save_comment: 对不起，我们无法保存这一评论。
   unblock: 解封
   unclassified: 未分类
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: 了解项目
   ungrafted_taxa: 未分类的分类群
   unhide_content: 取消隐藏内容
   unhide_desc: |
@@ -5481,6 +5496,7 @@ zh-CN:
   values: 值
   verbing_x_of_y: "%{verb} %{y}的%{x}……"
   verifiable_observations_by_observation_date: 观察日期可核实的观察结果
+  video_tutorials: 视频教程
   view: 查看
   view_all: 查看全部
   view_all_caps: 查看全部
@@ -5557,7 +5573,6 @@ zh-CN:
   view_your_personal_year_in_review_caps: "查看你的个人%{year}年度回顾"
   view_yours: 查看您的
   view_all_of_your_observations_from_x: "从 %{x} 查看您所有的观察"
-  video_tutorials: 视频教程
   visually_similar: 视觉类似
   vulnerable: 易危
   w00t_no_ungrafted_taxa: 耶！没有未被嫁接的分类群！
@@ -5733,7 +5748,7 @@ zh-CN:
   yir_email_with_gratitude: "此致  \n敬礼，"
   yir_email_year_on_inaturalist_globally_caps: "INATURALIST全球%{year}年度回顾"
   yir_email_you_are_part_of_something: |
-    您是伟大事业的一部分！ 每个发布观察结果、添加标识并传播 iNaturalist 信息的人都会对生物多样性产生影响。 通过我们的集体努力，我们正在以前所未有的规模提供生物多样性数据和见解。 感谢您成为 iNaturalist 社区的一员！
+    您是伟大事业的一部分！ 每个发布观察结果、添加鉴定并传播 iNaturalist 信息的人都会对生物多样性产生影响。 通过我们的集体努力，我们正在以前所未有的规模提供生物多样性数据和见解。 感谢您成为 iNaturalist 社区的一员！
   yir_email_you_make_a_difference: |
     您通过 iNaturist 为生物多样性做出了贡献。 感谢您所做的一切！
   #@vow_or_con works on %{username}. %{created_date} will use the date.long
@@ -6278,7 +6293,8 @@ zh-CN:
       for_example_query: 如%{query_in_english}
       try_one_of_these_example_searches_colon: "请尝试其中一个搜索实例："
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: 帮助我们改进
       to_help_us_improve: 为了帮助我们改进此模型，我们希望知道此页面上的哪些图像与您搜索的“%{searched_term}”相关。如果某幅图像与您的搜索相匹配，请将其标记为相关 %{thumbs_up_icon}，如果不匹配，请将其标记为不相关 %{thumbs_down_icon}。完成后，请单击提交。 #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: 标记剩余为相关
@@ -6317,10 +6333,10 @@ zh-CN:
         score: 分数
         explanation: |
           <p>
-          如果由于某种原因用户不同意社区分类，他们可以拒绝它，这意味着他们的ID只能用于链接到其他观察，更新生物清单等。这也意味着他们的观察只能在当社区同意的时候才可以达到研究级别。
+          如果由于某种原因用户不同意社群分类，他们可以拒绝它，这意味着他们的鉴定只能用于链接到其他观察，更新生物清单等。这也意味着这一观察只能在社群同意时才可以达到研究级别。
           </p>
           <p>
-          但是，社区ID仍会被显示，因此所有人都可以看到已建议的不同ID。
+          但是，社群鉴定仍会被显示，因此所有人都可以看到已建议的不同鉴定。
           </p>
         you_have_opted_out: 您已选择退出社区标识
         opt_in_for_this_observation: 选择加入此观察
@@ -7251,27 +7267,6 @@ zh-CN:
           分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>尝试添加已在其他地方使用过的名称。请不要发明新名字。</p></li>
-          <li><p>不要添加重复的名称，例如，不要为很多种类的鹰命名为“鹰”</p></li>
-          <li><p>对于更高级别的分类群，尝试使用包含所有后代的名称，如“苍鹭和同类”或“荒地家族”</p></li>
-          <li>
-          <p>
-          不要添加不是名称的信息，例如，有关您如何使用该名称的括号信息
-          </p>
-          </li>
-          <li>
-          <p>
-          新词典应该是英文的。请不要添加“French，Français”之类的翻译语言名称，因为这样我们很难或不可能为使用不同语言的网站的用户显示本地化名称。
-          </p>
-          </li>
-          <li>
-          <p>
-          与翻译语言相关的常用名称将显示为该语言的默认通用名称（除非受到地点首选项、名称排序等的影响）。<a class="readmore" href="/pages/translate">了解有关翻译的详情</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           添加地方专属的名称，以便为该地方的站点和用户优先提供该名称。如果一个地方有多个名称，您可以优先考虑<a href="%{url}">此处</a>。请<strong>不要</strong>为每个使用该名称的地方添加同样的名称，请仅将其用于与其他地方的名称发生冲突的地方。
       taxon:
@@ -7384,7 +7379,7 @@ zh-CN:
           joined: 您加入的项目
           none: "没有，只有您可以将您的观察添加到项目中"
         prefers_community_taxa_desc: |
-          %{site_name}跟踪您认为您的观察以及社区认为的结果。我们与数据合作伙伴共享的标识是社区标识，但如果您认为社区的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加标识，但社区意见不会比你的更受青睐。这意味着除非您同意社区，否则您的观察将不能符合研究级别。
+          %{site_name}跟踪您认为您的观察以及社群认为的结果。如果您认为社群的意见不应该超出您自己的意见，您可以选择退出。人们仍然可以添加鉴定，但是您的观察仍然以您的鉴定为基准。这也意味着除非您同意社区鉴定，否则您的观察将不能符合研究级别。
         prefers_coordinate_interpolation_protection_desc: |
           当您将观察的地理位置设置为“隐藏”或“私有”时，同一天内您所有其他的观测也将应用同样的地理位置隐私设置，使其他人更难基于同一时间内您的观察来猜测真正的坐标。
         prefers_no_tracking_label: 不要使用第三方服务收集稳定性和使用数据
@@ -7978,6 +7973,13 @@ zh-CN:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: 必须对指定的位置有效
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: 必须对指定的目标群组有效
         application:
           attributes:
             redirect_uri:

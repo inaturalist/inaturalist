@@ -29,22 +29,18 @@ class ObservationFieldValuesController < ApplicationController
   end
 
   def update
-    respond_to do |format|
+    respond_to do | format |
       update_params = observation_field_value_params
-      if !update_params[:id].is_a? Integer
-        update_params[:uuid] = update_params[:id]
-        update_params.delete(:id)
-      end
-      if @observation_field_value.update(update_params)
-        format.json { render :json => @observation_field_value }
+      if @observation_field_value.update( update_params )
+        format.json { render json: @observation_field_value }
       else
         format.json do
-          render :status => :unprocessable_entity, :json => { :errors => @observation_field_value.errors.full_messages }
+          render status: :unprocessable_entity, json: { errors: @observation_field_value.errors.full_messages }
         end
       end
     end
   end
-  
+
   def destroy
     errors = []
     if @observation_field_value.blank?

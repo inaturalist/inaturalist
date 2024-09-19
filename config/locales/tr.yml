@@ -1182,6 +1182,7 @@ tr:
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştır.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'ne yapıştır.
   copy_guide_taxon_to: Rehber sınıfını şuraya kopyala...
+  copied!: Kopyalandı!
   copyright:
     some_rights_reserved: bazı hakları saklıdır
     some_rights_reserved_by: "(c) %{name}, bazı hakları saklıdır (%{license_short})"
@@ -4720,6 +4721,7 @@ tr:
   subject_resolved_noun_html: "%{noun}, %{subject} tarafından çözüldü"
   submission_model: Gönderme Modeli
   submission_model_description: Projene kim gözlem ekleyebilir?
+  submit: Gönder
   submit_observations:
     one: 1 gözlem gönder
     other: '%{count} gözlemi gönder'
@@ -4939,6 +4941,7 @@ tr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Metin biçimlendirme kontrolleri
   text_editing_controls: Metin düzenleme kontrolleri
+  thank_you!: Teşekkürler!
   thanks!: Teşekkürler!
   thanks_from_all_of_us_here_at: Hepimiz adına teşekkürler
   that_account_is_already_connected: Bu hesap zaten başka bir kullanıcıya bağlı
@@ -5461,6 +5464,7 @@ tr:
   values: Değerler
   verbing_x_of_y: "%{verb} %{y} / %{x}..."
   verifiable_observations_by_observation_date: Gözlem Tarihine Göre Doğrulanabilir Gözlemler
+  video_tutorials: Öğretici Videolar
   view: Görüntüle
   view_all: Tümünü Görüntüle
   view_all_caps: HEPSİNİ GÖSTER
@@ -5538,7 +5542,6 @@ tr:
   view_your_personal_year_in_review_caps: "KİŞİSEL %{year} YILI DEĞERLENDİRMENİ GÖRÜNTÜLE"
   view_yours: Seninkini Görüntüle
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x} ile görüntüle"
-  video_tutorials: Öğretici Videolar
   visually_similar: Görsel Olarak Benzer
   vulnerable: Savunmasız
   w00t_no_ungrafted_taxa: Hayır! Aşılanmış sınıflar yok!
@@ -6248,6 +6251,11 @@ tr:
           Bu konuşmayı %{date} tarihinde işaretledin. Bu konuşmanın kopyasını silsen bile işaret kalıcı olacaktır, bu nedenle artık bunu görmek istemiyorsan bunu yapman güvenlidir.
         privacy_notice_html: |
           İletiler sen ve alıcı arasında özel olsa da, iNaturalist personeli de bu iletileri görüntüleyebilir ve iletiler moderasyon için işaretlendiğinde bu yapılacaktır. Gerçekten özel iletişim istiyorsan, lütfen güçlü şifrelemeyi destekleyen diğer iletişim mekanizmalarını araştır.
+    nls_demo:
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Geliştirmemize yardımcı olun
     oauth:
       authorizations:
         new:
@@ -7224,32 +7232,6 @@ tr:
           Sıralamaya sahip sınıfın adı. İnfraspesifik sıralar için rütbe ikili terimden sonra eklenir.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Başka yerlerde kullanılan isimleri eklemeyi deneyin. Lütfen yeni isimler oluşturmayın.</p></li>
-          <li><p>Yinelenen isimler eklemeyin. ör. birçok şahine "şahin" ismini vermeyin</p></li>
-          <li><p>Daha yüksek seviyeli sınıflar için, tüm soy ağacını içeren, "balıkçıllar ve yakınları" veya "sağlıklı familya" gibi isimler kullanmayı deneyin</p></li>
-          <li>
-          <p>
-          İsim olmayan bilgileri eklemeyin, ör. ismin nasıl kullanılması 
-          gerektiğini düşündüğünüz fikir hakkında parantez içi bilgi
-          </p>
-          </li>
-          <li>
-          <p>
-          Yeni sözcükler İngilizce olmalı. Lütfen "French, Français" gibi çevrilmiş 
-          dil isimleri eklemeyin, çünkü bu siteyi farklı dillerde kullanan kişilere yerel 
-          isimler göstermemizi zorlaştırır veya imkansız hale getirir.
-          </p>
-          </li>
-          <li>
-          <p>
-          Tercüme edilmiş dillerle ilişkilendirilmiş yaygın isimler, o dilin varsayılan yaygın 
-          ismi olarak görünecektir (Yer tercihlerinin etkisinin engellenmesi, isim sıralaması, vb.).
-          <a class="readmore" href="/pages/translate">Çeviri hakkında daha fazla bilgi edinin</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:

@@ -276,6 +276,8 @@ ca:
   add_annotations_for_controlled_attribute:
     sex: Afegiu anotacions sobre "Sexe"
     plant_phenology: Afegiu anotacions sobre "Fenologia de la Planta"
+    flowers_and_fruits: Afegiu anotació per a "Flors i Fruits"
+    leaves: Afegiu anotacions sobre "Fulles"
     life_stage: Afegiu anotacions sobre "Estat Biològic"
     evidence_of_presence: Afegiu anotacions per "Evidència de Presència"
   add_another_flag: Afegiu una altra etiqueta.
@@ -1098,6 +1100,10 @@ ca:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Qualsevol
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Qualsevol
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Qualsevol
@@ -1107,10 +1113,20 @@ ca:
     male: Mascle
     female: Femella
     plant_phenology: Fenologia de la planta
+    flowers_and_fruits: Flors i Fruits
     budding: Gemmació
     flower_budding: Gemmes florals
     flowering: Floració
     fruiting: Fructificació
+    no_flowers_or_fruits: Sense Flors o Fruits
+    flower_buds: Gemmes de Flors
+    flowers: Flors
+    fruits_or_seeds: Fruits o Llavors
+    leaves: Fulles
+    breaking_leaf_buds: Botons de les Fulles
+    green_leaves: Fulles Verdes
+    colored_leaves: Fulles acolorides
+    no_live_leaves: Sense Fulles Vives
     life_stage: Etapa biològica
     adult: Adult
     teneral: Imago tendre
@@ -1164,6 +1180,9 @@ ca:
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
+    flowers: Almenys una flor oberta
+    flower_buds: Almenys una gemma de flor
+    fruits_or_seeds: Almenys un fruit o llavor
     gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
     male: L'evidència indica que l'organisme pot produir espermatozoides per utilitzar-los en la reproducció sexual
     molt: Restes de pell o exoesquelet
@@ -1359,6 +1378,8 @@ ca:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Podeu seguir un comportament adequat a iNaturalist i complir les Directrius de la Comunitat. Amb la capacitat de supervisió s'espera que sigueu un usuari exemplar d'iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guia del Supervisor
   curators_changed_for_x_html: "Supervisors han canviat per a %{x}"
   curators: Supervisors
   curators_can_remove_observations_from: Els supervisors poden eliminar observacions del projecte i les seves identificacions es mostren en certes vistes (com a referència). A més, poden veure les coordenades enfosquides o privades del projecte.
@@ -1695,6 +1716,8 @@ ca:
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
   editors: Editors
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Guia del Professor
   either_that_user_doesnt_exist_or: "Aquest usuari no existeix o ja l'esteu seguint."
   eligible_for_research_grade: Elegible per a grau de Recerca
   email: Correu
@@ -1818,6 +1841,7 @@ ca:
   filter: Filtre
   filter_by_curator_identification: Filtre per Identificació del Supervisor
   filter_by_place: Filtrar per lloc
+  filter_by_species: Filtrar per espècie
   filter_by_taxon: Filtre per tàxon
   filter_by_place_taxon_and_color: Filtra per lloc, color, espècie o grup utilitzant els controls.
   filter_list_by_this_taxon: Filtrar per aquest tàxon
@@ -1977,6 +2001,8 @@ ca:
   geoprivacy_is_private_desc: L'Observador ha escollit ocultar les coordenades.
   georeferenced: Geolocalització?
   get_started: Comenceu
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Primers passos
   getting_started_guide: Guia d'inici
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONAR MENSUALMENT
@@ -2001,6 +2027,9 @@ ca:
   grid_tooltip: Mostra la visualització en quadrícula
   group: Grup
   grouping: Agrupació
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Inferiu la localització a partir d'altres observacions?
   guides: Guies
   guide_compiled_by: Guia elaborada per
   guide_deleted: Guia eliminada
@@ -4758,6 +4787,7 @@ ca:
   subject_resolved_noun_html: "%{subject} resol %{noun}"
   submission_model: Model de submissió
   submission_model_description: Qui pot afegir observacions al vostre projecte?
+  submit: Enviar
   submit_observations:
     one: Enviar 1 observació
     other: Enviar %{count} observacions
@@ -4802,6 +4832,7 @@ ca:
   synonyms: Sinònims
   table: Taula
   table_of_contents: Taula de continguts
+  tabulate_presence_absence_data_from_trips: Tabular dades de Presència/Absència des de Viatges
   #Noun, as in "add a tag to this observation"
   tag: Etiqueta
   tagging: 'Etiquetant...'
@@ -4995,6 +5026,7 @@ ca:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Eines de control de formatat de text
   text_editing_controls: Eines de control d'edició de text
+  thank_you!: Gràcies!
   thanks!: Gràcies"
   thanks_from_all_of_us_here_at: Gràcies de tots els que estem darrere de
   that_account_is_already_connected: Aquest compte ja està connectat a un altre usuari
@@ -5296,6 +5328,8 @@ ca:
   unable_to_save_comment: Malauradament, no hem pogut desar el comentari.
   unblock: Desbloca
   unclassified: Sense classificar
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Entenent els Projectes
   ungrafted_taxa: Tàxons no inserits
   unhide_content: Deixa d'amagar el contingut
   unhide_desc: |
@@ -5424,6 +5458,9 @@ ca:
   user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} ha afegit %{count} observació"
+    other: "%{user} ha afegit %{count} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
   user_already_app_owner: L'usuari ja és propietari d'una app
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5435,6 +5472,14 @@ ca:
   user_commented: "%{user} ha comentat"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} ha eliminat un tàxon que afecta %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} ha unit un tàxon que afecta %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} ha separart un tàxon que afecta %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} ha incorporat una etapa de tàxon que afecta %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} ha intercanviat un tàxon que afecta %{taxa}"
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
   user_faved_an_observation_by_you: "%{user} ha fet favorita una observació vostra"
@@ -5520,6 +5565,7 @@ ca:
   values: Valors
   verbing_x_of_y: "%{verb} %{x} de %{y}..."
   verifiable_observations_by_observation_date: Observacions verificables per data d'observació
+  video_tutorials: Vídeo-tutorial
   view: Mostra
   view_all: Mostra-ho tot
   view_all_caps: VEURE-HO TOT
@@ -5597,7 +5643,6 @@ ca:
   view_your_personal_year_in_review_caps: "VEURE EL TEU RESUM PERSONAL DE L'ANY %{year}"
   view_yours: Veure el vostre
   view_all_of_your_observations_from_x: "Veure totes les vostres observacions des de %{x}"
-  video_tutorials: Vídeo-tutorial
   visually_similar: Visualment Semblant
   vulnerable: Vulnerable
   w00t_no_ungrafted_taxa: Ep! No s'accepten tàxons sense relacions taxonòmiques!
@@ -5761,8 +5806,14 @@ ca:
   yir_donate_inaturalist_needs_your_support: iNaturalist Necessita el teu Suport
   yir_email_because_of_you: |
     Gràcies a tu, aquest any hi ha més dades sobre la biodiversitat que l'any passat. l'Any en Revisió és el nostre regal per a tot el que heu fet per la biodiversitat a través d'iNaturalist.
+  yir_email_log_in_to_generate: |
+    Entreu per a generar la vostra revisió personal de l'any per trobar-ho!
+  yir_email_of_your_observations:
+    one: De la teva %{count} observació, saps quantes vau fer el %{year}?
+    other: De les teve %{count} observación, saps quantes vau fer el %{year}?
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: L'Equip d'iNaturalist
+  yir_email_what_else_will_you_observe_caps: QUÈ MÉS OBSERVAREU?
   yir_email_with_gratitude: Agraïts,
   yir_generating_and_sharing: |
     Generar i compartir dades sobre biodiversitat d'alt impacte, a aquesta escala i velocitat sense precedents, té un cost creixent
@@ -5864,6 +5915,8 @@ ca:
   your_account_has_been_activated: S’ha activat el vostre compte.
   your_account_has_been_verified: "S’ha confirmat el vostre compte d’%{site_name}! Si us plau, ingresseu per continuar."
   your_activation_code_was_missing: "El vostre codi d'activació s'ha perdut. Si us plau, accediu a l'enllaç des del correu electrònic"
+  #Title for a list of 3rd party applications you control
+  your_applications: Les vostres aplicacions
   your_browser_does_not_support_the_audio_element: El vostre navegador no admet l'element d'àudio.
   your_comment_was_saved: S’ha desat el vostre contingut.
   your_content: El vostre Contingut
@@ -7095,24 +7148,6 @@ ca:
           El nom del tàxon està en el rang.Per a rangs infraespecífics, el rang s'insereix desprès del binomial.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Intenteu afegir noms que efectivament estiguin en ús. Si us plau, no inventeu nous noms.</p></li>
-          <li><p>No afegir noms duplicats, per exemple, no poseu diversos falcons "falcó"</p></li>
-          <li><p>Per a tàxons de més alt nivell de tàxons, proveu d'utilitzar noms que incloguin tots els descendents, com "garses i similars" o "Família dels Brucs"<p></li>
-          <li>
-          <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom</p>
-          </li>
-          <li>
-          <p>Els nous lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
-          </li>
-          <li>
-          <p>
-          Els noms comuns associats a traduccions apareixen com a noms per defecte per aquest idioma (amb independpencia de l'efecte del lloc de preferència, l'ordre dels noms...).
-          <a class="readmore" href="/pages/translate">Llegiu més sobre les traduccions</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Afegir un nom a un lloc per donar-li prioritat per aquest lloc i els seus usuaris. Si hi ha diversos noms pel mateix lloc pot prioritzar-los <a href="%{url}">aquí</a>. Si us plau, <strong>no</strong> afegiu noms per TOTS els
           llocs on el nom és utilitzat, només per a llocs que presentin conflictes amb altres llocs.

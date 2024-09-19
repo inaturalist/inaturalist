@@ -126,7 +126,7 @@ label.radio-button {
   font-weight: 600 !important;
 }
 
-#ApplicationsTable {
+#Applications {
   .table > thead > tr > th {
     padding-left: 0px;
   }
@@ -136,6 +136,11 @@ label.radio-button {
 
   .borderless {
     border: none !important;
+  }
+
+  td:last-child {
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
@@ -242,14 +247,11 @@ select.dropdown {
       padding: 0;
     }
     .modal-content {
-      max-height: none;
-      height: 100%;
-      overflow: hidden;
-      min-width: 500px;
+      height: 93vh;
     }
     .modal-body {
-      overflow-x: auto;
       max-height: none;
+      height: 86.6vh;
       padding-left: 25px;
     }
   }
@@ -314,9 +316,9 @@ select.dropdown {
   }
 }
 
-.relationship-profile-image {
+.UserFollowing {
   .UserImage {
-    margin-right: 12px;
+    margin-inline-end: 12px;
     width: $user-image-size;
     height: $user-image-size;
   }
@@ -324,6 +326,23 @@ select.dropdown {
   .icon-person {
     font-size: $user-image-size - 10;
     line-height: $user-image-size - 10;
+  }
+
+  .names {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+@media (max-width: 500px) {
+  .UserFollowing.flex-no-wrap {
+    flex-direction: column;
+    justify-content: center;
+    .UserImage {
+      margin-inline-end: 0px;
+    }
+    .names {
+      text-align: center;
+    }
   }
 }
 
@@ -427,7 +446,6 @@ select.dropdown {
 }
 
 .license-name {
-  width: 115px;
   white-space: normal;
   font-weight: bold;
 }
@@ -451,6 +469,24 @@ select.dropdown {
   background-color: #2e78b8;
 }
 
+// Save a little space on small screens
+@media (max-width: 500px) {
+  .bootstrap {
+    .Relationships {
+      table {
+        tbody {
+          td:first-child {
+            padding-left: 0;
+          }
+          td:last-child {
+            padding-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
 #relationships-filters {
   display: flex;
   flex-wrap: wrap;
@@ -467,7 +503,15 @@ select.dropdown {
 }
 
 .settings-item {
+  h5 {
+    margin: 0;
+  }
   .alert {
+    h5 {
+      margin-bottom: 10px;
+    }
+  }
+  .alert-mini {
     padding: 5px 10px;
     margin-bottom: 0;
     margin-top: 10px;
@@ -557,4 +601,36 @@ select.dropdown {
 
 body>div>[role="dialog"] .modal-dialog {
   margin: 30px auto;
+}
+
+.noh1 {
+  padding-top: 77px;
+  .settings-head,
+  .settings-foot {
+    z-index: 99;
+    box-shadow: 0 0 10px #999;
+    background-color: white;
+    width: 100%;
+    position: fixed;
+  }
+  .settings-head {
+    top: 0;
+    .h1col,
+    .btncol {
+      display: none;
+    }
+  }
+  .settings-foot {
+    bottom: 0;
+    padding: 15px 0;
+  }
+  .navcol {
+    margin-bottom: 20px;
+    float: none;
+    select {
+      max-width: none;
+      width: 93vw;
+      display: block;
+    }
+  }
 }

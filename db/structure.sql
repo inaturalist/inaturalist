@@ -5354,6 +5354,40 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 
 --
+-- Name: user_installations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_installations (
+    id bigint NOT NULL,
+    installation_id character varying(255),
+    oauth_application_id integer,
+    platform_id character varying(255),
+    user_id integer,
+    created_at date,
+    first_logged_in_at date
+);
+
+
+--
+-- Name: user_installations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_installations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_installations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_installations_id_seq OWNED BY public.user_installations.id;
+
+
+--
 -- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6670,6 +6704,13 @@ ALTER TABLE ONLY public.user_donations ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: user_installations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installations ALTER COLUMN id SET DEFAULT nextval('public.user_installations_id_seq'::regclass);
+
+
+--
 -- Name: user_mutes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7785,6 +7826,14 @@ ALTER TABLE ONLY public.user_daily_active_categories
 
 ALTER TABLE ONLY public.user_donations
     ADD CONSTRAINT user_donations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_installations user_installations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installations
+    ADD CONSTRAINT user_installations_pkey PRIMARY KEY (id);
 
 
 --
@@ -10213,6 +10262,27 @@ CREATE INDEX index_user_donations_on_user_id ON public.user_donations USING btre
 
 
 --
+-- Name: index_user_installations_on_installation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_installations_on_installation_id ON public.user_installations USING btree (installation_id);
+
+
+--
+-- Name: index_user_installations_on_installation_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installations_on_installation_id_and_user_id ON public.user_installations USING btree (installation_id, user_id);
+
+
+--
+-- Name: index_user_installations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installations_on_user_id ON public.user_installations USING btree (user_id);
+
+
+--
 -- Name: index_user_mutes_on_muted_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10350,6 +10420,13 @@ CREATE INDEX index_users_on_observations_count ON public.users USING btree (obse
 --
 
 CREATE INDEX index_users_on_place_id ON public.users USING btree (place_id);
+
+
+--
+-- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_remember_token ON public.users USING btree (remember_token);
 
 
 --
@@ -11026,6 +11103,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240222032444'),
 ('20240326135332'),
 ('20240429211140'),
+('20240430163539'),
 ('20240530162451'),
 ('20240606154217'),
 ('20240618044707'),
@@ -11033,6 +11111,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240709175116'),
 ('20240715141936'),
 ('20240716190326'),
-('20240731161955');
+('20240731161955'),
+('20240828123245');
 
 

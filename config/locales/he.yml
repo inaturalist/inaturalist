@@ -2344,7 +2344,7 @@ he:
   iphone: אייפון
   is_not_following_anyone: לא עוקב.ת אחר אף יוזר.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: האם הנתונים מאפשרים לאשר שזהו %{taxon}?
-  is_this_offensive_html: 'האם זה <a href="/help#inappropriate">בתלי הולם</a>, ספאם או פוגעני?'
+  is_this_offensive_html: 'האם זה <a href="/help#inappropriate">בלתי הולם</a>, ספאם או פוגעני?'
   is_this_place_a_duplicate: האם מקום זה קיים כבר?
   it_can_now_be_used_for_research: מעכשיו היא יכולה לשמש מחקרים ולהיות מוצגת באתרים אחרים
   #Text inserted into a textarea when the italic button is clicked but no text was selected
@@ -5592,6 +5592,7 @@ he:
   values: ערכים
   verbing_x_of_y: "%{verb} %{x} מ %{y}"
   verifiable_observations_by_observation_date: תצפיות בנות-אימות לפי תאריך התצפית
+  video_tutorials: מדריכי וידאו
   view: צפייה
   view_all: צפייה בהכל
   view_all_caps: להציג הכל
@@ -5671,7 +5672,6 @@ he:
   view_your_personal_year_in_review_caps: "צפייה בסיכום שנת %{year} האישי שלך"
   view_yours: צפייה בשלך
   view_all_of_your_observations_from_x: "הצגת כל התצפיות שלך מ%{x}"
-  video_tutorials: מדריכי וידאו
   visually_similar: דומים ויזואלית
   vulnerable: רגיש
   w00t_no_ungrafted_taxa: הידד! אין טקסונים מנותקים!
@@ -7276,28 +7276,6 @@ he:
           השם של הטקסון עם הדרגה. עבור דרגות אינפרא-ספציפיות, הדרגה מוכנסת אחרי הבינומיאל.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>נסו להוסיף שמות הנמצאים שימוש במקומות אחרים. נא לא להמציא שמות חדשים.</p></li>
-          <li><p>נא לא להוסיף שמות משוכפלים, למשל אין לתת לניצים מרובים את השם "נץ"</p></li>
-          <li><p>עבור טקסונים בדרגות גבוהות יותר, נסו להשתמש בשמות הכוללים את כל הצאצאים, למשל "אנפות וקרוביהן" או "משפחת האברשיים"</p></li>
-          <li>
-          <p>
-          אין להוסיף מידע שאינו השם, למשל מידע מוסגר המפרט איך לדעתך יהיה נכון להשתמש בשם 
-          </p>
-          </li>
-          <li>
-          <p>
-          על לקסיקונים חדשים להיות באנגלית. נא לא להוסיף שמות של שפות מתורגמות כמו "French, Français" כי זה רק יקשה או ימנע מעמנו להציג שמות מותאמים למקומות עבור א.נשים העושות.ים שימוש באתר בשפות שונות.
-          </p>
-          </li>
-          <li>
-          <p>
-          שמות עממים המשוייכים לשפות מתורגמות יופיעו בתור השם העממי ברירת המחדל עבור השפה ההיא (בחסימת האפשרות של העדפות מקום, סידור שמות וכו').
-          <a class="readmore" href="/pages/translate">למידע נוסף אודות תרגום</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           הוספת שם למקום תתן לו עדיפות עבור אתרים ויוזרים מהמקום ההוא. במידה ויש למקום שמות מרובים באפשרותך לתעדף ביניהם <a href="%{url}">כאן</a>. בבקשה <strong>לא</strong> להוסיף שמות על *כל* מקום שבו השם משמש, רק עבור מקומות שחולקים עם מקומות אחרים.
       taxon:

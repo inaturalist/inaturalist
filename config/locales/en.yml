@@ -364,6 +364,8 @@ en:
   # Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Add a bulleted list
   add_a_comment: Add a Comment
+  # Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Add a Conservation Status
   add_a_field: Add a Field
   add_a_flag: Add a Flag
   # Tool tip for a button that adds a link to a text area
@@ -904,6 +906,7 @@ en:
   back_to_your_observations: Back to your observations
   back_to_your_profile: Back to your profile
   badges: Badges
+  base_map_copyright_openstreetmap_html: Base map © %{startTag}OpenStreetMap%{endTag}
   # disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     zero: |
@@ -5028,6 +5031,8 @@ en:
   show_no_annotation: Show "No Annotation"
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
+  # Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Show OpenStreetMap
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
   # Label for a button to show the running total of an accumulation chart
   show_running_total: Show Running Total
@@ -6075,6 +6080,9 @@ en:
   user_faved_this_observation: "%{user} faved this observation"
   user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_has_been_removed_from_site: |
+    %{username} has been removed from %{site_name} (it may take up to an hour
+     to completely delete all associated content)
   user_has_opted_out_of_community_id: User has opted-out of Community Taxon
   user_hasnt_joined_any_projects: "%{user} hasn't joined any projects"
   user_helped_x_people_with_y_ids_html: "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>"
@@ -6103,6 +6111,7 @@ en:
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
+  user_updated_an_observation_field_html: '%{user} updated a value for "%{field_name}" on an observation by %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
   username_description: This is the username you will use to log in, and other users can use to identify you on iNaturalist
@@ -7188,7 +7197,8 @@ en:
       for_example_query: e.g. %{query_in_english}
       try_one_of_these_example_searches_colon: "Try one of these example searches:"
       # shortened text for a button requesting users help us improve the model
-      # being using, hence the missing subject (implied to be the model)
+      # being using, hence the missing subject (implied to be the model). Try
+      # to keep it under 20 characters
       help_us_improve: Help us improve
       to_help_us_improve:
         To help us improve this model we would like to know which of the images on this page are
@@ -8799,7 +8809,7 @@ en:
             <li><p>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</p></li>
             <li>
               <p>
-                Don't add information that is not the name, e.g. paranthetical
+                Don't add information that is not the name, e.g. parenthetical
                 information about how you think the name should be used
               </p>
             </li>

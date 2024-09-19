@@ -1,14 +1,15 @@
 #encoding: utf-8
+
 class UsersController < ApplicationController
   before_action -> { doorkeeper_authorize! :login, :write },
-    only: [ :edit ],
-    if: lambda { authenticate_with_oauth? }
+    only: [:edit],
+    if: -> { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
     only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute, :block, :unblock ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
-    only: [ :destroy ],
-    if: lambda { authenticate_with_oauth? }
+    only: [:destroy],
+    if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships,
@@ -166,11 +167,11 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     if params[:confirmation].blank? || params[:confirmation_code].blank? || ( params[:confirmation] && params[:confirmation] != params[:confirmation_code] )
       msg = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
-      respond_to do |format|
+      respond_to do | format |
         format.html do
           flash[:error] = msg
           redirect_to delete_users_path
@@ -181,14 +182,22 @@ class UsersController < ApplicationController
       end
       return
     end
-    @user.delay(priority: USER_PRIORITY,
-      unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
-    sign_out(@user) if current_user == @user
-    respond_to do |format|
+    @user.delay(
+      priority: USER_PRIORITY,
+      unique_hash: { "User::sane_destroy": @user.id }
+    ).sane_destroy
+    sign_out( @user ) if current_user == @user
+    respond_to do | format |
       format.html do
-        flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
-          "(it may take up to an hour to completely delete all associated content)"
-        redirect_to root_path
+        flash[:notice] = t(
+          :user_has_been_removed_from_site,
+          username: @user.login,
+          site_name: @site.name,
+          vow_or_con: @site.name[0].downcase
+        )
+        # Mobile clients that handle account deletion in a webview need this
+        # parameter to detect if deletion was successful
+        redirect_to root_path( account_deleted: true )
       end
       format.json { head :no_content }
     end
@@ -448,13 +457,13 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def dashboard
-    @has_updates = (current_user.recent_notifications.count > 0)
+    @has_updates = current_user.recent_notifications.count.positive?
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
-      cache_key = "dashboard-discourse-data-#{@site.id}"
+    if @site && !@site.discourse_url.blank? && ( @discourse_url = @site.discourse_url )
+      cache_key = "dashboard-discourse-data-20240911-#{@site.id}"
       begin
         if @site.discourse_category.blank?
           url = "#{@discourse_url}/latest.json?order=created"
@@ -463,19 +472,21 @@ class UsersController < ApplicationController
           url = "#{@discourse_url}/c/#{@site.discourse_category}.json?order=created"
           @discourse_topics_url = "#{@discourse_url}/c/#{@site.discourse_category}"
         end
-        unless @discourse_data = Rails.cache.read( cache_key )
+        unless ( @discourse_data = Rails.cache.read( cache_key ) )
           @discourse_data = {}
           @discourse_data[:categories] = JSON.parse(
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
-          )["category_list"]["categories"].index_by{|c| c["id"]}
+          )["category_list"]["categories"].index_by {| c | c["id"] }
           discourse_ignored_category_names = [
             "Forum Feedback",
+            "iNaturalist Next Bug Reports",
+            "iNaturalist Next Discussion",
             "Nature Talk"
           ]
-          discourse_ignored_category_ids = @discourse_data[:categories].values.select do |c|
+          discourse_ignored_category_ids = @discourse_data[:categories].values.select do | c |
             discourse_ignored_category_names.include?( c["name"] )
-          end.map{ |c| c["id"] }
+          end.map {| c | c["id"] }
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute(
               method: "get",
@@ -605,20 +616,20 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def update
     @display_user = current_user
     @login = @display_user.login
     @original_user = @display_user
-    
+
     return add_friend unless params[:friend_id].blank?
     return remove_friend unless params[:remove_friend_id].blank?
     return update_password unless (params[:password].blank? && params[:commit] !~ /password/i)
-    
+
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     @display_user.icon = nil if params[:icon_delete]
-    
+
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
@@ -626,6 +637,7 @@ class UsersController < ApplicationController
     place_id_changed = @display_user.will_save_change_to_place_id?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
     prefers_no_site_changed = @display_user.prefers_no_site_changed?
+    @display_user.wait_for_index_refresh = true
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -666,7 +678,6 @@ class UsersController < ApplicationController
           end
         end
         format.json do
-          User.refresh_es_index
           if @display_user.encrypted_password_previously_changed?
             flash[:success] = I18n.t( "devise.registrations.updated_but_not_signed_in" )
           end
@@ -807,17 +818,24 @@ class UsersController < ApplicationController
       /^preferred_*/,
       /^header_search_open$/
     ]
-    updates = params.to_unsafe_h.select {|k,v|
-      allowed_patterns.detect{|p| 
-        k.match(p)
-      }
-    }.symbolize_keys
-    updates.each do |k,v|
-      v = true if v.yesish? && v != "1"
-      v = false if v.noish?
+    updates = params.to_unsafe_h.select do | k, _v |
+      allowed_patterns.detect do | p |
+        k.match( p )
+      end
+    end.symbolize_keys
+    updates.each do | k, v |
+      is_numeric_preference = false
+      if k =~ /^(prefers_|preferred_)/
+        preference_key = k.to_s.sub( /^(prefers_|preferred_)/, "" )
+        is_numeric_preference = User.preference_definitions[preference_key]&.number?
+      end
+      unless is_numeric_preference
+        v = true if v.yesish? && v != "1"
+        v = false if v.noish?
+      end
       session[k] = v
-      if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
-        current_user.update(k => v)
+      if ( k =~ /^prefers_/ || k =~ /^preferred_/ ) && logged_in? && current_user.respond_to?( k )
+        current_user.update( k => v )
       end
     end
     head :no_content
