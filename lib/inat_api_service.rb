@@ -156,6 +156,11 @@ module INatAPIService
     INatAPIService.get( "/taxa", params, options )
   end
 
+  def self.score_observation( id, params = {}, options = {} )
+    options[:authorization] ||= JsonWebToken.applicationToken
+    INatAPIService.get( "/computervision/score_observation/#{id}", params, options )
+  end
+
   def self.get_json( path, params = {}, options = {} )
     options[:retries] ||= 3
     options[:timeout] ||= INatAPIService::TIMEOUT
@@ -167,7 +172,7 @@ module INatAPIService
     if auth_user.is_a?( User )
       headers["Authorization"] = auth_user.api_token
     end
-    authorization = options.delete( :authorization )
+    authorization = options[:authorization]
     if authorization && !headers["Authorization"]
       headers["Authorization"] = authorization
     end

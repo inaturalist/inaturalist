@@ -408,22 +408,6 @@ class CohortLifecycle < ApplicationRecord
     result_hash
   end
 
-  def self.score_obs( observation_id, jwt_token )
-    api_url = "https://stagingapi.inaturalist.org/v1/computervision/score_observation/#{observation_id}"
-    uri = URI( api_url )
-    http = Net::HTTP.new( uri.host, uri.port )
-    http.use_ssl = true
-    request = Net::HTTP::Get.new( uri.request_uri )
-    request["Authorization"] = "Bearer #{jwt_token}"
-    response = http.request( request )
-    if response.code.to_i == 200
-      data = JSON.parse( response.body )
-    else
-      puts "Request failed with status code #{response.code}: #{response.body}"
-    end
-    data
-  end
-
   def self.get_improving_identifiers( user_id, place_ids )
     filter = [
       {
@@ -500,14 +484,13 @@ class CohortLifecycle < ApplicationRecord
     place_hash = place_obs.to_h
     taxon_hash = observations.to_h
     rank_hash = Taxon.find( observations.map {| a | a[1] }.uniq.compact ).pluck( :id, :rank_level ).to_h
-    api_token = JsonWebToken.encode( user_id: admin.id )
     new_taxon_hash = {}
     observations.each do | row |
       obs_id = row[0]
       old_taxon_id = taxon_hash[obs_id]
       if ( old_taxon_id.nil? || rank_hash[old_taxon_id] > 10 ) && new_taxon_hash[obs_id].nil?
         begin
-          data = score_obs( obs_id, api_token )
+          data = INatAPIService.score_observation( obs_id )
           taxa = data["results"].select {| r | r["taxon"]["rank"] == "species" }.map {| r | r["taxon"]["id"] }
           taxon_id = taxa[0]
           new_taxon_hash[obs_id] = taxon_id
@@ -586,17 +569,16 @@ class CohortLifecycle < ApplicationRecord
 
   def self.process_needs_id( observations )
     puts "processing needs_id..."
-    @needs_id_pilot = ObservationAccuracyExperiment.find_by( version: "Needs ID Pilot" )
-    unless @needs_id_pilot
-      @needs_id_pilot = ObservationAccuracyExperiment.new( version: "Needs ID Pilot" )
-      @needs_id_pilot.save
-    end
+    needs_id_pilot = ObservationAccuracyExperiment.needs_id_pilot
+    needs_id_pilot ||= ObservationAccuracyExperiment.create(
+      version: ObservationAccuracyExperiment::NEEDS_ID_PILOT_VERSION
+    )
     place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
     puts "\tpreparing observations..."
     prepared_obs = prepare_observations( observations, place_ids )
     puts "\tstoring prepared observations..."
-    store_prepared_observations( prepared_obs, @needs_id_pilot )
+    store_prepared_observations( prepared_obs, needs_id_pilot )
     puts "\tassigning to iders..."
-    assign_to_iders( @needs_id_pilot, place_ids, prepared_obs )
+    assign_to_iders( needs_id_pilot, place_ids, prepared_obs )
   end
 end
