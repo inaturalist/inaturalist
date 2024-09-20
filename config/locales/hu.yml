@@ -3048,7 +3048,7 @@ hu:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation
-    observation: hozzáadott egy <a href="%{observation_url}">megfigyelést</a>
+    observation: feltöltött egy <a href="%{observation_url}">megfigyelést</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -4683,7 +4683,7 @@ hu:
   user_added_an_identification_html: "%{user} hozzáadott egy meghatározást"
   user_added_an_observation_field_html: 'Megfigyelés (%{owner}): %{user} kitöltötte a(z) "%{field_name}" adatmezőt'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
-  user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
+  user_added_an_observation_html: "%{user} feltöltött egy megfigyelést"
   #@gender operates on %{x}
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
   #@gender operates on %{x}
