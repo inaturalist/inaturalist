@@ -1696,9 +1696,9 @@ module ApplicationHelper
         user_segment = "casual"
       end
     end
-    user_id = "unkown"
+    user_id_code = "// NOT LOGGED IN"
     if current_user
-      user_id = current_user.id
+      user_id_code = "_paq.push(['setUserId', '"+current_user.id+"']);"
     end  
     raw <<-HTML
       <!-- Matomo -->
@@ -1706,7 +1706,7 @@ module ApplicationHelper
       var _paq = window._paq = window._paq || [];
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["setDoNotTrack", true]);
-      _paq.push(['setUserId', '#{user_id}']);
+      #{user_id_code}
       _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
