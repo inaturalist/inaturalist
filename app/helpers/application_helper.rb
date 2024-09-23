@@ -1722,12 +1722,21 @@ module ApplicationHelper
     HTML
   end
 
-  def matomo_tag_js()
+  def matomo_tag_js( current_user )
+    ab_testing_group = ""
+    if current_user
+      if current_user.login.start_with?("s")
+        ab_testing_group = "A"
+      else
+        ab_testing_group = "B"
+      end
+    end
     raw <<-HTML
       <!-- Matomo Tag Manager -->
       <script>
       var _mtm = window._mtm = window._mtm || [];
       _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      _mtm.push({'ab_testing_group': '#{ab_testing_group}'});
       (function() {
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
         g.async=true; g.src='https://matomo-vpn.inaturalist.org/js/container_iAix0v6a.js'; s.parentNode.insertBefore(g,s);

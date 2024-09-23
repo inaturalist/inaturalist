@@ -5,7 +5,7 @@
       = content_for(:title) ? "#{content_for(:title)} · " : ""
       = @site.try(:name)
     - if !current_user || ( current_user && !current_user.prefers_no_tracking? )
-      = matomo_tag_js( )
+      = matomo_tag_js( current_user )
     = favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png"
     = csrf_meta_tag
     %meta{ http_equiv: "Content-Language", content: I18n.locale }
