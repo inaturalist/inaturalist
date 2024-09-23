@@ -1698,7 +1698,7 @@ module ApplicationHelper
     end
     user_id_code = "// NOT LOGGED IN"
     if current_user
-      user_id_code = "_paq.push(['setUserId', '"+current_user.id+"']);"
+      user_id_code = "_paq.push(['setUserId', '" + current_user.id.to_s + "']);"
     end  
     raw <<-HTML
       <!-- Matomo -->
