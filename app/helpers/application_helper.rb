@@ -1686,4 +1686,15 @@ module ApplicationHelper
     i18n.t( key, **options ).gsub( /\s+/, " " ).strip
     i18n.t( key, **options ).strip
   end
+
+  def create_announcement_impression( announcement )
+    return unless announcement.is_a?( Announcement )
+
+    AnnouncementImpression.increment_for_announcement(
+      announcement,
+      user: logged_in? ? current_user : nil,
+      request_ip: Logstasher.ip_from_request_env( request.env )
+    )
+    Logstasher.write_announcement_impression( announcement, request: request, user: current_user )
+  end
 end
