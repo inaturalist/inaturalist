@@ -231,6 +231,8 @@ id:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Tambahkan daftar berpeluru
   add_a_comment: Tambahkan Komentar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Tambahkan Status Konservasi
   add_a_field: Tambahkan Kolom
   add_a_flag: Tambahkan Penanda
   #Tool tip for a button that adds a link to a text area
@@ -734,6 +736,7 @@ id:
   back_to_your_observations: Kembali ke pengamatan Anda
   back_to_your_profile: Kembali ke profil Anda
   badges: Lencana
+  base_map_copyright_openstreetmap_html: Peta dasar © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
@@ -4578,6 +4581,8 @@ id:
   show_no_annotation: Tampilkan "Tanpa Catatan"
   show_off_your_recent_observations: Pamerkan pengamatan terbaru Anda di blog Anda sendiri atau situs web Anda!
   show_only: Hanya tampilkan
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Tampilkan OpenStreetMap
   show_relative_proportions_of_all_observations: Tampilkan proporsi relatif untuk semua pengamatan
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Tunjukkan Total Akumulasi
@@ -5472,6 +5477,8 @@ id:
   user_faved_this_observation: "%{user} menjadikan favorit pengamatan ini"
   user_flagged_as_a_non_spammer_html: "%{user} ditandai sebagai bukan spammer"
   user_flagged_as_a_spammer_html: "%{user} ditandai sebagai spammer"
+  user_has_been_removed_from_site: |
+    %{username} telah dihapus dari %{site_name} (penghapusan konten-konten yang terkait dengannya dapat memerlukan waktu hingga satu jam)
   user_has_opted_out_of_community_id: Pengguna telah memilih untuk keluar dari Takson Komunitas
   user_hasnt_joined_any_projects: "%{user} belum bergabung dengan proyek apapun"
   user_helped_x_people_with_y_ids_html: "%{user} menolong <strong>%{x} orang</strong> dengan <strong>%{y} ID</strong>"
@@ -5498,6 +5505,7 @@ id:
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
+  user_updated_an_observation_field_html: '%{user} memperbarui nilai untuk "%{field_name}" pada pengamatan oleh %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> menulis,
   username: Nama pengguna
   username_description: Ini adalah nama pengguna yang akan Anda gunakan untuk masuk, juga dapat digunakan oleh pengguna lainnya untuk mengidentifikasi Anda di iNaturalist

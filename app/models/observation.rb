@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Observation < ApplicationRecord
 
   include ActsAsElasticModel
@@ -335,6 +336,7 @@ class Observation < ApplicationRecord
   has_many :observation_reviews, :dependent => :destroy
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
+  has_one :observation_geo_score, dependent: :delete
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
 
@@ -423,7 +425,8 @@ class Observation < ApplicationRecord
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :reassess_geo_score
 
   before_update :set_quality_grade
 
@@ -1287,6 +1290,14 @@ class Observation < ApplicationRecord
       self.iconic_taxon_id = nil
     end
     true
+  end
+
+  def reassess_geo_score
+    return unless observation_geo_score
+    return unless coordinates_changed? || taxon_id_changed?
+
+    observation_geo_score.destroy
+    self.observation_geo_score = nil
   end
 
   def replace_inactive_taxon
@@ -3485,5 +3496,4 @@ class Observation < ApplicationRecord
       unique_hash: { "Observation::elastic_index": id }
     ).elastic_index!( ids: [id] )
   end
-
 end

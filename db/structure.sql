@@ -2867,6 +2867,36 @@ ALTER SEQUENCE public.observation_fields_id_seq OWNED BY public.observation_fiel
 
 
 --
+-- Name: observation_geo_scores; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_geo_scores (
+    id bigint NOT NULL,
+    observation_id integer,
+    geo_score double precision
+);
+
+
+--
+-- Name: observation_geo_scores_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_geo_scores_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_geo_scores_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_geo_scores_id_seq OWNED BY public.observation_geo_scores.id;
+
+
+--
 -- Name: observation_links; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5325,6 +5355,40 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 
 --
+-- Name: user_installations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_installations (
+    id bigint NOT NULL,
+    installation_id character varying(255),
+    oauth_application_id integer,
+    platform_id character varying(255),
+    user_id integer,
+    created_at date,
+    first_logged_in_at date
+);
+
+
+--
+-- Name: user_installations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_installations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_installations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_installations_id_seq OWNED BY public.user_installations.id;
+
+
+--
 -- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6221,6 +6285,13 @@ ALTER TABLE ONLY public.observation_fields ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: observation_geo_scores id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_geo_scores ALTER COLUMN id SET DEFAULT nextval('public.observation_geo_scores_id_seq'::regclass);
+
+
+--
 -- Name: observation_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6631,6 +6702,13 @@ ALTER TABLE ONLY public.user_daily_active_categories ALTER COLUMN id SET DEFAULT
 --
 
 ALTER TABLE ONLY public.user_donations ALTER COLUMN id SET DEFAULT nextval('public.user_donations_id_seq'::regclass);
+
+
+--
+-- Name: user_installations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installations ALTER COLUMN id SET DEFAULT nextval('public.user_installations_id_seq'::regclass);
 
 
 --
@@ -7264,6 +7342,14 @@ ALTER TABLE ONLY public.observation_fields
 
 
 --
+-- Name: observation_geo_scores observation_geo_scores_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_geo_scores
+    ADD CONSTRAINT observation_geo_scores_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: observation_links observation_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -7741,6 +7827,14 @@ ALTER TABLE ONLY public.user_daily_active_categories
 
 ALTER TABLE ONLY public.user_donations
     ADD CONSTRAINT user_donations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_installations user_installations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_installations
+    ADD CONSTRAINT user_installations_pkey PRIMARY KEY (id);
 
 
 --
@@ -8899,6 +8993,13 @@ CREATE INDEX index_observation_field_values_on_user_id ON public.observation_fie
 --
 
 CREATE UNIQUE INDEX index_observation_field_values_on_uuid ON public.observation_field_values USING btree (uuid);
+
+
+--
+-- Name: index_observation_geo_scores_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.observation_geo_scores USING btree (observation_id);
 
 
 --
@@ -10162,6 +10263,27 @@ CREATE INDEX index_user_donations_on_user_id ON public.user_donations USING btre
 
 
 --
+-- Name: index_user_installations_on_installation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_installations_on_installation_id ON public.user_installations USING btree (installation_id);
+
+
+--
+-- Name: index_user_installations_on_installation_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installations_on_installation_id_and_user_id ON public.user_installations USING btree (installation_id, user_id);
+
+
+--
+-- Name: index_user_installations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_installations_on_user_id ON public.user_installations USING btree (user_id);
+
+
+--
 -- Name: index_user_mutes_on_muted_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10299,6 +10421,13 @@ CREATE INDEX index_users_on_observations_count ON public.users USING btree (obse
 --
 
 CREATE INDEX index_users_on_place_id ON public.users USING btree (place_id);
+
+
+--
+-- Name: index_users_on_remember_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_remember_token ON public.users USING btree (remember_token);
 
 
 --
@@ -10982,6 +11111,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240709175116'),
 ('20240715141936'),
 ('20240716190326'),
-('20240819213348');
+('20240731161955'),
+('20240819213348'),
+('20240828123245');
 
 

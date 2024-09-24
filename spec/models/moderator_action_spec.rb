@@ -122,6 +122,7 @@ describe ModeratorAction do
         expect( u.suspended_by_user ).to eq ma.user
       end
     end
+
     describe "UNSUSPEND" do
       it "should unsuspend a user" do
         u = create :user
@@ -129,6 +130,32 @@ describe ModeratorAction do
         expect( u ).to be_suspended
         create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
         u.reload
+        expect( u ).not_to be_suspended
+      end
+
+      it "marks spam users as non-spammers" do
+        u = User.make!( spammer: true )
+        u.suspend!
+        expect( u.spammer ).to be true
+        expect( u.spammer? ).to be true
+        expect( u ).to be_suspended
+        create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
+        u.reload
+        expect( u.spammer ).to be false
+        expect( u.spammer? ).to be false
+        expect( u ).not_to be_suspended
+      end
+
+      it "marks users with unknown spammer status as non-spammers" do
+        u = User.make!
+        u.suspend!
+        expect( u.spammer ).to be_nil
+        expect( u.spammer? ).to be false
+        expect( u ).to be_suspended
+        create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
+        u.reload
+        expect( u.spammer ).to be false
+        expect( u.spammer? ).to be false
         expect( u ).not_to be_suspended
       end
     end

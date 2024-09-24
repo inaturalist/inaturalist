@@ -25,6 +25,7 @@ class ModelTaxonomyUpdater
     fetch_new_taxonomy_data
     write_taxonomy
     copy_output_files
+    delete_tmp_directory
   end
 
   def make_tmpdir
@@ -35,6 +36,12 @@ class ModelTaxonomyUpdater
     return unless @final_output_dir
 
     FileUtils.mv( Dir.glob( File.join( @tmpdir, "*.csv" ) ), @final_output_dir )
+  end
+
+  def delete_tmp_directory
+    return unless @final_output_dir
+
+    FileUtils.rm_rf( @tmpdir )
   end
 
   def load_taxonomy

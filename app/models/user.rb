@@ -112,6 +112,8 @@ class User < ApplicationRecord
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
+  preference :taxon_page_tab, :string
+  preference :taxon_page_ancestors_shown, :boolean, default: false
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -130,6 +132,7 @@ class User < ApplicationRecord
   has_one  :flickr_identity, dependent: :delete
   has_one  :soundcloud_identity, dependent: :delete
   has_one :user_daily_active_category, dependent: :delete
+  has_many :user_installations
   has_many :observations, dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
@@ -1498,6 +1501,7 @@ class User < ApplicationRecord
       self.suspended_by_user = moderator_action.user
       suspend!
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.spammer = false
       self.suspended_by_user = nil
       unsuspend!
     end

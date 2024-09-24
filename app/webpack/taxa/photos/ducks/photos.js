@@ -214,10 +214,12 @@ export function fetchObservationPhotos( options = {} ) {
       defaultObservationParams( s ),
       s.photos.observationParams,
       {
+        photos: true,
         page: options.page,
         per_page: options.perPage || 12
       }
     );
+    delete params.verifiable;
     return inatjs.observations.search( params )
       .then( response => {
         let observationPhotos = observationPhotosFromObservations( response.results );

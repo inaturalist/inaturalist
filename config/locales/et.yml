@@ -253,6 +253,8 @@ et:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Lisa täppidega loend
   add_a_comment: Lisa kommentaar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Lisa kaitsestaatus
   add_a_field: Lisa väli
   add_a_flag: Lisa märkus
   #Tool tip for a button that adds a link to a text area
@@ -749,6 +751,7 @@ et:
   back_to_your_observations: Tagasi oma vaatluste juurde
   back_to_your_profile: Tagasi oma profiilile
   badges: Medalid
+  base_map_copyright_openstreetmap_html: Aluskaart © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -3965,6 +3968,8 @@ et:
   show_no_annotation: Näita märkuseta vaatluseid
   show_off_your_recent_observations: Näita hiljutisi vaatluseid oma blogis või kodulehel!
   show_only: Näita ainult
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Ava OpenStreetMap
   show_relative_proportions_of_all_observations: Näita kõigi vaatluste suhtelisi proportsioone
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Näita hetke koguarvu
@@ -5691,15 +5696,6 @@ et:
           Taksoni nimi koos kategooriaga. Infraliikide kategooriate puhul lisatakse kategooria binaarset nimetust.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Proovi lisada nimesid, mida kasutatakse ka mujal. Palun ära leiuta uusi nimesid.</p></li>
-          <li><p>Palun ära lisa korduvaid nimesid, st ära nimeta mitmet kulli lihtsalt "kulliks"</p></li>
-          <li><p>Kõrgema taseme taksonite puhul proovi kasutada nimesid, mis viitaksid kõigile alamtaksonitele, nt "roosilased" või "suitsupääsukesed"</p></li>
-          <li><p>Ära lisa infot, mis ei ole nime osa, nt sulgudes infot selle kohta, kuidas sinu arust tuleks nime kasutada</p></li>
-          <li><p>Uute sõnaraamatute nimed peaksid olema inglise keeles. Palun ära lisa tõlgitud keelte nimesid nagu "Estonian, eesti", sest see muudab erinevates keeltes lehte kasutavate inimeste jaoks kohalike nimede kuvamise keeruliseks või isegi võimatuks</p></li>
-          <li><p>Tõlgitud keelega seotud rahvapärased nimed ilmuvad tolles keeles vaikimisi nimedena (kui prioriteeti ei määra koha eelistus, nimede järjekord, vms). <a class="readmore" href="/pages/translate">Loe lähemalt tõlkimise kohta</a></p></li>
-          </ul>
         places_help_html: |
           Pane nimi kokku mõne kohaga, et see oleks tolle kohaga seotud kasutajatel ja lehtedel eelistatud. Kui ühes kohas on palju nimesid, saad nende järjekorda määrata <a href="%{url}">siin</a>. Palun <strong>ära</strong> pane nime kokku IGA seda kasutava kohaga, vaid ainult nendega, mille puhul kasutus teistest erineb.
       taxon:

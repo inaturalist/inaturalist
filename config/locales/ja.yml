@@ -207,6 +207,8 @@ ja:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: 箇条書きにする
   add_a_comment: コメントの追加
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: 保全状況を追加
   add_a_field: フィールドの追加
   add_a_flag: フラグを追加
   #Tool tip for a button that adds a link to a text area
@@ -720,6 +722,7 @@ ja:
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
   badges: バッジ
+  base_map_copyright_openstreetmap_html: ベースマップ ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
@@ -1311,6 +1314,8 @@ ja:
   curator_application_you_should_apply_if_you_can_behave: |
     iNaturalistでの適切な行動の見本となり、コミュニティーの
     ガイドラインを遵守してください。キュレーターの権限とともに、あなたにはiNaturalistの模範的なユーザーであることが期待されます。
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: キュレーターガイド
   curators_changed_for_x_html: "%{x}のキュレーターが変わりました"
   curators: キュレーター管理者
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
@@ -4288,6 +4293,8 @@ ja:
   show_no_annotation: '「注釈なし」を表示'
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMapを表示
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
   #Label for a button to show the running total of an accumulation chart
   show_running_total: 現在の総計を表示
@@ -6359,29 +6366,6 @@ ja:
           これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>他の場所で使用されている名前を追加してみてください。新しい名前を作らないでください。</p></li>
-          <li><p>重複した名前を付けないようにしましょう。例えば、多数の鷹に対して「鷹」と名付けてはいけません。</p></li>
-          <li><p>高次分類群の場合は、「herons and allies (サギとシギ)」や「heath family (ツツジの科)」のようにすべての下位分類群を含む名前を使用してみてください。</p></li>
-          <li>
-          <p>
-          名前以外の情報を追加しないでください。
-          例：どのように名前が使用されるべきか
-          </p>
-          </li>
-          <li>
-          <p>
-          新しい言語名を追加する場合は英語表記にしてください。翻訳された言語名、例えば「日本語」ではなく、英語の「Japanese」としましょう。異なる言語でサイトを利用している人のために地域化された名前を表示するのが難しくなるか、あるいは不可能になるからです。
-          </p>
-          </li>
-          <li>
-          <p>
-          翻訳された言語に関連付けられた一般名は、その言語の既定の一般名として表示されます（場所の設定や名前の順序などの影響を除く）。
-          翻訳についてより詳しく知りたい方は<a class="readmore" href="/pages/translate">こちら</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:

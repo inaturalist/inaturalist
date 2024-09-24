@@ -1,21 +1,24 @@
 //! moment.js locale configuration
-//! locale : Luxembourgish (lb)
-//! author : mweimerskirch : https://github.com/mweimerskirch, David Raison : https://github.com/kwisatz
+//! locale : Luxembourgish [lb]
+//! author : mweimerskirch : https://github.com/mweimerskirch
+//! author : David Raison : https://github.com/kwisatz
 
-(function (global, factory) {
-   typeof exports === 'object' && typeof module !== 'undefined' ? factory(require('../moment')) :
-   typeof define === 'function' && define.amd ? define(['moment'], factory) :
+;(function (global, factory) {
+   typeof exports === 'object' && typeof module !== 'undefined'
+       && typeof require === 'function' ? factory(require('../moment')) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
    factory(global.moment)
-}(this, function (moment) { 'use strict';
+}(this, (function (moment) { 'use strict';
 
+    //! moment.js locale configuration
 
     function processRelativeTime(number, withoutSuffix, key, isFuture) {
         var format = {
-            'm': ['eng Minutt', 'enger Minutt'],
-            'h': ['eng Stonn', 'enger Stonn'],
-            'd': ['een Dag', 'engem Dag'],
-            'M': ['ee Mount', 'engem Mount'],
-            'y': ['ee Joer', 'engem Joer']
+            m: ['eng Minutt', 'enger Minutt'],
+            h: ['eng Stonn', 'enger Stonn'],
+            d: ['een Dag', 'engem Dag'],
+            M: ['ee Mount', 'engem Mount'],
+            y: ['ee Joer', 'engem Joer'],
         };
         return withoutSuffix ? format[key][0] : format[key][1];
     }
@@ -56,7 +59,8 @@
             return false;
         } else if (number < 100) {
             // 2 digits
-            var lastDigit = number % 10, firstDigit = number / 10;
+            var lastDigit = number % 10,
+                firstDigit = number / 10;
             if (lastDigit === 0) {
                 return eifelerRegelAppliesToNumber(firstDigit);
             }
@@ -75,18 +79,28 @@
     }
 
     var lb = moment.defineLocale('lb', {
-        months: 'Januar_Februar_Mäerz_Abrëll_Mee_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-        monthsShort: 'Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
-        weekdays: 'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_Freideg_Samschdeg'.split('_'),
+        months: 'Januar_Februar_Mäerz_Abrëll_Mee_Juni_Juli_August_September_Oktober_November_Dezember'.split(
+            '_'
+        ),
+        monthsShort:
+            'Jan._Febr._Mrz._Abr._Mee_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split(
+                '_'
+            ),
+        monthsParseExact: true,
+        weekdays:
+            'Sonndeg_Méindeg_Dënschdeg_Mëttwoch_Donneschdeg_Freideg_Samschdeg'.split(
+                '_'
+            ),
         weekdaysShort: 'So._Mé._Dë._Më._Do._Fr._Sa.'.split('_'),
         weekdaysMin: 'So_Mé_Dë_Më_Do_Fr_Sa'.split('_'),
+        weekdaysParseExact: true,
         longDateFormat: {
             LT: 'H:mm [Auer]',
             LTS: 'H:mm:ss [Auer]',
             L: 'DD.MM.YYYY',
             LL: 'D. MMMM YYYY',
             LLL: 'D. MMMM YYYY H:mm [Auer]',
-            LLLL: 'dddd, D. MMMM YYYY H:mm [Auer]'
+            LLLL: 'dddd, D. MMMM YYYY H:mm [Auer]',
         },
         calendar: {
             sameDay: '[Haut um] LT',
@@ -103,31 +117,32 @@
                     default:
                         return '[Leschte] dddd [um] LT';
                 }
-            }
+            },
         },
-        relativeTime : {
-            future : processFutureTime,
-            past : processPastTime,
-            s : 'e puer Sekonnen',
-            m : processRelativeTime,
-            mm : '%d Minutten',
-            h : processRelativeTime,
-            hh : '%d Stonnen',
-            d : processRelativeTime,
-            dd : '%d Deeg',
-            M : processRelativeTime,
-            MM : '%d Méint',
-            y : processRelativeTime,
-            yy : '%d Joer'
+        relativeTime: {
+            future: processFutureTime,
+            past: processPastTime,
+            s: 'e puer Sekonnen',
+            ss: '%d Sekonnen',
+            m: processRelativeTime,
+            mm: '%d Minutten',
+            h: processRelativeTime,
+            hh: '%d Stonnen',
+            d: processRelativeTime,
+            dd: '%d Deeg',
+            M: processRelativeTime,
+            MM: '%d Méint',
+            y: processRelativeTime,
+            yy: '%d Joer',
         },
-        ordinalParse: /\d{1,2}\./,
+        dayOfMonthOrdinalParse: /\d{1,2}\./,
         ordinal: '%d.',
         week: {
             dow: 1, // Monday is the first day of the week.
-            doy: 4  // The week that contains Jan 4th is the first week of the year.
-        }
+            doy: 4, // The week that contains Jan 4th is the first week of the year.
+        },
     });
 
     return lb;
 
-}));
+})));

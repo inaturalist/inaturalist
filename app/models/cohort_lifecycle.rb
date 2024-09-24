@@ -28,16 +28,30 @@ class CohortLifecycle < ApplicationRecord
   end
 
   def self.prepare_cohort_data( raw_cohort_data )
-    cohort_data = {}
-    raw_cohort_data.each do | cohort |
+    raw_cohort_data.each_with_object( {} ) do | cohort, cohort_data |
       cohort_time = cohort.cohort.to_s
-      user_id = cohort.user_id
+      user_id = cohort.user_id.to_s.to_sym
       cohort_data[cohort_time] ||= {}
-      cohort_data[cohort_time][user_id.to_s.to_sym] = cohort.
-        attributes.except( "id", "created_at", "updated_at", "cohort", "user_id" ).
-        transform_keys( &:to_sym )
+
+      cohort_data[cohort_time][user_id] = {
+        day0: cohort.day0,
+        day1: cohort.day1,
+        day2: cohort.day2,
+        day3: cohort.day3,
+        day4: cohort.day4,
+        day5: cohort.day5,
+        day6: cohort.day6,
+        day7: cohort.day7,
+        retention: cohort.retention,
+        observer_appeal_intervention_group: cohort.observer_appeal_intervention_group,
+        first_observation_intervention_group: cohort.first_observation_intervention_group,
+        error_intervention_group: cohort.error_intervention_group,
+        captive_intervention_group: cohort.captive_intervention_group,
+        needs_id_intervention_group: cohort.needs_id_intervention_group
+      }
+
+      cohort_data
     end
-    cohort_data
   end
 
   def self.process_days( cohorts, current_day, window_start, cohort_data )

@@ -227,8 +227,8 @@ th:
     life_stage: เพิ่มหมายเหตุสำหรับ "ระยะการเจริญ"
     evidence_of_presence: เพิ่มหมายเหตุสำหรับ "หลักฐานที่พบ"
   add_another_flag: เพิ่มอีกรายงาน
-  add_another_photo: เพิ่มภาพถ่ายอีกใบ
-  add_another_section: เพิ่มส่วนอื่น ๆ
+  add_another_photo: เพิ่มอีกรูป
+  add_another_section: เพิ่มอีกส่วน
   add_another_subscription: เพิ่มคำอธิบายตัวกรอง
   #Project assets are files associated with projects, e.g. image files for a custom header
   add_asset: เพิ่มโครงการที่เกี่ยวข้อง
@@ -239,16 +239,16 @@ th:
   add_comma_separated_tags: "เพิ่มจุลภาคเพื่อคั่นแท็ก"
   add_comment: เพิ่มความคิดเห็น
   add_conservation_status: เพิ่มสถานะการอนุรักษ์
-  add_custom_project_fields: เพิ่มโครงการภาคสนามที่ถูกกำหนดขึ้นเอง
-  add_edit_flags: เพิ่ม / แก้ไขป้ายชื่อ
+  add_custom_project_fields: เพิ่มข้อมูลเสริมโครงการที่กำหนดเอง
+  add_edit_flags: เพิ่ม/แก้ไขการรายงาน
   add_editor: เพิ่มบรรณาธิการ
   add_description: "เพิ่ม %{description_name}"
   add_from_your_observations: เพิ่มจากการสังเกตของคุณ
-  add_link: เพิ่มลิงค์
-  add_higher_level_taxon: เพิ่มอนุกรมวิธานระดับสูงกว่า (เช่น "นก")
+  add_link: เพิ่มลิงก์
+  add_higher_level_taxon: เพิ่มหน่วยอนุกรมวิธานระดับสูงกว่า (เช่น "นก")
   add_id: เพิ่มการจำแนก
   #Tool tip for a button that adds italic text to a text area
-  add_italic_text: เพิ่มข้อความที่เป็นตัวเอียง
+  add_italic_text: เพิ่มข้อความตัวเอียง
   add_muted_users: เพิ่มผู้ใช้ที่ถูกปิดกั้น
   add_new_lexicon: เพิ่มภาษา/ศัพท์เฉพาะใหม่
   add_new_photos_by_their_ids: เพิ่มรูปภาพใหม่จาก Flickr (องค์กรไม่แสวงกำไรที่สนับสนุนการใช้เนื้อหาโดยไม่ถูกจำกัดจากสัญญาอนุญาต)
@@ -1204,6 +1204,7 @@ th:
   find_unsuitable_observations: ค้นหาการสังเกตทั้งหมด
   find_your_current_location: ค้นหาตำแหน่งปัจจุบันของคุณ
   finished: เสร็จสิ้น
+  finished_with_page: สิ้นสุดหน้านี้แล้ว
   first_inat_observation: "การสังเกตแรกใน %{site_name}"
   first_observer: ผู้สังเกตคนแรก
   #Verb form, as in "Flag this item"
@@ -1658,12 +1659,12 @@ th:
       observations: การสังเกต
       checklist_places: สถานที่รายการตรวจสอบ
       range: ขอบเขต
-  mark_as_reviewed: ทำเครื่องหมายว่าดูแล้ว
+  mark_as_reviewed: ทำเครื่องหมายว่าตรวจแล้ว
   #Note that "Identify" is https://www.inaturalist.org/observations/identify
   mark_as_reviewed_desc: |
-    การทำเครื่องหมายว่าดูแล้วจะทำให้การสังเกตนี้ไม่แสดงในหน้าจำแนกชนิดอีก แต่ผู้อื่นยังมองเห็นการสังเกตนี้ในหน้าจำแนกชนิดได้
-  mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าดูแล้ว
-  mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ดู
+    การทำเครื่องหมายว่าตรวจแล้วจะทำให้การสังเกตนี้ไม่แสดงในหน้าจำแนกชนิดอีก แต่ผู้อื่นยังมองเห็นการสังเกตนี้ในหน้าจำแนกชนิดได้
+  mark_all_as_reviewed: ทำเครื่องหมายทั้งหมดว่าตรวจแล้ว
+  mark_all_as_unreviewed: ทำเครื่องหมายทั้งหมดว่ายังไม่ตรวจ
   maverick: ขัดแย้ง
   media: สื่อ
   #Used to join media types required by a project, e.g. photos *and* sounds.
@@ -1827,7 +1828,7 @@ th:
   no_its_as_good_as_it_can_be: ไม่ เท่านี้เพียงพอแล้ว
   no_journal_posts_yet: ยังไม่มีโพสต์วารสาร
   no_license_all_rights_reserved: ไม่มีสัญญาอนุญาต (สงวนลิขสิทธิ์ทั้งหมด)
-  no_matching_observations: ไม่มีการสังเกตที่ตรงตามเงื่อนไข
+  no_matching_observations: ไม่มีการสังเกตที่ตรงตามตัวกรอง
   no_matching_species: ไม่มีชนิดที่ตรงกัน
   no_members_yet: "ยังไม่มีสมาชิก"
   no_messages_yet: ยังไม่มีข้อความ
@@ -1987,6 +1988,7 @@ th:
   order_by: เรียงลำดับตาม
   organism_is_wild: สิ่งมีชีวิตพบในธรรมชาติ
   organisms: สิ่งมีชีวิต
+  originally_flagged_by: รายงานครั้งแรกโดย
   other: อื่น ๆ
   other_animals: สัตว์อื่น ๆ
   other_lexicons: ศัพท์เฉพาะอื่น ๆ
@@ -2253,7 +2255,7 @@ th:
   radius_value: "รัศมี (เมตร): %{radius}"
   random: สุ่ม
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
-  rank: ลำดับขั้น
+  rank: ลำดับ
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2461,7 +2463,7 @@ th:
   restart: เริ่มใหม่
   restore: คืนค่า
   review_all: ทบทวนทั้งหมด
-  reviewed: ดูแล้ว
+  reviewed: ตรวจแล้ว
   rg_observations: การสังเกตระดับงานวิจัย
   role: บทบาท
   rotate_left: หมุน​ซ้าย
@@ -2545,6 +2547,8 @@ th:
   settings: การตั้งค่า
   share: แชร์
   share_colon: "แชร์:"
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: ชื่อสามัญนี้ควรแสดงเป็นชื่อแรกสำหรับหน่วยอนุกรมวิธานนี้หรือไม่?
   show: แสดง
   show_hidden_content: แสดงเนื้อหาที่ซ่อนอยู่
   show_keyboard_shortcuts: แสดงปุ่มลัดแป้นพิมพ์
@@ -2908,6 +2912,7 @@ th:
   trends: แนวโน้ม
   #Noun
   trust: ความไว้วางใจ
+  trust_this_person_with_your_private_coordinates: ไว้วางใจคนนี้ในการเปิดเผยพิกัดที่ซ่อนไว้
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
   try_adding_species_form: ลองเพิ่มบางชนิดโดยใช้รูปแบบในหน้านี้
   twitter: ทวิตเตอร์
@@ -3037,6 +3042,7 @@ th:
   view_more_about_x: "ดูเพิ่มเติมเกี่ยวกับ%{x}"
   view_more_observations_from_this_place: ดูการสังเกตเพิ่มเติมจากสถานที่นี้
   view_more_observations_of_x_project: "ดูการสังเกตเพิ่มเติมจากโครงการ %{project} ใน <nobr>%{site_name} &raquo;</nobr>"
+  view_more_unreviewed: "ดูการสังเกตที่ยังไม่ตรวจเพิ่มเติม"
   view_observation: ดูการสังเกต
   view_observations: ดูการสังเกต
   view_observation_flags: ดูการรายงานการสังเกต
@@ -3251,7 +3257,10 @@ th:
       from: จาก
     observations:
       community_id:
+        cumulative_count: จำนวนการจำแนกสะสม
+        disagreement_count: จำนวนการจำแนกที่ไม่เห็นด้วย
         identification_count: จำนวนการจำแนก
+        score: คะแนน
       compare:
         #Label for a visualization that combines multiple series of data in a single chart
         combined: รวม
@@ -3272,11 +3281,18 @@ th:
         place_guess: คำอธิบายตำแหน่งที่ผู้สังเกตระบุ
         geoprivacy: "ไม่ว่าผู้สังเกตจะเลือกปิดบังหรือซ่อนพิกัดหรือไม่ก็ตาม"
         user_login: ชื่อผู้ใช้ของผู้สังเกต
+      identify:
+        review_all_tooltip: "ทำเครื่องหมายทั้งหมดในหน้านี้ว่าตรวจแล้ว"
+        you_reviewed_message: "คุณตรวจไปแล้ว %{reviewed} จาก %{pageTotal} การสังเกตในหน้านี้ จากทั้งหมด %{total} การสังเกตที่ตรงตามตัวกรอง"
+        unreview_all_tooltip: "ลบสถานะ \"ตรวจแล้ว\" ออกจากการสังเกตทั้งหมดในหน้านี้"
       import:
         date_column_format: YYYY-MM-DD HH:MM
       show:
+        cumulative_count_desc: 'จำนวนการจำแนกของแต่ละหน่วยอนุกรมวิธานและสมาชิกทั้งหมดของหน่วยนั้น'
         data_quality_assessment_desc3_html: |
           ระดับคุณภาพเป็นการสรุปภาพรวมความแม่นยำ ความเที่ยงตรง ความสมบูรณ์ ความเกี่ยวข้อง และความเหมาะสมของการสังเกตใน iNaturalist ให้เป็นข้อมูลความหลากหลายทางชีวภาพ คุณสมบัติบางรายการจะถูกกำหนดโดยอัตโนมัติ ในขณะที่รายการอื่น ๆ จะขึ้นอยู่กับการโหวตโดยผู้ใช้งาน นอกจากนี้ iNaturalist จะแบ่งปันการสังเกต "ระดับงานวิจัย" ให้แก่พาร์ตเนอร์ทางข้อมูลจำนวนมากเพื่อใช้ในงานวิทยาศาสตร์และการอนุรักษ์ต่อไป
+        disagreement_count_desc: "จำนวนหน่วยอนุกรมวิธานที่ได้รับการจำแนกและไม่เป็นสมาชิกของหน่วยฯ ที่เหนือกว่า"
+        identification_count_desc: 'จำนวนการจำแนกของแต่ละหน่วยอนุกรมวิธาน'
         flagged_photos_desc_html: |
           บางรูปถูกรายงานว่ามีเนื้อหาไม่เหมาะสมหรือมีการละเมิดลิขสิทธิ์ ดูรายละเอียดเพิ่มเติมที่ %{links}
     emailer:
@@ -3458,30 +3474,6 @@ th:
           "Life Stage=Subimago": ตัวรองตัวเต็มวัย
           "Life Stage=Teneral": หลังลอกคราบ
           unannotated: ไม่มีหมายเหตุ
-    taxon_names:
-      form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>ควรเพิ่มชื่อที่มีคนใช้อยู่แล้ว โปรดอย่าตั้งชื่อใหม่เอง</p></li>
-          <li><p>อย่าเพิ่มชื่อซ้ำ เช่น อย่าตั้งชื่อเหยี่ยวหลายชนิดว่า "เหยี่ยว" เท่านั้น</p></li>
-          <li><p>ควรตั้งชื่อที่ครอบคลุมสมาชิกทั้งหมด เช่น "นกยาง ฯลฯ" หรือ "วงศ์กุหลาบป่า" สำหรับลำดับอนุกรมวิธานที่สูงกว่าระดับชนิด</p></li>
-          <li>
-          <p>
-          อย่าใส่ข้อมูลที่ไม่ใช่ส่วนหนึ่งของชื่อ เช่น วงเล็บที่มีความคิดเห็นส่วนตัวเกี่ยวกับชื่อนั้น
-          </p>
-          </li>
-          <li>
-          <p>
-          ชื่อภาษาที่เพิ่มขึ้นใหม่ควรเขียนเป็นภาษาอังกฤษ โปรดอย่าเพิ่มชื่อภาษาที่แปลมา เช่น "French, Français" เพราะจะทำให้ผู้ที่ไม่รู้ภาษานั้นค้นหาชื่อที่คุณตั้งยากขึ้น
-          </p>
-          </li>
-          <li>
-          <p>
-          ชื่อสามัญตามภาษาที่แปลจะแสดงเป็นชื่อเริ่มต้นสำหรับภาษานั้น (เว้นแต่จะมีการตั้งค่าชื่อสามัญตามสถานที่ การเรียงลำดับชื่อ ฯลฯ)
-          <a class="readmore" href="/pages/translate">เรียนรู้เพิ่มเติมเกี่ยวกับการแปล</a>
-          </p>
-          </li>
-          </ul>
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update

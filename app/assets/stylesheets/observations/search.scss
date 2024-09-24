@@ -54,6 +54,9 @@ body {
   margin-bottom: 30px;
   border: 1px solid #ddd;
 }
+#taxa-grid .thumbnail.borderless {
+  overflow: visible;
+}
 .grid .taxon-grid-cell {
   width: 194px;
   padding: 0px 10px;

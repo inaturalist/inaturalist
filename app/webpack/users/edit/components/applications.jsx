@@ -56,13 +56,13 @@ const Applications = ( { showModal, apps, providerApps } ) => {
 
     return (
       <tr key={name}>
-        <td className="col-xs-4 borderless table-row">
+        <td className="borderless table-row">
           <a href={`/oauth/applications/${id}`}>
             {name}
           </a>
         </td>
-        <td className="col-xs-4 borderless table-row">{moment( app.created_at ).format( "LL" )}</td>
-        <td className="col-xs-4 borderless table-row">
+        <td className="borderless table-row">{moment( app.created_at ).format( "LL" )}</td>
+        <td className="borderless table-row">
           <button
             type="button"
             className="btn btn-default"
@@ -108,9 +108,9 @@ const Applications = ( { showModal, apps, providerApps } ) => {
 
     return (
       <tr key={name}>
-        <td className="col-xs-4 borderless table-row">{AUTH_PROVIDER_NAMES[name]}</td>
-        <td className="col-xs-4 borderless table-row">{date}</td>
-        <td className="col-xs-4 borderless table-row">
+        <td className="borderless table-row">{AUTH_PROVIDER_NAMES[name]}</td>
+        <td className="borderless table-row">{date}</td>
+        <td className="borderless table-row">
           {app.created_at ? disconnectButton : connectForm}
         </td>
       </tr>
@@ -129,20 +129,20 @@ const Applications = ( { showModal, apps, providerApps } ) => {
   );
 
   return (
-    <div id="ApplicationsTable">
+    <div id="Applications">
       {iNatApps.length > 0 && (
         <div>
           <h4>{I18n.t( "inaturalist_applications", { site_name: SITE.name } )}</h4>
           {createTable( iNatApps, I18n.t( "log_out" ) )}
         </div>
       )}
-      <div>
+      <div className="connected-apps">
         <h4>{I18n.t( "connected_accounts_titlecase" )}</h4>
         <p className="text-muted">{I18n.t( "connected_accounts_description" )}</p>
         {createTable( connectedApps )}
       </div>
       {externalApps.length > 0 && (
-        <div>
+        <div className="external-apps">
           <h4>{I18n.t( "external_applications" )}</h4>
           <p className="text-muted">{I18n.t( "external_applications_description" )}</p>
           {createTable( externalApps, I18n.t( "revoke" ) )}

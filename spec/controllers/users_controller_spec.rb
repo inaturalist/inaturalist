@@ -69,6 +69,12 @@ describe UsersController, "delete" do
       count ).to eq 1
   end
 
+  it "redirects with the account_deleted=true parameter" do
+    sign_in user
+    delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login }
+    expect( response.redirect_url ).to match /account_deleted=true/
+  end
+
   it "should be possible for the user" do
     sign_in user
     without_delay { delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login } }

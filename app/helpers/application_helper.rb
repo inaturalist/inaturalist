@@ -1089,9 +1089,22 @@ module ApplicationHelper
         t( :user_added_x_observations2_html, user: user, count: options[:count] )
       end
     when "Observation"
-      if notifier.is_a?(ObservationFieldValue)
-        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name),
-          :owner => you_or_login(resource.user, :capitalize_it => false))
+      if notifier.is_a?( ObservationFieldValue )
+        if notifier.updater && notifier.modified?
+          t( :user_updated_an_observation_field_html,
+            user: if options[:skip_links]
+                    notifier.updater.login
+                  else
+                    link_to( notifier.updater.login, person_url( notifier.updater ) )
+            end,
+            field_name: truncate( notifier.observation_field.name ),
+            owner: you_or_login( resource.user, capitalize_it: false ) )
+        else
+          t( :user_added_an_observation_field_html,
+            user: notifier_user_link,
+            field_name: truncate( notifier.observation_field.name ),
+            owner: you_or_login( resource.user, capitalize_it: false ) )
+        end
       else
         "unknown"
       end

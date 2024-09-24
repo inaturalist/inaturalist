@@ -412,9 +412,24 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
   }
 ], {name: "Map (no labels)"});
 
+iNaturalist.Map.MapTypeId = iNaturalist.Map.MapTypeId || {};
+// Note that OSM doesn't seem to translate the names "OpenStreetMap" or "OSM"
+// in its own interface, so we're hardcoding it here
+iNaturalist.Map.MapTypeId.OSM = "OSM";
+
 iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   zoom: 1,
   mapTypeId: google.maps.MapTypeId.TERRAIN,
+  mapTypeControlOptions: {
+    mapTypeIds: [
+      google.maps.MapTypeId.ROADMAP,
+      google.maps.MapTypeId.TERRAIN,
+      google.maps.MapTypeId.SATELLITE,
+      google.maps.MapTypeId.HYBRID,
+      iNaturalist.Map.MapTypeId.OSM
+    ],
+    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+  },
   streetViewControl: false,
   rotateControl: false,
   backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
@@ -422,7 +437,10 @@ iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   gestureHandling: "greedy",
   controlSize: 26,
   scaleControl: true,
-  tilt: 0
+  tilt: 0,
+  zoomControlOptions: {
+    position: google.maps.ControlPosition.BLOCK_START_INLINE_START
+  }
 };
 
 iNaturalist.Map.API_PARAMS = function( ) {
@@ -502,6 +520,14 @@ iNaturalist.Map.createMap = function(options) {
       )
       map.fitBounds(bounds)
     }
+  }
+
+  map.mapTypes.set( iNaturalist.Map.MapTypeId.OSM, iNaturalist.Map.createOsmMapTypeForMap( map ) );
+  google.maps.event.addListener( map, "maptypeid_changed", function () {
+    iNaturalist.Map.toggleOsmAttributionForMap( this );
+  } );
+  if ( options.mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {;
+    iNaturalist.Map.toggleOsmAttributionForMap( map );
   }
   
   return map;
@@ -1374,7 +1400,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
               iwOpts.pixelOffset = new google.maps.Size(0, 0);
             }
             if( options.infoWindowCallback ) {
-              return options.infoWindowCallback( map, iw, latLng, o.data['id'], iwOpts );
+              return options.infoWindowCallback( map, iw, latLng, o.data, iwOpts );
             }
             $.ajax({
               url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
@@ -1426,6 +1452,73 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
   deselectText( );
   // setting infoWindowOpenTime to prevent rapid window toggling
   infoWindowOpenTime = new Date( );
+};
+
+
+iNaturalist.Map.createOsmMapTypeForMap = function ( map ) {
+  var name = map.getDiv().offsetWidth > 300
+    ? "OpenStreetMap"
+    : "OSM";
+  // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
+  return new google.maps.ImageMapType( {
+    getTileUrl: function(coord, zoom) {
+      var tilesPerGlobe = 1 << zoom;
+      var x = coord.x % tilesPerGlobe;
+      if (x < 0) x = tilesPerGlobe + x;
+      iNaturalist.log( { "map-tile": "osm" } );
+      return "https://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
+    },
+    tileSize: new google.maps.Size( 256, 256 ),
+    name: name,
+    alt: I18n.t( "show_openstreetmap" ),
+    // Required, even though not documented
+    maxZoom: 19
+  } );
+}
+iNaturalist.Map.createOsmAttributionControl = function( position ) {
+  var div = document.createElement( "div" );
+  div.setAttribute( "id", "OsmAttributionControl" );
+  div.style.padding = "0 6px";
+  div.style.fontSize = "10px";
+  div.style.height = "14px";
+  div.style.lineHeight = "14px";
+  div.style.marginBottom = "1px";
+  if ( position === google.maps.ControlPosition.BOTTOM_RIGHT ) {
+    div.style.marginBottom = "0px";
+    div.style.marginRight = "0.1px";
+  }
+  div.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+  var content = jQuery.parseHTML( I18n.t( "base_map_copyright_openstreetmap_html", {
+    startTag: "<a href='https://www.openstreetmap.org/copyright' target='_blank' rel='nofollow noopener'>",
+    endTag: "</a>"
+  } ) );
+  $( div ).append( content );
+  return div;
+};
+iNaturalist.Map.toggleOsmAttributionForMap = function ( map ) {
+  var mapTypeId = map.getMapTypeId( );
+  // Note that Google does not change the orientation of its own
+  // attribution in RTL, so we don't need to do so either. However it
+  // does help to put it next to the other attribution elements when
+  // there's space
+  var position = google.maps.ControlPosition.RIGHT_BOTTOM;
+  if ( map.getDiv().offsetWidth > 500 ) {
+    position = google.maps.ControlPosition.BOTTOM_RIGHT;
+  }
+  if ( mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {
+    map.controls[position].insertAt(
+      0,
+      iNaturalist.Map.createOsmAttributionControl( position )
+    );
+  } else {
+    var targetIdx = -1;
+    map.controls[position].forEach( function ( ctrl, idx ) {
+      if ( ctrl.getAttribute( "id" ) === "OsmAttributionControl" ) {
+        targetIdx = idx;
+      }
+    } );
+    if ( targetIdx >= 0 ) map.controls[position].removeAt( targetIdx );
+  }
 };
 
 // Static constants

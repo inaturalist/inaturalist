@@ -71,14 +71,7 @@
     if (typeof options.map != 'undefined') {
       var map = $.fn.latLonSelector._map = options.map;
     } else {
-      var map = $.fn.latLonSelector._map = new google.maps.Map($(mapDiv).get(0), {
-        zoom: 1,
-        center: new google.maps.LatLng(0,0),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        streetViewControl: false,
-        rotateControl: false,
-        gestureHandling: "greedy"
-      })
+      var map = $.fn.latLonSelector._map = iNaturalist.Map.createMap( { div: $(mapDiv).get(0) } );
     }
     
     // Clicks outside the selector should close it

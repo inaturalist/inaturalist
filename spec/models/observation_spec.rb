@@ -1799,6 +1799,60 @@ describe Observation do
       ).count ).to eq 1
     end
   end
+
+  describe "observation_geo_score" do
+    it "deletes observation geo scores when public coordinates change" do
+      o = Observation.make!( latitude: 1, longitude: 1 )
+      ObservationGeoScore.make!( observation: o )
+      expect( o.observation_geo_score ).not_to be_blank
+      o.update( latitude: 2 )
+      expect( o.observation_geo_score ).to be_blank
+    end
+
+    it "removes geo scores from index when public coordinates change" do
+      o = Observation.make!( latitude: 1, longitude: 1 )
+      ObservationGeoScore.make!( observation: o )
+      o.elastic_index!
+      expect(
+        Observation.elastic_search( id: o.id ).response.hits.hits.first._source.geo_score
+      ).not_to be_blank
+      o.update( latitude: 2 )
+      expect(
+        Observation.elastic_search( id: o.id ).response.hits.hits.first._source.geo_score
+      ).to be_blank
+    end
+
+    it "deletes observation geo scores when private coordinates change" do
+      o = Observation.make!( private_latitude: 1, private_longitude: 1 )
+      ObservationGeoScore.make!( observation: o )
+      expect( o.observation_geo_score ).not_to be_blank
+      o.update( private_latitude: 2 )
+      expect( o.observation_geo_score ).to be_blank
+    end
+
+    it "deletes observation geo scores when taxon changes" do
+      o = Observation.make!( latitude: 1, longitude: 1 )
+      Identification.make!( observation: o )
+      ObservationGeoScore.make!( observation: o )
+      expect( o.observation_geo_score ).not_to be_blank
+      Identification.make!( observation: o )
+      expect( o.observation_geo_score ).to be_blank
+    end
+
+    it "removes geo scores from index when taxon changes" do
+      o = Observation.make!( latitude: 1, longitude: 1 )
+      Identification.make!( observation: o )
+      ObservationGeoScore.make!( observation: o )
+      o.elastic_index!
+      expect(
+        Observation.elastic_search( id: o.id ).response.hits.hits.first._source.geo_score
+      ).not_to be_blank
+      Identification.make!( observation: o )
+      expect(
+        Observation.elastic_search( id: o.id ).response.hits.hits.first._source.geo_score
+      ).to be_blank
+    end
+  end
 end
 
 describe Observation, "probably_captive?" do

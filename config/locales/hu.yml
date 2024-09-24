@@ -232,6 +232,8 @@ hu:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Felsorolás lista hozzáadása
   add_a_comment: Megjegyzés hozzáadása
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Természetvédelmi státusz hozzáadása
   add_a_field: Adatmező hozzáadása
   add_a_flag: Bejelentés
   #Tool tip for a button that adds a link to a text area
@@ -311,7 +313,7 @@ hu:
   add_flowers_and_fruits_flowers_annotation: '"Virág és termés: virágzó" megjelölés hozzáadása'
   add_flowers_and_fruits_fruits_and_seeds_annotation: '"Virág és termés: termés és mag" megjelölés hozzáadása'
   add_flowers_and_fruits_no_flower_or_fruits: '"Virág és termés: nincs virág és termés" megjelölés hozzáadása'
-  add_leaves_breaking_leaf_buds: '"Levelek: Kihajtó rügy" megjelölés hozzáadása'
+  add_leaves_breaking_leaf_buds: '"Levelek: Bontakozó rügy" megjelölés hozzáadása'
   add_leaves_green_leaves: '"Levelek: Zöld levelek" megjelölés hozzáadása'
   add_leaves_colored_leaves: '"Levelek: Színes levelek" megjelölés hozzáadása'
   add_leaves_no_live_leaves: '"Levelek: Nincsenek levelek" megjelölés hozzáadása'
@@ -725,6 +727,7 @@ hu:
   back_to_your_observations: Vissza a megfigyeléseidhez
   back_to_your_profile: Vissza a profilodhoz
   badges: Jelvények
+  base_map_copyright_openstreetmap_html: Alaptérkép © %{startTag}OpenStreetMap%{endTag}
   based_on_the_evidence_can_id_be_improved: |
     A bizonyíték alapján lehet még javítani a közösségi taxonon?
   batch: Köteg
@@ -987,9 +990,9 @@ hu:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Bármely
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_flowers_and_fruits: Bármilyen
+    any_flowers_and_fruits: Bármely
     #Value displayed when a filter is not filtering by a specific value for this attribute
-    any_leaves: Bármilyen
+    any_leaves: Bármely
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Bármely
     #Value displayed when a filter is not filtering by a specific value for this attribute
@@ -1005,10 +1008,12 @@ hu:
     flower_budding: Bimbózó
     flowering: Virágzó
     fruiting: Termő
-    no_flowers_or_fruits: Nincs virág és termés
-    flowers: Virágok
-    fruits_or_seeds: Virág vagy mag
+    no_flowers_or_fruits: Nincs virág sem termés
+    flower_buds: Bimbó
+    flowers: Virág
+    fruits_or_seeds: Termés vagy mag
     leaves: Levelek
+    breaking_leaf_buds: Bontakozó rügyek
     green_leaves: Zöld levelek
     colored_leaves: Színes levelek
     no_live_leaves: Nincsenek élő levelek
@@ -1063,17 +1068,18 @@ hu:
     flowering: A virág látszik, ki van nyílva, még mindig a növényen van
     fruiting: A gyümölcs látszik és még mindig a növényen van
     flowers: Legalább egy kinyílt virág
-    fruits_or_seeds: Legalább egy virág vagy mag
+    flower_buds: Legalább egy csukott bimbó
+    fruits_or_seeds: Legalább egy termés vagy mag
     green_leaves: Legalább egy zöld levél vagy tűlevél (lehet vöröses, ha ez a természetes egészséges színe)
-    colored_leaves: Legalább az egyik levél vagy tűlevél az évszak késői színét vette fel vagy kiszáradt színű
-    no_live_leaves: Nincsenek kihajtó rügyek és nem látszanak zöld vagy színes levelek
+    colored_leaves: Legalább az egyik levél vagy tűlevél az utószezonra jellemző, vagy kiszáradt színt vett fel
+    no_live_leaves: Nincsenek bontakozó rügyek és nem látszanak zöld vagy színes levelek
     male: Bizonyított, hogy az élőlény hímivarsejtet tud termelni ivaros szaporodáshoz
     molt: Levedlett bőr vagy más kültakaró
     leafmine: Bizonyíték arra, hogy az élőlény a levél alső és felső epidermisze között táplálkozott
     hair: Szőr, amely már elvált az élőlénytől, amely azt viselte
     egg: Egész tojás vagy pete, vagy annak része
     construction: Egy állat által más anyagokból létrehozott vagy kiásott struktúra
-    no_flowers_or_fruits: Nem látható virág, termés vagy mag (akár részben vagy teljesen)
+    no_flowers_or_fruits: Nem látható virág, termés vagy mag (részben vagy teljesen)
     not_established: Az élőlény az adott helyen még meg nem honosodott populációhoz tartozik, például szabadonengedett vagy elszökött házi kedvenc, szállítmányokkal érkező élőlények, valamint kóbor állatok.
     organism: Teljes vagy részleges élőlény
     scat: Széklet, ürülék (nem bagolyköpet vagy más, kiöklendezett anyag)
@@ -1208,7 +1214,7 @@ hu:
   curator_application_you_should_apply_if: |
     Csak akkor jelentkezhetsz kurátornak, ha:
   #Label for a menu item linking to a help page aimed at curators
-  curator_guide: Kurátor útmutató
+  curator_guide: Útmutató kurátoroknak
   curators_changed_for_x_html: "%{x} kurátorai megváltoztak"
   curators: Kurátorok
   curator_identification: Kurátor meghatározása
@@ -1530,7 +1536,7 @@ hu:
   editing_x_in_y: "%{x} szerkesztése itt: %{y}"
   editors: Szerkesztők
   #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
-  educators_guide: Oktató útmutató
+  educators_guide: Útmutató oktatóknak
   either_that_user_doesnt_exist_or: "Vagy nem létezik az a felhasználó vagy már követed őt."
   eligible_for_research_grade: Tudományosszint-potenciál
   email: Email
@@ -3033,7 +3039,7 @@ hu:
   password_confirmation: 'Jelszó megerősítése'
   password_change_description: A jelszó megváltoztatásával kiléptetünk mindeni aktív iNaturalist munkamenetedből minden eszközödről.
   password_change_logout_warning: Miután lecseréled a jelszavad, ki fogunk léptetni a fiókodból, majd pedig be kell jelentkezned újból az új jelszavaddal.
-  password_change_observations_warning: Ki fogunk léptetni az iNaturalist mobil alkalmazásaiból is és minden más alkalmazásból és honlapról ami a nevedben tölt fel az iNaturalistra, ezért kérünk győződj meg arról, hogy minden függő megfigyelést feltöltöttél mielőtt ezt megtennéd. Minden megfigyelés ami nem kerül feltöltésre megsemmisül.
+  password_change_observations_warning: Ki fogunk léptetni az iNaturalist mobil alkalmazásaiból is és minden más alkalmazásból és honlapról, ami a nevedben tölt fel az iNaturalistra. Kérünk győződj meg arról, hogy minden függő megfigyelést feltöltöttél, mielőtt ezt megtennéd. Minden megfigyelés elveszik, ami nem kerül feltöltésre.
   paste: Beilleszt
   people: Emberek
   people_following_user: "%{user} követői"
@@ -4017,6 +4023,8 @@ hu:
   show_no_annotation: '"Megjelölés nélküli" megjelenítése'
   show_off_your_recent_observations: Mutasd meg legújabb megfigyeléseidet saját blogodon vagy honlapodon!
   show_only: Csak ezek
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMap megjelenítése
   show_relative_proportions_of_all_observations: Az összes megfigyeléshez képest
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Kumulatív megjelenítése
@@ -4282,7 +4290,7 @@ hu:
   taxon_deleted: Taxon törölve.
   taxon_doesnt_have_a_range: A taxonnak nincs intervalluma
   #Notification about a taxon drop, @vow_or_con operates on %{taxon}
-  taxon_drop_affecting_taxon: '%{taxon}t érintő taxontörlés'
+  taxon_drop_affecting_taxon: '%{taxon} taxont érintő taxontörlés'
   taxon_id: Taxonazonosító
   taxon_ids: Taxonazonosítók
   taxon_map:
@@ -4296,7 +4304,7 @@ hu:
   taxon_merge: taxonösszevonás
   #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_merge_affecting_taxa: '%{taxa}t érintő taxonösszevonás'
+  taxon_merge_affecting_taxa: '%{taxa} taxont érintő taxonösszevonás'
   taxon_name: Taxon neve
   taxon_name_must_match_an_existing_taxon_in_our_database: A táblázatban taxonnévnek egyeznie kell az adatbázisunk taxonneveivel
   taxon_observed_by_html: |
@@ -4317,13 +4325,13 @@ hu:
   taxon_split: taxonfelosztás
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_split_affecting_taxa: '%{taxa}t érintő taxonfelosztás'
+  taxon_split_affecting_taxa: '%{taxa} taxont érintő taxonfelosztás'
   #Notification about a taxon stage, @vow_or_con operates on %{taxon}
-  taxon_stage_affecting_taxon: '%{taxon}t érintő taxonaktiválás'
+  taxon_stage_affecting_taxon: '%{taxon} taxont érintő taxonaktiválás'
   taxon_swap: taxoncsere
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
-  taxon_swap_affecting_taxa: '%{taxa}t érintő taxoncsere'
+  taxon_swap_affecting_taxa: '%{taxa} taxont érintő taxoncsere'
   taxon_name_was_deleted: A taxon neve törölve.
   taxon_name_was_successfully_updated: A taxonnév sikeresen frissítve.
   taxon_was_successfully_updated: A taxon sikeresen frissítve.
@@ -4702,6 +4710,8 @@ hu:
   user_faved_an_observation_by_you: "%{user} kedvelte ezt a megfigyelésedet"
   user_faved_this_observation: "%{user} kedvelte ezt a megfigyelést"
   user_flagged_as_a_non_spammer_html: "%{user} megjelölve, mint aki nem küld levélszemetet"
+  user_has_been_removed_from_site: |
+    %{username} felhasználót töröltük az %{site_name} honlapról (beletelhet akár egy órába, amíg minden kapcsolódó adatot törlünk)
   user_has_opted_out_of_community_id: A megfigyelő kikapcsolta a közösségi a közösségi taxont.
   user_hasnt_joined_any_projects: "%{user} még nem csatlakozott egy projekthez sem"
   user_helped_x_people_with_y_ids_html: "%{user} <strong>%{x} embernek</strong> segített, <strong>%{y} meghatározással</strong>"
@@ -5821,11 +5831,11 @@ hu:
           "Plant Phenology=Flowering": Virágzó
           "Plant Phenology=Fruiting": Termő
           "Plant Phenology=No Evidence of Flowering": A virágzás bizonyítéka hiányzik
-          "Flowers and Fruits=Flower Buds": Bimbózó
+          "Flowers and Fruits=Flower Buds": Virágbimbó
           "Flowers and Fruits=Flowers": Virág
-          "Flowers and Fruits=Fruits or Seeds": Virág vagy mag
-          "Flowers and Fruits=No Flowers or Fruits": Nincs virág sem termés
-          "Leaves=Breaking Leaf Buds": Kihajtó rügyek
+          "Flowers and Fruits=Fruits or Seeds": Termés vagy mag
+          "Flowers and Fruits=No Flowers or Fruits": Nincs virág, sem termés
+          "Leaves=Breaking Leaf Buds": Bontakozó rügyek
           "Leaves=Green Leaves": Zöld levelek
           "Leaves=Colored Leaves": Színes levelek
           "Leaves=No Live Leaves": Nincsenek élő levelek
@@ -5856,18 +5866,6 @@ hu:
           <i>lupus</i>ra. Ez jó nagy felfordulást okozhat, úgyhogy óvatosan használd.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Csak olyan neveket adj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
-          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfajokat "sólyom"-nak. </p></li>
-          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska).</p></li>
-          <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni.</p></li>
-          <li><p>Ha új szókészletet töltesz fel (ez ritkán fordul elő, mivel a magyar mint szókészlet már szerepel!), akkor azt angolul nevezd el, különben lehetetlen lesz számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.</p></li>
-          <li><p>A lefordított köznevek alapértelmezettként fognak megjelenni, ha a felhasználó azon a nyelven használja a felületet (feltéve ha nincs beállítva egy kedvence hely, vagy a nevek sorrendje, stb.).
-          <a class="readmore" href="/pages/translate">További információ a felhasználó felület fordításáról</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           A nevet opcionálisan földrajzi területhez rendelheted, ezzel a név elsőbbségben részesül az adott terület honlapjai és felhasználói számára. Ha több név van egy területhez, sorrendiséget állíthatsz be <a href="%{url}">itt</a>. Kérjük <strong>ne adj hozzá</strong> nevet MINDEN területhez külön-külön, ahol az adott nevet használják, csak olyan területekhez, ahol eltérő a név más területekhez képest.
     users:
@@ -6384,7 +6382,7 @@ hu:
         even: páros kell legyen
         exclusion: foglalt
         greater_than:
-          one: nagyobb kell legyen mint %{count}
+          one: nagyobb kell legyen, mint %{count}
           other: legalább %{count} kell legyen
         inclusion: nem szerepel a listán
         invalid: érvénytelen

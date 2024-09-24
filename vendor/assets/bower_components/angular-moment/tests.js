@@ -41,6 +41,31 @@ describe('module angularMoment', function () {
 
 
 	describe('am-time-ago directive', function () {
+
+		it('should be change output format after time through attributes amFullDateThreshold and amFullDateThresholdUnit', function () {
+			$rootScope.testFormat = 'HH:mm';
+			$rootScope.testDate = new Date(new Date().getTime() - 5 * 60 * 1000);
+
+			// after 5 min
+			var element = angular.element('<span am-time-ago="testDate" am-full-date-threshold="5" am-full-date-threshold-unit="minute" am-full-date-format="{{ testFormat }}"></span>');
+			element = $compile(element)($rootScope);
+			$rootScope.$digest();
+
+			expect(element.text()).toBe(moment($rootScope.testDate).format($rootScope.testFormat));
+		});
+
+		it('should not change output format after time through attributes amFullDateThreshold and amFullDateThresholdUnit', function () {
+			$rootScope.testFormat = 'HH:mm';
+			$rootScope.testDate = new Date(new Date().getTime() - 4 * 60 * 1000);
+
+			// after 4 min
+			var element = angular.element('<span am-time-ago="testDate" am-full-date-threshold="5" am-full-date-threshold-unit="minute" am-full-date-format="{{ testFormat }}"></span>');
+			element = $compile(element)($rootScope);
+			$rootScope.$digest();
+
+			expect(element.text()).toBe('4 minutes ago');
+		});
+
 		it('should change the text of the element to "a few seconds ago" when given current time', function () {
 			$rootScope.testDate = new Date();
 			var element = angular.element('<span am-time-ago="testDate"></span>');
@@ -65,7 +90,7 @@ describe('module angularMoment', function () {
 			expect(element.text()).toBe('2 hours ago');
 		});
 
-		it('should change the text of the div to "one year ago" when given a date one year ago', function () {
+		it('should change the text of the div to "a year ago" when given a date one year ago', function () {
 			var today = new Date();
 			$rootScope.testDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate());
 			var element = angular.element('<div am-time-ago="testDate"></div>');
@@ -537,6 +562,10 @@ describe('module angularMoment', function () {
 		it('should return an empty string for invalid input', function () {
 			expect(amCalendar('blah blah')).toBe('');
 		});
+
+		it('should take advanced arguments referenceTime and formats', function () {
+			expect(amCalendar(new Date(2012, 0, 22, 4, 46, 54), new Date(2012, 0, 23, 4, 46, 54), {lastDay: '[Yesterday at] H:m'})).toBe('Yesterday at 4:46');
+		});
 	});
 
 	describe('amDifference filter', function () {
@@ -731,6 +760,65 @@ describe('module angularMoment', function () {
 
 	});
 
+	describe('amStartOf filter', function () {
+
+		var amStartOf;
+
+		beforeEach(function () {
+			amStartOf = $filter('amStartOf');
+		});
+
+		it('should set date to start of the hour', function () {
+			var date = new Date(2000, 1, 0, 12, 12, 12);
+			expect(amStartOf(date, 'hour').toString()).toMatch(/^Mon Jan 31 2000 12:00:00/);
+		});
+
+		it('should set date to start of the day', function () {
+			var date = new Date(2000, 1, 0, 12, 12, 12);
+			expect(amStartOf(date, 'day').toString()).toMatch(/^Mon Jan 31 2000 00:00:00/);
+		});
+
+		it('should set date to start of the week', function () {
+			var date = new Date(2000, 1, 10, 12, 12, 12);
+			expect(amStartOf(date, 'week').toString()).toMatch(/^Sun Feb 06 2000 00:00:00/);
+		});
+
+		it('should set date to start of the year', function () {
+			var date = new Date(2000, 6, 6, 12, 12, 12);
+			expect(amStartOf(date, 'year').toString()).toMatch(/^Sat Jan 01 2000 00:00:00/);
+		});
+
+	});
+
+	describe('amEndOf filter', function () {
+
+		var amEndOf;
+
+		beforeEach(function () {
+			amEndOf = $filter('amEndOf');
+		});
+
+		it('should set date to end of the hour', function () {
+			var date = new Date(2000, 0, 1, 12, 12, 12);
+			expect(amEndOf(date, 'hour').toString()).toMatch(/^Sat Jan 01 2000 12:59:59/);
+		});
+
+		it('should set date to end of the day', function () {
+			var date = new Date(2000, 0, 1, 12, 12, 12);
+			expect(amEndOf(date, 'day').toString()).toMatch(/^Sat Jan 01 2000 23:59:59/);
+		});
+
+		it('should set date to end of the week', function () {
+			var date = new Date(2000, 0, 10, 12, 12, 12);
+			expect(amEndOf(date, 'week').toString()).toMatch(/^Sat Jan 15 2000 23:59:59/);
+		});
+
+		it('should set date to end of the year', function () {
+			var date = new Date(2000, 6, 6, 12, 12, 12);
+			expect(amEndOf(date, 'year').toString()).toMatch(/^Sun Dec 31 2000 23:59:59/);
+		});
+
+	});
 
 	describe('amMoment service', function () {
 		describe('#changeLocale', function () {

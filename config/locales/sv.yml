@@ -275,6 +275,8 @@ sv:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Lägg till en punktlista
   add_a_comment: Lägg till en kommentar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Lägg till en bevarandestatus
   add_a_field: Lägg till ett fält
   add_a_flag: Lägg till en flagga
   #Tool tip for a button that adds a link to a text area
@@ -814,6 +816,7 @@ sv:
   back_to_your_observations: Tillbaka till dina fynd
   back_to_your_profile: Tillbaka till din profil
   badges: Märken
+  base_map_copyright_openstreetmap_html: Grundkarta ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -4761,6 +4764,8 @@ sv:
   show_no_annotation: Visa "Ingen anteckning"
   show_off_your_recent_observations: Visa upp dina senaste fynd på din egen blogg eller hemsida!
   show_only: Visa endast
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Visa OpenStreetMap
   show_relative_proportions_of_all_observations: Visa relativ andel av alla fynd
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Visa ackumulerat
@@ -5706,6 +5711,9 @@ sv:
   user_faved_this_observation: "%{user} favoritmarkerade detta fynd"
   user_flagged_as_a_non_spammer_html: "%{user} märkt som icke-spammare"
   user_flagged_as_a_spammer_html: "%{user} flaggad som spammare"
+  user_has_been_removed_from_site: |
+    %{username} har tagits bort från %{site_name} (det kan ta upp till en timme
+    att helt radera allt kopplat innehåll)
   user_has_opted_out_of_community_id: Användaren har valt bort Community-taxon
   user_hasnt_joined_any_projects: "%{user} har inte gått med i några projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjälpte <strong>%{x} personer</strong> med <strong>%{y} bestämningar</strong>"
@@ -5733,6 +5741,7 @@ sv:
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatören har valt att lita på dig med de dolda koordinaterna för alla sina fynd.
+  user_updated_an_observation_field_html: '%{user} uppdaterade ett värde för "%{field_name}" på ett fynd av %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
   username: Användarnamn
   username_description: Detta är det användarnamn du kommer att använda för att logga in, och andra användare kan använda för att identifiera dig på iNaturalist
@@ -7843,22 +7852,28 @@ sv:
       form:
         new_name_guidelines_html: |
           <ul>
-          <li><p>Försök att lägga till namn som har använts någon annanstans. Vänligen uppfinn inte nya namn.</p></li>
-          <li><p>Lägg inte till dubblettnamn, t.ex. namnge inte flera hökar "hök"</p></li>
-          <li><p>För taxa på högre nivå, försök att använda namn som beskriver alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
+          <li><p>Försök att lägga till namn som har använts någon annanstans. Snälla, uppfinn inte nya namn.</p></li>
+          <li><p>Lägg inte till dubblettnamn, t.ex. ge inte flera hökar namnet "hök"</p></li>
+          <li><p>För taxa på högre nivå, försök att använda namn som inkluderar alla underliggande, som "änder, gäss och svanar" eller "ljungväxter"</p></li>
           <li>
           <p>
-          Lägg inte till information som inte är en del av namnet, t.ex. information inom parentes om hur du tycker att namnet ska användas
+          Lägg inte till information som inte är en del av namnet, t.ex.
+          information inom parentes om hur du tycker att namnet ska användas
           </p>
           </li>
           <li>
           <p>
-          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga namn som "French, Français" eftersom det bara kommer att göra det svårt eller omöjligt för oss att visa lokaliserade namn för personer som använder webbplatsen på andra språk.
+          Nya ordböcker ska vara på engelska. Lägg inte till översatta vardagliga
+          namn som "French, Français" eftersom det bara kommer att göra det
+          svårt eller omöjligt för oss att visa lokaliserade namn för personer som
+          använder webbplatsen på andra språk.
           </p>
           </li>
           <li>
           <p>
-          Vardagliga namn som är kopplade till översatta språk kommer att visas som vardagligt standardnamn på det språket (bortsett från effekten av platsinställningar, namnsortering etc.).
+          Vardagliga namn som är kopplade till översatta språk kommer att visas
+          som vardagligt standardnamn på det språket (bortsett från påverkan av
+          platsinställningar, namnsortering etc.).
           <a class="readmore" href="/pages/translate">Läs mer om översättning</a>
           </p>
           </li>

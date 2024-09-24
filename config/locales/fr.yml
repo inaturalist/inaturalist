@@ -197,6 +197,22 @@ fr:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
+  about_trips2_html: |
+    <h4>Les voyages permettent la collecte de données de présence/absence en ajoutant un contexte à vos observations
+    </h4>
+    <p>
+    <strong>Pourquoi ?</strong> Les données de présence/absence incluent des informations sur l’effort d’échantillonnage, qui est utile pour les analyses scientifiques comme les modèles de répartition (les observations brutes d'iNaturalist sont des données de 'présence uniquement').
+    </p> 
+    <p>
+    <strong>Comment ?</strong> Un voyage ajoute un contexte à vos observations en enregistrant :
+    </p> 
+    <ul> 
+    <li><strong>Ce que</strong> vous avez cherché (liste cible)</li>
+    <li><strong>Où</strong> vous l'avez cherché (zone de recherche)</li>
+    <li><strong>Quand</strong> vous l'avez cherché (période de recherche)</li> 
+    </ul> 
+    <p>Les espèces de votre liste cible que vous aurez pu observer dans la zone de recherche sont interprétées comme des présences. Alors que les espèces de votre liste cible que vous n’aurez pas pu observer seront interprétées comme des absences. Cliquez sur 'Données tabulées de présence/absence pour les voyages' pour générer un tableau d’enregistrements de présence/absence pour les espèces des voyages et les observations associées. <a href='%{url}'>En savoir plus</a>
+    </p>
   about_trusting_projects: Ce qu'on veut dire par "faire confiance à ce projet"
   about_trusting_projects_options_any: Toutes vos observations dans ce projet.
   about_trusting_projects_options_any_desc: |-
@@ -258,6 +274,8 @@ fr:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Ajouter une liste à puces
   add_a_comment: Ajouter un commentaire
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Ajouter un Statut de Conservation
   add_a_field: Ajouter un champ
   add_a_flag: Ajouter un signalement
   #Tool tip for a button that adds a link to a text area
@@ -775,6 +793,7 @@ fr:
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
   badges: Badges
+  base_map_copyright_openstreetmap_html: Carte de base ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1183,6 +1202,16 @@ fr:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Mue
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Mine dans une feuille
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Poils
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construction
+    #Does the observation belong to a non-established population or not
+    established: Établi
+    #Organism is not a member of an established population
+    not_established: Non établi
   controlled_term_definitions:
     alive: L'organisme est vivant et ne montre aucun signe de mort imminente
     bone: |
@@ -1405,6 +1434,8 @@ fr:
   curator_application_you_should_apply_if_you_can_behave: |
     Vous êtes en mesure d'adopter un comportement approprié sur iNaturalist et de vous conformer aux
     règles de la communauté. On attend des personnes qui reçoivent les pouvoirs des responsables qu'elles soient des utilisateurs exemplaires d'iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guide du curateur
   curators_changed_for_x_html: "Responsables de l’organisation modifiés à %{x}"
   curators: Responsables de l’organisation
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
@@ -1745,6 +1776,8 @@ fr:
   editing_this: Modification de %{elem}
   editing_x_in_y: "Modification de %{x} dans %{y}"
   editors: Contributeurs
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Guide de l'éducateur
   either_that_user_doesnt_exist_or: "Cet utilisateur n’existe pas ou vous le suivez déjà."
   eligible_for_research_grade: Éligible au niveau recherche
   email: Courriel
@@ -2030,6 +2063,8 @@ fr:
   geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé ?
   get_started: Commencer
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Premiers pas
   getting_started_guide: Guide pour le débutant
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONNER MENSUELLEMENT
@@ -2299,6 +2334,11 @@ fr:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que c'est %{taxon} ?
   is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Ce nom scientifique est-il actuellement accepté ?
   it_can_now_be_used_for_research: Elle peut maintenant être utilisée pour la recherche et publiée sur d’autres sites web
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: texte en italique
@@ -4577,6 +4617,8 @@ fr:
   share_colon: "Partager:"
   short_code_for_this_place: Abréviation pour ce lieu, par ex. É.-U. pour États-Unis
   short_or_abbreviated_title_for_display: Titre court ou abrégé pour l’affichage dans des champs à espace réduit. 10 caractères maximum.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Ce nom commun doit-il être affiché par défaut pour ce taxon ?
   show: Afficher
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
   show_hidden_content: Afficher le contenu masqué
@@ -4593,6 +4635,8 @@ fr:
   show_no_annotation: Montrer « Pas d'annotation »
   show_off_your_recent_observations: Publiez vos observations récentes sur votre blog ou votre site web !
   show_only: 'Montrer seulement :'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Voir sur OpenStreetMap
   show_relative_proportions_of_all_observations: Afficher les proportions relatives de toutes les observations
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Afficher le total actuel
@@ -4939,6 +4983,8 @@ fr:
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
   taxon_drop: perte de taxon
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Suppression du taxon affectant %{taxon}
   taxon_id: Identifiant de taxon
   taxon_ids: IDs de taxon
   taxon_map:
@@ -4962,6 +5008,9 @@ fr:
   taxon_framework_taxon: Taxon du cadre taxinomique
   taxon_history_notice: L'historique a été lancé en février 2022, donc aucun historique n'est disponible avant cette date.
   taxon_merge: fusion de taxon
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Fusion de taxons affectant %{taxa}
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre à un taxon existant dans notre base de données
   taxon_observed_by_html: |
@@ -4997,9 +5046,17 @@ fr:
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
   taxon_split: séparation de taxon
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Fractionnement du taxon affectant %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: organisation du taxon
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Mise en attente du taxon affectant %{taxon}
   taxon_swap: échange de taxon
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Échange de taxons affectant %{taxa}
   taxon_swap_only_has_one_input: limite d'un taxon en entrée pour un échange
   taxon_swap_has_inputs_and_outputs: un échange doit avoir des entrées et des sorties
   taxon_name_was_deleted: Le nom du taxon a été supprimé.
@@ -5346,6 +5403,8 @@ fr:
   unable_to_save_comment: Malheureusement, nous n'avons pas pu enregistrer le commentaire.
   unblock: Débloquer
   unclassified: Non classifié
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Comprendre les Projets
   ungrafted_taxa: Taxons non greffés
   unhide_content: Démasquer le contenu
   unhide_desc: |
@@ -5487,10 +5546,14 @@ fr:
     %{user} pense qu'il s'agit d'une liste complète de %{taxon} dans %{place}
   user_blocked: Utilisateur bloqué
   user_commented: "%{user} a commenté"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} a effectué une suppression de taxon affectant %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_merge_affecting_taxa2: "%{user} a effectué une fusion de taxons affectant %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} a effectué une séparation de taxons affectant %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} a mis le taxon %{taxon} en attente"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa2: "%{user} a effectué un échange de taxons affectant %{taxa}"
   user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
@@ -5499,6 +5562,9 @@ fr:
   user_faved_this_observation: "%{user} a mis cette observation en favori"
   user_flagged_as_a_non_spammer_html: "%{user} signalé comme non spammeur"
   user_flagged_as_a_spammer_html: "%{user} signalé comme spammeur"
+  user_has_been_removed_from_site: |
+    %{username} a été retiré de %{site_name} (cela peut prendre jusqu'à une heure
+    pour supprimer complètement le contenu associé)
   user_has_opted_out_of_community_id: L’utilisateur a refusé le taxon de la communauté
   user_hasnt_joined_any_projects: "%{user} n'a rejoint aucun projet"
   user_helped_x_people_with_y_ids_html: "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>"
@@ -5525,6 +5591,7 @@ fr:
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
     L’observateur vous a donné accès aux coordonnées masquées de toutes ses observations.
+  user_updated_an_observation_field_html: '%{user} a mis à jour une valeur pour "%{field_name}" pour une observation de %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
   username_description: Ce sera le nom d'utilisateur que vous utiliserez pour vous identifier et que les autres verrons pour vous tagger sur iNaturalist
@@ -6460,6 +6527,12 @@ fr:
           veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
     nls_demo:
       what_do_you_want_to_search_for: Que voulez-vous rechercher ?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: par exemple %{query_in_english}
       try_one_of_these_example_searches_colon: "Essayez l’un de ces exemples de recherches :"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model). Try
@@ -6473,6 +6546,7 @@ fr:
       view_these_observations_in_identify: Voir ces observations dans Identification
       #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
       inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> s'est associé à des chercheurs de <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">University of College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>, et avec le soutien généreux de <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI pour Good Lab</a> pour mieux comprendre le potentiel des Modèles de Langage de Vision pour aider à organiser, explorer, et expliquer les observations d'iNaturalist. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Cet outil de démonstration vous permet de taper une phrase de recherche (comme "<a href="%{url}">%{query_in_english}</a>"), et la compare avec 10 millions de photos iNaturalist. Les résultats sont classés de la plus pertinente à la moins pertinente. Vous pouvez utiliser cette démo comme une nouvelle façon de trouver des observations iNaturalist intéressantes à annoter ou à ajouter à votre projet.
       you_can_also_use_this_demo: Vous pouvez également utiliser cette démo pour nous aider à évaluer le modèle Vision Language qui alimente cette démo en nous indiquant les images retournées qui correspondent à votre phrase de recherche. Cette démo utilise un modèle <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP</a> qui n'a pas été entrainé sur les données iNaturalist ou par l'équipe iNaturalist. Parfois, l'outil peut produire des résultats inexacts, biaisés ou offensants. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">En savoir plus sur le blog iNaturalist</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Si vous souhaitez soutenir ce travail
       thank_you_for_your_submission!: Merci pour votre contribution !
@@ -7677,29 +7751,25 @@ fr:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <ul class="ui">
-          <li><p>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</p></li>
-          <li><p>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</p></li>
-          <li><p>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</p></li>
-          <li><p>
-          N’ajoutez pas d’information qui ne soit pas le nom, par ex. des informations
-          entre parenthèses sur comment vous pensez que le nom devrait être utilisé
-          </p></li>
-          <li>
-          <p>
-          Les nouveaux lexiques doivent être en anglais. Veuillez ne pas ajouter de noms de langue
-          traduits comme « French, Français » parce que cela rendra simplement
-          plus difficile ou impossible pour nous d’afficher les noms localisés aux personnes
-          qui utilisent ce site dans différentes langues.
-          </p>
+          <ul> 
+          <li><p>Essayez d'ajouter des noms qui ont été utilisés ailleurs. N'inventez pas de nouveaux noms.</p></li> 
+          <li><p>N'ajoutez pas de noms en double, par exemple ne nommez pas de nombreux faucons "faucon"</p></li> 
+          <li><p>Pour les taxons de niveau supérieur, essayez d'utiliser des noms qui incluent tous les descendants, comme "hérons et alliés" ou "famille des bruyères"</p></li> 
+          <li> 
+          <p>N'ajoutez pas d'informations qui ne sont pas le nom, par exemple des informations entre parenthèses sur la façon dont vous pensez que le nom doit être utilisé 
+          </p> 
           </li>
-          <li>
+          <li> 
           <p>
-          Les noms communs associés avec les langues traduites apparaîtront
-          comme le nom commun par défaut pour cette langue (à moins que les préférences de lieu, d’ordre des noms, etc. le modifient).
-          <a class="readmore" href="/pages/translate">En savoir plus sur la traduction</a>
-          </p>
-          </li>
+          Les nouveaux lexiques doivent être rédigés en anglais. N'ajoutez pas de noms de langues traduites comme "French, français", car cela rendrait difficile, voire impossible, l'affichage des noms localisés pour les personnes qui utilisent le site dans différentes langues. 
+          </p> 
+          </li> 
+          <li> 
+          <p>
+          Les noms communs associés aux langues traduites apparaîtront comme le nom commun par défaut pour cette langue (sous réserve de l'effet des préférences de lieu, de l'ordre des noms, etc.) 
+          <a class="readmore" href="/pages/translate">En savoir plus sur la traduction</a> 
+          </p> 
+          </li> 
           </ul>
         places_help_html: |
           Ajoutez un nom à un lieu pour lui donner priorité pour les sites et les utilisateurs de ce lieu. S’il y a plusieurs noms par lieu, vous pouvez les prioriser <a href="%{url}">ici</a>. Veuillez <strong>ne pas</strong> ajouter de noms pour TOUS
