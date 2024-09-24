@@ -299,6 +299,12 @@ class ObservationFieldValue < ApplicationRecord
     create_annotation
   end
 
+  def modified?
+    return false unless updated_at && created_at
+
+    updated_at > created_at
+  end
+
   def as_indexed_json
     json = {
       id: id,

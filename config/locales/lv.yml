@@ -5084,6 +5084,7 @@ lv:
   values: Vērtības
   verbing_x_of_y: "%{verb} %{x} no %{y}..."
   verifiable_observations_by_observation_date: Pierādāmi novērojumi, šķirojot pēc novērojuma datuma
+  video_tutorials: Video apmācības
   view: Skatīt
   view_all: Skatīt visu
   view_all_fields: Skatīt visus laukus
@@ -5153,7 +5154,6 @@ lv:
   view_your_observations: Skatīt savus novērojumus
   view_yours: Skatīt savus
   view_all_of_your_observations_from_x: "Skatīt visus savus novērojumus no %{x}"
-  video_tutorials: Video apmācības
   visually_similar: Vizuāli līdzīgs
   vulnerable: Saudzējams
   w00t_no_ungrafted_taxa: Kas tad nu! Nepievienotu taksonu nav.
@@ -6532,26 +6532,6 @@ lv:
           Taksona nosaukums ar klasifikāciju. Infraspecifiskās klasifikācijas dati jāievada pēc binominālā nosaukuma.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul><li><p>Centies pievienot nosaukumus, kas jau tiek izmantoti. Lūdzu, neizgudro jaunus nosaukumus.</p></li>
-          <li><p>Nepievieno nosaukumu dublikātus, piemēram, nevajadzētu nosaukt vairākus vanagus par "vanagu".</p></li>
-          <li><p>Pievienojot augstākas pakāpes taksonu nosaukumus, centies iekļaut visus zemāko pakāpju taksonus, piemēram, "Gārņu dzimta" vai "Ēriku dzimta"</p></li>
-          <li>
-          <p>
-          Lūdzu, pievieno tikai nosaukumu, nevis citu informāciju, piemēram, nav jāraksta savas domas par to, kā nosaukums būtu jāizmanto.
-          </p>
-          </li>
-          <li>
-          <p>
-          Jauniem leksikoniem jābūt angļu valodā. Lūdzu, nepievieno pārtulkotus nosaukumus citās valodās, piemēram, "French, Français", jo tas liegs mums iespēju rādīt lokalizētus nosaukumus cilvēkiem, kas lieto mūsu vietni dažādās valodās.
-          </p>
-          </li>
-          <li>
-          <p>
-          Noklusējuma režīmā tiek attēloti citās valodās pārtulkotie tautā pieņemtie nosaukumi (vietu atsauksmju un nosaukumu kārtošanas u.c. funkcijas tiek dezaktivizētas). <a class="readmore" href="/pages/translate">Vairāk informācijas par tulkošanu</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Pievieno vietai nosaukumu, lai lietotājiem un vietnēm tie būtu redzami sākumā. Ja vienai vietai pievienoti vairāki nosaukumi, tos iespējams sakārtot <a href="%{url}">šeit</a>. Lūdzu, <strong>nepievieno</strong> nosaukumus katrai vietai, kur noteiktais nosaukums tiek izmantots, bet gan tikai tām vietām, kas ir pretrunā ar citām vietām.
       taxon:

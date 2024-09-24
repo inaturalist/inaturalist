@@ -5198,6 +5198,7 @@ zh-TW:
   values: 值
   verbing_x_of_y: "%{verb} %{y} 個中的 %{x}..."
   verifiable_observations_by_observation_date: 透過觀察日期的可證實觀察
+  video_tutorials: 影片教學
   view: 檢視
   view_all: 檢視所有
   view_all_flags: 檢視所有標籤
@@ -5262,7 +5263,6 @@ zh-TW:
   view_your_observations: 檢視您的觀察
   view_yours: 檢視您自己的
   view_all_of_your_observations_from_x: "檢視您所有來自於%{x}的觀察"
-  video_tutorials: 影片教學
   visually_similar: 視覺上相似
   vulnerable: 易受害
   w00t_no_ungrafted_taxa: 唔！未移接的物種分類！
@@ -5851,7 +5851,8 @@ zh-TW:
       what_do_you_want_to_search_for: 您想要找尋什麼？
       try_one_of_these_example_searches_colon: "試著用這些範例之一來搜尋"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: 協助我們改善
       to_help_us_improve: 我們想要知道在此頁面中哪張照片和您搜尋的&quot;%{searched_term}&quot;是有關的，以協助我們改善此模型。如果該照片符合您的搜尋，請在每張相關的照片上按%{thumbs_up_icon}，若無關聯則請按%{thumbs_down_icon}。當您完成標記後，請按提交。 #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: 將剩餘部分標記為相關
@@ -6780,29 +6781,6 @@ zh-TW:
           此級別的物種分類名稱。對於特定的級別，是插入在雙名之後。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li><P>嘗試添加有在其它地方被使用到的名稱。請不要自行原創新名稱。</P></li>
-          <li><P>請不要添加重複性質的名稱，例如：用複數的「老鷹們」來命名「老鷹」</P></li>
-          <li><P>對於更高層級的物種分類，嘗試使用能包含到所有派生的名稱，例如「鷺科動物」或「杜鵑花科」</P></li>
-          <li>
-          <P>
-          請不要添加無關名稱的訊息，例如：在名稱後面用圓括號備註您對於該名稱看法的訊息
-          </P>
-          </li>
-          <li>
-          <p>
-          新詞彙應採用英文。請不要添加翻譯過的語言名稱，例如像「French，法文」，
-          因為這會在使用不同語言的人們在利用此網站時，我們會很難或無法顯示在地化名稱。
-          </p>
-          </li>
-          <li>
-          <p>
-          與翻譯語言所關聯的俗名會作為該語言的預設俗名（除了地點偏好設定之外的名稱排序，以及其它等等）。
-          <a class="readmore" href="/pages/translate">了解更多有關翻譯</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           替地點添加名稱時，請以網站或來自於該地點的用戶作為優先考慮。如果地點擁有多種名稱您可以<a href="%{url}">此</a>為優先。請<strong>不要</strong>為地點添加已使用的名稱，除非該地點與其它地點有撞名情況。
       taxon:

@@ -231,6 +231,8 @@ id:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Tambahkan daftar berpeluru
   add_a_comment: Tambahkan Komentar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Tambahkan Status Konservasi
   add_a_field: Tambahkan Kolom
   add_a_flag: Tambahkan Penanda
   #Tool tip for a button that adds a link to a text area
@@ -734,6 +736,7 @@ id:
   back_to_your_observations: Kembali ke pengamatan Anda
   back_to_your_profile: Kembali ke profil Anda
   badges: Lencana
+  base_map_copyright_openstreetmap_html: Peta dasar © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
@@ -1364,6 +1367,8 @@ id:
   curator_application_you_should_apply_if_you_can_behave: |
     Anda dapat memperagakan tingkah laku yang sesuai dalam iNaturalist dan tunduk kepada Pedoman
     Komunitas. Dengan adanya kuasa kuratorial, Anda juga diharapkan agar menjadi pengguna iNaturalist yang teladan.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Panduan Kurator
   curators_changed_for_x_html: "Kurator diubah untuk %{x}"
   curators: Kurator
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
@@ -1701,6 +1706,8 @@ id:
   editing_this: Mengubah %{elem}
   editing_x_in_y: "Mengubah %{x} di %{y}"
   editors: Penyunting
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Panduan Guru
   either_that_user_doesnt_exist_or: "Entah pengguna tidak ada atau Anda sudah mengikuti mereka."
   eligible_for_research_grade: Memenuhi syarat untuk Kelas Riset
   email: Email
@@ -1985,6 +1992,8 @@ id:
   geoprivacy_is_private_desc: Pengamat telah memilih untuk menyembunyikan koordinatnya.
   georeferenced: Memiliki georeferensi?
   get_started: Mulai
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Memulai
   getting_started_guide: Panduan Untuk Memulai
   #Prompt to donate money on a montly basis
   give_monthly_caps: BERIKAN TIAP BULAN
@@ -2250,6 +2259,11 @@ id:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Apakah bukti-bukti yang disediakan cukup untuk mengonfirmasi bahwa ini adalah %{taxon}?
   is_this_offensive_html: 'Apakah ini <a href="/help#inappropriate">tidak pantas</a>, spam, atau serangan?'
   is_this_place_a_duplicate: Apakah tempat ini merupakan duplikasi?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Apakah nama ilmiah ini diterima saat ini?
   it_can_now_be_used_for_research: Sekarang, ini dapat digunakan untuk penelitian dan ditampilkan di laman lain
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: teks bercetak miring
@@ -4549,6 +4563,8 @@ id:
   share_colon: "Bagikan:"
   short_code_for_this_place: Kode pendek untuk tempat ini, contohnya US untuk United States
   short_or_abbreviated_title_for_display: Judul pendek atau singkatan untuk ditampilkan di area yang memiliki ruang terbatas. Maks 10 karakter.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Apakah nama umum ini harus ditampilkan sebagai yang utama untuk takson ini?
   show: Tampilkan
   show_active_and_inactive_taxa: Tampilkan taksa aktif dan tidak aktif
   show_hidden_content: Tampilkan Konten Tersembunyi
@@ -4565,6 +4581,8 @@ id:
   show_no_annotation: Tampilkan "Tanpa Catatan"
   show_off_your_recent_observations: Pamerkan pengamatan terbaru Anda di blog Anda sendiri atau situs web Anda!
   show_only: Hanya tampilkan
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Tampilkan OpenStreetMap
   show_relative_proportions_of_all_observations: Tampilkan proporsi relatif untuk semua pengamatan
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Tunjukkan Total Akumulasi
@@ -5305,6 +5323,8 @@ id:
   unable_to_save_comment: Maaf, kami tidak dapat menyimpan komentar ini.
   unblock: Cabut Blokiran
   unclassified: Tidak diklasifikasi
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Memahami Proyek
   ungrafted_taxa: Taksa Yang Tidak Dicangkok
   unhide_content: Tampilkan Konten
   unhide_desc: |
@@ -5457,6 +5477,8 @@ id:
   user_faved_this_observation: "%{user} menjadikan favorit pengamatan ini"
   user_flagged_as_a_non_spammer_html: "%{user} ditandai sebagai bukan spammer"
   user_flagged_as_a_spammer_html: "%{user} ditandai sebagai spammer"
+  user_has_been_removed_from_site: |
+    %{username} telah dihapus dari %{site_name} (penghapusan konten-konten yang terkait dengannya dapat memerlukan waktu hingga satu jam)
   user_has_opted_out_of_community_id: Pengguna telah memilih untuk keluar dari Takson Komunitas
   user_hasnt_joined_any_projects: "%{user} belum bergabung dengan proyek apapun"
   user_helped_x_people_with_y_ids_html: "%{user} menolong <strong>%{x} orang</strong> dengan <strong>%{y} ID</strong>"
@@ -5483,6 +5505,7 @@ id:
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
+  user_updated_an_observation_field_html: '%{user} memperbarui nilai untuk "%{field_name}" pada pengamatan oleh %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> menulis,
   username: Nama pengguna
   username_description: Ini adalah nama pengguna yang akan Anda gunakan untuk masuk, juga dapat digunakan oleh pengguna lainnya untuk mengidentifikasi Anda di iNaturalist
@@ -5542,6 +5565,7 @@ id:
   values: Nilai
   verbing_x_of_y: "%{verb} %{x} dari %{y}..."
   verifiable_observations_by_observation_date: Pengamatan Yang Dapat Diverifikasi Berdasarkan Tanggal Pengamatan
+  video_tutorials: Video Tutorial
   view: Lihat
   view_all: Lihat Semua
   view_all_caps: LIHAT SEMUA
@@ -5618,7 +5642,6 @@ id:
   view_your_personal_year_in_review_caps: "LIHAT KILAS BALIK SATU TAHUN %{year} MILIK ANDA"
   view_yours: Lihat Kepunyaanmu
   view_all_of_your_observations_from_x: "Lihat semua pengamatan Anda dari %{x}"
-  video_tutorials: Video Tutorial
   visually_similar: Serupa Secara Visual
   vulnerable: Rentan
   w00t_no_ungrafted_taxa: 4p4! Tidak ada taksa yang tidak dicangkok!
@@ -6403,7 +6426,8 @@ id:
       for_example_query: seperti %{query_in_english}
       try_one_of_these_example_searches_colon: "Coba salah satu contoh pencarian ini:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Bantu kami untuk berkembang
       to_help_us_improve: Untuk membantu kami meningkatkan model ini, kami ingin mengetahui foto-foto mana saja di halaman ini yang relevan terhadap pencarian &quot;%{searched_term}&quot; Anda. Harap pilih relevan %{thumbs_up_icon} untuk gambar yang sesuai dengan pencarian Anda dan tidak relevan %{thumbs_down_icon} jika gambarnya tidak sesuai. Saat Anda sudah selesai, silakan klik kirim. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Tandai sisanya sebagai relevan

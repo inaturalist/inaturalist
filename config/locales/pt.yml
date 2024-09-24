@@ -221,6 +221,10 @@ pt:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Precisão (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Prec. acima de
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Prec. abaixo ou desc.
   account: Conta
   account_creation: Criação de Conta
   account_settings: Definições da conta
@@ -547,6 +551,7 @@ pt:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: Aplicações
+  apply_app_owner: Aplicar
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Submeter

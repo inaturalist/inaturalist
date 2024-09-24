@@ -93,6 +93,9 @@ module DarwinCore
       archive_path = make_archive( *paths )
       logger.debug "Archive: #{archive_path}"
       FileUtils.mv( archive_path, @opts[:path] )
+      unless @opts[:path].starts_with?( @opts[:work_path] )
+        FileUtils.rm_rf( @opts[:work_path] )
+      end
       logger.info "Archive generated: #{@opts[:path]}"
       if @benchmarks
         logger.info %w(BENCHMARK TOTAL AVG).map{|h| h.ljust( 30 )}.join( " " )

@@ -56,6 +56,7 @@ $( function ( ) {
       initializeMapController( );
     } )
     .catch( function ( e ) {
+      // eslint-disable-next-line no-console
       console.log( e );
     } );
 } );
@@ -128,6 +129,7 @@ application.controller( "SearchController", ["ObservationsFactory", "PlacesFacto
     $location,
     $anchorScroll
   ) {
+    // eslint-disable-next-line no-use-before-define
     SearchController(
       ObservationsFactory,
       PlacesFactory,
@@ -183,7 +185,7 @@ var SearchController = function (
   $scope.possibleSubviews = { observations: ["map", "grid", "table"] };
   $scope.possibleFields = ["iconic_taxa", "month", "swlat", "swlng",
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
-    "locale", "preferred_place_id", "ident_user_id", "spam"];
+    "locale", "preferred_place_id", "ident_user_id", "spam", "test"];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "grid";
   $rootScope.mapType = "map";
@@ -191,7 +193,7 @@ var SearchController = function (
   $rootScope.mapTerrain = false;
   $scope.defaultParams = {
     verifiable: true,
-    order_by: "observations.id",
+    order_by: "id",
     order: "desc",
     page: 1,
     spam: false
@@ -409,7 +411,7 @@ var SearchController = function (
       scope.moreFiltersHidden = false;
       return;
     }
-    if ( !$scope.clickedMoreFiltersOpen === false ) {
+    if ( $scope.clickedMoreFiltersOpen === false ) {
       scope.moreFiltersHidden = true;
       return;
     }
@@ -419,7 +421,7 @@ var SearchController = function (
         moreFiltersHidden = false;
       }
     } );
-    if ( pageInit && $scope.clickedMoreFiltersOpen === null && !moreFiltersHidden ) {
+    if ( pageInit && !moreFiltersHidden ) {
       $scope.clickedMoreFiltersOpen = true;
     }
     scope.moreFiltersHidden = moreFiltersHidden;
@@ -507,7 +509,7 @@ var SearchController = function (
           nelat: $scope.params.nelat,
           nelng: $scope.params.nelng
         };
-      } else if ( $scope.params.lat && $scope.params.lng && $scope.params.radius ) {
+      } else if ( $scope.params.lat && $scope.params.lng ) {
         $scope.drawing.currentShape = "circle";
         $scope.drawing.disabled = true;
       }
@@ -1682,9 +1684,10 @@ var SearchController = function (
   $scope.preInitialize( );
 };
 
-application.controller( "MapController", ["ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope",
-  function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
-    MapController( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope );
+application.controller( "MapController", ["ObservationsFactory", "PlacesFactory", "shared", "$scope", "$rootScope", "testingApiV2",
+  function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 ) {
+    // eslint-disable-next-line no-use-before-define
+    MapController( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope, testingApiV2 );
     initializeMapController = function ( ) {
       $scope.dragIconMarker = new google.maps.Marker( {
         position: { lat: 0, lng: 0 },
@@ -1701,7 +1704,14 @@ application.controller( "MapController", ["ObservationsFactory", "PlacesFactory"
   }
 ] );
 
-var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
+var MapController = function (
+  ObservationsFactory,
+  PlacesFactory,
+  shared,
+  $scope,
+  $rootScope,
+  testingApiV2
+) {
   $rootScope.$on( "updateParamsForCurrentRect", function ( ) {
     $scope.updateParamsForCurrentRect( );
   } );
@@ -1753,6 +1763,9 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
     if ( defaultMapType === google.maps.MapTypeId.SATELLITE
       || defaultMapType === google.maps.MapTypeId.HYBRID ) {
       $scope.$parent.mapType = "satellite";
+    }
+    if ( defaultMapType === iNaturalist.Map.MapTypeId.OSM ) {
+      $scope.$parent.mapType = iNaturalist.Map.MapTypeId.OSM;
     }
     if ( defaultMapType === iNaturalist.Map.MapTypes.LIGHT_NO_LABELS
       || defaultMapType === google.maps.MapTypeId.SATELLITE ) {
@@ -1959,6 +1972,8 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
           ? iNaturalist.Map.MapTypes.LIGHT
           : iNaturalist.Map.MapTypes.LIGHT_NO_LABELS;
       }
+    } else if ( mapType === iNaturalist.Map.MapTypeId.OSM ) {
+      mapTypeId = iNaturalist.Map.MapTypeId.OSM;
     } else {
       mapTypeId = mapLabels ? google.maps.MapTypeId.HYBRID : google.maps.MapTypeId.SATELLITE;
     }
@@ -2053,7 +2068,7 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
     } else {
       iwOpts.pixelOffset = new google.maps.Size( 0, 0 );
     }
-    $scope.infoWindowCallback( $scope.map, $scope.snippetInfoWindow, latLng, o.id, iwOpts );
+    $scope.infoWindowCallback( $scope.map, $scope.snippetInfoWindow, latLng, o, iwOpts );
   } );
   $rootScope.$on( "hideInfowindow", function ( ) {
     $scope.snippetInfoWindowObservation = null;
@@ -2064,11 +2079,12 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
   $scope.infoWindowCallbackStartTime = null;
   // callback method when an observation is clicked on the map
   // fetch the observation details, and render the snippet template
-  $scope.infoWindowCallback = function ( map, iw, latLng, observationID, options ) {
+  $scope.infoWindowCallback = function ( map, iw, latLng, observation, options ) {
     map.infoWindowSetContent( iw, latLng, "<div class='infowindow loading'>"
       + I18n.t( "loading" ) + "</div>", options );
     var time = new Date( ).getTime( );
     $scope.infoWindowCallbackStartTime = time;
+    var observationID = testingApiV2 ? observation.uuid : observation.id;
     ObservationsFactory.show( observationID, iNaturalist.localeParams( ) )
       .then( function ( response ) {
         var observations = ObservationsFactory.responseToInstances( response );
@@ -2247,6 +2263,7 @@ var MapController = function ( ObservationsFactory, PlacesFactory, shared, $scop
         $scope.map.fitBounds( circle.getBounds( ) );
       };
       var getCurrentPositionFailure = function ( ) {
+        // eslint-disable-next-line no-alert
         alert( I18n.t( "failed_to_find_your_location" ) );
         $scope.findingUserLocation = false;
       };

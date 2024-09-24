@@ -84,7 +84,7 @@ class TaxonNamePriorities extends Component {
               </div>
             </div>
           ) : (
-            <div className="alert alert-warning text-center">
+            <div className="alert alert-warning alert-mini text-center">
               { I18n.t( "views.users.edit.taxon_name_priorities.the_maximum_number_of_lexicons_have_been_added" ) }
             </div>
           )}

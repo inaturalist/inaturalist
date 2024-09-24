@@ -15,7 +15,12 @@
       CURRENT_USER.prefers_hide_identify_annotations = #{logged_in? && current_user.prefers_hide_identify_annotations};
       CURRENT_USER.prefers_hide_identify_projects = #{logged_in? && current_user.prefers_hide_identify_projects};
       CURRENT_USER.prefers_hide_identify_observation_fields = #{logged_in? && current_user.prefers_hide_identify_observation_fields};
+      CURRENT_USER.preferred_identify_map_zoom_level = #{logged_in? && current_user.preferred_identify_map_zoom_level ? current_user.preferred_identify_map_zoom_level : "null"};
+      CURRENT_USER.preferred_suggestions_source = #{logged_in? && current_user.preferred_suggestions_source ? current_user.preferred_suggestions_source.inspect.html_safe : "null"};
+      CURRENT_USER.preferred_suggestions_sort = #{logged_in? && current_user.preferred_suggestions_sort ? current_user.preferred_suggestions_sort.inspect.html_safe : "null"};
     }
+    var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
+      only: [ :id ], include: { default_name: { only: [ :name ] } } ).html_safe : "{ }" };
   = javascript_include_tag "webpack/react-image-gallery-webpack"
   = javascript_include_tag "webpack/user-text-webpack"
   = javascript_include_tag "webpack/observations-identify-webpack"

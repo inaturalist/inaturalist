@@ -5671,6 +5671,7 @@ es-MX:
   values: Valores
   verbing_x_of_y: "%{verb} %{x} de %{y}..."
   verifiable_observations_by_observation_date: Observaciones verificables por fecha de observación
+  video_tutorials: Videotutoriales
   view: Ver
   view_all: Ver todas
   view_all_caps: VER TODOS
@@ -5748,7 +5749,6 @@ es-MX:
   view_your_personal_year_in_review_caps: "VER TU RESUMEN PERSONAL DEL AÑO %{year}"
   view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: "Ve todas tus observaciones de %{x}"
-  video_tutorials: Videotutoriales
   visually_similar: Similar visualmente
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: '¡Especie o grupo no injertado!'
@@ -6548,7 +6548,8 @@ es-MX:
       what_do_you_want_to_search_for: '¿Qué deseas buscar?'
       try_one_of_these_example_searches_colon: "Prueba una de estas búsquedas de ejemplo:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: '¡Ayúdanos a mejorar!'
       to_help_us_improve: Para ayudarnos a mejorar este modelo nos gustaría saber cuáles de las imágenes de esta página son relevantes para su búsqueda &quot;%{searched_term}&quot;. Por favor, marque cada imagen como relevante %{thumbs_up_icon} si coincide con su búsqueda y no es relevante %{thumbs_down_icon} si no lo es. Cuando haya terminado, haga clic en enviar. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Marcar los restantes como relevantes
@@ -7677,12 +7678,6 @@ es-MX:
           El nombre del taxón con el rango. Para rangos infraespecificos, rango se  inserta después del binomio.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul class="ui">
-          <li>Trata de añadir nombres que se han utilizado en otros lugares. Por favor, no inventes nuevos nombres.</li>
-          <li>No agregues nombres duplicados, por ejemplo, no menciones a numerosos halcones "halcón"</li>
-          <li>Para taxa superiores de nivel, trata de usar nombres que incluyen todos los descendientes, como "Jacamarás y parientes" o "familia de brezo"</li>
-          </ul>
         places_help_html: |
           Añade un nombre para un lugar para darle prioridad para los sitios y los usuarios de ese lugar. Si hay varios nombres por lugar se puede dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
           <strong>no agregues nombres de todos los lugares donde se utiliza el nombre</strong>, sólo para los lugares que entran en conflicto con otros lugares.

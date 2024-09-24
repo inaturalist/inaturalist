@@ -1028,6 +1028,17 @@ describe User do
       expect( keeper.project_users.count ).to eq 1
     end
 
+    it "retains the earliest created_at date" do
+      earlier_created_date = 1.year.ago
+      later_created_date = Time.now
+      reject.update_columns( created_at: earlier_created_date )
+      keeper.update_columns( created_at: later_created_date )
+      expect( keeper.created_at ).to be > reject.created_at
+      expect( keeper.created_at ).to eq later_created_date
+      keeper.merge( reject )
+      expect( keeper.created_at ).to eq earlier_created_date
+    end
+
     describe "matching identifications on the same observation" do
       let(:observation) { Observation.make! }
       let(:keeper_ident) { Identification.make!( observation: observation, user: keeper ) }

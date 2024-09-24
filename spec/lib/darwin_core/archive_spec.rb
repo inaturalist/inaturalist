@@ -867,3 +867,28 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     end
   end
 end
+
+describe DarwinCore::Archive, "generate" do
+  elastic_models( Observation, Taxon )
+
+  let( :o ) { make_research_grade_observation }
+
+  it "removes tmp directory after moving completed archive" do
+    final_archive_path = File.join( Dir.tmpdir, "dwca_from_archive_spec.zip" )
+    if File.exist?( final_archive_path )
+      FileUtils.rm( final_archive_path )
+    end
+    archive = DarwinCore::Archive.new(
+      taxon: o.taxon_id,
+      extensions: %w(SimpleMultimedia),
+      path: final_archive_path
+    )
+    archive_work_path = archive.instance_variable_get( "@opts" )[:work_path]
+    expect( Dir.exist?( archive_work_path ) ).to be true
+    expect( File.exist?( final_archive_path ) ).to be false
+    archive.generate
+    expect( Dir.exist?( archive_work_path ) ).to be false
+    expect( File.exist?( final_archive_path ) ).to be true
+    FileUtils.rm( final_archive_path )
+  end
+end

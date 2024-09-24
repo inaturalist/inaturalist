@@ -4105,6 +4105,7 @@ lt:
   values: Reikšmės
   verbing_x_of_y: "%{verb}%{x} iš %{y}..."
   verifiable_observations_by_observation_date: Identifikuotini stebėjimai pagal stebėjimo datą
+  video_tutorials: Video pamokos
   view: Rodyti
   view_all: Rodyti viską
   view_all_flags: Rodyti visus pažymėjimus
@@ -4164,7 +4165,6 @@ lt:
   view_your_observations: Žiūrėti jūsų stebėjimus
   view_yours: Rodyti jūsų
   view_all_of_your_observations_from_x: "Žiūrėti visus %{x} stebėjimus"
-  video_tutorials: Video pamokos
   visually_similar: Vizualiai panašus
   vulnerable: Pažeidžiamas
   w_photos_only: su nuotraukomis
@@ -4635,27 +4635,6 @@ lt:
           unannotated: Be papildomos informacijos
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Prašome pridėti tik pavadinimus, kurie iš tiesų yra kažkur naudojami. Prašome neišgalvoti pavadinimų patiems.</p></li>
-          <li><p>Nepridėkite dublikatų.</p></li>
-          <li>
-          <p>
-          Nepridėkite informacijos, kuri nėra pavadinimas, pvz.: papildoma informacija, kur ir kaip pavadinimas turi būti naudojamas.
-          </p>
-          </li>
-          <li>
-          <p>
-          Nauji leksikonai turi būti anglų kalba. Nepridėkite išverstų kalbų pavadinimų (pvz.: Français).
-          </p>
-          </li>
-          <li>
-          <p>
-          Tam tikros kalbos pavadinimai bus rodomi tinklalapyje, jeigu nustatymuose bus pasirinkta tinklalapio kalba arba vieta, kurioje kalbama ta kalba.
-          <a class="readmore" href="/pages/translate">Sužinokite daugiau apie vertimą</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Pridėkite vietoves, kad vartotojai iš šių vietovių pirmiausiai matytų šį pavadinimą. Jeigu vietovėje yra vartojami keli skirtingi pavadinimai, pirmenybę galite keisti <a href="%{url}">čia</a>. Prašome <strong>nepridėti</strong> visų vietovių, kur pavadinimas yra naudojamas. Pridėkite tik tas vietoves, kuriose naudojamas pavadinimas yra kitoks, nei kitur.
     users:

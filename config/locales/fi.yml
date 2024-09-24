@@ -196,6 +196,29 @@ fi:
   about_this_bioblitz: Tietoja tästä projektista
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
+  about_trips2_html: |
+    <h4>Matkojen avulla voit kerätä läsnä-poissa -dataa lisäämällä
+    kontekstin havaintoihisi</h4>
+    <p>
+    <strong>Miksi</strong> Läsnä-poissa oleva data sisältää tietoa otantaponnistuksesta, 
+    mikä on hyödyllistä tieteellisissä analyyseissä, kuten levinneisyysmallinnuksessa 
+    (raakatason iNaturalist-havainnot ovat vain läsnä -dataa).
+    </p>
+    <p>
+    <strong>Kuinka</strong> Matka lisää kontekstin havaintoihisi tallentamalla:
+    </p>
+    <ul>
+    <li><strong>Mitä</strong> etsit (kohdelista)</li>
+    <li><strong>Missä</strong> etsit (etsintäalue)</li>
+    <li><strong>Milloin</strong> etsit (etsintäjakso)</li>
+    </ul>
+    <p>
+    Lajien, jotka ovat kohdelistallasi ja jotka pystyit havaitsemaan etsintäalueella 
+    ja -jaksolla, tulkitaan olevan läsnä. Lajien, jotka ovat kohdelistallasi mutta 
+    joita et pystynyt havaitsemaan, tulkitaan olevan poissa. Klikkaa 'Luo läsnä-poissa 
+    dataa matkoista' luodaksesi taulukon lajin läsnä-poissa -tiedoista matkojen 
+    ja niihin liittyvien havaintojen perusteella. <a href='%{url}'>Lue lisää</a>
+    </p>
   about_trusting_projects: Tietoa projekteihin luottamisesta
   about_trusting_projects_options_any: Kaikki havaintosi tässä projektissa
   about_trusting_projects_options_any_desc: |-
@@ -251,6 +274,8 @@ fi:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Lisää lista ranskalaisin viivoin
   add_a_comment: Lisää kommentti
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Lisää suojelutaso
   add_a_field: Lisää kenttä
   add_a_flag: Lisää lippu
   #Tool tip for a button that adds a link to a text area
@@ -331,6 +356,7 @@ fi:
   add_plant_phenology_fruiting_annotation: 'Lisää "Plant Phenology: Fruiting" selitys'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Lisää merkintä "Kasvin fenologia: ei näyttöä kukinnasta"'
   add_flowers_and_fruits_flower_buds_annotation: 'Lisää "Kukat ja hedelmät: kukan nuput" -merkintä'
+  add_flowers_and_fruits_flowers_annotation: 'Lisää "Kukat ja hedelmät: kukat" -merkintä'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Lisää "Kukat ja hedelmät: hedelmät ja siemenet" -merkintä'
   add_flowers_and_fruits_no_flower_or_fruits: 'Lisää "Kukat ja hedelmät: ei kukkia tai hedelmiä" -merkintä'
   add_leaves_breaking_leaf_buds: 'Lisää "Lehdet: aukeavat lehden silmut" -merkintä'
@@ -750,6 +776,7 @@ fi:
   back_to_your_observations: Takaisin omiin havaintoihin
   back_to_your_profile: Takaisin profiiliisi
   badges: Merkit
+  base_map_copyright_openstreetmap_html: Pohjakartta © %{startTag}OpenStreetMap%{endTag}
   based_on_the_evidence_can_id_be_improved: |
     Voiko yhteisön tekemää tunnistusta vielä vahvistaa tai parantaa perustuen näyttöön?
   batch: Erä
@@ -1326,6 +1353,8 @@ fi:
   curator_application_you_should_apply_if_you_can_behave: |
     Osaat toimia asianmukaisesti ja noudatat yhteisösääntöjä. Yhdessä kuraattorivaltuuksien kanssa tulee oletus siitä, että
     olet esimerkillinen iNaturalist-käyttäjä.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuraattorin opas
   curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
   curators: Kuraattorit
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
@@ -1656,6 +1685,8 @@ fi:
   editing_this: Muokataan %{elem}
   editing_x_in_y: "Muokataan %{x} %{y}:ssä"
   editors: Muokkaajat
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Opettajan opas
   either_that_user_doesnt_exist_or: "Joko kyseistä käyttäjää ei ole olemassa, tai seuraat jo häntä."
   eligible_for_research_grade: Sovelias tutkimustasolle
   email: Sähköposti
@@ -1930,6 +1961,8 @@ fi:
   geoprivacy_is_private_desc: Havainnoija on piilottanut koordinaatit.
   georeferenced: Paikannettu?
   get_started: Aloita
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kuinka päästä alkuun
   getting_started_guide: Aloitusopas
   #Prompt to donate money on a montly basis
   give_monthly_caps: LAHJOITA KUUKAUSITTAIN
@@ -2144,6 +2177,11 @@ fi:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Onko havainto dokumentoitu riittävästi (valokuvin, äänin) jotta voitaisiin vahvistaa että se on %{taxon}?
   is_this_offensive_html: 'Onko tämä <a href="/help#inappropriate">sopimaton</a>, roskapostia, tai loukkaava?'
   is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Onko tämä tieteellinen nimi hyväksytty nykyisin?
   it_can_now_be_used_for_research: Havainto jaetaan GBIF:iin ja sitä voidaan käyttää tutkimukseen myös sen kautta.
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursivoitu teksti
@@ -4127,7 +4165,7 @@ fi:
   scientific_name: Tieteellinen nimi
   search: Hae
   search_all_fields: etsi kaikista kentistä
-  search_by_name_or_email: Hae nimellä tai sähköpostilla
+  search_by_name_or_email: Hae nimellä
   search_by_taxon_name_or_observation_id: Hae taksonin nimellä tai havainnon ID:llä
   search_by_taxon_name_or_flickr_photo_id: Hae taksonin nimellä tai Flick-kuvan tunnisteella
   search_catalogue_of_life: 'Hae <a href="http://www.catalogueoflife.org">Catalogue of Life</a> -sivustolta'
@@ -4189,6 +4227,8 @@ fi:
   share_colon: "Jaa:"
   short_code_for_this_place: Lyhyt koodi tälle paikalle, esim. US Yhdysvalloille
   short_or_abbreviated_title_for_display: Lyhyt tai lyhennetty otsikko näytettäväksi avaruus-rajoitetuilla alueilla. Enintään 10 merkkiä.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Pitäisikö tämä yleiskielinen nimi näkyä oletuksena taksonilla?
   show: Näytä
   show_active_and_inactive_taxa: Näytä aktiiviset ja epäaktiiviset taksonit
   show_hidden_content: Näytä piilotettu sisältö
@@ -4205,6 +4245,8 @@ fi:
   show_no_annotation: Näytä "Ei merkintöjä"
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi tai verkkosivustollasi!
   show_only: Näytä vain
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Näytä OpenStreetMap
   show_relative_proportions_of_all_observations: Näytä kaikkien havaintojen suhteellinen määrä
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Näytä kumulatiivinen yhteismäärä
@@ -4412,6 +4454,7 @@ fi:
   synonyms: Synonyymit
   table: Taulukko
   table_of_contents: Sisällysluettelo
+  tabulate_presence_absence_data_from_trips: '''Luo läsnä-poissa dataa matkoista'
   #Noun, as in "add a tag to this observation"
   tag: Tagi
   tagging: 'Tageja lisätään...'
@@ -4810,6 +4853,8 @@ fi:
   umbrella_projects: Sateenvarjoprojektit
   unblock: Poista esto
   unclassified: Luokittelematon
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Tutustu projekteihin
   ungrafted_taxa: Liittämätön taksoni
   unhide_content: Peru sisällön piilottaminen
   unique_observers: yksilölliset havainnoijat
@@ -4925,6 +4970,8 @@ fi:
   user_faved_this_observation: "%{user} merkitsi tämän havainnon suosikiksi"
   user_flagged_as_a_non_spammer_html: "%{user} merkitsi ettei ole spammaaja"
   user_flagged_as_a_spammer_html: "%{user} merkitsi spaammaajaksi"
+  user_has_been_removed_from_site: |
+    %{username} on poistettu %{site_name} -verkostosta (voi kestää jopa tunnin, ennen kuin kaikki siihen liittyvä sisältö on poistettu kokonaan)
   user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
   user_hasnt_joined_any_projects: "%{user} ei ole liittynyt mihinkään projektiin"
   user_helped_x_people_with_y_ids_html: "%{user} auttoi <strong>%{x} käyttäjää</strong> <strong>%{y} tunnistamaan havaintoja</strong>"
@@ -4999,6 +5046,7 @@ fi:
   values: Arvot
   verbing_x_of_y: "%{verb} %{x}/%{y}..."
   verifiable_observations_by_observation_date: Varmennettavissa olevat havainnot havaintopäivän mukaan
+  video_tutorials: Video-opastukset
   view: Näytä
   view_all: Näytä kaikki
   view_all_caps: NÄYTÄ KAIKKI
@@ -5071,7 +5119,6 @@ fi:
   view_your_personal_year_in_review: "Näytä henkilökohtainen %{year} vuosikatsaus"
   view_your_personal_year_in_review_caps: "NÄYTÄ HENKILÖKOHTAINEN %{year} VUOSIKATSAUS"
   view_yours: Näytä sinun
-  video_tutorials: Video-opastukset
   visually_similar: Samannäköinen
   vulnerable: Vaarantunut
   w00t_no_ungrafted_taxa: Hups! Ei liittämättömiä taksoneita!
@@ -5551,9 +5598,16 @@ fi:
       #image as a prompt
       vision_language_demo: Vision Language -demo
       what_do_you_want_to_search_for: Mitä haluat hakea?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: esim. %{query_in_english}
       try_one_of_these_example_searches_colon: "Kokeile yhtä näistä esimerkeistä:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Auta meitä parantamaan
       to_help_us_improve: Auttaaksemme meitä parantamaan tätä mallia haluaisimme tietää, mitkä tämän sivun kuvista liittyvät hakuusi &quot;%{searched_term}&quot;. Merkitse jokainen kuva osuviksi %{thumbs_up_icon}, jos se vastaa hakuasi, ja ei osuviksi %{thumbs_down_icon}, jos se ei vastaa. Kun olet valmis, napsauta Lähetä. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Merkitse jäljellä olevat osuviksi
@@ -5561,6 +5615,7 @@ fi:
       mark_remaining_as_not_relevant: Merkitse jäljellä olevat ei-osuviksi
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Näytä nämä havainnot Tunnistus-kohdassa
+      this_demo_tool3: Tämän esittelytyökalun avulla voit kirjoittaa hakulausekkeen (kuten "<a href="%{url}">%{query_in_english}</a>") ja vertailla sitä 10 miljoonaan iNaturalist-kuvaan. Tulokset on järjestetty parhaiten osuviin. Voit käyttää tätä demoa uutena tapana löytää mielenkiintoisia iNaturalist-havaintoja, joita voit merkitä tai lisätä projektiisi.
       you_can_also_use_this_demo: Voit myös käyttää tätä demoa auttamaan meitä arvioimaan Vision Language -mallia, joka on tämän demon taustalla, kertomalla meille, mitkä kuvista oli osuvia hakulausekkeeseesi. Tämä demo käyttää kolmannen osapuolen <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP -mallia</a> jota ei ole koulutettu iNaturalist-aineistolla tai iNaturalist-tiimin toimesta. Joskus työkalu voi tuottaa epätarkkoja, puolueellisia tai loukkaavia tuloksia. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lue lisää iNaturalist-blogista</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Jos haluat tukea tätä työtä
       thank_you_for_your_submission!: Kiitos osallistumisestasi!
@@ -6299,26 +6354,6 @@ fi:
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
     taxon_names:
-      form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Yritä lisätä nimiä, joita on käytetty muualla. Ole hyvä äläkä keksi uusia nimiä.</p></li>
-          <li><p>Älä lisää duplikaattinimiä, esim. älä nimeä useita haukkoja nimellä "haukka"</p></li>
-          <li><p>Korkeammille taksoneille käytä nimiä, jotka sopivat kaikille alataksoneille, esim. haikaralinnut</p></li>
-          <li>
-          <p>
-          Älä lisää nimiin muuta tietoa, esim. suluissa miten nimeä pitäisi käyttää
-          </p>
-          </li>
-          <li>
-          <p>
-          Uudet nimistöt pitäisi tehdä englanniksi, Ole hyvä äläkä lisää käännettyjä nimiä, kuten "Ranska, Français", koska silloin nimien näyttäminen olisi vaikeaa tai mahdotonta erikielisille käyttäjille.
-          </p>
-          </li>
-          <li>
-          <p>
-          Yleiskieliset nimet, jotka liittyvät käännettyihin kieliin näytetään oletuksena tälle kielelle (jättäen huomiotta paikan ja nimien järjestyksen asetuksen jne.). <a class="readmore" href="/pages/translate">Lue lisää käännöksistä</a>
-          </p></li></ul>
       taxon:
         about_html: |
           Taksonilla voi olla useita yleiskielisiä nimiä. Tuemme yhtä, globaalisti ensisijaista nimeä, joka voidaan vaihtaa täällä vetämällä nimi luettelon ylimmäiseksi. Voit myös määritellä ensisijaisen nimen eri paikoille muokkaamalla nimeä ja lisäämällä sille paikan, mutta tee tämä vain, jos eri paikoilla on ristiriitaisia nimiä.

@@ -1011,6 +1011,8 @@ lb:
   generate_your_year_in_review_caps: GENERÉIERT ÄR IWWERSIICHT FIR D'JOER %{year}
   Genus: Gattung
   get_started: Fir unzefänken
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Éischt Schrëtt
   getting_started_guide: Guide fir unzefänken
   global_names: Global Nimm
   globally: Global
@@ -2315,6 +2317,8 @@ lb:
   #have no annotation
   show_no_annotation: '"Keng Annotatiounen" weisen'
   show_off_your_recent_observations: Weist Är rezent Observatiounen op Ärem Blog oder Ärer Websäit!
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMap weisen
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Uweisen vun deenen %{x} Éischten
@@ -2494,6 +2498,8 @@ lb:
   type: Typ
   unable_to_save_comment: Leider konnte mir de Kommentar net späicheren.
   unblock: Spär ophiewen
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projete verstoen
   unknown: Onbekannt
   unknown_error: Onbekannte Feeler
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
@@ -2569,6 +2575,7 @@ lb:
   value: Wäert
   values: Wäerter
   verifiable_observations_by_observation_date: Iwwerpréifbar Observatiounen no Observatiounsdatum
+  video_tutorials: Video Guiden
   view: Weisen
   view_all: All kucken
   view_all_members: All Membere weisen
@@ -2590,7 +2597,6 @@ lb:
   view_your_dashboard: Ären Dashboard kucken
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Kuckt Ären Dashboard</a> fir mei Updates"
   view_yours: Är weisen
-  video_tutorials: Video Guiden
   visually_similar: Visuell ähnlech
   vulnerable: Vulnerabel
   w_photos_only: w/ Fotoen
@@ -2806,6 +2812,12 @@ lb:
           Wärend Messagen tëscht Iech an dem Empfänger privat sinn, kann d'iNaturalist Personal dës Messagen och kucken, a wäert dat maache wann Messagë fir Moderatioun gemellt gi sinn. Wann Dir wierklech privat wëllt kommunizéieren, benotzt w.e.g. aner Kommunikatiounsmethoden déi eng staark Verschlësslung ënnerstëtzt.
     nls_demo:
       what_do_you_want_to_search_for: Wouno wëllt Dir sichen?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: z. B. %{query_in_english}
     oauth:
       authorizations:
         new:

@@ -284,6 +284,8 @@ da:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Tilføj en punktliste
   add_a_comment: Tilføj en kommentar
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Tilføj en Bevaringsstatus
   add_a_field: Tilføj et felt
   add_a_flag: Tilføj en markering
   #Tool tip for a button that adds a link to a text area
@@ -819,6 +821,7 @@ da:
   back_to_your_observations: Tilbage til dine observationer
   back_to_your_profile: Tilbage til din profil
   badges: Badges
+  base_map_copyright_openstreetmap_html: Basiskort ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1469,6 +1472,8 @@ da:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Du kan forme passende adfærd på iNaturalist og overholde Fællesskabsretningslinjer. Sammen med kuratorprivilegier følger forventningen om din ageren som en eksemplarisk iNaturalist-bruger.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kurator Guide
   curators_changed_for_x_html: "Kuratorer ændret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
@@ -1814,6 +1819,8 @@ da:
   editing_this: Redigering af %{elem}
   editing_x_in_y: "Redigering af %{x} i %{y}"
   editors: Redaktører
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Underviser Guide
   either_that_user_doesnt_exist_or: "Enten eksisterer den bruger ikke, eller du følger den allerede."
   eligible_for_research_grade: Kvalificeret til forskningskvalitet
   email: E-mail
@@ -2101,6 +2108,8 @@ da:
   geoprivacy_is_private_desc: Observatør har valgt at skjule koordinaterne.
   georeferenced: Georefererede?
   get_started: Kom igang
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Komme i gang
   getting_started_guide: Kom godt i gang
   #Prompt to donate money on a montly basis
   give_monthly_caps: GIV MÅNEDLIGT
@@ -2377,6 +2386,11 @@ da:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Er beviserne tilstrækkelige til at bekræfte, at dette er %{taxon}
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller fornærmende?'
   is_this_place_a_duplicate: Er dette sted en kopi?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Accepteres dette videnskabelige navn p.t.?
   it_can_now_be_used_for_research: Den kan nu bruges til forskning og vises på andre web-sider
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv tekst
@@ -4721,6 +4735,8 @@ da:
   share_colon: "Del:"
   short_code_for_this_place: Forkortelse for dette sted, f.eks. US for United States
   short_or_abbreviated_title_for_display: Kort eller forkortet titel til visning i pladsbegrænsede områder. Maks. 10 tegn.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Skal dette almindelige navn vises som standard for denne takson?
   show: Vis
   show_active_and_inactive_taxa: Vis aktive og inaktive taksa
   show_hidden_content: Vis skjult indhold
@@ -4737,6 +4753,8 @@ da:
   show_no_annotation: Vis "Ingen annotation"
   show_off_your_recent_observations: Vis dine seneste observationer på din egen blog eller hjemmeside!
   show_only: Vis kun
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Vis OpenStreetMap
   show_relative_proportions_of_all_observations: Vis relative proportioner for alle observationer
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Vis igangværende total
@@ -5568,6 +5586,8 @@ da:
   unable_to_save_comment: Beklager, kommentaren kunne ikke gemmes.
   unblock: Ophæv blokering
   unclassified: Uklassificeret
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Forståelse af Projekter
   ungrafted_taxa: Ikke podede taksa
   unhide_content: Skjul ikke indhold
   unhide_desc: |
@@ -5728,6 +5748,9 @@ da:
   user_faved_this_observation: "%{user} tilføjede denne observation som favorit"
   user_flagged_as_a_non_spammer_html: "%{user} markeret som ikke-spammer"
   user_flagged_as_a_spammer_html: "%{user} markeret som spammer"
+  user_has_been_removed_from_site: |
+    %{username} er blevet fjernet fra %{site_name} (det kan tage op til en time
+    for helt at slette alt tilknyttet indhold)
   user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
   user_hasnt_joined_any_projects: "%{user} er ikke tilmeldt noget projekt"
   user_helped_x_people_with_y_ids_html: "%{user} hjalp <strong>%{x} personer</strong> med <strong>%{y} IDs</strong>"
@@ -5754,6 +5777,7 @@ da:
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
+  user_updated_an_observation_field_html: '%{user} føjede en værdi til "%{field_name}" på en observation fra %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
   username: Brugernavn
   username_description: Dette er det brugernavn, du benytter til indlogning, og som andre brugere kan identificere dig med på iNaturalist
@@ -5819,6 +5843,7 @@ da:
   values: Værdier
   verbing_x_of_y: "%{verb} %{x} af %{y}..."
   verifiable_observations_by_observation_date: Verificerbare observationer efter observations dato
+  video_tutorials: Video selvstudier
   view: Vis
   view_all: Vis alle
   view_all_caps: VIS ALLE
@@ -5896,7 +5921,6 @@ da:
   view_your_personal_year_in_review_caps: "VIS DIT PERSONLIGE %{year} ÅR I GENNEMGANG"
   view_yours: Vis dine
   view_all_of_your_observations_from_x: "Vis alle dine observationer fra %{x}"
-  video_tutorials: Video selvstudier
   visually_similar: Visuelt lignende
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
@@ -6751,7 +6775,8 @@ da:
       for_example_query: f.eks. %{query_in_english}
       try_one_of_these_example_searches_colon: "Prøv en af disse eksempelsøgninger:"
       #shortened text for a button requesting users help us improve the model
-      #being using, hence the missing subject (implied to be the model)
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
       help_us_improve: Hjælp os med at blive bedre
       to_help_us_improve: For at hjælpe os med at forbedre denne model vil vi gerne vide, hvilke af billederne på denne side, som er relevante for søgningen &quot;%{searched_term}&quot;. Markér venligst hvert billede som relevant %{thumbs_up_icon}, hvis det matcher søgningen, og som ikke relevant %{thumbs_down_icon}, hvis det ikke gør det. Når man er færdig, klik dernæst på Indsend. #text for a button where a user can mark images as relevnt to their search term
       mark_remaining_as_relevant: Markér resterende som relevant
@@ -8051,21 +8076,34 @@ da:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <Ul>
-          <li> <p> Prøv at tilføje navne, der er blevet brugt andetsteds. Opfind venligst ikke nye navne.</P></li>
-           <li> <p> Tilføj ikke dubletter, f.eks. navngiv ikke mange høge "høg"</p</li>
-           <li><p> For taksa på højere niveau, prøv at bruge navne, der omfatter alle efterkommere, som "hejrefugle" eller "Lyngfamilie"</p></li>
+          <ul>
+          <li><p>Prøv at tilføje navne, som er blevet brugt andetsteds. Opfind venligst ikke nye navne.</p></li>
+          <li><p>Tilføj ikke dubletnavne, navngiv f.eks. ikke mange høge som "høg"</p></li>
+          <li><p>For taksa på højere niveau, prøv at bruge navne, som omfatter alle efterkommere, som "hejrefugle" eller "lyngfamilie"</p></li>
           <li>
           <p>
-             Tilføj ikke oplysninger, der ikke er selve navnet, f.eks. oplysninger i parentes om, hvordan du mener, at navnet skal bruges
+          Tilføj ikke oplysninger, som ikke er selve navnet, f.eks.
+          oplysningeri parentes om, hvordan man mener, at navnet
+          skal bruges
           </p>
           </li>
           <li>
           <p>
-              Leksikaer skal være på engelsk. Tilføj venligst ikke oversatte sprognavne som "Fransk, Français", fordi det bare vil gøre det svært eller umuligt for os at vise lokale navne for de personer, der bruger websiden på forskellige sprog
-            </p>
-           </li>
-          </Ul>
+          Nye leksikaer skal være på engelsk. Tilføj venligst ikke oversatte
+          sprognavne, såsom "Fransk, Français", da det bare vil gøre det
+          svært eller umuligt for os at vise lokaliserede navne for dem,
+          som bruger webstedet på forskellige sprog.
+          </p>
+          </li>
+          <li>
+          <p>
+          Almindelige navne forbundet med oversatte sprog vises som
+          det almindelige standard navn for det sprog (bortset fra
+          stedpræferencer, navnerækkefølge mv.).
+          <a class="readmore" href="/pages/translate">Læs mere om oversættelse</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Tilføj et navn til et sted for at give det prioritet for websteder og brugere af det sted. Hvis der er flere navne per sted, kan du prioritere
           dem <a href="%{url}"> her </a>. Tilføj venligst <strong> ikke </strong> navne til HVERT sted hvor navnet bruges, kun til steder, der konflikter med

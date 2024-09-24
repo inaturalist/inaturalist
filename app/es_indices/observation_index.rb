@@ -1,5 +1,6 @@
-class Observation < ApplicationRecord
+# frozen_string_literal: true
 
+class Observation < ApplicationRecord
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 100
@@ -9,7 +10,7 @@ class Observation < ApplicationRecord
 
   scope :load_for_index, -> { includes(
     { user: [ :flags, :stored_preferences ] }, :confirmed_reviews, :flags,
-    :observation_links, :quality_metrics,
+    :observation_links, :quality_metrics, :observation_geo_score,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
     { photos: :flags },
@@ -306,6 +307,7 @@ class Observation < ApplicationRecord
         indexes :vote_flag, type: "boolean"
         indexes :vote_scope, type: "keyword"
       end
+      indexes :geo_score, type: "scaled_float", scaling_factor: 1_000_000
     end
   end
 
@@ -418,7 +420,8 @@ class Observation < ApplicationRecord
         preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
         flags: flags.map(&:as_indexed_json),
         quality_metrics: quality_metrics.map(&:as_indexed_json),
-        spam: known_spam? || owned_by_spammer?
+        spam: known_spam? || owned_by_spammer?,
+        geo_score: observation_geo_score&.geo_score
       })
 
       add_taxon_statuses(json, t) if t && json[:taxon]

@@ -4591,6 +4591,7 @@ gl:
   values: Valores
   verbing_x_of_y: "%{verb} %{x} de %{y} ..."
   verifiable_observations_by_observation_date: Observacións Verificables Por Data de Observación
+  video_tutorials: Titoriais en Vídeo
   view: Ver
   view_all: Ver todo
   view_all_flags: Ver Tódalas Marcas
@@ -4653,7 +4654,6 @@ gl:
   view_your_observations: Ver as túas observacións
   view_yours: Ver As Túas
   view_all_of_your_observations_from_x: "Ver tódalas túas observacións de %{x}"
-  video_tutorials: Titoriais en Vídeo
   visually_similar: Visualmente Semellantes
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: Hurra! Non hai taxóns sen introducir!
@@ -5982,28 +5982,6 @@ gl:
           O nome do taxon có rango. Para rangos intraespecíficos, o rango é insertado logo do binomial.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Tenta engadir nomes que foron usados noutras partes. Por favor non inventes nomes novos.</p></li>
-          <li><p>Non engadas nomes duplicados, p.e. non nomees a varios falcóns "falcón"</p></li>
-          <li><p>Para niveis taxonómicos superiores, tenta usar nomes que inclúan tódolos descendentes, coma "garzas e aliados" ou "familia de matorrais"</p></li>
-          <li>
-          <p>
-          Non engadas información que non sexa un nome, p.e. información entre parénteses sobre como ti pensas que o nome debe ser usado
-          </p>
-          </li>
-          <li>
-          <p>
-          Os novos léxicos deben ser en Inglés. Por favor, non engadas nomes traducidos como "French, Français" porque faríanos difícil ou imposible mostrar nomes locais para xente que usa o sitio en línguas diferentes.
-          </p>
-          </li>
-          <li>
-          <p>
-          Nomes comúns asociados con línguas traducidas aparecerán como o nome común predeterminado nesa língua (excluíndo o efecto de preferencias de lugar, orde dos nomes, etc.).
-          <a class="readmore" href="/pages/translate">Le máis sobre a traducción</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Engade un nome a unha ubicación para lle dar prioridade para sitios e usuarios desa ubicación. Se houbesen varios nomes por ubicación, podes priorizalos <a href="%{url}">aquí</a>. Por favor, <strong>non</strong> engadas nomes para CADA lugar onde o nome é usado, só para lugares que entran en conflicto con outros lugares.
       taxon:

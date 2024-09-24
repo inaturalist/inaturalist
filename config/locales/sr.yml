@@ -976,8 +976,15 @@ sr:
     male: Muški
     female: Ženski
     plant_phenology: Fenologija biljaka
+    flowers_and_fruits: Cvetovi i voćke
     budding: Pupenje
     flowering: Cvetanje
+    no_flowers_or_fruits: Bez voćki i semena
+    flowers: Cvetovi
+    fruits_or_seeds: Voće ili seme
+    leaves: Lišće
+    green_leaves: Zeleno lišće
+    colored_leaves: Obojeno lišće
     life_stage: Faza života
     adult: Odraslo
     pupa: Lutka
@@ -1032,6 +1039,8 @@ sr:
   coords_viewable_for_proj_label: Samo sa punim koordinatama
   copy: Kopiraj
   copy_and_paste_this_into_your_own_html: Kopiraj i nalepi ovo u tvoj HTML.
+  copy_to_clipboard: Kopiraj u ostavu
+  copied!: Kopirano!
   copyright:
     some_rights_reserved: neka prava zadržana
     some_rights_reserved_by: "(c) %{name}, neka prava zadržana (%{license_short})"
@@ -1141,6 +1150,8 @@ sr:
     Prijavi se za kustosa samo ako:
   curator_application_you_should_apply_if_you_have_added_flags: |
     Dokazao/la si da razumeš proces kustosiranja dodavanjem nekoliko prijava
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kustoski vodič
   curators_changed_for_x_html: "Kustosi promenjeni za %{x}"
   curators: Kustosi
   curator_identification: Identifikacija kustosa
@@ -1489,6 +1500,7 @@ sr:
   filter: Filter
   filter_by_curator_identification: Filtriraj po identifikaciji kustosa
   filter_by_place: Filtriraj po mestu
+  filter_by_species: Filtriraj po vrsti
   filter_by_taxon: Filtriraj po taksonu
   filter_by_place_taxon_and_color: Filtriraj po mestu, taksonu, i boji pomoću kontrola.
   filter_list_by_this_taxon: Filtriraj listu po ovom taksonu
@@ -1610,6 +1622,8 @@ sr:
   geoprivacy_is_obscured: Geoprivatnost je prikrivena
   geoprivacy_is_private: Geoprivatnost je privatna
   get_started: Započni
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Vodič za početnike
   getting_started_guide: Vodič za početnike
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONIRAJ MESEČNO
@@ -1820,6 +1834,8 @@ sr:
   last_seen: Poslednji put viđen
   last_year: Prošla godina
   lat: GŠ
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: GŠ/GD
   latitude: Geografska širina
   latitude_in_decimals: 'Geografska širina u decimalnom prikazu, npr. 38.123'
   latitude_value: "Geografska širina: %{latitude}"
@@ -3517,6 +3533,8 @@ sr:
   share_caps: PODELI
   share_colon: "Podeli:"
   short_code_for_this_place: Skraćenica sa ovo mesto, npr. SAD za Sjedinjene Američke Države
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Da li ovaj narodni naziv treba biti prikazan za ovaj takson po podrazumevanim podešavanjima?
   show: Prikaži
   show_active_and_inactive_taxa: Prikaži aktivne i neaktivne taksone
   show_hidden_content: Prikaži sakriveni sadržaj
@@ -3684,6 +3702,7 @@ sr:
   studies_that_used_inaturalist_data_in_year: Studije koje su koristile podatke sa iNaturalist-a u %{year}
   subject_resolved_noun_html: "%{subject} je rešio/la %{noun}"
   submission_model_description: Ko može dodati opservacije u tvoj projekat?
+  submit: Pošalji
   submit_observations:
     one: Dodaj 1 opservaciju
     few: Dodaj %{count} opservacije
@@ -3866,6 +3885,7 @@ sr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Kontrole za formatiranje teksta
   text_editing_controls: Kontrole za uređivanje teksta
+  thank_you!: Hvala!
   thanks!: Hvala!
   thanks_from_all_of_us_here_at: Hvala od svih nas ovde u
   that_photo_doesnt_exist: Nepostojeća fotografija.
@@ -4030,6 +4050,8 @@ sr:
   unable_to_save_comment: Nažalost, komentar se ne može sačuvati.
   unblock: Odblokiraj
   unclassified: Neklasifikovani
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Razumevanje projekata
   ungrafted_taxa: Neugnježdeni taksoni
   unhide_content: Otkrij sadržaj
   unique_observers: jedinstveni posmatrači
@@ -4129,6 +4151,10 @@ sr:
   user_added_an_x_to_noun_by_you_html: "%{user} je dodao/la %{x} na tvoju %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} je dodao/la %{x} na %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} je dodao/la %{count} opservaciju"
+    few: "%{user} je dodao/la %{count} opservacije"
+    other: "%{user} je dodao/la %{count} opservacija"
   user_autocomplete_placeholder: kueda, simon123, itd.
   user_blocked: Korisnik blokiran
   user_commented: "%{user} komentariše"
@@ -4199,6 +4225,7 @@ sr:
   value: Vrednost
   values: Vrednosti
   verbing_x_of_y: "%{verb} %{x} od %{y}..."
+  video_tutorials: Video tutorijali
   view: Pogledaj
   view_all: Pogledaj sve
   view_all_caps: POGLEDAJ SVE
@@ -4264,7 +4291,6 @@ sr:
   view_your_personal_year_in_review_caps: "POGLEDAJ TVOJ PREGLED %{year}"
   view_yours: Pogledaj tvoje
   view_all_of_your_observations_from_x: "Pogledaj sve tvoje opservacije iz %{x}"
-  video_tutorials: Video tutorijali
   visually_similar: Vizuelno slični
   vulnerable: Ranjiva
   w00t_no_ungrafted_taxa: Šta? Nema neugnježdenih taksona!
@@ -4694,6 +4720,30 @@ sr:
       show:
         flag_notice_html: |
           Prijavio/la si ovu konverzaciju %{date}. Prijava će biti sačuvana i ako izbrišeš tvoju stranu konverzacije tako da je možeš izbrisati ako to želiš.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vizuelni jezik demo
+      what_do_you_want_to_search_for: Šta želiš da nađeš?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: npr. %{query_in_english}
+      try_one_of_these_example_searches_colon: "Probaj neke od ovih pretraga:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Pomozi nam da unapredimo
+      mark_remaining_as_relevant: Označi ostatak kao važno
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Označi ostatak kao nevažno
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Pogledaj ove opservacije u sekciji Identifikuj
+      if_youd_like_to_support_this_work: Ako želiš da podržiš ovaj rad
     oauth:
       authorizations:
         new:
@@ -5132,6 +5182,11 @@ sr:
           "Plant Phenology=Budding": Pupenje
           "Plant Phenology=Flowering": Cvetanje
           "Plant Phenology=No Evidence of Flowering": Nema dokaza cvetanja
+          "Flowers and Fruits=Flowers": Cvetovi
+          "Flowers and Fruits=Fruits or Seeds": Voćke ili seme
+          "Flowers and Fruits=No Flowers or Fruits": Bez voćki i semena
+          "Leaves=Green Leaves": Zeleno lišće
+          "Leaves=Colored Leaves": Obojeno lišće
           "Life Stage=Egg": Jaje
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Juvenil
@@ -5150,28 +5205,6 @@ sr:
         wanted_desc: Vrste u ovom taksonu još nisu zabeležene.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Potrudi se da dodaješ nazive koji su u upotrebi. Nemoj izmišljati nova imena.</p></li>
-          <li><p>Nemoj praviti duplikate, npr. nemoj za više vrsta sokolova dodavati naziv "soko"</p></li>
-          <li><p>Za taksone višeg ranga, potrudi se da koristiš naziv koji sadrži sve pretke, npr. "čaplje i srodnici" ili "porodica vresova"</p></li>
-          <li>
-          <p>
-          Nemoj dodavati informacije koje nisu deo naziva, npr. dodavanje objašnjena kako se naziv koristi u zagradi
-          </p>
-          </li>
-          <li>
-          <p>
-          Novi rečnici bi trebali biti na engleskom. Molimo nemoj dodavati prevedena imena jezika kao što je "francuski, Français" jer će to umnogome otežati ili će biti nemoguće za nas da prikažemo lokalizovana imena ljudima koji koriste sajt na drugim jezicima.
-          </p>
-          </li>
-          <li>
-          <p>
-          Narodni nazivi povezani sa prevedenim jezicima će biti prikazani kao podrazumevani za taj konkretan jezik (u skladu sa podešavanjem izabranog mesta, redosledom naziva itd.)
-          <a class="readmore" href="/pages/translate">Saznaj više o prevodu</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Definiši naziv za neko mesto da bi bio prioritetan za sajtove i korisnike iz tog mesta. Ako postoji više naziva u određenom mestu, možeš im definisati prioritet <a href="%{url}">ovde</a>. Molimo te da <strong>ne dodaješ</strong> nazive za SVAKO mesto gde se neki naziv koristi, samo za mesta gde se on razlikuje.
       taxon:
@@ -5816,11 +5849,18 @@ sr:
           attributes:
             base:
               must_have_reasonable_number_of_rows: Izvoz ne može sadržati više od 200 000 opservacija
+        place:
+          attributes:
+            place_geometry:
+              cannot_be_blank: ne može biti prazno
+              must_have_more_than_three_points: mora imati više od 3 poena
+              polygon_with_less_than_four_points: ima poligon sa manje od 4 tačke
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: ne može biti prazno
               must_have_more_than_three_points: mora imati više od 3 poena
+              polygon_with_less_than_four_points: ima poligon sa manje od 4 tačke
         post:
           attributes:
             parent:
