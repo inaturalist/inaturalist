@@ -308,6 +308,73 @@ ALTER SEQUENCE public.annotations_id_seq OWNED BY public.annotations.id;
 
 
 --
+-- Name: announcement_dismissals; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.announcement_dismissals (
+    id bigint NOT NULL,
+    announcement_id integer,
+    user_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: announcement_dismissals_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.announcement_dismissals_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: announcement_dismissals_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.announcement_dismissals_id_seq OWNED BY public.announcement_dismissals.id;
+
+
+--
+-- Name: announcement_impressions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.announcement_impressions (
+    id bigint NOT NULL,
+    announcement_id integer,
+    user_id integer,
+    request_ip character varying,
+    platform_type character varying,
+    impressions_count integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: announcement_impressions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.announcement_impressions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: announcement_impressions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.announcement_impressions_id_seq OWNED BY public.announcement_impressions.id;
+
+
+--
 -- Name: announcements; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5808,6 +5875,20 @@ ALTER TABLE ONLY public.annotations ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: announcement_dismissals id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.announcement_dismissals ALTER COLUMN id SET DEFAULT nextval('public.announcement_dismissals_id_seq'::regclass);
+
+
+--
+-- Name: announcement_impressions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.announcement_impressions ALTER COLUMN id SET DEFAULT nextval('public.announcement_impressions_id_seq'::regclass);
+
+
+--
 -- Name: announcements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6786,6 +6867,22 @@ ALTER TABLE ONLY public.year_statistics ALTER COLUMN id SET DEFAULT nextval('pub
 
 ALTER TABLE ONLY public.annotations
     ADD CONSTRAINT annotations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: announcement_dismissals announcement_dismissals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.announcement_dismissals
+    ADD CONSTRAINT announcement_dismissals_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: announcement_impressions announcement_impressions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.announcement_impressions
+    ADD CONSTRAINT announcement_impressions_pkey PRIMARY KEY (id);
 
 
 --
@@ -7984,6 +8081,34 @@ CREATE INDEX index_annotations_on_user_id ON public.annotations USING btree (use
 --
 
 CREATE UNIQUE INDEX index_annotations_on_uuid ON public.annotations USING btree (uuid);
+
+
+--
+-- Name: index_announcement_dismissals_on_announcement_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_dismissals_on_announcement_id ON public.announcement_dismissals USING btree (announcement_id);
+
+
+--
+-- Name: index_announcement_dismissals_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_dismissals_on_user_id ON public.announcement_dismissals USING btree (user_id);
+
+
+--
+-- Name: index_announcement_impressions_on_announcement_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_impressions_on_announcement_id ON public.announcement_impressions USING btree (announcement_id);
+
+
+--
+-- Name: index_announcement_impressions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcement_impressions_on_user_id ON public.announcement_impressions USING btree (user_id);
 
 
 --
@@ -11112,6 +11237,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240715141936'),
 ('20240716190326'),
 ('20240731161955'),
-('20240828123245');
+('20240828123245'),
+('20240923134239'),
+('20240923134658');
 
 

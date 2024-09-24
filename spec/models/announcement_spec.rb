@@ -152,4 +152,30 @@ describe Announcement do
       expect( a.targeted_to_user?( nil ) ).to be true
     end
   end
+
+  describe "dismissals" do
+    it "creates AnnouncementDismissals for new dismissals" do
+      user_ids_to_dismiss = ( 1..10 ).to_a
+      announcement = Announcement.make!
+      expect( AnnouncementDismissal.count ).to eq 0
+      announcement.update( dismiss_user_ids: user_ids_to_dismiss )
+      expect( AnnouncementDismissal.count ).to eq user_ids_to_dismiss.length
+      user_ids_to_dismiss.each do | user_id |
+        expect( AnnouncementDismissal.where( announcement: announcement, user_id: user_id ).count ).to eq 1
+      end
+    end
+
+    it "deletes AnnouncementDismissals for removed dismissals" do
+      user_ids_to_dismiss = ( 1..10 ).to_a
+      announcement = Announcement.make!
+      expect( AnnouncementDismissal.count ).to eq 0
+      announcement.update( dismiss_user_ids: user_ids_to_dismiss )
+      expect( AnnouncementDismissal.count ).to eq user_ids_to_dismiss.length
+      announcement.update( dismiss_user_ids: [user_ids_to_dismiss.first] )
+      expect( AnnouncementDismissal.count ).to eq 1
+      expect( AnnouncementDismissal.where(
+        announcement: announcement, user_id: user_ids_to_dismiss.first
+      ).count ).to eq 1
+    end
+  end
 end

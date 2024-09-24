@@ -30,7 +30,7 @@ module Logstasher
     # we use first HTTP_X_FORWARDED_ORIGINAL_FOR which is set by our nginx proxy
     # with the real client IP, in "client browser --> node --> rails" scenario
     %w(HTTP_X_FORWARDED_ORIGINAL_FOR HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
-      return request_env[param] unless request_env[param].blank?
+      return request_env[param].split( "," ).first unless request_env[param].blank?
     end
     nil
   end
@@ -168,6 +168,38 @@ module Logstasher
       } ) )
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_custom_log failed: #{e}"
+    end
+  end
+
+  def self.write_announcement_impression( announcement, custom = {} )
+    return if Rails.env.test?
+    return unless announcement.is_a?( Announcement )
+
+    Logstasher.replace_known_types!( custom )
+    begin
+      Logstasher.write_hash( custom.merge( {
+        "@timestamp": Time.now,
+        subtype: "AnnouncementImpression",
+        model_id: announcement.id
+      } ) )
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.write_announcement_impression failed: #{e}"
+    end
+  end
+
+  def self.write_announcement_dismissal( announcement, custom = {} )
+    return if Rails.env.test?
+    return unless announcement.is_a?( Announcement )
+
+    Logstasher.replace_known_types!( custom )
+    begin
+      Logstasher.write_hash( custom.merge( {
+        "@timestamp": Time.now,
+        subtype: "AnnouncementDismissal",
+        model_id: announcement.id
+      } ) )
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.write_announcement_dismissal failed: #{e}"
     end
   end
 
