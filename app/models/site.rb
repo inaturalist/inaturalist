@@ -367,7 +367,9 @@ class Site < ApplicationRecord
       return cached
     end
 
-    unless site = Site.includes( :stored_preferences ).first
+    site = Site.find_by_name( CONFIG.default_site_name ) if CONFIG.default_site_name
+
+    unless site ||= Site.includes( :stored_preferences ).first
       site = Site.create!( name: "iNaturalist", url: "http://localhost:3000" )
     end
 
