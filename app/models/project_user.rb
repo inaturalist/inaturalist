@@ -49,16 +49,16 @@ class ProjectUser < ApplicationRecord
 
   notifies_subscribers_of :project, on: :save, notification: CURATOR_CHANGE_NOTIFICATION,
     include_notifier: true,
-    # don't bother queuing this if there's no relevant role change
-    queue_if: Proc.new{ |pu|
-      !pu.project.is_new_project? &&
-        pu.previous_changes[:role] &&
-        ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
+    # don't notify if there isn't a relevant role change
+    unless: lambda {| pu |
+      return true if pu.project.is_new_project?
+      return true unless pu.previous_changes[:role]
+      return true unless ROLES.include?( pu.role ) || pu.user_id == pu.project.user_id
     },
     # check to make sure role status hasn't changed since queuing
-    if: Proc.new{ |pu|
+    if: lambda {| pu, _project, _subscription |
       !pu.project.is_new_project? &&
-        ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
+        ( ROLES.include?( pu.role ) || pu.user_id == pu.project.user_id )
     }
 
   scope :curator_privilege, -> { where("role IN ('curator', 'manager')") }

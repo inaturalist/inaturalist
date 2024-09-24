@@ -617,8 +617,8 @@ class ListedTaxon < ApplicationRecord
         total = rs.total_entries
       end
       [ earliest_id, latest_id, total || 0]
-    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
-           Elasticsearch::Transport::Transport::Errors::BadRequest => e
+    rescue Elastic::Transport::Transport::Errors::NotFound,
+           Elastic::Transport::Transport::Errors::BadRequest => e
       Logstasher.write_exception(e, reference: "ListedTaxon.earliest_and_latest_ids failed")
       Rails.logger.error "[Error] ListedTaxon::earliest_and_latest_ids failed: #{ e }"
       Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."

@@ -39,6 +39,7 @@ const DroppedFile = class DroppedFile {
     if ( obs.latitude && obs.longitude ) {
       updates.latitude = parseFloat( obs.latitude );
       updates.longitude = parseFloat( obs.longitude );
+      updates.accuracy = parseFloat( obs.positional_accuracy );
     }
     updates.locality_notes = obs.place_guess;
     updates.taxon_id = obs.taxon_id;
@@ -88,7 +89,9 @@ const DroppedFile = class DroppedFile {
           }
         }
         if ( exif.GPSHPositioningError && exif.GPSHPositioningError.length === 2 ) {
-          metadata.accuracy = exif.GPSHPositioningError[0] / exif.GPSHPositioningError[1];
+          metadata.accuracy = _.round(
+            exif.GPSHPositioningError[0] / exif.GPSHPositioningError[1]
+          );
         }
         if ( exif.DateTimeOriginal || exif.DateTimeDigitized ) {
           // reformat YYYY:MM:DD into YYYY/MM/DD for moment

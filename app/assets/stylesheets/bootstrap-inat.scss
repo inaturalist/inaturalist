@@ -25,15 +25,12 @@ h6 {
   color: #1A1A1A;
 }
 
-$font-stack: Whitney, "Trebuchet MS", Arial, sans-serif;
+$font-stack: Lato, "Trebuchet MS", Arial, sans-serif;
 
 .readable,
 p { 
   font-size: 100%;
   font-family: $font-stack;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
 }
 
 a:hover { text-decoration: none; opacity: 0.8;}

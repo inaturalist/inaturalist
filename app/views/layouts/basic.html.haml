@@ -14,7 +14,7 @@
     - if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? )
       %script{ src: "https://cdn.usefathom.com/script.js", "data-site": @site.preferred_fathom_analytics_tracker_id, "data-canonical": "false", defer: true }
     = yield :extrahead
-  %body{ class: @testing_font && "testing-font" }
+  %body
     = content_for?(:content) ? yield(:content) : yield
     %script{ type: "text/javascript" }
       - site_place = @site && @site.place

@@ -155,6 +155,7 @@ class ObservationModal extends React.Component {
       toggleKeyboardShortcuts,
       toggleReviewed,
       updateCurrentUser,
+      updateSuggestionSession,
       visible
     } = this.props;
     if ( !observation ) {
@@ -218,13 +219,13 @@ class ObservationModal extends React.Component {
             latitude={obsForMap.latitude}
             longitude={obsForMap.longitude}
             zoomLevel={
-              mapZoomLevelLocked && mapZoomLevel ? mapZoomLevel : ( obsForMap.map_scale || 5 )
+              mapZoomLevelLocked && _.isNumber( mapZoomLevel )
+                ? mapZoomLevel : ( obsForMap.map_scale || 5 )
             }
             onZoomChanged={onMapZoomChanged}
             mapTypeControl
             mapTypeControlOptions={{
-              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-              position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_RIGHT
+              style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU
             }}
             showAccuracy
             showAllLayer={false}
@@ -232,6 +233,7 @@ class ObservationModal extends React.Component {
             zoomControlOptions={{
               position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
             }}
+            minZoom={1}
             currentUser={currentUser}
             updateCurrentUser={updateCurrentUser}
           />
@@ -265,6 +267,7 @@ class ObservationModal extends React.Component {
           <ZoomableImageGallery
             key={`map-for-${observation.id}`}
             items={images}
+            slideDuration={0}
             slideIndex={imagesCurrentIndex}
             showThumbnails={images && images.length > 1}
             lazyLoad={false}
@@ -856,7 +859,10 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "suggestions" ) < 0 ? null : (
                 <div className={`inat-tab suggestions-tab ${activeTab === "suggestions" ? "active" : ""}`}>
-                  <SuggestionsContainer chooseTaxon={chooseSuggestedTaxon} />
+                  <SuggestionsContainer
+                    chooseTaxon={chooseSuggestedTaxon}
+                    updateSuggestionSession={updateSuggestionSession}
+                  />
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
@@ -918,7 +924,8 @@ ObservationModal.propTypes = {
   toggleKeyboardShortcuts: PropTypes.func,
   toggleReviewed: PropTypes.func,
   updateCurrentUser: PropTypes.func,
-  visible: PropTypes.bool,
+  updateSuggestionSession: PropTypes.bool,
+  visible: PropTypes.bool
 };
 
 ObservationModal.defaultProps = {
@@ -926,7 +933,8 @@ ObservationModal.defaultProps = {
   controlledTerms: [],
   imagesCurrentIndex: 0,
   tabs: TABS,
-  tabTitles: {}
+  tabTitles: {},
+  updateSuggestionSession: true
 };
 
 export default ObservationModal;

@@ -30,7 +30,10 @@ jobs:
     
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-    
+
+    - name: Set build date
+      run: echo "BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> $GITHUB_ENV
+
     - name: Build/Push Dev inaturalist
       uses: docker/build-push-action@v5
       with:
@@ -38,6 +41,50 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:${{ github.ref_name }}
+        build-args: |
+          GIT_BRANCH=${{ github.ref_name }}
+          GIT_COMMIT=${{ github.sha }}
+          IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist:${{ github.ref_name }}
+          BUILD_DATE=${{ env.BUILD_DATE }}
+
+    - name: Build/Push Dev inaturalist-cleanup
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile-cleanup
+        push: true
+        tags: ${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.ref_name }}
+        build-args: |
+          GIT_BRANCH=${{ github.ref_name }}
+          GIT_COMMIT=${{ github.sha }}
+          IMAGE_TAG=${{ secrets.DOCKERHUB_USERNAME }}/inaturalist-cleanup:${{ github.ref_name }}
+          BUILD_DATE=${{ env.BUILD_DATE }}
+
+  refresh-dev-staging-deployment:
+    name: Refresh Dev Staging Deployment
+    needs: build-and-push-dev-docker-image
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Refresh Dev inaturalist
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{secrets.STAGING_DEPLOYMENT_PERSONAL_ACCESS_TOKEN}}
+        script: |-
+          await github.rest.actions.createWorkflowDispatch({
+              owner: "inaturalist",
+              repo: "staging-deployment",
+              workflow_id: "CD-workflow-dispatch.yml",
+              ref: "main",
+              inputs: {
+                "service-type": "rails",
+                "service-version": "${{ github.ref_name }}"
+              },
+          }).catch(error => error).then(response => {
+            core.debug(response);
+            if (response.status !== 204) {
+              core.setFailed(`create workflow_dispatch received status code ${response.status}`);
+            }
+          });
 
   notify-slack:
     name: Notify Slack

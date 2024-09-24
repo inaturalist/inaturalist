@@ -197,11 +197,11 @@ nl:
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
   about_this_project: Over dit project
-  about_trips_html: |
-    <h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>
+  about_trips2_html: |
+    <h4>Routes maken het verzamelen van nulwaarnemingen mogelijk door het toevoegen van context aan je waarnemingen</h4>
 
     <p><strong>Waarom</strong>
-    Aanwezigheid/afwezigheidsgegevens bevatten informatie over steekproefinspanning die nuttig zijn voor wetenschappelijke analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
+    Aanwezigheid/afwezigheidsgegevens bevatten informatie over de onderzoeksinspanning die nuttig is voor wetenschappelijke analyses zoals distributiemodellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>
 
     <p><strong>Hoe</strong>
     Een route voegt context aan je waarnemingen toe door extra informatie over:</p>
@@ -211,7 +211,7 @@ nl:
     <li><strong>Wanneer</strong> je zocht (zoekinterval)</li> 
     </ul>
 
-    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Tabel maken van aan/afwezigheden op routes' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
+    <p>Soorten op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd als aanwezigheden. Soorten op je doellijst die je niet kon waarnemen worden daarentegen geïnterpreteerd als nulwaarnemingen. Klik op 'Zet de Aan- en Afwezigheidsgegevens van Routes in een tabel' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis van routes en bijbehorende waarnemingen.
     <a href='%{url}'>Meer informatie</a></p>
   about_trusting_projects: Over het vertrouwen van projecten
   about_trusting_projects_options_any: Al je waarnemingen in dit project
@@ -276,6 +276,8 @@ nl:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Voeg een ongenummerde lijst toe
   add_a_comment: Reactie toevoegen
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Voeg een Natuurbeschermingsstatus toe
   add_a_field: Veld toevoegen
   add_a_flag: Melding toevoegen
   #Tool tip for a button that adds a link to a text area
@@ -294,11 +296,13 @@ nl:
   add_an_observation: Waarneming toevoegen
   add_an_observation_of: "Een waarneming toevoegen van %{taxon}"
   add_an_observation_to_project_html: Voeg een waarneming toe aan %{project}
-  add_annotations_for_x: Aantekeningen voor %{x} toevoegen
+  add_annotations_for_x: Voeg aantekeningen toe voor %{x}
   add_annotations_for_controlled_attribute:
-    sex: Aantekeningen voor "Geslacht" toevoegen
-    plant_phenology: Aantekeningen voor "Plantenfenologie" toevoegen
-    life_stage: Aantekeningen voor "Levenstadium" toevoegen
+    sex: Voeg aantekeningen toe voor "Geslacht"
+    plant_phenology: Voeg aantekeningen toe voor "Plantenfenologie"
+    flowers_and_fruits: Voeg aantekeningen toe voor "Bloemen en vruchten"
+    leaves: Voeg aantekeningen toe voor "Bladeren"
+    life_stage: Voeg aantekeningen toe voor "Levenstadium"
     evidence_of_presence: Voeg aantekeningen toe voor "Bewijs van Aanwezigheid"
   add_another_flag: Nog een melding toevoegen
   add_another_photo: Nog een foto toevoegen
@@ -326,11 +330,11 @@ nl:
   add_muted_users: Gedempte gebruikers toevoegen
   add_new_lexicon: Nieuw lexicon toevoegen
   add_new_photos_by_their_ids: Nieuwe foto's op basis van hun Flickr-ID's toevoegen (moet Creative Commons zijn!)
-  add_new_place: Nieuwe Gebied toevoegen
+  add_new_place: Nieuw Gebied toevoegen
   add_new_rule: Nieuwe regel toevoegen
   add_new_source: "Nieuwe bron toevoegen..."
   add_new_taxon_name: Nieuwe taxonnaam toevoegen
-  add_notes_about_this_taxon: Notities over dit taxon op deze plaats toevoegen, bijv. waar en wanneer het voorkomt.
+  add_notes_about_this_taxon: Opmerkingen toevoegen over dit taxon in dit gebied, bijvoorbeeld waar en wanneer het voorkomt.
   add_obs_from_a_link: "Voeg Wrn uit lijst: %{link} toe"
   add_obs_from_a_list: Voeg waarnemingen toe van een lijst
   add_observation_fields: Voeg waarnemingsvelden toe
@@ -354,6 +358,14 @@ nl:
   add_plant_phenology_flowering_annotation: 'Aantekening "Plantenfenologie: Bloeiend" toevoegen'
   add_plant_phenology_fruiting_annotation: 'Aantekening "Plantenfenologie: Vruchtdragend" toevoegen'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Aantekening "Plantenfenologie: Geen bewijs voor bloei" toevoegen'
+  add_flowers_and_fruits_flower_buds_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: bloemknoppen"'
+  add_flowers_and_fruits_flowers_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: bloemen"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Voeg aantekeningen toe voor "Bloemen en vruchten: vruchten en zaden"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Voeg aantekeningen toe voor "Bloemen en vruchten: geen bloemen of vruchten"'
+  add_leaves_breaking_leaf_buds: 'Voeg aantekeningen toe voor "Bladeren: uitlopende bladknoppen"'
+  add_leaves_green_leaves: 'Voeg aantekeningen toe voor "Bladeren: groene bladeren"'
+  add_leaves_colored_leaves: 'Voeg aantekeningen toe voor "Bladeren: gekleurde bladeren"'
+  add_leaves_no_live_leaves: 'Voeg aantekeningen toe voor "Bladeren: geen levende bladeren"'
   add_life_stage_adult_annotation: 'Aantekening "Levenstadium: Volwassen" toevoegen'
   add_life_stage_teneral_annotation: 'Aantekening "Levenstadium: teneraal" toevoegen'
   add_life_stage_subimago_annotation: 'Aantekening "Levenstadium: subimago" toevoegen'
@@ -379,8 +391,8 @@ nl:
   #As in a Guide Section
   add_section: Voeg een Sectie toe
   add_several_observations_at_once: Voeg meerdere waarnemingen tegelijk toe.
-  add_sex_female_annotation: 'Aantekening "Geslacht: vrouwelijk" toevoegen'
-  add_sex_male_annotation: 'Aantekening "Geslacht: Mannelijk" toevoegen'
+  add_sex_female_annotation: 'Aantekening "Geslacht: vrouw" toevoegen'
+  add_sex_male_annotation: 'Aantekening "Geslacht: Man" toevoegen'
   add_sex_cannot_be_determined_annotation: 'Aantekening "Geslacht: kan niet worden vastgesteld" toevoegen'
   add_some_now: Nu een aantal toevoegen
   add_tag: Label toevoegen
@@ -771,7 +783,7 @@ nl:
   back_to_observation: Terug naar waarneming
   back_to_observation_fields: Terug naar waarnemingsvelden
   back_to_people: Terug naar personen
-  back_to_places: Terug naar plaatsen
+  back_to_places: Terug naar gebieden
   back_to_possessive_user_profile: "Terug naar het profiel van %{possuser}"
   back_to_post: '&laquo; Terug naar bericht'
   back_to_projects: Terug naar projecten
@@ -794,6 +806,7 @@ nl:
   back_to_your_observations: Terug naar je waarnemingen
   back_to_your_profile: Terug naar je profiel
   badges: Badges
+  base_map_copyright_openstreetmap_html: Basiskaart ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -872,7 +885,7 @@ nl:
   card: Kaart
   casual: onvolledig
   casual_: Onvolledig
-  casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality">Lees meer over kwaliteitsbeoordelingen</a>'
+  casual_tooltip_html: '"Onvolledige" waarnemingen missen media, een locatie of een datum, of voldoen om andere redenen niet aan de eisen van de kwaliteitsbeoordelingen "Onderzoekskwaliteit" of "ID Nodig"- . <a href="https://www.inaturalist.org/pages/help#quality"> Meer informatie over kwaliteitsbeoordelingen</a>'
   categories: Categorieën
   cc_0_description: "Deze licentie geeft je werk vrij in het publieke domein, zodat anderen je werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor commerciële doeleinden, allemaal zonder toestemming te vragen of jouw naam te vermelden. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen voor maximale verspreiding en gebruik van het materiaal."
   cc_0_name: Geen auteursrecht (CC0)
@@ -1144,19 +1157,33 @@ nl:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Elke
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Elke
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Alle
     sex: Geslacht
-    male: Mannelijk
+    male: Man
     female: Vrouwelijk
     plant_phenology: Plantenfenologie
+    flowers_and_fruits: Bloemen en vruchten
     budding: Ontluikend
     flower_budding: Bloemknoppen
     flowering: Bloeiend
     fruiting: Vruchtdragend
+    no_flowers_or_fruits: Geen bloemen of vruchten
+    flower_buds: Bloemknoppen
+    flowers: Bloemen
+    fruits_or_seeds: Vruchten of zaden
+    leaves: Bladeren
+    breaking_leaf_buds: Uitlopen van bladknoppen
+    green_leaves: Groene bladeren
+    colored_leaves: Gekleurde bladeren
+    no_live_leaves: Geen levende bladeren
     life_stage: Levensstadium
     adult: Volwassen
     teneral: Net verveld
@@ -1210,6 +1237,13 @@ nl:
     flower_budding: Bloemknoppen zijn zichtbaar maar niet open
     flowering: Bloemen zichtbaar, open, en nog vast aan de plant
     fruiting: Vruchten zichtbaar en nog vast aan de plant
+    flowers: Ten minste één open bloem
+    flower_buds: Ten minste één gesloten bloemknop
+    fruits_or_seeds: Ten minste één vrucht of zaad
+    breaking_leaf_buds: Tenminste één knop met zijn eerste nieuwe blad of naald niet volledig ontvouwd
+    green_leaves: Ten minste één groen blad of naald (of roodachtig als dit de normale gezonde kleur is)
+    colored_leaves: Ten minste één blad of naald heeft een laat seizoen of een kleur van droogte
+    no_live_leaves: Er zijn geen uitlopende bladknoppen of groene of gekleurde bladeren of naalden zichtbaar
     gall: Misvormde uitgroei van plantenweefsel veroorzaakt door een parasitair organisme
     male: Bewijs geeft aan dat organisme sperma kan produceren voor gebruik in seksuele voortplanting
     molt: Afgeworpen huid of exoskelet
@@ -1218,6 +1252,7 @@ nl:
     egg: Heel ei of een deel van een ei
     construction: Iets gemaakt door een dier, gemaakt met of opgegraven van andere materialen
     no_evidence_of_flowering: Media levert geen bewijs van reproductieve structuren
+    no_flowers_or_fruits: Er zijn geen bloemen, vruchten of zaden (geheel of gedeeltelijk) zichtbaar
     not_established: Het organisme behoort tot een ongevestigde populatie, waaronder vrijgelaten/ontsnapte huisdieren, lifters en dwaalgasten
     organism: Heel of gedeeltelijk organisme
     scat: Feces (geen uileballen of andere uitgebraakte dingen)
@@ -1243,6 +1278,8 @@ nl:
   copy_and_paste_the_following_code_to: Kopieer en plak de volgende programmeercode om deze beoordeling aan een andere website toe te voegen
   copy_and_paste_this_into_your_own_html: Kopieer en plak dit in je eigen HTML.
   copy_guide_taxon_to: Kopieer taxongids naar...
+  copy_to_clipboard: Naar klembord kopiëren
+  copied!: Gekopieerd!
   copyright:
     some_rights_reserved: sommige rechten voorbehouden
     some_rights_reserved_by: "(c) %{name}, sommige rechten voorbehouden (%{license_short})"
@@ -1275,7 +1312,7 @@ nl:
   create: Aanmaken
   create_a_guide: Maak een gids aan
   create_a_new_field: Nieuw veld aanmaken
-  create_a_new_place: Een nieuwe plaats aanmaken
+  create_a_new_place: Een nieuw gebied aanmaken
   create_a_new_taxon: Een nieuw taxon aanmaken
   create_a_query: Een zoekopdracht aanmaken
   create_an_account: Account aanmaken
@@ -1415,6 +1452,8 @@ nl:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Je toont het juiste gedrag op iNaturalist en je houd je aan de Gemeenschapsrichtlijnen. Als je de curatoriale rechten hebt wordt verwacht dat je een voorbeeldige gebruiker van iNaturalist zult zijn.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Curator gids
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
   curators: Curatoren
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
@@ -1760,6 +1799,8 @@ nl:
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: "%{x} in %{y} bewerken"
   editors: Redacteurs
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Docentenhandleiding
   either_that_user_doesnt_exist_or: "Deze gebruiker bestaat niet of je bent hem reeds aan het volgen."
   eligible_for_research_grade: Komt in aanmerking voor onderzoekskwaliteit
   email: E-mail
@@ -1885,6 +1926,7 @@ nl:
   filter: Filter
   filter_by_curator_identification: Filteren op curatordeterminatie
   filter_by_place: Filter op plaats
+  filter_by_species: Filteren op soort
   filter_by_taxon: Filter op taxon
   filter_by_place_taxon_and_color: Zoek op plaats, taxon, en kleur met behulp van de besturingselementen.
   filter_list_by_this_taxon: Zoek in lijst met dit taxon
@@ -2044,6 +2086,8 @@ nl:
   geoprivacy_is_private_desc: Waarnemer heeft ervoor gekozen om de coördinaten te verbergen.
   georeferenced: Gegeorefereerd?
   get_started: Aan de slag
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Hoe begin ik?
   getting_started_guide: Aan de slag-gids
   #Prompt to donate money on a montly basis
   give_monthly_caps: GEEF MAANDELIJKS
@@ -2070,6 +2114,9 @@ nl:
   grid_tooltip: Toon rooster weergave
   group: Groep
   grouping: Groeperen
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Interpoleer de locatie met behulp van andere waarnemingen?
   guides: Gidsen
   guide_compiled_by: Gids samengesteld door
   guide_deleted: Gids verwijderd
@@ -2322,6 +2369,11 @@ nl:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is het geleverde bewijsmateriaal voldoende om te bevestigen dat dit een %{taxon} is?
   is_this_offensive_html: 'Is dit <a href="/help#inappropriate">ongepast</a>, spam, of aanstootgevend?'
   is_this_place_a_duplicate: Is deze plaats een duplicaat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Is deze wetenschappelijk naam momenteel aanvaard?
   it_can_now_be_used_for_research: Het kan nu worden gebruikt voor onderzoek en getoond worden op andere websites
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: Cursieve tekst
@@ -2380,6 +2432,8 @@ nl:
   last_seen: Laatst gezien
   last_year: Vorig jaar
   lat: Lat
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Breedte/Lengte
   latitude: Breedtegraad
   latitude_in_decimals: 'Breedtegraad in decimale graden, bijvoorbeeld 38.123'
   latitude_slash_y_coord_slash_northing: Breedtegraad / y coord / noordwaarde
@@ -2423,6 +2477,7 @@ nl:
     aou_6_letter_codes: AOU 6-Letter Codes
     arabic: Arabisch
     armenian: Armeens
+    asturian: Asturisch
     basque: Baskisch
     belarusian: Wit-Russisch
     bengali: Bengaals
@@ -3193,10 +3248,12 @@ nl:
   observation_accuracy_experiment_precision: "Precisie"
   observation_accuracy_experiment_if_every_sample: "Als elke steekproefwaarneming bij een grof taxon zoals koninkrijk zat, zou de nauwkeurigheid van de iNaturalist dataset wel eens heel hoog kunnen zijn, maar de precisie is misschien te laag om de data zeer nuttig te maken. Om precisie in te schatten, hebben we het aantal blad-nakomelingen in de iNaturalist taxonomie geteld voor elk taxon geassocieerd met elke steekproefwaarneming. We hebben precisie berekend als 1 gedeeld door het aantal blad-nakomelingen. Als het taxon een blad taxon was, is de precisie 100%. We hebben rangen onder het niveau van soorten genegeerd in de precisieberekening."
   observation_accuracy_experiment_in_the_example: "In het voorbeeldfiguur rechts zou de gemiddelde precisie van drie steekproeven 51 procent bedragen."
+  observation_accuracy_experiment_read_more_html: |
+    Lees meer over het proces van dit experiment, zie de begeleidende <a href="%{url}">blogpost</a>.
   observation_accuracy_validator_email_subject2: "Wil je ons helpen met Experiment %{version} om de nauwkeurigheid van iNaturalist waarnemingen te beoordelen?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     Wil je ons helpen met een <a href="%{url}">experiment (versie %{version})</a> om de betrouwbaarheid van iNaturalist waarnemingen in te schatten?
-  observation_accuracy_validator_email_if_so2_html: |
+  observation_accuracy_validator_email_if_so3_html: |
     <ol>
     <li>Determineer alle waarnemingen in de onderstaande link zo nauwkeurig als je kunt, zelfs als ze van onderzoekskwaliteit zijn en zelfs als je beste ID zich op een veel hoger taxonomisch niveau bevindt (zelfs koninkrijk). </li>
     <li>Als je de “Potential Disagreement” popup ziet…
@@ -3207,7 +3264,8 @@ nl:
     </li>
     <li>Doe dit voor <b>%{validator_deadline_date}</b></li>
     </ol>
-    Hier is de <a href="%{sample_url}">subset van %{num_obs} waarnemingen</a> waarvan we denken dat je die kan determineren op basis van je activiteit op iNaturalist. <b>Voeg alsjeblieft vóór %{validator_deadline_date} een zo nauwkeurig mogelijke determinatie toe aan elk van de waarnemingen</b>.
+    Hier is de <a href="%{sample_url}">subset van %{num_obs} waarnemingen</a>* waarvan we denken dat je die kan determineren op basis van je activiteit op iNaturalist. <b>Voeg alsjeblieft vóór %{validator_deadline_date} een zo nauwkeurig mogelijke determinatie toe aan elk van de waarnemingen</b>. 
+    *<i>Deze link zal de Identify tool op de iNaturalist website openen en vereist dat je ingelogd bent. We raden aan om deze taak vanaf een computer te doen, maar het is ook mogelijk om hiervoor een mobile browserapp te gebruiken. Als je dit bericht leeft in de iNaturalist Android app, wees er dan zeker van om de link in de browserapp te openen ( niet in de iNat app zelf). Het kan zijn dat je eerst in moet loggen in de website via de browser app.</i>
   observation_accuracy_validator_email_we_will_calculate: |
     We berekenen de nauwkeurigheid door jouw determinatie te vergelijken met het Waargenomen Taxon. Je kunt waarnemingen overslaan waar
     je eerder een determinatie aan hebt toegevoegd als dat ID nog steeds relevant is. Hoe we overeenkomsten en meningsverschillen gaan tellen lees je hieronder.
@@ -3221,6 +3279,10 @@ nl:
     We zijn zo dankbaar voor jouw hulp als een determineerder op iNaturalist en bedanken je zeer voor je deelname aan deze studie. Lees <a href="%{url}">de methoden</a> om meer te leren over het ontwerp van het experiment.
   observation_accuracy_validator_email_with_gratitude: Met dankbaarheid,
   observation_accuracy_validator_email_the_inaturalist_team: Het iNaturalist Team
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Gelieve niet te reageren op dit bericht. Als je vragen of feedback hebt, reageer dan op <a href="%{url}">deze blog post</a> of e-mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Beantwoord dit bericht niet. Als je vragen of feedback hebt, stuur dan een e-mail naar <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Waarneming aan het project %{project} toegevoegd"
   observation_aggregation: Waarneming aggregation
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4640,6 +4702,8 @@ nl:
   share_colon: "Delen:"
   short_code_for_this_place: Korte code voor deze plaats, bijvoorbeeld VS voor de Verenigde Staten
   short_or_abbreviated_title_for_display: Korte of afgekorte titel voor weergave in beperkte ruimte. Maximaal 10 tekens.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Moet deze lokale naam standaard worden weergegeven voor dit taxon?
   show: Weergeven
   show_active_and_inactive_taxa: Actieve en inactieve taxa weergeven
   show_hidden_content: Verborgen inhoud tonen
@@ -4656,6 +4720,8 @@ nl:
   show_no_annotation: Toon "Geen aantekening"
   show_off_your_recent_observations: Schep op over je recente waarnemingen op je eigen blog of website!
   show_only: Toon alleen
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Toon OpenStreetMap
   show_relative_proportions_of_all_observations: Relatieve verhoudingen van alle waarnemingen tonen
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Lopend totaal weergeven
@@ -4867,7 +4933,6 @@ nl:
   start_a_new_project: Begin een nieuw project
   start_a_project: Een project beginnen
   start_date_time: Start datum / tijd
-  start_one: om er één te starten
   start_one_now: Start Eén Nu!
   start_typing_field_name: Type een veldnaam ...
   start_typing_place_name: Type een plaatsnaam...
@@ -4897,10 +4962,9 @@ nl:
   studies_that_used_inaturalist_data_in_year: Studies die iNaturalist-gegevens in %{year} hebben gebruikt
   stuff_just_added: "Stuff die je zojuist hebt toegevoegd ..."
   subject_resolved_noun_html: "%{subject} lost %{noun} op"
-  subject_affecting_stuff_html: "%{subject} van invloed op %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} heeft een %{thing} vastgelegd met gevolgen voor %{stuff}"
   submission_model: Registratiemodel
   submission_model_description: Wie kan waarnemingen toevoegen aan je project?
+  submit: Verzenden
   submit_observations:
     one: 1 waarneming verzenden
     other: '%{count} waarnemingen verzenden'
@@ -4949,6 +5013,7 @@ nl:
   synonyms: Synoniemen
   table: Tabel
   table_of_contents: Inhoudsopgave
+  tabulate_presence_absence_data_from_trips: Zet de Aan- en Afwezigheidsgegevens van Routes in een tabel
   #Noun, as in "add a tag to this observation"
   tag: label
   tagging: 'Tagging ...'
@@ -5038,6 +5103,8 @@ nl:
   taxon_deleted: Taxon verwijderd.
   taxon_doesnt_have_a_range: Taxon heeft geen verspreidingsgebied
   taxon_drop: taxonverwijdering
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Taxon verwijdering heeft gevolgen voor %{taxon}
   taxon_id: Taxon-ID
   taxon_ids: Taxon ID's
   taxon_map:
@@ -5061,6 +5128,9 @@ nl:
   taxon_framework_taxon: Taxonkader-taxon
   taxon_history_notice: Geschiedenis is in februari 2022 geïntroduceerd dus er is vóór die datum geen geschiedenis beschikbaar.
   taxon_merge: taxon samenvoegen
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Taxon samenvoegen heeft gevolgen voor %{taxa}
   taxon_name: Taxon naam
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnaam moet overeenkomen met een bestaand taxon in onze database
   taxon_observed_by_html: |
@@ -5097,9 +5167,17 @@ nl:
   taxon_search: Taxon Opzoeken
   taxon_search_results_for: Taxon zoekresultaten voor
   taxon_split: taxonsplitsing
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Taxon splitsing heeft gevolgen voor %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: taxonpublicatie
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Taxonstadium heeft gevolgen voor %{taxon}
   taxon_swap: taxonwissel
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Taxon swap heeft gevolgen voor %{taxa}
   taxon_swap_only_has_one_input: slechts één invoer toegestaan voor een swap
   taxon_swap_has_inputs_and_outputs: swap moet zowel invoer als uitvoer hebben
   taxon_name_was_deleted: Taxon naam verwijderd.
@@ -5130,6 +5208,7 @@ nl:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstvormgevings-elementen
   text_editing_controls: Tekstbewerkings-elementen
+  thank_you!: Bedankt!
   thanks!: Bedankt!
   thanks_from_all_of_us_here_at: Bedankt van ons allemaal hier bij
   that_account_is_already_connected: Dat account is al gekoppeld aan een andere gebruiker
@@ -5179,7 +5258,6 @@ nl:
   there_are_x_synonyms_html:
     one: "Er is <span class='count'>1</span> synoniem</span>"
     other: "Er zijn <span class='count'>%{count}</span> synoniemen</span>"
-  there_is_no_wikipedia_page_matching: Er is geen overeenkomende Wikipedia-pagina
   there_isnt_a_wikipedia_article_titled_x_html: |
     Er is geen Wikipedia-artikel of doorverwijspagina met de titel '%{x}'. Misschien zou je er eentje <a href='http://nl.wikipedia.org/wiki/%{x}'>aan willen maken</a>?
   there_merge_problems_with_the_merge: "Er waren problemen met de samenvoeging: %{merged_errors}"
@@ -5445,6 +5523,8 @@ nl:
   unable_to_save_comment: Helaas konden we de opmerking niet opslaan.
   unblock: Deblokkeren
   unclassified: Niet gerangschikt
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projecten begrijpen
   ungrafted_taxa: Loshangende taxa
   unhide_content: Inhoud tonen
   unhide_desc: |
@@ -5574,7 +5654,9 @@ nl:
   user_added_an_x_to_noun_by_you_html: "%{user} heeft een %{x} toegevoegd aan %{noun} van jou"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} heeft een %{x} toegevoegd aan %{noun}"
-  user_added_x_observations_html: "%{user} heeft %{x} waarnemingen toegevoegd"
+  user_added_x_observations2_html:
+    one: "%{user} heeft %{count} waarneming toegevoegd"
+    other: "%{user} heeft %{count} waarnemingen toegevoegd"
   user_already_authenticated: Gebruiker is al geverifieerd
   user_already_app_owner: Gebruiker is al eigenaar van een app
   user_autocomplete_placeholder: kueda, simon123, enz.
@@ -5584,6 +5666,16 @@ nl:
     %{user} denkt dat dit een volledige lijst is van %{taxon} in %{place}
   user_blocked: Gebruiker geblokkeerd
   user_commented: "%{user} reageerde"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} heeft een taxonverwijdering bevestigd met gevolgen voor %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} heeft het samenvoegen van een taxon bevestigd met gevolgen voor %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} heeft het splitsen van een taxon bevestigd met gevolgen voor %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} heeft de voorbereiding van een taxon bevestigd met gevolgen voor %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} heeft het wisselen van een taxon bevestigd met gevolgen voor %{taxa}"
   user_disagrees_this_is_taxon: "%{user} denkt dat %{taxon} onjuist is"
   user_disagrees_with_previous_finer_identifications: "%{user} is het niet eens met eerdere, fijnere determinaties"
   user_faved_an_observation_by_you: "%{user} heeft een waarneming van jou als favoriet opgeslagen"
@@ -5678,6 +5770,7 @@ nl:
   values: Waarden
   verbing_x_of_y: "%{x} van %{y} %{verb}..."
   verifiable_observations_by_observation_date: Verifieerbare waarnemingen op datum van waarneming
+  video_tutorials: Videohandleidingen
   view: Bekijken
   view_all: Alles weergeven
   view_all_caps: ALLES TONEN
@@ -5755,7 +5848,6 @@ nl:
   view_your_personal_year_in_review_caps: "BEKIJK JE PERSOONLIJK %{year} JAAROVERZICHT"
   view_yours: Bekijk die van jou
   view_all_of_your_observations_from_x: "Bekijk al je waarnemingen van %{x}"
-  video_tutorials: Videohandleidingen
   visually_similar: Visueel vergelijkbaar
   vulnerable: Kwetsbaar
   w00t_no_ungrafted_taxa: w00t! Geen loshangende taxa!
@@ -6229,6 +6321,12 @@ nl:
         Bedankt voor het ondersteunen van iNaturalist! Doneren aan
         iNaturalist is tijdelijk niet mogelijk omdat we onze donatie
         systemen bijwerken. Kom alsjeblieft snel terug.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik hier om de bevestigingsmail opnieuw te verzenden.
+      please_add_an_email_and_password: Voeg een e-mailadres en wachtwoord toe zodat jij je toegang tot je account niet verliest
+      please_click_the_link_sent_to_email_to_confirm_html: Klik op de link die is verzonden naar <span class="email">%{email}</span> om jouw e-mailadres te bevestigen.
+      please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen.
+      your_site_account_has_no_email: Jouw %{site_name} account heeft geen gekoppeld e-mailadres.
     flags:
       show:
         flaggable_content_desc: |
@@ -6526,6 +6624,36 @@ nl:
           Je hebt dit gesprek gemeld op %{date}. De melding blijft bestaan, zelfs als je jouw kopie van dit gesprek verwijdert, dus het is veilig om dat te doen als je dit niet meer wilt zien.
         privacy_notice_html: |
           De berichten tussen jou en de ontvanger zijn privé, maar iNaturalist kan deze berichten ook bekijken en zal dit doen wanneer berichten zijn gemarkeerd voor moderatie. Als je echt privécommunicatie nodig hebt, kijk dan naar andere communicatiemechanismen met een sterke versleuteling.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vision Language Demo
+      what_do_you_want_to_search_for: Waar wil je naar zoeken?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: bijv. %{query_in_english}
+      try_one_of_these_example_searches_colon: "Probeer één van deze voorbeeldzoekopdrachten:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Geef ons tips
+      to_help_us_improve: Om ons te helpen dit model te verbeteren willen we graag weten welke van de afbeeldingen op deze pagina relevant zijn voor je zoekopdracht &quot;%{searched_term}&quot;. Markeer elke afbeelding als relevant %{thumbs_up_icon} als deze overeenkomt met je zoekopdracht en met %{thumbs_down_icon} als deze niet relevant is. Klik op verzenden wanneer je klaar bent. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Markeer resterende als relevant
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Markeer resterende als niet relevant
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Toon deze waarnemingen in Identify
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> werkt samen met onderzoekers van <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Universiteit van Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Universiteit van Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Universiteitscollege London</a> <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> en met royale steun van <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI voor Good Lab</a> om beter te begrijpen wat de mogelijkheden in de toekomst zijn voor Vision Language Models om iNaturalist waarnemingen.te helpen organiseren, verkennen en uit te leggen. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Met deze demo tool kun je een zoekzin typen (such as "<a href="%{url}">%{query_in_english}</a>") en deze vergelijken met 10 miljoen iNaturalist foto's. Resultaten worden gesorteerd op relevantie. Je kunt deze demo gebruiken als een nieuwe manier om interessante iNaturalist waarnemingen te vinden om aantekeningen te maken of toe te voegen aan je project.
+      you_can_also_use_this_demo: Je kunt deze demo ook gebruiken om ons te helpen het Vision Language model te evalueren door ons te vertellen welke van de geretourneerde afbeeldingen relevant zijn voor jouw zoekzin. Deze demo gebruikt een derde partij <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP model</a> die niet is getraind op iNaturalist data of door het iNaturalist team. Soms kan de tool een onnauwkeurig, partijdig, vooringenomen of aanstootgevend resultaat opleveren. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lees meer op de iNaturalist Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Als je dit werk wilt ondersteunen
+      thank_you_for_your_submission!: Bedankt voor jouw inzending.
     oauth:
       authorizations:
         new:
@@ -6793,10 +6921,10 @@ nl:
            </p>
 
            <ul>
-           <li>de waarneming <strong>heeft een datum</strong></li>
-           <li>de waarneming <strong>heeft een geolocatie</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-           <li>de waarneming <strong>heeft foto's of geluiden</strong></li>
-           <li>de waarneming <strong>is geen mens</strong></li>
+           <li>de waarneming <strong>een datum heeft</strong></li>
+           <li>de waarneming <strong>een geolocatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+           <li>de waarneming <strong>geen mens is</strong></li>
            </ul>
            
            <p>
@@ -6804,14 +6932,14 @@ nl:
            </p>
           <ul>
           <li>
-          De %{site_name} <strong> gemeenschap gaat akkoord met een ID op soortniveau of lager 
-          lower</strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
-          taxon (als de gemeenschap heeft gekozen dat het Community Taxon niet langer kan worden verbeterd keert het terug naar 
-           subfamily-level ID of lager)
+          De %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
+          </strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
+          (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
+           onderfamilie-niveau ID of lager)
           </li>
           </ul>
           <p>
-          Waarnemingen keren terug naar <strong>"casual"</strong> als aan bovenstaande vereisten niet is voldaan
+          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als aan bovenstaande vereisten niet is voldaan
           </p>
           <ul>
           <li>
@@ -6824,14 +6952,14 @@ nl:
           de waarneming <strong>toont geen aanwezigheid van het organisme</strong>, bijvoorbeeld foto's van water eigenschappen, rotsen, landschappen die geen organisme bevatten.
           </li>
           <li>
-          de waarneming <strong>toont geen recent (~100 years) bewijs van het organismeme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
+          de waarneming <strong>toont geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
           </li>
           <li>
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's.</strong>
           (bijvoorbeeld er zijn vier foto's van vier verschillende organismen. Een foto dat het habitat toont van het organisme dat het onderwerp is van de waarneming is OK.)
           </li>
           <li>
-          de waarneming heeft niet langer een ID nodig <em>and</em> het geenschapsID is op familieniveau of hoger.
+          de waarneming heeft niet langer een ID nodig <em>en</em> het gemeenschapsID is op familieniveau of hoger.
           </li>
           <li>
           de waarnemer heeft het gemeenschapsID uitgeschakeld en het gemeenschapstaxon is geen voorouder of afstammeling van het taxon gerelateerd aan het ID van de waarnemer.
@@ -7530,6 +7658,7 @@ nl:
           Endemische soorten komen alleen voor op een specifieke plaats, en nergens anders.
         about_taxon_curators_desc: |
           Deze mensen onderhouden het gedeelte van de taxonomische boom waartoe dit taxon behoort. Als je dingen wilt wijzigen, meld dit taxon dan alsjeblieft, of neem contact op met één van deze mensen.
+        charts_caps: GRAFIEKEN
         charts_help_seasonality: |
           Deze grafiek toont het aantal waarnemingen van dit taxon gegroepeerd per
           maand. Houd er rekening mee dat dit een aantal waarnemingen zijn, dus zij
@@ -7572,7 +7701,14 @@ nl:
           "Plant Phenology=Flowering": Bloeiend
           "Plant Phenology=Fruiting": Vruchtdragend
           "Plant Phenology=No Evidence of Flowering": Geen bewijs voor bloei
-          "Life Stage=Adult": Volwassen
+          "Flowers and Fruits=Flower Buds": Bloemknoppen
+          "Flowers and Fruits=Flowers": Bloemen
+          "Flowers and Fruits=Fruits or Seeds": Vruchten of zaden
+          "Flowers and Fruits=No Flowers or Fruits": Geen bloemen of vruchten
+          "Leaves=Breaking Leaf Buds": Uitlopen van bladknoppen
+          "Leaves=Green Leaves": Groene bladeren
+          "Leaves=Colored Leaves": Gekleurde bladeren
+          "Leaves=No Live Leaves": Geen levende bladeren
           "Life Stage=Egg": Ei
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juveniel
@@ -7619,21 +7755,21 @@ nl:
       form:
         new_name_guidelines_html: |
           <ul>
-            <li><p>Probeer namen toe te voegen die elders in gebruik zijn. Maak geen nieuwe namen.</p> 
-            </li>
+            <li><p>Voeg namen toe die elders al in gebruik zijn. Maak geen nieuwe namen.</p> 
+           </li>
             <li><p>Voeg geen dubbele namen toe, bijv. noem niet meer dan één havik "havik"</p> 
-            </li>
-            <li><p>Probeer bij taxa op een hoger niveau namen te gebruiken die alle afstammelingen bevatten, zoals<BR>
-              'Rallen, koeten en waterhoentjes' bij Rallidae,<BR>
-              'Fregatvogels, genten, aalscholvers en slangenhalsvogels' bij Suliformes,<BR> 
-              'Schoenlappers, parelmoervlinders en zandoogjes' bij Nymphalidae of<BR>
-              'Kleine pages, vuurvlinders en blauwtjes' bij Lycaenidae</p>
-            </li>
+           </li>
+           <li><p>Probeer bij taxa op een hoger niveau namen te gebruiken die alle afstammelingen bevatten, zoals<BR>
+           'Rallen, koeten en waterhoentjes' bij Rallidae,<BR>
+           'Fregatvogels, genten, aalscholvers en slangenhalsvogels' bij Suliformes,<BR> 
+           'Schoenlappers, parelmoervlinders en zandoogjes' bij Nymphalidae of<BR>
+           'Kleine pages, vuurvlinders en blauwtjes' bij Lycaenidae</p>
+           </li>
             <li><p>Voeg geen informatie toe die geen naam is, bijvoorbeeld verklarende informatie (tussen haakjes) over hoe de naam gebruikt zou moet worden</p>
             </li>
-            <li><p>Nieuwe lexicons moeten in het Engels zijn. Voeg geen vertalingen toe van taalnamen zoals "Dutch, Nederlands" omdat dat dit het moeilijk of onmogelijk voor ons zal maken om gelokaliseerde namen voor mensen te tonen die de site in verschillende talen gebruiken.</p>
+            <li><p>Nieuwe lexicons zijn in het Engels. Voeg geen vertalingen toe van taalnamen zoals "Dutch, Nederlands" omdat dat dit het moeilijk of onmogelijk voor ons zal maken om gelokaliseerde namen voor mensen te tonen die de site in verschillende talen gebruiken.</p>
             </li>
-            <li><p>Lokale namen die zijn gekoppeld aan vertaalde talen verschijnen als de standaard lokale naam voor die taal (met behoud van het effect van plaatsvoorkeuren, naamvolgorde, etc.). <a class="readmore" href="/pages/translate">Meer informatie over het vertalen voor iNaturalist</a></p>
+            <li><p>Lokale (volks)namen die zijn gekoppeld aan vertaalde talen verschijnen als de standaard lokale (volks)naam voor die taal (met behoud van het effect van plaatsvoorkeuren, naamvolgorde, etc.). <a class="readmore" href="/pages/translate">Meer informatie over het vertalen voor iNaturalist</a></p>
             </li>
           </ul>
         places_help_html: |
@@ -7895,7 +8031,7 @@ nl:
         connect_with_nature: Trek de natuur in
         explore_and_share: Verken en deel je waarnemingen uit de natuur.
         observations_to_date:
-          one: "Waarneming tot"
+          one: "Waarneming tot nu toe"
           other: "Waarnemingen tot"
         species_observed:
           one: "Waargenomen soort"
@@ -8176,6 +8312,7 @@ nl:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
+        prefers_exclude_monthly_supporters: Sluit maandelijkse supporters uit
         clients: Client
       assessment:
         description: Beschrijving
@@ -8414,9 +8551,16 @@ nl:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: moet geldig zijn voor opgegeven plaatsing
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: moet geldig zijn voor de opgegeven doelgroep
         application:
           attributes:
             redirect_uri:
@@ -8671,8 +8815,8 @@ nl:
         u: "@vow"
         default: "@con"
       "@gender":
-        m: mannelijk
-        f: vrouwelijk
+        m: man
+        f: vrouw
         "n": onzijdig
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         application: "@m"

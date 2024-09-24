@@ -269,30 +269,6 @@ be:
   about_this_bioblitz: Пра гэты біябліц
   about_this_map: Пра гэтую мапу
   about_this_project: Пра гэты праект
-  about_trips_html: |
-    <h4>
-    Падарожжы дазваляюць збіраць дадзеныя аб адсутнасці/прысутнасці, дадаючы кантэкст
-    да вашых назіранняў
-    </h4>
-    <p>
-    <strong>Чаму</strong> Дадзеныя аб прысутнасці і адсутнасці ўключаюць інфармацыю пра
-    адбор проб, што можа быць карысным для навуковых аналізаў, такіх як мадэляванне размеркавання
-     (неапрацаваныя назіранні iNaturalist - гэта "толькі прысутнасць").
-    </p>
-    <p>
-    <strong>Як</strong> Падарожжа дадае кантэкст вашым назіранням, запісваючы:
-    </p>
-    <ul>
-    <li><strong>Што</strong> вы шукалі (спіс мэтаў)</li>
-    <li><strong>Дзе</strong> вы шукалі (абшар пошукаў)</li>
-    <li><strong>Калі</strong> вы шукалі (інтэрвал пошуку)</li>
-    </ul>
-    <p>
-    Віды ў вашым спісе мэтаў, якія вы змаглі назіраць у межах
-    абшару пошуку і інтэрвал інтэрпрэтуюцца як прысутнасць. Калі вы не здолелі назіраць від з вашага спісу мэтаў, гэта інтэрпрэтуецца як адсутнасць. Націсніце "Стварыць табліцу дадзеных аб адсутнасці/прысутнасці з падарожжаў", каб стварыць
-    табліцу запісаў пра наяўнасць і адсутнасць відаў з падарожжаў і звязаных з імі
-    назіранняў. <a href='%{url}'>Даведацца больш</a>
-    </p>
   about_trusting_projects: Пра давер праектам
   about_trusting_projects_options_any: Усе вашыя назіранні ў гэтым праекце
   about_trusting_projects_options_any_desc: |-
@@ -4086,7 +4062,6 @@ be:
   the_observation_was_already_added_to_that_project: Назіранне ўжо было дададзена ў гэты праект.
   the_world_is_full_of_interesting_places: |
     Свет поўны цікавых месцаў, кожнае з якіх напоўнена дзіўнымі і выдатнымі формамі жыцця. Некаторыя знаходзяцца на другім канцы свету, а іншыя можна знайсці, калі проста выйсці на вуліцу! %{site_name} Месцы дазваляюць праглядаць жыццё з усёй планеты. Пачніце даследаваць!
-  there_is_no_wikipedia_page_matching: Няма адпаведнай старонцы ў Вікіпедыі
   there_isnt_a_wikipedia_article_titled_x_html: |
     У Вікіпедыі няма артыкула або перанакіравання пад назвай "%{x}". Магчыма, вы жадаеце <a href='http://en.wikipedia.org/wiki/%{x}'>зрабіць яго</a>?
   there_merge_problems_with_the_merge: "Узніклі праблемы з аб'яднаннем: %{merged_errors}"
@@ -4154,13 +4129,13 @@ be:
   user_added_an_x_to_noun_by_you_html: "%{user} дадаў %{x} да вашага %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} дадаў %{x} да %{noun}"
-  user_added_x_observations_html: "%{user} дадаў %{x} назіранняў"
   user_suggested_an_id: "%{user} прапанаваў вызначэнне"
   username: Імя карыстальніка
   username_or_email: Імя карыстальніка або email
   users: Карыстальнікі
   value: Значэнне
   values: Значэнні
+  video_tutorials: Відэа-інструкцыі
   view_all: Праглядзець усё
   view_all_flags: Праглядзець усе пазнакі
   view_all_members: Праглядзець усіх удзельнікаў
@@ -4169,7 +4144,6 @@ be:
   view_leaderboard_from_last_month: Глядзець табліцу лідараў з мінулага месяцу
   view_leaderboard_from_last_year: Глядзець табліцу лідараў з мінулага году
   view_all_of_your_observations_from_x: "Праглядзець усе назіранні ад %{x}"
-  video_tutorials: Відэа-інструкцыі
   weather: Надвор'е
   website: Веб-сайт
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus

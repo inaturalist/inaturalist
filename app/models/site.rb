@@ -276,6 +276,10 @@ class Site < ApplicationRecord
   preference :twitter_url, :string
   preference :instagram_url, :string
   preference :blog_url, :string
+  preference :understanding_projects_url, :string
+  preference :educators_guide_url, :string
+  preference :video_tutorials_url, :string
+  preference :curator_guide_url, :string
 
   preference :twitter_username, :string
 

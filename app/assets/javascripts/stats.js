@@ -406,7 +406,7 @@ Stats.loadRanksPie = function ( json ) {
     Stats.simpleChart( {
       element_id: "ranks_pie",
       data: _.map( json[0].data.taxa.count_by_rank, function ( value, rank ) {
-        return [I18n.t( "ranks." + rank, { defaultValue: rank } ), parseInt( value, 0 )];
+        return [I18n.t( "ranks." + rank, { defaultValue: rank } ), parseInt( value, 10 )];
       } ),
       chartType: "PieChart"
     } );

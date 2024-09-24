@@ -26,7 +26,7 @@ class Taxon < ApplicationRecord
   attr_accessor :current_user
 
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -162,8 +162,7 @@ class Taxon < ApplicationRecord
 
   NAME_PROVIDER_TITLES = {
     "ColNameProvider" => "Catalogue of Life",
-    "NZORNameProvider" => "New Zealand Organisms Register",
-    "UBioNameProvider" => "uBio"
+    "NZORNameProvider" => "New Zealand Organisms Register"
   }.freeze
 
   RANK_LEVELS = {
@@ -347,6 +346,8 @@ class Taxon < ApplicationRecord
   )
 
   LIFE = Taxon.roots.find_by_name( "Life" )
+  HUMAN = Taxon.find_by_name( "Homo sapiens" )
+  HOMO = Taxon.find_by_name( "Homo" )
 
   IUCN_NOT_EVALUATED = 0
   IUCN_DATA_DEFICIENT = 5

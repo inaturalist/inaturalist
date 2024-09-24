@@ -607,6 +607,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get "build_info", to: "build_info#index"
+  get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
+
   resource :stats do
     collection do
       get :index
@@ -618,6 +621,7 @@ Rails.application.routes.draw do
       get :canada_150
       get :parks_canada_2017
       get :user_segments
+      get :daily_active_user_model
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -700,6 +704,13 @@ Rails.application.routes.draw do
   resource :computer_vision_eval, only: :index, controller: :computer_vision_eval do
     collection do
       get :index
+    end
+  end
+
+  resource :vision_language_demo, only: :index, controller: :language_demo do
+    collection do
+      get :index
+      post :record_votes
     end
   end
 

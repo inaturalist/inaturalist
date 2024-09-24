@@ -12,10 +12,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  &.testing-font {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   color: #333;
 }
 html, body {height: 100%;}
@@ -39,10 +36,7 @@ html, body {height: 100%;}
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   margin-bottom: 0.5em;
 }
 
@@ -71,6 +65,9 @@ a:hover {
   color: #039;
 }
 
+th {
+  font-weight: 600;
+}
 
 /* Tabs List Skeleton */
 .tabs > ul {
@@ -90,29 +87,20 @@ a:hover {
 
 /* UI Elements -- Labels, button text, that kind of thing */
 .ui, .ui p {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
 .ui-tooltip p, .qtip p, .qtip-content p {
   font-size: 100%;
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 .ui-tooltip {
   padding: 0px;
 }
 
 .tinyui {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   font-size: 8pt;
 }
 
@@ -185,10 +173,7 @@ input[type="file"]:focus {
 }
 
 input,select,textarea{
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 form .field{margin-bottom:10px;}
 
@@ -337,7 +322,7 @@ img.mini.usericon {
 }
 
 .back.crumb {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .back.crumb:before {
@@ -425,10 +410,7 @@ span.button {
 .errorExplanation p, 
 .errorExplanation h2, 
 .errorExplanation li {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 
 .errorExplanation h2 {
@@ -474,7 +456,7 @@ span.button {
   .sciname.variety,
   .sciname.form,
   .sciname.hybrid {
-    font-weight: 100;
+    font-weight: 400;
   }
 }
 
@@ -568,7 +550,7 @@ ul.leafylist li li:first-child {
 }
 
 .readmore {
-  font-weight: bold;
+  font-weight: 600;
   white-space: nowrap;
   color: #039;
 }
@@ -646,9 +628,11 @@ ul.leafylist li li:first-child {
           align-items: flex-end;
         }
         .btn-donate {
-          margin-left: 10px;
           font-size: 16px;
           padding-top: 7px;
+          & + .btn-donate {
+            margin-left: 10px;
+          }
         }
       }
     }
@@ -766,7 +750,7 @@ ul.leafylist li li:first-child {
       color: white;
     }
     a:first-child {
-      font-weight: bold;
+      font-weight: 600;
     }
   }
   .btn {
@@ -801,7 +785,7 @@ ul.leafylist li li:first-child {
 
 .compactfieldlink,
 .togglelink {
-  font-weight: bold;
+  font-weight: 600;
   background: image-url('toggle_arrow_right.png') no-repeat 5px 50%;
   padding-left: 15px;
   outline: none;
@@ -1435,10 +1419,7 @@ body, .infowindow .observation {
 
 
 .ui-chooser-input, .ui-chooser-choice { 
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   padding: 4px 5px 3px; 
   margin: 0; 
   border-color: #ccc; 
@@ -1689,7 +1670,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 }
 .topmenu  li { display: inline-block;}
 .topmenu li a {display:inline-block; padding: 5px 10px; margin-left: 10px;}
-.topmenu li a.active {font-weight:bold; border-bottom: 2px solid #eee;}
+.topmenu li a.active {font-weight:600; border-bottom: 2px solid #eee;}
 .unsubscribed {text-decoration: line-through;}
 
 .dialog .new_flag textarea {width:250px; height: 50px;}
@@ -1752,7 +1733,7 @@ ul.plain {list-style:none;margin:0;padding:0}
 .ministats .monthgraph .month_0 { display:none;}
 
 .delete .ui-icon {background-image: image-url('jquery-ui/ui-icons_888888_256x240.png');}
-.identification .display_name { font-weight: bold;}
+.identification .display_name { font-weight: 600;}
 
 .post img, .post iframe, .comment img { max-width: 100%;}
 .favicon {max-width:16px;}
@@ -1914,10 +1895,7 @@ user-icon .icon-person:before {
   font-size: 15px;
 }
 .ui-dialog.confirm-modal p {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-  body.testing-font & {
-    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-  }
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   font-size: 13px;
 }
 .ui-dialog.confirm-modal p .taxon {
@@ -2101,7 +2079,7 @@ $header-line-height: 34px;
     }
     .btn-focus {
       font-size: 15px !important;
-      padding: 5px 7px !important;
+      padding: 6px 7px !important;
     }
   }
   @media (min-width: 768px) and (max-width: 991.99px) {
@@ -2111,7 +2089,7 @@ $header-line-height: 34px;
     }
     .btn-focus {
       font-size: 15px !important;
-      padding: 5px 7px !important;
+      padding: 6px 7px !important;
     }
     &.search-open {
       .header-sm { display: none; }
@@ -2134,7 +2112,7 @@ $header-line-height: 34px;
       }
       .btn-focus {
         font-size: 15px !important;
-        padding: 5px 7px !important;
+        padding: 6px 7px !important;
       }
     }
   }
@@ -2215,7 +2193,7 @@ $header-line-height: 34px;
     .hide-btn {
       font-size: 18px;
       height: $header-line-height;
-      line-height: 36px;
+      line-height: 34px;
       padding: 0 5px;
       color: #333;
       i {
@@ -2226,7 +2204,7 @@ $header-line-height: 34px;
     .show-btn {
       width: 28px;
       height: 28px;
-      padding: 0 !important;
+      padding: 5px 7px 7px !important;
       font-size: 14px !important;
     }
     .hide-btn {
@@ -2251,7 +2229,7 @@ $header-line-height: 34px;
     white-space: nowrap;
     line-height: 32px;
     border: 1px solid transparent;
-    font-weight: bold;
+    font-weight: 600;
     letter-spacing: 0.1px;
   }
   #mainnav {
@@ -2363,8 +2341,8 @@ $header-line-height: 34px;
     color: white;
     i { color: white; }
     font-size: 14px;
-    font-weight: 700;
-    padding: 6px 10px 5px;
+    font-weight: 600;
+    padding: 6px 10px 7px;
     line-height: 15px;
     margin: 3px 0;
   }
@@ -2395,8 +2373,8 @@ $header-line-height: 34px;
     height: 20px;
     border-radius: 50px;
     text-align: center;
-    line-height: 20px;
-    padding: 0;
+    line-height: 12px;
+    padding: 0 0 1px 0;
     border: 0 transparent;
   }
 }

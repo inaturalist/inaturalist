@@ -206,7 +206,7 @@ class ObservationsController < ApplicationController
         end
       end
     end
-  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+  rescue Elastic::Transport::Transport::Errors::InternalServerError => e
     raise e unless e.message =~ /window is too large/
     msg = "Too many results. Try using smaller searches or the id_above parameter."
     response.headers["X-Error"] = msg
@@ -1329,7 +1329,7 @@ class ObservationsController < ApplicationController
       end
       
     end
-  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+  rescue Elastic::Transport::Transport::Errors::InternalServerError => e
     raise e unless e.message =~ /window is too large/
     msg = "Too many results. Try using smaller searches or the id_above parameter."
     response.headers["X-Error"] = msg

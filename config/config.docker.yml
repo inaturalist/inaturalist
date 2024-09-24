@@ -8,23 +8,11 @@ base: &base
         session_key: _inaturalist_session
         secret: <%= ENV.fetch("INAT_SECRET_KEY_BASE") { "INAT_SECRET_KEY_BASE" } %>
 
-    ubio:
-        key: <%= ENV.fetch("INAT_UBIO_KEY") { "INAT_UBIO_KEY" } %>
-
-    yahoo_dev_network:
-        app_id: <%= ENV.fetch("INAT_YAHOO_APP_ID") { "INAT_YAHOO_APP_ID" } %>
-
     tile_servers:
         elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
-    #    observations: http://www.inaturalist.org/observations/tiles
-    #    tilestache: http://geo.inaturalist.org
-    #    tilestache_public_path: /home/inaturalist/deployment/TileStache/public
 
     facebook:
-        namespace: <%= ENV.fetch("INAT_FACEBOOK_NAMESPACE") { "INAT_FACEBOOK_NAMESPACE" } %>
-        app_id: <%= ENV.fetch("INAT_FACEBOOK_APP_ID") { "INAT_FACEBOOK_APP_ID" } %>
-        app_secret: <%= ENV.fetch("INAT_FACEBOOK_APP_SECRET") { "INAT_FACEBOOK_APP_SECRET" } %>
-        admin_ids: <%= ENV.fetch("INAT_FACEBOOK_ADMIN_IDS") { "INAT_FACEBOOK_ADMIN_IDS" } %> 
+        namespace: inaturalist
 
     twitter:
         key: <%= ENV.fetch("INAT_TWITTER_KEY") { "INAT_TWITTER_KEY" } %>
@@ -57,9 +45,6 @@ base: &base
         browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "INAT_GOOGLE_BROWSER_API_KEY" } %>
         client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "INAT_GOOGLE_CLIENT_ID" } %>
         secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "INAT_GOOGLE_SECRET" } %>
-
-    bing:
-        key: <%= ENV.fetch("INAT_BING_KEY") { "INAT_BING_KEY" } %>
 
     soundcloud:
         client_id: <%= ENV.fetch("INAT_SOUNDCLOUD_CLIENT_ID") { "INAT_SOUNDCLOUD_CLIENT_ID" } %>
@@ -117,6 +102,8 @@ base: &base
     allowed_email_recipient_patterns: <%= ENV.fetch("INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS") { ["INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS"] } %>
     
     admin_user_email: <%= ENV.fetch("INAT_ADMIN_USER_EMAIL") { "INAT_ADMIN_USER_EMAIL" } %>
+
+    dangerous_taxa_list_id: <%= ENV.fetch("INAT_DANGEROUS_TAXA_LIST_ID") { "INAT_DANGEROUS_TAXA_LIST_ID" } %>
 
 development:
     <<: *base

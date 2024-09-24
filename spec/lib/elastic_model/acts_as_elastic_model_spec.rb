@@ -137,7 +137,7 @@ describe ActsAsElasticModel do
 
       it "exceptions are caught silently" do
         expect(Observation.__elasticsearch__.client).to receive(:bulk).
-          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+          and_raise(Elastic::Transport::Transport::Errors::BadRequest)
         obs = Observation.make!
         obs.elastic_delete!
         Observation.elastic_index!
@@ -200,7 +200,7 @@ describe ActsAsElasticModel do
     describe "result_to_will_paginate_collection" do
       it "returns an empty WillPaginate Collection on errors" do
         expect(WillPaginate::Collection).to receive(:create).
-          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+          and_raise(Elastic::Transport::Transport::Errors::BadRequest)
         expect(Taxon.result_to_will_paginate_collection(
           OpenStruct.new(current_page: 2, per_page: 11, total_entries: 57,
             results: OpenStruct.new(results: [])))).
@@ -222,7 +222,7 @@ describe ActsAsElasticModel do
       it "exceptions are caught silently" do
         taxon = Taxon.make!
         expect(taxon.__elasticsearch__).to receive(:index_document).
-          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+          and_raise(Elastic::Transport::Transport::Errors::BadRequest)
         Taxon.all.each{ |t| t.elastic_delete! }
         expect( Taxon.elastic_search( ).count ).to eq 0
         taxon.elastic_index!

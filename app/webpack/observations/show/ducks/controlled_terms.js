@@ -70,7 +70,7 @@ export function resetControlledTerms( ) {
 export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( state.controlledTerms && state.controlledTerms.loaded ) {
+    if ( state.controlledTerms && state.controlledTerms.loaded && !options.reload ) {
       return null;
     }
     const { testingApiV2 } = state.config;

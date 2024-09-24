@@ -15,15 +15,11 @@ const Account = ( {
   handleInputChange,
   handlePlaceAutocomplete,
   setModalState,
-  sites,
-  toggleGroup
+  sites
 } ) => {
   if ( !sites ) { return null; }
   const siteId = profile.site_id || 1;
   const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
-  const viewerIsAdmin = config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
-  const userInFontTestGroup = config.currentUser.testGroups
-    && config.currentUser.testGroups.indexOf( "font" ) >= 0;
 
   // these locales are not available for all regions (like "en-US")
   // so taking the list of keys from the english version
@@ -80,125 +76,113 @@ const Account = ( {
   } );
 
   return (
-    <div className="row">
-      <div className="col-md-5 col-sm-10">
-        <h4>{I18n.t( "account" )}</h4>
-        <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
-          <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
-          <select id="user_locale" className="form-control dropdown" value={setLocale( )} name="locale" onChange={handleInputChange}>
-            {createLocaleList( )}
-          </select>
-        </SettingsItem>
-        <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
-          <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
-          <PlaceAutocomplete
-            config={config}
-            resetOnChange={false}
-            initialPlaceID={profile.search_place_id}
-            bootstrapClear
-            afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
-            afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
-          />
-        </SettingsItem>
-        <SettingsItem header={I18n.t( "activerecord.attributes.user.time_zone" )} htmlFor="user_time_zone">
-          <p className="text-muted">{I18n.t( "default_display_time_zone" )}</p>
-          <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
-            {createTimeZoneList( )}
-          </select>
-        </SettingsItem>
-        <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
-          <CheckboxRowContainer
-            name="prefers_no_tracking"
-            label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
-            description={(
-              <button
-                type="button"
-                className="btn btn-link btn-tracking btn-nostyle"
-                onClick={( ) => setModalState( { show: true } )}
-              >
-                <i className="fa fa-info-circle" />
-                {` ${I18n.t( "learn_more" )}`}
-              </button>
-            )}
-          />
-          <CheckboxRowContainer
-            name="pi_consent"
-            label={I18n.t( "pi_consent_label" )}
-            modalDescription={I18n.t( "pi_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
-            modalDescriptionTitle={I18n.t( "pi_consent_desc_title" )}
-            disabled={profile.pi_consent}
-            confirm={I18n.t( "revoke_privacy_consent_warning" )}
-          />
-          <CheckboxRowContainer
-            name="data_transfer_consent"
-            label={I18n.t( "data_transfer_consent_label" )}
-            modalDescription={I18n.t( "data_transfer_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
-            modalDescriptionTitle={I18n.t( "data_transfer_consent_desc_title" )}
-            disabled={profile.data_transfer_consent}
-            confirm={I18n.t( "revoke_privacy_consent_warning" )}
-          />
-        </SettingsItem>
-        <SettingsItem header={I18n.t( "danger_zone" )} htmlFor="user_delete_account">
-          <p>
-            <a href="/users/delete" id="user_delete_account">{I18n.t( "delete_your_account" )}</a>
-          </p>
-        </SettingsItem>
-      </div>
-      <div className="col-md-1" />
-      <div className="col-md-5 col-sm-10">
-        { currentNetworkAffiliation
-          ? (
-            <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
-              <div className="stacked" id="AffiliationList">
-                <DropdownButton
-                  id="user_site_id"
-                  onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
-                  title={showCurrentNetwork( )}
-                  noCaret
+    <>
+      <div className="row">
+        <div className="col-md-5 col-sm-10">
+          <h4>{I18n.t( "account" )}</h4>
+          <SettingsItem header={I18n.t( "language_slash_locale" )} htmlFor="user_locale">
+            <p className="text-muted">{I18n.t( "language_slash_locale_description" )}</p>
+            <select id="user_locale" className="form-control dropdown" value={setLocale( )} name="locale" onChange={handleInputChange}>
+              {createLocaleList( )}
+            </select>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "default_search_place" )} htmlFor="user_search_place_id">
+            <p className="text-muted">{I18n.t( "default_search_place_description" )}</p>
+            <PlaceAutocomplete
+              config={config}
+              resetOnChange={false}
+              initialPlaceID={profile.search_place_id}
+              bootstrapClear
+              afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
+              afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
+            />
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "activerecord.attributes.user.time_zone" )} htmlFor="user_time_zone">
+            <p className="text-muted">{I18n.t( "default_display_time_zone" )}</p>
+            <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+              {createTimeZoneList( )}
+            </select>
+          </SettingsItem>
+          <SettingsItem header={I18n.t( "privacy" )} htmlFor="user_prefers_no_tracking">
+            <CheckboxRowContainer
+              name="prefers_no_tracking"
+              label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
+              description={(
+                <button
+                  type="button"
+                  className="btn btn-link btn-tracking btn-nostyle"
+                  onClick={( ) => setModalState( { show: true } )}
                 >
-                  {createINatAffiliationList( )}
-                </DropdownButton>
-              </div>
-              <p
-                className="text-muted"
-                // eslint-disable-next-line react/no-danger
-                dangerouslySetInnerHTML={{
-                  __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
-                    url: "https://www.inaturalist.org/sites/network"
-                  } )
-                }}
-              />
-            </SettingsItem>
-          )
-          : <div className="nocontent"><div className="loading_spinner" /></div> }
-        { viewerIsAdmin && (
-          <table className="table">
-            <thead>
-              <tr className="hidden-xs">
-                <th className="borderless">Test Group</th>
-                <th className="borderless">Join / Leave</th>
-              </tr>
-            </thead>
-            <tbody className="borderless">
-              <tr>
-                <td className="col-xs-4 borderless table-row">
-                  Font
-                </td>
-                <td className="col-xs-4 borderless table-row">
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={( ) => toggleGroup( "font" )}
+                  <i className="fa fa-info-circle" />
+                  {` ${I18n.t( "learn_more" )}`}
+                </button>
+              )}
+            />
+            <CheckboxRowContainer
+              name="pi_consent"
+              label={I18n.t( "pi_consent_label" )}
+              modalDescription={I18n.t( "pi_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
+              modalDescriptionTitle={I18n.t( "pi_consent_desc_title" )}
+              disabled={profile.pi_consent}
+              confirm={I18n.t( "revoke_privacy_consent_warning" )}
+            />
+            <CheckboxRowContainer
+              name="data_transfer_consent"
+              label={I18n.t( "data_transfer_consent_label" )}
+              modalDescription={I18n.t( "data_transfer_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
+              modalDescriptionTitle={I18n.t( "data_transfer_consent_desc_title" )}
+              disabled={profile.data_transfer_consent}
+              confirm={I18n.t( "revoke_privacy_consent_warning" )}
+            />
+          </SettingsItem>
+        </div>
+        <div className="col-md-5 col-sm-10 col-md-offset-1">
+          { currentNetworkAffiliation
+            ? (
+              <SettingsItem header={I18n.t( "inaturalist_network_affiliation" )} htmlFor="user_site_id">
+                <div className="stacked" id="AffiliationList">
+                  <DropdownButton
+                    id="user_site_id"
+                    onSelect={e => handleCustomDropdownSelect( e, "site_id" )}
+                    title={showCurrentNetwork( )}
+                    noCaret
                   >
-                    { userInFontTestGroup ? I18n.t( "leave" ) : I18n.t( "join" ) }
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        )}
+                    {createINatAffiliationList( )}
+                  </DropdownButton>
+                </div>
+                <p
+                  className="text-muted"
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.inaturalist_network_affiliation_desc_html", {
+                      url: "https://www.inaturalist.org/sites/network"
+                    } )
+                  }}
+                />
+              </SettingsItem>
+            )
+            : <div className="nocontent"><div className="loading_spinner" /></div> }
+        </div>
       </div>
-    </div>
+      <div className="row">
+        <div className="col-xs-12 col-sm-6">
+          <SettingsItem>
+            <div className="alert alert-danger" role="alert">
+              <h5><label htmlFor="user-delete-account">{I18n.t( "danger_zone" )}</label></h5>
+              <p>
+                <a
+                  href="/users/delete"
+                  id="user-delete-account"
+                  className="btn btn-danger btn-block"
+                >
+                  {I18n.t( "delete_your_account" )}
+                </a>
+              </p>
+            </div>
+          </SettingsItem>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -209,8 +193,7 @@ Account.propTypes = {
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func,
   setModalState: PropTypes.func,
-  sites: PropTypes.array,
-  toggleGroup: PropTypes.func
+  sites: PropTypes.array
 };
 
 export default Account;

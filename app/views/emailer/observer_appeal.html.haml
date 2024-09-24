@@ -2,8 +2,11 @@
 
 - user_site = @user.site || Site.default
 %p= "Hello, #{@user.published_name}!"
-%p= "We're so glad to have curious people like you in the #{user_site.name} community. You can use #{user_site.name} to contribute important biodiversity records for science."
-%p= "Can you document any of these species that are commonly seen near #{@city} in #{@month_name}?"
+%p= "We are so glad to have nature explorers like you in the #{user_site.name} community. You can use #{user_site.name} to keep a record of species you find."
+%p
+  = link_to "Are you ready to make your first observation?", user_site.url
+  = " Taking a photo or uploading an old one could contribute important data for science."
+%p= "Here are some common species to look for:"
 %tr
   %td{ valign: "top", class: "bodyContent", "mc:edit": "body_content00", style: "color: #505050; font-family: Helvetica; font-size: 16px; line-height: 150%; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; text-align: left;" }
     %table{ border: "0", cellpadding: "0", cellspacing: "0", width: "100%", style: "border-collapse: collapse !important;" }

@@ -2616,7 +2616,7 @@ wax.interaction = function( options ) {
             // but also wax.u.eventoffset will have failed, since this touch
             // event doesn't have coordinates
             interaction.click(e, _d);
-        } else if (Math.round(pos.y / tol) === Math.round(_d.y / tol) &&
+        } else if (pos && Math.round(pos.y / tol) === Math.round(_d.y / tol) &&
             Math.round(pos.x / tol) === Math.round(_d.x / tol)) {
             // Contain the event data in a closure.
             // Ignore double-clicks by ignoring clicks within 300ms of

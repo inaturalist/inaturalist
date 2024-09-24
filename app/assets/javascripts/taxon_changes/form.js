@@ -70,8 +70,8 @@ $( function () {
     $( "input[id^='taxon_change_taxon_change_taxa_attributes_']" ).each( function () {
       if ( $( this ).attr( "id" ).indexOf( "_taxon_id" ) >= 0 ) {
         var candidate = $( this ).val();
-        if ( $.isNumeric( candidate ) && parseInt( candidate, 0 ) > 0 ) {
-          outputIds.push( parseInt( candidate, 0 ) );
+        if ( $.isNumeric( candidate ) && parseInt( candidate, 10 ) > 0 ) {
+          outputIds.push( parseInt( candidate, 10 ) );
         }
       }
     } );
@@ -82,7 +82,7 @@ $( function () {
     };
     var currentId = $( "#current_id" ).val();
     if ( $.isNumeric( currentId ) ) {
-      parameters.id = parseInt( currentId, 0 );
+      parameters.id = parseInt( currentId, 10 );
     }
     event.preventDefault();
     spinnerNeeded = true;

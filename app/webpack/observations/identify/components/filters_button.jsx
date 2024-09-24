@@ -354,19 +354,19 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { I18n.t( field.label ) }
+                  { I18n.t( field.label, { defaultValue: field.label } ) }
                 </option>
               ) ) }
             </select>
           </Col>
           <Col xs="6">
             <select
-              defaultValue="desc"
               className={
                 "params-order form-control"
                 + ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
               }
               onChange={e => updateSearchParams( { order: e.target.value } )}
+              value={params.order}
             >
               <option value="asc">
                 { I18n.t( "ascending" ) }

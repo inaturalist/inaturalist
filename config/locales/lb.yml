@@ -195,6 +195,8 @@ lb:
   add_annotations_for_controlled_attribute:
     sex: Annotatioune fir "Geschlecht" derbäisetzen
     plant_phenology: Annotatioune fir "Planzephänologie" derbäisetzen
+    flowers_and_fruits: Annotatioune fir "Bléien a Friichten" derbäisetzen
+    leaves: Annotatioune fir "Blieder" derbäisetzen
     life_stage: Bemierkunge fir "Liewensstadium" derbäisetzen
     evidence_of_presence: Annotatioun fir "Evidenz vum Virkommen" bäifügen
   add_another_flag: Nach eng Markéierung derbäisetzen
@@ -634,7 +636,14 @@ lb:
     male: Männlech
     female: Weiblech
     plant_phenology: Phenologie vun der Planz
+    flowers_and_fruits: Bléien a Friichten
     flowering: Bléiend
+    no_flowers_or_fruits: Keng Bléien oder Friichten
+    flowers: Bléien
+    fruits_or_seeds: Bléien oder Som
+    leaves: Blieder
+    green_leaves: Gréng Blieder
+    no_live_leaves: Keng lieweg Blieder
     life_stage: Liewensstadium
     adult: Erwuessen
     pupa: Popp
@@ -679,6 +688,9 @@ lb:
       Virun allem Iwwerreschter vum Endoskelett; partiell siichtbar Schanken an engem anescht intakten Organismus sollen als "Organismus" bezeechent ginn
     dead: Organismus ass dout oder weist Unzeeche vun imminenten Doud
     feather: Eng oder mei Fiederen net um Organismuss hänkent
+    flowers: Mindestens eng oppe Bléi
+    fruits_or_seeds: Mindestens eng Fruucht oder Som
+    green_leaves: Mindestens ee gréngt Blat oder Nol (oder roudelzeg, wann dat déi normal, gesond Faarf ass)
     molt: Verworfen Haut oder Exoskelet
     leafmine: Friessspueren tëschent den Hautschichte vun engem Blat
     hair: Hoer, déi net méi mat hirem Ursprongsorganismus verbonne sinn
@@ -691,6 +703,7 @@ lb:
   coordinate_systems: Koordinatesystem
   coordinates: Koordinaten
   copy: Kopéieren
+  copied!: Kopéiert!
   copyright:
     no_known_copyright_restrictions_text: "keng bekannt Limitatioune vum Copyright"
     anonymous: anonym
@@ -928,6 +941,7 @@ lb:
   filter: Filteren
   filter_by_curator_identification: Filtren no Kurator Bestëmmungen
   filter_by_place: No der Plaz filteren
+  filter_by_species: No Aart filteren
   filtering: Filteren
   filters: Filteren
   find: Fannen
@@ -997,6 +1011,8 @@ lb:
   generate_your_year_in_review_caps: GENERÉIERT ÄR IWWERSIICHT FIR D'JOER %{year}
   Genus: Gattung
   get_started: Fir unzefänken
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Éischt Schrëtt
   getting_started_guide: Guide fir unzefänken
   global_names: Global Nimm
   globally: Global
@@ -2301,6 +2317,8 @@ lb:
   #have no annotation
   show_no_annotation: '"Keng Annotatiounen" weisen'
   show_off_your_recent_observations: Weist Är rezent Observatiounen op Ärem Blog oder Ärer Websäit!
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMap weisen
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: Uweisen vun deenen %{x} Éischten
@@ -2373,6 +2391,7 @@ lb:
   stay_and_try_again: Bleiwen an nach emol probéieren
   still_no_luck?: Nach ëmmer kee Gléck?
   stop_following_user: "Ophalen dem %{user} ze folgen"
+  submit: Schécken
   subscribe_to_a_taxon: Op en Taxon abonnéieren
   subscribe_to_a_place: Op eng Platz abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder eng Grupp vun Organismen (z.B. Skorpiounen) abonnéieren.
@@ -2414,6 +2433,7 @@ lb:
   tell_us_why: Sot eis firwat...
   terrain: Terrain
   text: Text
+  thank_you!: Merci!
   thanks!: Merci!
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
   that_account_is_already_connected: Dëse Kont ass scho mat engem anere Benotzer verbonnen
@@ -2430,7 +2450,6 @@ lb:
   there_are_x_synonyms_html:
     one: "Et gëtt <span class='count'>1</span> Synonym</span>"
     other: "Et gëtt <span class='count'>%{count}</span> Synonymmen</span>"
-  there_is_no_wikipedia_page_matching: Et gëtt keng passend Wikipediasäit
   there_was_a_problem_saving_your_identification: "Et gouf e Problem beim Späichere vun Ärer Bestëmmung: %{error}"
   there_were_problems_adding_that_observation_to_this_project: "Et gouf Problemer fir déi Observatioun bei dëse Projet dobäizesetzen:"
   there_were_some_problems_saving_this_observation: Et gouf Problemer beim Späichere vun dëser Observatioun
@@ -2479,6 +2498,8 @@ lb:
   type: Typ
   unable_to_save_comment: Leider konnte mir de Kommentar net späicheren.
   unblock: Spär ophiewen
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Projete verstoen
   unknown: Onbekannt
   unknown_error: Onbekannte Feeler
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
@@ -2532,7 +2553,9 @@ lb:
   user_added_an_x_to_noun_by_you_html: "%{user} huet eng %{x} bei %{noun} vun Iech bäigesat"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} huet eng %{x} bei %{noun} bäigesat"
-  user_added_x_observations_html: "%{user} huet %{x} Observatiounen bäigesat"
+  user_added_x_observations2_html:
+    one: "%{user} huet %{count} Observatioun derbäigesat"
+    other: "%{user} huet %{count} Observatiounen derbäigesat"
   user_already_authenticated: De Benotzer ass schonn authentifizéiert
   user_already_app_owner: De Benotzer ass schonn en App Besëtzer
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -2552,6 +2575,7 @@ lb:
   value: Wäert
   values: Wäerter
   verifiable_observations_by_observation_date: Iwwerpréifbar Observatiounen no Observatiounsdatum
+  video_tutorials: Video Guiden
   view: Weisen
   view_all: All kucken
   view_all_members: All Membere weisen
@@ -2573,7 +2597,6 @@ lb:
   view_your_dashboard: Ären Dashboard kucken
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Kuckt Ären Dashboard</a> fir mei Updates"
   view_yours: Är weisen
-  video_tutorials: Video Guiden
   visually_similar: Visuell ähnlech
   vulnerable: Vulnerabel
   w_photos_only: w/ Fotoen
@@ -2787,6 +2810,14 @@ lb:
       show:
         privacy_notice_html: |
           Wärend Messagen tëscht Iech an dem Empfänger privat sinn, kann d'iNaturalist Personal dës Messagen och kucken, a wäert dat maache wann Messagë fir Moderatioun gemellt gi sinn. Wann Dir wierklech privat wëllt kommunizéieren, benotzt w.e.g. aner Kommunikatiounsmethoden déi eng staark Verschlësslung ënnerstëtzt.
+    nls_demo:
+      what_do_you_want_to_search_for: Wouno wëllt Dir sichen?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: z. B. %{query_in_english}
     oauth:
       authorizations:
         new:
@@ -2886,6 +2917,7 @@ lb:
       show:
         about_conservation_status_desc: |
           Den Erhalungszoustand resuméiert de Risiko vum Ausstierwe vun engem Grupp vun Organismen
+        charts_caps: GRAFIKEN
         frequency:
           research: Recherche Grade
           verifiable: Iwwerpréifbar
@@ -2893,7 +2925,11 @@ lb:
           "Alive or Dead=Dead": Dout
           "Plant Phenology=Flowering": Bléiend
           "Plant Phenology=Fruiting": Kritt Friichten
-          "Life Stage=Adult": Erwuessen
+          "Flowers and Fruits=Flowers": Bléien
+          "Flowers and Fruits=Fruits or Seeds": Bléien oder Som
+          "Flowers and Fruits=No Flowers or Fruits": Keng Bléien oder Friichten
+          "Leaves=Green Leaves": Gréng Blieder
+          "Leaves=No Live Leaves": Keng lieweg Blieder
           "Life Stage=Egg": Ee
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juvenil
@@ -3219,11 +3255,16 @@ lb:
             place_geometry:
               is_too_large_to_edit: ass ze grouss fir z'änneren
               is_too_large_to_import: ass ze grouss fir z'importéieren
+              cannot_be_blank: däerf net eidel sinn
+              invalid_point: huet een ongültege Punkt, z. B. Längegrad méi grouss wéi 180 oder Breedegrad manner wéi -90
+              must_have_more_than_three_points: muss méi wéi 3 Punkten hunn
+              polygon_with_less_than_four_points: huet ee Polygon mat manner wéi 4 Punkten
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: däerf net eidel sinn
               must_have_more_than_three_points: muss méi wei 3 Punkten hunn
+              polygon_with_less_than_four_points: huet ee Polygon mat manner wéi 4 Punkten
         project_observation:
           attributes:
             user_id:

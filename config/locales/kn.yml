@@ -977,6 +977,7 @@ kn:
   copy_and_paste_the_following_code_to: ಇನ್ನಿತರ ಜಾಲತಾಣ ಪುಟಗಳಲ್ಲಿ ಈ ಮೌಲ್ಯಮಾಪನವನ್ನು ಅಡಕಗೊಳಿಸಲು ಈ ಕೆಳಗಿನ ಕೋಡ್ ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಅಂಟಿಸಿ.
   copy_and_paste_this_into_your_own_html: ಇದನ್ನು ನಿಮ್ಮದೇ HTML ಗೆ ನಕಲಿಸಿ ಮತ್ತು ಅಂಟಿಸಿ.
   copy_guide_taxon_to: ಕೈಪಿಡಿ ಜೀವಿವರ್ಗವನ್ನು ಇಲ್ಲಿಗೆ ನಕಲಿಸಿ...
+  copy_to_clipboard: ಕ್ಲಿಪ್‌ಬೋರ್ಡಿಗೆ ನಕಲಿಸಿ
   copyright:
     some_rights_reserved: ಕೆಲವು ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ
     some_rights_reserved_by: "(c) %{name}, ಕೆಲವು ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಿದೆ (%{license_short})"
@@ -3813,7 +3814,6 @@ kn:
   start_a_new_project: ಹೊಸ ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_a_project: ಪ್ರಾಯೋಜನೆಯೊಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_date_time: ಪ್ರಾರಂಭದ ದಿನಾಂಕ / ಸಮಯ
-  start_one: ಒಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ
   start_one_now: ಈಗಲೇ ಒಂದನ್ನು ಪ್ರಾರಂಭಿಸಿ!
   start_typing_field_name: ಆವರಣದ ಹೆಸರನ್ನು ನಮೂದಿಸಲು ಆರಂಭಿಸಿ...
   start_typing_place_name: ಸ್ಥಳದ ಹೆಸರನ್ನು ನಮೂದಿಸಲು ಆರಂಭಿಸಿ...
@@ -4064,7 +4064,6 @@ kn:
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ವಿದೆ"
     other: "<span class='count'>%{count}</span> ಸಮಾನಾರ್ಥಕ ಪದ</span> ಗಳಿವೆ"
-  there_is_no_wikipedia_page_matching: ಸರಿಹೊಂದುವ ವಿಕಿಪೀಡಿಯಾ ಪುಟ ಯಾವುದೂ ಇಲ್ಲ
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' ಶೀರ್ಷಿಕೆಯುಳ್ಳ ಯಾವುದೇ ವಿಕಿಪೀಡಿಯಾ ಲೇಖನ ಅಥವಾ ಮರುನಿರ್ದೇಶಿಕೆಗಳಿಲ್ಲ. ಬಹುಶಃ <a href='http://en.wikipedia.org/wiki/%{x}'>ಒಂದನ್ನು ರಚಿಸಿ</a> ಲು ಬಯಸುವಿರಾ?
   there_merge_problems_with_the_merge: "ವಿಲೀನಗೊಳಿಸುವಲ್ಲಿ ಏನೋ ತೊಂದರೆಯಾಗಿದೆ: %{merged_errors}"
@@ -4376,7 +4375,6 @@ kn:
   user_added_an_x_to_noun_by_you_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ನಿಮ್ಮ ಮೂಲಕ ಸೇರಿಸಿದ್ದಾರೆ"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ಅವರು %{x} ಅನ್ನು %{noun} ಗೆ ಸೇರಿಸಿದ್ದಾರೆ"
-  user_added_x_observations_html: "%{user} ಅವರು %{x} ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿದ್ದಾರೆ"
   user_already_authenticated: ಬಳಕೆದಾರರನ್ನು ಈಗಾಗಲೇ ಧೃಢೀಕರಿಸಲಾಗಿದೆ
   user_autocomplete_placeholder: ಸಲೀಂ, ಆಲಿ123, ಇತ್ಯಾದಿ
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -4426,6 +4424,7 @@ kn:
   valid_options_are: ಮಾನ್ಯವಾದ ಆಯ್ಕೆಗಳು
   verbing_x_of_y: "%{verb} %{y} ರಲ್ಲಿ %{x}..."
   verifiable_observations_by_observation_date: ವೀಕ್ಷಣೆಯ ದಿನಾಂಕದಂತೆ ಪರಿಶೀಲಿಸಬಲ್ಲ ವೀಕ್ಷಣೆಗಳು
+  video_tutorials: ವಿಡಿಯೋ ಬೋಧಕಗಳು
   view: ವೀಕ್ಷಿಸಿ
   view_all: ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ
   view_all_caps: ಎಲ್ಲವನ್ನೂ ನೋಡಿ
@@ -4481,7 +4480,6 @@ kn:
   view_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ
   view_yours: ನಿಮ್ಮದನ್ನು ವೀಕ್ಷಿಸಿ
   view_all_of_your_observations_from_x: "%{x} ರಿಂದ ನಿಮ್ಮ ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ"
-  video_tutorials: ವಿಡಿಯೋ ಬೋಧಕಗಳು
   visually_similar: ನೋಟದೋಲಿಕೆ
   vulnerable: ದುರ್ಬಲ
   w_photos_only: ಚಿತ್ರಗಳ ಸಹಿತ
@@ -5305,7 +5303,6 @@ kn:
           "Plant Phenology=Flower Budding": ಹೂವು ಮೊಗ್ಗಾಗುತ್ತಿದೆ
           "Plant Phenology=Flowering": ಹೂವಾಗುತ್ತಿದೆ
           "Plant Phenology=Fruiting": ಹಣ್ಣಾಗುತ್ತಿದೆ
-          "Life Stage=Adult": ವಯಸ್ಕ
           "Life Stage=Egg": ಮೊಟ್ಟೆ
           "Life Stage=Larva": ಮರಿಹುಳು
           "Life Stage=Juvenile": ಹದಿವಯಸ್ಕ

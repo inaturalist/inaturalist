@@ -83,27 +83,33 @@ class Identification < ApplicationRecord
     LEADING,
     MAVERICK
   ]
-  
-  notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
-    :queue_if => lambda {|ident| 
-      ident.taxon_change_id.blank?
+
+  notifies_subscribers_of :observation, notification: "activity", include_owner: true,
+    unless: lambda {| ident |
+      !ident.taxon_change_id.blank?
     },
-    :if => lambda {|notifier, subscribable, subscription|
+    if: lambda {| notifier, subscribable, subscription |
       return true unless notifier && subscribable && subscription
       return true if subscription.user && subscription.user.prefers_redundant_identification_notifications
-      subscribers_identification = subscribable.identifications.current.detect{|i| i.user_id == subscription.user_id}
+
+      subscribers_identification = subscribable.identifications.current.detect do | i |
+        i.user_id == subscription.user_id
+      end
       return true unless subscribers_identification
       return true unless notifier.body.blank?
+
       subscribers_identification.taxon_id != notifier.taxon_id
     }
-  auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
+
+  auto_subscribes :user, to: :observation, if: lambda {| ident, observation |
     ident.user_id != observation.user_id
   }
+
   notifies_users :mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
-    if: lambda {|u| u.prefers_receive_mentions? }
+    if: lambda {| u | u.prefers_receive_mentions? }
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::COORDINATE_ACCESS

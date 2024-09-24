@@ -27,16 +27,10 @@ base: &base
     #     tracker_id: UA-090909-9
     #     domain_name: yoursite.org
 
-    ubio:
-        # http://www.ubio.org/index.php?pagename=form
-        key: 09af09af09af09af09af09af09af09af09af09af
-
     tile_servers:
         # EXPERIMENTAL: These endpoints should return map tiles when hit with
         # requests like /{Z}/{X}/{Y}.png.
         # See http://bitbucket.org/springmeyer/tilelite/
-        observations: 'http://localhost:8000'
-        tilestache: 'http://localhost:8080'
         elasticsearch: http://localhost:4000/v1
 
     google_webmaster:
@@ -62,10 +56,6 @@ base: &base
     #     username: your_twitter_username
 
     # cloudmade:
-    #     key: 09af09af09af09af09af09af09af09af09af09af
-
-    # bing:
-    #     # http://www.bingmapsportal.com/
     #     key: 09af09af09af09af09af09af09af09af09af09af
 
     flickr:

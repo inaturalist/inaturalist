@@ -61,18 +61,24 @@
           %i.fa.fa-angle-down
         %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
           - if logged_in?
-            %li.header-xs.header-sm= link_to t(:identify), identify_observations_path
-          %li= link_to t(:taxa_info), taxa_path
-          %li= link_to t(:guides), guides_path
-          %li= link_to t(:places), places_path
+            %li.header-xs.header-sm= link_to t( :identify ), identify_observations_path
+          %li= link_to t( :taxa_info ), taxa_path
+          %li= link_to t( :guides ), guides_path
+          %li= link_to t( :places ), places_path
           - if @site.blank? || @site.place_id.blank?
-            %li= link_to t(:site_stats), stats_path
-          %li.divider{role: "separator"}
-          %li= link_to t(:help), help_path
-          - if @site && @site.id == Site.default.id && I18n.locale =~ /^en/
-            %li= link_to t(:video_tutorials), wiki_page_url( "video+tutorials" )
-            %li= link_to t(:managing_projects), wiki_page_url( "managing-projects" )
-            %li= link_to t(:teachers_guide), wiki_page_url( "teacher's+guide" )
+            %li= link_to t( :site_stats ), stats_path
+          %li.divider{ role: "separator" }
+          %li= link_to t( :help ), @site.help_url
+          - if !@site&.getting_started_url.blank?
+            %li= link_to t( :getting_started ), @site.getting_started_url
+          - if !@site&.understanding_projects_url.blank?
+            %li= link_to t( :understanding_projects ), @site.understanding_projects_url
+          - if !@site&.educators_guide_url.blank?
+            %li= link_to t( :educators_guide ), @site.educators_guide_url
+          - if !@site&.video_tutorials_url.blank?
+            %li= link_to t( :video_tutorials ), @site.video_tutorials_url
+          - if !@site&.curator_guide_url.blank?
+            %li= link_to t( :curator_guide ), @site.curator_guide_url
   - if logged_in?
     .navtabs.add-obs
       = link_to upload_observations_path, class: "btn btn-default btn-inat btn-focus" do

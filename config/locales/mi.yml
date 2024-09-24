@@ -1203,6 +1203,12 @@ mi:
   store_caps: TOA
   submission_model_description: Ko wai e taea i tāpiri ngā mauhanga ki tāu kohinga?
   submitted: I tukua
+  subscribe_to_a_taxon: Ohaurutia ki tētahi rōpu
+  subscribe_to_a_place: Ohaurutia ki tētahi wāhi
+  subscribe_to_comments_on_this_flag_html: "%{tag_start}Ohaurutia%{tag_end} ki kōrero i runga i te kara nei"
+  subscribe_to_comments_on_this_post_html: "%{tag_start}Ohaurutia%{tag_end} ki kōrero i runga i te pōhi nei"
+  subscribe_to_observations_from_this_place_html: <a>Ohaurutia</a> ki mauhanga i te wāhi nei
+  subscribe_to_this: Ohaurutia ki tēnei
   suggest_an_identification: Marohitia tētahi tautuhi
   suggestions: Marohi
   supporting: Tautoko
@@ -1257,6 +1263,7 @@ mi:
   two_thirds: 2/3
   type_species_name: "Patopatohia te ingoa momo"
   updating: E whakahou ana...
+  unsubscribe: Ohauru kore
   update: Whakahou
   update_observations: Whakahou ngā mauhanga
   update_photos: Whakahou ngā whakaahua
@@ -1295,7 +1302,6 @@ mi:
   user_added_an_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
-  user_added_x_observations_html: "Nā %{user} tāpiritia ngā mauhanga e %{x}"
   username: Ingoa rorohiko
   username_or_email: Ingoa rorohiko rānei, īmera rānei
   users: Kaiwhakamahi
@@ -1305,6 +1311,7 @@ mi:
   users_projects: "Kohinga ā %{user}"
   value: Uara
   values: Uara
+  video_tutorials: Ako ataata
   view: Tirohia
   view_all: Tirohia katoa
   view_all_caps: TIROHIA KATOA
@@ -1332,7 +1339,6 @@ mi:
   view_your_observations: Tirohia āu mauhanga
   view_yours: Tirohia āu
   view_all_of_your_observations_from_x: "Tirohia āu mauhanga katoa mai i %{x}"
-  video_tutorials: Ako ataata
   visually_similar: He āhua rite
   weather: Huarere
   welcome: nau mai, haere mai
@@ -1362,6 +1368,9 @@ mi:
   yesterday: Inanahi
   you: koe
   you_: Koe
+  you_are_subscribed_to_comments_on_this_flag: Kua ohauru koe ki kōrero i runga i te kara nei
+  you_are_subscribed_to_comments_on_this_post: Kua ohauru koe ki kōrero i runga i te pōhi nei
+  you_are_subscribed_to_observations_from_this_place: Kua ohauru koe ki kōrero i runga i te wāhi nei
   you_have_not_confirmed_your_email_address: Kāore koe i whakamanahia tāku wāhitau īmēra!
   your_email_address: Tōu īmēra
   your_identification: Tāu tautuhi
@@ -1433,7 +1442,6 @@ mi:
           "Alive or Dead=Alive": He ora
           "Alive or Dead=Dead": He mate
           "Plant Phenology=No Evidence of Flowering": E kore ngā putiputi
-          "Life Stage=Adult": Pakeke
           "Life Stage=Larva": Pūhouhou
           "Life Stage=Pupa": Tūngoungou
           "Sex=Female": Uwha

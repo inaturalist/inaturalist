@@ -52,6 +52,8 @@
               %td
                 - if record.is_a?( QualityMetric )
                   = link_to( record, record.observation ) rescue record.to_s
+                - elsif record.is_a?( ActsAsVotable::Vote )
+                  = link_to( record, record.votable ) rescue record.to_s
                 - else
                   - name = record.try_methods( :title, :name, :species_guess, :to_s )
                   = link_to( name, record ) rescue link_to( name, linkable_record ) rescue name
@@ -74,6 +76,8 @@
               %td.nobr
                 - if record.is_a?( QualityMetric )
                   = link_to( "view", record.observation, class: "btn btn-default btn-xs" ) rescue nil
+                - elsif record.is_a?( ActsAsVotable::Vote )
+                  = link_to( "view", record.votable, class: "btn btn-default btn-xs" ) rescue nil
                 - else
                   = link_to( "view", record, class: "btn btn-default btn-xs" ) rescue link_to( "view", linkable_record, class: "btn btn-default btn-xs" ) rescue nil
                   - if respond_to? "edit_#{linkable_record.class.name.underscore}_path"

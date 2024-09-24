@@ -151,24 +151,6 @@ ja:
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
   about_this_project: このプロジェクトについて
-  about_trips_html: |
-    <h4>
-    トリップは観察記録に文脈を加えることで、存在-非存在データの収集を可能にします。
-    </h4>
-    <p>
-    <strong>なぜ</strong> 存在-非存在データには、分布モデリングなどの科学的分析に有用なサンプリング作業に関する情報が含まれます（iNaturalistの生の観察記録は「存在のみ」のデータです）。
-    </p>
-    <p>
-    <strong>どうやって</strong> トリップは記録することによって観察記録に文脈を加えます：
-    </p>
-    <ul>
-    <li><strong>何を</strong> 探索したか（ターゲットリスト）</li>
-    <li><strong>どこを</strong> 探索したか（探索エリア）</li>
-    <li><strong>いつ</strong> 探索したか（探索期間）</li>
-    </ul>
-    <p>
-    ターゲットリストにある種のうち、探索エリアと探索期間内に観察できた種は「存在」 と解釈します。一方、観察できなかったターゲットリストの種は非存在と解釈されます。「Tabulate Presence Absence Data From Trips（トリップの存在・非存在データを集計する）」をクリックすると、トリップと関連する観察記録から種の存在・非存在記録の表が作成されます。<a href='%{url}'>さらに詳しく</a>
-    </p>
   about_trusting_projects: Trust Projectsについて
   about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
   about_trusting_projects_options_any_desc: |-
@@ -225,6 +207,8 @@ ja:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: 箇条書きにする
   add_a_comment: コメントの追加
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: 保全状況を追加
   add_a_field: フィールドの追加
   add_a_flag: フラグを追加
   #Tool tip for a button that adds a link to a text area
@@ -247,6 +231,8 @@ ja:
   add_annotations_for_controlled_attribute:
     sex: '「性別」の注釈を追加'
     plant_phenology: '「植物季節学」の注釈を追加'
+    flowers_and_fruits: '"花と実"に注釈を追加'
+    leaves: '"葉"に注釈を追加'
     life_stage: '「生育段階」の注釈を追加'
     evidence_of_presence: '「存在の証拠」の注釈を追加'
   add_another_flag: フラグをさらに追加
@@ -303,6 +289,13 @@ ja:
   add_plant_phenology_flowering_annotation: '"植物季節学：開花中（花あり）"の注釈を追加する'
   add_plant_phenology_fruiting_annotation: '"植物季節学：果実あり"の注釈を追加する'
   add_plant_phenology_no_evidence_of_flowering_annotation: '"植物季節学：開花の証拠がない" の注釈を追加する'
+  add_flowers_and_fruits_flower_buds_annotation: '「花と実：花芽（つぼみ）」の注釈を追加'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '「花と実：果実または種子」の注釈を追加'
+  add_flowers_and_fruits_no_flower_or_fruits: '「花と実：花や実なし」の注釈を追加'
+  add_leaves_breaking_leaf_buds: '「葉：芽吹き」の注釈を追加'
+  add_leaves_green_leaves: '「葉：青葉」の注釈を追加'
+  add_leaves_colored_leaves: '「葉：紅葉、黄葉」の注釈を追加'
+  add_leaves_no_live_leaves: '「葉：生きた葉なし」の注釈を追加'
   add_life_stage_adult_annotation: '“ライフステージ: 成体・成虫”の注釈を追加する'
   add_life_stage_teneral_annotation: '“ライフステージ: テネラル (脱皮したての成虫/成体)”の注釈を追加する'
   add_life_stage_subimago_annotation: '“ライフステージ: 亜成虫”の注釈を追加する'
@@ -729,6 +722,7 @@ ja:
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
   badges: バッジ
+  base_map_copyright_openstreetmap_html: ベースマップ ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
@@ -1050,6 +1044,10 @@ ja:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: 指定なし
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: 指定なし
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: 指定なし
@@ -1059,10 +1057,20 @@ ja:
     male: オス
     female: メス
     plant_phenology: 植物季節学
+    flowers_and_fruits: 花と実
     budding: 出芽
     flower_budding: つぼみ
     flowering: 開花中
     fruiting: 果実あり
+    no_flowers_or_fruits: 花や実なし
+    flower_buds: 花芽（つぼみ）
+    flowers: 花
+    fruits_or_seeds: 果実または種子
+    leaves: 葉
+    breaking_leaf_buds: 芽吹き
+    green_leaves: 青葉
+    colored_leaves: 紅葉、黄葉
+    no_live_leaves: 生きた葉なし
     life_stage: ライフステージ
     adult: 成体・成虫
     teneral: 脱皮直後
@@ -1106,10 +1114,18 @@ ja:
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
+    flowers: 少なくとも1つの開いた花がある
+    flower_buds: 少なくとも1つの閉じた花芽（つぼみ）がある
+    fruits_or_seeds: 少なくとも1つの果実または種子がある
+    breaking_leaf_buds: 最初の葉または針状葉が完全に展開していない芽が少なくとも1つある
+    green_leaves: 少なくとも1枚の緑色の葉または針状葉（または通常の健康な色であれば赤みがかったもの）
+    colored_leaves: 少なくとも1枚の葉または針状葉が、晩秋または干ばつの色をしている
+    no_live_leaves: 新芽が出たり、緑や色のついた葉や針状葉が見受けられない
     gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
     male: 生物が有性生殖に使用する精子を生産できることを示す証拠
     molt: 脱ぎ捨てられた皮膚または外骨格
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
+    no_flowers_or_fruits: 花、果実、種子（全部または一部）が見えない
     organism: 生物の本体またはその一部
     scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
     teneral: 羽化したばかりで、まだ成熟していない成体
@@ -1298,6 +1314,8 @@ ja:
   curator_application_you_should_apply_if_you_can_behave: |
     iNaturalistでの適切な行動の見本となり、コミュニティーの
     ガイドラインを遵守してください。キュレーターの権限とともに、あなたにはiNaturalistの模範的なユーザーであることが期待されます。
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: キュレーターガイド
   curators_changed_for_x_html: "%{x}のキュレーターが変わりました"
   curators: キュレーター管理者
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
@@ -1752,6 +1770,7 @@ ja:
   filter: 絞り込む
   filter_by_curator_identification: キュレーターによる同定で検索
   filter_by_place: 場所で検索
+  filter_by_species: 種で絞り込む
   filter_by_taxon: 分類群で検索
   filter_by_place_taxon_and_color: 場所や分類群等で検索
   filter_list_by_this_taxon: この分類群でリストをフィルター
@@ -1933,6 +1952,9 @@ ja:
   grid_tooltip: グリッド表示
   group: グループ
   grouping: グループ化
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: 他の観察記録から位置を推測しますか？
   guides: ガイド
   guide_compiled_by: ガイド作成者
   guide_deleted: ガイドは削除されました
@@ -2983,18 +3005,6 @@ ja:
   observation_accuracy_validator_email_subject2: "iNaturalistの観察記録の精度を推定するための実験 %{version} にご協力いただけませんか？"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     iNaturalistの観察記録の精度を見積もるための <a href="%{url}">実験（バージョン %{version} ）</a>にご協力いただけませんか？
-  observation_accuracy_validator_email_if_so2_html: |
-    <ol>
-    <li>たとえそれが研究グレードであっても、またあなたの最も細かいIDがより高い分類学的レベル（王国であっても）であっても、以下のリンクにあるすべての観察記録をできる限り細かく同定してください。</li>
-    <li>「不一致の可能性」のポップアップが表示されたら...
-    <ul>
-    <li>誤同定だと確信がある場合は、オレンジ色のボタンをクリックしてください、</li>
-    <li>または、自分のIDがわからない場合は、緑色のボタンをクリックしてください。</li>
-    </ul>
-    </li>
-    <li>これを <b>%{validator_deadline_date}</b> までに行ってください。</li>
-    </ol>
-    以下は、iNatでのあなたの活動に基づいて、あなたが同定できると思われる <a href="%{sample_url}"> %{num_obs} の観察記録のサブセット</a> です。<b>それぞれの観察記録に、できる限り細かいIDを %{validator_deadline_date} までに追加してください。</b>
   observation_accuracy_validator_email_we_will_calculate: |
     私たちは、あなたの同定と観察記録分類群を比較して精度を計算します。もしその同定がまだ関連していれば、以前に同定を追加した観察記録をスキップすることができます。一致と不一致をどのようにカウントするかについては、このまま読み進めてください。
   observation_accuracy_validator_email_ids_equal_to: |
@@ -4283,6 +4293,8 @@ ja:
   show_no_annotation: '「注釈なし」を表示'
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMapを表示
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
   #Label for a button to show the running total of an accumulation chart
   show_running_total: 現在の総計を表示
@@ -4447,7 +4459,6 @@ ja:
   start_a_new_project: 新規プロジェクト作成
   start_a_project: 新規プロジェクト作成
   start_date_time: 開始日時
-  start_one: 1つを始める
   start_one_now: 今すぐ始める！
   start_typing_field_name: フィールド名を入力
   start_typing_place_name: 場所名を入力
@@ -4477,10 +4488,9 @@ ja:
   studies_that_used_inaturalist_data_in_year: iNaturalistのデータを %{year} 年に使用した研究
   stuff_just_added: "あなたの新着追加項目"
   subject_resolved_noun_html: "%{subject}が%{noun}を解決しました"
-  subject_affecting_stuff_html: "%{stuff}を影響している%{subject}"
-  subject_committed_thing_affecting_stuff_html: "%{subject}が%{stuff}に関わる@vow_or_con{vow:an|a} %{thing}を確定させた"
   submission_model: 投稿機種
   submission_model_description: プロジェクトに観察記録を追加できる対象は？
+  submit: 送信
   submit_observations:
     other: '%{count}件の観察記録を送信'
   submitted: 投稿済
@@ -4640,6 +4650,7 @@ ja:
   terms_service: 利用規約
   terrain: 地形
   text: テキスト
+  thank_you!: ありがとうございます！
   thanks!: ありがとうございます！
   thanks_from_all_of_us_here_at: ここにいる私たち全員からの感謝
   that_photo_doesnt_exist: お探しの写真は存在しません。
@@ -4677,7 +4688,6 @@ ja:
   then_keybord_sequence: 次に
   there_are_x_synonyms_html:
     other: "<span class='count'>%{count}つ</span>シノニムが存在します</span>"
-  there_is_no_wikipedia_page_matching: 一致するウィキペディアページがありません
   there_isnt_a_wikipedia_article_titled_x_html: |
     ウィキペディアには '%{x}' というタイトルの記事もリダイレクトもありません。おそらく、<a href='http://en.wikipedia.org/wiki/%{x}'>作成</a>したいのではないでしょうか？
   there_merge_problems_with_the_merge: "統合エラーが発生しました：%{merged_errors}"
@@ -5036,7 +5046,8 @@ ja:
   user_added_an_x_to_noun_by_you_html: "%{user}はあなたの%{noun}に%{x}を追加しました"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
-  user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
+  user_added_x_observations2_html:
+    other: "%{user} さんが %{count} 件の観察記録を追加しました"
   user_already_authenticated: ユーザーは既に認証されています
   user_already_app_owner: ユーザーはすでにアプリの所有者です
   user_autocomplete_placeholder: kueda, simon123 などのユーザー名
@@ -5126,6 +5137,7 @@ ja:
   valid_options_are: 有効な選択肢：
   value: 値
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
+  video_tutorials: 動画チュートリアル
   view: 表示
   view_all: すべて表示
   view_all_caps: すべて表示
@@ -5192,7 +5204,6 @@ ja:
   view_your_personal_year_in_review_caps: "個人的な %{year} 年を振り返る"
   view_yours: 自分のを表示
   view_all_of_your_observations_from_x: "%{x}から自分のすべての観察記録を表示"
-  video_tutorials: 動画チュートリアル
   visually_similar: 視覚的に似ている
   vulnerable: 危急種/絶滅危惧II類
   w00t_no_ungrafted_taxa: やった！未合体の分類群がありません！
@@ -5761,6 +5772,36 @@ ja:
         speech_privilege_notice: |
           有効な観察記録を3つ、または他の人の観察記録に同定をを3つ追加すると、新しいDMを送信できるようになりま
           現在の状態では、他の人が送ってきたメッセージを読んだり、返信したりする機能のみが利用できます。
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: ビジョン・ランゲージのデモ
+      what_do_you_want_to_search_for: 何を検索しますか？
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: 例：%{query_in_english}
+      try_one_of_these_example_searches_colon: "以下の検索例を試してみてください："
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: 改善にご協力ください
+      to_help_us_improve: このモデルの改良のため、このページに掲載されている画像のうち、どの画像が検索 &quot;%{searched_term}&quot; に関連しているかを教えてください。検索に一致する画像には関連 %{thumbs_up_icon} 、一致しない画像には無関係 %{thumbs_down_icon} を付けてください。入力が終わりましたら、送信をクリックしてください。 #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: 関連するものとしてマーク
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: 無関係のものとしてマーク
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: 同定でこれらの観察記録を見る
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a>は、<a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">マサチューセッツ大学アマースト校</a>、<a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">エジンバラ大学</a>、<a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">ユニバーシティ・カレッジ・ロンドン</a>、<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>の研究者とチームを組み、またiNaturalistの観察記録を整理、探索、説明するのに役立つビジョン言語モデルの可能性をよりよく理解するために、<a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a>の寛大な支援を受けました。 #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: このデモツールでは、検索フレーズ（「<a href="%{url}">%{query_in_english}</a>」など）を入力し、1,000万枚のiNaturalistの写真と照合することができます。結果は関連性の高いものから低いものへと並びます。このデモは、あなたのプロジェクトに注釈を付けたり追加したりする興味深いiNaturalistの観察記録を見つける新しい方法として使うことができます。
+      you_can_also_use_this_demo: また、このデモを使用して、返された画像のどれがあなたの検索フレーズに関連していたかを教えていただくことで、このデモを動かしているビジョン・ランゲージ・モデルの評価に役立てることができます。このデモはiNaturalistのデータやiNaturalistチームによってトレーニングされたものではないサードパーティの <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">ビジョン・ランゲージCLIPモデル</a> を使用しています。このツールは不正確、偏った、あるいは不快な結果を出すことがあります。詳しくは <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">iNaturalistブログ</a> をご覧ください。 #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: この活動を支援したい場合は
+      thank_you_for_your_submission!: 送信ありがとうございます！
     oauth:
       authorizations:
         new:
@@ -6289,7 +6330,14 @@ ja:
           "Plant Phenology=Flowering": 開花中
           "Plant Phenology=Fruiting": 結実中
           "Plant Phenology=No Evidence of Flowering": 開花の証拠が見られない
-          "Life Stage=Adult": 成体
+          "Flowers and Fruits=Flower Buds": 花芽（つぼみ）
+          "Flowers and Fruits=Flowers": 花
+          "Flowers and Fruits=Fruits or Seeds": 果実または種子
+          "Flowers and Fruits=No Flowers or Fruits": 花や実なし
+          "Leaves=Breaking Leaf Buds": 芽吹き
+          "Leaves=Green Leaves": 青葉
+          "Leaves=Colored Leaves": 紅葉、黄葉
+          "Leaves=No Live Leaves": 生きた葉なし
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼虫・幼生
           "Life Stage=Juvenile": 幼体
@@ -6318,29 +6366,6 @@ ja:
           これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>他の場所で使用されている名前を追加してみてください。新しい名前を作らないでください。</p></li>
-          <li><p>重複した名前を付けないようにしましょう。例えば、多数の鷹に対して「鷹」と名付けてはいけません。</p></li>
-          <li><p>高次分類群の場合は、「herons and allies (サギとシギ)」や「heath family (ツツジの科)」のようにすべての下位分類群を含む名前を使用してみてください。</p></li>
-          <li>
-          <p>
-          名前以外の情報を追加しないでください。
-          例：どのように名前が使用されるべきか
-          </p>
-          </li>
-          <li>
-          <p>
-          新しい言語名を追加する場合は英語表記にしてください。翻訳された言語名、例えば「日本語」ではなく、英語の「Japanese」としましょう。異なる言語でサイトを利用している人のために地域化された名前を表示するのが難しくなるか、あるいは不可能になるからです。
-          </p>
-          </li>
-          <li>
-          <p>
-          翻訳された言語に関連付けられた一般名は、その言語の既定の一般名として表示されます（場所の設定や名前の順序などの影響を除く）。
-          翻訳についてより詳しく知りたい方は<a class="readmore" href="/pages/translate">こちら</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:
@@ -6831,9 +6856,16 @@ ja:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: 指定された配置に対して有効でなければなりません
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: 指定されたターゲットグループに対して有効でなければなりません
         application:
           attributes:
             redirect_uri:
@@ -6894,11 +6926,16 @@ ja:
               is_too_large_to_edit: 編集するには大きすぎます
               is_too_large_to_import: 大きすぎるため、インポートできません
               contains_too_many_observations: インポートするには観察記録が多すぎます
+              cannot_be_blank: 空白にはできません
+              invalid_point: は無効な点です。例えば、経度が180度より大きい、緯度が-90度より小さいなど。
+              must_have_more_than_three_points: 3以上の点が必要です
+              polygon_with_less_than_four_points: 点が4つ未満の多角形があります
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: 空白にはできません
               must_have_more_than_three_points: 3点以上である必要があります
+              polygon_with_less_than_four_points: 点が4つ未満の多角形があります
         post:
           attributes:
             parent:

@@ -10,82 +10,11 @@
 @import "../shared/quality_metrics";
 @import "../shared/split_taxon";
 @import "../shared/user_with_icon";
+@import "../shared/easyzoom";
 @import "../users/user_image";
 @import "../users/user_popover";
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
-
-// react images ids and class names. get ready for this to change again in the future
-#lightboxBackdrop {
-  [class*="content_"],
-  [class*="figure_"],
-  .easyzoom,
-  .easyzoom > a {
-    height: 100%;
-  }
-  [class*="spinner_"] {
-    display: none;
-  }
-  [class*="content_"] {
-    position: absolute !important;
-    left: 0;
-    top: 0;
-  }
-  [class*="content_"] {
-    [class*="header_"] {
-      margin: 0 10px;
-      position: absolute;
-      inset-inline-end: 0;
-    }
-    width: 100%;
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto !important;
-    }
-    .easyzoom {
-      cursor: default;
-      & > a {
-        cursor: default;
-        img {
-          cursor: zoom-in !important;
-        }
-      }
-      .easyzoom-flyout {
-        z-index: 2001;
-        cursor: zoom-out !important;
-        img {
-          margin: 0px !important;
-          padding: 0px;
-        }
-        &.short img {
-          margin-top: auto !important;
-          margin-bottom: auto !important;
-        }
-        &.narrow img {
-          margin-left: auto !important;
-          margin-right: auto !important;
-        }
-      }
-    }
-  }
-}
-
-[dir = "rtl"] #lightboxBackdrop {
-  button[class*="left"] {
-    left: unset;
-    right: 0;
-    transform: rotate(180deg)
-  }
-  button[class*="right"] {
-    right: unset;
-    left: 0;
-    transform: rotate(180deg)
-  }
-}
 
 @mixin editor-textarea {
   textarea {
@@ -123,6 +52,7 @@ button.linky,
   color: $bootstrap-link-color;
   cursor: pointer;
   background: transparent;
+  vertical-align: baseline;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
@@ -192,10 +122,7 @@ input.failed, textarea.failed {
 
 .ui-autocomplete {
   .ac-result, .category {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
-    body.testing-font & {
-      font-family: Lato, "Trebuchet MS", Arial, sans-serif;
-    }
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
       color: #333;
     }
@@ -313,7 +240,7 @@ a.UserImage,
             top: 280px;
             width: 100%;
             text-align: center;
-            font-weight: 100;
+            font-weight: 400;
           }
           .add-photo-span {
             top: auto;
@@ -408,7 +335,7 @@ a.UserImage,
               padding: 15px;
               border-radius: 50px;
               display: inline-block;
-              padding: 5px 9px;
+              padding: 5px 9px 7px;
               pointer-events: auto;
               .btn:hover, .fa:hover {
                 text-decoration: none;
@@ -496,7 +423,7 @@ a.UserImage,
         }
         .bold_label {
           display: block;
-          font-weight: bold;
+          font-weight: 600;
         }
         .date {
           font-size: 13px;
@@ -605,6 +532,9 @@ a.UserImage,
           color: $fail-red;
         }
       }
+      & > button {
+        padding-top: 4px;
+      }
     }
   }
   .middle_left {
@@ -644,6 +574,7 @@ a.UserImage,
         line-height: 40px;
         color: #000;
         white-space: normal;
+        font-weight: 200;
       }
       &.genus .comname.secondary-names,
       &.species .comname.secondary-names,
@@ -783,14 +714,16 @@ time {
     background: #f8f8f8;
     height: 230px;
     text-align: center;
-    font-size: 18px;
-    color: $text-grey;
     padding-top: 75px;
     border-bottom: 1px solid $border-grey;;
     .fa {
       display: block;
       font-size: 60px;
       color: #ccc;
+    }
+    span {
+      font-size: 18px;
+      color: $text-grey;
     }
   }
   .map_details {
@@ -810,6 +743,9 @@ time {
         color: $bootstrap-link-color;
         cursor: pointer;
         margin-right: 5px;
+        > .btn {
+          vertical-align: baseline;
+        }
       }
       .obscured {
         color: #aaa;
@@ -841,6 +777,18 @@ time {
       .btn-more:hover, .btn-more:focus {
         text-decoration: none;
       }
+      .btn.clipboard-copy {
+        vertical-align: top;
+        margin: -1px 10px 0px 6px;
+        background: #f0f0f0;
+        outline: none;
+        &:hover {
+          background: #e6e6e6;
+        }
+      }
+      .tooltip.top {
+        margin-left: 6px;
+      }
     }
   }
 }
@@ -850,7 +798,7 @@ time {
   padding: 20px;
   display: inline-block;
   .attr {
-    font-weight: 700;
+    font-weight: 600;
   }
   .places {
     h4 {
@@ -1261,7 +1209,7 @@ time {
   width: 100%;
   h3 {
     & > span a {
-      font-weight: 700;
+      font-weight: 600;
     }
     .links {
       float: right;
@@ -1440,7 +1388,7 @@ time {
       .title {
         font-size: 14px;
         line-height: 14px;
-        font-weight: 700;
+        font-weight: 600;
         text-overflow: ellipsis;
         display: block;
         overflow: hidden;
@@ -1517,7 +1465,7 @@ time {
       margin-bottom: 5px;
       .display-name {
         color: #000;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
     .photo {
@@ -1624,7 +1572,7 @@ time {
     text-align: center;
     a {
       color: $bootstrap-link-color;
-      font-weight: 200;
+      font-weight: 400;
     }
     &.in {
     }
@@ -2208,7 +2156,7 @@ time {
     background: $inat-green;
     border-radius: 15px;
     cursor: pointer;
-    padding-top: 3px;
+    padding-top: 2px;
     text-align: center;
     &.disabled {
       opacity: 0.3;
@@ -2272,70 +2220,14 @@ time {
 
 
 
-
-
-.easyzoom-flyout {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  z-index: 2;
-}
-.easyzoom-flyout img {
-  vertical-align: bottom;
-}
-.image-gallery-content .easyzoom-flyout img {
-  height: auto;
-  width: auto;
-  opacity: 1;
-  cursor: zoom-out;
-}
-
-.easyzoom-zoomed img {
-  visibility: hidden;
-}
-
-
-.easyzoom,
-.easyzoom > a {
-  display: inline-block;
-  width: 100%;
-  cursor: zoom-in;
-}
-body > [role="dialog"] .easyzoom > a > img {
-  vertical-align: bottom;
-}
-
-.easyzoom.is-loading img {
-  cursor: progress;
-}
-
-.easyzoom-notice {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 150;
-  width: 10em;
-  margin: -1em 0 0 -5em;
-  line-height: 2em;
-  text-align: center;
-  color: white;
-  text-shadow: 0 0 5px black;
-}
-
-
-
-
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding-block: 2px 1px;
+  padding-block: 3px 3px;
   padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
-  line-height: 17px !important;
+  line-height: 16px !important;
   z-index: 1;
   margin-inline-end: 20px;
   // added
@@ -2347,7 +2239,7 @@ body > [role="dialog"] .easyzoom > a > img {
   position: absolute;
   display: block;
   bottom: 0;
-  border: 10px solid $border-grey;
+  border: 11px solid $border-grey;
   border-inline-end-width: 5px;
   border-inline-end-color: transparent;
   inset-inline-end: -15px;

@@ -196,8 +196,6 @@ nb:
   about_this_bioblitz: Om denne bioblitzen
   about_this_map: Om dette kartet
   about_this_project: Om dette prosjektet
-  about_trips_html: |
-    <h4>Turer muliggjør innsamling av data om tilstedeværelse/fravær ved å legge til kontekst til dine observasjoner</h4><p><strong>Hvorfor</strong> Data om tilstedeværelse/fravær inneholder informasjon om samlingsinnsats, noe som er nyttig or vitenskapelige analyser som distribusjonsmodellering (vanlige iNaturalist observasjoner inneholder kun informasjon om tilstedeværelse).</p><p><strong>Hvordan</strong> En tur legger til kontekst til dine obervasjoner ved å rapportere:</p><ul><li><strong>Hva</strong> du har lett etter (fokusliste)</li><li><strong>Hvor</strong> du har lett (lete-område)</li><li><strong>Når</strong> du har lett (lete-intervall)</li></ul><p>Arter på din fokusliste som du har klart å observere i ditt lete-område og -intervall blir regnet som tilstedeværelser, mens arter på din fokus-liste som du ikke har klart å observere blir regnet som fravær. Klikk på 'Lag tabell av tilstedevørelse/fravær data fra turer' for å generere en tabell av tilstedevørelse/fraværs-data for en art fra turer og tilkyttede observasjoner. <a href='%{url}'>Lær mer</a></p>
   about_trusting_projects: Om å stole på prosjekter
   about_trusting_projects_options_any: Alle dine observasjoner i dette prosjektet
   about_trusting_projects_options_any_desc: |-
@@ -279,6 +277,8 @@ nb:
   add_annotations_for_controlled_attribute:
     sex: Legg til merknader for "Kjønn"
     plant_phenology: Legg til merknader for "Plantefenologi"
+    flowers_and_fruits: Legg til merknader for "Blomster og frukter"
+    leaves: Legg til merknader for "Blader"
     life_stage: Legg til merkander for "Livsstadium"
     evidence_of_presence: Legg til anmerkninger for "Bevis for tilstedeværelse"
   add_another_flag: Legg til enda en markering
@@ -314,6 +314,7 @@ nb:
   add_notes_about_this_taxon: Legg til notater om dette taksonet på dette stedet, f.eks. hvor og når det forekommer.
   add_obs_from_a_link: "Legg til obs fra liste: %{link}"
   add_obs_from_a_list: Legg til obs fra en liste
+  add_observation_fields: Legg til observasjonsfelt
   add_observations: Legg til observasjoner
   add_observations_by_checking_off: Legg til observasjoner ved å krysse av arter på en liste.
   add_observations_project: Legg til observasjoner til dette prosjektet
@@ -334,6 +335,10 @@ nb:
   add_plant_phenology_flowering_annotation: 'Legg til merknaden "Plantefenologi: Blomstrende"'
   add_plant_phenology_fruiting_annotation: 'Legg til merknaden "Plantefenologi: Fruktbærende"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Legg til merknaden "Plantefenologi: Ingen bevis for blomstring"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Legg til "Blomster og frukter: Blomsterknopper"-merknad'
+  add_flowers_and_fruits_flowers_annotation: 'Legg til "Blomster og frukter: Blomster"-merknad'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Legg til "Blomster og frukter: Frukter og frø"-merknad'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Legg til "Blomster og frukter: Ingen blomster eller frukter"-merknad'
   add_life_stage_adult_annotation: 'Legg til merknaden "Livsstadium: Voksen"'
   add_life_stage_teneral_annotation: 'Legg til merknaden "Livsstadium: teneral"'
   add_life_stage_subimago_annotation: 'Legg til merknaden "Livsstadium: subimago"'
@@ -349,6 +354,7 @@ nb:
   add_evidence_of_presence_track_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: spor"'
   add_evidence_of_presence_bone_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: bein"'
   add_evidence_of_presence_molt_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: ham"'
+  add_evidence_of_presence_hair_annotation: 'Legg til merknaden "Bevis for tilstedeværelse: hår"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Legg til relasjon'
   #As in a Guide Section
@@ -1091,10 +1097,19 @@ nb:
     male: Hannkjønn
     female: Hunnkjønn
     plant_phenology: Plantefenologi
+    flowers_and_fruits: Blomster og frukter
     budding: Knopper
     flower_budding: Blomsterknopper
     flowering: Blomstrende
     fruiting: Fruktbærende
+    no_flowers_or_fruits: Ingen blomster eller frukter
+    flower_buds: Blomsterknopper
+    flowers: Blomster
+    fruits_or_seeds: Frukt eller frø
+    leaves: Blader
+    green_leaves: Grønne blader
+    colored_leaves: Fargede blader
+    no_live_leaves: Ingen levende blader
     life_stage: Livsstadium
     adult: Voksen
     teneral: Teneral
@@ -1127,6 +1142,8 @@ nb:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Ham
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Hår
   controlled_term_definitions:
     alive: Organisme lever og viser ikke tegn på en snarlig død
     bone: |
@@ -1141,6 +1158,7 @@ nb:
     gall: Unormal tilvekst på plantemateriale på grunn av parasittisk organisme
     male: Bevis indikerer at organismen kan produsere sperm for bruk ved seksuell reproduksjon
     molt: Avsatt hud eller eksoskjelett
+    egg: Helt egg eller deler av et egg
     no_evidence_of_flowering: Media gir ingen bevis for reproduksjonsstrukturer
     organism: Hel eller del av organisme
     scat: Avføring (ikke spyboller eller andre oppstøtinger)
@@ -1161,6 +1179,8 @@ nb:
   copy_and_paste_the_following_code_to: Kopier og lim følgende kode for å inkludere denne vurderingen på et annet nettsted.
   copy_and_paste_this_into_your_own_html: Kopier og lim dette inn i din egen html.
   copy_guide_taxon_to: Kopier taksonguide til...
+  copy_to_clipboard: Kopier til utklippstavlen
+  copied!: Kopiert!
   copyright:
     some_rights_reserved: noen rettigheter forbeholdt
     some_rights_reserved_by: "(c) %{name}, noen rettigheter forbeholdt (%{license_short})"
@@ -1458,6 +1478,8 @@ nb:
   deviation: Avvik
   devise:
     confirmations:
+      confirmed: |
+        Din e-postadresse har blitt bekreftet.
       send_instructions: "Du vil motta en e-post med instruksjoner på hvordan du bekrefter din e-postadresse om noen minutter."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -2656,6 +2678,12 @@ nb:
     Dette inkluderer moderatorhandlinger (f.eks. skjuling og visning av kommentarer), notater, og markeringer på alt denne brukeren har skapt bortsett fra taksa. Dette er <strong>kun synlig for kuratorer</strong> og <strong>kurator kan ikke se deres egen historikk</strong>, så notater om en person skal aldri være synlige for den personen.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Skjul
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Vis
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspender
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Opphev suspendering
   moderator_note_desc: |
     Moderatornotater er dokumentasjon av moderasjonssvar eller bevisbaserte bekymringer rundt en bruker, sånn som om de kan være en dobbeltkonto. Vennligst ikke inkluder personlige meninger eller rykter om brukeren.
   #Person who executed a moderator action or flagged something
@@ -3008,6 +3036,10 @@ nb:
   observation_accuracy_experiment_quality_grade: "Kvalitetsgrad"
   observation_accuracy_experiment_show_frequency: "vis frekvens"
   observation_accuracy_experiment_click_on_bars: "Klikk på stolper for å utforske delsett."
+  observation_accuracy_experiment_validators: "Validatorer:"
+  observation_accuracy_experiment_show_additional_validators: "(vis flere validatorer)"
+  observation_accuracy_experiment_hide_additional_validators: "(skjul ytterligere validatorer)"
+  observation_accuracy_experiment_additional_validators: "(%{number} ytterligere validatorer)"
   observation_accuracy_experiment_verifiable_results: "Verifiserbare resultater"
   observation_accuracy_experiment_all_results: "Alle resultater"
   observation_accuracy_experiment_methods: "Metoder"
@@ -4502,7 +4534,6 @@ nb:
   start_a_new_project: Start et nytt prosjekt
   start_a_project: Start et prosjekt
   start_date_time: Startdato / klokkeslett
-  start_one: Start en
   start_one_now: Start en nå!
   start_typing_field_name: Start å skrive feltnavn...
   start_typing_place_name: Start å skrive stedsnavn...
@@ -4528,8 +4559,6 @@ nb:
   studies_that_used_inaturalist_data_in_year: Studier som har brukt data fra iNaturalist i %{year}
   stuff_just_added: "Ting som du nettopp har lagt til..."
   subject_resolved_noun_html: "%{subject} har løst %{noun}"
-  subject_affecting_stuff_html: "%{subject} som påvirker %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} har gjennomført @gender{m:en|f:ei|n:et} %{thing} som påvirker %{stuff}"
   submission_model: Innsendingsmodell
   submission_model_description: Hvem kan legge til observasjoner i ditt prosjekt?
   submit_observations:
@@ -4740,6 +4769,7 @@ nb:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Tekstformaterings-elementer
   text_editing_controls: Tekstredigerings-elementer
+  thank_you!: Tusen takk!
   thanks!: Takk!
   thanks_from_all_of_us_here_at: Takk fra oss alle i
   that_photo_doesnt_exist: Det bildet finnes ikke.
@@ -4780,7 +4810,6 @@ nb:
   there_are_x_synonyms_html:
     one: "Det er <span class='count'>1</span> synonym</span>"
     other: "Der er <span class='count'>%{count}</span> synonymer</span>"
-  there_is_no_wikipedia_page_matching: Der er ingen overensstemmende Wikipedia-side
   there_isnt_a_wikipedia_article_titled_x_html: |
     Der er ingen Wikipedia-artikel eller henvisning med tittelen '%{x}'. Kanskje du vil <a href='http://en.wikipedia.org/wiki/%{x}'>opprette en</a>?
   there_merge_problems_with_the_merge: "Det oppstod problemer med sammenslåingen: %{merged_errors}"
@@ -4870,6 +4899,14 @@ nb:
   time_zone_america_argentina_buenos_aires: Argentinsk tid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_bogota: Colombiansk tid
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: Sentraltid (USA og Canada)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chihuahua: Stillehavstid (Mexico)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_guatemala: Guatemalatid
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_halifax: Atlanterhavstid (Canada)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_la_paz: Boliviansk tid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -4966,6 +5003,8 @@ nb:
   time_zone_pacific_apia: Samoansk tid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: Newzealandsk tid
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_honolulu: Hawaii- og Aleutenetid
   #As in the title of a book or a blog post
   title: tittel
   title_and_description: "Tittel & beskrivelse"
@@ -5151,7 +5190,6 @@ nb:
   user_added_an_x_to_noun_by_you_html: "%{user} har lagt til 1 %{x} på %{noun} av deg"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} har lagt til @gender{f:ei|n:et|en} %{x} til %{noun}"
-  user_added_x_observations_html: "%{user} har lagt til %{x} observasjoner"
   user_already_authenticated: Brukeren er allerede autentisert
   user_already_app_owner: Brukeren er allerede en app-eier
   user_autocomplete_placeholder: kueda, simon123, osv.
@@ -5232,6 +5270,7 @@ nb:
   values: Verdier
   verbing_x_of_y: "%{verb}%{x} av %{y}..."
   verifiable_observations_by_observation_date: Verifiserbare observasjoner per observasjonsdato
+  video_tutorials: Videoveiledninger
   view: Vis
   view_all: Vis alle
   view_all_caps: VIS ALLE
@@ -5305,7 +5344,6 @@ nb:
   view_your_observations: Vis dine observasjoner
   view_yours: Vis dine
   view_all_of_your_observations_from_x: "Vis alle dine observasjoner fra %{x}"
-  video_tutorials: Videoveiledninger
   visually_similar: Ligner visuelt
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
@@ -5902,6 +5940,11 @@ nb:
           Du har markert denne samtalen på %{date}. Markeringen vil være der selv hvis du sletter din kopi av denne samtalen, så det er trygt å gjøre det hvis du ikke ønsker å se dette mere.
         privacy_notice_html: |
           Mens meldinger er private mellom deg og mottakeren, kan iNaturalist ansatte se disse meldingene også, og vil gjøre det når meldinger har blitt markert for moderering. Hvis du trenger ordentlig privat kommunikasjon, vennligst se på andre kommunikasjonsmekanismer som støtter sterk kryptering.
+    nls_demo:
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Hjelp oss med å bli bedre
     oauth:
       authorizations:
         new:
@@ -6634,6 +6677,11 @@ nb:
         website_desc_html: |
           Laget med <a href="https://www.inaturalist.org">iNaturalist </a> eller nettsider i <a href="%{url}">iNaturalist-nettverket</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Legg til begge
+        added_only_identifications: La kun til identifikasjoner
+        added_only_observations: La kun til observasjoner
         compare_desc: |
           Hvordan ble dette året sammenlignet med dine foregående år? Med tre år med
           bruk eller mer kan vi begynne å sammenligne årlige aktivitetstall.
@@ -6733,7 +6781,10 @@ nb:
           "Plant Phenology=Flowering": Blomstrende
           "Plant Phenology=Fruiting": Fruktbærende
           "Plant Phenology=No Evidence of Flowering": Ingen bevis for blomstring
-          "Life Stage=Adult": Voksen
+          "Flowers and Fruits=Flower Buds": Blomsterknopper
+          "Flowers and Fruits=Flowers": Blomster
+          "Flowers and Fruits=Fruits or Seeds": Frukter eller frø
+          "Flowers and Fruits=No Flowers or Fruits": Ingen blomster eller frukter
           "Life Stage=Egg": Egg
           "Life Stage=Larva": Larve
           "Life Stage=Juvenile": Juvenil
@@ -6771,28 +6822,6 @@ nb:
           Navnet til taksonet med rangen. For infra-artsranger, legges rang inn etter binomialen.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Prøv å legge til navn som har blitt brukt andre steder. Vennligst ikke finn på nye navn.</p></li>
-          <li><p>Ikke legg til duplikater, f.eks. ikke kall flere ørner "ørn"</p></li>
-          <li><p>For høyere taksa, prøv å bruke navn som inkluderer alle underliggende taksa, som "pelikanlignende fugler" eller "lyngfamilien"</p></li>
-          <li>
-          <p>
-          Ikke legg til informasjon som ikke er navnet, f.eks. informasjon mellom parentes om hvordan du mener navnet bør brukes
-          </p>
-          </li>
-          <li>
-          <p>
-          Nye leksikoner skal være på engelsk. Vennligst ikke legg til oversatte navn til språk som "French, Fransk" fordi det bare vil gjøre det vanskelig eller umulig for oss å vise lokaliserte navn for folk som bruker siden på ulike språk.
-          </p>
-          </li>
-          <li>
-          <p>
-          Populærnavn knyttet til oversatte språk vil vises som standardnavn for det språket (med behold av effekten av stedsvalg, rekkefølgen av navn, osv.).
-          <a class="readmore" href="/pages/translate">Les mer om oversetting</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Legg til et navn til et sted for å gi det prioritet for sider og brukere fra det stedet. Hvis det er flere navn per sted kan du prioritere de <a href="%{url}">her</a>. Vennligst <strong>ikke</strong> legg til navn for ALLE steder hvor navnet brukes, kun for steder som er i strid med andre steder.
       taxon:
@@ -7523,7 +7552,7 @@ nb:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: må være gyldig for angitt plassering
         application:

@@ -26,7 +26,7 @@ const dragDropZone = ( state = defaultState, action ) => {
   switch ( action.type ) {
     case types.APPEND_OBS_CARDS: {
       const newCardIds = _.without(
-        _.map( action.obsCards, ( card, id ) => parseInt( id, 0 ) ),
+        _.map( action.obsCards, ( card, id ) => parseInt( id, 10 ) ),
         state.obsPositions
       );
       return update( state, {
@@ -350,14 +350,14 @@ const dragDropZone = ( state = defaultState, action ) => {
           [obsCard.id]: { $set: obsCard }
         },
         obsPositions: {
-          $push: [parseInt( obsCard.id, 0 )]
+          $push: [parseInt( obsCard.id, 10 )]
         }
       } );
     }
 
     case types.INSERT_CARDS_BEFORE: {
       let newPositions = [];
-      const cardIds = action.cardIds.map( cardId => parseInt( cardId, 0 ) );
+      const cardIds = action.cardIds.map( cardId => parseInt( cardId, 10 ) );
       _.each( state.obsPositions, cardId => {
         if ( cardId === action.beforeCardId ) {
           newPositions = newPositions.concat( cardIds );

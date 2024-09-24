@@ -206,7 +206,6 @@ class ProjectMembershipButton extends React.Component {
             <button
               type="button"
               className="btn btn-default pull-left"
-              confirm="Are you sure?"
               onClick={( ) => {
                 this.setState( { modalVisible: false } );
                 leaveProject( );

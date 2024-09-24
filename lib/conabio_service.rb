@@ -34,7 +34,7 @@ class ConabioService
   def search( taxon_name )
     begin
       taxon_response_body = MetaService.fetch_request_uri(
-        request_uri: URI.parse( TAXON_SERVICE.sub( "[NAME]", taxon_name ) ),
+        request_uri: URI.parse( TAXON_SERVICE.sub( "[NAME]", CGI.escape( taxon_name ) ) ),
         timeout: @timeout,
         api_endpoint: @taxon_api_endpoint,
         user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}",

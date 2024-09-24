@@ -285,26 +285,9 @@ class Emailer < ActionMailer::Base
   def observer_appeal( user, options = {} )
     @user = user
 
-    # Check if the IP address is private
-    private_ip_ranges = CONFIG.private_ip_ranges.blank? ? [] : CONFIG.private_ip_ranges
-    last_ip = IPAddr.new( @user.last_ip )
-    return false if private_ip_ranges.
-      map {| ip | IPAddr.new( ip ) }.
-      any? {| range | range.include?( last_ip ) }
-
-    # Use provided latitude, longitude, and city if available; otherwise, perform GeoIP lookup
-    if options[:latitude] && options[:longitude] && options[:city]
-      geoip_latitude = options[:latitude]
-      geoip_longitude = options[:longitude]
-      @city = options[:city]
-    else
-      geoip_response = INatAPIService.geoip_lookup( { ip: @user.last_ip } )
-      return false unless geoip_response&.results&.country && geoip_response&.results&.ll
-
-      geoip_latitude, geoip_longitude = geoip_response.results.ll
-      @city = geoip_response.results.city
-    end
-    return false unless geoip_latitude && geoip_longitude && @city
+    geoip_latitude = options[:latitude]
+    geoip_longitude = options[:longitude]
+    return false unless geoip_latitude && geoip_longitude
 
     # Fetch species data
     current_month = Time.now.month
@@ -316,7 +299,6 @@ class Emailer < ActionMailer::Base
     # Fetch nearby species and set month name
     filtered_species_ids = filtered_species.first( 4 ).map {| t | t["taxon"]["id"] }
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
-    @month_name = Date::MONTHNAMES[current_month]
 
     # Mail settings
     set_locale
@@ -328,62 +310,69 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def first_observation( user, observation, options = {} )
+  def error_observation( user, observation, options = {} )
     @user = user
     @observation = observation
-    @set = options[:set]
     @errors = options[:errors]
 
-    # Check if the IP address is private
-    private_ip_ranges = CONFIG.private_ip_ranges.blank? ? [] : CONFIG.private_ip_ranges
-    last_ip = IPAddr.new( @user.last_ip )
-    return false if private_ip_ranges.
-      map {| ip | IPAddr.new( ip ) }.
-      any? {| range | range.include?( last_ip ) }
+    # Mail settings
+    subject = "Will you improve your #{site_name} observation's value for science?"
+    set_locale
+    mail(
+      to: user.email,
+      subject: subject,
+      site_name: site_name
+    )
+    reset_locale
+  end
 
-    # Use provided latitude, longitude, and city if available; otherwise, perform GeoIP lookup
-    if options[:latitude] && options[:longitude] && options[:city]
-      geoip_latitude = options[:latitude]
-      geoip_longitude = options[:longitude]
-      @city = options[:city]
-    else
-      geoip_response = INatAPIService.geoip_lookup( { ip: @user.last_ip } )
-      return false unless geoip_response&.results&.country && geoip_response&.results&.ll
-
-      geoip_latitude, geoip_longitude = geoip_response.results.ll
-      @city = geoip_response.results.city
-    end
-    return false unless geoip_latitude && geoip_longitude && @city
+  def captive_observation( user, observation )
+    @user = user
+    @observation = observation
 
     # Fetch species data
+    latitude = observation.latitude || observation.private_latitude || nil
+    longitude = observation.longitude || observation.private_longitude || nil
+    return false unless latitude
+
     current_month = Time.now.month
-    filtered_species = get_filtered_species( geoip_latitude, geoip_longitude, current_month )
+    tid = Taxon::ICONIC_TAXA.find {| t | t.name == "Plantae" }&.id
+    filtered_species = get_filtered_species( latitude, longitude, current_month, taxon_id: tid )
 
     # Return false if there are not enough filtered species
     return false if filtered_species.count < 4
 
     # Fetch nearby species and set month name
-    filtered_species_ids = filtered_species.
-      reject {| t | t["taxon"]["id"] == observation.taxon_id }.
-      first( 4 ).map {| t | t["taxon"]["id"] }
+    filtered_species_ids = filtered_species.first( 4 ).map {| t | t["taxon"]["id"] }
     @nearby_species = Taxon.where( id: filtered_species_ids ).index_by( &:id ).values_at( *filtered_species_ids )
-    @month_name = Date::MONTHNAMES[current_month]
-    @error_mapping = {
-      "georeferenced" => "A location",
-      "observed_on" => "A date",
-      "media" => "Evidence (photo or sound)",
-      "recent" => "Evidence that is recent (e.g. not a fossil)",
-      "evidence" => "Evidence of a species in the photo (or sound)",
-      "location" => "An accurate location",
-      "date" => "An accurate date"
-    }
 
     # Mail settings
-    subject = if options[:set] == "research"
-      "Congratulations on posting a Research Grade observation to #{site_name}!"
-    else
-      "Congratulations on posting your first observation to #{site_name}!"
+    subject = "Will you try observing a wild species to share with #{site_name}?"
+    set_locale
+    mail(
+      to: user.email,
+      subject: subject,
+      site_name: site_name
+    )
+    reset_locale
+  end
+
+  def first_observation( user, observation )
+    @user = user
+    @observation = observation
+
+    most_recent_post = Post.where(
+      parent_id: 1,
+      parent_type: "Site"
+    ).where( "title LIKE ?", "% News Highlights" ).
+      order( published_at: :desc ).first
+    url = @user.site&.url || Site.default.url
+    @post_url = if most_recent_post
+      FakeView.post_url( most_recent_post, host: url )
     end
+
+    # Mail settings
+    subject = "Congratulations on posting a Research Grade observation to #{site_name}!"
     set_locale
     mail(
       to: user.email,
@@ -477,16 +466,18 @@ class Emailer < ActionMailer::Base
     }
   end
 
-  def get_filtered_species( geoip_latitude, geoip_longitude, current_month )
+  def get_filtered_species( latitude, longitude, current_month, taxon_id: nil )
     dangerous_taxa = CONFIG.dangerous_taxa_list_id.blank? ? nil : CONFIG.dangerous_taxa_list_id
-    species = INatAPIService.observations_species_counts( {
+    query_params = {
       verifiable: true,
-      lat: geoip_latitude,
-      lng: geoip_longitude,
+      lat: latitude,
+      lng: longitude,
       month: current_month,
       radius: 50,
       not_in_list_id: dangerous_taxa
-    } ).results
+    }
+    query_params[:taxon_id] = taxon_id if taxon_id
+    species = INatAPIService.observations_species_counts( query_params ).results
 
     # Filter species based on criteria
     iconic_taxon_names = ["Aves", "Plantae", "Insecta", "Mammalia"]

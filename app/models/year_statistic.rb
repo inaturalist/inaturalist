@@ -688,8 +688,8 @@ class YearStatistic < ApplicationRecord
     run_cmd "composite -gravity center #{circle_icon_path} #{ellipse_montage_path} #{montage_with_icon_path}"
 
     # Add the text
-    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
-    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+    light_font_path = File.join( Rails.root, "public", "fonts", "Lato-Light.ttf" )
+    medium_font_path = File.join( Rails.root, "public", "fonts", "Lato-Medium.ttf" )
     final_path = File.join( work_path, "final.jpg" )
     owner = if user
       user.name.blank? ? user.login : user.name
@@ -837,9 +837,9 @@ class YearStatistic < ApplicationRecord
       bucketer,
       [histogram_params],
       [
-        Elasticsearch::Transport::Transport::Errors::BadRequest,
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Elasticsearch::Transport::Transport::Errors::TooManyRequests,
+        Elastic::Transport::Transport::Errors::BadRequest,
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::TooManyRequests,
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
@@ -1102,7 +1102,7 @@ class YearStatistic < ApplicationRecord
       streak_bucketer,
       base_query,
       [
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },

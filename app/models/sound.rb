@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Sound < ApplicationRecord
   belongs_to :user
   has_many :observation_sounds, :dependent => :destroy
@@ -9,7 +11,7 @@ class Sound < ApplicationRecord
 
   include Shared::LicenseModule
   acts_as_flaggable
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
