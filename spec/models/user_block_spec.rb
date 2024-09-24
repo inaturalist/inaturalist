@@ -54,6 +54,20 @@ describe UserBlock do
       UserBlock.create!( user: user, blocked_user: blocked_user )
       expect( blocked_user.followees ).not_to include user
     end
+
+    it "removes the blocked user from the user's projects" do
+      project = Project.make!( project_type: 'umbrella', user: user )
+      ProjectUser.make!( user: blocked_user, project: project )
+      UserBlock.create!( user: user, blocked_user: blocked_user )
+      expect( project.users ).not_to include( blocked_user )
+    end
+
+    it "removes the blocker from the blocked user's projects" do
+      project = Project.make!( project_type: 'umbrella', user: blocked_user )
+      ProjectUser.make!( user: user, project: project )
+      UserBlock.create!( user: user, blocked_user: blocked_user )
+      expect( project.users ).not_to include( user )
+    end
   end
   describe "prevents" do
     before do
