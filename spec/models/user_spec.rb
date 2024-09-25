@@ -170,6 +170,16 @@ describe User do
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
+    it "validates description length only if changed" do
+      u = User.make!
+      u.update_columns( description: Faker::Lorem.paragraph( sentence_count: 1000 ) )
+      expect( u.description.length ).to be > 10_000
+      expect( u.valid? ).to be true
+      u.description += "F"
+      expect( u.description.length ).to be > 10_000
+      expect( u.valid? ).to be false
+    end
+
     describe "email domain exists validation" do
       before( :all ) { enable_user_email_domain_exists_validation }
       after( :all ) { disable_user_email_domain_exists_validation }

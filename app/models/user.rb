@@ -319,6 +319,7 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
 
