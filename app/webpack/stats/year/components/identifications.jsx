@@ -59,7 +59,7 @@ const Identifications = ( {
           <div>
             <h3>
               <a name="ids-for-others" href="#ids-for-others">
-                <span>{ I18n.t( "ids_made_for_others" ) }</span>
+                <span>{ I18n.t( "ids_made_for_others__title" ) }</span>
               </a>
             </h3>
             <DateHistogram

@@ -54,6 +54,12 @@ en:
     many: '<span class="count">%{count}</span> Identifiers'
     # Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifiers'
+  x_ids_made_for_others_html:
+    zero: '<span class="count">%{count}</span> IDs made for others'
+    one: '<span class="count">%{count}</span> IDs made for others'
+    few: '<span class="count">%{count}</span> IDs made for others'
+    many: '<span class="count">%{count}</span> IDs made for others'
+    other: '<span class="count">%{count}</span> IDs made for others'
   x_languages:
     zero: "%{count} languages"
     one: "%{count} language"
@@ -2480,7 +2486,7 @@ en:
   identotron_for: Identotron for
   identotron_help: Identotron help
   ids: "IDs"
-  ids_made_for_others: IDs made for others
+  ids_made_for_others__title: IDs Made for Others
   if_for_some_reason_a_user_doesnt_agree: |
     If for some reason you don't agree with the community taxon, you can reject it,
     which means your ID is the one used for linking to other observations, updating life lists,
@@ -6820,7 +6826,9 @@ en:
       your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:
-        # heading for display of content that has been flagged
+        # Heading for display of content that has been flagged. This could
+        # also be translated as "Flagged Content" since the existence of a
+        # flag implies that the content was flagged.
         flaggable_content: Flaggable Content
         flaggable_content_desc: |
           The flaggable content is the primary text attribute of the flagged
