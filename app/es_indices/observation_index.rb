@@ -388,7 +388,7 @@ class Observation < ApplicationRecord
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
-        annotations: annotations.map(&:as_indexed_json),
+        annotations: annotations.reject( &:term_taxon_mismatch? ).map( &:as_indexed_json ),
         photos_count: photos.any? ? photos.select{|p|
           p.flags.detect{|f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?}.blank?
         }.length : nil,

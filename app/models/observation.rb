@@ -2940,8 +2940,11 @@ class Observation < ApplicationRecord
 
   def reassess_annotations
     return true unless saved_change_to_taxon_id?
-    annotations.each do |a|
-      a.destroy unless a.valid?
+
+    annotations.each do | a |
+      if a.taxon_mismatch_needs_updating?
+        a.update_columns( term_taxon_mismatch: !a.term_taxon_mismatch )
+      end
     end
     true
   end

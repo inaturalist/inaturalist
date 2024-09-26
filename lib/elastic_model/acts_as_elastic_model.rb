@@ -117,7 +117,7 @@ module ActsAsElasticModel
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
             queue: queue
-          ).elastic_index!( options.merge(
+          ).elastic_index!( options.except( :batch_size ).merge(
             ids: result_ids,
             indexed_before: 5.minutes.from_now.strftime("%FT%T")
           ) )
