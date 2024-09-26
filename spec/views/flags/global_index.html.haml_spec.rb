@@ -33,7 +33,7 @@ describe "flags/index" do
     user = User.make!
     allow( view ).to receive( :current_user ).and_return( user )
     render layout: "layouts/bootstrap", template: "flags/global_index"
-    expect( rendered ).not_to have_tag( "a", text: /Comment/ )
+    expect( rendered ).to have_tag( "a", text: /Comment/ )
     expect( rendered ).not_to have_tag( "p", text: /#{comment.body}/ )
   end
 end

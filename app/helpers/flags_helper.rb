@@ -16,8 +16,8 @@ module FlagsHelper
     flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
     capture do
       if flaggable
+        concat link_to_if( flaggable.respond_to?( :to_plain_s ), flaggable.to_plain_s, flaggable )
         if flag.viewable_by?( current_user )
-          concat link_to_if( flaggable.respond_to?( :to_plain_s ), flaggable.to_plain_s, flaggable )
           concat flaggable_edit( flaggable ) unless options[:no_edit]
           concat flaggable_with_body( flaggable ) unless options[:no_body]
           concat flaggable_user( flaggable )
