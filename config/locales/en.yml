@@ -6820,6 +6820,8 @@ en:
       your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:
+        # heading for display of content that has been flagged
+        flaggable_content: Flaggable Content
         flaggable_content_desc: |
           The flaggable content is the primary text attribute of the flagged
           object at the time the flag was created. Only curators and staff can

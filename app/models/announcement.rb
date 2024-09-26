@@ -55,6 +55,8 @@ class Announcement < ApplicationRecord
   before_save :clean_target_group
   before_validation :compact_clients
 
+  after_save :sync_announcement_dismissals
+
   def valid_placement_clients
     if clients.any? do | client |
       !Announcement::CLIENTS[placement] || !Announcement::CLIENTS[placement].include?( client )
@@ -139,6 +141,27 @@ class Announcement < ApplicationRecord
     end
 
     true
+  end
+
+  def sync_announcement_dismissals
+    return unless saved_change_to_dismiss_user_ids
+
+    previous_values, new_values = saved_change_to_dismiss_user_ids
+    newly_dismissed_user_ids = new_values - previous_values
+    newly_dismissed_user_ids.each do | newly_dismissed_user_id |
+      AnnouncementDismissal.create(
+        announcement: self,
+        user_id: newly_dismissed_user_id
+      )
+    end
+
+    dismiss_user_ids_removed = previous_values - new_values
+    dismiss_user_ids_removed.each do | dismiss_user_id_removed |
+      AnnouncementDismissal.where(
+        announcement: self,
+        user_id: dismiss_user_id_removed
+      ).destroy_all
+    end
   end
 
   def self.active_in_placement( placement, site )

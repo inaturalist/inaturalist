@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
+require "spec_helper"
 
 describe Observation do
   before( :all ) do

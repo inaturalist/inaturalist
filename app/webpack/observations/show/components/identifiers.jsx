@@ -49,7 +49,7 @@ class Identifiers extends React.Component {
     } else {
       panelContents = identifiers.map( i => (
         <div className="identifier" key={`identifier-${i.user.id}`}>
-          <UserWithIcon user={i.user} subtitle={i.count} subtitleIconClass="icon-identification" />
+          <UserWithIcon user={i.user} subtitle={i.count} subtitleIconClass="icon-identification" subtitleLinkOverwrite={`/identifications?user_id=${i.user.login}&taxon_id=${taxon.id}`} />
         </div>
       ) );
     }

@@ -30,6 +30,22 @@ describe ProjectUser, "creation" do
     expect(pu.user.subscriptions.where(:resource_type => "AssessmentSection", :resource_id => as)).to be_blank
   end
 
+  it "should be invalid of the user has blocked the project owner" do
+    user_block = UserBlock.make!
+    project = Project.make!(project_type: 'umbrella', user: user_block.user)
+    project_user = ProjectUser.new(project: project, user: user_block.blocked_user)
+    expect(project_user.save).to be_falsey
+    expect(project_user.errors.first.message).to include("has been blocked")
+  end
+
+  it "should be invalid of the project owner has blocked the user" do
+    user_block = UserBlock.make!
+    project = Project.make!(project_type: 'umbrella', user: user_block.blocked_user)
+    project_user = ProjectUser.new(project: project, user: user_block.user)
+    expect(project_user.save).to be_falsey
+    expect(project_user.errors.first.message).to include("has blocked the owner")
+  end
+
   it "should set curator_coordinate_access to observer by default" do
     expect( ProjectUser.make!.preferred_curator_coordinate_access ).to eq ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
   end
