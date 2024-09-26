@@ -568,7 +568,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rexml (3.2.5)
+    rexml (3.3.6)
+      strscan
     rgeo (2.3.0)
     rgeo-activerecord (7.0.1)
       activerecord (>= 5.0)
@@ -668,6 +669,7 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    strscan (3.1.0)
     temple (0.8.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
