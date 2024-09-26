@@ -2158,7 +2158,6 @@ id:
   identotron_for: Identotron untuk
   identotron_help: Bantuan untuk identotron
   ids: "ID"
-  ids_made_for_others: ID yang dibuat untuk orang lain
   if_for_some_reason_a_user_doesnt_agree: |
     Jika dengan suatu alasan Anda tidak setuju dengan takson komunitas, Anda dapat menolaknya,
     yang berarti ID Andalah yang digunakan untuk menghubungkan ke pengamatan lainnya, memperbarui daftar kehidupan,
@@ -6122,6 +6121,10 @@ id:
       your_site_account_has_no_email: Akun %{site_name} kamu tidak memiliki alamat email yang terhubung dengan akunnya.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Konten Yang Dapat Ditandai
         flaggable_content_desc: |
           Konten yang ditandai adalah atribut teks utama dari obyek yang ditandai pada saat tanda dibuat. Hanya kurator dan staf yang dapat melihat ini. Hanya staf yang dapat melihat pesan-pesan yang ditandai.
         flags_that_should_not_be_resolved_desc_html: |
