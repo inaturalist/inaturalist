@@ -22,6 +22,8 @@ id:
   x_identifiers_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Pengidentifikasi'
+  x_ids_made_for_others_html:
+    other: '<span class="count">%{count}</span> ID yang dibuat untuk orang lain'
   x_languages:
     other: "%{count} bahasa"
   #Count of number of taxa that represent the first addition to a life list
@@ -2158,6 +2160,7 @@ id:
   identotron_for: Identotron untuk
   identotron_help: Bantuan untuk identotron
   ids: "ID"
+  ids_made_for_others__title: ID yang Dibuat untuk Orang Lain
   if_for_some_reason_a_user_doesnt_agree: |
     Jika dengan suatu alasan Anda tidak setuju dengan takson komunitas, Anda dapat menolaknya,
     yang berarti ID Andalah yang digunakan untuk menghubungkan ke pengamatan lainnya, memperbarui daftar kehidupan,
