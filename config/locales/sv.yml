@@ -33,6 +33,9 @@ sv:
     one: '<span class="count">%{count}</span> Determinatör'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Determinatörer'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> Bestämning för andra'
+    other: '<span class="count">%{count}</span> Bestämningar för andra'
   x_languages:
     one: "%{count} språk"
     other: "%{count} språk"
