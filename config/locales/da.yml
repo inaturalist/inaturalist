@@ -33,6 +33,9 @@ da:
     one: '<span class="count">%{count}</span> Identifikator'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifikatorer'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID foretaget for andre'
+    other: '<span class="count">%{count}</span> ID''er foretaget for andre'
   x_languages:
     one: "%{count} sprog"
     other: "%{count} sprog"
@@ -2098,6 +2101,9 @@ da:
   generate_your_year_in_review_caps: GENERER DIT %{year}-ÅRS TILBAGEBLIK
   generating_mobile_archive: "Genererer mobil arkiv"
   Genus: Slægt
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo-score
   geomodel_expected_nearby_label_is_derived: |
     Etiketten "Forventet i nærheden" stammer fra Geomodellen.
     <a href="%{url}">Læs mere om Geomodellen her</a>.
@@ -2288,6 +2294,7 @@ da:
   identotron_for: Identotron til
   identotron_help: Identotron hjælp
   ids: "ID'er"
+  ids_made_for_others__title: ID'er foretaget for andre
   if_for_some_reason_a_user_doesnt_agree: |
     Hvis du af en eller anden grund er uenig med fællesskabets takson, kan du afvise den, hvilket betyder at det er DIT ID, der bruges til at linke til andre observationer, opdatering af livslisten etc. Det betyder også at din observation kun kan opnå forskningskvalitet hvis fællesskabet er enige i din identifikation.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -6413,6 +6420,10 @@ da:
       your_site_account_has_no_email: Din %{site_name}-konto har ingen tilknyttet e-mailadresse.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Markeret indhold
         flaggable_content_desc: |
           Det flagbare indhold er den primære tekstattribut for det objekts, der blev markeret
           på det tidspunkt, hvor flaget blev oprettet. Kun kuratorer og medarbejdere kan
