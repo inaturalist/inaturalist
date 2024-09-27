@@ -279,6 +279,7 @@ namespace :inaturalist do
       "flowering_phenology",
       "frequency",
       "fungi",
+      "geo_score",
       "green",
       "grey",
       "imperiled",

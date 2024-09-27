@@ -120,9 +120,18 @@ function observeStore( storeToObserve, select, onChange ) {
   handleChange( );
   return unsubscribe;
 }
-// Fetch observations when the params change
+// Fetch observations when the params change, with a small delay so only
+// one search is performed if parameters change quickly
+let lastSearchTime;
 observeStore( store, s => s.searchParams.params, ( ) => {
-  store.dispatch( fetchObservations( ) );
+  const thisSearchTime = Date.now( );
+  lastSearchTime = thisSearchTime;
+  setTimeout( ( ) => {
+    if ( thisSearchTime !== lastSearchTime ) {
+      return;
+    }
+    store.dispatch( fetchObservations( ) );
+  }, 1000 );
 } );
 
 render(

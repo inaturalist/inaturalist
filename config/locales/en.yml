@@ -2276,6 +2276,9 @@ en:
   generate_your_year_in_review_caps: GENERATE YOUR %{year} YEAR IN REVIEW
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
+  # A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  # represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo score
   geomodel_expected_nearby_label_is_derived: |
     The "Expected Nearby" label is derived from the Geomodel.
     <a href="%{url}">Learn more about the Geomodel here</a>.

@@ -2,67 +2,23 @@
 
 class ObservationGeoScoreUpdater
   attr_reader :start_time,
-    :vision_api_url,
-    :model_taxonomy_path,
-    :model_synonyms_path,
-    :model_taxa
+    :vision_api_url
 
   GEO_SCORE_MAPPING = "geo_score"
 
-  def initialize( vision_api_url, model_taxonomy_path, model_synonyms_path )
+  def initialize( vision_api_url )
     @start_time = Time.now.to_i
     @vision_api_url = vision_api_url
-    @model_taxonomy_path = model_taxonomy_path
-    @model_synonyms_path = model_synonyms_path
     validate_parameters
-    load_taxonomy
-    load_synonyms
   end
 
   def validate_parameters
-    if @vision_api_url.blank?
-      raise "ERROR: vision_api_url is not defined"
-    end
+    return unless @vision_api_url.blank?
 
-    if @model_taxonomy_path.blank?
-      raise "ERROR: model_taxonomy_path is not defined"
-    end
-
-    return unless @model_synonyms_path.blank?
-
-    raise "ERROR: model_synonyms_path is not defined"
-  end
-
-  def load_taxonomy
-    puts "[DEBUG] Loading taxonomy..."
-    load_taxa_from_csv( @model_taxonomy_path, require_leaf_class_id: true )
-  end
-
-  def load_synonyms
-    puts "[DEBUG] Loading synonyms..."
-    load_taxa_from_csv( @model_synonyms_path )
-  end
-
-  def load_taxa_from_csv( path, options = {} )
-    unless File.exist?( path )
-      raise "ERROR: #{path} does not exist"
-    end
-
-    @model_taxa ||= {}
-    CSV.foreach(
-      path,
-      headers: true,
-      quote_char: nil
-    ) do | row |
-      next if options[:require_leaf_class_id] && row["leaf_class_id"].blank?
-
-      @model_taxa[row["taxon_id"].to_i] = row
-    end
+    raise "ERROR: vision_api_url is not defined"
   end
 
   def index_all_via_database
-    return if @model_taxa.blank?
-
     maximum_id = Observation.maximum( :id )
     chunk_start_id = 1
     search_chunk_size = 5_000
@@ -76,7 +32,7 @@ class ObservationGeoScoreUpdater
 
       Observation.preload_associations( batch, :taxon )
       observations_to_score = batch.map do | obs |
-        next unless obs.taxon && @model_taxa[obs.taxon.id] && (
+        next unless obs.taxon && (
           ( obs.latitude && obs.longitude ) ||
           ( obs.private_latitude && obs.private_longitude )
         )
@@ -95,8 +51,6 @@ class ObservationGeoScoreUpdater
   end
 
   def index_all_via_elasticsearch
-    return if @model_taxa.blank?
-
     maximum_id = Observation.maximum( :id )
     chunk_start_id = 1
     search_chunk_size = 5_000
@@ -125,17 +79,16 @@ class ObservationGeoScoreUpdater
   end
 
   def index_via_elasticsearch_observations_updated_since( updated_since )
-    return if @model_taxa.blank?
-
     search_after = nil
     results_remaining = true
+    start_time = Time.now
     while results_remaining
       elastic_response = Observation.elastic_search(
         sort: { id: :asc },
         search_after: search_after,
         size: 5_000,
         filters: [
-          { range: { updated_at: { gte: updated_since.strftime( "%F" ) } } },
+          { range: { updated_at: { gte: updated_since.strftime( "%FT%T%:z" ) } } },
           { bool: {
             must_not: [{
               exists: {
@@ -151,6 +104,7 @@ class ObservationGeoScoreUpdater
         break
       end
 
+      puts "Loop starting at #{search_after&.first || 1}; time: #{( Time.now - start_time ).round( 2 )}"
       search_after = [elastic_response.response.hits.hits.last._source.id]
       observations_to_score = map_elastic_response_to_observations_to_score( elastic_response )
       geo_scores_response = RestClient.post(
@@ -167,7 +121,7 @@ class ObservationGeoScoreUpdater
     elastic_response.response.hits.hits.map do | h |
       next unless (
         h._source.private_location || h._source.location
-      ) && h._source&.taxon&.id && @model_taxa[h._source.taxon.id]
+      ) && h._source&.taxon&.id
 
       latlng = ( h._source.private_location || h._source.location ).split( "," )
       {
@@ -229,6 +183,6 @@ class ObservationGeoScoreUpdater
   end
 
   def inspect
-    "#<ObservationGeoScoreUpdater @model_taxonomy_path=\"#{@model_taxonomy_path}, ...\">"
+    "#<ObservationGeoScoreUpdater @vision_api_url=\"#{@vision_api_url}, ...\">"
   end
 end

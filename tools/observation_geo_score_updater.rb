@@ -19,8 +19,6 @@ OPTS = Optimist.options do
   where [options] are:
   BANNER
   opt :vision_api_url, "URL to the vision API.", type: :string, short: "-v"
-  opt :model_taxonomy_path, "Path to the model taxonomy CSV file.", type: :string, short: "-t"
-  opt :model_synonyms_path, "Path to the model synonyms CSV file.", type: :string, short: "-s"
   opt :updated_minutes_ago, "Target observations updated since this many minutes ago.", type: :integer, short: "-m"
   opt :update_all, "Target all observations.", type: :boolean, short: "-a"
 end
@@ -30,25 +28,13 @@ unless OPTS.vision_api_url
   exit( 0 )
 end
 
-unless OPTS.model_taxonomy_path
-  puts "You must specify a model taxonomy path"
-  exit( 0 )
-end
-
-unless OPTS.model_synonyms_path
-  puts "You must specify a model synonyms path"
-  exit( 0 )
-end
-
 unless OPTS.updated_minutes_ago || OPTS.update_all
   puts "You must specify either a `updated_minutes_ago` or `update_all` option"
   exit( 0 )
 end
 
 observation_geo_score_updater = ObservationGeoScoreUpdater.new(
-  OPTS.vision_api_url,
-  OPTS.model_taxonomy_path,
-  OPTS.model_synonyms_path
+  OPTS.vision_api_url
 )
 
 if OPTS.updated_minutes_ago
