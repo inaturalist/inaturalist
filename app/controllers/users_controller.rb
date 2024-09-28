@@ -462,11 +462,6 @@ class UsersController < ApplicationController
     @has_updates = current_user.recent_notifications.count.positive?
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    @needs_id_pilot = ObservationAccuracyExperiment.find_by( version: "Needs ID Pilot" )
-    @eligible_for_needs_id_pilot = eligible_for_needs_id_pilot( current_user )
-    if @needs_id_pilot.present? && @eligible_for_needs_id_pilot && current_user.prefers_needs_id_pilot == true
-      @needs_id_pilot_url = fetch_needs_id_pilot_url( @needs_id_pilot, current_user )
-    end
     if @site && !@site.discourse_url.blank? && ( @discourse_url = @site.discourse_url )
       cache_key = "dashboard-discourse-data-20240911-#{@site.id}"
       begin
@@ -1330,36 +1325,6 @@ protected
         redirect_back_or_default(root_url)
       end
       return false
-    end
-  end
-
-  def fetch_needs_id_pilot_url( needs_id_pilot, user )
-    validator = needs_id_pilot.observation_accuracy_validators.find_by( user_id: user.id )
-    return unless validator
-
-    obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
-    return if obs_ids.blank?
-
-    params = { reviewed: "false", quality_grade: "needs_id", place_id: "any", id: obs_ids.join( "," ) }
-    return if INatAPIService.observations( params.merge( per_page: 0, viewer_id: user.id ) ).total_results.zero?
-
-    identify_observations_url( params )
-  end
-
-  def eligible_for_needs_id_pilot( current_user )
-    return unless current_user.prefers_needs_id_pilot != false
-
-    return if current_user.identifications_count < 75_000 && !current_user.is_admin?
-
-    top_iders = fetch_top_iders.first( 10 )
-    return unless ( top_iders.include? current_user.id ) || current_user.is_admin?
-
-    true
-  end
-
-  def fetch_top_iders
-    Rails.cache.fetch( "top_iders", expires_in: 1.week ) do
-      INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
     end
   end
 end
