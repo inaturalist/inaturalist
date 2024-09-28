@@ -360,6 +360,8 @@ class Site < ApplicationRecord
   after_save :refresh_default_site
 
   def self.default( options = {} )
+    return Site.find_by_name( CONFIG.default_site_name ) if CONFIG.default_site_name
+
     if options[:refresh]
       Rails.cache.delete( "sites_default" )
     end

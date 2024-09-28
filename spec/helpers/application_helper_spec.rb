@@ -222,4 +222,49 @@ describe ApplicationHelper do
       end
     end
   end
+
+  describe "create_announcement_impression" do
+    let( :ip ) { "127.0.0.1" }
+    let( :request ) do
+      double(
+        "request",
+        env: { "REMOTE_ADDR" => ip }
+      )
+    end
+
+    it "creates announcement impressions for the logged-in user" do
+      user = User.make!
+      allow_any_instance_of( ApplicationHelper ).to receive( :user_signed_in? ).and_return( true )
+      allow_any_instance_of( ApplicationHelper ).to receive( :current_user ).and_return( user )
+      allow_any_instance_of( ApplicationHelper ).to receive( :request ).and_return( request )
+
+      announcement = Announcement.make!
+      expect( AnnouncementImpression.count ).to eq 0
+      create_announcement_impression( announcement )
+
+      expect( AnnouncementImpression.count ).to eq 1
+      impression = AnnouncementImpression.first
+      expect( impression.announcement ).to eq announcement
+      expect( impression.user ).to eq user
+      expect( impression.request_ip ).to eq ip
+      expect( impression.impressions_count ).to eq 1
+    end
+
+    it "creates announcement impressions for the request_ip" do
+      allow_any_instance_of( ApplicationHelper ).to receive( :user_signed_in? ).and_return( false )
+      allow_any_instance_of( ApplicationHelper ).to receive( :current_user ).and_return( nil )
+      allow_any_instance_of( ApplicationHelper ).to receive( :request ).and_return( request )
+
+      announcement = Announcement.make!
+      expect( AnnouncementImpression.count ).to eq 0
+      create_announcement_impression( announcement )
+
+      expect( AnnouncementImpression.count ).to eq 1
+      impression = AnnouncementImpression.first
+      expect( impression.announcement ).to eq announcement
+      expect( impression.user ).to be_nil
+      expect( impression.request_ip ).to eq ip
+      expect( impression.impressions_count ).to eq 1
+    end
+  end
 end

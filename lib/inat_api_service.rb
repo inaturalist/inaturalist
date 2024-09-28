@@ -30,6 +30,7 @@ module INatAPIService
     "geoprivacy",
     "has",
     "has[]",
+    "hour",
     "hrank",
     "iconic_taxa",
     "id",

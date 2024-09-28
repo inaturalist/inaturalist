@@ -289,29 +289,33 @@ module ApplicationHelper
     text = paragraphs[1..paragraphs.length].join(split)
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
-  
-  def formatted_user_text(text, options = {})
+
+  def formatted_user_text( text, options = {} )
     return text if text.blank?
 
-    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
+    text = hyperlink_mentions( text, for_markdown: !options[:skip_simple_format] )
     text = markdown( text ) unless options[:skip_simple_format]
-    
-    # make sure attributes are quoted correctly
-    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
+
+    # this regular expression can take a long time to process on very long words,
+    # so skip it if there are long series of characters without spaces
+    unless text.match( /[^ ]{1000}/ )
+      # make sure attributes are quoted correctly
+      text = text.gsub( /(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4' )
+    end
 
     # remove escaped underscores from mentions where Redcarpet didn't process markdown
     mentions_with_escaped_underscores_regex = /(<a [^>]+>@[^\s]*)\\_/
     while text.match( mentions_with_escaped_underscores_regex )
       text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
     end
-    
+
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
-      text = text.gsub(/<\\?p>/, "\n\n")
+      text = text.gsub( /<\\?p>/, "\n\n" )
     end
-    text = sanitize(text, options)
-    text = compact(text, :all_tags => true) if options[:compact]
-    text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = sanitize( text, options )
+    text = compact( text, all_tags: true ) if options[:compact]
+    text = auto_link( text.html_safe, sanitize: false ).html_safe
     # scrub to fix any encoding issues
     text = text.scrub
     unless options[:skip_simple_format]
@@ -1685,5 +1689,16 @@ module ApplicationHelper
     i18n = @i18n || options[:i18n] || I18n
     i18n.t( key, **options ).gsub( /\s+/, " " ).strip
     i18n.t( key, **options ).strip
+  end
+
+  def create_announcement_impression( announcement )
+    return unless announcement.is_a?( Announcement )
+
+    AnnouncementImpression.increment_for_announcement(
+      announcement,
+      user: logged_in? ? current_user : nil,
+      request_ip: Logstasher.ip_from_request_env( request.env )
+    )
+    Logstasher.write_announcement_impression( announcement, request: request, user: current_user )
   end
 end

@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationFieldValue do
-  xit { is_expected.to belong_to(:observation).inverse_of :observation_field_values }
-  xit { is_expected.to belong_to :observation_field }
-  xit { is_expected.to belong_to :user }
+  it { is_expected.to belong_to(:observation).inverse_of :observation_field_values }
+  it { is_expected.to belong_to :observation_field }
+  it { is_expected.to belong_to :user }
   it { is_expected.to have_one :annotation }
 
   context "with user and observation field" do

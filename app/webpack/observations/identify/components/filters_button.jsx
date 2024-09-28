@@ -90,6 +90,8 @@ class FiltersButton extends React.Component {
         config.currentUser.curator_projects,
         p => [p.id, p.slug].includes( params.project_id )
       );
+    const viewerIsAdmin = config && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const FilterCheckboxWrapper = checkbox => (
       <FilterCheckbox
         {...Object.assign( {}, checkbox, {
@@ -142,6 +144,11 @@ class FiltersButton extends React.Component {
       { value: "votes", label: "faves" },
       { value: "random", label: "random" }
     ];
+    if ( viewerIsAdmin ) {
+      orderByFields.push( {
+        value: "geo_score", label: "geo_score"
+      } );
+    }
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0
     );
@@ -257,7 +264,7 @@ class FiltersButton extends React.Component {
               <input
                 className="params-q form-control"
                 placeholder={I18n.t( "blue_butterfly_etc" )}
-                value={params.q}
+                value={params.q || ""}
                 onChange={e => {
                   updateSearchParams( { q: e.target.value } );
                 }}
@@ -354,7 +361,7 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { I18n.t( field.label ) }
+                  { I18n.t( field.label, { defaultValue: field.label } ) }
                 </option>
               ) ) }
             </select>
@@ -568,6 +575,24 @@ class FiltersButton extends React.Component {
             <input type="hidden" name="place_id" />
           </div>
         </div>
+        { viewerIsAdmin && (
+          <div className="form-group">
+            <label className="sectionlabel">
+              { I18n.t( "accuracy_meters" ) }
+            </label>
+            <div className="input-group accuracy">
+              <span className="input-group-addon fa fa-dot-circle-o" />
+              <input
+                className="params-q form-control"
+                placeholder={I18n.t( "maximum_positional_accuracy" )}
+                value={params.acc_below_or_unknown || ""}
+                onChange={e => {
+                  updateSearchParams( { acc_below_or_unknown: e.target.value } );
+                }}
+              />
+            </div>
+          </div>
+        ) }
       </Col>
     );
     const chosenTerm = terms.find( t => t.id === params.term_id );

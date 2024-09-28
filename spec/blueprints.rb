@@ -253,6 +253,11 @@ ObservationFieldValue.blueprint do
   value {"foo"}
 end
 
+ObservationGeoScore.blueprint do
+  observation { Observation.make! }
+  geo_score { rand( 0.9 ) }
+end
+
 ObservationPhoto.blueprint do
   observation { Observation.make }
   photo { Photo.make }

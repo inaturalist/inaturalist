@@ -98,7 +98,7 @@ class Taxon < ApplicationRecord
   has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, dependent: :destroy
   has_one :en_wikipedia_description,
-    -> { where( "locale='en' AND provider='Wikipedia'" ) },
+    -> { where( locale: %w(en en-US en-GB), provider: "Wikipedia" ) },
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   # deprecated, remove when we're sure transition to taxon frameworks is complete

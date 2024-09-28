@@ -27,7 +27,4 @@
           = t :stats
         %ul
           %li
-            %span.count
-              = @identifications.total_entries
-            %label
-              = t :ids_made_for_others
+            =t :x_ids_made_for_others_html, count: @identifications.total_entries

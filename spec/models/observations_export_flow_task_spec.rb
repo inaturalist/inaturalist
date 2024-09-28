@@ -1,4 +1,6 @@
-require File.expand_path("../../spec_helper", __FILE__)
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe ObservationsExportFlowTask do
   it { is_expected.to validate_presence_of :user_id }
@@ -7,7 +9,7 @@ describe ObservationsExportFlowTask do
   describe "validation" do
     it "should not allow exports of more than 200,000 observations" do
       ft = ObservationsExportFlowTask.make
-      allow( ft ).to receive(:observations_count).and_return( 300000 )
+      allow( ft ).to receive( :observations_count ).and_return( 300_000 )
       ft.inputs.build( extra: { query: "photos=true" } )
       expect( ft ).not_to be_valid
     end
@@ -31,64 +33,77 @@ describe ObservationsExportFlowTask do
       make_default_site
       o = Observation.make!
       ft = ObservationsExportFlowTask.make
-      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
-      ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
+      ft.run
       expect( ft.outputs ).to be_blank
       expect( ft.exception ).not_to be_blank
     end
-    # Note: we *should* test raising an error when the task is deleted
+
+    it "removes tmp directory after finishing by default" do
+      make_default_site
+      o = Observation.make!
+      ft = ObservationsExportFlowTask.make
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
+      ft.save!
+      ft.run( keep_tmp_files: true )
+      expect( Dir.exist?( ft.work_path ) ).to be true
+      ft.run
+      expect( Dir.exist?( ft.work_path ) ).to be false
+    end
+
+    # NOTE: we *should* test raising an error when the task is deleted
     # mid-run, but I'm not sure how to do that in a single process. ~~~kueda
     # 202108
     describe "user_id filter" do
       before do
-        # not sure why the before(:each) in spec_helper may not have run yet here
+        # not sure why the before( :each ) in spec_helper may not have run yet here
         make_default_site
         @o = Observation.make!
         @ft = ObservationsExportFlowTask.make
-        @ft.inputs.build(:extra => {:query => "user_id=#{@o.user_id}"})
+        @ft.inputs.build( extra: { query: "user_id=#{@o.user_id}" } )
         @ft.save!
-        @ft.run
+        @ft.run( keep_tmp_files: true )
       end
       it "should generate a zipped csv archive by default" do
         output = @ft.outputs.first
-        expect(output).not_to be_blank
-        expect(output.file.path).to be =~ /csv.zip$/
+        expect( output ).not_to be_blank
+        expect( output.file.path ).to be =~ /csv.zip$/
       end
       it "should work" do
-        csv = CSV.open(File.join(@ft.work_path, "#{@ft.basename}.csv")).to_a
-        expect(csv.size).to eq 2
-        expect(csv[1]).to include @o.id.to_s
+        csv = CSV.open( File.join( @ft.work_path, "#{@ft.basename}.csv" ) ).to_a
+        expect( csv.size ).to eq 2
+        expect( csv[1] ).to include @o.id.to_s
       end
     end
 
     it "should filter by year" do
       u = User.make!
-      o2004 = Observation.make!(:observed_on_string => "2004-05-02", :user => u)
-      expect(o2004.observed_on.year).to eq 2004
-      o2010 = Observation.make!(:observed_on_string => "2010-05-02", :user => u)
-      expect(o2010.observed_on.year).to eq 2010
-      expect(Observation.by(u).on("2010")).not_to be_blank
+      o2004 = Observation.make!( observed_on_string: "2004-05-02", user: u )
+      expect( o2004.observed_on.year ).to eq 2004
+      o2010 = Observation.make!( observed_on_string: "2010-05-02", user: u )
+      expect( o2010.observed_on.year ).to eq 2010
+      expect( Observation.by( u ).on( "2010" ) ).not_to be_blank
       ft = ObservationsExportFlowTask.make
-      ft.inputs.build(:extra => {:query => "user_id=#{u.id}&year=2010"})
+      ft.inputs.build( extra: { query: "user_id=#{u.id}&year=2010" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).to include o2010.id.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o2010.id.to_s
     end
 
     it "should filter by week" do
       u = User.make!
-      o1 = Observation.make!(:observed_on_string => "2010-05-01", :user => u)
-      o2 = Observation.make!(:observed_on_string => "2010-05-02", :user => u)
+      o1 = Observation.make!( observed_on_string: "2010-05-01", user: u )
+      o2 = Observation.make!( observed_on_string: "2010-05-02", user: u )
       ft = ObservationsExportFlowTask.make
-      ft.inputs.build(:extra => {:query => "user_id=#{u.id}&week=17"})
+      ft.inputs.build( extra: { query: "user_id=#{u.id}&week=17" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 3
-      expect(csv[1]).to include o1.id.to_s
-      expect(csv[2]).to include o2.id.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 3
+      expect( csv[1] ).to include o1.id.to_s
+      expect( csv[2] ).to include o2.id.to_s
     end
 
     it "should filter by without_taxon_id" do
@@ -99,12 +114,16 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make
       ft.inputs.build( extra: { query: "user_id=#{u.id}&without_taxon_id=#{o_of_taxon.taxon.id}" } )
       ft.save!
-      ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+      ft.run( keep_tmp_files: true )
       csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv.size ).to eq 2
       taxon_id_col_idx = csv[0].index( "taxon_id" )
-      expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_taxon.taxon.id } ).to be_blank
-      expect( csv.detect{|row| row[taxon_id_col_idx].to_i == o_of_other_taxon.taxon.id } ).not_to be_blank
+      expect(
+        csv.detect {| row | row[taxon_id_col_idx].to_i == o_of_taxon.taxon.id }
+      ).to be_blank
+      expect(
+        csv.detect {| row | row[taxon_id_col_idx].to_i == o_of_other_taxon.taxon.id }
+      ).not_to be_blank
     end
 
     it "should filter by not_in_place" do
@@ -116,7 +135,7 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make
       ft.inputs.build( extra: { query: "user_id=#{u.id}&not_in_place=#{place.id}" } )
       ft.save!
-      ft.run
+      ft.run( keep_tmp_files: true )
       csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv.size ).to eq 2
       id_col_idx = csv[0].index( "id" )
@@ -127,52 +146,52 @@ describe ObservationsExportFlowTask do
     it "should allow JSON output" do
       o = Observation.make!
       ft = ObservationsExportFlowTask.make
-      ft.options = {:format => "json"}
-      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
+      ft.options = { format: "json" }
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
       ft.save!
-      ft.run
+      ft.run( keep_tmp_files: true )
       output = ft.outputs.first
-      expect(output).not_to be_blank
-      expect(output.file.path).to be =~ /json.zip$/
-      expect {
+      expect( output ).not_to be_blank
+      expect( output.file.path ).to be =~ /json.zip$/
+      expect do
         JSON.parse( File.open( File.join( ft.work_path, "#{ft.basename}.json" ) ).read )
-      }.not_to raise_error
+      end.not_to raise_error
     end
 
     it "should filter by project" do
-      u = User.make!
+      User.make!
       po = make_project_observation
       in_project = po.observation
       not_in_project = Observation.make!
       ft = ObservationsExportFlowTask.make
-      ft.inputs.build(:extra => {:query => "projects%5B%5D=#{po.project.slug}"})
+      ft.inputs.build( extra: { query: "projects%5B%5D=#{po.project.slug}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect( csv.detect{|row| row.detect{|v| v == in_project.id.to_s}} ).not_to be_blank
-      expect( csv.detect{|row| row.detect{|v| v == not_in_project.id.to_s}} ).to be_blank
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv.detect {| row | row.detect {| v | v == in_project.id.to_s } } ).not_to be_blank
+      expect( csv.detect {| row | row.detect {| v | v == not_in_project.id.to_s } } ).to be_blank
     end
 
     describe "email notification" do
-      let(:o) { create :observation }
-      let(:ft) {
+      let( :o ) { create :observation }
+      let( :ft ) do
         ft = build :observations_export_flow_task
         ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
         ft.save!
         ft
-      }
+      end
       it "should happen if requested" do
         ft.update( options: { email: true } )
-        expect {
+        expect do
           ft.run
-        }.to change( ActionMailer::Base.deliveries, :size ).by 1
+        end.to change( ActionMailer::Base.deliveries, :size ).by 1
       end
       it "should not happen if not requested" do
         expect( ft.options[:email] ).to be_blank
-        expect {
+        expect do
           ft.run
-        }.not_to change( ActionMailer::Base.deliveries, :size )
+        end.not_to change( ActionMailer::Base.deliveries, :size )
       end
     end
   end
@@ -181,66 +200,68 @@ describe ObservationsExportFlowTask do
     elastic_models( UpdateAction )
 
     it "should not include private coordinates you can't see" do
-      o = make_private_observation(:taxon => Taxon.make!)
+      o = make_private_observation( taxon: Taxon.make! )
       viewer = User.make!
-      ft = ObservationsExportFlowTask.make(:user => viewer)
-      ft.inputs.build(:extra => {:query => "taxon_id=#{o.taxon_id}"})
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).not_to include o.private_latitude.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).not_to include o.private_latitude.to_s
     end
 
     it "should include private coordinates if viewing your own observations" do
-      o = make_private_observation(:taxon => Taxon.make!)
+      o = make_private_observation( taxon: Taxon.make! )
       viewer = o.user
-      ft = ObservationsExportFlowTask.make(:user => viewer)
-      ft.inputs.build(:extra => {:query => "user_id=#{o.user_id}"})
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).to include o.private_latitude.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o.private_latitude.to_s
     end
 
     it "should include private coordinates if viewing a project you curate" do
-      o = make_private_observation(:taxon => Taxon.make!)
-      po = make_project_observation(:observation => o, :user => o.user)
+      o = make_private_observation( taxon: Taxon.make! )
+      po = make_project_observation( observation: o, user: o.user )
       p = po.project
       pu = without_delay do
-        ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
+        ProjectUser.make!( project: p, role: ProjectUser::CURATOR )
       end
       viewer = pu.user
-      ft = ObservationsExportFlowTask.make(:user => viewer)
-      ft.inputs.build(:extra => {:query => "projects[]=#{p.id}"})
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "projects[]=#{p.id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).to include o.private_latitude.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o.private_latitude.to_s
     end
 
-    it "should not include private coordinates if viewing a project you curate but don't have curator_coordinate_access" do
-      o = make_private_observation(:taxon => Taxon.make!)
-      po = ProjectObservation.make!(:observation => o)
+    it "should not include private coordinates if viewing a project you " \
+      "curate but don't have curator_coordinate_access" do
+      o = make_private_observation( taxon: Taxon.make! )
+      po = ProjectObservation.make!( observation: o )
       p = po.project
       pu = without_delay do
-        ProjectUser.make!(:project => p, :role => ProjectUser::CURATOR)
+        ProjectUser.make!( project: p, role: ProjectUser::CURATOR )
       end
       viewer = pu.user
       expect( po ).not_to be_prefers_curator_coordinate_access
-      expect( o ).not_to be_coordinates_viewable_by(viewer)
-      ft = ObservationsExportFlowTask.make(:user => viewer)
-      ft.inputs.build(:extra => {:query => "projects[]=#{p.id}"})
+      expect( o ).not_to be_coordinates_viewable_by( viewer )
+      ft = ObservationsExportFlowTask.make( user: viewer )
+      ft.inputs.build( extra: { query: "projects[]=#{p.id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).not_to include o.private_latitude.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).not_to include o.private_latitude.to_s
     end
 
-    it "should include obscured coordinates you can see with a place filter even if the obscured coordinates are outside of the place" do
+    it "should include obscured coordinates you can see with a place filter " \
+      "even if the obscured coordinates are outside of the place" do
       place = make_place_with_geom
       o = Observation.make!( latitude: 0.99, longitude: 0.99, geoprivacy: Observation::OBSCURED )
       o.latitude = 1.1
@@ -264,16 +285,16 @@ describe ObservationsExportFlowTask do
       expect( o ).to be_coordinates_viewable_by( ft.user )
       ft.inputs.build( extra: { query: "place_id=#{place.id}&user_id=#{o.user.id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
-      expect(csv.size).to eq 2
-      expect(csv[1]).to include o.private_latitude.to_s
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1] ).to include o.private_latitude.to_s
     end
 
     describe "for collection projects" do
-      let(:place) { make_place_with_geom }
-      let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
-      let(:project) {
+      let( :place ) { make_place_with_geom }
+      let( :user ) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
+      let( :project ) do
         p = Project.make!(
           project_type: "collection",
           user: user,
@@ -284,32 +305,31 @@ describe ObservationsExportFlowTask do
         p.project_observation_rules.create( operator: "observed_in_place?", operand: place )
         p.update_attribute( :observation_requirements_updated_at, 2.weeks.ago )
         p
-      }
-      def stub_api_requests_for_observation( o, options = {} )
+      end
+
+      def stub_api_requests_for_observation( obs, options = {} )
         Delayed::Worker.new.work_off
         PlaceDenormalizer.denormalize
-        es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+        es_o = Observation.elastic_search( where: { id: obs.id } ).results[0]
         # make sure it's indexed
-        expect( es_o.id.to_i ).to eq o.id
+        expect( es_o.id.to_i ).to eq obs.id
         # When you specify a project, the export will use the API, so we're
         # stubbing the API response here
         # This stubs the first request
-        stub_request(:get, /\/v1\/observations\?.*id_above=1[^\d]/).
+        stub_request( :get, /\/v1\/observations\?.*id_above=1[^\d]/ ).
           to_return(
             status: 200,
             body: {
               total_results: options[:obs_not_in_project] ? 0 : 1,
               page: 1,
               per_page: 1,
-              results: options[:obs_not_in_project] ? [] : [
-                { id: o.id }
-              ],
+              results: options[:obs_not_in_project] ? [] : [{ id: obs.id }],
               test: "stub working for first request"
             }.to_json,
             headers: { "Content-Type" => "application/json" }
           )
         # This stubs second and subsequent requests
-        stub_request(:get, /\/v1\/observations\?.*id_above=[2-9]/).
+        stub_request( :get, /\/v1\/observations\?.*id_above=[2-9]/ ).
           to_return(
             status: 200,
             body: {
@@ -321,22 +341,20 @@ describe ObservationsExportFlowTask do
             }.to_json,
             headers: { "Content-Type" => "application/json" }
           )
-        stub_request(:get, /\/v1\/observations\?.*per_page=1[^0]/).
+        stub_request( :get, /\/v1\/observations\?.*per_page=1[^0]/ ).
           to_return(
             status: 200,
             body: {
               total_results: options[:obs_not_in_project] ? 0 : 1,
               page: 1,
               per_page: 1,
-              results: options[:obs_not_in_project] ? [] : [
-                { id: o.id }
-              ],
+              results: options[:obs_not_in_project] ? [] : [{ id: obs.id }],
               test: "stub working for total_entries request"
             }.to_json,
             headers: { "Content-Type" => "application/json" }
           )
         # stub the request to get collection project membership
-        stub_request(:get, /\/v1\/observations\/#{o.id}\?.*include_new_projects/).
+        stub_request( :get, /\/v1\/observations\/#{obs.id}\?.*include_new_projects/ ).
           to_return(
             status: 200,
             body: {
@@ -345,7 +363,7 @@ describe ObservationsExportFlowTask do
               per_page: 1,
               results: options[:obs_not_in_project] ? [] : [
                 {
-                  id: o.id,
+                  id: obs.id,
                   non_traditional_projects: options[:coordinates_not_viewable] ? [] : [
                     project: {
                       id: project.id
@@ -358,11 +376,12 @@ describe ObservationsExportFlowTask do
             headers: { "Content-Type" => "application/json" }
           )
       end
-      def export_csv_for_project( p )
-        ft = ObservationsExportFlowTask.make( user: p.user )
-        ft.inputs.build( extra: { query: "projects[]=#{p.id}" })
+
+      def export_csv_for_project( project )
+        ft = ObservationsExportFlowTask.make( user: project.user )
+        ft.inputs.build( extra: { query: "projects[]=#{project.id}" } )
         ft.save!
-        ft.run #( debug: true, logger: Logger.new( STDOUT ) )
+        ft.run( keep_tmp_files: true )
         f = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) )
         csv = f.to_a
         f.close
@@ -380,11 +399,12 @@ describe ObservationsExportFlowTask do
           geoprivacy: Observation::PRIVATE
         )
         stub_api_requests_for_observation( o )
-        csv = export_csv_for_project( project)
+        csv = export_csv_for_project( project )
         expect( csv.size ).to eq 2
         expect( csv[1] ).to include o.private_latitude.to_s
       end
-      it "should include private coordinates if the observer trusts you with threatened taxa and the observed taxon is threatened" do
+      it "should include private coordinates if the observer trusts you with " \
+        "threatened taxa and the observed taxon is threatened" do
         pu = ProjectUser.make!(
           project: project,
           prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
@@ -400,7 +420,8 @@ describe ObservationsExportFlowTask do
         expect( csv.size ).to eq 2
         expect( csv[1] ).to include o.private_latitude.to_s
       end
-      it "should not include private coordinates if the observer trusts you with threatened taxa and the observed taxon is threatened and geoprivacy is obscured" do
+      it "should not include private coordinates if the observer trusts you " \
+        "with threatened taxa and the observed taxon is threatened and geoprivacy is obscured" do
         pu = ProjectUser.make!(
           project: project,
           prefers_curator_coordinate_access_for: ProjectUser::CURATOR_COORDINATE_ACCESS_FOR_TAXON
@@ -440,7 +461,7 @@ describe ObservationsExportFlowTask do
           geoprivacy: Observation::PRIVATE
         )
         stub_api_requests_for_observation( o, coordinates_not_viewable: true )
-        csv = export_csv_for_project( project)
+        csv = export_csv_for_project( project )
         expect( csv.size ).to eq 2
         expect( csv[1] ).not_to include o.private_latitude.to_s
       end
@@ -454,8 +475,8 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make( user: viewer )
       ft.inputs.build( extra: { query: "user_id=#{o.user_id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv.size ).to eq 2
       expect( csv[1] ).to include o.private_latitude.to_s
     end
@@ -467,7 +488,7 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make( options: { columns: Observation::CSV_COLUMNS[0..0] } )
       ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
       ft.save!
-      ft.run
+      ft.run( keep_tmp_files: true )
       csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv[0].size ).to eq 1
     end
@@ -477,7 +498,7 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make( options: { columns: Observation::CSV_COLUMNS } )
       ft.inputs.build( extra: { query: "taxon_id=#{o.taxon_id}" } )
       ft.save!
-      ft.run
+      ft.run( keep_tmp_files: true )
       csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv[0].size ).to eq Observation::CSV_COLUMNS.size
       expect( csv[1].size ).to eq Observation::CSV_COLUMNS.size
@@ -487,10 +508,10 @@ describe ObservationsExportFlowTask do
     end
 
     it "should never include anything but allowed columns" do
-      ft = ObservationsExportFlowTask.make(:options => {:columns => %w(delete destroy badness)})
-      ft.inputs.build(:extra => {:query => "user_id=1"})
+      ft = ObservationsExportFlowTask.make( options: { columns: %w(delete destroy badness) } )
+      ft.inputs.build( extra: { query: "user_id=1" } )
       ft.save!
-      expect(ft.export_columns).to be_blank
+      expect( ft.export_columns ).to be_blank
     end
   end
 
@@ -500,8 +521,8 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make( options: { columns: ["id", "ident_by_#{i.user.login}:taxon_name"] } )
       ft.inputs.build( extra: { query: "taxon_id=#{i.taxon_id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv.size ).to eq 2
       expect( csv[1][1] ).to eq i.taxon.name
     end
@@ -517,8 +538,8 @@ describe ObservationsExportFlowTask do
       )
       ft.inputs.build( extra: { query: "taxon_id=#{i.taxon_id}&ident_user_id=#{i.user_id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       expect( csv.size ).to eq 2
       expect( csv[0][1] ).to eq ident_column
       expect( csv[1][0].to_i ).to eq i.observation_id
@@ -532,8 +553,8 @@ describe ObservationsExportFlowTask do
       ft = ObservationsExportFlowTask.make( options: { columns: %w(user_name) } )
       ft.inputs.build( extra: { query: "user_id=#{o.user.id}" } )
       ft.save!
-      ft.run
-      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      ft.run( keep_tmp_files: true )
+      csv = CSV.open( File.join( ft.work_path, "#{ft.basename}.csv" ) ).to_a
       user_name_index = csv[0].index( "user_name" )
       expect( csv[1][user_name_index] ).not_to be_blank
       expect( csv[1][user_name_index] ).to eq o.user.name
