@@ -1984,6 +1984,9 @@ id:
   generate_your_year_in_review_caps: BUAT ULASAN TAHUN %{year} KAMU
   generating_mobile_archive: "Buat arsip ponsel"
   Genus: Genus
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Nilai geo
   geomodel_expected_nearby_label_is_derived: |
     Label "Perkiraan Terdekat" berasal dari Geomodel.
     <a href="%{url}">Pelajari lebih lanjut tentang Geomodel di sini</a>.
