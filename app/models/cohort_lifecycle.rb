@@ -325,6 +325,8 @@ class CohortLifecycle < ApplicationRecord
   end
 
   def self.get_obs( start_date, end_date, users )
+    return {} if users.empty?
+
     filter = build_filter( start_date.beginning_of_day, end_date.end_of_day, users )
     agg = build_agg( users )
     obs_data = fetch_obs_data( filter, agg )
@@ -332,6 +334,8 @@ class CohortLifecycle < ApplicationRecord
   end
 
   def self.get_captives( start_date, end_date, users )
+    return [] if users.empty?
+
     filter = build_filter( start_date.beginning_of_day, end_date.end_of_day, users, captives: true )
     agg = build_agg( users )
     obs_data = fetch_obs_data( filter, agg )
