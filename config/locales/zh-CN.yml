@@ -22,6 +22,8 @@ zh-CN:
   x_identifiers_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span>个鉴定者'
+  x_ids_made_for_others_html:
+    other: '为他人做出了<span class="count">%{count}</span>个鉴定'
   x_languages:
     other: "%{count} 种语言"
   #Count of number of taxa that represent the first addition to a life list
@@ -1733,7 +1735,7 @@ zh-CN:
   establishment_means_descriptions:
     native: 在这个区域演化而来或通过非人为手段抵达的情况
     endemic: 本土物种，且无其他地区记录
-    introduced: 通过人类活动途径到达此地区的情况
+    introduced: 经由人类活动到达此地区
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     估计哪个输入分类群的鉴定将被输出分类群的鉴定替代，当拆分填好后，这些分类群将被压缩到一个
@@ -1963,6 +1965,9 @@ zh-CN:
   generate_your_year_in_review_caps: 生成您的%{year}年年度回顾
   generating_mobile_archive: "生成移动存档"
   Genus: 类
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: 地理打分
   geomodel_expected_nearby_label_is_derived: |
     "预料在附近"标签来自地理位置模型。<a href="%{url}">在这里了解更多关于地理位置模型的情况</a>。
   geoprivacy: 位置隐私
@@ -2137,6 +2142,7 @@ zh-CN:
   identotron_for: Identotron 为
   identotron_help: Identotron帮助
   ids: "鉴定"
+  ids_made_for_others__title: 为其他人做出的鉴定
   if_for_some_reason_a_user_doesnt_agree: |
     如果出于某种原因，你不同意社群鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社群中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -6016,6 +6022,10 @@ zh-CN:
       your_site_account_has_no_email: 你的%{site_name}账户没有绑定邮箱地址。
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: 可标记的内容
         flaggable_content_desc: |
           可标记内容是创建标记时标记对象的主要文本属性。只有馆长和员工可以看到它。只有员工可以看到它的内容消息。
         flags_that_should_not_be_resolved_desc_html: |
