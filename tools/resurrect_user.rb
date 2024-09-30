@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 user_id = ARGV[0]
 table_names = []
 resurrection_cmds = []
@@ -141,14 +143,20 @@ system cmd
 puts
 puts "Run these commands (or something like them, depending on your setup):"
 puts
-puts <<-EOT
-scp resurrect_#{user_id}.tgz inaturalist@taricha:deployment/production/current/
-ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
-tar xzvf resurrect_#{user_id}.tgz
-#{resurrection_cmds.uniq.join("\n")}
-EOT
-puts
+puts <<-CODE
+  scp resurrect_#{user_id}.tgz inaturalist@taricha:deployment/production/current/
+  ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
+  tar xzvf resurrect_#{user_id}.tgz
+  #{resurrection_cmds.uniq.join( "\n  " )}
+CODE
+puts "\n\n"
 puts "This script does not resurrect observations or associated data. Please use the following command:"
 puts
-puts "bundle exec rails r tools/resurrect_observations.rb -u #{user_id} --skip Photo --skip Sound -r"
+puts "  bundle exec rails r tools/resurrect_observations.rb -u #{user_id} --skip Photo --skip Sound -r"
+puts "\n\n"
+puts "The DeletedUser entry should be removed after resurrecting a user account:"
 puts
+puts <<-CODE
+  bundle exec rails r "DeletedUser.where( 'user_id = ?', #{user_id} ).destroy_all"
+CODE
+puts "\n\n\n"
