@@ -109,6 +109,7 @@ class User < ApplicationRecord
   preference :edit_observations_order, :string, default: "created_at"
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
+  preference :needs_id_pilot, :boolean, default: nil
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string

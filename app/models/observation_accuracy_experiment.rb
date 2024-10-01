@@ -18,6 +18,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   validates_presence_of :version
 
+  NEEDS_ID_PILOT_VERSION = "Needs ID Pilot"
+
   def generate_sample_if_requested
     generate_sample if generate_sample_now
   end
@@ -1025,6 +1027,49 @@ class ObservationAccuracyExperiment < ApplicationRecord
       validators_per_sample_ylim = ( max.to_f / 100 ).ceil * 100
 
       [mean_validators_per_sample, validators_per_sample, validators_per_sample_ylim]
+    end
+  end
+
+  def self.needs_id_pilot
+    ObservationAccuracyExperiment.find_by( version: NEEDS_ID_PILOT_VERSION )
+  end
+
+  def self.user_eligible_for_needs_id_pilot?( user )
+    return false unless needs_id_pilot && user && user.prefers_needs_id_pilot != false
+    return true if user.is_admin?
+    return false if user.identifications_count < 75_000
+    return false unless top_identifiers.first( 10 ).include?( user.id )
+
+    true
+  end
+
+  def self.needs_id_pilot_params_for_user( user )
+    return unless needs_id_pilot && user
+
+    validator = needs_id_pilot.observation_accuracy_validators.find_by(
+      user_id: user.id
+    )
+    return unless validator
+
+    obs_ids = validator.observation_accuracy_samples.pluck( :observation_id )
+    return if obs_ids.blank?
+
+    params = {
+      reviewed: "false",
+      quality_grade: "needs_id",
+      place_id: "any",
+      id: obs_ids.join( "," )
+    }
+    return if INatAPIService.observations(
+      params.merge( per_page: 0, viewer_id: user.id )
+    ).total_results.zero?
+
+    params
+  end
+
+  def self.top_identifiers
+    Rails.cache.fetch( "top_iders", expires_in: 1.week ) do
+      INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
     end
   end
 end
