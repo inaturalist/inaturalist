@@ -21,7 +21,14 @@ OPTS = Optimist.options do
   opt :vision_api_url, "URL to the vision API.", type: :string, short: "-v"
   opt :updated_minutes_ago, "Target observations updated since this many minutes ago.", type: :integer, short: "-m"
   opt :update_all, "Target all observations.", type: :boolean, short: "-a"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync", "rails" )
+end
+
+task_logger&.start
 
 unless OPTS.vision_api_url
   puts "You must specify a vision API URL"
@@ -44,3 +51,5 @@ if OPTS.updated_minutes_ago
 else
   observation_geo_score_updater.index_all_via_elasticsearch
 end
+
+task_logger&.end

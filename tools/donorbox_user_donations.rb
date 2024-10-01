@@ -14,7 +14,14 @@ opts = Optimist.options do
     where [options] are:
   BANNER
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync", "rails" )
+end
+
+task_logger&.start
 
 if !CONFIG.donorbox || !CONFIG.donorbox.email || !CONFIG.donorbox.key
   raise "Donorbox email an API key haven't been added to config"
@@ -55,3 +62,5 @@ loop do
   sleep( 1 )
   page += 1
 end
+
+task_logger&.end

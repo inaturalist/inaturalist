@@ -11,7 +11,14 @@ OPTS = Optimist.options do
     where [options] are:
   TEXT
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync", "rails" )
+end
+
+task_logger&.start
 
 start = Time.now
 
@@ -147,3 +154,5 @@ if failed_to_save.count.positive?
     end
   end
 end
+
+task_logger&.end

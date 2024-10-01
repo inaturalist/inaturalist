@@ -43,12 +43,19 @@ OPTS = Optimist.options do
   opt :site_name, "Site name", type: :string, short: "-s"
   opt :site_id, "Site ID", type: :string, short: "-i"
   opt :taxon_id, "Taxon ID (just for testing on smaller exports)", type: :string, short: "-t"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
 
 def system_call( cmd )
   puts "Running #{cmd}" if OPTS[:debug]
   system cmd
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "export", "rails" )
+end
+
+task_logger&.start
 
 start_time = Time.now
 site_name = OPTS.site_name || ARGV[0]
@@ -74,6 +81,7 @@ export_params = {
 paths = sites.to_a.compact.collect do | site_to_export |
   puts
   puts "Exporting data for #{site_to_export}..."
+  task_logger&.info( "Export data for #{site_to_export}" )
   path = SiteDataExporter.new( site_to_export, export_params ).export
   if OPTS.dir
     new_path = File.join( File.expand_path( OPTS.dir ), File.basename( path ) )
@@ -95,3 +103,5 @@ paths.each do | path |
   puts path
 end
 puts
+
+task_logger&.end

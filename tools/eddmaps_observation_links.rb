@@ -13,7 +13,14 @@ Usage:
 where [options] are:
 EOS
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync", "rails" )
+end
+
+task_logger&.start
 
 start_time = Time.now
 new_count = 0
@@ -73,3 +80,5 @@ if !opts[:debug] && delete_count > 0
 end
 
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"
+
+task_logger&.end
