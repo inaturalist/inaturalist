@@ -2097,6 +2097,9 @@ sv:
   generate_your_year_in_review_caps: GENERERA DITT %{year} ÅRET SOM GÅTT
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo-poäng
   geomodel_expected_nearby_label_is_derived: |
     Etiketten "Förväntad i närheten" härstammar från Geomodellen.
     <a href="%{url}">Lär dig mer om Geomodellen här</a>.
