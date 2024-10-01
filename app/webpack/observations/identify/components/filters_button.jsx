@@ -732,6 +732,18 @@ class FiltersButton extends React.Component {
           updateSearchParams={updateSearchParams}
           prefix="created"
         />
+        { viewerIsAdmin && (
+          <div>
+            <label className="sectionlabel">
+              { I18n.t( "geoprivacy" ) }
+            </label>
+            <FilterCheckboxWrapper
+              param="with_private_location"
+              label="Hide observations with private locations"
+              checked="false"
+            />
+          </div>
+        ) }
       </Col>
     );
     const moreFilters = (

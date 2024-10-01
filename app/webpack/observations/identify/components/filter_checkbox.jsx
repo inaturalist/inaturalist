@@ -20,7 +20,7 @@ const FilterCheckbox = ( {
   updateSearchParams
 } ) => {
   const checkedVal = ( checked || true ).toString( );
-  const vals = params[param] ? params[param].toString( ).split( "," ) : [];
+  const vals = _.has( params, param ) ? params[param].toString( ).split( "," ) : [];
   const thisValChecked = vals.indexOf( checkedVal ) >= 0;
   const cssClass = "FilterCheckbox checkbox";
   let labelClass = "";

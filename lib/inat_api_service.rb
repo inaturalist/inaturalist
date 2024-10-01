@@ -25,6 +25,7 @@ module INatAPIService
     "d2",
     "day",
     "endemic",
+    "expected_nearby",
     "featured_observation_id",
     "geo",
     "geoprivacy",
