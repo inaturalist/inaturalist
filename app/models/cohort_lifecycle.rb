@@ -22,9 +22,9 @@ class CohortLifecycle < ApplicationRecord
 
     process_current_day( active_users, current_day, cohort_data )
     process_retention( active_users, cohort_data, current_day )
-    observations = process_interventions( current_day, cohort_data )
+    observation_array = process_interventions( current_day, cohort_data )
     save_cohort_data( cohort_data )
-    process_needs_id( observations )
+    process_needs_id( observation_array )
   end
 
   def self.prepare_cohort_data( raw_cohort_data )
@@ -122,7 +122,7 @@ class CohortLifecycle < ApplicationRecord
       Emailer.observer_appeal( user, latitude: geoip_latitude, longitude: geoip_longitude ).deliver_now
     end
 
-    observations = []
+    observation_array = []
     ( 0..6 ).each do | d |
       cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
       slot = "day#{d}".to_sym
@@ -243,7 +243,7 @@ class CohortLifecycle < ApplicationRecord
 
         next unless group == "A"
 
-        observations.concat(
+        observation_array.concat(
           Observation.
             where( user_id: user.id, quality_grade: "needs_id" ).
             limit( 3 ).
@@ -277,7 +277,7 @@ class CohortLifecycle < ApplicationRecord
       end
     end
 
-    observations
+    observation_array
   end
 
   def self.save_cohort_data( cohort_data )
@@ -460,15 +460,15 @@ class CohortLifecycle < ApplicationRecord
     results.map {| a | [a[:taxon_id], a[:place_ids]] }.to_h
   end
 
-  def self.get_place_obs( oids, place_ids )
+  def self.get_place_obs( observation_ids, place_ids )
     batch_size = 500
     total_elapsed_time = 0
     observation_places = []
-    ( 0..oids.length - 1 ).step( batch_size ) do | i |
+    ( 0..observation_ids.length - 1 ).step( batch_size ) do | i |
       start_time = Time.now
-      observation_ids = oids[i, batch_size]
+      batch_observation_ids = observation_ids[i, batch_size]
       batch_observation_places = ObservationsPlace.
-        where( observation_id: observation_ids, place_id: place_ids ).
+        where( observation_id: batch_observation_ids, place_id: place_ids ).
         pluck( :observation_id, :place_id )
       observation_places.concat( batch_observation_places )
       end_time = Time.now
@@ -476,20 +476,20 @@ class CohortLifecycle < ApplicationRecord
       total_elapsed_time += elapsed_time
     end
     puts "Total time: #{total_elapsed_time} seconds"
-    puts "Average time per batch: #{total_elapsed_time / ( oids.length.to_f / batch_size )} seconds"
+    puts "Average time per batch: #{total_elapsed_time / ( observation_ids.length.to_f / batch_size )} seconds"
     observation_places.to_h
   end
 
-  def self.prepare_observations( observations, place_ids )
+  def self.prepare_observations( observation_array, place_ids )
     admin = User.where( email: CONFIG.admin_user_email ).first
     return false unless admin
 
-    place_obs = get_place_obs( observations.map {| a | a[0] }, place_ids )
+    place_obs = get_place_obs( observation_array.map {| o | o[0] }, place_ids )
     place_hash = place_obs.to_h
-    taxon_hash = observations.to_h
-    rank_hash = Taxon.find( observations.map {| a | a[1] }.uniq.compact ).pluck( :id, :rank_level ).to_h
+    taxon_hash = observation_array.to_h
+    rank_hash = Taxon.find( observation_array.map {| o | o[1] }.uniq.compact ).pluck( :id, :rank_level ).to_h
     new_taxon_hash = {}
-    observations.each do | row |
+    observation_array.each do | row |
       obs_id = row[0]
       old_taxon_id = taxon_hash[obs_id]
       if ( old_taxon_id.nil? || rank_hash[old_taxon_id] > 10 ) && new_taxon_hash[obs_id].nil?
@@ -508,7 +508,7 @@ class CohortLifecycle < ApplicationRecord
     end
 
     prepared_obs = []
-    observations.map {| a | a[0] }.select do | obs |
+    observation_array.map {| o | o[0] }.select do | obs |
       place_id = place_hash[obs]
       taxon_id = new_taxon_hash[obs]
       next unless taxon_id
@@ -571,7 +571,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def self.process_needs_id( observations )
+  def self.process_needs_id( observation_array )
     puts "processing needs_id..."
     needs_id_pilot = ObservationAccuracyExperiment.needs_id_pilot
     needs_id_pilot ||= ObservationAccuracyExperiment.create(
@@ -579,7 +579,7 @@ class CohortLifecycle < ApplicationRecord
     )
     place_ids = Place.where( admin_level: Place::COUNTRY_LEVEL ).pluck( :id )
     puts "\tpreparing observations..."
-    prepared_obs = prepare_observations( observations, place_ids )
+    prepared_obs = prepare_observations( observation_array, place_ids )
     puts "\tstoring prepared observations..."
     store_prepared_observations( prepared_obs, needs_id_pilot )
     puts "\tassigning to iders..."
