@@ -21,6 +21,10 @@ OPTS = Optimist.options do
   opt :vision_api_url, "URL to the vision API.", type: :string, short: "-v"
   opt :updated_minutes_ago, "Target observations updated since this many minutes ago.", type: :integer, short: "-m"
   opt :update_all, "Target all observations.", type: :boolean, short: "-a"
+  opt :min_id, "Minimum ID to process.", type: :integer, short: "-f"
+  opt :max_id, "Maximum ID to process.", type: :integer, short: "-t"
+  opt :not_expected_nearby, "Filter to obeservations already indexed with a geo_score less than 1.",
+    type: :boolean, short: "-n"
 end
 
 unless OPTS.vision_api_url
@@ -28,8 +32,8 @@ unless OPTS.vision_api_url
   exit( 0 )
 end
 
-unless OPTS.updated_minutes_ago || OPTS.update_all
-  puts "You must specify either a `updated_minutes_ago` or `update_all` option"
+unless OPTS.updated_minutes_ago || OPTS.update_all || ( OPTS.min_id && OPTS.max_id )
+  puts "You must specify `updated_minutes_ago`, `update_all`, or `min_id` and `max_id` options"
   exit( 0 )
 end
 
@@ -41,6 +45,14 @@ if OPTS.updated_minutes_ago
   observation_geo_score_updater.index_via_elasticsearch_observations_updated_since(
     OPTS.updated_minutes_ago.minutes.ago
   )
+elsif OPTS.min_id && OPTS.max_id
+  observation_geo_score_updater.index_all_via_elasticsearch(
+    min_id: OPTS.min_id,
+    max_id: OPTS.max_id,
+    not_expected_nearby: OPTS.not_expected_nearby
+  )
 else
-  observation_geo_score_updater.index_all_via_elasticsearch
+  observation_geo_score_updater.index_all_via_elasticsearch(
+    not_expected_nearby: OPTS.not_expected_nearby
+  )
 end
