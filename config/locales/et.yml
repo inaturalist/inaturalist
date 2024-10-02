@@ -33,6 +33,9 @@ et:
     one: '<span class="count">%{count}</span> määraja'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> määrajat'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> teistele tehtud määratlus'
+    other: '<span class="count">%{count}</span> teistele tehtud määratlust'
   x_languages:
     one: "%{count} keel"
     other: "%{count} keelt"
@@ -473,6 +476,9 @@ et:
     x_animalia:
       one: "1 loom"
       other: "%{count} looma"
+    x_mollusca:
+      one: "%{count} mollusk"
+      other: "%{count} molluskit"
     x_amphibia:
       one: "1 kahepaikne"
       other: "%{count} kahepaikset"
@@ -1079,6 +1085,10 @@ et:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Kõik
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Kõik
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Kõik
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Kõik
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Kõik
@@ -1088,10 +1098,20 @@ et:
     male: Meessoost
     female: Naissoost
     plant_phenology: Taime fenoloogia
+    flowers_and_fruits: Õied ja viljad
     budding: Võrsuv
     flower_budding: Õiepungad
     flowering: Õitsev
     fruiting: Viljakandev
+    no_flowers_or_fruits: Õisi ja vilju pole
+    flower_buds: Õiepungad
+    flowers: Õied
+    fruits_or_seeds: Õied ja seemned
+    leaves: Lehed
+    breaking_leaf_buds: Avanevad õiepungad
+    green_leaves: Rohelised lehed
+    colored_leaves: Värvunud lehed
+    no_live_leaves: Elusaid lehti pole
     life_stage: Elujärk
     adult: Täiskasvanu
     teneral: Valmik
@@ -1124,6 +1144,12 @@ et:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Kest
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Söödud lehed
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Karvad
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Rajatis
   controlled_term_definitions:
     alive: Organism on elus ja puuduvad peatse surma märgid
     bone: |
@@ -1134,6 +1160,9 @@ et:
     flower_budding: Õite pungad on nähtavad, kuid pole avanenud
     flowering: Õied nähtavad, avatud ja ikka veel taime küljes
     fruiting: Vili nähtav ja ikka veel taime küljes
+    flowers: Vähemalt üks avanenud õis
+    flower_buds: Vähemalt üks suletud õiepung
+    fruits_or_seeds: Vähemalt üks vili või seeme
     gall: Moondunud taimekudu kasv, mille põhjuseks on parasiitorganism
     molt: Kõrvale heidetud nahk või eksoskelett
     no_evidence_of_flowering: Meedia järgi pole paljunemisele viitavaid tunnuseid näha
@@ -1909,6 +1938,9 @@ et:
   generate_your_stats: Loo enda statistika
   generating_mobile_archive: "Loon mobiilset arhiivi"
   Genus: Perekond
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo-skoor
   geoprivacy: Asukoha privaatsus
   geoprivacy_is_obscured: Geoprivaatsus on varjatud
   geoprivacy_is_obscured_desc: Vaatleja soovib koordinaate varjata.
