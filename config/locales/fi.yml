@@ -33,6 +33,9 @@ fi:
     one: '<span class="count">%{count}</span> tunnistaja'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> tunnistajaa'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> muille tehty tunnistus'
+    other: '<span class="count">%{count}</span> muille tehtyä tunnistusta'
   x_languages:
     one: "%{count} kieli"
     other: "%{count} kielet"
@@ -4990,6 +4993,7 @@ fi:
   user_observed_on_on_date_in_place: |
     %{user} havaitsi %{date} paikassa %{place}
   user_suggested_an_id: "%{user} ehdotti tunnistusta"
+  user_updated_an_observation_field_html: '%{user} päivitti arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> kirjoitti,
   username: Käyttäjänimi
   username_description: Tämä on käyttäjätunnus, jota käytät kirjautumiseen, ja muut käyttäjät voivat tunnistaa sinut iNaturalistissa
