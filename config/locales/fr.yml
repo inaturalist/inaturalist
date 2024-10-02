@@ -2053,6 +2053,9 @@ fr:
   generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Score géographique
   geomodel_expected_nearby_label_is_derived: |
     L'étiquette "Attendu à proximité" est dérivée du Geomodel.
     <a href="%{url}">En savoir plus sur le Geomodel ici</a>.
@@ -2233,6 +2236,7 @@ fr:
   identotron_for: Identotron pour
   identotron_help: Aide de l’Identotron
   ids: "IDs"
+  ids_made_for_others__title: Identifications faites pour d'autres
   if_for_some_reason_a_user_doesnt_agree: |
     Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est
     d’accord avec vous.
@@ -6201,6 +6205,10 @@ fr:
         Merci pour votre soutien à iNaturalist ! Nous mettons à jour notre système de collecte de dons et faire un don à iNaturalist est temporairement impossible. Veuillez réessayer plus tard.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Contenu signalé
         flaggable_content_desc: |
           Le contenu que l'on peut signaler est l'attribut texte principal de l'objet
           signalé au moment de la création du signalement. Seuls les responsables de l’organisation et le personnel peuvent
