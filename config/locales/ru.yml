@@ -55,6 +55,11 @@ ru:
     many: '<span class="count">%{count}</span> экспертов'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> экспертов'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> Идентификация,сделанная для других'
+    few: '<span class="count">%{count}</span> идентификаций, сделанных для других'
+    many: '<span class="count">%{count}</span> идентификаций, сделанных для других'
+    other: '<span class="count">%{count}</span> идентификаций, сделанных для других'
   x_languages:
     one: "%{count} язык"
     few: "%{count} языка"
@@ -2162,6 +2167,9 @@ ru:
   generate_your_year_in_review_caps: СГЕНЕРИРУЙТЕ ОБЗОР ВАШЕГО ГОДА %{year}
   generating_mobile_archive: "Генерация мобильного архива"
   Genus: Род
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Оценка местоположения
   geomodel_expected_nearby_label_is_derived: |
     Метка "Встречается поблизости" взята из Геомодели.
     <a href="%{url}">Подробнее о Геомодели можно узнать здесь</a>.
@@ -2347,6 +2355,7 @@ ru:
   identotron_for: Идентотрон для
   identotron_help: Помощь по Идентотрону
   ids: "Идентификации"
+  ids_made_for_others__title: ID созданные для других
   if_for_some_reason_a_user_doesnt_agree: |
     Если по какой-то причине вы не согласны с таксоном сообщества, вы можете отклонить его, что означает, что ваш ID используется для ссылки на другие наблюдения, обновления списков жизни и т.д. Это также означает, что ваше наблюдение может перейти на  исследовательский уровень только тогда, когда сообщество соглашается с вами.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -5741,6 +5750,8 @@ ru:
   user_faved_this_observation: "%{user} добавил это наблюдение к фаворитам"
   user_flagged_as_a_non_spammer_html: "%{user} помечен как не спамер"
   user_flagged_as_a_spammer_html: "%{user} помечен как спамер"
+  user_has_been_removed_from_site: |
+    %{username} был удален из %{site_name} (полное удаление всего связанного содержимого может занять до часа)
   user_has_opted_out_of_community_id: Пользователь отказался от таксона сообщества
   user_hasnt_joined_any_projects: "%{user} не присоединился ни к каким проектам"
   user_helped_x_people_with_y_ids_html: "%{user} помог <strong>%{x} людям</strong> с <strong>%{y} идентификацией</strong>"
@@ -5767,6 +5778,7 @@ ru:
   user_trusts_you_with_their_private_coordinates: "%{user} доверяет вам свои скрытые координаты"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдатель решил доверить вам скрытые координаты всех своих наблюдений.
+  user_updated_an_observation_field_html: '%{user} обновил значение %{field_name} в наблюдении %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> пишет,
   username: Имя пользователя
   username_description: Это имя, которое вы будете использовать для входа, и по которому другие пользователи могут идентифицировать вас на iNaturalist
@@ -6372,6 +6384,10 @@ ru:
       your_site_account_has_no_email: Отсутствует адрес электронной почты, связанный с вашей учетной записью %{site_name}.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Помечаемый контент
         flaggable_content_desc: |
           Помечаемый флагом контент является основным текстовым атрибутом помеченного объекта во время создания флага. Его видят только кураторы и сотрудники. Только сотрудники могут видеть это для создания сообщений.
         flags_that_should_not_be_resolved_desc_html: |
