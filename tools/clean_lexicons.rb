@@ -20,7 +20,7 @@ require "optimist"
 end
 
 if opts.log_task_name
-  task_logger = TaskLogger.new( opts.log_task_name, nil, "cleanup", "rails" )
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "cleanup" )
 end
 
 task_logger&.start

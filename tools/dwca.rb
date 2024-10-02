@@ -103,7 +103,7 @@ else
 end
 
 if opts.log_task_name
-  task_logger = TaskLogger.new( opts.log_task_name, nil, "export", "rails" )
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "export" )
 end
 
 begin

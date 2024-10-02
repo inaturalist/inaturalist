@@ -50,7 +50,7 @@ namespace :inaturalist do
   task :delete_expired_updates, [:log_task_name] => :environment do | _, args |
     log_task_name = args[:log_task_name]
     if log_task_name
-      task_logger = TaskLogger.new( log_task_name, nil, "cleanup", "rails" )
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
     earliest_id = CONFIG.update_action_rollover_id || 1
@@ -217,7 +217,7 @@ namespace :inaturalist do
   task :delete_orphaned_and_expired_photos, [:log_task_name] => :environment do | _, args |
     log_task_name = args[:log_task_name]
     if log_task_name
-      task_logger = TaskLogger.new( log_task_name, nil, "cleanup", "rails" )
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
     Rake::Task["inaturalist:delete_orphaned_photos"].invoke
@@ -229,7 +229,7 @@ namespace :inaturalist do
   task :delete_orphaned_and_expired_sounds, [:log_task_name] => :environment do | _, args |
     log_task_name = args[:log_task_name]
     if log_task_name
-      task_logger = TaskLogger.new( log_task_name, nil, "cleanup", "rails" )
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
     Rake::Task["inaturalist:delete_orphaned_sounds"].invoke
@@ -610,7 +610,7 @@ namespace :inaturalist do
   task :remove_expired_sessions, [:log_task_name] => :environment do | _, args |
     log_task_name = args[:log_task_name]
     if log_task_name
-      task_logger = TaskLogger.new( log_task_name, nil, "cleanup", "rails" )
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
     expiration_date = 7.days.ago
