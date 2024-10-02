@@ -575,24 +575,6 @@ class FiltersButton extends React.Component {
             <input type="hidden" name="place_id" />
           </div>
         </div>
-        { viewerIsAdmin && (
-          <div className="form-group">
-            <label className="sectionlabel">
-              { I18n.t( "accuracy_meters" ) }
-            </label>
-            <div className="input-group accuracy">
-              <span className="input-group-addon fa fa-dot-circle-o" />
-              <input
-                className="params-q form-control"
-                placeholder={I18n.t( "maximum_positional_accuracy" )}
-                value={params.acc_below_or_unknown || ""}
-                onChange={e => {
-                  updateSearchParams( { acc_below_or_unknown: e.target.value } );
-                }}
-              />
-            </div>
-          </div>
-        ) }
       </Col>
     );
     const chosenTerm = terms.find( t => t.id === params.term_id );
@@ -735,13 +717,31 @@ class FiltersButton extends React.Component {
         { viewerIsAdmin && (
           <div>
             <label className="sectionlabel">
-              { I18n.t( "geoprivacy" ) }
+              Geospatial
             </label>
             <FilterCheckboxWrapper
               param="with_private_location"
               label="Hide observations with private locations"
               checked="false"
             />
+            <FilterCheckboxWrapper
+              param="expected_nearby"
+              label="Not expected nearby"
+              checked="false"
+            />
+            <div className="form-group">
+              <div className="input-group accuracy" title={I18n.t( "accuracy_meters" )}>
+                <span className="input-group-addon fa fa-dot-circle-o" />
+                <input
+                  className="params-q form-control"
+                  placeholder={I18n.t( "maximum_positional_accuracy" )}
+                  value={params.acc_below_or_unknown || ""}
+                  onChange={e => {
+                    updateSearchParams( { acc_below_or_unknown: e.target.value } );
+                  }}
+                />
+              </div>
+            </div>
           </div>
         ) }
       </Col>
