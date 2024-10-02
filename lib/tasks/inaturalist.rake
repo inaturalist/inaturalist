@@ -47,7 +47,12 @@ namespace :inaturalist do
   end
 
   desc "Delete expired updates"
-  task delete_expired_updates: :environment do
+  task :delete_expired_updates, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     earliest_id = CONFIG.update_action_rollover_id || 1
     min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
     # using an ID clause to limit the number of rows in the query
@@ -70,6 +75,7 @@ namespace :inaturalist do
           }
         } )
     end
+    task_logger&.end
   end
 
   desc "Delete expired S3 photos"
@@ -208,15 +214,27 @@ namespace :inaturalist do
 
 
   desc "Delete orphaned and expired photos"
-  task :delete_orphaned_and_expired_photos => :environment do
+  task :delete_orphaned_and_expired_photos, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     Rake::Task["inaturalist:delete_orphaned_photos"].invoke
     Rake::Task["inaturalist:delete_expired_photos"].invoke
+    task_logger&.end
   end
 
   desc "Delete orphaned and expired sounds"
-  task :delete_orphaned_and_expired_sounds => :environment do
+  task :delete_orphaned_and_expired_sounds, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     Rake::Task["inaturalist:delete_orphaned_sounds"].invoke
     Rake::Task["inaturalist:delete_expired_sounds"].invoke
+    task_logger&.end
   end
 
   def get_i18n_keys_in_rb
@@ -589,12 +607,18 @@ namespace :inaturalist do
   end
 
   desc "Remove expired sessions"
-  task :remove_expired_sessions => :environment do
+  task :remove_expired_sessions, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     expiration_date = 7.days.ago
     ActiveRecord::SessionStore::Session.select(:session_id, :updated_at).find_in_batches(batch_size: 1000) do |batch|
       expired_ids = batch.select{ |s| s.updated_at < expiration_date }.map(&:id)
       ActiveRecord::SessionStore::Session.where(session_id: expired_ids).delete_all
     end
+    task_logger&.end
   end
 
   desc "Unlock unfailed delayed jobs"

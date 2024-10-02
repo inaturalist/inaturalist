@@ -19,7 +19,14 @@ opts = Optimist.options do
     type: :string,
     short: "-p",
     default: "globi:globalbioticinteractions/inaturalist"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync" )
+end
+
+task_logger&.start
 
 start_time = Time.now
 new_count = 0
@@ -82,3 +89,5 @@ if !opts[:debug] && delete_count.positive?
 end
 
 logger.info "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"
+
+task_logger&.end
