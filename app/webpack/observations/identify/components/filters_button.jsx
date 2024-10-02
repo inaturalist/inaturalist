@@ -90,8 +90,6 @@ class FiltersButton extends React.Component {
         config.currentUser.curator_projects,
         p => [p.id, p.slug].includes( params.project_id )
       );
-    const viewerIsAdmin = config && config.currentUser.roles
-      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const FilterCheckboxWrapper = checkbox => (
       <FilterCheckbox
         {...Object.assign( {}, checkbox, {
@@ -142,13 +140,9 @@ class FiltersButton extends React.Component {
       { value: "observed_on", label: "date_observed_" },
       { value: "updated_at", label: "date_updated" },
       { value: "votes", label: "faves" },
-      { value: "random", label: "random" }
+      { value: "random", label: "random" },
+      { value: "geo_score", label: "geo_score" }
     ];
-    if ( viewerIsAdmin ) {
-      orderByFields.push( {
-        value: "geo_score", label: "geo_score"
-      } );
-    }
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0
     );
@@ -714,36 +708,32 @@ class FiltersButton extends React.Component {
           updateSearchParams={updateSearchParams}
           prefix="created"
         />
-        { viewerIsAdmin && (
-          <div>
-            <label className="sectionlabel">
-              Geospatial
-            </label>
-            <FilterCheckboxWrapper
-              param="with_private_location"
-              label="Hide observations with private locations"
-              checked="false"
+        <label className="sectionlabel">
+          { I18n.t( "geospatial" ) }
+        </label>
+        <FilterCheckboxWrapper
+          param="with_private_location"
+          label={I18n.t( "hide_observations_with_private_locations" )}
+          checked="false"
+        />
+        <FilterCheckboxWrapper
+          param="expected_nearby"
+          label={I18n.t( "not_expected_nearby" )}
+          checked="false"
+        />
+        <div className="form-group">
+          <div className="input-group accuracy" title={I18n.t( "accuracy_meters" )}>
+            <span className="input-group-addon fa fa-dot-circle-o" />
+            <input
+              className="params-q form-control"
+              placeholder={I18n.t( "maximum_positional_accuracy" )}
+              value={params.acc_below_or_unknown || ""}
+              onChange={e => {
+                updateSearchParams( { acc_below_or_unknown: e.target.value } );
+              }}
             />
-            <FilterCheckboxWrapper
-              param="expected_nearby"
-              label="Not expected nearby"
-              checked="false"
-            />
-            <div className="form-group">
-              <div className="input-group accuracy" title={I18n.t( "accuracy_meters" )}>
-                <span className="input-group-addon fa fa-dot-circle-o" />
-                <input
-                  className="params-q form-control"
-                  placeholder={I18n.t( "maximum_positional_accuracy" )}
-                  value={params.acc_below_or_unknown || ""}
-                  onChange={e => {
-                    updateSearchParams( { acc_below_or_unknown: e.target.value } );
-                  }}
-                />
-              </div>
-            </div>
           </div>
-        ) }
+        </div>
       </Col>
     );
     const moreFilters = (
