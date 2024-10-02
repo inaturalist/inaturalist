@@ -111,5 +111,5 @@ begin
   DarwinCore::Archive.generate( opts )
   task_logger&.end
 rescue => e
-  task_logger&.error( e.to_s )
+  task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
 end

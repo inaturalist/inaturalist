@@ -5,13 +5,13 @@ require "time"
 
 class TaskLogger
   # Initialize logger with default parameters
-  def initialize( task, identifier, type, subtype )
+  def initialize( task, identifier, type, subtype = "rails" )
     @task = task
     @identifier = identifier || default_identifier( task )
     @type = type
     @subtype = subtype
     @start_time = nil
-    @log_file = File.join( CONFIG.task_logger_output, "#{task}.log" )
+    @logger = ActiveSupport::Logger.new( "log/tasklog.#{Rails.env}.#{task}.log" )
   end
 
   # Start method, sets the start time
@@ -65,9 +65,6 @@ class TaskLogger
       timestamp: timestamp
     }
 
-    # Convert log entry to JSON and append to the log file
-    File.open( @log_file, "a" ) do | file |
-      file.write( "#{log_entry.to_json}\n" )
-    end
+    @logger.info( log_entry.to_json )
   end
 end
