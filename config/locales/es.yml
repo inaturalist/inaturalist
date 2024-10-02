@@ -33,6 +33,9 @@ es:
     one: '<span class="count">1</span> Identificador'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificadores'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID efectuada por otros'
+    other: '<span class="count">%{count}</span> IDs efectuadas por otros'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
