@@ -1996,6 +1996,9 @@ id:
   geoprivacy_is_private: Geoprivasi diatur untuk pribadi
   geoprivacy_is_private_desc: Pengamat telah memilih untuk menyembunyikan koordinatnya.
   georeferenced: Memiliki georeferensi?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geospasial
   get_started: Mulai
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Memulai
@@ -2087,6 +2090,9 @@ id:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Sembunyikan "Tanpa Catatan"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Sembunyikan pengamatan dengan lokasi pribadi
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
@@ -3067,6 +3073,9 @@ id:
   not_confident: Kami tidak sepenuhnya yakin untuk membuat rekomendasi.
   not_confident_top_suggestions: 'Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan utama kami:'
   not_covered_by_any_taxon_frameworks: Tidak dicakup oleh framework takson apapun
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Tidak terlihat di sekitar
   not_evaluated: tidak dievaluasi
   not_findig_what_you_want: Tidak menemukan apa yang Anda inginkan?
   not_finding_place_you_want?: Tidak menemukan tempat yang Anda inginkan?
