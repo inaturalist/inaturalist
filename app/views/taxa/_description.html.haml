@@ -56,7 +56,7 @@
         else
           @taxon.name
         end
-        ref = "<ref name=\"inaturalist-#{@taxon.name}\">{{cite web |title=#{render( "taxa/taxon.txt.erb", taxon: @taxon )} |url=#{taxon_url(@taxon)} |website=#{@site.name} |access-date=#{l Date.today} |language=#{I18n.locale}}}</ref>"
+        ref = "<ref name=\"inaturalist-#{@taxon.name}\">{{cite web |title=#{render( "taxa/taxon.txt.erb", taxon: @taxon )} |url=#{taxon_url(@taxon)} |website=#{@site.name} |access-date=#{l Date.today.strftime('%d %B %Y')} |language=#{I18n.locale}}}</ref>"
         ref_link = "<ref name=\"inaturalist-#{@taxon.name}\" />"
         structure = <<-WIKI
           #{I18n.t(:taxon_is_a_rank,
