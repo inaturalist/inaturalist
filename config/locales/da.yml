@@ -2113,6 +2113,9 @@ da:
   geoprivacy_is_private: Geofortrolighed er fortrolig
   geoprivacy_is_private_desc: Observatør har valgt at skjule koordinaterne.
   georeferenced: Georefererede?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Rumlig
   get_started: Kom igang
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Komme i gang
@@ -2216,6 +2219,9 @@ da:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen annotation"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Skjul observationer med fortrolige placeringer
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
@@ -3206,6 +3212,9 @@ da:
   not_confident: Vi er ikke tilstrækkeligt sikre til at komme med en anbefaling.
   not_confident_top_suggestions: Vi er ikke tilstrækkeligt sikre til at give en anbefaling, men her vore bedste forslag.
   not_covered_by_any_taxon_frameworks: Ikke dækket af nogen taksonramme
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Ikke forventet i nærheden
   not_evaluated: Ikke evalueret
   not_findig_what_you_want: Kan du ikke finde hvad du ønsker?
   not_finding_place_you_want?: Kan du ikke finde det sted du ønsker?
