@@ -2089,7 +2089,6 @@ ja:
   identotron_for: らくらく同定
   identotron_help: らくらく同定ヘルプ
   ids: "ID"
-  ids_made_for_others: 他のユーザーへ提案したID
   if_for_some_reason_a_user_doesnt_agree: |
     何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ、研究用として使用可能になります。
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -5063,6 +5062,8 @@ ja:
   user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
   user_flagged_as_a_non_spammer_html: "%{user} を非スパマーとしてマークしました"
   user_flagged_as_a_spammer_html: "%{user} をスパマーとしてマークしました"
+  user_has_been_removed_from_site: |
+    %{username} は %{site_name} から削除されました（関連するすべてのコンテンツが削除されるまで最大1時間かかる場合があります）
   user_has_opted_out_of_community_id: 利用者はコミュニティ分類群の通知を受け取りません
   user_hasnt_joined_any_projects: "%{user} はどのプロジェクトにも参加していません"
   user_helped_x_people_with_y_ids_html: "%{user} は<strong>%{x} 人のユーザーに合計</strong> <strong>%{y} 同定</strong>を追加しました"
@@ -5089,6 +5090,7 @@ ja:
   user_trusts_you_with_their_private_coordinates: "%{user} はあなたを信頼して位置情報を公開しています。"
   user_trusts_you_with_their_private_coordinates_desc: |
     この観察者は、全ての観察記録について、あなたを信頼して隠された座標を表示することを選択しました。
+  user_updated_an_observation_field_html: '%{user} は、%{owner} の観察記録に基づいて「%{field_name}」を更新しました。'
   username: ユーザー名
   username_description: これはあなたがログインする際に使用するユーザー名で、他のユーザーがiNaturalistであなたを識別するために使用することができます。
   username_or_email: ユーザー名またはメールアドレス

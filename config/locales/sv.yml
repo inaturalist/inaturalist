@@ -33,6 +33,9 @@ sv:
     one: '<span class="count">%{count}</span> Determinatör'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Determinatörer'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> Bestämning för andra'
+    other: '<span class="count">%{count}</span> Bestämningar för andra'
   x_languages:
     one: "%{count} språk"
     other: "%{count} språk"
@@ -2094,6 +2097,9 @@ sv:
   generate_your_year_in_review_caps: GENERERA DITT %{year} ÅRET SOM GÅTT
   generating_mobile_archive: "Genererar mobilt arkiv"
   Genus: Släkte
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo-poäng
   geomodel_expected_nearby_label_is_derived: |
     Etiketten "Förväntad i närheten" härstammar från Geomodellen.
     <a href="%{url}">Lär dig mer om Geomodellen här</a>.
@@ -2294,7 +2300,7 @@ sv:
   identotron_for: Identotron för
   identotron_help: Hjälp med Identotron
   ids: "Bestämningar"
-  ids_made_for_others: Bestämningar gjorda för andra
+  ids_made_for_others__title: Bestämningar gjorda för andra
   if_for_some_reason_a_user_doesnt_agree: |
     Om du av någon anledning inte håller med om community-taxonet, kan du avvisa den, vilket innebär att din artbestämning är den som används för länkning till andra fynd, uppdatering av livslistor, etc. Det betyder också att ditt fynd bara kan uppnå forskningsklass när communityn håller med dig.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2819,7 +2825,7 @@ sv:
   mark_all_as_unreviewed: Markera alla som ogranskade
   matching_species_will_shown_up_here: Matchande arter kommer att synas här. Kartorna kommer att visa ett utbredningsområde om %{place} har ett för den arten.
   maverick: Motförslag
-  maximum_positional_accuracy: Maximal positionsnoggrannhet
+  maximum_positional_accuracy: Största positionsnoggrannhet
   maximum_positional_accuracy_including_unknown: |
     Maximal positionsnoggrannhet inklusive fynd utan positionsnoggrannhet
   media: Media
@@ -6066,7 +6072,7 @@ sv:
     other: Av dina %{count} observationer, vet du hur många som gjordes %{year}?
   #Feel free to adjust this if %{year} or "Your" don't translate well
   yir_email_subject: |
-    Ditt iNaturalist-Året Som Gått %{year} – fira ditt år av biologisk mångfald
+    Ditt Året som gått %{year} på iNaturalist – fira ditt år med biologisk mångfald
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: iNaturalist-teamet
   yir_email_the_year_isnt_over: |
@@ -6403,6 +6409,10 @@ sv:
       your_site_account_has_no_email: Ditt %{site_name}-konto har ingen e-postadress kopplad till det.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Flaggat innehåll
         flaggable_content_desc: |
           Det innehåll som kan flaggas är det primära textattributet för det flaggade objektet när flaggan skapades. Endast förvaltare och personal kan se detta. Endast personal kan se detta för meddelanden.
         flags_that_should_not_be_resolved_desc_html: |

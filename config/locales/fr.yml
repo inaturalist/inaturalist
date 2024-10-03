@@ -379,6 +379,10 @@ fr:
   add_evidence_of_presence_track_annotation: 'Ajouter l''annotation « Signe de présence : piste »'
   add_evidence_of_presence_bone_annotation: 'Ajouter l''annotation « Signe de présence : os »'
   add_evidence_of_presence_molt_annotation: 'Ajouter l''annotation « Signe de présence : mue »'
+  add_evidence_of_presence_hair_annotation: 'Ajouter l''annotation "Preuve de Présence : poils"'
+  add_evidence_of_presence_egg_annotation: 'Ajouter l''annotation "Preuve de Présence : Œuf"'
+  add_evidence_of_presence_construction_annotation: 'Ajouter l''annotation "Preuve de Présence : construction"'
+  add_established_not_established: 'Ajouter l''annotation « Établie : non établie »'
   #As in a Taxon Framework Relationship
   add_relationship: 'Ajouter un lien'
   #As in a Guide Section
@@ -2053,6 +2057,9 @@ fr:
   generate_your_year_in_review_caps: GÉNÉRER VOTRE RÉTROSPECTIVE DE L'ANNÉE %{year}
   generating_mobile_archive: "Génération d’une archive mobile"
   Genus: Genre
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Score géographique
   geomodel_expected_nearby_label_is_derived: |
     L'étiquette "Attendu à proximité" est dérivée du Geomodel.
     <a href="%{url}">En savoir plus sur le Geomodel ici</a>.
@@ -2233,7 +2240,7 @@ fr:
   identotron_for: Identotron pour
   identotron_help: Aide de l’Identotron
   ids: "IDs"
-  ids_made_for_others: Identifications réalisées pour d’autres utilisateurs
+  ids_made_for_others__title: Identifications faites pour d'autres
   if_for_some_reason_a_user_doesnt_agree: |
     Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est
     d’accord avec vous.
@@ -3185,6 +3192,7 @@ fr:
   observation_accuracy_experiment_quality_grade: "Niveau de qualité"
   observation_accuracy_experiment_show_frequency: "afficher la fréquence"
   observation_accuracy_experiment_click_on_bars: "Cliquez sur les barres pour explorer les sous-ensembles."
+  observation_accuracy_experiment_bars_will: "Les barres seront cliquables lorsque la date limite de validation des échantillons sera dépassée."
   observation_accuracy_experiment_accuracy_results: "Résultats de l'exactitude par sous-ensemble"
   observation_accuracy_experiment_as_observations: "Au fur et à mesure que les observations de cet échantillon seront validées, le pourcentage d'incertitude diminuera et le pourcentage correct et incorrect augmentera."
   observation_accuracy_experiment_experiment_still: "Expérience toujours en cours. Les statistiques seront mises à jour quotidiennement jusqu'à la date limite de validation des échantillons le %{date}"
@@ -3209,6 +3217,7 @@ fr:
   observation_accuracy_experiment_validator_candidate: "Critère d'éligibilité du validateur"
   observation_accuracy_experiment_if_an_identifier: "Si un identificateur avait fait au moins 3 identifications améliorantes sur un taxon, nous l'avons considéré qualifié pour valider ce taxon. L'identification améliorante est la première suggestion d'un taxon avec laquelle la communauté est par la suite d'accord."
   observation_accuracy_experiment_step_2: "Étape 2 : Validation des échantillons"
+  observation_accuracy_experiment_number_percent_of: "Nombre de validateurs participants : %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Pourcentage de l'échantillon validé : %{percent}"
   observation_accuracy_experiment_step_3: "Étape 3 : Évaluation des observations d'un échantillon à partir des validations"
   observation_accuracy_experiment_correct: "Correct"
@@ -3216,13 +3225,31 @@ fr:
   observation_accuracy_experiment_incorrect2: "Incorrect"
   observation_accuracy_experiment_step_4: "Étape 4 : Calcul de l'exactitude et de la précision"
   observation_accuracy_experiment_accuracy: "Exactitude"
+  observation_accuracy_experiment_we_calculated: "Nous avons calculé la précision comme le pourcentage correct pour l'ensemble de l'échantillon ainsi que des sous-ensembles tels que le sous-ensemble de la note de recherche. Nous avons aussi calculé le pourcentage d'incertain et le pourcentage d'incorrect. Dans l'exemple à droite, le pourcentage correct serait 83, le pourcentage d'incertain serait de 6 et le pourcentage incorrect serait de 11."
   observation_accuracy_experiment_precision: "Précision"
+  observation_accuracy_experiment_in_the_example: "Dans l'exemple à droite, la précision moyenne de trois observations d'échantillonnage serait de 51 %."
+  observation_accuracy_experiment_read_more_html: |
+    Pour en savoir plus sur l'orchestration de cette expérience, consultez le post de blog <a href="%{url}"></a>.
+  observation_accuracy_validator_email_subject2: "Accepteriez-vous de nous aider avec une expérience %{version} pour estimer la précision des observations d'iNaturalist ?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Accepteriez-vous de nous aider avec une expérience <a href="%{url}">(version %{version})</a> pour estimer la précision des observations iNaturalist ?
+  observation_accuracy_validator_email_we_will_calculate: |
+    Nous calculerons l'exactitude en comparant votre ID au taxon d'observation. Vous pouvez ignorer les observations où vous avez précédemment ajouté un ID si cet ID est toujours pertinent. Pour en savoir plus sur la manière dont nous compterons les accords et les désaccords, poursuivez votre lecture.
   observation_accuracy_validator_email_ids_equal_to: |
     Les identifiants égaux à (A) ou plus fins que (B) le taxon d’observation seront comptés comme des Accords.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Les IDs sur des branches différentes (C) ou moins précis que le Taxon d'Observation où vous choisissez 'Non,
+    mais…' dans la boîte de dialogue 'Désaccord potentiel' (D) seront considérés comme des Désaccords.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Les ID moins précis que le Taxon d'Observation pour lesquels vous choisissez "Je ne sais pas mais..." dans la boîte de dialogue "Désaccord potentiel" (E) seront comptés comme incertains.
   observation_accuracy_validator_email_we_are_so_grateful2_html: |
     Nous vous sommes très reconnaissants pour votre aide en tant d'identifieur sur iNaturalist, et nous vous remercions pour votre participation à cette étude. Vous pouvez lire <a href="%{url}">les méthodes</a> pour en savoir plus au sujet de cette expérience.
   observation_accuracy_validator_email_with_gratitude: Avec nos remerciements,
   observation_accuracy_validator_email_the_inaturalist_team: L'équipe iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Merci de ne pas répondre à ce message. Vous pouvez partager vos questions ou commentaires sur <a href="%{url}">cet article</a> ou par email à <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Merci de ne pas répondre à ce message. Pour toute question ou commentaire, merci de contacter <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Observation ajoutée au projet « %{project} »"
   observation_aggregation: Agrégation d’observations
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -6200,8 +6227,18 @@ fr:
         thank_you_for_being_a_monthly_supporter_caps: MERCI DE FAIRE UN DON CHAQUE MOIS !
       temporarily_unavailable: |
         Merci pour votre soutien à iNaturalist ! Nous mettons à jour notre système de collecte de dons et faire un don à iNaturalist est temporairement impossible. Veuillez réessayer plus tard.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Cliquez ici pour envoyer un nouvel e-mail de confirmation
+      please_add_an_email_and_password: Veuillez ajouter un e-mail et un mot de passe pour ne pas perdre l'accès à votre compte
+      please_click_the_link_sent_to_email_to_confirm_html: Veuillez cliquer sur le lien envoyé à <span class="email">%{email}</span> pour confirmer votre adresse e-mail.
+      please_confirm_that_email_is_the_best_contact_html: Veuillez confirmer que <span class="email">%{email}</span> est le meilleur moyen de vous contacter.
+      your_site_account_has_no_email: Votre compte %{site_name} n'est associé à aucune adresse e-mail.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Contenu signalé
         flaggable_content_desc: |
           Le contenu que l'on peut signaler est l'attribut texte principal de l'objet
           signalé au moment de la création du signalement. Seuls les responsables de l’organisation et le personnel peuvent

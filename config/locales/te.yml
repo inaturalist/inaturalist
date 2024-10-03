@@ -2,6 +2,70 @@ te:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A నుండి Z"
+  all_updates: అన్ని నవీకరణలు
+  #Label for an option to show content from any date
+  any_date: ఏదైనా
+  casual_tooltip_html: '"అప్పుడప్పుడు" వీక్షణలు మీడియా, స్థానం లేదా తేదీలను కలిగి ఉండవు లేదా ఇతర కారణాల వల్ల అవి "పరిశోధన గ్రేడ్" లేదా "ID అవసరం" అవసరాలకు అనుగుణంగా లేవు. <a href="https://www.inaturalist.org/pages/help#qualitty">నాణ్యత గ్రేడ్‌ల గురించి మరింత తెలుసుకోండి</a>.'
+  date_: తేదీ
+  date_added: జోడించారు తేదీ
+  date_authorized: అంగీకరించిన తేదీ
+  date_created: తేదీ జోడించబడింది
+  date_format:
+    date_long:
+      january: జనవరి %{day} %{year}
+      february: ఫిబ్రవరి %{day} %{year}
+      march: మార్చ్ %{day} %{year}
+      april: ఏప్రిల్ %{day} %{year}
+      may: మే %{day} %{year}
+      june: జూన్ %{day} %{year}
+      july: జూలై %{day} %{year}
+      august: ఆగస్ట్ %{day} %{year}
+      september: సెప్టెంబర్ %{day} %{year}
+      october: అక్టోబర్ %{day} %{year}
+      november: నవంబర్ %{day} %{year}
+      december: డిసెంబర్ %{day} %{year}
+    month:
+      january: జనవరి
+      february: ఫిబ్రవరి
+      march: మార్చ్
+      april: ఏప్రిల్
+      may: మే
+      june: జూన్
+      july: జూలై
+      august: ఆగస్ట్
+      september: సెప్టెంబర్
+      october: అక్టోబర్
+      november: నవంబర్
+      december: డిసెంబర్
+  delete_user: వినియోగదారుని తొలగించండి
+  hi_user: "నమస్తే %{user}"
+  identify: గుర్తించండి
+  identify_observations: "వీక్షణలను గుర్తించండి"
+  identify_title: "గుర్తించండి"
+  #Label shown when a location has been entered but has been hidden due to the geoprivacy
+  location_private: స్థానం ప్రైవేట్
+  #Label shown when a location has not been entered. Originally "unknown" in
+  #English but we switched to "missing" to convey that a complete observation
+  #*should* have a location
+  location_unknown: స్థలం లేదు
+  lexicons:
+    russian: రష్యన్
+  locales:
+    ru: రష్యన్
+  location: స్థాన
+  location_is_accurate: స్థానం ఖచ్చితమైనది
+  location_is_exact: స్థానం ఖచ్చితమైనది
+  location_is_public: స్థానం పబ్లిక్
+  location_is_obscured: స్థానం అస్పష్టంగా ఉంది
+  location_is_private: స్థానం ప్రైవేట్
+  more_from_x: '%{x} నుండి మరిన్ని'
+  no_matching_users: సరిపోలే వినియోగదారులు లేరు.
+  places_name:
+    british_indian_ocean_territory: బ్రిటిష్ ఇండియన్ ఓషన్ టెర్రిటరీ
+    india: ఇండియా
+    russia: రష్యా
+  view_more_observations_from_this_place: ఈ ప్రాంతం నుండి మరిన్ని వీక్షణలను చూడండి
+  view_more_observations_of_x_project: "<nobr>%{site_name} &raquo;</nobr> వద్ద %{project} నుండి మరిన్ని వీక్షణలను చూడండి"
   number:
     format:
       significant: false
