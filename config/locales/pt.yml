@@ -1,8 +1,4 @@
 pt:
-  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
-  x_changes:
-    one: "%{count} modificação"
-    other: "Modificações"
   x_comments:
     one: '1 comentário'
     other: '%{count} comentários'
@@ -283,7 +279,6 @@ pt:
   active_taxon_status: Ativo
   active_users: Utilizadores ativos
   activity: Atividade
-  activity_on_a_flag_for_x: Atividade sinalizada
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} de uma obra de %{original}"
   add: Adicionar
   add_a_batch_of_observations: Adicionar um Conjunto de Observações
