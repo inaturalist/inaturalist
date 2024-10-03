@@ -5622,13 +5622,13 @@ he:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} ביצע.ה הסרת טקסון שהשפיעה על %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa2: "%{user} ביצע.ה איחוד טקסונים שהשפיע על %{taxon}"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} ביצע.ה איחוד טקסונים שהשפיע על %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa2: "%{user} ביצע.ה פיצול טקסון שהשפיע על %{taxon}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} ביצע.ה פיצול טקסון שהשפיע על %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_stage_affecting_taxon2: "%{user} ביצע.ה הכנת/הפעלת טקסון שהשפיעה על %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa2: "%{user} ביצע.ה החלפת טקסון שהשפיעה על %{taxon}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} ביצע.ה החלפת טקסון שהשפיעה על %{taxa}"
   user_disagrees_this_is_taxon: "%{user} אינו מסכים שזה %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} אינו מסכים עם הפרטים הקטנים הקודמים"
   user_faved_an_observation_by_you: "%{user} אהב.ה תצפית שלך"
