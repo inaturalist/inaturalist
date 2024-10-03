@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
-import bb, { areaSpline, spline } from "billboard.js";
+import bb, { areaSpline, spline, zoom } from "billboard.js";
 import { schemeCategory10 } from "d3";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
@@ -330,12 +330,11 @@ class Charts extends React.Component {
             values: years.map( y => `${y}-06-15` ),
             format: "%Y"
           },
-          extent: [moment( ).subtract( 10, "years" ).toDate( ), new Date( )]
         }
       },
       zoom: {
-        enabled: true,
-        rescale: true
+        enabled: zoom(),
+        rescale: true,
       },
       tooltip: {
         contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
@@ -349,6 +348,7 @@ class Charts extends React.Component {
     } );
     const mountNode = $( ".HistoryChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.historyChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
+    this.historyChart.zoom([moment( ).subtract( 10, "years" ).format('YYYY-MM-DD'), moment( ).format('YYYY-MM-DD')]);
   }
 
   render( ) {
