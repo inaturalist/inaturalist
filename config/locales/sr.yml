@@ -3847,7 +3847,7 @@ sr:
   taxon_doesnt_have_a_range: Takson nema rasprostranjenost
   taxon_drop: poništen takson
   #Notification about a taxon drop, @vow_or_con operates on %{taxon}
-  taxon_drop_affecting_taxon: Ukidanje taksona utiče na %{taxa}
+  taxon_drop_affecting_taxon: Ukidanje taksona utiče na %{taxon}
   taxon_id: Takson ID
   taxon_ids: ID-jevi taksona
   taxon_map:
@@ -3893,7 +3893,7 @@ sr:
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: priprema taksona
   #Notification about a taxon stage, @vow_or_con operates on %{taxon}
-  taxon_stage_affecting_taxon: Priprema taksona utiče na %{taxa}
+  taxon_stage_affecting_taxon: Priprema taksona utiče na %{taxon}
   taxon_swap: zamena taksona
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
@@ -4194,13 +4194,13 @@ sr:
   user_blocked: Korisnik blokiran
   user_commented: "%{user} komentariše"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_drop_affecting_taxon: "%{user} je izvršio/la ukidanje taksona koja utiče na %{taxa}"
+  user_committed_taxon_drop_affecting_taxon: "%{user} je izvršio/la ukidanje taksona koja utiče na %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_merge_affecting_taxa2: "%{user} je izvršio/la spoj taksona koja utiče na %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} je izvršio/la podelu taksona koja utiče na %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon2: "%{user} je izvršio/la pripremu taksona koja utiče na %{taxa}"
+  user_committed_taxon_stage_affecting_taxon2: "%{user} je izvršio/la pripremu taksona koja utiče na %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_swap_affecting_taxa2: "%{user} je izvršio/la zamenu taksona koja utiče na %{taxa}"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
