@@ -47,32 +47,29 @@ namespace :inaturalist do
   end
 
   desc "Delete expired updates"
-  task :delete_expired_updates => :environment do
-    min_id = UpdateAction.minimum( :id )
-    return unless min_id
+  task delete_expired_updates: :environment do
+    earliest_id = CONFIG.update_action_rollover_id || 1
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
     # using an ID clause to limit the number of rows in the query
     last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
-      where( "id < #{ min_id + 1000000 }" ).maximum( :id )
-    return unless last_id_to_delete
-    UpdateAction.delete_and_purge( "id <= #{ last_id_to_delete }" )
+      where( "id >= #{min_id} AND id < #{min_id + 1_000_000}" ).maximum( :id )
+    next unless last_id_to_delete
+
+    UpdateAction.delete_and_purge( "id >= #{earliest_id} AND id <= #{last_id_to_delete}" )
     # delete anything that may be left in Elasticsearch
     try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-        body: { query: { range: { id: { lte: last_id_to_delete } } } })
+      Elasticsearch::Model.client.delete_by_query( index: UpdateAction.index_name,
+        body: {
+          query: {
+            range: {
+              id: {
+                gte: min_id,
+                lte: last_id_to_delete
+              }
+            }
+          }
+        } )
     end
-
-    # # suspend subscriptions of users with no viewed updates
-    # Update.select(:subscriber_id).group(:subscriber_id).having("max(viewed_at) IS NULL").
-    #   order(:subscriber_id).pluck(:subscriber_id).each_slice(500) do |batch|
-    #   # get this batch's users
-    #   users_to_suspend = User.where(id: batch.compact).where(subscriptions_suspended_at: nil)
-    #   # send them emails that we're suspending their subscriptions
-    #   users_to_suspend.each do |u|
-    #     Emailer.user_updates_suspended(u).deliver_now
-    #   end
-    #   # suspend their subscriptions
-    #   User.where(id: users_to_suspend.pluck(:id)).update_all(subscriptions_suspended_at: Time.now)
-    # end
   end
 
   desc "Delete expired S3 photos"
@@ -282,6 +279,7 @@ namespace :inaturalist do
       "flowering_phenology",
       "frequency",
       "fungi",
+      "geo_score",
       "green",
       "grey",
       "imperiled",

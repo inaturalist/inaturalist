@@ -218,12 +218,18 @@ class Flag < ApplicationRecord
     end
   end
 
-  def flaggable_content_viewable_by?( user )
+  def viewable_by?( user )
     if flaggable_type == "Message" && !( user && user.is_admin? )
       return false
     end
 
-    !flaggable_content.blank? && user && user.is_curator?
+    return true if user&.is_curator?
+
+    false
+  end
+
+  def flaggable_content_viewable_by?( user )
+    !flaggable_content.blank? && viewable_by?( user )
   end
 
   def deletable_by?( user )

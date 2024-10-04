@@ -1,5 +1,306 @@
 af:
+  x_languages:
+    one: "%{count} taal"
+    other: "%{count} tale"
+  x_observations:
+    one: "%{count} waarneming"
+    other: "%{count} waarnemings"
+  x_observations_:
+    one: "%{count} Waarneming"
+    other: "%{count} Waarnemings"
+  x_photos:
+    one: "%{count} foto"
+    other: "%{count} foto's"
+  x_new_species:
+    one: "%{count} Nuwe Spesie"
+    other: "%{count} Nuwe Spesies"
+  x_new_users:
+    one: '%{count} Nuwe Gebruiker'
+    other: '%{count} Nuwe Gebuikers'
+  x_species:
+    one: '%{count} Spesie'
+    other: '%{count} Spesies'
+  _100_day_trends: 100-dae neiging
+  about_conservation_status: Oor Bewaringstatus
+  #Header for a section describing taxon names
+  about_names: Oor Name
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "Oor %{place}"
+  about_places: Oor Plekke
+  about_the_network: Oor die Netwerk
+  about_this_bioblitz: Oor hierdie bioblits
+  about_this_map: Oor Hierdie Kaart
+  about_this_project: Oor Hierdie Projek
+  about_trusting_projects_options_any: Al jou waarnemings in hierdie projek
+  about_trusting_projects_options_any_desc: |-
+    Hierdie sluit in waarnemings waarvan jy die geoprivaatheid op "weggesteek" of "privaat" gestel het, bv. waarnemings in jou agterplaas of plekke waarvan jy nie wil hê ander mense moet weet nie.
+  about_trusting_projects_options_taxon_desc: |-
+    Baie projekte het net toegang tot koördinate nodig wat weggesteek is omdat die waarneming 'n bedreigde takson wys.
+  #Header for a section listing all the project managers (admins and curators)
+  #of a project
+  about_trusting_projects_project_managers_are: |-
+    Die projekbestuurders wat toegang gaan hê tot jou weggesteekte koördinate is:
+  about_trusting_projects_warning: |-
+    Let op dat projekbestuurders die projek parameters kan verander om enige van jou waarnemings in te sluit, en hulle kan ter enige tyd projekbestuurders bysit of wegneem. Jy sal kennisgewings oor hierdie veranderinge kry, maar jy vertrou basies hierdie projek met jou private liggingsdata, so wees versigtig.
+  #Header for a section listing the different ways you can trust a project
+  about_trusting_projects_you_can_choose: |-
+    Jy kan kies om weggesteekte koördinate te deel vir
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: Aksie
+  actions: Aksies
+  active: Aktief
+  active_users: Aktiewe Gebruikers
+  activity: Aktiwiteit
+  add: Sit By
+  add_a_comment: Voeg Kommentaar By
   add_an_observation: Voeg 'n waarneming by
+  add_another_photo: Voeg nog 'n foto by
+  add_blocked_users: Voeg geblokte gebruikers by
+  add_comment: Lewer kommentaar
+  add_conservation_status: Sit Bewaringstatus by
+  add_new_place: Voeg 'n Nuwe Plek by
+  add_new_taxon_name: Voeg 'n Nuwe Takson Naam by
+  add_obs_from_a_list: Sit Waarnemings by vanaf 'n Lys
+  add_observations: Sit Waarnemings By
+  add_observations_project: Sit Waarnemings in Hierdie Projek
+  #Prompt to add a new journal post
+  add_one: Skryf een!
+  add_place: Sit Plek By
+  #As in a Taxon Framework Relationship
+  add_relationship: 'Sit verhouding by'
+  add_several_observations_at_once: Voeg verskeie waarnemings gelyk by.
+  add_taxa: Voeg taksa by
+  add_to_a_project: Voeg by 'n Projek
+  add_to_calendar: Voeg by Kalender
+  add_to_favorites: Voeg by Gunstelinge
+  add_to_list: Voeg by Lys
+  add_to_project: Voeg by 'n Projek
+  add_to_your_list: Voeg by Jou Lys
+  added: Bygevoeg
+  added!: Bygesit!
+  added_by: Bygesit deur
+  added_by_user_on_date_html: "Bygesit deur %{user} op %{date}"
+  added_on_datetime: "Bygesit op %{datetime}"
+  #Title for a list of all 3rd party applications
+  all_applications: Alle Toepassings
+  all_comments: Alle kommentaar
+  all_life: Alle lewe
+  all_names: Alle Name
+  all_observations: Alle waarnemings
+  all_photos: Alle foto's
+  all_places: "Alle Plekke"
+  all_projects: Alle Projekte
+  all_rank_added_to_the_database:
+    phylum: Alle filums ingesluit op die databasis
+    subphylum: Alle subfilums ingesluit op die databasis
+    superclass: Alle superklasse ingesluit op die databasis
+    class: Alle klasse ingesluit op die databasis
+    subclass: Alle subklasse ingesluit op die databasis
+    infraclass: Alle infraklasse ingesluit op die databasis
+    superorder: Alle superordes ingesluit op die databasis
+    order: Alle ordes ingesluit op die databasis
+    suborder: Alle subordes ingesluit op die databasis
+    infraorder: Alle infraordes ingesluit op die databasis
+    superfamily: Alle superfamilies ingesluit op die databasis
+    epifamily: Alle epifamilies ingesluit op die databasis
+    family: Alle families ingesluit op die databasis
+    subfamily: Alle subfamilies ingesluit op die databasis
+    species: Alle spesies ingesluit op die databasis
+    subspecies: Alle subspesies ingesluit op die databasis
+  all_rights_reserved: alle regte voorbehou
+  all_taxa:
+    amphibians: Amfibieë
+    animals: Diere
+    birds: Voëls
+    fungi_including_lichens: Fungi Insluitend Ligene
+    insects: Insekte
+    mammals: Soogdiere
+    other_animals: Ander Diere
+  amphibians: amfibieë
+  animals: Diere
+  app_owner_application_inelligible: |
+    Om 'n aansoek in te dien moet jou rekening minstens 2 maande oud wees en minstens 10 verbeterende identifiserings gemaak het in die afgelope maand.
+  appropriate?: Van toepassing?
+  are_you_really_sure_want_delete_this_user: Is jy regtig, regtig seker jy wil hierdie gebruiker uitvee en ook al hulle inhoud?
+  are_you_sure?: Is jy seker?
+  are_you_sure_remove_photo: "Is jy seker jy wil hierdie foto uitvee?"
+  are_you_sure_remove_taxon_from_list: "Is jy seker jy wil hierdie takson van die lys afhaal?"
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
+    Is jy seker? Hierdie gaan jou bladsy herlaai en jy kan sommige van jou veranderinge verloor.
+  are_you_sure_want_delete_taxon: "Is jy seker jy wil hierdie takson uitvee?"
+  are_you_sure_want_delete_this_name: Is jy seker jy wil hierdie naam uitvee?
+  are_you_sure_you_want_to_delete_this: Is jy seker jy wil hierdie uitvee?
+  are_you_sure_you_want_to_delete_this_photo?: Is jy seker jy wil hierdie foto uitvee?
+  are_you_sure_you_want_to_remove_from_project: Is jy seker jy wil %{user} van hierdie projek verwyder?
+  are_you_sure_you_want_to_remove_manager: Is jy seker jy wil %{user} as bestuurder verwyder?
+  are_you_sure_you_want_to_remove_these_x_taxa?: "Is jy seker jy wil hierdie %{x} taksa verwyder?"
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Is jy seker jy wil hierdie waarneming vanaf %{project} verwyder?
+  attention: Let op
+  you_sure_delete_list: Is jy seker jy wil hierdie lys uitvee?
+  assessment: assessering
+  assessment_has_benn_completed: Assessering is voltooid
+  assessment_sections: Assessering seksies
+  back: Terug
+  back_to_all_species: Terug na Alle Spesies toe
+  back_to_friends: Terug na vriende toe
+  back_to_lists: "Terug na %{name} lyste toe"
+  back_to_observation: Terug na waarneming toe
+  back_to_observation_fields: Terug na waarnemingsvelde toe
+  back_to_places: Terug na Plekke toe
+  back_to_projects: Terug na Projekte toe
+  back_to_suggestions: Terug na Voorstelle toe
+  back_to_taxon: "Terug na %{defaulttaxon}"
+  back_to_users_calendar: "Terug na %{user} se kalender"
+  back_to_users_lists: "Terug na %{user} se lyste"
+  back_to_x: "Terug na %{noun}"
+  back_to_x_history: "Terug na %{x} geskiedenis"
+  back_to_x_journal: "Terug na %{user} se joernaal"
+  back_to_your_calendar: Terug na jou kalender
+  back_to_your_lists: Terug na jou lyste
+  back_to_your_journal: Terug na jou joernaal
+  back_to_your_observations: Terug na jou waarnemings
+  back_to_your_profile: Terug na jou profiel
+  be_the_first_to_fave_this_observation: Wees die eerste om hierdie waarneming onder jou gunstelinge te tel!
+  by_everyone: Deur almal
+  by_user: "Deur %{user}"
+  by_you: Deur jou
+  calendar: Kalender
+  calendars_only_show_x_observations_at_time: Kalenders wys net %{x} waarnemings op 'n slag
+  callback_url: Terugroep-URL
+  cancel: Kanselleer
+  casual: informeel
+  casual_: Informeel
+  casual_tooltip_html: '"Informele" waarnemings het vermiste media, liggings, of datums, of voldoen om ander redes nie aan die vereistes vir die "Navorsing" of "Benodig ID" kwaliteitsgrade nie. . <a href="https://www.inaturalist.org/pages/help#quality">Learn more about quality grades</a>'
+  categories: Kategorieë
+  cc_0_name: Geen Kopiereg (CC0)
+  change_your_password: Verander Jou Wagwoord
+  #Plural noun, as in changes to a taxon record over time
+  changes: Veranderinge
+  choose_a_field: Kies 'n veld
+  choose_a_list_above: Kies 'n lys hier bo.
+  choose_a_place: Kies 'n plek
+  choose_a_taxon: Kies 'n takson (opsioneel)
+  choose_columns: Kies kolomme
+  choose_file: Kies dokument
+  choose_files: Kies dokumente
+  choose_from_your_lists: Kies vanaf jou lyste
+  choose_photos_for_this_taxon: Kies foto's vir hierdie takson
+  choose_rule: Kies 'n reël
+  choose_taxon: Kies 'n takson
+  colors: Kleure
+  columns: Kolomme
+  #Noun, used to label a comment or a comment field in a form
+  comment: kommentaar
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: Lewer kommentaar
+  comment_deleted: Kommentaar uitgevee
+  #Notice when a comment has been hidden by moderators
+  comment_hidden: Kommentaar weggesteek
+  comments: Kommentaar
+  comments_by_me: Kommentaar deur my
+  comments_on_my_observations: Kommentaar op my waarnemings
+  community: Gemeenskap
+  community_guidelines: Gemeenskapsriglyne
+  community_id_at_species_or_lower?: Gemeenskap takson op spesievlak of laer?
+  community_id_at_species_level_or_lower: Gemeenskap takson op spesievlak of laer
+  community_id_is_precise: Gemeenskap takson is presies
+  compare: Vergelyk
+  compare_with: Vergelyk met
+  comparing: besig om te vergelyk
+  comparing_list_to_list: "Besig om %{list1} met %{list2} te vergelyk"
+  #Adjective, e.g. "this Taxon Framework is complete"
+  complete: Voltooid
+  completed: Voltooid
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Rekenaarvisie Model
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Ingesluit
+  computer_vision_model_included_desc: |
+    Die huidige Rekenaarvisie Model weet van hierdie takson, so dit kan dalk ingesluit word in die outomatiese voorstelle met die "Visueel soortgelyk" aanduiding
+  conservation_status_deleted: Bewaringstatus uitgevee
+  conservation_status_updated: Bewaringstatus opgedateer
+  #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
+  content: Inhoud
+  content_hidden: Inhoud weggesteek
+  content_hidden_by_user_on_date_because_reason_html: |
+    Inhoud weggesteek deur %{user} op %{date} want: "%{reason}"
+  content_type: Inhoudstipe
+  user_hid_this_item_because_reason_html: |
+    %{user} het hierdie %{item} weggesteek want "%{reason}"
+  continue: Gaan Voort
+  continue_to_site: Gaan voort na %{site_name}
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_sex: Enige een
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_plant_phenology: Enige
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Enige
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Enige
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_life_stage: Enige een
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: Enige een
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_evidence_of_presence: Enige
+    sex: Seks
+    flowers_and_fruits: Blomme en Vrugte
+    fruiting: Dra vrugte
+    no_flowers_or_fruits: Geen Blomme of Vrugte
+    flower_buds: Blomknoppies
+    flowers: Blomme
+    fruits_or_seeds: Vrugte of Sade
+    leaves: Blare
+    green_leaves: Groen Blare
+    colored_leaves: Gekleurde Blare
+    life_stage: Lewensstadium
+  controlled_term_definitions:
+    flowers: Ten minste een oop blom
+    flower_buds: Ten minste een toe blomknop
+    fruits_or_seeds: Ten minste een vrug of saad
+    hair: Haar wat nie meer vas is aan die organisme vanwaar dit kom nie
+    egg: Hele eier of deel van 'n eier
+    organism: Hele of gedeeltelike organisme
+  coordinates: Koördinate
+  copyright:
+    some_rights_reserved: sommige regte voorbehou
+    all_rights_reserved: "(c) %{name}, alle regte voorbehou"
+    no_rights_reserved: geen regte voorbehou
+    no_rights_reserved_by: "%{name}, geen regte voorbehou (%{license_name})"
+    anonymous: anoniem
+  create: Skep
+  create_a_guide: Skep 'n Gids
+  create_a_new_place: Skep 'n Nuwe Plek
+  create_a_new_taxon: Skep 'n Nuwe Takson
+  create_new_taxon: Skep 'n Nuwe Takson
+  create_observations: Skep Waarnemings
+  created: Geskep
+  created_by: Geskep deur
+  created_by_user_on_date: Geskep deur %{user} op %{date}
+  created_on: Geskep op
+  date_format:
+    month:
+      september: September
+      october: Oktober
+      november: November
+      december: Desember
+  date_is_accurate: Datum is akkuraat
+  date_joined: Aansluitingsdatum
+  date_observed: Datum waargeneem
+  date_observed_: Datum Waargeneem
+  date_picker:
+    currentText: Vandag
+    #Contextual help for a button navigating to the previous month in a date picker
+    prevText: Vorige
+    #Contextual help for a button navigating to the next month in a date picker
+    nextText: Volgende
+  date_time: Datum/Tyd
+  day: Dag
+  definitions: Definisies
   places_name:
     georgia: Georgië
   number:

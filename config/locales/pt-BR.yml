@@ -2090,6 +2090,9 @@ pt-BR:
   generate_your_year_in_review_caps: GERE SUA REVISÃO DO ANO DE %{year}
   generating_mobile_archive: "Gerando arquivos móveis"
   Genus: Gênero
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Pontuação de localização
   geomodel_expected_nearby_label_is_derived: |
     A etiqueta "Esperado nas Proximidades" é derivada do Geomodel.
     <a href="%{url}">Saiba mais sobre o Geomodel aqui</a>.
@@ -2286,7 +2289,7 @@ pt-BR:
   identotron_for: Auto-Identificador para
   identotron_help: Ajuda do Auto-Identificador
   ids: "IDs"
-  ids_made_for_others: Identificações feitas para outros usuários
+  ids_made_for_others__title: IDs feitas para outros
   if_for_some_reason_a_user_doesnt_agree: |
     Se por alguma razão você não concordar com o táxon da comunidade, você pode rejeitá-lo, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -5710,6 +5713,9 @@ pt-BR:
   user_faved_this_observation: "%{user} favoritou esta observação"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como não difusor de spam"
   user_flagged_as_a_spammer_html: "%{user} marcado como difusor de spam"
+  user_has_been_removed_from_site: |
+    %{username} foi removido de %{site_name} (pode levar até uma hora
+    para excluir completamente todo o conteúdo associado)
   user_has_opted_out_of_community_id: O usuário desativou o táxon da comunidade
   user_hasnt_joined_any_projects: "%{user} não entrou em nenhum projeto"
   user_helped_x_people_with_y_ids_html: "%{user} ajudou <strong>%{x} pessoas</strong> com <strong>%{y} IDs</strong>"
@@ -5737,6 +5743,7 @@ pt-BR:
   user_trusts_you_with_their_private_coordinates: "%{user} confia suas coordenadas ocultadas a você"
   user_trusts_you_with_their_private_coordinates_desc: |
     O observador escolheu confiar em você com as coordenadas ocultadas de todas as suas observações.
+  user_updated_an_observation_field_html: '%{user} atualizou um valor para "%{field_name}" em uma observação de %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> escreveu,
   username: Nome de usuário
   username_description: Este é o nome de usuário que você usará para fazer login, e outros usuários podem usá-lo para identificá-lo no iNaturalist
@@ -6351,6 +6358,10 @@ pt-BR:
       your_site_account_has_no_email: Sua conta %{site_name} não tem um endereço de e-mail associado a ela.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Conteúdo Sinalizável
         flaggable_content_desc: |
           O conteúdo sinalizável é o atributo do texto principal do objeto sinalizado na hora que a sinalização foi criada. Apenas curadores e a equipe podem ver isto. Para mensagens, apenas a equipe pode ver.
         flags_that_should_not_be_resolved_desc_html: |

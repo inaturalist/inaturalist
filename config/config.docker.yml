@@ -1,5 +1,7 @@
 base: &base
 
+    default_site_name: <%= ENV.fetch("INAT_DEFAULT_SITE_NAME") { "iNaturalist" } %>
+
     rest_auth:
         REST_AUTH_SITE_KEY: <%= ENV.fetch("INAT_SECRET_DEVISE_PEPPER") { "INAT_SECRET_DEVISE_PEPPER" } %>
         REST_AUTH_DIGEST_STRETCHES: 10

@@ -22,6 +22,8 @@ id:
   x_identifiers_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Pengidentifikasi'
+  x_ids_made_for_others_html:
+    other: '<span class="count">%{count}</span> ID yang dibuat untuk orang lain'
   x_languages:
     other: "%{count} bahasa"
   #Count of number of taxa that represent the first addition to a life list
@@ -1982,6 +1984,9 @@ id:
   generate_your_year_in_review_caps: BUAT ULASAN TAHUN %{year} KAMU
   generating_mobile_archive: "Buat arsip ponsel"
   Genus: Genus
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Nilai geo
   geomodel_expected_nearby_label_is_derived: |
     Label "Perkiraan Terdekat" berasal dari Geomodel.
     <a href="%{url}">Pelajari lebih lanjut tentang Geomodel di sini</a>.
@@ -1991,6 +1996,9 @@ id:
   geoprivacy_is_private: Geoprivasi diatur untuk pribadi
   geoprivacy_is_private_desc: Pengamat telah memilih untuk menyembunyikan koordinatnya.
   georeferenced: Memiliki georeferensi?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geospasial
   get_started: Mulai
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Memulai
@@ -2082,6 +2090,9 @@ id:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Sembunyikan "Tanpa Catatan"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Sembunyikan pengamatan dengan lokasi pribadi
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Sembunyikan Total Akumulasi
   hide_uncountable_species: Sembunyikan Spesies Yang Tidak Terhitung
@@ -2158,7 +2169,7 @@ id:
   identotron_for: Identotron untuk
   identotron_help: Bantuan untuk identotron
   ids: "ID"
-  ids_made_for_others: ID yang dibuat untuk orang lain
+  ids_made_for_others__title: ID yang Dibuat untuk Orang Lain
   if_for_some_reason_a_user_doesnt_agree: |
     Jika dengan suatu alasan Anda tidak setuju dengan takson komunitas, Anda dapat menolaknya,
     yang berarti ID Andalah yang digunakan untuk menghubungkan ke pengamatan lainnya, memperbarui daftar kehidupan,
@@ -3062,6 +3073,9 @@ id:
   not_confident: Kami tidak sepenuhnya yakin untuk membuat rekomendasi.
   not_confident_top_suggestions: 'Kami tidak cukup percaya diri untuk membuat rekomendasi, namun berikut adalah usulan utama kami:'
   not_covered_by_any_taxon_frameworks: Tidak dicakup oleh framework takson apapun
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Tidak terlihat di sekitar
   not_evaluated: tidak dievaluasi
   not_findig_what_you_want: Tidak menemukan apa yang Anda inginkan?
   not_finding_place_you_want?: Tidak menemukan tempat yang Anda inginkan?
@@ -6122,6 +6136,10 @@ id:
       your_site_account_has_no_email: Akun %{site_name} kamu tidak memiliki alamat email yang terhubung dengan akunnya.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Konten Yang Dapat Ditandai
         flaggable_content_desc: |
           Konten yang ditandai adalah atribut teks utama dari obyek yang ditandai pada saat tanda dibuat. Hanya kurator dan staf yang dapat melihat ini. Hanya staf yang dapat melihat pesan-pesan yang ditandai.
         flags_that_should_not_be_resolved_desc_html: |

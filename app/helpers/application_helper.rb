@@ -289,29 +289,33 @@ module ApplicationHelper
     text = paragraphs[1..paragraphs.length].join(split)
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
-  
-  def formatted_user_text(text, options = {})
+
+  def formatted_user_text( text, options = {} )
     return text if text.blank?
 
-    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
+    text = hyperlink_mentions( text, for_markdown: !options[:skip_simple_format] )
     text = markdown( text ) unless options[:skip_simple_format]
-    
-    # make sure attributes are quoted correctly
-    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
+
+    # this regular expression can take a long time to process on very long words,
+    # so skip it if there are long series of characters without spaces
+    unless text.match( /[^ ]{1000}/ )
+      # make sure attributes are quoted correctly
+      text = text.gsub( /(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4' )
+    end
 
     # remove escaped underscores from mentions where Redcarpet didn't process markdown
     mentions_with_escaped_underscores_regex = /(<a [^>]+>@[^\s]*)\\_/
     while text.match( mentions_with_escaped_underscores_regex )
       text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
     end
-    
+
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
-      text = text.gsub(/<\\?p>/, "\n\n")
+      text = text.gsub( /<\\?p>/, "\n\n" )
     end
-    text = sanitize(text, options)
-    text = compact(text, :all_tags => true) if options[:compact]
-    text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = sanitize( text, options )
+    text = compact( text, all_tags: true ) if options[:compact]
+    text = auto_link( text.html_safe, sanitize: false ).html_safe
     # scrub to fix any encoding issues
     text = text.scrub
     unless options[:skip_simple_format]
@@ -1687,64 +1691,14 @@ module ApplicationHelper
     i18n.t( key, **options ).strip
   end
 
-  def matomo_js( current_user )
-    user_segment = ""
-    if current_user
-      if current_user.login.start_with?("s")
-        user_segment = "power"
-      else
-        user_segment = "casual"
-      end
-    end
-    user_id_code = "// NOT LOGGED IN"
-    if current_user
-      user_id_code = "_paq.push(['setUserId', '" + current_user.id.to_s + "']);"
-    end  
-    raw <<-HTML
-      <!-- Matomo -->
-      <script>
-      var _paq = window._paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(["setDoNotTrack", true]);
-      #{user_id_code}
-      _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="https://matomo-vpn.inaturalist.org/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '1']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-      </script>
-      <!-- End Matomo Code -->
-    HTML
+  def create_announcement_impression( announcement )
+    return unless announcement.is_a?( Announcement )
+
+    AnnouncementImpression.increment_for_announcement(
+      announcement,
+      user: logged_in? ? current_user : nil,
+      request_ip: Logstasher.ip_from_request_env( request.env )
+    )
+    Logstasher.write_announcement_impression( announcement, request: request, user: current_user )
   end
-
-  def matomo_tag_js( current_user )
-    ab_testing_group = ""
-    if current_user
-      if current_user.login.start_with?("s")
-        ab_testing_group = "A"
-      else
-        ab_testing_group = "B"
-      end
-    end
-    raw <<-HTML
-      <!-- Matomo Tag Manager -->
-      <script>
-      var _mtm = window._mtm = window._mtm || [];
-      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
-      _mtm.push({'ab_testing_group': '#{ab_testing_group}'});
-      (function() {
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src='https://matomo-vpn.inaturalist.org/js/container_iAix0v6a.js'; s.parentNode.insertBefore(g,s);
-      })();
-      </script>
-      <!-- End Matomo Tag Manager -->
-    HTML
-  end
-
-
 end

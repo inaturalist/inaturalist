@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ObservationPhoto < ApplicationRecord
   belongs_to_with_uuid :observation, inverse_of: :observation_photos, counter_cache: false
   belongs_to :photo
@@ -7,10 +9,10 @@ class ObservationPhoto < ApplicationRecord
   validates_associated :photo
   validates_uniqueness_of :photo_id, scope: :observation_id
   validate :observer_owns_photo
-  
+
   after_commit :set_observation_quality_grade,
-               :set_observation_photos_count,
-               on: :create
+    :set_observation_photos_count,
+    on: :create
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade,
     :set_observation_photos_count
 
@@ -21,12 +23,12 @@ class ObservationPhoto < ApplicationRecord
   def to_s
     "<ObservationPhoto #{id} observation_id: #{observation_id} photo_id: #{photo_id}>"
   end
-  
+
   def destroy_orphan_photo
-    Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(photo_id)
+    Photo.delay( priority: INTEGRITY_PRIORITY ).destroy_orphans( photo_id )
     true
   end
-  
+
   def set_observation_quality_grade
     return true unless observation
     return true if observation.bulk_delete
@@ -48,16 +50,17 @@ class ObservationPhoto < ApplicationRecord
   def set_observation_photos_count
     return true unless observation_id
     return true if observation.bulk_delete
-    Observation.where(id: observation_id).update_all(
-      observation_photos_count: ObservationPhoto.where(:observation_id => observation_id).count)
+
+    Observation.where( id: observation_id ).update_all(
+      observation_photos_count: ObservationPhoto.where( observation_id: observation_id ).count
+    )
     true
   end
 
   def observer_owns_photo
     return unless observation && photo
-    unless observation.user_id == photo.user_id
-      errors.add(:photo, "must be owned by the observer" )
-    end
-  end
+    return if observation.user_id == photo.user_id
 
+    errors.add( :photo, "must be owned by the observer" )
+  end
 end

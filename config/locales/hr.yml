@@ -44,6 +44,10 @@ hr:
     few: '<span class="count">%{count}</span> Identifikatora'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identifikatora'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> identifikacija'
+    few: '<span class="count">%{count}</span> identifikacije'
+    other: '<span class="count">%{count}</span> identifikacija'
   x_languages:
     one: "%{count} jezik"
     few: "%{count} jezika"
@@ -227,7 +231,7 @@ hr:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: O "Načinu dolaska"
+  about_establishment_means: O "Načinu ustanovljenja"
   about_license_options: O opcijama licenciranja
   about_licenses: O licencama
   #Header for a section describing taxon names
@@ -243,6 +247,8 @@ hr:
   about_this_bioblitz: O ovom bioblitz-u
   about_this_map: O ovoj karti
   about_this_project: O ovom projektu
+  about_trips2_html: |
+    <h4>Izleti omogućuju prikupljanje podataka o prisutnosti-odsutnosti dodavanjem konteksta tvojim opažanjima</h4><p><strong>Zašto</strong> Podaci o prisutnosti-odsutnosti uključuju informacije o naporu uzorkovanja koji su korisni za znanstvene analize poput modeliranja distribucije (sirova opažanja iNaturalista su podaci samo o prisutnosti).</p><p><strong>Kako</strong> Izlet dodaje kontekst tvojim opažanjima bilježeći:</p><ul><li><strong>Što</strong> tražiš (ciljni popis)</li><li><strong>Gdje</strong> tražiš (područje pretraživanja)</li><li><strong>Kada</strong> tražiš (interval pretraživanja)</li></ul><p>Vrste na tvojem ciljanom popisu kojeg promatraš unutar područja i intervala pretraživanja tumače se kao prisutnost. Dok se vrste na tvojem ciljanom popisu koje nisu uspješno opažane tumači kao odsutnost. Klikni 'Tabliraj podatke o prisutnosti-odsutnosti s izleta' da bi se generirala tablica zapisa o prisutnosti-odsutnosti za vrstu s izleta i povezanih opažanja. <a href='%{url}'>Saznaj više</a></p>
   about_trusting_projects: O povjerenju projektima
   about_trusting_projects_options_any: Sva tvoja opažanja u ovom projektu
   about_trusting_projects_options_any_desc: |-
@@ -324,6 +330,7 @@ hr:
   add_annotations_for_controlled_attribute:
     sex: Dodaj anotaciju za "Spol"
     plant_phenology: Dodajte bilješke za "Fenologiju biljaka"
+    flowers_and_fruits: Dodaj anotacije za cvijeće i sjeme
     leaves: Dodaj anotaciju za "Listove"
     life_stage: Dodaj anotaciju za "Životno razdoblje"
     evidence_of_presence: Dodaj anotaciju za "Dokaz o prisutnosti"
@@ -381,6 +388,14 @@ hr:
   add_plant_phenology_flowering_annotation: 'Dodajte bilješku "Fenologija biljaka: Cvatnja"'
   add_plant_phenology_fruiting_annotation: 'Dodajte bilješku "Fenologija biljaka: Plodonošenje"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Dodajte bilješku "Fenologija biljaka: Nema dokaza o cvatnji"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Dodaj anotaciju: "Cvijeće i plodovi: cvijetni pupoljak"'
+  add_flowers_and_fruits_flowers_annotation: 'Dodaj anotaciju: "Cvijeće i plodovi: cvijet"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Dodaj anotaciju: "Cvijeće i plodovi: plodovi i sjeme"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Dodaj anotaciju: "Cvijeće i plodovi: nema cvijeća ni plodova"'
+  add_leaves_breaking_leaf_buds: 'Dodaj anotaciju: "Listovi: lomljenje lisnih pupova"'
+  add_leaves_green_leaves: 'Dodaj anotaciju: "Lišće: zeleni listovi"'
+  add_leaves_colored_leaves: 'Dodaj anotaciju: "Listovi: listovi u boji"'
+  add_leaves_no_live_leaves: 'Dodaj anotaciju: "Listovi: nema niti jednog živog lista"'
   add_life_stage_adult_annotation: 'Dodaj anotaciju "Životno razdoblje: Odraslo"'
   add_life_stage_teneral_annotation: 'Dodajte bilješku "Životno razdoblje: teneral"'
   add_life_stage_subimago_annotation: 'Dodajte bilješku "Životno razdoblje: subimago"'
@@ -580,8 +595,8 @@ hr:
   all_taxa_in_this_guide: Svi taksoni u ovom vodiču
   all_taxonomic_groups: "&laquo; Sve taksonomske grupe"
   all_updates: Sve novosti
-  allow_curator_access: Omogući pristup kustosu
-  allow_project_curators_to_view_your_private_coordinates: Omogući kustosima projekta da vide vaše skrivene koordinate
+  allow_curator_access: Omogući pristup kuratorima
+  allow_project_curators_to_view_your_private_coordinates: Omogući kuratorima projekta da vide tvoje skrivene koordinate
   allowed_establish_means_values: Dozvoljene vrijednosti sredstava uspostave
   allowed_html: Dozvoljen HTML
   allowed_occurrence_status_values: Dozvoljene vrijednosti statusa pojavljivanja
@@ -677,7 +692,7 @@ hr:
   apply_fields: Primijeni polja
   apply_geoprivacy: Primijeni geopravila
   apply_darr: "Primijeni &darr;"
-  apply_establishment_means_to_descendant_places: "Primijeni način dolaska na niža mjesta"
+  apply_establishment_means_to_descendant_places: "Primijeni način ustanovljenja na niža mjesta"
   apply_these_settings_to_all: Primijeni ove postavke na sva dolje navedena opažanja.
   appropriate?: Prikladno?
   arachnids: paučnjaci
@@ -741,7 +756,7 @@ hr:
   are_you_sure_you_want_to_delete_this_post: Jeste li sigurni da želite izbrisati ovu objavu?
   are_you_sure_you_want_to_delete_this_taxon_change: Jeste li sigurni da želite izbrisati ovu promjenu taksona?
   are_you_sure_you_want_to_remove_all_tags: Jeste li sigurni da želite ukloniti sve oznake?
-  are_you_sure_you_want_to_remove_curator: Jeste li sigurni da želite ukloniti %{user} kao kustosa?
+  are_you_sure_you_want_to_remove_curator: Sigurno želiš ukloniti kuratorske ovalsti korisniku %{user}?
   are_you_sure_you_want_to_remove_from_project: Jeste li sigurni da želite ukloniti %{user} iz ovog projekta?
   are_you_sure_you_want_to_remove_manager: Jeste li sigurni da želite ukloniti %{user} kao menadžera?
   are_you_sure_you_want_to_remove_spammer: |
@@ -839,6 +854,7 @@ hr:
   back_to_your_observations: Natrag na tvoja opažanja
   back_to_your_profile: Natrag na profil
   badges: Značke
+  base_map_copyright_openstreetmap_html: Bazna karta © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -911,7 +927,7 @@ hr:
   calendars_only_show_x_observations_at_time: Kalendari prikazuju samo %{x} opažanja istovremeno
   callback_url: Callback URL
   cancel: Poništi
-  cant_edit_or_delete_hidden_content: Ne možete uređivati ili brisati sadržaj koji su sakrili kustosi stranice
+  cant_edit_or_delete_hidden_content: Ne možeš uređivati ili brisati sadržaj koji su sakrili administratori
   cant_flag_an_object_that_doesnt_exist: Ne možete označiti objekt koji ne postoji
   cant_merge_a_taxon_with_itself: Ne možete spojiti takson sa samim sobom.
   captive: U zatočeništvu
@@ -1170,11 +1186,11 @@ hr:
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Sadržaj
   content_and_display: Sadržaj i Prikaz
-  content_author: Autor Sadržaja
+  content_author: Autor sadržaja
   content_hidden: Sadržaj Skriven
   content_hidden_by_user_on_date_because_reason_html: |
     Sadržaj je sakrio %{user} dana %{date} zbog: "%{reason}"
-  content_type: Vrsta Sadržaja
+  content_type: Vrsta sadržaja
   user_hid_this_item_because_reason_html: |
     %{user} je sakrio %{item} zbog "%{reason}"
   user_unhid_this_item_because_reason_html: |
@@ -1202,12 +1218,17 @@ hr:
     male: Mužjak
     female: Ženka
     plant_phenology: Fenologija Biljaka
+    flowers_and_fruits: Cvijeće i plodovi
     budding: Pupanje
     flower_budding: Pupanje Cvijeta
     flowering: Cvatnja
     fruiting: Plodonošenje
+    no_flowers_or_fruits: Nema cvijeća ni plodova
+    flower_buds: Cvjetni pupoljci
     flowers: Cvijeće
+    fruits_or_seeds: Plodovi ili sjeme
     leaves: Listovi
+    breaking_leaf_buds: Lomljenje lisnih pupova
     green_leaves: Zeleni listovi
     colored_leaves: Listovi u boji
     no_live_leaves: Nema živih listova
@@ -1265,6 +1286,11 @@ hr:
     flower_budding: Pupoljci cvijeta su vidljivi, ali nisu otvoreni
     flowering: Cvjetovi su vidljivi, otvoreni i još uvijek pričvršćeni za biljku
     fruiting: Plod vidljiv i još uvijek pričvršćen za biljku
+    flowers: Barem jedan otvoreni cvijet
+    flower_buds: Barem jedan zatvoreni cvjetni pupoljak
+    fruits_or_seeds: Barem jedan plod ili sjeme
+    breaking_leaf_buds: Barem jedan pupoljak sa svojim prvim novim listom ili iglom koji nisu otvoreni
+    green_leaves: Barem jedan zeleni list ili igla (ili crvenkasti ako je to obična, zdrava boja)
     gall: Deformirani izrast biljnih tkiva uzrokovan parazitskim organizmom
     male: Dokazi ukazuju na to da organizam može proizvoditi spermu za upotrebu u spolnoj reprodukciji
     molt: Odbačena koža ili egzoskelet
@@ -1357,7 +1383,7 @@ hr:
   curate_user: Kreiraj korisnika
   curating: Kreiranje
   curation: Kuracija
-  curator: Kurator
+  curator: Kustos
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
     Kuratori stranice iNaturalist su pouzdani volonteri koji imaju mogućnost
@@ -1865,20 +1891,20 @@ hr:
   error_updating_photo: "Greška pri ažuriranju fotografije: %{photo_errors}"
   establishment:
     endemic: Endem
-    establishment: Način dolaska
+    establishment: Način ustanovljenja
     introduced: Uvedena vrsta
     invasive: Invazivna vrsta
     managed: Kontrolirana vrsta
     native: Autohtona vrsta
     naturalised: Naturalizirana vrsta
-  establishment_means: Način dolaska
+  establishment_means: Način ustanovljenja
   establishment_means_describes_how: |
-    "Način dolaska" opisuje kako je takson uspostavljen na nekom području.
+    "Način ustanovljenja" opisuje kako je takson uspostavljen na nekom području.
     Pogledaj DarwinCore za <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">više informacija o terminologiji</a>.
   establishment_means_descriptions:
-    native: takson je evoluirao u ovoj regiji ili je u nju stigao prirodnim putem
+    native: vrsta je evoluirala u ovoj regiji ili je u nju stigla prirodnim putem
     endemic: autohtona vrsta koja se ne pojavljuje nigdje drugdje
-    introduced: takson je u regiju stigao antropogenim putem
+    introduced: vrsta je u regiju stigla antropogenim putem
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     Procijenite koja će identifikacija ulaznog taksona biti zamijenjena
@@ -1934,7 +1960,7 @@ hr:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Broj favorita
   Family: Porodica
-  favorite_taxa: Omiljena taksa
+  favorite_taxa: Omiljeni taksoni
   favorites: "Favoriti"
   feature_this_project_: "Istakni ovaj projekt"
   featured: Istaknuto
@@ -1950,7 +1976,7 @@ hr:
     <strong>Napomena:</strong> Ako želite stvoriti polje, provjerite je li ga netko drugi već stvorio kako biste izbjegli dupliciranje.
   fields: polja
   fields_: Polja
-  fields_can_only_be_edited_by_the_people_who: Polja mogu uređivati samo osobe koje su ih stvorile i kustosi stranice
+  fields_can_only_be_edited_by_the_people_who: Polja mogu uređivati samo osobe koje su ih stvorile i administratori
   fields_merged: Polja spojena
   file: Datoteka
   file_size: Veličina datoteke
@@ -1960,7 +1986,7 @@ hr:
   #The name of a computer file
   filename: Naziv datoteke
   filter: Filter
-  filter_by_curator_identification: Filtriraj prema identifikaciji kustosa
+  filter_by_curator_identification: Filtriraj prema identifikaciji kuratora
   filter_by_place: Filtriraj prema mjestu
   filter_by_species: Filtriraj prema vrsti
   filter_by_taxon: Filtriraj prema taksonu
@@ -2046,12 +2072,12 @@ hr:
   flagged_taxon: Označeni takson
   flagged_thing_explanation: "Korisnici su označili ovaj %{thing} jer"
   flagging_desc: |
-    Označavanje privlači pažnju volonterskih kustosa stranice.
-    Nemojte označavati probleme koje možete riješiti identifikacijama, procjenom kvalitete podataka ili razgovorom s osobom koja je stvorila sadržaj.
+    Označavanje privlači pažnju volonterskih kuratora stranice.
+    Nemoj označavati probleme koje možeš riješiti identifikacijama, procjenom kvalitete podataka ili razgovorom s osobom koja je stvorila sadržaj.
   flagger: Označavatelj
   flags: Oznake
   flags_with_count: Oznake (%{count})
-  flags_explanation: "Korisnici %{site_name} označavaju stvari koje zahtijevaju pažnju kustosa stranice i/ili administratora stranice."
+  flags_explanation: "Korisnici %{site_name}a označavaju stvari koje zahtijevaju pažnju kuratora i/ili administratora stranice."
   flags_for_x_html: Oznake za %{x}
   flags_on_users_content: "Oznake na sadržaju korisnika %{user}"
   flickr_account_information: Informacije o vašem Flickr računu
@@ -2115,6 +2141,9 @@ hr:
   generate_your_year_in_review_caps: GENERIRAJ SVOJU REZIME GODINE %{year}
   generating_mobile_archive: "Generiranje mobilnog arhiva"
   Genus: Rod
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo ocjena
   geomodel_expected_nearby_label_is_derived: |
     Oznaka "Očekivano u blizini" izvedena je iz Geomodela.
     <a href="%{url}">Saznajte više o Geomodelu ovdje</a>.
@@ -2190,7 +2219,7 @@ hr:
   heads_up_automatable_split_notice_html: |
     <strong>Upozorenje:</strong> Neke ili sve identifikacije pogođene ovim razdvajanjem možda su zamijenjene identifikacijama %{taxon}. To se događa kada ne možemo automatski dodijeliti identifikaciju jednom od izlaznih taksona.
   heads_up_observose_taxon_change_html: |
-    <strong>Upozorenje:</strong> Jedan ili više ulaznih taksona uključenih u ovu promjenu ima više od %{observose_taxon_threshold} promatranja nizvodno. Samo administratori ili bilo koji kustosi tog taksonomskog okvira mogu izvršiti ovu promjenu.
+    <strong>Upozorenje:</strong> Jedan ili više ulaznih taksona uključenih u ovu promjenu ima više od %{observose_taxon_threshold} promatranja nizvodno. Samo administratori ili bilo koji kuratori tog taksonomskog okvira mogu izvršiti ovu promjenu.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
     <strong>Upozorenje:</strong> Jedan ili više ulaznih taksona uključenih u ovu promjenu nalaze se unutar <a href="%{framework_url}">taksonomskog okvira</a>. Samo administratori ili kustosi tog taksonomskog okvira mogu izvršiti promjene koje utječu na obuhvaćene taksone. Kontaktirajte jednog od kustosa tog taksona kako biste izvršili ovu promjenu.
   heads_up_there_are_other_draft_taxon_changes_html:
@@ -2300,7 +2329,7 @@ hr:
   identotron_for: Identotron za
   identotron_help: Pomoć za Identotron
   ids: "Identifikacije"
-  ids_made_for_others: identifikacija za druge
+  ids_made_for_others__title: Ovogodišnje identifikacije
   if_for_some_reason_a_user_doesnt_agree: |
     Ako iz nekog razloga ne slažete se sa zajedničkim taksonom, možete ga odbiti,
     što znači da se vaš ID koristi za povezivanje s drugim opažanjima, ažuriranje životnih popisa,
@@ -2494,7 +2523,7 @@ hr:
   leave_a_comment: Napiši komentar
   leave_this_project: Napusti ovaj projekt
   #Terminal nodes in a taxonomic tree
-  leaves: lišće
+  leaves: taksonomski listovi
   legacy_authentication_notice_html: |
     Izgleda da koristite lozinku iz starije verzije ove web stranice.
     Molimo vas da <a href="%{url}">promijenite svoju lozinku</a> za novu verziju.
@@ -2776,7 +2805,7 @@ hr:
   low: Nisko
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
-  lowest_rank: Najniži Rang
+  lowest_rank: Najniži rang
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
   make_admin: Postavi za admina
@@ -3012,7 +3041,7 @@ hr:
   must_have_sounds: mora imati zvukove
   must_have_x: "mora imati %{x}"
   #Imperative verb, label for a button that lets you mute another user
-  mute: Isključi zvuk
+  mute: Utišaj
   #Mute is a noun here
   mute_removed: Utišavanje uklonjeno
   muted_users: Utišani korisnici
@@ -3491,7 +3520,7 @@ hr:
     irregular: Prisutnost nepredvidiva, uključujući skitnice; može biti česta u nekim godinama i odsutna u drugima
     present: Pojavljuje se u području
     uncommon: Redovito se pojavljuje, ali u malom broju; zahtijeva pažljivo pretraživanje odgovarajućeg staništa
-  occurrence_status_establishment_means: status pojavljivanja, način dolaska
+  occurrence_status_establishment_means: status pojavljivanja, način ustanovljenja
   occurrence_status_levels:
     present: prisutno
     common: često
@@ -5134,7 +5163,7 @@ hr:
   target_list_alert: Jeste li sigurni da ste pokušali promatrati sve vrste obuhvaćene vašim ciljnim popisom? Zapamtite da će se sve što je obuhvaćeno vašim ciljnim popisom, a niste promatrali, tumačiti kao odsutnost, stoga je vrlo važno da vaš ciljni popis točno odražava skup vrsta koje ste pokušali otkriti.
   target_list_warning: Zapamtite da će se sve što je obuhvaćeno vašim ciljnim popisom, a niste promatrali unutar radijusa i trajanja ovog putovanja, tumačiti kao odsutnost. Vrlo je važno da vaš ciljni popis točno odražava skup vrsta koje ste pokušali otkriti. Ako niste pokušali otkriti neku vrstu na svom ciljnim popisu ili svaku vrstu obuhvaćenu grupom na svom ciljnim popisu, molimo uklonite je.
   task_deleted: Zadatak obrisan
-  taxa: Taksa
+  taxa: Taksoni
   taxa_show_obs_photo_search_tip: |
     Savjet: unesite ID opažanja u polje za pretraživanje ako želite
     odabrati fotografije iz određenog opažanja.
@@ -5476,7 +5505,7 @@ hr:
   this_will_try_to_add_tags_to_your_flickr: Ovo će pokušati dodati oznake vašim Flickr fotografijama. Nastaviti?
   this_year: Ove godine
   those_observations_no_longer_exist: Ta opažanja više ne postoje.
-  threatened: Ugroženo
+  threatened: Ugrožene vrste
   time_: vrijeme
   time_ago: "Prije %{time}"
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -6000,7 +6029,7 @@ hr:
   we_had_a_problem_flagging_that_item: "Imali smo problem s označavanjem te stavke: %{flag_error}"
   we_had_trouble_saving_comment: "Imali smo problema s spremanjem tog komentara:"
   we_have_no_conservation_status_for_this_taxon: Nemamo status zaštite za ovaj takson
-  we_have_no_establishment_data_for_this_taxon: "Nemamo podatke o načinu dolaska za ovaj takson"
+  we_have_no_establishment_data_for_this_taxon: "Nemamo podatke o načinu ustanovljenja za ovu vrstu"
   we_support_flickr: Trenutno podržavamo Flickr za hosting slika i nadamo se da ćemo uskoro dodati druge hostove slika.
   weather: Vrijeme
   website: Web stranica
@@ -6518,6 +6547,10 @@ hr:
       your_site_account_has_no_email: Tvoj %{site_name} račun nema pridruženu email adresu.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Prijavljeni sadržaj
         flaggable_content_desc: |
           Označeni sadržaj je primarni tekstualni atribut označenog
           objekta u trenutku kada je oznaka stvorena. Samo kustosi i osoblje mogu
@@ -6835,15 +6868,14 @@ hr:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Sigurno? Ovo će promijeniti način dolaska za SVE
+          Sigurno? Ovo će promijeniti način ustanovljenja za SVE
           popisane taksone koji pripadaju mjestima unutar ovog mjesta. Puno posla 
           može biti poništeno.
         description_html: |
-          Ovo će promijeniti način dolaska <em>svih</em> popisa ovog taksona na svim potomcima mjesta
+          Ovo će promijeniti način ustanovljenja <em>svih</em> popisa ove vrste na svim mjestima koja proizlaze iz mjesta
           <a href="%{place_url}">%{place_name}</a>
-          u <strong>"%{establishment_means}"</strong>. Samo
-          kustosi mogu koristiti ovaj alat. Promjena načina ustanovljenja u
-          "introducirano" imat će približno isti učinak, ali neće promijeniti
+          u "<strong>"%{establishment_means}"</strong>". Samo
+          kustosi mogu koristiti ovaj alat. Ako samo promijeniš način ustanovljenja u "uvedenu vrstu", imat će približno isti učinak, ali neće promijeniti
           postojeće vrijednosti, već samo popuniti prazne.
     lists:
       edit:
@@ -6878,6 +6910,29 @@ hr:
           budu označene za moderiranje. Ako trebate zaista privatnu
           komunikaciju, molimo vas da razmotrite druge komunikacijske mehanizme koji
           podržavaju snažnu enkripciju.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Demo modela vida
+      what_do_you_want_to_search_for: Što želiš pretraživati?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: npr. %{query_in_english}
+      try_one_of_these_example_searches_colon: "Probaj jedno od ovih pretraživanja:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Pomogni nam da se poboljšamo
+      mark_remaining_as_relevant: Označi ostalo kao relevantno
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Označi ostalo kao nerelevantno
+      if_youd_like_to_support_this_work: Ako želiš podržavati ovaj rad
+      thank_you_for_your_submission!: Hvala na tvojem doprinosu!
     oauth:
       authorizations:
         new:
@@ -7629,7 +7684,7 @@ hr:
         start_time_desc: "Vrijeme početka vašeg bioblitza. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: bilo tko
-          curators: kustosi projekta
+          curators: kuratori projekta
         trust_allow_members_to_trust: |-
           Dopusti članovima da povjere ovom projektu skrivene koordinate
         trust_help_desc: |-
@@ -8161,14 +8216,15 @@ hr:
         about_conservation_status_desc: |
           Status zaštite sažima rizik od izumiranja za skupinu organizama.
         about_establishment_desc: |
-          "Sredstva osnivanja" opisuju kako je vrsta stigla tamo gdje
-          se trenutno nalazi. Unesena znači da je stigla zbog ljudske
-          aktivnosti, dok domaća znači da je stigla bez ljudske pomoći.
+          "Način ustanovljenja" opisuje kako je vrsta stigla tamo gdje
+          se trenutno nalazi. Kada je vrsta uvedena, to znači da je stigla zbog ljudske
+          aktivnosti, a ako je autohtona znači da je stigla bez ljudske pomoći.
           Endemične vrste se pojavljuju samo na određenom mjestu i nigdje drugdje.
         about_taxon_curators_desc: |
           Ove osobe upravljaju dijelom taksonomskog stabla koji uključuje
           ovaj takson. Ako želite napraviti promjene, označite ovaj takson ili
           kontaktirajte nekoga od ovih ljudi.
+        charts_caps: GRAFIKONI
         charts_help_seasonality: |
           Ovaj grafikon prikazuje broj opažanja ovog taksona grupiranih po
           mjesecima. Imajte na umu da su to brojevi opažanja, pa su
@@ -8218,6 +8274,14 @@ hr:
           "Plant Phenology=Flowering": Cvjetanje
           "Plant Phenology=Fruiting": Plodonošenje
           "Plant Phenology=No Evidence of Flowering": Nema dokaza o cvjetanju
+          "Flowers and Fruits=Flower Buds": Cvjetni pupoljci
+          "Flowers and Fruits=Flowers": Cvijeće
+          "Flowers and Fruits=Fruits or Seeds": Plodovi ili sjeme
+          "Flowers and Fruits=No Flowers or Fruits": Nema cvijeća ni plodova
+          "Leaves=Breaking Leaf Buds": Lomljenje lisnih pupova
+          "Leaves=Green Leaves": Zeleni listovi
+          "Leaves=Colored Leaves": Listovi u boji
+          "Leaves=No Live Leaves": Nema živih listova
           "Life Stage=Egg": Jaje
           "Life Stage=Larva": Ličinka
           "Life Stage=Juvenile": Juvenilno
@@ -8870,7 +8934,13 @@ hr:
           quadrillion: Kvadrilijun
           thousand: Tisuću
           trillion: Trilijun
+          unit: ','
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half" this would be written as
+        #"1,000,002.5" in English, and "," is the delimiter. This should not be
+        #the same as the separator.
+        delimiter: '.'
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -8916,7 +8986,7 @@ hr:
       AssessmentSection: Dio procjene
       Atlas: Atlas
       BlockedUser: Blokirani korisnik
-      Comment: Komentar
+      Comment: komentar
       CompleteSet: Kompletan set
       #Noun
       Flag: Prijava
@@ -8977,7 +9047,7 @@ hr:
         published_at: Publikacija
       listed_taxon:
         occurrence_status_level: Razina statusa pojave
-        establishment_means: Način dolaska
+        establishment_means: Način ustanovljenja
       message:
         subject: Predmet
         body: Tijelo

@@ -22,6 +22,8 @@ zh-CN:
   x_identifiers_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span>个鉴定者'
+  x_ids_made_for_others_html:
+    other: '为他人做出了<span class="count">%{count}</span>个鉴定'
   x_languages:
     other: "%{count} 种语言"
   #Count of number of taxa that represent the first addition to a life list
@@ -227,6 +229,8 @@ zh-CN:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: 添加符号列表
   add_a_comment: 添加一条评论
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: 添加保护状态
   add_a_field: 添加字段
   add_a_flag: 添加一个标记
   #Tool tip for a button that adds a link to a text area
@@ -737,6 +741,7 @@ zh-CN:
   back_to_your_observations: 回到您的观察
   back_to_your_profile: 回到您的详细信息
   badges: 徽章
+  base_map_copyright_openstreetmap_html: 地图底图 © %{startTag}开放街区地图%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
@@ -1730,7 +1735,7 @@ zh-CN:
   establishment_means_descriptions:
     native: 在这个区域演化而来或通过非人为手段抵达的情况
     endemic: 本土物种，且无其他地区记录
-    introduced: 通过人类活动途径到达此地区的情况
+    introduced: 经由人类活动到达此地区
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
     估计哪个输入分类群的鉴定将被输出分类群的鉴定替代，当拆分填好后，这些分类群将被压缩到一个
@@ -1960,6 +1965,9 @@ zh-CN:
   generate_your_year_in_review_caps: 生成您的%{year}年年度回顾
   generating_mobile_archive: "生成移动存档"
   Genus: 类
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: 地理打分
   geomodel_expected_nearby_label_is_derived: |
     "预料在附近"标签来自地理位置模型。<a href="%{url}">在这里了解更多关于地理位置模型的情况</a>。
   geoprivacy: 位置隐私
@@ -2134,7 +2142,7 @@ zh-CN:
   identotron_for: Identotron 为
   identotron_help: Identotron帮助
   ids: "鉴定"
-  ids_made_for_others: 为其他人做出的鉴定
+  ids_made_for_others__title: 为其他人做出的鉴定
   if_for_some_reason_a_user_doesnt_agree: |
     如果出于某种原因，你不同意社群鉴定出来的分类结果，你也可以拒绝它。这意味着你的鉴定结果会被用于关联其他观察、更新分类列表等等。这也意味着，只有当社群中的大多数人就鉴定结果达成一致时，你的这项观察才会成为研究级别。
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -4527,6 +4535,8 @@ zh-CN:
   show_no_annotation: 显示“无批注”
   show_off_your_recent_observations: 在您自己的博客或网站上展示您最近的观察结果！
   show_only: 仅显示
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: 显示开放街区地图
   show_relative_proportions_of_all_observations: 显示所有观察的相对比例
   #Label for a button to show the running total of an accumulation chart
   show_running_total: 显示运行总计
@@ -5416,6 +5426,8 @@ zh-CN:
   user_faved_this_observation: "%{user} 收藏了此观察"
   user_flagged_as_a_non_spammer_html: "%{user} 被标记为非垃圾邮件发送者"
   user_flagged_as_a_spammer_html: "%{user} 被标记为垃圾信息发送者"
+  user_has_been_removed_from_site: |
+    %{username}已被移除出%{site_name}（删除全部相关内容可能需要花上一个小时）
   user_has_opted_out_of_community_id: 用户已选择退出社区分类单元
   user_hasnt_joined_any_projects: "%{user} 还未加入任何项目"
   user_helped_x_people_with_y_ids_html: "%{user}以 <strong>%{y} 个鉴定</strong>帮助到了 <strong>%{x} 个人</strong>"
@@ -5442,6 +5454,7 @@ zh-CN:
   user_trusts_you_with_their_private_coordinates: "%{user} 信任您的并向您公开隐藏坐标"
   user_trusts_you_with_their_private_coordinates_desc: |
     此观察者信任您的并向您公开其所有的隐藏坐标
+  user_updated_an_observation_field_html: '%{user}为%{owner}的一项观察的“%{field_name}”字段更新了一个值'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> 写道，
   username: 用户名
   username_description: 这是您用于登录的用户名，其他用户可以使用它在 iNaturalist 上识别您的身份
@@ -6009,6 +6022,10 @@ zh-CN:
       your_site_account_has_no_email: 你的%{site_name}账户没有绑定邮箱地址。
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: 可标记的内容
         flaggable_content_desc: |
           可标记内容是创建标记时标记对象的主要文本属性。只有馆长和员工可以看到它。只有员工可以看到它的内容消息。
         flags_that_should_not_be_resolved_desc_html: |
@@ -7267,6 +7284,27 @@ zh-CN:
           分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>尝试添加已在其他地方使用过的名称。请不要发明新名字。</p></li>
+          <li><p>不要添加重复的名称，例如不要为很多种类的鹰命名为“鹰”</p></li>
+          <li><p>对于更高级别的分类群，尝试使用包含所有后代的名称，如“苍鹭及其同类”或“杜鹃花科”</p></li>
+          <li>
+          <p>
+          不要添加不是名称的信息，例如，有关您认为应如何使用该名称的想法的括号信息
+          </p>
+          </li>
+          <li>
+          <p>
+          新词典应该是英文的。请不要添加如“French，Français”一般的翻译语言名称，因为这样我们很难或不可能为使用不同语言的网站的用户显示本地化名称。
+          </p>
+          </li>
+          <li>
+          <p>
+          与翻译语言相关的常用名称将显示为该语言的默认通用名称（除非受到地点首选项、名称排序等的影响）。<a class="readmore" href="/pages/translate">了解有关翻译的详情</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           添加地方专属的名称，以便为该地方的站点和用户优先提供该名称。如果一个地方有多个名称，您可以优先考虑<a href="%{url}">此处</a>。请<strong>不要</strong>为每个使用该名称的地方添加同样的名称，请仅将其用于与其他地方的名称发生冲突的地方。
       taxon:

@@ -807,16 +807,21 @@ sr:
   change_to_email_requested_html: Zahtevana promena na <strong>%{email}</strong>. Proveri svoj imejl i potvrdi promenu.
   change_types:
     change_types: Promeni tipove
-    split: Podeli
-    merge: Spoji
-    swap: Zameni
-    stage: Faza
+    split: Podela
+    merge: Spajanje
+    swap: Zamena
+    stage: Priprema
+    drop: Ukidanje
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    split_from: podeli od
+    split_from: podeljen od
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: podeli na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
+    merged_into: spojeni u
+    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: zamenjen sa
+    dropped: ukinut
+    staged: pripremljen
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} je podeljen na %{output_taxa}"
     input_taxon_will_be_split_into_output_taxa_html: "%{input_taxon} će biti podeljen na %{output_taxa}"
     input_taxon_was_dropped_html: "%{input_taxon} je poništen"
@@ -980,6 +985,7 @@ sr:
     budding: Pupenje
     flowering: Cvetanje
     no_flowers_or_fruits: Bez voćki i semena
+    flower_buds: Cvetni pupoljci
     flowers: Cvetovi
     fruits_or_seeds: Voće ili seme
     leaves: Lišće
@@ -1266,6 +1272,8 @@ sr:
   deviation: Devijacija
   devise:
     confirmations:
+      confirmed: |
+        Tvoja imejl adresa je uspešno potvrđena.
       send_instructions: "Za nekoliko minuta ćeš dobiti imejl sa uputstvima kako da potvrdiš imejl adresu."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1349,6 +1357,9 @@ sr:
   donate_to_inaturalist: Doniraj iNaturalist-u
   done: Pošalji
   dont_have_an_account_sign_up_html: Nemaš nalog? <strong>Registruj se.</strong>
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
+  drop_it: Prevuci ovde
   download: Preuzmi
   download_caps: PREUZMI
   download_csv: Preuzmi CSV
@@ -1642,6 +1653,9 @@ sr:
   grid_layout: Raspored mreže
   grid_tooltip: Prikaz mreže
   group: Grupa
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Preuzmi lokaciju od drugih opservacija?
   guides: Vodiči
   guidelines: Smernice
   has_already_been_flagged_by: već je prijavljeno od strane
@@ -1723,7 +1737,6 @@ sr:
     Kompjuterska vizija je proces učenja kompjutera da prepoznaju šablone na slikama. Mi obezbeđujemo alate koji koriste modele kompjuterske vizije trenirane na fotografijama zajednice kako bi dali predloge identifikacije, kao što je auto-complete i opcija za upoređivanje. Identifikacije koje neko doda pomoću nekog od ovih alata će imati ovu oznaku.
   identifiers: Identifikatori
   ids: "Identifikacije"
-  ids_made_for_others: ID-jeva datih za druge
   if_for_some_reason_a_user_doesnt_agree: |
     Ako se iz bilo kog razloga ne slažeš sa taksonom zajednice, možeš ga odbaciti na tvojim opservacijama što znači da će tvoj priložen ID biti korišćen za povezivanje sa drugim sličnim opservacijama, ažuriranje liste života itd. To takođe znači da tvoja opservacija može dobiti status istraživačkog nivoa samo ako se zajednica složi sa tobom.
   ignore_and_continue: Zanemari i nastavi
@@ -1789,6 +1802,11 @@ sr:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Da li navedeni dokazi potvrđuju da je ovo %{taxon}?
   is_this_offensive_html: 'Da li je ovo <a href="/help#inappropriate">neprikladno</a>, nepoželjan softver ili uvredljivo?'
   is_this_place_a_duplicate: Da li je ovo duplikat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Da li je ovaj naučni naziv trenutno aktuelan?
   it_can_now_be_used_for_research: Sada može biti upotrebljena za istraživanje i prikazana na drugim veb-sajtovima
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: zakošen tekst
@@ -3547,6 +3565,8 @@ sr:
   show_no_annotation: Prikaži "Bez pribeleške"
   show_off_your_recent_observations: Pokaži opservacije na tvom blogu ili sajtu!
   show_only: Prikaži samo
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Prikaži OpenStreetMap
   show_relative_proportions_of_all_observations: Prikaži relativne proporcije svih opservacija
   show_taxa_from_both: (prikaži taksone sa obe liste)
   show_taxa_from_everywhere: "Prikaži taksone od svuda"
@@ -3826,6 +3846,8 @@ sr:
   taxon_deleted: Takson izbrisan.
   taxon_doesnt_have_a_range: Takson nema rasprostranjenost
   taxon_drop: poništen takson
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Ukidanje taksona utiče na %{taxon}
   taxon_id: Takson ID
   taxon_ids: ID-jevi taksona
   taxon_map:
@@ -3836,6 +3858,9 @@ sr:
   taxon_curators: Kustosi taksona
   taxon_framework_deviations_with_count_html: "Devijacije: %{count}"
   taxon_merge: spoj taksona
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Spajanje taksona utiče na %{taxa}
   taxon_name: Naziv taksona
   taxon_name_must_match_an_existing_taxon_in_our_database: Naziv taksona se mora poklapati sa postojećim taksonom u našoj bazi podataka
   taxon_observed_by_html: |
@@ -3862,7 +3887,17 @@ sr:
   taxon_search: Pretraga taksona
   taxon_search_results_for: Rezultati pretrage taksona za
   taxon_split: podela taksona
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Podela taksona utiče na %{taxa}
+  #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
+  taxon_stage: priprema taksona
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Priprema taksona utiče na %{taxon}
   taxon_swap: zamena taksona
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Zamena taksona utiče na %{taxa}
   taxon_name_was_deleted: Naziv taksona izbrisan.
   taxon_name_was_successfully_updated: Naziv taksona je uspešno ažuriran.
   taxon_was_successfully_created: Takson je uspešno kreiran.
@@ -4158,6 +4193,16 @@ sr:
   user_autocomplete_placeholder: kueda, simon123, itd.
   user_blocked: Korisnik blokiran
   user_commented: "%{user} komentariše"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} je izvršio/la ukidanje taksona koja utiče na %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} je izvršio/la spoj taksona koja utiče na %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} je izvršio/la podelu taksona koja utiče na %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} je izvršio/la pripremu taksona koja utiče na %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} je izvršio/la zamenu taksona koja utiče na %{taxa}"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže sa prethodnim bližim identifikacijama"
   user_faved_an_observation_by_you: "%{user} je dodao/la tvoju opservaciju u favorite"
@@ -4612,6 +4657,8 @@ sr:
           <p class="text-muted">
           iNaturalist je nezavisna 501(c)(3), oslobođena od poreza, neprofitna organizacija sa sedištem u Sjedinjenim Američkim Državama (Tax ID: 94-1156258).
           </p>
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikni ovde kako bi imejl za potvrdu opet bio poslat
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |

@@ -109,6 +109,7 @@ class User < ApplicationRecord
   preference :edit_observations_order, :string, default: "created_at"
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
+  preference :needs_id_pilot, :boolean, default: nil
   preference :identify_map_zoom_level, :integer
   preference :suggestions_source, :string
   preference :suggestions_sort, :string
@@ -319,6 +320,7 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
 
