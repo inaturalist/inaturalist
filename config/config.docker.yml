@@ -107,6 +107,8 @@ base: &base
 
     dangerous_taxa_list_id: <%= ENV.fetch("INAT_DANGEROUS_TAXA_LIST_ID") { "INAT_DANGEROUS_TAXA_LIST_ID" } %>
 
+    matomo_url: <%= ENV.fetch("INAT_MATOMO_URL") { "" } %>
+
 development:
     <<: *base
 

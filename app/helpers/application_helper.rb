@@ -1703,6 +1703,7 @@ module ApplicationHelper
   end
 
   def matomo_js( current_user )
+    return if CONFIG.matomo_url.blank?
     user_id_code = "// NOT LOGGED IN"
     if current_user
       user_id = Digest::MD5.hexdigest( current_user.id.to_s )
@@ -1715,11 +1716,10 @@ module ApplicationHelper
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["setDoNotTrack", true]);
       #{user_id_code}
-      _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
       _paq.push(['trackPageView']);
       _paq.push(['enableLinkTracking']);
       (function() {
-        var u="https://matomo-vpn.inaturalist.org/";
+        var u="#{CONFIG.matomo_url}";
         _paq.push(['setTrackerUrl', u+'matomo.php']);
         _paq.push(['setSiteId', '1']);
         var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
