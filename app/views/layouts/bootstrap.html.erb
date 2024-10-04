@@ -12,9 +12,6 @@
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %></title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
-    <% if !current_user || ( current_user && !current_user.prefers_no_tracking? ) %>
-      <%= matomo_tag_js( current_user ) %>
-    <% end %>
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">

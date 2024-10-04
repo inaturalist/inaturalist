@@ -16,9 +16,6 @@
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
-    <% if !current_user || (current_user && !current_user.prefers_no_tracking? ) %>
-      <%= matomo_tag_js( current_user ) %>
-    <% end %>
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <%= stylesheet_link_tag 'blueprint_bundle' %>
     <%= render :partial => 'shared/common_stylesheets'%>

@@ -1701,4 +1701,32 @@ module ApplicationHelper
     )
     Logstasher.write_announcement_impression( announcement, request: request, user: current_user )
   end
+
+  def matomo_js( current_user )
+    user_id_code = "// NOT LOGGED IN"
+    if current_user
+      user_id = Digest::MD5.hexdigest( current_user.id.to_s )
+      user_id_code = "_paq.push(['setUserId', '#{user_id}']);"
+    end
+    raw <<-HTML
+      <!-- Matomo -->
+      <script>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(["setDoNotTrack", true]);
+      #{user_id_code}
+      _paq.push(['setCustomDimension', customDimensionId = 1, customDimensionValue = '#{user_segment}']);
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://matomo-vpn.inaturalist.org/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '1']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+      </script>
+      <!-- End Matomo Code -->
+    HTML
+  end
 end
