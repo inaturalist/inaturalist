@@ -2069,6 +2069,9 @@ fr:
   geoprivacy_is_private: La géoconfidentialité est privée
   geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé ?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Géolocalisation
   get_started: Commencer
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Premiers pas
@@ -2163,6 +2166,9 @@ fr:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Masquer « Pas d'annotation »
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Cacher les observations avec des emplacements privés
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
@@ -3151,6 +3157,9 @@ fr:
   not_confident: Notre certitude n'est pas suffisante pour faire une recommandation.
   not_confident_top_suggestions: Notre niveau de certitude n'est pas suffisant pour faire une recommandation, mais voici nos meilleures suggestions.
   not_covered_by_any_taxon_frameworks: Couvert par aucun cadre taxinomique
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Non attendu à proximité
   not_evaluated: non évalué
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous voulez ?
   not_finding_place_you_want?: Vous n’avez pas trouvé le lieu que vous vouliez ?

@@ -2109,6 +2109,9 @@ sv:
   geoprivacy_is_private: Koordinatsekretess är privat
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geospatiala
   get_started: Kom igång
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Kom igång
@@ -2219,6 +2222,9 @@ sv:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Dölj fynd med privata platser
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Dölj löpande total
   hide_uncountable_species: Dölj arter som inte kan räknas
@@ -3214,6 +3220,9 @@ sv:
   not_confident: Vi är inte tillräckligt säkra för att göra en rekommendation.
   not_confident_top_suggestions: Vi är inte tillräckligt säkra för att komma med en rekommendation, men här är våra bästa förslag
   not_covered_by_any_taxon_frameworks: Omfattas inte av någon taxonkontext
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Inte förväntad i närheten
   not_evaluated: inte utvärderad
   not_findig_what_you_want: Hittar du inte det du vill?
   not_finding_place_you_want?: Hittar du inte den fyndplats du vill?
