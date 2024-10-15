@@ -377,6 +377,29 @@ describe Identification, "creation" do
         expect( es_response.current ).to be false
       end
 
+      it "does not revert observation quality_grade changes made elsewhere" do
+        observation = make_research_grade_observation
+        # load the observation with its quality_metrics association to set up conditions for
+        # the race condition we want to test
+        observation = Observation.where( id: observation.id ).includes( :quality_metrics ).first
+        expect( observation.quality_grade ).to eq Observation::RESEARCH_GRADE
+
+        # simulate creating a quality metric during identification creation, setting up the race
+        QualityMetric.make!( observation: observation, metric: QualityMetric::WILD, agree: false )
+        expect( Observation.find( observation.id ).quality_grade ).to eq Observation::CASUAL
+        expect( QualityMetric.where( observation: observation ).count ).to eq 1
+
+        # check that the obervation quality grade and quality metrics still represent the state
+        # before the quality metric was added
+        expect( observation.quality_grade ).to eq Observation::RESEARCH_GRADE
+        expect( observation.quality_metrics.size ).to eq 0
+
+        # create the identification with the cached observation and check its quality grade
+        # will ultimately be updated to reflect the quality_metric added externally
+        Identification.make!( observation: observation, taxon: observation.taxon )
+        expect( observation.quality_grade ).to eq Observation::CASUAL
+      end
+
       describe "user counter cache" do
         it "should incremement for an ident on someone else's observation, with delay" do
           taxon = Taxon.make!
