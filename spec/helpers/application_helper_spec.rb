@@ -267,4 +267,22 @@ describe ApplicationHelper do
       expect( impression.impressions_count ).to eq 1
     end
   end
+
+  describe "absolute_url_or_relative_to_site" do
+    let( :site ) do
+      Site.make!
+    end
+
+    it "returns absolute urls" do
+      url = "https://help.inaturalist.org/en/support/home"
+      expect( absolute_url_or_relative_to_site( site: site, url: url ) ).to eq url
+    end
+
+    it "generates urls with paths relative to site url" do
+      path = "/pages/terms"
+      expect( absolute_url_or_relative_to_site( site: site, url: path ) ).to eq(
+        URI.join( site.url.to_s, path ).to_s
+      )
+    end
+  end
 end
