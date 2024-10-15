@@ -198,6 +198,8 @@ class Place < ApplicationRecord
   PARK_LEVEL = 100
   ADMIN_LEVELS = [CONTINENT_LEVEL, REGION_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
 
+  IMPORT_TIMEOUT_SECONDS = 100
+
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
   scope :containing_lat_lng, lambda {|lat, lng|
@@ -455,9 +457,17 @@ class Place < ApplicationRecord
     end
 
     if max_observation_count
-      observation_count = Observation.where( "ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text ).count
-      if observation_count > max_observation_count
-        add_custom_error( :place_geometry, :contains_too_many_observations )
+      begin
+        Observation.transaction do
+          Observation.connection.execute( "SET LOCAL statement_timeout = #{IMPORT_TIMEOUT_SECONDS * 1000}" )
+          observation_count = Observation.where( "ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text ).count
+          if observation_count > max_observation_count
+            errors.add( :place_geometry, :contains_too_many_observations )
+            return false
+          end
+        end
+      rescue ActiveRecord::QueryCanceled
+        errors.add( :place_geometry, :is_too_large_or_complicated )
         return false
       end
     end
