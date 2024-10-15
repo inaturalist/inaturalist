@@ -245,7 +245,7 @@ class Identification < ApplicationRecord
     return true if skip_observation
     return true if destroyed?
 
-    observation.reload
+    attrs = {}
     if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
       if user_id == observation.user_id
@@ -253,7 +253,7 @@ class Identification < ApplicationRecord
         unless taxon.taxon_names.exists?( name: species_guess )
           species_guess = taxon.common_name( user: observation.user ).try( :name ) || taxon.name
         end
-        observation.species_guess = species_guess
+        attrs[:species_guess] = species_guess
       end
       ProjectUser.delay(
         priority: INTEGRITY_PRIORITY,
@@ -268,12 +268,13 @@ class Identification < ApplicationRecord
     Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
     observation.set_community_taxon( force: true )
     observation.set_taxon_geoprivacy
+    # reoad observation quality metrics before recalculating quality grade in case quality metrics
+    # were added in another thread in the middle of the Identification adding transaction
+    observation.quality_metrics.reload
     observation.set_quality_grade
     observation.skip_identification_indexing = true
     observation.skip_indexing = true
-    if observation.changed?
-      observation.save
-    end
+    observation.update( attrs )
     true
   end
 
