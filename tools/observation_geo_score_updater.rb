@@ -28,8 +28,8 @@ OPTS = Optimist.options do
   opt :log_task_name, "Log with the specified task name", type: :string
 end
 
-if opts.log_task_name
-  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync" )
+if OPTS.log_task_name
+  task_logger = TaskLogger.new( OPTS.log_task_name, nil, "sync" )
 end
 
 task_logger&.start

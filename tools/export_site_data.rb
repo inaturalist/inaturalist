@@ -51,8 +51,8 @@ def system_call( cmd )
   system cmd
 end
 
-if opts.log_task_name
-  task_logger = TaskLogger.new( opts.log_task_name, nil, "export" )
+if OPTS.log_task_name
+  task_logger = TaskLogger.new( OPTS.log_task_name, nil, "export" )
 end
 
 task_logger&.start
