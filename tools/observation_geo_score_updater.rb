@@ -25,7 +25,14 @@ OPTS = Optimist.options do
   opt :max_id, "Maximum ID to process.", type: :integer, short: "-t"
   opt :not_expected_nearby, "Filter to obeservations already indexed with a geo_score less than 1.",
     type: :boolean, short: "-n"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if OPTS.log_task_name
+  task_logger = TaskLogger.new( OPTS.log_task_name, nil, "sync" )
+end
+
+task_logger&.start
 
 unless OPTS.vision_api_url
   puts "You must specify a vision API URL"
@@ -56,3 +63,5 @@ else
     not_expected_nearby: OPTS.not_expected_nearby
   )
 end
+
+task_logger&.end
