@@ -6337,6 +6337,10 @@ da:
           please_read_the_teachers_guide_html: |
             Hvis ja, læs venligst vores <a href="%{url}"> lærervejledning </a> med
             tips til at bruge %{site_name} med studerende.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Hvis ja, læs venligst vores <a href="%{url}">Lærervejledning</a> med
+            tips til brug af %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
       donate_desc_moore_html: |
