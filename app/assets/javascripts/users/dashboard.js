@@ -221,4 +221,26 @@ $( function( ) {
     updateSession( { prefers_forum_topics_on_dashboard: false } );
   } );
 
+  $( "#close_needs_id_pilot_panel" ).on( "click", function( e ) {
+    e.preventDefault( );
+    $( "#needs_id_pilot_panel" ).hide( );
+    updateSession( { prefers_needs_id_pilot: false } );
+  } );
+
+  $( "#participate_button" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_needs_id_pilot: true } );
+    $( "#participate_section" ).hide( );
+    $( "#stop_participating_section" ).show( );
+    $( "#close_needs_id_pilot_panel" ).hide( );
+
+  });
+
+  $( "#stop_participating_button" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_needs_id_pilot: null } );
+    $( "#stop_participating_section" ).hide( );
+    $( "#participate_section" ).show( );
+    $( "#close_needs_id_pilot_panel" ).show( );
+  });
 });

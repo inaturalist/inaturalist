@@ -33,6 +33,9 @@ ca:
     one: '<span class="count">%{count}</span> identificador'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> identificadors'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span>ID fetes per altri'
+    other: '<span class="count">%{count}</span>IDs fetes per altri'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomes"
@@ -2167,7 +2170,6 @@ ca:
   identotron_for: Identotron per a
   identotron_help: Ajuda amb l'identotron
   ids: "IDs"
-  ids_made_for_others: ID fetes per altres usuaris
   if_for_some_reason_a_user_doesnt_agree: |
     Si per algun motiu no esteu d'acord amb el tàxon de la comunitat, el podeu refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que la vostra observació només podrà ser de grau de recerca si la comunitat està d'acord amb vostè.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -5990,6 +5992,10 @@ ca:
       click_here_to_resend_a_confirmation_email: Feu clic per tornar a enviar un correu electrònic de confirmació
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Contingut que pot ser marcat
         flaggable_content_desc: |
           El contingut que es pot marcar és l'atribut de text principal de l'objecte marcat en el moment que es va crear la marca. Només els supervisors i el personal pot veure això. Només el nostre personal pot veure això en els missatges.
         flags_that_should_not_be_resolved_desc_html: |

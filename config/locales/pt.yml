@@ -50,6 +50,9 @@ pt:
   x_misidentifications_of_this_species:
     one: "1 identificação incorreta desta espécie"
     other: "%{count} identificações incorretas desta espécie"
+  x_misidentifications_of_species_in_this_genus:
+    one: "Identificação errónea das espécies desse género"
+    other: "%{count} identificações incorretas de espécies neste género"
   #This is a fallback. Most of the time we'll use
   #x_misidentifications_of_species_in_this_genus
   x_misidentifications_of_species_in_this_rank:
@@ -82,6 +85,9 @@ pt:
   x_people:
     one: "%{count} pessoa"
     other: "%{count} pessoas"
+  x_people_html:
+    one: '<span class="count">%{count}</span> pessoa'
+    other: '<span class="count">%{count}</span> Pessoas'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} pessoas</strong> ajudaram %{user} com <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -187,6 +193,32 @@ pt:
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre Este Mapa
   about_this_project: Sobre este Projeto
+  about_trips2_html: |
+    <h4>
+     Visitas permitem a coleção de informação de presença-ausência, adicionando contexto às
+     observações
+    </h4>
+    <p>
+     <strong>Porquê</strong> Informação de presença-ausência incluí informação acerca de
+     esforços de amostragem, que são úteis para análise científica, como modelos de
+     distribuição (as observações puramente iNaturalist são dados de "apenas presença").
+    </p>
+    <p>
+     <strong>Como</strong> Cada visita adiciona contexto à observação porque regista:
+    </p>
+    <ul>
+     <li><strong>O quê</strong> pesquisou (lista alvo) </li>
+     <li><strong>Onde</strong> pesquisou (área de pesquisa)</li>
+     <li><strong>Quando</strong> pesquisou (intervalo de pesquisa)</li>
+    </ul>
+    <p>
+     Espécies da lista alvo que conseguiu observar na
+     área e intervalo de pesquisa são interpretados como presenças. Enqunato as spécies da
+     lista alvo que não conseguiu observar são interpretados como
+     ausências. Clique em 'Catalogar Informação de Presença Ausência de Visitas' para gerar uma
+     tabela de registos de presenças-ausências de visitas e observações
+     associadas. <a href='%{url}'>Sabe mais</a>
+    </p>
   about_trusting_projects: Sobre confiar em projetos
   about_trusting_projects_options_any: Todas as suas observações neste projeto
   about_trusting_projects_options_any_desc: |-
@@ -217,12 +249,16 @@ pt:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Você pode optar por partilhar as coordenadas ocultas para
+  #Header for a section describing unintended disagreements
+  about_unintended_disagreements: Sobre Desacordos Não Intencionais
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Precisão (m)'
   #Filter for observations with positional accuracy above a certain value
   acc_above: Prec. acima de
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Conforme abaixo
   #Filter for observations with positional accuracy below a certain value or missing
   acc_below_or_unknown: Prec. abaixo ou desc.
   account: Conta
@@ -250,11 +286,14 @@ pt:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Adicionar lista de pontos
   add_a_comment: Adicionar um Comentário
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Adicione um Estado da Conversação
   add_a_field: Adicionar um Campo
   add_a_flag: Adicionar um Sinalizador
   #Tool tip for a button that adds a link to a text area
   add_a_link: Adicionar link
   add_a_name: Adicionar um Nome
+  add_a_note: Adicione uma nota
   add_a_new_change_group: Adicionar um Novo Grupo de Alteração
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Adicionar lista numerada
@@ -271,6 +310,8 @@ pt:
   add_annotations_for_controlled_attribute:
     sex: Adicionar Anotações Sobre "Género"
     plant_phenology: Adicionar Anotações Sobre "Fenologia da Planta"
+    flowers_and_fruits: Adicione nota sobre "Flores e Frutas"
+    leaves: Adicione nota Sobre "Género"
     life_stage: Adicionar Anotações Sobre "Fase da Vida"
     evidence_of_presence: Adicionar anotações sobre "Evidência da Presença"
   add_another_flag: Adicionar Outro Sinalizador
@@ -306,6 +347,7 @@ pt:
   add_notes_about_this_taxon: Adicionar notas acerca deste táxon para este local, por exemplo, onde e quando ele ocorre.
   add_obs_from_a_link: "Adicionar Observações a partir da lista: %{link}"
   add_obs_from_a_list: Adicionar Observações a partir de uma Lista
+  add_observation_fields: Adicione Campos de Observação
   add_observations: Adicionar observações
   add_observations_by_checking_off: Adicionar observações selecionando espécies de uma lista.
   add_observations_project: Adicionar observações a este projecto
@@ -323,6 +365,14 @@ pt:
   add_plant_phenology_flowering_annotation: 'Adicionar anotação "Fenologia da Planta: Floração"'
   add_plant_phenology_fruiting_annotation: 'Adicionar anotação "Fenologia da Planta: Frutificação"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Adicionar a anotação "Fenologia da Planta: Nenhuma evidência de floração"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Adicionar nota sobre "Flores e Frutas: Flores"'
+  add_flowers_and_fruits_flowers_annotation: 'Adicione nota sobre "Flores e Frutas: Flores"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Adicionar nota sobre "Flores e Frutas: Frutas e Sementes"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Adicionar nota sobre "Flores e Frutas: Sem Flores ou Frutas"'
+  add_leaves_breaking_leaf_buds: 'Adicione nota sobre "Folhas: Quebrando Brotos de Folha"'
+  add_leaves_green_leaves: 'Adicione nota sobre "Folhas: Folhas Verdes"'
+  add_leaves_colored_leaves: 'Adicione nota sobre "Folhas: Folhas Coloridas"'
+  add_leaves_no_live_leaves: 'Adicione nota sobre "Folhas: Sem Folhas Vivas"'
   add_life_stage_adult_annotation: 'Adicionar anotação "Fase da Vida: Adulto"'
   add_life_stage_teneral_annotation: 'Adicionar anotação "Fase da Vida: Pós-ecdise"'
   add_life_stage_subimago_annotation: 'Adicionar anotação "Fase da Vida: Subimago"'
@@ -333,10 +383,16 @@ pt:
   add_life_stage_egg_annotation: 'Adicionar anotação "Fase da Vida: Ovo"'
   add_evidence_of_presence_organism_annotation: 'Adicionar anotação "Evidência de Presença: organismo"'
   add_evidence_of_presence_feather_annotation: 'Adicionar anotação "Evidência de Presença: penas"'
+  add_evidence_of_presence_gall_annotation: 'Adicione nota sobre "Evidência de Presença: muda"'
   add_evidence_of_presence_scat_annotation: 'Adicionar anotação "Evidência de Presença: fezes"'
   add_evidence_of_presence_track_annotation: 'Adicionar anotação "Evidência de Presença: trilho"'
   add_evidence_of_presence_bone_annotation: 'Adicionar anotação "Evidência de Presença: osso"'
   add_evidence_of_presence_molt_annotation: 'Adicionar anotação "Evidência de Presença: muda"'
+  add_evidence_of_presence_leafmine_annotation: 'Adicione nota sobre "Evidência de Presença: fóssil"'
+  add_evidence_of_presence_hair_annotation: 'Adicione nota sobre "Evidência de Presença: pelo"'
+  add_evidence_of_presence_egg_annotation: 'Adicione nota sobre "Evidência de Presença: ovo"'
+  add_evidence_of_presence_construction_annotation: 'Adicione nota sobre "Evidência de Presença: construção"'
+  add_established_not_established: 'Adicione nota sobre "Estabelecido: não estabelecido"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Adicionar relação'
   #As in a Guide Section
@@ -381,6 +437,8 @@ pt:
   added_by: Adicionado por
   added_by_user_on_date_html: "Adicionado(s) por %{user} em %{date}"
   added_on_datetime: "Adicionado em %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Função adicionada
   added_to_favorites_html: |
     Adicionado a <a href="%{url}">favoritos</a>
   adding: "A adicionar..."
@@ -389,15 +447,23 @@ pt:
   admin_s: Administrador(es)
   admin_only: Apenas administradores
   admin_tools: Ferramentas de Administração
+  #Organizations affiliated with an iNaturalist Network member or similar entity
+  affiliated_organizations: Organizações afiliadas
   agree_: Concordar
   agree?: Concordar?
   agree_with_current_taxon: Concordar com o táxon atual
+  agree_with_observation_taxon: Concordar com Táxon de Observação
   agreeing: A concordar...
   aka: também conhecido como
+  #Noun, title of a popup alerting you to something
+  alert: Alerta
   all: Todos(as)
+  #Title for a list of all 3rd party applications
+  all_applications: Todas as Aplicações
   all_comments: Todos os comentários
   all_flags_must_be_resolved: Todos os sinalizadores devem ser resolvidos
   all_life: Toda a vida
+  all_media_must_be_unhidden: Todos os meios devem ser revelados
   all_names: Todos os Nomes
   all_observations: Todas as observações
   all_photos: Todas as fotografias
@@ -453,6 +519,9 @@ pt:
     x_plantae:
       one: "1 planta"
       other: "%{count} plantas"
+    x_animalia:
+      one: "animal"
+      other: "%{count} Animais"
     x_mollusca:
       one: "1 molusco"
       other: "%{count} moluscos"
@@ -504,6 +573,11 @@ pt:
   alphabetical_order: Ordem alfabética
   already_have_an_account_log_in_html: Já tem conta? <strong>Entrar.</strong>
   amphibians: anfíbios
+  #This is used to launch a tool that analayzes unintended disagreements caused when the taxonomy is changed
+  #in suych a way that a branch is thinned so that existing IDs of the root of the branch become interpreted
+  #as disagreements with existing IDs of the thinned descendant.
+  analyze_clashes: Analise Desacordos Não Intencionais
+  analyze_ids: Analisar identificações
   ancestor_taxon: Táxon Ancestral
   and_other_taxa: "&amp; Outros Táxons"
   android: Android
@@ -545,6 +619,25 @@ pt:
   #Label for an option to show/include content by any user
   any_user: Qualquer
   anyone: Qualquer um
+  app_owner_application_explanation_required: |
+    Deverá explicar mais detalhadamente o que pretende construir.
+  app_owner_application_about_p1a_html: |
+    Aplicações iNaturalist permitem o uso autenticado da API iNaturalist. Isto
+    permite fazer chamadas de API para criar observações ou identificações. Casos de uso normais são aplicações como os de desktop ou apps móveis
+    que incluem a funcionalidade para seus usuários criarem observações da iNaturalist. Este conteúdo deve ser gerado com envolvimento humano
+    ou com supervisão. Por favor, para mais detalhes, leia as nossas <a href="/pages/community+guidelines"
+    target="_blank">Diretrizes da Comunidade</a> proibindo observações, identificações e comentários gerados por máquinas.
+  app_owner_application_about_p2_html: |
+    Aplicações iNaturalist permitem o uso autenticado da API iNaturalist. Isto
+    permite fazer chamadas de API para criar observações ou identificações. Casos de uso normais são aplicações como os de desktop ou apps móveis
+    que incluem a funcionalidade para seus usuários criarem observações da iNaturalist. Este conteúdo deve ser gerado com envolvimento humano
+    ou com supervisão. Por favor, para mais detalhes, leia as nossas <a href="/pages/community+guidelines"
+    target="_blank">Diretrizes da Comunidade</a> proibindo observações, identificações e comentários gerados por máquinas.
+  app_owner_application_inelligible: |
+    Para enviar uma candidatura, a sua conta deve ter pelo menos 2 meses e
+    deve ter feito pelo menos 10 identificações melhoradas no mês passado.
+  app_owner_application_fields_explanation_html: Descreva a funcionalidade da aplicação e como a planeia usar.
+  app_owner_application_success: Aplicação de proprietário de aplicação enviada
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Aplicação
@@ -555,6 +648,8 @@ pt:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Submeter
+  apply_to_be_an_app_owner: Candidatura para ser proprietário(a) de aplicação
+  apply_to_create_applications_title: Candidatura para Criar Aplicações
   apply_to_selected: Aplicar aos selecionados
   apply_captive_cultivated: "Aplicar em cativeiro/cultivo"
   apply_fields: Aplicar campos
@@ -568,6 +663,9 @@ pt:
   are_you_really_sure_want_delete_this_user: Está realmente seguro que quer eliminar este utilizador e todo o seu conteúdo?
   are_you_sure?: Tem a certeza?
   are_you_sure_no_undo: Tem a certeza? Isto não pode ser anulado.
+  are_you_sure_delete_conservation_status: |
+    Tem certeza que deseja excluir este estado de conservação? Isto pode mudar
+    o estado de ocultação das observações deste táxon e táxon dentro dele.
   are_you_sure_delete_post: Tem a certeza que quer eliminar esta publicação?
   are_you_sure_delete_taxon_move_associates: "Tem a certeza que quer apagar %{taxonname} (%{taxonid}) e mover tudo o que lhe está associado?"
   are_you_sure_delete_this_place: Tem a certeza que quer eliminar este lugar?
@@ -578,6 +676,9 @@ pt:
   are_you_sure_remove_taxon_from_list: "Tem a certeza que deseja remover este táxon da lista?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Tem a certeza? Isto irá recarregar a página, você pode perder algumas de suas alterações.
+  are_you_sure_unresolve_flag?: |
+    Tem certeza de que deseja cancelar a resolução deste sinalizador? Isso removerá
+    a resolução e o utilizador deste sinalizador.
   are_you_sure_want_delete_taxon: "Tem a certeza de que deseja eliminar este táxon?"
   are_you_sure_want_delete_taxon_descendant_taxa: |
     Tem a certeza de que deseja eliminar este táxon? Ele tem táxons descendentes.
@@ -626,7 +727,10 @@ pt:
     Tem a certeza que considera esse utilizador respeitável?
     Qualquer sinalizador de spam no seu conteúdo será resolvido.
   are_you_sure_you_want_to_remove_these_x_taxa?: "Tem a certeza que quer remover estes %{x} táxons?"
+  are_you_sure_you_want_to_remove_this_observation_from_project: |
+    Tem a certeza que deseja remover esta observação de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Tem a certeza que quer remover este táxon da lista de verificação de %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Tem certeza que deseja marcar este utilizador como spammer?
   associated_observations: Observações associadas
   associated_taxa: Táxons associados
   attention: Atenção
@@ -643,6 +747,7 @@ pt:
   assessment_x: "%{assessment} avaliação"
   assessments: avaliações
   associations: Associações
+  atlased: Atacado
   atlas_for_taxon_html: Atlas para %{taxon}
   #As in the Atom Syndication Format:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
@@ -653,11 +758,20 @@ pt:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atributo
   attribution: Atribuição
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, enviado por %{user}"
   authority_list:
     iucn_red_list: Lista Vermelha da UICN
     natureserve: NatureServe
     cites: CITES
   authorize: Autorizar
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Usar <code>%{code_challenge}</code> como o <code>%{code_verifier_param}</code>) Nota: este é um exemplo básico. No código de produção, DEVE utilizar <code>%{code_challenge_method}</code> e fazer a introdução correta do <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Autorizar permissões de %{provider}"
   automatic_short: Automático
   automatically_add_observations_to_this_project: Adicionar automaticamente observações a este projeto
@@ -666,6 +780,7 @@ pt:
   #of values, and not a synonym of "typical" or "normal"
   avg: Média
   back: Voltar
+  back_to_applications: "&laquo; Voltar à aplicação"
   back_to_all_species: Voltar a Todas as Espécies
   back_to_editing_observation: Voltar à edição da observação
   back_to_friends: Voltar a amigos
@@ -682,18 +797,22 @@ pt:
   back_to_taxon: "Voltar a %{defaulttaxon}"
   back_to_taxon_changes: "Voltar às alterações do táxon"
   back_to_taxon_framework_for_x: "Voltar à estrutura de táxon para %{taxon_name}"
+  back_to_users_calendar: "Voltar ao calendário de %{user}"
+  back_to_users_lists: "Voltar às listas de %{user}"
   back_to_viewing: "Voltar à visualização de <i>%{taxon}</i>"
   back_to_x: "Voltar a %{noun}"
   back_to_x_assessment: "Voltar para as avaliações de %{project}"
   back_to_x_history: "Voltar ao historial de %{x}"
   back_to_x_journal: "Voltar ao boletim de %{user}"
   back_to_x_blog: "Voltar ao blog de %{x}"
+  back_to_your_calendar: Voltar ao seu calendário
   back_to_your_dashboard: Voltar ao seu painel de controlo
   back_to_your_lists: Voltar às suas listas
   back_to_your_journal: Voltar para seu boletim
   back_to_your_observations: Voltar às suas observações
   back_to_your_profile: Voltar ao seu perfil
   badges: Emblemas
+  base_map_copyright_openstreetmap_html: Mapa base ©️ %{startTag}OpenStreetMap%{endTag}
   based_on_the_evidence_can_id_be_improved: |
     Baseando na evidência, a ID da comunidade pode ainda ser confirmado ou melhorado?
   batch: Conjunto
@@ -907,11 +1026,22 @@ pt:
   connecting_flickr: "Ligando ao Flickr..."
   connecting_your_inat_account_to_accounts_other_sites: "Ligar a sua conta do %{site_name} a contas em outros sites permite-lhe fazer login em %{site_name} usando as credenciais desses sites."
   conservation_status: Estatuto de conservação
+  conservation_status_deleted: Estado de conservação excluído
+  conservation_status_updated: Estado de conservação atualizado
   conservation_status_descriptions:
     status: Código do estatuto de ameaça, classificação, etc. Se existir um código curto como CR ou EX, use-o por favor. Senão, use o estatuto completo, e.g. criticamente em perigo ou extinto.
     description: Porque foi incluído na lista? Breve descrição.
+    authority: |
+      Organização que declarou esta classificação. Por favor, complete este campo automaticamente para
+      escolher uma autoridade existente antes de adicionar uma nova. Pode avançar esta escolha se
+      quer ser listado como a autoridade.
     place: Local ao qual esse estatuto é referente.
     url: URL para página que descreva este estatuto.
+    geoprivacy: |
+      Geoprivacidade padrão para as observações deste táxon. Note que a geoprivacidade
+      de um status associado a um continente, país, ou
+      local de nível de estado pode substituir um status que é global ou associado
+      com um lugar de nível superior.
   contain_all_descendants?: Esta checklist contém todos os representantes deste taxon que ocorrem na área?
   content_and_display: Conteúdo & Exibição
   continue: Continuar
@@ -1641,7 +1771,6 @@ pt:
   identifiers: Identificadores
   identotron_for: Identotron para
   identotron_help: Ajuda com Identotron
-  ids_made_for_others: Identificações feitas por outros
   if_for_some_reason_a_user_doesnt_agree: |
     Se por alguma razão não concorda com o táxon comunitário, pode rejeitá-lo, o que significa que a sua identificação é a que será usada para ligar a outras observações, actualizar listas de vida, etc. Também significa que a sua observação só pode obter um grau de pesquisa quando a comunidade concordar consigo.
   if_matches_come_from_a_comprehensive_list: Se as correspondências têm origem numa lista abrangente irá aparecer uma barra verde aqui.

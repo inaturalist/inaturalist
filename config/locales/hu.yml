@@ -33,6 +33,9 @@ hu:
     one: '<span class="count">%{count}</span> meghatározó'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> meghatározó'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> meghatározás mások számára'
+    other: '<span class="count">%{count}</span> meghatározás mások számára'
   x_languages:
     one: "%{count} nyelv"
     other: "%{count} nyelv"
@@ -1070,6 +1073,7 @@ hu:
     flowers: Legalább egy kinyílt virág
     flower_buds: Legalább egy csukott bimbó
     fruits_or_seeds: Legalább egy termés vagy mag
+    breaking_leaf_buds: Legalább egy rügy; az első levél még nem bontakozott ki teljesen
     green_leaves: Legalább egy zöld levél vagy tűlevél (lehet vöröses, ha ez a természetes egészséges színe)
     colored_leaves: Legalább az egyik levél vagy tűlevél az utószezonra jellemző, vagy kiszáradt színt vett fel
     no_live_leaves: Nincsenek bontakozó rügyek és nem látszanak zöld vagy színes levelek
@@ -1783,6 +1787,9 @@ hu:
   #E.g GENERATE YOUR 2023 YEAR IN REVIEW
   generate_your_year_in_review_caps: '%{year} ÉVI VISSZATEKINTŐ LÉTREHOZÁSA'
   Genus: Nemzetség
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geopont
   geomodel_expected_nearby_label_is_derived: |
     "A közelben előfordulhat" megjelölés a Geomodellből származik.
     <a href="%{url}">További információ a Geomodellről</a>
@@ -1814,6 +1821,9 @@ hu:
   grid_tooltip: Rácselrendezés megtekintése
   group: Csoport
   grouping: Csoportosítás
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Hely becslése a többi megfigyelés alapján
   guides: Útmutatók
   guide_compiled_by: Útmutatót készítette
   guide_deleted: Útmutató törölve
@@ -1923,7 +1933,7 @@ hu:
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
   identifiers: Meghatározók
   ids: "Azonosítás"
-  ids_made_for_others: Meghatározás mások számára
+  ids_made_for_others__title: Meghatározások mások számára
   if_for_some_reason_a_user_doesnt_agree: |
     Ha valamilyen okból nem értesz egyet a közösségi taxonnal, elutasíthatod azt. Ez azt jelenti, hogy a saját meghatározásod alapján fog a megfigyelés más megfigyelésekkel társulni, a saját mehatórozásod alapján fog ez az életlistádon megjelenni, stb. Fontos továbbá, hogy a megfigyelésed csak akkor lehet tudományos szintű, ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
@@ -2000,6 +2010,11 @@ hu:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: A megfigyelés bizonyítja, hogy ez egy %{taxon}?
   is_this_offensive_html: 'Ez <a href="/help#inappropriate">kifogásolható</a>, kéretlen, szemét vagy sértő?'
   is_this_place_a_duplicate: Ez a terület már létezik?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Ez a tudományos név jelenleg elfogadott?
   it_can_now_be_used_for_research: Már tudományos célra is felhasználható, és kiemelhető más oldalakon
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: dõlt szöveg
@@ -3048,7 +3063,7 @@ hu:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
     #kueda
     #added an observation
-    observation: hozzáadott egy <a href="%{observation_url}">megfigyelést</a>
+    observation: feltöltött egy <a href="%{observation_url}">megfigyelést</a>
     identification:
       #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
       #kueda
@@ -4009,6 +4024,8 @@ hu:
   share_caps: MEGOSZTÁS
   share_colon: "Megosztás:"
   short_code_for_this_place: Ennek a területnek egy rövid kódja, pl. USA az Amerikai Egyesült Államoknak
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Megjelenjen alapértelmezettként ez a köznyelvi név ennél a taxonnál?
   show: Megjelenítés
   show_active_and_inactive_taxa: Aktív és inaktív taxonok megjelenítése
   show_hidden_content: Rejtett tartalom megjelenítése
@@ -4585,6 +4602,8 @@ hu:
   umbrella_projects: Ernyőprojektek
   unblock: Letiltás feloldása
   unclassified: Besorolatlan
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Tudnivaló a projektekről
   unhide_content: Tartalom felfedése
   unique_identifier_of_this_taxon: E taxon egyedi azonosítója a forrás adatbázisban
   unique_observers: egyedi megfigyelő
@@ -4680,10 +4699,10 @@ hu:
   user_added_a_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
-  user_added_an_identification_html: "%{user} meghatározást javasolt"
+  user_added_an_identification_html: "%{user} hozzáadott egy meghatározást"
   user_added_an_observation_field_html: 'Megfigyelés (%{owner}): %{user} kitöltötte a(z) "%{field_name}" adatmezőt'
   user_added_an_observation_field_value_html: "%{user} értéket adott meg egy adatmezőben"
-  user_added_an_observation_html: "%{user} hozzáadott egy megfigyelést"
+  user_added_an_observation_html: "%{user} feltöltött egy megfigyelést"
   #@gender operates on %{x}
   user_added_an_x: "%{user} hozzáadott egy %{x}t"
   #@gender operates on %{x}
@@ -4694,6 +4713,9 @@ hu:
   user_added_an_x_to_noun_by_you_html: "%{user} %{x}t adott a %{noun}edhez"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{noun}: %{user} hozzáadott egy %{x}t"
+  user_added_x_observations2_html:
+    one: "%{user} feltöltött %{count} megfigyelést"
+    other: "%{user} feltöltött %{count} megfigyelést"
   user_already_authenticated: A felhasználó már hitelesítve van
   user_already_app_owner: A felhasználó már egy apptulajdonos
   user_autocomplete_placeholder: kueda, simon123, stb.
@@ -4724,6 +4746,7 @@ hu:
   user_observed_on_on_date_in_place: |
     %{user} megfigyelt egyet ekkor: %{date}, itt: %{place}
   user_suggested_an_id: "%{user} javasolt meghatározása"
+  user_updated_an_observation_field_html: '%{user} frissítette a(z) "%{field_name}" adatmezőt %{owner} megfigyelésén'
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
   username_or_email: Felhasználónév vagy email cím
@@ -5148,6 +5171,12 @@ hu:
       please_click_the_link_sent_to_email_to_confirm_html: Az emailcím megerősítéséhez kattints a(z) <span class="email">%{email}</span> címre küldött linkre.
       please_confirm_that_email_is_the_best_contact_html: Kérjük erősítsd meg, hogy <span class="email">%{email}</span> emailcímen keresztül a legjobb veled kapcsolatba lépni.
       your_site_account_has_no_email: '%{site_name} fiókodhoz nincs emailcím hozzárendelve.'
+    flags:
+      show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Bejelentett tartalom
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -5811,6 +5840,7 @@ hu:
           A természetvédelmi státusz összefoglalja a kihalás veszélyét bizonyos élőlénycsoportokra nézve.
         about_establishment_desc: |
           A "Honosság státusza" azt írja le, hogy milyen módon jutott el egy adott faj oda, ahol jelenleg előfordul. Jövevény azt jelenti, hogy emberi tevékenység miatt került be egy adott területre, őshonos pedig azt, hogy emberi segítség nélkül érkezett.
+        charts_caps: GRAFIKONOK
         charts_help_seasonality: |
           Ez a diagram az adott taxon megfigyeléseinek számát szemlélteti havi bontásban. Vedd figyelembe, hogy ezek megfigyelési számok, amelyeket befolyásolja mind az élőlény megfigyelhetősége, mind pedig a felhasználók egyéni megfigyelői szokása. Például egy madár nagyon aktívnak tűnhet májusban, ami annak is betudható, hogy a madárfigyelők májusban a legaktívabbak. Ugyanígy több szitakötő-megfigyelés jut júniusra mint januárra, valószínűleg azért, mert több megfigyelő van az északi féltekén, mint a délin, nem pedig azért, mert a a szitakötők aktívabban júniusban. Emiatt vedd vigyelembe a megfigyeléseket ábrázoló térképet is. Fogadd kritikusan ezeket a diagramaokat, ha alacsony a megfigyelések száma, és/vagy ha nagy a különbség a megerősíthető és a tudományos szintű megfigyelések száma között.
         charts_help_history: |
@@ -5866,6 +5896,18 @@ hu:
           <i>lupus</i>ra. Ez jó nagy felfordulást okozhat, úgyhogy óvatosan használd.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Csak olyan neveket adj hozzá, amelyeket máshol is használnak már. Kérjük, hogy ne találj ki új neveket.</p></li>
+          <li><p>Ne hozz létre duplikált neveket, például ne nevezz el különböző sólyomfajokat "sólyom"-nak. </p></li>
+          <li><p>Az élőlények magyar köznyelvi neveit kis kezdőbetűvel írjuk (pl. közönséges fügekaktusz, pókszabásúak), kivéve, ha a névben tulajdonnév szerepel (pl. Debreczy-fügekaktusz, Kitaibel-árvácska).</p></li>
+          <li><p>Ne adj hozzá olyan információt, ami nem név, például zárójelben megjegyzést arról, hogyan kéne a nevet használni.</p></li>
+          <li><p>Ha új szókészletet töltesz fel (ez ritkán fordul elő, mivel a magyar mint szókészlet már szerepel!), akkor azt angolul nevezd el, különben lehetetlen lesz számunkra, hogy lokalizált neveket mutassunk azon felhasználók számára, akik más nyelveken használják a honlapot.</p></li>
+          <li><p>A lefordított köznevek alapértelmezettként fognak megjelenni, ha a felhasználó azon a nyelven használja a felületet (feltéve ha ez egyéb felhasználói beállitásokkal nem ütközik).
+          <a class="readmore" href="/pages/translate">További információ a felhasználó felület fordításáról</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           A nevet opcionálisan földrajzi területhez rendelheted, ezzel a név elsőbbségben részesül az adott terület honlapjai és felhasználói számára. Ha több név van egy területhez, sorrendiséget állíthatsz be <a href="%{url}">itt</a>. Kérjük <strong>ne adj hozzá</strong> nevet MINDEN területhez külön-külön, ahol az adott nevet használják, csak olyan területekhez, ahol eltérő a név más területekhez képest.
     users:
@@ -6412,6 +6454,13 @@ hu:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: érvényesnek kell lennie a megadott elhelyezéshez
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: érvényesnek kell lennie a megadott elhelyezéshez
         application:
           attributes:
             redirect_uri:

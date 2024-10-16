@@ -195,7 +195,9 @@ class Annotation < ApplicationRecord
   end
 
   def touch_resource
-    return unless resource.respond_to?( :updated_at ) && !( resource.bulk_delete || bulk_delete )
+    return unless resource.respond_to?( :updated_at ) &&
+      !( resource.bulk_delete || bulk_delete ) &&
+      resource.persisted?
 
     resource.update_columns( updated_at: Time.now )
   end

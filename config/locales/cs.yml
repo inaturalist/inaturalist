@@ -355,6 +355,8 @@ cs:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Přidat odrážkový seznam
   add_a_comment: Vložit komentář
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Přidat stav ochrany
   add_a_field: Vložit pole
   add_a_flag: Označit
   #Tool tip for a button that adds a link to a text area
@@ -436,6 +438,7 @@ cs:
   add_plant_phenology_fruiting_annotation: 'Přidat anotaci „Fenologie rostliny: plození“'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: žádný důkaz o kvetení"'
   add_flowers_and_fruits_flower_buds_annotation: 'Přidat poznámku "Květy a plody: Květní pupeny"'
+  add_flowers_and_fruits_flowers_annotation: 'Přidat anotaci "Květiny a plody: květiny"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Přidat poznámku "Květy a plody: Květy a semena"'
   add_flowers_and_fruits_no_flower_or_fruits: 'Přidat poznámku "Květy a plody: Žádné květy ani plody"'
   add_leaves_breaking_leaf_buds: 'Přidat poznámku "Listy: Listové pupeny"'
@@ -906,6 +909,7 @@ cs:
   back_to_your_observations: Zpátky na vaše pozorování
   back_to_your_profile: Zpátky na váš profil
   badges: Odznaky
+  base_map_copyright_openstreetmap_html: Základní mapa © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -2368,7 +2372,6 @@ cs:
   identotron_for: Identotron pro
   identotron_help: Nápověda pro Identotron
   ids: "ID"
-  ids_made_for_others: ID vytvořená pro ostatní
   if_for_some_reason_a_user_doesnt_agree: |
     Pokud z nějakého důvodu nesouhlasíte s komunitním taxonem, můžete ho odmítnout, což znamená, že vaše ID se použije pro propojení s dalšími pozorováními, aktualizaci seznamů atd. Dále to znamená, že vaše pozorování se může dostat na úroveň výzkumu pouze tehdy, bude-li s vámi komunita souhlasit.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -3391,6 +3394,10 @@ cs:
     Stejná identifikace (A) nebo konkrétnější (B), než taxon pozorování, bude započítána mezi Shody.
   observation_accuracy_validator_email_with_gratitude: S vděčností,
   observation_accuracy_validator_email_the_inaturalist_team: Tým iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Prosím, neodpovídejte na tuto zprávu. Pokud máte dotazy nebo zpětnou vazbu, prosím komentujte <a href="%{url}">tento příspěvek na blogu</a> nebo napište na <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Prosím, neodpovídejte na tuto zprávu. Pokud máte dotazy nebo zpětnou vazbu, napište prosím na e-mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4834,6 +4841,8 @@ cs:
   show_no_annotation: Zobrazit "Bez anotace"
   show_off_your_recent_observations: Ukažte svá poslední pozorování na svém blogu nebo webové stránce!
   show_only: Zobrazit jen
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Zobrazit OpenStreetMap
   show_relative_proportions_of_all_observations: Zobrazte příbuzné části všech pozorování
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Zobrazit průběžný součet
@@ -5778,6 +5787,11 @@ cs:
   user_added_an_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Uživatel %{user} přidal %{x} k %{noun}"
+  user_added_x_observations2_html:
+    one: "%{user} přidal %{count} pozorování"
+    few: "%{user} přidal %{count} pozorování"
+    many: "%{user} přidal %{count} pozorování"
+    other: "%{user} přidal %{count} pozorování"
   user_already_authenticated: Uživatel je již ověřen
   user_already_app_owner: Uživatel je již vlastníkem aplikace
   user_autocomplete_placeholder: kueda, simon123, atd.
@@ -6415,6 +6429,7 @@ cs:
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klikněte zde pro opětovné odeslání potvrzovacího e-mailu
       please_add_an_email_and_password: Prosím, přidejte e-mail a heslo, abyste neztratili přístup ke svému účtu
+      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je nejlepší způsob, jak vás kontaktovat.
       your_site_account_has_no_email: Váš %{site_name} účet nemá přiřazenou e-mailovou adresu.
     flags:
       show:
@@ -6451,8 +6466,14 @@ cs:
           figure_alt_text: Geomodel vytváří štítky Očekáváno v okolí
         unthresholded_map:
           unthresholded_map: Predikce Geomodelu před prahováním
+          for_example: |
+            Například pozorování ještěrky v centru Spojených států by mohlo mít
+            více návrhů <i>Sceloporus consobrinus</i> než návrhů
+             <i>Sceloporus occidentalis</i> založené na porovnání nelimitovaných map, navzdory tomu, že je vizuálně podobná.
         range_comparison:
           expected_nearby_vs_taxon_range: Očekáváno v okolí vs mapa výskytu
+          this_map_shows: |
+            Tato mapa zobrazuje rozsah taxonů pro tento druh překrývá mapu očekávaného okolí, kterou používáme k vyhodnocení Geomodelu.
           combining_these_maps_produces: |
             Po zkombinování těchto tří map vzniknou tři druhy oblastí:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
@@ -6720,6 +6741,7 @@ cs:
       mark_remaining_as_not_relevant: Označit zbývající jako nerelevantní
       #view the observations in the iNaturalist Identify tool
       view_these_observations_in_identify: Zobrazit tato pozorování v Identifikovat
+      this_demo_tool3: Tento demo nástroj vám umožní zadat hledaná fráze (například "<a href="%{url}">%{query_in_english}</a>"), a porovnává to s 10 miliony iNaturalist fotografiemi. Výsledky jsou seřazeny od většiny do nejmenšího významu. Můžete použít toto demo jako nový způsob, jak najít zajímavá pozorování iNaturalist pro anotování nebo přidání do vašeho projektu.
       if_youd_like_to_support_this_work: Pokud chcete podpořit tuto práci
       thank_you_for_your_submission!: Děkujeme za váš příspěvek!
     oauth:

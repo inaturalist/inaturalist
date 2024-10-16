@@ -2267,7 +2267,7 @@ nl:
   identotron_for: Identotron voor
   identotron_help: Indentotron hulp
   ids: "ID's"
-  ids_made_for_others: ID's voor anderen gedaan
+  ids_made_for_others__title: ID's voor anderen gedaan
   if_for_some_reason_a_user_doesnt_agree: |
     Als je niet akkoord gaat met het gemeenschapstaxon kun je het verwerpen. Jouw determinatie wordt dan gebruikt bij het koppelen aan andere waarnemingen, het bijwerken van levenslijsten, etc. Je waarneming kan alleen van onderzoekskwaliteit worden wanneer de gemeenschap het met je eens is.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -3165,6 +3165,9 @@ nl:
   not_confident: We hebben er onvoldoende vertrouwen in dat we een goede aanbeveling zullen doen.
   not_confident_top_suggestions: 'We zijn niet zeker genoeg om een aanbeveling te doen maar dit zijn onze belangrijkste voorstellen:'
   not_covered_by_any_taxon_frameworks: Niet gedekt door enig taxonkader
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Niet in de buurt verwacht
   not_evaluated: Niet beoordeeld
   not_findig_what_you_want: Niet gevonden wat je zoekt?
   not_finding_place_you_want?: Niet de plek gevonden die je zoekt?
@@ -5682,6 +5685,9 @@ nl:
   user_faved_this_observation: "%{user} heeft deze waarneming als favoriet opgeslagen"
   user_flagged_as_a_non_spammer_html: "%{user} gemarkeerd als een niet-spammer"
   user_flagged_as_a_spammer_html: "%{user} gemeld als een spammer"
+  user_has_been_removed_from_site: |
+    %{username} is verwijderd van %{site_name} (het kan tot een uur duren
+    om alle bijbehorende content volledig te verwijderen)
   user_has_opted_out_of_community_id: Gebruiker heeft het gemeenschapstaxon uitgezet
   user_hasnt_joined_any_projects: "%{user} neemt niet deel aan enig project"
   user_helped_x_people_with_y_ids_html: "%{user} hielp <strong>%{x} mensen</strong> met <strong>%{y} determinaties</strong>"
@@ -5709,6 +5715,7 @@ nl:
   user_trusts_you_with_their_private_coordinates: "%{user} vertrouwt je hun verborgen coördinaten toe"
   user_trusts_you_with_their_private_coordinates_desc: |
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
+  user_updated_an_observation_field_html: '%{user} heeft een waarde voor "%{field_name}" op een waarneming door %{owner} bijgewerkt'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schreef,
   username: Gebruikersnaam
   username_description: Dit is de gebruikersnaam die je gebruikt om in te loggen, en die andere gebruikers kunnen gebruiken om je te identificeren op iNaturalist
@@ -6329,6 +6336,10 @@ nl:
       your_site_account_has_no_email: Jouw %{site_name} account heeft geen gekoppeld e-mailadres.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Te markeren inhoud
         flaggable_content_desc: |
           De inhoud die gemeld kan worden is het primaire tekst-attribuut van het gemelde object op het moment dat de melding werd gemaakt. Aleen curatoren en medewerkers kunnen dit zien. Bij berichten kunnen alleen medewerkers dit zien.
         flags_that_should_not_be_resolved_desc_html: |
@@ -6387,14 +6398,28 @@ nl:
           figure_alt_text: De 'In de buurt verwacht'-kaart en het verspreiding van het taxon worden vergeleken
           combining_these_maps_produces: |
             Het combineren van deze kaarten levert 3 soorten cellen:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Ware Aanwezigheden:
           true_presences_definition2: Gebieden waar zowel de 'In de buurt verwacht'- kaart en het verspreiding van het taxon voorspelt dat het taxon voorkomt
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Valse Aanwezigheden:
           false_presences_definition: Gebieden waar alleen de 'In de buurt verwacht'- kaart voorspelt dat het taxon voorkomt
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Valse Afwezigheden:
           false_absences_definition: Gebieden waar alleen de verspreiding van het taxon aanwezig is
           evaluation_statistics_for_taxon: Evaluatie statistieken van %{taxon}
           #The fraction of the Expected Nearby Map that are True Presences
           precision_colon: |
             Nauwkeurigheid:
           precision_description: Het deel van de 'In de buurt verwacht'-kaart dat True Presences zijn
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Ware Aanwezigheden / (Ware Aanwezigheden + Valse Aanwezigheden) = %{precision}
           #The fraction of the Taxon Range that are True Presences
           recall_colon: |
             Herroepen:

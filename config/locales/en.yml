@@ -2288,6 +2288,9 @@ en:
   geoprivacy_is_private: Geoprivacy is private
   geoprivacy_is_private_desc: Observer has chosen to hide the coordinates.
   georeferenced: Georeferenced?
+  # short heading for a category of filters relating to geospatial qualities of
+  # an observation - relating to its location
+  geospatial: Geospatial
   get_started: Get Started
   # Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Getting Started
@@ -2402,6 +2405,9 @@ en:
   # Option to hide data series that show "No Annotation" data, i.e. records that
   # have no annotation
   hide_no_annotation: Hide "No Annotation"
+  # Label for a checkbox to remove observations from search results where the
+  # observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Hide observations with private locations
   # Label for a button to hide the running total of an accumulation chart
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
@@ -3425,6 +3431,9 @@ en:
   not_confident: We're not confident enough to make a recommendation.
   not_confident_top_suggestions: We're not confident enough to make a recommendation, but here are our top suggestions
   not_covered_by_any_taxon_frameworks: Not covered by any taxon frameworks
+  # label for a checkbox to limit search results to observations where iNaturalist
+  # Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Not expected nearby
   not_evaluated: not evaluated
   not_findig_what_you_want: Not finding what you want?
   not_finding_place_you_want?: Not finding the place you want?
@@ -6701,6 +6710,10 @@ en:
           please_read_the_teachers_guide_html: |
             If so, please read our <a href="%{url}">Teacher's Guide</a> for
             tips on using %{site_name} with students.
+          # welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            If so, please read our <a href="%{url}">Educator's Guide</a> for
+            tips on using %{site_name} with students.
     donate:
       donate_short_desc: "Donate now to show your support!"
       donate_desc_moore_html: |
@@ -9905,6 +9918,10 @@ en:
             place_geometry:
               is_too_large_to_edit: is too large to edit
               is_too_large_to_import: is too large to import
+              # Error message when a query run during place geometry upload times out. The query
+              # will time out if the geometry covers a large area or is very complicated, containing
+              # a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: is too large or complicated to process before timing out
               contains_too_many_observations: contains too many observations to import
               cannot_be_blank: cannot be blank
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90

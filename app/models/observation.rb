@@ -1488,24 +1488,26 @@ class Observation < ApplicationRecord
   def sounds?
     sounds.loaded? ? ! sounds.empty? : sounds.exists?
   end
-  
-  def set_quality_grade(options = {})
+
+  def set_quality_grade
     self.quality_grade = get_quality_grade
     true
   end
-  
-  def self.set_quality_grade(id)
-    return unless observation = Observation.find_by_id(id)
-    observation.set_quality_grade(:force => true)
-    observation.save
+
+  def self.set_quality_grade( id )
+    observation = Observation.find_by_id( id )
+    return unless observation
+
+    observation.set_quality_grade
     if observation.quality_grade_changed?
-      CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "CheckList::refresh_with_observation": id }).
-        refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+      observation.save
+      CheckList.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "CheckList::refresh_with_observation": id } ).
+        refresh_with_observation( observation.id, taxon_id: observation.taxon_id )
     end
     observation.quality_grade
   end
-  
+
   def get_quality_grade
     if !research_grade_candidate?
       CASUAL

@@ -1,5 +1,36 @@
 ml:
+  x_languages:
+    one: "%{count} ഭാഷ"
+    other: "%{count} ഭാഷകൾ"
   about: സംബന്ധിച്ച്
+  add_to_calendar: കലണ്ടറിലേക്ക് ചേർക്കുക
+  calendar: കലണ്ടർ
+  doh_something_went_wrong: അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്.
+  doh_something_went_wrong_error: "അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്: %{error}"
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: പ്രിയപ്പെട്ടവ
+  favorite_taxa: പ്രിയപ്പെട്ട ടാക്സ
+  favorites: "പ്രിയപ്പെട്ടവ"
+  Genus: ജീനസ്സ്
+  header_your_calendar: നിങ്ങളുടെ കലണ്ടർ
+  header_your_favorites: നിങ്ങളുടെ പ്രിയപ്പെട്ടവ
+  no_favorites_added:
+    current_user: നിങ്ങൾ ഇതുവരെ പ്രിയപ്പെട്ടവ ചേർത്തിട്ടില്ല.
+  ranks:
+    genus: ജീനസ്സ്
+    #Singular
+    species: സ്പീഷീസ്
+    x_species:
+      one: സ്പീഷീസ്
+      other: സ്പീഷീസ്
+    #Singular
+    subspecies: സബ്സ്പീഷീസ്
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: ജീനസ്സ്
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: സ്പീഷീസ്
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
+  ranks_lowercase_subspecies: സബ്സ്പീഷീസ്
   number:
     format:
       significant: false

@@ -12,6 +12,8 @@ ta:
   actions: செயல்கள்
   added: சேர்க்கப்பட்டது
   agree_: ஒருமனப்படு
+  agree?: ஒருமனப்படு?
+  agreeing: ஒப்புதல்...
   all_photos: அனைத்து புகைப்படங்கள்
   all_places: "அனைத்து இடங்கள்"
   all_taxa:
@@ -20,6 +22,23 @@ ta:
     mammals: பாலூட்டிகள்
     plants: தாவரங்கள்
     life: வாழ்க்கை
+  #Label for an option to show content from any date
+  any_date: ஏதாவது
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: ஏதாவது
+    flowers_and_fruits: பூக்கள் மற்றும் பழங்கள்
+    flower_budding: பூ மொட்டாகும் செயல்முறை
+    flowering: பூக்கும்
+    flower_buds: பூ மொட்டுகள்
+    flowers: பூக்கள்
+    no_evidence_of_flowering: மலர்வதற்கான சாட்சியமில்லை
+  date_: தேதி
+  date_added: தேதி சேர்க்கப்பட்டது
+  date_authorized: ஒப்புக்கொள்ளப்பட்ட தேதி
+  date_created: உருவாக்கிய தேதி
+  disagree_: எதிர்மனப்படு
+  got_it!: சரி!
   lexicons:
     french: பிரெஞ்சு
   locales:
@@ -31,6 +50,22 @@ ta:
   places_name:
     french_guiana: பிரெஞ்சு கயானா
     french_polynesia: பிரெஞ்ச் பாலிநீசியா
+  upload: அப்லோடு செய்ய
+  upload_a_csv_file: அப்லோடு செய்ய சசிவ் பைலை
+  'yes': "ஆம்"
+  yes_license_my_observations_so_scientists_can_use: ஆம், விஞ்ஞானிகள் தரவைப் பயன்படுத்துவதற்காக எனது படங்கள், பதிவுகள் மற்றும் அவதானிப்புகளுக்கு உரிமம் வழங்குகிறேன் (பரிந்துரைக்கப்பட்டது).
+  views:
+    projects:
+      project_user_curator_coordinate_access_labels:
+        none: இல்லை.
+    stats:
+      year:
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: ஒருமுறை
+    taxa:
+      show:
+        frequency:
+          "Plant Phenology=Flowering": பூக்கும்
   number:
     format:
       significant: false

@@ -36,8 +36,8 @@ class Identification < ApplicationRecord
   # Note: update_categories must run last, or at least after update_observation,
   # b/c it relies on the community taxon being up to date
   after_commit :update_categories,
-               :update_obs_stats,
                :update_observation,
+               :update_obs_stats,
                :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
   
@@ -244,10 +244,10 @@ class Identification < ApplicationRecord
     return true unless observation
     return true if skip_observation
     return true if destroyed?
+
     attrs = {}
     if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
-      attrs = {}
       if user_id == observation.user_id
         species_guess = observation.species_guess
         unless taxon.taxon_names.exists?( name: species_guess )
@@ -255,23 +255,29 @@ class Identification < ApplicationRecord
         end
         attrs[:species_guess] = species_guess
       end
-      ProjectUser.delay(priority: INTEGRITY_PRIORITY,
+      ProjectUser.delay(
+        priority: INTEGRITY_PRIORITY,
         run_at: 1.minute.from_now,
         unique_hash: { "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [
-          observation.id, observation.user_id ] }
-      ).update_taxa_obs_and_observed_taxa_count_after_update_observation(observation.id, observation.user_id)
+          observation.id, observation.user_id
+        ] }
+      ).update_taxa_obs_and_observed_taxa_count_after_update_observation( observation.id, observation.user_id )
     end
     observation.wait_for_index_refresh ||= !!wait_for_obs_index_refresh
     observation.identifications.reload
     Observation.preload_associations( observation, { identifications: [:taxon, :moderator_actions] } )
-    observation.set_community_taxon(force: true)
+    observation.set_community_taxon( force: true )
     observation.set_taxon_geoprivacy
+    # reoad observation quality metrics before recalculating quality grade in case quality metrics
+    # were added in another thread in the middle of the Identification adding transaction
+    observation.quality_metrics.reload
+    observation.set_quality_grade
     observation.skip_identification_indexing = true
     observation.skip_indexing = true
-    observation.update(attrs)
+    observation.update( attrs )
     true
   end
-  
+
   def update_observation_after_destroy
     return true unless self.observation
     # return true unless self.observation.user_id == self.user_id

@@ -50,30 +50,45 @@ class ObservationGeoScoreUpdater
     end
   end
 
-  def index_all_via_elasticsearch
-    maximum_id = Observation.maximum( :id )
-    chunk_start_id = 1
+  def index_all_via_elasticsearch( min_id: nil, max_id: nil, not_expected_nearby: nil )
+    maximum_id = max_id || Observation.maximum( :id )
+    chunk_start_id = min_id || 1
     search_chunk_size = 5_000
     start_time = Time.now
     while chunk_start_id <= maximum_id
       puts "Loop starting at #{chunk_start_id}; time: #{( Time.now - start_time ).round( 2 )}"
       chunk_id_below = chunk_start_id + search_chunk_size
+      if chunk_id_below > maximum_id
+        chunk_id_below = maximum_id + 1
+      end
 
+      query_filters = [
+        { range: { id: { gte: chunk_start_id } } },
+        { range: { id: { lt: chunk_id_below } } }
+      ]
+      if not_expected_nearby
+        query_filters << {
+          range: { geo_score: { lt: 1.0 } }
+        }
+      end
       elastic_response = Observation.elastic_search(
         sort: { id: :asc },
         size: search_chunk_size,
-        filters: [
-          { range: { id: { gte: chunk_start_id } } },
-          { range: { id: { lt: chunk_id_below } } }
-        ],
+        filters: query_filters,
         source: ["id", "taxon.id", "location", "private_location"]
       )
 
-      index_observation_range(
-        map_elastic_response_to_observations_to_score( elastic_response ),
-        chunk_start_id,
-        chunk_id_below
-      )
+      if not_expected_nearby
+        # when using the `not_expected_nearby` option, we only want to udpate scores from results,
+        # not all scores for all observations from the entire ID range
+        index_observations_from_elastic_response( elastic_response )
+      else
+        index_observation_range(
+          map_elastic_response_to_observations_to_score( elastic_response ),
+          chunk_start_id,
+          chunk_id_below
+        )
+      end
       chunk_start_id += search_chunk_size
     end
   end
@@ -106,15 +121,19 @@ class ObservationGeoScoreUpdater
 
       puts "Loop starting at #{search_after&.first || 1}; time: #{( Time.now - start_time ).round( 2 )}"
       search_after = [elastic_response.response.hits.hits.last._source.id]
-      observations_to_score = map_elastic_response_to_observations_to_score( elastic_response )
-      geo_scores_response = RestClient.post(
-        "#{@vision_api_url}/geo_scores_for_taxa", {
-          observations: observations_to_score
-        }.to_json, content_type: :json, accept: :json
-      )
-      geo_scores = JSON.parse( geo_scores_response )
-      index_batch( geo_scores, delete_existing_scores: true )
+      index_observations_from_elastic_response( elastic_response )
     end
+  end
+
+  def index_observations_from_elastic_response( elastic_response )
+    observations_to_score = map_elastic_response_to_observations_to_score( elastic_response )
+    geo_scores_response = RestClient.post(
+      "#{@vision_api_url}/geo_scores_for_taxa", {
+        observations: observations_to_score
+      }.to_json, content_type: :json, accept: :json
+    )
+    geo_scores = JSON.parse( geo_scores_response )
+    index_batch( geo_scores, delete_existing_scores: true )
   end
 
   def map_elastic_response_to_observations_to_score( elastic_response )
