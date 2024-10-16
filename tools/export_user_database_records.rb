@@ -51,6 +51,7 @@ puts "Exporting logs for #{USER.id} / #{USER.login} from #{START_DATE} until #{E
 
 WORK_PATH = Dir.mktmpdir
 FileUtils.mkdir_p( WORK_PATH, mode: 0o755 )
+FILE_SUFFIX = "#{Date.today.to_s.gsub( '-', '' )}-#{Time.now.to_i}".freeze
 
 def export_messages
   export_columns = [
@@ -65,7 +66,7 @@ def export_messages
     :created_at,
     :updated_at
   ]
-  CSV.open( File.join( WORK_PATH, "messages.csv" ), "w" ) do | csv |
+  CSV.open( File.join( WORK_PATH, "export-user-#{USER.id}-messages-postgresql-" + FILE_SUFFIX ), "w" ) do | csv |
     csv << export_columns
     messages = Message.where(
       "created_at >= ? AND created_at <= ?", START_DATE, END_DATE
