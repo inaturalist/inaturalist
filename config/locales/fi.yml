@@ -5433,6 +5433,9 @@ fi:
             mukavana paikkana kaikille.
           please_read_the_teachers_guide_html: |
             Jos niin, lue <a href="%{url}">Opettajan oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden kanssa.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Jos niin, lue <a href="%{url}">Opettajan oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden kanssa.
     donate:
       donate_short_desc: "Lahjoita nyt näyttääksesi tukesi!"
       post_donate_social_media_text: Tuen iNaturalistia koska...
@@ -7015,6 +7018,10 @@ fi:
             place_geometry:
               is_too_large_to_edit: on liian iso muokattavaksi
               is_too_large_to_import: on liian iso tuotavaksi
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: on liian suuri tai monimutkainen käsiteltäväksi ennen ajan loppumista
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
               cannot_be_blank: ei voi olla tyhjä
               invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
