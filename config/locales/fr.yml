@@ -2071,7 +2071,7 @@ fr:
   georeferenced: Géolocalisé ?
   #short heading for a category of filters relating to geospatial qualities of
   #an observation - relating to its location
-  geospatial: Géolocalisation
+  geospatial: Géospatial
   get_started: Commencer
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Premiers pas
@@ -6159,6 +6159,9 @@ fr:
             <a href="%{url}">Consultez les règles de la communauté</a> pour des conseils pour qu'iNaturalist reste un endroit amical et convivial.
           please_read_the_teachers_guide_html: |
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
     donate:
       donate_short_desc: "Faites un don maintenant pour montrer que vous nous soutenez  !"
       donate_desc_moore_html: |
@@ -8739,6 +8742,10 @@ fr:
             place_geometry:
               is_too_large_to_edit: est trop grand pour être modifié
               is_too_large_to_import: est trop gros pour être importé
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: est trop étendu ou compliqué à traiter avant l'expiration du délai
               contains_too_many_observations: contient trop d'observations à importer
               cannot_be_blank: ne peut pas être vide
               invalid_point: a des coordonnées non valides, par exemple une longitude supérieure à 180° ou une latitude inférieure à -90°
