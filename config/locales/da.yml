@@ -9037,6 +9037,10 @@ da:
             place_geometry:
               is_too_large_to_edit: er for stor til at redigere
               is_too_large_to_import: er for stor til import
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: er for stor eller kompliceret at behandle, før timeout indtræffer
               contains_too_many_observations: indeholder for mange observationer til import
               cannot_be_blank: er obligatorisk
               invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
