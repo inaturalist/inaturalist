@@ -6,11 +6,11 @@ resurrection_cmds = []
 dbname = ActiveRecord::Base.connection.current_database
 
 puts
-puts <<-EOT
-This script assumes you're currently connected to a database that has the data
-you want to export, so if it bails b/c it can't find your user, that's
-probably why.
-EOT
+puts <<-INFO
+  This script assumes you're currently connected to a database that has the data
+  you want to export, so if it bails b/c it can't find your user, that's
+  probably why.
+INFO
 puts
 
 system "rm resurrect_#{user_id}*"
@@ -41,6 +41,19 @@ has_many_reflections.each do |k, reflection|
   system cmd
   puts "\t#{cmd}"
   resurrection_cmds << "psql #{dbname} -c \"\\COPY #{reflection.table_name} (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
+
+  # Add commands to remove DeletedPhotos of restored Photos
+  next unless reflection.table_name == "photos"
+
+  photo_id_column_index = column_names.index( "id" )
+  next unless photo_id_column_index && File.exist?( fname )
+
+  photo_ids = []
+  CSV.foreach( fname ) {| row | photo_ids << row[photo_id_column_index] }
+  photo_ids.in_groups_of( 1000, false ) do | group_photo_ids |
+    resurrection_cmds << "psql #{dbname} -c \"DELETE FROM deleted_photos " \
+      "WHERE photo_id IN (#{group_photo_ids.join( ',' )})\""
+  end
 end
 
 puts "Exporting from identifications..."
