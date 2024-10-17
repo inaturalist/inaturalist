@@ -6298,6 +6298,10 @@ sv:
             <a href="%{url}">Läs gärna communityns riktlinjer</a> för tips om att låta iNaturalist förbli en vänlig och välkomnande plats att vara på.
           please_read_the_teachers_guide_html: |
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Om så är fallet, läs vår <a href="%{url}">Undervisningsguide</a> för
+            tips om att använda %{site_name} tillsammans med studenter.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
       donate_desc_moore_html: |
@@ -8750,6 +8754,10 @@ sv:
             place_geometry:
               is_too_large_to_edit: är för stor för att redigeras
               is_too_large_to_import: är för stor för att importeras
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: är för stor eller komplicerad för att bearbetas innan time out
               contains_too_many_observations: innehåller för många fynd för import
               cannot_be_blank: kan inte vara tomt
               invalid_point: har en ogiltig punkt, t.ex. längdgrad större än 180 eller breddgrad mindre än -90
