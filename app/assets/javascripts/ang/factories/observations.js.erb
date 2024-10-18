@@ -133,7 +133,7 @@ iNatAPI.factory( "ObservationsFactory", [
         } );
         // ...and then consolidate their responses
         return Promise.all( promises ).then( function ( promiseResults ) {
-          const taxa = _.flatten( promiseResults );
+          var taxa = _.flatten( promiseResults );
           var newResults = speciesCountsResponse.data.results.map( function( res ) {
             res.taxon = taxa.find( function( taxon ) { return taxon.id === res.taxon.id; } );
             return res;
