@@ -114,10 +114,34 @@ iNatAPI.factory( "ObservationsFactory", [
       return shared.basicGet( url, _.extend( { }, params, { fields: V2_OBSERVATION_FIELDS } ) );
     };
     var speciesCounts = function ( params ) {
+      // First we need to get the actual counts response
       var url = "/observations/species_counts";
       return shared.basicGet( url, _.extend( { }, params, {
-        fields: { taxon: V2_TAXON_FIELDS }
-      } ) );
+        fields: { taxon: { id: true } }
+      } ) ).then( function( speciesCountsResponse ) {
+        // Then we want to load taxa including ancestors, which are only
+        // available from the details endpoint. That endpoint only accepts 30
+        // IDs at a time, so we need to make multiple requests...
+        var taxonIds = speciesCountsResponse.data.results.map( function( res ) { return res.taxon.id; } );
+        var promises = _.chunk( taxonIds, 30 ).map( function ( taxonIdsChunk ) {
+          return shared.basicGet(
+            "/taxa/" + taxonIdsChunk.join( "," ),
+            { per_page: 30, fields: V2_TAXON_FIELDS }
+          ).then( function( taxaResponse ) {
+            return taxaResponse.data.results;
+          } );
+        } );
+        // ...and then consolidate their responses
+        return Promise.all( promises ).then( function ( promiseResults ) {
+          const taxa = _.flatten( promiseResults );
+          var newResults = speciesCountsResponse.data.results.map( function( res ) {
+            res.taxon = taxa.find( function( taxon ) { return taxon.id === res.taxon.id; } );
+            return res;
+          } )
+          speciesCountsResponse.data.results = newResults;
+          return speciesCountsResponse;
+        } );
+      } );
     };
     var identifiers = function ( params ) {
       var url = "/observations/identifiers";

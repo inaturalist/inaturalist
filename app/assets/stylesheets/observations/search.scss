@@ -1117,6 +1117,47 @@ $photo-count-line-width: 1px;
   background-color:#D12F19;
 }
 
+#taxa-grid {
+  .corner {
+    // We want z-index so the details appears over subsequent elements, but
+    // only when it's open
+    &.context-menu:has(details[open]) {
+      z-index: 1;
+    }
+    &.context-menu {
+      left: 0;
+      right: auto;
+      background-color: transparent;
+      details:hover {
+        summary {
+          color: white;
+        }
+      }
+      summary {
+        list-style: none;
+        width: 25px;
+        height: 25px;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, .25);;
+      }
+      .menu {
+        box-shadow: 0 1px 10px rgba(0, 0, 0, .25);
+        background-color: white;
+        border: 0 transparent;
+        color: black;
+        text-align: start;
+        padding: 5px;
+        ul {
+          list-style: none;
+          padding-inline-start: 0px;
+          li {
+            padding: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
 #taxa-grid .photometa {
   position: absolute;
   top: 182px;

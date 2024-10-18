@@ -8,6 +8,21 @@
           {{ t.conservation_status.status }}
         %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.conservationStatus( )", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.taxonMeansTitle( t ) }}" }
           {{ t.establishmentMeansCode( ) }}
+        %div{ class: "corner context-menu" }
+          %details.btn.btn-nostyle
+            %summary
+              %i.fa.fa-sliders
+            %div.menu
+              %ul
+                %li
+                  Add / Subtract Ancestor Taxa
+                  %ul
+                    %li{ "ng-repeat": "a in t.ancestors" }
+                      %button.btn.btn-primary.btn-xs{ "ng-click": "addTaxon(a)", "ng-disabled": "{{ a.id === params.taxon_id }}" }
+                        %i.fa.fa-plus
+                      %button.btn.btn-default.btn-xs{ "ng-click": "subtractTaxon(a)", "ng-disabled": "{{ a.id !== params.taxon_id && selectedTaxon.ancestor_ids.indexOf( a.id ) >= 0 }}" }
+                        %i.fa.fa-minus
+                      {{ a.name }}
         .photometa
           %a{ "ng-href": "{{ extendBrowserLocation({ taxon_id: t.id, view: null, page: null }) }}", target: "_self"  }
             {{ shared.t( 'x_observations', { count: (t.resultCount == 1 ? t.resultCount : shared.numberWithCommas( t.resultCount ) ) } ) }}

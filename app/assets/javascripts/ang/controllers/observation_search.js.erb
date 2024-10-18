@@ -1158,6 +1158,26 @@ var SearchController = function (
     $scope.drawing.manager.setMap( $rootScope.map );
   };
 
+  $scope.addTaxon = function( taxon ) {
+    $scope.selectedTaxon = new iNatModels.Taxon( taxon );
+    $scope.params.taxon_id = taxon.id;
+    $scope.updateTaxonAutocomplete( );
+    $scope.searchAndUpdateStats( );
+  }
+
+  $scope.subtractTaxon = function( taxon ) {
+    if ( $scope.params.taxon_id === taxon.id ) {
+      $scope.selectedTaxon = null;
+      $scope.params.taxon_id = null;
+      $scope.updateTaxonAutocomplete( );
+      $scope.searchAndUpdateStats( );
+    } else {
+      $scope.params.without_taxon_id = $scope.params.without_taxon_id
+        ? [$scope.params.without_taxon_id, taxon.id].join( "," )
+        : taxon.id;
+    }
+  }
+
   $scope.filterByBounds = function ( ) {
     $scope.params.lat = null;
     $scope.params.lng = null;
