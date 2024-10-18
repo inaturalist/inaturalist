@@ -6337,6 +6337,10 @@ da:
           please_read_the_teachers_guide_html: |
             Hvis ja, læs venligst vores <a href="%{url}"> lærervejledning </a> med
             tips til at bruge %{site_name} med studerende.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Hvis ja, læs venligst vores <a href="%{url}">Lærervejledning</a> med
+            tips til brug af %{site_name} med studerende.
     donate:
       donate_short_desc: "Donér nu for at vise din støtte!"
       donate_desc_moore_html: |
@@ -9033,6 +9037,10 @@ da:
             place_geometry:
               is_too_large_to_edit: er for stor til at redigere
               is_too_large_to_import: er for stor til import
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: er for stor eller kompliceret at behandle, før timeout indtræffer
               contains_too_many_observations: indeholder for mange observationer til import
               cannot_be_blank: er obligatorisk
               invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90

@@ -6033,6 +6033,9 @@ id:
             <a href="%{url}">Lihat Pedoman Komunitas</a> untuk petunjuk tentang cara memelihara iNaturalist sebagai tempat yang ramah dan bersahabat.
           please_read_the_teachers_guide_html: |
             Jika ya, silakan membaca <a href="%{url}">Panduan Guru</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Jika ya, silakan membaca <a href="%{url}">Panduan Tenaga Pendidik</a> untuk beberapa tips dalam menggunakan %{site_name} bersama dengan pelajar.
     donate:
       donate_short_desc: "Donasi sekarang untuk memberikan dukungan!"
       donate_desc_moore_html: |
@@ -8264,6 +8267,10 @@ id:
             place_geometry:
               is_too_large_to_edit: terlalu besar untuk diubah
               is_too_large_to_import: terlalu besar untuk diimpor
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: terlalu besar atau terlalu rumit untuk diproses sebelum batas waktu pemrosesan
               contains_too_many_observations: mengandung terlalu banyak pengamatan untuk diimpor
               cannot_be_blank: tidak boleh kosong
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
