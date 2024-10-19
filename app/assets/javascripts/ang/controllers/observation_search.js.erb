@@ -2312,8 +2312,7 @@ var MapController = function (
   };
 };
 document.addEventListener( 'click', function( e ) {
-  var details = [...document.querySelectorAll( 'details.explore-details-popover' )];
-  details.forEach( function( f ) {
+  document.querySelectorAll( 'details.explore-details-popover' ).forEach( function( f ) {
     if ( !f.contains( e.target ) ) {
       f.removeAttribute( "open" );
     }
