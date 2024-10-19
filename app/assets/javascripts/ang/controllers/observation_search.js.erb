@@ -1181,7 +1181,7 @@ var SearchController = function (
       $scope.searchAndUpdateStats( );
     } else {
       $scope.witoutTaxa = $scope.witoutTaxa || [];
-      var existing = $scope.witoutTaxa.find( wt => wt.id === taxon.id );
+      var existing = $scope.witoutTaxa.find( function( wt ) { return wt.id === taxon.id; } );
       if ( !existing ) {
         $scope.withoutTaxa.push( taxon );
       }
@@ -1190,7 +1190,7 @@ var SearchController = function (
   }
 
   $scope.removeWithoutTaxon = function ( taxon ) {
-    $scope.withoutTaxa = $scope.withoutTaxa.filter( wt => wt.id !== taxon.id );
+    $scope.withoutTaxa = $scope.withoutTaxa.filter( function( wt ) { return wt.id !== taxon.id; } );
     $scope.params.without_taxon_id = $scope.withoutTaxa.map( function ( wt ) { return wt.id; } ).join( "," );
   }
 
@@ -2313,7 +2313,7 @@ var MapController = function (
 };
 document.addEventListener( 'click', function( e ) {
   var details = [...document.querySelectorAll( 'details.explore-details-popover' )];
-  details.forEach( f => {
+  details.forEach( function( f ) {
     if ( !f.contains( e.target ) ) {
       f.removeAttribute( "open" );
     }
