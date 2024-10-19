@@ -276,15 +276,18 @@
           .panel-body
             #participate_section{ style: ( current_user.prefers_needs_id_pilot.nil? ? "" : "display:none;" ) }
               %p
-                See up to 30 observations per day here that we think you can ID to help onboard new users. You can stop participating at any time.
-                = link_to "Read more on our blog.", "#"
+                Starting tomorrow, recieve up to 30 observations per day that we think you can ID to help onboard new users. Stop participating at any time.
+                - post = ObservationAccuracyExperiment.needs_id_pilot_post
+                - if post
+                  = link_to "Read more on our blog.", post_url( post )
               %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
             #stop_participating_section{ style: ( current_user.prefers_needs_id_pilot == true ? "" : "display:none;" ) }
               - needs_id_pilot_params = ObservationAccuracyExperiment.needs_id_pilot_params_for_user( current_user )
               - if needs_id_pilot_params
                 %p
-                  = link_to "Here are up to 30 observations", identify_observations_url( needs_id_pilot_params )
-                  that we think you can identify
+                  Below are up to 30 observations that we think you can identify
+                = link_to "Identify observations", identify_observations_url(needs_id_pilot_params), class: "btn btn-primary btn-md"
               - else
                 %p Check back tomorrow for a link to the observations we think you can ID.
-              %button{ type: "button", id: "stop_participating_button", class: "btn btn-default btn-md" } I'd like to stop participating
+              %p.text-right
+                = link_to "stop participating", "#", id: "stop_participating_link", class: "btn-link"

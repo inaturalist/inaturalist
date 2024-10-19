@@ -236,7 +236,7 @@ $( function( ) {
 
   });
 
-  $( "#stop_participating_button" ).on( "click", function( e ) {
+  $( "#stop_participating_link" ).on( "click", function( e ) {
     e.preventDefault( );
     updateSession( { prefers_needs_id_pilot: null } );
     $( "#stop_participating_section" ).hide( );
