@@ -389,6 +389,29 @@ inat-taxon.split-taxon .icon {display: none;}
 #filter-container,
 #filters .primary-filters {
   margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  margin-inline-end: 5px;
+
+  > button {
+    margin: 0;
+    color: #fff;
+    background: $btn-orange;
+  }
+
+  .without-taxa {
+    z-index: 2;
+    position: relative;
+    li {
+      display: flex;
+      align-items: center;
+      button {
+        position: relative;
+        top: 1px;
+      }
+    }
+  }
 }
 #filters .form-control {
   display: inline-block;
@@ -842,10 +865,6 @@ inat-taxon.split-taxon .icon {display: none;}
 #subview-controls .btn-default, .btn.places {
   padding: 6px 12px 6px;
 }
-#view-controls.open .btn-default.places {
-  color: #fff;
-  background: $btn-orange;
-}
 #place-name-input {margin-inline-start: 0;}
 #place-name-input button {
   background-color: $btn-orange;
@@ -1117,6 +1136,39 @@ $photo-count-line-width: 1px;
   background-color:#D12F19;
 }
 
+.explore-details-popover {
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  .btn-xs {
+    position: relative;
+    top: -1px;
+  }
+  .menu {
+    position: absolute;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .25);
+    background-color: white;
+    border: 0 transparent;
+    color: black;
+    text-align: start;
+    padding: 5px;
+    ul {
+      list-style: none;
+      padding-inline-start: 0px;
+      margin-bottom: 0;
+      li {
+        padding: 3px;
+
+        .split-taxon .display-name,
+        .split-taxon .secondary-name {
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
 #taxa-grid {
   .corner {
     // We want z-index so the details appears over subsequent elements, but
@@ -1139,20 +1191,10 @@ $photo-count-line-width: 1px;
         height: 25px;
         text-shadow: 0 1px 5px rgba(0, 0, 0, .25);;
       }
-      .menu {
-        box-shadow: 0 1px 10px rgba(0, 0, 0, .25);
-        background-color: white;
-        border: 0 transparent;
-        color: black;
-        text-align: start;
-        padding: 5px;
-        ul {
-          list-style: none;
-          padding-inline-start: 0px;
-          li {
-            padding: 3px;
-          }
-        }
+      .ancestor {
+        display: flex;
+        gap: 5px;
+        align-items: center;
       }
     }
   }

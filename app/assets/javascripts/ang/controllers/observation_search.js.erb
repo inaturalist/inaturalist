@@ -198,6 +198,7 @@ var SearchController = function (
     page: 1,
     spam: false
   };
+  $scope.withoutTaxa = [];
   $scope.earthRadiusInKm = 6371;
   $scope.dragIconOffset = 20;
   $scope.dragRectDeltaXInPx = null;
@@ -472,6 +473,13 @@ var SearchController = function (
       // this will remove the autocomplete image since there's no taxon
       $scope.updateTaxonAutocomplete( );
       $scope.taxonInitialized = true;
+    }
+    if ( $scope.params.without_taxon_id ) {
+      TaxaFactory.show( $scope.params.without_taxon_id, iNaturalist.localeParams( ) )
+        .then( function ( response ) {
+          var taxa = TaxaFactory.responseToInstances( response );
+          $scope.withoutTaxa = taxa;
+        } );
     }
   };
   $scope.initializePlaceParams = function ( ) {
@@ -1172,10 +1180,18 @@ var SearchController = function (
       $scope.updateTaxonAutocomplete( );
       $scope.searchAndUpdateStats( );
     } else {
-      $scope.params.without_taxon_id = $scope.params.without_taxon_id
-        ? [$scope.params.without_taxon_id, taxon.id].join( "," )
-        : taxon.id;
+      $scope.witoutTaxa = $scope.witoutTaxa || [];
+      var existing = $scope.witoutTaxa.find( wt => wt.id === taxon.id );
+      if ( !existing ) {
+        $scope.withoutTaxa.push( taxon );
+      }
+      $scope.params.without_taxon_id = $scope.withoutTaxa.map( function ( wt ) { return wt.id; } ).join( "," );
     }
+  }
+
+  $scope.removeWithoutTaxon = function ( taxon ) {
+    $scope.withoutTaxa = $scope.withoutTaxa.filter( wt => wt.id !== taxon.id );
+    $scope.params.without_taxon_id = $scope.withoutTaxa.map( function ( wt ) { return wt.id; } ).join( "," );
   }
 
   $scope.filterByBounds = function ( ) {
@@ -2295,3 +2311,11 @@ var MapController = function (
     $scope.fullscreen = !$scope.fullscreen;
   };
 };
+document.addEventListener( 'click', function( e ) {
+  var details = [...document.querySelectorAll( 'details.explore-details-popover' )];
+  details.forEach( f => {
+    if ( !f.contains( e.target ) ) {
+      f.removeAttribute( "open" );
+    }
+  } );
+} );
