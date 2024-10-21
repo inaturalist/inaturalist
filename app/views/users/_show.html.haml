@@ -54,7 +54,7 @@
       - admin_site = @user.site_admins.live.first.try(:site)
       - if @user.is_admin? || @user.is_curator? || admin_site
         %small.role
-          - info_link = help_path(anchor: "curators")
+          - info_link = "https://help.inaturalist.org/en/support/solutions/articles/151000169913-what-are-staff-curators-and-site-admins-"
           - if @user.is_admin?
             = t(:site_staff, site_name: "iNaturalist")
           - elsif admin_site
