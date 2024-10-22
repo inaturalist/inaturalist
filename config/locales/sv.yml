@@ -2109,6 +2109,9 @@ sv:
   geoprivacy_is_private: Koordinatsekretess är privat
   geoprivacy_is_private_desc: Observatören har valt att dölja koordinaterna.
   georeferenced: Koordinatsatt?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geospatiala
   get_started: Kom igång
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Kom igång
@@ -2219,6 +2222,9 @@ sv:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Dölj "Utan anteckning"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Dölj fynd med privata platser
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Dölj löpande total
   hide_uncountable_species: Dölj arter som inte kan räknas
@@ -3214,6 +3220,9 @@ sv:
   not_confident: Vi är inte tillräckligt säkra för att göra en rekommendation.
   not_confident_top_suggestions: Vi är inte tillräckligt säkra för att komma med en rekommendation, men här är våra bästa förslag
   not_covered_by_any_taxon_frameworks: Omfattas inte av någon taxonkontext
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Inte förväntad i närheten
   not_evaluated: inte utvärderad
   not_findig_what_you_want: Hittar du inte det du vill?
   not_finding_place_you_want?: Hittar du inte den fyndplats du vill?
@@ -6289,6 +6298,10 @@ sv:
             <a href="%{url}">Läs gärna communityns riktlinjer</a> för tips om att låta iNaturalist förbli en vänlig och välkomnande plats att vara på.
           please_read_the_teachers_guide_html: |
             Om så är fallet, läs vår <a href="%{url}">lärarguide</a> för tips på hur man använder %{site_name} med elever.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Om så är fallet, läs vår <a href="%{url}">Undervisningsguide</a> för
+            tips om att använda %{site_name} tillsammans med studenter.
     donate:
       donate_short_desc: "Donera nu för att visa ditt stöd!"
       donate_desc_moore_html: |
@@ -8741,6 +8754,10 @@ sv:
             place_geometry:
               is_too_large_to_edit: är för stor för att redigeras
               is_too_large_to_import: är för stor för att importeras
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: är för stor eller komplicerad för att bearbetas innan time out
               contains_too_many_observations: innehåller för många fynd för import
               cannot_be_blank: kan inte vara tomt
               invalid_point: har en ogiltig punkt, t.ex. längdgrad större än 180 eller breddgrad mindre än -90

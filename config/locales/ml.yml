@@ -23,14 +23,10 @@ ml:
     x_species:
       one: സ്പീഷീസ്
       other: സ്പീഷീസ്
-    #Singular
-    subspecies: സബ്സ്പീഷീസ്
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
   ranks_lowercase_genus: ജീനസ്സ്
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: സ്പീഷീസ്
-  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
-  ranks_lowercase_subspecies: സബ്സ്പീഷീസ്
   number:
     format:
       significant: false

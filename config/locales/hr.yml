@@ -4293,8 +4293,8 @@ hr:
     few: Admini projekta
     other: Admini projekta
   project_aggregator_filter_error: |
-    Projekti ne mogu omogućiti automatsku agregaciju promatranja osim ako
-    projekt nije povezan s mjestom umjerene veličine ili dopušta
+    Projekti ne mogu omogućiti automatsku agregaciju opažanja osim ako
+    projekt nije povezan s mjestom manje ili umjerene veličine ili dopušta
     promatranja specifičnih taksona ili taksona na popisu
   project_assessments: Procjene projekta
   project_assets: Imovina projekta
@@ -4308,7 +4308,7 @@ hr:
     krivolovci. Provjerite povjerenje svim kuratorima projekta prije nego što povjerite ovaj
     projekt.
   project_cover: Naslovnica projekta
-  project_created_on: stvorio ovaj projekt na %{date}
+  project_created_on: 'stvorio/la je ovaj projekt na datum: %{date}'
   project_curator_id: ID kuratora projekta
   project_curator_tools: Alati za kuratore projekta
   project_curators: Kuratori projekta
@@ -4323,7 +4323,7 @@ hr:
     title: "%{owner_name}'s popis za provjeru"
     description: Popis vrsta za %{owner_name}
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> kuratori su dodali neka od vaših promatranja
+    <a href="%{url}">%{project}</a> kustosi su dodali neka od tvojih opažanja
   project_members: "Članovi projekta %{project}"
   project_members_only: Samo članovi projekta
   project_membership_model_description: Je li tvoj projekt otvoren za sve ili samo za ljude koje pozoveš?
@@ -4344,8 +4344,8 @@ hr:
   project_x_was_delete: "%{project} je izbrisan (molimo dopustite nekoliko minuta da se ukloni s web stranice)"
   projects: Projekti
   projects_description: |
-    Projekti vam omogućuju da objedinite svoja promatranja s drugim ljudima na %{site_name}.
-    Bilo da započinjete inicijativu građanske znanosti ili pratite ptice u svom susjedstvu, projekti su pravi put.
+    Projekti ti omogućuju da objediniš svoja opažanja s drugima na %{site_name}u.
+    Bilo da započinješ nekakvu inicijativu ili pratiš ptice u svom susjedstvu, projekti su odlični izbor.
   #@vow_or_con should work on %{place}
   projects_from_place: "Projekti iz %{place}"
   #"admins" is equivalent to "administrates"
@@ -5723,7 +5723,7 @@ hr:
   update_existing_observations_with_new_license: Ažuriraj postojeća opažanja s novim licencnim odabirima
   update_existing_photos_with_new_license: Ažuriraj postojeće fotografije s novim licencnim odabirima
   update_existing_sounds_with_new_license: Ažuriraj postojeće zvukove s novim licencnim odabirima
-  update_observations: Ažuriraj promatranja
+  update_observations: Ažuriraj opažanja
   update_past: "Ažuriraj prošle %{type}"
   update_photos: Ažuriraj fotografije
   update_search: Ažuriraj pretragu
@@ -6273,12 +6273,10 @@ hr:
   you_are_already_a_member_of_this_project: "Već ste član ovog projekta!"
   you_are_no_longer_following_x: "Više ne pratiš %{friend}."
   you_are_setting_this_project_to_aggregate: |
-    Postavljate ovaj projekt da agregira sve promatranja koja odgovaraju
-    sljedećim pravilima: %{rules} Želite li nastaviti?
+    Postavljaš ovaj projekt da agregira sva opažanja koja odgovaraju
+    sljedećim pravilima: %{rules} Želiš li nastaviti?
   you_are_submitting_obs_with_no_date_or_no_location: |
-    Podnosite promatranja bez datuma ili lokacija. Promatranja
-    bez ovih informacija često je nemoguće identificirati i neće biti
-    vidljiva prema zadanim postavkama u pretragama promatranja.
+    Podnosiš opažanja bez datuma ili lokacija. Bez ovih informacija često je nemoguće organizam identificirati pa opažanje neće biti vidljivo u pretraživaču bez ručnog mijenjanja postavki.
   you_are_subscribed_to_comments_on_this_flag: Pretplaćeni ste na komentare na ovoj oznaci.
   you_are_subscribed_to_comments_on_this_post: Pretplaćeni ste na komentare na ovoj objavi.
   you_are_subscribed_to_comments_on_this_taxon_stage: Pretplaćeni ste na komentare o ovoj fazi taksona
@@ -6290,7 +6288,7 @@ hr:
   you_arent_a_member_of_that_project: Nisi učlanjen/a u taj projekt.
   you_arent_following_that_person: "Ne pratiš tu osobu."
   you_can_accept_invitations: Možete prihvatiti pozivnicu ovdje
-  you_can_choose_observations_associated: Možete odabrati promatranja za povezivanje s ovom objavom u dnevniku.
+  you_can_choose_observations_associated: Možeš odabrati opažanja koja bi povezao s ovom objavom.
   you_can_edit_this_default_check_list_because: |
     Možete urediti ovaj zadani popis jer ste administrator,
     ali ne bi trebalo biti potrebe za tim.
@@ -6313,7 +6311,7 @@ hr:
   you_didnt_select_any_observations: Niste odabrali nijedno promatranje.
   you_didnt_select_any_photos_to_tag: Niste odabrali nijednu fotografiju za označavanje!
   you_dont_have_permission_to_do_that: Nemate dopuštenje za to.
-  you_dont_have_permission_to_edit_that_observation: "Nemate dopuštenje za uređivanje tog promatranja."
+  you_dont_have_permission_to_edit_that_observation: "Nemaš dopuštenje za uređivanje tog opažanja."
   you_dont_have_permission_to_edit_that_project: Nemate dopuštenje za uređivanje tog projekta.
   you_dont_have_permission_to_edit_that_taxon: |
     Nemate dopuštenje za uređivanje tog taksona. Molimo kontaktirajte jednog od kuratora taksona ili označite takson kako biste zatražili promjene.
@@ -6331,7 +6329,7 @@ hr:
   you_must_select_at_least_one_taxon: Moraš odabrati barem jedan takson
   you_must_specify_and_confirm_a_new_password: Moraš odabrati i potvrditi novu lozinku.
   you_need_to_have_linked_flickr_account: Moraš imati povezan Flickr račun da bi označio svoje fotografije.
-  you_need_to_select_some_observations_first: Prvo moraš odabrati neka promatranja.
+  you_need_to_select_some_observations_first: Prvo moraš odabrati neka opažanja.
   you_retain_full_copyright: "Zadržavaš puna autorska prava na svoj sadržaj osim onih prava koja su dodijeljena %{site_name} u našim Uvjetima korištenja."
   you_retain_full_copyright_over_your_content: "Zadržavaš puna autorska prava na svoj sadržaj osim onih prava koja su dodijeljena %{site_name} u našim Uvjetima korištenja."
   you_should_delete_this_taxon_change: |
@@ -6369,7 +6367,7 @@ hr:
   your_membership: Tvoje članstvo
   your_name_was_saved: Tvoj naziv je spremljen.
   your_observations: Tvoja opažanja
-  your_observations_couldnt_be_added_to_that_project: "Tvoja promatranja nisu mogla biti dodana u taj projekt: %{errors}"
+  your_observations_couldnt_be_added_to_that_project: "Tvoja opažanja nisu mogla biti dodana u projekt: %{errors}"
   your_photos_have_been_tagged: Tvoje fotografije su označene!
   your_projects: Tvoji projekti
   your_google_account: Tvoj Google račun
@@ -6384,14 +6382,14 @@ hr:
   yours: Tvoje
   youre_not_following_anyone: |-
     Ne pratiš nikoga. Praćenje drugih prirodoslovaca omogućit će ti
-    lako praćenje njihovih najnovijih promatranja. Idi saznati što ljudi
+    lako praćenje njihovih najnovijih opažanja. Saznaj što ljudi
     <a href="%{observations_path}">promatraju</a> i stekni nove
     <a href="%{people_path}">poznanike</a>.
   youre_not_following_anyone_on_inat: Još ne pratiš nikoga na %{site_name}!
   youve_linked_your_inaturalist_google_account: "Povezao si svoj %{site_name} račun i svoj Google račun. To će ti omogućiti povezivanje tvojih Google fotografija s tvojim %{site_name} promatranjima."
   youve_successfully_linked_your_provider_account: "Uspješno si povezao svoj %{provider} račun"
   verifiable: Provjerljivo
-  verifiable_observations: Provjerljiva promatranja
+  verifiable_observations: Provjerljiva opažanja
   views:
     views: 'Pregledi'
     announcements:

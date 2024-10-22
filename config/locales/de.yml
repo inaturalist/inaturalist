@@ -1977,6 +1977,9 @@ de:
   generate_your_year_in_review_caps: ERSTELLE DEINEN JAHRESRÜCKBLICK %{year}
   generating_mobile_archive: "Mobiles Archiv wird erstellt"
   Genus: Gattung
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo-Score
   geomodel_expected_nearby_label_is_derived: |
     Die Einstufung "in der Umgebung zu erwarten" wird von dem Geomodell abgeleitet.
     <a href="%{url}">Erfahre mehr über das Geomodell hier</a>.
@@ -1986,6 +1989,9 @@ de:
   geoprivacy_is_private: Geo-Privatsphäre ist privat
   geoprivacy_is_private_desc: Der Beobachter hat sich dazu entschieden, die Koordinaten zu verbergen.
   georeferenced: Georeferenziert?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Räumlich
   get_started: Projekt erstellen
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Erste Schritte
@@ -2067,6 +2073,9 @@ de:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Beobachtungen ohne Angaben ausblenden
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Beobachtungen mit privaten Standorten ausblenden
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Gesamtzahl ausblenden
   hide_uncountable_species: Nicht-zählbare Arten verstecken
@@ -2136,6 +2145,7 @@ de:
   identotron_for: Identotron für
   identotron_help: Identotron Hilfe
   ids: "IDs"
+  ids_made_for_others__title: Für Andere gemachte IDs
   if_for_some_reason_a_user_doesnt_agree: |
     Wenn du aus irgendeinem Grund mit dem Community-Taxon nicht einverstanden bist, kannst du es ablehnen: das bedeutet, dass deine Bestimmung (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung von Life-Listen usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung nur dann Forschungsqualität erreichen kann, wenn die Community dir zustimmt.
   if_matches_come_from_a_comprehensive_list: Falls Treffer aus einer vollständigen Liste kommen, wird hier eine grüne Leiste angezeigt.
@@ -3025,6 +3035,9 @@ de:
   not_confident: Eine Empfehlung abzugeben ist uns hier zu unsicher.
   not_confident_top_suggestions: Wir sind nicht sicher genug, um eine Empfehlung abzugeben, aber hier sind unsere besten Vorschläge.
   not_covered_by_any_taxon_frameworks: Von keinem Taxon-Framework abgedeckt
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Nicht in der Nähe zu erwarten
   not_evaluated: nicht beurteilt
   not_findig_what_you_want: Nicht gefunden, was du suchst?
   not_finding_place_you_want?: Das gewünschte Gebiet nicht gefunden?
@@ -5972,6 +5985,9 @@ de:
             <a href="%{url}">In den Community-Richtlinien</a>  findest du Tipps, wie du iNaturalist zu einem freundlichen und einladenden Ort machen kannst.
           please_read_the_teachers_guide_html: |
             Dann lies bitte unseren <a href="%{url}" >Lehrerenden-Guide</a> für Tipps zur Verwendung von %{site_name} mit Schülern.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Dann lies bitte unseren <a href="%{url}"Guide für Lehrende</a> für Tipps zur Verwendung von %{site_name} mit Schüler:innen.
     donate:
       donate_short_desc: "Spende jetzt um Deine Unterstützung zu zeigen!"
       donate_desc_moore_html: |
@@ -6051,6 +6067,10 @@ de:
         ist vorübergehend nicht verfügbar, während wir unsere Systeme aktualisieren. Bitte demnächst wieder versuchen.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Gemeldeter Inhalt
         flaggable_content_desc: |
           Der gemeldete Inhalt ist das primäre Textattribut des gemeldeten Objekts zum Zeitpunkt der Erstellung der Meldung. Nur Kuratoren und Admins können dies sehen. Nur Admins können dies bei Nachrichten sehen.
         flags_that_should_not_be_resolved_desc_html: |
