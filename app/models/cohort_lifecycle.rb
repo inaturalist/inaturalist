@@ -536,10 +536,8 @@ class CohortLifecycle < ApplicationRecord
   end
 
   def self.assign_to_iders( needs_id_pilot, place_ids, prepared_obs )
-    # top_iders = INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
-    # top_iders.concat( User.admins.pluck( :id ).uniq ).uniq
-    admin_role = Role.find_by( name: "admin" )
-    top_iders = User.joins( :roles ).where( roles: { id: admin_role.id } ).pluck( :id )
+    top_iders = INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
+    top_iders.concat( User.admins.pluck( :id ).uniq ).uniq
     active_iders = Preference.where(
       "owner_type = 'User' AND name = 'needs_id_pilot' AND value = 't' AND owner_id IN (?)",
       top_iders
