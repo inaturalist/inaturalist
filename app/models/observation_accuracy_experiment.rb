@@ -19,6 +19,7 @@ class ObservationAccuracyExperiment < ApplicationRecord
   validates_presence_of :version
 
   NEEDS_ID_PILOT_VERSION = "Needs ID Pilot"
+  NEEDS_ID_PILOT_POST_TITLE = "Identification Pilot to Onboard New Users"
 
   def generate_sample_if_requested
     generate_sample if generate_sample_now
@@ -1034,11 +1035,17 @@ class ObservationAccuracyExperiment < ApplicationRecord
     ObservationAccuracyExperiment.find_by( version: NEEDS_ID_PILOT_VERSION )
   end
 
+  def self.needs_id_pilot_post
+    Post.where(
+      title: NEEDS_ID_PILOT_POST_TITLE,
+      parent_type: "Site"
+    ).where.not( published_at: nil ).first
+  end
+
   def self.user_eligible_for_needs_id_pilot?( user )
     return false unless needs_id_pilot && user && user.prefers_needs_id_pilot != false
     return true if user.is_admin?
-    return false if user.identifications_count < 75_000
-    return false unless top_identifiers.first( 10 ).include?( user.id )
+    return false unless top_identifiers.include?( user.id )
 
     true
   end

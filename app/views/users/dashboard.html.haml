@@ -129,6 +129,29 @@
             - unless user_seen_announcement?( announcement )
               = render "announcements/announcement", announcement: announcement
 
+      - if ObservationAccuracyExperiment.user_eligible_for_needs_id_pilot?( current_user )
+        #needs_id_pilot_panel.panel.panel-default
+          .panel-heading
+            %a.close{ "data-panel-type" => "needs_id_pilot_panel", id: "close_needs_id_pilot_panel", style: ( current_user.prefers_needs_id_pilot == true ? "display:none;" : "" ) } &#215;
+            %h3.panel-title= "Identification Pilot: Onboarding New Users"
+          .panel-body
+            #participate_section{ style: ( current_user.prefers_needs_id_pilot.nil? ? "" : "display:none;" ) }
+              %p
+                Beginning tomorrow, receive up to 30 observations daily that match your identification skills, helping to onboard new users. You can opt out at any time.
+                - post = ObservationAccuracyExperiment.needs_id_pilot_post
+                - if post
+                  = link_to "Read more on our blog.", post_url( post )
+              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
+            #stop_participating_section{ style: ( current_user.prefers_needs_id_pilot == true ? "" : "display:none;" ) }
+              - needs_id_pilot_params = ObservationAccuracyExperiment.needs_id_pilot_params_for_user( current_user )
+              - if needs_id_pilot_params
+                %p
+                  Below are up to 30 observations that match your identification skills.
+                = link_to "Identify observations", identify_observations_url(needs_id_pilot_params), class: "btn btn-primary btn-md"
+              - else
+                %p Check back tomorrow for a link to observations that match your identification skills.
+              %p.text-right
+                = link_to "stop participating", "#", id: "stop_participating_link", class: "btn-link"
       - if @discourse_url && !@discourse_data.blank?
         #forum
           .panel.panel-default
@@ -268,23 +291,3 @@
           %p= t :show_off_your_recent_observations
           %p
             = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
-      - if ObservationAccuracyExperiment.user_eligible_for_needs_id_pilot?( current_user )
-        #needs_id_pilot_panel.panel.panel-default
-          .panel-heading
-            %a.close{ "data-panel-type" => "needs_id_pilot_panel", id: "close_needs_id_pilot_panel", style: ( current_user.prefers_needs_id_pilot == true ? "display:none;" : "" ) } &#215;
-            %h3.panel-title= "Identification Pilot to Onboard New Users"
-          .panel-body
-            #participate_section{ style: ( current_user.prefers_needs_id_pilot.nil? ? "" : "display:none;" ) }
-              %p
-                See up to 30 observations per day here that we think you can ID to help onboard new users. You can stop participating at any time.
-                = link_to "Read more on our blog.", "#"
-              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
-            #stop_participating_section{ style: ( current_user.prefers_needs_id_pilot == true ? "" : "display:none;" ) }
-              - needs_id_pilot_params = ObservationAccuracyExperiment.needs_id_pilot_params_for_user( current_user )
-              - if needs_id_pilot_params
-                %p
-                  = link_to "Here are up to 30 observations", identify_observations_url( needs_id_pilot_params )
-                  that we think you can identify
-              - else
-                %p Check back tomorrow for a link to the observations we think you can ID.
-              %button{ type: "button", id: "stop_participating_button", class: "btn btn-default btn-md" } I'd like to stop participating
