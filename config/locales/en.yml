@@ -5168,6 +5168,10 @@ en:
     The %{start_tag_network}iNaturalist Network%{end_tag_network} is a
     collection of localized websites in the %{start_tag_global}global
     iNaturalist community%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized: |
+    The %{start_tag_network}iNaturalist Network%{end_tag_network} offers a
+    localized experience in the %{start_tag_global}global
+    iNaturalist community%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     When you affiliate with an iNaturalist Network Member, your email address
     and the true locations of your obscured and private locations are shared
@@ -5190,11 +5194,25 @@ en:
     <strong>If your organization is interested in joining the iNaturalist
     Network, you can find more details
     %{start_tag_join}here%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist has formal agreements with organizations in each of these
+    geographic areas to support the use of the iNaturalist platform. As of 2024,
+    we are piloting a simplified approach to network partnerships.
+    <strong>If your organization is interested in joining the iNaturalist
+    Network, you can find more details
+    %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "The iNaturalist Network consists of several organizations:"
   sites_network_inaturalist_network_collection: |
     The iNaturalist Network is a collection of localized websites that are fully
     connected to the global iNaturalist community. Network sites are supported
     by local institutions that promote local use and facilitate the use of data
+    from iNaturalist to benefit local biodiversity. They have access to true
+    coordinates within their geographic areas that are automatically obscured from
+    public view in order to better protect threatened species.
+  sites_network_inaturalist_network_collection2: |
+    The iNaturalist Network is localized experience that is fully
+    connected to the global iNaturalist community. Network members are
+    local institutions that promote local use and facilitate the use of data
     from iNaturalist to benefit local biodiversity. They have access to true
     coordinates within their geographic areas that are automatically obscured from
     public view in order to better protect threatened species.
