@@ -16,7 +16,14 @@ EOS
   opt :password, "GBIF password", :type => :string, :short => "-p", :default => CONFIG.gbif.password
   opt :notification_address, "Email address to receive GBIF notification", :type => :string, :short => "-e", :default => CONFIG.gbif.notification_address
   opt :request_key, "GBIF download request key", :type => :string, :short => "-k"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if @opts.log_task_name
+  task_logger = TaskLogger.new( @opts.log_task_name, nil, "sync" )
+end
+
+task_logger&.start
 
 Optimist::die "You must specify a GBIF username as an argument or in config.yml" if @opts.username.blank?
 Optimist::die "You must specify a GBIF password as an argument or in config.yml" if @opts.password.blank?
@@ -96,15 +103,19 @@ def download
   system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
 end
 
+task_logger&.info( "Request GBIF archive" )
 request
 puts "[#{Time.now}] Waiting for archive to generate..."
+task_logger&.info( "Wait for GBIF archive to generate" )
 while generating
   print '.'
   sleep 3
 end
 puts
 puts "[#{Time.now}] Downloading archive..."
+task_logger&.info( "Download GBIF archive" )
 download
+task_logger&.info( "Create/Update observation links" )
 obs_ids_to_index = []
 # "\x00" is an unprintable character that I hope we can assume will never appear in the data. If it does, CSV will choke
 CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true, quote_char: "\x00") do |row|
@@ -140,12 +151,14 @@ end
 puts
 puts "#{new_count} created, #{old_count} updated"
 
+task_logger&.info( "Delete observation links" )
 links_to_delete_scope = ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time)
 delete_count = links_to_delete_scope.count
 puts
 puts "[#{Time.now}] Deleting #{delete_count} observation links..."
 links_to_delete_scope.delete_all unless @opts[:debug]
 
+task_logger&.info( "Re-index observations" )
 puts
 obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
 obs_ids_to_index = obs_ids_to_index.compact.uniq
@@ -164,3 +177,5 @@ end
 puts
 puts
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s. Request key: #{@key}"
+
+task_logger&.end

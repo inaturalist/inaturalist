@@ -1103,6 +1103,8 @@ ja:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: 抜け殻
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: 潜葉痕
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     bone: |
@@ -1650,6 +1652,8 @@ ja:
   editing_this: '%{elem}を編集中'
   editing_x_in_y: "%{y}の中の%{x}を編集中"
   editors: 編集者
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: 指導者向けガイド
   either_that_user_doesnt_exist_or: "そのユーザーは存在しないか、もしくは、もうすでにフォローしている可能性があります。"
   eligible_for_research_grade: 研究用候補
   email: 電子メール
@@ -1927,7 +1931,12 @@ ja:
   geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
   geoprivacy_is_private_desc: 投稿者は座標を不明瞭にすることを選択しました。
   georeferenced: 位置データありますか？
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: 地理空間
   get_started: 始めよう
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: はじめに
   getting_started_guide: 初めてのユーザーガイド
   #Prompt to donate money on a montly basis
   give_monthly_caps: 毎月の寄付
@@ -4933,6 +4942,8 @@ ja:
   unable_to_save_comment: 残念ながらコメントを保存できませんでした。
   unblock: ブロックを解除
   unclassified: 未分類
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: プロジェクトについて
   ungrafted_taxa: 未融合の分類群
   unhide_content: 非表示を解除する
   unhide_desc: |

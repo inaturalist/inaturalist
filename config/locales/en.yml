@@ -5168,6 +5168,10 @@ en:
     The %{start_tag_network}iNaturalist Network%{end_tag_network} is a
     collection of localized websites in the %{start_tag_global}global
     iNaturalist community%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    The %{start_tag_network}iNaturalist Network%{end_tag_network} offers a
+    localized experience in the %{start_tag_global}global
+    iNaturalist community%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     When you affiliate with an iNaturalist Network Member, your email address
     and the true locations of your obscured and private locations are shared
@@ -5190,11 +5194,25 @@ en:
     <strong>If your organization is interested in joining the iNaturalist
     Network, you can find more details
     %{start_tag_join}here%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist has formal agreements with organizations in each of these
+    geographic areas to support the use of the iNaturalist platform. As of 2024,
+    we are piloting a simplified approach to network partnerships.
+    <strong>If your organization is interested in joining the iNaturalist
+    Network, you can find more details
+    %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "The iNaturalist Network consists of several organizations:"
   sites_network_inaturalist_network_collection: |
     The iNaturalist Network is a collection of localized websites that are fully
     connected to the global iNaturalist community. Network sites are supported
     by local institutions that promote local use and facilitate the use of data
+    from iNaturalist to benefit local biodiversity. They have access to true
+    coordinates within their geographic areas that are automatically obscured from
+    public view in order to better protect threatened species.
+  sites_network_inaturalist_network_collection2: |
+    The iNaturalist Network is a localized experience that is fully
+    connected to the global iNaturalist community. Network members are
+    local institutions that promote local use and facilitate the use of data
     from iNaturalist to benefit local biodiversity. They have access to true
     coordinates within their geographic areas that are automatically obscured from
     public view in order to better protect threatened species.
@@ -6709,6 +6727,10 @@ en:
             on keeping iNaturalist a friendly and welcoming place to be.
           please_read_the_teachers_guide_html: |
             If so, please read our <a href="%{url}">Teacher's Guide</a> for
+            tips on using %{site_name} with students.
+          # welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            If so, please read our <a href="%{url}">Educator's Guide</a> for
             tips on using %{site_name} with students.
     donate:
       donate_short_desc: "Donate now to show your support!"
@@ -9914,6 +9936,10 @@ en:
             place_geometry:
               is_too_large_to_edit: is too large to edit
               is_too_large_to_import: is too large to import
+              # Error message when a query run during place geometry upload times out. The query
+              # will time out if the geometry covers a large area or is very complicated, containing
+              # a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: is too large or complicated to process before timing out
               contains_too_many_observations: contains too many observations to import
               cannot_be_blank: cannot be blank
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90

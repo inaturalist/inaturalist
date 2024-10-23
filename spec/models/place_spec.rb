@@ -499,4 +499,22 @@ describe Place, "validate_with_geom" do
     expect( p.custom_errors.first[0] ).to eq :place_geometry
     expect( p.custom_errors.first[1] ).to eq :polygon_with_less_than_four_points
   end
+
+  it "should not be valid if the place observation count query is canceled" do
+    geojson = {
+      type: "MultiPolygon",
+      coordinates: [[[[0, 0], [0, 1], [1, 1], [1, 0], [0, 0]]]]
+    }
+    p = Place.new
+    expect( Observation ).to receive( :where ).
+      with(
+        "ST_Intersects(private_geom, ST_GeomFromEWKT(?))",
+        "MULTIPOLYGON (((0.0 0.0, 0.0 1.0, 1.0 1.0, 1.0 0.0, 0.0 0.0)))"
+      ).and_raise( ActiveRecord::QueryCanceled )
+    p.validate_with_geom( RGeo::GeoJSON.decode( geojson.as_json ), max_observation_count: 100 )
+    expect( p.errors ).not_to be_empty
+    expect( p.errors.first.message ).to eq(
+      I18n.t( "activerecord.errors.models.place.attributes.place_geometry.is_too_large_or_complicated" )
+    )
+  end
 end

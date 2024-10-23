@@ -226,7 +226,7 @@ class PlacesController < ApplicationController
       @place.validate_with_geom( @geometry, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
     end
 
-    if @geometry # && @place.valid?
+    if @geometry && @place.errors.none?
       @place.save_geom( @geometry, max_area_km2: max_area_km2, max_observation_count: max_observation_count )
       @place.save
       if @place.too_big_for_check_list?
@@ -239,7 +239,10 @@ class PlacesController < ApplicationController
     if @place.errors.any?
       flash[:error] = t( :there_were_problems_importing_that_place_geometry,
         error: @place.errors.full_messages.join( ", " ) )
+      render action: :new
+      return
     end
+
     if @place.save
       notice ||= t( :place_imported )
       flash[:notice] = notice

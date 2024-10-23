@@ -94,8 +94,8 @@ base: &base
         primary_ip_pool: <%= ENV.fetch("INAT_SENDGRID_PRIMARY_IP_POOL") { "INAT_SENDGRID_PRIMARY_IP_POOL" } %>
         alternate_ip_pool: <%= ENV.fetch("INAT_SENDGRID_ALTERNATE_IP_POOL") { "INAT_SENDGRID_ALTERNATE_IP_POOL" } %>
 
-    jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "INAT_JWT_SECRET" } %>
-    jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "INAT_JWT_APPLICATION_SECRET" } %>
+    jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "secret" } %>
+    jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "application_secret" } %>
 
     banned_emails: <%= ENV.fetch("INAT_BANNED_EMAILS") { ["INAT_BANNED_EMAILS"] } %>
 

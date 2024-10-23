@@ -1702,6 +1702,13 @@ module ApplicationHelper
     Logstasher.write_announcement_impression( announcement, request: request, user: current_user )
   end
 
+  def absolute_url_or_relative_to_site( site: nil, url: nil )
+    return unless site.is_a?( Site ) && url
+    return url if url =~ /http/
+
+    URI.join( site.url.to_s, url.to_s ).to_s
+  end
+
   def matomo_js( current_user )
     return if CONFIG.matomo_url.blank?
     user_id_code = "// NOT LOGGED IN"

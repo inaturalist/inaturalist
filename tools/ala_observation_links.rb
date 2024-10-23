@@ -13,7 +13,14 @@ Usage:
 where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if @opts.log_task_name
+  task_logger = TaskLogger.new( @opts.log_task_name, nil, "sync" )
+end
+
+task_logger&.start
 
 data_resource_uid = ARGV[0]
 Optimist::die "You must specify a data resource UID" if data_resource_uid.blank?
@@ -26,6 +33,7 @@ startindex = 0
 maxresults = 100
 href_name = "Atlas of Living Australia"
 obs_ids_to_index = []
+task_logger&.info( "Create/Update observation links" )
 while true do
   url = "http://biocache.ala.org.au/ws/webportal/occurrences?facet=off&fq=data_resource_uid:#{data_resource_uid}&pageSize=#{maxresults}&startIndex=#{startindex}"
   puts url
@@ -60,11 +68,13 @@ while true do
   puts
 end
 
+task_logger&.info( "Delete observation links" )
 links_to_delete_scope = ObservationLink.where(href_name: href_name).where("updated_at < ?", start_time)
 delete_count = links_to_delete_scope.count
 obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
 links_to_delete_scope.delete_all unless @opts[:debug]
 
+task_logger&.info( "Re-index observations" )
 puts
 puts "Re-indexing #{obs_ids_to_index.size} observations..."
 obs_ids_to_index = obs_ids_to_index.compact.uniq
@@ -76,3 +86,5 @@ puts
 
 puts
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"
+
+task_logger&.end
