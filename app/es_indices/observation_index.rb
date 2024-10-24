@@ -33,6 +33,7 @@ class Observation < ApplicationRecord
         indexes :uuid, type: "keyword"
         indexes :user_id, type: "keyword"
         indexes :vote_score, type: "byte"
+        indexes :vote_score_short, type: "short"
         indexes :votes do
           indexes :created_at, type: "date", index: false
           indexes :id, type: "integer", index: false
