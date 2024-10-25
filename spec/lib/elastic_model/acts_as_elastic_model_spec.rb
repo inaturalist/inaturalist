@@ -164,6 +164,14 @@ describe ActsAsElasticModel do
         expect( obs.last_indexed_at ).to be > 1.minute.ago
       end
 
+      it "can be delayed to run in the future" do
+        Observation.make!
+        run_job_at = 5.minutes.from_now
+        Observation.elastic_index!( delay: true, run_at: run_job_at )
+        delayed_job = Delayed::Job.last
+        expect( delayed_job.run_at ).to eq run_job_at
+      end
+
       it "doesn't re-index obs indexed more than 5 minutes after delayed index request" do
         obs = Observation.make!
         Observation.elastic_index!( delay: true )

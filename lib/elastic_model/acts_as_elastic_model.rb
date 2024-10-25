@@ -75,6 +75,7 @@ module ActsAsElasticModel
           defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 1
         debug = options.delete(:debug)
         filter_scope = options.delete(:scope)
+        run_at = options.delete(:run_at)
         # this method will accept an existing scope
         scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
           filter_scope : self.all
@@ -85,7 +86,7 @@ module ActsAsElasticModel
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
-              elastic_index!(options.merge(ids: slice))
+              elastic_index!(options.merge(ids: slice, run_at: run_at))
               if batch_sleep && !options[:delay]
                 # sleep after index an ID batch, since during indexing
                 # we only sleep when indexing multiple batches, and here
@@ -116,7 +117,8 @@ module ActsAsElasticModel
           end
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
-            queue: queue
+            queue: queue,
+            run_at: run_at
           ).elastic_index!( options.except( :batch_size ).merge(
             ids: result_ids,
             indexed_before: 5.minutes.from_now.strftime("%FT%T")
