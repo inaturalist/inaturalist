@@ -622,8 +622,10 @@ var SearchController = function (
         params: stateParams,
         selectedPlace: JSON.stringify( $scope.selectedPlace ),
         selectedTaxon: JSON.stringify( $scope.selectedTaxon ),
+        withoutTaxa: JSON.stringify( $scope.withoutTaxa ),
         mapBounds: $scope.mapBounds
       };
+
       currentSearch = urlParams;
     }
 
@@ -1579,6 +1581,9 @@ var SearchController = function (
       if ( state.selectedTaxon ) {
         state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
       }
+      if ( state.withoutTaxa ) {
+        state.withoutTaxa = JSON.parse( state.withoutTaxa ).map( wt => new iNatModels.Taxon( wt ) );
+      }
       if ( state.selectedPlace ) {
         state.selectedPlace = new iNatModels.Place( JSON.parse( state.selectedPlace ) );
       }
@@ -1603,6 +1608,11 @@ var SearchController = function (
         // useful for selecting a taxon from the observations grid view
         $scope.params.taxon_id = state.params.taxon_id;
         $scope.initializeTaxonParams( );
+      }
+      if ( state.withoutTaxa !== $scope.withoutTaxa ) {
+        $scope.withoutTaxa = state.withoutTaxa;
+      } else if ( state.params && state.params.without_taxon_id !== $scope.params.without_taxon_id ) {
+        $scope.params.without_taxon_id = state.params.without_taxon_id;
       }
       var previousProcessedParams = ObservationsFactory.processParamsForAPI(
         previousParams,
