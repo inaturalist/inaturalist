@@ -8,7 +8,7 @@
           {{ t.conservation_status.status }}
         %div{ "ng-show" => "t.establishmentMeansCode( ) && !t.conservationStatus( )", :class => "corner establishment-means {{ t.establishmentMeansCode( ) }}", title: "{{ shared.taxonMeansTitle( t ) }}" }
           {{ t.establishmentMeansCode( ) }}
-        %div{ class: "corner context-menu" }
+        %div{ class: "corner context-menu", "ng-show": "currentUser && (currentUser.roles || []).indexOf('admin') >= 0" }
           %details.btn.btn-nostyle.explore-details-popover
             %summary
               %i.fa.fa-sliders
