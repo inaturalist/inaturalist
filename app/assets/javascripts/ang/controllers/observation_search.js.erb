@@ -1582,7 +1582,8 @@ var SearchController = function (
         state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
       }
       if ( state.withoutTaxa ) {
-        state.withoutTaxa = JSON.parse( state.withoutTaxa ).map( wt => new iNatModels.Taxon( wt ) );
+        state.withoutTaxa = JSON.parse( state.withoutTaxa )
+          .map( function( wt ) { return new iNatModels.Taxon( wt ) } );
       }
       if ( state.selectedPlace ) {
         state.selectedPlace = new iNatModels.Place( JSON.parse( state.selectedPlace ) );
