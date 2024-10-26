@@ -15,13 +15,13 @@
             .menu
               %ul
                 %li
-                  Add / Subtract Ancestor Taxa
+                  {{ shared.t( 'include_slash_exclude_ancestor_taxa' ) }}
                   %ul
                     %li.ancestor{ "ng-repeat": "a in t.ancestors" }
-                      %button.btn.btn-primary.btn-xs{ "ng-click": "addTaxon(a)", "ng-disabled": "{{ a.id === params.taxon_id }}" }
-                        %i.fa.fa-plus
-                      %button.btn.btn-default.btn-xs{ "ng-click": "subtractTaxon(a)", "ng-disabled": "{{ a.id !== params.taxon_id && selectedTaxon.ancestor_ids.indexOf( a.id ) >= 0 }}" }
-                        %i.fa.fa-minus
+                      %button.btn.btn-primary.btn-xs{ "ng-click": "addTaxon(a)", "ng-disabled": "{{ a.id === params.taxon_id }}", "aria-label": "{{ shared.t( 'include__taxon' ) }}", title: "{{ shared.t( 'include__taxon' ) }}" }
+                        %i.fa.fa-plus{ "aria-hidden": true }
+                      %button.btn.btn-default.btn-xs{ "ng-click": "subtractTaxon(a)", "ng-disabled": "{{ a.id !== params.taxon_id && selectedTaxon.ancestor_ids.indexOf( a.id ) >= 0 }}", "aria-label": "{{ shared.t( 'exclude__taxon' ) }}", title: "{{ shared.t( 'exclude__taxon' ) }}" }
+                        %i.fa.fa-minus{ "aria-hidden": true }
                       %inat-taxon.title.split-taxon{ taxon: "a", url: "/taxa/{{ a.id }}" }
         .photometa
           %a{ "ng-href": "{{ extendBrowserLocation({ taxon_id: t.id, view: null, page: null }) }}", target: "_self"  }

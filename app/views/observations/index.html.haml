@@ -43,13 +43,13 @@
               .without-taxa.ng-cloak{ "ng-if": "withoutTaxa && withoutTaxa.length > 0" }
                 %details.explore-details-popover
                   %summary
-                    Without {{ withoutTaxa ? withoutTaxa.length : 0 }} taxa
+                    {{ shared.t( 'excluding_x_taxa', { count: withoutTaxa ? withoutTaxa.length : 0 } ) }}
                   .menu
                     %ul
                       %li{ "ng-repeat": "t in withoutTaxa" }
                         %inat-taxon.title.split-taxon{ taxon: "t", url: "/taxa/{{ t.id }}" }
-                        %button.btn.btn-nostyle{ "ng-click": "removeWithoutTaxon( t )" }
-                          %i.glyphicon.glyphicon-remove-circle
+                        %button.btn.btn-nostyle{ "ng-click": "removeWithoutTaxon( t )", "aria-label": "{{ shared.t( 'remove' ) }}", title: "{{ shared.t( 'remove' ) }}" }
+                          %i.glyphicon.glyphicon-remove-circle{ "aria-hidden": true }
             %span#place-name-input
               :ruby
                 # Note that if you give this a name like place_name, Chrome will apply its address autocomplete and potentiall obscure results.
