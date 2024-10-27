@@ -182,10 +182,9 @@ es-AR:
   about_trusting_projects_options_taxon: |-
     Solo tus observaciones en este proyecto que tengan coordenadas ocultas debido a que corresponden a taxones amenazados
   about_trusting_projects_options_taxon_desc: |-
-    Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación
-    representa un taxón amenazado.
+    Muchos proyectos solo necesitan el acceso a coordenadas que están ocultas porque la observación representa un taxón amenazado.
   about_trusting_projects_overview: |-
-    Otorgar acceso a tus coordenadas ocultas permitirá a los administradores de este proyecto ver la ubicación real de tus observaciones en este proyecto. Esto es extremadamente importante en situaciones en las que los científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
+    Otorgar acceso a tus coordenadas ocultas permite a los administradores de este proyecto ver en el mismo la ubicación real de tus observaciones. Esto es extremadamente importante en situaciones en las que científicos o gestores necesitan acceso a coordenadas exactas para análisis y toma de decisiones.
   #Header for a section listing all the project managers (admins and curators)
   #of a project
   about_trusting_projects_project_managers_are: |-
@@ -555,7 +554,7 @@ es-AR:
   app_owner_application_explanation_required: |
     Tenés que proporcionar una explicación más detallada de lo que querés construir.
   app_owner_application_about_p1a_html: |
-    Las apps de iNaturalist permiten el uso autenticado de la API de iNaturalist. Esto te permite hacer llamadas API que hacen cosas como crear observaciones o identificaciones. Los casos comunes son apps como las de escritorio o de móvil que incluyen funcionalidad para sus usuarios(s) para crear observaciones de iNaturalist. Este contenido debe generarse con la participación humana real o supervisada. Por favor, para más detalles lee nuestras <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a> que prohíben observaciones, identificaciones y comentarios generados por máquinas.
+    Las apps de iNaturalist permiten el uso autenticado de la API de iNaturalist. Esto te permite hacer llamadas API que hacen cosas como crear observaciones o identificaciones. Los casos comunes son apps como las de escritorio o de móvil que incluyen funcionalidad para sus usuarios para crear observaciones de iNaturalist. Este contenido debe generarse con la participación humana real o supervisada. Por favor, para más detalles lee nuestras <a href="/pages/community+guidelines" target="_blank">Pautas de la Comunidad</a> que prohíben observaciones, identificaciones y comentarios generados por máquinas.
   app_owner_application_about_p2_html: |
     A partir de 2022 estamos requiriendo la aprobación manual a los usuarios que deseen hacer clientes API. Para crear aplicaciones de terceros, primero debes enviar una solicitud para convertirte en "propietario de la aplicación". Esta solicitud debe describir la funcionalidad de la app propuesta y cómo planeas utilizarla. Para enviar una solicitud, tu cuenta debe tener al menos 2 meses de antigüedad y debes haber hecho al menos 10 <a href="/pages/help#identification"
     target="_blank">mejoras de identificaciones</a> en el último mes. Podemos hacer preguntas de seguimiento sobre tus planes y nos reservamos el derecho de rechazar las solicitudes por cualquier razón.
@@ -814,7 +813,7 @@ es-AR:
   card: Tarjeta
   casual: casual
   casual_: Casual
-  casual_tooltip_html: 'A las observaciones "casuales" les faltan los medios, la ubicación o una fecha, o no cumplen los requisitos de las categorías de calidad de "Buscar" o "Necesita ID" por otras razones. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las categorías de calidad</a>'
+  casual_tooltip_html: 'A las observaciones "casuales" les faltan fotos o sonidos, la ubicación o una fecha, o no cumplen los requisitos de las categorías de calidad de "Buscar" o "Necesita ID" por otras razones. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las categorías de calidad</a>'
   categories: Categorías
   cc_0_description: "Esta licencia libera tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base a tu trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia."
   cc_0_name: No hay derechos de autor (CC0)
@@ -969,7 +968,7 @@ es-AR:
   common_name: Nombre común
   community: Comunidad
   community_curated: Supervisado por la comunidad
-  community_guidelines: Directrices de la comunidad
+  community_guidelines: Pautas de la Comunidad
   community_id_heading: ID de la comunidad
   community_id_at_species_or_lower?: '¿La ID de la comunidad está a nivel de especie o inferior?'
   community_id_at_species_level_or_lower: ID de la comunidad a nivel de especie o inferior
@@ -1250,8 +1249,8 @@ es-AR:
   curator: Curador
   #A paragraph summarizing what curators are
   curator_application_about_site_curators_desc_html: |
-    Los curadores de sitio de iNaturalist son voluntarios confiables que poseen la capacidad para editar la taxonomía de iNaturalist y moderar el contenido del usuario. Los curadores de sitio son esenciales para iNaturalist, ya que son quienes mantienen actualizada nuestra taxonomía y se aseguran de que el punto de vista de iNaturalist sea adecuado y cortéz. A continuación, encontrarás una descripción acerca de qué significa ser un curador. Leélo, y en caso de que quieras convertirte en un curador, leé detenidamente la
-    <a href="/pages/curator+guide" target="_blank">Guía para el curador Guide</a> y completá la solicitud en esta página.
+    Los curadores de sitio de iNaturalist son voluntarios confiables que poseen la capacidad para editar la taxonomía de iNaturalist y moderar el contenido del usuario. Los curadores de sitio son esenciales para iNaturalist, ya que son quienes mantienen actualizada nuestra taxonomía y se aseguran de que el punto de vista de iNaturalist sea adecuado y cortéz. A continuación vas a encontrar una descripción acerca de qué significa ser un curador. Leelo, y en caso de que quieras convertirte en un curador, leé detenidamente la
+    <a href="/pages/curator+guide" target="_blank">Guía del curador</a> y completá la solicitud en esta página.
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     Te pedimos que expliques por qué querés convertirte en un curador
@@ -1259,9 +1258,9 @@ es-AR:
   curator_application_fields_explanation_html: '¿Por qué quieres ser un curador?'
   #Prompt for information when applying to be a curator
   curator_application_fields_taxonomy_examples_html: |
-    Si querés editar la taxonomía de ArgentiNat, por favor proporcioná un ejemplo o dos
-    de cambios taxonómicos que te gustaría hacer, e incluí fuentes para tus cambios propuestos. Si aplica, por favor citá la autoridad taxonónica que corresponda <a
-    href="https://www.argentinat.org/pages/guia+para+curadores-ar#authorities">según como aparecen listadas en la Guía de Curador</a>. Si no incluís ninguna fuente, tu aplicación no será considerada. Nota: tené en cuenta que modificar la taxonomía de ArgentiNat repercute en toda la red iNaturalist, por lo que no serán tomados en cuenta ejemplos locales.
+    Si querés editar la taxonomía de iNaturalist, por favor proporcioná un ejemplo o dos
+    de cambios taxonómicos que te gustaría hacer, e incluí fuentes para tus cambios propuestos. Si aplica, por favor citá la autoridad taxonónica que corresponda<a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">como las enumera la Guía del Curador</a>. Si no incluís ninguna fuente tu aplicación no será considerada. Nota: tené en cuenta que modificar la taxonomía de ArgentiNat repercute en toda la red iNaturalist, por lo que no serán tomados en cuenta ejemplos locales.
   #Prompt for information when applying to be a curator
   curator_application_fields_name_examples_html: |
     Si querés editar nombres comunes, envíanos uno o dos ejemplos de cambios que te gustaría realizar
@@ -1296,9 +1295,9 @@ es-AR:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar la taxonomía de iNaturalist siguiendo las políticas establecidas en la <a href="/pages/curator+guide#policies" target="_blank">sección de Políticas de la Guía del conservador</a>. Esto significa que se puede añadir, dividir, intercambiar, fusionar, desactivar y eliminar los taxa en iNaturalist. También se puede editar los estados de conservación y la geoprivacidad del taxón, así como editar y administrar los nombres comunes añadidos por cualquier usuario.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Editar la taxonomía de iNaturalist siguiendo las políticas establecidas en la <a href="/pages/curator+guide#policies" target="_blank">sección de Políticas de la Guía del Curador</a>. Esto significa que pueden añadir, dividir, intercambiar, fusionar, desactivar y eliminar los taxones en iNaturalist. También pueden editar los estados de conservación y la geoprivacidad del taxón, así como editar y administrar los nombres comunes añadidos por cualquier usuario.'
   curator_application_what_curators_can_do_hide_comments_html: |
-    Ocultar comentarios y suspender usuarios por violar las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
+    Ocultar comentarios y suspender usuarios por violar las <a href="/pages/community+guidelines" target="_blank">Pautas de la Comunidad</a>.
   #Description of a curator's ability to resolve flags; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
@@ -1357,7 +1356,7 @@ es-AR:
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
-    Puedas dar el ejemplo de comportamiento correcto en la red iNaturalist y cumplir los Lineamientos de la Comunidad. Los poderes de curador conllevan la responsabilidad de ser un usuario ejemplar de iNaturalist.
+    Podés dar el ejemplo de comportamiento correcto en la red iNaturalist y cumplir las Pautas de la Comunidad. Los poderes de curador conllevan la responsabilidad de ser un usuario ejemplar de iNaturalist.
   #Label for a menu item linking to a help page aimed at curators
   curator_guide: Guía del Curador
   curators_changed_for_x_html: "Curadores cambiado para %{x}"
@@ -1467,7 +1466,7 @@ es-AR:
   delete_range: Eliminar rango
   delete_selected: Elimina seleccionados
   delete_taxon_and_merge_most_data_html: |
-    Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Utiliza esta herramienta para <strong>eliminar taxones duplicados</strong>. Si quieres eliminar un sinónimo desactualizado, por favor crea un intercambio de taxones. <strong>¡TEN CUIDADO!</strong> Eliminar taxones puede ser muy destructivo. Revisa la <a href="%{curator_url}">Guía de curadores</a> para más detalles.
+    Eliminar <i>%{taxon}</i> y combinar la mayoría de sus datos con otro taxón. Usá esta herramienta para <strong>eliminar taxones duplicados</strong>. Si querés eliminar un sinónimo desactualizado, por favor generá un intercambio de taxones. <strong>¡TEN CUIDADO!</strong> Eliminar taxones puede ser muy destructivo. Revisá la <a href="%{curator_url}">Guía del Curador</a> para más detalles.
   delete_user: Elimina usuario
   delete_your_account: Elimina tu cuenta
   deleted_synonyms: Sinónimos eliminados
@@ -2064,7 +2063,7 @@ es-AR:
   hide_desc: |
     Esconder contenido va a removerlo de la vista pública pero las personas todavía podrán ver que algo se ocultó, y los curadores del sitio y la persona autora del contenido todavía podrán ver lo que se ocultó. Las identificaciones ocultas no contribuirán al Taxón Comunitario de la observación.
   hide_desc_staff_can_unhide: |
-    Solo el personal del sitio puede mostrar contenido una vez que se ha ocultado, así que solo utilizá esta opción para violaciones claras de las Directrices de la Comunidad.
+    Solo el personal del sitio puede mostrar contenido una vez que se ocultó, así que solo utilizá esta opción para violaciones claras de las Pautas de la Comunidad.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
@@ -2713,7 +2712,7 @@ es-AR:
   messages_new_correspondent_actions_html: |
     Si sospechás que esta persona está violando nuestras <a href="%{tos_url}"
     target="_blank">Condiciones de Uso</a> o no actúa de acuerdo con nuestras <a
-    href="%{guidelines_url}" target="_blank">directrices de la comunidad</a>, por favor
+    href="%{guidelines_url}" target="_blank">Pautas de la Comunidad</a>, por favor
     denunciá este mensaje.
   minimum_positional_accuracy: Precisión posicional mínima
   misidentifications: Identificaciones erróneas
@@ -2882,10 +2881,10 @@ es-AR:
   ne_lon: Long. N.E.
   near_threatened: Casi amenazado
   nearby_observations_: Observaciones cercanas
-  needs_id: necesita identificador
-  needs_id_: '¡Necesita identificación!'
-  needs_id_expandable_html: "<span class='full'>Necesita </span>identificador"
-  needs_id_tooltip_html: 'Las observaciones "Necesita ID" tienen medios, ubicación y fecha, pero todavía requieren consenso de la comunidad sobre su identificación precisa. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las notas de calidad</a>'
+  needs_id: necesita identificación
+  needs_id_: Necesita identificación
+  needs_id_expandable_html: "<span class='full'>Necesita </span>identificación"
+  needs_id_tooltip_html: 'Las observaciones "Necesita identificación" tienen medios, ubicación y fecha, pero todavía requieren el consenso de la comunidad sobre una identificación precisa. <a href="https://www.inaturalist.org/pages/help#quality">Más información sobre las notas de calidad</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong> es parte de la red global de iNaturalist y se centra en la biodiversidad y la comunidad de naturalistas de %{place}. ¿Querés afiliar tu cuenta de
@@ -4527,6 +4526,9 @@ es-AR:
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     La %{start_tag_network}Red iNaturalist%{end_tag_network} es un conjunto de sitios web localizados en la %{start_tag_global}comunidad global
     iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    La %{start_tag_network}Red iNaturalist%{end_tag_network} es un conjunto de sitios web localizados en la %{start_tag_global}comunidad global
+    iNaturalist%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Al afiliarte a un sitio miembro de la Red iNaturalist, tu dirección de correo electrónico y las ubicaciones reales de tus coordenadas ocultas y privadas se comparten con ese sitio miembro de la red. Esto permite que tus observaciones se vuelvan más valiosas para los esfuerzos de conservación locales. Si vivís o visitás con frecuencia un área que es miembro de la red, te recomendamos elegirla como tu afiliación para facilitar el intercambio de datos.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4535,7 +4537,10 @@ es-AR:
     %{start_tag_settings}%{end_tag_settings}.
   sites_affiliation_title: Más información sobre afiliación de red
   sites_network_agreements_html: |
-    iNaturalist tiene acuerdos formales con organizaciones en cada una de estas regiones geográficas para apoyar el uso de la plataforma iNatrualist. <strong>Si tu organización está interesada en unirse a la Red de iNaturalist, podés encontrar más detalles %{start_tag_join}acá%{end_tag_join}.</strong>.
+    iNaturalist tiene acuerdos formales con organizaciones en cada una de estas áreas geográficas para apoyar el uso de la plataforma iNaturalist.<strong> Si tu organización está interesada en unirse a la Red de iNaturalist, podés encontrar más detalles %{start_tag_join}acá%{end_tag_join}.</strong>.
+  sites_network_agreements2_html: |
+    iNaturalist tiene acuerdos formales con organizaciones en cada una de estas áreas geográficas para promover el uso de la plataforma iNaturalist. En 2024, se está lanzando una prueba de una aproximación simplificada de los acuerdos de la red. <strong>Si tu organización está interesada en unirse a la Red iNaturalist, podés encontrar más detalles 
+    %{start_tag_join}acá%{end_tag_join}.</strong>
   sites_network_consists_of: "La Red iNaturalist está formada por varias organizaciones:"
   sites_network_inaturalist_network_collection: |
     La Red iNaturalist es una colección de sitios web localizados que están completamente
@@ -4544,6 +4549,11 @@ es-AR:
     de iNaturalist para beneficiar la biodiversidad local. Tienen acceso a las
     coordenadas reales dentro de sus áreas geográficas, que se ocultan automáticamente de
     vista pública con el fin de proteger mejor las especies amenazadas.
+  sites_network_inaturalist_network_collection2: |
+    La Red iNaturalist es una experiencia localizada completamente
+    conectada a la comunidad iNaturalist global. Los miembros de la Red son instituciones locales que promueven el uso local y facilitan el uso de datos
+    de iNaturalist para beneficiar la biodiversidad local. Tienen acceso a las
+    coordenadas reales dentro de sus áreas geográficas que se ocultan automáticamente de la vista pública, con el fin de proteger mejor las especies amenazadas.
   sites_network_your_username: |
     Si elegís afiliarte a un sitio de red, las instituciones locales que apoyan cada sitio también tendrán acceso a tu dirección de correo electrónico (sólo para comunicarse con vos sobre las actividades del sitio) y el acceso a las coordenadas reales de las observaciones que hayas seleccionado para ocultarla al público o hacerla privada.
   some_agree: Algunos la apoyan
@@ -4718,7 +4728,7 @@ es-AR:
   suspend_user: Suspender usuario
   suspend_user_html: Suspender a %{user}
   suspend_user_reason_instructions_html: |
-    Explicá por qué suspendés esta cuenta y citá cualquier violación de las %{link_start_tag}Normas de la Comunidad%{link_end_tag}. Por favor abstenete de dar opiniones personales.
+    Explicá por qué suspendés esta cuenta y citá cualquier violación de las %{link_start_tag}Pautas de la Comunidad%{link_end_tag}. Por favor abstenete de dar opiniones personales.
   sw_lat: lat. S.O.
   sw_lon: long. S.O.
   sync: '¿Sincronizar?'
@@ -5168,7 +5178,7 @@ es-AR:
   top_observer_caps: OBSERVADOR PRINCIPAL
   top_observers: Mejores observadores
   tos_privacy_guidelines_label: |
-    Acepto las <a href="/terms" target="_blank">Condiciones de Uso</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y revisé las <a href="/pages/community+guidelines" target="_blank">Directrices de la comunidad</a>.
+    Acepto las <a href="/terms" target="_blank">Condiciones de Uso</a> y la <a href="/privacy" target="_blank">Política de privacidad</a>, y revisé las <a href="/pages/community+guidelines" target="_blank">Pautas de la Comunidad</a>.
   total: Total
   totals: Totales
   total_ids_on_input_taxon: "Total IDs del taxón de entrada:"
@@ -5851,7 +5861,7 @@ es-AR:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: '¿Planeas utilizar %{site_name} en el aula?'
           community_guidelines_html: |
-            <a href="%{url}">Comprueba los lineamientos comunitarios </a> para ver sugerencias de cómo mantener ArgentiNat como un lugar amistoso.
+            <a href="%{url}">Revisá las Pautas de la Comunidad</a> para ver sugerencias de cómo hacer para que ArgentiNat siga siendo un lugar amigable y acogedor.
           please_read_the_teachers_guide_html: |
             Si es así, por favor lee nuestra <a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
@@ -6256,23 +6266,21 @@ es-AR:
     observation_fields:
       about_editing_observation_fields_desc_html: |
         <p class='ui'>
-        Puedes editar este campo de observación, porque lo has creado o
-        porque eres un curador del sitio. Si eres un curador sitio, por
-        favor, sigue estas directrices
+        Podés editar este campo de observación, porque lo creaste o porque sos un curador del sitio. Si sos un curador del sitio, por favor, seguí estas pautas
         </p>
         <ol>
-        <li>No hagas cambios de nombres arbitrarios (por ejemplo, cambio de "comer" a la "libación")</li>
+        <li>No hagas cambios de nombres arbitrarios (por ejemplo, no cambies "libando" por "comiendo")</li>
         <li>
-        Ten en cuenta que los campos de observación se pueden utilizar
-        para las observaciones de cualquier taxón, así que trata de no
+        Tené en cuenta que los campos de observación se pueden utilizar
+        para las observaciones de cualquier taxón, así que tratá de no
         utilizar la terminología específica del taxón
         </li>
         <li>No elimines los campos que la gente está utilizando</li>
         <li>
         No traduzcas nombres de campo existentes en diferentes idiomas.
-        Inglés es la lengua franca de este sitio. Si realmente quieres un
+        El inglés es la lengua franca de este sitio. Si realmente querés un
         campo que encapsule el mismo concepto pero en otro idioma, por
-        favor has un nuevo campo de observación.
+        favor creá un nuevo campo de observación.
         </li>
         </ol>
       dna_help: |
