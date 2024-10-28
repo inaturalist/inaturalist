@@ -103,6 +103,8 @@ class CohortLifecycle < ApplicationRecord
     cohort = current_day.to_date.to_s
     subjects = cohort_data[cohort].select {| _, v | v[:day0] == "no_obs" }
     subjects.each do | key, value |
+      next unless value[:observer_appeal_intervention_group].nil?
+
       user = User.where( id: key.to_s.to_i ).first
       next unless user
 
@@ -139,6 +141,8 @@ class CohortLifecycle < ApplicationRecord
       end
 
       subjects.each do | key, value |
+        next unless value[:error_intervention_group].nil?
+
         user = User.where( id: key.to_s.to_i ).first
         next unless user
 
@@ -204,6 +208,8 @@ class CohortLifecycle < ApplicationRecord
       end
 
       subjects.each do | key, value |
+        next unless value[:captive_intervention_group].nil?
+
         user = User.where( id: key.to_s.to_i ).first
         next unless user
 
@@ -238,8 +244,10 @@ class CohortLifecycle < ApplicationRecord
         user = User.where( id: key.to_s.to_i ).first
         next unless user
 
-        group = rand( 2 ).zero? ? "A" : "B"
-        value["needs_id_intervention_group"] = group
+        if value[:needs_id_intervention_group].nil?
+          group = rand( 2 ).zero? ? "A" : "B"
+          value[:needs_id_intervention_group] = group
+        end
 
         next unless group == "A"
 
@@ -257,6 +265,8 @@ class CohortLifecycle < ApplicationRecord
       end
 
       subjects.each do | key, value |
+        next unless value[:first_observation_intervention_group].nil?
+
         user = User.where( id: key.to_s.to_i ).first
         next unless user
 

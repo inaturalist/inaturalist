@@ -180,7 +180,7 @@ class Annotation < ApplicationRecord
       controlled_attribute_id: controlled_attribute_id,
       controlled_value_id: controlled_value_id,
       concatenated_attr_val: [controlled_attribute_id, controlled_value_id].join( "|" ),
-      vote_score: vote_score,
+      vote_score_short: vote_score,
       user_id: user_id,
       votes: votes_for.map( &:as_indexed_json )
     }

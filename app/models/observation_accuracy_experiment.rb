@@ -1076,7 +1076,8 @@ class ObservationAccuracyExperiment < ApplicationRecord
 
   def self.top_identifiers
     Rails.cache.fetch( "top_iders", expires_in: 1.week ) do
-      INatAPIService.get( "/observations/identifiers" ).results.map {| row | row["user_id"] }
+      User.where( "identifications_count > 25000 AND identifications_count < 50000 AND last_active > ?", 1.month.ago ).
+        pluck( :id )
     end
   end
 end

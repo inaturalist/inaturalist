@@ -134,6 +134,7 @@ synonyms = {
   "Juǀʼhoan" => ["Juǀ’hoan"],
   "Lozi" => ["Si Lozi", "siLozi"],
   "Malay" => ["Malay (Individual Language)", "Malayan"],
+  "Maya (Peninsular)" => ["Mayan (Yucatec)"],
   "Nahuatl" => ["Náhuatl"],
   TaxonName::NORWEGIAN => ["Norwegian Bokmal", "Norsk"],
   "Oshikwanyama" => ["Oshi Kwanyama"],

@@ -32,7 +32,7 @@ class Observation < ApplicationRecord
         indexes :resource_type, type: "keyword"
         indexes :uuid, type: "keyword"
         indexes :user_id, type: "keyword"
-        indexes :vote_score, type: "byte"
+        indexes :vote_score_short, type: "short"
         indexes :votes do
           indexes :created_at, type: "date", index: false
           indexes :id, type: "integer", index: false
@@ -949,7 +949,7 @@ class Observation < ApplicationRecord
           path: "annotations",
           query: { bool: { must: [
             { terms: { "annotations.controlled_attribute_id.keyword": p[:term_id].to_s.split( "," ) } },
-            { range: { "annotations.vote_score": { gte: 0 } } }
+            { range: { "annotations.vote_score_short": { gte: 0 } } }
           ] }
           }
         }
