@@ -8449,6 +8449,13 @@ CREATE INDEX index_deleted_photos_on_created_at ON public.deleted_photos USING b
 
 
 --
+-- Name: index_deleted_photos_on_photo_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deleted_photos_on_photo_id ON public.deleted_photos USING btree (photo_id);
+
+
+--
 -- Name: index_deleted_sounds_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11249,6 +11256,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240819213348'),
 ('20240828123245'),
 ('20240923134239'),
-('20240923134658');
+('20240923134658'),
+('20241016204033');
 
 
