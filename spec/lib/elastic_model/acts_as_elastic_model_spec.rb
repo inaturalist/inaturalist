@@ -169,7 +169,9 @@ describe ActsAsElasticModel do
         run_job_at = 5.minutes.from_now
         Observation.elastic_index!( delay: true, run_at: run_job_at )
         delayed_job = Delayed::Job.last
-        expect( delayed_job.run_at ).to eq run_job_at
+        # there is a precision problem with CI where the times are not equal,
+        # so instead ensure they match to some sub-second level of precision
+        expect( ( delayed_job.run_at - run_job_at ).abs ).to be <= 0.0001
       end
 
       it "doesn't re-index obs indexed more than 5 minutes after delayed index request" do
