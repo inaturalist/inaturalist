@@ -1,4 +1,8 @@
 es-AR:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} cambio"
+    other: "%{count} cambios"
   x_comments:
     one: '1 comentario'
     other: '%{count} comentarios'
@@ -29,6 +33,12 @@ es-AR:
     one: '<span class="count">%{count}</span> Identificador'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificadores'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID efectuada para otros'
+    other: '<span class="count">%{count}</span> IDs efectuadas para otros'
+  x_languages:
+    one: "%{count} idioma"
+    other: "%{count} idiomas"
   #Count of number of taxa that represent the first addition to a life list
   x_life_list_firsts:
     #Count of number of taxa that represent the first addition to a life list
@@ -76,6 +86,9 @@ es-AR:
   x_others:
     one: "1 otro"
     other: "%{count} otros"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persona'
+    other: '<span class="count">%{count}</span> personas'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} personas</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>"
   x_photos:
     one: "%{count} foto"
@@ -224,6 +237,7 @@ es-AR:
   active_taxon_status: Activo
   active_users: Usuarios activos
   activity: Actividad
+  activity_on_a_flag_for_x: Actividad en una marca para %{x}
   adapted_by_name_from_a_work_by_original: "Adaptado por %{name} de un trabajo de %{original}"
   add: Agregar
   add_a_batch_of_observations: Agregar un grupo de observaciones
@@ -231,6 +245,8 @@ es-AR:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Agregar una lista con viñetas
   add_a_comment: Agregar un comentario
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Agregar Estado de Conservación
   add_a_field: Agregar un campo
   add_a_flag: Agregar una marca
   #Tool tip for a button that adds a link to a text area
@@ -253,6 +269,8 @@ es-AR:
   add_annotations_for_controlled_attribute:
     sex: Agregar anotaciones para "Género"
     plant_phenology: Agregar anotaciones para "Fenología de la planta"
+    flowers_and_fruits: Agregar anotaciones para "Flores y Frutos"
+    leaves: Agregar anotaciones para "Hojas"
     life_stage: Agregar anotaciones para "Etapa de vida"
     evidence_of_presence: Añadir Anotaciones para "Evidencia de Presencia"
   add_another_flag: Agregar otra marca
@@ -309,7 +327,14 @@ es-AR:
   add_plant_phenology_flowering_annotation: 'Agregar anotación «Fenología de la planta: floreciendo»'
   add_plant_phenology_fruiting_annotation: 'Agregar anotación "fenología de la planta: fructificando"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Agregar anotación "Fenología de la planta: sin evidencias de Floración"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Agregar anotación "Flores y Frutos: Botones Florales"'
   add_flowers_and_fruits_flowers_annotation: 'Añadí anotación "Flores y Frutos: Flores"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Agregar anotación "Flores y Frutos: Frutos y Semillas"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Agregar anotación "Flores y Frutos: Sin Flores o Semillas"'
+  add_leaves_breaking_leaf_buds: 'Agregar anotación "Hojas: Hojas Verdes"'
+  add_leaves_green_leaves: 'Agregar anotación "Hojas: Hojas Verdes"'
+  add_leaves_colored_leaves: 'Agregar anotación "Hojas: Hojas de colores"'
+  add_leaves_no_live_leaves: 'Agregar anotación "Hojas: Sin hojas vivas"'
   add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
   add_life_stage_teneral_annotation: 'Agregar anotación "Etapa de vida: Imago tierno"'
   add_life_stage_subimago_annotation: 'Agregar anotación "Etapa de vida: sub-imago"'
@@ -1979,6 +2004,9 @@ es-AR:
   geoprivacy_is_private: Geoprivacidad es privada
   geoprivacy_is_private_desc: El observador ha escogido ocultar las coordenadas.
   georeferenced: '¿Geo referenciado?'
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoespacial
   get_started: Comenzar
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Cómo Empezar
@@ -2007,6 +2035,9 @@ es-AR:
   grid_tooltip: Mostrar la vista de rejilla
   group: Grupo
   grouping: Agrupamiento
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: '¿Adivinar la ubicación a partir de otras observaciones?'
   guides: Guías
   guide_compiled_by: Guía compilada por
   guide_deleted: Guía eliminada
@@ -2046,6 +2077,9 @@ es-AR:
     <strong>Aviso:</strong> Uno o más de los taxones de entrada implicados en este cambio tiene más de %{observose_taxon_threshold} observaciones descendientes. Sólo los administradores o curadores de ese marco de taxones pueden realizar este cambio.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
     <strong>Aviso:</strong> Uno o más de los taxones de entrada involucrados en este cambio están dentro de un marco <a href="%{framework_url}">de taxones</a>. Sólo administradores o curadores de ese marco de taxones pueden comprometer cambios que afecten a los taxones cubiertos. Ponte en contacto con uno de los curadores de ese taxón para realizar este cambio.
+  heads_up_there_are_other_draft_taxon_changes_html:
+    one: "<strong>Atención:</strong> hay %{count} cambio de taxón borrador con los mismos taxones de entrada:"
+    other: "<strong>Atención:</strong> hay %{count} cambios más de taxón borrador con los mismos taxones de entrada:"
   heads_up_this_photo_has_been_flagged: "ATENCIÓN: esta foto ha sido marcada."
   heads_up_this_photo_is_already_associated_with: "ATENCIÓN: esta foto ya está asociada con <a target='_blank' href='%{url}'>otra observación</a>"
   heads_up_you_have_multiple: "Avisos. Tienes varias etiquetas taxonómicas generadas para rangos idénticos. Están codificadas por color abajo según el rango."
@@ -2067,6 +2101,9 @@ es-AR:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Ocultar observaciones con ubicaciones privadas
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
@@ -2143,6 +2180,7 @@ es-AR:
   identotron_for: Identotrón para
   identotron_help: Ayuda con el identotrón
   ids: "Identificaciones"
+  ids_made_for_others__title: Identificaciones hechas para otros
   if_for_some_reason_a_user_doesnt_agree: |
     Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2732,6 +2770,8 @@ es-AR:
     para esa persona.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Ocultar
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Volver a mostrar
   #Action a moderator can take to suspend a user; verb
   moderator_actions_suspend: Suspender
   #Action a moderator can take to unsuspend a user; verb
@@ -3050,6 +3090,9 @@ es-AR:
   not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_confident_top_suggestions: 'No estamos suficientemente seguros para hacer una recomendación, pero estas son nuestras mejores sugerencias:'
   not_covered_by_any_taxon_frameworks: No está cubierto por ningún marco de taxón
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: No esperado cerca
   not_evaluated: no evaluado
   not_findig_what_you_want: '¿No encuentra lo que desea?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
@@ -3080,6 +3123,12 @@ es-AR:
     Las coordenadas públicas se muestran como un punto al azar dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales sólo son visibles para ti y los curadores de los proyectos a los que se agrega la observación.
   observation: Observación
   observation_: observación
+  observation_accuracy_experiment_the_sample_for: "La muestra de este experimento aún no ha sido generada"
+  observation_accuracy_experiment_our_accuracy_estimate: "Nuestra estimación de precisión resultante de este experimento es correcta en un %{percent}."
+  observation_accuracy_experiment_our_goak: "Nuestro objetivo de precisión estimada (Correcto) y Precisión del subconjunto de Grado de Investigación es mayor que el 95% (línea discontinua)"
+  observation_accuracy_experiment_precision_results: "Resultados de precisión por subconjunto"
+  observation_accuracy_experiment_taxon_rank_level: "Nivel de rango de taxón"
+  observation_accuracy_experiment_taxon_observations_count: "Número de observaciones del taxón"
   observation_accuracy_experiment_year: "Año"
   observation_accuracy_validator_email_with_gratitude: Con gratitud,
   observation_accuracy_validator_email_the_inaturalist_team: El equipo de iNaturalist
@@ -4263,6 +4312,8 @@ es-AR:
   remove_tags: Quite las etiquetas
   removed: eliminado
   removed_project_user: Usuario eliminado del proyecto
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rol eliminado
   removing: "Eliminando..."
   reorder_by_taxonomy: Reordenar por taxonomía
   repair_broken_urls: Reparar URL inactivos
@@ -4319,6 +4370,14 @@ es-AR:
   rotate_left: Gira a la izquierda
   rotate_right: Gira a la derecha
   row_singular_or_plural: Fila(s)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    ¿Probar diseño de la derecha a la izquierda? También podés usar el parámetro del URL test=rtl. Tené en cuenta que no todas las páginas se han convertido en diseño de la derecha a la izquierda.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Te diste de alta al experimento de derecha a izquierda
   rules_and_formatting: "Reglas & Formato"
   rules_for_adding_observations: Reglas para agregar observaciones
   rules_for_becoming_a_member: Reglas para ser miembro
@@ -4453,6 +4512,8 @@ es-AR:
   show_no_annotation: Mostrar "Sin anotaciones"
   show_off_your_recent_observations: '¡Presume tus observaciones en tu propio blog o sitio web!'
   show_only: Mostrar solamente
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Mostrar OpenStreetMap
   show_relative_proportions_of_all_observations: Enseña proporciones relativas de todas las observaciones
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar Total Acumulado
@@ -4826,6 +4887,8 @@ es-AR:
   taxon_deleted: Taxon fue borrado.
   taxon_doesnt_have_a_range: El taxón no tiene una área
   taxon_drop: dejar de taxón
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: La eliminación del taxón afecta %{taxon}
   taxon_id: Identificador de la especie o grupo
   taxon_ids: ID de Taxón
   taxon_map:
@@ -4849,6 +4912,9 @@ es-AR:
   taxon_framework_taxon: Taxon de marco de taxon
   taxon_history_notice: El historial se introdujo en febrero de 2022, por lo que no hay históricos disponible antes de esa fecha.
   taxon_merge: fusión de taxón
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: La fusión del taxón afecta a %{taxa}
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe coincidir con un taxón existente en la base de datos.
   taxon_observed_by_html: |
@@ -4885,9 +4951,17 @@ es-AR:
   taxon_search: Búsqueda de Taxón
   taxon_search_results_for: Resultados de búsqueda de Taxón para
   taxon_split: división de taxón
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: La división del taxón afecta a %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: montar de taxón
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: La activación del taxón afecta a %{taxon}
   taxon_swap: intercambio de taxón
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: El intercambio del taxón afecta a %{taxa}
   taxon_swap_only_has_one_input: solo se permite una entrada para un intercambio
   taxon_swap_has_inputs_and_outputs: el intercambio debe tener entradas y salidas
   taxon_name_was_deleted: El nombre del taxon fue eliminado.
@@ -4921,6 +4995,7 @@ es-AR:
   thank_you!: '¡Gracias!'
   thanks!: '¡Gracias!'
   thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
+  that_account_is_already_connected: Esa cuenta ya está vinculada a otro usuario.
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: "Esa observación no tiene ninguna foto."
@@ -5227,6 +5302,10 @@ es-AR:
   unknown: Desconocido
   unknown_error: Error desconocido
   unknown_rank: '(Clasificación desconocida)'
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Dejar de seguir esta observación
+  #Text for a button to stop following updates from a user
+  unfollow_user: Dejar de seguir a este usuario
   unlink_your_google_account: Desenlazar tu cuenta de Google
   unlink_your_flickr_account: "Desvincular tu cuenta de Flickr"
   unmute: Activar sonido
@@ -5355,6 +5434,8 @@ es-AR:
     %{user} cree que esta es una lista completa de %{taxon} en %{place}
   user_blocked: Usuario bloqueado
   user_commented: "%{user} comentó"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} eliminó un taxón que afecta a %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_merge_affecting_taxa2: "%{user} ha eliminado un taxón que afecta a %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
@@ -5369,6 +5450,9 @@ es-AR:
   user_faved_this_observation: "%{user} añadió esta observación a sus favoritos"
   user_flagged_as_a_non_spammer_html: "%{user} marcado como no-spammer"
   user_flagged_as_a_spammer_html: "%{user} marcado como spammer"
+  user_has_been_removed_from_site: |
+    %{username} fue eliminado de %{site_name} (puede tardar hasta una hora
+    para eliminar completamente todo el contenido asociado)
   user_has_opted_out_of_community_id: El usuario ha rechazado la Taxón de la Comunidad
   user_hasnt_joined_any_projects: "%{user} no se ha unido a ningún proyecto"
   user_helped_x_people_with_y_ids_html: "%{user} ayudó a <strong>%{x} usuarios</strong> con <strong>%{y} IDs</strong>"
@@ -5395,6 +5479,7 @@ es-AR:
   user_trusts_you_with_their_private_coordinates: "\n%{user} confía en ti con sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
+  user_updated_an_observation_field_html: '%{user} actualizó un valor para "%{field_name}" a una observación de %{owner}'
   user_wrote_html: '<a href="%{url}" target="_blank">%{user}</a> escribió:'
   username: Nombre de usuario
   username_description: Este es el nombre de usuario que usarás para iniciar sesión, y por el cual pueden identificarte otros usuarios en ArgentiNat / iNaturalist
@@ -5876,6 +5961,9 @@ es-AR:
           contravención de los derechos de autor, respectivamente.
     guides:
       index:
+        deprecated_banner: |
+          Tené en cuenta que a partir de enero de 2019, la función Guías se muestra
+          "como está". Aunque no tenemos planes para eliminarla, tampoco tenemos previsto desarrollarla a futuro.
         funding_html: |
           Los fondos para el desarrollo de Guías fueron proporcionados por 
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
@@ -6006,11 +6094,42 @@ es-AR:
           los editores de esta guía se debe copiar todo, pero si no lo eres
           sólo se copiará el contenido con licencia.
     lifelists:
+      list_view: Ver como Lista
+      tree_view: Ver como árbol
+      observed_species: Especies Observadas
+      observed_rank: '%{rank} observados/as'
+      unobserved_species: Especies no observadas
       all_species: Todas las especies
+      all_unobserved_species: Todas las especies no observadas
+      observations_at_this_taxon: Observaciones en este taxón
+      observations_within_this_taxon: Observaciones dentro de este taxón
+      all_observations: Todas las Observaciones
+      total_observations: Observaciones Totales
+      filter_by: Filtrar por
+      filtered_by: Filtrado por
+      apply_filters_to_export: Aplicar filtros para exportar
+      restrict_to_leaf_taxa: Restringir a taxones "de hoja"
+      restrict_to_taxon: Restringir a %{taxon}
+      restrict_to_taxa_observed_in_place: Restringir a los taxones observados en %{place}
+      exporting_x_taxa:
+        one: Exportando %{count} taxón
+        other: Exportando %{count} taxones
+      no_observations_found_in_place: No se encontraron observaciones en %{place}.
+      no_observations_found_within_this_taxon_in_place: No se encontraron observaciones de este taxón en %{place}.
+      no_species_found_within_this_taxon_in_place: No se encontraron especies de este taxón en %{place}.
       dropdowns:
         sort: Ordenar
+        taxonomic: Taxonómico
         name: Nombre
+        most_observed: Más observado
+        least_observed: Menos observado
+        date_added_newest: Fecha de adición, más reciente a más antigua
+        date_added_oldest: Fecha de adición, de más antigua a más reciente
+        ancestry: Ascendencia
         show: Mostrar
+        children: Descendiente
+        simplified_tree: Árbol simplificado
+        full_taxonomy: Taxonomía completa
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -6954,6 +7073,10 @@ es-AR:
       show:
         take_a_moment_to_review_html: 'Aprovechá para revisar <a href="%{link}">nuestras directrices</a>.'
         this_user_was_banned: Este usuario fue suspendido
+        favorites_list_prompt_html: |
+          ¿Querés mostrar algunos de tus taxones favoritos? %{link_start_tag}Creá una
+          lista%{link_end_tag} titulada "Favoritos" y las adiciones más recientes
+          aparecerán en este espacio.
     user_parents:
       confirm:
         thanks_donor_html: |
