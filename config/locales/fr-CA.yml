@@ -394,6 +394,12 @@ fr-CA:
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
+  people_added:
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: a ajouté une <strong>identification</strong> à une %{observation_link} de %{user_link}
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   search_by_name_or_email: Rechercher par nom ou par courriel
   #Option to show data series that show "No Annotation" data, i.e. records that
