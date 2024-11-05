@@ -2920,6 +2920,7 @@ en:
     lv: Latvian
     mi: Maori
     mk: Macedonian
+    ml: Malayalam
     mr: Marathi
     nb: Norwegian Bokmål
     nl: Dutch
@@ -2934,6 +2935,7 @@ en:
     sq: Albanian
     sr: Serbian
     sv: Swedish
+    ta: Tamil
     th: Thai
     tr: Turkish
     uk: Ukrainian
@@ -7959,7 +7961,7 @@ en:
             <li><strong>Parent or legal guardian's email:</strong> %{parent_email}</li>
             <li><strong>Child's name:</strong> %{child_name}</li>
             <li><strong>Child's birthday:</strong> %{child_birthday}</li>
-            <li><strong>Child acount email:</strong> %{child_email}</li>
+            <li><strong>Child account email:</strong> %{child_email}</li>
             <li><strong>Child account username:</strong> %{child_username}</li>
           </ul>
           <p>
@@ -8216,10 +8218,6 @@ en:
         data_visualizations: Data visualizations
         delete_project: Delete Project
         display_project_name: Display project name
-        do_you_need_features_from_traditional: |
-          Do you need features from traditional projects, such as access to true coordinates,
-          custom observation fields, or adding individual observations that can’t be automatically
-          filtered?
         do_you_need_features_from_traditional2: |
           Do you need features from traditional projects, such as custom observation fields,
           or adding individual observations that can’t be automatically filtered?
