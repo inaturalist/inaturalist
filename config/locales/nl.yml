@@ -2085,6 +2085,9 @@ nl:
   geoprivacy_is_private: Afscherming voor geo is persoonlijk
   geoprivacy_is_private_desc: Waarnemer heeft ervoor gekozen om de coördinaten te verbergen.
   georeferenced: Gegeorefereerd?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geospatiaal
   get_started: Aan de slag
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Hoe begin ik?
@@ -2189,6 +2192,9 @@ nl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Verberg "Geen aantekening"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Waarnemingen verbergen met privélocaties
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
@@ -4812,6 +4818,9 @@ nl:
     Het %{start_tag_network}iNaturalist Netwerk%{end_tag_network} is een
     collectie gelokaliseerde websites in de %{start_tag_global}wereldwijde
     iNaturalist gemeenschap%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    Het %{start_tag_network}iNaturalist Netwerk%{end_tag_network} bied een lokale ervaring in de %{start_tag_global}wereldwijde
+    iNaturalist gemeenschap%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Wanneer je gekoppeld bent met een iNaturalist netwerklid worden je e-mailadres en de echte locaties van je vervaagde en privé-locaties gedeeld met het netwerklid. Hierdoor kunnen je waarnemingen meer waardevol worden voor de lokale instandhoudingsinspanningen. Als je een gebied dat valt onder een lid van het netwerk regelmatig bezoekt of erin woont in wordt je aangemoedigd om te kiezen voor een koppeling met dit netwerklid zodat het delen van deze gegevens mogelijk wordt.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4823,10 +4832,18 @@ nl:
     geografische gebieden om het gebruik van het iNaturalist platform te ondersteunen.
     <strong>Als jouw organisatie geïnteresseerd is in het toetreden tot het iNaturalist
     Netwerk, dan kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist heeft formele overeenkomsten met organisaties in elk van deze
+    geografische gebieden om het gebruik van het iNaturalist platform te ondersteunen. In 2024 loopt een pilot voor een vereenvoudigde benadering van netwerkpartners. <strong>Als jouw organisatie geïnteresseerd is in het toetreden tot het iNaturalist
+    Netwerk, dan kan je %{start_tag_join}hier%{end_tag_join} meer details vinden.</strong>
   sites_network_consists_of: "Het iNaturalist netwerk bestaat uit verschillende organisaties:"
   sites_network_inaturalist_network_collection: |
     Het iNaturalist netwerk is een verzameling van gelokaliseerde websites die volledig
     verbonden zijn met de wereldwijde iNaturalist gemeenschap. Netwerksites worden
+    ondersteund door lokale instellingen die lokaal gebruik bevorderen en het gebruik van gegevens mogelijk maken van iNaturalist om de lokale biodiversiteit te bevorderen. Ze hebben toegang tot echte coördinaten binnen hun geografische gebieden die automatisch uit publieke weergave worden vervaagd om bedreigde soorten beter te beschermen.
+  sites_network_inaturalist_network_collection2: |
+    Het iNaturalist netwerk is een lokaliseerde ervaring die volledig
+    verbonden is met de wereldwijde iNaturalist gemeenschap. Netwerkleden worden
     ondersteund door lokale instellingen die lokaal gebruik bevorderen en het gebruik van gegevens mogelijk maken van iNaturalist om de lokale biodiversiteit te bevorderen. Ze hebben toegang tot echte coördinaten binnen hun geografische gebieden die automatisch uit publieke weergave worden vervaagd om bedreigde soorten beter te beschermen.
   sites_network_your_username: |
     Je gebruikersnaam en wachtwoord werken op alle websites die deel uitmaken van het iNaturalist netwerk. Als je kiest om lid te worden van een lokale netwerksite hebben de
@@ -6246,6 +6263,10 @@ nl:
             om iNaturalist een vriendelijke en gastvrije plek te houden.
           please_read_the_teachers_guide_html: |
             Lees alsjeblieft onze <a href="%{url}">Docentenhandleiding</a> voor
+            tips over het gebruik van %{site_name} met studenten.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Lees alsjeblieft onze <a href="%{url}">Educatieve handleiding</a> voor
             tips over het gebruik van %{site_name} met studenten.
     donate:
       donate_short_desc: "Doneer nu om je steun te betuigen!"
