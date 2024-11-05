@@ -6531,6 +6531,10 @@ hu:
             place_geometry:
               is_too_large_to_edit: túl nagy a módodításhoz
               is_too_large_to_import: túl nagy az importáláshoz
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: túl nagy vagy túl bonyolult, hogy feldolgozzuk mielőtt lejárna az idő
               contains_too_many_observations: túl sok megfigyelést tartalmaz az importáláshoz
               cannot_be_blank: nem lehet üres
               invalid_point: hibás pontja van, pl. 180-nál nagyobb hosszúság, vagy -90-nél kisebb szélesség
