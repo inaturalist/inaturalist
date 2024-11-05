@@ -311,6 +311,10 @@ ja:
   add_evidence_of_presence_track_annotation: '「存在の証拠:足跡」の注釈を追加'
   add_evidence_of_presence_bone_annotation: '「存在の証拠:骨」の注釈を追加'
   add_evidence_of_presence_molt_annotation: '「存在の証拠: 脱皮殻」の注釈を追加'
+  add_evidence_of_presence_leafmine_annotation: '「存在の証拠:潜葉痕」の注釈を追加'
+  add_evidence_of_presence_hair_annotation: '「存在の証拠:体毛」の注釈を追加'
+  add_evidence_of_presence_egg_annotation: '「存在の証拠:卵」の注釈を追加'
+  add_evidence_of_presence_construction_annotation: '「存在の証拠:構造物」の注釈を追加'
   #As in a Taxon Framework Relationship
   add_relationship: '新規関連'
   #As in a Guide Section
@@ -1105,6 +1109,10 @@ ja:
     molt: 抜け殻
     #Evidence of an organism feeding between the dermal layers of a leaf
     leafmine: 潜葉痕
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: 体毛
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: 構造物
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     bone: |
@@ -1126,6 +1134,10 @@ ja:
     gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
     male: 生物が有性生殖に使用する精子を生産できることを示す証拠
     molt: 脱ぎ捨てられた皮膚または外骨格
+    leafmine: 葉の表皮の中で摂食している証拠
+    hair: 元の生物から脱落した体毛
+    egg: 卵全体または卵の一部
+    construction: 動物が作ったもの、他の材料で作られたもの、発掘されたもの
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
     no_flowers_or_fruits: 花、果実、種子（全部または一部）が見えない
     organism: 生物の本体またはその一部
@@ -1147,6 +1159,7 @@ ja:
   copy_and_paste_the_following_code_to: この評価を別のウェブページに埋め込めるには、以下のコードをコピーし、貼り付けてください。
   copy_and_paste_this_into_your_own_html: こちらをコピーし、自分のHTMLの中に貼り付けしてご利用ください。
   copy_guide_taxon_to: ガイド分類群を次の場所にコピーする：
+  copied!: コピーしました！
   copyright:
     some_rights_reserved: いくつかの権利を保有
     some_rights_reserved_by: "(c) %{name}, いくつかの権利を保有 (%{license_short})"
@@ -2022,6 +2035,9 @@ ja:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '「情報なし」を非表示'
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: プライベートロケーションの観察記録を非表示
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 現在の総計を非表示
   hide_uncountable_species: 数えられない種を非表示
@@ -2191,6 +2207,11 @@ ja:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: この観察記録には%{taxon} であると同定するのに十分な情報がありますか？
   is_this_offensive_html: 'この内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？'
   is_this_place_a_duplicate: この場所は重複していますか？
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: この学名は現在受け入れられていますか？
   it_can_now_be_used_for_research: 研究に利用できるようになり、他のサイトでも紹介されるようになります。
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: 斜体
@@ -2933,6 +2954,9 @@ ja:
   not_confident: 信頼性のある提案ができません
   not_confident_top_suggestions: 信頼性は高くありませんが、これらが上位の提案です
   not_covered_by_any_taxon_frameworks: どの分類群フレームワークでもカバーされていない
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: 周辺では期待できません
   not_evaluated: 未評価
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
@@ -3941,6 +3965,8 @@ ja:
     infraorder: 下目
     subterclass: 準綱
     parvorder: 小目
+    zoosection: 節
+    zoosubsection: 亜節
     superfamily: 上科
     epifamily: 上科
     family: 科
@@ -3967,6 +3993,7 @@ ja:
     subspecies: 亜種
     variety: 変種
     form: 品種
+    infrahybrid: 交雑種
     leaves: 末端ノード
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: 物質の状態
@@ -3998,6 +4025,10 @@ ja:
   ranks_lowercase_subterclass: 準綱
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: 小目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: 節
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: 亜節
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: 上科
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
@@ -4032,6 +4063,8 @@ ja:
   ranks_lowercase_variety: 変種
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: 品種
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: 交雑種
   ranges: 範囲
   #Text to link to a taxon range as a KML file
   range_file: 生息域ファイル
@@ -4285,6 +4318,8 @@ ja:
   share_colon: "共有:"
   short_code_for_this_place: この場所の省略名称、例：アメリカの場合、US
   short_or_abbreviated_title_for_display: スペースの限られた領域に表示するための簡潔なタイトル。最大10文字。
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: この分類群ではこの一般名をデフォルトで表示すべきですか？
   show: 表示
   show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
   show_hidden_content: 非表示コンテンツを表示
@@ -4364,9 +4399,16 @@ ja:
     iNaturalistは年に2回、iNaturalistのデータを各地域の研究、保全、管理のために利用しやすくするために、iNaturalistネットワーク・メンバーと提携しているアカウントのメールアドレスと一部の非表示座標（公開されていない座標や非公開の座標）を共有しています。座標を隠すことができる2つの方法は以下に説明するように共有方法が異なります。
   sites_affiliation_more_user_hidden_coordinates: |
     投稿者によって不明瞭または非公開にされた位置情報
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    %{start_tag_network}iNaturalistネットワーク%{end_tag_network} は、%{start_tag_global}グローバルなiNaturalistコミュニティー%{end_tag_global} の中で、地域に根ざした体験を提供します。
   sites_network_agreements_html: |
     iNaturalistはiNaturalistプラットフォームの利用をサポートするため、それぞれの地域の組織と正式な契約を結んでいます。<strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join}で詳細をご確認いただけます。</strong>
+  sites_network_agreements2_html: |
+    iNaturalistはiNaturalistプラットフォームの利用をサポートするため、これらの地域の各組織と正式な契約を結んでいます。2024年現在、私たちはネットワーク・パートナーシップの簡略化したアプローチを試験的に行っています。
+    <strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join} から詳細をご覧いただけます。</strong>
   sites_network_consists_of: "iNaturalistネットワークはいくつかの組織で構成されています:"
+  sites_network_inaturalist_network_collection2: |
+    iNaturalistネットワークはグローバルなiNaturalistコミュニティに完全に接続されたローカルな活動です。ネットワークメンバーは、地域の生物多様性のためにiNaturalistのデータの利用を促進する地域の機関です。彼らは絶滅危惧種をより適切に保護するために、自動的に一般公開されない地理的エリア内の真の座標にアクセスすることができます。
   some_agree: 一部が賛成
   some_observations_are_missing_media_or_identifications: |
     一部の観察記録にメディアや同定の欠落があります
@@ -5162,6 +5204,7 @@ ja:
   view_check_list_page: チェックリストページを表示
   view_contributions: 投稿を表示
   view_details: 詳細を表示
+  view_dynamic_lifelist_: ダイナミックライフリストを表示
   view_field_options: フィールドオプションを表示
   view_flag: フラグを表示
   view_flags: フラッグを表示
@@ -5542,6 +5585,9 @@ ja:
             iNaturalistを親しみやすい場所にするためのヒントとして、<a href="%{url}">コミュニティ・ガイドライン</a>をご確認ください
           please_read_the_teachers_guide_html: |
             もしそうであれば、<a href="%{url}">ティーチャーズ・ガイド</a>を読んで、%{site_name}を使うヒントにしてください。
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            その場合は、<a href="%{url}">教育者用ガイド</a>で、生徒と一緒に %{site_name} を使用するヒントをお読みください。
     donate:
       donate_short_desc: "ご寄付をお願いいたします"
       donate_desc_moore_html: |
@@ -6126,8 +6172,10 @@ ja:
           このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
         click_through_to_individual_projects: クリックして個々のプロジェクトへ進む
         collection_projects: コレクションプロジェクト
+        collection_project_features: "コレクションプロジェクトの機能:"
         contain_entire_image_without_cropping: トリミングせずに全体の画像を使用
         custom_banner_icon_and_project_description: バナー画像・アイコン・プロジェクト概要の設定
+        data_visualizations: データの可視化
         delete_project: プロジェクトを削除
         display_project_name: プロジェクト名を表示する
         do_you_need_features_from_traditional: |
@@ -6186,12 +6234,18 @@ ja:
         users_can_follow_your_project: ユーザーはプロジェクトをフォローすることで、ニュースから最新の情報を得ることができます
         use_this_link_to_create_html: |
           <a href="%{url}">このリンク</a> を使用して手動プロジェクトを作成する
+        visual_comparison_of_data_among: 傘下のプロジェクト間のデータの視覚的な比較
         we_have_redesigned_projects: |
           プロジェクトは、あなたが定義した「場所」「分類群」「ユーザー」「データ品質」「観測日
           」の要件に適合する全ての観察記録が自動で含まれるようデザインされています。
 
           まずはプロジェクトを、コレクションプロジェクトかアンブレラプロジェクトのどちらのタイプにするか選択してください。以下の機能は２つのタイプで共通です:
         welcome_to_projects: プロジェクトへようこそ！
+        you_can_learn_more_html: |
+          プロジェクトの管理について学習するには
+          <a href="https://www.inaturalist.org/pages/managing-projects">こちら</a>
+          またプロジェクトの歴史については
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ブログ</a>をご覧ください。
         errors:
           name_is_required: プロジェクト名が必要です
           name_less_than_100_characters: プロジェクト名は100文字未満にする必要があります
@@ -6938,6 +6992,10 @@ ja:
             place_geometry:
               is_too_large_to_edit: 編集するには大きすぎます
               is_too_large_to_import: 大きすぎるため、インポートできません
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: 大きすぎるか複雑すぎるため、タイムアウトする前に処理できません
               contains_too_many_observations: インポートするには観察記録が多すぎます
               cannot_be_blank: 空白にはできません
               invalid_point: は無効な点です。例えば、経度が180度より大きい、緯度が-90度より小さいなど。
