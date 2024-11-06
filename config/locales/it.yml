@@ -6925,24 +6925,6 @@ it:
           Abbiamo incluso i collegamenti alle foto interessate qui sotto.
       user_parent_confirmation:
         subject: L'account iNaturalist di tuo figlio è stato attivato
-        content_html: |
-          <p>
-          Grazie per la creazione di un account iNaturalist per tuo figlio! L'account è stato attivato. Qui i dettagli che hai insertito che abbiamo memorizzato:
-          </p>
-          <ul>
-          <li><strong>Nome del genitore o tutore legale:</strong> %{parent_name}</li>
-          <li><strong>Email del genitore o tutore legale:</strong> %{parent_email}</li>
-          <li><strong>Nome del bambino:</strong> %{child_name}</li>
-          <li><strong>Data di nascita del bambino:</strong> %{child_birthday}</li>
-          <li><strong>Email dell'account del minore:</strong> %{child_email}</li>
-          <li><strong>Nome utente dell'account del minore:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Per favore entra nell'account dall'app Seek di tuo figlio toccando il bottone "iNaturalist" nel menù e poi "Effettua il login con iNaturalist" al fondo dello schermo.
-          </p>
-          <p>
-          Tuo figlio sarà così in grado di publicare osservazioni sul suo account iNaturalist usando l'app Seek app in modo che queste siano visibili su iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi al tuo account</a>.
@@ -7118,8 +7100,6 @@ it:
         data_visualizations: Visualizzazione dei dati
         delete_project: Elimina progetto
         display_project_name: Visualizza il nome del Progetto
-        do_you_need_features_from_traditional: |
-          Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?
         do_you_need_features_from_traditional2: |
           Hai bisogno di funzionalità dei progetti tradizionali, come campi di osservazione personalizzati, o l'aggiunta di singole osservazioni che non possono essere filtrate automaticamente?
         duplicate_project: Duplica progetto
