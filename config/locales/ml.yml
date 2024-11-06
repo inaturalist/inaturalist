@@ -658,7 +658,19 @@ ml:
               should_be_in_english: ഇംഗ്ലീഷിലായിരിക്കണം
   i18n:
     inflections:
+      "@vow_or_con":
+        vow: vowel
+        con: consonant
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
       "@gender":
+        m: male
+        f: female
+        "n": neuter
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         comment: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
