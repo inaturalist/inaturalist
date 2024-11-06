@@ -363,7 +363,10 @@ es:
   add_flowers_and_fruits_flowers_annotation: 'Añadir anotación "Flores y frutos: Flores"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Añade anotación "Flores y Frutos: Frutos y Semillas"'
   add_flowers_and_fruits_no_flower_or_fruits: 'Añade anotación "Flores y Frutos: Sin Flores o Semillas"'
+  add_leaves_breaking_leaf_buds: 'Añadir anotación "Hojas: Brotación de yemas foliares"'
   add_leaves_green_leaves: 'Añadir anotación "Hojas: Hojas Verdes"'
+  add_leaves_colored_leaves: 'Añadir anotación "Hojas: Hojas de colores"'
+  add_leaves_no_live_leaves: 'Añadir anotación "Hojas: Sin hojas vivas"'
   add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
   add_life_stage_teneral_annotation: 'Agregar anotación "Etapa de vida: Imago tierno"'
   add_life_stage_subimago_annotation: 'Agregar anotación "Etapa de vida: sub-imago"'
@@ -802,6 +805,7 @@ es:
   back_to_your_observations: Regresa a tus observaciones
   back_to_your_profile: Regresa a tu perfil
   badges: Insignias
+  base_map_copyright_openstreetmap_html: Mapa base © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1154,16 +1158,19 @@ es:
     male: Macho
     female: Hembra
     plant_phenology: Fenología de la planta
-    flowers_and_fruits: Flores y Frutas
+    flowers_and_fruits: Flores y Frutos
     budding: En germinación
     flower_budding: Yemas Florales
     flowering: Floración
     fruiting: Fructificación
     no_flowers_or_fruits: Sin flores ni frutas
+    flower_buds: Botones florales
     flowers: Flores
     fruits_or_seeds: Frutos o semillas
     leaves: Hojas
+    breaking_leaf_buds: Brotación de yemas foliares
     green_leaves: Hojas Verdes
+    colored_leaves: Hojas coloreadas
     no_live_leaves: Sin hojas vivas
     life_stage: Etapa de vida
     adult: Adulto
@@ -1219,7 +1226,12 @@ es:
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
     flowers: Al menos una flor abierta
+    flower_buds: Al menos un botón floral cerrado
     fruits_or_seeds: Al menos un fruto o semilla
+    breaking_leaf_buds: Al menos una yema con su primera hoja o aguja nueva sin desplegar completamente
+    green_leaves: Al menos una hoja verde o aguja (o rojiza si este es su color saludable normal)
+    colored_leaves: Al menos una hoja o aguja ha cambiado a color de final de temporada o de sequía
+    no_live_leaves: No hay yemas foliares en brotación, ni hojas o agujas verdes o coloreadas visibles
     gall: Brote de tejido vegetal deformado causado por un organismo parásito o infección
     male: La evidencia muestra que el organismo puede producir esperma para la reproducción sexual
     molt: Restos de piel o exoesqueleto
@@ -1888,6 +1900,7 @@ es:
   filter: Filtro
   filter_by_curator_identification: Filtra por identificación del curador
   filter_by_place: Filtra por lugar
+  filter_by_species: Filtrar por especies
   filter_by_taxon: Filtra por taxón
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando los controles.
   filter_list_by_this_taxon: Filtra esta lista haciendo este taxón
@@ -2046,6 +2059,9 @@ es:
   geoprivacy_is_private: Geoprivacidad es privada
   geoprivacy_is_private_desc: El observador ha escogido ocultar las coordenadas.
   georeferenced: '¿Geo referenciado?'
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoespacial
   get_started: Comienza
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Cómo Empezar
@@ -2228,6 +2244,7 @@ es:
   identotron_for: Identotrón para
   identotron_help: Ayuda con el identotrón
   ids: "Identificaciones"
+  ids_made_for_others__title: IDs hechas para otros
   if_for_some_reason_a_user_doesnt_agree: |
     Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -3138,6 +3155,9 @@ es:
   not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_confident_top_suggestions: 'No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:'
   not_covered_by_any_taxon_frameworks: No está cubierto por ningún marco de taxón
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: No se espera cerca
   not_evaluated: no evaluado
   not_findig_what_you_want: '¿No encuentra lo que desea?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
@@ -6920,24 +6940,6 @@ es:
           Hemos incluido enlaces a las fotos afectadas abajo.
       user_parent_confirmation:
         subject: La cuenta de iNaturalist de su hijo ha sido activada
-        content_html: |
-          <p>
-          ¡Gracias por crear una cuenta de INaturaList para su hijo! La cuenta ha sido activada. Aquí están los detalles que ingresó que tenemos registrados:
-          </p>
-          <ul>
-          <li><strong>Nombre del padre o tutor legal: </strong> %{parent_name}</li>
-          <li><strong>Correo electrónico del padre o tutor legal: </strong> %{parent_email}</li>
-          <li><strong>Nombre del niño: </strong> %{child_name}</li>
-          <li><strong>Fecha de nacimiento del niño: </strong> %{child_birthday}</li>
-          <li><strong>Correo electrónico de la cuenta del niño: </strong> %{child_email}</li>
-          <li><strong>Nombre de usuario de la cuenta del niño: </strong> %{child_username}</li>
-          </ul>
-          <p>
-          Inicie sesión en la cuenta desde la aplicación Busqueda de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
-          </p>
-          <p>
-          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Busqueda para que se puedan ver en iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido tus suscripciones. Para reanudar la obtención de actualizaciones sobre la actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu cuenta</a> de nuevo.
@@ -7122,8 +7124,6 @@ es:
         data_visualizations: Visualizaciones de datos
         delete_project: Eliminar proyecto
         display_project_name: Exhibe nombre del proyecto
-        do_you_need_features_from_traditional: |
-          ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         do_you_need_features_from_traditional2: |
           ¿Necesita características de proyectos tradiciones, como campos de observaciones personalizados, o añadir observaciones personales que no se pueden filtrar automáticamente?
         duplicate_project: Duplicar proyecto
@@ -7477,8 +7477,11 @@ es:
           "Plant Phenology=Flowering": Floreciendo
           "Plant Phenology=Fruiting": Fructificando
           "Plant Phenology=No Evidence of Flowering": Sin evidencias de Floración
+          "Flowers and Fruits=Flower Buds": Botones florales
           "Flowers and Fruits=Flowers": Flores
           "Flowers and Fruits=Fruits or Seeds": Frutas o semillas
+          "Flowers and Fruits=No Flowers or Fruits": Sin flores ni frutos
+          "Leaves=Breaking Leaf Buds": Brotación de yemas foliares
           "Leaves=Green Leaves": Hojas verdes
           "Leaves=Colored Leaves": Hojas de colores
           "Leaves=No Live Leaves": Sin hojas vivas
