@@ -4266,31 +4266,6 @@ ar:
           لقد قمنا بتضمين وصلات للصور المتأثرة أدناه.
       user_parent_confirmation:
         subject: تم تنشيط حساب إيناتوراليست لطفلك
-        content_html: |
-          <p>
-            شكرا لك على إنشاء حساب إيناتوراليست لطفلك!
-            لقد تم تنشيط الحساب، إليك التفاصيل التي أدخلتها والتي
-            سجلناها:
-          </p>
-          <ul>
-           \ <li><strong> اسم الوالد أو الوصي القانوني:</strong> %{parent_name}</li>
-           \ <li><strong>البريد الإلكتروني للوالد أو الوصي القانوني:</strong> %{parent_email}</li>
-           \ <li><strong>اسم الطفل:</strong> %{child_name}</li>
-            <li><strong>عيد ميلاد الطفل:</strong> %{child_birthday}</li>
-            <li><strong> البريد الإلكتروني لحساب الطفل:</strong> %{child_email}</li>
-            <li><strong>اسم مستخدم حساب الطف:</strong> %{child_username}</li>
-          </ul>
-
-          <p>
-            يُرجَى تسجيل الدخول إلى الحساب من تطبيق سيك لطفلك بالنقر 
-            على الزر "إيناتوراليست" في القائمة ثم "تسجيل الدخول باستخدام 
-            إيناتوراليست" على الجزء السفلي من الشاشة.
-          </p>
-          <p>
-           \ سيتمكن طفلك بعد ذلك من نشر الملاحظات على 
-            حساب إيناتوراليست باستخدام تطبيق سيك حتى يمكن رؤيتها على
-            iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           لقد كنت غير نشط في %{site_name} لفترة من الوقت; لذا علقنا 
@@ -4499,10 +4474,6 @@ ar:
         data_visualizations: تصورات البيانات
         delete_project: حذف المشروع
         display_project_name: عرض اسم المشروع
-        do_you_need_features_from_traditional: |
-          هل تحتاج إلى ميزات من المشاريع التقليدية، مثل الوصول إلى الإحداثيات الحقيقية أو 
-          حقول الملاحظة المخصصة أو إضافة ملاحظات فردية لا يمكن تصفيتها 
-          تلقائيا؟
         duplicate_project: مشروع مكرر
         leaderboards_among_individuals: المتصدرون ضمن <strong>الأفراد</strong>
         leaderboards_among_projects_and_bioblitzes: |
