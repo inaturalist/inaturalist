@@ -7249,24 +7249,6 @@ sv:
           Vi har inkluderat länkar till de berörda bilderna nedan.
       user_parent_confirmation:
         subject: Ditt barns iNaturalist-konto har aktiverats
-        content_html: |
-          <p>
-          Tack för att du skapade ett iNaturalist-konto åt ditt barn! Kontot har aktiverats. Här är den information du uppgav som vi har sparad:
-          </p>
-          <ul>
-          <li><strong>Förälder eller målsmans namn:</strong> %{parent_name}</li>
-          <li><strong>Förälder eller målsmans e-post:</strong> %{parent_email}</li>
-          <li><strong>Barnets namn:</strong> %{child_name}</li>
-          <li><strong>Barnets födelsedatum:</strong> %{child_birthday}</li>
-          <li><strong>Barnkontots e-post:</strong> %{child_email}</li>
-          <li><strong>Barnkontots användarnamn:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Vänligen logga in på kontot från ditt barns Seek-app genom att trycka på "iNaturalist"-knappen i menyn och sedan "Logga in med iNaturalist" längst ned på skärmen.
-          </p>
-          <p>
-          Ditt barn kommer nu att kunna lägga upp fynd till sitt iNaturalist-konto med Seek-appen så att de blir synliga på iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Du har varit inaktiv på %{site_name} ett tag, så vi har stängt av dina prenumerationer. För att fortsätta få uppdateringar om aktivitet på sajten, var vänlig och <a href="%{login_url}">logga in på ditt konto</a> igen.
@@ -7449,8 +7431,6 @@ sv:
         data_visualizations: Datavisualisering
         delete_project: Radera projekt
         display_project_name: Visa projektnamn
-        do_you_need_features_from_traditional: |
-          Behöver du funktioner från traditionella projekt, såsom tillgång till exakta koordinater, anpassade fyndfält eller möjlighet att lägga till individuella fynd som inte kan filtreras automatiskt?
         do_you_need_features_from_traditional2: |
           Behöver du funktioner från traditionella projekt, såsom anpassade fyndfält
           eller lägga till individuella fynd som inte kan filtreras automatiskt?
