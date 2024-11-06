@@ -6651,28 +6651,6 @@ tr:
           Aşağıda etkilenen fotoğraflara bağlantılar ekledik.
       user_parent_confirmation:
         subject: Çocuğunuzun iNaturalist hesabı etkinleştirildi
-        content_html: |
-          <p>
-          Çocuğunuz için bir iNaturalist hesabı oluşturduğunuz için teşekkür ederiz! 
-          Hesap aktifleştirildi. Girdiğiniz kayıtlarda kaydettiğimiz detaylar:
-          </p>
-          <ul>
-          <li><strong>Ebeveyn ya da yasal vasi ismi:</strong>%{parent_name}</li>
-          <li><strong>Ebeveyn ya da yasal vasi e-postası:</strong>%{parent_email}</li>
-          <li><strong>Çocuğun ismi:</strong>%{child_name}</li>
-          <li><strong>Çocuğun doğum günü:</strong>%{child_birthday}</li>
-          <li><strong>Çocuk hesabı e-postası:</strong>%{child_email}</li>
-          <li><strong>Çocuk hesabı kullanıcı adı:</strong>%{child_username}</li>
-          </ul>
-          <p>
-          Lütfen menüdeki "iNaturalist" butonuna dokunarak ve ardından ekranın altındaki 
-          "iNaturalist ile giriş yap" seçeneğini tıklayarak çocuğunuzun Seek uygulamasından 
-          hesaba giriş yapın.
-          </p>
-          <p>
-          Çocuğunuz daha sonra, iNaturalist.org sitesinde görülmeleri için Seek uygulamasını kullanarak,
-          iNaturalist hesabına gözlemler gönderebilir.
-          </p>
       users_updates_suspended:
         message: |
           Bir süredir %{site_name}'te etkin değilsin, bu nedenle aboneliklerini askıya aldık. Site etkinliği ile ilgili güncellemeleri almaya devam etmek için lütfen hesabına tekrar <a href="%{login_url}">giriş yap</a>.
@@ -6846,9 +6824,6 @@ tr:
         data_visualizations: Veri görselleştirmeleri
         delete_project: Projeyi Sil
         display_project_name: Proje ismini görüntüle
-        do_you_need_features_from_traditional: |
-          Gerçek koordinatlara erişim, özel gözlem alanları veya otomatik olarak filtrelenemeyen 
-          bireysel gözlemler ekleme gibi geleneksel projelerden özelliklere mi ihtiyacınız var?
         do_you_need_features_from_traditional2: |
           Özel gözlem alanları veya otomatik olarak filtrelenemeyen bireysel gözlemler eklemek gibi geleneksel projelerdeki özelliklere mi ihtiyacın var?
         duplicate_project: Projeyi Kopyala
