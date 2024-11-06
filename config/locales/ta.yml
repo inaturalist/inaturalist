@@ -379,9 +379,13 @@ ta:
         strip_insignificant_zeros: true
   i18n:
     inflections:
+      "@vow_or_con":
+        vow: vowel
+        con: consonant
       "@gender":
         m: ஆண்
         f: பெண்
+        "n": நடுநிலையான
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
