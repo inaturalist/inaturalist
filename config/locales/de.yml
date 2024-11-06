@@ -181,7 +181,7 @@ de:
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: Über Art der Verbreitung
+  about_establishment_means: Über "Art der Etablierung"
   about_license_options: Über Lizenzoptionen
   about_licenses: Über Lizenzen
   #Header for a section describing taxon names
@@ -543,7 +543,7 @@ de:
   all_updates: Alle Aktualisierungen
   allow_curator_access: Kuratorenzugriff erlauben
   allow_project_curators_to_view_your_private_coordinates: Projektkuratoren die Ansicht deiner verborgenen Koordinaten erlauben
-  allowed_establish_means_values: Erlaubte Werte für die Verbreitung
+  allowed_establish_means_values: Erlaubte Werte für die Art der Etablierung
   allowed_html: Erlaubte HTML-Tags
   allowed_occurrence_status_values: Erlaubte Verbreitungsstatus-Werte
   allowed_values: Erlaubte Werte
@@ -619,7 +619,7 @@ de:
   apply_fields: Felder übernehmen
   apply_geoprivacy: Geo-Privatsphäre anwenden
   apply_darr: "Übernehmen &darr;"
-  apply_establishment_means_to_descendant_places: "Die Art der Verbreitung auf alle untergeordneten Gebiete anwenden"
+  apply_establishment_means_to_descendant_places: "Die Art der Etablierung auf alle untergeordneten Gebiete anwenden"
   apply_these_settings_to_all: Diese Einstellungen für alle nachstehenden Beobachtungen übernehmen.
   appropriate?: Geeignet?
   arachnids: Spinnentiere
@@ -1736,15 +1736,15 @@ de:
   error_updating_photo: "Fehler beim updaten der Fotos: %{photo_errors}"
   establishment:
     endemic: endemisch
-    establishment: Verbreitung
+    establishment: Etablierung
     introduced: eingeführt
     invasive: Invasiv
     managed: Verwaltet
     native: einheimisch
     naturalised: Ausgewildert
-  establishment_means: Art der Verbreitung
+  establishment_means: Art der Etablierung
   establishment_means_describes_how: |
-    "Art der Verbreitung" bezeichnet wie das Taxon sich in einem Gebiet verbreitet hat. 
+    "Art der Etablierung" bezeichnet wie das Taxon sich in einem Gebiet verbreitet hat. 
     Siehe DarwinCore für <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">über mehr Informationen zur Terminologie</a>.
   establishment_means_descriptions:
     native: In dieser Region heimisch oder ohne menschlichen Einfluss hierher gelangt
@@ -3295,7 +3295,7 @@ de:
     irregular: Vorkommen unvorhersehbar, einschließlich gelegentlichen Besuchen; kann in einigen Jahren häufig sein und in anderen fehlen
     present: Kommt im Gebiet vor
     uncommon: Kommt regelmäßig vor, aber in geringer Anzahl; erfordert sorgfältige Suche in geeignetem Lebensraum
-  occurrence_status_establishment_means: Verbreitungsstatus, Art der Verbreitung
+  occurrence_status_establishment_means: Verbreitungsstatus, Art der Etablierung
   occurrence_status_levels:
     present: vorhanden
     common: häufig
@@ -6322,12 +6322,12 @@ de:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Bist du sicher? Dies wird die Art der Verbreitung für ALLE
+          Bist du sicher? Dies wird die Art der Etablierung für ALLE
           gelisteten Taxa ändern, die zu Orten innerhalb dieses Gebiets gehören. Dieser Vorgang könnte
           viel Arbeit zunichte machen.
         description_html: |
-          Die Art der Verbreitung dieses Taxons in <em>allen</em> untergeordneten Gebieten von 
-          <a href="%{place_url}">%{place_name}</a> wird auf <strong>"%{establishment_means}"</strong> geändert. Nur Kuratoren können dieses Tool verwenden. Die Änderung der Verbreitungsart auf
+          Die Art der Etablierung dieses Taxons in <em>allen</em> untergeordneten Gebieten von 
+          <a href="%{place_url}">%{place_name}</a> wird auf <strong>"%{establishment_means}"</strong> geändert. Nur Kuratoren können dieses Tool verwenden. Die Änderung der Etablierungsart auf
           "eingeführt" hat ungefähr denselben Effekt, dabei werden aber bereits existierende Werte nicht überschrieben, sondern nur leere Werte ausgefüllt.
     lists:
       edit:
@@ -6978,8 +6978,6 @@ de:
         data_visualizations: Datenvisualisierung
         delete_project: Projekt löschen
         display_project_name: Projektname anzeigen
-        do_you_need_features_from_traditional: |
-          Brauchst du Funktionen aus traditionellen Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?
         do_you_need_features_from_traditional2: |
           Brauchst du Funktionen aus traditionellen Projekten, wie etwa benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?
         duplicate_project: Projekt duplizieren
@@ -7305,7 +7303,7 @@ de:
         about_conservation_status_desc: |
           Der Gefährdungsstatus beschreibt das Aussterberisiko einer Gruppe von Organismen.
         about_establishment_desc: |
-          "Art der Verbreitung" beschreibt, wie eine Art dorthin gelangt ist, wo sie derzeit vorkommt. "Eingeführt" bedeutet, dass sie sich aufgrund menschlicher Eingriffe verbreitet hat, während "einheimisch" bedeutet, dass sie sich ohne menschliches Zutun dort verbreitet hat. Endemische Arten kommen nur an einem bestimmten Ort vor (z.B. einer Insel) und sonst nirgends.
+          "Art der Etablierung" beschreibt, wie eine Art dorthin gelangt ist, wo sie derzeit vorkommt. "Eingeführt" bedeutet, dass sie sich aufgrund menschlicher Eingriffe verbreitet hat, während "einheimisch" bedeutet, dass sie ohne menschliches Zutun dort vorkommt. Endemische Arten kommen nur an einem bestimmten Ort vor (z.B. einer Insel) und sonst nirgends.
         about_taxon_curators_desc: |
           Diese Leute verwalten den Teil des Stammbaums, der
           dieses Taxon beinhaltet. Wenn du Änderungen vornehmen möchtest, markiere bitte dieses Taxon oder
@@ -7971,7 +7969,7 @@ de:
         published_at: Publikation
       listed_taxon:
         occurrence_status_level: Verbreitungsstatus
-        establishment_means: Art der Verbreitung
+        establishment_means: Art der Etablierung
       message:
         subject: Betreff
         body: Nachrichtentext
