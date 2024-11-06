@@ -6731,24 +6731,6 @@ zh-CN:
           我们已经包括了以下受影响照片的链接。
       user_parent_confirmation:
         subject: 您的孩子的 iNaturalist 帐户已被激活
-        content_html: |
-          <p>
-          感谢您为您的孩子建立 iNaturalist 账号！该账号现已启用，以下是我们记录的您输入的详细信息：
-          </p>
-          <ul>
-          <li><strong>父母或法定监护人名称：</strong> %{parent_name}</li>
-          <li><strong>父母或法定监护人电子邮箱：</strong> %{parent_email}</li>
-          <li><strong>孩子的名称：</strong> %{child_name}</li>
-          <li><strong>孩子的生日：</strong> %{child_birthday}</li>
-          <li><strong>孩子账号的电子邮箱：</strong> %{child_email}</li>
-          <li><strong>孩子账号名称：</strong> %{child_username}</li>
-          </ul>
-          <p>
-          请在您孩子的Seek app上点击菜单中的“INaturalist”选项，再点击菜单底部的"Log in with iNaturalist" 选项来登录您孩子的账号。
-          </p>
-          <p>
-          您的孩子将通过Seek app 上传他们的观察记录，并可以在iNaturalist.org 上看到它们。
-          </p>
       users_updates_suspended:
         message: |
           您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
@@ -6919,8 +6901,6 @@ zh-CN:
         data_visualizations: 数据可视化
         delete_project: 删除项目
         display_project_name: 显示项目名称
-        do_you_need_features_from_traditional: |
-          您是否需要传统项目中的功能，例如访问真实坐标，自定义观察字段或添加无法自动过滤的单个观察？
         do_you_need_features_from_traditional2: |
           您是否需要传统项目中的功能，如自定义观察字段或添加无法自动过滤的单个观察？
         duplicate_project: 复制项目
