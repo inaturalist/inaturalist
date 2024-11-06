@@ -6990,24 +6990,6 @@ es-MX:
           Hemos incluido enlaces a las fotos afectadas abajo.
       user_parent_confirmation:
         subject: La cuenta de iNaturalist de su hijo ha sido activada
-        content_html: |
-          <p>
-          ¡Gracias por crear una cuenta de INaturalist para su hijo! La cuenta ha sido activada. Aquí están los detalles que ingresó que tenemos registrados:
-          </p>
-          <ul>
-          <li><strong>Nombre del padre o tutor legal: </strong> %{parent_name}</li>
-          <li><strong>Correo electrónico del padre o tutor legal: </strong> %{parent_email}</li>
-          <li><strong>Nombre del niño: </strong> %{child_name}</li>
-          <li><strong>Fecha de nacimiento del niño: </strong> %{child_birthday}</li>
-          <li><strong>Correo electrónico de la cuenta del niño: </strong> %{child_email}</li>
-          <li><strong>Nombre de usuario de la cuenta del niño: </strong> %{child_username}</li>
-          </ul>
-          <p>
-          Inicie sesión en la cuenta desde la aplicación Seek de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
-          </p>
-          <p>
-          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Seek para que se puedan ver en iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido tus suscripciones. Para reanudar la obtención de actualizaciones sobre la actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu cuenta</a> de nuevo.
@@ -7217,8 +7199,6 @@ es-MX:
         data_visualizations: Visualizaciones de datos
         delete_project: Eliminar proyecto
         display_project_name: Exhibe nombre del proyecto
-        do_you_need_features_from_traditional: |
-          ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         do_you_need_features_from_traditional2: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         duplicate_project: Duplicar Proyecto
