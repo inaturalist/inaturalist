@@ -2179,6 +2179,9 @@ ru:
   geoprivacy_is_private: Информация о местоположении является конфиденциальной
   geoprivacy_is_private_desc: Наблюдатель решил скрыть координаты.
   georeferenced: Имеет геопривязку?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Геопространственный
   get_started: Начать
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Начало
@@ -2278,6 +2281,9 @@ ru:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не показывать данные, где "Нет значения"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Скрыть наблюдения с частным) скрытым местоположением
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Скрыть текущий итог
   hide_uncountable_species: Не показывать неисчислимые виды
@@ -3253,6 +3259,9 @@ ru:
   not_confident: Мы не полностью уверены, что можем дать рекомендацию.
   not_confident_top_suggestions: Мы не полностью уверены, что можем дать рекомендацию, но вот наши лучшие предложения
   not_covered_by_any_taxon_frameworks: Не охвачен никакой основой таксонов
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Не ожидается поблизости
   not_evaluated: не оцененный
   not_findig_what_you_want: Не нашли то, что искали?
   not_finding_place_you_want?: Не нашли место, которое искали?
@@ -4864,6 +4873,10 @@ ru:
     В целях продвижения исследований и охраны природы в своих областях участники сети могут обмениваться данными с iNaturalist. Они несут ответственность за оценку обоснованности и уместности запросов данных и их потенциальные результаты; передают в письменной форме ответственность за обеспечение безопасности таких данных и за то, чтобы никоим образом не раскрывать их публично, не делиться ими или не использовать их за пределами их первоначального предназначения; документируют все случаи обмена вместе с соответствующими результатами, конечные результаты или предполагаемые виды использования и ежегодно отчитываются перед iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}Сеть iNaturalist Network%{end_tag_network} - это группа локализованных веб-сайтов %{start_tag_global}глобального сообщества iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    %{start_tag_network}iNaturalist Network%{end_tag_network} предлагает
+    локализованный опыт %{start_tag_global}глобального сообщества 
+    iNaturalist%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Когда вы присоединяетесь к участнику сети iNaturalist, ваш адрес электронной почты и истинное местоположение ваших скрытых и личных местоположений делятся со страной-участником. Это позволяет вашим наблюдениям стать более ценными для местных природоохранных усилий. Если вы живете в регионе или часто посещаете регион, который является членом Сети, вам рекомендуется выбрать его в качестве своей сетевой принадлежности для облегчения обмена данными.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4873,9 +4886,16 @@ ru:
     iNaturalist имеет официальные соглашения с организациями в каждой из этих географических областей для поддержки использования платформы iNaturalist.
     <strong>Если ваша организация заинтересована в присоединении к сети iNaturalist, вы можете найти более подробную информацию здесь
     %{start_tag_join}here%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist имеет официальные соглашения с организациями в каждой из этих
+    географических областей для поддержки использования платформы iNaturalist. С 2024 года
+    мы имеем пилотские соглашения с сетевыми партнерами. <strong>Если ваша организация заинтересована в присоединении к iNaturalist Network, вы можете найти более подробную информацию %{start_tag_join}здесь%{end_tag_join}.</strong>
   sites_network_consists_of: "Сеть iNaturalist состоит из нескольких организаций:"
   sites_network_inaturalist_network_collection: |
     Сеть iNaturalist - это набор локализованных веб-сайтов, которые полностью связаны с глобальным сообществом натуралистов. Сетевые сайты поддерживаются местными учреждениями, которые поощряют местное использование и облегчают использование данных iNaturalist в интересах местного биоразнообразия. Они имеют доступ к истинным координатам в пределах своих географических районов, которые автоматически скрываются от общественности, чтобы лучше защитить виды, находящиеся под угрозой исчезновения.
+  sites_network_inaturalist_network_collection2: |
+    Сеть iNaturalist — это локализованный опыт, который полностью связан с
+    мировым сообществом iNaturalist. Членами сети являются местные учреждения, которые продвигают локальное использование и облегчают использование данных iNaturalist в пользу местного биоразнообразия. Они имеют доступ к истинным координатам в пределах своих географических областей, которые автоматически скрыты от общественного обозрения, чтобы лучше защитить виды, находящиеся под угрозой исчезновения.
   sites_network_your_username: |
     Ваше имя пользователя и пароль работают на всех сайтах, входящих в сеть iNaturalist. Если вы решите присоединиться к сайту Сети, местные учреждения, поддерживающие каждый сайт, также получат доступ к вашему адресу электронной почты (лишь для связи с вами в пределах деятельности сайта) и доступ к истинным координатам наблюдений, которые вы решили сделать скрытыми или частными.
   some_agree: несколько человек согласны
@@ -6296,6 +6316,9 @@ ru:
             <a href="%{url}">Ознакомьтесь в Правилами Сообщества</a>, где есть советы по поддержанию  iNaturalist дружелюбным и гостеприимным местом.
           please_read_the_teachers_guide_html: |
             Если так, ознакомьтесь с нашим <a href="%{url}">Руководством для преподавателя</a>, чтобы получить советы по использованию %{site_name} студентами.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Если это так , прочтите, пожалуйста, наше <a href="%{url}">Руководство для преподавателей</a>, где приведены советы для %{site_name} работы со студентами.
     donate:
       donate_short_desc: "Пожертвуйте сейчас, чтобы показать свою поддержку!"
       donate_desc_moore_html: |
@@ -7147,25 +7170,6 @@ ru:
           Мы включили ссылки на повреждённые фото ниже.
       user_parent_confirmation:
         subject: iNaturalist аккаунт вашего ребёнка был активирован
-        content_html: |
-          <p>
-          Спасибо вам за то, что вы создали учётную запись iNaturalist для вашего ребёнка! Учётная запись была активирована. Вот детали вашей записи:
-          </p>
-          <ul>
-          <li><strong>Имя родителя или законного опекуна:</strong> %{parent_name}</li>
-          <li><strong>Адрес электронной почты родителя или законного опекуна :</strong> %{parent_email}</li>
-          <li><strong>Имя ребёнка:</strong> %{child_name}</li>
-          <li><strong>Дата рождения ребёнка:</strong> %{child_birthday}</li>
-          <li><strong>Адрес электронной почты в учётной записи ребёнка:</strong> %{child_email}</li>
-          <li><strong>Имя пользователя в учётной записи ребёнка:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Пожалуйста, войдите в учетную запись из приложения Seek вашего ребенка,  нажав кнопку "iNaturalist" в меню, а затем "Log in with
-          iNaturalist" в нижней части экрана.
-          </p>
-          <p>
-          После этого ваш ребенок сможет размещать наблюдения под своей учётной записью в iNaturalist, используя приложение Seek так, что они будут видны в iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Какое-то время вы были неактивны на %{site_name}, поэтому мы приостановили ваши подписки. Для возобновления получения обновлений с сайта войдите пожалуйста <a href="%{login_url}">в свою учётную запись</a> ещё раз.
@@ -7336,8 +7340,6 @@ ru:
         data_visualizations: Визуализация данных
         delete_project: Удалить проект
         display_project_name: Отобразить название проекта
-        do_you_need_features_from_traditional: |
-          Нужны ли вам функции традиционных проектов, такие как доступ к реальным  координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
         do_you_need_features_from_traditional2: |
           Нужны ли вам такие функции традиционных проектов, как доступ к реальным координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
         duplicate_project: Дублировать проект
@@ -8664,6 +8666,10 @@ ru:
             place_geometry:
               is_too_large_to_edit: слишком большой для редактирования
               is_too_large_to_import: слишком большой для импорта
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: слишком велик или сложен для обработки до истечения времени
               contains_too_many_observations: содержит слишком много наблюдений для импорта
               cannot_be_blank: не может быть пустым
               invalid_point: содержит недопустимую точку, например, долгота больше 180 или широта меньше -90
