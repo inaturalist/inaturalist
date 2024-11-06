@@ -7315,28 +7315,6 @@ cs:
           Uvádíme odkazy na níže uvedené fotografie.
       user_parent_confirmation:
         subject: Účet iNaturalist vašeho dítěte byl aktivován
-        content_html: |
-          <p>
-          Děkujeme za vytvoření účtu iNaturalist pro vaše dítě!
-          Účet byl aktivován. Zde jsou podrobnosti, které jste zadali a které
-          máme v záznamu:
-          </p>
-          <ul>
-          <li> <strong> Jméno rodiče nebo zákonného zástupce: </strong>%{parent_name} </li>
-          <li> <strong> E-mail rodiče nebo zákonného zástupce: </strong>%{parent_email} </li>
-          <li> <strong> Jméno dítěte: </strong>%{child_name} </li>
-          <li> <strong> Narozeniny dítěte: </strong>%{child_birthday} </li>
-          <li> <strong> E-mailový účet pro děti: </strong>%{child_email} </li>
-          <li> <strong> Uživatelské jméno účtu dítěte: </strong>%{child_username} </li>
-          </ul>
-          <p>
-          Klepnutím na ikonu „iNaturalist“ se přihlaste do účtu vašeho dítěte pomocí aplikace Vyhledat vašeho dítěte a poté „Přihlásit se pomocí
-          iNaturalist “ve spodní části obrazovky.
-          </p>
-          <p>
-          Vaše dítě pak bude moci řidávat pozorování do jejich účtu iNaturalist pomocí aplikace Seek, aby je bylo možné zobrazit na
-          iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
@@ -7519,9 +7497,6 @@ cs:
         data_visualizations: Vizualizace dat
         delete_project: Smazat projekt
         display_project_name: Zobrazit název projektu
-        do_you_need_features_from_traditional: |
-          Potřebujete informace z tradičních projektů, jako je přístup k souřadnicím, nebo přidávání jednotlivých pozorování, která nemohou být automaticky
-          filtrována?
         do_you_need_features_from_traditional2: |
           Potřebujete funkce z tradičních projektů, jako jsou vlastní pole pozorování, nebo přidávání jednotlivých pozorování, která nelze automaticky filtrovat?
         duplicate_project: Duplikovat projekt
