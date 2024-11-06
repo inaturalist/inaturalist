@@ -5902,24 +5902,6 @@ fi:
           Ole hyvä ja korjaa nämä ongelmat <b>seuraavien 30 päivän aikana</b>. 30 päivän jälkeen ryhdymme poistamaan rikkinäisiä valokuvia iNaturalistista. Kaikki havaintosi säilyvät tallessa. Ne uudelleenarvioidaan kun valokuvat on poistettu. Tällöin on mahdollista että jotkin tutkimustason havainnot muuttuvat epämuodollisiksi, jos niissä ei ole enää valokuvia.
       user_parent_confirmation:
         subject: Lapsesi iNaturalist-käyttäjätili on aktivoitu
-        content_html: |
-          <p>
-          Kiitos iNaturalist-tilin luomisesta lapsellesi. Tili on aktivoitu. Tässä on syöttämäsi tiedot, jotka meillä on tallennettuna:
-          </p>
-          <ul>
-          <li><strong>Vanhemman tai huoltajan nimi:</strong>%{parent_name}</li>
-          <li><strong>Vanhemman tai huoltajan sähköpostiosoite:</strong>%{parent_email}</li>
-          <li><strong>Lapsen nimi:</strong>%{child_name}</li>
-          <li><strong>Lapsen syntymäaika:</strong>%{child_birthday}</li>
-          <li><strong>Lapsen käyttäjätilin sähköpostiosoite:</strong>%{child_email}</li>
-          <li><strong>Lapsen käyttäjänimi:</strong>%{child_username}</li>
-          </ul>
-          <p>
-          Ole hyvä ja kirjaudu käyttäjätilille lapsesi Seek-sovelluksesta painamalla valikon iNaturalist-nappia ja valitsemalla "Kirjaudu sisään iNaturalistilla" ruudun alareunassa.
-          </p>
-          <p>
-          Tämän jälkeen lapsesi voi ilmoittaa havaintoja iNaturalist-tililleen Seek-sovelluksen kautta ja havainnot näkyvät iNaturalis.org:ssa.
-          </p>
       users_updates_suspended:
         message: |
           Et ole käyttänyt sivustoa %{site_name} vähään aikaan, joten olemme jäädyttäneet tilauksesi. Saadaksesi taas päivityksiä sivuston tapahtumista, <a href="%{login_url}">kirjaudu tilillesi</a>.
@@ -6074,8 +6056,6 @@ fi:
         data_visualizations: Tietojen visualisoinnit
         delete_project: Poista projekti
         display_project_name: Näytä projektin nimi
-        do_you_need_features_from_traditional: |
-          iNaturalistissa on vielä kolmaskin projektityyppi, ns. perinteiset projektit. Sen avulla projektin ylläpitäjät saavat havaintojen tarkat koordinaatit ja voivat käyttää mukautettuja havaintokenttiä. Perinteisessä projektissa jokainen havainto pitää liittää siihen käsin yksi kerrallaan, joten sen käyttäminen vatii enemmän työtä.
         duplicate_project: Kopioi projekti
         include_annotated_observations: |
           Sisällytä vain havainnot, joilla on tietty merkintä (esim. elinvaihe), tai tietty ominaisuus ja arvo (esim. elinvaihe = aikuinen). Yksi projekti voi käyttää vain yhtä tällaista suodatinta.
