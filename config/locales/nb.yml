@@ -6312,24 +6312,6 @@ nb:
           Vi har lagt til lenker til de berørte bilder under.
       user_parent_confirmation:
         subject: Ditt barns konto på iNaturalist er aktivert
-        content_html: |
-          <p>
-          Takk for at du har opprettet en konto på iNaturalist for ditt barn! Kontoen har blitt aktivert. Her er detaljene vi har lagret av det du har lagt inn:
-          </p>
-          <ul>
-          <li><strong>Navn til foreldre eller foresatt:</strong> %{parent_name}</li>
-          <li><strong>E-post til foreldre eller foresatt:</strong> %{parent_email}</li>
-          <li><strong>Barnets navn:</strong> %{child_name}</li>
-          <li><strong>Barnets bursdag:</strong> %{child_birthday}</li>
-          <li><strong>E-post til barnets konto:</strong> %{child_email}</li>
-          <li><strong>Brukernavn til barnets konto:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Vennligst logg inn på kontoen fra ditt barns Seek-app ved å trykke på knappen "iNaturalist" i menyen og så "Logg inn med iNaturalist" nederst på skjermen.
-          </p>
-          <p>
-          Ditt barn vil da kunne legge ut observasjoner på iNaturalist ved bruk av Seek-appen slik at de vises på iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Du har ikke vært aktiv på %{site_name} en stund, så vi har satt dine abonnementer på pause. For å fortsette å få oppdateringer om aktivitet på siden, vennligst <a href="%{login_url}">logg inn på din konto</a> igjen.
@@ -6490,8 +6472,6 @@ nb:
         data_visualizations: Data-visualiseringer
         delete_project: Slett prosjekt
         display_project_name: Vis prosjektnavn
-        do_you_need_features_from_traditional: |
-          Trenger du funksjonalitet fra tradisjonelle prosjekter, som tilgang til sanne koordinater, egendefinerte observasjonsfelt, eller å legge til individuelle observasjoner som ikke kan filtreres automatisk?
         duplicate_project: Dupliser prosjekt
         include_annotated_observations: |
           Inkluder bare observasjoner som er kommentert med en bestemt egenskap (f.eks. livsstadium),
