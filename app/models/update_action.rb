@@ -223,9 +223,10 @@ class UpdateAction < ApplicationRecord
     # will include the array of viewed_subscriber_ids
     es_actions = UpdateAction.elastic_mget( updates.map( &:id ) )
     update_actions_to_index = es_actions.reject do | es_action |
-      es_action["viewed_subscriber_ids"]&.include?( user_id )
+      !es_action["subscriber_ids"]&.include?( user_id ) ||
+        es_action["viewed_subscriber_ids"]&.include?( user_id )
     end
-    # return if this user has already viewed all updates
+    # return if this user is not subscribed, or has already viewed all updates
     return if update_actions_to_index.empty?
 
     update_script = {
