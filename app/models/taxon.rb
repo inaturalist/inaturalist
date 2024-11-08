@@ -1070,6 +1070,7 @@ class Taxon < ApplicationRecord
         sort: "relevance",
         safe_search: "1"
       }
+      flickr = Flickr.new( Flickr.api_key, Flickr.shared_secret )
       r = FlickrCache.fetch( flickr, "photos", "search", search_params )
       r = [] if r.blank?
       flickr_chosen_photos = if r.respond_to?( :map )

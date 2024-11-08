@@ -217,6 +217,38 @@ describe ActsAsElasticModel do
           to eq WillPaginate::Collection.new(1, 30, 0)
       end
     end
+
+    describe "elastic_get" do
+      it "returns elasticsearch documents" do
+        u = User.make!
+        es_doc = User.elastic_get( u.id )
+        expect( es_doc ).to be_a Elasticsearch::API::Response
+        expect( es_doc["_source"]["id"] ).to eq u.id
+        expect( es_doc["_source"]["login"] ).to eq u.login
+      end
+
+      it "returns nil for unknown IDs" do
+        expect( User.elastic_get( 99 ) ).to be_nil
+      end
+    end
+
+    describe "elastic_mget" do
+      it "returns elasticsearch sources" do
+        u1 = User.make!
+        u2 = User.make!
+        docs = User.elastic_mget( [u1.id, u2.id] )
+        expect( docs ).to be_a Array
+        expect( docs.find {| d | d["id"] == u1.id }["login"] ).to eq u1.login
+        expect( docs.find {| d | d["id"] == u2.id }["login"] ).to eq u2.login
+      end
+
+      it "returns an empty array if none are found" do
+        expect( User.elastic_mget( [] ) ).to eq []
+        expect( User.elastic_mget( [99] ) ).to eq []
+        expect( User.elastic_mget( [99, 100] ) ).to eq []
+        expect( User.elastic_mget( [99, 100, "missing"] ) ).to eq []
+      end
+    end
   end
 
   describe "instance methods" do

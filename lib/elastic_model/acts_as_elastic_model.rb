@@ -63,6 +63,20 @@ module ActsAsElasticModel
         end
       end
 
+      def elastic_mget( ids, options = {} )
+        return [] if ids.empty?
+
+        __elasticsearch__.client.mget(
+          index: index_name,
+          body: {
+            docs: ids.map do | id |
+              { _id: id }
+            end
+          },
+          _source: options[:source]
+        )["docs"].map {| d | d["_source"] }.compact
+      end
+
       # standard way to bulk index instances. Called without options it will
       # page through all instances 1000 at a time (default for find_in_batches)
       # You can also send options, including scope:
