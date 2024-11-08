@@ -204,6 +204,14 @@ describe UpdateAction do
       es_update_action = UpdateAction.elastic_get( update_action.id )
       expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
     end
+
+    it "does not attempt to add users that are not subscribed" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      UpdateAction.user_viewed_updates( [update_action], 31_415 )
+    end
   end
 
   describe "append_subscribers" do
