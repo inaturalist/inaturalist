@@ -228,7 +228,7 @@ describe ActsAsElasticModel do
       end
 
       it "returns nil for unknown IDs" do
-        expect( User.elastic_get( 99 ) ).to be_nil
+        expect( User.elastic_get( 31_415 ) ).to be_nil
       end
     end
 
@@ -244,9 +244,9 @@ describe ActsAsElasticModel do
 
       it "returns an empty array if none are found" do
         expect( User.elastic_mget( [] ) ).to eq []
-        expect( User.elastic_mget( [99] ) ).to eq []
-        expect( User.elastic_mget( [99, 100] ) ).to eq []
-        expect( User.elastic_mget( [99, 100, "missing"] ) ).to eq []
+        expect( User.elastic_mget( [31_415] ) ).to eq []
+        expect( User.elastic_mget( [31_415, 31_416] ) ).to eq []
+        expect( User.elastic_mget( [31_415, 31_416, "missing"] ) ).to eq []
       end
     end
   end
