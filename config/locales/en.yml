@@ -2543,6 +2543,8 @@ en:
   in_place_x: in %{place}
   # As in a reason to flag something
   inappropriate: Inappropriate
+  # Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
@@ -8433,6 +8435,8 @@ en:
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTID
         identifiers_desc: Added an ID to someone else's obs on this day
+        # label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Created via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Created via the <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -8453,6 +8457,8 @@ en:
         recent_w_0_obs_desc: Signed up in prev 7 days and added 0 obs
         recent_w_7_obs: Recent w/ >= 7 obs
         recent_w_7_obs_desc: Signed up in prev 7 days and added >= 7 obs
+        # label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Created via <a href="%{url}">Seek</a>
         time_to_id_desc: Time to ID (hours, 1 week moving window)
         TTCID: TTCID
         TTCID_desc: Time to receive an identification from someone else that matches the community taxon.
