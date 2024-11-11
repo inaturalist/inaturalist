@@ -589,4 +589,8 @@ class Site < ApplicationRecord
       user_activity_hash.values.sort_by( &:created_at ).reverse[0..11]
     end
   end
+
+  def inat_next_app_url
+    "https://apps.apple.com/us/app/inaturalist-next/id6475737561"
+  end
 end

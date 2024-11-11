@@ -67,27 +67,16 @@
         %dd=t "views.stats.index.website_desc_html", url: site_url( "network" )
         %dt=t :iphone
         %dd=t "views.stats.index.iphone_desc_html", url: @site.iphone_app_url
-    .col-md-6
-      %dl.meta
         %dt=t :android
         %dd=t "views.stats.index.android_desc_html", url: @site.android_app_url
+    .col-md-6
+      %dl.meta
+        %dt=t :seek
+        %dd=t "views.stats.index.seek_desc_html", url: wiki_page_url( :seek_app )
+        %dt=t :inat_next
+        %dd=t "views.stats.index.inat_next_desc_html", url: @site.inat_next_app_url
         %dt= t(:other).capitalize
         %dd=t "views.stats.index.other_desc_html", url: wiki_page_url( "developers" )
-  .row
-    .col-md-12
-      %h3=t "views.stats.index.time_to_id_desc"
-      #ttid.stacked.vis
-        .loading.status=t :loading
-    .col-md-6
-      %dl.meta
-        %dt=t "views.stats.index.TTID"
-        %dd=t "views.stats.index.TTID_desc"
-    .col-md-6
-      %dl.meta
-        %dt=t "views.stats.index.TTCID"
-        %dd=t "views.stats.index.TTCID_desc"
-    .col-md-12
-      %p.meta=t "views.stats.index.TTID_note"
   .row
     .col-md-12
       %h3=t :active_users
