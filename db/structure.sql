@@ -3968,7 +3968,9 @@ CREATE TABLE public.projects (
     trusted boolean DEFAULT false,
     "group" character varying(255),
     last_aggregated_at timestamp without time zone,
-    observation_requirements_updated_at timestamp without time zone
+    observation_requirements_updated_at timestamp without time zone,
+    icon_path_version smallint DEFAULT 0 NOT NULL,
+    cover_path_version smallint DEFAULT 0 NOT NULL
 );
 
 
@@ -5628,7 +5630,8 @@ CREATE TABLE public.users (
     oauth_application_id integer,
     data_transfer_consent_at timestamp without time zone,
     unconfirmed_email character varying,
-    annotated_observations_count integer DEFAULT 0
+    annotated_observations_count integer DEFAULT 0,
+    icon_path_version smallint DEFAULT 0 NOT NULL
 );
 
 
@@ -5807,7 +5810,8 @@ CREATE TABLE public.year_statistic_localized_shareable_images (
     shareable_image_file_size bigint,
     shareable_image_updated_at timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    shareable_image_path_version smallint DEFAULT 0 NOT NULL
 );
 
 
@@ -11249,6 +11253,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240819213348'),
 ('20240828123245'),
 ('20240923134239'),
-('20240923134658');
+('20240923134658'),
+('20231206194146');
 
 
