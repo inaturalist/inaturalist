@@ -16,7 +16,8 @@ describe PaperclipPathVersioning do
         expect do
           User.make!.paperclip_versioned_path( :missing_attachment )
         end.to raise_error( "`User` has not implemented `PaperclipPathVersioning` on attachment " \
-          "`missing_attachment`" )
+          "`missing_attachment`. The attachment must configure `paperclip_path_versioning` " \
+          "for attachment `missing_attachment`." )
       end
 
       it "raises an error if the path_version doesn't have a corresponding path" do
@@ -27,7 +28,8 @@ describe PaperclipPathVersioning do
         expect do
           u.paperclip_versioned_path( :icon )
         end.to raise_error( "`User` implemented `PaperclipPathVersioning` but does not have a " \
-          "path version `#{u.icon_path_version}` on attachment `icon`" )
+          "path version `#{u.icon_path_version}` on attachment `icon`. The attachment `icon` " \
+          "needs more paths configured with `paperclip_path_versioning`." )
       end
     end
 
