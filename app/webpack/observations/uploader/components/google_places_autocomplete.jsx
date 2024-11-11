@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { objectToComparable } from "../../../shared/util";
@@ -46,6 +47,15 @@ class GooglePlacesAutocomplete extends React.Component {
     // the text in the input field through the placesAutocompleteService and process the top
     // result as if it were selected by the user
     const q = $( this.input.current ).val( );
+    const latLngMatch = q.match( /^(-?[0-9]{1,3}(\.[0-9]+)?) *, *(-?[0-9]{1,3}(\.[0-9]+)?)/ );
+    if ( !_.isEmpty( latLngMatch ) ) {
+      const lat = Number( latLngMatch[1] );
+      const lng = Number( latLngMatch[3] );
+      if ( _.inRange( lat, -90, 90 ) && _.inRange( lng, -180, 180 ) ) {
+        this.geocodeLatLng( lat, lng );
+        return;
+      }
+    }
     this.placesAutocompleteService.getQueryPredictions(
       { input: q },
       ( predictions, status ) => {
@@ -56,6 +66,17 @@ class GooglePlacesAutocomplete extends React.Component {
         this.geocodePlaceID( predictions[0].place_id );
       }
     );
+  }
+
+  geocodeLatLng( lat, lng ) {
+    const { onPlacesChanged } = this.props;
+    this.googleGeocoder.geocode( { location: { lat, lng } }, ( results, status ) => {
+      if ( status !== google.maps.GeocoderStatus.OK ) {
+        return;
+      }
+
+      onPlacesChanged( this.input.curent, results[0], lat, lng );
+    } );
   }
 
   geocodePlaceID( placeID ) {

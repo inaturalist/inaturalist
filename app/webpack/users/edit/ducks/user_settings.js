@@ -48,7 +48,8 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         "spam",
         "species_count",
         "suspended",
-        "universal_search_rank"
+        "universal_search_rank",
+        "annotated_observations_count"
       ];
 
       const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {

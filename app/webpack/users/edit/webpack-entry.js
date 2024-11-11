@@ -54,7 +54,7 @@ const store = createStore(
   ] ) )
 );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );

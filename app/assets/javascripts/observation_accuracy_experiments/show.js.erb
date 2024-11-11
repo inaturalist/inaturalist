@@ -1,0 +1,185 @@
+// Function to hide the tooltip
+function hideTooltip() {
+  $( "#tooltip" ).css( "display", "none" );
+}
+
+// Function to show the tooltip with the provided text at the specified event position
+function showTooltip( evt, text ) {
+  var tooltip = $( "#tooltip" );
+  tooltip.html( text );
+  tooltip.css( "display", "block" );
+
+  var rect = evt.target.getBoundingClientRect();
+  var centerX = rect.left + rect.width / 2;
+  var centerY = rect.top + rect.height / 2;
+
+  tooltip.css( {
+    position: "fixed",
+    left: centerX + "px",
+    top: centerY + "px"
+  } );
+}
+
+// Function to update the rectangles based on the height and scale factor
+function updateRects( useAltHeight ) {
+  var rects = $( "rect.acc" );
+  rects.each( function () {
+    var $this = $( this );
+    var scalefactor = $this.data( "scalefactor" );
+    var height = useAltHeight ? $this.data( "altheight" ) / scalefactor : $this.data( "height" );
+    $this.attr( "height", height );
+
+    var classes = $this.attr( "class" ).split( " " );
+    var firstClass = classes[1];
+    var lastClass = classes[classes.length - 1];
+    var correctHeight = useAltHeight
+      ? $( "rect.acc.correct." + lastClass ).data( "altheight" ) / scalefactor
+      : $( "rect.acc.correct." + lastClass ).data( "height" );
+    var uncertainHeight = useAltHeight
+      ? $( "rect.acc.uncertain." + lastClass ).data( "altheight" ) / scalefactor
+      : $( "rect.acc.uncertain." + lastClass ).data( "height" );
+    var incorrectHeight = useAltHeight
+      ? $( "rect.acc.incorrect." + lastClass ).data( "altheight" ) / scalefactor
+      : $( "rect.acc.incorrect." + lastClass ).data( "height" );
+    var y = 0;
+    if ( firstClass === "correct" ) {
+      if ( useAltHeight ) {
+        y = 100 - parseFloat( correctHeight );
+      } else {
+        y = parseFloat( incorrectHeight ) + parseFloat( uncertainHeight );
+      }
+    } else if ( firstClass === "uncertain" ) {
+      if ( useAltHeight ) {
+        y = 100 - parseFloat( correctHeight ) - parseFloat( uncertainHeight );
+      } else {
+        y = parseFloat( incorrectHeight );
+      }
+    } else if ( firstClass === "incorrect" ) {
+      if ( useAltHeight ) {
+        y = 100
+          - parseFloat( correctHeight )
+          - parseFloat( uncertainHeight )
+          - parseFloat( incorrectHeight );
+      } else {
+        y = 0;
+      }
+    }
+    $this.attr( "y", y );
+    var onmousemove = useAltHeight
+      ? "showTooltip( evt, '" + firstClass + ": " + height * scalefactor + "' );"
+      : "showTooltip( evt, '" + firstClass + ": " + height + "%');";
+    $this.attr( "onmousemove", onmousemove );
+  } );
+}
+
+// Main function executed when the document is ready
+$( function () {
+  var tab = $( "#tab-container" ).data( "tab" );
+  $( ".spinner-container" ).addClass( "show" );
+  var currentURL = window.location.href;
+  var paramMatch = currentURL.match( /\/observation_accuracy_experiments\/(\d+)/ );
+  var experimentId = paramMatch[1];
+
+  if ( experimentId ) {
+    var url;
+    if ( tab === "methods" ) {
+      url = "/observation_accuracy_experiments/" + experimentId + "/get_methods_data";
+    } else {
+      url = "/observation_accuracy_experiments/" + experimentId + "/get_results_data";
+    }
+
+    $.ajax( {
+      url: url,
+      type: "GET",
+      dataType: "html",
+      data: tab === "methods" ? null : { tab: tab }, // Pass the tab value only if it's not "methods"
+      success: function ( data ) {
+        $( ".spinner-container" ).removeClass( "show" );
+        $( "#methods" ).html( data );
+
+        var useAltHeight = false;
+        function toggleHeight() {
+          useAltHeight = !useAltHeight;
+          updateRects( useAltHeight );
+
+          var $button = $( ".toggle-button" );
+          var buttonText = useAltHeight ? "show percent" : "show frequency";
+          $button.text( buttonText );
+
+          var $axisElement = $( "line.dashed-line.acc" );
+          var $sampleSize = $( ".sampleSize" );
+          if ( useAltHeight ) {
+            $axisElement.hide();
+            $sampleSize.show();
+          } else {
+            $axisElement.show();
+            $sampleSize.hide();
+          }
+
+          var $yTextElements = $( ".ytext" );
+          $yTextElements.each( function ( index, element ) {
+            var $yTextElement = $( element );
+            var scalefactor = $yTextElement.data( "scalefactor" );
+
+            if ( useAltHeight ) {
+              $yTextElement.text( function ( _, oldText ) {
+                var newValue = ( parseInt( oldText.replace( "%", "" ), 10 ) * scalefactor );
+                return newValue;
+              } );
+            } else {
+              $yTextElement.text( function ( _, oldText ) {
+                var newValue = ( parseInt( oldText, 10 ) / scalefactor ) + "%";
+                return newValue;
+              } );
+            }
+          } );
+        }
+
+        $( ".toggle-button" ).on( "click", function () {
+          toggleHeight();
+        } );
+      }
+    } );
+  }
+
+  $( "#hide_validators" ).hide();
+
+  $( document ).on( "mousemove", ".bar-rect", function ( evt ) {
+    showTooltip( evt, $( this ).data( "tooltip-text" ) );
+  } );
+
+  $( document ).on( "mouseout", ".bar-rect", function ( ) {
+    hideTooltip( );
+  } );
+
+  $( document ).on( "click", "#additional-validators", function ( ) {
+    var validatorCount = $( "#validator-container" ).data( "validator-count" );
+    if ( experimentId && validatorCount < 1000 ) {
+      var validatorsUrl = "/observation_accuracy_experiments/" + experimentId + "/get_more_validators";
+      $.ajax( {
+        url: validatorsUrl,
+        type: "GET",
+        dataType: "html",
+        success: function ( data ) {
+          $( "#additional-validators" ).html( data );
+          $( "#hide_validators" ).show();
+        }
+      } );
+    }
+  } );
+
+  $( document ).on( "click", "#hide_validators", function () {
+    $( "#additional-validators" ).toggle();
+    $( this ).text( function ( i, text ) {
+      var showAdditionalValidators = (
+        I18n.t( "observation_accuracy_experiment_show_additional_validators" )
+      );
+      var hideAdditionalValidators = (
+        I18n.t( "observation_accuracy_experiment_hide_additional_validators" )
+      );
+      return text === hideAdditionalValidators
+        ? showAdditionalValidators
+        : hideAdditionalValidators;
+    } );
+  } );
+} );

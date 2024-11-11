@@ -1,5 +1,8 @@
 {
   "parser": "@babel/eslint-parser",
+  "plugins": [
+    "ignore-erb"
+  ],
   "parserOptions": {
     "requireConfigFile": false,
   },
@@ -18,6 +21,7 @@
     "comma-dangle": [2, "never"],
     "func-names": 0,
     "quotes": [2, "double"],
+    "prefer-object-spread": 0,
     "space-in-parens": [2, "always"]
   }
 }

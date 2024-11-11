@@ -13,6 +13,8 @@ import DisagreementAlertContainer from "../containers/disagreement_alert_contain
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import FlashMessage from "../../show/components/flash_message";
+import ConfirmModalContainer from "../../show/containers/confirm_modal_container";
+import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
 
 const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
   <div id="Identify" className={config.blind ? "blind" : ""}>
@@ -53,6 +55,8 @@ const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
       <FlaggingModalContainer />
       <DisagreementAlertContainer />
       <ModeratorActionModalContainer />
+      <ConfirmModalContainer />
+      <ProjectFieldsModalContainer />
     </Grid>
   </div>
 );

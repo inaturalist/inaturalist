@@ -151,24 +151,6 @@ ja:
   about_this_bioblitz: このバイオブリッツについて
   about_this_map: この地図について
   about_this_project: このプロジェクトについて
-  about_trips_html: |
-    <h4>
-    トリップは観察記録に文脈を加えることで、存在-非存在データの収集を可能にします。
-    </h4>
-    <p>
-    <strong>なぜ</strong> 存在-非存在データには、分布モデリングなどの科学的分析に有用なサンプリング作業に関する情報が含まれます（iNaturalistの生の観察記録は「存在のみ」のデータです）。
-    </p>
-    <p>
-    <strong>どうやって</strong> トリップは記録することによって観察記録に文脈を加えます：
-    </p>
-    <ul>
-    <li><strong>何を</strong> 探索したか（ターゲットリスト）</li>
-    <li><strong>どこを</strong> 探索したか（探索エリア）</li>
-    <li><strong>いつ</strong> 探索したか（探索期間）</li>
-    </ul>
-    <p>
-    ターゲットリストにある種のうち、探索エリアと探索期間内に観察できた種は「存在」 と解釈します。一方、観察できなかったターゲットリストの種は非存在と解釈されます。「Tabulate Presence Absence Data From Trips（トリップの存在・非存在データを集計する）」をクリックすると、トリップと関連する観察記録から種の存在・非存在記録の表が作成されます。<a href='%{url}'>さらに詳しく</a>
-    </p>
   about_trusting_projects: Trust Projectsについて
   about_trusting_projects_options_any: このプロジェクトのあなたのすべての観察記録
   about_trusting_projects_options_any_desc: |-
@@ -225,6 +207,8 @@ ja:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: 箇条書きにする
   add_a_comment: コメントの追加
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: 保全状況を追加
   add_a_field: フィールドの追加
   add_a_flag: フラグを追加
   #Tool tip for a button that adds a link to a text area
@@ -247,6 +231,8 @@ ja:
   add_annotations_for_controlled_attribute:
     sex: '「性別」の注釈を追加'
     plant_phenology: '「植物季節学」の注釈を追加'
+    flowers_and_fruits: '"花と実"に注釈を追加'
+    leaves: '"葉"に注釈を追加'
     life_stage: '「生育段階」の注釈を追加'
     evidence_of_presence: '「存在の証拠」の注釈を追加'
   add_another_flag: フラグをさらに追加
@@ -282,6 +268,7 @@ ja:
   add_notes_about_this_taxon: この場所におけるこの分類群についての記述（例：どこで、いつ確認できるのか）
   add_obs_from_a_link: "次のリストから観測記録を追加：%{link}"
   add_obs_from_a_list: リストから観測記録を追加
+  add_observation_fields: 観察記録フィールドを追加
   add_observations: 観察記録を追加
   add_observations_by_checking_off: リストから削除した種に観察記録を追加
   add_observations_project: このプロジェクトに観測記録を追加
@@ -302,6 +289,13 @@ ja:
   add_plant_phenology_flowering_annotation: '"植物季節学：開花中（花あり）"の注釈を追加する'
   add_plant_phenology_fruiting_annotation: '"植物季節学：果実あり"の注釈を追加する'
   add_plant_phenology_no_evidence_of_flowering_annotation: '"植物季節学：開花の証拠がない" の注釈を追加する'
+  add_flowers_and_fruits_flower_buds_annotation: '「花と実：花芽（つぼみ）」の注釈を追加'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: '「花と実：果実または種子」の注釈を追加'
+  add_flowers_and_fruits_no_flower_or_fruits: '「花と実：花や実なし」の注釈を追加'
+  add_leaves_breaking_leaf_buds: '「葉：芽吹き」の注釈を追加'
+  add_leaves_green_leaves: '「葉：青葉」の注釈を追加'
+  add_leaves_colored_leaves: '「葉：紅葉、黄葉」の注釈を追加'
+  add_leaves_no_live_leaves: '「葉：生きた葉なし」の注釈を追加'
   add_life_stage_adult_annotation: '“ライフステージ: 成体・成虫”の注釈を追加する'
   add_life_stage_teneral_annotation: '“ライフステージ: テネラル (脱皮したての成虫/成体)”の注釈を追加する'
   add_life_stage_subimago_annotation: '“ライフステージ: 亜成虫”の注釈を追加する'
@@ -317,6 +311,10 @@ ja:
   add_evidence_of_presence_track_annotation: '「存在の証拠:足跡」の注釈を追加'
   add_evidence_of_presence_bone_annotation: '「存在の証拠:骨」の注釈を追加'
   add_evidence_of_presence_molt_annotation: '「存在の証拠: 脱皮殻」の注釈を追加'
+  add_evidence_of_presence_leafmine_annotation: '「存在の証拠:潜葉痕」の注釈を追加'
+  add_evidence_of_presence_hair_annotation: '「存在の証拠:体毛」の注釈を追加'
+  add_evidence_of_presence_egg_annotation: '「存在の証拠:卵」の注釈を追加'
+  add_evidence_of_presence_construction_annotation: '「存在の証拠:構造物」の注釈を追加'
   #As in a Taxon Framework Relationship
   add_relationship: '新規関連'
   #As in a Guide Section
@@ -728,6 +726,7 @@ ja:
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
   badges: バッジ
+  base_map_copyright_openstreetmap_html: ベースマップ ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     other: |
@@ -1049,6 +1048,10 @@ ja:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: 指定なし
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: 指定なし
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: 指定なし
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: 指定なし
@@ -1058,10 +1061,20 @@ ja:
     male: オス
     female: メス
     plant_phenology: 植物季節学
+    flowers_and_fruits: 花と実
     budding: 出芽
     flower_budding: つぼみ
     flowering: 開花中
     fruiting: 果実あり
+    no_flowers_or_fruits: 花や実なし
+    flower_buds: 花芽（つぼみ）
+    flowers: 花
+    fruits_or_seeds: 果実または種子
+    leaves: 葉
+    breaking_leaf_buds: 芽吹き
+    green_leaves: 青葉
+    colored_leaves: 紅葉、黄葉
+    no_live_leaves: 生きた葉なし
     life_stage: ライフステージ
     adult: 成体・成虫
     teneral: 脱皮直後
@@ -1070,6 +1083,7 @@ ja:
     no_evidence_of_flowering: 開花していない（花なし）
     nymph: 幼虫・幼体・幼生・若虫 (Nymph)
     larva: 幼虫・幼生 (Larva)
+    #Evidence of an egg of an organism
     egg: 卵
     juvenile: 幼虫・幼体 (Juvenile)
     alive_or_dead: 生死
@@ -1093,6 +1107,12 @@ ja:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: 抜け殻
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: 潜葉痕
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: 体毛
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: 構造物
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     bone: |
@@ -1104,10 +1124,22 @@ ja:
     flower_budding: 花芽は見えるが開いていない
     flowering: 花が開いていて植物に付いている
     fruiting: 植物に果実が付いている
+    flowers: 少なくとも1つの開いた花がある
+    flower_buds: 少なくとも1つの閉じた花芽（つぼみ）がある
+    fruits_or_seeds: 少なくとも1つの果実または種子がある
+    breaking_leaf_buds: 最初の葉または針状葉が完全に展開していない芽が少なくとも1つある
+    green_leaves: 少なくとも1枚の緑色の葉または針状葉（または通常の健康な色であれば赤みがかったもの）
+    colored_leaves: 少なくとも1枚の葉または針状葉が、晩秋または干ばつの色をしている
+    no_live_leaves: 新芽が出たり、緑や色のついた葉や針状葉が見受けられない
     gall: 寄生生物によって引き起こされた植物組織の奇形的な突出
     male: 生物が有性生殖に使用する精子を生産できることを示す証拠
     molt: 脱ぎ捨てられた皮膚または外骨格
+    leafmine: 葉の表皮の中で摂食している証拠
+    hair: 元の生物から脱落した体毛
+    egg: 卵全体または卵の一部
+    construction: 動物が作ったもの、他の材料で作られたもの、発掘されたもの
     no_evidence_of_flowering: 写真/動画/音声は生殖構造の存在を示していません
+    no_flowers_or_fruits: 花、果実、種子（全部または一部）が見えない
     organism: 生物の本体またはその一部
     scat: 糞（フクロウのペリットやその他の口から吐き出されたものは含まない）
     teneral: 羽化したばかりで、まだ成熟していない成体
@@ -1127,6 +1159,7 @@ ja:
   copy_and_paste_the_following_code_to: この評価を別のウェブページに埋め込めるには、以下のコードをコピーし、貼り付けてください。
   copy_and_paste_this_into_your_own_html: こちらをコピーし、自分のHTMLの中に貼り付けしてご利用ください。
   copy_guide_taxon_to: ガイド分類群を次の場所にコピーする：
+  copied!: コピーしました！
   copyright:
     some_rights_reserved: いくつかの権利を保有
     some_rights_reserved_by: "(c) %{name}, いくつかの権利を保有 (%{license_short})"
@@ -1296,6 +1329,8 @@ ja:
   curator_application_you_should_apply_if_you_can_behave: |
     iNaturalistでの適切な行動の見本となり、コミュニティーの
     ガイドラインを遵守してください。キュレーターの権限とともに、あなたにはiNaturalistの模範的なユーザーであることが期待されます。
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: キュレーターガイド
   curators_changed_for_x_html: "%{x}のキュレーターが変わりました"
   curators: キュレーター管理者
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
@@ -1428,8 +1463,7 @@ ja:
   devise:
     confirmations:
       confirmed: |
-        あなたのメールアドレスは正常に確認されました。
-        こちらのウェブサイトまたはiNaturalistまたはSeekモバイルアプリにログインできます。
+        メールアドレスが確認できました。
       send_instructions: "アカウントの有効化について数分以内にメールでご連絡します。"
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1631,6 +1665,8 @@ ja:
   editing_this: '%{elem}を編集中'
   editing_x_in_y: "%{y}の中の%{x}を編集中"
   editors: 編集者
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: 指導者向けガイド
   either_that_user_doesnt_exist_or: "そのユーザーは存在しないか、もしくは、もうすでにフォローしている可能性があります。"
   eligible_for_research_grade: 研究用候補
   email: 電子メール
@@ -1687,6 +1723,7 @@ ja:
   everywhere: すべての場所
   exact: 完全一致
   exact_date: 正確な日付
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 階級指定
   except: を除いて
   exclude_places: 場所を除く
@@ -1750,6 +1787,7 @@ ja:
   filter: 絞り込む
   filter_by_curator_identification: キュレーターによる同定で検索
   filter_by_place: 場所で検索
+  filter_by_species: 種で絞り込む
   filter_by_taxon: 分類群で検索
   filter_by_place_taxon_and_color: 場所や分類群等で検索
   filter_list_by_this_taxon: この分類群でリストをフィルター
@@ -1853,7 +1891,10 @@ ja:
   #Adjective, as in a fluid layout of images
   fluid: 可変
   follow: フォロー
+  #Text for a button to follow updates on an observation
+  follow_observation: 観察記録をフォロー
   follow_receive_updates_about_new_observations: フォロー(新しい観察記録の情報を受け取る)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user}さんをフォロー"
   followers: フォロワー
   following: フォロー中
@@ -1903,7 +1944,12 @@ ja:
   geoprivacy_is_private: 位置情報公開状況は非公開に設定されています
   geoprivacy_is_private_desc: 投稿者は座標を不明瞭にすることを選択しました。
   georeferenced: 位置データありますか？
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: 地理空間
   get_started: 始めよう
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: はじめに
   getting_started_guide: 初めてのユーザーガイド
   #Prompt to donate money on a montly basis
   give_monthly_caps: 毎月の寄付
@@ -1923,12 +1969,14 @@ ja:
   graft: 融合
   graft_taxon: '%{taxon}を結びつける'
   grafting_attemps_to_insert_this_taxon: 分類群ツリーへの追加は、既存の親分類群を見つけて、あるいは既存の上位分類群に接続するために必要なすべての中間分類群を作成して、この分類群を分類群ツリーに挿入しようとするものです。
-  grant_role: "に%{role}役割を%{grant}しました"
   grid: グリッド
   grid_layout: グリッドレイアウト
   grid_tooltip: グリッド表示
   group: グループ
   grouping: グループ化
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: 他の観察記録から位置を推測しますか？
   guides: ガイド
   guide_compiled_by: ガイド作成者
   guide_deleted: ガイドは削除されました
@@ -1987,10 +2035,15 @@ ja:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '「情報なし」を非表示'
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: プライベートロケーションの観察記録を非表示
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 現在の総計を非表示
   hide_uncountable_species: 数えられない種を非表示
   high: 高
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: 最高位階級
   highlights_and_stats_from_year_on_site: "%{year} の%{site} のハイライトと統計"
   history: 履歴
@@ -2061,7 +2114,6 @@ ja:
   identotron_for: らくらく同定
   identotron_help: らくらく同定ヘルプ
   ids: "ID"
-  ids_made_for_others: 他のユーザーへ提案したID
   if_for_some_reason_a_user_doesnt_agree: |
     何らかの理由でコミュニティ分類群に同意しない場合はそれを拒否することができます。これは、あなたの同定が他の観察記録へのリンクや生物リストの更新などに使用される同定であることを意味します。また、あなたの観察記録は、コミュニティがあなたに同意した場合にのみ、研究用として使用可能になります。
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2155,6 +2207,11 @@ ja:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: この観察記録には%{taxon} であると同定するのに十分な情報がありますか？
   is_this_offensive_html: 'この内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？'
   is_this_place_a_duplicate: この場所は重複していますか？
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: この学名は現在受け入れられていますか？
   it_can_now_be_used_for_research: 研究に利用できるようになり、他のサイトでも紹介されるようになります。
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: 斜体
@@ -2512,6 +2569,8 @@ ja:
   looks_like_no_species_in_guide: ガイドにはまだ種が入っていないようです
   lookup: 調べる
   low: 低
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: 最下位階級
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat.org
@@ -2619,8 +2678,6 @@ ja:
     これには、モデレーターの操作（コメントの非表示や非表示解除など）、メモ、このユーザーが作成した分類群以外のすべてのフラグが含まれます。この履歴は<strong>キュレーターにのみ表示</strong>され、<strong>キュレーターは自分の履歴を見ることができません</strong>。
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: 非表示
-  #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: 凍結解除
   moderator_note_desc: |
     モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがソックパペット・アカウントの可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
   #Person who executed a moderator action or flagged something
@@ -2652,6 +2709,8 @@ ja:
       'y': "1年"
       #Short text representing %d years in the past
       yy: "%d 年前"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "YYYY/MM/DD · LT z"
   month: 月
   #title for section describing people who donate to iNat every month
   monthly_supporters: マンスリーサポーター
@@ -2748,7 +2807,6 @@ ja:
   needs_id_: 要同定
   needs_id_expandable_html: "<span class='full'>要</span>ID"
   needs_id_tooltip_html: '"要同定"の観察記録は、メディア、位置、日付が特定されていますが、正確な同定にするためにコミュニティの合意がさらに必要です。<a href="https://www.inaturalist.org/pages/help#quality">品質グレードの詳細</a>'
-  needs_to_be_identified: 要同定
   network_affiliation_prompt_from_other_site_html: |
     所属を<strong>%{other_site_name}</strong> から<strong>%{site_name}</strong> に変更しますか?
   #Column header in a table listing iNaturalist Network members
@@ -2896,6 +2954,9 @@ ja:
   not_confident: 信頼性のある提案ができません
   not_confident_top_suggestions: 信頼性は高くありませんが、これらが上位の提案です
   not_covered_by_any_taxon_frameworks: どの分類群フレームワークでもカバーされていない
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: 周辺では期待できません
   not_evaluated: 未評価
   not_findig_what_you_want: お探しのもの見つかりませんか？
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
@@ -2924,6 +2985,64 @@ ja:
     公開座標は、真の座標を含む 0.2 度の緯度・経度のセル内のランダムな点として表示されます。
   observation: 観察記録
   observation_: 観察記録
+  observation_accuracy_experiment_the_sample_for: "この実験のサンプルはまだ作成されていません"
+  observation_accuracy_experiment_our_accuracy_estimate: "この実験の結果、我々の推定精度は %{percent} 正しかった。"
+  observation_accuracy_experiment_our_goak: "研究グレードのサブセットの推定精度（正答率）と精度の目標は95％以上（破線）。"
+  observation_accuracy_experiment_precision_results: "サブセット別の精度結果"
+  observation_accuracy_experiment_iconic_taxon_name: "象徴的な分類群名"
+  observation_accuracy_experiment_continent: "大陸"
+  observation_accuracy_experiment_year: "年"
+  observation_accuracy_experiment_quality_grade: "データ品質"
+  observation_accuracy_experiment_show_frequency: "表示頻度"
+  observation_accuracy_experiment_click_on_bars: "バーをクリックするとサブセットが表示されます。"
+  observation_accuracy_experiment_bars_will: "バーのクリックは、サンプルの検証期限が過ぎた後に可能になります。"
+  observation_accuracy_experiment_accuracy_results: "サブセット別の精度結果"
+  observation_accuracy_experiment_as_observations: "このサンプルからの観察記録が検証されるにつれて、不確実なパーセンテージは減少し、正答と誤答のパーセンテージが増加します。"
+  observation_accuracy_experiment_experiment_still: "実験はまだ進行中です。%{date} のサンプル検証期限まで、統計は毎日更新されます。"
+  observation_accuracy_experiment_observation_accuracy_experiment: "観察記録の精度実験"
+  observation_accuracy_experiment_validators: "検証者："
+  observation_accuracy_experiment_show_additional_validators: "(追加の検証者を表示)"
+  observation_accuracy_experiment_hide_additional_validators: "(追加の検証者を隠す)"
+  observation_accuracy_experiment_additional_validators: "( %{number} 追加の検証者)"
+  observation_accuracy_experiment_abstract: "概要：我々は %{sample_generation_date} に観察記録のサンプルを生成し、 %{deadline_date} までにその正確性を評価するために検証者のチームを調整しました。以下に示すすべての結果は、サンプルが生成された時点の観察記録の特徴を示しています（たとえば、研究グレードの有無など）。サンプルの観察記録の正確さは、 %{assessment_date} で評価されました。詳細は手法タブを参照してください。"
+  observation_accuracy_experiment_research_grade_results: "研究グレードの結果"
+  observation_accuracy_experiment_verifiable_results: "検証可能な結果"
+  observation_accuracy_experiment_all_results: "全ての結果"
+  observation_accuracy_experiment_methods: "手法"
+  observation_accuracy_experiment_step_1: "ステップ1：サンプルの生成と割り当て"
+  observation_accuracy_experiment_sample_generated: "サンプルの生成： %{date}"
+  observation_accuracy_experiment_sample_size: "サンプルサイズ： %{number}"
+  observation_accuracy_experiment_target_validator: "対象となる検証者の冗長性： %{number}"
+  observation_accuracy_experiment_number_of: "検証者候補の数： %{number}"
+  observation_accuracy_experiment_mean_subsample: "検証者候補ごとの平均サブサンプル・サイズ： %{number}"
+  observation_accuracy_experiment_mean_number: "サンプル観察記録あたりの平均検証者数： %{number}"
+  observation_accuracy_experiment_validator_candidate: "検証者候補の基準"
+  observation_accuracy_experiment_if_an_identifier: "同定されている分類群について少なくとも 3 回同定を改善した場合、その分類群を検証する資格があるとみなしました。改善された同定とは、その分類群について初めて提案され、その後コミュニティが同意したものです。"
+  observation_accuracy_experiment_if_an_identifier_continent: "同定者がある大陸で少なくとも 3 回同定を改善した場合、その大陸内でその分類群を検証する資格があるとみなします。同定の改善とは、その分類群について初めて提案され、その後コミュニティが同意することです。"
+  observation_accuracy_experiment_for_example: "たとえば、同定者1が観察記録にAのIDを追加します。同定者2が後にBの先行IDを追加した場合、Aに関する同定者1のIDは改善IDになります。同定者3が後にBの補助IDを追加した場合、Bに関する同定者2のIDは改善IDになります。"
+  observation_accuracy_experiment_step_2: "ステップ2：サンプルの検証"
+  observation_accuracy_experiment_we_contacted: "検証者候補に連絡し、サブサンプルに同定を追加するよう依頼しました。右のグラフは、サンプル観察記録を検証者の数でグループ分けしたものです。"
+  observation_accuracy_experiment_number_percent_of: "参加した検証者の数： %{number} （%{percentage}）"
+  observation_accuracy_experiment_percent_of: "検証されたサンプルの割合： %{percent}"
+  observation_accuracy_experiment_we_scored: "検証者の同定を各サンプルの観察記録の分類群と比較することで、サンプルの観察記録を「正確」、 「不確実」、「不正確」にスコア付けしました。同定がサンプルの観察記録分類群と一致するか、それよりも細かいものを「正確」としました。複数の検証者が同定に同意しない場合は、「不確実」としました。不一致の粗い同定、または異なる枝での同定は「不正確」としました。"
+  observation_accuracy_experiment_correct: "正確"
+  observation_accuracy_experiment_uncertain: "不確実"
+  observation_accuracy_experiment_incorrect2: "不正解"
+  observation_accuracy_experiment_step_4: "ステップ4：精度と精密度の計算"
+  observation_accuracy_experiment_accuracy: "精度"
+  observation_accuracy_experiment_we_calculated: "精度は、サンプル全体、および研究グレードのサブセットなど一部の正答率を計算しました。また、不確実なパーセンテージと不正確なパーセンテージも計算しました。右図の例では、正答率は83％、不確実率は6％、不正解率は11％となります。"
+  observation_accuracy_experiment_precision: "精密度"
+  observation_accuracy_experiment_if_every_sample: "もし全てのサンプル観察記録が界のような粗い分類群であった場合、iNaturalistデータセットの精度は非常に高いかもしれませんが、精密度が低すぎてデータセットがあまり有用でないかもしれません。精密度を推定するために、各サンプル観察記録に関連する各分類群について、iNaturalistの分類学における葉の子孫の数を数えました。精密度は 1 を葉の子孫の数で割ったものとして計算しました。その分類群が葉の分類群であった場合、精密度は100%となります。精密度の計算では、種以下のランクは無視しました。"
+  observation_accuracy_experiment_in_the_example: "右図の例では、3つのサンプル観察記録の平均精密度は51%になります。"
+  observation_accuracy_validator_email_subject2: "iNaturalistの観察記録の精度を推定するための実験 %{version} にご協力いただけませんか？"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    iNaturalistの観察記録の精度を見積もるための <a href="%{url}">実験（バージョン %{version} ）</a>にご協力いただけませんか？
+  observation_accuracy_validator_email_we_will_calculate: |
+    私たちは、あなたの同定と観察記録分類群を比較して精度を計算します。もしその同定がまだ関連していれば、以前に同定を追加した観察記録をスキップすることができます。一致と不一致をどのようにカウントするかについては、このまま読み進めてください。
+  observation_accuracy_validator_email_ids_equal_to: |
+    観察記録と同じ (A) か、それよりも細かい同定 (B) は「同意」としてカウントされます。
+  observation_accuracy_validator_email_with_gratitude: 感謝の気持ちを込めて、
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalistチーム
   observation_added_to_the_project: "観察記録が「%{project}」というプロジェクトに追加されました"
   observation_aggregation: 観察記録の集合体
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3125,7 +3244,9 @@ ja:
   only_the_project_admin_can_delete_this_project: プロジェクト管理者以外の方は削除できません。
   only_view_nearby_suggestions: 近隣で観察された候補のみ表示
   only_you: 自分のみ
+  #Geoprivacy status in which no privacy has been applied
   open: 公開
+  #Geoprivacy status in which no privacy has been applied
   open_: オープン
   open_description: "分類群の位置情報は、絶滅の恐れがある場合を除き一般公開されます"
   open_street_map: OpenStreetMap
@@ -3574,6 +3695,7 @@ ja:
     north_korea: 北朝鮮
     northern_cyprus: 北キプロス
     norway: ノルウェー
+    oceania: オセアニア
     oman: オマーン
     pakistan: パキスタン
     palau: パラオ
@@ -3813,7 +3935,11 @@ ja:
   radius_value: "半径 (m): %{radius}"
   random: ランダム
   range: 分布・生息区域
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 階級
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: 順位
   ranks:
     stateofmatter: 物質の状態
@@ -3839,6 +3965,8 @@ ja:
     infraorder: 下目
     subterclass: 準綱
     parvorder: 小目
+    zoosection: 節
+    zoosubsection: 亜節
     superfamily: 上科
     epifamily: 上科
     family: 科
@@ -3865,6 +3993,7 @@ ja:
     subspecies: 亜種
     variety: 変種
     form: 品種
+    infrahybrid: 交雑種
     leaves: 末端ノード
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: 物質の状態
@@ -3896,6 +4025,10 @@ ja:
   ranks_lowercase_subterclass: 準綱
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: 小目
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: 節
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: 亜節
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: 上科
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
@@ -3930,6 +4063,8 @@ ja:
   ranks_lowercase_variety: 変種
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: 品種
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
+  ranks_lowercase_infrahybrid: 交雑種
   ranges: 範囲
   #Text to link to a taxon range as a KML file
   range_file: 生息域ファイル
@@ -4061,6 +4196,14 @@ ja:
   rotate_left: 左回転
   rotate_right: 右回転
   row_singular_or_plural: 行
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    右から左へのレイアウトをテストしますか？URLパラメータに test=rtl を使うこともできます。すべてのページが右から左のレイアウトに変換されているわけではないことに注意してください。
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: 右から左へのレイアウトのテストに参加しました
   rules_and_formatting: "ルールとフォーマット"
   rules_for_adding_observations: 観測記録の追加に関するルール
   rules_for_becoming_a_member: 新規メンバーに関するルール
@@ -4175,6 +4318,8 @@ ja:
   share_colon: "共有:"
   short_code_for_this_place: この場所の省略名称、例：アメリカの場合、US
   short_or_abbreviated_title_for_display: スペースの限られた領域に表示するための簡潔なタイトル。最大10文字。
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: この分類群ではこの一般名をデフォルトで表示すべきですか？
   show: 表示
   show_active_and_inactive_taxa: 新旧（廃止）分類群を表示
   show_hidden_content: 非表示コンテンツを表示
@@ -4191,6 +4336,8 @@ ja:
   show_no_annotation: '「注釈なし」を表示'
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたはホームページで紹介しよう！
   show_only: '表示限定:'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMapを表示
   show_relative_proportions_of_all_observations: 全観察記録の相対比率を表示する
   #Label for a button to show the running total of an accumulation chart
   show_running_total: 現在の総計を表示
@@ -4252,9 +4399,16 @@ ja:
     iNaturalistは年に2回、iNaturalistのデータを各地域の研究、保全、管理のために利用しやすくするために、iNaturalistネットワーク・メンバーと提携しているアカウントのメールアドレスと一部の非表示座標（公開されていない座標や非公開の座標）を共有しています。座標を隠すことができる2つの方法は以下に説明するように共有方法が異なります。
   sites_affiliation_more_user_hidden_coordinates: |
     投稿者によって不明瞭または非公開にされた位置情報
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    %{start_tag_network}iNaturalistネットワーク%{end_tag_network} は、%{start_tag_global}グローバルなiNaturalistコミュニティー%{end_tag_global} の中で、地域に根ざした体験を提供します。
   sites_network_agreements_html: |
     iNaturalistはiNaturalistプラットフォームの利用をサポートするため、それぞれの地域の組織と正式な契約を結んでいます。<strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join}で詳細をご確認いただけます。</strong>
+  sites_network_agreements2_html: |
+    iNaturalistはiNaturalistプラットフォームの利用をサポートするため、これらの地域の各組織と正式な契約を結んでいます。2024年現在、私たちはネットワーク・パートナーシップの簡略化したアプローチを試験的に行っています。
+    <strong>あなたの組織がiNaturalistネットワークへの参加にご興味がある場合は、%{start_tag_join}こちら%{end_tag_join} から詳細をご覧いただけます。</strong>
   sites_network_consists_of: "iNaturalistネットワークはいくつかの組織で構成されています:"
+  sites_network_inaturalist_network_collection2: |
+    iNaturalistネットワークはグローバルなiNaturalistコミュニティに完全に接続されたローカルな活動です。ネットワークメンバーは、地域の生物多様性のためにiNaturalistのデータの利用を促進する地域の機関です。彼らは絶滅危惧種をより適切に保護するために、自動的に一般公開されない地理的エリア内の真の座標にアクセスすることができます。
   some_agree: 一部が賛成
   some_observations_are_missing_media_or_identifications: |
     一部の観察記録にメディアや同定の欠落があります
@@ -4355,7 +4509,6 @@ ja:
   start_a_new_project: 新規プロジェクト作成
   start_a_project: 新規プロジェクト作成
   start_date_time: 開始日時
-  start_one: 1つを始める
   start_one_now: 今すぐ始める！
   start_typing_field_name: フィールド名を入力
   start_typing_place_name: 場所名を入力
@@ -4385,10 +4538,9 @@ ja:
   studies_that_used_inaturalist_data_in_year: iNaturalistのデータを %{year} 年に使用した研究
   stuff_just_added: "あなたの新着追加項目"
   subject_resolved_noun_html: "%{subject}が%{noun}を解決しました"
-  subject_affecting_stuff_html: "%{stuff}を影響している%{subject}"
-  subject_committed_thing_affecting_stuff_html: "%{subject}が%{stuff}に関わる@vow_or_con{vow:an|a} %{thing}を確定させた"
   submission_model: 投稿機種
   submission_model_description: プロジェクトに観察記録を追加できる対象は？
+  submit: 送信
   submit_observations:
     other: '%{count}件の観察記録を送信'
   submitted: 投稿済
@@ -4515,6 +4667,7 @@ ja:
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: この分類群はIUCNレッドリストに掲載されていません。
   taxon_range_guidelines_learn_more_about_taxon_ranges: 分類群生息域の詳細を見る
   taxon_range_updated_notice: 分類範囲が正常に更新されました。マップに反映されるまで数分お待ちください。
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: 分類群のランク
   taxon_removed_from_list: リストから分類群が削除されました
   taxon_search: 分類群検索
@@ -4547,6 +4700,7 @@ ja:
   terms_service: 利用規約
   terrain: 地形
   text: テキスト
+  thank_you!: ありがとうございます！
   thanks!: ありがとうございます！
   thanks_from_all_of_us_here_at: ここにいる私たち全員からの感謝
   that_photo_doesnt_exist: お探しの写真は存在しません。
@@ -4584,7 +4738,6 @@ ja:
   then_keybord_sequence: 次に
   there_are_x_synonyms_html:
     other: "<span class='count'>%{count}つ</span>シノニムが存在します</span>"
-  there_is_no_wikipedia_page_matching: 一致するウィキペディアページがありません
   there_isnt_a_wikipedia_article_titled_x_html: |
     ウィキペディアには '%{x}' というタイトルの記事もリダイレクトもありません。おそらく、<a href='http://en.wikipedia.org/wiki/%{x}'>作成</a>したいのではないでしょうか？
   there_merge_problems_with_the_merge: "統合エラーが発生しました：%{merged_errors}"
@@ -4831,6 +4984,8 @@ ja:
   unable_to_save_comment: 残念ながらコメントを保存できませんでした。
   unblock: ブロックを解除
   unclassified: 未分類
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: プロジェクトについて
   ungrafted_taxa: 未融合の分類群
   unhide_content: 非表示を解除する
   unhide_desc: |
@@ -4840,7 +4995,10 @@ ja:
   unknown: 不明
   unknown_error: 不明なエラー
   unknown_rank: '(階級不明）'
-  unfollow: フォローを外す
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: 観察記録のフォローを解除
+  #Text for a button to stop following updates from a user
+  unfollow_user: ユーザーのフォローを解除
   unlink_your_google_account: Googleアカウントとの連携を解除する
   unlink_your_flickr_account: "Flickrアカウントとの連携を解除"
   unmute: ミュート解除
@@ -4940,7 +5098,8 @@ ja:
   user_added_an_x_to_noun_by_you_html: "%{user}はあなたの%{noun}に%{x}を追加しました"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}さんが%{noun}に%{x}を追加しました"
-  user_added_x_observations_html: "%{user}さんが%{x}件の観察記録を追加しました"
+  user_added_x_observations2_html:
+    other: "%{user} さんが %{count} 件の観察記録を追加しました"
   user_already_authenticated: ユーザーは既に認証されています
   user_already_app_owner: ユーザーはすでにアプリの所有者です
   user_autocomplete_placeholder: kueda, simon123 などのユーザー名
@@ -4956,6 +5115,8 @@ ja:
   user_faved_this_observation: "%{user}さんがこの観察記録をお気に入りに追加しました"
   user_flagged_as_a_non_spammer_html: "%{user} を非スパマーとしてマークしました"
   user_flagged_as_a_spammer_html: "%{user} をスパマーとしてマークしました"
+  user_has_been_removed_from_site: |
+    %{username} は %{site_name} から削除されました（関連するすべてのコンテンツが削除されるまで最大1時間かかる場合があります）
   user_has_opted_out_of_community_id: 利用者はコミュニティ分類群の通知を受け取りません
   user_hasnt_joined_any_projects: "%{user} はどのプロジェクトにも参加していません"
   user_helped_x_people_with_y_ids_html: "%{user} は<strong>%{x} 人のユーザーに合計</strong> <strong>%{y} 同定</strong>を追加しました"
@@ -4982,6 +5143,7 @@ ja:
   user_trusts_you_with_their_private_coordinates: "%{user} はあなたを信頼して位置情報を公開しています。"
   user_trusts_you_with_their_private_coordinates_desc: |
     この観察者は、全ての観察記録について、あなたを信頼して隠された座標を表示することを選択しました。
+  user_updated_an_observation_field_html: '%{user} は、%{owner} の観察記録に基づいて「%{field_name}」を更新しました。'
   username: ユーザー名
   username_description: これはあなたがログインする際に使用するユーザー名で、他のユーザーがiNaturalistであなたを識別するために使用することができます。
   username_or_email: ユーザー名またはメールアドレス
@@ -5030,6 +5192,7 @@ ja:
   valid_options_are: 有効な選択肢：
   value: 値
   verbing_x_of_y: "%{y}部の%{x}を%{verb}中..."
+  video_tutorials: 動画チュートリアル
   view: 表示
   view_all: すべて表示
   view_all_caps: すべて表示
@@ -5041,6 +5204,7 @@ ja:
   view_check_list_page: チェックリストページを表示
   view_contributions: 投稿を表示
   view_details: 詳細を表示
+  view_dynamic_lifelist_: ダイナミックライフリストを表示
   view_field_options: フィールドオプションを表示
   view_flag: フラグを表示
   view_flags: フラッグを表示
@@ -5096,7 +5260,6 @@ ja:
   view_your_personal_year_in_review_caps: "個人的な %{year} 年を振り返る"
   view_yours: 自分のを表示
   view_all_of_your_observations_from_x: "%{x}から自分のすべての観察記録を表示"
-  video_tutorials: 動画チュートリアル
   visually_similar: 視覚的に似ている
   vulnerable: 危急種/絶滅危惧II類
   w00t_no_ungrafted_taxa: やった！未合体の分類群がありません！
@@ -5422,6 +5585,9 @@ ja:
             iNaturalistを親しみやすい場所にするためのヒントとして、<a href="%{url}">コミュニティ・ガイドライン</a>をご確認ください
           please_read_the_teachers_guide_html: |
             もしそうであれば、<a href="%{url}">ティーチャーズ・ガイド</a>を読んで、%{site_name}を使うヒントにしてください。
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            その場合は、<a href="%{url}">教育者用ガイド</a>で、生徒と一緒に %{site_name} を使用するヒントをお読みください。
     donate:
       donate_short_desc: "ご寄付をお願いいたします"
       donate_desc_moore_html: |
@@ -5534,10 +5700,9 @@ ja:
           figure_alt_text: Expected Nearby mapとTaxon Rangeを比較します
           combining_these_maps_produces: |
             これらのマップを組み合わせると、3種類のセルができます：
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             真の存在：
-          true_presences_definition: 予想される分布図と分類群の生息域の両方から、その分類群が存在すると予測されるエリア
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             偽の存在：
@@ -5666,6 +5831,36 @@ ja:
         speech_privilege_notice: |
           有効な観察記録を3つ、または他の人の観察記録に同定をを3つ追加すると、新しいDMを送信できるようになりま
           現在の状態では、他の人が送ってきたメッセージを読んだり、返信したりする機能のみが利用できます。
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: ビジョン・ランゲージのデモ
+      what_do_you_want_to_search_for: 何を検索しますか？
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: 例：%{query_in_english}
+      try_one_of_these_example_searches_colon: "以下の検索例を試してみてください："
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: 改善にご協力ください
+      to_help_us_improve: このモデルの改良のため、このページに掲載されている画像のうち、どの画像が検索 &quot;%{searched_term}&quot; に関連しているかを教えてください。検索に一致する画像には関連 %{thumbs_up_icon} 、一致しない画像には無関係 %{thumbs_down_icon} を付けてください。入力が終わりましたら、送信をクリックしてください。 #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: 関連するものとしてマーク
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: 無関係のものとしてマーク
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: 同定でこれらの観察記録を見る
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a>は、<a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">マサチューセッツ大学アマースト校</a>、<a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">エジンバラ大学</a>、<a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">ユニバーシティ・カレッジ・ロンドン</a>、<a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a>の研究者とチームを組み、またiNaturalistの観察記録を整理、探索、説明するのに役立つビジョン言語モデルの可能性をよりよく理解するために、<a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a>の寛大な支援を受けました。 #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: このデモツールでは、検索フレーズ（「<a href="%{url}">%{query_in_english}</a>」など）を入力し、1,000万枚のiNaturalistの写真と照合することができます。結果は関連性の高いものから低いものへと並びます。このデモは、あなたのプロジェクトに注釈を付けたり追加したりする興味深いiNaturalistの観察記録を見つける新しい方法として使うことができます。
+      you_can_also_use_this_demo: また、このデモを使用して、返された画像のどれがあなたの検索フレーズに関連していたかを教えていただくことで、このデモを動かしているビジョン・ランゲージ・モデルの評価に役立てることができます。このデモはiNaturalistのデータやiNaturalistチームによってトレーニングされたものではないサードパーティの <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">ビジョン・ランゲージCLIPモデル</a> を使用しています。このツールは不正確、偏った、あるいは不快な結果を出すことがあります。詳しくは <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">iNaturalistブログ</a> をご覧ください。 #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: この活動を支援したい場合は
+      thank_you_for_your_submission!: 送信ありがとうございます！
     oauth:
       authorizations:
         new:
@@ -5782,56 +5977,6 @@ ja:
         data_quality_assessment_desc3_html: |
           品質グレードは、iNaturalistの観測データの正確性、精度、完全性、関連性、生物多様性データとしての適切性を要約したものです。いくつかの属性は自動的に決定されますが、他の属性はiNatユーザーによる投票の対象となります。iNaturalistは、科学と保全に使用するために、ライセンスを受けた「研究グレード」の観測データを多くのデータパートナーと共有しています。
         identification_count_desc: '単一の分類群に対する同定の件数'
-        quality_assessment_help2_html: |
-          <p>
-          データ品質評価は、観察記録の正確さの要約である。すべての観察記録は<strong>「カジュアル」</strong>グレードとして開始され、以下の場合に<strong>「要同定」</strong>となります。
-          </p>
-
-          <ul>
-          <li>観察記録に <strong>日付がある</strong></li>
-          <li>観察記録が <strong>ジオリファレンスされている</strong>（つまり緯度経度座標を持っている）</li>
-          <li>観察記録に <strong>写真か音声がある</strong></li>
-          <li>観察記録が <strong>人間ではない</strong></li>
-          </ul>
-          <p>
-          観察記録が<strong>「研究用」</strong>になるのは以下の場合です
-          </p>
-          <ul>
-          <li>
-          %{site_name} の<strong>コミュニティが種レベルの同定またはそれ以下の同定に同意している場合</strong>、すなわち同定の2/3以上が分類群に同意している場合（コミュニティがコミュニティ分類群の改善が不可能であると投票した場合、これは亜科レベルの同定またはそれ以下の同定に戻ります）
-          </li>
-          </ul>
-          <p>
-          上記の条件が満たされない場合、またはコミュニティが同意しない場合、観察記録は<strong>「カジュアル」</strong>に戻ります
-          </p>
-          <ul>
-          <li>
-          <strong>場所が不正確</strong>（例：海の真ん中に猿、オフィスビルにカバなど）
-          </li>
-          <li>
-          <strong>生物が野生／帰化していない</strong>（例：人類または知的宇宙人によって捕獲または培養されたもの）
-          </li>
-          <li>
-          観察記録に<strong>生物の証拠がない</strong>。例えば、水辺、岩、風景などの画像に生物が含まれていない場合など。
-          </li>
-          <li>
-          観察記録が、<strong>その生物の最近（～100年）の証拠を示していない</strong>（例：化石、しかし足跡、糞、枯葉はOK）
-          </li>
-          <li>
-          観察記録が同定を必要としなくなり、<em>かつ</em>コミュニティIDが科以上である。
-          </li>
-          <li>
-          観察者がコミュニティIDから脱退しており、コミュニティIDの分類群が観察者の同定に関連する分類群の祖先でも子孫でもない場合
-          </li>
-          </ul>
-          <p>
-          また、これでもまだ複雑でないというなら、システムが投票を得る状況もあります：
-          </p>
-          <ul>
-          <li>
-          この観察記録を含む最小の郡、州、または国に相当する場所に、同じ属またはそれ以下の観察記録が少なくとも10個以上あり、それらの観察記録の80％以上が野生化／帰化していないとマークされている場合、システムはその観察記録を野生化／帰化していないと投票します。
-          </li>
-          </ul>
         score_desc: "スコア ＝ 一致数 ÷ ( 一致数 ＋ 不一致数 + 祖先の不一致数)"
         observation_flagged_notice_html: |
           この観察記録はスパムとしてフラグが立てられ、公開されていません。あなたが見ることができるのは、あなたが作成したか、あなたがサイトのキュレーターだからです。これが間違いであると思われる場合は、<a href="mailto:%{help_email}" class="contact">ご連絡ください</a>。
@@ -6027,13 +6172,17 @@ ja:
           このプロジェクトに参加したユーザーによる観察のみを含めるには、下のチェックボックスをオンにしてください。 上記の除外フィルターを使用して、プロジェクトの所有者や管理者を含む特定のユーザーからの観測を除外します。
         click_through_to_individual_projects: クリックして個々のプロジェクトへ進む
         collection_projects: コレクションプロジェクト
+        collection_project_features: "コレクションプロジェクトの機能:"
         contain_entire_image_without_cropping: トリミングせずに全体の画像を使用
         custom_banner_icon_and_project_description: バナー画像・アイコン・プロジェクト概要の設定
+        data_visualizations: データの可視化
         delete_project: プロジェクトを削除
         display_project_name: プロジェクト名を表示する
         do_you_need_features_from_traditional: |
           真の座標へのアクセスなど、手動プロジェクトの機能が必要ですか？
           カスタム観測フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
+        do_you_need_features_from_traditional2: |
+          カスタムの観察フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
         duplicate_project: プロジェクトの複製
         include_annotated_observations: |
           特定の属性（例：ライフステージ）、または特定の属性と値（例：ライフステージ＝成体）で注釈がつけられた観察記録のみを含めます。1つのプロジェクトにつき、1つの注釈のフィルターに制限されます。
@@ -6085,12 +6234,18 @@ ja:
         users_can_follow_your_project: ユーザーはプロジェクトをフォローすることで、ニュースから最新の情報を得ることができます
         use_this_link_to_create_html: |
           <a href="%{url}">このリンク</a> を使用して手動プロジェクトを作成する
+        visual_comparison_of_data_among: 傘下のプロジェクト間のデータの視覚的な比較
         we_have_redesigned_projects: |
           プロジェクトは、あなたが定義した「場所」「分類群」「ユーザー」「データ品質」「観測日
           」の要件に適合する全ての観察記録が自動で含まれるようデザインされています。
 
           まずはプロジェクトを、コレクションプロジェクトかアンブレラプロジェクトのどちらのタイプにするか選択してください。以下の機能は２つのタイプで共通です:
         welcome_to_projects: プロジェクトへようこそ！
+        you_can_learn_more_html: |
+          プロジェクトの管理について学習するには
+          <a href="https://www.inaturalist.org/pages/managing-projects">こちら</a>
+          またプロジェクトの歴史については
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ブログ</a>をご覧ください。
         errors:
           name_is_required: プロジェクト名が必要です
           name_less_than_100_characters: プロジェクト名は100文字未満にする必要があります
@@ -6213,7 +6368,7 @@ ja:
         species_per_year_by_date_observed: 観察した日付順
         stats_generation_schedule: 統計は12月の毎週日曜日と1月1日に生成されます
         sunburst_desc_html: |
-          観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁にある種で終わる。各円弧の大きさはその分類群の観測数に比例し、色はいつもの「象徴的な」分類群の色（植物は緑、昆虫はオレンジ、その他のほとんどの動物は青、など）におおよそ対応しているので、緑が多いということは、多くの植物を観測したことを意味します。<strong>円弧をクリックすると、その分類群が中心に配置され</strong>、その周囲に子分類群が配置されます。また、<strong>中心をクリックすると、階層が後ろに移動します</strong>。
+          観察された分類群を階層的な「サンバースト」図として配置したもの。階層の基点は中央にあり、「生命」から始まり、外縁の種で終わります。各円弧の大きさはその分類群の観察記録の数に比例し、色は通常の「分類群を象徴する」色（植物は緑、昆虫はオレンジ、その他の動物は青など）にほぼ対応しています。<strong>円弧をクリックすると、その分類群が中心に配置され、</strong>その周りに子分類群が配置され、<strong>中心をクリックすると、階層が上に戻ります</strong>。
         translators_title: 翻訳者
         view_all_publications_count_caps2:
           other: "%{count} 件の出版物を表示"
@@ -6242,7 +6397,14 @@ ja:
           "Plant Phenology=Flowering": 開花中
           "Plant Phenology=Fruiting": 結実中
           "Plant Phenology=No Evidence of Flowering": 開花の証拠が見られない
-          "Life Stage=Adult": 成体
+          "Flowers and Fruits=Flower Buds": 花芽（つぼみ）
+          "Flowers and Fruits=Flowers": 花
+          "Flowers and Fruits=Fruits or Seeds": 果実または種子
+          "Flowers and Fruits=No Flowers or Fruits": 花や実なし
+          "Leaves=Breaking Leaf Buds": 芽吹き
+          "Leaves=Green Leaves": 青葉
+          "Leaves=Colored Leaves": 紅葉、黄葉
+          "Leaves=No Live Leaves": 生きた葉なし
           "Life Stage=Egg": 卵
           "Life Stage=Larva": 幼虫・幼生
           "Life Stage=Juvenile": 幼体
@@ -6271,29 +6433,6 @@ ja:
           これはかなりの混乱を引き起こす可能性があるので、場合によってはフラグを立てるなどして、慎重に使用してください。
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>他の場所で使用されている名前を追加してみてください。新しい名前を作らないでください。</p></li>
-          <li><p>重複した名前を付けないようにしましょう。例えば、多数の鷹に対して「鷹」と名付けてはいけません。</p></li>
-          <li><p>高次分類群の場合は、「herons and allies (サギとシギ)」や「heath family (ツツジの科)」のようにすべての下位分類群を含む名前を使用してみてください。</p></li>
-          <li>
-          <p>
-          名前以外の情報を追加しないでください。
-          例：どのように名前が使用されるべきか
-          </p>
-          </li>
-          <li>
-          <p>
-          新しい言語名を追加する場合は英語表記にしてください。翻訳された言語名、例えば「日本語」ではなく、英語の「Japanese」としましょう。異なる言語でサイトを利用している人のために地域化された名前を表示するのが難しくなるか、あるいは不可能になるからです。
-          </p>
-          </li>
-          <li>
-          <p>
-          翻訳された言語に関連付けられた一般名は、その言語の既定の一般名として表示されます（場所の設定や名前の順序などの影響を除く）。
-          翻訳についてより詳しく知りたい方は<a class="readmore" href="/pages/translate">こちら</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           場所に名前を追加して、その場所のサイトやユーザーに優先順位をつけます。1つの場所に複数の名前がある場合は、 <a href="%{url}">ここ</a>で優先順位をつけることができます。 <strong>名前が使われているすべての場所に名前を追加するのではなく</strong>、他の場所と競合する場所にだけ名前を追加してください。
     users:
@@ -6784,9 +6923,16 @@ ja:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: 指定された配置に対して有効でなければなりません
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: 指定されたターゲットグループに対して有効でなければなりません
         application:
           attributes:
             redirect_uri:
@@ -6811,7 +6957,6 @@ ja:
             action:
               not_supported_for_this_kind_of_content: この種のコンテンツには対応していません
             base:
-              only_staff_can_unhide: サイトスタッフのみが非表示にされた内容を再度表示できます。
               staff_cannot_be_suspended: スタッフは利用停止できません
             user_id:
               must_be_a_curator: キュレーターである必要があります
@@ -6847,12 +6992,21 @@ ja:
             place_geometry:
               is_too_large_to_edit: 編集するには大きすぎます
               is_too_large_to_import: 大きすぎるため、インポートできません
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: 大きすぎるか複雑すぎるため、タイムアウトする前に処理できません
               contains_too_many_observations: インポートするには観察記録が多すぎます
+              cannot_be_blank: 空白にはできません
+              invalid_point: は無効な点です。例えば、経度が180度より大きい、緯度が-90度より小さいなど。
+              must_have_more_than_three_points: 3以上の点が必要です
+              polygon_with_less_than_four_points: 点が4つ未満の多角形があります
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: 空白にはできません
               must_have_more_than_three_points: 3点以上である必要があります
+              polygon_with_less_than_four_points: 点が4つ未満の多角形があります
         post:
           attributes:
             parent:

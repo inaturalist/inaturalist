@@ -163,7 +163,7 @@ $tip-opacity: 1;
       a:hover {
         opacity: 1;
       }
-      font-weight: 100;
+      font-weight: 400;
     }
     // Bump bootstrap header margins by 10px
     h1,
@@ -243,7 +243,7 @@ $tip-opacity: 1;
       color: white;
       border: 2px solid darken( $inat-green, 10% );
       border-radius: 100px;
-      font-weight: 100;
+      font-weight: 400;
       i {
         margin-right: 5px;
       }
@@ -432,6 +432,7 @@ $tip-opacity: 1;
           font-size: 80%;
           margin-top: 0;
           text-transform: uppercase;
+          color: $medium-gray;
 
           a {
             color: $medium-gray;
@@ -536,7 +537,7 @@ $tip-opacity: 1;
         text-align: center;
         top: 115px;
         text-transform: uppercase;
-        font-weight: 700;
+        font-weight: 600;
         color: white;
         .count {
           display: block;
@@ -710,7 +711,7 @@ $tip-opacity: 1;
     .taxon {
       .display-name {
         color: white;
-        font-weight: 100;
+        font-weight: 400;
       }
     }
     .media {
@@ -1206,7 +1207,7 @@ $tip-opacity: 1;
 
         p {
           font-size: 19px;
-          font-weight: 100;
+          font-weight: 400;
         }
 
         > div {

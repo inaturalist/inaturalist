@@ -53,7 +53,7 @@
                     = link_to observations_path, class: "btn btn-primary btn-md" do
                       = t :browse_observations
                       %span.glyphicon.glyphicon-chevron-right
-                    = link_to @site.getting_started_url, target: "_blank" do
+                    = link_to @site.getting_started_url, target: "_blank", rel: "noopener noreferrer" do
                       %span.glyphicon.glyphicon-info-sign
                       = t :getting_started_guide
               - if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]
@@ -128,6 +128,30 @@
           - announcements.each do |announcement|
             - unless user_seen_announcement?( announcement )
               = render "announcements/announcement", announcement: announcement
+
+      - if ObservationAccuracyExperiment.user_eligible_for_needs_id_pilot?( current_user )
+        #needs_id_pilot_panel.panel.panel-default
+          .panel-heading
+            %a.close{ "data-panel-type" => "needs_id_pilot_panel", id: "close_needs_id_pilot_panel", style: ( current_user.prefers_needs_id_pilot == true ? "display:none;" : "" ) } &#215;
+            %h3.panel-title= "Identification Pilot: Onboarding New Users"
+          .panel-body
+            #participate_section{ style: ( current_user.prefers_needs_id_pilot.nil? ? "" : "display:none;" ) }
+              %p
+                Beginning tomorrow, receive up to 30 observations daily that match your identification skills, helping to onboard new users. You can opt out at any time.
+                - post = ObservationAccuracyExperiment.needs_id_pilot_post
+                - if post
+                  = link_to "Read more on our blog.", post_url( post )
+              %button{ type: "button", id: "participate_button", class: "btn btn-default btn-md" } Yes! I'd like to participate.
+            #stop_participating_section{ style: ( current_user.prefers_needs_id_pilot == true ? "" : "display:none;" ) }
+              - needs_id_pilot_params = ObservationAccuracyExperiment.needs_id_pilot_params_for_user( current_user )
+              - if needs_id_pilot_params
+                %p
+                  Below are up to 30 observations that match your identification skills.
+                = link_to "Identify observations", identify_observations_url(needs_id_pilot_params), class: "btn btn-primary btn-md"
+              - else
+                %p Check back tomorrow for a link to observations that match your identification skills.
+              %p.text-right
+                = link_to "stop participating", "#", id: "stop_participating_link", class: "btn-link"
       - if @discourse_url && !@discourse_data.blank?
         #forum
           .panel.panel-default

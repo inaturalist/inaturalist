@@ -144,18 +144,13 @@ class LeftMenu extends SelectionBasedComponent {
         <DateTimeFieldWrapper
           ref="datetime"
           inputFormat={inputFormat}
-          key={`multidate${commonSelectedDate}`}
-          reactKey={`multidate${commonSelectedDate}`}
+          key={`multidate${commonSelectedDate ? "" : "empty"}`}
+          reactKey={`multidate${commonSelectedDate ? "" : "empty"}`}
           dateTime={commonSelectedDate
             ? moment( commonSelectedDate, inputFormat ).format( "x" )
             : undefined
           }
           onChange={
-            dateString => updateSelectedObsCards( {
-              date: dateString
-            } )
-          }
-          onSelection={
             dateString => updateSelectedObsCards( {
               date: dateString,
               selected_date: dateString

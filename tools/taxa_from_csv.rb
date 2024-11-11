@@ -45,6 +45,7 @@ OPTS = Optimist.options do
   opt :lexicon_first, "Allow file to be of format sciname, lexicon, comname", type: :boolean
   opt :lexicon, "Lexicon that will override the lexicon in the file", type: :string, short: "-l"
   opt :ancestor_taxon_id, "ID of taxon that is supposed to contain all these taxa", type: :integer, short: "-a"
+  opt :col_sep, "Column separator (auto-detected if not specified)", type: :string
 end
 
 start = Time.now
@@ -185,7 +186,22 @@ end
 @not_created = []
 
 def import_taxa
-  CSV.foreach( @csv_path, skip_blanks: true ) do | row |
+  first_line = File.open( @csv_path, &:readline )
+  col_sep = if OPTS.col_sep
+    OPTS.col_sep
+  elsif first_line.split( ";" ).size > 1
+    ";"
+  elsif first_line.split( "\t" ).size > 1
+    "\t"
+  else
+    ","
+  end
+
+  if first_line.split( col_sep ).size <= 1
+    raise "#{@csv_path} does not look like text delimited by `#{col_sep}`"
+  end
+
+  CSV.foreach( @csv_path, skip_blanks: true, col_sep: col_sep ) do | row |
     sciname, *common_names = row
     puts row.join( " | " )
     next unless sciname

@@ -33,7 +33,8 @@ Rails.application.routes.draw do
 
   get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
 
-  get "/independence", to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
+  get "/independence",
+    to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
 
   resources :controlled_terms
@@ -128,6 +129,13 @@ Rails.application.routes.draw do
     member do
       get :merge
       put :merge, to: "observation_fields#merge_field"
+    end
+  end
+  resources :observation_accuracy_experiments, only: [:show] do
+    member do
+      get "get_more_validators"
+      get "get_methods_data"
+      get "get_results_data"
     end
   end
   get "/" => "welcome#index"
@@ -599,6 +607,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get "build_info", to: "build_info#index"
+  get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
+
   resource :stats do
     collection do
       get :index
@@ -609,6 +620,8 @@ Rails.application.routes.draw do
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
+      get :user_segments
+      get :daily_active_user_model
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -688,6 +701,19 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :computer_vision_eval, only: :index, controller: :computer_vision_eval do
+    collection do
+      get :index
+    end
+  end
+
+  resource :vision_language_demo, only: :index, controller: :language_demo do
+    collection do
+      get :index
+      post :record_votes
+    end
+  end
+
   resources :computer_vision_demo_uploads do
     member do
       post :score
@@ -700,7 +726,7 @@ Rails.application.routes.draw do
   end
   resources :moderator_actions, only: [:create] do
     member do
-      get :resource_url, constraints: lambda {|req| req.format == :json }
+      get :resource_url, constraints: ->( req ) { req.format == :json }
     end
   end
 

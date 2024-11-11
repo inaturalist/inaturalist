@@ -64,31 +64,34 @@ const PreviousNextButtons = ( {
       nextAlt = nextObs.species_guess;
     }
   }
+  const isRTL = $( "html[dir='rtl']" ).length > 0;
   return (
     <div className="PreviousNextButtons">
       <a
-        href={previousObs
-          ? `/observations/${previousObs.id || previousObs.uuid}`
-          : `/observations/${observation.user.login}`
+        href={
+          previousObs
+            ? `/observations/${previousObs.id || previousObs.uuid}`
+            : `/observations/${observation.user.login}`
         }
         className={`previous ${previousDisabled ? "disabled" : ""}`}
         onClick={prevAction}
-        alt={prevAlt}
+        alt={I18n.t( "previous_observation" )}
         title={prevAlt}
       >
-        <i className="fa fa-chevron-left" />
+        <i className={`fa fa-chevron-${isRTL ? "right" : "left"}`} />
       </a>
       <a
-        href={nextObs
-          ? `/observations/${nextObs.id || nextObs.uuid}`
-          : `/observations/${observation.user.login}`
+        href={
+          nextObs
+            ? `/observations/${nextObs.id || nextObs.uuid}`
+            : `/observations/${observation.user.login}`
         }
         className={`next ${nextDisabled ? "disabled" : ""}`}
         onClick={nextAction}
-        alt={nextAlt}
+        alt={I18n.t( "next_observation" )}
         title={nextAlt}
       >
-        <i className="fa fa-chevron-right" />
+        <i className={`fa fa-chevron-${isRTL ? "left" : "right"}`} />
       </a>
     </div>
   );

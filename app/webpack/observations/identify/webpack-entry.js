@@ -42,7 +42,7 @@ const store = createStore(
 const testingApiV2 = ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
@@ -120,9 +120,18 @@ function observeStore( storeToObserve, select, onChange ) {
   handleChange( );
   return unsubscribe;
 }
-// Fetch observations when the params change
+// Fetch observations when the params change, with a small delay so only
+// one search is performed if parameters change quickly
+let lastSearchTime;
 observeStore( store, s => s.searchParams.params, ( ) => {
-  store.dispatch( fetchObservations( ) );
+  const thisSearchTime = Date.now( );
+  lastSearchTime = thisSearchTime;
+  setTimeout( ( ) => {
+    if ( thisSearchTime !== lastSearchTime ) {
+      return;
+    }
+    store.dispatch( fetchObservations( ) );
+  }, 1000 );
 } );
 
 render(

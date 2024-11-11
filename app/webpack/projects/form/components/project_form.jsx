@@ -52,7 +52,7 @@ class ProjectForm extends React.Component {
                 <button
                   type="button"
                   className="btn-white"
-                  onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" )}
+                  onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank", "noopener,noreferrer" )}
                 >
                   <i className="fa fa-external-link" />
                   { I18n.t( "preview_observations_with_these_observation_requirements" ) }

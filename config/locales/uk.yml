@@ -269,24 +269,6 @@ uk:
   about_this_bioblitz: Про цей біобліц
   about_this_map: Про цю карту
   about_this_project: Про цей проект
-  about_trips_html: |
-    <h4>
-    Поїздки уможливлюють збір даних про наявність-відсутність, шляхом додавання контексту до ваших спостережень
-    </h4>
-    <p>
-    <strong>Чому</strong> Дані про наявність-відсутність видів включають відмості про обсяг дослідницького зусилля, що є важливим для наукових досліджень, таких як моделювання поширення видів (звичайні спостереження на iNaturalist інтерпретуються як дані "лише про нявність").
-    </p>
-    <p>
-    <strong>Як</strong> Поїздки додають контекст до ваших спостережень шляхом запису:
-    </p>
-    <ul>
-    <li><strong>Що</strong> ви шукали (цільовий список)</li>
-    <li><strong>Де</strong> ви шукали (територія інтересу)</li>
-    <li><strong>Коли</strong> ви шукали (інтервал пошуку)</li>
-    </ul>
-    <p>
-    Види з вашого цільового списку, які ви змогли спостерігати на території інтересу впродовж інтервалу пошуку трактуються як присутні. Види з цільового списку, які ви не змогли відмітити, трактуватимуться як відсутні. Натисніть 'Зведені дані наявності-відсутності з поїздок', щоб згенерувати таблицю записів про наявність-відсутність видів з поїздок та пов'язаних спостережень. <a href='%{url}'>Дізнатися більше</a>
-    </p>
   about_trusting_projects: Про Підтвердження довіри до проєктів
   about_trusting_projects_options_any: Всі ваші спостереження в цьому проєкті
   about_trusting_projects_options_any_desc: |-
@@ -956,6 +938,8 @@ uk:
     input_taxa_were_merged_into_output_taxon_html: "%{input_taxa} було об'єднано в %{output_taxon}"
     input_taxa_will_be_merged_into_output_taxon_html: "%{input_taxa} буде об'єднано в %{output_taxon}"
   change_your_password: Змінити пароль
+  #Plural noun, as in changes to a taxon record over time
+  changes: Зміни
   changing_the_geoprivacy: 'Зміна налаштувань приватності розташування позначається на тому, як інші люди бачать місце вашого спостереження.'
   check_above_for_errors: Перевірити вищезазначене на наявність помилок
   check_back_soon: Побачимося незабаром!
@@ -1142,6 +1126,7 @@ uk:
     no_evidence_of_flowering: Немає свідчень цвітіння
     nymph: Німфа
     larva: Личинка
+    #Evidence of an egg of an organism
     egg: Яйце
     juvenile: Молода особина
     alive_or_dead: Живий або мертвий
@@ -1686,6 +1671,7 @@ uk:
   everywhere: всюди
   exact: Точна
   exact_date: Точна дата
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точний ранг
   except: окрім
   exclude_places: Виключити місця
@@ -1845,6 +1831,7 @@ uk:
   fluid: адаптивний
   follow: Підписатися
   follow_receive_updates_about_new_observations: Підписатися (отримувати оновлення про нові спостереження)
+  #Text for a button to follow updates from a specific user
   follow_user: "Підписатися на користувача %{user}"
   followers: Підписники
   following: Підписки
@@ -1913,7 +1900,6 @@ uk:
   graft: Прищеплення
   graft_taxon: Прищепити %{taxon}
   grafting_attemps_to_insert_this_taxon: Прищеплення — це спроба приєднати цей таксон до нашого систематичного дерева, знайти існуючий батьківський таксон або створити всі необхідні проміжні таксони, щоби приєднати його до існуючого таксону вищого рівня.
-  grant_role: "%{grant} %{role} роль"
   grid: Сітка
   grid_layout: Сітка розмітки
   grid_tooltip: Показати сітку
@@ -1968,6 +1954,8 @@ uk:
   hide_running_total: Приховати поточний доробок
   hide_uncountable_species: Приховати незлічувані види
   high: Вищий
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Найвищий ранг
   highlights_and_stats_from_year_on_site: "Яскраві події та статистика року %{year} на сайті %{site}"
   history: Історія
@@ -2017,7 +2005,6 @@ uk:
   identotron_for: Ідентотрон для
   identotron_help: Допомога щодо ідентотрону
   ids: "Визначення"
-  ids_made_for_others: Визначення, надані для інших
   if_for_some_reason_a_user_doesnt_agree: |
     Якщо з якихось причин ви не згодні з таксоном спільноти, ви можете відхилити його.
     Таким чином ваше визначення буде використовуватися під час посилань на інші спостереження, оновлень списків життя, тощо. Це також означає, що ваше спостереження може досягти наукового рівня лише тоді, коли спільнота за вами погодиться.
@@ -2379,6 +2366,8 @@ uk:
   looks_like_no_species_in_guide: Схоже, у вашому посібнику ще немає жодного виду.
   lookup: Шукати
   low: Нижчий
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Найнижчий ранг
   make_admin: Зробити адміністратором
   #Header for main content section of the project detail page when editing custom project data.
@@ -2605,7 +2594,6 @@ uk:
   needs_id_: Потребує визначення
   needs_id_expandable_html: "<span class='full'>Потребує </span>визначення"
   needs_id_tooltip_html: 'Спостереження, позначені як такі, що "Потребують визначення" мають медіафайли, дату, але потребують консенсусу спільноти щодо їхнього точного визначення. <a href="https://www.inaturalist.org/pages/help#quality">Дізнатися більше про рівні якості</a>'
-  needs_to_be_identified: Має бути визначене
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, частина міжнародної Мережі iNaturalist, зосереджений на біорізноманітті та людях регіону %{place}. Чи бажаєте ви змінити приналежність вашого облікового запису з <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> і ділитися даними з локальними інститутами?
@@ -2989,7 +2977,9 @@ uk:
   only_the_project_admin_can_delete_this_project: Цей проєкт може видалити лише адміністратор проєкту.
   only_view_nearby_suggestions: Дивитися лише пропозиції поблизу
   only_you: Лише ви
+  #Geoprivacy status in which no privacy has been applied
   open: відкриті
+  #Geoprivacy status in which no privacy has been applied
   open_: Відкриті
   open_description: "Координати може бачити будь-хто, у разі якщо таксон не знаходиться під загрозою."
   open_street_map: OpenStreetMap
@@ -3700,7 +3690,11 @@ uk:
   radius_value: "Радіус (м): %{radius}"
   random: Випадково
   range: Проміжок
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4243,7 +4237,6 @@ uk:
   start_a_new_project: Розпочати новий проєкт
   start_a_project: Розпочати проєкт
   start_date_time: Початкова дата / час
-  start_one: Розпочати
   start_one_now: Розпочати зараз!
   start_typing_field_name: Почніть вводити назву поля...
   start_typing_place_name: Почніть вводити назву місця...
@@ -4269,8 +4262,6 @@ uk:
   studies_that_used_inaturalist_data_in_year: Дослідження, що використовували дані з iNaturalist у %{year}
   stuff_just_added: "Те, що ви щойно додали..."
   subject_resolved_noun_html: "%{subject} розв'язав %{noun}"
-  subject_affecting_stuff_html: "%{subject}, що впливає на %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} здійснив @vow_or_con{vow:an|a} %{thing}, що впливає на %{stuff}"
   submission_model: Модель подання
   submission_model_description: Хто може додавати спостереження до вашого проєкту?
   submit_observations:
@@ -4452,6 +4443,7 @@ uk:
   taxon_range: Область поширення таксону
   taxon_range_created_notice: Область поширення таксону було успішно створено. За декілька хвилин він з'явиться на картах.
   taxon_range_updated_notice: Область поширення таксону було успішно оновлено. За декілька хвилин він з'явиться на картах.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Ранги таксону
   taxon_removed_from_list: Таксон видалено зі списку.
   taxon_scheme: Схема таксону
@@ -4536,7 +4528,6 @@ uk:
     few: "Наявні <span class='count'>%{count}</span>синоніми</span>"
     many: "Наявні <span class='count'>%{count}</span>синонімів</span>"
     other: "Наявні <span class='count'>%{count}</span>синонімів</span>"
-  there_is_no_wikipedia_page_matching: Збігів з відповідною сторінкою на Вікіпедії не знайдено
   there_isnt_a_wikipedia_article_titled_x_html: |
     Не знайдено статті на Вікіпедії або перепосилання із назвою "%{x}". Можливо, ви хотіли б <a href='http://en.wikipedia.org/wiki/%{x}'>створити її</a>?
   there_merge_problems_with_the_merge: "Виникли проблеми зі злиттям: %{merged_errors}"
@@ -4682,7 +4673,6 @@ uk:
   unknown: Невідомий
   unknown_error: Невідома помилка
   unknown_rank: '(Невідомий ранг)'
-  unfollow: Не стежити
   unlink_your_google_account: Від'єднати свій обліковий запис Google
   unlink_your_flickr_account: "Від'єднати свій обліковий запис Flickr"
   unmute: Скасувати ігнорування
@@ -4801,7 +4791,6 @@ uk:
   user_added_an_x_to_noun_by_you_html: "%{user} додав/додала %{x} до вашого %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додав/додала %{x} до %{noun}"
-  user_added_x_observations_html: "%{user} додав/додала %{x} спостережень"
   user_already_authenticated: Користувача вже було автентифіковано
   user_autocomplete_placeholder: kueda, simon123 тощо
   #Label for comprehensive check lists. @vow_or_con will work for the taxon but
@@ -4854,6 +4843,7 @@ uk:
   values: Значення
   verbing_x_of_y: "%{verb} %{x} з %{y}..."
   verifiable_observations_by_observation_date: Перевірювані спостереження за датою спостереження
+  video_tutorials: Відеоінструкції
   view: Переглянути
   view_all: Переглянути всі
   view_all_flags: Переглянути всі прапорці
@@ -4917,7 +4907,6 @@ uk:
   view_your_observations: Переглянути ваші спостереження
   view_yours: Переглянути ваші
   view_all_of_your_observations_from_x: "Переглянути всі ваші спостереження з %{x}"
-  video_tutorials: Відеоінструкції
   visually_similar: Подібні на вигляд
   vulnerable: Уразливий
   w00t_no_ungrafted_taxa: w00! Відсутні непов'язані таксони!
@@ -6313,17 +6302,6 @@ uk:
         stats_generated_datetime: Статистика розрахована %{datetime}
         store_prompt: |
           Хочете всюди демонструвати свою гордість iNat? Зазирніть у наш iNat-магазин!
-        sunburst_desc_html: |
-          Спостережені таксони розташовані у вигляді ієрархічної "сонячної" діаграми. Основа
-          ієрархії знаходиться в центрі, починаючи з "Життя" і закінчуючи
-          видами на зовнішніх краях. Розмір кожної дуги пропорційний
-          числу спостережень цього таксону, а кольори більш-менщ
-          відповідають звичним "знаковим" кольорам таксонів (зелений для рослин,
-          помаранчевий для комах, синій для більшості інших тварин тощо), таким чином, якщо ви
-          бачите багато зеленого, це означає, що ви спостерігали багато рослин.
-          <strong> Натисніть на дузі , щоб розмістити таксон в центрі, </strong> а
-          його дочірні таксони навколо нього, або <strong> натисніть на центр, аби повернутися назад
-          у ієрархії </strong>.
         translators_title: Перекладачі
         translators_desc: |
           Чи знали ви, що iNaturalist був перекладений %{x_languages},
@@ -6392,7 +6370,6 @@ uk:
           "Plant Phenology=Flower Budding": Бутонізація
           "Plant Phenology=Flowering": Цвітіння
           "Plant Phenology=Fruiting": Плодоношення
-          "Life Stage=Adult": Доросла особина
           "Life Stage=Egg": Яйце
           "Life Stage=Larva": Личинка
           "Life Stage=Juvenile": Молода особина
@@ -6430,30 +6407,6 @@ uk:
           Назва та ранг таксону. Для рангів нижче виду, ранг вказується після біноміальної назви.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Намагайтеся додавати тільки ті назви, що знаходяться у широкому вжитку. Буль-ласка, не вигадуйте нових назв.</p></li>
-          <li><p>Не додавайте назв повторно, тобто не називайте численні види яструбів "яструбом"</p></li>
-          <li><p>Для таксонів вищих рангів намагайтеся використовувати назви, які апелюють до усіх їх нащадків, наприклад, "Чаплеподібні" або "родина Верескові"</p></li>
-          <li>
-          <p>
-          Не додавайте інформацію, яка не є назвою, наприклад, уточнюючу інформацію про те, як на вашу думку має використовуватися ця назва
-          </p>
-          </li>
-          <li>
-          <p>
-          Нові лексикони мають бути написані англійською мовою. Будь ласка, не додавайте перекладену назву мову, наприклад "французька, Français", бо це ускладнить
-          або навіть унеможливить вірне відображення локалізованих назв для людей,
-          які користуються сайтом різними мовами.
-          </p>
-          </li>
-          <li>
-          <p>
-          Народні назви, пов'язані з мовами перекладу, будуть з'являтися як народні назви за промовчанням для цієї мови (за винятком впливів уподобань місця, упорядкування назв, тощо).
-          <a class="readmore" href="/pages/translate">Тут можна дізнатися більше про переклад</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Щоб надати назві пріоритет для веб-сайтів та користувачів з
           певного місця, додайте назву до цього місця. Якщо в одному місці існує кілька назв, ви можете ранжувати їхню пріоритетність <a href="%{url}">тут</a>. Будь ласка, <strong>не</strong> додавайте назву для КОЖНОГО

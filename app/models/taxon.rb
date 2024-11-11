@@ -26,7 +26,7 @@ class Taxon < ApplicationRecord
   attr_accessor :current_user
 
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -98,7 +98,7 @@ class Taxon < ApplicationRecord
   has_and_belongs_to_many :colors, -> { distinct }
   has_many :taxon_descriptions, dependent: :destroy
   has_one :en_wikipedia_description,
-    -> { where( "locale='en' AND provider='Wikipedia'" ) },
+    -> { where( locale: %w(en en-US en-GB), provider: "Wikipedia" ) },
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   # deprecated, remove when we're sure transition to taxon frameworks is complete
@@ -162,8 +162,7 @@ class Taxon < ApplicationRecord
 
   NAME_PROVIDER_TITLES = {
     "ColNameProvider" => "Catalogue of Life",
-    "NZORNameProvider" => "New Zealand Organisms Register",
-    "UBioNameProvider" => "uBio"
+    "NZORNameProvider" => "New Zealand Organisms Register"
   }.freeze
 
   RANK_LEVELS = {
@@ -347,6 +346,8 @@ class Taxon < ApplicationRecord
   )
 
   LIFE = Taxon.roots.find_by_name( "Life" )
+  HUMAN = Taxon.find_by_name( "Homo sapiens" )
+  HOMO = Taxon.find_by_name( "Homo" )
 
   IUCN_NOT_EVALUATED = 0
   IUCN_DATA_DEFICIENT = 5
@@ -760,7 +761,7 @@ class Taxon < ApplicationRecord
   def self.capitalize_scientific_name( name, rank )
     return name.capitalize if rank.blank?
 
-    if [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
+    if [GENUS, GENUSHYBRID, SPECIES, HYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
       _full_name, x, genus_name = name.match( /^(x|×)\s+?(.+)/ ).to_a
       "#{x} #{genus_name.capitalize}"
     elsif [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^\w+\s+(x|×)\s+\w+$/
@@ -1069,6 +1070,7 @@ class Taxon < ApplicationRecord
         sort: "relevance",
         safe_search: "1"
       }
+      flickr = Flickr.new( Flickr.api_key, Flickr.shared_secret )
       r = FlickrCache.fetch( flickr, "photos", "search", search_params )
       r = [] if r.blank?
       flickr_chosen_photos = if r.respond_to?( :map )
@@ -1645,6 +1647,14 @@ class Taxon < ApplicationRecord
     ancestor_ids.include?( taxon.id )
   end
 
+  def in_same_branch_of?( taxon )
+    return true if taxon.id == id
+
+    return true if ancestor_of?( taxon )
+
+    descendant_of?( taxon )
+  end
+
   def descendant_conditions
     Taxon.descendant_conditions( self )
   end
@@ -2104,16 +2114,24 @@ class Taxon < ApplicationRecord
     return nil if is_active?
 
     without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
-    synonymous_taxon = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
+    taxon_change_scope = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
       joins( :taxon_change_taxa ).
       where( "taxon_change_taxa.taxon_id = ?", self ).
-      where( "taxon_changes.taxon_id NOT IN (?)", without_taxon_ids ).order( :id ).last.try( :output_taxon )
+      where( "taxon_changes.taxon_id NOT IN (?)", without_taxon_ids )
+    if options[:committed_after]
+      taxon_change_scope = taxon_change_scope.
+        where( "committed_on > ?", options[:committed_after] )
+    end
+    synonymous_taxon = taxon_change_scope.order( :id ).last.try( :output_taxon )
     return synonymous_taxon if synonymous_taxon.blank?
     if synonymous_taxon.is_active? || options[:inactive]
       return synonymous_taxon
     end
 
-    candidates = synonymous_taxon.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
+    candidates = synonymous_taxon.current_synonymous_taxa(
+      without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after]
+    )
     return nil if candidates.size > 1
 
     candidates.first
@@ -2121,7 +2139,12 @@ class Taxon < ApplicationRecord
 
   def current_synonymous_taxa_from_split( options = {} )
     without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
-    last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
+    taxon_change_scope = TaxonSplit.committed.where( taxon_id: id )
+    if options[:committed_after]
+      taxon_change_scope = taxon_change_scope.
+        where( "committed_on > ?", options[:committed_after] )
+    end
+    last_committed_split = taxon_change_scope.order( "taxon_changes.id desc" ).first
     return [] if last_committed_split.blank?
 
     active_output_taxa = last_committed_split.output_taxa.reject do | t |
@@ -2129,24 +2152,39 @@ class Taxon < ApplicationRecord
       t.id == id && !t.is_active?
     end
     active_output_taxa.map do | t |
-      t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
+      if t.is_active?
+        t
+      else
+        t.current_synonymous_taxa(
+          without_taxon_ids: without_taxon_ids,
+          committed_after: options[:committed_after]
+        )
+      end
     end.flatten.uniq
   end
 
   def current_synonymous_taxa( options = {} )
     without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
-    synonymous_taxa = current_synonymous_taxa_from_split( without_taxon_ids: without_taxon_ids )
-    taxon_from_swaps_and_merge = current_synonymous_taxon( without_taxon_ids: without_taxon_ids )
+    synonymous_taxa = current_synonymous_taxa_from_split(
+      without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after]
+    )
+    taxon_from_swaps_and_merge = current_synonymous_taxon(
+      without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after]
+    )
     if taxon_from_swaps_and_merge
       synonymous_taxa << taxon_from_swaps_and_merge
     end
     inactive_synonym_from_swaps_and_merge = current_synonymous_taxon(
       without_taxon_ids: without_taxon_ids,
+      committed_after: options[:committed_after],
       inactive: true
     )
     if inactive_synonym_from_swaps_and_merge
       inactive_synonym_synonyms = inactive_synonym_from_swaps_and_merge.current_synonymous_taxa(
-        without_taxon_ids: without_taxon_ids
+        without_taxon_ids: without_taxon_ids,
+        committed_after: options[:committed_after]
       )
       if inactive_synonym_synonyms
         synonymous_taxa += inactive_synonym_synonyms
@@ -2578,9 +2616,9 @@ class Taxon < ApplicationRecord
       if taxon_ids.length === 1
         # index this taxon in a delayed job with a unique hash, as its possible
         # there's already a job for this taxon, preventing extra indexing
-        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
-          unique_hash: { "Taxon::elastic_index": taxon_ids[0] }).
-          elastic_index!(ids: taxon_ids)
+        Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+          unique_hash: { "Taxon::elastic_index": taxon_ids[0] } ).
+          elastic_index!( ids: taxon_ids )
       else
         Taxon.elastic_index!( ids: taxon_ids )
       end

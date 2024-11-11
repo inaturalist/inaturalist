@@ -6,6 +6,8 @@ class TaxonChangesController < ApplicationController
   before_action :load_taxon_change, :except => [:index, :new, :create, :group, :analyze_ids]
   before_action :return_here, :only => [:index, :show, :new, :edit, :commit_for_user]
 
+  prepend_around_action :enable_replica, only: [:index]
+
   layout "bootstrap"
 
   def index

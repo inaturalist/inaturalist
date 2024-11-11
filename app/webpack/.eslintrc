@@ -18,6 +18,7 @@
   },
   "globals": {
     I18n: true,
+    CONFIG: true,
     CURRENT_USER: true,
     PREFERRED_PLACE: true,
     PREFERRED_SEARCH_PLACE: true,
@@ -57,6 +58,7 @@
     ],
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
+    "prefer-object-spread": 0,
     "react/forbid-prop-types": 0,
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/require-default-props": 0,

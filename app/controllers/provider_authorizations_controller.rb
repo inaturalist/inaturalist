@@ -72,8 +72,13 @@ class ProviderAuthorizationsController < ApplicationController
       end
     end
 
-    if ( @provider_authorization = ProviderAuthorization.find_from_omniauth( auth_info ) )
-      update_existing_provider_authorization( auth_info )
+    if ( existing_authorization = ProviderAuthorization.find_from_omniauth( auth_info ) )
+      if logged_in? && existing_authorization.user != current_user
+        flash[:alert] = t( :that_account_is_already_connected )
+      else
+        @provider_authorization = existing_authorization
+        update_existing_provider_authorization( auth_info )
+      end
     else
       create_provider_authorization( auth_info )
       return redirect_back_or_default @landing_path || home_url
@@ -115,6 +120,15 @@ class ProviderAuthorizationsController < ApplicationController
     session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]
   end
 
+  def get_session_oauth_application
+    return unless session[:return_to]
+
+    return_to_query_params = Rack::Utils.parse_query( URI.parse( session["return_to"] ).query )
+    return unless return_to_query_params && return_to_query_params["client_id"]
+
+    OauthApplication.where( uid: return_to_query_params["client_id"] ).first
+  end
+
   def create_provider_authorization( auth_info )
     email = auth_info.try( :[], "info" ).try( :[], "email" )
     email ||= auth_info.try( :[], "extra" ).try( :[], "user_hash" ).try( :[], "email" )
@@ -143,7 +157,7 @@ class ProviderAuthorizationsController < ApplicationController
     # create a new inat user and link provider to that user
     else
       sign_out( current_user ) if current_user
-      user = User.create_from_omniauth( auth_info )
+      user = User.create_from_omniauth( auth_info, get_session_oauth_application )
       unless user.valid?
         flash[:error] = if user.email.blank?
           case auth_info[:provider]

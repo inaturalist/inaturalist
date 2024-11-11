@@ -1,4 +1,135 @@
-### `0.5.0` _2015_12_28_
+### `0.5.35` _2022-08-23_
+* Fix command injection in data pipeline https://github.com/moment/moment-timezone/security/advisories/GHSA-56x4-j7p9-fcf9
+* Fix cleartext transmission of sensitive information https://github.com/moment/moment-timezone/security/advisories/GHSA-v78c-4p63-2j6c
+
+### `0.5.34` _2020-11-10_
+* Updated data to IANA TZDB `2021e`
+
+### `0.5.33` _2020-11-15_
+* Updated data to IANA TZDB `2021a`
+
+### `0.5.32` _2020-11-14_
+* Updated data to IANA TZDB `2020d`
+
+### `0.5.31` _2020-05-16_
+* Fixed Travis builds for Node.js 4 and 6
+
+### `0.5.30` _2020-05-16_
+* Updated data to IANA TZDB `2020a`
+* Fixed typescript definitions
+
+### `0.5.29` _2020-05-16_
+* Merged fix of es6 module loading issue https://github.com/moment/moment-timezone/commit/1fd42349189b24e15c60f162dc8c40b42db79dfe
+* Merged PR with typescript declarations https://github.com/moment/moment-timezone/commit/ed529ea6fbcc70315c0c3f6d7c7cb70eadf56b03
+* Merged fixes to changelog https://github.com/moment/moment-timezone/commit/adb7d7b43c7328d814311ac1355bfeef88eab6e8
+
+### `0.5.28` _2020-02-21_
+Merged pull request #410 from @adgrace:
+* Added a method `moment.tz.zonesForCountry(country_code)` which returns all timezones for the country
+* Added a method `moment.tz(timezone_id).countries()` to get countries for some time zone
+* Added a method `moment.tz.countries()` to get all country codes
+* And as you know `moment.tz.zones()` already exists
+
+### `0.5.27` _2019-10-14_
+* Updated data to IANA TZDB `2019c`
+
+### `0.5.26` _2019-06-06_
+* Updated data to IANA TZDB `2019b`
+* Fix: stabilize Array.sort [#762](https://github.com/moment/moment-timezone/pull/762)
+
+### `0.5.25` _2019-04-17_
+* Fix `moment.tz.dataVersion` to return `2019a` [#742](https://github.com/moment/moment-timezone/issues/742)
+* Update path in bower.json
+
+### `0.5.24` _2019-04-17_
+* Updated data to IANA TZDB `2019a` [#737](https://github.com/moment/moment-timezone/issues/737)
+* Start shipping both a 1970-1930 file and a rolling 10-year file [#614](https://github.com/moment/moment-timezone/issues/614) [#697](https://github.com/moment/moment-timezone/issues/697)
+* Fixed bug where `_z` time zone name was not cleared with `.local()` or `.utcOffset(offset)` [#738](https://github.com/moment/moment-timezone/issues/738)
+
+### `0.5.23` _2018-10-28_
+* Fix minor issue with tz guessing in Russia [#691](https://github.com/moment/moment-timezone/pull/691)
+
+### `0.5.22` _2018-10-28_
+* Updated data to IANA TZDB `2018g` [#689](https://github.com/moment/moment-timezone/pull/689)
+* Fix issue with missing LMT entries for some zones, and fix data builds on Linux and Windows [#308](https://github.com/moment/moment-timezone/issues/308)
+
+### `0.5.21` _2018-06-23_
+* Bugfix: revert breaking change introduced in 0.5.18
+
+### `0.5.20` _2018-06-18_
+* Bugfix: accidentally commented code
+
+### `0.5.19` _2018-06-18_
+* Revert: moved moment to peerDependencies
+
+### `0.5.18` _2018-06-18_
+* Return error when timezone name is not a string.
+* Moved moment to peerDependencies [#628](https://github.com/moment/moment-timezone/pull/628)
+* Prefer nodejs to amd declaration [#573](https://github.com/moment/moment-timezone/pull/573)
+
+### `0.5.17` _2018-05-12_
+* Updated data to IANA TZDB `2018d`. [#616](https://github.com/moment/moment-timezone/pull/616)
+
+### `0.5.16` _2018-04-18_
+* Fixed Etc/UTC timezone recognition, updated tests. [#599](https://github.com/moment/moment-timezone/pull/599)
+* Updated minified files to contain IANA TZDB `2018d` data
+
+### `0.5.15` _2018-04-17_
+* Updated data to IANA TZDB `2018d`. [#596](https://github.com/moment/moment-timezone/pull/596)
+
+### `0.5.14` _2017-10-30_
+* Ensure Intl response is valid when guessing time zone. [#553](https://github.com/moment/moment-timezone/pull/553)
+* Updated data to IANA TZDB `2017c`. [#552](https://github.com/moment/moment-timezone/pull/552)
+* Convert to tz keeping wall time [#505](https://github.com/moment/moment-timezone/pull/505)
+* Make all time zones available for guessing. [#483](https://github.com/moment/moment-timezone/pull/483)
+* zone.offset has been deprecated in favor of zone.utcOffset [#398](https://github.com/moment/moment-timezone/pull/398)
+* Check for timestamp formats when parsing [#348](https://github.com/moment/moment-timezone/pull/348)
+
+### `0.5.13` _2017-04-04_
+* Bumped version to address Bower cache issues with last release.  [#474](https://github.com/moment/moment-timezone/issues/474)
+* (No actual changes otherwise)
+
+### `0.5.12` _2017-04-02_
+* Updated data to IANA TZDB `2017b`. [#422](https://github.com/moment/moment-timezone/pull/460)
+* Build the truncated data file as 2012-2022 (+/- 5 years).
+
+### `0.5.11` _2016-12-23_
+* Remove log statement when data is loaded twice. [#352](https://github.com/moment/moment-timezone/pull/352)
+
+### `0.5.10` _2016-11-27_
+* Updated data to IANA TZDB `2016j`. [#422](https://github.com/moment/moment-timezone/pull/422)
+
+### `0.5.9` _2016-11-03_
+* Fixed the output of `moment.tz.version`. [#413](https://github.com/moment/moment-timezone/issues/413)
+
+### `0.5.8` _2016-11-03_
+* Updated data to IANA TZDB `2016i`. [#411](https://github.com/moment/moment-timezone/pull/411)
+
+### `0.5.7` _2016-10-21_
+* Updated data to IANA TZDB `2016h`. [#403](https://github.com/moment/moment-timezone/pull/403)
+
+### `0.5.6` _2016-10-08_
+* Updated data to IANA TZDB `2016g`. [#394](https://github.com/moment/moment-timezone/pull/394)
+
+### `0.5.5` _2016-07-24_
+* Updated data to IANA TZDB `2016f`. [#360](https://github.com/moment/moment-timezone/pull/360)
+
+### `0.5.4` _2016-05-03_
+* Updated data to IANA TZDB `2016d`. [#336](https://github.com/moment/moment-timezone/pull/336)
+* Ignore the results from `Intl.DateTimeFormat().resolvedOptions().timeZone` if it is undefined. [#322](https://github.com/moment/moment-timezone/pull/322)
+
+### `0.5.3` _2016-03-24_
+* Updated data to IANA TZDB `2016c`. [#321](https://github.com/moment/moment-timezone/pull/321)
+
+### `0.5.2` _2016-03-15_
+* Updated data to IANA TZDB `2016b`. [#315](https://github.com/moment/moment-timezone/pull/315)
+
+### `0.5.1` _2016-03-01_
+* Updated data to IANA TZDB `2016a`. [#299](https://github.com/moment/moment-timezone/pull/299)
+* Fixed bug when `Date#toTimeString` did not return a known format. [#302](https://github.com/moment/moment-timezone/pull/302)  [#303](https://github.com/moment/moment-timezone/pull/303)
+* Added lookup on `Intl.DateTimeFormat().resolvedOptions().timeZone` to `moment.tz.guess()`. [#304](https://github.com/moment/moment-timezone/pull/304) [#291](https://github.com/moment/moment-timezone/pull/291)
+
+### `0.5.0` _2015-12-28_
 * Added support for guessing the user's timezone via `moment.tz.guess()`. [#285](https://github.com/moment/moment-timezone/pull/285)
 * Fixed UMD export issue when there was an html element with `id=exports`. [#275](https://github.com/moment/moment-timezone/pull/275)
 * Removed jspm specific dependencies from `package.json`. [#284](https://github.com/moment/moment-timezone/pull/284)

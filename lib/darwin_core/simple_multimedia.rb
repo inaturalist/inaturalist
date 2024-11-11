@@ -62,11 +62,10 @@ module DarwinCore
       end
 
       def references
-        if !native_page_url.blank?
-          native_page_url
-        else
-          FakeView.photo_url( self )
-        end
+        return native_page_url unless native_page_url.blank?
+        return FakeView.sound_url( self ) if is_a?( Sound )
+
+        FakeView.photo_url( self )
       end
 
       def created

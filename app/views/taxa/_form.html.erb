@@ -91,7 +91,7 @@
             <%= tp.text_field :position, :class => "sortable-position", :label => false %>
             <%= image_tag(tp.object.photo.small_url) %>
             <div class="upstacked">
-              <%= link_to t(:view_details), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank" %>
+              <%= link_to t(:view_details), photo_path(tp.object.photo), :class => "readmore left", :target => "_blank", rel: "noopener noreferrer" %>
               <%= tp.check_box :_destroy, :label_after => true, :label => t(:delete), :wrapper => {:class => "right"} %>
             </div>
           </div>
@@ -274,7 +274,7 @@
               </td>
             <% end %>
             <td>
-              <%= link_to t(:edit), edit_conservation_status_path( conservation_status ), target: "_blank" %>
+              <%= link_to t(:edit), edit_conservation_status_path( conservation_status ), target: "_blank", rel: "noopener noreferrer" %>
             </td>
           </tr>
         <% end %>
@@ -284,7 +284,7 @@
           <%=t :edit_this_taxon_after_you_create_it_to_add_conservation_statuses %>
         </div>
       <% else %>
-        <%= link_to t( :add_conservation_status ), new_taxon_conservation_status_path( taxon_id: @taxon.id ), class: "readmore", target: "_blank" %>
+        <%= link_to t( :add_conservation_status ), new_taxon_conservation_status_path( taxon_id: @taxon.id ), class: "readmore", target: "_blank", rel: "noopener noreferrer" %>
       <% end %>
     </div>
   </fieldset>

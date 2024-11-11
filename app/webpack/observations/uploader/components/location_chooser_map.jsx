@@ -65,11 +65,12 @@ class LocationChooserMap extends React.Component {
       zoom
     } = this.props;
     const domNode = ReactDOM.findDOMNode( this );
-    const map = new google.maps.Map( $( ".map-inner", domNode ).get( 0 ), {
+    const map = iNaturalist.Map.createMap( {
       ...iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS,
-      zoom: zoom || 1,
+      div: $( ".map-inner", domNode ).get( 0 ),
+      zoom: zoom || 2,
       center: existingCenter || { lat: 30, lng: 15 },
-      fullscreenControl: true,
+      disableFullscreen: true,
       mapTypeId: iNaturalist.Map.preferredMapTypeId( config.currentUser )
     } );
     this.map = map;
@@ -134,15 +135,15 @@ class LocationChooserMap extends React.Component {
     this.moveCircle( latLng, radius, { geocode: true } );
   }
 
-  handlePlacesChanged( input, place ) {
+  handlePlacesChanged( input, place, customLat = null, customLng = null ) {
     const { updateState } = this.props;
     if ( _.isEmpty( place ) ) {
       return;
     }
     let searchQuery;
-    let lat;
-    let lng;
-    let searchedForCoord = false;
+    let lat = customLat;
+    let lng = customLng;
+    let searchedForCoord = ( customLat && customLng );
     if ( input ) {
       searchQuery = input.value;
       const searchCoord = searchQuery.split( "," ).map( piece => parseFloat( piece, 16 ) );
@@ -160,7 +161,7 @@ class LocationChooserMap extends React.Component {
       }
     }
     let notes;
-    let radius;
+    let radius = 0;
 
     const { geometry } = place;
     const { viewport } = geometry;

@@ -16,7 +16,14 @@ require "optimist"
   HELP
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :dry, "Dry run, don't make changes, just report", type: :boolean
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if @opts.log_task_name
+  task_logger = TaskLogger.new( @opts.log_task_name, nil, "cleanup" )
+end
+
+task_logger&.start
 
 start = Time.now
 deleted = []
@@ -119,6 +126,7 @@ synonyms = {
   "Gujarati" => ["Gujarātī. ગુજરાતી,", "ગુજરાતી"],
   "Hill Mari" => ["Western Mari"],
   "Hokkien" => ["臺灣閩南語"],
+  TaxonName::HUNGARIAN => ["Magyar"],
   TaxonName::ITALIAN => ["Italiano"],
   "Indonesian" => ["Bahasa Indonesia"],
   "Irish" => ["Irish Gaelic"],
@@ -126,6 +134,7 @@ synonyms = {
   "Juǀʼhoan" => ["Juǀ’hoan"],
   "Lozi" => ["Si Lozi", "siLozi"],
   "Malay" => ["Malay (Individual Language)", "Malayan"],
+  "Maya (Peninsular)" => ["Mayan (Yucatec)"],
   "Nahuatl" => ["Náhuatl"],
   TaxonName::NORWEGIAN => ["Norwegian Bokmal", "Norsk"],
   "Oshikwanyama" => ["Oshi Kwanyama"],
@@ -284,3 +293,5 @@ puts "#{created_ptns.size} place taxon names created"
 puts "#{invalid_ptns.size} place taxon names not created"
 puts "#{Time.now - start} s elapsed"
 puts
+
+task_logger&.end

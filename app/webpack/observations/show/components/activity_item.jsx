@@ -200,6 +200,7 @@ class ActivityItem extends React.Component {
         className="user"
         href={`/people/${item.user.login}`}
         target={linkTarget}
+        rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
       >
         {item.user.login}
       </a>
@@ -295,7 +296,11 @@ class ActivityItem extends React.Component {
           {buttonDiv}
           <div className="taxon">
             {noTaxonLink ? taxonImageTag : (
-              <a href={`/taxa/${taxon.id}`} target={linkTarget}>
+              <a
+                href={`/taxa/${taxon.id}`}
+                target={linkTarget}
+                rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
+              >
                 {taxonImageTag}
               </a>
             )}
@@ -507,7 +512,13 @@ class ActivityItem extends React.Component {
         dateTime={item.created_at}
         title={moment( item.created_at ).format( I18n.t( "momentjs.datetime_with_zone" ) )}
       >
-        <a href={itemURL} target={linkTarget}>{relativeTime}</a>
+        <a
+          href={itemURL}
+          target={linkTarget}
+          rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
+        >
+          {relativeTime}
+        </a>
       </time>
     );
     if (

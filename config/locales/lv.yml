@@ -227,24 +227,6 @@ lv:
   about_this_bioblitz: Vairāk par "Bioblitz"
   about_this_map: Vairāk par šo karti
   about_this_project: Vairāk par šo projektu
-  about_trips_html: |
-    <h4>
-    Ceļojumi sniedz iespēju apkopot datus par organismu klātbūtni vai prombūtni, tādējādi pievienojot papildu informāciju novērojumiem
-    </h4>
-    <p>
-    <strong>Kādēļ</strong> Datus par organismu klātbūtni vai prombūtni iekļauj informāciju par paraugiem, kas noder zinātnieku veiktajai analīzei, piemēram, izplatības modelēšanai (nemodificēti iNaturalsit novērējumi ir dati, kas iekļauj tikai organismu klātbūtni).
-    </p>
-    <p>
-    <strong>Kā</strong> Ceļojumi sniedz papildu informāciju par novērojumiem, saglabājot datus par to:
-    </p>
-    <ul>
-    <li><strong>Ko</strong> meklēji (target list)</li>
-    <li><strong>Kur</strong> meklēji (search area)</li>
-    <li><strong>Kad</strong> meklēji (search interval)</li>
-    </ul>
-    <p>
-    Tavā sarakstā iekļautās sugas, ko izdodas novērot paredzētajā meklēšanas apgabālā un laika posmā tiek pievienotas pie organismiem klātbūtnē, bet nenovērotās pie organismiem prombūtnē. Nospied uz "sakārtot tabulā klātbūtnes un prombūtnes datus no ceļojumiem", lai ģenerētu tabulu ar klātbūtnes un prombūtnes datiem par ceļojumos sastaptajām sugām. <a href='%{url}'>Vairāk informācijas</a>
-    </p>
   about_trusting_projects: Vairāk par projektiem ar atklātām koordinātām
   about_trusting_projects_options_any: Visi tavi novērojumi šajā projektā
   about_trusting_projects_options_any_desc: |-
@@ -1138,6 +1120,7 @@ lv:
     no_evidence_of_flowering: Nekas neliecina par ziedēšanu
     nymph: Kukaiņu nimfa
     larva: Cirmenis
+    #Evidence of an egg of an organism
     egg: Ola
     juvenile: Nepieaudzis
     alive_or_dead: Dzīvs vai miris
@@ -1700,6 +1683,7 @@ lv:
   everywhere: visur
   exact: Konkrēts
   exact_date: Konkrēts datums
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Konkrēta klasifikācija
   except: izņemot
   exclude_places: Nerādīt šīs vietas
@@ -1863,6 +1847,7 @@ lv:
   fluid: plūstošs
   follow: Sekot
   follow_receive_updates_about_new_observations: Sekot (saņemt ziņojumus par jauniem novērojumiem)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sekot lietotājam %{user}"
   followers: Sekotāji
   following: Abonēts saturs
@@ -1929,7 +1914,6 @@ lv:
   graft: Atzars
   graft_taxon: '%{taxon} taksona atzars'
   grafting_attemps_to_insert_this_taxon: Pievieno taksonus mūsu taksonomiskajam kokam ar "potēšanas" funkciju. To iespējams izdarīt, atrodot jau gatavu virstaksonu vai izveidojot visus nepieciešamos starpposmu taksonus, un tad pievienot tos jau gatavam augstākas pakāpes taksonam.
-  grant_role: "%{grant} %{role} loma"
   grid: Režģis
   grid_layout: Režģa izkārtojums
   grid_tooltip: Rādīt režģa skatu
@@ -2000,6 +1984,8 @@ lv:
   hide_running_total: Nerādīt kopējo skaitu
   hide_uncountable_species: Paslēpt nesaskaitāmās sugas
   high: Augsts
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Augstākā klasifikācija
   highlights_and_stats_from_year_on_site: "Būtiskākie momenti un statistika %{year}, gadā %{site} vietnē"
   history: Vēsture
@@ -2053,7 +2039,6 @@ lv:
   identotron_for: Salīdzinātājs
   identotron_help: Salīdzinātāja palīdzība
   ids: "ID"
-  ids_made_for_others: Citu novērojumiem pievienotās ID
   if_for_some_reason_a_user_doesnt_agree: |
     Ja kāda iemesla dēļ izvēlies nepiekrist kopienas taksonam, to iespējams noraidīt. Tādā gadījumā tava ID tiks izmantota, lai sasaistītu citus novērojumus un atjaunotu sarakstus. Tas nozīmē arī to, ka tavs novērojums var iegūt pētniecības līmeņa statusu tikai tad, ja kopiena piekrīt tev.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2459,6 +2444,8 @@ lv:
   looks_like_no_species_in_guide: Izskatās, ka padomiem vēl neesi pievienojis nevienu sugu.
   lookup: Meklēt
   low: Zems
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Zemākā klasifikācija
   make_admin: Padarīt par administratoru
   #Header for main content section of the project detail page when editing custom project data.
@@ -2695,7 +2682,6 @@ lv:
   needs_id_: Nepieciešama ID
   needs_id_expandable_html: "<span class='full'>Nepieciešama </span>ID"
   needs_id_tooltip_html: 'Novērojumiem ar "Nepieciešama ID" statusu ir mediji, atrašanās vieta un datums, bet trūkst precīzas kopienas identifikācijas. <a href="https://www.inaturalist.org/pages/help#quality"> Vairāk par novērojumu kvalitātes līmeņiem</a>'
-  needs_to_be_identified: Nepieciešama identifikācija
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     %{site_name} ir daļa no iNaturalist starptautiskā tīkla, kas radīts, lai pievērstu uzmanību bioloģiskajai daudzveidībai šajā vietā: %{place}. Vai vēlies mainīt sava konta piederību no %{inat_site_name} uz %{site_name} un sniegt pieeju pie saviem datiem vietējām organizācijām?
@@ -3098,7 +3084,9 @@ lv:
   only_the_project_admin_can_delete_this_project: Tikai projekta administrators var dzēst projektu.
   only_view_nearby_suggestions: Skatīt tikai tos indivīdu minējumus, kas novēroti tuvumā
   only_you: Tikai tu
+  #Geoprivacy status in which no privacy has been applied
   open: publisks
+  #Geoprivacy status in which no privacy has been applied
   open_: Publisks
   open_description: "Koordinātas ir redzamas visiem, ja vien taksons nav apdraudēts."
   open_street_map: OpenStreetMap
@@ -3773,7 +3761,11 @@ lv:
   radius_value: "Rādiuss (m): %{radius}"
   random: Nejauši
   range: Periods
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikācija
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikācija
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4358,7 +4350,6 @@ lv:
   start_a_new_project: Izveidot jaunu projektu
   start_a_project: Izveidot projektu
   start_date_time: Sākuma datums / laiks
-  start_one: Sākt
   start_one_now: Sākt tagad!
   start_typing_field_name: Ieraksti lauka nosaukumu...
   start_typing_place_name: Ieraksti vietas nosaukumu...
@@ -4384,8 +4375,6 @@ lv:
   studies_that_used_inaturalist_data_in_year: Pētījumi, kuros tika izmantoti iNaturalist dati %{year}. gadā
   stuff_just_added: "Tevis nesen pievienotais"
   subject_resolved_noun_html: "%{subject} atrisināja %{noun}"
-  subject_affecting_stuff_html: "%{subject} ietekmē %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} izmainīja %{thing}, ietekmējot %{stuff}"
   submission_model: Pievienošanas piemērs
   submission_model_description: Kam atļauts pievienot novērojumus tavam projektam?
   submit_observations:
@@ -4576,6 +4565,7 @@ lv:
     Lūdzu, aizpildi apraksta lauku, lai paskaidrotu, kā tika iegūta karte, un lai norādītu saites uz būtiskiem karodziņiem, taksonu sadalīšanu vai citu informāciju, kas paskaidro, kādēļ bija jāveic izmaiņas publicētajā IUCN Sarkanās grāmatas apgabalu kartē.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Uzzināt vairāk par taksonu izplatības apgabaliem
   taxon_range_updated_notice: Taksona izplatības apgabals veiksmīgi izlabots. Paies pāris minūtes līdz tas būs redzams kartēs.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Taksonu klasifikācija
   taxon_removed_from_list: Taksons izdzēsts no saraksta.
   taxon_scheme: Taksonu shēma
@@ -4657,7 +4647,6 @@ lv:
     zero: "Pastāv <span class='count'>%{count}</span> sinonīmi</span>"
     one: "Pastāv <span class='count'>1</span> sinonīms</span>"
     other: "Pastāv <span class='count'>%{count}</span> sinonīmi</span>"
-  there_is_no_wikipedia_page_matching: Nav atbilstošas Vikipēdijas lapas
   there_isnt_a_wikipedia_article_titled_x_html: |
     Nav Vikipēdijas raksta vai pārvirzīšanas lapas ar nosaukumu "%{x}". Varbūt vēlies <a href='http://en.wikipedia.org/wiki/%{x}'>to izveidot</a>?
   there_merge_problems_with_the_merge: "Radās problēmas ar apvienošanu: %{merged_errors}"
@@ -4920,7 +4909,6 @@ lv:
   unknown: Nezināms
   unknown_error: Nezināma kļūda
   unknown_rank: '(Nezināma klasifikācija)'
-  unfollow: Beigt sekot
   unlink_your_google_account: Atvienot Google kontu
   unlink_your_flickr_account: "Atvienot Flickr kontu"
   unmute: Iespējot paziņojumus
@@ -5039,7 +5027,6 @@ lv:
   user_added_an_x_to_noun_by_you_html: "%{user} pievienoja %{x} pie tava %{noun}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} pievienoja %{x} pie %{noun}"
-  user_added_x_observations_html: "%{user} pievienoja %{x} novērojumus"
   user_already_authenticated: Lietotājs jau ir autentificēts
   user_already_app_owner: Lietotājs jau ir lietotnes īpašnieks
   user_autocomplete_placeholder: kueda, simon123, utt.
@@ -5096,6 +5083,7 @@ lv:
   values: Vērtības
   verbing_x_of_y: "%{verb} %{x} no %{y}..."
   verifiable_observations_by_observation_date: Pierādāmi novērojumi, šķirojot pēc novērojuma datuma
+  video_tutorials: Video apmācības
   view: Skatīt
   view_all: Skatīt visu
   view_all_fields: Skatīt visus laukus
@@ -5165,7 +5153,6 @@ lv:
   view_your_observations: Skatīt savus novērojumus
   view_yours: Skatīt savus
   view_all_of_your_observations_from_x: "Skatīt visus savus novērojumus no %{x}"
-  video_tutorials: Video apmācības
   visually_similar: Vizuāli līdzīgs
   vulnerable: Saudzējams
   w00t_no_ungrafted_taxa: Kas tad nu! Nepievienotu taksonu nav.
@@ -6457,9 +6444,6 @@ lv:
         stats_generated_datetime: '%{datetime} ievākta statistika'
         store_prompt: |
           Vēlies palepoties ar to, ka esi iNat lietotājs it visur, kur dodies? Iemet aci iNat veikalā!
-        sunburst_desc_html: |
-          Novērotie taksoni ir sakārtoti hierarhiskā secībā un attēloti saulveida diagrammā. Hierarhiskā secība sākas diagrammas vidū – no sadaļas "Dzīvība" līdz sugām ārējās malās. Katras arkas izmērs ir proporcionāls taksona novērojumu skaitam. Krāsas atbilst mūsu ierastajām pamata taksonu krāsām – zaļš augiem, oranžs insektiem un zils lielākai daļai cita veida dzīvnieku. Ja redzi daudz zaļās krāsas, tas nozīmē, ka esi novērojis daudz augu.
-          <strong> Nospied uz kādas no arkām, lai novietotu taksonu vidū un tā apakšgrupas apkārt taksonam.</strong> <strong>Nospied ar peli diagrammas vidū, lai virzītos hierarhiskajā secībā uz augšu.</strong>
         translators_title: Tulkotāji
         translators_desc: |
           Vai zināji, ka iNaturalist pārtulkojuši %{x_people} cilvēki %{x_languages} valodās? Daži no viņiem pat paši nemaz nelieto iNat. Šeit redzami visi tie apbrīnojamie tulkotāji, kas šogad pievienojuši tulkojumus, un viņu pārtulkoto vārdu skaits šajās vietnēs un lietotnēs: %{website_link_tag}tīmekļa vietnē%{link_tag_end}, mūsu
@@ -6513,7 +6497,6 @@ lv:
           "Plant Phenology=Flower Budding": Ziedpumpuri
           "Plant Phenology=Flowering": Zied
           "Plant Phenology=Fruiting": Ar augļiem
-          "Life Stage=Adult": Pieaudzis
           "Life Stage=Egg": Ola
           "Life Stage=Larva": Cirmenis
           "Life Stage=Juvenile": Nepieaudzis
@@ -6548,26 +6531,6 @@ lv:
           Taksona nosaukums ar klasifikāciju. Infraspecifiskās klasifikācijas dati jāievada pēc binominālā nosaukuma.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul><li><p>Centies pievienot nosaukumus, kas jau tiek izmantoti. Lūdzu, neizgudro jaunus nosaukumus.</p></li>
-          <li><p>Nepievieno nosaukumu dublikātus, piemēram, nevajadzētu nosaukt vairākus vanagus par "vanagu".</p></li>
-          <li><p>Pievienojot augstākas pakāpes taksonu nosaukumus, centies iekļaut visus zemāko pakāpju taksonus, piemēram, "Gārņu dzimta" vai "Ēriku dzimta"</p></li>
-          <li>
-          <p>
-          Lūdzu, pievieno tikai nosaukumu, nevis citu informāciju, piemēram, nav jāraksta savas domas par to, kā nosaukums būtu jāizmanto.
-          </p>
-          </li>
-          <li>
-          <p>
-          Jauniem leksikoniem jābūt angļu valodā. Lūdzu, nepievieno pārtulkotus nosaukumus citās valodās, piemēram, "French, Français", jo tas liegs mums iespēju rādīt lokalizētus nosaukumus cilvēkiem, kas lieto mūsu vietni dažādās valodās.
-          </p>
-          </li>
-          <li>
-          <p>
-          Noklusējuma režīmā tiek attēloti citās valodās pārtulkotie tautā pieņemtie nosaukumi (vietu atsauksmju un nosaukumu kārtošanas u.c. funkcijas tiek dezaktivizētas). <a class="readmore" href="/pages/translate">Vairāk informācijas par tulkošanu</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Pievieno vietai nosaukumu, lai lietotājiem un vietnēm tie būtu redzami sākumā. Ja vienai vietai pievienoti vairāki nosaukumi, tos iespējams sakārtot <a href="%{url}">šeit</a>. Lūdzu, <strong>nepievieno</strong> nosaukumus katrai vietai, kur noteiktais nosaukums tiek izmantots, bet gan tikai tām vietām, kas ir pretrunā ar citām vietām.
       taxon:
@@ -7274,7 +7237,6 @@ lv:
             action:
               not_supported_for_this_kind_of_content: darbību nav iespējams izpildīt ar šādu saturu
             base:
-              only_staff_can_unhide: Tikai vietnes darbinieki var atsegt noslēpto saturu
               staff_cannot_be_suspended: Vietnes darbinieki nevar tikt bloķēti
             user_id:
               must_be_a_curator: jābūt pārzinim
@@ -7319,7 +7281,6 @@ lv:
               cannot_be_blank: nevar būt neaizpildīts
               invalid_point: kļūdains punkts, garumam jābūt lielākam par 180 vai arī platumam jābūt mazākam par -90
               must_have_more_than_three_points: jābūt vairāk par trīs punktiem
-              polygon_with_fewer_than_four_points: ar poligonu, kam ir mazāk par četriem punktiem
         post:
           attributes:
             parent:

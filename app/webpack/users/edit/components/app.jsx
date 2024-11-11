@@ -68,20 +68,20 @@ class App extends Component {
 
     return (
       <div className="container" id="UserSettings">
-        <div className="row vertical-align">
-          <div className="col-xs-12 col-sm-6">
+        <div className="settings-head row vertical-align">
+          <div className="h1col col-xs-12 col-sm-6">
             <h1>{I18n.t( "settings" )}</h1>
           </div>
-          <div className="col-xs-12 col-sm-6">
+          <div className="btncol col-xs-12 col-sm-6">
             <SaveButtonContainer />
           </div>
-          <div className="col-xs-12 visible-xs settings-item">
+          <div className="navcol col-xs-12 visible-xs settings-item">
             <ErrorBoundary>
               <DropdownMenuMobile menuIndex={section} handleInputChange={this.handleInputChange} />
             </ErrorBoundary>
           </div>
         </div>
-        <div className="row">
+        <div className="settings-body row">
           <div className="col-sm-2 menu hidden-xs">
             <ErrorBoundary>
               <Menu setContainerIndex={setContainerIndex} currentContainer={section} />
@@ -94,7 +94,7 @@ class App extends Component {
             { userSettings[section] }
           </div>
         </div>
-        <div className="row vertical-align">
+        <div className="settings-foot row vertical-align">
           <div className="col-xs-12">
             <SaveButtonContainer />
           </div>

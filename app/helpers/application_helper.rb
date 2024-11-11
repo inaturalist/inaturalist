@@ -289,29 +289,33 @@ module ApplicationHelper
     text = paragraphs[1..paragraphs.length].join(split)
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
-  
-  def formatted_user_text(text, options = {})
+
+  def formatted_user_text( text, options = {} )
     return text if text.blank?
 
-    text = hyperlink_mentions(text, for_markdown: !options[:skip_simple_format])
+    text = hyperlink_mentions( text, for_markdown: !options[:skip_simple_format] )
     text = markdown( text ) unless options[:skip_simple_format]
-    
-    # make sure attributes are quoted correctly
-    text = text.gsub(/(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4')
+
+    # this regular expression can take a long time to process on very long words,
+    # so skip it if there are long series of characters without spaces
+    unless text.match( /[^ ]{1000}/ )
+      # make sure attributes are quoted correctly
+      text = text.gsub( /(<.+?)(\w+)=['"]([^'"]*?)['"](>)/, '\\1\\2="\\3"\\4' )
+    end
 
     # remove escaped underscores from mentions where Redcarpet didn't process markdown
     mentions_with_escaped_underscores_regex = /(<a [^>]+>@[^\s]*)\\_/
     while text.match( mentions_with_escaped_underscores_regex )
       text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
     end
-    
+
     unless options[:skip_simple_format]
       # Make sure P's don't get nested in P's
-      text = text.gsub(/<\\?p>/, "\n\n")
+      text = text.gsub( /<\\?p>/, "\n\n" )
     end
-    text = sanitize(text, options)
-    text = compact(text, :all_tags => true) if options[:compact]
-    text = auto_link(text.html_safe, :sanitize => false).html_safe
+    text = sanitize( text, options )
+    text = compact( text, all_tags: true ) if options[:compact]
+    text = auto_link( text.html_safe, sanitize: false ).html_safe
     # scrub to fix any encoding issues
     text = text.scrub
     unless options[:skip_simple_format]
@@ -780,6 +784,7 @@ module ApplicationHelper
     return if options[:observations].blank?
     options[:observations].collect{ |o|
       o.to_json(:viewer => current_user,
+        :ignore_collection_projects => true,
         :force_coordinate_visibility => @coordinates_viewable,
         :include => [ { :user => { :only => :login },
           :taxon => { :only => [ :id, :name ] } },
@@ -1066,31 +1071,44 @@ module ApplicationHelper
     case update.resource_type
     when "User"
       if update.notifier_type == "Post"
-        post = notifier
         title = if options[:skip_links]
           resource.login
         else
-          link_to_user(resource)
+          link_to_user( resource )
         end
-        article = if options[:count] && options[:count].to_i == 1
-          t(:x_wrote_a_new_post_html, :x => title)
+        if options[:count] && options[:count].to_i == 1
+          t( :x_wrote_a_new_post_html, x: title)
         else
-          t(:x_wrote_y_new_posts_html, :x => title, :y => options[:count])
+          t( :x_wrote_y_new_posts_html, x: title, y: options[:count] )
         end
+      elsif options[:count].to_i == 1
+        t( :user_added_an_observation_html,
+          user: options[:skip_links] ? resource.login : link_to( resource.login, url_for_resource_with_host( resource ) ) )
       else
-        if options[:count].to_i == 1
-          t(:user_added_an_observation_html, 
-            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)))
+        user = if options[:skip_links]
+          resource.login
         else
-          t(:user_added_x_observations_html,
-            :user => options[:skip_links] ? resource.login : link_to(resource.login, url_for_resource_with_host(resource)),
-            :x => options[:count])
+          link_to( resource.login, url_for_resource_with_host( resource ) )
         end
+        t( :user_added_x_observations2_html, user: user, count: options[:count] )
       end
     when "Observation"
-      if notifier.is_a?(ObservationFieldValue)
-        t(:user_added_an_observation_field_html, :user => notifier_user_link, :field_name => truncate(notifier.observation_field.name),
-          :owner => you_or_login(resource.user, :capitalize_it => false))
+      if notifier.is_a?( ObservationFieldValue )
+        if notifier.updater && notifier.modified?
+          t( :user_updated_an_observation_field_html,
+            user: if options[:skip_links]
+                    notifier.updater.login
+                  else
+                    link_to( notifier.updater.login, person_url( notifier.updater ) )
+            end,
+            field_name: truncate( notifier.observation_field.name ),
+            owner: you_or_login( resource.user, capitalize_it: false ) )
+        else
+          t( :user_added_an_observation_field_html,
+            user: notifier_user_link,
+            field_name: truncate( notifier.observation_field.name ),
+            owner: you_or_login( resource.user, capitalize_it: false ) )
+        end
       else
         "unknown"
       end
@@ -1140,42 +1158,57 @@ module ApplicationHelper
     when "Flag"
       noun = t(:a_flag_for_x, x: resource.flaggable.try_methods( :name, :title, :to_plain_s ) )
       if notifier.is_a?(Flag)
-        subject = if options[:skip_links]
-          if notifier.resolver
-            notifier.resolver.login
-          elsif notifier.resolver_id && notifier.resolver_id <= 0
-            "iNaturalist"
+        if notifier.resolved?
+          subject = if options[:skip_links]
+            if notifier.resolver
+              notifier.resolver.login
+            elsif notifier.resolver_id && notifier.resolver_id <= 0
+              "iNaturalist"
+            else
+              t(:deleted_user)
+            end
           else
-            t(:deleted_user)
+            if notifier.resolver_id && notifier.resolver_id <= 0
+              "iNaturalist"
+            else
+              link_to_user( notifier.resolver )
+            end
           end
+          t(:subject_resolved_noun_html, subject: subject, noun: noun)
         else
-          if notifier.resolver_id && notifier.resolver_id <= 0
-            "iNaturalist"
-          else
-            link_to_user( notifier.resolver )
-          end
+          t( :activity_on_a_flag_for_x, x: resource.flaggable.try_methods( :name, :title, :to_plain_s ) )
         end
-        t(:subject_resolved_noun_html, subject: subject, noun: noun)
       else
         activity_snippet(update, notifier, notifier_user, options.merge(:noun => noun))
       end
     when "TaxonChange"
       notifier_user = resource.committer
+      csv_taxon_names = commas_and( resource.input_taxa.compact.map( &:name ) )
+      singular_opts = { taxon: csv_taxon_names, vow_or_con: csv_taxon_names[0].downcase }
+      plural_opts = { taxa: csv_taxon_names, vow_or_con: csv_taxon_names[0].downcase }
       if notifier_user
-        notifier_class_name = t(resource.class.name.underscore)
-        subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
-        object = "<strong>#{notifier_class_name}</strong>".html_safe
-        t( :subject_committed_thing_affecting_stuff_html,
-          subject: subject,
-          vow_or_con: notifier_class_name[0].downcase,
-          gender: object,
-          thing: object,
-          stuff: commas_and( resource.input_taxa.compact.map(&:name) )
-        )
+        notifier_user_name = if options[:skip_links]
+          notifier_user.login
+        else
+          link_to( notifier_user.login, person_url( notifier_user ) ).html_safe
+        end
+        user_singular_opts = singular_opts.merge( user: notifier_user_name )
+        user_plural_opts = plural_opts.merge( user: notifier_user_name )
+        case resource.class.name
+        when "TaxonDrop" then t( :user_committed_taxon_drop_affecting_taxon, **user_singular_opts ).html_safe
+        when "TaxonMerge" then t( :user_committed_taxon_merge_affecting_taxa2, **user_plural_opts ).html_safe
+        when "TaxonSplit" then t( :user_committed_taxon_split_affecting_taxa2, **user_plural_opts ).html_safe
+        when "TaxonStage" then t( :user_committed_taxon_stage_affecting_taxa2, **user_singular_opts ).html_safe
+        when "TaxonSwap" then t( :user_committed_taxon_swap_affecting_taxa2, **user_plural_opts ).html_safe
+        end
       else
-        t(:subject_affecting_stuff_html, 
-          :subject => t(resource.class.name.underscore), 
-          :stuff => commas_and(resource.input_taxa.compact.map(&:name)))
+        case resource.class.name
+        when "TaxonDrop" then t( :taxon_drop_affecting_taxon, **singular_opts )
+        when "TaxonMerge" then t( :taxon_merge_affecting_taxa, **plural_opts )
+        when "TaxonSplit" then t( :taxon_split_affecting_taxa, **plural_opts )
+        when "TaxonStage" then t( :taxon_stage_affecting_taxon, **singular_opts )
+        when "TaxonSwap" then t( :taxon_swap_affecting_taxa, **plural_opts )
+        end
       end
     else
       "update"
@@ -1185,20 +1218,20 @@ module ApplicationHelper
   def activity_snippet(update, notifier, notifier_user, options = {})
     opts = {}
     if update.notification == "activity" && notifier_user
-      notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
+      localized_notifier_class_name = lowercase_equivalent_model_name_for( notifier.class )
       key = "user_added_"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        x: notifier_class_name,
-        gender: notifier_class_name
+        x: localized_notifier_class_name,
+        gender: notifier.class.name.parameterize.downcase
       }
-      key += notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
+      key += localized_notifier_class_name =~ /^[aeiou]/i ? 'an' : 'a'
       key += '_x_to'
     elsif update.notification == "mention" && notifier_user
       key = "mentioned_you_in"
       opts = {
         user: options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)),
-        x: notifier_class_name
+        x: localized_notifier_class_name
       }
     else
       key = "new_activity_on"
@@ -1656,5 +1689,23 @@ module ApplicationHelper
     i18n = @i18n || options[:i18n] || I18n
     i18n.t( key, **options ).gsub( /\s+/, " " ).strip
     i18n.t( key, **options ).strip
+  end
+
+  def create_announcement_impression( announcement )
+    return unless announcement.is_a?( Announcement )
+
+    AnnouncementImpression.increment_for_announcement(
+      announcement,
+      user: logged_in? ? current_user : nil,
+      request_ip: Logstasher.ip_from_request_env( request.env )
+    )
+    Logstasher.write_announcement_impression( announcement, request: request, user: current_user )
+  end
+
+  def absolute_url_or_relative_to_site( site: nil, url: nil )
+    return unless site.is_a?( Site ) && url
+    return url if url =~ /http/
+
+    URI.join( site.url.to_s, url.to_s ).to_s
   end
 end

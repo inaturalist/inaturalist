@@ -82,8 +82,6 @@
     };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
       only: [ :id ], include: { default_name: { only: [ :name ] } } ).html_safe : "{ }" };
-  = javascript_include_tag "webpack/runtime-webpack"
-  = javascript_include_tag "webpack/react-main-webpack"
   = javascript_include_tag "webpack/react-dropzone-webpack"
   = javascript_include_tag "webpack/react-image-gallery-webpack"
   = javascript_include_tag "webpack/user-text-webpack"

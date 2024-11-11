@@ -33,7 +33,8 @@
                  observation_id: identification.observation_id,
                  taxon_id: identification.taxon_id },
                method: :post,
-               target: "_blank" -%>
+               target: "_blank",
+               rel: "noopener noreferrer" -%>
           </span>
         <% end %>
         <% if logged_in? && identification.user_id == current_user.id && identification.current? %>

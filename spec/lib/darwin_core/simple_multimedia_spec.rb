@@ -20,8 +20,14 @@ describe DarwinCore::SimpleMultimedia do
     expect( photo.original_url ).not_to be_blank
     expect( photo.identifier ).to eq photo.original_url
   end
-  it "should return photo page URL for references" do
+  it "should return photo page URL for references when media is a photo" do
     expect( photo.references ).to eq FakeView.photo_url( photo )
+  end
+  it "should return sound page URI for references when media is a sound" do
+    sound = create( :observation_sound, observation: o ).sound
+    sound.update( license: Photo::CC_BY )
+    adapted_sound = DarwinCore::SimpleMultimedia.adapt( sound, observation: o )
+    expect( adapted_sound.references ).to eq FakeView.sound_url( sound )
   end
   # it "should return EXIF date_time_original for created"
   it "should return user name for creator" do

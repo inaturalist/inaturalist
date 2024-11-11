@@ -33,11 +33,11 @@ module ActsAsElasticModel
     class << self
       def elastic_search(options = {})
         try_and_try_again( [
-          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
+          Elastic::Transport::Transport::Errors::ServiceUnavailable,
+          Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.search(ElasticModel.search_hash(options))
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          rescue Elastic::Transport::Transport::Errors::BadRequest => e
             Logstasher.write_exception(e)
             Rails.logger.error "[Error] elastic_search failed: #{ e }"
             Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
@@ -58,9 +58,23 @@ module ActsAsElasticModel
       def elastic_get( id, options = { } )
         begin
           __elasticsearch__.client.get( index: index_name, id: id )
-        rescue Elasticsearch::Transport::Transport::Errors::NotFound => a
+        rescue Elastic::Transport::Transport::Errors::NotFound => a
           nil
         end
+      end
+
+      def elastic_mget( ids, options = {} )
+        return [] if ids.empty?
+
+        __elasticsearch__.client.mget(
+          index: index_name,
+          body: {
+            docs: ids.map do | id |
+              { _id: id }
+            end
+          },
+          _source: options[:source]
+        )["docs"].map {| d | d["_source"] }.compact
       end
 
       # standard way to bulk index instances. Called without options it will
@@ -75,6 +89,7 @@ module ActsAsElasticModel
           defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 1
         debug = options.delete(:debug)
         filter_scope = options.delete(:scope)
+        run_at = options.delete(:run_at)
         # this method will accept an existing scope
         scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
           filter_scope : self.all
@@ -85,7 +100,7 @@ module ActsAsElasticModel
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
-              elastic_index!(options.merge(ids: slice))
+              elastic_index!(options.merge(ids: slice, run_at: run_at))
               if batch_sleep && !options[:delay]
                 # sleep after index an ID batch, since during indexing
                 # we only sleep when indexing multiple batches, and here
@@ -116,11 +131,11 @@ module ActsAsElasticModel
           end
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
-            queue: queue
-          ).elastic_index!( options.merge(
+            queue: queue,
+            run_at: run_at
+          ).elastic_index!( options.except( :batch_size ).merge(
             ids: result_ids,
-            indexed_before: 5.minutes.from_now.strftime("%FT%T"),
-            wait_for_index_refresh: true
+            indexed_before: 5.minutes.from_now.strftime("%FT%T")
           ) )
         end
         # now we can preload all associations needed for efficient indexing
@@ -230,7 +245,7 @@ module ActsAsElasticModel
               result.total_entries - elastic_ids_to_delete.count) do |pager|
               pager.replace(records)
             end
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          rescue Elastic::Transport::Transport::Errors::BadRequest => e
             Logstasher.write_exception(e)
             Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
             Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
@@ -263,12 +278,11 @@ module ActsAsElasticModel
       # standard wrapper for bulk indexing with Elasticsearch::Model
       def bulk_index(batch, options = { })
         try_and_try_again( [
-          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
+          Elastic::Transport::Transport::Errors::ServiceUnavailable,
+          Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.client.bulk({
               index: __elasticsearch__.index_name,
-              type: __elasticsearch__.document_type,
               body: prepare_for_index(batch, options),
               refresh: options[:wait_for_index_refresh] ? "wait_for" : false
             })
@@ -278,7 +292,7 @@ module ActsAsElasticModel
               end
             end
             GC.start
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          rescue Elastic::Transport::Transport::Errors::BadRequest => e
             Logstasher.write_exception(e)
             Rails.logger.error "[Error] elastic_index! failed: #{ e }"
             Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
@@ -301,18 +315,17 @@ module ActsAsElasticModel
 
       def bulk_delete( ids, options = { } )
         try_and_try_again( [
-          Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-          Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
+          Elastic::Transport::Transport::Errors::ServiceUnavailable,
+          Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
           begin
             __elasticsearch__.client.bulk({
               index: __elasticsearch__.index_name,
-              type: __elasticsearch__.document_type,
-              body:  ids.map do |id|
+              body: ids.map do |id|
                 { delete: { _id: id } }
               end,
               refresh: options[:wait_for_index_refresh] ? "wait_for" : false
             })
-          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+          rescue Elastic::Transport::Transport::Errors::BadRequest => e
             Logstasher.write_exception(e)
             Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
             Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
@@ -324,8 +337,8 @@ module ActsAsElasticModel
 
     def elastic_index!
       try_and_try_again( [
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
         begin
           index_options = { }
           if respond_to?(:wait_for_index_refresh) && wait_for_index_refresh
@@ -342,7 +355,7 @@ module ActsAsElasticModel
           # garbage collect after a small batch of individual instance indexing
           # don't do this for every elastic_index! as GC is somewhat expensive
           GC.start if @@inserts % 10 == 0
-        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+        rescue Elastic::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_index! failed: #{ e }"
           Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
@@ -352,14 +365,14 @@ module ActsAsElasticModel
 
     def elastic_delete!
       try_and_try_again( [
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Elasticsearch::Transport::Transport::Errors::TooManyRequests,
-        Elasticsearch::Transport::Transport::Errors::Conflict], sleep: 1, tries: 10 ) do
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::TooManyRequests,
+        Elastic::Transport::Transport::Errors::Conflict], sleep: 1, tries: 10 ) do
         begin
           __elasticsearch__.delete_document
           # in the test ENV, we will need to wait for changes to be applied
           self.class.__elasticsearch__.refresh_index! if Rails.env.test?
-        rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+        rescue Elastic::Transport::Transport::Errors::NotFound => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
           Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."

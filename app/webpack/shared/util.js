@@ -124,7 +124,7 @@ const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
   // For some time zones, moment cannot output something nice like PDT and
   // instead does something like -08. In this situations, we print a full offset
   // like -08:00 instead
-  if ( parseInt( d.format( "z" ), 0 ) && parseInt( d.format( "z" ), 0 ) !== 0 ) {
+  if ( parseInt( d.format( "z" ), 10 ) && parseInt( d.format( "z" ), 10 ) !== 0 ) {
     format = I18n.t( "momentjs.datetime_with_offset" );
   }
   return d.format( format );
@@ -245,6 +245,26 @@ function parseRailsErrorsResponse( text ) {
   return railsErrors;
 }
 
+function controlledTermLabel( termLabel ) {
+  const translationLabel = _.snakeCase( termLabel );
+  const defaults = {
+    defaultValue: termLabel
+  };
+
+  return I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, defaults );
+}
+
+function controlledTermDefinition( termLabel ) {
+  const translationLabel = _.snakeCase( termLabel );
+  const defaults = {
+    defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, {
+      defaultValue: termLabel
+    } )
+  };
+
+  return I18n.t( `controlled_term_definitions.${_.snakeCase( translationLabel )}`, defaults );
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -291,6 +311,8 @@ const COLORS = {
 export {
   addImplicitDisagreementsToActivity,
   COLORS,
+  controlledTermDefinition,
+  controlledTermLabel,
   fetch,
   formattedDateTimeInTimeZone,
   inatreact,

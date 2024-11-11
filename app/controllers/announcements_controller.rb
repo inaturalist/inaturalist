@@ -84,6 +84,8 @@ class AnnouncementsController < ApplicationController
       @announcement.dismiss_user_ids << current_user.id
     end
     @announcement.save!
+    Logstasher.write_announcement_dismissal( @announcement, request: request, user: current_user )
+
     respond_to do | format |
       format.any { head :no_content }
       format.html { redirect_back_or_default( dashboard_path ) }

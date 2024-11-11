@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 user_id = ARGV[0]
 table_names = []
 resurrection_cmds = []
 dbname = ActiveRecord::Base.connection.current_database
 
 puts
-puts <<-EOT
-This script assumes you're currently connected to a database that has the data
-you want to export, so if it bails b/c it can't find your user, that's
-probably why.
-EOT
+puts <<-INFO
+  This script assumes you're currently connected to a database that has the data
+  you want to export, so if it bails b/c it can't find your user, that's
+  probably why.
+INFO
 puts
 
 system "rm resurrect_#{user_id}*"
@@ -39,6 +41,19 @@ has_many_reflections.each do |k, reflection|
   system cmd
   puts "\t#{cmd}"
   resurrection_cmds << "psql #{dbname} -c \"\\COPY #{reflection.table_name} (#{column_names.join( ", " )}) FROM '#{fname}' WITH CSV\""
+
+  # Add commands to remove DeletedPhotos of restored Photos
+  next unless reflection.table_name == "photos"
+
+  photo_id_column_index = column_names.index( "id" )
+  next unless photo_id_column_index && File.exist?( fname )
+
+  photo_ids = []
+  CSV.foreach( fname ) {| row | photo_ids << row[photo_id_column_index] }
+  photo_ids.in_groups_of( 1000, false ) do | group_photo_ids |
+    resurrection_cmds << "psql #{dbname} -c \"DELETE FROM deleted_photos " \
+      "WHERE photo_id IN (#{group_photo_ids.join( ',' )})\""
+  end
 end
 
 puts "Exporting from identifications..."
@@ -141,14 +156,20 @@ system cmd
 puts
 puts "Run these commands (or something like them, depending on your setup):"
 puts
-puts <<-EOT
-scp resurrect_#{user_id}.tgz inaturalist@taricha:deployment/production/current/
-ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
-tar xzvf resurrect_#{user_id}.tgz
-#{resurrection_cmds.uniq.join("\n")}
-EOT
-puts
+puts <<-CODE
+  scp resurrect_#{user_id}.tgz inaturalist@taricha:deployment/production/current/
+  ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
+  tar xzvf resurrect_#{user_id}.tgz
+  #{resurrection_cmds.uniq.join( "\n  " )}
+CODE
+puts "\n\n"
 puts "This script does not resurrect observations or associated data. Please use the following command:"
 puts
-puts "bundle exec rails r tools/resurrect_observations.rb -u #{user_id} --skip Photo --skip Sound -r"
+puts "  bundle exec rails r tools/resurrect_observations.rb -u #{user_id} --skip Photo --skip Sound -r"
+puts "\n\n"
+puts "The DeletedUser entry should be removed after resurrecting a user account:"
 puts
+puts <<-CODE
+  bundle exec rails r "DeletedUser.where( 'user_id = ?', #{user_id} ).destroy_all"
+CODE
+puts "\n\n\n"

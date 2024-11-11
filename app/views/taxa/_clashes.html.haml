@@ -28,7 +28,7 @@
       =t( :based_on_a_sample_of_percent_of_these_ids_html, |
       percent: result[:percent], count: result[:num_clashes], child: result[:child] )
       - unless result[:sample].nil?
-        = link_to( t( :view_observations ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } ), target: "_blank" )
+        = link_to( t( :view_observations ), observations_path( { id: result[:sample].join(","), place_id: "any", verifiable: "any" } ), target: "_blank", rel: "noopener noreferrer" )
     %p
       - if result[:num_clashes] > 10
         =t( :because_we_estimate_this_change_act_html, |

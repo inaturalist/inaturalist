@@ -55,9 +55,9 @@ class FileGalleryItem extends Component {
     const { file } = this.props;
     const previewAvailable = ( file.preview && !file.photo );
     const photoAvailable = ( file.photo && file.uploadState !== "failed" );
-    // const soundAvailable = ( file.sound && file.uploadState !== "failed" );
     const uploadFailed = ( file.uploadState === "failed" );
-    const isSound = file.type.match( /audio/ );
+    // some mp4 audio files are detected as video/mp4
+    const isSound = file.type.match( /(audio|video)/ );
     if ( !uploadFailed && isSound ) {
       item = ( <Sound {...this.props} /> );
     } else if ( !uploadFailed && ( previewAvailable || photoAvailable ) ) {

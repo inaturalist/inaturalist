@@ -58,18 +58,35 @@ describe ApplicationController do
   end
 
   describe WelcomeController do
-    describe "check_user_last_active" do
+    describe "update_active_user_columns" do
       it "re-activate inactive users" do
-        user = User.make!( last_active: nil, subscriptions_suspended_at: Time.now )
+        user = User.make!( last_active: nil )
         expect( user.last_active ).to be_nil
-        expect( user.subscriptions_suspended_at ).to_not be_nil
         sign_in( user )
         get :index
         user.reload
         # user's last_active date is set
         expect( user.last_active ).to_not be_nil
+      end
+
+      it "unsuspends subscriptions" do
+        user = User.make!( subscriptions_suspended_at: Time.now )
+        expect( user.subscriptions_suspended_at ).to_not be_nil
+        sign_in( user )
+        get :index
+        user.reload
         # subscriptions are unsuspended
         expect( user.subscriptions_suspended_at ).to be_nil
+      end
+
+      it "sets last_ip" do
+        user = User.make!( last_ip: nil )
+        expect( user.last_ip ).to be_nil
+        sign_in( user )
+        get :index
+        user.reload
+        # user's last_ip is set
+        expect( user.last_ip ).to_not be_nil
       end
     end
 

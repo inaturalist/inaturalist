@@ -1,14 +1,15 @@
 #encoding: utf-8
+
 class UsersController < ApplicationController
   before_action -> { doorkeeper_authorize! :login, :write },
-    only: [ :edit ],
-    if: lambda { authenticate_with_oauth? }
+    only: [:edit],
+    if: -> { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :write },
     only: [ :create, :update, :dashboard, :new_updates, :api_token, :mute, :unmute, :block, :unblock ],
     if: lambda { authenticate_with_oauth? }
   before_action -> { doorkeeper_authorize! :account_delete },
-    only: [ :destroy ],
-    if: lambda { authenticate_with_oauth? }
+    only: [:destroy],
+    if: -> { authenticate_with_oauth? }
   before_action :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships,
@@ -49,7 +50,7 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  prepend_around_action :enable_replica, only: [:dashboard_updates, :show]
+  prepend_around_action :enable_replica, only: [:dashboard_updates, :show, :followers]
 
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
@@ -166,11 +167,11 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def destroy
     if params[:confirmation].blank? || params[:confirmation_code].blank? || ( params[:confirmation] && params[:confirmation] != params[:confirmation_code] )
       msg = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
-      respond_to do |format|
+      respond_to do | format |
         format.html do
           flash[:error] = msg
           redirect_to delete_users_path
@@ -181,14 +182,22 @@ class UsersController < ApplicationController
       end
       return
     end
-    @user.delay(priority: USER_PRIORITY,
-      unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
-    sign_out(@user) if current_user == @user
-    respond_to do |format|
+    @user.delay(
+      priority: USER_PRIORITY,
+      unique_hash: { "User::sane_destroy": @user.id }
+    ).sane_destroy
+    sign_out( @user ) if current_user == @user
+    respond_to do | format |
       format.html do
-        flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
-          "(it may take up to an hour to completely delete all associated content)"
-        redirect_to root_path
+        flash[:notice] = t(
+          :user_has_been_removed_from_site,
+          username: @user.login,
+          site_name: @site.name,
+          vow_or_con: @site.name[0].downcase
+        )
+        # Mobile clients that handle account deletion in a webview need this
+        # parameter to detect if deletion was successful
+        redirect_to root_path( account_deleted: true )
       end
       format.json { head :no_content }
     end
@@ -213,56 +222,29 @@ class UsersController < ApplicationController
   end
 
   # Methods below here are added by iNaturalist
-  
   def index
     @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
-    unless fragment_exist?(@recently_active_key)
-      @updates = []
-      [Observation, Identification, Post, Comment].each do |klass|
-        if klass == Observation && !@site.prefers_site_only_users?
-          @updates += Observation.page_of_results( d1: 1.week.ago.to_s )
-        else
-          scope = klass.limit(30).
-            order("#{klass.table_name}.created_at DESC").
-            where("#{klass.table_name}.created_at > ?", 1.week.ago).
-            joins(:user).
-            where("users.id IS NOT NULL")
-          scope = scope.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-          @updates += scope.all
-        end
-      end
-      Observation.preload_associations(@updates, :user)
-      @updates.delete_if do |u|
-        ( u.is_a?( Post ) && u.draft? ) ||
-        ( u.is_a?( Identification ) && u.taxon_change_id ) ||
-        ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
-      end
-      hash = {}
-      @updates.sort_by(&:created_at).each do |record|
-        hash[record.user_id] = record
-      end
-      @updates = hash.values.sort_by(&:created_at).reverse[0..11]
-    end
+    @updates = @site.users_index_recent_activity
 
     @leaderboard_key = "leaderboard_#{I18n.locale}_site_#{@site.id}_4"
-    unless fragment_exist?(@leaderboard_key)
-      @most_observations = most_observations(:per => 'month')
-      @most_species = most_species(:per => 'month')
-      @most_identifications = most_identifications(:per => 'month')
-      @most_observations_year = most_observations(:per => 'year')
-      @most_species_year = most_species(:per => 'year')
-      @most_identifications_year = most_identifications(:per => 'year')
+    unless fragment_exist?( @leaderboard_key )
+      @most_observations = most_observations( per: "month" )
+      @most_species = most_species( per: "month" )
+      @most_identifications = most_identifications( per: "month" )
+      @most_observations_year = most_observations( per: "year" )
+      @most_species_year = most_species( per: "year" )
+      @most_identifications_year = most_identifications( per: "year" )
     end
 
     @curators_key = "users_index_curators_#{I18n.locale}_site_#{@site.id}_4"
-    unless fragment_exist?(@curators_key)
-      @curators = User.curators.limit(500).includes(:roles).order( "updated_at DESC" )
-      @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
-      @curators = @curators.reject(&:is_admin?)
-      @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
-      @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
-      @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
-      @curators = @curators.sort_by do |u|
+    unless fragment_exist?( @curators_key )
+      @curators = User.curators.limit( 500 ).includes( :roles ).order( "updated_at DESC" )
+      @curators = @curators.where( "users.site_id = ?", @site ) if @site&.prefers_site_only_users?
+      @curators = @curators.reject( &:is_admin? )
+      @updated_taxa_counts = Taxon.where( "updater_id IN (?)", @curators ).group( :updater_id ).count
+      @taxon_change_counts = TaxonChange.where( "user_id IN (?)", @curators ).group( :user_id ).count
+      @resolved_flag_counts = Flag.where( "resolver_id IN (?)", @curators ).group( :resolver_id ).count
+      @curators = @curators.sort_by do | u |
         -1 * (
           @resolved_flag_counts[u.id].to_i +
           @updated_taxa_counts[u.id].to_i +
@@ -271,7 +253,7 @@ class UsersController < ApplicationController
       end
     end
 
-    respond_to do |format|
+    respond_to do | format |
       format.html
     end
   end
@@ -456,7 +438,11 @@ class UsersController < ApplicationController
     taxa = UpdateAction.components_of_class(Taxon, @updates)
     with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
     with_user = UpdateAction.components_with_assoc(:user, @updates)
-    Observation.preload_associations(obs, [:comments, :identifications, :photos])
+    Observation.preload_associations( obs, [
+      :comments,
+      { identifications: :moderator_actions },
+      { photos: [:flags, :moderator_actions] }
+    ] )
     with_taxa += obs.map(&:identifications).flatten
     with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
     Taxon.preload_associations(with_taxa, :taxon)
@@ -471,13 +457,13 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def dashboard
-    @has_updates = (current_user.recent_notifications.count > 0)
+    @has_updates = current_user.recent_notifications.count.positive?
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    if @site && !@site.discourse_url.blank? && @discourse_url = @site.discourse_url
-      cache_key = "dashboard-discourse-data-#{@site.id}"
+    if @site && !@site.discourse_url.blank? && ( @discourse_url = @site.discourse_url )
+      cache_key = "dashboard-discourse-data-20240911-#{@site.id}"
       begin
         if @site.discourse_category.blank?
           url = "#{@discourse_url}/latest.json?order=created"
@@ -486,19 +472,21 @@ class UsersController < ApplicationController
           url = "#{@discourse_url}/c/#{@site.discourse_category}.json?order=created"
           @discourse_topics_url = "#{@discourse_url}/c/#{@site.discourse_category}"
         end
-        unless @discourse_data = Rails.cache.read( cache_key )
+        unless ( @discourse_data = Rails.cache.read( cache_key ) )
           @discourse_data = {}
           @discourse_data[:categories] = JSON.parse(
             RestClient::Request.execute( method: "get",
               url: "#{@discourse_url}/categories.json", open_timeout: 1, timeout: 5 ).body
-          )["category_list"]["categories"].index_by{|c| c["id"]}
+          )["category_list"]["categories"].index_by {| c | c["id"] }
           discourse_ignored_category_names = [
             "Forum Feedback",
+            "iNaturalist Next Bug Reports",
+            "iNaturalist Next Discussion",
             "Nature Talk"
           ]
-          discourse_ignored_category_ids = @discourse_data[:categories].values.select do |c|
+          discourse_ignored_category_ids = @discourse_data[:categories].values.select do | c |
             discourse_ignored_category_names.include?( c["name"] )
-          end.map{ |c| c["id"] }
+          end.map {| c | c["id"] }
           @discourse_data[:topics] = JSON.parse(
             RestClient::Request.execute(
               method: "get",
@@ -628,20 +616,20 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def update
     @display_user = current_user
     @login = @display_user.login
     @original_user = @display_user
-    
+
     return add_friend unless params[:friend_id].blank?
     return remove_friend unless params[:remove_friend_id].blank?
     return update_password unless (params[:password].blank? && params[:commit] !~ /password/i)
-    
+
     # Nix the icon_url if an icon file was provided
     @display_user.icon_url = nil if params[:user].try(:[], :icon)
     @display_user.icon = nil if params[:icon_delete]
-    
+
     locale_was = @display_user.locale
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
@@ -649,6 +637,7 @@ class UsersController < ApplicationController
     place_id_changed = @display_user.will_save_change_to_place_id?
     prefers_no_place_changed = @display_user.prefers_no_place_changed?
     prefers_no_site_changed = @display_user.prefers_no_site_changed?
+    @display_user.wait_for_index_refresh = true
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -689,7 +678,6 @@ class UsersController < ApplicationController
           end
         end
         format.json do
-          User.refresh_es_index
           if @display_user.encrypted_password_previously_changed?
             flash[:success] = I18n.t( "devise.registrations.updated_but_not_signed_in" )
           end
@@ -830,17 +818,24 @@ class UsersController < ApplicationController
       /^preferred_*/,
       /^header_search_open$/
     ]
-    updates = params.to_unsafe_h.select {|k,v|
-      allowed_patterns.detect{|p| 
-        k.match(p)
-      }
-    }.symbolize_keys
-    updates.each do |k,v|
-      v = true if v.yesish? && v != "1"
-      v = false if v.noish?
+    updates = params.to_unsafe_h.select do | k, _v |
+      allowed_patterns.detect do | p |
+        k.match( p )
+      end
+    end.symbolize_keys
+    updates.each do | k, v |
+      is_numeric_preference = false
+      if k =~ /^(prefers_|preferred_)/
+        preference_key = k.to_s.sub( /^(prefers_|preferred_)/, "" )
+        is_numeric_preference = User.preference_definitions[preference_key]&.number?
+      end
+      unless is_numeric_preference
+        v = true if v.yesish? && v != "1"
+        v = false if v.noish?
+      end
       session[k] = v
-      if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
-        current_user.update(k => v)
+      if ( k =~ /^prefers_/ || k =~ /^preferred_/ ) && logged_in? && current_user.respond_to?( k )
+        current_user.update( k => v )
       end
     end
     head :no_content
@@ -1332,5 +1327,4 @@ protected
       return false
     end
   end
-
 end

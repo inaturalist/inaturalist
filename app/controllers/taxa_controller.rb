@@ -48,7 +48,9 @@ class TaxaController < ApplicationController
     :tag_flickr_photos_from_observations]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
-  prepend_around_action :enable_replica, only: [:describe, :links, :show]
+  prepend_around_action :enable_replica, only: [
+    :describe, :links, :show, :search, :browse_photos, :schemes, :taxonomy_details
+  ]
 
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
@@ -190,11 +192,16 @@ class TaxaController < ApplicationController
         return render_404 unless @node_taxon_json
         @node_place_json = ( place_id.blank? || place_id == 0 ) ?
           nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
-        @chosen_tab = session[:preferred_taxon_page_tab]
-        @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+        @chosen_tab = current_user.preferred_taxon_page_tab if logged_in?
+        @chosen_tab = session[:preferred_taxon_page_tab] if @chosen_tab.blank?
+        @ancestors_shown = if logged_in?
+          current_user.preferred_taxon_page_ancestors_shown
+        else
+          session[:preferred_taxon_page_ancestors_shown]
+        end
         render layout: "bootstrap", action: "show"
       end
-      
+
       format.xml do
         render :xml => @taxon.to_xml(
           :include => [:taxon_names, :iconic_taxon], 
@@ -414,6 +421,10 @@ class TaxaController < ApplicationController
 
     if params[:taxon_id]
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
+      if @taxon
+        @ancestors = @taxon.ancestors
+        Taxon.preload_associations( @ancestors, { taxon_names: :place_taxon_names } )
+      end
     end
     
     if params[:is_active] == "true" || params[:is_active].blank?

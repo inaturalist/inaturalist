@@ -1,5 +1,10 @@
 - content_for :extracss do
   = stylesheet_link_tag "flags/new"
+- content_for :extrajs do
+  :javascript
+    $( function ( ) {
+      $( "#flag_initial_comment_body" ).textcompleteUsers( );
+    } );
 
 #pageheader.column.span-24
   %span.breadcrumbs

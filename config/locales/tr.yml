@@ -196,24 +196,6 @@ tr:
   about_this_bioblitz: Bu bioblitz hakkında
   about_this_map: Bu Harita Hakkında
   about_this_project: Bu Proje Hakkında
-  about_trips_html: |
-    <h4>
-    Geziler, gözlemlerine bağlam ekleyerek varlık-yokluk verilerinin toplanmasını sağlar.
-    </h4>
-    <p>
-    <strong>Neden</strong> varlık-yokluk verileri dağılım modellemesi gibi bilimsel analizler için yararlı olan örnekleme çabası hakkında bilgi içerir? (ham iNaturalist gözlemleri 'yalnızca varlık' verileridir).
-    </p>
-    <p>
-    <strong>Nasıl</strong> bir gezi, kayıtla gözlemlerine içerik ekler:
-    </p>
-    <ul>
-    <li><strong>Ne</strong> aradın? (hedef listesi)</li>
-    <li><strong>Nerede</strong> aradın? (arama alanı)</li>
-    <li><strong>Ne zaman</strong> aradın? (arama zamanı)</li>
-    </ul>
-    <p>
-    Hedef listende bulunan ve arama alanı ve zamanı içinde gözlemleyebildiğin türler var olarak yorumlanır. Hedef listende gözlemleyemediğin türler ise yok olarak yorumlanır. Gezilerden ve ilgili gözlemlerden bir tür için varlık-yokluk kaydının bir tablosunu oluşturmak için 'Gezilerden Varlık Yokluk Verilerini Tablolaştır' seçeneğine tıklayın. <a href='%{url}'>Daha fazla bilgi edin</a>
-    </p>
   about_trusting_projects: Güvenilir Projeler Hakkında
   about_trusting_projects_options_any: Bu projedeki tüm gözlemlerin
   about_trusting_projects_options_any_desc: |-
@@ -263,6 +245,7 @@ tr:
   active_taxon_status: Etkin
   active_users: Aktif Kullanıcılar
   activity: Etkinlik
+  activity_on_a_flag_for_x: '%{x} için işaret etkinliği'
   adapted_by_name_from_a_work_by_original: "%{name} tarafından %{original} eserinden uyarlanmıştır"
   add: Ekle
   add_a_batch_of_observations: Toplu Gözlem Ekle
@@ -327,6 +310,7 @@ tr:
   add_notes_about_this_taxon: Bu konumdaki sınıf hakkında, örneğin nerede ve ne zaman görüldüğü gibi notlar ekle.
   add_obs_from_a_link: "Şu listeden gözlem ekle: %{link}"
   add_obs_from_a_list: Bir Listeden Gözlem Ekle
+  add_observation_fields: Gözlem Alanları Ekle
   add_observations: Gözlem Ekle
   add_observations_by_checking_off: Listedeki türleri işaretleyerek gözlem ekle.
   add_observations_project: Bu Projeye Gözlem Ekle
@@ -362,6 +346,11 @@ tr:
   add_evidence_of_presence_track_annotation: '"Varlık Kanıtı: iz" ek açıklaması ekle'
   add_evidence_of_presence_bone_annotation: '"Varlık Kanıtı: kemik" ek açıklaması ekle'
   add_evidence_of_presence_molt_annotation: '"Varlık Kanıtı: deri değiştirme/tüy dökme" ek açıklaması ekle'
+  add_evidence_of_presence_leafmine_annotation: '"Varlık Kanıtı: yaprak madeni" ek açıklaması ekle'
+  add_evidence_of_presence_hair_annotation: '"Varlık Kanıtı: kıl" ek açıklaması ekle'
+  add_evidence_of_presence_egg_annotation: '"Varlık Kanıtı: yumurta" ek açıklaması ekle'
+  add_evidence_of_presence_construction_annotation: '"Varlık Kanıtı: inşa" ek açıklaması ekle'
+  add_established_not_established: '"Yerleşik: yerleşik değil" ek açıklaması ekle'
   #As in a Taxon Framework Relationship
   add_relationship: 'İlişki ekle'
   #As in a Guide Section
@@ -403,6 +392,8 @@ tr:
   added_by: Ekleyen
   added_by_user_on_date_html: "%{date} tarihinde %{user} tarafından eklendi"
   added_on_datetime: "%{datetime} tarihinde eklendi"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Görev eklendi
   added_to_favorites_html: |
     <a href="%{url}">Favorilere</a> eklendi
   adding: "Ekleniyor..."
@@ -1118,6 +1109,7 @@ tr:
     no_evidence_of_flowering: Çiçeklenme Belirtisi Yok
     nymph: Nemf
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Yumurta
     juvenile: Olgunlaşmamış
     alive_or_dead: Canlı ya da Ölü
@@ -1141,6 +1133,16 @@ tr:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Deri değiştirme/Tüy dökme
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Yaprak madeni
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Kıl
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: İnşa
+    #Does the observation belong to a non-established population or not
+    established: Yerleşik
+    #Organism is not a member of an established population
+    not_established: Yerleşik değil
   controlled_term_definitions:
     alive: Organizma yaşıyor ve bir ölüm belirtisi göstermiyor
     bone: |
@@ -1155,7 +1157,12 @@ tr:
     gall: Parazit bir organizmanın neden olduğu deforme olmuş doku büyümesi
     male: Kanıtlar, organizmanın eşeyli üremede kullanılmak üzere sperm üretebildiğini göstermektedir
     molt: Atılan deri veya dış iskelet
+    leafmine: Bir yaprağın dermal katmanları arasında beslenme kanıtı
+    hair: Kaynaklandığı organizmaya artık bağlı olmayan kıl
+    egg: Bütün yumurta veya yumurtanın bir kısmı
+    construction: Bir hayvan tarafından yaratılan, başka malzemelerle yapılan veya başka malzemelerden meyadana gelen bir şey
     no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
+    not_established: Organizma; serbest bırakılan/kaçan evcil hayvan, gezgin ve başıboş olanlar dahil olmak üzere yerleşik olmayan bir popülasyona aittir.
     organism: Organizmanın tamamı veya bir kısmı
     scat: Dışkı maddesi (baykuş peletleri ya da diğer kusmuk maddeleri değil)
     teneral: Yakın zamanda ortaya çıkmış ancak henüz nihai yetişkin formuna ulaşmamış yetişkin
@@ -1175,6 +1182,7 @@ tr:
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştır.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'ne yapıştır.
   copy_guide_taxon_to: Rehber sınıfını şuraya kopyala...
+  copied!: Kopyalandı!
   copyright:
     some_rights_reserved: bazı hakları saklıdır
     some_rights_reserved_by: "(c) %{name}, bazı hakları saklıdır (%{license_short})"
@@ -1472,7 +1480,7 @@ tr:
   devise:
     confirmations:
       confirmed: |
-        E-posta adresiniz başarıyla doğrulandı. Artık burada ve iNaturalist veya Seek mobil uygulamalarında oturum açabilirsiniz.
+        E-posta adresin başarıyla doğrulandı.
       send_instructions: "Birkaç dakika içinde e-posta adresini doğrulamak için talimat içeren bir e-posta alacaksın."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1732,6 +1740,7 @@ tr:
   everywhere: her yer
   exact: Tam
   exact_date: Tam Tarih
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tam Düzey
   except: dışında
   exclude_places: Konumları Hariç Tut
@@ -1759,6 +1768,7 @@ tr:
   extinct_in_the_wild: Doğada Soyu Tükenmiş
   extra_properties: Ek Özellikler
   evidence_of_organism: Organizmanın kanıtı
+  evidence_related_to_single_subject: Tek bir süjeyle ilgili kanıt
   facebook: Facebook
   failed_to_find_your_location: Konumun bulunamadı.
   failed_to_repair_photo: "Fotoğraf onarılamadı: %{errors}"
@@ -1864,6 +1874,7 @@ tr:
     Kullanıcı için İşaretle: %{title}
   flag_it!: İşaretle!
   flag_marked_as_resolved_html: '<span class="meta">İşaret <strong>çözümlendi</strong> olarak işaretlendi.</span>'
+  flag_marked_as_unresolved_html: '<span class="meta">İşaret</span> <strong>çözümlenmemiş</strong> olarak işaretlendi.'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Obje
   flag_reason: "&ldquo;Bu %{record} kaydını işaretliyorum çünkü"
@@ -1899,7 +1910,10 @@ tr:
   #Adjective, as in a fluid layout of images
   fluid: kayma
   follow: Takip Et
+  #Text for a button to follow updates on an observation
+  follow_observation: Gözlemi takip et
   follow_receive_updates_about_new_observations: Takip et (yeni gözlemler ile ilgili güncelleme al)
+  #Text for a button to follow updates from a specific user
   follow_user: "%{user} kullanıcısını takip et"
   followers: Takipçiler
   following: Takip Edilen
@@ -1970,12 +1984,14 @@ tr:
   graft: Aşılama
   graft_taxon: '%{taxon} sınıfını aşıla'
   grafting_attemps_to_insert_this_taxon: Aşılama, bu sınıfı sınıflandırmasal ağacımıza eklemeye, mevcut bir üst sınıf bulmaya ya da mevcut bir üst düzey sınıfa eklemek için gerekli tüm ara sınıfları oluşturmaya yarar.
-  grant_role: "%{grant} %{role} rol"
   grid: Izgara
   grid_layout: Izgara Düzeni
   grid_tooltip: Izgara görünümü göster
   group: Grup
   grouping: Gruplandırma
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Diğer gözlemlerden konumu tahmin etmek ister misiniz?
   guides: Rehberler
   guide_compiled_by: 'Rehberi derleyen:'
   guide_deleted: Rehber silindi
@@ -2042,6 +2058,8 @@ tr:
   hide_running_total: Toplamı Gizle
   hide_uncountable_species: Sayılamayan Türleri Gizle
   high: Yüksek
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: En Yüksek Sıra
   highlights_and_stats_from_year_on_site: "%{site} sayfasının %{year} yılındaki öne çıkanları ve istatistikleri"
   history: Geçmiş
@@ -2111,7 +2129,6 @@ tr:
   identotron_for: Şunun için Identotron
   identotron_help: Identotron yardımı
   ids: "Tanımlamalar"
-  ids_made_for_others: Diğerleri için yapılan tanımlamalar
   if_for_some_reason_a_user_doesnt_agree: |
     Herhangi bir nedenle topluluk sınıfına katılmıyorsan onu reddedebilirsin, bu da diğer gözlemlere bağlantı vermek, yaşam listelerini güncellemek vb. için kullanılan tanımanlamanın senin tanımlaman olduğu anlamına gelir. Bu aynı zamanda gözleminin yalnızca topluluk senin aynı fikirde olduğunda araştırma notu alabileceği anlamına gelir.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2570,6 +2587,8 @@ tr:
   looks_like_no_species_in_guide: Görünüşe göre rehberinde henüz bir tür yok.
   lookup: Ara
   low: Düşük
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: En Düşük Sıra
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2680,8 +2699,12 @@ tr:
     Bu, kullanıcının sınıflandırma oluşturmalarının yanı sıra moderasyon hareketlerini (örneğin yorumları gizleme veya görünür yapma), notlar ve işaretlemeleri de içerir. Bunu <strong>sadece küratörler görüntüleyebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu yüzden kişi hakkındaki notları kesinlikle kişinin kendisi görüntüleyememelidir.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Gizle
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Göster
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Askıya al
   #Action a moderator can take to unsuspend a user; verb
-  moderator_actions_unhide: Askıyı kaldır
+  moderator_actions_unsuspend: Askıdan kaldır
   moderator_note_desc: |
     Moderatör notları; moderasyonun kullanıcı hakkındaki kanıtlara dayalı endişeleri veya verdikleri karşılıkların kayıtlarıdır. Örneğin kukla hesap. Lütfen kullanıcı hakkındaki kişisel fikirleri veya dedikoduları dahil etme.
   #Person who executed a moderator action or flagged something
@@ -2830,7 +2853,6 @@ tr:
   needs_id_: Tanımlama Gerekli
   needs_id_expandable_html: "Tanımlama <span class='full'>Gerekli</span>"
   needs_id_tooltip_html: '"Tanımlama Gerekli" gözlemlerinde medya, konum ve tarih bulunur ancak yine de kesin bir tanımlama için topluluk kararı gerekir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
-  needs_to_be_identified: Tanımlanması gerekenler
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, %{place} konumundaki insanlara ve biyoçeşitliliğe odaklı uluslararası iNaturalist Ağının parçasıdır. Hesap üyeliğini <strong>%{inat_site_name}</strong> yerine <strong>%{site_name}</strong> olarak değiştirmek ve verilerini yerel kurumlarla paylaşmak istiyor musun?
@@ -3024,6 +3046,80 @@ tr:
     Açık koordinatlar, gerçek koordinatları içeren 0.2 derece enlem/boylam hücresinde rastgele bir nokta olarak gösterilir.
   observation: Gözlem
   observation_: gözlem
+  observation_accuracy_experiment_the_sample_for: "Bu deney için henüz örnek oluşturulmamıştır"
+  observation_accuracy_experiment_our_accuracy_estimate: "Bu deneyden elde edilen doğruluk tahminimiz %{percent} doğrudur."
+  observation_accuracy_experiment_our_goak: "Araştırma Sınıfı alt kümesinin tahmini Doğruluk (Doğru) ve İsabetlilik'i için hedefimiz %95'ten büyüktür (kesikli çizgi)"
+  observation_accuracy_experiment_precision_results: "Alt kümeye göre isabetlilik sonuçları"
+  observation_accuracy_experiment_taxon_rank_level: "Sınıf Seviyesi"
+  observation_accuracy_experiment_taxon_observations_count: "Sınıf Gözlem Sayısı"
+  observation_accuracy_experiment_iconic_taxon_name: "İkonik Sınıf Adı"
+  observation_accuracy_experiment_continent: "Kıta"
+  observation_accuracy_experiment_year: "Yıl"
+  observation_accuracy_experiment_quality_grade: "Kalite Derecesi"
+  observation_accuracy_experiment_show_frequency: "sıklığı göster"
+  observation_accuracy_experiment_click_on_bars: "Alt kümeleri keşfetmek için çubuklara tıkla."
+  observation_accuracy_experiment_bars_will: "Çubuklar, örneklemlerin onaylanması için son tarih geçtikten sonra tıklanabilir olacaktır."
+  observation_accuracy_experiment_accuracy_results: "Alt kümeye göre doğruluk sonuçları"
+  observation_accuracy_experiment_as_observations: "Bu örneklemden elde edilen gözlemler doğrulandıkça, belirsiz yüzde azalacak ve doğru ve yanlış yüzde artacaktır."
+  observation_accuracy_experiment_experiment_still: "Deney hâlâ devam ediyor. İstatistikler, örneklemlerin doğrulanması için son tarih olan %{date} tarihine kadar günlük olarak güncellenecektir."
+  observation_accuracy_experiment_observation_accuracy_experiment: "Gözlem Doğruluk Deneyi"
+  observation_accuracy_experiment_validators: "Doğrulayıcılar:"
+  observation_accuracy_experiment_show_additional_validators: "(diğer doğrulayıcıları göster)"
+  observation_accuracy_experiment_hide_additional_validators: "(diğer doğrulayıcıları gizle)"
+  observation_accuracy_experiment_additional_validators: "(%{number} diğer doğrulayıcı)"
+  observation_accuracy_experiment_abstract: "Özet: %{sample_generation_date} tarihinde bir gözlem örneklemi oluşturduk ve %{deadline_date} tarihine kadar doğruluklarını değerlendirmek için bir doğrulayıcı ekibi koordine ettik. Aşağıda gösterilen tüm sonuçlar, örneklemin oluşturulduğu andaki örneklem gözlemlerinin özelliklerini göstermektedir (örneğin Araştırma Sınıfı olup olmadığı). Örneklem gözlemlerinin doğruluğu %{assessment_date} tarihinde değerlendirilmiştir. Daha çok ayrıntı için yöntemler sekmesine bakın."
+  observation_accuracy_experiment_research_grade_results: "Araştırma Sınıfı Sonuçları"
+  observation_accuracy_experiment_verifiable_results: "Doğrulanabilir Sonuçlar"
+  observation_accuracy_experiment_all_results: "Tüm Sonuçlar"
+  observation_accuracy_experiment_methods: "Yöntemler"
+  observation_accuracy_experiment_step_1: "Adım 1: Örneklem Oluşturma ve Atama"
+  observation_accuracy_experiment_from_the2: "iNaturalist gözlem veritabanından (A) rastgele bir örneklem (B) oluşturduk. Alt örneklemler aşağıda açıklanan ölçütlere göre aday doğrulayıcılara (C) atandı. Her örneklem gözlemini, birden çok aday doğrulayıcıya atamayı amaçladık (“Hedef doğrulayıcı fazlalığı”)."
+  observation_accuracy_experiment_sample_generated: "Örneklem oluşturulma tarihi: %{date}"
+  observation_accuracy_experiment_sample_size: "Örneklem büyüklüğü: %{number}"
+  observation_accuracy_experiment_target_validator: "Hedef doğrulayıcı fazlalığı: %{number}"
+  observation_accuracy_experiment_number_of: "Aday doğrulayıcı sayısı: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Aday doğrulayıcı başına ortalama alt örneklem boyutu: %{number}"
+  observation_accuracy_experiment_mean_number: "Örneklem gözlemi başına ortalama doğrulayıcı sayısı: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Doğrulayıcı aday ölçütleri"
+  observation_accuracy_experiment_if_an_identifier: "Eğer bir tanımlayıcı bir sınıf için en az 3 geliştirici tanımlama yapmışsa, o sınıfı doğrulama yetkisine sahip olduğunu düşündük. Geliştirici tanımlamalar, topluluğun daha sonra kabul ettiği bir sınıfın ilk önerisidir."
+  observation_accuracy_experiment_if_an_identifier_continent: "Eğer bir tanımlayıcı bir kıtada bir sınıf için en az 3 geliştirici tanımlama yapmışsa, o sınıfı o kıtada doğrulama yetkisine sahip olduğunu düşündük. Geliştirici tanımlamalar, topluluğun daha sonra kabul ettiği bir sınıfın ilk önerisidir."
+  observation_accuracy_experiment_for_example: "Örneğin, Tanımlayıcı 1 bir gözleme A tanımlamasını ekler. Tanımlayıcı 2 daha sonra B'nin öncü tanımlamasını eklerse, Tanımlayıcı 1'in A'daki tanımlaması geliştirici bir tanımlama haline gelir. Tanımlayıcı 3 daha sonra B'ye destekleyici bir tanımlama eklerse, Tanımlayıcı 2'nin B'deki tanımlaması geliştirici bir tanımlama haline gelir."
+  observation_accuracy_experiment_step_2: "Adım 2: Örneklemlerin doğrulanması"
+  observation_accuracy_experiment_we_contacted: "Aday doğrulayıcılarla iletişime geçtik ve onlardan alt örneklemlerine tanımlamalar eklemelerini istedik. Sağdaki grafik, örneklem gözlemini doğrulayıcı sayısına göre gruplandırmaktadır."
+  observation_accuracy_experiment_number_percent_of: "Katılan doğrulayıcıların sayısı: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Doğrulanan örneklem yüzdesi: %{percent}"
+  observation_accuracy_experiment_step_3: "Adım 3: Doğrulamalardan örneklem gözlemlerinin puanlanması"
+  observation_accuracy_experiment_we_scored: "Örneklemdeki gözlemleri, doğrulayıcı tanımlamalarını her bir örneklem gözleminin sınıfıyla karşılaştırarak Doğru, Belirsiz veya Yanlış olarak puanladık. Örneklemin gözlem sınıfıyla eşleşen veya daha hassas olan tanımlamalar Doğru olarak puanlandı. Birden çok doğrulayıcının aynı fikirde olmadığı senaryolar gibi daha yüzeysel tanımlamalar da Belirsiz olarak puanlanmıştır. Aynı fikirde olunmayan daha yüzeysel tanımlamalar veya farklı dallardaki tanımlamalar Yanlış olarak puanlanmıştır."
+  observation_accuracy_experiment_correct: "Doğru"
+  observation_accuracy_experiment_uncertain: "Belirsiz"
+  observation_accuracy_experiment_incorrect2: "Yanlış"
+  observation_accuracy_experiment_step_4: "Adım 4: Doğruluk ve İsabetlilik hesaplaması"
+  observation_accuracy_experiment_accuracy: "Doğruluk"
+  observation_accuracy_experiment_we_calculated: "Doğruluğu, tüm örneklemin yanı sıra Araştırma Sınıfı alt kümesi gibi alt kümeler için doğru yüzdesi olarak hesapladık. Ayrıca Belirsiz ve Yanlış yüzdelerini de hesapladık. Sağdaki örnek şekilde, doğru yüzdesi 83, belirsiz yüzdesi 6 ve yanlış yüzdesi 11 olacaktır."
+  observation_accuracy_experiment_precision: "İsabetlilik"
+  observation_accuracy_experiment_if_every_sample: "Her örneklem gözlemi âlem gibi kaba bir sınıfta olsaydı, iNaturalist veri setinin doğruluğu çok yüksek olabilirdi ancak isabetlilik veri setini çok kullanışlı hale getirmek için çok düşük olabilirdi. İsabetliliği tahmin etmek için her örneklem gözlemiyle ilişkili her sınıf için iNaturalist sınıflandırmasındaki yaprak (leaf) alt soyların sayısını saydık. İsabetliliği, 1'in yaprak alt soyundan gelenlerin sayısına bölünmesiyle hesapladık. Eğer sınıf bir yaprak sınıfı ise isabetlilik %100'dür. İsabetlilik hesaplamasında türlerin altındaki düzeyleri göz ardı ettik."
+  observation_accuracy_experiment_in_the_example: "Sağdaki örnek şekilde, üç örneklem gözleminin ortalama isabetliliği %51 olacaktır."
+  observation_accuracy_experiment_read_more_html: |
+    Bu deneyin düzenlenmesi hakkında daha çok bilgi için <a href="%{url}">blog yazısına</a> bakın.
+  observation_accuracy_validator_email_subject2: "iNaturalist gözlemlerinin doğruluğunu tahmin etmek için %{version} Deneyi ile bize yardımcı olur musun?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    iNaturalist gözlemlerinin doğruluğunu tahmin etmek için bir <a href="%{url}">deneyde (sürüm %{version})</a> bize yardımcı olur musun?
+  observation_accuracy_validator_email_we_will_calculate: |
+    Tanımlamanızı Gözlem Sınıfı ile karşılaştırarak doğruluğu hesaplayacağız. Daha önce bir tanımlama eklediğin gözlemleri, bu tanımlama hâlâ geçerliyse atlayabilirsin. Anlaşmaları ve anlaşmazlıkları nasıl sayacağımız hakkında daha çok bilgi için okumaya devam et.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Gözlem Sınıfına eşit (A) veya daha hassas (B) tanımlamalar Anlaşmalar olarak sayılacaktır.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Farklı dallardaki (C) veya 'Potansiyel Uyuşmazlık' penceresinde (D) “Hayır, ama...” seçeneğini seçtiğin Gözlem Sınıfından daha yüzeysel tanımlamalar Uyuşmazlık olarak sayılacaktır.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    “Potansiyel Uyuşmazlık” penceresinde (E) “Bilmiyorum ama...” seçeneğini işaretlediğin Gözlem Sınıfından daha yüzeysel tanımlamalar Belirsiz olarak sayılacaktır.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    iNaturalist'te bir tanımlayıcı olarak yardımın için çok minnettarız ve bu çalışmaya katıldığın için çok teşekkür ederiz. Deney tasarımı hakkında daha çok bilgi edinmek için lütfen <a href="%{url}">yöntemleri</a> oku.
+  observation_accuracy_validator_email_with_gratitude: Teşekkürlerimizle,
+  observation_accuracy_validator_email_the_inaturalist_team: iNaturalist Ekibi
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Lütfen bu iletiyi yanıtlamayın. Eğer bir sorun varsa veya geri dönüş yapacaksan lütfen <a href="%{url}">bu blog gönderisine</a> yorum yap veya <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b> adresine e-posta gönder.
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Lütfen bu iletiyi yanıtlamayın. Eğer sorun varsa veya geri dönüş yapacaksan lütfen <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b> adresine e-posta gönder.
   observation_added_to_the_project: "Gözlem \"%{project}\" projesine eklendi"
   observation_aggregation: Gözlem yığınlama
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3254,7 +3350,9 @@ tr:
   only_the_project_admin_can_delete_this_project: Bu projeyi yalnızca proje yöneticisi silebilir.
   only_view_nearby_suggestions: Sadece yakındaki önerileri göster
   only_you: Yalnızca sen
+  #Geoprivacy status in which no privacy has been applied
   open: açık
+  #Geoprivacy status in which no privacy has been applied
   open_: Açık
   open_description: "Sınıf tehdit altında olmadığı sürece herkes koordinatları görebilir."
   open_street_map: OpenStreetMap
@@ -3270,6 +3368,7 @@ tr:
   organism_is_wild: Yabani organizma
   organisms: Organizmalar
   original: Asıl
+  original_flag: İlk işaret
   originally_flagged_by: 'Aslen işaretleyen:'
   originally_imported_from_url_html: "<a href='%{url}'>%{url}</a> adresinden aslen içe aktarıldı"
   original_page_url_for_this_photo: "Bu fotoğraf için asıl sayfa URL'si."
@@ -3735,6 +3834,7 @@ tr:
     north_korea: Kuzey Kore
     northern_cyprus: Kuzey Kıbrıs
     norway: Norveç
+    oceania: Okyanusya
     oman: Umman
     pakistan: Pakistan
     palau: Palau
@@ -3969,9 +4069,9 @@ tr:
     Google, bu hesap için gerekli olan bir e-posta adresi sağlamadı. Lütfen Google üzerinden oturum açmak yerine bu sitede bir hesap oluşturun.
   public_domain: Genel Kullanıma Açık
   publish: Yayınla
-  quality_grade: Nitelik düzeyi
-  quality_grade_: Nitelik Düzeyi
-  quality_grade_colon: "Nitelik düzeyi:"
+  quality_grade: Kalite derecesi
+  quality_grade_: Kalite Derecesi
+  quality_grade_colon: "Kalite derecesi:"
   queued: Sırada
   query: Sorgulama
   radius: Yarıçap (m)
@@ -3979,7 +4079,11 @@ tr:
   radius_value: "Yarıçap (m): %{radius}"
   random: Rastgele
   range: Tarih Aralığı
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Düzey
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Düzey
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4205,6 +4309,8 @@ tr:
   remove_tags: Etiketleri kaldır
   removed: Kaldırıldı
   removed_project_user: Kaldırılan proje kullanıcısı
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Görev kaldırıldı
   removing: "Kaldırılıyor..."
   reorder_by_taxonomy: Sınıflandırmaya göre yeniden düzenle
   repair_broken_urls: Bozuk URL'leri onar
@@ -4224,7 +4330,7 @@ tr:
   research_grade: Araştırma Sınıfı
   research_grade_short_html: "A<span class='full'>raştırma</span>S<span class='full'>ınıfı</span>"
   research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
-  research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri nitelik değerlendirmesini görmek için tıklayın.'
+  research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri kalite değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
   #Label for a button that re-sends the account confirmation email and signs
   #you out until you do
@@ -4261,6 +4367,14 @@ tr:
   rotate_left: Sola Döndür
   rotate_right: Sağa Döndür
   row_singular_or_plural: Sıra(lar)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Sağdan sola düzeni test ettin mi? test=rtl URL parametresini de kullanabilirsin. Tüm sayfaların sağdan sola düzene dönüştürülmediğini unutma.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Sağdan sola düzen testine katıldı
   rules_and_formatting: "Kurallar & Biçimlendirme"
   rules_for_adding_observations: Gözlem Ekleme için Kurallar
   rules_for_becoming_a_member: Üye Olmak için Kurallar
@@ -4575,7 +4689,6 @@ tr:
   start_a_new_project: Yeni Bir Proje Başlat
   start_a_project: Bir Proje Başlat
   start_date_time: Başlangıç Tarihi / Zamanı
-  start_one: Birini Başlat
   start_one_now: Şimdi Birini Başlat!
   start_typing_field_name: Alan adını yazmaya başla...
   start_typing_place_name: Konum adını yazmaya başla...
@@ -4605,10 +4718,9 @@ tr:
   studies_that_used_inaturalist_data_in_year: '%{year} Yılında iNaturalist Verilerini Kullanan Çalışmalar'
   stuff_just_added: "Yeni eklediğin öğeler..."
   subject_resolved_noun_html: "%{noun}, %{subject} tarafından çözüldü"
-  subject_affecting_stuff_html: "%{subject}, %{stuff} öğesini etkiliyor"
-  subject_committed_thing_affecting_stuff_html: "%{subject}, %{stuff}'ı etkileyen %{thing} yaptı"
   submission_model: Gönderme Modeli
   submission_model_description: Projene kim gözlem ekleyebilir?
+  submit: Gönder
   submit_observations:
     one: 1 gözlem gönder
     other: '%{count} gözlemi gönder'
@@ -4787,6 +4899,7 @@ tr:
     Lütfen haritanın nasıl elde edildiğini izah etmek için açıklamayı kullanın ve ilgili işaretlere, taksonomik ayrımlara ya da yayınlanan IUCN Kırmızı Liste yayılımının neden değiştirilmesi gerektiğine dair diğer tartışmalara atıf yapın.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Sınıf yayılımları hakkında daha fazla bilgi edin
   taxon_range_updated_notice: Sınıf yayılımı başarıyla güncellendi. Değişikliklerin haritalarda görünmesi için lütfen birkaç dakika bekleyin.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Sınıf Düzeyleri
   taxon_removed_from_list: Sınıf listeden kaldırıldı.
   taxon_scheme: Sınıf şeması
@@ -4827,8 +4940,10 @@ tr:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Metin biçimlendirme kontrolleri
   text_editing_controls: Metin düzenleme kontrolleri
+  thank_you!: Teşekkürler!
   thanks!: Teşekkürler!
   thanks_from_all_of_us_here_at: Hepimiz adına teşekkürler
+  that_account_is_already_connected: Bu hesap zaten başka bir kullanıcıya bağlı
   that_photo_doesnt_exist: Bu fotoğraf mevcut değil.
   that_observation_doesnt_exist: Bu gözlem mevcut değil.
   that_observation_doesnt_have_any_photos: "Bu gözlem herhangi bir fotoğrafa sahip değil."
@@ -4869,7 +4984,6 @@ tr:
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> eş anlamlı</span> var"
     other: "<span class='count'>%{count}</span> eş anlamlı</span> var"
-  there_is_no_wikipedia_page_matching: Eşleşen Vikipedi sayfası yok
   there_isnt_a_wikipedia_article_titled_x_html: |
     '%{x}' başlıklı bir Vikipedi maddesi ya da yönlendirmesi yok. Belki <a href='http://en.wikipedia.org/wiki/%{x}'>bir tane</a> oluşturmak istersin?
   there_merge_problems_with_the_merge: "Birleştirme ile ilgili sorunlar oluştu: %{merged_errors}"
@@ -5135,7 +5249,10 @@ tr:
   unknown: Bilinmeyen
   unknown_error: Bilinmeyen hata
   unknown_rank: '(Bilinmeyen Düzey)'
-  unfollow: Takibi bırak
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Gözlemi takipten çık
+  #Text for a button to stop following updates from a user
+  unfollow_user: Kullanıcıyı takipten çık
   unlink_your_google_account: Google Hesabının Bağlantısını Kaldır
   unlink_your_flickr_account: "Flickr Hesabının Bağlantısını Kaldır"
   unmute: Sessizden Çıkart
@@ -5251,7 +5368,6 @@ tr:
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
-  user_added_x_observations_html: "%{user}, %{x} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
   user_already_app_owner: Kullanıcı zaten bir uygulama sahibi
   user_autocomplete_placeholder: kueda, simon123, vb.
@@ -5347,6 +5463,7 @@ tr:
   values: Değerler
   verbing_x_of_y: "%{verb} %{y} / %{x}..."
   verifiable_observations_by_observation_date: Gözlem Tarihine Göre Doğrulanabilir Gözlemler
+  video_tutorials: Öğretici Videolar
   view: Görüntüle
   view_all: Tümünü Görüntüle
   view_all_caps: HEPSİNİ GÖSTER
@@ -5424,7 +5541,6 @@ tr:
   view_your_personal_year_in_review_caps: "KİŞİSEL %{year} YILI DEĞERLENDİRMENİ GÖRÜNTÜLE"
   view_yours: Seninkini Görüntüle
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x} ile görüntüle"
-  video_tutorials: Öğretici Videolar
   visually_similar: Görsel Olarak Benzer
   vulnerable: Savunmasız
   w00t_no_ungrafted_taxa: Hayır! Aşılanmış sınıflar yok!
@@ -5857,6 +5973,12 @@ tr:
         thank_you_for_being_a_monthly_supporter_caps: AYLIK DESTEKÇİ OLDUĞUN İÇİN TEŞEKKÜR EDERİZ!
       temporarily_unavailable: |
         iNaturalist'i desteklemeye gösterdiğin ilgi için teşekkür ederiz! Bağış sistemlerimizi güncellerken iNaturalist'e bağış yapmak geçici olarak mümkün değildir. Lütfen yakında tekrar kontrol edin.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Doğrulama e-postasını tekrar göndermek için buraya tıkla.
+      please_add_an_email_and_password: Hesabına erişimini kaybetmemek için lütfen bir e-posta ve şifre ekle
+      please_click_the_link_sent_to_email_to_confirm_html: E-posta adresini doğrulamak için lütfen <span class="email">%{email}</span> adresine gönderilen bağlantıya tıkla.
+      please_confirm_that_email_is_the_best_contact_html: Lütfen <span class="email">%{email}</span> adresinin iletişim kurmak için en iyi yol olduğundan emin ol.
+      your_site_account_has_no_email: '%{site_name} hesabın, bir e-posta adresine sahip değil.'
     flags:
       show:
         flaggable_content_desc: |
@@ -5900,10 +6022,10 @@ tr:
           figure_alt_text: Yakınlarda Beklenen haritası ve Sınıf Yayılımı karşılaştırılır
           combining_these_maps_produces: |
             Bu haritalar birleştirildiğinde 3 tip hücre ortaya çıkar:
-          #Areas where both of the Expected Nearby Map and Taxon Range predict that the taxon exists
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             Tam Mevcudiyet:
-          true_presences_definition: Yakınlarda Beklenen Haritası ve Sınıf Yayılımının her ikisinin de sınıfın var olduğunu öngördüğü alanlardır
+          true_presences_definition2: Hem Yakınlarda Beklenen Haritasının hem de Sınıf Yayılımının sınıfın var olduğunu öngördüğü alanlar
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             Eksik Mevcudiyet:
@@ -6128,6 +6250,11 @@ tr:
           Bu konuşmayı %{date} tarihinde işaretledin. Bu konuşmanın kopyasını silsen bile işaret kalıcı olacaktır, bu nedenle artık bunu görmek istemiyorsan bunu yapman güvenlidir.
         privacy_notice_html: |
           İletiler sen ve alıcı arasında özel olsa da, iNaturalist personeli de bu iletileri görüntüleyebilir ve iletiler moderasyon için işaretlendiğinde bu yapılacaktır. Gerçekten özel iletişim istiyorsan, lütfen güçlü şifrelemeyi destekleyen diğer iletişim mekanizmalarını araştır.
+    nls_demo:
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Geliştirmemize yardımcı olun
     oauth:
       authorizations:
         new:
@@ -6299,7 +6426,7 @@ tr:
           Bu isteğe bağlı bir alandır ve takma ad kullanılabilir.
         created_at: Tarih saat gözlemi oluşturuldu
         updated_at: Tarih saat gözlemi en son güncellendi
-        quality_grade: Bu gözlemin nitelik sınıfı. Bunun ne anlama geldiğiyle ilgili ayrıntılar için Yardım bölümüne bakın
+        quality_grade: Bu gözlemin kalite derecesi. Bunun ne anlama geldiğiyle ilgili ayrıntılar için Yardım bölümüne bakın
         license: Bu gözlem için gözlemcinin seçtiği lisans
         url: Gözlem için URL
         image_url: Varsayılan resim için URL
@@ -6350,63 +6477,13 @@ tr:
         curator_coordinate_access_disabled_desc_html: |
           Bu proje, proje küratörlerinin göremediği koordinatlara sahip gözlemlere izin vermez. Bu gözlemin koordinatlarını bu projenin küratörleriyle paylaşmak istemiyorsan, gözlemi projeden kaldırman gerekir.
         data_quality_assessment_desc3_html: |
-          Nitelik Değerlendirmesi, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
+          Kalite derecesi, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
         disagreement_count_desc: "# bir sınıfın üst soyu arasında yer almayan tanımlanmış sınıfların sayısı"
         identification_count_desc: '# tek bir sınıf için tanımlama sayısı'
         flagged_photos_desc_html: |
           Bu fotoğraflardan bazıları uygunsuz içerik veya telif hakkı ihlali için işaretlendi. Ayrıntılar için bakınız %{links}
         join_project_desc_html: |
           Projeye katılmak, proje küratörlerine bu ya da projedeki diğer gözlemlerin gizli koordinatlarını görme yetkisi verir ve proje <a href="%{url}" target="_blank">şartlarını</a> kabul ettiğin anlamına gelir.
-        quality_assessment_help2_html: |
-          <p>
-          Veri niteliği değerlendirmesi, bir gözlemin doğruluğunun özetidir. Aşağıdaki durumlarda, tüm gözlemler <strong>"sıradan"</strong> sınıf olarak başlar ve <strong>"tanımlama gerekiyor"</strong> hâlini alır:
-          </p>
-
-          <ul>
-          <li>gözlem, <strong>bir tarihe sahiptir</strong></li>
-          <li>gözlem, <strong>coğrafi olarak işaretlenmiştir</strong> (ör. enlem/boylam koordinatları)</li>
-          <li>gözlem, <strong>fotoğraflara ya da seslere sahiptir</strong></li>
-          <li>gözlem, <strong>bir insana ait değildir</strong></li>
-          </ul>
-          <p>
-          Gözlemler aşağıdaki durumda <strong>"araştırma sınıfı"</strong> olur:
-          </p>
-          <ul>
-          <li>
-          %{site_name} topluluğu <strong>tür düzeyinde ya da daha düşük bir düzeyde</strong> tanımlama üzerinde anlaştığında, yani tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde anlaştığında (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceği yönünde oy kullandı ise alt familya düzeyine ya da daha düşük bir düzey tanımlamaya döner).
-          </li>
-          </ul>
-          <p>
-          Sözü edilen koşullar yerine getirilmez ise ya da topluluk kabul eder ise gözlemler <strong>"sıradan"</strong>a dönecektir.
-          </p>
-          <ul>
-          <li>
-          <strong>konum doğru görünmemektedir</strong> (ör. okyanusun ortasındaki maymunlar, ofis binalarındaki su aygırları vb.)
-          </li>
-          <li>
-          <strong>organizma yabani/doğal değildir</strong> (ör. insanlar ya da akıllı uzaylılarca kısıtlanmış ya da ekilmiştir)
-          </li>
-          <li>
-          gözlem, <strong>bir organizma kanıtı sağlamamaktadır</strong>, ör. organizma içermeyen su ögeleri, kayalar, manzaralar vb.
-          </li>
-          <li>
-          gözlem, <strong>organizmaya ilişkin yakın tarihli (~100 yıl) kanıt sağlamamaktadır</strong> (ör. fosiller ancak izler, dışkılar ve ölü yapraklar geçerlidir)
-          </li>
-          <li>
-          gözlemin artık bir tanımlamaya ihtiyacı yoktur <em>ve</em> topluluk tanımlaması familya ya da üzeridir
-          </li>
-          <li>
-          gözlemci topluluk tanımlamasından vazgeçmiştir ve topluluk tanımlaması sınıfı gözlemcinin tanımlaması ile ilişkili sınıfın üst ya da alt soyundan değildir.
-          </li>
-          </ul>
-          <p>
-          Ve bu yeterince karmaşık değil ise sistemin oy aldığı durumlar da vardır:
-          </p>
-          <ul>
-          <li>
-          Sistem; bu gözlemi içeren en küçük ilçe, eyalet ya da ülke eşdeğeri olan yerde, bir cins ya da daha düşük düzey en az 10 gözlem var ise ve bu gözlemlerin %80'i ya da daha çoğu yabani/doğal değil olarak işaretlenmiş ise gözlemin yabani/doğal olmadığı yönünde oy kullanacaktır.
-          </li>
-          </ul>
         score_desc: "puan = toplam sayı / (toplam sayı + uyuşmazlık sayısı + üst soy uyuşmazlıkları)"
         observation_flagged_notice_html: |
           Bu gözlem gereksiz olarak işaretlendi ve artık herkes tarafından görülemiyor. Bunu görebilirsin çünkü sen oluşturdun veya bir site küratörüsün. Bunun bir hata olduğunu düşünüyorsan, lütfen bizimle <a href="mailto:%{help_email}" class="contact">iletişime geç</a>. <a href="/observations/%{observation_id}/flags">İşaretleri düzenle</a>
@@ -6772,6 +6849,8 @@ tr:
         do_you_need_features_from_traditional: |
           Gerçek koordinatlara erişim, özel gözlem alanları veya otomatik olarak filtrelenemeyen 
           bireysel gözlemler ekleme gibi geleneksel projelerden özelliklere mi ihtiyacınız var?
+        do_you_need_features_from_traditional2: |
+          Özel gözlem alanları veya otomatik olarak filtrelenemeyen bireysel gözlemler eklemek gibi geleneksel projelerdeki özelliklere mi ihtiyacın var?
         duplicate_project: Projeyi Kopyala
         include_annotated_observations: |
           Yalnızca belirli bir nitelikle (ör. yaşam evresi) ya da belirli bir nitelik ve değerle (ör. yaşam evresi = yetişkin) açıklanmış gözlemleri dahil et. Proje başına bir açıklama filtresi sınırı vardır.
@@ -6810,7 +6889,7 @@ tr:
         select_native_to_include: |
           Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş sınıfları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Yabancı" olarak işaretlenmiş sınıfları eklemek için "Yabancı"yı seçin.
         select_quality_grade: |
-          En az bir Nitelik Sınıfı seç. Her bir Nitelik Sınıfı için daha çok açıklama <a href="%{url}">SSS sayfamızda</a> bulunabilir.
+          En az bir Kalite Derecesi seç. Her bir Kalite Derecesi için daha çok açıklama <a href="%{url}">SSS sayfamızda</a> bulunabilir.
         show_projects_as_flags: Projeleri haritada işaret olarak göster
         specify_project_filters: |
           Projene hangi gözlemlerin dahil edileceğine ilişkin filtreleri belirt. Otomatik olarak dahil edilecek gözlemler için birden çok tür (ya da sınıf), konum, tarih veya diğer ölçütleri seçebilirsin.
@@ -7026,7 +7105,7 @@ tr:
         store_prompt: |
           iNat'ten duyduğun gururu gittiğin her yerde göstermek ister misin? iNat Mağazası'na göz at!
         sunburst_desc_html: |
-          Gözlemlenen sınıflar hiyerarşik bir "güneş" diyagramı olarak düzenlenmiştir. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlar ve dış kenarlarda türlerle biter. Her bir yayın boyutu o sınıfın gözlem sayısıyla orantılıdır ve renkler kabaca her zamanki "ikonik" sınıf renklerimize karşılık gelir (bitkiler için yeşil, böcekler için turuncu, diğer hayvanların çoğu için mavi vb.), bu nedenle çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğin anlamına gelir. <strong>Sınıfı merkeze ve etrafındaki alt soya yerleştirmek için bir yaya tıkla</strong> ya da <strong>hiyerarşide yukarı çıkmak için merkeze tıkla</strong>.
+          Gözlemlenen sınıflar hiyerarşik bir "güneş patlaması" diyagramı olarak düzenlenmiştir. Hiyerarşinin tabanı merkezdedir, "Yaşam" ile başlar ve dış kenarlardaki türlerle sona erer. Her bir yayın boyutu o sınıfın gözlem sayısıyla orantılıdır ve renkler kabaca bizim alışılagelmiş "ikonik" sınıf renklerimize karşılık gelir (bitkiler için yeşil, böcekler için turuncu, diğer hayvanların çoğu için mavi vb.), yani çok fazla yeşil görüyorsan, bu çok fazla bitki gözlemlediğin anlamına gelir. <strong>Sınıfı; merkeze ve etrafındaki alt soya yerleştirmek için bir yaya tıkla</strong> veya <strong>hiyerarşide geri gitmek için merkeze tıkla</strong>.
         translators_title: Çevirmenler
         translators_desc: |
           iNaturalist'in, bazıları iNat bile kullanmayan neredeyse tamamen
@@ -7115,7 +7194,6 @@ tr:
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
           "Plant Phenology=No Evidence of Flowering": Çiçeklenme Belirtisi Yok
-          "Life Stage=Adult": Yetişkin
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Olgunlaşmamış
@@ -7153,32 +7231,6 @@ tr:
           Sıralamaya sahip sınıfın adı. İnfraspesifik sıralar için rütbe ikili terimden sonra eklenir.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Başka yerlerde kullanılan isimleri eklemeyi deneyin. Lütfen yeni isimler oluşturmayın.</p></li>
-          <li><p>Yinelenen isimler eklemeyin. ör. birçok şahine "şahin" ismini vermeyin</p></li>
-          <li><p>Daha yüksek seviyeli sınıflar için, tüm soy ağacını içeren, "balıkçıllar ve yakınları" veya "sağlıklı familya" gibi isimler kullanmayı deneyin</p></li>
-          <li>
-          <p>
-          İsim olmayan bilgileri eklemeyin, ör. ismin nasıl kullanılması 
-          gerektiğini düşündüğünüz fikir hakkında parantez içi bilgi
-          </p>
-          </li>
-          <li>
-          <p>
-          Yeni sözcükler İngilizce olmalı. Lütfen "French, Français" gibi çevrilmiş 
-          dil isimleri eklemeyin, çünkü bu siteyi farklı dillerde kullanan kişilere yerel 
-          isimler göstermemizi zorlaştırır veya imkansız hale getirir.
-          </p>
-          </li>
-          <li>
-          <p>
-          Tercüme edilmiş dillerle ilişkilendirilmiş yaygın isimler, o dilin varsayılan yaygın 
-          ismi olarak görünecektir (Yer tercihlerinin etkisinin engellenmesi, isim sıralaması, vb.).
-          <a class="readmore" href="/pages/translate">Çeviri hakkında daha fazla bilgi edinin</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:
@@ -7721,6 +7773,7 @@ tr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
+        prefers_exclude_monthly_supporters: Aylık destekçileri hariç tut
         clients: İstemciler
       assessment:
         description: Açıklama
@@ -7959,7 +8012,7 @@ tr:
               #clients attribute that is not a valid client for the
               #annoumcement's placement attribute. This might be used in a
               #sentence like "clients must be valid for specified
-              #placement". Only site admins will see this texxt, so it's ok
+              #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: belirtilen yerleşim için geçerli olmalıdır
         application:
@@ -7996,7 +8049,7 @@ tr:
             action:
               not_supported_for_this_kind_of_content: bu tür içerikler için desteklenmez
             base:
-              only_staff_can_unhide: Gizli içeriği yalnızca yetkili açığa çıkarabilir
+              only_staff_and_hiding_curators_can_unhide: Yalnızca içeriği gizleyen personel ve küratörler gizliliği kaldırabilir
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
@@ -8039,13 +8092,17 @@ tr:
               is_too_large_to_edit: düzenlemek için çok büyük
               is_too_large_to_import: içe aktarmak için çok büyük
               contains_too_many_observations: içe aktarılacak çok fazla gözlem var
+              cannot_be_blank: boş bırakılamaz
+              invalid_point: geçersiz bir noktaya sahiptir, örneğin boylam 180'den büyük veya enlem -90'dan küçük
+              must_have_more_than_three_points: 3'ten fazla noktaya sahip olmalıdır
+              polygon_with_less_than_four_points: 4'ten az noktası olan bir çokgene sahiptir
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: boş olamaz
               invalid_point: geçersiz bir noktaya sahiptir, örneğin boylam 180'den büyük ya da enlem -90'dan küçük
               must_have_more_than_three_points: 3'ten fazla noktaya sahip olmalıdır
-              polygon_with_fewer_than_four_points: 4'ten az noktası olan bir çokgene sahiptir
+              polygon_with_less_than_four_points: 4'ten az noktası olan bir çokgene sahiptir
         post:
           attributes:
             parent:

@@ -14,36 +14,8 @@ module Shared
       locale = @site.locale if @site && locale.blank?
       locale = locale_from_header if locale.blank?
       locale = I18n.default_locale if locale.blank?
-      # Remove calendar stuff
-      locale = locale.to_s.sub( /@.*/, "" )
-      if locale =~ /-[a-z]/
-        pieces = locale.split( "-" )
-        locale = "#{pieces[0].downcase}-#{pieces[1].upcase}"
-      end
-      I18n.locale = locale
-      # Handle outdated locale code for Hebrew
-      if I18n.locale.to_s == "iw"
-        I18n.locale = I18n.locale.to_s.sub( "iw", "he" ).to_sym
-      end
-      if I18n.locale.to_s.starts_with?( "zh-" )
-        # Map script subtags for Chinese to relevant Crowdin locales
-        if I18n.locale.to_s.include?( "Hans" )
-          I18n.locale = "zh-CN"
-        elsif I18n.locale.to_s.include?( "Hant-HK" )
-          I18n.locale = "zh-HK"
-        elsif I18n.locale.to_s.include?( "Hant" )
-          I18n.locale = "zh-TW"
-        end
-      end
-      # Fall back to language code if language-region combo isn't supported
-      unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-        I18n.locale = I18n.locale.to_s.split( "-" ).first
-      end
-      # Set to default if locale isn't supported
-      unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-        I18n.locale = I18n.default_locale
-      end
-      @rtl = params[:test] == "rtl" && ["ar", "fa", "he"].include?( I18n.locale.to_s )
+      I18n.locale = normalize_locale( locale )
+      @rtl = params[:test] == "rtl" || current_user&.in_test_group?( "rtl" )
       true
     end
 

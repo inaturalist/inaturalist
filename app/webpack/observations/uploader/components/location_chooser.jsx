@@ -194,7 +194,7 @@ class LocationChooser extends SelectionBasedComponent {
                   className="form-control"
                   key="radius"
                   type="text"
-                  value={radius || ""}
+                  value={( radius || radius === 0 ) ? radius : ""}
                   placeholder={this.placeholder( "accuracy" )}
                   onChange={e => this.update( "radius", e )}
                 />

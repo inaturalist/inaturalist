@@ -11,6 +11,7 @@ class IdentificationsController < ApplicationController
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
   }
+  prepend_around_action :enable_replica, only: [:by_login]
 
   def index
     per_page = 50
@@ -105,11 +106,23 @@ class IdentificationsController < ApplicationController
       h._source.id
     end
     # fetch the Identification instances and preload
-    instances = Identification.where(id: ids).order(id: :desc).includes(
-      { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
-      { taxon: [{taxon_names: :place_taxon_names}, :photos] },
-      :user
-    )
+    instances = Identification.where( id: ids ).order( id: :desc ).includes( {
+      observation: [
+        { identifications: :moderator_actions },
+        :user,
+        { photos: [:file_prefix, :file_extension, :flags, :moderator_actions] },
+        { taxon: [
+          { taxon_names: :place_taxon_names },
+          :photos
+        ] }
+      ]
+    }, {
+      taxon: [
+        { taxon_names: :place_taxon_names },
+        { photos: [:file_prefix, :file_extension, :flags, :moderator_actions] }
+      ]
+    },
+      :user, :moderator_actions )
     # turn the instances into a WillPaginate Collection
     @identifications = WillPaginate::Collection.create(params[:page], limited_per_page,
       result.response.hits.total.value) do |pager|
@@ -183,13 +196,19 @@ class IdentificationsController < ApplicationController
           end
           redirect_to @identification.observation and return
         end
-        
+
         format.json do
-          @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
-          render :json => @identification.to_json(
-            :methods => [:html, :vision], 
-            :include => {
-              :observation => {:methods => [:iconic_taxon_name]}
+          response_methods = [:vision]
+          unless params[:no_html]
+            @identification.html = view_context.render_in_format(
+              :html, partial: "identifications/identification"
+            )
+            response_methods << :html
+          end
+          render json: @identification.to_json(
+            methods: response_methods,
+            include: {
+              observation: { methods: [:iconic_taxon_name] }
             }
           ).html_safe
         end

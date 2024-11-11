@@ -1,0 +1,57 @@
+- content_for :title do
+  =t :observation_accuracy_experiment_observation_accuracy_experiment
+
+- content_for :extrajs do
+  = javascript_include_tag "observation_accuracy_experiments/show"
+
+- content_for :extracss do
+  = stylesheet_link_tag "observation_accuracy_experiments/show"
+.container
+  #tab-container{ data: { tab: @tab } }
+  #validator-container{ data: { validator_count: @experiment.responding_validators } }
+  .row
+    .col-xs-12
+      - if @experiment.validator_deadline_date > Time.now
+        .alert.alert-warning{role: "alert"}
+          =t :observation_accuracy_experiment_experiment_still, date: l( @experiment.validator_deadline_date.to_date, format: :long )
+      %h1
+        =t :observation_accuracy_experiment_observation_accuracy_experiment
+        ="(#{@experiment.version})"
+  - if !@experiment.sample_generation_date || !@experiment.assessment_date
+    =t :observation_accuracy_experiment_the_sample_for
+  - else
+    .row
+      .col-xs-12
+        -if @experiment.assessment_date
+          %h4= l( @experiment.assessment_date.to_date, format: :long )
+        -if @experiment.responding_validators > 0 && @experiment.validator_deadline_date < Time.now
+          %p
+            =t :observation_accuracy_experiment_validators
+            - @validators << {name: "", id: 0} if ( @experiment.responding_validators > 20 )
+            = @validators.map { |user| link_to( user[:name], user_path( user[:id] ) ) }.join( ", " ).html_safe
+            - if @experiment.responding_validators > 20
+              %span#additional-validators
+                =t :observation_accuracy_experiment_additional_validators, number: @experiment.responding_validators - 20
+            %span#hide_validators=t :observation_accuracy_experiment_hide_additional_validators
+        %p
+          =t :observation_accuracy_experiment_abstract,
+            sample_generation_date: l( @experiment.sample_generation_date.to_date, format: :long ),
+            deadline_date: l( @experiment.validator_deadline_date.to_date, format: :long ),
+            assessment_date: l( @experiment.assessment_date.to_date, format: :long )
+
+        .nav.nav-tabs
+          %li.nav-item{class: ( "active" if @tab == "research_grade_results" )}
+            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "research_grade_results" )}
+              =t :observation_accuracy_experiment_research_grade_results
+          %li.nav-item{class: ( "active" if @tab == "verifiable_results" )}
+            %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "verifiable_results" )}
+              =t :observation_accuracy_experiment_verifiable_results
+          %li.nav-item{class: ( "active" if @tab == "all_results" )}
+            %a.nav-link{href: observation_accuracy_experiment_path(@experiment, tab: "all_results" )}
+              =t :observation_accuracy_experiment_all_results
+          %li.nav-item{class: ( "active" if @tab == "methods" )}
+            %a.nav-link{href: observation_accuracy_experiment_path( @experiment, tab: "methods" )}
+              =t :observation_accuracy_experiment_methods
+    #methods
+      .spinner-container(style="display: block; margin: 100px auto 0 auto;")
+        = image_tag('spinner.gif', class: 'spinner', style: 'display: block; margin: auto;')

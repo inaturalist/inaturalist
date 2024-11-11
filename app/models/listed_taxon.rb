@@ -561,22 +561,24 @@ class ListedTaxon < ApplicationRecord
   def cache_columns
     return unless list
     return unless list.is_a?( CheckList )
+
     Logstasher.write_hash(
       "@timestamp": Time.now,
       subtype: "ListedTaxon#cache_columns",
       model: "ListedTaxon",
-      model_id: self.id,
+      model_id: id,
       model_method: "ListedTaxon::cache_columns"
     )
     # get the specific options for this list type
-    options = list.cache_columns_options(self)
-    ListedTaxon.earliest_and_latest_ids(options)
+    options = list.cache_columns_options( self )
+    ListedTaxon.earliest_and_latest_ids( options )
   end
 
-  def self.earliest_and_latest_ids(options)
+  def self.earliest_and_latest_ids( options )
     earliest_id = nil
     latest_id = nil
-    return [ nil, nil, 0 ] unless options[:filters]
+    return [nil, nil, 0] unless options[:filters]
+
     search_params = { filters: options[:filters].dup }
     search_params[:size] = 1
     if options[:range_filters]
@@ -585,44 +587,40 @@ class ListedTaxon < ApplicationRecord
     begin
       # fetch the total and the earliest and latest observations
       # in a single ES query with the top_hits aggregation
-      rs = Observation.elastic_search(search_params.merge(
+      rs = Observation.elastic_search( search_params.merge(
         size: 0,
         track_total_hits: true,
         aggregate: {
           earliest: {
-            top_hits: {
-              sort: [
-                { (options[:earliest_sort_field] || "observed_on") => { order: "asc", unmapped_type: "long" } },
-                { id: :asc }
-              ],
-              _source: { includes: [ "id" ] },
-              size: 1
+            top_metrics: {
+              sort: {
+                options[:earliest_sort_field] || "observed_on" => "asc"
+              },
+              metrics: { field: "id" }
             }
           },
           latest: {
-            top_hits: {
-              sort: [
-                { observed_on: { order: "desc", unmapped_type: "long" } },
-                { id: :desc }
-              ],
-              _source: { includes: [ "id" ] },
-              size: 1
+            top_metrics: {
+              sort: {
+                observed_on: "desc"
+              },
+              metrics: { field: "id" }
             }
           }
         }
-      ))
-      if rs && rs.total_entries > 0 && rs.response.aggregations
-        earliest_id = rs.response.aggregations.earliest.hits.hits[0]._source.id
-        latest_id = rs.response.aggregations.latest.hits.hits[0]._source.id
+      ) )
+      if rs&.total_entries&.positive? && rs.response.aggregations
+        earliest_id = rs.response.aggregations.earliest.top[0].metrics.id
+        latest_id = rs.response.aggregations.latest.top[0].metrics.id
         total = rs.total_entries
       end
-      [ earliest_id, latest_id, total || 0]
-    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
-           Elasticsearch::Transport::Transport::Errors::BadRequest => e
-      Logstasher.write_exception(e, reference: "ListedTaxon.earliest_and_latest_ids failed")
-      Rails.logger.error "[Error] ListedTaxon::earliest_and_latest_ids failed: #{ e }"
-      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-      [ nil, nil, 0 ]
+      [earliest_id, latest_id, total || 0]
+    rescue Elastic::Transport::Transport::Errors::NotFound,
+           Elastic::Transport::Transport::Errors::BadRequest => e
+      Logstasher.write_exception( e, reference: "ListedTaxon.earliest_and_latest_ids failed" )
+      Rails.logger.error "[Error] ListedTaxon::earliest_and_latest_ids failed: #{e}"
+      Rails.logger.error "Backtrace:\n#{e.backtrace[0..30].join( "\n" )}\n..."
+      [nil, nil, 0]
     end
   end
 

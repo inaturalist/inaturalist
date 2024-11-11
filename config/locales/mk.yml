@@ -161,30 +161,6 @@ mk:
   about_this_bioblitz: За овој биоблиц
   about_this_map: За картава
   about_this_project: За проектов
-  about_trips_html: |
-    <h4>
-    Патувањата овозможува собирање на податоци за присуство или отсуство со додавање на контекст кон вашите набљудувања
-    </h4>
-    <p>
-    <strong>Зошто</strong> Податоците за присуство или отсуство вклучуваат информации
-    за напорите за примерочење кои се корисни во научната анализа како
-    моделирање на распространетоста (сировите набљудувања на iNaturalist се само податоци за присуство).
-    </p>
-    <p>
-    <strong>Како</strong> Патувањето им дава контекст на вашите набљудувања, евидентирајќи:
-    </p>
-    <ul>
-    <li><strong>Како</strong> пребарувавте for (целниот список)</li>
-    <li><strong>Каде</strong> пребарувавте (покриеното подрачје)</li>
-    <li><strong>Кога</strong> пребарувавте (временскиот интервал)</li>
-    </ul>
-    <p>
-    Видовите на вашиот целен список кои успеавте да ги забележите во
-    рамките на подрачјето на пребарување и интервалот се толкуваат како присуства. 
-    Оние што не сте ги забележале се толкуваат како отсуства. Стиснете на „Внеси во таблица на присуства и отсуства на патувања“ за да создадете
-    табела со таква евиденција за видовите од патувањата и тие
-    набљудувања. <a href='%{url}'>Дознајте повеќе</a>
-    </p>
   about_trusting_projects: За довербата во проекти
   about_trusting_projects_options_any: Сите баши набљудувања на овој проект
   #Header for a section describing unintended disagreements
@@ -648,6 +624,7 @@ mk:
   everyone: сите
   everyone_journal_posts: Сечии дневнички објави
   everywhere: насекаде
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точен ранг
   exit_full_screen: "Излези од цел екран"
   explore: Истражете
@@ -691,6 +668,7 @@ mk:
   flagger: Обележал
   flickr_account_information: Информации за вашата сметка на Flickr
   flickr_tags: Ознаки на Flickr
+  #Text for a button to follow updates from a specific user
   follow_user: "Следи го/ја %{user}"
   following: следач
   for_a_taxon: за таксон
@@ -731,6 +709,8 @@ mk:
   help: Помош
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   hex_color_eg: Хексадецимална боја, на пр. 65644F
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Највисок ранг
   home: Почетна
   icon_size: Големина на иконата
@@ -745,7 +725,6 @@ mk:
   identotron: Идентотрон
   identotron_for: Идентотрон за
   identotron_help: Помош со Идентотрон
-  ids_made_for_others: Препознавања направени за други
   import: Увези
   import_all_photos_as_observations: Увези ги сите слики како набљудувања
   import_as_an_observation: Увези како набљудување
@@ -980,6 +959,8 @@ mk:
   look_up_name: "Побарај го името"
   looks_like_neither_have!: Изгледа обете немаат никакви таксони!
   lookup: Побарај
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Најнизок ранг
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Главна содржина
@@ -1157,6 +1138,7 @@ mk:
   on_day: "на"
   one_by_one: "Еден по еден"
   one_of_your_lists: "еден од вашите списоци..."
+  #Geoprivacy status in which no privacy has been applied
   open: отворено
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -1361,7 +1343,11 @@ mk:
   publish: Објави
   quality_grade: Квалитет
   quality_grade_colon: "Квалитет:"
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -1545,8 +1531,6 @@ mk:
   store_caps: ПРОДАВНИЦА
   stuff_just_added: "Работи кои штотуку ги додадовте..."
   subject_resolved_noun_html: "%{subject} го реши %{noun}"
-  subject_affecting_stuff_html: "%{subject} што се однесува на %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} спроведе %{thing} што се однесува на %{stuff}"
   submitted: Поднесено
   subscribe_to_this: Претплати се на ова
   summary: Преглед
@@ -1632,10 +1616,10 @@ mk:
   user_added_an_x_to_noun_by_html: "%{user} додаде %{x} во %{noun} од %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} додаде %{x} во %{noun}"
-  user_added_x_observations_html: "%{user} додаде %{x} набљудувања"
   username: Корисничко име
   users: Корисници
   users_profile: "Профилот на %{user}"
+  video_tutorials: Видеоупатства
   view: Погл.
   view_all: Погл. сите
   view_all_members: Погл. сите членови
@@ -1674,7 +1658,6 @@ mk:
   view_taxon_page: Погл. таксонска промена
   view_your_dashboard: Погл. вашиот прегледник
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Погледајте го вашиот прегледник</a> за повеќе новини"
-  video_tutorials: Видеоупатства
   vulnerable: ранлив
   w_photos_only: со слики
   w_sounds: со звуци

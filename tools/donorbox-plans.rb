@@ -18,7 +18,14 @@ opts = Optimist.options do
   opt :dry, "Dry run, don't actually change anything", type: :boolean
   opt :email, "Filter results by Donorbox donor email", type: :string
   opt :donor_id, "Filter results by Donorbox donor ID", type: :string
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "sync" )
+end
+
+task_logger&.start
 
 start = Time.now
 if !CONFIG.donorbox || !CONFIG.donorbox.email || !CONFIG.donorbox.key
@@ -162,3 +169,5 @@ puts
 puts "#{num_plans} donors, #{num_updated_users} users udpated, " \
   "#{num_invalid_users} invalid users in #{Time.now - start}s"
 puts
+
+task_logger&.end

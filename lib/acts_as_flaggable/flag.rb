@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Flag < ApplicationRecord
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -25,11 +25,14 @@ class Flag < ApplicationRecord
   has_subscribers to: {
     comments: { notification: "activity", include_owner: true }
   }
-  notifies_subscribers_of :self, notification: "activity", include_owner: true,
+  notifies_subscribers_of :self,
+    notification: "activity",
+    include_owner: true,
+    include_notifier: true,
     on: :update,
-    queue_if: proc {| flag |
+    unless: proc {| flag |
       # existing flag whose comment has been changed
-      !flag.saved_change_to_id && flag.saved_change_to_comment
+      flag.saved_change_to_id || !flag.saved_change_to_comment
     }
   auto_subscribes :resolver, on: :update, if: proc {| record, _resource |
     record.saved_change_to_resolved? && !record.resolver.blank? &&
@@ -215,12 +218,18 @@ class Flag < ApplicationRecord
     end
   end
 
-  def flaggable_content_viewable_by?( user )
+  def viewable_by?( user )
     if flaggable_type == "Message" && !( user && user.is_admin? )
       return false
     end
 
-    !flaggable_content.blank? && user && user.is_curator?
+    return true if user&.is_curator?
+
+    false
+  end
+
+  def flaggable_content_viewable_by?( user )
+    !flaggable_content.blank? && viewable_by?( user )
   end
 
   def deletable_by?( user )

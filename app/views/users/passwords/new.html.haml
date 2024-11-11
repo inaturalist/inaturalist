@@ -1,4 +1,4 @@
-= form_for( resource, as: resource_name, url: password_path( resource_name ), html: { novalidate: true } ) do |f|
+= form_for( resource, as: resource_name, url: password_path( resource_name ) ) do |f|
   %h1= t :forgot_your_password
   .form-group.text-field.email
     = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :email ), type: "email", class: "form-control"

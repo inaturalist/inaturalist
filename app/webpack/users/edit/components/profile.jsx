@@ -9,6 +9,9 @@ import SettingsItem from "./settings_item";
 import ChangePasswordContainer from "../containers/change_password_container";
 import UserImage from "../../../shared/components/user_image";
 
+const DESCRIPTION_WARNING_LENGTH = 8000;
+const MAX_DESCRIPTION_LENGTH = 10000;
+
 const Profile = ( {
   profile,
   handleInputChange,
@@ -20,6 +23,7 @@ const Profile = ( {
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
+  const descriptionLength = ( profile.description || "" ).length;
 
   const showFileDialog = ( ) => iconDropzone.current.open( );
 
@@ -38,12 +42,15 @@ const Profile = ( {
 
   const showError = ( errorType, attribute ) => {
     const errors = profile.errors && profile.errors[errorType];
-
+    let errorTranslationKey = attribute || errorType;
+    if ( errorTranslationKey === "description" ) {
+      errorTranslationKey = "bio";
+    }
     return (
       <div className={!errors ? "hidden" : null}>
         {errors && profile.errors[errorType].map( reason => (
           <div className="error-message" key={reason}>
-            {`${I18n.t( attribute || errorType )} ${reason}`}
+            {`${I18n.t( errorTranslationKey )} ${reason}`}
           </div>
         ) )}
       </div>
@@ -51,7 +58,7 @@ const Profile = ( {
   };
 
   const unconfirmedEmailAlert = (
-    <div className="alert alert-warning">
+    <div className="alert alert-warning alert-mini">
       <span
         dangerouslySetInnerHTML={{
           __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
@@ -83,7 +90,7 @@ const Profile = ( {
   } else if ( !profile.confirmed_at ) {
     emailConfirmation = (
       <div
-        className={`alert alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
+        className={`alert alert-mini alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
       >
         {
           profile.confirmation_sent_at
@@ -203,6 +210,7 @@ const Profile = ( {
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
+          {showError( "name" )}
           <input
             id="user_name"
             type="text"
@@ -214,7 +222,21 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
-          <textarea id="user_description" className="form-control user-description" value={profile.description || ""} name="description" onChange={handleInputChange} />
+          {showError( "description" )}
+          <textarea
+            id="user_description"
+            className="form-control user-description"
+            value={profile.description || ""}
+            name="description"
+            onChange={handleInputChange}
+          />
+          {
+            descriptionLength > DESCRIPTION_WARNING_LENGTH && (
+              <div className="text-muted small chars-remaining">
+                { I18n.t( "x_of_y_short", { x: descriptionLength, y: MAX_DESCRIPTION_LENGTH } )}
+              </div>
+            )
+          }
         </SettingsItem>
         <SettingsItem header={I18n.t( "badges" )} htmlFor="user_prefers_monthly_supporter_badge">
           <CheckboxRowContainer

@@ -1,8 +1,9 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Place < ApplicationRecord
   acts_as_flaggable
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
     self.uuid ||= SecureRandom.uuid
@@ -196,6 +197,8 @@ class Place < ApplicationRecord
   TOWN_LEVEL = 30
   PARK_LEVEL = 100
   ADMIN_LEVELS = [CONTINENT_LEVEL, REGION_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
+
+  IMPORT_TIMEOUT_SECONDS = 100
 
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
@@ -423,6 +426,7 @@ class Place < ApplicationRecord
 
   def remove_default_check_list
     return unless check_list
+
     check_list.listed_taxa.delete_all
     check_list.destroy
   end
@@ -436,14 +440,34 @@ class Place < ApplicationRecord
       # This probably means GeoRuby parsed some polygons but RGeo didn't think
       # they looked like a multipolygon, possibly because of overlapping
       # polygons or other problems
-      add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
+      add_custom_error(
+        :base,
+        "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues."
+      )
+      return false
+    end
+
+    # run the validations that will eventually be run when this geom is turned into a PlaceGeometry
+    # for this place. This will catch additional geom errors before attempting to query the DB
+    # for observations in this place, which can cause problems with some invalid geometries
+    stub_place_geometry = PlaceGeometry.new( geom: geom, place: Place.new )
+    unless stub_place_geometry.valid?
+      add_custom_error( :place_geometry, stub_place_geometry.errors.first.type )
       return false
     end
 
     if max_observation_count
-      observation_count = Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count
-      if observation_count > max_observation_count
-        add_custom_error(:place_geometry, :contains_too_many_observations)
+      begin
+        Observation.transaction do
+          Observation.connection.execute( "SET LOCAL statement_timeout = #{IMPORT_TIMEOUT_SECONDS * 1000}" )
+          observation_count = Observation.where( "ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text ).count
+          if observation_count > max_observation_count
+            errors.add( :place_geometry, :contains_too_many_observations )
+            return false
+          end
+        end
+      rescue ActiveRecord::QueryCanceled
+        errors.add( :place_geometry, :is_too_large_or_complicated )
         return false
       end
     end
@@ -458,7 +482,7 @@ class Place < ApplicationRecord
 
     true
   end
-  
+
   # Update the associated place_geometry or create a new one
   def save_geom( geom, max_area_km2: nil, max_observation_count: nil, **other_attrs )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )

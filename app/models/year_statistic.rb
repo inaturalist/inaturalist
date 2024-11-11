@@ -55,6 +55,16 @@ class YearStatistic < ApplicationRecord
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
+        # There shouldn't be *legit* records from before 1900
+        leaf_taxa_counts_by_year_observed: ( 1900..year ).to_a.reverse.each_with_object( {} ) do | count_year, memo |
+          count = leaf_taxa_count( count_year, options )
+          memo[count_year] = count if count.positive?
+        end,
+        # This should probably be from 2008, but I think there are some back-dated nz records
+        leaf_taxa_counts_by_year_added: ( 2000..year ).to_a.reverse.each_with_object( {} ) do | count_year, memo |
+          count = leaf_taxa_count( count_year, options.merge( date_field: "created_at" ) )
+          memo[count_year] = count if count.positive?
+        end,
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
         accumulation: observed_species_accumulation(
           {
@@ -148,6 +158,17 @@ class YearStatistic < ApplicationRecord
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
+        # Assume no one over the age of 120 is generating a YIR
+        leaf_taxa_counts_by_year_observed: ( ( year - 120 )..year ).to_a.reverse.
+          each_with_object( {} ) do | count_year, memo |
+            count = leaf_taxa_count( count_year, options.merge( user: user ) )
+            memo[count_year] = count if count.positive?
+          end,
+        leaf_taxa_counts_by_year_added: ( user.created_at.year..year ).to_a.
+          reverse.each_with_object( {} ) do | count_year, memo |
+            count = leaf_taxa_count( count_year, options.merge( user: user, date_field: "created_at" ) )
+            memo[count_year] = count if count.positive?
+          end,
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
         accumulation: observed_species_accumulation(
@@ -380,6 +401,13 @@ class YearStatistic < ApplicationRecord
       else
         params[:site_id] = site.id
       end
+    end
+    if options[:date_field] == "created_at"
+      new_params = params.clone
+      new_params.delete( :year )
+      new_params[:created_d1] = "#{year}-01-01"
+      new_params[:created_d2] = "#{year}-12-31"
+      params = new_params
     end
     # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
     JSON.parse( INatAPIService.get_json( "/observations/species_counts", params,
@@ -660,8 +688,8 @@ class YearStatistic < ApplicationRecord
     run_cmd "composite -gravity center #{circle_icon_path} #{ellipse_montage_path} #{montage_with_icon_path}"
 
     # Add the text
-    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
-    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+    light_font_path = File.join( Rails.root, "public", "fonts", "Lato-Light.ttf" )
+    medium_font_path = File.join( Rails.root, "public", "fonts", "Lato-Medium.ttf" )
     final_path = File.join( work_path, "final.jpg" )
     owner = if user
       user.name.blank? ? user.login : user.name
@@ -809,9 +837,9 @@ class YearStatistic < ApplicationRecord
       bucketer,
       [histogram_params],
       [
-        Elasticsearch::Transport::Transport::Errors::BadRequest,
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-        Elasticsearch::Transport::Transport::Errors::TooManyRequests,
+        Elastic::Transport::Transport::Errors::BadRequest,
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::TooManyRequests,
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception|Data too large)/ },
@@ -894,8 +922,9 @@ class YearStatistic < ApplicationRecord
       year: year,
       limit: 50
     }
-    gbif_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
-    response = JSON.parse( RestClient.get( gbif_url ) )
+    gbif_api_url = "#{gbif_endpoint}?#{gbif_params.to_query}"
+    gbif_web_url = "https://www.gbif.org/resource/search?contentType=literature&#{gbif_params.to_query}"
+    response = JSON.parse( RestClient.get( gbif_api_url ) )
 
     new_results = []
     response["results"].each do | result |
@@ -940,7 +969,7 @@ class YearStatistic < ApplicationRecord
 
     {
       results: new_results.sort_by {| result | result["altmetric_score"].to_f * -1 }[0..5],
-      url: gbif_url,
+      url: gbif_web_url,
       count: response["count"]
     }
   end
@@ -1073,7 +1102,7 @@ class YearStatistic < ApplicationRecord
       streak_bucketer,
       base_query,
       [
-        Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
+        Elastic::Transport::Transport::Errors::ServiceUnavailable,
         Faraday::TimeoutError
       ],
       exception_checker: proc {| e | e.message =~ /(timed out|too_many_buckets_exception)/ },
@@ -1228,76 +1257,155 @@ class YearStatistic < ApplicationRecord
     end.compact
   end
 
+  def self.crowdin_project_details( project )
+    begin
+      call_crowdin_api( "https://api.crowdin.com/api/v2/projects/#{project.id}" )
+    rescue StandardError => e
+      Rails.logger.error "Failed to fetch CrowdIn project details for #{project.id}: #{e}"
+    end
+  end
+
+  def self.call_crowdin_api( url, body: nil )
+    return unless CONFIG.crowdin&.api_key
+
+    uri = URI.parse( url )
+    Timeout.timeout( 20 ) do
+      http = Net::HTTP.new( uri.host, uri.port )
+      http.use_ssl = true
+      response = if body
+        request = Net::HTTP::Post.new(
+          uri.request_uri,
+          "Content-Type": "application/json",
+          Authorization: "Bearer #{CONFIG.crowdin.api_key}"
+        )
+        request.body = body.to_json
+        http.request( request )
+      else
+        http.get( uri.request_uri, {
+          Authorization: "Bearer #{CONFIG.crowdin.api_key}"
+        } )
+      end
+      if ["200", "201"].include?( response.code )
+        return JSON.parse( response.body.force_encoding( "utf-8" ) )
+      end
+    end
+  end
+
+  def self.append_crowdin_user_data( data, project, top_members_schema, schema_languages )
+    schema_languages.each do | schema_language |
+      begin
+        report_create_response = call_crowdin_api(
+          "https://api.crowdin.com/api/v2/projects/#{project.id}/reports",
+          body: {
+            name: "top-members",
+            schema: top_members_schema.merge( {
+              languageId: schema_language
+            } )
+          }
+        )
+        next unless report_create_response && report_create_response["data"]
+
+        report_identifier = report_create_response["data"]["identifier"]
+        10.times do
+          sleep( 1 )
+          report_status = call_crowdin_api(
+            "https://api.crowdin.com/api/v2/projects/#{project.id}/reports/#{report_identifier}"
+          )
+          break unless report_status && report_status["data"]
+          next unless report_status["data"]["finishedAt"]
+
+          report_download = call_crowdin_api(
+            "https://api.crowdin.com/api/v2/projects/#{project.id}/reports/#{report_identifier}/download"
+          )
+          break unless report_download && report_download["data"]
+
+          report_url = report_download["data"]["url"]
+          report_contents = JSON.parse( RestClient.get( report_url ) )
+          break unless report_contents["data"]
+
+          append_language_report_user_counts( report_contents, data, project )
+          break
+        end
+      rescue StandardError => e
+        Rails.logger.error "Failed to fetch CrowdIn languages: #{e}"
+      end
+    end
+  end
+
+  def self.append_language_report_user_counts( report_contents, data, project )
+    staff_usernames = User.admins.pluck( :login ) + %w(alexinat inaturalist)
+    report_contents["data"].each do | user_data |
+      next if staff_usernames.include?( user_data["user"]["username"] )
+      next unless user_data["translated"]&.positive?
+
+      username ||= user_data["user"]["username"]
+      data[:users][username] ||= {}
+      data[:users][username][:name] ||= user_data["user"]["fullName"].gsub( /\(.+\)/, "" ).strip
+      data[:users][username]["words_#{project.name}"] ||= 0
+      data[:users][username]["words_#{project.name}"] += user_data["translated"]
+      data[:users][username]["approved_#{project.name}"] ||= 0
+      data[:users][username]["approved_#{project.name}"] += user_data["approved"]
+      data[:users][username][:languages] ||= []
+      user_data["languages"].each do | language |
+        data[:users][username][:languages] << language["name"]
+      end
+      data[:users][username][:languages].uniq!
+      data[:users][username][:languages].sort!
+    end
+    data
+  end
+
   def self.translators( year, options = {} )
     if options[:debug]
       puts "[#{Time.now}] translators, year: #{year}, options: #{options}"
     end
     return unless CONFIG.crowdin&.projects
+    return unless CONFIG.crowdin&.api_key
 
-    locale_to_ci_code = {
+    locale_to_crowdin_language_id = {
       "es" => "es-ES",
       "pt" => "pt-PT"
     }
     data = { languages: {}, users: {} }
-    staff_usernames = User.admins.pluck( :login ) + %w(alexinat inaturalist)
-    CONFIG.crowdin.projects.to_h.each_key do | project_name |
-      project = CONFIG.crowdin.projects.send( project_name )
-      info_r = RestClient.get(
-        "https://api.crowdin.com/api/project/#{project.identifier}/info?key=#{project.key}&json"
-      )
-      info_j = JSON.parse( info_r )
+    CONFIG.crowdin.projects.each_pair do | project_name, project |
+      project.name = project_name
+      details = crowdin_project_details( project )
       translated_locales = I18n.t( "locales" ).keys.map( &:to_s )
-      info_j["languages"].each do | lang |
+      details["data"]["targetLanguages"].each do | lang |
         next if data[:languages][lang[:name]]
 
         data[:languages][lang["name"]] = {}
         data[:languages][lang["name"]]["name"] = lang["name"]
-        data[:languages][lang["name"]]["code"] = lang["code"]
-        if translated_locales.include?( lang["code"] )
-          data[:languages][lang["name"]][:locale] = lang["code"]
-          locale_to_ci_code[lang["code"].to_s] ||= lang["code"]
-        elsif ( two_letter = lang["code"].split( "-" )[0] ) && translated_locales.include?( two_letter )
+        data[:languages][lang["name"]]["code"] = lang["locale"]
+        if translated_locales.include?( lang["locale"] )
+          data[:languages][lang["name"]][:locale] = lang["locale"]
+          locale_to_crowdin_language_id[lang["locale"].to_s] ||= lang["id"]
+        elsif ( two_letter = lang["locale"].split( "-" )[0] ) && translated_locales.include?( two_letter )
           data[:languages][lang["name"]][:locale] = two_letter
-          locale_to_ci_code[two_letter.to_s] ||= lang["code"]
+          locale_to_crowdin_language_id[two_letter.to_s] ||= lang["id"]
         end
       end
-      export_params = {
-        key: project.key,
-        json: true,
-        format: "csv",
-        date_from: "#{year - 1}-01-01+00:00",
-        date_to: "#{year}-12-31+23:00"
+      top_members_schema = {
+        unit: "words",
+        format: "json",
+        dateFrom: "#{year}-01-01T00:00:00+00:00",
+        dateTo: "#{year}-12-31T23:59:59+00:00"
       }
-      if options[:site]&.locale
-        export_params[:language] = locale_to_ci_code[options[:site].locale]
+      next if options[:site] && options[:site].locale.blank?
+
+      schema_languages = if options[:site]&.locale
+        [locale_to_crowdin_language_id[options[:site].locale]]
+      else
+        data[:languages].values.
+          select {| l | l[:locale] }.
+          map {| l | locale_to_crowdin_language_id[l[:locale]] }.sort
       end
-      export_r = RestClient.post(
-        "https://api.crowdin.com/api/project/#{project.identifier}/reports/top-members/export",
-        export_params
+      append_crowdin_user_data(
+        data,
+        project,
+        top_members_schema,
+        schema_languages
       )
-      export_j = JSON.parse( export_r )
-      next unless export_j["success"]
-
-      report_r = RestClient.get(
-        "https://api.crowdin.com/api/project/#{project.identifier}/reports/top-members/download?key=#{project.key}&hash=#{export_j['hash']}"
-      )
-      CSV.parse( report_r, headers: true ).each do | row |
-        next unless row["Languages"]
-        next if staff_usernames.include?( row["Name"] )
-
-        username = row["Name"][/\((.+)\)/, 1]
-        next if staff_usernames.include?( username )
-
-        languages = row["Languages"].split( ";" ).map( &:strip ).grep_v( /English/ )
-        next if languages.blank?
-
-        username ||= row["Name"]
-        data[:users][username] ||= {}
-        data[:users][username][:name] ||= row["Name"].gsub( /\(.+\)/, "" ).strip
-        data[:users][username]["words_#{project_name}"] = row["Translated (Words)"].to_i
-        data[:users][username]["approved_#{project_name}"] = row["Approved (Words)"].to_i
-        data[:users][username][:languages] = languages
-      end
     end
     data
   end

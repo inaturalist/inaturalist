@@ -285,8 +285,6 @@ pl:
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
-  about_trips_html: |
-    <h4>Wycieczki pozwalają na zbieranie danych o obecnych i nieobecnych gatunkach poprzez dodanie szerszego kontekstu do obserwacji</h4><p><strong>Dlaczego</strong>Dane obecnych-nieobecnych zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie "obecności" danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć są oznaczone jako nieobecne. Kliknij 'Generuj tabelę z obecnymi i nieobecnymi podczas wycieczek', aby utworzyć tabelę obecnych-nieobecnych dla gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
   about_trusting_projects: O ufaniu projektom
   about_trusting_projects_options_any: Wszystkich swoich obserwacji w tym projekcie
   about_trusting_projects_options_any_desc: |-
@@ -368,6 +366,8 @@ pl:
   add_annotations_for_controlled_attribute:
     sex: Dodaj adnotacje dla "Płeć"
     plant_phenology: Dodaj adnotacje dla "Fenologia roślin"
+    flowers_and_fruits: Dodaj adnotacje dla "Kwiaty i owoce"
+    leaves: Dodaj adnotację dla "Ulistnienie"
     life_stage: Dodaj adnotacje dla "Stadium rozwoju"
     evidence_of_presence: Dodaj adnotacje dla "Ślad obecności"
   add_another_flag: Dodaj kolejne zgłoszenie
@@ -423,6 +423,14 @@ pl:
   add_plant_phenology_flowering_annotation: 'Dodaj adnotację "Fenologia roślin: Kwitnie"'
   add_plant_phenology_fruiting_annotation: 'Dodaj adnotację "Fenologia roślin: Owocuje"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Dodaj adnotację „Fenologia roślin: Brak śladu kwitnienia”'
+  add_flowers_and_fruits_flower_buds_annotation: 'Dodaj adnotację "Kwiaty i owoce: pąki kwiatowe"'
+  add_flowers_and_fruits_flowers_annotation: 'Dodaj adnotację "Kwiaty i owoce: kwiaty"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Dodaj adnotację "Kwiaty i owoce: owoce i nasiona"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Dodaj adnotację "Kwiaty i owoce: bez kwiatów ani owoców"'
+  add_leaves_breaking_leaf_buds: 'Dodaj adnotację "Liście: pąki liściowe"'
+  add_leaves_green_leaves: 'Dodaj adnotację "Liście: zielone liście"'
+  add_leaves_colored_leaves: 'Dodaj adnotację "Liście: liście zabarwione"'
+  add_leaves_no_live_leaves: 'Dodaj adnotację "Liście: brak żyjących liści"'
   add_life_stage_adult_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik dorosły"'
   add_life_stage_teneral_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik teneralny"'
   add_life_stage_subimago_annotation: 'Dodaj adnotację "Stadium rozwoju: Subimago"'
@@ -438,6 +446,9 @@ pl:
   add_evidence_of_presence_track_annotation: 'Dodaj adnotację „Ślad obecności: trop”'
   add_evidence_of_presence_bone_annotation: 'Dodaj adnotację „Ślad obecności: kość”'
   add_evidence_of_presence_molt_annotation: 'Dodaj adnotację „Ślad obecności: wylinka”'
+  add_evidence_of_presence_leafmine_annotation: 'Dodaj adnotację „Ślad obecności: miny na liściach”'
+  add_evidence_of_presence_hair_annotation: 'Dodaj adnotację „Ślad obecności: sierść”'
+  add_evidence_of_presence_egg_annotation: 'Dodaj adnotację „Ślad obecności: jajo”'
   #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
   #As in a Guide Section
@@ -1142,6 +1153,10 @@ pl:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Dowolna
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Dowolny
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Dowolny
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Dowolne
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Obojętnie
@@ -1151,10 +1166,20 @@ pl:
     male: Samiec
     female: Samica
     plant_phenology: Fenologia roślin
+    flowers_and_fruits: Kwiaty i owoce
     budding: Pączkuje
     flower_budding: Pączkuje
     flowering: Kwitnie
     fruiting: Owocuje
+    no_flowers_or_fruits: Bez kwiatów ani owoców
+    flower_buds: Pąki kwiatowe
+    flowers: Kwiaty
+    fruits_or_seeds: Owoce lub nasiona
+    leaves: Ulistnienie
+    breaking_leaf_buds: Pąki liściowe
+    green_leaves: Zielone liście
+    colored_leaves: Liście zabarwione
+    no_live_leaves: Brak żyjących liści
     life_stage: Stadium rozwoju
     adult: Osobnik dorosły
     teneral: Osobnik teneralny
@@ -1163,6 +1188,7 @@ pl:
     no_evidence_of_flowering: Brak śladów kwitnienia
     nymph: Nimfa
     larva: Larwa
+    #Evidence of an egg of an organism
     egg: Jajo
     juvenile: Osobnik młodociany
     alive_or_dead: Żywy czy martwy
@@ -1186,6 +1212,10 @@ pl:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Wylinka
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Miny na liściach
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Sierść
   controlled_term_definitions:
     alive: Organizm żyje i nie wykazuje żadnych oznak zbliżającej się śmierci
     cannot_be_determined: Nie można ustalić na podstawie przedstawionych dowodów
@@ -1193,7 +1223,12 @@ pl:
     flower_budding: Pąki kwiatowe są widoczne, ale nie otwarte
     flowering: Kwiaty widoczne, otwarte i nadal przymocowane do rośliny
     fruiting: Owoc widoczny i nadal przymocowany do rośliny
+    green_leaves: Co najmniej jeden zielony liść bądź igła (lub zabarwione, jeśli jest to normalny zdrowy kolor dla danego gatunku)
+    no_live_leaves: Nie są widoczne pąki liściowe ani zielone bądź kolorowe liście / igły
     molt: Zrzucona skóra lub egzoszkielet
+    leafmine: Ślady żerowania pomiędzy warstwami epidermy liścia
+    egg: Całe jajo lub część jaja
+    construction: Coś stworzonego przez zwierzę, zbudowane z lub wydrążone z innych materiałów
     organism: Cały lub częściowy organizm
     teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
     track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
@@ -1210,6 +1245,8 @@ pl:
   copy_and_paste_the_following_code_to: Kopiuj i wklej ten kod, aby zagnieździć to oszacowanie na innej stronie.
   copy_and_paste_this_into_your_own_html: Kopiuj i wklej to do swojego HTMLa.
   copy_guide_taxon_to: Kopiuj przewodnik po taksonie do...
+  copy_to_clipboard: Skopiuj do schowka
+  copied!: Skopiowane!
   copyright:
     some_rights_reserved: niektóre prawa zastrzeżone
     some_rights_reserved_by: "(c) %{name}, niektóre prawa zastrzeżone (%{license_short})"
@@ -1406,8 +1443,6 @@ pl:
   deviation: Odchylenie
   devise:
     confirmations:
-      confirmed: |
-        Twój adres e-mail został pomyślnie potwierdzony. Możesz teraz zalogować się tutaj na stronie internetowej lub w aplikacjach mobilnych iNaturalist lub Seek.
       send_instructions: "W ciągu kilku minut otrzymasz email z instrukcjami, jak potwierdzić Twój adres email."
     failure:
       already_authenticated: 'Jesteś już zalogowany.'
@@ -1466,6 +1501,8 @@ pl:
   disconnect: Rozłącz
   disconnect_caps: ROZŁĄCZ
   disconnect_provider: "Rozłącz %{provider}"
+  #Label for a button that dismisses an alert or popup
+  dismiss: Odrzuć
   display: Wyświetlanie
   display_link_to_checklist: Wyświetlaj link do listy projektów ze strony projektu
   display_name: Nazwa wyświetlana
@@ -1481,6 +1518,8 @@ pl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: WSPOMÓŻ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Wesprzyj iNaturalist
   done: Gotowe
   dont_have_an_account_sign_up_html: Nie masz konta? <strong>Zarejestruj się.</strong>
   dont_use_double_quotes: Nie używaj znaku cudzysłowu nigdzie indziej
@@ -1605,6 +1644,7 @@ pl:
   everywhere: wszędzie
   exact: Dokładna
   exact_date: Dokładna data
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Dokładna kategoria
   except: poza
   exclude_places: Wyklucz lokalizacje
@@ -1614,6 +1654,7 @@ pl:
   exclusion_filters: Filtry wykluczające
   existing_flags: Istniejące zgłoszenia
   exit_full_screen: "Wyjdź z trybu pełnoekranowego"
+  expected_nearby: Spodziewany w pobliżu
   explore: Przeglądaj
   export: Eksport
   export_observations: Eksport obserwacji
@@ -1759,7 +1800,10 @@ pl:
   flickr_tagger: Tagger Flickr
   flickr_tags: Tagi z Flickra
   follow: Obserwuj
+  #Text for a button to follow updates on an observation
+  follow_observation: Obserwuj obserwację
   follow_receive_updates_about_new_observations: Obserwuj (otrzymuj powiadomienia o nowych obserwacjach)
+  #Text for a button to follow updates from a specific user
   follow_user: "Obserwuj %{user}"
   followers: Obserwujący
   following: Obserwowany
@@ -1819,7 +1863,6 @@ pl:
   google: Google
   got_it!: Wszystko jasne!
   got_your_data_somewhere_else?: Przechowujesz dane gdzieś indziej? Możemy pomóc.
-  grant_role: "%{grant} status %{role}a"
   grid: Siatka
   grid_layout: Układ Siatki
   grid_tooltip: Pokaż widok siatki
@@ -1865,6 +1908,8 @@ pl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Najwyższa ranga
   highlights_and_stats_from_year_on_site: "Statystyki i wyróżnienia od %{year} na %{site}"
   history: Historia
@@ -1936,6 +1981,8 @@ pl:
   inaturalist_network: Sieć iNaturalist
   #Label for messages you've received
   inbox: skrzynka odbiorcza
+  include_suggestions_not_seen_nearby: Uwzględnij sugestie organizmów niewidzianych w pobliżu
+  include_suggestions_not_expected_nearby: Uwzględnij sugestie organizmów niespodziewanych w pobliżu
   increase_brightness: Zwiększ jasność
   in_progress: w trakcie
   in_the_past: w przeszłości
@@ -2072,6 +2119,7 @@ pl:
     armenian: ormiański
     asturian: Asturyjski
     basque: Baskijski
+    belarusian: Białoruski
     bengali: Bengalski
     bikol: Bikolski
     bulgarian: bułgarski
@@ -2089,6 +2137,7 @@ pl:
     davawenyo: Davawenyo
     dutch: Holenderski
     english: Angielski
+    esperanto: Esperanto
     estonian: Estoński
     faroese: farerski
     fijian: Fidżyjski
@@ -2096,6 +2145,7 @@ pl:
     french: Francuski
     galician: galicyjski
     gela: Gela
+    georgian: Gruziński
     german: Niemiecki
     greek: Grecki
     hawaiian: Hawajski
@@ -2150,6 +2200,7 @@ pl:
     tokelauan: Tokelau
     turkish: Turecki
     ukrainian: ukraiński
+    vietnamese: Wietnamski
     visayan: bisajski
     waray_waray: Warajski
     xhosa: Xhosa
@@ -2237,6 +2288,7 @@ pl:
     id: Indonezyjski
     it: Włoski
     ja: Japoński
+    ka: Gruziński
     kk: kazachski
     ko: Koreański
     lb: Luksemburski
@@ -2293,6 +2345,8 @@ pl:
   look_up_name: "Wyszukaj nazwę"
   looks_like_no_species_in_guide: Wygląda na to, że jeszcze nie masz żadnych gatunków w przewodniku.
   lookup: Wyszukaj
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Najniższa ranga
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: Macrostrat
@@ -2791,7 +2845,9 @@ pl:
   only_show_active_taxa: Pokaż tylko aktywne taksony
   only_the_project_admin_can_delete_this_project: Tylko administrator projektu może usunąć ten projekt.
   only_you: Tylko Ty
+  #Geoprivacy status in which no privacy has been applied
   open: otwarta
+  #Geoprivacy status in which no privacy has been applied
   open_: Otwarta
   open_description: "Każdy może zobaczyć współrzędne, chyba że takson jest zagrożony."
   open_street_map: OpenStreetMap
@@ -2937,6 +2993,8 @@ pl:
       municipality: gmina
       Nationality: Narodowość
       nationality: narodowość
+      Nearby_Building: Pobliski budynek
+      nearby_building: pobliski budynek
       Nearby_Intersection: Pobliskie skrzyżowanie
       nearby_intersection: pobliskie skrzyżowanie
       Open_Space: Otwarta przestrzeń
@@ -3318,6 +3376,9 @@ pl:
   query: Zapytanie
   radius: Promień (m)
   radius_value: "Promień (m): %{radius}"
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ranga
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3523,6 +3584,7 @@ pl:
   resend_confirmation_email: Wyślij ponownie e-mail z potwierdzeniem
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Resetuj
+  reset_filters_short: Resetuj
   reset_brightness: Resetuj jasność
   reset_search_filters: Resetuj filtry wyszukiwania
   resolved: Rozstrzygnięto
@@ -3534,6 +3596,8 @@ pl:
     Liczba stron razy liczba wyników na stronie nie może przekroczyć 10000. Spróbuj
     zastosować filtry, aby zmniejszyć liczbę wyników.
   review_all: Przejrzyj wszystkie
+  review_identifications_of_taxon_html: |
+    Przejrzyj oznaczenia <span class="sciname">%{taxon}</span> %{taxon_id}
   reviewed: Przejrzane
   revoke_privacy_consent_warning: "Jedynym sposobem na cofnięcie tej zgody jest usunięcie konta i wszystkich powiązanych danych."
   rg_observations: Obserwacje SB
@@ -3830,6 +3894,7 @@ pl:
   taxon_range: Zasięg taksonu
   taxon_range_for_taxon_html: Zasięg taksonu dla %{taxon}
   taxon_range_guidelines_learn_more_about_taxon_ranges: Dowiedz się więcej o zasięgach taksonów
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Kategorie taksonomiczne
   taxon_removed_from_list: Takson usunięty z listy.
   taxon_search: Wyszukiwanie taksonów
@@ -4006,7 +4071,10 @@ pl:
   unknown: Nieznany
   unknown_error: Nieznany błąd
   unknown_rank: '(Nieznana ranga)'
-  unfollow: Przestań obserwować
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Przestań obserwować obserwację
+  #Text for a button to stop following updates from a user
+  unfollow_user: Przestań obserwować użytkownika
   unlink_your_google_account: Odłącz swoje konto Google
   unlink_your_flickr_account: "Odłącz swoje konto Flickr"
   unmute: Usuń wyciszenie
@@ -4087,7 +4155,6 @@ pl:
   user_added_an_x_to_noun_by_html: "Użytkownik %{user} dodał %{x} do %{noun} użytkownika %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} dodał %{x} do %{noun}"
-  user_added_x_observations_html: "%{user} dodał %{x} obserwacji"
   user_already_authenticated: Użytkownik jest już uwierzytelniony
   user_autocomplete_placeholder: kueda, simon123, itp.
   user_blocked: Użytkownik zablokowany
@@ -4361,6 +4428,14 @@ pl:
         become_a_monthly_supporter_of_inaturalist_caps: ZOSTAŃ COMIESIĘCZNYM OFIARODAWCĄ INATURALIST
         thank_you_for_being_a_monthly_supporter: Dziękujemy za bycie comiesięcznym ofiarodawcą!
         thank_you_for_being_a_monthly_supporter_caps: DZIĘKUJEMY ZA BYCIE COMIESIĘCZNYM OFIARODAWCĄ!
+    geo_model:
+      explain:
+        nearby_map:
+          expected_nearby_map: Mapa organizmów spodziewanych w pobliżu
+        range_comparison:
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Dokładność:
     guides:
       show:
         draft_desc: |
@@ -4566,7 +4641,14 @@ pl:
           "Plant Phenology=Flowering": Kwitnie
           "Plant Phenology=Fruiting": Owocuje
           "Plant Phenology=No Evidence of Flowering": Brak śladów kwitnienia
-          "Life Stage=Adult": Osobnik dorosły
+          "Flowers and Fruits=Flower Buds": Pąki kwiatowe
+          "Flowers and Fruits=Flowers": Kwiaty
+          "Flowers and Fruits=Fruits or Seeds": Owoce lub nasiona
+          "Flowers and Fruits=No Flowers or Fruits": Bez kwiatów ani owoców
+          "Leaves=Breaking Leaf Buds": Pąki liściowe
+          "Leaves=Green Leaves": Zielone liście
+          "Leaves=Colored Leaves": Liście zabarwione
+          "Leaves=No Live Leaves": Brak żyjących liści
           "Life Stage=Egg": Jajo
           "Life Stage=Larva": Larwa
           "Life Stage=Juvenile": Osobnik młodociany

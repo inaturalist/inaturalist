@@ -3,6 +3,7 @@ import { fetch } from "../util";
 
 // ACTIONS
 const CONFIG = "CONFIG";
+const UPDATE_CONFIG = "UPDATE_CONFIG";
 const TOGGLE_CONFIG = "TOGGLE_CONFIG";
 const UPDATE_CURRENT_USER = "config/update_current_user";
 
@@ -11,6 +12,11 @@ export default function reducer( state = {}, action ) {
   switch ( action.type ) {
     case CONFIG:
       return Object.assign( {}, state, action.config );
+    case UPDATE_CONFIG:
+      return {
+        ...state,
+        ...action.config
+      };
     case TOGGLE_CONFIG:
       return Object.assign( {}, state, { [action.key]: !state[action.key] } );
     case UPDATE_CURRENT_USER: {
@@ -43,6 +49,13 @@ export default function reducer( state = {}, action ) {
 export function setConfig( config ) {
   return {
     type: CONFIG,
+    config
+  };
+}
+
+export function updateConfig( config ) {
+  return {
+    type: UPDATE_CONFIG,
     config
   };
 }

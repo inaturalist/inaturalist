@@ -48,10 +48,10 @@ module HasSubscribers
     #   if a comment was going to generate updates for subscribers to its
     #   parent blog post, the arguments would be comment, blog_post,
     #   subscription, and this block would get called for every subscription.
-    # * <tt>:queue_if</tt> - block to decide whether to queue a record for 
-    #   update generation. The :if block determines whether the record
-    #   generates an update, but that still happens in a Delayed::Job.
-    #   :queue_if determines whether that job gets delayed in the first place. 
+    # * <tt>:unless</tt> - block to decide whether to notify subscribers.
+    #   The :if block determines whether the record generates a notification,
+    #   but that still happens in a Delayed::Job on a per-user basis. :unless
+    #   determines if the record generates notifications at all on callback.
     #   Takes the record as its arg.
     # * <tt>:priority</tt> - DJ priority at which to run the notification
     # * <tt>:include_owner</tt> - Create an update for the user associated
@@ -274,24 +274,27 @@ module HasSubscribers
       end
     end
 
-    def create_callback(subscribable_association, options = {})
+    def create_callback( subscribable_association, options = {} )
       callback_types = []
-      options_on = options[:on] ? [options[:on]].flatten.map(&:to_s) : %w(after_create)
-      callback_types << :update if options_on.detect{|o| o =~ /update/}
-      callback_types << :create if options_on.detect{|o| o =~ /create/}
-      callback_types << [:update, :create]   if options_on.detect{|o| o =~ /save/}
+      options_on = options[:on] ? [options[:on]].flatten.map( &:to_s ) : %w(after_create)
+      callback_types << :update if options_on.detect {| o | o =~ /update/ }
+      callback_types << :create if options_on.detect {| o | o =~ /create/ }
+      callback_types << [:update, :create] if options_on.detect {| o | o =~ /save/ }
       callback_method = options[:with] || :notify_subscribers_of
       attr_accessor :skip_updates
-      after_commit on: callback_types.flatten.uniq do |record|
+
+      after_commit on: callback_types.flatten.uniq do | record |
+        raise if record != self
+
         unless_skipped = options[:unless] ? options[:unless].call( self ) : false
-        unless record.skip_updates || record.try(:unsubscribable?) || unless_skipped
-          if options[:queue_if].blank? || options[:queue_if].call(record)
-            if options[:delay] == false
-              record.send(callback_method, subscribable_association)
-            else
-              record.delay(priority: options[:priority], run_at: 5.seconds.from_now).
-                send(callback_method, subscribable_association)
-            end
+        unless unless_skipped ||
+            record.skip_updates ||
+            record.try( :unsubscribable? )
+          if options[:delay] == false
+            record.send( callback_method, subscribable_association )
+          else
+            record.delay( priority: options[:priority], run_at: 5.seconds.from_now ).
+              send( callback_method, subscribable_association )
           end
         end
         true

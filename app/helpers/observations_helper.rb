@@ -45,7 +45,10 @@ module ObservationsHelper
   def observation_place_guess(observation, options = {})
     display_lat = observation.latitude
     display_lon = observation.longitude
-    coordinates_viewable = observation.coordinates_viewable_by?( current_user )
+    coordinates_viewable = observation.coordinates_viewable_by?(
+      current_user,
+      ignore_collection_projects: true
+    )
     display_place_guess = coordinates_viewable ? observation.private_place_guess : observation.place_guess
     display_place_guess = observation.place_guess if display_place_guess.blank?
     if !observation.private_latitude.blank? && coordinates_viewable
@@ -53,12 +56,12 @@ module ObservationsHelper
       display_lon = observation.private_longitude
     end
     
-    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank")
-    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank")
-    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank")
+    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank", rel: "noopener noreferrer")
+    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank", rel: "noopener noreferrer")
+    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank", rel: "noopener noreferrer")
     osm_coords_url = "http://www.openstreetmap.org/?mlat=#{display_lat}&mlon=#{display_lon}"
     osm_coords_url += "&zoom=#{observation.map_scale}" unless observation.map_scale.blank?
-    osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank")
+    osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank", rel: "noopener noreferrer")
     
     if coordinate_truncation = options[:truncate_coordinates]
       coordinate_truncation = 6 unless coordinate_truncation.is_a?(Integer)
@@ -81,7 +84,7 @@ module ObservationsHelper
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
         
-    elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+    elsif !observation.private_latitude.blank? && coordinates_viewable
       link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe

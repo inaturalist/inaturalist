@@ -1,18 +1,21 @@
+# frozen_string_literal: true
+
 class SubscriptionsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_subscription, :except => [:new, :create, :index, :edit, :subscribe]
+  before_action :load_subscription, except: [:new, :create, :index, :edit, :subscribe]
   before_action :load_resource, only: [:subscribe]
-  before_action :require_owner, :except => [:new, :create, :index, :edit, :subscribe]
-  before_action :return_here, :only => [:index]
-  
+  before_action :require_owner, except: [:new, :create, :index, :edit, :subscribe]
+  before_action :return_here, only: [:index]
+
   def index
     @type = params[:type]
-    @type = "place" unless Subscription.subscribable_classes.map(&:underscore).include?(@type)
+    @type = "place" unless Subscription.subscribable_classes.map( &:underscore ).include?( @type )
     resource_type = @type.camelcase
-    @subscriptions = current_user.subscriptions.includes(:resource).
-      where("resource_type = ?", resource_type).
-      order("subscriptions.id desc").
-      page(params[:page])
+    @subscriptions = current_user.subscriptions.includes( :resource ).
+      where( "resource_type = ?", resource_type ).
+      order( "subscriptions.id desc" ).
+      limit( 100 ).
+      page( params[:page] )
   end
 
   def new

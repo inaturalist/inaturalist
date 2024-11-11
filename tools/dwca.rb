@@ -91,7 +91,9 @@ opts = Optimist.options do
   opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
   opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
   opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings
+  opt :include_humans, "Include observations of humans", type: :boolean, default: false
   opt :processes, "Number of processes to use with the parallel gem", type: :integer
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
 
 if opts.debug
@@ -99,4 +101,15 @@ if opts.debug
 else
   opts[:logger] = Logger.new(STDOUT, level: Logger::INFO)
 end
-DarwinCore::Archive.generate(opts)
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "export" )
+end
+
+begin
+  task_logger&.start
+  DarwinCore::Archive.generate( opts )
+  task_logger&.end
+rescue => e
+  task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
+end

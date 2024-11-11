@@ -2,6 +2,7 @@
 @import "../../shared/activity_item";
 @import "../../shared/annotations";
 @import "../../shared/observation_fields";
+@import "../../shared/observation_projects";
 @import "../../shared/quality_metrics";
 @import "../../shared/record_chooser_popover";
 @import "../../shared/taxon_autocomplete";
@@ -40,6 +41,12 @@ body > [role="dialog"] .ObservationModal {
         border-left: 2px solid #ddd;
         background-color: $light-grey;
       }
+      .linky {
+        vertical-align: baseline;
+      }
+      .FlagAnItem {
+        padding-bottom: 20px;
+      }
     }
     .btn-primary {
       background-color: $inat-green;
@@ -58,17 +65,18 @@ body > [role="dialog"] .ObservationModal {
     position: relative;
     .SplitTaxon.taxon,
     .quality_grade {
-      font-weight: bold;
+      font-weight: 600;
     }
     .SplitTaxon {
-      margin-right: 80px;
+      margin-inline-end: 80px;
     }
     .quality_grade {
       position: absolute;
-      right: 0;
+      inset-inline-end: 0;
     }
     .SplitTaxon.taxon {
-      & > .display-name, .display-names {
+      & > .display-name,
+      .display-names {
         font-size: 180%;
         line-height: 26px;
         display: inline-block;
@@ -76,8 +84,7 @@ body > [role="dialog"] .ObservationModal {
         color: black;
       }
       &.has-com-name > .display-name,
-      &.has-com-name > .secondary-name,
-      &.has-com-name .secondary-names {
+      &.has-com-name > .display-names {
         display: block;
       }
     }
@@ -216,6 +223,40 @@ body > [role="dialog"] .ObservationModal {
       top: -20px;
       background-color: deeppink;
     }
+
+    .collapsible-section {
+      margin-bottom: 20px;
+      .panel {
+        background: none;
+        border: 0;
+        margin: 0;
+        box-shadow: none;
+      }
+      .panel-body {
+        padding: 0;
+      }
+      .add {
+        float: right;
+        font-size: 14px;
+        color: $bootstrap-link-color;
+        cursor: pointer;
+      }
+      & + .collapsible-section {
+        border-top: 1px solid $border-grey;
+      }
+      h3, h4 {
+        margin-top: 15px;
+        &.collapsible {
+          i.fa {
+            color: $inat-green;
+            margin-inline-end: 5px;
+          }
+          &.collapsible {
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 
   .tools {
@@ -229,7 +270,7 @@ body > [role="dialog"] .ObservationModal {
       margin-bottom: 0;
     }
     .btn {
-      font-weight: bold;
+      font-weight: 600;
     }
     .btn-link,
     .btn-link:hover {
@@ -454,10 +495,14 @@ body > [role="dialog"] .ObservationModal {
       padding: 20px;
     }
   }
+  .inat-tab.annotations-tab > div:last-child {
+    padding-bottom: 50px;
+  }
 
   .column-header {
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    clear: both;
 
     .header-text {
       color: black;
@@ -466,6 +511,11 @@ body > [role="dialog"] .ObservationModal {
     i {
       color: $inat-green;
     }
+  }
+
+  .inat-tab.annotations-tab div + .column-header {
+    padding-top: 15px;
+    border-top: 1px solid $border-grey;
   }
 
   .obs-media .column-header {
@@ -503,7 +553,7 @@ body > [role="dialog"] .ObservationModal {
     border: 0 transparent;
     border-bottom: 3px solid transparent;
     color: #555;
-    font-weight: bold;
+    font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     display: block;
@@ -588,7 +638,7 @@ body > [role="dialog"] .ObservationModal {
           .permalink,
           .FollowButton button {
             color: black;
-            font-weight: bold;
+            font-weight: 600;
           }
           a.permalink:focus,
           .FollowButton button:focus,
@@ -647,6 +697,9 @@ body > [role="dialog"] .ObservationModal {
   .QualityMetrics table {
     margin-top: 0px;
   }
+  .Projects {
+    margin-bottom: 20px;
+  }
   .user-link {
     color: black;
   }
@@ -678,6 +731,10 @@ body > [role="dialog"] .ObservationModal {
       padding-left: 20px;
     }
     td { vertical-align: top; }
+    .popover-content {
+      max-height: 475px;
+      overflow-y: auto
+    }
   }
 
   .Faves {
@@ -715,7 +772,7 @@ body > [role="dialog"] .ObservationModal {
 
   .ui-autocomplete {
     .ac-result {
-      font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+      font-family: Lato, "Trebuchet MS", Arial, sans-serif;
       .ac-label {
         color: #555;
         .title {
@@ -731,7 +788,6 @@ body > [role="dialog"] .ObservationModal {
     }
   }
   .gmnoprint.gm-style-mtc {
-    width: 70px !important;
     [role="button"] {
       padding-left: 10px !important;
     }
@@ -743,7 +799,7 @@ body > [role="dialog"] .ObservationModal {
     position: absolute;
     top: 50%;
     margin-top: -70px;
-    right: 10px;
+    inset-inline-end: 10px;
     .btn-group-vertical {
       margin-bottom: 10px;
     }

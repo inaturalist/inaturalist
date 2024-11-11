@@ -28,8 +28,6 @@ ar:
   about_this_bioblitz: حول هذا bioblitz
   about_this_map: عن هذه الخريطة
   about_this_project: عن هذا المشروع
-  about_trips_html: |
-    <h4>تُمكِّن الرحلات من جمع بيانات غياب الحضور عن طريق إضافة سياق إلى ملاحظاتك</h4><p><strong>لماذا</strong> تتضمن بيانات غياب الحضور معلومات حول جهد أخذ العينات مفيد للتحليلات العلمية مثل توزيع النمذجة (ملاحظات إيناتوراليست الخام هي بيانات "حضور فقط").</p> <p><strong>كيف</strong> تضيف الرحلة سياقا إلى ملاحظاتك عن طريق التسجيل:</p> <ul> <li><strong>ما</strong> الذي بحثت عنه (قائمة الأهداف)</li> <li><strong>أين</strong> بحثت (منطقة البحث)</li> <li><strong>متى</strong> بحثت (الفاصل الزمني للبحث)</li> </ul> <p>يتم تفسير الأنواع الموجودة في قائمة الأهداف التي تمكنت من مراقبتها داخل منطقة البحث والفاصل الزمني على أنها وجود، بينما يتم تفسير الأنواع الموجودة في قائمتك المستهدفة والتي لم تتمكن من ملاحظتها على أنها حالات غياب، انقر فوق "جدولة بيانات غياب الحضور من الرحلات" لإنشاء جدول لسجلات التواجد-الغياب لنوع من الرحلات والملاحظات المرتبطة بها. <a href='%{url}'>معرفة المزيد</a></p>
   #Abbreviated form of "accuracy in meters", where "accuracy" is the
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
@@ -600,6 +598,7 @@ ar:
     pupa: عذراء
     nymph: حورية
     larva: يرقة
+    #Evidence of an egg of an organism
     egg: بيضة
     juvenile: حدث
   controls: عناصر التحكم
@@ -917,6 +916,7 @@ ar:
   everywhere: في كل مكان
   exact: دقيق
   exact_date: التاريخ المحدد
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: الترتيب الدقيق
   except: إلا
   exclusion_filters: مرشحات الاستبعاد
@@ -1032,6 +1032,7 @@ ar:
   fluid: مائع
   follow: تابع
   follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات الجديدة)
+  #Text for a button to follow updates from a specific user
   follow_user: "اتبع %{user}"
   followers: متابعون
   following: التالي
@@ -1083,7 +1084,6 @@ ar:
   got_your_data_somewhere_else?: هل حصلت على بياناتك في مكان آخر؟ نستطيع المساعدة.
   graft: تطعيم
   grafting_attemps_to_insert_this_taxon: محاولات تطعيم لإدراج هذا الصنف في شجرة التصنيف لدينا، والعثور على الأصنوفة الأم القائمة أو إنشاء كل الضروري بين الأصناف لإرفاقها إلى أصناف قائمة في مستوى أعلى.
-  grant_role: "دور %{grant} %{role}"
   grid: شبكة
   grid_layout: تصميم الشبكة
   grid_tooltip: إظهار عرض الشبكة
@@ -1123,6 +1123,8 @@ ar:
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: أعلى رتبة
   highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{year} في %{site}"
   history: التاريخ
@@ -1169,7 +1171,6 @@ ar:
   identotron_for: آيدنتوترون لـ
   identotron_help: مساعدة آيدنتوترون
   ids: "معرفات"
-  ids_made_for_others: المعرفات المصنعة للآخرين
   if_for_some_reason_a_user_doesnt_agree: |
     إذا كنت لا توافق مع مجتمع الأصناف لسبب ما، يمكنك رفض ذلك، 
     وهو ما يعني أن معرفك هو المستخدم لربط الملاحظات الأخرى، وتحديث قوائم الحياة، 
@@ -1276,6 +1277,7 @@ ar:
   last_active_with_date: "آخر نشاط: %{date}"
   last_confirmed_observation: آخر ملاحظة مؤكدة
   last_observation: الملاحظة الأخيرة
+  last_observation_caps: آخر ملاحظة
   last_seen: آخر ظهور
   last_year: العام الماضي
   lat: دائرة العرض
@@ -1464,6 +1466,8 @@ ar:
   looks_like_no_species_in_guide: يبدو أنه ليست لديك أنواع في دليلك حتى الآن.
   lookup: ابحث عن
   low: منخفضة
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: أدنى رتبة
   make_admin: اصنع إداري
   #Header for main content section of the project detail page when editing custom project data.
@@ -1616,7 +1620,7 @@ ar:
   needs_id: يحتاج معرفا
   needs_id_: يحتاج معرفا
   needs_id_expandable_html: "<span class='full'>يحتاج </span>معرفا"
-  needs_to_be_identified: ينبغي تحديدها
+  needs_id_tooltip_html: 'تحتوي ملاحظات "يحتاج معرفا" على الوسائط والمكان والتاريخ، ولكنها ما تزال تتطلب إجماع المجتمع على التعريف الدقيق. <a href="https://www.inaturalist.org/pages/help#quality">تعرف على المزيد حول درجات الجودة</a>'
   new_and_noteworthy: جديد وجدير بالملاحظة
   new_announcement: إعلان جديد
   new_assessment: تقييم جديد
@@ -1927,7 +1931,9 @@ ar:
   only_the_owner_of_this_list_can_do_that: يمكن  لمالك هذه القائمة فقط القيام بذلك، لا تكن شريرا.
   only_the_project_admin_can_delete_this_project: يستطيع إداري المشروع فقط حذف هذا المشروع.
   only_you: أنت فقط
+  #Geoprivacy status in which no privacy has been applied
   open: فتح
+  #Geoprivacy status in which no privacy has been applied
   open_: فتح
   open_description: "يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة."
   open_street_map: خريطة الشارع المفتوحة
@@ -2516,7 +2522,11 @@ ar:
   radius_value: "نصف القطر (م): %{radius}"
   random: عشوائي
   range: النطاق
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: المرتبة
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: المرتبة
   ranks:
     stateofmatter: حالة من المسألة
@@ -2588,6 +2598,7 @@ ar:
   refresh: تحديث
   refreshing: تحديث
   regenerate_stats: إعادة إنشاء الإحصائيات
+  regional_names: الأسماء الإقليمية
   register_for_this_event_at_x_html: "سجل لهذا الحدث في %{x}"
   reject?: رفض؟
   relative_observations: ملاحظات مرتبطة
@@ -2648,6 +2659,7 @@ ar:
   research_: بحث
   research_grade: الصف البحثي
   research_grade_short_html: "ص<span class='full'>ف</span>ب<span class='full'>حثي</span>"
+  research_grade_tooltip_html: 'تحتوي ملاحظات "الدرجة البحثية" على الوسائط والمكان والتاريخ وإجماع المجتمع على التعريف الدقيق (عادة على مستوى الأنواع). <a href="https://www.inaturalist.org/pages/help#quality">تعرف على المزيد حول درجات الجودة</a>'
   research_grade_observations_have: 'ملاحظات "الصف البحثي" لها تاريخ، وصورة، وإحداثيات، ومعرف مدعوم من المجتمع، انقر للاطلاع على تقييم جودة البيانات.'
   research_grade_qualification: مؤهل درجة البحث
   reset_brightness: إعادة ضبط السطوع
@@ -2902,7 +2914,6 @@ ar:
   start_a_new_project: بدء مشروع جديد
   start_a_project: بدء مشروع
   start_date_time: تاريخ / وقت البدء
-  start_one: بدء واحد
   start_one_now: ابدأ واحدا الآن!
   start_typing_field_name: بدء كتابة اسم الحقل...
   start_typing_place_name: ابدأ في كتابة اسم المكان...
@@ -2922,8 +2933,6 @@ ar:
   studies_that_used_inaturalist_data_in_year: الدراسات التي استخدمت بيانات إيناتوراليست في %{year}
   stuff_just_added: "العناصر التي أضفتها للتو..."
   subject_resolved_noun_html: "%{subject} حل %{noun}"
-  subject_affecting_stuff_html: "%{subject} يؤثر على %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} قام بـ@vow_or_con{vow:an|a} %{thing} % يؤثر على %{stuff}"
   submission_model: نموذج التقديم
   submission_model_description: من يمكنه إضافة ملاحظات إلى مشروعك؟
   submitted: قُدِّم
@@ -3011,6 +3020,7 @@ ar:
   taxon_range: نطاق الأصنوفة
   taxon_range_created_notice: تم إنشاء نطاق الأصنوفة بنجاح، يُرجَى الانتظار لبضع دقائق ليظهر على الخرائط.
   taxon_range_updated_notice: تم تحديث نطاق الأصنوفة بنجاح، يُرجَى الانتظار لبضع دقائق لتظهر التغييرات على الخرائط.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: رتب الأصنوفة
   taxon_removed_from_list: أُزِيلت الأصنوفة من القائمة
   taxon_scheme: مخطط الأصنوفة
@@ -3085,7 +3095,6 @@ ar:
     البعض الآخر في الشارع فقط! %{site_name} تتيح لك الأماكن تصفح الحياة 
     من جميع أنحاء الكوكب، ابدأ الاستكشاف!
   then_keybord_sequence: ثم
-  there_is_no_wikipedia_page_matching: لا توجد صفحة ويكيبيديا مطابقة
   there_isnt_a_wikipedia_article_titled_x_html: |
     لا توجد مقالة أو تحويلة في ويكيبيديا بعنوان '%{x}'; ربما كنت ترغب في <a href='http://en.wikipedia.org/wiki/%{x}'>إنشاء واحدة</a>؟
   there_merge_problems_with_the_merge: "هناك مشكلات في الدمج: %{merged_errors}"
@@ -3173,13 +3182,16 @@ ar:
     يعرض هذا الاستعلام عددا كبيرا من الأصناف ليتم عرضه في وقت واحد؛ حاول إضافة المزيد من المرشحات
   tools: الأدوات
   top_contributors: أبرز المساهمين
+  top_identifier_caps: أعلى مُعرِّف
   top_identifiers: أعلى المعرفات
   top_identifiers_of_taxon: أهم معرفات %{taxon}
+  top_observer_caps: أعلى مُلاحِظ
   top_observers: أفضل الملاحظين
   total: إجمالي
   totals: مجموع
   total_members: إجمالي الأعضاء
   total_observations: مجموع الملاحظات
+  total_observations_caps: إجمالي الملاحظات
   total_unique_observers: مجموع المراقبين الفريدين
   translated_languages: اللغات المترجمة
   'true': 'صحيح'
@@ -3216,7 +3228,6 @@ ar:
   unknown: غير معروف
   unknown_error: خطأ غير معروف
   unknown_rank: '(رتبة غير معروفة)'
-  unfollow: إلغاء المتابعة
   unlink_your_google_account: إلغاء ربط حسابك في جوجل
   unmute: تنشيط الصوت
   updates_notification_email_subject: "%{prefix}  تحديثات جديدة %{date}"
@@ -3306,7 +3317,6 @@ ar:
   user_added_an_x_to_noun_by_html: "أضاف %{user} %{x} لـ%{noun} بواسطة %{by}"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "أضاف %{user} %{x} لـ%{noun}"
-  user_added_x_observations_html: "أضاف %{user} %{x} ملاحظة"
   user_already_authenticated: المستخدم موثق بالفعل
   user_autocomplete_placeholder: kueda وsimon123 وما إلى ذلك.
   user_blocked: المستخدم ممنوع
@@ -3338,6 +3348,7 @@ ar:
   users_contributions_to_project_html: مساهمات <a href="%{url}">%{login}</a> في %{project_title}
   users_highlights_and_stats_from_year_on_site: "أبرز أفعال وإحصاءات %{user} من %{year} في %{site}"
   users_id: "معرف %{user}"
+  users_identifications: "تحديدات %{user}"
   users_latest_observations_on_site: "ملاحظات %{user} الأخيرة على %{site}"
   users_profile: "الملف الشخصي ل%{user}"
   users_projects: "مشاريع %{user}"
@@ -3346,6 +3357,7 @@ ar:
   values: القيم
   verbing_x_of_y: "%{verb} %{x} ل%{y}..."
   verifiable_observations_by_observation_date: ملاحظات يمكن التحقق منها حسب تاريخ الملاحظة
+  video_tutorials: دروس الفيديو
   view: عرض
   view_all: اعرض الكل
   view_all_flags: عرض جميع الأعلام
@@ -3407,7 +3419,6 @@ ar:
   view_your_observations: عرض ملاحظاتك
   view_yours: عرض لك
   view_all_of_your_observations_from_x: "عرض كل ملاحظاتك من %{x}"
-  video_tutorials: دروس الفيديو
   visually_similar: مماثلة بصريا
   vulnerable: غير محصن
   w00t_no_ungrafted_taxa: حسنا! أصناف غير مطعمة!
@@ -4725,17 +4736,6 @@ ar:
         obs_in_year: الملاحظات في %{year}
         percent_growth_in_year: "% النمو في %{year}"
         percent_of_total_growth: "للنمو الإجمالي"
-        sunburst_desc_html: |
-          أصناف ملاحظة رُتِّبت كرسم "سونبورست" الهرمي، قاعدة 
-          التسلسل الهرمي في المركز، تبدأ من "الحياة" وتنتهي 
-          مع الأنواع على الحواف الخارجية، حجم كل قوس يتناسب 
-          مع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء 
-          تتوافق مع ألوان الأصناف المعتادة لدينا "iconic" (الأخضر للنباتات 
-          والبرتقالي للحشرات والأزرق لمعظم الحيوانات الأخرى، وما إلى ذلك); لذلك إذا كنت " 
-          ترى الكثير من الأخضر: هذا يعني أنك لاحظت الكثير من النباتات. 
-          <strong> انقر على القوس لوضع هذه الأصنوفة في المركز</strong> 
-          وأطفالها حولها، أو <strong> انقر على المركز لنقل وإرجاع 
-          التسلسل الهرمي </strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -4780,6 +4780,14 @@ ar:
           نحاول معالجة أوجه القصور هذه من خلال عرض كل من
           الأسماء الشائعة والعلمية حيثما أمكن، واختيار الأسماء الشائعة
           استنادا إلى اللغة والتفضيلات الجغرافية للمشاهد.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          يمكن إضافة الأسماء إلى الأماكن (عادة البلدان) في الحالات التي تكون فيها
+          بلدان أو مناطق مختلفة تستخدم أسماء شائعة مختلفة لنفس اللغة. على سبيل المثال، قد يكون الوضع مختلفا بالنسبة للأسماء الإسبانية في المكسيك وكوستاريكا لنفس النوع.
+          </p>
+          <p>
+          يوضح هذا الجدول الأسماء التي تمت إضافتها إلى الأماكن، ويتم سردها حسب الأولوية لكل مكان. إذا كان اسمين للغة الإسبانية تمت إضافتها إلى المكسيك، سيظهر العنصر المدرج أولا إذا كنت تفضل رؤية الأسماء الإسبانية المضافة إلى المكسيك.
           </p>
         about_conservation_status_desc: |
           يلخص وضع الحفظ خطر الانقراض بالنسبة لمجموعة من الكائنات الحية.
@@ -4873,34 +4881,6 @@ ar:
           الرتبة بعد التسمية الثنائية.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-            <li><p>حاول إضافة أسماء تم استخدامها في مكان آخر، الرجاء عدم اختراع أسماء جديدة.</p></li>
-            <li><p>لا تضف أسماء مكررة، على سبيل المثال لا تسم العديد من الصقور بـ"صقر"</p></li>
-            <li><p>بالنسبة للأصناف الأعلى، حاول استخدام أسماء تتضمن جميع الأحفاد، مثل "بلشون أبيض كبير وحلفاؤه" أو "أسرة هيث"</p></li>
-            <li>
-              <p>
-               لا تضف معلومات غير الاسم، على سبيل المثال، 
-               معلومات بارانثية حول كيفية استخدام الاسم 
-              </p>
-            </li>
-            <li>
-              <p>
-               يجب أن تكون المعاجم الجديدة باللغة الإنجليزية; الرجاء عدم إضافة أسماء مترجمة
-               اللغة مثل "الفرنسية، فرانسيس" لأن ذلك سيجعل فقط
-               من الصعب أو المستحيل علينا أن نعرض أسماء محلية للأشخاص 
-               الذين يستخدمون الموقع بلغات مختلفة. 
-              </p>
-            </li>
-          <li>
-             <p>
-           \    ستظهر الأسماء الشائعة المرتبطة باللغات المترجمة 
-               على أنها الاسم الشائع الافتراضي لتلك اللغة (باستثناء
-               تأثير تفضيلات المكان، وترتيب الأسماء، وما إلى ذلك.).
-               <a class="readmore" href="/pages/translate">معرفة مزيد من المعلومات حول الترجمة</a>
-             </p>
-            </li>
-          </ul>
         places_help_html: |
           أضف اسما إلى مكان لإعطائه الأولوية للمواقع والمستخدمين من 
           هذا المكان، إذا كانت هناك أسماء متعددة في كل مكان، فيمكنك تحديد أولوياتها 

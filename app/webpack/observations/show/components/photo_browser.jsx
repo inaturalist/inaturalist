@@ -22,6 +22,7 @@ class PhotoBrowser extends React.Component {
     this.state = {
       slideIndex: 0
     };
+    this.galleryRef = React.createRef( );
   }
 
   componentDidMount( ) {
@@ -37,6 +38,18 @@ class PhotoBrowser extends React.Component {
         $( slide ).attr( "role", null );
       }
     } );
+    const photos = (
+      this.galleryRef
+      && this.galleryRef.current
+      && this.galleryRef.current.props
+      && this.galleryRef.current.props.items
+    )
+      ? this.galleryRef.current.props.items
+      : [];
+    const initialPhoto = _.find( photos, i => i.initialPhoto === true );
+    if ( initialPhoto ) {
+      this.setState( { slideIndex: initialPhoto.mediaViewerIndex } );
+    }
   }
 
   componentDidUpdate( prevProps ) {
@@ -110,14 +123,15 @@ class PhotoBrowser extends React.Component {
       setMediaViewerState
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    this.viewerIsObserver = config && config.currentUser
-      && config.currentUser.id === observation.user.id;
-    const viewerIsCurator = config && config.currentUser && (
-      config.currentUser.roles.indexOf( "curator" ) >= 0
-      || config.currentUser.roles.indexOf( "admin" ) >= 0
+    const currentUser = config && config.currentUser;
+    this.viewerIsObserver = currentUser
+      && currentUser.id === observation.user.id;
+    const viewerIsCurator = currentUser && (
+      currentUser.roles.indexOf( "curator" ) >= 0
+      || currentUser.roles.indexOf( "admin" ) >= 0
     );
-    const viewerIsAdmin = config && config.currentUser && (
-      config.currentUser.roles.indexOf( "admin" ) >= 0
+    const viewerIsAdmin = currentUser && (
+      currentUser.roles.indexOf( "admin" ) >= 0
     );
     let mediaViewerIndex = 0;
     const images = observation.photos.map( photo => {
@@ -142,6 +156,14 @@ class PhotoBrowser extends React.Component {
       } else if ( !photo.url ) {
         square = null;
       }
+      const latestModeratorAction = _.first(
+        _.orderBy( photo.moderator_actions || [], ["created_at", "desc"] )
+      );
+      const currentUserIsHidingCurator = latestModeratorAction
+        && latestModeratorAction.action === "hide"
+        && viewerIsCurator
+        && latestModeratorAction.user
+        && currentUser.id === latestModeratorAction.user.id;
       let description;
       if ( photo.id ) {
         description = (
@@ -160,10 +182,13 @@ class PhotoBrowser extends React.Component {
               >
                 <i className="fa fa-flag" />
               </button>
-              { // observers never see hiding, curators do if its unhidden, admins always do
+              {
+                // observers never see the option to hide
+                // curators do if its unhidden or they were the one to hide the content
+                // admins always see the option to hide
                 ( !this.viewerIsObserver && (
                   ( !photo.hidden && viewerIsCurator )
-                  || ( photo.hidden && viewerIsAdmin )
+                  || ( photo.hidden && ( currentUserIsHidingCurator || viewerIsAdmin ) )
                 ) ) && (
                 <button
                   type="button"
@@ -223,7 +248,8 @@ class PhotoBrowser extends React.Component {
         zoom: original,
         thumbnail: square,
         mediaViewerIndex,
-        description
+        description,
+        initialPhoto: photo.initialPhoto === true
       };
       mediaViewerIndex += 1;
       return slideDetails;
@@ -376,7 +402,7 @@ class PhotoBrowser extends React.Component {
       contents = (
         <ImageGallery
           key={`media-for-${observation.id}`}
-          ref="gallery"
+          ref={this.galleryRef}
           items={images}
           showThumbnails={showThumbnails}
           lazyLoad={false}
@@ -389,7 +415,7 @@ class PhotoBrowser extends React.Component {
           renderCustomControls={this.addPhotoButton}
           onClick={e => {
             if ( !$( e.target ).is( "img" ) ) { return; }
-            const index = this.refs.gallery.state.currentIndex;
+            const index = this.galleryRef.current.state.currentIndex;
             if ( _.has( images[index], "mediaViewerIndex" ) ) {
               setMediaViewerState( {
                 show: true,

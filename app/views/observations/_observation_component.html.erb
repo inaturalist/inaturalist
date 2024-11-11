@@ -44,7 +44,10 @@ Some notes:
   elsif observation.quality_grade == Observation::RESEARCH_GRADE
     css_class += ' research_grade'
   end
-  coordinates_viewable ||= observation.coordinates_viewable_by?( current_user )
+  coordinates_viewable ||= observation.coordinates_viewable_by?(
+    current_user,
+    ignore_collection_projects: true
+  )
 -%>
 <div id="observation-<%= observation.id rescue rand(999) %>" class="<%= css_class %>" 
     data-taxon-id=<%= observation.taxon_id %>

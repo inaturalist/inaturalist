@@ -4,10 +4,11 @@ class Identification < ApplicationRecord
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  scope :load_for_index, -> { includes(:taxon, :flags,
+  scope :load_for_index, -> { includes( :taxon, :flags,
     :stored_preferences, :taxon_change, :moderator_actions,
-    { observation: [ :taxon, { user: :flags }, :identifications ] },
-    { user: :flags } ) }
+    { observation: [:taxon, { user: :flags }, { identifications: :moderator_actions }] },
+    { user: :flags } )
+  }
 
   settings index: { number_of_shards: Rails.env.production? ? 12 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do

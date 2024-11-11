@@ -274,6 +274,7 @@ mr:
   add_notes_about_this_taxon: या ठिकाणी या वर्गाबद्दल टीपा जोडा, उदा. कुठे आणि केव्हा सापडते.
   add_obs_from_a_link: "सूचीमधून निरीक्षण जोडा: %{link}"
   add_obs_from_a_list: सूचीमधून निरीक्षण जोडा
+  add_observation_fields: निरीक्षणाचे वर्गीकरण जोडा
   add_observations: निरीक्षणे जोडा
   add_observations_by_checking_off: सूचीमधून प्रजाती वगळून निरीक्षणे जोडा.
   add_observations_project: या प्रकल्पामध्ये निरीक्षणे जोडा
@@ -352,6 +353,8 @@ mr:
   added_by: नी जोडलेले
   added_by_user_on_date_html: "नी जोडलेले %{user} ला %{date}"
   added_on_datetime: "ला जोडलेले %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: प्रस्थापित केलेला हुद्दा
   added_to_favorites_html: |
     जोडलेले मध्ये <a href="%{url}">आवडीचे</a>
   adding: "जोडले जात आहे..."
@@ -476,19 +479,34 @@ mr:
   #curator
   apply_curator: लागू करा
   apply_to_be_an_app_owner: अॅप मालक होण्यासाठी अर्ज करा
+  arachnids: अष्टपाद
+  archives: संग्रह
   are_you_sure?: नक्की ?
   are_you_sure_no_undo: तुमचं नक्की आहे? हे पूर्ववत केले जाऊ शकत नाही.
   are_you_sure_delete_conservation_status: |
     तुम्हाला खात्री आहे की तुम्ही ही संवर्धन स्थिती हटवू इच्छिता? हा वर्ग आणि वर्गामधील निरीक्षणांची अस्पष्टता ह्यामुळे बदलू शकते.
   are_you_sure_delete_post: आपण खरंच ही टिप्पणी हटवू इच्छिता?
+  are_you_sure_delete_this_place: तुम्हाला हे ठिकाण नक्की खोडून टाकायचे आहे ना?
+  are_you_sure_leave_this_project: तुम्हाला नक्की प्रकल्प सोडायचा आहे ?
+  are_you_sure_merge_these_places: तुम्हाला हि ठिकाणे नक्की एकत्र करायची आहेत ना? ती परत विलग करता येणार नाहीत.
+  are_you_sure_remove_photo: "तुम्हाला नक्की हे छायाचित्र काढून टाकायचे आहे ना?"
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, ने अपलोड केले %{user}"
+  birds: पक्षी
   birthday: जन्मतारीख
   block: प्रतिबंध
   blocking_description: अवरोधित केल्याने तुमचा आणि दुसर्‍या वापरकर्त्यामधील कोणताही संवाद प्रतिबंधित होतो. काही विशिष्ट परिस्थितींमध्ये, जसे की तुमच्या व्यवहारांवर कोणी पाळत ठेऊन आढळल्यास किंवा तुमच्याबरोबर कोणी गैरवर्तन करीत असल्यास, तुमची सुरक्षितता लक्षात घेता, अशा प्रकारचा प्रतिबंध लावता येऊ शकतो.
+  blue_butterfly_etc: "निळे, फुलपाखरू, इत्यादी"
+  by_everyone: सर्वांनी
+  by_user: "%{user} ने"
+  by_you: तुम्ही
   calendar: दिनदर्शिका
+  change_group: गट बदल
+  change_types:
+    change_types: बदलाचा प्रकार
+    split: विभाजन
   #Plural noun, as in changes to a taxon record over time
   changes: बदल
   check_this_box_if_html: |
@@ -526,6 +544,7 @@ mr:
     any_evidence_of_presence: कोणताही
     pupa: कोष
     larva: अळी
+    #Evidence of an egg of an organism
     egg: अंडे
     evidence_of_presence: उपस्थितीचा पुरावा
     #As in the feather on a bird
@@ -1031,6 +1050,7 @@ mr:
     </p>
   #@vow_or_con should work with %{site}
   users_site_year_in_review: "%{user} चे %{year} %{site} पुनरावलोकनाचे वर्ष"
+  video_tutorials: माहितीपर व्हिडीओ
   view_all_caps: सर्व पहा
   view_all_fields: सर्व जागा पहा
   view_inaturalist_global_year_in_review: iNaturalist चे जागतिक %{year} वर्षाचे पुनरावलोकन पहा
@@ -1042,7 +1062,6 @@ mr:
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
   view_your_personal_year_in_review: "तुमचे वैयक्तिक %{year} पुनरावलोकनाचे वर्ष पहा"
   view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
-  video_tutorials: माहितीपर व्हिडीओ
   we_also_support2: |
     आम्ही <a href="http://flickr.com">Flickr</a> आणि <a href="http://photos.google.com">Google Photos</a> वरून फोटो आयात करण्यास देखील समर्थन देतो.
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
@@ -1155,74 +1174,6 @@ mr:
         data_quality_assessment_desc3_html: |
           एखाद्या iNaturalist निरीक्षणाची गुणवत्ता पातळी जैवविविधता डेटाच्या दृष्टीकोनातून त्याची अचूकता, नि:संदिग्धता, पूर्णता, समर्पकता आणि योग्यता सूचित करते. 
           काही मूल्यांकने आपोआप ठरवली जातात, तर काही iNat वापरकर्त्यांद्वारे मताधिक्याने ठरविली जातात. iNaturalist परवानाधिकृत "संशोधन श्रेणी" तील निरीक्षणे विज्ञान आणि संवर्धनासाठी त्याच्या अनेक माहितीक्षेत्रातील भागीदारांसह शेअर करते.
-        quality_assessment_help2_html: |
-          <p>
-          डेटा गुणवत्तेचे मूल्यांकन हे निरीक्षणाच्या अचूकतेचा सारांश आहे. सर्व
-          निरीक्षणे <strong>"कॅज्युअल"</strong> ग्रेड म्हणून सुरू होतात आणि होतात
-          <strong>"आयडी आवश्यक आहे"</strong> तेव्हा
-          </p>
-
-          <ul>
-          <li>निरीक्षणाची <strong>तारीख आहे</strong></li>
-          <li>निरीक्षण <strong>भू-संदर्भित आहे</strong> (म्हणजे अक्षांश/लोन निर्देशांक आहेत)</li>
-          <li>निरीक्षणात <strong>फोटो किंवा ध्वनी आहेत</strong></li>
-          <li>निरीक्षण <strong>मानवाचे नाही</strong></li>
-          </ul>
-          <p>
-          जेव्हा निरीक्षणे <strong>"संशोधन श्रेणी"</strong> होतात
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>समुदाय प्रजाती-स्तरीय आयडीवर सहमत आहे किंवा
-          कमी</strong>, म्हणजे जेव्हा २/३ पेक्षा जास्त अभिज्ञापक a वर सहमत असतात
-          taxon (जर समुदायाने मत दिले असेल की समुदाय टॅक्सन करू शकत नाही
-          यापुढे सुधारित केले जावे, हे उप-कुटुंब-स्तरीय आयडी किंवा कमी वर परत येईल)
-          </li>
-          </ul>
-          <p>
-          वरील अटींची पूर्तता न केल्यास किंवा समुदायाने सहमती दर्शविल्यास निरीक्षणे <strong>"कॅज्युअल"</strong> वर परत येतील
-          </p>
-          <ul>
-          <li>
-          <strong>स्थान दिसत नाही
-          अचूक</strong> (उदा. समुद्राच्या मध्यभागी माकडे,
-          कार्यालयीन इमारतींमध्ये हिप्पो इ.)
-          </li>
-          <li>
-          <strong>जीव जंगली/नैसर्गिक नाही</strong> (उदा. बंदिवान किंवा मानवांनी लागवड केलेले
-          किंवा बुद्धिमान स्पेस एलियन)
-          </li>
-          <li>
-          निरीक्षण <strong>का पुरावा सादर करत नाही
-          जीव</strong>, उदा. पाण्याच्या वैशिष्ट्यांच्या प्रतिमा,
-          खडक, लँडस्केप ज्यात जीव समाविष्ट नाही इ.
-          </li>
-          <li>
-          निरीक्षण <strong>चे अलीकडील (~१00 वर्षे) पुरावे सादर करत नाही
-          जीव</strong> (उदा. जीवाश्म, परंतु ट्रॅक, स्कॅट आणि मृत पाने
-          ठीक आहेत)
-          </li>
-          <li>
-          निरीक्षणाला यापुढे आयडीची आवश्यकता नाही <em>आणि</em> समुदाय आयडी कुटुंबात किंवा वर आहे
-          </li>
-          <li>
-          निरीक्षकाने समुदाय आयडी आणि समुदायाची निवड रद्द केली आहे
-          आयडी टॅक्सन संबंधित टॅक्सनचा पूर्वज किंवा वंशज नाही
-          निरीक्षकांच्या आयडीसह
-          </li>
-          </ul>
-          <p>
-          आणि जर ते पुरेसे क्लिष्ट नसेल, तर अशा परिस्थिती देखील आहेत जेथे सिस्टमला मत मिळते:
-          </p>
-          <ul>
-          <li>
-          निरीक्षण वन्य/नैसर्गिक नाही असे सिस्टम मत देईल
-          वंशाची किंवा त्यापेक्षा कमी १0 इतर निरीक्षणे असल्यास
-          सर्वात लहान काउंटी-, राज्य-, किंवा देश-समतुल्य ठिकाण
-          हे निरीक्षण आणि ८0% किंवा त्याहून अधिक निरीक्षणे समाविष्ट आहेत
-          वन्य/नैसर्गिक नाही म्हणून चिन्हांकित केले आहे.
-          </li>
-          </ul>
     stats:
       year:
         compare_desc: |
@@ -1412,7 +1363,6 @@ mr:
               cannot_be_blank: रिक्त असू शकत नाही
               invalid_point: एखादा अवैध निर्देशांक आहे, उदा. रेखांश १८० पेक्षा जास्त किंवा अक्षांश -९० पेक्षा कमी
               must_have_more_than_three_points: ३ पेक्षा जास्त बिंदू असणे आवश्यक आहे
-              polygon_with_fewer_than_four_points: ४ पेक्षा कमी बिंदूंसह बहुभुज आहे
         user_block:
           attributes:
             base:

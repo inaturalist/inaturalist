@@ -230,7 +230,99 @@ describe Annotation do
     end
   end
 
-  describe "deletion after" do
+  describe "taxon mismatches" do
+    before do
+      @animalia = Taxon.make!( name: "Animalia", rank: Taxon::KINGDOM )
+      @mammalia = Taxon.make!( name: "Mammalia", parent: @animalia, rank: Taxon::CLASS )
+      @atr = make_controlled_term_with_label
+      @val = make_controlled_term_with_label( nil, is_value: true )
+      ControlledTermValue.make!( controlled_attribute: @atr, controlled_value: @val )
+      @atr.reload
+      @val.reload
+    end
+
+    describe "taxon_mismatch_needs_updating?" do
+      it "when attribute taxon rules change" do
+        obs = Observation.make!( taxon: @animalia )
+        a = Annotation.make!(
+          resource: obs,
+          controlled_attribute: @atr,
+          controlled_value: @val
+        )
+        expect( a.taxon_mismatch_needs_updating? ).to be false
+        ControlledTermTaxon.make!( taxon: @mammalia, controlled_term: @atr )
+        a.reload
+        # annotation is not marked as a mismatch, but attribute taxa mismatch
+        expect( a.attribute_belongs_to_taxon? ).to be false
+        expect( a.taxon_mismatch_needs_updating? ).to be true
+
+        a.update( term_taxon_mismatch: true )
+        # annotation is marked as a mismatch, and attribute taxa mismatch
+        expect( a.attribute_belongs_to_taxon? ).to be false
+        expect( a.taxon_mismatch_needs_updating? ).to be false
+      end
+
+      it "when value taxon rules change" do
+        obs = Observation.make!( taxon: @animalia )
+        a = Annotation.make!(
+          resource: obs,
+          controlled_attribute: @atr,
+          controlled_value: @val
+        )
+        expect( a.taxon_mismatch_needs_updating? ).to be false
+        ControlledTermTaxon.make!( taxon: @mammalia, controlled_term: @val )
+        a.reload
+        # annotation is not marked as a mismatch, but value taxa mismatch
+        expect( a.value_belongs_to_taxon? ).to be false
+        expect( a.taxon_mismatch_needs_updating? ).to be true
+
+        a.update( term_taxon_mismatch: true )
+        # annotation is marked as a mismatch, and value taxa mismatch
+        expect( a.value_belongs_to_taxon? ).to be false
+        expect( a.taxon_mismatch_needs_updating? ).to be false
+      end
+    end
+
+    describe "reassess_annotations_for_taxon_id" do
+      it "updates term_taxon_mismatch as needed for a clade" do
+        obs = Observation.make!( taxon: @animalia )
+        a = Annotation.make!(
+          resource: obs,
+          controlled_attribute: @atr,
+          controlled_value: @val
+        )
+        expect( Observation.page_of_results(
+          id: obs.id,
+          term_id: a.controlled_attribute_id,
+          term_value_id: a.controlled_value_id
+        ).count ).to eq 1
+        expect( a.taxon_mismatch_needs_updating? ).to be false
+
+        ControlledTermTaxon.make!( taxon: @mammalia, controlled_term: @atr )
+        a.reload
+        # annotation is not marked as a mismatch, but value taxa mismatch
+        expect( Annotation.find( a.id ).term_taxon_mismatch ).to be false
+        Annotation.reassess_annotations_for_taxon_id( @animalia )
+        expect( Annotation.find( a.id ).term_taxon_mismatch ).to be true
+        # the observations index will still reflect the annotation until
+        # delayed jobs are processed
+        expect( Observation.page_of_results(
+          id: obs.id,
+          term_id: a.controlled_attribute_id,
+          term_value_id: a.controlled_value_id
+        ).count ).to eq 1
+
+        Delayed::Worker.new.work_off
+        expect( Observation.page_of_results(
+          id: obs.id,
+          term_id: a.controlled_attribute_id,
+          term_value_id: a.controlled_value_id
+        ).count ).to eq 0
+      end
+    end
+  end
+
+  describe "term_taxon_mismatch" do
     before do
       @attribute = make_controlled_term_with_label
       @value = make_controlled_term_with_label( nil, is_value: true )
@@ -253,42 +345,43 @@ describe Annotation do
       )
     end
     describe "changing the observation taxon" do
-      it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
+      it "mark a mismatch taxon is no longer a descendant of the controlled term taxon" do
         @observation.update( taxon: Taxon.make!, editing_user_id: @observation.user_id )
-        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+        expect( Annotation.find_by_id( @annotation.id ).term_taxon_mismatch ).to be true
       end
-      it "should not happen if the taxon is still a descendant of the controlled term taxon" do
+      it "should not mark a mismatch if the taxon is still a descendant of the controlled term taxon" do
         @observation.update( taxon: @species )
-        expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
+        expect( Annotation.find_by_id( @annotation.id ).term_taxon_mismatch ).to be false
       end
     end
     describe "moving the observation taxon" do
-      it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
+      it "should mark a mismatch when the taxon is no longer a descendant of the controlled term taxon" do
         other_family = Taxon.make!( rank: Taxon::FAMILY )
         @observation.taxon.update( parent: other_family )
         Delayed::Worker.new.work_off
-        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+        expect( Annotation.find_by_id( @annotation.id ).term_taxon_mismatch ).to be true
       end
-      it "should not happen if the taxon is still a descendant of the controlled term taxon" do
+      it "should not mark a mismatch if the taxon is still a descendant of the controlled term taxon" do
         subfamily = Taxon.make!( rank: Taxon::SUBFAMILY, parent: @family )
         @observation.taxon.update( parent: subfamily )
         Delayed::Worker.new.work_off
-        expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
+        expect( Annotation.find_by_id( @annotation.id ).term_taxon_mismatch ).to be false
       end
     end
     describe "changing the controlled term taxon" do
-      it "should happen when the observation taxon is no longer a descendant of the controlled term taxon" do
+      it "should mark a mismatch when the observation taxon is no longer a descendant of the controlled term taxon" do
         @attribute.controlled_term_taxa.destroy_all
         @attribute.controlled_term_taxa.create!( taxon: Taxon.make! )
         Delayed::Worker.new.work_off
-        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+        expect( Annotation.find_by_id( @annotation.id ).term_taxon_mismatch ).to be true
       end
-      it "should not happen if the observation taxon is still a descendant of the controlled term taxon" do
+      it "should not mark a mismatch if the observation taxon is still a descendant of the controlled term taxon" do
         subfamily = Taxon.make!( rank: Taxon::SUBFAMILY, parent: @family )
+        @genus.update( parent: subfamily )
         @attribute.controlled_term_taxa.destroy_all
         @attribute.controlled_term_taxa.create!( taxon: subfamily )
         Delayed::Worker.new.work_off
-        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+        expect( Annotation.find_by_id( @annotation.id ).term_taxon_mismatch ).to be false
       end
     end
   end
@@ -304,6 +397,29 @@ describe Annotation do
       a = make_annotation( resource: o )
       expect( a.user ).not_to eq o.user
       expect( a.deleteable_by?( o.user ) ).to be true
+    end
+  end
+
+  describe "user counter cache" do
+    it "increases count on create, with delay" do
+      annotation = make_annotation!
+      user = annotation.user
+      expect( user.annotated_observations_count ).to eq 0
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+    end
+
+    it "decreases count on destroy, with delay" do
+      annotation = make_annotation!
+      user = annotation.user
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      user.reload
+      expect( user.annotated_observations_count ).to eq 1
+      annotation.destroy
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      user.reload
+      expect( user.annotated_observations_count ).to eq 0
     end
   end
 end

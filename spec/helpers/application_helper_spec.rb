@@ -194,4 +194,95 @@ describe ApplicationHelper do
     #   end
     # end
   end
+
+  describe "update_tagline_for" do
+    include UsersHelper
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
+    it "states an observation field value was added" do
+      without_delay do
+        o = Observation.make!
+        ofv = ObservationFieldValue.make!( observation: o, user: User.make! )
+        expect( update_tagline_for( UpdateAction.last, skip_links: true ) ).to match(
+          "#{ofv.user.login} added a value for .* to an observation by #{o.user.login}"
+        )
+      end
+    end
+
+    it "states an observation field value was updated" do
+      without_delay do
+        o = Observation.make!
+        ofv = ObservationFieldValue.make!( observation: o, user: o.user )
+        ofv.updater = User.make!
+        ofv.save
+        expect( update_tagline_for( UpdateAction.last, skip_links: true ) ).to match(
+          "#{ofv.updater.login} updated a value for .* on an observation by #{o.user.login}"
+        )
+      end
+    end
+  end
+
+  describe "create_announcement_impression" do
+    let( :ip ) { "127.0.0.1" }
+    let( :request ) do
+      double(
+        "request",
+        env: { "REMOTE_ADDR" => ip }
+      )
+    end
+
+    it "creates announcement impressions for the logged-in user" do
+      user = User.make!
+      allow_any_instance_of( ApplicationHelper ).to receive( :user_signed_in? ).and_return( true )
+      allow_any_instance_of( ApplicationHelper ).to receive( :current_user ).and_return( user )
+      allow_any_instance_of( ApplicationHelper ).to receive( :request ).and_return( request )
+
+      announcement = Announcement.make!
+      expect( AnnouncementImpression.count ).to eq 0
+      create_announcement_impression( announcement )
+
+      expect( AnnouncementImpression.count ).to eq 1
+      impression = AnnouncementImpression.first
+      expect( impression.announcement ).to eq announcement
+      expect( impression.user ).to eq user
+      expect( impression.request_ip ).to eq ip
+      expect( impression.impressions_count ).to eq 1
+    end
+
+    it "creates announcement impressions for the request_ip" do
+      allow_any_instance_of( ApplicationHelper ).to receive( :user_signed_in? ).and_return( false )
+      allow_any_instance_of( ApplicationHelper ).to receive( :current_user ).and_return( nil )
+      allow_any_instance_of( ApplicationHelper ).to receive( :request ).and_return( request )
+
+      announcement = Announcement.make!
+      expect( AnnouncementImpression.count ).to eq 0
+      create_announcement_impression( announcement )
+
+      expect( AnnouncementImpression.count ).to eq 1
+      impression = AnnouncementImpression.first
+      expect( impression.announcement ).to eq announcement
+      expect( impression.user ).to be_nil
+      expect( impression.request_ip ).to eq ip
+      expect( impression.impressions_count ).to eq 1
+    end
+  end
+
+  describe "absolute_url_or_relative_to_site" do
+    let( :site ) do
+      Site.make!
+    end
+
+    it "returns absolute urls" do
+      url = "https://help.inaturalist.org/en/support/home"
+      expect( absolute_url_or_relative_to_site( site: site, url: url ) ).to eq url
+    end
+
+    it "generates urls with paths relative to site url" do
+      path = "/pages/terms"
+      expect( absolute_url_or_relative_to_site( site: site, url: path ) ).to eq(
+        URI.join( site.url.to_s, path ).to_s
+      )
+    end
+  end
 end

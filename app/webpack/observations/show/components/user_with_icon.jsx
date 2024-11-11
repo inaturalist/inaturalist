@@ -4,11 +4,33 @@ import UserImage from "../../../shared/components/user_image";
 
 const UserWithIcon = ( {
   hideSubtitle,
+  skipSubtitleLink,
   subtitle,
+  subtitleLinkOverwrite,
   subtitleIconClass,
   user
 } ) => {
   if ( !user ) { return ( <div /> ); }
+
+  const subtitleContent = (
+    <>
+      <i className={subtitleIconClass} />
+      {
+        subtitle
+        || (
+          user.observations_count
+          && I18n.t( "x_observations", {
+            count: I18n.toNumber( user.observations_count, { precision: 0 } )
+          } )
+        )
+       }
+    </>
+  );
+  const subtitleLinkDefault = `/observations?user_id=${user.login}&place_id=any&verifiable=any`;
+  const subtitleLink = skipSubtitleLink
+    ? subtitleContent
+    : <a href={subtitleLinkOverwrite || subtitleLinkDefault}>{ subtitleContent }</a>;
+
   return (
     <div className="UserWithIcon">
       <div className="icon">
@@ -19,20 +41,7 @@ const UserWithIcon = ( {
           <a href={`/people/${user.login}`}>{ user.login }</a>
         </div>
         { !hideSubtitle && (
-          <div className="subtitle">
-            <a href={`/observations?user_id=${user.login}&place_id=any&verifiable=any`}>
-              <i className={subtitleIconClass} />
-              {
-                subtitle
-                || (
-                  user.observations_count
-                  && I18n.t( "x_observations", {
-                    count: I18n.toNumber( user.observations_count, { precision: 0 } )
-                  } )
-                )
-               }
-            </a>
-          </div>
+          <div className="subtitle">{ subtitleLink }</div>
         ) }
       </div>
     </div>
@@ -45,8 +54,10 @@ UserWithIcon.propTypes = {
     PropTypes.string,
     PropTypes.number
   ] ),
+  subtitleLinkOverwrite: PropTypes.string,
   subtitleIconClass: PropTypes.string,
-  hideSubtitle: PropTypes.bool
+  hideSubtitle: PropTypes.bool,
+  skipSubtitleLink: PropTypes.bool
 };
 
 UserWithIcon.defaultProps = {

@@ -459,6 +459,7 @@ eo:
     no_evidence_of_flowering: Neniu evidenteco de florado
     nymph: Nimfo
     larva: Larvo
+    #Evidence of an egg of an organism
     egg: Ovo
     juvenile: Junulo
   controlled_term_definitions:
@@ -697,6 +698,7 @@ eo:
   flickr_style: Flickr-stila
   flickr_tags: Etikedoj ĉe Flickr
   follow: Aboni
+  #Text for a button to follow updates from a specific user
   follow_user: "Aboni uzanton %{user}"
   followers: Abonantoj
   following: Abonante
@@ -758,7 +760,6 @@ eo:
   identifications: Identigoj
   identifiers: Identigistoj
   ids: "Identigoj"
-  ids_made_for_others: Identigoj por aliuloj
   ignore_and_continue: Ignori kaj daŭrigi
   import: Enporti
   import_photos: Enporti Fotojn
@@ -1024,7 +1025,9 @@ eo:
   official_blog: Oficiala Rettaglibro
   ok: "Bone"
   only_you: Nur vi
+  #Geoprivacy status in which no privacy has been applied
   open: malfermi
+  #Geoprivacy status in which no privacy has been applied
   open_: Malfermi
   or: aŭ
   #Usually used to separate buttons or functional areas of the interface, e.g.
@@ -1419,7 +1422,11 @@ eo:
   radius: Radiuso (m)
   radius_value: "Radiuso (m): %{radius}"
   random: Hazarda
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Rango
   ranks:
     kingdom: Regno
@@ -1621,7 +1628,6 @@ eo:
   start_a_new_project: Fondi Novan Projekton
   start_a_project: Fondi Projekton
   start_date_time: Komencaj Dato / Tempo
-  start_one: Fondi
   start_one_now: Fondi Nun!
   start_typing_field_name: Ektajpu nomon de kampo...
   start_typing_place_name: Ektajpu nomon de loko...

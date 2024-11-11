@@ -286,4 +286,19 @@ describe GuideTaxon do
       expect(gt.tag_list).to include "taxonomy:order=Anura"
     end
   end
+
+  describe "tagged" do
+    it "returns tagged guide taxa" do
+      guide1_taxon = GuideTaxon.make!
+      guide2_taxon = GuideTaxon.make!
+      guide1_taxon.tag_list.add( "tag1" )
+      guide1_taxon.save
+      guide2_taxon.tag_list.add( "tag2" )
+      guide2_taxon.save
+      expect( guide1_taxon.guide.guide_taxa.tagged( ["tag1"] ).any? ).to be true
+      expect( guide2_taxon.guide.guide_taxa.tagged( ["tag1"] ).any? ).to be false
+      expect( guide1_taxon.guide.guide_taxa.tagged( ["tag2"] ).any? ).to be false
+      expect( guide2_taxon.guide.guide_taxa.tagged( ["tag2"] ).any? ).to be true
+    end
+  end
 end

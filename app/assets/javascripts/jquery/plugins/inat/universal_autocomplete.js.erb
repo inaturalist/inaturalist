@@ -157,7 +157,7 @@ $.fn.universalAutocomplete = function( options ) {
       ) {
         var a = e.target.nodeName == "A" ? e.target : $( e.target ).parents( "a" ).get( 0 );
         if ( a ) {
-          window.open( a.href, "_blank" );
+          window.open( a.href, "_blank", "noopener,noreferrer" );
         } else {
           $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
             item: item,
@@ -172,7 +172,7 @@ $.fn.universalAutocomplete = function( options ) {
       var a = e.target.nodeName == "A" ? e.target : $( e.target ).parents( "a" ).get( 0 );
       if ( e.metaKey || e.ctrlKey || e.altKey ) {
         if ( a ) {
-          window.open( a.href, "_blank" );
+          window.open( a.href, "_blank", "noopener,noreferrer" );
         } else {
           $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
             item: item,
@@ -266,7 +266,7 @@ $.fn.universalAutocomplete = function( options ) {
         // In Safari and Firefox this has the unpleasant effect of opening a
         // blank window *and* focusing on that window. In Chrome it opens a tab
         // in the background like you'd expect. Not sure how to get around this.
-        window.open( url, "_blank" );
+        window.open( "https://google.com", "_blank", "noopener,noreferrer" );
       } else {
         window.location = url;
       }

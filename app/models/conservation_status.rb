@@ -139,8 +139,9 @@ class ConservationStatus < ApplicationRecord
     true
   end
 
-  def as_indexed_json(options={})
+  def as_indexed_json
     {
+      id: id,
       place_id: place_id,
       source_id: source_id,
       user_id: user_id,

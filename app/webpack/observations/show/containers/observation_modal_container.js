@@ -43,7 +43,8 @@ function mapStateToProps( state ) {
     tabs: ["suggestions"],
     tabTitles: { suggestions: I18n.t( "compare" ) },
     hidePrevNext: true,
-    hideTools: true
+    hideTools: true,
+    updateSuggestionSession: false
   }, state.currentObservation );
 }
 

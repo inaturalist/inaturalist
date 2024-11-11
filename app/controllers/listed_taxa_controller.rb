@@ -4,6 +4,8 @@ class ListedTaxaController < ApplicationController
 
   SHOW_PARTIALS = %w(guide batch_edit_row)
 
+  prepend_around_action :enable_replica, only: [:show]
+
   def index
     redirect_to lists_path
   end

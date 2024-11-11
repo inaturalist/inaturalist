@@ -86,7 +86,6 @@ class DateTimeFieldWrapper extends Component {
 DateTimeFieldWrapper.propTypes = {
   inputProps: PropTypes.object,
   onChange: PropTypes.func,
-  onSelection: PropTypes.func,
   reactKey: PropTypes.string,
   defaultText: PropTypes.string,
   mode: PropTypes.string,

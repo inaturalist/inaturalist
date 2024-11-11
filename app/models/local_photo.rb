@@ -1,9 +1,10 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class LocalPhoto < Photo
   include LogsDestruction
   after_create :set_urls
   after_update :change_photo_bucket_if_needed
-  
+
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
     record.rotation.blank? ? "-auto-orient" : nil
@@ -417,7 +418,7 @@ class LocalPhoto < Photo
       # still a high chance of encoding weirdness happening
       words = file.original_filename.scan( /[\p{L}\p{M}'\’]+/ ).map( &:downcase ).uniq
       words = words.reject do | word |
-        word.size < 4 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
+        word.size < 4 || word =~ /^(original|img|inat|dsc.?|jpe?g|png|gif|open-uri)$/i
       end
       # Collect all combinations of these words from 1-word combinations up to
       # 3-word combinations (median word length for taxon names is 2, avg

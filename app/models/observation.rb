@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Observation < ApplicationRecord
 
   include ActsAsElasticModel
@@ -10,32 +11,33 @@ class Observation < ApplicationRecord
     :identifications => {:notification => "activity", :include_owner => true}
   }
   notifies_subscribers_of :user, :notification => "created_observations",
-    :queue_if => lambda { |observation| !observation.bulk_import }
+    unless: lambda {| observation | observation.bulk_import }
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::ORGANIZER
   earns_privilege UserPrivilege::COORDINATE_ACCESS
-  
+
   # Why aren't we using after_save? Because we need this to run before the
   # after_create created by notifies_subscribers_of :public_places runs
   after_create :update_observations_places
   after_update :update_observations_places
-  
+
   notifies_subscribers_of :public_places,
     notification: "new_observations",
     on: :create,
-    queue_if: lambda {|observation|
-      observation.georeferenced? && !observation.bulk_import
+    unless: lambda {| observation |
+      !observation.georeferenced? || observation.bulk_import
     },
-    if: lambda {|observation, place, subscription|
+    if: lambda {| observation, _place, subscription |
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
       return true if observation.taxon_id == subscription.taxon_id
-      observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+
+      observation.taxon.ancestor_ids.include?( subscription.taxon_id )
     },
-    before_notify: lambda{|observation|
-      Observation.preload_associations( observation, [ :taxon, {
+    before_notify: lambda {| observation |
+      Observation.preload_associations( observation, [:taxon, {
         observations_places: {
           place: :update_subscriptions_with_unsuspended_users
         }
@@ -43,11 +45,14 @@ class Observation < ApplicationRecord
     }
   notifies_subscribers_of :taxon_and_ancestors,
     notification: "new_observations",
-    queue_if: lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
-    if: lambda {|observation, taxon, subscription|
+    unless: lambda {| observation |
+      observation.taxon_id.blank? || observation.bulk_import
+    },
+    if: lambda {| observation, taxon, subscription |
       return true if observation.taxon_id == taxon.id
       return false if observation.taxon.blank?
-      observation.taxon.ancestor_ids.include?(subscription.resource_id)
+
+      observation.taxon.ancestor_ids.include?( subscription.resource_id )
     }
   notifies_users :mentioned_users,
     on: :save,
@@ -75,7 +80,7 @@ class Observation < ApplicationRecord
   attr_accessor :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
     :taxon_introduced, :taxon_endemic, :taxon_native,
-    :skip_identification_indexing, :will_be_saved_with_photos
+    :skip_identification_indexing, :will_be_saved_with_photos, :skip_update_observations_places
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -331,6 +336,7 @@ class Observation < ApplicationRecord
   has_many :observation_reviews, :dependent => :destroy
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
+  has_one :observation_geo_score, dependent: :delete
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
 
@@ -419,7 +425,8 @@ class Observation < ApplicationRecord
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :reassess_geo_score
 
   before_update :set_quality_grade
 
@@ -761,10 +768,13 @@ class Observation < ApplicationRecord
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
-      { identifications: :stored_preferences },
-      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
+      { identifications: [:stored_preferences, :moderator_actions] },
+      { photos: [:flags, :user, :file_extension, :file_prefix, :moderator_actions] },
+      { sounds: [:flags, :moderator_actions] },
       :stored_preferences, :flags, :quality_metrics,
-      :votes_for ]
+      :votes_for,
+      :taggings
+    ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
       preloads.delete(:iconic_taxon)
@@ -881,7 +891,10 @@ class Observation < ApplicationRecord
     viewer = viewer.is_a?( User ) ? viewer : User.find_by_id( viewer.to_i )
     options[:except] ||= []
     options[:except] += [:user_agent]
-    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
+    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?(
+      viewer,
+      ignore_collection_projects: options[:ignore_collection_projects]
+    )
       options[:except] += [:private_latitude, :private_longitude, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
@@ -1279,6 +1292,14 @@ class Observation < ApplicationRecord
     true
   end
 
+  def reassess_geo_score
+    return unless observation_geo_score
+    return unless coordinates_changed? || taxon_id_changed?
+
+    observation_geo_score.destroy
+    self.observation_geo_score = nil
+  end
+
   def replace_inactive_taxon
     return true if taxon.blank? || ( taxon && taxon.is_active? )
     return true unless candidate = taxon.current_synonymous_taxon
@@ -1467,24 +1488,26 @@ class Observation < ApplicationRecord
   def sounds?
     sounds.loaded? ? ! sounds.empty? : sounds.exists?
   end
-  
-  def set_quality_grade(options = {})
+
+  def set_quality_grade
     self.quality_grade = get_quality_grade
     true
   end
-  
-  def self.set_quality_grade(id)
-    return unless observation = Observation.find_by_id(id)
-    observation.set_quality_grade(:force => true)
-    observation.save
+
+  def self.set_quality_grade( id )
+    observation = Observation.find_by_id( id )
+    return unless observation
+
+    observation.set_quality_grade
     if observation.quality_grade_changed?
-      CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "CheckList::refresh_with_observation": id }).
-        refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+      observation.save
+      CheckList.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "CheckList::refresh_with_observation": id } ).
+        refresh_with_observation( observation.id, taxon_id: observation.taxon_id )
     end
     observation.quality_grade
   end
-  
+
   def get_quality_grade
     if !research_grade_candidate?
       CASUAL
@@ -1546,7 +1569,7 @@ class Observation < ApplicationRecord
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?( viewer )
+  def coordinates_viewable_by?( viewer, options = { } )
     return true unless coordinates_obscured?
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
@@ -1568,6 +1591,8 @@ class Observation < ApplicationRecord
         return true
       end
     end
+    return false if options[:ignore_collection_projects]
+
     cps = collection_projects( authenticate: viewer ).select do |cp|
       curated_project_ids.include?( cp.id )
     end
@@ -1797,7 +1822,7 @@ class Observation < ApplicationRecord
     # work on current identifications
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
-      identifications.current.includes(:taxon)
+      identifications.current.includes( :taxon, :moderator_actions )
     working_idents = ids.select do |i|
       i.taxon.is_active && !i.hidden?
     end.sort_by( &:id )
@@ -1834,6 +1859,9 @@ class Observation < ApplicationRecord
           if (
             i.disagreement? &&
             i.previous_observation_taxon &&
+            # if all ids of/descending from previous_observation_taxon have been withdrawn, treat
+            # the ancestor id as a non-disagreement
+            working_idents.any? {| j | j.taxon.self_and_ancestor_ids.include?( i.previous_observation_taxon.id ) } &&
             ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
           )
 
@@ -2115,10 +2143,10 @@ class Observation < ApplicationRecord
   end
 
   def set_taxon_geoprivacy
-    taxon_ids = if identifications.loaded? 
-      identifications.select{|i| i.current? }.map(&:taxon_id)
+    taxon_ids = if identifications.loaded?
+      identifications.select( &:current? ).reject( &:hidden? ).map( &:taxon_id )
     else
-      identifications.current.pluck(:taxon_id)
+      identifications.current.includes( :moderator_actions ).reject( &:hidden? ).pluck( :taxon_id )
     end
     self.taxon_geoprivacy = Taxon.max_geoprivacy(
       taxon_ids,
@@ -2126,7 +2154,7 @@ class Observation < ApplicationRecord
       longitude: private_longitude.blank? ? longitude : private_longitude
     )
   end
-  
+
   def single_taxon_for_name(name)
     Taxon.single_taxon_for_name(name)
   end
@@ -2484,11 +2512,14 @@ class Observation < ApplicationRecord
         results_remaining = false
         break
       end
-      Observation.preload_associations(observations, [
-        :taxon, :flags, :quality_metrics, :sounds, :votes_for,
-        { identifications: :taxon },
-        { photos: :flags }
-      ])
+      Observation.preload_associations( observations,
+        [
+          :taxon, :flags, :quality_metrics, :sounds, :votes_for,
+          :stored_preferences,
+          { user: :stored_preferences },
+          { identifications: [:moderator_actions, :taxon] },
+          { photos: [:flags, :moderator_actions] }
+        ] )
       changed_ids = []
       observations.each do |o|
         o.set_community_taxon
@@ -2911,8 +2942,11 @@ class Observation < ApplicationRecord
 
   def reassess_annotations
     return true unless saved_change_to_taxon_id?
-    annotations.each do |a|
-      a.destroy unless a.valid?
+
+    annotations.each do | a |
+      if a.taxon_mismatch_needs_updating?
+        a.update_columns( term_taxon_mismatch: !a.term_taxon_mismatch )
+      end
     end
     true
   end
@@ -3107,6 +3141,8 @@ class Observation < ApplicationRecord
   end
 
   def update_observations_places
+    return if skip_update_observations_places
+
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
     observations_places.reload
@@ -3155,6 +3191,7 @@ class Observation < ApplicationRecord
 
   def publicly_viewable_observation_photos
     observation_photos.select do |op|
+      op.photo &&
       ! ( op.photo.is_a?( LocalPhoto ) && op.photo.processing? ) &&
       !op.photo.flagged? &&
       !op.photo.hidden?
@@ -3167,31 +3204,49 @@ class Observation < ApplicationRecord
 
   def interpolate_coordinates
     return unless time_observed_at
-    scope = user.observations.where("latitude IS NOT NULL or private_latitude IS NOT NULL")
-    prev_obs = scope.where("time_observed_at < ?", time_observed_at).order("time_observed_at DESC").first
-    next_obs = scope.where("time_observed_at > ?", time_observed_at).order("time_observed_at ASC").first
-    return unless prev_obs && next_obs
+
+    base_params = { user_id: user.id, with_geo: true, order_by: "observed_on", not_id: id }
+    prev_obs = Observation.elastic_query( base_params.merge( d2: time_observed_at, order: "desc" ) ).first
+    return unless prev_obs
+
+    next_obs = Observation.elastic_query( base_params.merge(
+      d1: time_observed_at,
+      order: "asc",
+      not_id: [id, prev_obs.id]
+    ) ).first
+    return unless next_obs
+
     prev_lat = prev_obs.private_latitude || prev_obs.latitude
     prev_lon = prev_obs.private_longitude || prev_obs.longitude
     next_lat = next_obs.private_latitude || next_obs.latitude
     next_lon = next_obs.private_longitude || next_obs.longitude
 
     # time-weighted interpolation between prev and next observations
-    weight = (next_obs.time_observed_at - time_observed_at) / (next_obs.time_observed_at-prev_obs.time_observed_at)
-    new_lat = (1-weight)*next_lat + weight*prev_lat
-    new_lon = (1-weight)*next_lon + weight*prev_lon
+    weight = (
+      ( next_obs.time_observed_at - time_observed_at ) /
+      ( next_obs.time_observed_at - prev_obs.time_observed_at )
+    )
+    # If for some reason prev and next have identification time_observed_at
+    # values, weight will be NaN and we will assume even weighting
+    weight = 0.5 if weight.nan?
+    new_lat = ( ( 1 - weight ) * next_lat ) + ( weight * prev_lat )
+    new_lon = ( ( 1 - weight ) * next_lon ) + ( weight * prev_lon )
     self.latitude = new_lat
     self.longitude = new_lon
 
     # we can only set a new uncertainty if the uncertainty of the two points are known
-    if prev_obs.positional_accuracy && next_obs.positional_accuracy
-      f = RGeo::Geographic.simple_mercator_factory
-      prev_point = f.point(prev_lon, prev_lat)
-      next_point = f.point(next_lon, next_lat)
-      interpolation_uncertainty = prev_point.distance(next_point)/2.0
-      new_acc = Math.sqrt(interpolation_uncertainty**2 + prev_obs.positional_accuracy**2 + next_obs.positional_accuracy**2)
-      self.positional_accuracy = new_acc
-    end
+    return unless prev_obs.positional_accuracy && next_obs.positional_accuracy
+
+    f = RGeo::Geographic.simple_mercator_factory
+    prev_point = f.point( prev_lon, prev_lat )
+    next_point = f.point( next_lon, next_lat )
+    interpolation_uncertainty = prev_point.distance( next_point ) / 2.0
+    new_acc = Math.sqrt(
+      ( interpolation_uncertainty**2 ) +
+      ( prev_obs.positional_accuracy**2 ) +
+      ( next_obs.positional_accuracy**2 )
+    )
+    self.positional_accuracy = new_acc
   end
 
   def self.as_csv(scope, methods, options = {})
@@ -3362,9 +3417,9 @@ class Observation < ApplicationRecord
     true
   end
 
-  def user_viewed_updates(user_id)
-    obs_updates = UpdateAction.where(resource: self)
-    UpdateAction.user_viewed_updates(obs_updates, user_id)
+  def user_viewed_updates( user_id, options = {} )
+    obs_updates = UpdateAction.where( resource: self )
+    UpdateAction.user_viewed_updates( obs_updates, user_id, options )
   end
 
   def in_collection_projects?( projects, api_params = {} )
@@ -3443,5 +3498,4 @@ class Observation < ApplicationRecord
       unique_hash: { "Observation::elastic_index": id }
     ).elastic_index!( ids: [id] )
   end
-
 end

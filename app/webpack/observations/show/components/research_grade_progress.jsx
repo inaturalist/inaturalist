@@ -9,7 +9,7 @@ class ResearchGradeProgress extends React.Component {
     super( );
     const criteria = ["date", "location", "media", "ids", "metric-date",
       "metric-location", "metric-wild", "metric-evidence", "metric-recent",
-      "rank", "flags", "rank_or_needs_id"];
+      "metric-subject", "rank", "flags", "rank_or_needs_id"];
     this.criteriaOrder = _.zipObject( criteria, [...Array( criteria.length ).keys( )] );
   }
 
@@ -134,6 +134,10 @@ class ResearchGradeProgress extends React.Component {
             case "metric-evidence":
               icon = "icon-icn-dna";
               label = I18n.t( "evidence_of_organism" );
+              break;
+            case "metric-subject":
+              icon = "icon-icn-subject";
+              label = I18n.t( "evidence_related_to_single_subject" );
               break;
             case "metric-recent":
               icon = "fa-clock-o";
