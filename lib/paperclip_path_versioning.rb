@@ -8,20 +8,26 @@ module PaperclipPathVersioning
       attachment_paths_constant = "PAPERCLIP_#{attachment_name.upcase}_PATHS"
       unless self.class.const_defined?( attachment_paths_constant )
         raise "`#{self.class.name}` has not implemented `PaperclipPathVersioning` on attachment " \
-          "`#{attachment_name}`"
+          "`#{attachment_name}`. The attachment must configure `paperclip_path_versioning` " \
+          "for attachment `#{attachment_name}`."
       end
       attachment_path_versions = self.class.const_get( attachment_paths_constant )
       path_version = send( "#{attachment_name}_path_version" )
       versioned_path = attachment_path_versions[path_version]
       if versioned_path.nil?
         raise "`#{self.class.name}` implemented `PaperclipPathVersioning` but does not have a " \
-          "path version `#{path_version}` on attachment `#{attachment_name}`"
+          "path version `#{path_version}` on attachment `#{attachment_name}`. The attachment " \
+          "`#{attachment_name}` needs more paths configured with `paperclip_path_versioning`."
       end
       versioned_path
     end
 
     class << self
-      def paperclip_path_versioning( attachment_name, path_patterns )
+      # path_patterns should be an array of strings, where the string at each
+      # position is the path_pattern for that attachment version.
+      # e.g. path_patterns[0] is the pattern for version 0 of `attachment_name`,
+      # path_patterns[1] is the pattern for version 1 of `attachment_name`, etc.
+      def paperclip_path_versioning( attachment_name, path_patterns = [] )
         attachment_updated_at_method = "#{attachment_name}_updated_at"
         attachment_path_version_method = "#{attachment_name}_path_version"
         unless column_names.include?( attachment_updated_at_method )
