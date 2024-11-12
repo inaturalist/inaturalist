@@ -2213,6 +2213,8 @@ id:
   in_place_x: di %{place}
   #As in a reason to flag something
   inappropriate: Tidak pantas
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Jaringan iNaturalist
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
@@ -7226,6 +7228,8 @@ id:
         avg_ttcid: Rata2 WUIDK
         avg_ttid: Rata2 WUID
         identifiers_desc: Telah menambahkan ID untuk pengamatan orang lain pada hari ini
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Dibuat menggunakan <a href="%{url}">iNatNext</a>
         iphone_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNaturalist iPhone</a>
         med_ttcid: Median WUIDK
         med_ttid: Median WUID
@@ -7246,6 +7250,8 @@ id:
         recent_w_0_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan 0 pengamatan
         recent_w_7_obs: Baru dengan >= 7 pengamatan
         recent_w_7_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan >= 7 pengamatan
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Dibuat menggunakan <a href="%{url}">Seek</a>
         time_to_id_desc: Waktu hingga ID (jam, jendela 1 minggu)
         TTCID: WUIDK
         TTCID_desc: Waktu hingga menerima identifikasi dari orang lain yang cocok dengan takson komunitas.
