@@ -950,8 +950,7 @@ class Observation < ApplicationRecord
           query: { bool: { must: [
             { terms: { "annotations.controlled_attribute_id.keyword": p[:term_id].to_s.split( "," ) } },
             { range: { "annotations.vote_score_short": { gte: 0 } } }
-          ] }
-          }
+          ] } }
         }
       }
       if p[:term_value_id]
@@ -959,6 +958,18 @@ class Observation < ApplicationRecord
           { terms: { "annotations.controlled_value_id.keyword": p[:term_value_id].to_s.split( "," ) } }
       end
       search_filters << nested_query
+    end
+
+    if p[:without_term_id]
+      nested_query = {
+        nested: {
+          path: "annotations",
+          query: { bool: { filter: [
+            { terms: { "annotations.controlled_attribute_id.keyword": p[:without_term_id].to_s.split( "," ) } }
+          ] } }
+        }
+      }
+      inverse_filters << nested_query
     end
 
     if p[:ofv_params]

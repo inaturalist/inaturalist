@@ -29,7 +29,15 @@ const Profile = ( {
 
   const showUserIcon = ( ) => {
     if ( profile.icon && profile.icon.preview ) {
-      return <img alt="user-icon" src={profile.icon.preview} className="user-profile-preview" />;
+      return (
+        <a
+          className="userimage UserImage"
+          href={`/people/${profile.login || profile.id}`}
+          title={profile.login}
+          label={I18n.t( "profile_picture" )}
+          style={{ "background-image": `url("${profile.icon.preview}")` }}
+        />
+      );
     }
     return <UserImage user={profile} />;
   };
