@@ -2178,6 +2178,8 @@ de:
   in_place_x: in %{place}
   #As in a reason to flag something
   inappropriate: Unangemessen
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-Netzwerk
   inaturalist_network_affiliation: iNaturalist-Netzwerk
   #Label for messages you've received
@@ -7141,6 +7143,8 @@ de:
         avg_ttcid: Durchschn. TTCID
         avg_ttid: Durchschn. TTID
         identifiers_desc: Eine ID zu der Beobachtung von jemand anderem an diesem Tag hinzugefügt.
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Erstellt via <a href="%{url}">iNatNext</a>
         iphone_desc_html: mittels <a href="%{url}">iNaturalist iPhone App</a> erstellt
         new_users_desc: an diesem Tag angemeldet
         obs_1_day: "Beobachtungen (1 Tag)"
@@ -7159,6 +7163,8 @@ de:
         recent_w_0_obs_desc: in den letzten 7 Tagen registriert und keine Beobachtungen hinzugefügt
         recent_w_7_obs: Letzte mit >= 7 Beob
         recent_w_7_obs_desc: In den letzten 7 Tagen registriert und mindestens 7 Beobachtungen hinzugefügt
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Erstellt via <a href="%{url}">Seek</a>
         time_to_id_desc: Zeitdauer bis zur Bestimmung (in Stunden, 1 Woche gleitender Wert)
         TTCID: TTCID
         TTCID_desc: Zeit, eine Bestimmung von jemandem zu erhalten, der mit dem Community-Taxon übereinstimmt.
