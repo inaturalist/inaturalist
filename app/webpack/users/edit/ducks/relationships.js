@@ -92,15 +92,14 @@ export function fetchMutedUsers( ) {
     const { mutedUsers } = relationships;
     const currentMutedUsers = profile.muted_user_ids || [];
 
-    const params = { };
-    if ( config.testingApiV2 ) {
-      params.fields = {
+    const params = {
+      fields: {
         id: true,
         login: true,
         name: true,
         icon_url: true
-      };
-    }
+      }
+    };
 
     if ( mutedUsers.length === 0 ) {
       currentMutedUsers.forEach( id => inatjs.users.fetch( id, params ).then( ( { results } ) => {
@@ -134,15 +133,14 @@ export function fetchBlockedUsers( ) {
     const { blockedUsers } = relationships;
     const currentBlockedUsers = profile.blocked_user_ids || [];
 
-    const params = { };
-    if ( config.testingApiV2 ) {
-      params.fields = {
+    const params = {
+      fields: {
         id: true,
         login: true,
         name: true,
         icon_url: true
-      };
-    }
+      }
+    };
 
     if ( blockedUsers.length === 0 ) {
       currentBlockedUsers.forEach( id => inatjs.users.fetch( id, params ).then( ( { results } ) => {
@@ -186,11 +184,8 @@ export function fetchRelationships( firstRender, currentPage = 1 ) {
 
     const paramsWithFilters = {
       ...params,
-      ...filters
-    };
-
-    if ( state.config.testingApiV2 ) {
-      paramsWithFilters.fields = {
+      ...filters,
+      fields: {
         id: true,
         trust: true,
         following: true,
@@ -200,8 +195,8 @@ export function fetchRelationships( firstRender, currentPage = 1 ) {
           login: true,
           icon_url: true
         }
-      };
-    }
+      }
+    };
     inatjs.relationships.search( _.omitBy( paramsWithFilters, _.isNil ) ).then( response => {
       const { results, page } = response;
 

@@ -50,21 +50,16 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   } ) );
 }
 
-if (
-  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
-) {
-  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
-  const defaultApiUrl = element && element.getAttribute( "content" );
-  if ( defaultApiUrl ) {
-    store.dispatch( setConfig( {
-      testingApiV2: true
-    } ) );
-    inatjs.setConfig( {
-      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
-      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
-    } );
-  }
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  store.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 /* global SERVER_PAYLOAD */
