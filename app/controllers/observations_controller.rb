@@ -2175,6 +2175,7 @@ class ObservationsController < ApplicationController
       identified
       term_id
       term_value_id
+      without_term_id
     )
     
     @filters_open = 
