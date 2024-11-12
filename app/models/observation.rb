@@ -2336,6 +2336,7 @@ class Observation < ApplicationRecord
 
   def update_user_counter_caches
     return if bulk_delete
+
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 15.minutes.from_now
@@ -2357,46 +2358,45 @@ class Observation < ApplicationRecord
   end
 
   def delete_observations_places
-    ObservationsPlace.where(observation_id: self.id).delete_all
+    ObservationsPlace.where( observation_id: id ).delete_all
   end
 
   def update_quality_metrics
     return true if skip_quality_metrics
+
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+    elsif captive_flag.noish? && ( qm = quality_metrics.detect do | m |
+      m.user_id == user_id && m.metric == QualityMetric::WILD
+    end )
       qm.update( agree: true )
-    elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+    elsif force_quality_metrics && ( qm = quality_metrics.detect do | m |
+      m.user_id == user_id && m.metric == QualityMetric::WILD
+    end )
       qm.destroy
     end
-    system_captive_vote = quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
-    if probably_captive?
-      QualityMetric.vote( nil, self, QualityMetric::WILD, false ) unless system_captive_vote
-    elsif system_captive_vote
+    system_captive_vote = quality_metrics.detect do | m |
+      m.user_id.blank? && m.metric == QualityMetric::WILD
+    end
+    if probably_captive? && !system_captive_vote
+      QualityMetric.vote( nil, self, QualityMetric::WILD, false )
+      set_quality_grade
+    elsif system_captive_vote && !probably_captive?
       system_captive_vote.destroy
+      set_quality_grade
     end
     true
   end
-  
-  # def update(attributes)
-  #   # hack around a weird android bug
-  #   attributes.delete(:iconic_taxon_name)
-    
-  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-  #   # end
-  #   super(attributes)
-  # end
-  
+
   def license_name
     return nil if license.blank?
+
     s = "Creative Commons "
-    s += LICENSES.detect{|row| row.first == license}.try(:[], 1).to_s
+    s += LICENSES.detect {| row | row.first == license }.try( :[], 1 ).to_s
     s
   end
-  
-  # I'm not psyched about having this stuff here, but it makes generating 
+
+  # I'm not psyched about having this stuff here, but it makes generating
   # more compact JSON a lot easier.
   include ObservationsHelper
   include ActionView::Helpers::SanitizeHelper
