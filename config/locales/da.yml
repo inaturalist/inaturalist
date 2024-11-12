@@ -2341,6 +2341,8 @@ da:
   in_place_x: i %{place}
   #As in a reason to flag something
   inappropriate: Upassende
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
@@ -7780,6 +7782,8 @@ da:
         avg_ttcid: Gnms TTFID
         avg_ttid: Gnms TTID
         identifiers_desc: Tilføjede et ID til en andens obs på denne dag
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Oprettet via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Oprettet via <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTFID
         med_ttid: Med TTID
@@ -7800,6 +7804,8 @@ da:
         recent_w_0_obs_desc: Tilmeldte sig i de seneste 7 dage Og tilføjede 0 obs
         recent_w_7_obs: Nylige m/> 7 obs
         recent_w_7_obs_desc: Tilmeldte sig i de seneste 7 dage og tilføjede >= 7 obs
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Oprettet via <a href="%{url}">Seek</a>
         time_to_id_desc: Tid til ID (timer, 1 løbende uge)
         TTCID: TTCID
         TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs taksonen
