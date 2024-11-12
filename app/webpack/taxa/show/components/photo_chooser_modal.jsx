@@ -115,14 +115,12 @@ class PhotoChooserModal extends React.Component {
       queryParams.q = query;
       queryParams.search_on = "taxon_page_obs_photos";
     }
-    if ( config.testingApiV2 ) {
-      queryParams.fields = {
-        photos: {
-          id: true,
-          url: true
-        }
-      };
-    }
+    queryParams.fields = {
+      photos: {
+        id: true,
+        url: true
+      }
+    };
     inatjs.observations.search( queryParams ).then( response => {
       const isLastPage = ( response.page * response.per_page ) >= response.total_results;
       const obsPhotos = _.filter(

@@ -15,21 +15,11 @@ import TaxonChangeAlertContainer from "../containers/taxon_change_alert_containe
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
-import FlashMessage from "../../../observations/show/components/flash_message";
 import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import RtlTestGroupToggle from "../../../shared/components/rtl_test_group_toggle";
 
 const App = ( { taxon, showNewTaxon, config } ) => (
   <div id="TaxonDetail">
-    { config && config.testingApiV2 && (
-      <FlashMessage
-        key="testing_apiv2"
-        title="Testing API V2"
-        message="This page is using V2 of the API. Please report any differences from using the page w/ API v1 at https://forum.inaturalist.org/t/api-v2-feedback/21215"
-        type="warning"
-        html
-      />
-    ) }
     <Grid>
       <TaxonChangeAlertContainer />
       <Row className="preheader">
