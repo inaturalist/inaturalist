@@ -1955,6 +1955,8 @@ hu:
   in_place_x: 'itt: %{place}'
   #As in a reason to flag something
   inappropriate: Kifogásolható
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-hálózat
   inaturalist_network_affiliation: Hálózati szervezet kiválasztása
   #Label for messages you've received
@@ -2305,6 +2307,7 @@ hu:
     lv: Litván
     mi: maori
     mk: Macedón
+    ml: Malajálam
     mr: Maráthi
     nb: Norvég bokmal
     nl: Holland
@@ -2319,6 +2322,7 @@ hu:
     sq: Albán
     sr: szerb
     sv: Svéd
+    ta: Tamil
     th: Tháj
     tr: Török
     uk: Ukrán
@@ -5716,6 +5720,8 @@ hu:
         avg_ttcid: Átlag TTCID
         avg_ttid: Átlag TTID
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Létrehozva az <a href="%{url}">iNatNext</a> segítségével
         iphone_desc_html: Létrehozva az <a href="%{url}">iNaturalist iPhone alkalmazásból</a>
         med_ttcid: Med TTCID
         med_ttid: Medián TTID
@@ -5736,6 +5742,8 @@ hu:
         recent_w_0_obs_desc: Az utóbbi hét nap alatt regisztrált és 0 megfigyelése van
         recent_w_7_obs: Legújabb 7+ megfigyeléssel
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Létrehozva a <a href="%{url}">Seek</a> segítségével
         time_to_id_desc: Azonosításhoz szükséges idő (órában, 1 hetes mozgó ablak)
         TTCID: Közösségi azonosítási idő (TTCID)
         TTCID_desc: Azonosításhoz szükséges idő valaki mástól, ami egyezik a közösségi taxonnal.
