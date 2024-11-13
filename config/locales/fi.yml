@@ -2129,6 +2129,8 @@ fi:
   in_place_x: paikassa %{place}
   #As in a reason to flag something
   inappropriate: Sopimaton
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-verkosto
   inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
@@ -6214,6 +6216,8 @@ fi:
         avg_ttcid: Keskimääräinen TTID
         avg_ttid: Keskimääräinen TTID
         identifiers_desc: Lisäsi tänään tunnistuksen jonkun muun havaintoon
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Luotu <a href="%{url}">iNatNext</a>-sovelluksella
         iphone_desc_html: Luotu <a href="%{url}">iNaturalist iPhone-sovelluksen</a> kautta
         med_ttcid: Mediaani TTID
         med_ttid: Mediaani TTID
@@ -6232,6 +6236,8 @@ fi:
         recent_desc: Rekisteröity viimeisen 7 päivän aikana
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa
         recent_w_7_obs_desc: Rekisteröitynyt edeltävänä 7 päivänä ja lisännyt >= 7 havaintoa
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Luotu <a href="%{url}">Seek</a>-sovelluksella
         time_to_id_desc: Aika tunnistukseen (tunteina, 1 viikon siirtyvä aikaikkuna)
         TTCID: TTCID (aika yhteisömääritykseen)
         TTID: Aika tunnistukseen
