@@ -1276,6 +1276,10 @@ en:
   content_and_display: Content & Display
   content_author: Content Author
   content_hidden: Content Hidden
+  # message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Content hidden on %{date} because: "%{reason}"
+  # message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Content hidden by %{user} on %{date} because: "%{reason}"
   content_type: Content Type
