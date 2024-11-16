@@ -1113,6 +1113,7 @@ it:
   content_and_display: Contenuto & Vista
   content_author: Autore del Contenuto
   content_hidden: Contenuto nascosto
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contenuto nascosto da %{user} il %{date} perché: "%{reason}"
   content_type: Tipo di Contenuto
