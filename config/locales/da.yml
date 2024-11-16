@@ -1160,6 +1160,10 @@ da:
   content_and_display: Indhold og Visning
   content_author: Indholdsforfatter
   content_hidden: Skjult indhold
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Indhold skjult pr. %{date} grundet: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Indhold skjult af %{user} den %{date} fordi: "%{reason}"
   content_type: Indholdstype
