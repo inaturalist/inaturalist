@@ -1055,6 +1055,7 @@ fi:
   content_and_display: Sisältö ja näyttö
   content_author: Sisällöntuottaja
   content_hidden: Sisältö piilotettu
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} on piilottanut sisällön %{date} koska: %{reason}
   content_type: Sisältötyyppi
