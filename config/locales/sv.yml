@@ -1153,6 +1153,10 @@ sv:
   content_and_display: Innehåll & Visning
   content_author: Författare av innehåll
   content_hidden: Dolt innehåll
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Innehåll dolt den %{date} på grund av: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Innehåll dolt av %{user} den %{date} på grund av: "%{reason}"
   content_type: Innehållstyp
