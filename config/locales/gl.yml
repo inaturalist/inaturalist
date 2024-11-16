@@ -973,6 +973,7 @@ gl:
   content_and_display: Contido e Presentación
   content_author: Autor do Contido
   content_hidden: Contido Ocultado
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contido ocultado por %{user} no %{date} porque:"%{reason}"
   content_type: Tipo de Contido
