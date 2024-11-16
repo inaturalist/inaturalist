@@ -817,6 +817,7 @@ bg:
   content_and_display: Съдържание и изглед
   content_author: Автор на съдържанието
   content_hidden: Съдържанието е скрито
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Съдържанието е скрито от %{user} на %{date}, защото: „%{reason}“
   content_type: Тип на съдържанието
