@@ -546,6 +546,7 @@ sk:
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Obsah
   content_hidden: Obsah skrytý
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Obsah skryl používateľ %{user} v čase %{date} pretože: "%{reason}"
   user_hid_this_item_because_reason_html: |
