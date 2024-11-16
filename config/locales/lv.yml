@@ -1082,6 +1082,7 @@ lv:
   content_and_display: Saturs un attēlojums
   content_author: Satura autors
   content_hidden: Slēpts saturs
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} saturu noslēpis lietotājs: %{user}, jo: "%{reason}"
   content_type: Satura veids
