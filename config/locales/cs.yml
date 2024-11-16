@@ -1264,6 +1264,7 @@ cs:
   content_and_display: Obsah a zobrazení
   content_author: Autor obsahu
   content_hidden: Skrytý obsah
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Obsah skrytý uživatelem %{user} na %{date}, protože: "%{reason}"
   content_type: Typ obsahu
