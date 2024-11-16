@@ -1071,6 +1071,7 @@ tr:
   content_and_display: İçerik & Görünüm
   content_author: İçerik Sahibi
   content_hidden: İçerik Gizlendi
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     İçerik, %{user} tarafından %{date} tarihinde gizlendi çünkü: "%{reason}"
   content_type: İçerik Türü
