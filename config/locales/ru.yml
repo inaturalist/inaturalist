@@ -1244,6 +1244,7 @@ ru:
   content_and_display: Контент и отображение
   content_author: Автор контента
   content_hidden: Содержание скрыто
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Содержание скрыто пользователем %{user} %{date}, поскольку: "%{reason}"
   content_type: Тип контента
