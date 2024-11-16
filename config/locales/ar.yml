@@ -573,6 +573,7 @@ ar:
   contact_support: اتصل بالدعم
   contain_all_descendants?: هل تحتوي قائمة التحقق هذه على جميع أحفاد هذه الأصنوفة التي تحدث هنا؟
   content_hidden: المحتوى المخفي
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     المحتوى مخفي بواسطة %{user} في %{date} بسبب: "%{reason}"
   user_hid_this_item_because_reason_html: |
