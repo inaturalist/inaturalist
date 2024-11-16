@@ -1031,6 +1031,7 @@ ja:
   content_and_display: コンテンツと表示
   content_author: コンテンツの作成者
   content_hidden: コンテンツ非表示
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} に%{user}さんがコンテンツを非表示にしました。理由："%{reason} "
   content_type: コンテンツの種類
