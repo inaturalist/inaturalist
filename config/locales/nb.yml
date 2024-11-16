@@ -1071,6 +1071,7 @@ nb:
   content_and_display: Innhold og visning
   content_author: Forfatter av innhold
   content_hidden: Innhold skjult
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Innhold skjult av %{user} på %{date} fordi: "%{reason}"
   content_type: Innholdstype
