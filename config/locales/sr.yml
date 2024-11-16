@@ -957,6 +957,7 @@ sr:
   content_and_display: Sadržaj i prikaz
   content_author: Autor sadržaja
   content_hidden: Sadržaj sakriven
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Sadržaj sakrio/la %{user} datuma %{date} iz razloga: "%{reason}"
   content_type: Tip sadržaja
