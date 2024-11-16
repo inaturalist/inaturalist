@@ -971,6 +971,7 @@ eu:
   content_and_display: Edukia eta bistaratzea
   content_author: Edukiaren egilea
   content_hidden: Ezkutatutako edukia
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} erabiltzaileak %{date} datan arrazoi honengatik ezkutatu zuen edukia: "%{reason}"
   content_type: Eduki Mota
