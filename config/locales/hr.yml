@@ -1188,6 +1188,7 @@ hr:
   content_and_display: Sadržaj i Prikaz
   content_author: Autor sadržaja
   content_hidden: Sadržaj Skriven
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Sadržaj je sakrio %{user} dana %{date} zbog: "%{reason}"
   content_type: Vrsta sadržaja
