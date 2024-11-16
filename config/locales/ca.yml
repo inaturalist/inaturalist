@@ -1086,6 +1086,7 @@ ca:
   content_and_display: Contingut i Presentació
   content_author: Autor del contingut
   content_hidden: Contingut amagat
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contingut amagat per %{user} el %{date} per: %{reason}
   content_type: Tipus de contingut
