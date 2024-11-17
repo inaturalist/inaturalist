@@ -1140,6 +1140,9 @@ nl:
   content_and_display: Inhoud & Uiterlijk
   content_author: Auteur inhoud
   content_hidden: Inhoud is verborgen
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Inhoud is verborgen op %{date} met als reden: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Inhoud is verborgen door %{user} op %{date} met als reden: "%{reason}"
