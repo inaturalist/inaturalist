@@ -1061,9 +1061,12 @@ de:
   content_and_display: Inhalt & Anzeige
   content_author: Inhaltsautor
   content_hidden: Inhalt versteckt
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Inhalt am %{date} versteckt aufgrund von: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
-    Inhalt von %{user} am %{date} versteckt, weil: "%{reason}"
+    Inhalt von %{user} am %{date} versteckt aufgrund von: "%{reason}"
   content_type: Inhaltstyp
   user_hid_this_item_because_reason_html: |
     %{user} versteckte %{item} weil "%{reason}"
@@ -2128,6 +2131,8 @@ de:
   identification_saved: "Bestimmung gespeichert!"
   #Notice when an identification has been hidden by moderators
   identification_hidden: Bestimmung verborgen
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Bestimmung wieder sichtbar
   #Notification when an identification has been updated
   identification_updated: Bestimmung aktualisiert!
   identification_user_short: Ident. Benutzer
@@ -3477,6 +3482,8 @@ de:
   photo_hidden: Foto verborgen
   photo_licensing: Foto-Lizenzierung
   photo_type: Fototyp
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto wieder sichtbar
   photo_urls_repaired: Foto URLs repariert
   photos_chosen_for_this_taxon: Foto für diese Art ausgewählt
   photos_from: Fotos von
