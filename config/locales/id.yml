@@ -1048,6 +1048,9 @@ id:
   content_and_display: Konten & Tampilan
   content_author: Penulis Konten
   content_hidden: Konten Tersembunyi
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Konten disembunyikan pada %{date} karena: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Konten disembunyikan oleh %{user} pada %{date} karena: "%{reason}"
