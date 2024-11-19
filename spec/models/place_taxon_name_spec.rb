@@ -4,7 +4,7 @@ describe PlaceTaxonName do
   it { is_expected.to belong_to(:place).inverse_of :place_taxon_names }
   it { is_expected.to belong_to(:taxon_name).inverse_of :place_taxon_names }
 
-  it { is_expected.to validate_presence_of :place_id }
+  it { is_expected.to validate_presence_of :place }
   it { is_expected.to validate_presence_of :taxon_name }
 
   describe "create" do

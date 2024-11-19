@@ -1,6 +1,6 @@
 #taxa-grid.container.bootstrap-10{ "infinite-scroll": "showMoreTaxa( )", "infinite-scroll-disabled": "!viewing('species') || speciesPagination.searching || speciesPagination.stopped", "infinite-scroll-distance": 1 }
-  .row.grid
-    .col-xs-2.cell{ "ng-repeat": "t in taxa" }
+  .row.grid.d-flex.flex-wrap
+    .taxon-grid-cell.d-flex{ "ng-repeat": "t in taxa" }
       .thumbnail.borderless
         %a{ :class => "photo {{ t.photo( ) ? '' : 'iconic'}}", href: "/taxa/{{ t.id }}", "ng-style": "shared.backgroundIf( t.photo( ) )", target: "_self" }
           %i{ :class => "icon icon-iconic-{{ t.iconicTaxonName( ) | lowercase }}" }
@@ -16,7 +16,7 @@
               {{ t.photoLicenseShort( ) }}
         .caption
           %inat-taxon.title.split-taxon{ taxon: "t", url: "/taxa/{{ t.id }}" }
-  .spinner.ng-cloak{ "ng-show": "speciesPagination.searching" }
+  .spinner.ng-cloak{ "ng-show": "speciesPagination.searching && !noTaxa( )" }
     %span.fa.fa-spin.fa-refresh
   .noresults.text-muted.ng-cloak{ "ng-show": "noTaxa( )" }
     {{ shared.t( 'no_results_found' ) }}

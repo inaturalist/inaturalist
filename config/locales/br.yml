@@ -26,7 +26,7 @@ br:
     Pizhder ar roadennoù e metr. Gallout a reot kemmañ ar roadennoù en ur glikañ war al liamm «  kemmit » amañ a-us pe en ur glikañ war merker ar gartenn hag o tilec'hiañ anezhañ d'al lec'h mat. Gwiriit e vo bras a-walc'h ar c'helc'h evit bezañ sur en em gavfet e-barzh.
   actions: Oberoù
   active: oberiant
-  adapted_by_name_from_a_work_by_original: "Azasaet gant %{name} ouzh ul labour gant {original}"
+  adapted_by_name_from_a_work_by_original: "Azasaet gant %{name} ouzh ul labour gant %{original}"
   add: Ouzhpennañ
   add_a_batch_of_observations: Ouzhpennañ ul lod evezhiadennoù
   add_a_batch_of_taxa: Ouzhpennañ ul lod taksonoù
@@ -92,7 +92,7 @@ br:
   add_to_your_list: Ouzhpennañ d'ho listenn
   add_your_email_to_get: |
     Ouzhpennañ ho chomlec'h postel evit kaout un ali war hoc'h evezhiadenn a-berzh ar gumuniezh. Ma kavit gwelloc'h chom hep rannañ anezhi, gwiriit en-dro a-benn nebeut, mar plij
-  add_your_own_observations_at: "Ouzhpennañ hoc'h evezhiadennoù da {site-name}"
+  add_your_own_observations_at: "Ouzhpennañ hoc'h evezhiadennoù da %{site_name}"
   added: Ouzhpennet
   added!: Ouzhpennet!
   added_by: Ouzhpennet gant
@@ -138,7 +138,6 @@ br:
   alphabetical: Lizherennek
   alphabetical_order: Dre urzh al lizherenneg
   amphibians: Divelfenneged
-  and: ha(g)
   and_other_taxa: "&amp; Taksonoù all"
   animals: Loened
   announcement_was_successfully_created: Krouet mat eo bet ar c'hemenn.
@@ -223,13 +222,10 @@ br:
   before_importing_photos: a-raok enporzhiañ luc'hskeudennoù
   bg_color: Liv an drekleur
   birds: laboused
-  black: du
   blog_widget: Widged bloc'h
-  blue: glas
   blue_butterfly_etc: "glas, balafenn ha kement zo..."
   body: Korf
   brief_caption: Alc'hwez berr
-  brown: Gell
   browse: Furchal
   browse_all_projects: Furchal an holl raktresoù
   browse_all_species: Furchal an holl spesadoù
@@ -239,7 +235,6 @@ br:
   browse_species_that_occur_near_this_observation: Furchal an holl spesadoù e-kichen an evezhiadenn-mañ.
   built_with_site_guides_html: "Savet gant ar <a href='%{url}'>Sturlevrioù%{site_name}</a>"
   bulk_import_of_filename_is_complete: "Echu eo an enporzhiadur a-drak eus %{filename}"
-  by: gant
   by_everyone: Gant an holl dud
   by_user: "gant %{user}"
   by_you: Ganeoc'h
@@ -268,13 +263,7 @@ br:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: Rannet e
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: Kendeuziñ e
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: Kendeuzet e
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: Erlerc'hiet gant
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: erlerc'hiañ gant
     dropped: dilamet
     staged: kinniget
   change_your_password: Cheñch ar ger-tremen
@@ -334,7 +323,6 @@ br:
   confirm_now: Kadarnaat bremañ
   connect_to_provider: "Kevreañ ouzh %{provider}"
   connecting_flickr: "O kevreañ ouzh Flickr..."
-  connecting_to_facebook: "O kevreañ ouzh Facebook..."
   controls: Kontrolloù
   coordinate_systems: Reizhiad daveennoù
   coordinates: Daveennoù
@@ -465,9 +453,13 @@ br:
   download_csv: Pellgargit ar furmad CSV
   download_csv_template: Pellgargit ar patrom "CSV"
   download_kml: Pellgargañ KML
+  #Noun, as in a journal post that has not been published
   draft: brouilhed
+  #Noun, as in a journal post that has not been published
   draft_: brouilhed
+  #Noun, as in a journal post that has not been published
   draft_saved: Brouilhed enrollet!
+  #Noun, as in journal posts that has not been published
   drafts: Brouilhedoù
   edit: Kemmañ
   edit_a_batch_of_observations: Kemmañ ul lod evehiadennoù
@@ -507,7 +499,6 @@ br:
   eligible_for_research_grade: A c'hall bezañ degemeret el live enklask
   email: Postel
   email_address_for_comments_and_other_feedback: Chomlec'h elektronek evit an evezhiadennoù
-  email_copyright: "Copyright &copy; %{x}, pep gwir miret strizh"
   embed: 'Enframmañ'
   embed_place_widget: Enframmañ ur widged eus al lec'h
   embed_widget_project: Enframmañ ur widged evit ar raktres en ho lec'hienn Web
@@ -524,6 +515,7 @@ br:
   events_only: Darvoudoù hepken
   everyone: An holl dud
   everywhere: E pep lec'h
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Renk resis
   existing_flags: Banieloù zo anezho
   exit_full_screen: "Kuitaat ar mod skramm leun"
@@ -533,11 +525,6 @@ br:
   exporting: "Oc'h ezporzhiañ..."
   extinct: Aet da get
   extra_properties: Arventennoù ouzhpenn
-  facebook_account_information: Titouroù ho kont Facebook
-  facebook_account_not_linked: "%{user} n'en deus kont Facebook ebet ken. Neuze ne c'hall ket %{site_name} tizhout al luc'hskeudenn-mañ."
-  facebook_access_token_expired: "N'eo ket mat ar jedouer moned ken. Ret eo da %{user} adsevel al liamm gant e gont Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Fellout a ra da Facebook goulenn groñs e vefe kadarnaeet e gevreadenn ouzh %{site_name_short}.
-  facebook_options: Dibarzhioù Facebook
   'false': 'Faos'
   Family: Kerentiad
   featured: Lakaet da dalvezout
@@ -592,6 +579,7 @@ br:
   flickr_style: Stil Flickr
   flickr_tagger: Liketenniñ al luc'hskeudennoù Flickr
   flickr_tags: Liketennoù Flickr
+  #Text for a button to follow updates from a specific user
   follow_user: "Heuliañ %{user}"
   following: Emaoc'h o heuliañ
   for_a_taxon: evit un takson
@@ -611,7 +599,6 @@ br:
   global_names: Anvioù hollek
   go: Mont
   go_back: Distreiñ
-  grant_role: "%{grant} (%roll} %{role}"
   grid: Kael
   grid_tooltip: Diskwel ar gwel er mod kael
   group: Strollad
@@ -629,6 +616,8 @@ br:
   hex_color_eg: Liv e niver c'hwezekredel, da sk. 65644F
   hi_user: "Demat, %{user}"
   high: uhel
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Renk uhelañ
   home: Degemer
   however_there_were_some_issues: "Un nebeud kudennoù zo bet, koulskoude : %{issues}"
@@ -694,7 +683,6 @@ br:
     Seblantout a ra emaoc'h oc'h implijout ur ger-tremen eus un doare kozh eus al lec'hienn Genrouedad-mañ. Dalc'hit mat <a href="%{url}">kemmañ ho ker-tremen</a> evit an doare nevez.
   lexicon: Geriaoueg
   lexicons:
-    scientific_names: Anvioù skiantel
     catalan: Katalaneg
     creole_french: kreoleg (Galleg)
     creole_portuguese: Kreoleg (Portugaleg)
@@ -708,6 +696,7 @@ br:
     norwegian: Norvegeg
     portuguese: Portugaleg
     russian: Rusianeg
+    scientific_names: Anvioù skiantel
     spanish: Spagnoleg
     tokelauan: Tahitianeg
     turkish: Turkeg
@@ -716,9 +705,7 @@ br:
   life: Bev
   life_list: "Roll ar bevien %{user}"
   link: Liamm
-  link_your_facebook_account: Liammañ ho kont Facebook
   link_your_flickr_account: Liammañ ho kont Flickr
-  linked_facebook: "Ho kont %{site_name} zo liammet ouzh ho kont Facebook dija."
   list: Roll
   list_deleted: Roll dilamet
   list_saved: Roll saveteet
@@ -764,6 +751,8 @@ br:
   longitude_slash_x_coord_slash_easting: Hedred / daveenn x/ absisenn
   look_up_name: "Klask an anv"
   lookup: Klask
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Renk an izelañ
   mammals: bronneged
   manage_all_your_subscriptions: Merañ ho holl goumanantoù
@@ -868,10 +857,10 @@ br:
   ok: "Mat eo"
   on_day: "gweredekaet"
   one_of_your_lists: "Unan eus ho rolloù..."
+  #Geoprivacy status in which no privacy has been applied
   open: digor
   or: pe
   or_choose_high_level_taxa: "... pe dibabit adalek taksonoù a renk uhel"
-  orange: orañjez
   order: Urzh
   order_by: Rummañ dre
   organisms: Aozadurioù
@@ -911,7 +900,6 @@ br:
     large: bras
     original: Orin
   photos_updated: Luc'hskeudennoù hizivaet
-  pink: roz
   place: Lec'h
   place_deleted: Lec'h dilamet
   place_geo:
@@ -1054,40 +1042,12 @@ br:
   share: Rannañ
   supporting: Harpañ
   this_year: Bloaz-mañ
-  we_also_support: |
-    Asantiñ a reomp ivez da <a href="http://picasaweb.google.com">Picasa</a> ha <a href="http://facebook.com">Facebook</a>evit herberc'hiañ skeudennoù.
   week_of_date: "Sizhun eus %{date}"
   who_helped_user_the_most: "Piv en deus sikouret ar muiañ %{user}"
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

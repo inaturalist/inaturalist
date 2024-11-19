@@ -23,7 +23,7 @@ const IconicTaxaPieChart = ( { project } ) => {
       <PieChartForIconicTaxonCounts
         data={data}
         margin={{
-          top: 0, bottom: 120, left: 0, right: 0
+          top: 0, bottom: 130, left: 0, right: 0
         }}
         donutWidth={20}
         urlPrefix={`/observations?project_id=${project.id}&verifiable=any`}

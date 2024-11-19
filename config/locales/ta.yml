@@ -1,34 +1,75 @@
 ta:
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+  x_languages:
+    one: "%{count} மொழி"
+    other: "%{count} மொழிகள்"
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A முதல் Z"
+  about_conservation_status: பாதுகாப்பு நிலை பற்றி
+  accuracy: துல்லியம்
+  #Noun, as in "Ken-ichi's action was not acceptable"
+  action: செயல்
+  actions: செயல்கள்
+  added: சேர்க்கப்பட்டது
+  agree_: ஒருமனப்படு
+  agree?: ஒருமனப்படு?
+  agreeing: ஒப்புதல்...
+  all_photos: அனைத்து புகைப்படங்கள்
+  all_places: "அனைத்து இடங்கள்"
+  all_taxa:
+    birds: பறவை
+    insects: பூச்சி
+    mammals: பாலூட்டிகள்
+    plants: தாவரங்கள்
+    life: வாழ்க்கை
+  #Label for an option to show content from any date
+  any_date: ஏதாவது
+  controlled_term_labels:
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: ஏதாவது
+    flowers_and_fruits: பூக்கள் மற்றும் பழங்கள்
+    flower_budding: பூ மொட்டாகும் செயல்முறை
+    flowering: பூக்கும்
+    flower_buds: பூ மொட்டுகள்
+    flowers: பூக்கள்
+    no_evidence_of_flowering: மலர்வதற்கான சாட்சியமில்லை
+  date_: தேதி
+  date_added: தேதி சேர்க்கப்பட்டது
+  date_authorized: ஒப்புக்கொள்ளப்பட்ட தேதி
+  date_created: உருவாக்கிய தேதி
+  disagree_: எதிர்மனப்படு
+  got_it!: சரி!
+  lexicons:
+    french: பிரெஞ்சு
+  locales:
+    fr: பிரெஞ்சு
+    fr-CA: பிரஞ்சு (கனடா)
+  location: இடம்
+  onboarding:
+    observe_panel_body_p2: வெளியே சென்று பல்லுயிர்களின் ஒவ்வொரு பகுதியையும் பாருங்கள். வனவிலங்குகள் போன்றவற்றில் ஏதேனும் ஒன்றைத் தேர்ந்தெடுத்து அதன் முழு பிரேம் படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே வனவிலங்கு வகை படம் இருந்தால் <a href="%{new_observation_path}">இப்போதே சேர்க்கவும்</a>. பார்வைகளைப் பதிவுசெய்ய %{site_name} மொபைல் பயன்பாடுகளையும் நீங்கள் பயன்படுத்தலாம்.
+  places_name:
+    french_guiana: பிரெஞ்சு கயானா
+    french_polynesia: பிரெஞ்ச் பாலிநீசியா
+  upload: அப்லோடு செய்ய
+  upload_a_csv_file: அப்லோடு செய்ய சசிவ் பைலை
+  'yes': "ஆம்"
+  yes_license_my_observations_so_scientists_can_use: ஆம், விஞ்ஞானிகள் தரவைப் பயன்படுத்துவதற்காக எனது படங்கள், பதிவுகள் மற்றும் அவதானிப்புகளுக்கு உரிமம் வழங்குகிறேன் (பரிந்துரைக்கப்பட்டது).
+  views:
+    projects:
+      project_user_curator_coordinate_access_labels:
+        none: இல்லை.
+    stats:
+      year:
+        #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
+        one_time: ஒருமுறை
+    taxa:
+      show:
+        frequency:
+          "Plant Phenology=Flowering": பூக்கும்
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

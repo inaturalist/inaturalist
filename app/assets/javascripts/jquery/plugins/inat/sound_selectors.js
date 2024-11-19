@@ -10,9 +10,9 @@
 //                  Default is true.
 //   defaultQuery:  Default query to run on load
 //   afterQuerySounds(q, wrapper, options) : called after sounds queried
-//   defaultSource: the default source (e.g. 'flickr' or 'facebook')
+//   defaultSource: the default source (e.g. 'flickr')
 //   defaultContext:the default context (e.g. 'user' or 'friends')
-//   sources:       a data structure used to specify the available sound sources (flickr, facebook, etc)
+//   sources:       a data structure used to specify the available sound sources (flickr, etc)
 //                  and available sound contexts ('user', 'friends', 'public', etc) for each source
 //                  see below for example of this data structure
 //                  note: options also currently supports options.urls (via lots of try/catch), 
@@ -20,11 +20,7 @@
 //  
 //   example of options.sources:                  
 //
-//   options.sources = {
-//      facebook: {
-//        title: 'Facebook', 
-//        url: '/facebook/sound_fields', 
-//        contexts: [["Your sounds", 'user'], ["Your friends' sounds", 'friends']]},
+//   options.sources = 
 //      flickr: {
 //        title: 'Flickr', 
 //        url: '/flickr/sound_fields', 

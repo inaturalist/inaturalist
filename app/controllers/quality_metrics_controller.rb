@@ -79,7 +79,7 @@ class QualityMetricsController < ApplicationController
           flash[:error] = msg
           redirect_back_or_default( @observation )
         end
-        format.json { render json: { error: msg, object: qm } }
+        format.json { render status: :unprocessable_entity, json: { error: msg, object: qm } }
       end
     end
   end

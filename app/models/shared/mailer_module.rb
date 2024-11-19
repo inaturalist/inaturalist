@@ -11,7 +11,11 @@ module Shared
 
     def default_url_options
       opts = ( Rails.application.config.action_mailer.default_url_options || {} ).dup
-      site = @user&.site || @site || Site.default
+      site = if @force_default_site_url_options
+        Site.default
+      else
+        @user&.site || @site || Site.default
+      end
       if ( site_uri = URI.parse( site.url ) )
         # || site.url is kind of a fallback to deal with testing where the
         # default uri is test.host, which URI.parse doesn't parse a host from.
@@ -38,9 +42,9 @@ module Shared
     # Check for an array of allowed email patterns in config/config.yml to
     # control email delivery in certain environments
     def check_allowed_email_recipient_patterns
-      return unless message && CONFIG&.allowed_email_recipient_patterns
+      return unless message&.to && CONFIG&.allowed_email_recipient_patterns
 
-      message.to_addresses.each do | email_address |
+      message.to.each do | email_address |
         unless CONFIG.allowed_email_recipient_patterns.detect {| pattern | email_address.to_s =~ /#{pattern}/ }
           message.perform_deliveries = false
           break

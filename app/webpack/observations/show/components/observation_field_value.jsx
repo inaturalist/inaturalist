@@ -166,6 +166,12 @@ class ObservationFieldValue extends React.Component {
             </a>
           </div>
           <div className="search">
+            <a href={`/observations?verifiable=any&place_id=any&without_field=${ofv.observation_field.name}`}>
+              <i className="fa fa-arrow-circle-o-right" />
+              <span className="menu-item-label">{ I18n.t( "observations_without_this_field" ) }</span>
+            </a>
+          </div>
+          <div className="search">
             <a href={`/observation_fields/${ofv.observation_field.id}`}>
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "observation_field_details" ) }</span>

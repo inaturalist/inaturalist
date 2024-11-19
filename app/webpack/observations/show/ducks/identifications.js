@@ -37,21 +37,19 @@ export function fetchIdentifiers( params ) {
     const { testingApiV2 } = state.config;
     const time = Date.now( );
     dispatch( setLastFetchTime( time ) );
-    const identifiersParams = Object.assign(
-      { },
-      params,
-      testingApiV2
-        ? {
-          fields: {
-            count: true,
-            user: {
-              login: true,
-              icon_url: true
-            }
-          }
+    const identifiersParams = {
+      ...params,
+      no_total_hits: true
+    };
+    if ( testingApiV2 ) {
+      identifiersParams.fields = {
+        count: true,
+        user: {
+          login: true,
+          icon_url: true
         }
-        : {}
-    );
+      };
+    }
     inatjs.identifications.identifiers( identifiersParams ).then( response => {
       // fetch the state again since we're reset lastFetchTime
       const { identifications } = getState( );

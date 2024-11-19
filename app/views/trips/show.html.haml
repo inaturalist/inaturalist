@@ -6,9 +6,6 @@
   :javascript
     $('.observationcontrols').observationControls()
     $("#comment_body").textcompleteUsers( );
-    $( document ).ready( function() {
-      $( '[data-toggle="popover"]' ).popover({html:true});
-    } );
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
   %meta{:property => "twitter:image", :content => html_attributize(@shareable_image_url)}
@@ -100,11 +97,7 @@
         %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (@trip.preferred_formatting == Post::FORMATTING_NONE))
           .small.text-muted.stacked
-            =t :posted_by
-            = succeed ',' do
-              = user_image @trip.user, :size => "mini", :class => "img-rounded"
-              = link_to_user @trip.user
-            =l @trip.published_at, :format => :long if @trip.published?
+            = render "posts/attribution", post: @trip
       - if @trip.is_a?(Trip)
         - unless @target_list_set.blank?
           %section{:id => "target_list"}

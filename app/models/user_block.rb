@@ -15,7 +15,7 @@ class UserBlock < ApplicationRecord
   validate :cant_block_staff
   validate :uniqueness_of_blocked_user, on: :create
 
-  after_create :destroy_friendships, :notify_staff_about_potential_problem_user
+  after_create :destroy_friendships, :notify_staff_about_potential_problem_user, :remove_from_projects
 
   def to_s
     "<UserBlock #{id} user_id: #{user_id}, blocked_user_id: #{blocked_user_id}>"
@@ -37,7 +37,7 @@ class UserBlock < ApplicationRecord
 
   def cant_block_staff
     if blocked_user && blocked_user.is_admin?
-      errors.add( :base, :user_cannot_be_staff )
+      errors.add( :base, :user_cannot_be_staff2 )
     end
     true
   end
@@ -49,6 +49,12 @@ class UserBlock < ApplicationRecord
     true
   end
 
+  def remove_from_projects
+    [user, blocked_user].permutation.each do |(a, b)|
+      ProjectUser.joins(:project).where(user: a, project: {user: b}).destroy_all
+      ProjectUserInvitation.joins(:project).where(user: a, project: {user: b}).destroy_all
+    end
+  end
 
   def destroy_friendships
     Friendship.where( user_id: user_id, friend_id: blocked_user_id ).destroy_all

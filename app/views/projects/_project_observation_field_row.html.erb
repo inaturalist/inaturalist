@@ -19,7 +19,7 @@
     <%= builder.hidden_field "_destroy" %>
     <%= link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.project_observation_field').slideUp().attr('id', '')" %>
     |
-    <%= link_to t(:edit_field), observation_field ? edit_observation_field_url(observation_field) : '', :target => "_blank", :class => "editlink" %>
+    <%= link_to t(:edit_field), observation_field ? edit_observation_field_url(observation_field) : '', :target => "_blank", rel: "noopener noreferrer", :class => "editlink" %>
     <span class="small meta"><%= t :fields_can_only_be_edited_by_the_people_who %></span>
   </div>
 <% end -%>

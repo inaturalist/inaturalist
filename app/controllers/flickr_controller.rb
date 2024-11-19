@@ -5,7 +5,7 @@ class FlickrController < ApplicationController
   
   # Finds photos for the logged-in user
   def photos
-    f = get_flickraw
+    f = get_flickr
     params[:limit] ||= 10
     params[:page] ||= 1
     unless params[:q]
@@ -43,7 +43,7 @@ class FlickrController < ApplicationController
   #   index:    index to use if these inputs are part of a form subcomponent
   #             (makes names like flickr_photos[:index][])
   def photo_fields
-    @flickr = get_flickraw
+    @flickr = get_flickr
     if params[:licenses].blank?
       @license_numbers = [1,2,3,4,5,6].join(',')
     elsif params[:licenses] == 'any'
@@ -100,7 +100,7 @@ class FlickrController < ApplicationController
       search_params['sort'] = 'relevance'
       begin
         @photos = @flickr.photos.search(search_params).map{|fp| FlickrPhoto.new_from_api_response(fp) }
-      rescue FlickRaw::FailedResponse => e
+      rescue Flickr::FailedResponse => e
         raise e unless e.message =~ /Invalid auth token/
         @reauthorization_needed = true
         Rails.logger.error "[ERROR #{Time.now}] #{e}"
@@ -144,7 +144,7 @@ class FlickrController < ApplicationController
   # signup process.
   def options
     begin
-      flickr = get_flickraw
+      flickr = get_flickr
       @scope = "write" if params[:scope] == "write"
       if current_user.flickr_identity
         @photos = flickr.photos.search(
@@ -155,7 +155,7 @@ class FlickrController < ApplicationController
         @flickr_url = auth_url_for( "flickr", scope: @scope )
       end
       @provider_authorization = current_user.provider_authorizations.where( provider_name: "flickr" ).first
-    rescue FlickRaw::FailedResponse => e
+    rescue Flickr::FailedResponse => e
       Rails.logger.error "[Error #{Time.now}] Flickr connection failed (#{e}): #{e.message}"
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       flash[:notice] = <<-EOT
@@ -180,7 +180,7 @@ class FlickrController < ApplicationController
   end
   
   def add_tags
-    get_flickraw
+    get_flickr
     begin
       photo_id = params[:photo_id] || params[:id]
       flickr.photos.addTags(
@@ -206,7 +206,7 @@ class FlickrController < ApplicationController
   
   # Delete a tag from a Flickr photo using the current users auth
   def remove_tag
-    flickr = get_flickraw
+    flickr = get_flickr
     begin
       flickr.photos.removeTag(:tag_id => params[:tag_id] || params[:id])
     rescue Exception => e
@@ -230,7 +230,7 @@ class FlickrController < ApplicationController
   end
 
   def flickr_friends
-    get_flickraw.contacts.getList
+    get_flickr.contacts.getList
   end
 
 end

@@ -11,6 +11,8 @@ import {
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showAlert } from "../../../shared/ducks/alert_modal";
+import { updateSession } from "../../show/ducks/users";
+import { setConfig } from "../../../shared/ducks/config";
 
 const POST_IDENTIFICATION = "post_identification";
 const AGREEING_WITH_OBSERVATION = "agreeing_with_observation";
@@ -185,6 +187,28 @@ const addID = ( taxon, observation, options = { } ) => (
   }
 );
 
+const setMapZoomLevel = mapZoomLevel => (
+  ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( setConfig( { mapZoomLevel } ) );
+    if ( _.isNumber( state.config.currentUser.preferred_identify_map_zoom_level ) ) {
+      dispatch( updateSession( { preferred_identify_map_zoom_level: mapZoomLevel } ) );
+    }
+  }
+);
+
+const setMapZoomLevelLocked = locked => (
+  ( dispatch, getState ) => {
+    const state = getState( );
+    dispatch( setConfig( { mapZoomLevelLocked: locked } ) );
+    if ( locked ) {
+      dispatch( updateSession( { preferred_identify_map_zoom_level: state.config.mapZoomLevel } ) );
+    } else {
+      dispatch( updateSession( { preferred_identify_map_zoom_level: null } ) );
+    }
+  }
+);
+
 export {
   POST_IDENTIFICATION,
   AGREEING_WITH_OBSERVATION,
@@ -197,5 +221,7 @@ export {
   updateIdentification,
   submitIdentificationWithConfirmation,
   addID,
-  chooseSuggestedTaxon
+  chooseSuggestedTaxon,
+  setMapZoomLevel,
+  setMapZoomLevelLocked
 };

@@ -276,7 +276,6 @@ sq:
   alphabetical: Alfabetike
   alphabetical_order: Sipas rendit alfabetik
   amphibians: amfibet
-  and: dhe
   and_other_taxa: "&amp; Taksa të Tjera"
   animals: Kafshët
   annotations: Shënime
@@ -394,11 +393,9 @@ sq:
   before_importing_photos: para importimit të fotografive
   bg_color: Ngjyra e sfondit
   birds: zogjtë
-  black: e zezë
   block_removed: Blloku u hoq
   blocked_users: Përdoruesit e bllokuar
   blog_widget: Vegla e blogut
-  blue: kaltër
   blue_butterfly_etc: "kaltër, flutur, etj."
   body: Trupi i mesazhit
   breadcrumbs: Thërrime buke
@@ -408,7 +405,6 @@ sq:
   #shown
   breadcrumbs_description: "Kjo do të zëvendësojë h1 dhe thirrjet automatike për veprim, prandaj sigurohuni që t'i përfshini ato nëse janë të rëndësishme për këtë projekt dhe mos harroni që gjerësia maksimale e lejuar është 950px"
   brief_caption: Titull i shkurtër
-  brown: bojë kafe
   browse: Shfleto
   browse_all_projects: Shfleto të gjitha projektet
   browse_all_species: Shfleto të gjitha speciet
@@ -418,7 +414,6 @@ sq:
   browse_species_that_occur_near_this_observation: Shfleto speciet që ndodhen afër këtij vëzhgimi.
   built_with_site_guides_html: "Ndërtuar me <a href='%{url}'>%{site_name} Guides</a>"
   bulk_import_of_filename_is_complete: "Importimi i sasisë së %{filename} është përfunduar"
-  by: nga
   by_everyone: Nga të gjithë
   by_user: "nga %{user}"
   by_you: Nga ju
@@ -474,13 +469,7 @@ sq:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: ndaje në
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: bashko në
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: bashkuar në
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: zëvendësohet nga
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: zëvendësoj me
     dropped: lëshuar
     staged: i ndarë në faza
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} u nda në %{output_taxa}"
@@ -585,7 +574,6 @@ sq:
   confirm_your_info: Konfirmo informacionin tënd
   connect_to_provider: "Lidhu me %{provider}"
   connecting_flickr: "Duke u lidhur me Flickr..."
-  connecting_to_facebook: "Duke u lidhur me Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Lidhja e llogarisë tuaj %{site_name} me llogaritë në faqe tjera do t'u mundësojë të qaseni në %{site_name} duke shfrytëzuar kredencialet tuaja nga këto faqe."
   conservation_status: Statusi i ruajtjes
   conservation_status_descriptions:
@@ -610,6 +598,7 @@ sq:
     subimago: Insekti Subimago
     nymph: Nimfë
     larva: Larvë
+    #Evidence of an egg of an organism
     egg: Vezë
     juvenile: I ri
   controls: Kontrollet
@@ -798,9 +787,13 @@ sq:
   download_csv: Shkarko CSV
   download_csv_template: Shkarko modelin CSV
   download_kml: Shkarko KML
+  #Noun, as in a journal post that has not been published
   draft: skicë
+  #Noun, as in a journal post that has not been published
   draft_: Skicë
+  #Noun, as in a journal post that has not been published
   draft_saved: Skicë e ruajtur!
+  #Noun, as in journal posts that has not been published
   drafts: Skicat
   drag_and_drop_some_photos_or_sounds: Tërhiq & lësho ca foto ose tinguj
   drawings: Vizatimet
@@ -855,7 +848,6 @@ sq:
   either_that_user_doesnt_exist_or: "Ose ky përdorues nuk ekziston ose jeni duke i ndjekur ato."
   eligible_for_research_grade: I pranueshëm për Nivel Kërkimor
   email_address_for_comments_and_other_feedback: Postë eletronike për komentet dhe reagimet tjera
-  email_copyright: "Të drejtat e autorit &copy;%{x} të gjitha të drejtat e rezervuara"
   embed: 'E ndërfutur'
   embed_place_widget: Fut vendin e widget
   embed_this_assessment: Ndërfut këtë vlerësim
@@ -892,6 +884,7 @@ sq:
   everywhere: gjithkund
   exact: I/E saktë
   exact_date: Data e saktë
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Katergoria e saktë
   existing_flags: Flamujt ekzistues
   exit_full_screen: "Dil nga ekrani i plotë"
@@ -905,11 +898,6 @@ sq:
   extinct_in_the_wild: të zhdukur në natyrë
   extra_properties: Karakteristikat ekstra
   evidence_of_organism: Dëshmia e organizmit
-  facebook_account_information: Informacioni i llogarisë tuaj në Facebook
-  facebook_account_not_linked: "%{user} nuk ka më një llogari të lidhur me facebook, kështu që %{site_name} nuk ka leje për të parë këtë foto."
-  facebook_access_token_expired: "Qasja juaj ka skaduar. %{user} i nevojitet te lidhet perseri me llogarine e Facebook-ut."
-  facebook_needs_the_owner_of_that_photo_to: Facebook-u ka nevojë për poseduesin e kësaj foto për të ri-konfirmuar lidhjen e tij me %{site_name_short}.
-  facebook_options: Opsionet e Facebook
   failed_to_find_your_location: Dështoi në gjetjen e vendndodhjes tënde.
   failed_to_repair_photo: "Dështoi në riparimin e fotos: %{errors}"
   failed_to_save_record: "Dështoi në ruajtjen e regjistrimit. Ju lutem provoni përsëri më vonë."
@@ -996,6 +984,7 @@ sq:
   #Adjective, as in a fluid layout of images
   fluid: lëngshëm
   follow: Ndjek
+  #Text for a button to follow updates from a specific user
   follow_user: "Ndiq %{user}"
   followers: Ndjekësit
   following: duke ndjekur
@@ -1005,7 +994,6 @@ sq:
   frequency: Shpeshtësia
   from_a_place: nga një vend
   from_eol_collection: Nga koleksioni EOL
-  from_flickr_facebook_etc: Nga Flickr, Facebook, etc.
   from_list: Nga lista
   from_photos: Nga fotot
   from_place: nga një vend
@@ -1031,7 +1019,6 @@ sq:
   got_your_data_somewhere_else?: Ke të dhënat e tua diku tjetër? Ne mund të të ndihmojmë.
   graft: Shartimi
   grafting_attemps_to_insert_this_taxon: Përpjekjet për ta futur këtë taxon në pemën tonë të taksonomisë, gjetja e një klase prind ose krijimi i të gjitha ndërklasave të nevojshme për t’ia bashkangjitur një taxon ekzistues më të lartë.
-  grant_role: "%{grant} %{role} rol"
   grid: Rrjet
   grid_layout: Ekspozimi në formë rrjeti
   grid_tooltip: Trego pamjen e rrjetit
@@ -1068,6 +1055,8 @@ sq:
   hi_user: "Përshëndetje %{user}"
   hide_uncountable_species: Fsheh speciet e pallogaritshme
   high: I lartë
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Grada më të lartë
   highlights_and_stats_from_year_on_site: "Pikat kryesore dhe statistikat nga %{year} në %{site}"
   history: Historiku
@@ -1103,7 +1092,6 @@ sq:
   identotron_for: Identotron për
   identotron_help: Ndihma identotron
   ids: "Identifikimet"
-  ids_made_for_others: Identifikimet e bëra për të tjerët
   if_for_some_reason_a_user_doesnt_agree: |
     Nëse, për ndonjë arsye, nuk pajtoheni me taxon e komunitetit mund ta refuzoni, çka nënkupton se ID-ja juaj përdoret për ndërlidhjen me vëzhgime të tjera, përditësimin e listave jetësore etj. Gjithashtu nënkupton se vëzhgimi juaj mund të konsiderohet i natyrës hulumtuese vetëm kur komuniteti pajtohet me ju.
   if_matches_come_from_a_comprehensive_list: Nëse përputhjet vijnë nga një listë gjithëpërfshirëse një shirit i gjelbër do të shfaqet këtu.
@@ -1226,7 +1214,6 @@ sq:
   let_us_walk_you_through: Na lejoni të ju njoftojme me tiparet kryesore të kësaj faqeje.
   lexicon: Fjalori
   lexicons:
-    scientific_names: Emrat shkencor
     afrikaans: Afrikanisht
     albanian: Shqip
     catalan: Katalunisht
@@ -1254,6 +1241,7 @@ sq:
     portuguese: Portugalisht
     romanian: Rumanisht
     russian: Rusisht
+    scientific_names: Emrat shkencor
     spanish: Spanjisht
     swedish: Suedisht
     tahitian: Nga Tahiti
@@ -1267,14 +1255,8 @@ sq:
   life: Jeta
   life_list: "%{user}lista Jetësore"
   link: Vegëza
-  link_your_facebook_account: Lidh llogarinë tuaj në Facebook
   link_your_flickr_account: Lidh llogarinë tuaj në Flickr
   link_your_google_account: Lidh llogarinë tuaj në Google
-  linked_facebook: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Facebook"
-  linked_facebook_automaticaly: "Po ashtu, mos harroni që nëse hyni (me emrin e përdoruesit dhe fjalëkalim) në %{site_name} përmes Facebook, ne do të lidhim automatikisht llogaritë tuaja në %{site_name} dhe në Facebook."
-  linked_facebook_description: "Mbajtja e llogarisë suaj në %{site_name} të lidhur me llogarinë tuaj në Facebook ju mundëson të shtoni shumë foto përnjëherësh në vëzhgimet tuaja. Natyrisht, nëse doni t’i ndani nga njëra-tjetra ne nuk jua ndalojmë, vetëm se nuk do të mund të shtoni më foto. Nganjëherë kjo mund të jetë gjë e mirë, p.sh. nëse krijoni një Facebook të ri me të cilin doni ta lidhni %{site_name}."
-  linked_facebook_howto: "Që ta lidhni Facebook-un me %{site_name}, klikoni në linkun në të djathtë dhe qasuni në Facebook.com."
-  linked_facebook_password: "Nuk do t’ju kërkojmë asnjëherë fjalëkalimin e llogarisë suaj në Facebook (por Facebook mund të kontrollojë URL-në që ju dërgohet për t’u siguruar që vjen nga Facebook.com). Gjithashu, nuk do të ndryshojmë të dhënat tuaja në Facebook nëse nuk doni."
   linked_flickr: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Flickr."
   linked_flickr_automatically: "Gjithashtu, të keni parasysh se nëse qaseni në llogarinë tuaj në %{site_name} përmes Flickr, ne automatikisht do ta rilidhim llogarinë tuaj në %{site_name} me llogarinë tuaj në Flickr. Duket e arsyeshme që nëse përdoni Flickr ju gjithashtu do të dëshironi të mundeni të importoni Fotonga Flickr, e saktë?"
   linked_flickr_description: "Mbajtja e llogarisë suaj në %{site_name} të lidhur me llogarinë tuaj në Flickr mundëson shtimin e shumë fotove përnjëherësh në vëzhgimet tuaja. Natyrisht, nëse doni t’i ndani nga njëra-tjetra ne nuk jua ndalojmë, vetëm se nuk do të mund të shtoni më foto. Nganjëherë kjo mund të jetë gjë e mirë, p.sh. nëse krijoni një Flickr të ri me të cilin doni ta lidhni %{site_name}."
@@ -1362,6 +1344,8 @@ sq:
   looks_like_no_species_in_guide: Duket sikur nuk keni një specie në udhërrëfyesin ruaj.
   lookup: Kërko
   low: ulët
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Niveli më i ulët
   make_admin: Bëje admin
   #Header for main content section of the project detail page when editing custom project data.
@@ -1390,7 +1374,6 @@ sq:
       every_publicly_visible_observation: Çdo vëzhgim publik dhe i dukshëm i krijuar në rrjetin e iNaturalist
       featured_observations: Vëzhgimet e paraqitura
       gbif_network: Rjeti i GBIF
-      gbif_network_description: Të dhëna nga muzetë dhe ofrues të tjerë të të dhënave të shpërndara nga Enti i Informatikës për Biodiversitetin në Botë (EIBB)
       observations: Vëzhgime
       place_boundary: Kufijtë e vendit
       checklist_places: Vendet e listës kontrolluese
@@ -1471,6 +1454,7 @@ sq:
   must_be_less_than_x_MB: "Duhet të jetë më pak se %{x}MB"
   must_have_observation_field: "Domosdo të ketë fushë të vëzhgimit %{operand} të plotësuar"
   must_have_x: "Duhet të ketë %{x}"
+  #Mute is a noun here
   mute_removed: Heshtja u hoq
   muted_users: Përdoruesi u hesht
   n_ago: "%{n} para"
@@ -1500,7 +1484,6 @@ sq:
   needs_id: Nevojitet ID
   needs_id_: Ka nevojë për ID
   needs_id_expandable_html: "<span class='full'>Ka nevojë për </span>ID"
-  needs_to_be_identified: E nevojshme të identifikohen
   new_and_noteworthy: E re dhe me vlerë
   new_announcement: Njoftim i ri
   new_assessment: Vlerësim i ri
@@ -1622,7 +1605,6 @@ sq:
   not_findig_what_you_want: Nuk gjetët atë që dëshiron?
   not_finding_place_you_want?: Nuk gjetët vendin që dëshiron?
   not_found: Nuk u gjet
-  not_linked_facebook: "Llogaria e juaj në %{site_name} nuk është e lidhur me llogarinë tuaj në Facebook"
   not_linked_flickr: "Llogaria juaj në %{site_name} nuk është e lidhur me llogarinë tuaj në Flickr"
   not_on_this_list: Jo në këtë listë.
   not_recorded: Nuk regjistrohet
@@ -1768,13 +1750,14 @@ sq:
   only_the_owner_of_this_list_can_do_that: Vetëm pronari i kesaj liste mund ta bëjë këtë. Mos u bëni i ligë.
   only_the_project_admin_can_delete_this_project: Vetem administratori i projektit mund ta fshije kete projekt.
   only_you: Vetem ju
+  #Geoprivacy status in which no privacy has been applied
   open: hape
+  #Geoprivacy status in which no privacy has been applied
   open_: Hape
   open_description: "Çdokush mund ti shohë koordinatat përveç nëse taxon-i është i rrezikuar."
   optional: zgjedhore
   or: ose
   or_choose_high_level_taxa: "...ose zgjidh nga ndonjë taxa e nivelit më të lartë"
-  orange: Portokalli
   order: Rendit
   order_by: Rendit sipas
   organism_is_wild: Organizmi është i egër
@@ -1845,7 +1828,6 @@ sq:
     large: e madhe
     original: origjinale
   photos_updated: fotografia u përditësua.
-  pink: njgyre roze
   place: Vend
   placeholder: Vend-mbajtes
   place_autocomplete_placeholder: Parku nacional Zion, Majami,etj
@@ -2033,7 +2015,6 @@ sq:
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   post_published: Postimi u publikua!
   posted_by: Postuar nga
-  posted_on: Postuar më
   posts: Postimet
   potential_disagreement: Mosmarrëveshjet potenciale
   powered_by: Mbështetur nga
@@ -2107,14 +2088,17 @@ sq:
   provider_authorizations: Autorizimet e ofruesit
   public_domain: Domeni publik
   publish: Publiko
-  purple: vjollcë
   quality_grade: Shkalla e kualitetit
   quality_grade_: Shkalla e kualitetit
   quality_grade_colon: "Shkalla e kualitetit:"
   queued: I rradhitur
   query: Pyetje
   range: Rangu
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Renditja
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Renditja
   ranks:
     kingdom: mbretëri
@@ -2170,7 +2154,6 @@ sq:
   recently_finished: Përfunduar së fundmi
   recently_observed: E vëzhguar kohëve të fundit
   recently_resolved: Zgjidhur së fundmi
-  red: e kuqe
   redo_search_in_map: Ribëje kërkimin në hartë
   redo_search_in_map_area: Ribëje kërkimin në zonën e hartës
   refresh: Rifresko
@@ -2430,7 +2413,6 @@ sq:
   start_a_new_project: Fillo një projekt të ri
   start_a_project: Fillo një projekt
   start_date_time: Data/Koha e fillimit
-  start_one: Fillo një
   start_one_now: Fillo një tani!
   start_typing_field_name: Fillo të shkruash emrin e fushës...
   start_typing_place_name: Fillo të shkruash emrin e vendit...
@@ -2447,7 +2429,6 @@ sq:
   stop_following_user: "Ndërpre ndjekjen e %{user}"
   stuff_just_added: "Gjërat që ju sapo i keni shtuar..."
   subject_resolved_noun_html: "%{subject} u zgjidh nga %{noun}"
-  subject_affecting_stuff_html: "%{subject} që ndikojnë te %{stuff}%{subject}"
   submission_model: Modeli i parashtrimit
   submission_model_description: Kush mund të shtojë observime te projekti juaj?
   submit_observations:
@@ -2518,11 +2499,13 @@ sq:
   type_taxon_name: "Lloji i emrit të taxon"
   update_your_content: Përditëso përmbajten tuaj
   upload: Ngarko
+  #@gender operates on %{x}
   user_added_a_x: "%{user} shtoi një %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} shtoi një %{x} tek %{noun}"
   user_added_an_observation_html: "%{user} shtoi një vëzhgim"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} shtoi një %{x} tek %{noun} nga %{by}"
-  user_added_x_observations_html: "%{user} shtoi %{x} vëzhgime"
   view_observation: Shiko vëzhgimin
   view_your_observations: Shikoni vëzhgimet tuaja
   welcome: mirë se vini
@@ -2543,38 +2526,6 @@ sq:
       edit:
         licensing_desc_html: |
           Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.
-    welcome:
-      index:
-        species_observed: 'Specjet e vëzhguara'
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   datetime:
     prompts:
       day: Dita
@@ -2583,28 +2534,6 @@ sq:
       month: Muaji
       second: Sekondat
       year: Viti
-  errors:
-    messages:
-      accepted: Duhet të pranohet
-      blank: nuk mund të jetë bosh
-      confirmation: nuk përputhet me konfirmimin
-      empty: nuk mund të jetë bosh
-      equal_to: duhet të jetë e barabartë me %{count}
-      even: duhet të jetë çift
-      exclusion: është e rezervuar
-      greater_than: duhet të jetë më i madh se %{count}
-      greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
-      inclusion: nuk është përfshirë në listë
-      invalid: është i pavlefshëm
-      less_than: duhet të jetë më pak se %{count}
-      less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
-      not_a_number: nuk është një numër
-      not_an_integer: duhet të jetë një numër i plotë
-      odd: duhet të jetë tek
-      record_invalid: 'Vlefshmëria dështoi: %{errors}'
-      taken: është marrë tashmë
-    template:
-      body: 'Kishte probleme me fushat e mëposhtme:'
   helpers:
     select:
       prompt: Ju lutem zgjidhni
@@ -2613,6 +2542,9 @@ sq:
       submit: Ruaj %{model}
       update: Përditëso %{model}
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       decimal_units:
         units:
@@ -2626,31 +2558,6 @@ sq:
   time:
     am: pd
     pm: md
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{message} %{attribute}'
-      messages:
-        accepted: Patjetër të pranohet
-        blank: nuk mund të jetë bosh
-        confirmation: nuk përputhet me konfirmimin
-        empty: nuk mund të jetë bosh
-        equal_to: duhet të jetë e barabartë me %{count}
-        even: duhet të jetë i barabartë
-        exclusion: është e rezervuar
-        greater_than: duhet të jetë më i madh se %{count}
-        greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
-        inclusion: nuk është përfshirë në listë
-        invalid: është i pavlefshëm
-        less_than: duhet të jetë më pak se %{count}
-        less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
-        not_a_number: nuk është një numër
-        not_an_integer: duhet të jetë një numër i plotë
-        odd: duhet të jetë tek
-        record_invalid: 'Vlefshmëria dështoi: %{errors}'
-        taken: është marrë tashmë
-      template:
-        body: 'Kishte probleme me fushat e mëposhtme:'
   activerecord:
     models:
       AssessmentSection: Seksioni i Vlerësimit

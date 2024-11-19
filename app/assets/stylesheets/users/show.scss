@@ -19,9 +19,14 @@
 .list-group .glyphicon,
 .list-group .icon,
 .list-group .fa,
-.dropdown-toggle .glyphicon {
+.dropdown-toggle .glyphicon,
+.svg-icon {
   margin-right: 0.5em;
   color: $inat-green;
+}
+
+.svg-icon {
+  height: 14px;
 }
 
 #nodescription textarea {
@@ -41,6 +46,9 @@
 h1 {
   .btn {
     margin-left: 10px;
+    &.muting {
+      margin-left: 2px;
+    }
   }
 
   small.role {

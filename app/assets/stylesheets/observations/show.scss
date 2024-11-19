@@ -6,72 +6,15 @@
 @import "../shared/loading_spinner";
 @import "../shared/modals";
 @import "../shared/observation_fields";
+@import "../shared/observation_projects";
 @import "../shared/quality_metrics";
 @import "../shared/split_taxon";
 @import "../shared/user_with_icon";
+@import "../shared/easyzoom";
 @import "../users/user_image";
 @import "../users/user_popover";
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
-
-// react images ids and class names. get ready for this to change again in the future
-#lightboxBackdrop {
-  [class*="content_"],
-  [class*="figure_"],
-  .easyzoom,
-  .easyzoom > a {
-    height: 100%;
-  }
-  [class*="spinner_"] {
-    display: none;
-  }
-  [class*="content_"] {
-    position: absolute !important;
-    left: 0;
-    top: 0;
-  }
-  [class*="content_"] {
-    [class*="header_"] {
-      margin: 0 10px;
-      position: absolute;
-      right: 0;
-    }
-    width: 100%;
-    img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto !important;
-    }
-    .easyzoom {
-      cursor: default;
-      & > a {
-        cursor: default;
-        img {
-          cursor: zoom-in !important;
-        }
-      }
-      .easyzoom-flyout {
-        z-index: 2001;
-        cursor: zoom-out !important;
-        img {
-          margin: 0px !important;
-          padding: 0px;
-        }
-        &.short img {
-          margin-top: auto !important;
-          margin-bottom: auto !important;
-        }
-        &.narrow img {
-          margin-left: auto !important;
-          margin-right: auto !important;
-        }
-      }
-    }
-  }
-}
 
 @mixin editor-textarea {
   textarea {
@@ -109,6 +52,7 @@ button.linky,
   color: $bootstrap-link-color;
   cursor: pointer;
   background: transparent;
+  vertical-align: baseline;
 }
 
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
@@ -178,7 +122,7 @@ input.failed, textarea.failed {
 
 .ui-autocomplete {
   .ac-result, .category {
-    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    font-family: Lato, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
       color: #333;
     }
@@ -202,7 +146,7 @@ a.UserImage,
   }
   display: inline-block;
   border-radius: 120px;
-  margin-right: 5px;
+  margin-inline-end: 5px;
   min-width: 40px;
   width: 48px;
   height: 48px;
@@ -223,8 +167,7 @@ a.UserImage,
   border: 1px solid $border-grey;
   padding: 1px;
   display: inline-block;
-  margin-right: 5px;
-  float: left;
+  margin-inline-end: 5px;
   img {
     width: 40px;
     height: 40px;
@@ -297,7 +240,7 @@ a.UserImage,
             top: 280px;
             width: 100%;
             text-align: center;
-            font-weight: 100;
+            font-weight: 400;
           }
           .add-photo-span {
             top: auto;
@@ -327,6 +270,7 @@ a.UserImage,
           &.center {
             display: table-cell;
           }
+          cursor: auto;
         }
         .image-gallery-slides img {
           max-height: 420px;
@@ -344,7 +288,10 @@ a.UserImage,
           .sound-container {
             position: absolute;
             width: 100%;
-            top: 50%; 
+            top: 50%;
+            .captions {
+              margin-top: 10px;
+            }
           }
           .sound-container.sound-container-soundcloud {
             margin-top: -81px;
@@ -366,6 +313,13 @@ a.UserImage,
             bottom: 0;
             pointer-events: none;
             padding: 6px;
+            & > .hidden-media {
+              position: absolute;
+              width: 100%;
+              .captions {
+                margin-top: 10px;
+              }
+            }
           }
           .image-gallery-image {
             position: relative;
@@ -381,8 +335,13 @@ a.UserImage,
               padding: 15px;
               border-radius: 50px;
               display: inline-block;
-              padding: 5px 9px;
+              padding: 5px 9px 7px;
               pointer-events: auto;
+              .btn:hover, .fa:hover {
+                text-decoration: none;
+                opacity: 0.8;
+                color: inherit;
+              }
             }
             .fa.license {
               vertical-align: middle;
@@ -396,10 +355,10 @@ a.UserImage,
             .badge {
               background: white;
               color: rgba(0,0,0,.75);
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
             .btn-nostyle {
-              margin-left: 5px;
+              margin-inline-start: 5px;
             }
           }
         }
@@ -431,7 +390,7 @@ a.UserImage,
                   border: 2px solid $inat-green;
                 }
                 & + .image-gallery-thumbnail {
-                  margin-left: 4px;
+                  margin-inline-start: 4px;
                 }
                 .loading_spinner {
                   margin-left: 0;
@@ -464,7 +423,7 @@ a.UserImage,
         }
         .bold_label {
           display: block;
-          font-weight: bold;
+          font-weight: 600;
         }
         .date {
           font-size: 13px;
@@ -505,7 +464,7 @@ a.UserImage,
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
     border: 1px solid $border-grey;
-    margin-left: 60px;
+    margin-inline-start: 60px;
     margin-bottom: 15px;
     ul.nav-tabs {
       background-color: #f5f5f5;
@@ -573,6 +532,9 @@ a.UserImage,
           color: $fail-red;
         }
       }
+      & > button {
+        padding-top: 4px;
+      }
     }
   }
   .middle_left {
@@ -582,7 +544,7 @@ a.UserImage,
     }
   }
   .opposite_activity {
-    & > .row > .col-xs-12 > div {
+    & > .row .col-xs-12 > div {
       margin-bottom: 15px;
     }
     h4 {
@@ -596,28 +558,28 @@ a.UserImage,
     display: inline-block;
     width: 100%;
     margin-bottom: 15px;
-    white-space: nowrap;
     & > div {
       display: inline-block;
     }
     .SplitTaxon {
       white-space: normal;
-      a.secondary-name {
+      a.secondary-name, .secondary-names {
         font-size: 20px;
         line-height: 24px;
         color: #747474;
         white-space: normal;
       }
-      a.display-name, .noname {
+      .display-names, a.display-name, .noname {
         font-size: 32px;
-        line-height: 36px;
+        line-height: 40px;
         color: #000;
         white-space: normal;
+        font-weight: 200;
       }
-      &.genus .comname.secondary-name,
-      &.species .comname.secondary-name,
-      &.subspecies .comname.secondary-name,
-      &.variety .comname.secondary-name {
+      &.genus .comname.secondary-names,
+      &.species .comname.secondary-names,
+      &.subspecies .comname.secondary-names,
+      &.variety .comname.secondary-names {
         margin-left: 0.25em;
       }
     }
@@ -625,10 +587,6 @@ a.UserImage,
   .FollowButton {
     float: right;
     line-height: 32px;
-    .unfollow {
-      color: #468cc7;
-      margin-left: 5px;
-    }
     .dropdown-menu {
       min-width: 220px;
     }
@@ -661,6 +619,12 @@ a.UserImage,
   }
 }
 
+[dir = "rtl"] #ObservationShow {
+  .FollowButton {
+    float: left;
+  }
+}
+
 .more_from > .container > .row > .col-xs-12 {
   padding: 0;
 }
@@ -669,11 +633,28 @@ a.UserImage,
   padding: 0;
 }
 
+.hidden-media {
+  text-align: center;
+  .hidden-status {
+    color: #333;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+  .reveal-hidden {
+    display: block;
+    color: #333;
+    pointer-events: auto;
+    display: block;
+    margin: 0px auto;
+    margin-top: 9px;
+  }
+}
+
 h3, h4 {
   &.collapsible {
     i.fa {
       color: $inat-green;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
     &.collapsible {
       cursor: pointer;
@@ -685,7 +666,7 @@ h3, h4 {
   i.fa-star, i.fa-star-o {
     font-size: 16px;
     color: $inat-green;
-    margin-right: 8px;
+    margin-inline-end: 8px;
     &:hover {
       cursor: pointer;
     }
@@ -698,69 +679,6 @@ h3, h4 {
   .user a,
   .others {
     font-weight: 700;
-  }
-}
-
-.Projects {
-  .projectEntry, .project, .projectFields {
-    display: inline-block;
-    width: 100%;
-  }
-  .project .squareIcon {
-    margin-right: 8px;
-  }
-  .projectEntry + .projectEntry {
-    margin-top: 15px;
-  }
-  .panel {
-    margin-top: 10px;
-  }
-  .info {
-    float: left;
-    width: 80%;
-    .fieldLink {
-      color: $other-link-color;
-      cursor: pointer;
-      .fa {
-        font-size: 12px;
-      }
-    }
-  }
-  .title {
-    font-size: 16px;
-  }
-  .control-group {
-    float: right;
-    .btn-group button .fa {
-      color: $text-grey;
-    }
-  }
-  button.dropdown-toggle {
-    border: none;
-    background: inherit !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    &:hover {
-      border: none;
-      background: inherit;
-    }
-    padding: 0;
-    line-height: 0px;
-  }
-  .dropdown {
-    .allow {
-      display: inline-block;
-      padding: 10px 20px 3px 20px;
-      input[type="checkbox"] {
-        margin-right: 5px;
-      }
-      .text-muted {
-        margin-top: 5px;
-      }
-      label {
-        font-weight: normal;
-      }
-    }
   }
 }
 
@@ -796,14 +714,16 @@ time {
     background: #f8f8f8;
     height: 230px;
     text-align: center;
-    font-size: 18px;
-    color: $text-grey;
     padding-top: 75px;
     border-bottom: 1px solid $border-grey;;
     .fa {
       display: block;
       font-size: 60px;
       color: #ccc;
+    }
+    span {
+      font-size: 18px;
+      color: $text-grey;
     }
   }
   .map_details {
@@ -823,6 +743,9 @@ time {
         color: $bootstrap-link-color;
         cursor: pointer;
         margin-right: 5px;
+        > .btn {
+          vertical-align: baseline;
+        }
       }
       .obscured {
         color: #aaa;
@@ -834,7 +757,8 @@ time {
     }
     .details_menu {
       .dropdown-toggle {
-        margin: 0px 0px 2px 12px;
+        margin-inline: 12px 0px;
+        margin-block: 0px 2px;
         padding: 0;
         border: none;
         background: inherit;
@@ -853,6 +777,18 @@ time {
       .btn-more:hover, .btn-more:focus {
         text-decoration: none;
       }
+      .btn.clipboard-copy {
+        vertical-align: top;
+        margin: -1px 10px 0px 6px;
+        background: #f0f0f0;
+        outline: none;
+        &:hover {
+          background: #e6e6e6;
+        }
+      }
+      .tooltip.top {
+        margin-left: 6px;
+      }
     }
   }
 }
@@ -862,7 +798,7 @@ time {
   padding: 20px;
   display: inline-block;
   .attr {
-    font-weight: 700;
+    font-weight: 600;
   }
   .places {
     h4 {
@@ -891,7 +827,7 @@ time {
     }
   }
   .standard {
-    padding-right: 15px;
+    padding-inline-end: 15px;
   }
   .top_info,
   .places,
@@ -906,7 +842,7 @@ time {
       display: block;
       float: left;
       min-width: 110px;
-      margin-right: 5px;
+      margin-inline-end: 5px;
     }
   }
   .links {
@@ -936,8 +872,8 @@ time {
         margin-bottom: 10px;
         i {
           position: absolute;
-          left: 0;
-          margin-right: 3px;
+          inset-inline-start: 0;
+          margin-inline-end: 3px;
           color: $inat-green;
           &.fa { top: 3px; }
           &.icon-person { top: -2px; }
@@ -954,11 +890,20 @@ time {
   }
 }
 
+[dir = "rtl"] .MapDetails{
+  .top_info {
+    .info {
+      float: right;
+    }
+  }
+
+  .standard, .community{
+    float: right;
+  }
+}
+
 .Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
   border-top: 1px solid $border-grey;
-}
-.top-row .Projects {
-  border-top: none;
 }
 
 .collapsible-section {
@@ -996,7 +941,7 @@ time {
     }
     .glyphicon {
       top: 3px;
-      margin-left: 5px;
+      margin-inline-start: 5px;
       color: #b2b2b2;
     }
     .glyphicon-remove-circle {
@@ -1036,15 +981,15 @@ time {
     position: absolute;
     content: " ";
     display: block;
-    border-left: $activity-line-width solid $border-grey;
+    border-inline-start: $activity-line-width solid $border-grey;
     width: $activity-line-width;
     height: 100%;
-    left: 24px;
+    inset-inline-start: 24px;
     top: 0;
     z-index: 0;
   }
   .comment_id {
-    margin-left: 60px;
+    margin-inline-start: 60px;
   }
   .review {
     float: right;
@@ -1059,6 +1004,20 @@ time {
   .ac-select-thumb i {
     vertical-align: auto;
     line-height: 31px;
+  }
+}
+
+[dir="rtl"] .bootstrap .Activity {
+  > .icon {
+    float: right;
+  }
+  .review{
+    float:left;
+    input {
+      position: relative;
+      top: 2px;
+      right: -5px;
+    }
   }
 }
 
@@ -1087,16 +1046,16 @@ time {
     text-align: center;
     .separators {
       position: absolute;
-      left: 0;
+      inset-inline-start: 0;
       width: 100%;
       .left, .right {
         margin: 0;
       }
       .left {
-        padding-left: 38px;
+        padding-inline-start: 38px;
       }
       .right {
-        padding-right: 38px;
+        padding-inline-end: 38px;
       }
       .separator {
         display: inline-block;
@@ -1145,28 +1104,29 @@ time {
       }
     }
     .labels {
-      & > div {
-        display: inline-block;
-        width: 115px;
-        margin-top: 5px;
-      }
+      position: relative;
+      display: block;
+      margin-top: 5px;
+      text-align: center;
       .active {
         font-weight: 600;
       }
       .casual {
-        float: left;
-        text-align: left;
+        top: 0;
+        position: absolute;
+        inset-inline-start: 0;
       }
       .research {
-        float: right;
-        text-align: right;
+        top: 0;
+        position: absolute;
+        inset-inline-end: 0;
       }
     }
   }
   .info {
     margin-top: 35px;
     font-size: 18px;
-    line-height: 23px;
+    line-height: 24px;
   }
   ul.remaining {
     margin-top: 30px;
@@ -1221,13 +1181,35 @@ time {
   }
 }
 
+[dir="rtl"] .ResearchGradeProgress{
+  .graphic{
+    .checks{
+      .check{
+        &.casual {
+          float: right;
+        }
+        &.research {
+          float: left;
+        }
+      }
+    }
+  }
+  ul.remaining {
+    li {
+      .reason_icon {
+        float: right;
+      }
+    }
+  }
+}
+
 .MoreFromUser {
   display: inline-block;
   padding-bottom: 30px;
   width: 100%;
   h3 {
     & > span a {
-      font-weight: 700;
+      font-weight: 600;
     }
     .links {
       float: right;
@@ -1241,7 +1223,6 @@ time {
     }
   }
   .list {
-    display: inline-block;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -1253,10 +1234,10 @@ time {
   }
   .obs {
     width: 100%;
-    display: inline-block;
     vertical-align: top;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
+    background: #fff;
   }
   .photo {
     width: 100%;
@@ -1287,21 +1268,28 @@ time {
 
   }
   .caption {
-    background: #fff;
     padding: 8px;
     min-height: 56px;
-    text-align: left;
-    a {
-      display: block;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      white-space: nowrap;
+    text-align: start;
+    .SplitTaxon .display-name {
       color: #000;
+    }
+    .SplitTaxon > .display-name, .display-names,
+    .SplitTaxon > .secondary-name, .secondary-names {
+      display: block;
     }
   }
   .view {
     font-weight: 700;
-    margin-right: 5px;
+    margin-inline-end: 5px;
+  }
+}
+
+[dir = "rtl"] .MoreFromUser{
+  h3 {
+    .links {
+      float: left;
+    }
   }
 }
 
@@ -1350,12 +1338,29 @@ time {
     }
   }
 }
+
+[dir = "rtl"] .ObservationsHighlight {
+  h3 {
+    a {
+      float: left;
+    }
+  }
+}
+
 .obs-highlight-link {
   .SplitTaxon {
-    a.display-name,
-    .noname {
+    & > .display-name, .display-names,
+    & > .secondary-name, .secondary-names {
       display: block;
+      white-space: inherit;
+    }
+    .display-name, .secondary-name {
+      white-space: inherit;
+    }
+    .display-name,
+    .noname {
       color: white;
+      font-weight: 700;
     }
   }
 }
@@ -1376,14 +1381,14 @@ time {
     display: inline-block;
     margin-bottom: 15px;
     .UserWithIcon {
-      padding-right: 15px;
+      padding-inline-end: 15px;
       .icon {
-        margin-right: 5px;
+        margin-inline-end:  5px;
       }
       .title {
         font-size: 14px;
         line-height: 14px;
-        font-weight: 700;
+        font-weight: 600;
         text-overflow: ellipsis;
         display: block;
         overflow: hidden;
@@ -1394,7 +1399,7 @@ time {
         margin-top: 4px;
         i {
           font-size: 12px;
-          margin-right: 3px;
+          margin-inline-end: 3px;
         }
       }
     }
@@ -1455,15 +1460,12 @@ time {
     .taxon {
       font-size: 16px;
       display: block;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
       margin-bottom: 5px;
       .display-name {
         color: #000;
-        font-weight: 700;
+        font-weight: 600;
       }
     }
     .photo {
@@ -1570,7 +1572,7 @@ time {
     text-align: center;
     a {
       color: $bootstrap-link-color;
-      font-weight: 200;
+      font-weight: 400;
     }
     &.in {
     }
@@ -1584,6 +1586,14 @@ time {
       .separator {
         margin: 0px 5px;
       }
+    }
+  }
+}
+
+[dir="rtl"] .CommunityIdentification {
+  .info {
+    .photo{
+      float: left;
     }
   }
 }
@@ -1891,7 +1901,7 @@ time {
   }
 }
 
-.LicensingModal.modal, .CommunityIDModal.modal, .ProjectFieldsModal.modal {
+.LicensingModal.modal, .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
     height: 85%;
@@ -1981,12 +1991,11 @@ time {
       }
       td {
         padding: 2px 8px;
-        .secondary-name {
+        .secondary-names {
           font-size: 12px;
         }
         .display-name {
           font-size: 13px;
-          white-space: nowrap;
         }
         &.score {
           white-space: nowrap;
@@ -2021,7 +2030,7 @@ time {
   .badge {
     min-width: 24px;
   }
-  margin-left: 10px;
+  margin-inline-start: 10px;
   cursor: pointer;
   vertical-align: text-bottom;
 }
@@ -2121,7 +2130,7 @@ time {
     .application {
       img {
         max-height: 14px;
-        margin-right: 5px;
+        margin-inline-end: 5px;
       }
       .name {
         vertical-align: middle;
@@ -2132,14 +2141,13 @@ time {
 
 .PreviousNextButtons {
   float: right;
+  display: flex;
   margin-top: 23px;
   .previous {
-    float: left;
-    padding-right: 3px;
+    padding-inline-end: 3px
   }
   .next {
-    float: left;
-    padding-left: 2px;
+    padding-inline-start: 2px
   }
   .previous, .next {
     display: inline-block;
@@ -2148,14 +2156,14 @@ time {
     background: $inat-green;
     border-radius: 15px;
     cursor: pointer;
-    padding-top: 3px;
+    padding-top: 2px;
     text-align: center;
     &.disabled {
       opacity: 0.3;
       cursor: not-allowed;
     }
     &:not(:first-child) {
-      margin-left: 8px;
+      margin-inline-start: 8px;
     }
     .fa {
       font-size: 14px;
@@ -2164,90 +2172,16 @@ time {
   }
 }
 
+[dir="rtl"] .PreviousNextButtons {
+  float: left;
+}
+
 .box.opt-out {
   background: #f8f8f8;
   margin: 30px 0px 27px 0px;
   font-size: 16px;
   button {
     margin-left: 10px;
-  }
-}
-
-.ProjectFieldsModal.modal {
-  .modal-dialog {
-    width: 600px;
-    min-width: 400px;
-    .modal-content {
-      padding-bottom: 120px;
-    }
-  }
-  .modal-header {
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    background: #337ab7;
-    .modal-title {
-      color: white;
-    }
-    .close {
-      color: white;
-      opacity: 0.6;
-      text-shadow: 0 1px 0 #333333;
-      &:hover {
-        color: white;
-        opacity: 1;
-      }
-    }
-  }
-  .modal-body {
-    .intro {
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    .observation-field {
-      position: relative;
-      margin-bottom: 10px;
-      &.editing {
-        background: inherit;
-        padding: 0;
-        button {
-          background-color: #5cb85c;
-          border-color: #4cae4c;
-          &:hover {
-            color: white;
-            background-color: #449d44;
-            border-color: #398439;
-          }
-        }
-      }
-      &:not(.dna-field) {
-        button.standalone {
-          position: absolute;
-          top: 34px;
-          right: 0px;
-        }
-      }
-      &:not(:first-child) {
-        margin-top: 20px;
-      }
-      .form-group {
-        margin-bottom: 0px;
-      }
-      .field-name {
-        font-weight: 600;
-        font-size: 15px;
-        margin: 0px 0px 4px 0px;
-        .required {
-          margin-left: 5px;
-        }
-      }
-      .btn.standalone {
-        margin: 0;
-      }
-      .help-block {
-        margin-top: 8px;
-        margin-bottom: 0px;
-      }
-    }
   }
 }
 
@@ -2263,7 +2197,7 @@ time {
       position: absolute;
       font-size: 14px;
       bottom: -6px;
-      right: -9px;
+      inset-inline-end: -9px;
       background: white;
       padding: 1px 2px;
       border-radius: 40px;
@@ -2286,73 +2220,18 @@ time {
 
 
 
-
-
-.easyzoom-flyout {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  overflow: hidden;
-  z-index: 2;
-}
-.easyzoom-flyout img {
-  vertical-align: bottom;
-}
-.image-gallery-content .easyzoom-flyout img {
-  height: auto;
-  width: auto;
-  opacity: 1;
-  cursor: zoom-out;
-}
-
-.easyzoom-zoomed img {
-  visibility: hidden;
-}
-
-
-.easyzoom,
-.easyzoom > a {
-  display: inline-block;
-  width: 100%;
-  cursor: zoom-in;
-}
-body > [role="dialog"] .easyzoom > a > img {
-  vertical-align: bottom;
-}
-
-.easyzoom.is-loading img {
-  cursor: progress;
-}
-
-.easyzoom-notice {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 150;
-  width: 10em;
-  margin: -1em 0 0 -5em;
-  line-height: 2em;
-  text-align: center;
-  color: white;
-  text-shadow: 0 0 5px black;
-}
-
-
-
-
 .quality_grade {
   display: inline-block;
   background-color: $border-grey;
-  padding: 2px 0px 1px 10px;
+  padding-block: 3px 3px;
+  padding-inline: 10px 0;
   position: relative;
   font-size: 12px !important;
-  line-height: 17px !important;
+  line-height: 16px !important;
   z-index: 1;
-  margin-right: 20px;
+  margin-inline-end: 20px;
   // added
-  margin-left: 10px;
+  margin-inline-start: 10px;
   vertical-align: text-bottom;
 }
 .quality_grade:after {
@@ -2360,10 +2239,10 @@ body > [role="dialog"] .easyzoom > a > img {
   position: absolute;
   display: block;
   bottom: 0;
-  border: 10px solid $border-grey;
-  border-right-width: 5px;
-  border-right-color: transparent;
-  right: -15px;
+  border: 11px solid $border-grey;
+  border-inline-end-width: 5px;
+  border-inline-end-color: transparent;
+  inset-inline-end: -15px;
   z-index: -1;
 }
 .quality_grade.needs_id {
@@ -2372,7 +2251,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.needs_id:after {
   border-color: $needs-id-yellow;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 .quality_grade.research {
   background-color: $inat-green;
@@ -2380,7 +2259,7 @@ body > [role="dialog"] .easyzoom > a > img {
 }
 .quality_grade.research:after {
   border-color: $inat-green;
-  border-right-color: transparent;
+  border-inline-end-color: transparent;
 }
 
 .PopoverWithHeader {
@@ -2427,10 +2306,33 @@ body > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.image-gallery-image .loading_spinner {
+  width: 80px;
+  height: 80px;
+  border-width: 15px;
+}
+
 .observations.infowindow .observation {
   width: 245px;
 }
 
+.obs .caption, .obs-highlight-link, .obs-modal-header {
+  .SplitTaxon.taxon {
+    .display-names .display-name + .display-name,
+    .secondary-names .secondary-name + .secondary-name {
+      &:before {
+        content: "";
+        display: inline;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .image-gallery-slide .image-gallery-description {
+    font-size: 1em;
+  }
+}
 
 @media (max-width: 1000px) {
   .bootstrap .container {

@@ -93,8 +93,7 @@ class List < ApplicationRecord
   end
   
   def generate_csv(options = {})
-    controller = options[:controller] || FakeView.new
-    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
+    attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation
        last_observation url created_at updated_at taxon_common_name)
     ranks = Taxon::RANK_LEVELS.select{|r,l| (Taxon::COMPLEX_LEVEL..Taxon::KINGDOM_LEVEL).include?(l) }.keys - [Taxon::GENUSHYBRID]
     headers = options[:taxonomic] ? ranks + attrs : attrs
@@ -142,9 +141,9 @@ class List < ApplicationRecord
           when 'adding_user_login'
             lt.user_login
           when 'url'
-            controller.instance_eval { listed_taxon_url(lt) }
+            UrlHelper.listed_taxon_url(lt)
           when 'first_observation', 'last_observation' 
-            controller.instance_eval { observation_url(lt.send(h)) } if lt.send(h)
+            UrlHelper.observation_url(lt.send(h)) if lt.send(h)
           else
             lt.send(h)
           end
@@ -181,9 +180,8 @@ class List < ApplicationRecord
     key
   end
 
-  def self.icon_preview_cache_key(list)
-    list_id = list.is_a?(List) ? list.id : list
-    FakeView.icon_preview_list_url( list_id, locale: I18n.locale )
+  def self.icon_preview_cache_key( list )
+    list_id = list.is_a?( List ) ? list.id : list
+    UrlHelper.icon_preview_list_url( list_id, locale: I18n.locale )
   end
-
 end

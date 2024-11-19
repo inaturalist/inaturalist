@@ -96,7 +96,6 @@ sat:
   help: ᱜᱚᱲᱚ
   identify: ᱪᱤᱱᱦᱟᱹᱯ
   identifications: ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ
-  inaturalist_is_a_joint_initiative: "%{site_name} ᱫᱚ California Academy of Sciences ᱟᱨ National Geographic Society ᱨᱮᱭᱟᱜ ᱡᱩᱢᱤᱫ ᱠᱟᱹᱢᱤ ᱠᱟᱱᱟ ᱾"
   join_the_largest_group_of_naturalists_in_the_world: ᱡᱮᱜᱮᱛ ᱨᱮᱭᱟᱜ ᱡᱷᱚᱛᱚ ᱠᱷᱚᱱ ᱟᱹᱨᱛᱤᱭᱟᱹ ᱠᱚᱣᱟᱜ ᱢᱟᱨᱟᱝ ᱫᱳᱞ ᱨᱮ ᱥᱮᱞᱮᱫᱚᱜ ᱢᱮ!
   journal: ᱯᱟᱛᱷᱟᱢ ᱠᱟᱜᱚᱡᱽ
   journal_posts: ᱯᱟᱛᱷᱟᱢ ᱠᱟᱜᱚᱡᱽ ᱯᱚᱥᱴ ᱠᱚ
@@ -145,9 +144,6 @@ sat:
       index:
         connect_with_nature: ᱯᱨᱚᱠᱨᱩᱛ ᱥᱟᱞᱟᱜ ᱡᱩᱲᱟᱹᱣᱜ ᱢᱮ
         explore_and_share: ᱡᱮᱜᱮᱛ ᱯᱨᱚᱠᱨᱩᱛ ᱠᱷᱚᱱ ᱟᱢᱟᱜ ᱥᱮᱸᱫᱽᱨᱟ ᱟᱨ ᱧᱮᱯᱚᱨᱚᱠᱷ ᱠᱚ ᱦᱟᱹᱴᱤᱧ ᱢᱮ ᱾
-        observations_to_date: 'ᱢᱟᱦᱟᱸ ᱫᱷᱟᱹᱵᱤᱡ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ'
-        species_observed: 'ᱧᱮᱞᱯᱚᱨᱚᱠ ᱡᱟᱹᱛ ᱠᱚ'
-        people_signed_up: 'ᱥᱩᱦᱤ ᱮᱢ ᱠᱟᱫ ᱦᱚᱲ'
         how_it_works: ᱱᱚᱶᱟ ᱪᱮᱞᱠᱟ ᱠᱟᱹᱢᱤᱟᱭ
         record_your_observations: ᱟᱢᱟᱜ ᱧᱮᱞᱯᱚᱨᱚᱠ ᱠᱚ ᱨᱮᱠᱚᱰ ᱢᱮ
         share_with_fellow_naturalists: ᱜᱟᱛᱮ ᱯᱨᱚᱠᱨᱩᱛᱤᱭᱟᱹ ᱠᱚ ᱥᱟᱶ ᱦᱟᱹᱴᱤᱧ ᱢᱮ
@@ -175,36 +171,10 @@ sat:
         who_uses_site_name: "%{site_name} ᱚᱠᱚᱭ ᱵᱮᱵᱷᱟᱨᱮᱫᱟᱭ ?"
         what_are_you_waiting_for: ᱟᱢ ᱚᱠᱚᱭ ᱛᱟᱹᱝᱜᱤ ᱠᱟᱹᱫᱮᱭᱟᱢ ?
         join_today: ᱛᱮᱦᱮᱸᱧ ᱥᱮᱞᱮᱫᱚᱜ ᱢᱮ
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

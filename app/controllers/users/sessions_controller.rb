@@ -29,6 +29,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   private
+
   def set_flash_message(key, kind, options = {})
     if @legacy_authentication_successful
       flash[:notice] = I18n.t(:legacy_authentication_notice_html, :url => generic_edit_user_url)

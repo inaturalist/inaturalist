@@ -1,5 +1,6 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -57,27 +58,19 @@ if ( !_.isEmpty( SITE ) ) {
 }
 
 if ( !_.isEmpty( PREFERRED_PLACE ) ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
 
-if (
-  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
-) {
-  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
-  const defaultApiUrl = element && element.getAttribute( "content" );
-  if ( defaultApiUrl ) {
-    store.dispatch( setConfig( {
-      testingApiV2: true
-    } ) );
-    inatjs.setConfig( {
-      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
-      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
-    } );
-  }
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 store.dispatch( setProject( PROJECT_DATA ) );

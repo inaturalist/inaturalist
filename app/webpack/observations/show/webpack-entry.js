@@ -1,5 +1,6 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -17,7 +18,7 @@ import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import confirmModalReducer from "./ducks/confirm_modal";
-import controlledTermsReducer, { fetchAnnotationsPanelPreferences } from "./ducks/controlled_terms";
+import controlledTermsReducer from "./ducks/controlled_terms";
 import flaggingModalReducer from "./ducks/flagging_modal";
 import identificationsReducer from "./ducks/identifications";
 import licensingModalReducer from "./ducks/licensing_modal";
@@ -93,11 +94,13 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   } ) );
 }
 
+const urlParams = new URLSearchParams( window.location.search );
+
 /* global INITIAL_OBSERVATION_ID */
 let obsId = INITIAL_OBSERVATION_ID;
 if (
   ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
+  || urlParams.get( "test" ) === "apiv2"
 ) {
   const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
@@ -115,17 +118,17 @@ if (
   }
 }
 
-if ( window.location.search.match( /test=vision/ ) ) {
+const testFeature = urlParams.get( "test_feature" );
+if ( testFeature ) {
   store.dispatch( setConfig( {
-    testingVision: true
+    testFeature: testFeature
   } ) );
 }
-
-store.dispatch( fetchAnnotationsPanelPreferences( ) );
 
 store.dispatch( fetchObservation( obsId, {
   fetchAll: true,
   replaceState: true,
+  initialPhotoID: urlParams.get( "photo_id" ),
   callback: ( ) => {
     render(
       <Provider store={store}>

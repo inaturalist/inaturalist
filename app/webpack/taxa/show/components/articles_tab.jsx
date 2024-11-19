@@ -91,6 +91,12 @@ const ArticlesTab = ( {
                   <p>
                     { I18n.t( "computer_vision_model_included_desc" ) }
                   </p>
+                  <p dangerouslySetInnerHTML={{
+                    __html: I18n.t( "geomodel_expected_nearby_label_is_derived", {
+                      url: `/geo_model/${taxon.id}/explain`
+                    } )
+                  }}
+                  />
                 </div>
               ) : (
                 <div>
@@ -100,7 +106,7 @@ const ArticlesTab = ( {
                     </span>
                   </h3>
                   <p>
-                    { I18n.t( "computer_vision_model_pending_desc" ) }
+                    { I18n.t( "computer_vision_model_pending_desc2" ) }
                   </p>
                 </div>
               ) }

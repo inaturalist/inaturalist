@@ -12,9 +12,9 @@
 //   licensed:      Restrict iNat photos to those with licenses. Default is false.
 //   defaultQuery:  Default query to run on load
 //   afterQueryPhotos(q, wrapper, options) : called after photos queried
-//   defaultSource: the default source (e.g. 'flickr' or 'facebook')
+//   defaultSource: the default source (e.g. 'flickr')
 //   defaultContext:the default context (e.g. 'user' or 'friends')
-//   sources:       a data structure used to specify the available photo sources (flickr, facebook, etc)
+//   sources:       a data structure used to specify the available photo sources (flickr, etc)
 //                  and available photo contexts ('user', 'friends', 'public', etc) for each source
 //                  see below for example of this data structure
 //                  note: options also currently supports options.urls (via lots of try/catch), 
@@ -23,10 +23,6 @@
 //   example of options.sources:                  
 //
 //   options.sources = {
-//      facebook: {
-//        title: 'Facebook', 
-//        url: '/facebook/photo_fields', 
-//        contexts: [["Your photos", 'user'], ["Your friends' photos", 'friends']]},
 //      flickr: {
 //        title: 'Flickr', 
 //        url: '/flickr/photo_fields', 
@@ -284,38 +280,6 @@
       }
       return false;
     });
-
-    $(wrapper).on('click', ".facebookAlbums .album", function() {
-      try {
-        updateSource({
-          url: '/facebook/album/'+$(this).attr('data-aid'),
-          object_id: $(this).closest('.facebookAlbums').attr('data-friend_id')
-          });
-      } catch(e) {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          '/facebook/album/' + $(this).attr('data-aid'), 
-          'user', //contextSelect.val(), 
-          $(this).closest('.facebookAlbums').attr('data-friend_id'));
-      }
-      return false;
-    });
-
-    $(wrapper).on('click', ".facebookGroups .group", function() {
-      try {
-        updateSource({
-          url: '/facebook/group/',
-          object_id: $(this).attr('data-group_id')
-          });
-      } catch(e) {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          '/facebook/group/', 
-          'group', //contextSelect.val(), 
-          $(this).attr('data-group_id'));
-      }
-      return false;
-    })
   
     $(wrapper).on('click', '.back_to_albums', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 

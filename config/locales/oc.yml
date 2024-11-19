@@ -218,7 +218,6 @@ oc:
   alphabetical: Alfabetic
   alphabetical_order: Òrdre alfabetic
   amphibians: amfibians
-  and: e
   and_other_taxa: "&amp; Autres taxons"
   annotations: Anotacions
   announcements: Anoncis
@@ -285,20 +284,16 @@ oc:
   before_importing_photos: abans d’importar de fòtos
   bg_color: Color de fons
   birds: ausèls
-  black: negre
   blog_widget: Widget de blog
-  blue: blau
   blue_butterfly_etc: "blau, parpalhòl, etc."
   body: Còs
   breadcrumbs: Pista de navigacion
-  brown: brun
   browse: Percórrer
   browse_all_projects: Explorar totes los projèctes
   browse_all_species: Percórrer totas las espècias
   browse_observations: Veire las observacions
   browse_people: Percórrer las personas
   browse_projects: Explorar los projèctes
-  by: per
   by_everyone: Per tot lo monde
   by_user: "per %{user}"
   by_you: Per vos
@@ -336,13 +331,7 @@ oc:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: devesit en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: fusiona en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: fusionat en
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: remplaçat per
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: remplaçar per
     dropped: eliminat
     staged: presentat
   change_your_password: Modificar vòstre senhal
@@ -391,7 +380,6 @@ oc:
   confirm_now: Confirmar ara
   connect_to_provider: "Se connectar a %{provider}"
   connecting_flickr: "Connexion a Flickr…"
-  connecting_to_facebook: "Connexion a Facebook…"
   continue: Contunhar
   controls: Contraròtles
   coordinate_systems: Sistèmas de coordenadas
@@ -491,9 +479,13 @@ oc:
   download: Telecargar
   download_csv: Telecargar lo CSV
   download_kml: Telecargar lo KML
+  #Noun, as in a journal post that has not been published
   draft: borrolhon
+  #Noun, as in a journal post that has not been published
   draft_: Borrolhon
+  #Noun, as in a journal post that has not been published
   draft_saved: Borrolhon enregistrat !
+  #Noun, as in journal posts that has not been published
   drafts: Borrolhons
   edit: Modificar
   edit_body: Modificar lo còs
@@ -512,7 +504,6 @@ oc:
   editing: Modificacion
   email: Corrièr electronic
   email_address_for_comments_and_other_feedback: Adreça electronica pels comentaris
-  email_copyright: "Copyright &copy; %{x}, totes los dreits reservats"
   embed: 'Integrar'
   end: Fin
   endangered: en via de desaparicion
@@ -535,6 +526,7 @@ oc:
   everyone: tot lo monde
   everywhere: pertot
   exact_date: Data exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Reng exacte
   existing_flags: Bandièras existentas
   exit_full_screen: "Sortir del mòde ecran complet"
@@ -542,7 +534,6 @@ oc:
   export_observations: Exportar las observacions
   exporting: "Expòrt en cors..."
   extinct: atudat
-  facebook_options: Opcions de Facebook
   'false': 'Fals'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorits
@@ -586,6 +577,7 @@ oc:
   flickr_tags: Balisas Flickr
   #Adjective, as in a fluid layout of images
   fluid: fluida
+  #Text for a button to follow updates from a specific user
   follow_user: "Seguir %{user}"
   following: seguiment
   for_a_taxon: per un taxon
@@ -682,7 +674,6 @@ oc:
   leaves: fuèlhas
   lexicon: Lexic
   lexicons:
-    scientific_names: Noms scientifics
     bengali: Bengalí
     creole_french: creòl (Francés)
     creole_portuguese: Creòl (Portugués)
@@ -700,6 +691,7 @@ oc:
     portuguese: Portugués
     romanian: Romanés
     russian: Rus
+    scientific_names: Noms scientifics
     spanish: Espanhòl
     swedish: Suedés
     tokelauan: Tokelau
@@ -742,6 +734,8 @@ oc:
   longitude: Longitud
   lookup: Recèrca
   low: bas
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Rend lo mai bas
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contengut principal
@@ -841,10 +835,10 @@ oc:
     observe_panel_title: Començam per publicar qualques observacions
     follow_panel_title_global: Seguir qualques naturalistas actius
     updates_by_you_panel_title: Aqueste onglet es un mejan rapid de filtrar unicament las mesas a jorn de vòstre contengut.
+  #Geoprivacy status in which no privacy has been applied
   open: dobrir
   optional: facultatiu
   or: o
-  orange: irange
   order: Òrdre
   order_by: 'Triar per :'
   organisms: Organismes
@@ -866,7 +860,6 @@ oc:
     small: pichon
     medium: mejan
     large: grand
-  pink: ròse
   place: Luòc
   place_geo:
     geo_planet_place_types:
@@ -988,10 +981,10 @@ oc:
   protozoans: protozoaris
   public_domain: Domeni public
   publish: Publicar
-  purple: porpra
   quality_grade: Gras de qualitat
   quality_grade_colon: "Gras de qualitat :"
   range: Interval
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Reng
   ranks:
     kingdom: règne
@@ -1020,7 +1013,6 @@ oc:
     form: forma
   ray_finned_fishes: peisses amb nadarèlas raionadas
   reason: Motiu
-  red: roge
   redo_search_in_map_area: Refar la recèrca dins la region cartografica
   refresh: Refrescar
   remember_me: Se remembrar de ieu
@@ -1152,20 +1144,6 @@ oc:
       show:
         this_user_was_banned: Aqueste utilizaire es estat suspendut
   date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
     day_names_min:
       1: Di
       2: Lu
@@ -1173,25 +1151,13 @@ oc:
       4: Me
       5: Jò
       6: Ve
-      7: Sa
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
   helpers:
     select:
       prompt: Seleccionatz
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

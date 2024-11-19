@@ -163,6 +163,7 @@ describe PlacesController do
       p.reload
       expect( p.name ).to eq "the new name"
     end
+
     it "does not allow removal of the geometry with old remove_geom" do
       p = make_place_with_geom( user: user )
       put :update, params: { id: p.id,
@@ -174,6 +175,18 @@ describe PlacesController do
       expect( response ).to be_redirect
       p.reload
       expect( p.place_geometry ).not_to be_blank
+    end
+
+    it "does not raise an error if the place geometry is missing" do
+      p = make_place_with_geom( user: user )
+      # places should have a place geometry, but for whatever reason some don't
+      p.place_geometry.destroy
+      sign_in p.user
+      expect do
+        put :update, params: { id: p.id, place: {
+          name: "Place without geom"
+        } }
+      end.not_to raise_error
     end
   end
 
@@ -270,6 +283,18 @@ describe PlacesController do
       post :merge, params: { id: reject.slug, with: keeper.id }
       expect( Place.find_by_id( keeper.id ) ).not_to be_blank
       expect( Place.find_by_id( reject.id ) ).to be_blank
+    end
+  end
+
+  describe "edit" do
+    it "does not raise an error if the place geometry is missing" do
+      p = make_place_with_geom( user: user )
+      # places should have a place geometry, but for whatever reason some don't
+      p.place_geometry.destroy
+      sign_in p.user
+      expect do
+        get :edit, params: { id: p.id }
+      end.not_to raise_error
     end
   end
 end

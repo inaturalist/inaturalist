@@ -37,8 +37,8 @@ module DynamicLifelist
           taxon["leaf_count"],
           taxon["earliest_observation"]["observed_on"],
           taxon["latest_observation"]["observed_on"],
-          FakeView.observation_url( taxon["earliest_observation"]["id"] ),
-          FakeView.observation_url( taxon["latest_observation"]["id"] ),
+          UrlHelper.observation_url( taxon["earliest_observation"]["id"] ),
+          UrlHelper.observation_url( taxon["latest_observation"]["id"] ),
         ]
       end
     end

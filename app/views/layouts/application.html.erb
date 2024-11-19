@@ -2,6 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xml:lang="<%= I18n.locale %>"
     lang="<%= I18n.locale %>"
+    <% if @rtl %>
+      dir="rtl"
+    <% else %>
+      dir="ltr"
+    <% end %>
     xmlns:fb="http://www.facebook.com/2008/fbml"
     xmlns:og="http://ogp.me/ns#">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <% if CONFIG.facebook && CONFIG.facebook.namespace %><%= CONFIG.facebook.namespace %>: http://ogp.me/ns/fb/<%= CONFIG.facebook.namespace %>#<% end %>">
@@ -19,6 +24,7 @@
     <%= javascript_include_tag "jquery/jquery-1.9.1.min" %>
     <%= javascript_include_tag "jquery/jquery-ui-1.9.1.min" %>
     <%= javascript_include_tag "bootstrap.min" %>
+    <%= stylesheet_link_tag "bootstrap-rtl" if @rtl %>
     <%= render "shared/i18n" %>
     <script type="text/javascript">
       <% if @site %>
@@ -42,6 +48,7 @@
         var CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
+          email: "<%= current_user.email %>",
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
@@ -55,7 +62,7 @@
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
-    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>">
     <meta property="og:type" content="website"/>
     <% if current_user %>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>" />
@@ -66,12 +73,12 @@
     <% if @site %>
       <meta property="og:site_name" content="<%= @site.name %>"/>
     <% end %>
-    <% if CONFIG.facebook && !CONFIG.facebook.app_id.blank? -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
-    <% end -%>
     <% if !@headless && @site && !@site.ios_app_id -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
+      <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
@@ -81,6 +88,7 @@
   </head>
 <body class="browser">
   <div id="bodywrapper">
+    <%= render partial: "shared/confirmation_banner" %>
     <% unless @headless -%>
       <%= render :partial => 'shared/header' %>
     <% end -%>
@@ -135,5 +143,8 @@
       ga('set', 'dimension1', <%=raw logged_in? ? "'true'" : "'false'" %>);
     }
   </script>
+  <%= javascript_include_tag "webpack/runtime-webpack" %>
+  <%= javascript_include_tag "webpack/react-main-webpack" %>
+  <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
 </body>
 </html>

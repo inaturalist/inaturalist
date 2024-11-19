@@ -86,7 +86,7 @@ const SuggestionRow = ( {
   obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
   return (
     <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
-      <h3 className="clearfix">
+      <h3 className="d-flex justify-content-between">
         <SplitTaxon
           taxon={taxon}
           target="_blank"
@@ -104,7 +104,7 @@ const SuggestionRow = ( {
             <div className="quiet btn btn-label btn-xs">
               { details.vision_score ? I18n.t( "visually_similar" ) : null }
               { details.vision_score && details.frequency_score ? <span> / </span> : null }
-              { details.frequency_score ? I18n.t( "seen_nearby" ) : null }
+              { details.frequency_score ? I18n.t( "expected_nearby" ) : null }
             </div>
           ) : null }
           <Button

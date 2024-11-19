@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   include ActsAsSpammable::User
   include ActsAsElasticModel
-  # include ActsAsUUIDable
+  include ActsAsUUIDable
   include HasJournal
 
   before_validation :set_uuid
@@ -12,26 +14,24 @@ class User < ApplicationRecord
   end
 
   acts_as_voter
-  acts_as_spammable fields: [ :description ],
-                    comment_type: "signup"
+  acts_as_spammable fields: [:description],
+    comment_type: "signup"
   has_moderator_actions %w(suspend unsuspend)
 
   # If the user has this role, has_role? will always return true
-  JEDI_MASTER_ROLE = 'admin'
-  
-  devise :database_authenticatable, :registerable, :suspendable,
-         :recoverable, :rememberable, :confirmable, :validatable, 
-         :encryptable, :lockable, :encryptor => :restful_authentication_sha1
-  # handle_asynchronously :send_devise_notification
-  
-  # licensing extras
-  attr_accessor   :make_observation_licenses_same
-  attr_accessor   :make_photo_licenses_same
-  attr_accessor   :make_sound_licenses_same
+  JEDI_MASTER_ROLE = "admin"
 
-  attr_accessor :html
-  attr_accessor :pi_consent
-  attr_accessor :data_transfer_consent
+  devise :database_authenticatable, :registerable, :suspendable,
+    :recoverable, :rememberable, :confirmable, :validatable,
+    :encryptable, :lockable, encryptor: :restful_authentication_sha1
+
+  # licensing extras
+  attr_accessor :make_observation_licenses_same,
+    :make_photo_licenses_same,
+    :make_sound_licenses_same,
+    :html,
+    :pi_consent,
+    :data_transfer_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -47,23 +47,23 @@ class User < ApplicationRecord
   preference :user_observation_email_notification, :boolean, default: true
   preference :taxon_or_place_observation_email_notification, :boolean, default: true
 
-  preference :lists_by_login_sort, :string, :default => "id"
-  preference :lists_by_login_order, :string, :default => "asc"
-  preference :per_page, :integer, :default => 30
-  preference :gbif_sharing, :boolean, :default => true
+  preference :lists_by_login_sort, :string, default: "id"
+  preference :lists_by_login_order, :string, default: "asc"
+  preference :per_page, :integer, default: 30
+  preference :gbif_sharing, :boolean, default: true
   preference :observation_license, :string
   preference :photo_license, :string
   preference :sound_license, :string
-  preference :automatic_taxonomic_changes, :boolean, :default => true
-  preference :receive_mentions, :boolean, :default => true
+  preference :automatic_taxonomic_changes, :boolean, default: true
+  preference :receive_mentions, :boolean, default: true
   preference :observations_view, :string
   preference :observations_search_subview, :string
   preference :observations_search_map_type, :string, default: "terrain"
-  preference :community_taxa, :boolean, :default => true
+  preference :community_taxa, :boolean, default: true
   PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
   PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER = "observer"
-  preference :observation_fields_by, :string, :default => PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+  preference :observation_fields_by, :string, default: PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
   PROJECT_ADDITION_BY_ANY = "any"
   PROJECT_ADDITION_BY_JOINED = "joined"
   PROJECT_ADDITION_BY_NONE = "none"
@@ -79,6 +79,9 @@ class User < ApplicationRecord
   preference :hide_comments_onboarding, default: false
   preference :hide_following_onboarding, default: false
   preference :taxon_page_place_id, :integer
+  preference :hide_identify_annotations, default: false
+  preference :hide_identify_observation_fields, default: false
+  preference :hide_identify_projects, default: false
   preference :hide_obs_show_annotations, default: false
   preference :hide_obs_show_projects, default: false
   preference :hide_obs_show_tags, default: false
@@ -87,11 +90,12 @@ class User < ApplicationRecord
   preference :hide_obs_show_copyright, default: false
   preference :hide_obs_show_quality_metrics, default: false
   preference :hide_obs_show_expanded_cid, default: true
-  preference :common_names, :boolean, default: true 
+  preference :common_names, :boolean, default: true
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
   preference :captive_obs_maps, :boolean, default: false
+  preference :gbif_layer_maps, :boolean, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
   preference :monthly_supporter_badge, :boolean, default: false
   preference :map_tile_test, :boolean, default: false
@@ -105,10 +109,16 @@ class User < ApplicationRecord
   preference :edit_observations_order, :string, default: "created_at"
   preference :lifelist_tree_mode, :string
   preference :taxon_photos_query, :string
+  preference :needs_id_pilot, :boolean, default: nil
+  preference :identify_map_zoom_level, :integer
+  preference :suggestions_source, :string
+  preference :suggestions_sort, :string
+  preference :taxon_page_tab, :string
+  preference :taxon_page_ancestors_shown, :boolean, default: false
 
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
-    identification_email_notification 
+    identification_email_notification
     mention_email_notification
     message_email_notification
     project_journal_post_email_notification
@@ -117,13 +127,14 @@ class User < ApplicationRecord
     taxon_change_email_notification
     user_observation_email_notification
     taxon_or_place_observation_email_notification
-  )
-  
-  has_many  :provider_authorizations, :dependent => :delete_all
-  has_one  :flickr_identity, :dependent => :delete
-  # has_one  :picasa_identity, :dependent => :delete
-  has_one  :soundcloud_identity, :dependent => :delete
-  has_many :observations, :dependent => :destroy
+  ).freeze
+
+  has_many :provider_authorizations, dependent: :delete_all
+  has_one  :flickr_identity, dependent: :delete
+  has_one  :soundcloud_identity, dependent: :delete
+  has_one :user_daily_active_category, dependent: :delete
+  has_many :user_installations
+  has_many :observations, dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
@@ -198,7 +209,9 @@ class User < ApplicationRecord
   has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
     foreign_key: "subject_user_id", inverse_of: :subject_user,
     dependent: :destroy
-  
+  has_many :taxon_name_priorities, dependent: :destroy
+  has_many :user_donations, dependent: :delete_all
+
   file_options = {
     processors: [:deanimator],
     styles: {
@@ -218,11 +231,16 @@ class User < ApplicationRecord
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
-      path: "/attachments/users/icons/:id/:style.:icon_type_extension",
+      path: proc {| a | a.instance.paperclip_versioned_path( :icon ) },
       default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
       url: ":s3_alias_url"
     )
-    invalidate_cloudfront_caches :icon, "attachments/users/icons/:id/*"
+    paperclip_path_versioning(
+      :icon, [
+        "/attachments/users/icons/:id/:style.:icon_type_extension",
+        "/attachments/users/icons/:id/:icon_version-:style.:icon_type_extension"
+      ]
+    )
   else
     has_attached_file :icon, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
@@ -244,6 +262,7 @@ class User < ApplicationRecord
   has_many :site_admins, inverse_of: :user
   belongs_to :place, :inverse_of => :users
   belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
+  has_one :cohort_lifecycle, dependent: :delete
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
@@ -263,6 +282,7 @@ class User < ApplicationRecord
   after_save :destroy_messages_by_suspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
+  after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
   after_create :set_uri
@@ -279,7 +299,14 @@ class User < ApplicationRecord
   
   MIN_LOGIN_SIZE = 3
   MAX_LOGIN_SIZE = 40
-  DEFAULT_LOGIN = "naturalist"
+  DEFAULT_LOGIN = "naturalist".freeze
+
+  # Do not append these numbers to usernames when generating an unused username for a new user.
+  # Source: https://www.adl.org/resources/hate-symbols/search?f%5B0%5D=topic%3A1709
+  LOGIN_SUFFIX_EXCLUSIONS = [
+    100, 109, 110, 111, 12, 13, 1352, 1390, 52, 90, 14, 1410, 1423, 1488, 18, 21_212, 2316, 28, 23, 16, 311,
+    318, 336, 38, 43, 511, 737, 83, 88, 9, 10
+  ].freeze
 
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
@@ -298,6 +325,7 @@ class User < ApplicationRecord
     message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
 
@@ -367,17 +395,17 @@ class User < ApplicationRecord
 
   def user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:thumb))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def medium_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url(:medium))}".gsub(/([^\:])\/\//, '\\1/')
   end
   
   def original_user_icon_url
     return nil if icon.blank?
-    "#{FakeView.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
+    "#{ApplicationController.helpers.asset_url(icon.url)}".gsub(/([^\:])\/\//, '\\1/')
   end
 
   def active?
@@ -392,17 +420,16 @@ class User < ApplicationRecord
     child? && UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
   end
 
-  # This is a dangerous override in that it doesn't call super, thereby
-  # ignoring the results of all the devise modules like confirmable. We do
-  # this b/c we want all users to be able to sign in, even if unconfirmed, but
-  # not if suspended.
+  EMAIL_CONFIRMATION_RELEASE_DATE = Date.parse( "2022-12-14" )
+
+  # Override of method from devise to implement some custom restrictions like
+  # parent/child permission and gradual confirmation requirement rollout
   def active_for_authentication?
     return false if suspended?
 
     return false if child_without_permission?
 
-    # Temporary state to allow existing users to sign in
-    return true if confirmation_sent_at.blank?
+    return true if anonymous?
 
     super
   end
@@ -419,7 +446,7 @@ class User < ApplicationRecord
 
   def strip_name
     return true if name.blank?
-    self.name = FakeView.strip_tags( name ).to_s
+    self.name = ApplicationController.helpers.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end
@@ -466,12 +493,12 @@ class User < ApplicationRecord
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: 'facebook', 'twitter', 'google', 'yahoo'
+  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
-  def has_provider_auth(provider)
+  def has_provider_auth( provider )
     provider = provider.downcase
-    provider_authorizations.detect do |p| 
-      p.provider_name.match(provider) || p.provider_uid.match(provider)
+    provider_authorizations.detect do | p |
+      p.provider_name.match( provider ) || p.provider_uid&.match( provider )
     end
   end
 
@@ -542,6 +569,9 @@ class User < ApplicationRecord
     return false unless user.id
     return true if user.id == id
 
+    if friendships.loaded?
+      return friendships.any?{ |f| f.friend_id == user.id && f.trust == true }
+    end
     friendships.where( friend_id: user, trust: true ).exists?
   end
   
@@ -550,14 +580,11 @@ class User < ApplicationRecord
     @picasa_client ||= Picasa.new(pa.token)
   end
 
-  # returns a koala object to make (authenticated) facebook api calls
-  # e.g. @facebook_api.get_object('me')
-  # see koala docs for available methods: https://github.com/arsduo/koala
   def facebook_api
-    return nil unless facebook_identity
-    @facebook_api ||= Koala::Facebook::API.new(facebook_identity.token)
+    # As of Spring 2023 we can no longer access the Facebook API on behalf of users
+    nil
   end
-  
+
   # returns nil or the facebook ProviderAuthorization
   def facebook_identity
     @facebook_identity ||= has_provider_auth('facebook')
@@ -594,12 +621,16 @@ class User < ApplicationRecord
   end
   
   def update_photo_licenses
-    return true unless [true, "1", "true"].include?(@make_photo_licenses_same)
-    number = Photo.license_number_for_code(preferred_photo_license)
+    return true unless [true, "1", "true"].include?( @make_photo_licenses_same )
+    number = Photo.license_number_for_code( preferred_photo_license )
     return true unless number
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
       update_all( license: number, updated_at: Time.now )
     index_observations_later
+    User.delay(
+      queue: "photos",
+      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": id }
+    ).enqueue_photo_bucket_moving_jobs( id )
     true
   end
 
@@ -624,7 +655,7 @@ class User < ApplicationRecord
     observations.update_all( site_id: site_id, updated_at: Time.now )
     # update ES-indexed observations in place with update_by_query as the site_id
     # will not affect any other attributes that necessitate a full reindex
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+    try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Observation.__elasticsearch__.client.update_by_query(
         index: Observation.index_name,
         refresh: Rails.env.test?,
@@ -660,9 +691,31 @@ class User < ApplicationRecord
     Observation.elastic_index!(ids: Observation.by(self).pluck(:id), wait_for_index_refresh: true)
   end
 
-  def merge(reject)
+  def merge( reject )
     raise "Can't merge a user with itself" if reject.id == id
-    reject.friendships.where(friend_id: id).each{ |f| f.destroy }
+
+    reject.friendships.where( friend_id: id ).each( &:destroy )
+    # update this has_one relationship on user_parent
+    UserParent.where( user_id: reject.id ).update_all( user_id: id )
+
+    # retain the earliest created_at date
+    if reject.created_at < created_at
+      update_columns( created_at: reject.created_at )
+    end
+
+    # Conditions should match index_votes_on_unique_obs_fave
+    reject.votes
+          .joins( "JOIN votes AS keeper_votes USING (votable_type, votable_id)" )
+          .where(
+            keeper_votes: {
+              voter_type: self.class.polymorphic_name,
+              voter_id: id,
+              vote_scope: nil
+            },
+            votable_type: Observation.polymorphic_name,
+            vote_scope: nil
+          )
+          .destroy_all
     merge_has_many_associations(reject)
     reject.delay( priority: USER_PRIORITY, unique_hash: { "User::sane_destroy": reject.id } ).sane_destroy
     User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
@@ -708,7 +761,7 @@ class User < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      User.where(id: id).update_all(uri: FakeView.user_url(id))
+      User.where( id: id ).update_all( uri: UrlHelper.user_url( id ) )
     end
     true
   end
@@ -799,7 +852,7 @@ class User < ApplicationRecord
   # create a user using 3rd party provider credentials (via omniauth)
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
-  def self.create_from_omniauth(auth_info)
+  def self.create_from_omniauth(auth_info, oauth_application = nil)
     email = auth_info["info"].try(:[], "email")
     email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
@@ -826,6 +879,9 @@ class User < ApplicationRecord
       :password_confirmation => autogen_pw,
       :icon_url => icon_url
     )
+    if oauth_application.try( :trusted? )
+      u.oauth_application_id = oauth_application.id
+    end
     user_saved = begin
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
@@ -841,57 +897,59 @@ class User < ApplicationRecord
     u
   end
 
-  # given a requested login, will try to find existing users with that login
-  # and suggest handle2, handle3, handle4, etc if the login's taken
-  # to prevent namespace clashes (e.g. i register with twitter @joe but 
-  # there's already an inat user where login=joe, so it suggest joe2)
+  # Sanitize the requested login.
+  # If the sanitized login is available, return it.
+  # If not, add numbers to the end until we find an available login. Particularly long requested logins may have
+  # characters removed from the end.
+  # If we somehow couldn't find a reasonable login, return nil.
   def self.suggest_login(requested_login)
-    requested_login = requested_login.to_s
-    requested_login = DEFAULT_LOGIN if requested_login.blank?
-    requested_login = I18n.transliterate( requested_login ).sub( /^\d*/, "" ).gsub( /\?+/, "" )
-    requested_login = if requested_login.blank?
-      DEFAULT_LOGIN
-    else
-      requested_login.gsub( /\W/, "_" ).downcase
-    end
-    suggested_login = requested_login
+    base_login = sanitize_login( requested_login.to_s ).presence || DEFAULT_LOGIN
 
-    if suggested_login.size > MAX_LOGIN_SIZE
-      suggested_login = suggested_login[0..MAX_LOGIN_SIZE/2]
-    end
+    # Biggest random number to append to the login to make it unique
+    max_random_suffix = 100_000
+    random_suffixes = Enumerator.produce { rand( max_random_suffix ) }
+    numeric_suffixes =  ( 1..9 ).
+      chain( random_suffixes.take( 20 ) ).
+      reject { |number| LOGIN_SUFFIX_EXCLUSIONS.include? number }
+    suffixes = [""].chain( numeric_suffixes.map( &:to_s ) )
 
-    if suggested_login =~ /^#{DEFAULT_LOGIN}\d+?/
-      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login( suggested_login )
-        suggested_login = "#{requested_login}#{rand( User.maximum(:id) * 2 )}"
-      end
-    else
-      # if the name is semi-unique, try to append integers, so kueda would get
-      # kueda2 and not kueda34097348976 off the bat
-      appendix = 1
-      while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
-        suggested_login = "#{requested_login}#{appendix}"
-        appendix += 1
-      end
-    end
+    # Delete some characters off the end of the end if necessary to fit the suffix while staying under
+    # MAX_LOGIN_SIZE.
+    suggested_logins = suffixes.
+      map { |suffix| base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
+      reject { |login| login.size < MIN_LOGIN_SIZE }
 
-    (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
+    # Find an available login.
+    suggested_logins.find { |login| where( login: login ).none? }
+  end
+
+  # A sanitized login:
+  # - contains only the characters a-z, 0-9, and _
+  # - does not begin with a number
+  # - may or may not be taken
+  # - may or may not fit the size requirements for a login
+  def self.sanitize_login( login )
+    I18n.transliterate( login ).
+      sub( /^\d*/, "" ).
+      gsub( "?", "" ).
+      gsub( /\W/, "_" ).
+      downcase
   end
 
   # Destroying a user triggers a giant, slow, costly cascade of deletions that
   # all occur within a transaction. This method tries to circumvent some of
   # that madness by assigning communal assets to new users and pre-destroying
   # some associates
-  def sane_destroy(options = {})
+  def sane_destroy( options = {} )
     start_log_timer "sane_destroy user #{id}"
     taxon_ids = []
-    if response = INatAPIService.get("/observations/taxonomy", {user_id: id})
-      taxon_ids = response.results.map{|a| a["id"]}
+    if response = INatAPIService.get( "/observations/taxonomy", { user_id: id } )
+      taxon_ids = response.results.map {| a | a["id"] }
     end
-    project_ids = self.project_ids
 
     # delete lists without triggering most of the callbacks
-    lists.where("type = 'List' OR type IS NULL").find_each do |l|
-      l.listed_taxa.find_each do |lt|
+    lists.where( "type = 'List' OR type IS NULL" ).find_each do | l |
+      l.listed_taxa.find_each do | lt |
         lt.skip_sync_with_parent = true
         lt.skip_update_cache_columns = true
         lt.destroy
@@ -899,9 +957,9 @@ class User < ApplicationRecord
       l.destroy
     end
 
-    User.preload_associations(self, [ :stored_preferences, :roles, :flags ])
+    User.preload_associations( self, [:stored_preferences, :roles, :flags] )
     # delete observations without onerous callbacks
-    observations.includes([
+    observations.includes( [
       { user: :stored_preferences },
       :votes_for,
       :flags,
@@ -924,65 +982,70 @@ class User < ApplicationRecord
       :taxon,
       :quality_metrics,
       :sounds
-    ]).find_each(batch_size: 100) do |o|
+    ] ).find_each( batch_size: 100 ) do | o |
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
       o.bulk_delete = true
-      o.comments.each{ |c| c.bulk_delete = true }
-      o.annotations.each{ |a| a.bulk_delete = true }
+      o.comments.each {| c | c.bulk_delete = true }
+      o.annotations.each {| a | a.bulk_delete = true }
       o.destroy
     end
 
-    identification_observation_ids = Identification.where(user_id: id).
-      select(:observation_id).distinct.pluck(:observation_id)
-    comment_observation_ids = Comment.where(user_id: id, parent_type: "Observation").
-      select(:parent_id).distinct.pluck(:parent_id)
-    annotation_observation_ids = Annotation.where(user_id: id, resource_type: "Observation").
-      select(:resource_id).distinct.pluck(:resource_id)
-    unique_obs_ids = ( identification_observation_ids + comment_observation_ids +
-      annotation_observation_ids ).uniq
+    identification_ids = Identification.where( user_id: id ).pluck( :id )
+    identification_ids.in_groups_of( 100, false ) do | batch_ids |
+      identifications_batch = Identification.where( id: batch_ids ).
+        includes(
+          [
+            :observation,
+            :taxon,
+            :user,
+            :flags,
+            :moderator_actions
+          ]
+        )
+      obs_ids = identifications_batch.map( &:observation_id )
+      identifications_batch.each do | i |
+        i.observation.skip_indexing = true
+        i.observation.bulk_delete = true
+        i.bulk_delete = true
+        i.destroy
+      end
 
-    identifications.includes([
-      :observation,
-      :taxon,
-      :user,
-      :flags
-    ]).find_each(batch_size: 100) do |i|
-      i.observation.skip_indexing = true
-      i.observation.bulk_delete = true
-      i.bulk_delete = true
-      i.destroy
-    end
-
-    identification_observation_ids.in_groups_of(100, false) do |obs_ids|
-      Observation.where(id: obs_ids).includes(
+      Observation.where( id: obs_ids ).includes(
         { user: :stored_preferences },
         :votes_for,
         :flags,
         :taxon,
-        { photos: :flags },
-        { identifications: [ :taxon, { user: :flags } ] },
+        { photos: [:flags, :moderator_actions] },
+        { sounds: [:flags, :moderator_actions] },
+        { identifications: [:taxon, { user: :flags }, :moderator_actions] },
         :quality_metrics
-      ).each do |o|
+      ).each do | o |
         Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
         o.update_stats
       end
       Identification.elastic_index!(
-        scope: Identification.where(observation_id: obs_ids),
-        wait_for_index_refresh: true
+        scope: Identification.where( observation_id: obs_ids )
       )
+      Observation.elastic_index!( ids: obs_ids )
     end
 
-    comments.find_each(batch_size: 100) do |c|
+    comment_observation_ids = Comment.where( user_id: id, parent_type: "Observation" ).
+      select( :parent_id ).distinct.pluck( :parent_id )
+    comments.find_each( batch_size: 100 ) do | c |
       c.bulk_delete = true
       c.destroy
     end
+    Observation.elastic_index!( ids: comment_observation_ids )
 
-    annotations.includes(:votes_for).find_each(batch_size: 100) do |a|
-      a.votes_for.each{ |v| v.bulk_delete = true }
+    annotation_observation_ids = Annotation.where( user_id: id, resource_type: "Observation" ).
+      select( :resource_id ).distinct.pluck( :resource_id )
+    annotations.includes( :votes_for ).find_each( batch_size: 100 ) do | a |
+      a.votes_for.each {| v | v.bulk_delete = true }
       a.bulk_delete = true
       a.destroy
     end
+    Observation.elastic_index!( ids: annotation_observation_ids )
 
     # transition ownership of projects with observations, delete the rest
     Project.where( user_id: id ).find_each do | p |
@@ -996,14 +1059,12 @@ class User < ApplicationRecord
       end
     end
 
-    Observation.elastic_index!(ids: unique_obs_ids, wait_for_index_refresh: true )
-
     # delete the user
     destroy
 
     # refresh check lists with relevant taxa
-    taxon_ids.in_groups_of(100) do |group|
-      CheckList.delay(:priority => OPTIONAL_PRIORITY, :queue => "slow").refresh(:taxa => group.compact)
+    taxon_ids.in_groups_of( 100 ) do | group |
+      CheckList.delay( priority: OPTIONAL_PRIORITY, queue: "slow" ).refresh( taxa: group.compact )
     end
 
     end_log_timer
@@ -1253,12 +1314,16 @@ class User < ApplicationRecord
       # This is for existing users who explicitly request a confirmation
       # email, which sets confirmation_sent_at. This is imperfect, but it
       # should prevent most actual users from receiving the welcome email
-      # again. People with no privileges have not really added any content
-      # and could probably use a reminder of the links in the welcome email
-      !user_privileges.any?
+      # again.
+      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
     )
       Emailer.welcome( self ).deliver_now
     end
+  end
+
+  def revoke_authorizations_after_password_change
+    return unless encrypted_password_previously_changed?
+    Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
   end
 
   def recent_notifications(options={})
@@ -1281,6 +1346,10 @@ class User < ApplicationRecord
 
   def blocked_by?( user )
     user_blocks_as_blocked_user.where( user_id: user ).exists?
+  end
+
+  def muted_by?( user )
+    user_mutes_as_muted_user.where( user_id: user ).exists?
   end
 
   def self.default_json_options
@@ -1370,6 +1439,42 @@ class User < ApplicationRecord
     end
   end
 
+  def self.update_annotated_observations_counter_cache( user, options = {} )
+    unless user.is_a?( User )
+      u = User.find_by_id( user )
+      u ||= User.find_by_login( user )
+      user = u
+    end
+    return unless user
+
+    result = Observation.elastic_search(
+      filters: [{
+        nested: {
+          path: "annotations",
+          query: {
+            bool: {
+              filter: [{
+                term: {
+                  "annotations.user_id": user.id
+                }
+              }]
+            }
+          }
+        }
+      }],
+      size: 0,
+      track_total_hits: true
+    )
+    count = result&.response ? result.response.hits.total.value : 0
+    return if user.annotated_observations_count == count
+
+    User.where( id: user.id ).update_all( annotated_observations_count: count )
+    return if options[:skip_indexing]
+
+    user.reload
+    user.elastic_index!
+  end
+
   def to_plain_s
     "User #{login}"
   end
@@ -1403,6 +1508,7 @@ class User < ApplicationRecord
       self.suspended_by_user = moderator_action.user
       suspend!
     elsif moderator_action.action == ModeratorAction::UNSUSPEND
+      self.spammer = false
       self.suspended_by_user = nil
       unsuspend!
     end
@@ -1491,6 +1597,23 @@ class User < ApplicationRecord
     project_users.joins(:project).includes(:project).limit(7).
       order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
       map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+  end
+
+  def anonymous?
+    id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
+  end
+
+  # TODO: remove the is_admin? requirement once multiple common names is available for all users
+  def update_taxon_name_priorities
+    return unless saved_change_to_place_id?
+    return unless is_admin?
+    return unless taxon_name_priorities.length == 0 ||
+      ( taxon_name_priorities.length == 1 && taxon_name_priorities[0].lexicon.nil? )
+    taxon_name_priorities.delete_all
+    if place_id && place_id != 0
+      taxon_name_priorities.create( lexicon: nil, place_id: place_id )
+    end
+    save
   end
 
   # this method will look at all this users photos and create separate delayed jobs

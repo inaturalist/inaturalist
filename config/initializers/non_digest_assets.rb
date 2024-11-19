@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 NonStupidDigestAssets.whitelist += [
   "bird.png",
   /logo\..*$/,
@@ -9,5 +11,7 @@ NonStupidDigestAssets.whitelist += [
   /iconic_taxa/,
   /^homepage-/,
   /^donate-/,
-  /^copyright-infringement/
+  /^copyright-infringement/,
+  /^media-hidden/,
+  /yir-background-.*/
 ]

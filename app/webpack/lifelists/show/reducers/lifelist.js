@@ -141,26 +141,32 @@ function updateBrowserStateHistory( initial = false ) {
 export function fetchAllCommonNames( callback ) {
   return ( dispatch, getState ) => {
     const { lifelist } = getState( );
-    const idsToLookup = _.uniq( _.map( _.filter(
-      lifelist.taxa, t => !t.common_name_loaded
-    ), t => t.id ) );
+    const idsToLookup = _.uniq(
+      _.map(
+        _.filter( lifelist.taxa, taxon => !taxon.common_name_loaded ),
+        taxon => taxon.id
+      )
+    );
     if ( _.isEmpty( idsToLookup ) ) {
-      return;
+      callback( );
     }
     inatjs.taxa.lifelist_metadata( {
       observed_by_user_id: lifelist.user.login,
       locale: I18n.locale
     } ).then( response => {
-      const commonNames = { };
+      const preferredCommonName = { };
+      const preferredCommonNames = { };
       const photos = { };
       _.each( response.results, t => {
-        commonNames[t.id] = t.preferred_common_name;
+        preferredCommonName[t.id] = t.preferred_common_name;
+        preferredCommonNames[t.id] = t.preferred_common_names;
         photos[t.id] = t.default_photo;
       } );
       const modifiedTaxa = _.each( lifelist.taxa, t => {
-        if ( t.id in commonNames ) {
+        if ( t.id in preferredCommonName ) {
           t.common_name_loaded = true;
-          t.preferred_common_name = commonNames[t.id];
+          t.preferred_common_name = preferredCommonName[t.id];
+          t.preferred_common_names = preferredCommonNames[t.id];
           t.default_photo = photos[t.id];
         }
         return t;

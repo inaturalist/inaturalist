@@ -108,6 +108,16 @@ describe Taxon, "creation" do
     expect( taxon.name ).to eq "× Chitalpa"
   end
 
+  it "should capitalize hybrid names for species rank" do
+    taxon = Taxon.make!( name: "× chitalpa", rank: Taxon::SPECIES )
+    expect( taxon.name ).to eq "× Chitalpa"
+  end
+
+  it "should capitalize hybrid names for hybrid rank" do
+    taxon = Taxon.make!( name: "× chitalpa tashkentensis", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "× Chitalpa tashkentensis"
+  end
+
   it "should capitalize Foo x Bar style genushybrids correctly" do
     taxon = Taxon.make!( name: "foo × bar", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "Foo × Bar"
@@ -375,6 +385,16 @@ describe Taxon, "updating" do
     t.update( rank: Taxon::GENUS )
     t.reload
     expect( t.updater ).to be_blank
+  end
+
+  it "should queue an update_stats_for_observations_of task even if one already exists" do
+    t = Taxon.make!( is_active: true )
+    t.update( is_active: false )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 1
+    t.update( is_active: true )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 2
+    t.update( is_active: false )
+    expect( Delayed::Job.where( "handler LIKE '%update_stats_for_observations_of%- #{t.id}%'" ).count ).to eq 3
   end
 
   describe "reindexing identifications" do
@@ -1170,6 +1190,22 @@ describe Taxon, "single_taxon_for_name" do
     end
     expect( Taxon.single_taxon_for_name( "Black Oystercatcher" ) ).to be_nil
   end
+
+  it "should choose the most conservative synonym on a branch" do
+    genus = create( :taxon, :as_genus, name: "Foo" )
+    species_name = "Foo bar"
+    complex = create( :taxon, :as_complex, parent: genus, name: species_name )
+    create( :taxon, :as_species, parent: complex, name: species_name )
+    expect( Taxon.single_taxon_for_name( species_name ) ).to eq complex
+  end
+
+  it "should not choose the most conservative synonym on a branch if skip_conservative_branch_synonym" do
+    genus = create( :taxon, :as_genus, name: "Foo" )
+    species_name = "Foo bar"
+    complex = create( :taxon, :as_complex, parent: genus, name: species_name )
+    create( :taxon, :as_species, parent: complex, name: species_name )
+    expect( Taxon.single_taxon_for_name( species_name, skip_conservative_branch_synonym: true ) ).to be_blank
+  end
 end
 
 describe Taxon, "threatened?" do
@@ -1349,15 +1385,15 @@ describe Taxon, "editable_by?" do
     Taxon.make!
   end
   it "should be editable by admins if class" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).to be_protected_attributes_editable_by( admin )
   end
   it "should be editable by curators if below threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT - 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON - 10 )
     expect( t ).to be_protected_attributes_editable_by( curator )
   end
   it "should not be editable by curators if above threshold" do
-    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT + 10 )
+    t.update( observations_count: Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON + 10 )
     expect( t ).not_to be_protected_attributes_editable_by( curator )
   end
   describe "when taxon framework" do

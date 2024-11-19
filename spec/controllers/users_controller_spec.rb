@@ -69,6 +69,12 @@ describe UsersController, "delete" do
       count ).to eq 1
   end
 
+  it "redirects with the account_deleted=true parameter" do
+    sign_in user
+    delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login }
+    expect( response.redirect_url ).to match /account_deleted=true/
+  end
+
   it "should be possible for the user" do
     sign_in user
     without_delay { delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login } }
@@ -335,6 +341,7 @@ end
 
 describe UsersController, "moderation" do
   let( :subject_user ) { User.make! }
+  let( :curator ) { make_curator }
   it "should be viewable by curators" do
     sign_in make_curator
     get :moderation, params: { id: subject_user.login }
@@ -346,7 +353,6 @@ describe UsersController, "moderation" do
     expect( response.response_code ).not_to eq 200
   end
   it "should not be viewable by a curator if it's about the curator" do
-    curator = make_curator
     sign_in curator
     get :moderation, params: { id: curator.login }
     expect( response.response_code ).not_to eq 200
@@ -356,5 +362,25 @@ describe UsersController, "moderation" do
     sign_in admin
     get :moderation, params: { id: admin.login }
     expect( response.response_code ).to eq 200
+  end
+
+  describe "rendering" do
+    render_views
+    before { sign_in curator }
+    it "should work with a flag and ModeratorAction" do
+      comment = create :comment, user: subject_user
+      flag = create :flag, flaggable: comment
+      moderator_action = create :moderator_action, resource: comment, action: ModeratorAction::HIDE
+      get :moderation, params: { id: subject_user.login }
+      expect( response.response_code ).to eq 200
+      expect( assigns( :records ) ).to include flag
+      expect( assigns( :records ) ).to include moderator_action
+    end
+    it "should work with a ModeratorNote" do
+      moderator_note = create :moderator_note, subject_user: subject_user
+      get :moderation, params: { id: subject_user.login }
+      expect( response.response_code ).to eq 200
+      expect( assigns( :records ) ).to include moderator_note
+    end
   end
 end

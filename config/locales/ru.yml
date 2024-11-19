@@ -1,25 +1,25 @@
 ru:
   #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
   x_changes:
-    one: "%{count} Изменение"
-    few: "%{count} Изменения"
-    many: "%{count} Изменений"
+    one: "%{count} изменение"
+    few: "%{count} изменения"
+    many: "%{count} изменений"
     other: "%{count} изменений"
   x_comments:
     one: '%{count} комментарий'
     few: '%{count} комментария'
     many: '%{count} комментариев'
-    other: '%{count} Комментариев'
+    other: '%{count} комментариев'
   x_comments_html:
-    one: '<span class="count">%{count}</span>комментарий'
-    few: '<span class="count">%{count}</span>комментария'
-    many: '<span class="count">%{count}</span>комментариев'
-    other: '<span class="count">%{count}</span>комментариев'
+    one: '<span class="count">%{count}</span> комментарий'
+    few: '<span class="count">%{count}</span> комментария'
+    many: '<span class="count">%{count}</span> комментариев'
+    other: '<span class="count">%{count}</span> комментариев'
   x_faves:
     one: '%{count} фаворит'
     few: '%{count} фаворита'
     many: '%{count} фаворитов'
-    other: '%{count} фаворита'
+    other: '%{count} фаворитов'
   x_flags_resolved_html:
     one: "<span class='count'>%{count}</span> флаг разрешен"
     few: "<span class='count'>%{count}</span> флага разрешено"
@@ -40,6 +40,11 @@ ru:
     few: '%{count} идентификации'
     many: '%{count} идентификаций'
     other: '%{count} идентификаций'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
+    few: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИИ'
+    many: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
+    other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
@@ -50,6 +55,11 @@ ru:
     many: '<span class="count">%{count}</span> экспертов'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> экспертов'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> Идентификация,сделанная для других'
+    few: '<span class="count">%{count}</span> идентификаций, сделанных для других'
+    many: '<span class="count">%{count}</span> идентификаций, сделанных для других'
+    other: '<span class="count">%{count}</span> идентификаций, сделанных для других'
   x_languages:
     one: "%{count} язык"
     few: "%{count} языка"
@@ -112,6 +122,11 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения"
     many: "<span class='count'>%{count}</span> наблюдений"
     other: "<span class='count'>%{count}</span> наблюдений"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> НАБЛЮДЕНИЕ"
+    few: "<span class='count'>%{count}</span> НАБЛЮДЕНИЯ"
+    many: "<span class='count'>%{count}</span> НАБЛЮДЕНИЙ"
+    other: "<span class='count'>%{count}</span> НАБЛЮДЕНИЙ"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} наблюдение</a>"
     few: "<a href='%{url}'>%{count} наблюдения</a>"
@@ -137,6 +152,11 @@ ru:
     few: "%{count} человека"
     many: "%{count} человек"
     other: "%{count} человек"
+  x_people_html:
+    one: '<span class="count">%{count}</span> персона'
+    few: '<span class="count">%{count}</span> человека'
+    many: '<span class="count">%{count}</span> человек'
+    other: '<span class="count">%{count}</span> человек'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} человек</strong>, оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>"
   x_photos:
     one: "%{count} фото"
@@ -158,8 +178,13 @@ ru:
     few: '%{count} вида'
     many: '%{count} видов'
     other: '%{count} видов'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ВИД"
+    few: "<span class='count'>%{count}</span> ВИДА"
+    many: "<span class='count'>%{count}</span> ВИДОВ"
+    other: "<span class='count'>%{count}</span> ВИДОВ"
   x_species_html:
-    one: "<span class='count'>%{count}</span>вид"
+    one: "<span class='count'>%{count}</span> вид"
     few: "<span class='count'>%{count}</span> вида"
     many: "<span class='count'>%{count}</span> видов"
     other: "<span class='count'>%{count}</span> видов"
@@ -194,10 +219,10 @@ ru:
     many: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
     other: "<span class='count'>%{count}</span> наблюдений исследовательского уровня, идентифицированных до вида или ниже"
   x_sounds:
-    one: "%{count} Звук"
-    few: "%{count} Звука"
-    many: "%{count} Звуков"
-    other: "%{count} Звуков"
+    one: "%{count} звук"
+    few: "%{count} звука"
+    many: "%{count} звуков"
+    other: "%{count} звуков"
   x_taxa_curated_html:
     one: "<span class='count'>%{count}</span> курируемый таксон"
     few: "<span class='count'>%{count}</span> курируемых таксона"
@@ -243,7 +268,7 @@ ru:
   #an awkward way to translate something, but fixing it will have to wait for
   #an overhaul of our notification system.
   activity_snipped_resource_with_indefinite_article: "%{resource}"
-  about: Подробно
+  about: Подробнее
   about_charts: О Диаграммах
   about_community_taxa: О таксонах сообщества
   about_complete_taxa: О полных таксонах
@@ -268,8 +293,24 @@ ru:
   about_this_bioblitz: Об этом биоблице
   about_this_map: Об этой Карте
   about_this_project: Об этом Проекте
-  about_trips_html: |
-    <h4>Поездки позволяют собирать данные присутствия-отсутствия, добавляя контекст к вашим наблюдениям</h4><p><strong>Почему</strong> Данные о присутствии-отсутствии включают информацию об попытках отбора проб, которая полезна для научного анализа, такого как моделирование распределения (необработанные наблюдения iNaturalist являются данными «только присутствия»).</p> <p><strong>Как</strong> Поездка добавляет контекст к вашим наблюдениям путем записи:</p> <ul> <li><strong>Что</strong> Вы искали (целевой список)</li> <li><strong>Где</strong> вы искали (область поиска)</li> <li><strong>Когда</strong> вы искали (интервал поиска)</li> </ul> <p>Виды в вашем целевом списке, которые вы смогли наблюдать в области поиска и интервале, интерпретируются как присутствие. В то время как виды в вашем целевом списке, которые вы не смогли наблюдать, интерпретируются как отсутствие. Нажмите "Свести в таблицу данные о присутствии-отсутствии из поездок", чтобы создать таблицу записей об присутствии-отсутствии видов из поездок и связанных наблюдений. <a href='%{url}'>Подробнее</a></p>
+  about_trips2_html: |
+    <h4>
+    Поездки позволяют собирать данные о присутствии и отсутствии, добавляя контекст к вашим наблюдениям
+    </h4>
+    <p>
+    <strong>Why</strong> Данные о присутствии и отсутствии включают информацию о попытках отбора проб, что полезно для научных исследований, таких как моделирование распределения (необработанные наблюдения iNaturalist - это данные "только о присутствии").
+    </p>
+    <p>
+    <strong>How</strong> Поездка добавляет контекст к вашим наблюдениям, записывая следующие данные:
+    </p>
+    <ul>
+    <li><strong>Что</strong>вы искали (список целей)</li>
+    <li><strong>Где</strong> вы искали (регион поиска)</li>
+    <li><strong>Когда</strong> вы искали (интервал поиска)</li>
+    </ul>
+    <p>
+    Виды из вашего списка целей, которые вы смогли наблюдать в пределах области поиска и интервала, интерпретируются как присутствующие. В то время как виды из вашего целевого списка, которые вы не смогли увидеть, интерпретируются как отсутствующие. Нажмите "Свести в таблицу данные о присутствии и отсутствии в в поездках", чтобы создать таблицу записей о присутствии и отсутствии для видов из поездок и связанных с ними наблюдений.<a href='%{url}'>Подробнее здесь</a>
+    </p>
   about_trusting_projects: О доверительных проектах
   about_trusting_projects_options_any: Все ваши наблюдения в этом проекте
   about_trusting_projects_options_any_desc: |-
@@ -297,14 +338,20 @@ ru:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Точность (м)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Точность выше
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Точность ниже
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Точность ниже или не известна
   account: Учётная запись
   account_creation: Создание учётной записи
   account_settings: Настройки учётной записи
   accept_community_identifications: Принять идентификации сообщества
   accuracy: Точность
-  accuracy_meters: Точность (метры)
+  accuracy_meters: Достоверность (метры)
   accuracy_of_the_coordinates: |
-    Точность определения координат в метрах. Вы можете изменить это значение, нажав на ссылку "редактировать" выше или, щёлкнув на маркеры карты, перетащить их. Постарайтесь сделать круг достаточно большим - настолько, чтобы он точно включал место, где вы были.
+    Достоверность определения координат в метрах. Вы можете изменить это значение, нажав на ссылку "редактировать" выше или, щёлкнув на маркеры карты, перетащить их. Постарайтесь сделать круг достаточно большим - настолько, чтобы он точно включал место, где вы были.
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Действие
   actions: Действия
@@ -315,6 +362,7 @@ ru:
   active_taxon_status: Активный
   active_users: Активные пользователи
   activity: Активность
+  activity_on_a_flag_for_x: Активность флага для %{x}
   adapted_by_name_from_a_work_by_original: "Адаптировано %{name}, оригинальный источник %{original}"
   add: Добавить
   add_a_batch_of_observations: Добавить несколько наблюдений
@@ -344,6 +392,8 @@ ru:
   add_annotations_for_controlled_attribute:
     sex: Добавить значения для "Пол"
     plant_phenology: Добавить значения для "Фенологии растений"
+    flowers_and_fruits: Заполните аннотации "Цветы и Плоды"
+    leaves: Заполните аннотации "Листья"
     life_stage: Добавить значения для "Стадия жизни"
     evidence_of_presence: Добавить значения для "Доказательство присутствия"
   add_another_flag: Добавить ещё один флаг
@@ -379,6 +429,7 @@ ru:
   add_notes_about_this_taxon: Добавить заметки об этом таксоне в этом месте, например, где и когда это произошло.
   add_obs_from_a_link: "Добавить наблюдение из списка: %{link}"
   add_obs_from_a_list: Добавить набл из списка
+  add_observation_fields: Добавить поля к наблюдению
   add_observations: Добавить наблюдения
   add_observations_by_checking_off: Добавить наблюдения, отмечая виды в списке.
   add_observations_project: Добавить наблюдения к этому проекту
@@ -399,6 +450,14 @@ ru:
   add_plant_phenology_flowering_annotation: 'Добавить значение "Фенология растений: Цветение"'
   add_plant_phenology_fruiting_annotation: 'Добавить значение "Фенология растений: Плодоношение"'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Добавить значение "Фенология растений: Нет доказательств цветения"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Заполните аннотации "Цветы и Плоды: Цветочный Бутон"'
+  add_flowers_and_fruits_flowers_annotation: 'Заполните аннотации "Цветы и Плоды"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Заполните аннотации "Цветы и Плоды: Плоды и Семена"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Заполните аннотации "Цветы и Плоды: Отсутствие цветов и плодов"'
+  add_leaves_breaking_leaf_buds: 'Заполните аннотации "Листья: Повреждённые листовые почки"'
+  add_leaves_green_leaves: 'Заполните аннотации "Листья: Зелёные листья"'
+  add_leaves_colored_leaves: 'Заполните аннотации "Листья: Окрашенные листья"'
+  add_leaves_no_live_leaves: 'Заполните аннотации "Листья: Отсутствие живых листьев"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Взрослый"'
   add_life_stage_teneral_annotation: 'Добавить значение "Стадия жизни: после линьки"'
   add_life_stage_subimago_annotation: 'Добавить значение "Стадия жизни: Субимаго"'
@@ -414,6 +473,11 @@ ru:
   add_evidence_of_presence_track_annotation: 'Добавить значение "Доказательство присутствия: след"'
   add_evidence_of_presence_bone_annotation: 'Добавить значение "Доказательство присутствия: кость"'
   add_evidence_of_presence_molt_annotation: 'Добавить значение "Доказательство присутствия: линька"'
+  add_evidence_of_presence_leafmine_annotation: 'Добавить значение "Доказательство присутствия: мина"'
+  add_evidence_of_presence_hair_annotation: 'Добавить значение "Доказательство присутствия: волосы"'
+  add_evidence_of_presence_egg_annotation: 'Добавить значение "Доказательство присутствия: яйцо"'
+  add_evidence_of_presence_construction_annotation: 'Добавить значение "Доказательство присутствия: построение"'
+  add_established_not_established: 'Добавить примечание "Установившаяся: не установившаяся"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Добавить связь'
   #As in a Guide Section
@@ -459,6 +523,8 @@ ru:
   added_by: Добавлено 
   added_by_user_on_date_html: "Добавлено %{user} %{date}"
   added_on_datetime: "Добавлено %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Добавленная роль
   added_to_favorites_html: |
     Добавлено в <a href="%{url}">фавориты</a>
   adding: "Добавление..."
@@ -472,14 +538,18 @@ ru:
   agree_: Согласен
   agree?: Согласны?
   agree_with_current_taxon: Согласен с текущим таксоном
+  agree_with_observation_taxon: Согласен с таксоном наблюдения
   agreeing: Соглашаемся...
   aka: ака
   #Noun, title of a popup alerting you to something
   alert: Предупреждение
   all: Все
+  #Title for a list of all 3rd party applications
+  all_applications: Все приложения
   all_comments: Все комментарии
   all_flags_must_be_resolved: Все флаги должны быть разрешены
   all_life: Вся жизнь
+  all_media_must_be_unhidden: Все медиафайлы должны быть доступны
   all_names: Все Имена
   all_observations: Все наблюдения
   all_photos: Все фото
@@ -623,7 +693,6 @@ ru:
   analyze_clashes: Анализ непредусмотренных разногласий
   analyze_ids: Анализ идентификаций
   ancestor_taxon: Таксон-предок
-  and: и
   and_other_taxa: "&amp; Другие Таксоны"
   android: Android
   animals: Животные
@@ -767,6 +836,7 @@ ru:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Вы уверены что хотите удалить это наблюдение из %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Вы уверены что хотите удалить этот таксон из контрольного списка %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Вы уверены, что хотите отметить этого пользователя как спамера?
   associated_observations: Связанные наблюдения
   associated_taxa: Связанные таксоны
   attention: Внимание
@@ -851,6 +921,7 @@ ru:
   back_to_your_observations: Вернуться к вашим наблюдениям
   back_to_your_profile: Вернуться к вашему профилю
   badges: Значки
+  base_map_copyright_openstreetmap_html: Базовая карта ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -888,11 +959,11 @@ ru:
   bioblitz: Биоблиц
   birds: птицы
   birthday: День рождения
-  black: черный
+  block: Заблокировать
+  blocking_description: Блокировка предотвращает связь между вами и другим пользователем. Это для тех ситуаций, когда другой пользователь может поставить под угрозу вашу безопасность, например, преследует вас или ведёт себя оскорбительно.
   block_removed: Блокировка удалена
   blocked_users: Заблокированные Пользователи
   blog_widget: Виджет блога
-  blue: синий
   blue_butterfly_etc: "синий, бабочка, и т.п."
   body: 'Текст:'
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -906,7 +977,6 @@ ru:
   #shown
   breadcrumbs_description: "Это заменит h1 и действия по умолчанию, поэтому обязательно включите их, если они важны для этого проекта, и помните, что максимальная ширина 950px"
   brief_caption: Краткий заголовок
-  brown: коричневый
   browse: Просмотр
   browse_all_projects: Просмотр всех проектов
   browse_all_species: Просмотр всех видов
@@ -916,7 +986,6 @@ ru:
   browse_species_that_occur_near_this_observation: Просмотр видов, которые встречаются рядом с местом этого наблюдения.
   built_with_site_guides_html: "Создан с помощью<a href='%{url}'>%{site_name} Руководств</a>"
   bulk_import_of_filename_is_complete: "Групповой импорт %{filename} завершён"
-  by: _
   by_everyone: Любые
   by_user: "%{user}"
   by_you: Ваши
@@ -979,13 +1048,7 @@ ru:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: разделить на
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: соединить в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: слились в
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: заменены
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: 'Заменить на:'
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: заменены на
     dropped: отброшено
@@ -1054,6 +1117,8 @@ ru:
   click_the_map: "<strong>Кликните на карте</strong> чтобы добавить местоположение."
   close: Закрыть
   code: Код
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Люди, которые внесли свой вклад в разработку программного обеспечения с открытым исходным кодом iNat
   colors: Цвета
   columns: Столбцы
   combine: Объединить
@@ -1126,9 +1191,8 @@ ru:
     включен в автоматизированные предложения с меткой "Визуально похожий".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Ожидает обработки
-  computer_vision_model_pending_desc: |
-    Текущая модель компьютерного зрения не знает этот таксон, поэтому он может быть
-    включен в автоматизированные предложения с меткой "Поблизости" и не будет иметь метки "Визуально похожий". Хотя требования к включению модели меняются с каждой моделью, обычно включение основано на количестве наблюдений, поэтому для увеличения вероятности включения этого таксона во время следующего обучения модели добавьте больше наблюдений этого таксона или его идентификаций.
+  computer_vision_model_pending_desc2: |
+    Текущая модель не знает о существовании этого таксона, поэтому несмотря на то, что он может получить метку "Встречается поблизости", он не получит метку "Визуально похожий". Несмотря на то, что требования включения в модель меняются с каждой моделью, а общем случае включение основывается на числе наблюдений, поэтому для повышения шанса включения таксона в следующий тренинг модели добавьте больше наблюдений или идентификаций этого таксона.
   concept_status: Статус концепции
   confidential: Конфиденциально
   configure: Задать
@@ -1152,7 +1216,6 @@ ru:
   connected_accounts_titlecase: Подключенные учетные записи
   connecting_flickr: "Подключение к Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Подключитесь к Flickr снова для авторизации прав на запись
-  connecting_to_facebook: "Подключение к Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Подключение учётной записи %{site_name} к учётным записям на других сайтах позволит вам входить в %{site_name}, используя учётные данные этих сайтов."
   cannot_be_changed_during_a_content_freeze: Нельзя изменить во время блокировки контента
   conservation_status: Природоохранный статус
@@ -1198,6 +1261,10 @@ ru:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Любая
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Неважно
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Неважно
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Любая
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Любое
@@ -1207,10 +1274,20 @@ ru:
     male: Мужской
     female: Женский
     plant_phenology: Фенология Растений
+    flowers_and_fruits: Цветы и Плоды
     budding: Бутонизация
     flower_budding: Бутонизация цветов
     flowering: Цветение
     fruiting: Плодоношение
+    no_flowers_or_fruits: Отсутствие Цветов или Плодов
+    flower_buds: Цветочные почки
+    flowers: Цветы
+    fruits_or_seeds: Плоды или Семена
+    leaves: Листья
+    breaking_leaf_buds: Поврежденные листовые почки
+    green_leaves: Зелёные листья
+    colored_leaves: Окрашенные листья
+    no_live_leaves: Отсутствие листьев
     life_stage: Стадия жизни
     adult: Взрослый
     teneral: После линьки
@@ -1219,6 +1296,7 @@ ru:
     no_evidence_of_flowering: Нет доказательств цветения
     nymph: Нимфа
     larva: Личинка
+    #Evidence of an egg of an organism
     egg: Яйцо
     juvenile: Молодой
     alive_or_dead: Живой или Мёртвый
@@ -1242,23 +1320,48 @@ ru:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Линька
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Мина
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Волосы
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Построение
+    #Does the observation belong to a non-established population or not
+    established: Установившаяся
+    #Organism is not a member of an established population
+    not_established: Не установившаяся
   controlled_term_definitions:
     alive: Организм жив и не проявляет признаков неизбежной смерти
+    bone: |
+      Преимущественно остатки эндоскелета; частичное обнажение костей в остальном неповрежденном организме должно быть помечено как "организм"
+    cannot_be_determined: Не может быть определен на основании представленных доказательств
     dead: Организм жив или проявляет признаки неизбежной смерти
+    feather: Одно или несколько перьев не прикрепленных к организму
+    female: Свидетельства указывают на то, что организм может вырабатывать яйцеклетки для использования в половом размножении
     flower_budding: Цветочные почки видны, но не распустились
     flowering: Цветы видны, распустились и все еще прикреплены к растению
     fruiting: Плоды видны и все еще прикреплены к растению
+    flowers: По крайней мере, один открытый цветок
+    flower_buds: По крайней мере, один закрытый цветочный бутон
+    fruits_or_seeds: По крайней мере, один плод или семя
+    breaking_leaf_buds: Как минимум, один бутон с первым новым листочком или иголочкой еще не полностью раскрылся
+    green_leaves: По крайней мере, один зеленый лист или иголка (или красноватые, если это нормальный здоровый цвет).
+    colored_leaves: По крайней мере, один лист или иголка окрашены в конце сезона или в засуху
+    no_live_leaves: Не видно распускающихся бутонов, зеленых или окрашенных листьев или иголок
+    gall: Уродливый рост ткани растения, вызванный паразитическим организмом
+    male: Свидетельства указывают на то, что организм может вырабатывать сперму для использования в половом размножении
+    molt: Удалённая кожа или экзоскелет
+    leafmine: Признаки питания между кожными слоями листа
+    hair: Волосы, которые больше не прикреплены к организму, которому они принадлежали
+    egg: Целое яйцо или часть яйца
+    construction: Что-то, созданное животным, изготовленное из других материалов или извлеченное из раскопок
     no_evidence_of_flowering: Медиа не предоставляют доказательств репродуктивных структур
-    teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
-    cannot_be_determined: Не может быть определен на основании представленных доказательств
-    feather: Одно или несколько перьев не прикрепленных к организму
+    no_flowers_or_fruits: Нет видимых Цветов, Плодов или Семян (целых или частично целых)
+    not_established: Организм принадлежит к неустановленной популяции, включая освобожденных/сбежавших домашних животных, путешествующие и блуждающие виды
     organism: Весь организм или его части
     scat: Фекалии (не погадки совы или другие срыгнутые вещества)
+    teneral: Взрослые, которые недавно появились, но еще не достигли своей окончательной взрослой формы
     track: Отпечаток на земле или снегу сделанный организмом
-    bone: |
-      Преимущественно остатки эндоскелета; частичное обнажение костей в остальном неповрежденном организме должно быть помечено как "организм"
-    molt: Удалённая кожа или экзоскелет
-    gall: Уродливый рост ткани растения, вызванный паразитическим организмом
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -1275,6 +1378,8 @@ ru:
   copy_and_paste_the_following_code_to: Скопируйте и вставьте следующий код, чтобы разместить эту оценку на другой веб-странице.
   copy_and_paste_this_into_your_own_html: Скопируйте и вставьте это в ваш HTML.
   copy_guide_taxon_to: Скопировать руководство по таксону в...
+  copy_to_clipboard: Скопировать в буфер обмена
+  copied!: Скопировано!
   copyright:
     some_rights_reserved: некоторые права защищены
     some_rights_reserved_by: "(с) %{name}, некоторые права защищены (%{license_short})"
@@ -1369,10 +1474,10 @@ ru:
     Сами не демонстрируют надлежащего поведения.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные (вы добавили %{num_idents}). Когда вы выполните оба эти требования, возвращайтесь сюда, и вы сможете подать заявку.
-  curator_application_inelligible_error: |
-    Чтобы подать заявку на роль куратора сайта, вы должны иметь учетную запись, действующую не менее 60 дней, и 100 добавленных улучшающих идентификаторов к любым наблюдениям, включая ваши собственные.
+  curator_application_inelligible2: |
+    Чтобы подать заявку на должность куратора сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, вы должны добавить как минимум 5 флагов и вы должны иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные (вы добавили %{num_idents}). Когда вы выполните эти требования, вернитесь сюда, и вы сможете подать заявку.
+  curator_application_inelligible_error2: |
+    Чтобы стать куратором сайта, вы должны иметь учетную запись, созданную 60 дней назад или ранее, добавить как минимум 5 флагов и иметь 100 улучшающих идентификаций к чьим-либо наблюдениям, включая ваши собственные.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Заявление на куратора отправлено
   #Header
@@ -1431,6 +1536,9 @@ ru:
     Вы можете подать заявку на должность куратора только в том случае, если:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Вы добавляете идентификации и/или наблюдения в течение нескольких месяцев и намерены продолжать делать это.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Вы показали, что вы понимаете процесс курирования, добавив
+    несколько флагов.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1439,6 +1547,8 @@ ru:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Вы можете сформировать соответствующее поведение на iNaturalist и соблюдать правила сообщества. Наряду с кураторскими полномочиями мы ожидаем, что вы будете образцовым пользователем iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Руководство куратора
   curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
@@ -1570,7 +1680,8 @@ ru:
   deviation: Отклонение
   devise:
     confirmations:
-      confirmed: "Ваш адрес электронной почты почты успешно подтвержден."
+      confirmed: |
+        Ваш адрес электронной почты успешно подтвержден.
       send_instructions: "В течение нескольких минут вы получите письмо с инструкциями по подтверждению адреса электронной почты."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1604,6 +1715,7 @@ ru:
       signed_up_but_locked: "Ваша регистрация успешно завершена. Однако вы не может войти в систему потому, что ваша учетная запись заблокирована."
       signed_up_but_unconfirmed: "Письмо со ссылкой для подтверждения было отправлено на ваш адрес электронной почты. Пожалуйста, перейдите по ссылке, чтобы активировать учетную запись."
       updated: 'Вы успешно обновили свою учётную запись.'
+      updated_but_not_signed_in: "Ваш аккаунт успешно обновлён, но так как ваш пароль изменился, нужно войти снова."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1669,6 +1781,8 @@ ru:
   donate: Поддержать
   donate_again_caps: ВНЕСИТЕ ПОЖЕРТВОВАНИЕ СНОВА
   donate_again_today_caps: ВНЕСИТЕ ПОЖЕРТВОВАНИЕ СНОВА СЕГОДНЯ
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Пожертвовать для iNaturalist
   done: Готово
   dont_have_an_account_sign_up_html: Нет учётной записи? <strong>Зарегистрируйтесь.</strong>
   dont_use_double_quotes: Воздержитесь от использования двойных кавычек
@@ -1679,7 +1793,7 @@ ru:
   download_caps: СКАЧАТЬ
   download_bulk_import_template_html: |
     <a href="%{url}">Скачать шаблон</a> для использования в
-    <a href="/observations/import#csv_import">групповой загрузке</a>
+    <a href="/observations/import?project_id=%{project_id}#csv_import">групповой загрузке</a>
   download_csv: Скачать как CSV
   download_csv_template: Загрузить шаблон в формате CSV
   download_kml: Загрузить в формате KML
@@ -1690,9 +1804,15 @@ ru:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Помеченные флагом таксоны в направлении вниз
+  #Noun, as in a journal post that has not been published
   draft: черновик
+  #Noun, as in a journal post that has not been published
   draft_: Черновик
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Черновик %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Черновик сохранен!
+  #Noun, as in journal posts that has not been published
   drafts: Черновики
   drag_and_drop_some_photos_or_sounds: Перетащите и отпустите несколько фото или звуков
   #Button label for drawing a circular boundary for an observation search
@@ -1728,7 +1848,7 @@ ru:
   edit_photos: Редактировать фото
   edit_photos_for_observation_id: "Редактировать фото наблюдения %{obs_id}"
   edit_place: Редактировать место
-  edit_project: Редактировать проект
+  edit_project: Редактировать
   edit_remove: Редактировать/Удалить
   edit_selected: Редактировать выбранное
   edit_source: Редактировать источник
@@ -1768,15 +1888,20 @@ ru:
   editing_this: Редактирование %{elem}
   editing_x_in_y: "Редактирование %{x} в %{y}"
   editors: Редакторы
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Руководство преподавателя
   either_that_user_doesnt_exist_or: "Эти пользователи либо не существуют, либо вы уже на них подписаны."
   eligible_for_research_grade: Доступно для Исследовательского уровня
   email: Адрес электронной почты
-  email_description: Ваш адрес электронной почты не будет доступен другим пользователям iNaturalist
   email_address_for_comments_and_other_feedback: Email адрес для комментариев и обратной связи
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Пожалуйста, подтвердите свой адрес электронной почты%{link_end_tag}</strong>.
-    Все пользователи должны подтвердить свой адрес электронной почты до %{date}. После этой даты любой, кто не подтвердил свой адрес электронной почты, не сможет войти в систему, пока не сбросит свой пароль. Чтобы подтвердить свой адрес электронной почты, перейдите в %{link_start_tag}настройки своей учетной записи%{link_end_tag}.
-  email_copyright: "Авторские права &copy; %{x}, все права защищены"
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Уважаемый %{user},
+  email_description: Ваш адрес электронной почты не будет доступен другим пользователям iNaturalist
+  email_conf_required_after_grace_period: |
+    Подтверждение электронной почты необходимо для %{requirement_date}, и вы не
+    подтвердили ваш адрес электронной почты до истечения заданного времени. Пожалуйста, сбросьте пароль для доступа к вашей учетной записи.
+  email_copyright2: "&copy; %{year} iNaturalist, все права защищены"
   email_notifications: E-mail уведомления
   embed: 'Вставить на страницу'
   embed_place_widget: Встраиваемый виджет для места
@@ -1822,6 +1947,7 @@ ru:
   everywhere: Повсюду
   exact: Точно
   exact_date: Точная дата
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точный ранг
   except: за исключением
   exclude_places: Исключить места
@@ -1833,6 +1959,7 @@ ru:
   exit_full_screen: "Выйти из полноэкранного режима"
   examples_of_data_use_by_network_members: Примеры использования данных участниками сети
   examples_of_ranking_organizations: Примеры рейтинговых организаций
+  expected_nearby: Встречаются поблизости
   explore: Исследуйте
   export: Экспорт
   export_observations: Экспорт наблюдений
@@ -1848,14 +1975,8 @@ ru:
   extinct_in_the_wild: Вымершие в дикой природе
   extra_properties: Дополнительные свойства
   evidence_of_organism: Свидетельство существования организма
+  evidence_related_to_single_subject: Свидетельство, связанное с отдельным объектом
   facebook: Facebook
-  facebook_account_information: Информация о вашей учётной записи Facebook
-  facebook_account_not_linked: "У %{user} больше нет привязанной учётной записи Facebook, поэтому %{site_name} не имеет прав доступа к этому фото."
-  facebook_access_token_expired: "Срок действия токена доступа истёк. %{user} должен вновь связать свою учётную запись с Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook требует, чтобы владелец этого фото подтвердил свою привязку к %{site_name_short}.
-  facebook_options: Настройки Facebook
-  facebook_photo_import_disabled_notice: |
-    В ноябре 2020 года Facebook потребовал от нас подтверждать, что нам действительно нужен доступ к фотографиям, и мы не смогли завершить процесс из-за проблем с системой верификации Facebook. В результате мы не можем далее поддерживать импорт фотографий из Facebook.
   failed_to_find_your_location: Не удаётся найти ваше местоположение.
   failed_to_repair_photo: "Не удалось восстановить фото: %{errors}"
   failed_to_save_record: "Не удалось сохранить запись. Пожалуйста, попробуйте повторить позже."
@@ -1893,6 +2014,7 @@ ru:
   filter: Фильтр
   filter_by_curator_identification: Фильтр по идентифиции, сделанной куратором
   filter_by_place: Фильтр по месту
+  filter_by_species: Фильтр по видам
   filter_by_taxon: Фильтр по таксону
   filter_by_place_taxon_and_color: Фильтр по месту, таксону и цвету с использованием элементов управления.
   filter_list_by_this_taxon: Фильтр списка по этому таксону
@@ -1960,6 +2082,7 @@ ru:
     Флаг для пользователя: %{title}
   flag_it!: Пометить!
   flag_marked_as_resolved_html: '<span class="meta">Флаг помечен как</span> <strong>разрешённый.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Флаг помечен как</span> <strong>неразрешённый.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Объект
   flag_reason: "&ldquo;Я пометил эту %{record}, потому что"
@@ -1995,7 +2118,10 @@ ru:
   #Adjective, as in a fluid layout of images
   fluid: жидкий
   follow: Подписка
+  #Text for a button to follow updates on an observation
+  follow_observation: Подписаться на наблюдение
   follow_receive_updates_about_new_observations: Подписаться (получать обновления о новых наблюдениях)
+  #Text for a button to follow updates from a specific user
   follow_user: "Подписаться на %{user}"
   followers: Подписчики
   following: Подписка
@@ -2021,7 +2147,7 @@ ru:
   frequency: Частота наблюдения
   from_a_place: в месте
   from_eol_collection: Из коллекции EOL
-  from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
+  from_flickr_etc: Из Flickr и т. п.
   from_list: Из списка
   from_photos: Из фотографий
   from_place: Из места
@@ -2037,8 +2163,16 @@ ru:
   generate_taxonomic_tags_for_flickr: Создать таксономические теги для ваших фото на Flickr.
   generate_widget: Сгенерировать виджет
   generate_your_stats: Сгенерировать вашу статистику
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: СГЕНЕРИРУЙТЕ ОБЗОР ВАШЕГО ГОДА %{year}
   generating_mobile_archive: "Генерация мобильного архива"
   Genus: Род
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Оценка местоположения
+  geomodel_expected_nearby_label_is_derived: |
+    Метка "Встречается поблизости" взята из Геомодели.
+    <a href="%{url}">Подробнее о Геомодели можно узнать здесь</a>.
   geoprivacy: Приватность местоположения
   geoprivacy_is_obscured: Информация о местоположении скрыта
   geoprivacy_is_obscured_desc: Наблюдатель решил скрыть координаты.
@@ -2046,6 +2180,8 @@ ru:
   geoprivacy_is_private_desc: Наблюдатель решил скрыть координаты.
   georeferenced: Имеет геопривязку?
   get_started: Начать
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Начало
   getting_started_guide: Руководство по началу работы
   #Prompt to donate money on a montly basis
   give_monthly_caps: ВНОСИТЬ ЕЖЕМЕСЯЧНО
@@ -2065,12 +2201,14 @@ ru:
   graft: Привязка
   graft_taxon: Привязать %{taxon}
   grafting_attemps_to_insert_this_taxon: Попытки привязать этот таксон к нашему таксономическому дереву, найти существующий родительский таксон или создать все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону более высокого уровня.
-  grant_role: "%{grant} %{role} роль"
   grid: Плитка
   grid_layout: Разметка по сетке
   grid_tooltip: Показать в виде сетки
   group: Группа
   grouping: Группировка
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Хотите вычислить местоположение по другим, имеющимся наблюдениям?
   guides: Руководства
   guide_compiled_by: Руководство составлено
   guide_deleted: Руководство удалено
@@ -2121,7 +2259,6 @@ ru:
   heads_up_you_have_multiple: "Внимание: у вас множество машинных таксономических тегов для идентичных классов. Ниже они кодируются цветом в зависимости от класса."
   help: Справка
   help_confirm_observations!: Помогите подтвердить наблюдения!
-  help_support_inaturalist: "Помогите поддержать iNaturalist"
   help_translate!: Помогите с переводом!
   here_are_3_examples: Вот 3 примера правильно сформированных данных
   here_are_our_top_suggestions: Вот наши лучшие предложения
@@ -2132,7 +2269,12 @@ ru:
   hide: Скрыть
   hide_content: Скрыть контент
   hide_desc: |
-    Скрытие контента уберёт его из публичного просмотра, но люди все равно смогут увидеть, что что-то было скрыто, а кураторы сайта и автор контента все равно смогут увидеть скрытый контент. Как правило, это относится только к письменному содержимому, например, если вы скрываете содержимое идентификации, сама идентификация все же видна, но примечания к ней скрыты. Вы не можете отменить это, и только сотрудники сайта могут отобразить контент после его скрытия, поэтому будьте осторожны и используйте это только для очень нежелательного контента.
+    Скрытие контента удалит его из публичного просмотра, но люди всё равно 
+    смогут видеть, что что-то было скрыто, а кураторы сайта и автор
+    контента по-прежнему смогут видеть скрытый контент. Скрытые
+    определения не будут использоваться для таксона сообщества у наблюдения.
+  hide_desc_staff_can_unhide: |
+    Только сотрудники сайта могут отобразить контент после того, как он был скрыт, поэтому используйте это только в случае явных нарушений правил сообщества.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Не показывать данные, где "Нет значения"
@@ -2140,12 +2282,24 @@ ru:
   hide_running_total: Скрыть текущий итог
   hide_uncountable_species: Не показывать неисчислимые виды
   high: Высший
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Высший ранг
   highlights_and_stats_from_year_on_site: "Основные моменты и статистика за %{year} на %{site}"
   history: Хронология
   home: Главная
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Часы регулировки:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Однако, он не лицензирован для повторного использования и не будет передаваться с данными репозиториев, которые соблюдают условия выбора лицензии.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Вы можете изменить ваши настройки лицензии в
+    <a class="linky" href="/users/edit#content">настройках учетной записи</a>.
   however_there_were_some_issues: "Однако были некоторые проблемы: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2179,8 +2333,10 @@ ru:
   #Notification when an identification has been deleted
   identification_deleted: Идентификация удалена.
   identification_saved: "Идентификация сохранена!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Идентификационный текст показан
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Идентификация скрыта
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Идентификация открыта
   #Notification when an identification has been updated
   identification_updated: Идентификация обновлена!
   identification_user_short: Идент. пользователя
@@ -2188,6 +2344,9 @@ ru:
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   inaturalist_global_year_in_review: "Мировой обзор %{year} года iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки.
+    Америка (налоговый идентификационный номер: 92-1296468).
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2196,7 +2355,7 @@ ru:
   identotron_for: Идентотрон для
   identotron_help: Помощь по Идентотрону
   ids: "Идентификации"
-  ids_made_for_others: Идентификации, сделанные для других
+  ids_made_for_others__title: ID созданные для других
   if_for_some_reason_a_user_doesnt_agree: |
     Если по какой-то причине вы не согласны с таксоном сообщества, вы можете отклонить его, что означает, что ваш ID используется для ссылки на другие наблюдения, обновления списков жизни и т.д. Это также означает, что ваше наблюдение может перейти на  исследовательский уровень только тогда, когда сообщество соглашается с вами.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2244,6 +2403,7 @@ ru:
   include_places: Включить места
   include_projects: Включить проекты
   include_suggestions_not_seen_nearby: Включать предложения, не встречающиеся поблизости
+  include_suggestions_not_expected_nearby: Включать предложения, не встречающиеся поблизости
   include_taxa: Включить таксоны
   include_users: Включить пользователей
   including: включая
@@ -2267,7 +2427,6 @@ ru:
   inaturalist_activity_notifications: "Уведомления %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Приложения iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} является совместной инициативой Калифорнийской академии наук и Национального географического общества."
   inaturalist_places: "%{site_name} Места"
   info: Информация
   input_taxon: Входной таксон
@@ -2294,6 +2453,11 @@ ru:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Достаточно ли доказательств, подтверждающих, что это %{taxon}?
   is_this_offensive_html: 'Является ли это <a href="/help#inappropriate">неприемлемым</a>, спамом или оскорбительным?'
   is_this_place_a_duplicate: Не является ли это место задвоенным?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Если это научное наименование, является ли оно в настоящее время общепринятым?
   it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях и быть представлено на других веб-сайтах
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: текст курсивом
@@ -2315,6 +2479,7 @@ ru:
   journal: Журнал
   journal_archives_for: Архивы журнала для
   journal_post: Сообщение в журнале
+  journal_post_: сообщение в журнале
   journal_post_deleted: Сообщение в журнале удалено.
   journal_posts: Сообщения в журнале
   jpg_png_or_gif: "JPG, PNG или GIF"
@@ -2349,6 +2514,8 @@ ru:
   last_seen: Последнее наблюдение
   last_year: За последний год
   lat: Шир
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Шир/Долг
   latitude: Широта
   latitude_in_decimals: 'Широта в десятичных градусах, например, 38.123'
   latitude_slash_y_coord_slash_northing: Широта / y координата / северная
@@ -2385,18 +2552,25 @@ ru:
   lexicon: Язык
   lexicon_cannot_contain_words: "не может содержать следующие слова: %{words}"
   lexicons:
-    scientific_names: Научные названия
     afrikaans: Африкаанс
+    alabama: Алабама
     albanian: албанский
+    aou_4_letter_codes: AOU 4-буквенные коды
+    aou_6_letter_codes: AOU 6-буквенные коды
     arabic: Арабский
     armenian: Армянский
+    asturian: Астурийский
+    basque: Баскский
     belarusian: Белорусский
     bengali: Бенгальский
+    bikol: Ринконада бикол
     bulgarian: Болгарский
+    carolinian: Каролинский
     catalan: Каталонский
     cebuano: Себуанский
     chinese_simplified: Китайский (упрощенный)
     chinese_traditional: Китайский (традиционный)
+    chuvash: Чувашский
     creole_french: Креольский (Французский)
     creole_portuguese: Креольский (Португальский)
     croatian: Хорватский
@@ -2405,28 +2579,41 @@ ru:
     davawenyo: Davawenyo
     dutch: Голландский
     english: Английский
+    esperanto: Эсперанто
     estonian: Эстонский
     faroese: Фарерский
+    fijian: Фиджийский
     finnish: Финский
     french: Французский
     galician: Галисийский
     gela: Гела
+    georgian: Грузинский
     german: Немецкий
     greek: Греческий
+    gujarati: Гуджарати
     hawaiian: Гавайский
     hebrew: Иврит
+    herero: Гереро
     hiligaynon: Хилигайнон
+    hill_mari: Горный марийский
+    hodges_number: Нумерация Ходжеса
+    hokkien: Хоккиен
     hungarian: Венгерский
     icelandic: Исландский
     ilokano: Илоканский
     indonesian: Индонезийский
+    irish: Ирландский
     italian: Итальянский
     japanese: Японский
     kannada: Каннада
+    kazakh: Казахский
     korean: Корейский
+    kweyol: Сент-люсийский франко-креольский
     latvian: Латышский
     lithuanian: Литовский
+    lozi: Лози
     luxembourgish: Люксембургский
+    malagasy: Малагасийский
     malay: Малайский
     malayalam: Малаялам
     maltese: Мальтийский
@@ -2436,6 +2623,8 @@ ru:
     misima_paneati: Misima-paneati
     mongolian: Монгольский
     nahuatl: Науатль
+    navajo: Навахо
+    ndebele: Ндебеле
     norwegian: Норвежский
     occitan: Окситанский
     ojibwe: Оджибве
@@ -2447,22 +2636,38 @@ ru:
     romanian: Румынский
     russian: Русский
     santali: Сантали
+    scientific_names: Научные названия
     serbian: Сербский
-    setswana: Тсвана
+    shona: Шона
     sinhala: Сингальский
     slovak: Словацкий
     slovenian: Словенский
+    sotho: Сото
+    sotho_northern: Сото Северный
     spanish: Испанский
     swahili: Суахили
+    swati: Свати
     swedish: Шведский
     tagalog: тагальский
     tahitian: таитянский
+    tamil: Тамильский
     thai: Тайский
     tokelauan: токелау
+    totonaco: Тотонакский
+    tsonga: Тсонга
+    tswana: Тсвана
     turkish: Турецкий
+    u_s_d_a_symbol: Кинологический
     ukrainian: Украинский
-    waray_waray: варайский
+    uyghur: Уйгурский
+    venda: Венда
+    vermont_flora_codes: Коды флоры Вермонта
+    vietnamese: Вьетнамский
     visayan: Бисайский
+    waray_waray: варайский
+    xhosa: Коса
+    zapoteco: Сапотекский
+    zulu: Зулусский
   less: Меньше
   #Button show less text
   less__context_text: Меньше
@@ -2478,14 +2683,8 @@ ru:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Ссылка на код авторизации
-  link_your_facebook_account: Привязать вашу учётную запись Facebook
   link_your_flickr_account: Привязать свою учётную запись Flickr
   link_your_google_account: Привязать свою учётную запись Google
-  linked_facebook: "Ваша учётная запись %{site_name} на данный момент связана с учётной записью Facebook."
-  linked_facebook_automaticaly: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Facebook, мы автоматически перепривяжем ваши учетные записи %{site_name} и Facebook. Кажется разумным, что если вы используете Facebook, вы захотите иметь возможность импортировать фото из Facebook, верно?"
-  linked_facebook_description: "Привязка вашей учётной записи %{site_name} к учётной записи Facebook дает возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Facebook не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Facebook, которую хотите привязать к %{site_name}."
-  linked_facebook_howto: "Чтобы связать Facebook с %{site_name}, нажмите на ссылку справа и войдите в Facebook.com."
-  linked_facebook_password: "Мы никогда не будем запрашивать ваш пароль Facebook (однако Facebook может это сделать, проверьте URL, на который вас отправляет кнопка, и убедитесь, что это Facebook.com). Мы также не будем изменять ваши данные Facebook, если только вы не захотите, чтобы мы это сделали."
   linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей учётной записью Flickr."
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
@@ -2503,6 +2702,10 @@ ru:
     taxonomic: таксономический
     photo: фото
   list_was_successfully_created: Список был успешно создан.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two}, и %{three}"
+  list_with_two_items: "%{one} и %{two}"
   listed_taxa: Перечисленные таксоны
   listed_taxon: Перечисленный таксон
   listed_taxon_updated: Перечисленные таксоны обновлены
@@ -2541,6 +2744,7 @@ ru:
     es: Испанский
     es-AR: Испанский (Аргентина)
     es-CO: Испанский (Колумбия)
+    es-CR: Испанский (Коста-Рика)
     es-MX: Испанский (Мексика)
     et: Эстонский
     eu: Баскский
@@ -2554,6 +2758,8 @@ ru:
     id: индонезийский
     it: Итальянский
     ja: Японский
+    ka: Грузинский
+    kk: Казахский
     kn: Каннада
     ko: Корейский
     lb: Люксембургский
@@ -2618,7 +2824,11 @@ ru:
   looks_like_no_species_in_guide: Похоже, у вас ещё нет видов в вашем руководстве.
   lookup: Поиск
   low: Низший
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Низший ранг
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Сделать администратором
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Основной контент
@@ -2651,7 +2861,7 @@ ru:
       every_publicly_visible_observation: Каждое публично видимое наблюдение, созданное в сети iNaturalist
       featured_observations: Рекомендуемые наблюдения
       gbif_network: сеть GBIF
-      gbif_network_description: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
+      gbif_network_description2: Записи из музеев и других источников находок, поставляемые Глобальным информационным ресурсом по биоразнообразию GBIF
       observations: Наблюдения
       place_boundary: Границы места
       checklist_places: Места с контрольными списками
@@ -2667,17 +2877,18 @@ ru:
   mark_all_as_unreviewed: Отметить все как непроверенные
   matching_species_will_shown_up_here: Здесь будут отображены удовлетворяющие условиям виды. На карте будет показан ареал, если %{place} содержит один из видов.
   maverick: Независимое мнение
-  maximum_positional_accuracy: Максимальная точность местоположения
+  maximum_positional_accuracy: Максимальная достоверность местоположения
   maximum_positional_accuracy_including_unknown: |
-    Максимальная точность местоположени, включая наблюдения с неточным местоположением
+    Максимальная достоверность местоположения, включая наблюдения с неточным местоположением
   media: Медиафайл
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: и
   media_type: Тип медиафайла
   medium: средний
-  meet: Встретить
+  meet: Встречайте
   member_of_the_inaturalist_network_html: |
     Член <a href="%{url}">iNaturalist Network</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Член %{partial_inat_network_tag_html}iNaturalist Network,</a> совместной инициативы %{cas_tag_html} и %{nat_geo_tag_html}.
   #As in members of a project
   members: Участники
   membership_model: Модель членства
@@ -2712,7 +2923,7 @@ ru:
     Не раскрывайте личную информацию о себе людям, которым вы не доверяете.
   messages_new_correspondent_actions_html: |
     Если вы предполагаете, что этот человек нарушает наши <a href="%{tos_url}" target="_blank">Условия использования</a> или действует не в соответствии с нашими <a href="%{guidelines_url}" target="_blank">Правилами сообщества</a>, пожалуйста, отметьте это сообщение ниже.
-  minimum_positional_accuracy: Максимальная точность местоположения
+  minimum_positional_accuracy: Максимальная достоверность местоположения
   misidentifications: Ошибочные идентификации
   misleading_or_illegal_content_html: |
     Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href="/help#inappropriate">FAQ</a>.
@@ -2722,6 +2933,14 @@ ru:
   moderation_history_for_user_html: История модерации %{user}
   moderation_history_desc_html: |
     Это включает в себя действия модератора (например, скрытие или отображение комментариев), заметки и флаги для всего, что создал этот пользователь, кроме таксонов. Это <strong>видно только кураторам</strong>, а <strong>кураторы не могут просматривать свою собственную историю</strong>, поэтому заметки о человеке никогда не должны быть видны этому человеку.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Скрыть
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Показать
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Заблокировать
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Разблокировать
   moderator_note_desc: |
     Заметки модератора - это записи ответов модератора или основанные на фактических данных опасения по поводу пользователя, например, являются ли они возможной учетной записью бота. Пожалуйста, не включайте личные мнения или слухи о пользователе.
   #Person who executed a moderator action or flagged something
@@ -2754,17 +2973,17 @@ ru:
       #Short text representing %d years in the past
       yy: "%dг"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone: "D MMM YYYY · LT z"
+    datetime_with_zone: "D.M.YYYY · LT z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM H:mm z"
+    datetime_with_zone_no_year: "D.M H:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYYY · LT Z"
+    datetime_with_offset: "D.M.YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "D MMMM, YYYY"
+    date_long: "D.M.YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long_without_year: "D MMMM"
+    date_long_without_year: "D.M"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "H:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2833,8 +3052,12 @@ ru:
   must_have_quality_grades: "должны иметь оценки качества: %{grades}"
   must_have_sounds: должны содержать аудио
   must_have_x: "должен иметь %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Игнорировать
+  #Mute is a noun here
   mute_removed: Отмена игнорирования
   muted_users: Игнорируемые пользователи
+  muting_description: Игнорирование кого-либо запрещает вам получать уведомления о любой его деятельности, включая упоминания "@", сообщения или комментарии и идентификацию ваших наблюдений.
   n_ago: "%{n} назад"
   n_people_agrees: "%{amount} людей согласны"
   n_people_disagrees: "%{amount} людей несогласны"
@@ -2866,7 +3089,6 @@ ru:
   needs_id_: Требуется идентификация
   needs_id_expandable_html: "<span class='full'>Требуется </span>ID"
   needs_id_tooltip_html: 'Наблюдения "Требуется идентификация (ID)" содержат медиа, местоположение и дату, но всё же требуется консенсус сообщества по поводу точной идентификации.<a href="https://www.inaturalist.org/pages/help#quality">Подробнее о уровнях качества</a>'
-  needs_to_be_identified: Нуждается в идентификации
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, часть международной сети iNaturalist, ориентирована на биоразнообразие и людей в %{place}. Хотите ли вы изменить вашу сетевую принадлежность с <strong>%{inat_site_name}</strong> на <strong>%{site_name}</strong> и делиться данными с местными организациями?
@@ -2936,6 +3158,8 @@ ru:
   next_tab: Следующая вкладка
   next_taxon_short: След
   'no': 'Нет'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Нет приложений
   no_assessments_have_been_added_to_this_project_yet: Никакие оценки ещё не были добавлены к этому проекту.
   no_but_it_is_a_member_of_taxon: "Нет, но это член %{taxon}"
   no_comments_yet: Пока нет комментариев.
@@ -3033,7 +3257,8 @@ ru:
   not_findig_what_you_want: Не нашли то, что искали?
   not_finding_place_you_want?: Не нашли место, которое искали?
   not_found: Не найдено
-  not_linked_facebook: "Ваша учётная запись %{site_name} не связана с учётной записью Facebook."
+  #Filter for observations not in a particular place
+  not_in_place: Не в данном месте
   not_linked_flickr: "Ваша учётная запись на сайте %{site_name} не привязана к вашей учётной записи Flickr"
   not_on_this_list: Нет в этом списке.
   not_recorded: Не указана
@@ -3058,6 +3283,94 @@ ru:
     Публичные координаты показываются как произвольная точка, лежащая в пределах ячейки в 0,2 градуса шир/долг от истинных координат.
   observation: Наблюдение
   observation_: наблюдение
+  observation_accuracy_experiment_the_sample_for: "Выборка наблюдений для этого эксперимента ещё не сгенерирована"
+  observation_accuracy_experiment_our_accuracy_estimate: "Наша оценка достоверности, полученная в результате эксперимента, верна для %{percent}."
+  observation_accuracy_experiment_our_goak: "Наша цель - оценить подмножество выборки наблюдений исследовательского уровня, для которого достоверность (правильность) и точность больше чем 95% (пунктирная линия)"
+  observation_accuracy_experiment_precision_results: "Результаты точности по выборке"
+  observation_accuracy_experiment_taxon_rank_level: "Уровень ранга таксона"
+  observation_accuracy_experiment_taxon_observations_count: "Число наблюдений таксона"
+  observation_accuracy_experiment_iconic_taxon_name: "Традиционное имя таксона"
+  observation_accuracy_experiment_continent: "Континент"
+  observation_accuracy_experiment_year: "Год"
+  observation_accuracy_experiment_quality_grade: "Уровень наблюдения"
+  observation_accuracy_experiment_show_frequency: "показать частоту"
+  observation_accuracy_experiment_click_on_bars: "Нажмите на полосу, чтобы извлечь выборку"
+  observation_accuracy_experiment_bars_will: "Столбцы станут доступны для просмотра после истечения крайнего срока проверки образцов."
+  observation_accuracy_experiment_accuracy_results: "Результаты достоверности по выборке"
+  observation_accuracy_experiment_as_observations: "По мере подтверждения наблюдений из этой выборки процент неопределенности будет уменьшаться, а процент правильных и неправильных идентификаций увеличится."
+  observation_accuracy_experiment_experiment_still: "Эксперимент всё ещё продолжается. Статистика обновляется каждый день до крайнего срока проверки выборки, до %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Эксперимент по достоверности наблюдения"
+  observation_accuracy_experiment_validators: "Участники эксперимента:"
+  observation_accuracy_experiment_show_additional_validators: "(показать дополнительных участников)"
+  observation_accuracy_experiment_hide_additional_validators: "(скрыть число дополнительных участников)"
+  observation_accuracy_experiment_additional_validators: "(%{number} дополнительных участников)"
+  observation_accuracy_experiment_abstract: "Аннотация: Мы сгенерировали выборку наблюдений на %{sample_generation_date} и скоординировали команду участников для оценки их достоверности на %{deadline_date}. Все результаты, показанные ниже, показывают характеристики наблюдений выборок на момент создания выборки (например, исследовательский уровень или нет). Достоверность наблюдений выборок оценивалась на дату %{assessment_date}. Более подробную информацию смотрите на вкладке Методы."
+  observation_accuracy_experiment_research_grade_results: "Результаты для Исследовательского уровня"
+  observation_accuracy_experiment_verifiable_results: "Проверяемые результаты"
+  observation_accuracy_experiment_all_results: "Все результаты"
+  observation_accuracy_experiment_methods: "Методы"
+  observation_accuracy_experiment_step_1: "Шаг 1: Создание выборки и её назначение"
+  observation_accuracy_experiment_from_the2: "Из базы данных наблюдений iNaturalist (A) мы сгенерировали случайную выборку (B). Подвыборки были распределены между кандидатами в участники на основе критериев, описанных ниже. Мы стремились назначить каждую выборку наблюдений нескольким участникам (\"Избыточность целевого участника\")."
+  observation_accuracy_experiment_sample_generated: "Выборка сгенерирована: %{date}"
+  observation_accuracy_experiment_sample_size: "Размер выборки: %{number}"
+  observation_accuracy_experiment_target_validator: "Избыточность целевого участника: %{number}"
+  observation_accuracy_experiment_number_of: "Число кандидатов-участников: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Средний размер подвыборки для каждого кандидата-участника: %{number}"
+  observation_accuracy_experiment_mean_number: "Среднее число участников на одно наблюдение: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Критерии отбора кандидата-участника"
+  observation_accuracy_experiment_if_an_identifier: "Если участник имеет по крайней мере 3 улучшающие идентификации для таксона, мы считаем, что он подходит для проверки этого таксона. Улучшающие идентификации - это первое предложение о таксоне, с которым впоследствии соглашается сообщество."
+  observation_accuracy_experiment_if_an_identifier_continent: "Если участник имеет по крайней мере 3 улучшающие идентификации для таксона, мы считаем, что он подходит для проверки этого таксона. Улучшающие идентификации - это первое предложение для таксона, с которым впоследствии соглашается сообщество."
+  observation_accuracy_experiment_for_example: "Например, участник 1 добавляет идентификатор A к наблюдению. Если участник 2 позже добавляет ведущий идентификатор B, идентификато A участника 1 становится улучшающим идентификатором. Если участник 3 позже добавляет такой же идентификатор B, идентификатор B участника 2 становится улучшающим идентификатором."
+  observation_accuracy_experiment_step_2: "Шаг 2: Проверяемые выборки"
+  observation_accuracy_experiment_we_contacted: "Мы связались с кандидатами-участниками и попросили их добавить идентификаторы к своим подвыборкам. На графике справа сгруппированы выборки наблюдений с числом проверяющих участников."
+  observation_accuracy_experiment_number_percent_of: "Число участников: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Процент проверки выборки: %{percent}"
+  observation_accuracy_experiment_step_3: "Шаг 3: Оценка выборок наблюдений участниками"
+  observation_accuracy_experiment_we_scored: "Мы оценили в выборке наблюдений наблюдения как правильные, неопределенные или некорректные, сравнив иденимфикации участника с таксоном каждого наблюдения. Идентификации, совпадающие или более точные по отношению к таксону наблюдения в выборке, засчитаны как \"Правильные\". Не согласующиеся с вышестоящими таксонами идентификаторы были оценены как \"Неопределенные\", так же были квалифицированы результаты, в которых несколько участников не сошлись во мнении. Различающиеся результаты в вышестоящих таксонах в различных ветвях были засчитаны как \"Неправильные\"."
+  observation_accuracy_experiment_correct: "Неправильные значения в эксперименте по достоверности наблюдения"
+  observation_accuracy_experiment_uncertain: "Неопределённость в эксперименте по достоверности наблюдения"
+  observation_accuracy_experiment_incorrect2: "Неверно"
+  observation_accuracy_experiment_step_4: "Шаг 4: Достоверность и точность расчета"
+  observation_accuracy_experiment_accuracy: "Достоверность"
+  observation_accuracy_experiment_we_calculated: "Мы рассчитали Достоверность как процент правильности для всей выборки, а также для ее подмножеств, таких как подмножество исследовательского уровня. Мы также рассчитали процент неопределенных и процент неправильных ответов. В примере на рисунке справа процент правильных ответов будет 83, процент неопределенных 6, а процент неправильных 11."
+  observation_accuracy_experiment_precision: "Точность"
+  observation_accuracy_experiment_if_every_sample: "Если бы каждое выборочное наблюдение относилось к самому общему таксону, такому как королевство, точность набора данных iNaturalist могла бы быть очень высокой, но, чтобы сделать набор данных очень полезным, точность должна бы быть низкой. Чтобы оценить точность, мы подсчитали количество потомков листьев в таксономическом дереве iNaturalist для каждого таксона, связанного с каждым образцом наблюдения. Мы рассчитали точность как 1, делённая на количество потомков-листьев. Если таксон является листовым таксоном, точность составляет 100%. При расчете точности мы игнорировали ранги ниже видов."
+  observation_accuracy_experiment_in_the_example: "В примере на рисунке справа средняя точность трёх выборок составит 51%."
+  observation_accuracy_experiment_read_more_html: |
+    Подробнее об организации этого эксперимента читайте в сопроводительной записи <a href="%{url}">в блоге</a>.
+  observation_accuracy_validator_email_subject2: "Не поможете ли вы нам с помощью этой версии %{version} эксперимента оценить достоверность наблюдений iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Не поможете ли вы нам в <a href="%{url}">эксперименте (версия %{version})</a> оценить достоверность наблюдений iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Идентифицируйте все наблюдения по ссылке ниже как можно точнее, даже если они относятся к исследовательскому уровню, и даже если ваш лучший идентификатор находится на более высоком таксономическом уровне (даже если это королевство). </li>
+    <li>Если вы видите всплывающее окно “Потенциальное несогласие”…
+    <ul>
+    <li>и вы уверены, что это ошибка, нажмите на оранжевую кнопку,</li>
+    <li>или, если вы не уверены в своем идентификаторе, нажмите зеленую кнопку</li>
+    </ul>
+    </li>
+    <li>Сделайте это до <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Здесь находится <a href="%{sample_url}">подборка %{num_obs} наблюдений</a>* которуе, как мы предполагаем, основываясь на вашей активности в iNat, вы можете идентифицировать. <b>Пожалуйста, добавьте как можно более точный идентификатор к каждому из наблюдений, выполнив это до даты %{validator_deadline_date}</b>.
+    *<i>По этой ссылке откроется инструмент идентификации на веб-сайте iNaturalist, для чего вам необходимо авторизоваться. Мы рекомендуем выполнять эту задачу с компьютера, но это возможно и с помощью приложения для мобильного браузера. Если вы читаете это сообщение в приложении iNaturalist для Android, обязательно откройте ссылку в приложении для браузера (а не в самом приложении iNat). Возможно, вам придется сначала авторизоваться на веб-сайте через приложение для браузера.</i>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Мы рассчитаем достоверность, сравнив ваш идентификатор с таксоном наблюдения. Вы можете пропустить наблюдения, в которые вы ранее добавили идентификатор, если этот идентификатор все еще актуален. Для получения дополнительной информации о том, как мы будем учитывать соглашения и разногласия, продолжайте чтение.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Идентификаторы, равные (A) или более точные, чем (B) таксона наблюдения, будут засчитаны как ваше согласие.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Идентификации, близкие к (C) или сильно отличающиеся от таксона наблюдения, когда вы выбираете "Нет, но..." в диалоге потенциального несогласия (D),будут рассматриваться как ваше несогласие.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Идентификаторы, сильно отличающиеся от таксона наблюдения, когда вы выбираете "Я не знаю, но..." в диалоге потенциального несогласия (E), будут рассматриваться как неопределенность
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Мы очень признательны вам за вашу помощь как эксперта iNaturalist, а также за участие в этом исследовании. Пожалуйста, прочтите <a href="%{url}">о методах</a>, если вы хотите узнать больше об этом эксперименте.
+  observation_accuracy_validator_email_with_gratitude: С благодарностью,
+  observation_accuracy_validator_email_the_inaturalist_team: Команда iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Пожалуйста, не отвечайте на это сообщение. Если у вас есть вопросы или пожелания, прокомментируйте <a href="%{url}">эту запись в блоге</a> или напишите по электронной почте <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Пожалуйста, не отвечайте на это сообщение. Если у вас есть вопросы или пожелания, 
+     напишите нам по электронной почте <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Наблюдение добавлено к проекту %{project}"
   observation_aggregation: Агрегация наблюдений
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3122,6 +3435,14 @@ ru:
   observation_curation: Курирование наблюдений
   observation_date: Дата
   observation_date?: Дата?
+  #Basic observation export fields
+  observation_export_column_type_basic: Основное
+  #Geographic observation export fields
+  observation_export_column_type_geo: Гео
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Таксон
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Таксон, дополнительно
   observation_field: Поле наблюдения
   observation_field_details: Детали поля наблюдения
   observation_field_type_text: Текст
@@ -3184,6 +3505,7 @@ ru:
   observations_widget: Виджет наблюдений
   observations_with_this_field: Наблюдения с таким полем
   observations_with_this_field_and_value: Наблюдения с этим полем и значением поля
+  observations_without_this_field: Наблюдения без этого поля
   observations_without_media: Наблюдения без медиа
   observationcounts_refreshed: Подсчёт наблюдений обновлён
   observed: Дата, время наблюдения
@@ -3191,10 +3513,10 @@ ru:
   observed_on: Дата
   observer: Наблюдатель
   observers: Наблюдатели
-  observer_prefers_no_project_addition: |
-    Наблюдатель не позволяет другим людям добавлять свои наблюдения в проекты.
-  observer_prefers_addition_to_projects_joined: |
-    Наблюдатель позволяет другим людям добавлять свои наблюдения только в те проекты, к которым они присоединились.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Наблюдатель позволяет другим пользователям добавлять свои наблюдения только к традиционным проектам, к которым они присоединились.
+  observer_prefers_no_traditional_project_addition: |
+    Наблюдатель не позволяет другим пользователям добавлять свои наблюдения к традиционным проектам.
   observer_short: Наблюдатель
   occurence_status_describes_how: 'Статус присутствия указывает, насколько часто или редко встречается таксон в данной области. Смотрите спецификацию DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> для получения большей информации о терминологии</a>.'
   occurrence_status: Статус присутствия
@@ -3279,7 +3601,9 @@ ru:
   only_the_project_admin_can_delete_this_project: Только администратор проекта может удалить этот проект
   only_view_nearby_suggestions: Только предложения, встречающиеся поблизости
   only_you: Только вы
+  #Geoprivacy status in which no privacy has been applied
   open: открытая
+  #Geoprivacy status in which no privacy has been applied
   open_: Открытое
   open_description: "Любой может видеть координаты, если только таксон не находится под угрозой исчезновения."
   open_street_map: OpenStreetMap
@@ -3287,15 +3611,15 @@ ru:
   options: Опции
   or: или
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: ИЛИ
   or_choose_high_level_taxa: "... или выберите из нескольких таксонов верхнего уровня"
-  orange: оранжевый
   order: Упорядочить
   order_by: Сортировать по
   organism_is_wild: Организм является диким
   organisms: Организмы
   original: Исходный
+  original_flag: Исходный флаг
   originally_flagged_by: Первоначально помеченный
   originally_imported_from_url_html: "Первоначально импортированный из <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "URL исходной страницы этого фото."
@@ -3343,6 +3667,9 @@ ru:
     invalid_email: Неверный формат адреса электронной почты
   password: Пароль
   password_confirmation: 'Подтверждение пароля'
+  password_change_description: Изменение вашего пароля приведет к отключению всех ваших активных сессий iNaturalist на всех ваших устройствах
+  password_change_logout_warning: После смены пароля вы будете выведены из системы, и вам придется снова войти в систему с новым паролем.
+  password_change_observations_warning: Вы также будете выведены из мобильных приложений iNaturalist и любых других приложений или сайтов, которые размещают сообщения в iNaturalist от вашего имени, поэтому убедитесь, что вы завершили загрузку любые незавершенных наблюдений, прежде чем это произойдёт. Любые незагруженные наблюдения будут потеряны.
   paste: Вставить
   paste_in_a_bunch_of_names: Вставьте множество имён, по 1 на строку, и нажмите кнопку!
   people: Люди
@@ -3378,8 +3705,12 @@ ru:
   photo_credits: Благодарности за фото
   photo_deleted: Фото удалено
   photo_destroyed_because_it_was_deleted_from: "Фото либо удалено с внешнего сайта, либо %{site_name} больше не имеет разрешения на его просмотр"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Фото скрыто
   photo_licensing: Лицензия фото
   photo_type: Тип фото
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Скрытое фото сделано доступным
   photo_urls_repaired: URL фото восстановлены
   photos_chosen_for_this_taxon: Фото, выбранные для этого таксона
   photos_from: Фото из
@@ -3433,9 +3764,8 @@ ru:
   data_transfer_consent_child_label: |
     Я даю согласие на передачу личной информации моего ребёнка в Соединенные Штаты Америки
   pin_verb: Закрепить
-  pink: розовый
   pinned_locations_desc: |
-    Закрепить эту комбинацию координат, точности, приватности местоположения и примечаний локалитета для последующего использования.
+    Закрепить эту комбинацию координат, достоверности, приватности местоположения и примечаний локалитета для последующего использования.
   place: Место
   placeholder: Заполнитель
   place_autocomplete_placeholder: Национальный парк Зайон, Майами и т.п.
@@ -3763,6 +4093,7 @@ ru:
     north_korea: Северная Корея
     northern_cyprus: Северный Кипр
     norway: Норвегия
+    oceania: Океания
     oman: Оман
     pakistan: Пакистан
     palau: Палау
@@ -3855,8 +4186,8 @@ ru:
   places_warning_export_complex_boundary_html: |
     Если вы пытаетесь экспортировать наблюдения из места со сложной границей, рассмотрите вместо этого <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7" >загрузку их из GBIF</a>,
     где вы можете нарисовать произвольные границы, или экспорт их из iNat, используя существующие места или ограничивающую рамку с последующей фильтрацией данных после их загрузки.
-  places_warning_look_for_existing_html: |
-    Поищите <a href="/search?sourceplays=places"> существующие места </a>, чтобы убедиться, что вы не создаете дубликаты. У нас уже есть места для всех континентов и стран, а также для двух административных уровней ниже страны.
+  places_warning_look_for_existing2_html: |
+    Поищите <a href="/search?source[]=places">существующие места</a> , чтобы убедиться, что вы не создаёте дубликаты. У нас уже есть места для всех континентов и стран, а также многих других политических границ.
   places_warning_please_keep_in_mind: |
     Пожалуйста, помните о следующих ограничениях:
   places_warning_projects_can_have_multiple_places: |
@@ -3892,7 +4223,10 @@ ru:
   post_from_your_journal_html: Сообщение из <a href="%{url}">вашего журнала</a>
   post_published: Сообщение опубликовано!
   posted_by: Сообщение
-  posted_on: Опубликовано в
+  #Shows the date a journal post was published
+  posted_on_date_html: Размещено %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Размещено %{date} пользователем %{user}
   posts: Сообщения
   potential_disagreement: Возможное несогласие
   powered_by: При поддержке
@@ -3997,7 +4331,6 @@ ru:
     Google не указывает адрес электронной почты для этой учетной записи, что является обязательным. Пожалуйста, создайте учетную запись на этом сайте вместо того, чтобы регистрироваться через Google.
   public_domain: Публичный домен
   publish: Опубликовать
-  purple: пурпурный
   quality_grade: Уровень качества
   quality_grade_: Уровень качества
   quality_grade_colon: "Уровень качества:"
@@ -4008,7 +4341,11 @@ ru:
   radius_value: "Радиус (м): %{radius}"
   random: Случайный
   range: Диапазон
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Ранг
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4022,13 +4359,13 @@ ru:
       many: Царств
       other: Царств
     subkingdom: Подцарство
-    phylum: Тип
+    phylum: Тип / отдел
     x_phyla:
-      one: Тип
+      one: Тип / отдел
       few: Типа
       many: Типов
       other: Типов
-    subphylum: Подтип
+    subphylum: Подтип / подотдел
     superclass: Надкласс
     class: Класс
     x_classes:
@@ -4039,7 +4376,7 @@ ru:
     subclass: Подкласс
     infraclass: Инфракласс
     superorder: Надотряд
-    order: Отряд
+    order: Отряд / порядок
     x_orders:
       one: Отряд
       few: Отряда
@@ -4095,9 +4432,9 @@ ru:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
   ranks_lowercase_subkingdom: подцарство
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the phylum X"
-  ranks_lowercase_phylum: тип
+  ranks_lowercase_phylum: тип / отдел
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subphylum X"
-  ranks_lowercase_subphylum: подтип
+  ranks_lowercase_subphylum: подтип / подотдел
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superclass X"
   ranks_lowercase_superclass: надкласс
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the class X"
@@ -4109,7 +4446,7 @@ ru:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superorder X"
   ranks_lowercase_superorder: надотряд
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the order X"
-  ranks_lowercase_order: отряд
+  ranks_lowercase_order: отряд / порядок
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the suborder X"
   ranks_lowercase_suborder: подотряд
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
@@ -4165,7 +4502,7 @@ ru:
   range_file: Файл ареала
   ray_finned_fishes: Лучепёрые рыбы
   re_order_photos: "Переупорядочить фото &raquo;"
-  read_more: Подробнее
+  read_more: Читать далее
   read_our_getting_started_guide: прочтите наше руководство по началу работы
   read_the_full_wikipedia: Прочтите полное описание в Википедии
   real_time_discussions: Обсуждения в реальном времени
@@ -4194,12 +4531,12 @@ ru:
   recently_resolved: Последние разрешенные
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Запись
-  red: красный
   redo_search_in_map: Повторить поиск на карте
   redo_search_in_map_area: Повторить поиск на карте
   refresh: Обновить
   refreshing: Обновление
   regenerate_stats: Восстановить статистику
+  regional_names: Региональные названия
   register_for_this_event_at_x_html: "Зарегистрироваться на это событие в %{x}"
   reject?: Отклонить?
   relative_observations: Относительные наблюдения
@@ -4250,6 +4587,8 @@ ru:
   remove_tags: Удалить теги
   removed: Удалено
   removed_project_user: Участник проекта удалён
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Удалённая роль
   removing: "Удаление..."
   reorder_by_taxonomy: Упорядочить согласно таксономии
   repair_broken_urls: Исправить неработающие URL
@@ -4306,6 +4645,14 @@ ru:
   rotate_left: Повернуть влево
   rotate_right: Повернуть вправо
   row_singular_or_plural: Строка(и)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Хотите протестировать раскладку справа налево? Вы также можете использовать параметр URL test=rtl. Обратите внимание, что не все страницы были преобразованы в формат справа налево
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Вы присоединились к тестированию раскладок справа налево
   rules_and_formatting: "Правила и форматирование"
   rules_for_adding_observations: Правила добавления наблюдений
   rules_for_becoming_a_member: Как стать участником
@@ -4388,7 +4735,7 @@ ru:
   see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
-  seen_nearby: Увиденные поблизости
+  seen_nearby: Встречаются поблизости
   seen_one: Видели такое?
   select: Выбрать
   select_all: Выбрать все
@@ -4407,6 +4754,10 @@ ru:
   selected_taxon: Выбранный таксон
   select_this_taxon: Выберите этот Таксон
   send: Отправить
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Отправить повторно и выйти
+  send_confirmation_email: Отправить письмо с подтверждением
   send_me_reset_password_instructions: Отправьте мне инструкции по сбросу пароля
   sending: Отправка…
   #Label for messages you've sent
@@ -4420,6 +4771,8 @@ ru:
   share_colon: "Поделиться:"
   short_code_for_this_place: Краткое обозначение этого места, например, US для Соединенных штатов
   short_or_abbreviated_title_for_display: Сокращенное название или аббревиатура для отображения в области с ограниченным пространством. Максимум 10 символов.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Показывать ли это общее имя по умолчанию для данного таксона?
   show: Показать
   show_active_and_inactive_taxa: Показать активные и неактивные таксоны
   show_hidden_content: Показать скрытый контент
@@ -4429,11 +4782,15 @@ ru:
   show_keyboard_shortcuts: Показывать сочетания клавиш
   show_less: Показать меньше
   show_more: Показать больше
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Показать другие способы входа
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Показывать данные, где "Нет значения"
   show_off_your_recent_observations: Покажите ваши последние наблюдения в своем блоге или на своем сайте!
   show_only: Показывать только
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Показать на OpenStreetMap
   show_relative_proportions_of_all_observations: Показать относительные доли всех наблюдений
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Показать текущий итог
@@ -4492,7 +4849,7 @@ ru:
   sites_affiliation_more_automatically_hidden_coordinates: |
     Автоматически скрытые координаты (скрытые или частные из-за "геоприватности таксона")
   sites_affiliation_more_automatically_hidden_coordinates_desc: |
-    iNaturalist автоматически скрывает координаты некоторых видов, чтобы защитить их от беспокойства, сбора или браконьерства. Если координаты наблюдений были скрыты автоматически только для защиты видов, iNaturalist делится  с членами сети истинными координатами всех наблюдений из соответствующих стран.
+    iNaturalist автоматически скрывает координаты некоторых видов, чтобы защитить их от беспокойства, сбора или браконьерства. Если координаты наблюдений были скрыты автоматически только для защиты видов, iNaturalist делится истинными координатами всех наблюдений с членами сети соответствующих стран.
   sites_affiliation_more_email_addresses: |
     Адреса электронной почты сообщаются членам сети исключительно для коммуникационных целей, связанных с сайтом.
   sites_affiliation_more_twice_per_year: |
@@ -4512,10 +4869,10 @@ ru:
   sites_affiliation_overview_you_can_continue_html: |
     Вы можете входить в систему через iNaturalist.org или через ваш сетевой веб-сайт. Независимо от вашей сетевой принадлежности, все ваши данные будут размещены в одном и том же месте, и вы по-прежнему сможете взаимодействовать с более широким международным сообществом натуралистов. Каждая учетная запись iNaturalist может быть связана только с одним участником Сети. Вы можете просмотреть или изменить свою сетевую принадлежность в ваших %{start_tag_settings}настройках учетной записи%{end_tag_settings}.
   sites_affiliation_title: Подробнее о сетевой принадлежности
-  sites_network_cas_and_nat_geo_html: |
-    The %{start_tag_cas}Калифорнийская Академия Наук%{end_tag_cas} и
-    %{start_tag_nat_geo}Национальное Географическое Общество%{end_tag_nat_geo} имеют официальные соглашения с организациями в каждом из этих географических районов для поддержки платформы iNaturalist. <strong>Если ваша организация заинтересована в присоединении к сети iNaturalist Network, вы можете найти более подробную информацию
-    %{start_tag_join}здесь%{end_tag_join}.</strong>
+  sites_network_agreements_html: |
+    iNaturalist имеет официальные соглашения с организациями в каждой из этих географических областей для поддержки использования платформы iNaturalist.
+    <strong>Если ваша организация заинтересована в присоединении к сети iNaturalist, вы можете найти более подробную информацию здесь
+    %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "Сеть iNaturalist состоит из нескольких организаций:"
   sites_network_inaturalist_network_collection: |
     Сеть iNaturalist - это набор локализованных веб-сайтов, которые полностью связаны с глобальным сообществом натуралистов. Сетевые сайты поддерживаются местными учреждениями, которые поощряют местное использование и облегчают использование данных iNaturalist в интересах местного биоразнообразия. Они имеют доступ к истинным координатам в пределах своих географических районов, которые автоматически скрываются от общественности, чтобы лучше защитить виды, находящиеся под угрозой исчезновения.
@@ -4596,7 +4953,7 @@ ru:
     url: например, 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'например, Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Печатное издание'
   source_url: URL-адрес источника
-  source_of_coordinates: 'Источник координат и точность измерения, устанавливаются автоматически.'
+  source_of_coordinates: 'Источник координат и достоверность измерения устанавливаются автоматически.'
   sourced_to: Источником является
   sources: Источники
   sources_youve_added: Источники, которые вы добавили
@@ -4622,7 +4979,6 @@ ru:
   start_a_new_project: Начать новый проект
   start_a_project: Начать проект
   start_date_time: Дата / Время начала
-  start_one: Начать
   start_one_now: Начать сейчас!
   start_typing_field_name: Начните вводить название поля...
   start_typing_place_name: Начните вводить название места...
@@ -4631,6 +4987,10 @@ ru:
   stats: Статистика
   stats_for_this_year_have_not_been_generated: Статистика за этот год не сформирована.
   status: Статус
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Статус применен от таксона верхнего уровня:</strong> %{taxon}
   status_globally: 'Глобальный "%{status}"'
   status_in_place: '"%{status}" в %{place}'
   stay_and_try_again: Остановитесь и попробуйте ещё раз
@@ -4648,10 +5008,9 @@ ru:
   studies_that_used_inaturalist_data_in_year: Исследования, в которых использовались данные iNaturalist в %{year}
   stuff_just_added: "Материал, который вы только что добавили ..."
   subject_resolved_noun_html: "%{subject} разрешил %{noun}"
-  subject_affecting_stuff_html: "%{subject}, влияющий на %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} произвёл %{thing} @vow_or_con{vow:an|a}, что влияет на %{stuff}"
   submission_model: Модель представления
   submission_model_description: Кто может добавлять наблюдения к вашему проекту?
+  submit: Подтвердить
   submit_observations:
     one: Подтвердить 1 наблюдение
     few: Подтвердить %{count} наблюдения
@@ -4696,12 +5055,12 @@ ru:
   synonyms: Синонимы
   table: Таблица
   table_of_contents: Содержание
+  tabulate_presence_absence_data_from_trips: Свести в таблицу данные о присутствии и отсутствии в поездках
   #Noun, as in "add a tag to this observation"
   tag: Тег
   tagging: 'Присвоение тегов...'
   tags: Теги
   tags_are_a_way: 'Теги - это способ организовать ваши наблюдения. Например, вы можете пометить все ваши наблюдения tidepool тегом "tidepools", чтобы было легче найти их позже.'
-  take_me_facebook: Да, свяжите меня с Facebook!
   take_me_flickr!: Да, свяжите меня с Flickr!
   target_list_alert: Вы уверены, что пытались наблюдать за всеми видами, включенными в ваш целевой список? Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали, будет интерпретироваться как отсутствие, поэтому очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить
   target_list_warning: Помните, что все, что охватывается вашим целевым списком, но вы не наблюдали в радиусе и за время поездки, будет истолковано как отсутствие. Очень важно, чтобы ваш целевой список точно отражал набор видов, которые вы пытались обнаружить. Если вы не пытались обнаружить вид из вашего целевого списка или каждый вид, входящий в группу в вашем целевом списке, удалите его.
@@ -4814,6 +5173,8 @@ ru:
   taxon_deleted: Таксон удалён.
   taxon_doesnt_have_a_range: Таксон не имеет ареала
   taxon_drop: Отбрасывание таксона
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Удаление таксона, влияющее на %{taxon}
   taxon_id: Идентификатор таксона
   taxon_ids: Идентификации таксона
   taxon_map:
@@ -4837,6 +5198,9 @@ ru:
   taxon_framework_taxon: Таксон основы таксона
   taxon_history_notice: История была введена в феврале 2022, поэтому до этой даты история не существует.
   taxon_merge: слияние таксонов
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Слияние таксонов, влияющее на %{taxa}
   taxon_name: Наименование таксона
   taxon_name_must_match_an_existing_taxon_in_our_database: Наименование таксона должно соответствовать существующему в нашей базе
   taxon_observed_by_html: |
@@ -4865,6 +5229,7 @@ ru:
     Пожалуйста, используйте описание, чтобы объяснить, как была получена карта, и ссылку на любые соответствующие флаги, разделения таксонов или другие обсуждения того, почему опубликованный ареал Красного списка МСОП требует изменения.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Узнать больше об ареалах таксонов
   taxon_range_updated_notice: Ареал таксона был успешно обновлён. Пожалуйста, подождите несколько минут, чтобы он появился на картах.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Ранги таксона
   taxon_removed_from_list: Таксон удалён из списка
   taxon_scheme: Таксономическая схема
@@ -4872,9 +5237,17 @@ ru:
   taxon_search: Поиск таксона
   taxon_search_results_for: Результаты поиска таксона для
   taxon_split: разделение таксона
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Изменение таксона, влияющее на %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: стадия жизни таксона
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Стадия таксона, влияющая на %{taxon}
   taxon_swap: замена таксона
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Слияние таксонов, влияющее на %{taxa}
   taxon_swap_only_has_one_input: для замены допускается только одно значение ввода
   taxon_swap_has_inputs_and_outputs: замена должна содержать как значения входа, так и значения вывода
   taxon_name_was_deleted: Наименование таксона было удалено.
@@ -4905,8 +5278,10 @@ ru:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Управление форматированием текста
   text_editing_controls: Управление редактированием текста
+  thank_you!: Спасибо!
   thanks!: Спасибо!
   thanks_from_all_of_us_here_at: Спасибо от всех нас, примкнувших к
+  that_account_is_already_connected: Эта учетная запись уже занята
   that_photo_doesnt_exist: Это фото не существует.
   that_observation_doesnt_exist: Это наблюдение не существует.
   that_observation_doesnt_have_any_photos: "Это наблюдение не содержит никаких фото."
@@ -4949,7 +5324,6 @@ ru:
     few: "Существует <span class='count'>%{count}</span> синонима</span>"
     many: "Существует <span class='count'>%{count}</span> синонимов</span>"
     other: "Существует <span class='count'>%{count}</span> синонимов</span>"
-  there_is_no_wikipedia_page_matching: Нет соответствующей страницы Википедии
   there_isnt_a_wikipedia_article_titled_x_html: |
     Нет статьи Википедии или перенаправления под названием '%{x}'.  Возможно, вы бы хотели <a href='http://en.wikipedia.org/wiki/%{x}'>создать её</a>?
   there_merge_problems_with_the_merge: "Возникли проблемы слияния с кодом ошибки: %{merged_errors}"
@@ -5210,6 +5584,8 @@ ru:
   unable_to_save_comment: К сожалению, мы не смогли сохранить комментарий.
   unblock: Разблокировать
   unclassified: Неклассифицированные
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Понимание проектов
   ungrafted_taxa: Непривязанные таксоны
   unhide_content: Отобразить контент
   unhide_desc: |
@@ -5219,7 +5595,10 @@ ru:
   unknown: Неизвестно
   unknown_error: Неизвестная ошибка
   unknown_rank: '(Неизвестный ранг)'
-  unfollow: Отменить подписку
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Отписаться от наблюдения
+  #Text for a button to stop following updates from a user
+  unfollow_user: Отписаться от пользователя
   unlink_your_google_account: Отвязать ваш аккаунт Google
   unlink_your_flickr_account: "Отвязать свою учётную запись Flickr"
   unmute: Отмена игнорирования
@@ -5317,21 +5696,35 @@ ru:
   user_added_a_comment_html: "%{user} добавил комментарий"
   user_added_a_fave_html: "%{user} добавил к фаворитам"
   user_added_a_flag_html: "%{user} добавил флаг"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} добавил %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
   user_added_an_identification_html: "%{user} добавил идентификацию"
   user_added_an_observation_field_html: '%{user} добавил значение "%{field_name}" к наблюдению %{owner}'
   user_added_an_observation_field_value_html: "%{user} добавил значение поля наблюдения"
   user_added_an_observation_html: "%{user} добавил наблюдение"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} добавил %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} добавил %{x} к %{noun} %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} добавил %{x} к вашему %{noun}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} добавил %{x} к %{noun}"
-  user_added_x_observations_html: "%{user} добавил %{x} наблюдений"
+  user_added_x_observations2_html:
+    one: "%{user} добавил %{count} наблюдение"
+    few: "%{user} добавил %{count} наблюдения"
+    many: "%{user} добавил %{count} наблюдений"
+    other: "%{user} добавил %{count} наблюдений"
   user_already_authenticated: Пользователь уже прошел проверку подлинности
   user_already_app_owner: Пользователь уже является владельцем приложения
   user_autocomplete_placeholder: kueda, simon123, и др.
@@ -5341,13 +5734,24 @@ ru:
     %{user} считает, что это полный список %{taxon} в %{place}
   user_blocked: Пользователь заблокирован
   user_commented: "%{user} прокомментировал"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} подтвердил удаление таксона, влияющее на %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} подтвердил слияние таксона, влияющую на %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} подтвердил слияние таксона, влияющую на %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} подтвердил стадию таксона, влияющую на %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} подтвердил замену таксонов, влияющую на %{taxa}"
   user_disagrees_this_is_taxon: "%{user} не  согласен с тем, что это %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} не согласен с предыдущими более точными идентификациями"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} добавил к фаворитам %{noun} от %{owner}"
+  user_faved_an_observation_by_you: "Пользователь %{user} добавил к фаворитам ваше наблюдение"
   user_faved_this_observation: "%{user} добавил это наблюдение к фаворитам"
   user_flagged_as_a_non_spammer_html: "%{user} помечен как не спамер"
   user_flagged_as_a_spammer_html: "%{user} помечен как спамер"
+  user_has_been_removed_from_site: |
+    %{username} был удален из %{site_name} (полное удаление всего связанного содержимого может занять до часа)
   user_has_opted_out_of_community_id: Пользователь отказался от таксона сообщества
   user_hasnt_joined_any_projects: "%{user} не присоединился ни к каким проектам"
   user_helped_x_people_with_y_ids_html: "%{user} помог <strong>%{x} людям</strong> с <strong>%{y} идентификацией</strong>"
@@ -5374,6 +5778,7 @@ ru:
   user_trusts_you_with_their_private_coordinates: "%{user} доверяет вам свои скрытые координаты"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдатель решил доверить вам скрытые координаты всех своих наблюдений.
+  user_updated_an_observation_field_html: '%{user} обновил значение %{field_name} в наблюдении %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> пишет,
   username: Имя пользователя
   username_description: Это имя, которое вы будете использовать для входа, и по которому другие пользователи могут идентифицировать вас на iNaturalist
@@ -5383,6 +5788,39 @@ ru:
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     После того как вы повторно отправите электронное письмо с подтверждением, вы выйдете из системы и не сможете войти в свою учетную запись, пока не перейдете по ссылке в электронном письме, поэтому <strong>убедитесь, что вы ввели свой адрес электронной почты правильно.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Убедитесь пожалуйста, что ваш адрес электронной почты правильный. Мы посылали письмо с подтверждением на адрес:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Если вы не получили письмо, проделайте следующее:
+    </p>
+    <ul>
+    <li><p>Проверьте папку Спам</p></li>
+    <li><p>Проверьте правила фильтрации, удаляющие письма из папки входящих</p></li>
+    </ul>
+    <p>
+    Если по-прежнему вы нне получили письмо с подтверждением, пожалуйста, свяжитесь с нами по адресу
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    чтобы мы могли вам помочь.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Вы собираетесь выйти из системы</h3>
+
+    <p>
+    После отправки электронного письма с подтверждением вы выйдете из системы и не сможете войти в свою учетную запись, пока не перейдете по ссылке в электронном письме, поэтому <strong class="bg-warning">убедитесь, что вы
+    правильно ввели свой адрес электронной почты.</strong>
+    </p>
+    <p>
+    Вот адрес электронной почты, на который мы отправим подтверждение:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Если вы отписались от всех электронных писем...</h4>
+    <p>
+    Если вы отписались от <em>всех</em> электронных писем от нас, мы не сможем отправить вам электронное письмо с подтверждением. Для повторной подписки вам нужно найти предыдущее электронное письмо от нас, нажать на ссылку для отказа от подписки и выбрать опцию повторного получения электронного письма. Если вы не можете этого сделать, пожалуйста, напишите по электронной почте
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> using используя адрес электронной почты, который вы ввели здесь, с тем, чтобы мы могли вам помочь.
+    </p>
   users_favorites: "Фавориты %{user}"
   users_highlights_and_stats_from_year_on_site: "Основные моменты и статистика %{user} за %{year} на %{site}"
   users_id: "Идентификация %{user}"
@@ -5399,6 +5837,7 @@ ru:
   values: Значения
   verbing_x_of_y: "%{verb} %{x} из %{y}..."
   verifiable_observations_by_observation_date: Подтверждаемые наблюдения по дате наблюдения
+  video_tutorials: Видеопособия
   view: Просмотр
   view_all: Посмотреть все
   view_all_caps: ПОСМОТРЕТЬ ВСЕ
@@ -5478,7 +5917,6 @@ ru:
   view_your_personal_year_in_review_caps: "ПОСМОТРЕТЬ ВАШ ПЕРСОНАЛЬНЫЙ ОБЗОР ЗА %{year} ГОД"
   view_yours: Посмотреть ваши
   view_all_of_your_observations_from_x: "Посмотреть все ваши наблюдения из %{x}"
-  video_tutorials: Видеопособия
   visually_similar: Визуально похожие
   vulnerable: Уязвимый
   w00t_no_ungrafted_taxa: w00t!  Нет непривязанных таксонов!
@@ -5488,10 +5926,9 @@ ru:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
-  we_also_support: |
-    Мы также поддерживаем <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, и
-    <a href="http://facebook.com">Facebook</a> как хостинги изображений.
+  we_also_support2: |
+    Мы также поддерживаем импорт фото из <a href="http://flickr.com">Flickr</a>
+    и <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."
@@ -5540,9 +5977,9 @@ ru:
   where_were_they?: Где они находились?
   where_were_you?: Где вы были?
   which_projects_can_add_your_observations?: Какие традиционные проекты могут воспользоваться вашими наблюдениями?
-  white: белый
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Почему вы вносите это изменение? (опционально)
+  why_are_you_making_this_change_cite_source_required: Почему вы вносите это изменение? Пожалуйста, объясните и укажите источник, если это возможно. (Требование)
   why_you_can_see_the_coordinates: Почему вы можете видеть координаты
   who_can_add_observation_fields_to_my_obs: Кто может добавлять поля наблюдения к моим наблюдениям?
   who_can_add_observations_to_this_project?: Кто может добавлять наблюдения к этому проекту?
@@ -5566,6 +6003,8 @@ ru:
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
     Commons Attribution-Share-Alike License 3.0</a>. Содержимое может быть исключено из оригинала, но содержимое не меняется и не дополняется.
   with: с
+  #Filter for observations not in a particular taxon
+  without_taxon: Не относящееся к таксону
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Отозвать
@@ -5616,9 +6055,9 @@ ru:
   year: Год
   year_in_review: "Год обзора %{year}"
   year_in_review2: "Обзор %{year} года"
+  year_in_review_caps: "ГОД ОБЗОРА %{year}"
   year_month: год/месяц
   year_on_site: "Год на %{site}%{year}"
-  yellow: жёлтый
   'yes': "Да"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5635,6 +6074,8 @@ ru:
   yes_reject_it: Да, отклоните это
   yes_show_this_in_the_box: Да, покажите это в большом прямоугольнике наверху /таксона
   yesterday: Вчера
+  yir_code_contributors_desc_html: |
+    Наше <a href="%{url}">программное обеспечение</a> - почти всё с открытым исходным кодом, что означает, что любой может внести свой вклад, если он знает как. Вот люди, которые добровольно предложили код в этом году. Спасибо вам, программисты!
   yir_donate_banner_inaturalist_in_year: "INATURALIST В %{year}:"
   yir_donate_banner_reaching_millions: Достижение миллионов. Освещение биоразнообразия. Глобальное сотрудничество.
   #"You" is singular
@@ -5645,12 +6086,55 @@ ru:
   yir_donate_banner_you_helped_inaturalist_thrive: Вы помогли iNaturalist преуспеть в этом году. Спасибо!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist нужна ваша поддержка
+  yir_email_because_of_you: |
+    Благодаря вам в этом году появилось больше данных о биоразнообразии, чем в прошлом. Обзор года - это наш подарок вам за все, что вы сделали для сохранения биоразнообразия с помощью iNaturalist.
+  yir_email_log_in_to_generate: |
+    Войдите в систему, чтобы создать свой личный обзор за год и узнать больше!
+  yir_email_of_your_observations:
+    one: Знаете ли вы, сколько из вашего %{count} наблюдения было сделано в %{year} году?
+    few: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+    many: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+    other: Знаете ли вы, сколько из ваших %{count} наблюдений было сделано в %{year} году?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Ваш %{year} в обзоре iNaturalist — отпразднуйте свой год с биоразнообразием
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Команда iNaturalist
+  yir_email_the_year_isnt_over: |
+    Год еще не закончился, и никогда не поздно публиковать более старые наблюдения. После того как вы поделитесь дополнительными наблюдениями, не забудьте выбрать опцию “Восстановить статистику” в нижней части вашего обзора за год, чтобы просмотреть обновления.
+  yir_email_what_else_will_you_observe_caps: КАКИЕ ЕЩЁ НАБЛЮДЕНИЯ ВЫ МОЖЕТЕ СДЕЛАТЬ?
+  yir_email_what_new_to_you: |
+    Наблюдения каких новые для вас видов вы разместили в этом году? Сколько людей помогли вам с идентификацией (и скольким помогли вы сами)?
+  yir_email_with_gratitude: С благодарностью,
+  yir_email_year_on_inaturalist_globally_caps: "%{year} ГОД НА INATURALIST ГЛОБАЛЬНО"
+  yir_email_you_are_part_of_something: |
+    Вы - часть чего-то большого! Каждый человек, который публикует наблюдения, добавляет идентификационные данные и распространяет информацию об iNaturalist, вносит свой вклад в сохранение биоразнообразия. Благодаря нашим коллективным усилиям, мы предоставляем данные о биоразнообразии и аналитическую информацию в беспрецедентном масштабе. Спасибо вам за то, что вы являетесь частью сообщества iNaturalist!
+  yir_email_you_make_a_difference: |
+    Вы вносите свой вклад в сохранение биоразнообразия с помощью iNaturalist. Спасибо вам за все, что вы делаете!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Вы получили это электронное письмо, потому что адрес %{email} связан с
+    учетной записью iNaturalist https://www.inaturalist.org/people /%{username}, созданной %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Вы получили это электронное письмо, потому что адрес %{email} связан с
+    учетной записью iNaturalist <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people /%{username}</a>, созданной %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Ваша учетная запись связана с %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Ваша учетная запись связана с <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Создание и обмен данными о биоразнообразии с высокой отдачей в таких беспрецедентных масштабах и с такой скоростью сопряжены с растущими затратами
   yir_millions_of_people_used_inaturalist: |
     В этом году миллионы людей использовали iNaturalist и Seek by iNaturalist чтобы приобщиться к природе.
-  yir_thank_your_for_being_generous: |
-    Спасибо за ваше время, внимание, знания и пожертвования! iNaturalist - это некоммерческая совместная инициатива Калифорнийской академии наук и Национального географического общества. Программа опирается на многочисленные гранты и пожертвования, в том числе благотворительные взносы от менее чем крошечной части сообщества. Мы особенно благодарны ежемесячным спонсорам, чьи постоянные взносы помогают нам строить планы на будущее.
+  yir_monthly_supporters_random_selection: |
+    Вот случайная выборка членов героического сообщества iNat, которые делают пожертвования каждый месяц.
+  yir_thank_your_for_being_generous2: |
+    Спасибо вам за то, что вы щедро делитесь своим временем, вниманием, опытом и пожертвованиями! iNaturalist - некоммерческая общественная организация. Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем крошечной части сообщества. Мы особенно благодарны ежемесячным спонсорам, чьи регулярные взносы помогают нам планировать будущее.
   yir_your_gift_sustains: |
     Ваш дар поддерживает программу глобального охвата и оказывает глубокое личное и экологическое воздействие
   you: Ваши
@@ -5745,6 +6229,8 @@ ru:
   your_account_has_been_activated: Ваш аккаунт был активирован!
   your_account_has_been_verified: "Ваша учётная запись %{site_name} проверена! Войдите в систему, чтобы продолжить."
   your_activation_code_was_missing: "Ваш код активации был потерян. Пожалуйста, пройдите по URL-ссылке из вашей электронной почты."
+  #Title for a list of 3rd party applications you control
+  your_applications: Ваши приложения
   your_browser_does_not_support_the_audio_element: Ваш браузер не поддерживает аудио элементы.
   your_comment_was_saved: Ваш контент был сохранен.
   your_content: Ваш контент
@@ -5788,6 +6274,8 @@ ru:
     announcements:
       locales_desc: |
         Удерживайте CMD- или SHIFT, чтобы сделать множественный выбор. Если не выбирать ничего, объявление будет отображаться для всех пользователей, независимо от языкового стандарта. Выбор языка без региона *не* будет отображать языковые стандарты регионов, например, если вы выбрали en, объявление не будет отображаться для людей, которые выбрали en-US. Если вы хотите нацелиться на оба, выберите оба. Если вы хотите показать объявление для всех участников сайта, просто оставьте это поле пустым.
+      clients_desc: |
+        Нажмите CMD или SHIFT, чтобы выбрать несколько. Если ничего не выбрать, объявление будет показано всем пользователям независимо от клиента.
     content_freeze:
       content_freeze: Блокировка контента
       during_this_time: |
@@ -5810,45 +6298,185 @@ ru:
             Если так, ознакомьтесь с нашим <a href="%{url}">Руководством для преподавателя</a>, чтобы получить советы по использованию %{site_name} студентами.
     donate:
       donate_short_desc: "Пожертвуйте сейчас, чтобы показать свою поддержку!"
-      donate_desc_html: |
+      donate_desc_moore_html: |
         <p class="lead">
-        <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо за участие!</strong>
+        <strong>Вы можете <u>удвоить</u> или <u>утроить</u> ваш подарок! Благодаря
+        фонду Гордона и Бетти Мур, все периодические ежемесячные, ежеквартальные и ежегодные донаты утраиваются, а одноразовые донаты удваиваются до 31 декабря 2023 года.</strong>
         </p>
         <p class="lead">
-        Если вы верите в способность этого глобального сообщества любителей природы делиться знаниями и генерировать незаменимые данные о биоразнообразии, пожалуйста, подумайте о одноразовом или повторяющемся взносе онлайн, или воспользуйтесь <a href="https://www.inaturalist.org/pages/giving">другими способами дарения</a>.
+        iNaturalist - одно из крупнейших в мире сообществ, занимающихся вопросами биоразнообразия. Спасибо вам за то, что вы являетесь его частью!
         </p>
         <p class="lead">
-        Ваши благотворительные пожертвования помогают поддерживать iNaturalist по мере роста сообщества - от совершенствования системы компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала.
+        Если вы верите в способность этого глобального сообщества любителей природы делиться знаниями и генерировать незаменимые данные о биоразнообразии, пожалуйста, подумайте о разовом или повторяющемся подарке онлайн или изучите<a href="https://www.inaturalist.org/pages/giving"> другие способы дарения</a>.
+        </p>
+        <p class="lead">
+        Ваше пожертвование жизненно важно для iNaturalist по мере роста нашего сообщества - от
+        совершенствования наших технологий для точной идентификации видов и
+        внедрения новых функций до поддержки наших серверов и персонала.
         </p>
         <p class="text-muted">
-        iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки (Tax ID: 94-1156258).
+        iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки (налоговый идентификационный номер: 92-1296468).
+        </p>
+      donate_desc3_html: |
+        <p class="lead">
+        <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо вам за то, что вы являетесь частью этого!</strong>
+        </p>
+        <p class="lead">
+        Если вы верите в способность этого глобального сообщества любителей природы делиться знаниями и генерировать незаменимые данные о биоразнообразии, пожалуйста, подумайте о разовом или повторяющемся подарке онлайн или изучите<a
+        href="https://www.inaturalist.org/pages/giving">другие способы помощи</a>.
+        </p>
+        <p class="lead">
+        Ваше пожертвование помогает поддерживать iNaturalist по мере роста сообщества - от совершенствования компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала.
+        </p>
+        <p class="text-muted">
+        iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки (налоговый идентификационный номер: 92-1296468).
         </p>
       post_donate_social_media_text: Я оказываю поддержку iNaturalist, потому что...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте ежемесячным спонсором iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: СТАНЬТЕ ЕЖЕМЕСЯЧНЫМ СПОНСОРОМ INATURALIST
-        desc_html: |
+        desc_moore_html: |
           <p class="lead">
-          <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо за участие!</strong>
+          <strong>Вы можете <u>утроить</u> ваш подарок! Благодаря
+          фонду Гордона и Бетти Мур, все донаты ежемесячных жертвователей утраиваются до 31 декабря 2023 года.</strong>
           </p>
           <p class="lead">
-          Мы хотим сохранить бесплатное использование iNaturalist, но для продолжения работоспособности оно не может быть бесплатным. Если вы любите iNaturalist, рассмотрите возможность стать ежемесячным спонсором. Повторяющиеся дотации помогают iNaturalist продолжать масштабировать свою инфраструктуру и персонал, обеспечивая предсказуемый доход. Вы также можете выбрать отображение вашего ежемесячного статуса спонсора в вашем профиле пользователя.
+          iNaturalist - один из крупненйших мировых сообществ по изучению биоразнообразия. Спасибо, что являетесь частью этого сообщества!
           </p>
           <p class="lead">
-          Ваши благотворительные пожертвования помогают поддерживать iNaturalist по мере роста сообщества - от совершенствования системы компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала. Если вы предпочитаете сделать одноразовое пожертвование, пожалуйста, <a href="%{donate_url}">нажмите здесь</a>.
+          Если вам нравится iNaturalist, рассмотрите пожалуста возможность стать ежемесячным спонсором. Регулярные дарения помогут гарантировать, что iNaturalist сможет
+          продолжать расширять нашу инфраструктуру и штат сотрудников, обеспечивая
+          предсказуемый доход. И ваш ежемесячный подарок окажет тройное воздействие!
+          Вы также можете указать статус ежемесячного спонсора в своем профиле пользователя.
+          </p>
+          <p class="lead">
+          Ваши благотворительные пожертвования помогают поддерживать iNaturalist по
+          мере роста сообщества - от совершенствования компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала. Вы также можете сделать <a href="%{donate_url}">однократный взнос</a> другие 
+          <a href="https://www.inaturalist.org/pages/giving">способы дарения</a>.
           </p>
           <p class="text-muted">
-          iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки.
+          iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки (налоговый идентификационный номер: 92-1296468).
+          </p>
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist - одно из крупнейших в мире сообществ, занимающихся изучением биоразнообразия. Спасибо вам за то, что вы являетесь частью этого!</strong>
+          </p>
+          <p class="lead">
+          Мы хотим сохранить iNaturalist бесплатным в использовании, но он не свободен в эксплуатации. Если вы любите iNaturalist, пожалуйста, подумайте о том, чтобы стать нашим ежемесячным спонсором. Систематические донаты помогают гарантировать, что iNaturalist сможет продолжать расширять свою инфраструктуру и штат сотрудников, обеспечивая предсказуемый доход. Вы также можете указать свой ежемесячный статус сторонника в своем профиле пользователя.
+          </p>
+          <p class="lead">
+          Ваши благотворительные пожертвования помогают поддерживать iNaturalist по мере роста сообщества - от совершенствования компьютерного зрения и внедрения новых функций до поддержки наших серверов и персонала. Если вы предпочитаете сделать единовременное пожертвование, пожалуйста <a href="%{donate_url}">нажмите здесь</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки.
+          Америка (налоговый идентификационный номер: 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Благодарим вас за ежемесячную поддержку!
         thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВАС ЗА ЕЖЕМЕСЯЧНУЮ ПОДДЕРЖКУ!
+      temporarily_unavailable: |
+        Спасибо за ваш интерес к поддержке iNaturalist! Пожертвование
+        iNaturalist временно недоступно, пока мы обновляем наши системы пожертвования. Пожалуйста, зайдите позже.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Нажмите здесь, чтобы отправить письмо активации еще раз.
+      please_add_an_email_and_password: Пожалуйста, укажите адрес электронной почты и пароль, чтобы не потерять доступ к своей учетной записи
+      please_click_the_link_sent_to_email_to_confirm_html: Пожалуйста, перейдите по ссылке, отправленной на адрес <span class="email">%{email}</span>, чтобы подтвердить свой адрес электронной почты.
+      please_confirm_that_email_is_the_best_contact_html: Пожалуйста, подтвердите, что <span class="email">%%{email}</span> - это лучший способ связаться с вами.
+      your_site_account_has_no_email: Отсутствует адрес электронной почты, связанный с вашей учетной записью %{site_name}.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Помечаемый контент
         flaggable_content_desc: |
           Помечаемый флагом контент является основным текстовым атрибутом помеченного объекта во время создания флага. Его видят только кураторы и сотрудники. Только сотрудники могут видеть это для создания сообщений.
         flags_that_should_not_be_resolved_desc_html: |
           Пожалуйста, снимайте флаги <code>spam</code> и <code>copyright
           infringement</code>, только если содержимое не является спамом или нарушением авторских прав, соответственно.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Прогноз геомодели по виду: %{taxon}
+        the_geo_model_makes_predictions: |
+          Геомодель даёт прогнозы, где виды встречаются, а где они отсутствуют.
+          Мы используем геомодель для получения метки «Встречаются поблизости» наряду с предложениями взвесить эти предложения в зависимости от места наблюдения.
+        the_geo_model_is_trained: |
+          Как и модель компьютерного зрения, геомодель обучается на основе наблюдений iNaturalis за одним и тем же набором видов с примерно более чем 100 фотографиями. Геомодель не дает идеальных прогнозов. Вы можете прочитать подробнее о том, как создана геомодель, <a href="%{url}">здесь</a>.
+        nearby_map:
+          expected_nearby_map: Карта "Встречаются поблизости"
+          we_use_this_map: |
+            Мы используем эту карту, чтобы применить метку «Встречаются поблизости» к предложениям, основанным на местонахождении наблюдения.
+          for_example: |
+            Например, к наблюдению ящерицы в центре Соединенных Штатов метка «Встречается поблизости» и может быть применена к предположению <i>Sceloporus onsobrinus</i>, но не к <i>Sceloporus occidentalis</i>, основываясь на соответствующих им картах «Встречается поблизости».
+          you_can_think: |
+            Вы можете рассматривать карту "Встречается поблизости" как оценку того, будут ли виды
+            присутствовать где-то внутри ячейки сетки или полностью отсутствовать.
+          figure_alt_text: Геомодель применяет метку «Встречается поблизости».
+        unthresholded_map:
+          unthresholded_map: Карта без границ
+          we_use_the_unthresholded_map: |
+            При составлении предложений мы используем карту без границ, чтобы взвешивать оценки компьютерного зрения по местоположению.
+          for_example: |
+            Например, для наблюдений ящериц в центре Соединенных Штатов предположения <i>Sceloporus consobrinus</i> могут иметь больший вес, чем предположения <i>Sceloporus occidentalis</i>, что основано на сравнении карт без границ, несмотря на то, что они визуально похожи.
+          you_can_think: |
+            Вы можете думать о карте без границ как об относительной вероятности того, что вид встречается в ячейке сетки.
+          figure_alt_text: Геомодель взвешивает результаты компьютерного зрения.
+        range_comparison:
+          expected_nearby_vs_taxon_range: '"Встречается поблизости" по сравнению с ареалом таксона'
+          this_map_shows: |
+            На этой карте показан ареал таксонов этого вида, перекрывающий прогноз карты "Встречается поблизости", которую мы используем при оценке геомодели.
+          this_gridded_version: |
+            Эта версия диапазона таксонов с привязкой к сетке представляет собой снимок, сделанный при обучении модели и привязке к сетке с тем же разрешением, что и карта прогноза "Встречаются поблизости". Мы используем ареалы таксонов только в тех случаях, когда по крайней мере 90% обучающих данных для этого вида попадают в ареал таксона, чтобы исключить ошибки в ареалах таксонов.
+          by_combining: |
+            Объединяя карту "Встречается поблизости" с ареалом таксона, мы вычисляем статистику, чтобы оценить, насколько хорошо работает геомодель.
+          figure_alt_text: Карта "Встречается поблизости" и ареал таксона сравниваются
+          combining_these_maps_produces: |
+            Комбинируя эти карты, можно получить 3 типа ячеек:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Присутствие истинно:
+          true_presences_definition2: Области, где либо предполагаемая карта близлежащих районов, либо ареал таксона дают основания считать, что таксон существует
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Присутствие ложно:
+          false_presences_definition: Области, где имеется только прогноз "Встречаются поблизости"
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Отсутствие ложно:
+          false_absences_definition: Области, где присутствует только ареал таксона
+          evaluation_statistics_for_taxon: Статистика оценки для %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Точность:
+          precision_description: Доля карты "Встречается поблизости", которая даёт Присутствие истинно
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Присутствие истинно / (Присутствие истинно + Присутствие ложно) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Полнота:
+          recall_description: Доля карты "Встречается поблизости", которая даёт Присутствие истинно
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Присутствие истинно / (Присутствие истинно + Отсутствие ложно) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
+          f1_description: Среднее (гармоническое среднее) Точности и Полноты
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 x Присутствие истинно / (2 x Присутствие истинно + Присутствие ложно + Отсутствие ложно) = %{f1}
+          perfect_overlap: |
+            Идеальное перекрытие будет оцениваться с точностью, полнотой и F1, равным 1. Никакое перекрытие не будет оцениваться с точностью, полнотой и F1 (гармоническим средним), равным 0.
     guides:
       index:
         deprecated_banner: |
@@ -6045,6 +6673,36 @@ ru:
           Вы отметили этот разговор %{date}. Флаг будет сохраняться даже в том случае, если вы удалите копию этого разговора, так что можно это сделать без опасений, если вы больше не хотите его видеть.
         privacy_notice_html: |
           Хотя сообщения являются конфиденциальными между вами и получателем, сотрудники iNaturalist также могут просматривать эти сообщения и будут делать это, когда сообщения будут помечены для модерации. Если вам требуется действительно личное общение, пожалуйста, изучите другие механизмы связи, которые поддерживают надежное шифрование.
+    nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Демонстрация визуального языка
+      what_do_you_want_to_search_for: Что вы хотите найти?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: например, %{query_in_english}
+      try_one_of_these_example_searches_colon: "Попробуйте один из этих примеров поиска:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Помогите нам улучшить качество
+      to_help_us_improve: Чтобы помочь нам улучшить эту модель, мы хотели бы знать, какие изображения на этой странице соответствуют вашему запросу &quot;%{searched_term}&quot;. Пожалуйста, отметьте каждое изображение как соответствующее %{thumbs_up_icon}, если оно соответствует вашему запросу, и как не соответствующее %{thumbs_down_icon}, если нет. Когда вы закончите, нажмите «Отправить». #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Отметьте оставшиеся как соответствующие
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Отметьте оставшиеся как не соответствующие
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Просмотрите эти наблюдения в разделе "Идентификация"
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> объединился с исследователями <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Массачусетского университета в Амхерсте</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Эдинбургского университета</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">Университетского колледжа Лондона</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT</a> при щедрой поддержке со стороны <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">исследовательской группы Microsoft AI for Good Lab</a> для лучшего понимания потенциала моделей языка визуализации, что поможет систематизировать, исследовать и объяснять наблюдения iNaturalist. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Эта демонстрация позволяет вам ввести поисковую фразу (например, "<a href="%{url}">%{query_in_english}</a>"), проводится сравнение с 10 миллионами фотографий iNaturalist. Результаты отсортированы от наиболее к наименее значимым. Вы можете использовать эту демонстрацию как новый способ поиска интересных наблюдений iNaturalist для добавления аннотаций или добавления наблюдений в свой проект.
+      you_can_also_use_this_demo: Вы также можете использовать эту демонстрацию, чтобы помочь нам оценить визуальную языковую модель, используемую в этой демонстрации, сообщив нам, какие из найденных изображений соответствуют вашей поисковой фразе. В этой демонстрации используется сторонняя <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Модель визуального языка CLIP</a> которая не была обучена работе с данными iNaturalist или с командой iNaturalist. Иногда эта модель может выдавать неточные, предвзятые или сомнительные результаты.<a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Подробнее можно прочесть об этом в блоге iNaturalist.</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Если вы хотите поддержать эту работу
+      thank_you_for_your_submission!: Спасибо за ваш вклад!
     oauth:
       authorizations:
         new:
@@ -6292,8 +6950,10 @@ ru:
         cumulative_count_desc: '# идентификаций отдельного таксона и всех его потомков'
         curator_coordinate_access_disabled_desc_html: |
           Этот проект не допускает наблюдений с координатами, которые кураторы проекта не могут видеть. Если вы не хотите делиться координатами этого наблюдения с кураторами этого проекта, вы должны удалить наблюдение из проекта.
-        data_quality_assessment_desc_html: |
-          Оценка качества данных - это оценка точности наблюдения. Наблюдения исследовательского уровня могут использоваться учеными в научных целях. Проголосуйте ниже:
+        data_quality_assessment_desc3_html: |
+          Оценка качества суммирует достоверность, точность, полноту, актуальность и уместность наблюдения iNaturalist как данных о биологическом разнообразии. Некоторые атрибуты определяются автоматически, а другие - голосованием пользователей iNat. iNaturalist
+          делится наблюдениями, имеющими оценку "Research Grade", с рядом партнеров
+          для использования в науке и охране природы.
         disagreement_count_desc: "# идентифицированных таксонов, которые не относятся к предкам таксона"
         identification_count_desc: '# идентификаций отдельного таксона'
         flagged_photos_desc_html: |
@@ -6301,55 +6961,59 @@ ru:
           нарушающие авторское право. Подробнее см. в разделе %{links}
         join_project_desc_html: |
           Присоединяясь к проекту, вы даёте кураторам проекта возможность видеть скрытые координаты того или иного наблюдения в проекте, это означает, что вы согласны с условиями проекта <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
-          Оценка качества данных это совокупность точности даных наблюдения. Все наблюдения изначально имеют <strong>"обыкновенный"</strong> уровень, а затем получают уровень
-          <strong>"требуется идентификация"</strong> когда
+          Оценка качества данных представляет собой итог достоверности наблюдений. Все наблюдения вначале имеют<strong>"обыкновенный"</strong> уровень, и приобретают статус
+          <strong>"требуется идентификация"</strong> , когда
           </p>
 
           <ul>
-          <li>наблюдение <strong>содержит дату</strong></li>
-          <li>наблюдение <strong>содержит местоположение</strong> (т.е. координаты шир./дол.)</li>
+          <li>наблюдение <strong>имеет дату</strong></li>
+          <li>наблюдение <strong>имеет местоположение</strong> (т.е. заданы широта/долгота)</li>
           <li>наблюдение <strong>содержит фото или звуки</strong></li>
           <li>наблюдение <strong>не является наблюдением человека</strong></li>
           </ul>
           <p>
-          Наблюдения получают <strong>"исследовательский уровень"</strong> когда
+          Наблюдение достигает <strong>"исследовательского уровня"</strong> когда
           </p>
           <ul>
           <li>
-          Сообщество %{site_name} <strong> согласно с определением на уровне вида или ниже</strong>, т.е. когда более чем 2/3 экспертов соглашаются с таксоном (если сообщество проголосовало, что таксон сообщества не может быть улучшен, это применимо к определению на уровне подсемейства или ниже)
+          %{site_name} <strong>сообщество соглашается с идентификацией на уровне вида или ниже</strong>,т.е. когда 2/3 идентфицирующих согласны с таксоном если сообщество проголосовало что таксон сообщества не может быть улучшен, это приводит к тому, что идентификация устанавливается на уровне подсемейства или ниже)
           </li>
           </ul>
           <p>
-          Наблюдения вернутся к уровню <strong>"обыкновенный"</strong>, если вышеперечисленные условия не выполнены или если сообщество не пришло к согласию
-          </p>
+          Наблюдения превращаются в <strong>"обыкновенные"</strong> если не выполняются вышеперечисленные условия или если сообщество приходит к выводу, что</p>
           <ul>
           <li>
-           <strong>местоположение не кажется точным</strong> (например, обезьяны находятся посередине океана, бегемоты в офисных зданиях и т.д.)
+          <strong>местоположение не выглядит достоверным</strong> (например, обезьяны оказываются посреди океана, 
+          бегеиоты - в офисном здании, и т.п.)
           </li>
           <li>
-          <strong>организм не является диким/натурализованным</strong> (т.е. находящимся в неволе или культивируемом людьми или разумной инопланетной расой)
+           <strong>организм не является диким / натурализованным</strong> (например, находится в плену и человека или выращивается в культурных условиях)
           </li>
           <li>
-          наблюдение <strong>не содержит доказательства существования организма</strong>, например, наблюдения водных каскадов, камней, ландшафтов без видимых организмов и т.д.
+          наблюдение <strong>не содержит свидетельств организма</strong>, например, это изображения воды, камней, пейзажей, в которых не присутствует организм и т.п. 
           </li>
           <li>
-          наблюдение <strong>не представляет собой недавнее (~100 лет) доказательство существования организма</strong> (например, ископаемые останки, но следы, помёт и опавшие листья подходят)
+          наблюдение <strong>не содержит свидетельств (~100летней давности) организма</strong> (при этом органические остатки , следы, и сухие листья считаются нормальными свидетельствами)
           </li>
           <li>
-          наблюдение более не требует определения <em>и</em> определение сообщества ваше уровня семейства
+          наблюдение <strong>не представляет собой свидетельства одного и того жеобъекта</strong>
+          (например, иметтся четыре фото не связанных между собой организмов. Фото, показывающее среду обитания, является допустимым.)
           </li>
           <li>
-          наблюдатель отказался от таксона сообщества, и таксон сообщества не является предком или потомком таксона в идентификации наблюдателя
+          наблюдение больше не требует идентификации <em>и</em> идентификатор сообщества находится на уровне подсемейства или выше
+          </li>
+          <li>
+          наблюдатель отказался от идентификатора сообщества, а таксон идентификатора сообщества не является ни предком, ни потомком таксона идентификатора наблюдателя
           </li>
           </ul>
           <p>
-          И если это было недостаточно сложно, то бывают также ситуации, когда право голоса получает система:
+          И если это было недостаточно сложно, то бывают также ситуации, когда система получает право голоса:
           </p>
           <ul>
           <li>
-          Система проголосует за то, что организм не является диким/натурализованным, если существует не менее 10 других наблюдений рода или ниже в самом небольшом месте, эквивалентном району, региону или стране, которое содержит данное наблюдение и 80% или более этих наблюдений были помечены как не дикие/ненатурализованные. 
+          Система проголосует за то, что наблюдение не является диким/натурализованным, если есть по крайней мере 10 других наблюдений рода или ниже в самом маленьком округе, штате или эквивалентном стране месте, где содержится это наблюдение, и 80% или более из этих наблюдений были помечены как не дикие/натурализованные.
           </li>
           </ul>
         score_desc: "оценка = общее число / (общее число + число несогласий + число несогласий с таксонами-предками)"
@@ -6512,9 +7176,8 @@ ru:
         view_original_html: |
           Вы можете просмотреть оригинал здесь <a href="%{url}">%{url}</a>. Пожалуйста, проставьте флаги нарушения авторских прав, если это фото нарушает авторские права.
     places:
-      kml_field_desc: |
-        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google
-        Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь меньшую, чем площадь штата Техас США.
+      kml_field_desc3: |
+        KML-файл границ места. Вы можете создать его с помощью Google Maps, Google Earth или большинства ГИС-приложений. Он должен содержать хотя бы один многоугольник, быть размером менее 1 Мб (5 Мб для кураторов сайта) и иметь площадь ~700,000 кв. км (примерно площадь Сомали или площадь штата Техас США).
       edit:
         complex_boundary_note_html: |
           Эта граница слишком сложна для редактирования в Интернете. Однако вы можете <a href="%{url}">загрузить KML</a>, отредактировать его в приложении GIS по вашему выбору и загрузить свой отредактированный KML напрямую.
@@ -6558,6 +7221,8 @@ ru:
           Если единственная причина, по которой вы покидаете проект, заключается в том, чтобы запретить просмотр кураторами проекта скрытых координат.
       edit:
         admins_must_be_existing_members: Администраторы должны быть существующими участниками проекта.
+        admins_can_only_be_added_after_creation: |
+          Администраторы могут быть добавлены только после создания проекта.
         aggregation_pending: Ожидание агрегации
         new_place_desc_html: |
           Попробуйте просмотреть <a href="%{places_url}" target="_blank">наши имеющиеся места</a> и убедитесь, что вы правильно указали название места. Если вы действительно не можете найти нужное место, рассмотрите <a href="%{new_place_url}" target="_blank">создание нового места</a>, но, пожалуйста, убедитесь, что вы не дублируете существующее место.
@@ -6673,6 +7338,8 @@ ru:
         display_project_name: Отобразить название проекта
         do_you_need_features_from_traditional: |
           Нужны ли вам функции традиционных проектов, такие как доступ к реальным  координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
+        do_you_need_features_from_traditional2: |
+          Нужны ли вам такие функции традиционных проектов, как доступ к реальным координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
         duplicate_project: Дублировать проект
         include_annotated_observations: |
           Включить только наблюдения, имеющие определенным атрибут (например, этап жизни) или конкретный атрибутом и его значение (например, этап жизни = взрослый).
@@ -6856,15 +7523,24 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Добавили и то, и другое
+        added_only_identifications: Добавили только идентификации
+        added_only_observations: Добавили только наблюдения
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Более широкие последствия
+        broader_impacts_desc: |
+          Несколько внешних партнеров регулярно импортируют наблюдения iNaturalist для поддержки науки и охраны природы. Ваши наблюдения, идентификации и выбор открытых лицензий позволяют этим организациям предоставлять полезную информацию о биоразнообразии по всему миру людям, которые в ней нуждаются, .
         compare_desc: |
           Как прошел этот год по сравнению с предыдущими? После трех и более лет использования мы можем начать сравнивать годовые показатели активности.
         compare_site_desc: |
           Как этот год по сравнению с предыдущими? Зеленая полоса показывает текущий год, белая вертикальная полоса показывает прошлый год, а области серого фона отображают самые неуспешные и самые успешные годы, а также среднее значение за все года.
         compared_to_previous_years: Сравнить с предыдущими годами
         donate_title: "Особая благодарность всем нашим спонсорам"
-        donate_desc_html: |
-          Спасибо Вам за щедрое время, внимание, опыт и пожертвования! iNaturalist - некоммерческая совместная инициатива Калифорнийской академии наук и Национального географического общества.
-          Он поддерживается <a href="%{team_url}">небольшой командой</a> , которая занимается всем проектированием и разработкой программного обеспечения для интернета, мобильных устройств и <a href="%{seek_url}">Seek by iNaturalist</a>, занимается поддержкой сообщества, сотрудничеством и интеграцией, обеспечивает порядок (и быстрый рост!). Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем малой части участников. Мы особенно благодарны ежемесячным спонсорам, чьи постоянные взносы помогают нам планировать будущее. Вы можете делать пожертвования в нескольких валютах для поддержания основных операций iNaturalist. Спасибо всем за вашу роль в создании %{year} самого большого года iNaturalist!
+        donate_desc2_html: |
+          Спасибо вам за то, что вы щедро делитесь своим временем, вниманием, опытом и пожертвованиями! iNaturalist - это некоммерческая организация 501(c)3, базирующаяся в Соединенных Штатах. Она поддерживается <a href="%{team_url}">небольшой командой</a>, которая занимается дизайном и разработкой программного обеспечения для веб-сайтов, мобильных устройств, а <a href="%{seek_url}">Seek by iNaturalist</a>, в дополнение к управлению поддержкой сообщества, сотрудничеством, и интеграцией, что поддерживает работу системы (и является быстро растущим приложеннием!). Программа опирается на многочисленные гранты и пожертвования, включая благотворительные подарки от менее чем крошечной доли участников. Мы особенно благодарны ежемесячным спонсорам, чьи повторяющиеся донаты помогают нам планировать будущее. Вы можете делать пожертвования в нескольких валютах для поддержки основной деятельности iNaturalist.
+          Спасибо всем за ваше участие в создании самого масштабного на сегодняшний день %{year} года iNaturalist !
         donors: Спонсоры
         donors_guide_label_our_goal_is_1000: Наша цель-1000 постоянных спонсоров в месяц
         inaturalist_network: сеть iNaturalist
@@ -6940,6 +7616,11 @@ ru:
           %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы со всех языков, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Если вы хотите помочь с переводом, %{link_tag}узнайте, как это сделать%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИЮ"
+          few: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИИ"
+          many: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИЙ"
+          other: "ПОСМОТРЕТЬ %{count} ПУБЛИКАЦИЙ"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -6955,29 +7636,37 @@ ru:
         about_names_desc: |
           <p>
             Большинство категорий организмов имеют «народные названия» в разговорных языках. 
-            Эти имена обычно узнаваемы, легко произносятся и стабильны с течением 
-            времени, но многие организмы имеют несколько различных имён в разных 
-            местах, даже на одном языке, что может затруднить общение по теме об этих 
-            организмах и внести  путаницу.
+           Эти названия обычно узнаваемы, легко произносятся и стабильны с течением 
+           времени, но многие организмы имеют несколько различных названий для разных 
+           мест, даже на одном языке, что может затруднить общение по теме об этих 
+           организмах и внести путаницу.
             Учёные решают эту проблему, используя одно «научное название»
             для каждой категории организма, соответствующее правилам
             <a 
-            href="https://ru.wikipedia.org/wiki/%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%BD%D0%BE%D0%BC%D0%B5%D0%BD%D0%BA%D0%BB%D0%B0%D1%82%D1%83%D1%80%D0%B0">Биологическая номенклатура</a>, но эти названия, как правило, основаны на латыни, языке, 
-            на котором никто не   говорит, поэтому для многих людей они не такие 
-            запоминающиеся, как народные названия. Научные названия также могут 
-            отражать таксономическую позицию, поэтому они могут меняться, когда 
-            учёные разрабатывают более точные теории об эволюционных отношениях между
+           href="https://ru.wikipedia.org/wiki/%D0%91%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B0%D1%8F_%D0%BD%D0%BE%D0%BC%D0%B5%D0%BD%D0%BA%D0%BB%D0%B0%D1%82%D1%83%D1%80%D0%B0">Биологическая номенклатура</a>, но эти названия, как правило, основаны на латыни, языке, на котором никто не   говорит, поэтому для многих людей они не такие запоминающиеся, как народные названия. Научные названия также могут отражать таксономическую позицию, поэтому они могут меняться, когда учёные разрабатывают более точные теории об эволюционных отношениях между
             различными организмами, что вновь уменьшает их полезность в общении, даже 
-            среди людей, которые знакомы с научными названиями.
+           среди людей, которые знакомы с научными названиями.
           </p>
           <p>
             Старая пословица гласит: «Народные названия меняются от места к месту, а 
-            научные названия меняются время от времени».
+           научные названия меняются время от времени».
           </p>
           <p>
             Мы пытаемся устранить эти недостатки, показывая как народные названия, так и научные 
-            названия там, где это возможно, и выбирая народные названия, основанные на 
-            языковых и географических предпочтениях пользователя.
+           названия там, где это возможно, и выбирая народные названия, основанные на 
+           языковых и географических предпочтениях пользователя.
+          </p>
+        about_regional_names_desc: |
+          <p>
+          Названия могут быть добавлены к местам (обычно странам) в случаях, когда
+          разные страны или регионы используют разные общие названия на
+          одном языке. Например, Мексика и Коста-Рика могут иметь разные
+          испанские названия по одному и тому же виду.
+          </p>
+          <p>
+          Эта таблица показывает какие названия были добавлены к каким местам, они
+          перечислены в порядке очередности для каждого места. Если два испанских названия
+          добавляются для Мексики, одно из перечисленных появится первым, если вы предпочитаете видеть испанские названия, добавленные для Мексики.
           </p>
         about_conservation_status_desc: |
           Природоохранный статус суммирует риск исчезновения группы организмов.
@@ -6985,6 +7674,7 @@ ru:
           "Способ возникновения" описывает, как вид появился там, где он в настоящее время присутствует. Интродуцент означает, что он появился вследствие человеческой деятельности, в то время как естественный означает, что он появился без помощи человека. Эндемичные виды встречаются только в определенном месте и нигде больше.
         about_taxon_curators_desc: |
           Эти люди управляют частью таксономического дерева, которое включает этот таксон. Если вы хотите внести изменения, отметьте этот таксон или обратитесь к одному из этих людей.
+        charts_caps: СХЕМА
         charts_help_seasonality: |
           На этой диаграмме показано количество наблюдений этого таксона, сгруппированных по месяцам. Имейте в виду, что это количество наблюдений, поэтому на них влияет как то, когда организм можно наблюдать, так и то,  когда люди наблюдают. Таким образом, птица может показаться очень активной в мае, но это также может быть связано с тем, что больше людей её наблюдают в мае, но будут игнорировать этот вид в последующие месяцы. Аналогично, если вы видите больше стрекоз в июне, чем в январе, это, вероятно, связано с тем, что в северном полушарии наблюдает большее количество людей, чем в южном полушарии, а не потому, что стрекозы более активны в июне, поэтому проверьте карту при рассмотрении этих диаграмм. Всегда полезно скептически относиться к этим диаграммам, когда количество наблюдений невелико и/или когда имеются большие расхождения между числом наблюдений в статусе «Проверяемый» и «Исследовательский уровень».
         charts_help_history: |
@@ -7008,8 +7698,15 @@ ru:
           "Plant Phenology=Flower Budding": Бутонизация цветов
           "Plant Phenology=Flowering": Цветение
           "Plant Phenology=Fruiting": Плодоношение
-          "Plant Phenology=No Evidence": Нет доказательств
-          "Life Stage=Adult": Взрослый
+          "Plant Phenology=No Evidence of Flowering": Нет доказательств цветения
+          "Flowers and Fruits=Flower Buds": Цветочные почки
+          "Flowers and Fruits=Flowers": Цветы
+          "Flowers and Fruits=Fruits or Seeds": Плоды или Семена
+          "Flowers and Fruits=No Flowers or Fruits": Отсутствие Цветов или Плодов
+          "Leaves=Breaking Leaf Buds": Повреждённые листовые почки
+          "Leaves=Green Leaves": Зелёные листья
+          "Leaves=Colored Leaves": Окрашенные листья
+          "Leaves=No Live Leaves": Отсутствие листьев
           "Life Stage=Egg": Яйцо
           "Life Stage=Larva": Личинка
           "Life Stage=Juvenile": Молодой
@@ -7039,8 +7736,9 @@ ru:
       move_children_desc: |
         Потомки входного таксона, которые являются общими или более грубыми, будут перемещены на выход; виды, подвиды, разновидности и т. д. будут заменены на эквиваленты с новым названием рода или вида.
       form:
-        move_children_desc_html: |
-          Установка этого флажка приведет к перемещению потомков входного таксона в выходной таксон для свопов и слияний, когда это изменение будет выполнено. Если это изменение будет применено на уровне рода или ниже, оно создаст таксонные свопы для всех потомков, у которых предполагается изменение имени. Например, если вы замените семейство Canidae на Dogidae, это изменит родителя рода <i>Canis</i> с Canidae до Dogidae. Если вы замените род <i>Canis</i> на род <i>Dogis</i>, это создаст и осуществит таксонные свопы, изменяющие <i>Canis lupus</i> на <i>Dogis lupus</i> и <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Это может вызвать путаницу, поэтому применяйте с осторожностью.
+        move_children_desc2_html: |
+          Установка этой отметки переместит дочерние элементы входного таксона в выходной таксон при операциях замен и слияний таксонов, как только это изменение будет зафиксировано. Если это изменение произойдёт на уровне рода или ниже, это приведёт к замене таксонов для всех потомков с именами, которые необходимо изменить. Например, если вы замените семейство Canidae на Dogidae, это изменит родителя рода.
+          <i>Canis</i> от Canidae до Dogidae. Если вы замените род <i>Canis</i> на род <i>Dogis</i>, он создаст и зафиксирует замену таксонов, чтобы изменить <i>Canis lupus</i> на <i>Dogis lupus</i> и <i>Canis lupus</i> ssp. <i>lupus</i> на <i>Dogis lupus</i> ssp. <i>lupus</i>. Это может привести к изрядному беспорядку, поэтому используйте с осторожностью.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7050,16 +7748,16 @@ ru:
         new_name_guidelines_html: |
           <ul>
           <li><p>Старайтесь добавлять имена, которые используются повсеместно. Пожалуйста, не изобретайте новые имена.</p></li>
-          <li><p>Не добавляйте задвоенные имена, например, не называйте ястребов "ястреб"</p></li>
+          <li><p>Не дублируйте имена, например, не называйте ястребов "ястреб"</p></li>
           <li><p>Для таксонов более высокого уровня старайтесь использовать имена, которые включают всех потомков, например, «цаплевые» или «семейство вересковых»</p></li>
           <li>
           <p>
-          Не добавляйте информацию, которая не является именем, например, информацию о том, как, по вашему мнению, следует использовать имя
+          Не добавляйте информацию, которая не входит в имя, например, информацию о том, как, по вашему мнению, следует использовать имя
           </p>
           </li>
           <li>
           <p>
-          Новые лексиконы должны быть на английском языке. Пожалуйста, не добавляйте переведённые названия языков, такие как "French,  Français", потому что это просто затруднит или сделает невозможным для нас показать локализованные имена для людей, которые используют сайт на разных языках.
+          Новые лексиконы должны быть написаны по-английски. Пожалуйста, не добавляйте переведённые названия языков, такие как "French, Français", потому что это просто затруднит или сделает невозможным для нас отобразить локализованные имена для людей, которые используют сайт на разных языках.
           </p>
           </li>
           <li>
@@ -7151,6 +7849,7 @@ ru:
           <p>
           Если кто-то оскорбляет или преследует вас на %{site_name}, <a href="mailto:%{help_email}">пожалуйста, сообщите нам об этом</a>. Если это представляет собой нарушение наших Условий использования или это другое поведение, которое мы считаем неуместным для нашего сайта, мы проведем расследование.
           </p>
+        common_scientific_name_display_order: Порядок отображения Народное название / Научное название
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Если вы измените ваше мнение, вы всегда сможете <a href='/users/edit'>отредактировать ваши настройки</a>.
         inaturalist_network_affiliation_desc_html: |
@@ -7166,9 +7865,7 @@ ru:
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
         monthly_supporter_desc_html: |
-          Ежемесячные спонсоры iNaturalist делают автоматические ежемесячные взносы, которые получает Калифорнийская академия наук (IRS EIN 94-1156258 США) для поддержки некоммерческой работы сайтов iNaturalist и iNaturalist Network.
-          <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором </a>.
-          Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить этот статус в своем профиле. Примечание: вам нужно будет использовать точно такой же адрес электронной почты на Donorbox, какой вы использовали на iNaturalist, чтобы мы могли подтвердить, что вы стали ежемесячным спонсором.
+          Ежемесячные спонсоры iNaturalist автоматически делают ежемесячные взносы в iNaturalist (Налоговое управление США, EIN 92-1296468) для поддержки некоммерческой деятельности сайтов iNaturalist и сети iNaturalist. <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором</a>. Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить данный статус в своем профиле. Примечание: адреса электронной почты на Donor box и naturalist должны точно совпадать, чтобы мы могли подтвердить, что вы являетесь ежемесячным спонсором. Если они отличаются, измените один из них, чтобы они соответствовали друг другу.
         muting_desc_html: |
           <p>
           Игнорирование кого-либо предотвращает получение вами уведомления о том, что они делают, в том числе о комментировании ваших наблюдений, отправке вам сообщения, упоминании вас и т.д. Эта опция помогает, не мешая при этом ему что-либо делать.
@@ -7234,6 +7931,26 @@ ru:
         same_day_geoprivacy_protection: Защита геоприватности того же дня
         taxon_change_desc: |
           Когда таксоны объединяются или переименовываются на %{site_name}, ваши наблюдения, списки таксонов, идентификации и т.д. будут автоматически обновлены до нового таксона, если изменение однозначно. Если вы откажетесь от изменения или изменение неоднозначно (например, разделение таксона), вы получите уведомление об изменении со ссылкой на инструментарий, который позволит, если вы захотите, вручную обновить ваш контент.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Добавить язык народного названия
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Добавить место (опционально)
+          common_name_lexicon_display_order: Порядок отображения языков народных названий
+          common_name_lexicons: Языки народных названий
+          common_name_lexicons_description: По умолчанию, народные названия отображаются на языке вашей учетной записи. Чтобы просмотреть названия в других словарях или расставить приоритеты в названиях, используемых в определенных местах (например, английский (Австралия) или испанский (Коста-Рика)), добавьте языки общих названий. Одновременно может отображаться не более 3 народных названий. Если для выбранного вами языка не существует общего названия, оно не будет отображаться.
+          for_multiple_common_name_lexicons_drag_and_drop: Если у вас несколько языков для народных названий, разместите их методом drag and drop в нужном порядке
+          same_as_locale: То же, что и локализация
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: То же, что и предпочитаемые язык/локализация пользователя
+          select_a_lexicon: Выбрать язык
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Уже добавлено максимальное число языков для народных названий - 3
         this_only_applies_to_traditional_projects: |
           Это относится только к традиционным проектам. Вы не можете исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисками.
           Вы можете прочитать больше <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">здесь</a>.
@@ -7290,9 +8007,21 @@ ru:
       index:
         connect_with_nature: На связи с природой
         explore_and_share: Просматривайте и делитесь вашими наблюдениями природного мира
-        observations_to_date: 'наблюдений'
-        species_observed: 'Наблюдаемые виды'
-        people_signed_up: 'человек зарегистрировалось'
+        observations_to_date:
+          one: "Наблюдение на сегодня"
+          few: "Наблюдений на сегодня"
+          many: "Наблюдений на сегодня"
+          other: "Наблюдений на сегодня"
+        species_observed:
+          one: "Наблюдаемый вид"
+          few: "Наблюдаемые виды"
+          many: "Наблюдаемые виды"
+          other: "Наблюдаемые виды"
+        people_signed_up:
+          one: "Зарегистрированный пользователь"
+          few: "Зарегистрированных пользователей"
+          many: "Зарегистрированных пользователей"
+          other: "Зарегистрированных пользователей"
         how_it_works: 'Как это работает:'
         record_your_observations: Зарегистрируйте ваши наблюдения
         share_with_fellow_naturalists: Поделитесь с другими
@@ -7314,7 +8043,7 @@ ru:
         build_your_knowledge: Выстраивайте свои знания, общаясь с другими натуралистами и помогая другим.
         run_a_bioblitz: Начните биоблиц
         hold_an_event: Проведите мероприятие, в котором люди пытаются найти как можно больше видов.
-        works_on_all_your_devices: Работает на всех ваших устройствах
+        works_on_all_your_devices: Работает на всех устройствах
         install_our_mobile_apps: |
           Установите наши мобильные приложения, чтобы вы всегда могли делать наблюдения, даже без наличия сотовой связи или Wi-Fi.
         who_uses_site_name: "Кто использует %{site_name}?"
@@ -7363,20 +8092,20 @@ ru:
       6: Пт
       7: Сб
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%Y-%m-%d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%B %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%b %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%b %d, %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d %B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%d %b'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%e.%m"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%d %b %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      month_day_year: '%B %d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%d %B %Y'
     month_names:
       - 
       - Январь
@@ -7450,25 +8179,25 @@ ru:
         many: '%{count} секунд'
         other: '%{count} секунд'
     countdown_x_days:
-      one: день
-      few: дня
-      many: дней
-      other: дней
+      one: ДЕНЬ
+      few: ДНЯ
+      many: ДНЕЙ
+      other: ДНЕЙ
     countdown_x_hours:
-      one: час
-      few: часа
-      many: часов
-      other: часов
+      one: ЧАС
+      few: ЧАСА
+      many: ЧАСОВ
+      other: ЧАСОВ
     countdown_x_minutes:
-      one: мин
-      few: мин
-      many: мин
-      other: мин
+      one: МИН
+      few: МИН
+      many: МИН
+      other: МИН
     countdown_x_seconds:
-      one: сек
-      few: сек
-      many: сек
-      other: сек
+      one: СЕК
+      few: СЕК
+      many: СЕК
+      other: СЕК
     prompts:
       day: День
       hour: Час
@@ -7476,54 +8205,6 @@ ru:
       month: Месяц
       second: Секунды
       year: Год
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: должно быть принято
-      blank: не может быть пустым
-      confirmation: не соответствует паролю
-      empty: не может быть пустым
-      equal_to: должно быть равно %{count}
-      even: должно быть чётным
-      exclusion: зарезервировано
-      greater_than: должно быть больше %{count}
-      greater_than_or_equal_to: должно быть больше или равно %{count}
-      inclusion: не включён в список
-      invalid: недопустимо
-      less_than: должно быть меньше %{count}
-      less_than_or_equal_to: должно быть меньше или равно %{count}
-      new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
-      not_a_number: не является числом
-      not_an_integer: должно быть целым
-      odd: должно быть нечётным
-      only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
-      record_invalid: 'Ошибка проверки: %{errors}'
-      requires_privilege_speech: |
-        для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
-      requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
-      taken: уже было принято
-      too_long:
-        one: слишком длинное (максимум %{count} символ)
-        few: слишком длинное (максимум %{count} символа)
-        many: слишком длинное (максимум %{count} символов)
-        other: слишком длинное (максимум %{count} символов)
-      too_short:
-        one: слишком короткое (минимум %{count} символ)
-        few: слишком короткое (минимум %{count} символа)
-        many: слишком короткое (минимум %{count} символов)
-        other: слишком короткое (минимум %{count} символов)
-      wrong_length:
-        one: неверная длина (необходим %{count} символ)
-        few: неверная длина (необходимо %{count} символа)
-        many: неверная длина (необходимо %{count} символов)
-        other: неверная длина (необходимо %{count} символов)
-    template:
-      body: 'Возникли некоторые проблемы со следующими полями:'
-      header:
-        one: "%{count} ошибка препятствует сохранению этого %{model}"
-        few: '%{count} ошибки препятствуют сохранению этого %{model}'
-        many: '%{count} ошибок препятствуют сохранению этого %{model}'
-        other: '%{count} ошибок препятствуют сохранению этого %{model}'
   helpers:
     defaults:
       title: "ЭТО ЗАГОЛОВОК"
@@ -7588,72 +8269,21 @@ ru:
   time:
     am: утра
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      default: '%d %b %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d %B %Y %I%M%p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%d %b % %y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%d %B %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %d %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d. %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%d %B %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%H:%M"
     pm: вечера
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: должно быть принято
-        blank: не может быть пустым
-        confirmation: не соответствует паролю
-        empty: не может быть пустым
-        equal_to: должно быть равно %{count}
-        even: должно быть чётным
-        exclusion: зарезервировано
-        greater_than: должно быть больше %{count}
-        greater_than_or_equal_to: должно быть больше или равно %{count}
-        inclusion: не включён в список
-        invalid: недопустимо
-        less_than: должно быть меньше %{count}
-        less_than_or_equal_to: должно быть меньше или равно %{count}
-        new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
-        not_a_number: не является числом
-        not_an_integer: должно быть целым
-        odd: должно быть нечётным
-        only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
-        record_invalid: 'Ошибка проверки: %{errors}'
-        requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
-        requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
-        taken: уже было принято
-        too_long:
-          one: слишком длинное (максимум %{count} символ)
-          few: слишком длинное (максимум %{count} символа)
-          many: слишком длинное (максимум %{count} символов)
-          other: слишком длинное (максимум %{count} символов)
-        too_short:
-          one: слишком короткое (минимум %{count} символ)
-          few: слишком короткое (минимум %{count} символа)
-          many: слишком короткое (минимум %{count} символов)
-          other: слишком короткое (минимум %{count} символов)
-        wrong_length:
-          one: неверная длина (необходим %{count} символ)
-          few: неверная длина (необходимо %{count} символа)
-          many: неверная длина (необходимо %{count} символов)
-          other: неверная длина (необходимо %{count} символов)
-      template:
-        body: 'Возникли некоторые проблемы со следующими полями:'
-        header:
-          one: '%{count} ошибка препятствует сохранению этой %{model}'
-          few: '%{count} ошибки препятствуют сохранению этой %{model}'
-          many: '%{count} ошибок препятствуют сохранению этой %{model}'
-          other: '%{count} ошибок препятствуют сохранению этой %{model}'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7662,9 +8292,11 @@ ru:
       AssessmentSection: Раздел оценки
       Atlas: Атлас
       BlockedUser: Заблокированный пользователь
+      Comment: Комментарий
       CompleteSet: Полный набор
       #Noun
       Flag: Флаг
+      Identification: Идентификация
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7676,6 +8308,8 @@ ru:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Приложение
+      Photo: Фото
+      Post: Сообщение в журнале
       TaxonLink: Ссылка на таксон
     attributes:
       announcement:
@@ -7684,6 +8318,13 @@ ru:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID сайта
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Целевой персонал (для тестирования)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Предназначено пользователям, которые не подтвердили свой е-мейл
+        prefers_exclude_monthly_supporters: Исключая ежемесячных спонсоров
+        clients: Клиенты
       assessment:
         description: Описание
       assessment_section:
@@ -7838,6 +8479,7 @@ ru:
         position: Расположение
         source_url: URL источника
         source_identifier: Идентификатор источника
+        audit_comment: Примечание
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -7869,22 +8511,43 @@ ru:
         blank: не может быть пустым
         confirmation: не соответствует паролю
         empty: не может быть пустым
-        equal_to: должно быть равно %{count}
+        equal_to:
+          one: должен быть равен %{count}
+          few: должно быть равно %{count}
+          many: должно быть равно %{count}
+          other: должно быть равно %{count}
         even: должно быть чётным
         exclusion: зарезервировано
-        greater_than: должно быть больше %{count}
-        greater_than_or_equal_to: должно быть больше или равно %{count}
+        greater_than:
+          one: должен быть больше %{count}
+          few: должно быть больше %{count}
+          many: должно быть больше %{count}
+          other: должно быть больше %{count}
+        greater_than_or_equal_to:
+          one: должен быть не меньше %{count}
+          few: должно быть не меньше %{count}
+          many: должно быть не меньше %{count}
+          other: должно быть не меньше %{count}
         inclusion: не включён в список
         invalid: неверно
-        less_than: должно быть меньше %{count}
-        less_than_or_equal_to: должно быть меньше или равно %{count}
+        less_than:
+          one: должен быть меньше %{count}
+          few: должно быть меньше %{count}
+          many: должно быть меньше %{count}
+          other: должно быть меньше %{count}
+        less_than_or_equal_to:
+          one: должен быть не больше %{count}
+          few: должны быть не больше %{count}
+          many: должны быть не больше %{count}
+          other: должны быть не больше %{count}
         new_project_owner_must_be_a_manager: Владелец нового проекта должен быть администратором
         not_a_number: не является числом
         not_an_integer: должно быть целым
         odd: должно быть нечетным
         only_project_owner_can_change_project_owner: Только владелец проекта может поменять владельца проекта
         record_invalid: 'Ошибка проверки: %{errors}'
-        requires_privilege_speech: для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
+        requires_privilege_speech: |
+          для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
         taken: уже было принято
         too_long:
@@ -7905,11 +8568,28 @@ ru:
       template:
         body: 'Возникли проблемы со следующими полями:'
         header:
-          one: '%{count} ошибка препятствует сохранению этой %{model}'
+          one: "%{count} ошибка препятствует сохранению этой %{model}"
           few: '%{count} ошибки препятствуют сохранению этой %{model}'
           many: '%{count} ошибок препятствуют сохранению этой %{model}'
           other: '%{count} ошибок препятствуют сохранению этой %{model}'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this text, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: должно быть действительным для указанного места размещения
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: должно быть действительным для указанной целевой группы
         application:
           attributes:
             redirect_uri:
@@ -7944,15 +8624,14 @@ ru:
             action:
               not_supported_for_this_kind_of_content: не поддерживается для контента данного типа
             base:
-              only_staff_can_unhide: Только сотрудники могут сделать видимым скрытый контент
+              only_staff_and_hiding_curators_can_unhide: Только сотрудники и кураторы, которые блокируют контент, могут его разблокировать
               staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
             user_id:
               must_be_a_curator: должен быть куратором
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Импорт ключей API или их ожидание в очереди на импорт"
-              api_key_missing: "Отсутствует ключ API Наблюдателя Грибов"
+            user:
+              must_be_a_curator: должен быть куратором
         observation:
           attributes:
             base:
@@ -7986,13 +8665,17 @@ ru:
               is_too_large_to_edit: слишком большой для редактирования
               is_too_large_to_import: слишком большой для импорта
               contains_too_many_observations: содержит слишком много наблюдений для импорта
+              cannot_be_blank: не может быть пустым
+              invalid_point: содержит недопустимую точку, например, долгота больше 180 или широта меньше -90
+              must_have_more_than_three_points: должно содержаться не менее 3 значений
+              polygon_with_less_than_four_points: содержит многоугольник с количеством точек менее 4
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: не может быть пустым
               invalid_point: содержит неверную точку, например долгота больше 180 или широта меньше -90
               must_have_more_than_three_points: должен содержать не менее 3 точек
-              polygon_with_fewer_than_four_points: содержит многоугольник с количеством точек менее 4
+              polygon_with_less_than_four_points: содержит многоугольник с количеством точек менее 4
         post:
           attributes:
             parent:
@@ -8062,6 +8745,8 @@ ru:
                 должно совпадать с названием таксона, если это действующее научное название
               bad_format: |
                 может содержать только стандартные латинские символы, дефисы, пробелы и ×; обратите внимание, что предполагаемые таксоны и сорта не допускаются
+            audit_comment:
+              needs_to_be_at_least_10_characters: Должно содержать не менее 10 символов
         taxon_photo:
           attributes:
             taxon:
@@ -8085,8 +8770,8 @@ ru:
           attributes:
             base:
               user_already_blocked: Вы уже заблокировали этого пользователя
-              user_cannot_be_staff: |
-                Вы не можете блокировать персонал. Персонал iNat должен иметь возможность общаться со всеми на iNat, иметь доступ ко всем данным на iNat и быть окончательным посредником в спорах, так, чтобы блокировка не помешала ему общаться с вами. Если у вас возникли проблемы с сотрудником, пожалуйста, сообщите об этом одному из содиректоров iNat, или, если у вас возникли проблемы с одним из содиректоров, вы можете связаться с научным руководителем Института биоразнообразия и устойчивого развития науки Калифорнийской академии наук.
+              user_cannot_be_staff2: |
+                Вы не можете заблокировать сотрудников iNat. Сотрудники должны иметь возможность общаться со всеми в iNat, иметь доступ ко всем данным в iNat и быть конечными посредниками в спорах, так чтобы блокировка не мешала им общаться с вами.
         user_parent:
           attributes:
             email:
@@ -8259,6 +8944,20 @@ ru:
         variety: "@n"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Животные
+        Actinopterygii: Лучепёрые рыбы
+        Aves: Птицы
+        Reptilia: Пресмыкающиеся
+        Amphibia: Земноводные
+        Mammalia: Млекопитающие
+        Arachnida: Паукообразные
+        Insecta: Насекомые
+        Plantae: Растения
+        Fungi: Грибы
+        Protozoa: Простейшие
+        Mollusca: Моллюски
+        Chromista: Хромисты
   #Title of a section warning the user about something
   warning_title: Предупреждение
   wikimedia: Викимедиа

@@ -60,7 +60,7 @@ class TaxonPageTabs extends React.Component {
     const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
     let curationTab;
     const flagsCount = taxon.flag_counts
-      ? parseInt( taxon.flag_counts.resolved, 0 ) + parseInt( taxon.flag_counts.unresolved, 0 )
+      ? parseInt( taxon.flag_counts.resolved, 10 ) + parseInt( taxon.flag_counts.unresolved, 10 )
       : 0;
     if ( currentUser && currentUser.id ) {
       const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
@@ -258,7 +258,7 @@ class TaxonPageTabs extends React.Component {
             </LazyLoad>
             <LazyLoad
               debounce={false}
-              height={120}
+              minHeight={120}
               offset={100}
             >
               <RecentObservationsContainer />
@@ -298,6 +298,8 @@ class TaxonPageTabs extends React.Component {
             id="status-tab"
           >
             <StatusTab
+              currentUser={currentUser}
+              taxon={taxon}
               statuses={taxon.conservationStatuses}
               listedTaxaCount={taxon.listed_taxa_count}
               listedTaxa={_.filter( taxon.listed_taxa, lt => lt.establishment_means )}

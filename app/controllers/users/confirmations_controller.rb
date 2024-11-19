@@ -15,6 +15,9 @@ module Users
 
     skip_before_action :verify_authenticity_token
 
+    # You should never automatically return to the confirmation views
+    before_action :return_here, only: []
+
     before_action do
       # If the user is already confirmed and they're not clicking a
       # confirmation link to confirm a change to their email address, don't
@@ -22,6 +25,14 @@ module Users
       if current_user&.confirmed? && !current_user.unconfirmed_email?
         set_flash_message :notice, :confirmed if is_navigational_format?
         redirect_to dashboard_path
+      end
+    end
+
+    def after_confirmation_path_for( resource_name, _resource )
+      if signed_in?( resource_name )
+        home_path( confirmed: true )
+      else
+        new_session_path( resource_name, confirmed: true )
       end
     end
   end

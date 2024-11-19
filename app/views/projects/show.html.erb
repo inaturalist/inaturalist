@@ -10,9 +10,6 @@
     <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
-  <% unless @fb_admin_ids.blank? -%>
-    <meta property="fb:admins" content="<%= @fb_admin_ids.join(',') %>"/>
-  <% end -%>
   <% unless @project.description.blank? -%>
     <% og_description = truncate(strip_tags(@project.description).gsub(/\s+/, ' '), :length => 1000) %>
   <% end -%>

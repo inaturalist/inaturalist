@@ -1,12 +1,19 @@
 @import "../shared/split_taxon";
 
 @font-face {
-  font-family: Whitney;
-  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
+  font-family: Lato;
+  src: url("fonts/Lato/Lato-Regular.eot"); /* IE9 Compat Modes */
+  src: url("fonts/Lato/Lato-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+       url("fonts/Lato/Lato-Regular.woff2") format("woff2"), /* Modern Browsers */
+       url("fonts/Lato/Lato-Regular.woff") format("woff"), /* Modern Browsers */
+       url("fonts/Lato/Lato-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 
 a {

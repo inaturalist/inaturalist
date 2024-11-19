@@ -90,7 +90,7 @@
     .col-xs-12
       - if @results.blank?
         .upstacked.text-center.text-muted
-          %p=t :no_results
+          %p=t :no_results_found
       - else
         - for record in @results
           - matched_terms = @results_matched_terms["#{record.class.name}-#{record.id}"]

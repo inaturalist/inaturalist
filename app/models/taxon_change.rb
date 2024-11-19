@@ -211,14 +211,15 @@ class TaxonChange < ApplicationRecord
     update_attribute(:committed_on, Time.now)
   end
 
-  # For all records with a taxon association affected by this change, update the record if 
-  # possible / desired by its owner, or generate an update for the owner notifying them of 
+  # For all records with a taxon association affected by this change, update the record if
+  # possible / desired by its owner, or generate an update for the owner notifying them of
   # the change
   def commit_records( options = {} )
     # unless draft?
     if CONFIG.content_freeze_enabled
       raise I18n.t( "cannot_be_changed_during_a_content_freeze" )
     end
+
     unless valid?
       msg = "Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
       # Rails.logger.error "[ERROR #{Time.now}] #{msg}"
@@ -229,52 +230,104 @@ class TaxonChange < ApplicationRecord
       # return
       raise "Failed to commit records for #{self}: no input taxa"
     end
+
     Rails.logger.info "[INFO #{Time.now}] #{self}: starting commit_records"
     notified_user_ids = []
     associations_to_update = %w(identifications observations listed_taxa taxon_links observation_field_values)
-    has_many_reflections = associations_to_update.map do |a| 
-      Taxon.reflections.detect{|k,v| k.to_s == a}
+    has_many_reflections = associations_to_update.map do | a |
+      Taxon.reflections.detect {| k, _v | k.to_s == a }
     end
-    has_many_reflections.each do |k, reflection|
+    has_many_reflections.each do | k, reflection |
       Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
-      find_batched_records_of( reflection ) do |batch|
-        auto_updatable_records = []
-        batch_users_to_notify = []
-        Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, batch starting with #{batch[0]}" if options[:debug]
-        batch.each do |record|
-          record_has_user = record.respond_to?(:user) && record.user
-          if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-            batch_users_to_notify << record.user.id
-            notified_user_ids << record.user.id
+      try_and_try_again(
+        [
+          ActiveRecord::RecordNotUnique,
+          PG::UniqueViolation,
+          NoMethodError
+        ], sleep: 1, tries: 10
+      ) do
+        find_batched_records_of( reflection ) do | batch |
+          auto_updatable_records = []
+          batch_users_to_notify = []
+          if options[:debug]
+            Rails.logger.info(
+              "[INFO #{Time.now}] #{self}: committing #{k}, batch starting with #{batch[0]}"
+            )
           end
-          if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
-            auto_updatable_records << record
+          batch.each do | record |
+            record_has_user = record.respond_to?( :user ) && record.user
+            if !options[:skip_updates] && record_has_user && !notified_user_ids.include?( record.user.id )
+              batch_users_to_notify << record.user.id
+              notified_user_ids << record.user.id
+            end
+            if automatable? && ( !record_has_user || record.user.prefers_automatic_taxonomic_changes? )
+              auto_updatable_records << record
+            end
           end
-        end
-        Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
-        unless auto_updatable_records.blank?
-          update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
-        end
-        if !batch_users_to_notify.empty?
+          if options[:debug]
+            Rails.logger.info(
+              "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records"
+            )
+          end
+          unless auto_updatable_records.blank?
+            update_records_of_class( reflection.klass, options.merge( records: auto_updatable_records ) )
+          end
+          next if batch_users_to_notify.empty?
+
           action_attrs = {
             resource: self,
             notifier: self,
             notification: "committed"
           }
-          if action = UpdateAction.first_with_attributes(action_attrs)
-            action.append_subscribers( batch_users_to_notify.uniq )
-          end
+          action = UpdateAction.first_with_attributes( action_attrs )
+          action&.append_subscribers( batch_users_to_notify.uniq )
         end
       end
     end
-    [input_taxa, output_taxa].flatten.compact.each do |taxon|
+    update_counts
+    ensure_community_taxa_and_identification_categories_set_correctly
+    update_counts
+    Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
+  end
+
+  def ensure_community_taxa_and_identification_categories_set_correctly
+    affected_taxon_ids = [input_taxa, output_taxa].flatten.compact.map( &:id )
+    Observation.where( taxon_id: affected_taxon_ids ).
+      includes( {
+        identifications: [
+          :taxon, :moderator_actions, :stored_preferences
+        ],
+        user: [:stored_preferences]
+      } ).
+      find_in_batches_in_subsets( batch_size: 100 ) do | batch |
+      batch.each do | observation |
+        observation.set_community_taxon
+        if observation.changed?
+          observation.skip_indexing = true
+          observation.save!
+        end
+        Identification.update_categories_for_observation(
+          observation,
+          skip_reload: true,
+          skip_indexing: true
+        )
+      end
+      Observation.elastic_index!( ids: batch.map( &:id ) )
+      Identification.elastic_index!(
+        ids: Identification.where( observation_id: batch.map( &:id ) ).pluck( :id )
+      )
+    end
+  end
+
+  def update_counts
+    [input_taxa, output_taxa].flatten.compact.each do | taxon |
       Rails.logger.info "[INFO #{Time.now}] #{self}: updating counts for #{taxon}"
-      Taxon.where(id: taxon.id).update_all(
-        observations_count: Observation.of(taxon).count,
-        listed_taxa_count: ListedTaxon.where(taxon_id: taxon).count)
+      Taxon.where( id: taxon.id ).update_all(
+        observations_count: Observation.of( taxon ).count,
+        listed_taxa_count: ListedTaxon.where( taxon_id: taxon ).count
+      )
       taxon.elastic_index!
     end
-    Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
   end
 
   def find_batched_records_of( reflection )
@@ -301,7 +354,8 @@ class TaxonChange < ApplicationRecord
     #     page += 1
     #   end
     elsif reflection.klass == Identification
-      Identification.where( taxon_id: input_taxon_ids, current: true ).find_in_batches do |batch|
+      Identification.where( taxon_id: input_taxon_ids, current: true ).
+        find_in_batches_in_subsets do |batch|
         yield batch
       end
     elsif reflection.klass == ObservationFieldValue
@@ -315,7 +369,7 @@ class TaxonChange < ApplicationRecord
       scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids )
       # sometimes reflections have custom scopes that need to be applied
       scope = scope.merge( reflection.scope ) if reflection.scope
-      scope.find_in_batches do |batch|
+      scope.find_in_batches_in_subsets do |batch|
         yield batch
       end
     end
@@ -476,7 +530,7 @@ class TaxonChange < ApplicationRecord
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
           source: source,
-          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}",
+          description: "Automatically generated change from #{UrlHelper.taxon_change_url( self )}",
           move_children: true
         )
         tc.add_input_taxon( child )

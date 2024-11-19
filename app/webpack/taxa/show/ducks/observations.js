@@ -116,10 +116,6 @@ export function fetchMonthFrequencyResearchGrade( ) {
 
 export function fetchMonthFrequency( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    if ( !_.isEmpty( state.observations.monthFrequency ) ) {
-      return;
-    }
     const promises = [
       dispatch( fetchMonthFrequencyVerifiable( ) ),
       dispatch( fetchMonthFrequencyResearchGrade( ) )
@@ -201,14 +197,10 @@ export function setObservationsCount( count ) {
 
 export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    const { testingApiV2 } = state.config;
     const params = {
       ...defaultObservationParams( getState( ) ),
-      return_bounds: true
-    };
-    if ( testingApiV2 ) {
-      params.fields = {
+      return_bounds: true,
+      fields: {
         id: true,
         observed_on: true,
         photos: {
@@ -232,8 +224,8 @@ export function fetchRecentObservations( ) {
           login: true,
           name: true
         }
-      };
-    }
+      }
+    };
     return inatjs.observations.search( params ).then( response => {
       dispatch( setRecentObservations( response.results ) );
       dispatch( setObservationsCount( response.total_results ) );
@@ -251,17 +243,13 @@ export function setLastObservation( observation ) {
 
 export function fetchLastObservation( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    const { testingApiV2 } = state.config;
     const params = {
       ...defaultObservationParams( getState( ) ),
       order_by: "observed_on",
       order: "desc",
       per_page: 1,
-      skip_total_hits: true
-    };
-    if ( testingApiV2 ) {
-      params.fields = {
+      no_total_hits: true,
+      fields: {
         id: true,
         observed_on: true,
         photos: {
@@ -270,8 +258,8 @@ export function fetchLastObservation( ) {
           url: true,
           license_code: true
         }
-      };
-    }
+      }
+    };
     return ( inatjs.observations.search( params ).then( response => {
       dispatch( setLastObservation( response.results[0] ) );
     } ) );
@@ -281,6 +269,6 @@ export function fetchLastObservation( ) {
 export function openObservationsSearch( params ) {
   return ( dispatch, getState ) => {
     const searchParams = Object.assign( { }, defaultObservationParams( getState( ) ), params );
-    window.open( `/observations?${stringify( searchParams )}`, "_blank" );
+    window.open( `/observations?${stringify( searchParams )}`, "_blank", "noopener,noreferrer" );
   };
 }

@@ -6,6 +6,7 @@ import DonateNeedsSupport from "./donate_needs_support";
 import DonateThanks from "./donate_thanks";
 import Sites from "./sites";
 import StoreContent2021 from "./store_content_2021";
+import MonthlySupporters from "./monthly_supporters";
 
 const DonateContent2022 = ( {
   defaultSiteId,
@@ -37,6 +38,13 @@ const DonateContent2022 = ( {
       <Row>
         <Col xs={12}>
           <DonateThanks />
+        </Col>
+      </Row>
+    </Grid>
+    <Grid fluid={isTouchDevice}>
+      <Row>
+        <Col xs={12}>
+          <MonthlySupporters data={YEAR_DATA.budget.monthly_supporters} />
         </Col>
       </Row>
     </Grid>

@@ -1,6 +1,13 @@
 import { connect } from "react-redux";
 import LeaderItem from "../components/leader_item";
 
+function dateFormat( observation ) {
+  if ( observation.obscured || observation.private_geojson ) {
+    return "date.formats.month_year";
+  }
+  return "date.formats.month_day_year";
+}
+
 function mapStateToProps( state ) {
   const { last } = state.observations;
   const props = {
@@ -16,9 +23,10 @@ function mapStateToProps( state ) {
   if ( !last ) {
     return props;
   }
+
   return Object.assign( props, {
     noContent: false,
-    name: I18n.localize( "date.formats.month_day_year", last.observed_on ),
+    name: I18n.localize( dateFormat( last ), last.observed_on ),
     imageUrl: last.photos[0] ? last.photos[0].photoUrl( "square" ) : null,
     linkUrl: `/observations/${last.id}`,
     linkText: I18n.t( "view_observation" ),

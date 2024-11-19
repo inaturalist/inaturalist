@@ -69,4 +69,45 @@ class LocalSound < Sound
       end
     end
   end
+
+  def s3_client
+    return unless CONFIG.usingS3
+    s3_credentials = LocalSound.new.file.s3_credentials
+    ::Aws::S3::Client.new(
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: CONFIG.s3_region
+    )
+  end
+
+  def presigned_url
+    return unless CONFIG.usingS3
+    s3_credentials = LocalSound.new.file.s3_credentials
+    signer = Aws::Sigv4::Signer.new(
+      service: "s3",
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: CONFIG.s3_region
+    )
+    signer.presign_url(
+      http_method: "GET",
+      url: "https://s3.amazonaws.com/#{CONFIG.s3_bucket}/#{file.path}",
+      expires_in: 60,
+      body_digest: "UNSIGNED-PAYLOAD"
+    )
+  end
+
+  def set_acl
+    return unless CONFIG.usingS3
+    return unless file && file.path
+    acl = hidden? ? "private" : "public-read"
+    s3_client.put_object_acl( bucket: CONFIG.s3_bucket, key: file.path, acl: acl )
+    if acl === "private"
+      LocalSound.delay(
+        priority: INTEGRITY_PRIORITY,
+        unique_hash: { "LocalSound::invalidate_cloudfront_cache_for": id }
+      ).invalidate_cloudfront_cache_for( id, :file, "sounds/:id.*" )
+    end
+  end
+
 end

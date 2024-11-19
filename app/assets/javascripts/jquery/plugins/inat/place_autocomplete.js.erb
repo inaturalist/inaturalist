@@ -21,7 +21,7 @@ $.fn.placeAutocomplete = function ( opts ) {
     extraClass: "place",
     source: function ( request, response ) {
       $.ajax( {
-        url: "<%= CONFIG.node_api_url %>/search",
+        url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/search",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "placeAutocompleteCallback",

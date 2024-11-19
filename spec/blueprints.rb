@@ -1,16 +1,20 @@
-require 'machinist/active_record'
-require 'faker'
+# frozen_string_literal: true
+
+require "machinist/active_record"
+require "faker"
 
 Announcement.blueprint do
   start { 1.day.ago }
-  send(:end) { 1.day.from_now }
+  send( :end ) { 1.day.from_now }
   body { Faker::Lorem.sentence }
   placement { "users/dashboard#sidebar" }
 end
+
 Annotation.blueprint do
-  controlled_attribute { ControlledTerm.make! }
-  controlled_value { ControlledTerm.make! }
+  controlled_attribute { make_controlled_term_with_label }
+  controlled_value { make_controlled_value_with_label( nil, controlled_attribute ) }
   resource { Observation.make! }
+  user { User.make! }
 end
 
 ApiEndpoint.blueprint do
@@ -77,13 +81,13 @@ ControlledTermLabel.blueprint do
 end
 
 ControlledTermTaxon.blueprint do
-  controlled_term { ControlledTerm.make! }
+  controlled_term { make_controlled_term_with_label }
   taxon { Taxon.make! }
 end
 
 ControlledTermValue.blueprint do
-  controlled_attribute { ControlledTerm.make! }
-  controlled_value { ControlledTerm.make!(is_value: true) }
+  controlled_attribute { make_controlled_term_with_label }
+  controlled_value { ControlledTerm.make( is_value: true ) }
 end
 
 DataPartner.blueprint do
@@ -197,6 +201,13 @@ LocalPhoto.blueprint do
   }
 end
 
+LocalSound.blueprint do
+  user { User.make }
+  file_content_type { "audio/mp4" }
+  file_file_name    { "foo.m4a" }
+  file_updated_at   { Time.now }
+end
+
 Message.blueprint do
   from_user { User.make! }
   to_user { User.make! }
@@ -215,10 +226,6 @@ ModeratorNote.blueprint do
   user { make_curator }
   body { Faker::Lorem.paragraph }
   subject_user { User.make! }
-end
-
-MushroomObserverImportFlowTask.blueprint do
-  user { User.make! }
 end
 
 OauthApplication.blueprint do
@@ -244,6 +251,11 @@ ObservationFieldValue.blueprint do
   observation { Observation.make! }
   observation_field { ObservationField.make! }
   value {"foo"}
+end
+
+ObservationGeoScore.blueprint do
+  observation { Observation.make! }
+  geo_score { rand( 0.9 ) }
 end
 
 ObservationPhoto.blueprint do
@@ -274,11 +286,6 @@ FlickrPhoto.blueprint do
   native_photo_id { rand(1000) }
 end
 
-FacebookPhoto.blueprint do
-  user { User.make! }
-  native_photo_id { rand(1000) }
-end
-
 PicasaPhoto.blueprint do
   user { User.make! }
   native_photo_id { rand(1000) }
@@ -292,6 +299,11 @@ Place.blueprint do
   name { Faker::Lorem.sentence }
   latitude { rand(90) }
   longitude { rand(180) }
+end
+
+PlacesSite.blueprint do
+  place { make_place_with_geom }
+  site { Site.make! }
 end
 
 PlaceTaxonName.blueprint do
@@ -462,6 +474,10 @@ TaxonLink.blueprint do
   site_title { Faker::Lorem.sentence }
 end
 
+TaxonNamePriority.blueprint do
+  user { User.make! }
+end
+
 TaxonPhoto.blueprint do
   taxon { Taxon.make! }
   photo { Photo.make }
@@ -555,6 +571,11 @@ end
 UserBlock.blueprint do
   user { User.make! }
   blocked_user { User.make! }
+end
+
+UserDonation.blueprint do
+  user { User.make! }
+  donated_at { Time.now }
 end
 
 UserMute.blueprint do

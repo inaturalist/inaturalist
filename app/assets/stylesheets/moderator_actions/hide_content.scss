@@ -1,0 +1,17 @@
+body {
+  min-width: 980px;
+}
+#moderator_action_reason {
+  min-height: 100px;
+}
+input[type=submit] {
+  margin-top: 15px;
+}
+img.item-to-hide {
+  margin: 0px auto;
+  display: block;
+  max-height: 300px;
+}
+span.content-hidden {
+  cursor: pointer;
+}

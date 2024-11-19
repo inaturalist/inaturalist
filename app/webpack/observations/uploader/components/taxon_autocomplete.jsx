@@ -85,7 +85,6 @@ class TaxonAutocomplete extends React.Component {
           <span className="title linky">
             { I18n.t( "search_external_name_providers" ) }
           </span>
-          <span className="subtitle" />
         </div>
       </div>
     );
@@ -108,7 +107,7 @@ class TaxonAutocomplete extends React.Component {
         subtitles.push( I18n.t( "visually_similar" ) );
       }
       if ( r.frequencyScore ) {
-        subtitles.push( I18n.t( "seen_nearby" ) );
+        subtitles.push( I18n.t( "expected_nearby" ) );
       }
       extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
     }
@@ -118,13 +117,15 @@ class TaxonAutocomplete extends React.Component {
           { photo }
         </div>
         <div className="ac-label">
-          <span className="title">{ r.title }</span>
-          <span className="subtitle">{ r.subtitle }</span>
-          { extraSubtitle }
+          <div>
+            <span className="title">{ r.title }</span>
+            <span className="subtitle">{ r.subtitle }</span>
+            { extraSubtitle }
+          </div>
         </div>
         { r.type !== "message" && (
-          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`}>
-            <div className="ac-view">{ I18n.t( "view" ) }</div>
+          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`} className="ac-view">
+            { I18n.t( "view" ) }
           </a>
         ) }
       </div>
@@ -204,10 +205,12 @@ class TaxonAutocomplete extends React.Component {
             const labelInEnglish = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, { locale: "en" } );
             const labelInLocaleFallback = I18n.t( "were_pretty_sure_this_is_in_the_rank", {
               rank: I18n.t( `ranks_lowercase_${snakeCaseRank}`, { defaultValue: item.rank } ),
-              gender: snakeCaseRank
+              gender: snakeCaseRank,
+              iconic_taxon: item.iconic_taxon_name
             } );
             const labelInLocale = I18n.t( `were_pretty_sure_this_is_in_the_${snakeCaseRank}`, {
-              defaultValue: labelInLocaleFallback
+              defaultValue: labelInLocaleFallback,
+              iconic_taxon: item.iconic_taxon_name
             } );
             let label = labelInLocale;
             if ( I18n.locale !== "en" && label === labelInEnglish ) {
@@ -234,14 +237,14 @@ class TaxonAutocomplete extends React.Component {
           .append(
             viewNotNearby
               ? I18n.t( "only_view_nearby_suggestions" )
-              : I18n.t( "include_suggestions_not_seen_nearby" )
+              : I18n.t( "include_suggestions_not_expected_nearby" )
           )
           .click( e => {
             e.preventDefault( );
             const { viewNotNearby: innerViewNotNearby } = getState( );
             $( e.target ).text(
               innerViewNotNearby
-                ? I18n.t( "include_suggestions_not_seen_nearby" )
+                ? I18n.t( "include_suggestions_not_expected_nearby" )
                 : I18n.t( "only_view_nearby_suggestions" )
             );
             setState( { viewNotNearby: !innerViewNotNearby } );
@@ -254,7 +257,8 @@ class TaxonAutocomplete extends React.Component {
         );
       }
     };
-    const opts = Object.assign( { }, this.props, {
+    const opts = {
+      ...this.props,
       extraClass: "taxon",
       idEl: this.idElement( ),
       source: this.source,
@@ -263,8 +267,12 @@ class TaxonAutocomplete extends React.Component {
       // ensure the AC menu scrolls with the input
       appendTo: this.idElement( ).parent( ),
       minLength: 0,
-      renderMenu: renderMenuWithCategories
-    } );
+      renderMenu: renderMenuWithCategories,
+      menuClass: "taxon-autocomplete",
+      position: {
+        collision: "flip none"
+      }
+    };
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
     this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
@@ -407,7 +415,8 @@ class TaxonAutocomplete extends React.Component {
     }
     // show the best name in the search field
     if ( item.id ) {
-      this.inputElement( ).val( item.title || item.name );
+      const displayName = item.title || item.name;
+      this.inputElement( ).val( _.first( displayName.split( " · " ) ) );
     }
     // set the hidden taxon_id
     this.idElement( ).val( item.id );
@@ -446,8 +455,10 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
-      if ( config.testingVision ) {
-        baseParams.geomodel = true;
+      const viewerIsAdmin = config.currentUser && config.currentUser.roles
+        && config.currentUser.roles.indexOf( "admin" ) >= 0;
+      if ( viewerIsAdmin && config.testFeature ) {
+        baseParams.test_feature = config.testFeature;
       }
       if ( visionParams.image ) {
         inaturalistjs.computervision.score_image( Object.assign( baseParams, visionParams ) )
@@ -600,7 +611,14 @@ class TaxonAutocomplete extends React.Component {
       && config.currentUser
       && config.currentUser.prefers_scientific_name_first
     ) ) {
-      name = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
+      if ( !_.isEmpty( result.preferred_common_names ) ) {
+        const names = _.map( result.preferred_common_names, taxonName => (
+          iNatModels.Taxon.titleCaseName( taxonName.name )
+        ) );
+        name = names.join( " · " );
+      } else {
+        name = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
+      }
     }
     return name;
   }
@@ -623,7 +641,14 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( result.title ) {
       if ( scinameFirst ) {
-        result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+        if ( !_.isEmpty( result.preferred_common_names ) ) {
+          const names = _.map( result.preferred_common_names, taxonName => (
+            iNatModels.Taxon.titleCaseName( taxonName.name )
+          ) );
+          result.subtitle = names.join( " · " );
+        } else {
+          result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
+        }
       }
       if ( !result.subtitle && result.name !== result.title ) {
         if ( result.rank_level <= 20 ) {
@@ -662,13 +687,21 @@ class TaxonAutocomplete extends React.Component {
       value,
       onChange,
       placeholder,
-      onKeyDown
+      onKeyDown,
+      inputGroupClass
     } = this.props;
     const smallClass = small ? "input-sm" : "";
+    const inputGroupClasses = ["ac-chooser", "input-group"];
+    if ( small ) {
+      inputGroupClasses.push( "small" );
+    }
+    if ( inputGroupClass ) {
+      inputGroupClasses.push( inputGroupClass );
+    }
     return (
       <div className="form-group TaxonAutocomplete">
         <input type="hidden" name="taxon_id" />
-        <div className={`ac-chooser input-group ${small && "small"}`}>
+        <div className={inputGroupClasses.join( " " )}>
           <div className={`ac-select-thumb input-group-addon ${smallClass}`}>
             <Glyphicon glyph="search" />
           </div>
@@ -715,7 +748,8 @@ TaxonAutocomplete.propTypes = {
   observedByUserID: PropTypes.number,
   perPage: PropTypes.number,
   config: PropTypes.object,
-  onKeyDown: PropTypes.func
+  onKeyDown: PropTypes.func,
+  inputGroupClass: PropTypes.string
 };
 
 export default TaxonAutocomplete;

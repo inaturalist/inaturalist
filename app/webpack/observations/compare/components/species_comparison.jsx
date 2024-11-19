@@ -123,7 +123,7 @@ const SpeciesComparison = ( {
                 className={`value ${totalTaxonCounts[i] && totalTaxonCounts[i] > 500 ? "alert-danger" : ""}`}
                 title={
                   I18n.t( "showing_x_of_y", {
-                    x: parseInt( totalTaxonCounts[i], 0 ) > 500 ? 500 : totalTaxonCounts[i],
+                    x: parseInt( totalTaxonCounts[i], 10 ) > 500 ? 500 : totalTaxonCounts[i],
                     y: totalTaxonCounts[i] || 0
                   } )
                 }

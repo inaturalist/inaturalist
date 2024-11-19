@@ -207,19 +207,9 @@ $( function( ) {
     DASHBOARD.closePanel( this, panelType );
   });
 
-  $( "[data-toggle=popover]" ).popover( );
-
   $( ".dashboard_tab" ).click( function( ) {
      $( ".dashboard_tab" ).removeClass( "active" );
      $( this ).addClass( "active" );
-  });
-
-  $( "html" ).on( "mouseup", function( e ) {
-    if ( !$( e.target ).closest( ".popover" ).length ) {
-      $( ".popover" ).each( function( ) {
-        $( this.previousSibling ).popover( "hide" );
-      });
-    }
   });
 
   $( "#forum-topics" ).on( "show.bs.collapse", function( e ) {
@@ -231,4 +221,26 @@ $( function( ) {
     updateSession( { prefers_forum_topics_on_dashboard: false } );
   } );
 
+  $( "#close_needs_id_pilot_panel" ).on( "click", function( e ) {
+    e.preventDefault( );
+    $( "#needs_id_pilot_panel" ).hide( );
+    updateSession( { prefers_needs_id_pilot: false } );
+  } );
+
+  $( "#participate_button" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_needs_id_pilot: true } );
+    $( "#participate_section" ).hide( );
+    $( "#stop_participating_section" ).show( );
+    $( "#close_needs_id_pilot_panel" ).hide( );
+
+  });
+
+  $( "#stop_participating_link" ).on( "click", function( e ) {
+    e.preventDefault( );
+    updateSession( { prefers_needs_id_pilot: null } );
+    $( "#stop_participating_section" ).hide( );
+    $( "#participate_section" ).show( );
+    $( "#close_needs_id_pilot_panel" ).show( );
+  });
 });

@@ -32,7 +32,7 @@ chdir APP_ROOT do
   puts "\n== Creating Template Database =="
   if system "command -v createdb > /dev/null"
     if USING_DOCKER
-      puts "docker.compose.override.yml exists, assuming you're using Docker and the template db already exists"
+      puts "docker-compose.override.yml exists, assuming you're using Docker and the template db already exists"
     else
       system "createdb template_postgis", exception: true
       system "psql -d template_postgis -c 'create extension postgis'", exception: true
@@ -62,6 +62,8 @@ chdir APP_ROOT do
   system "bundle exec rails r tools/load_sources.rb", exception: true
   puts "\n== Load the basic iconic taxa to get the taxonomy started =="
   system "bundle exec rails r tools/load_iconic_taxa.rb", exception: true
+  puts "\n== Load controlled terms from the API =="
+  system "bundle exec rails r tools/load_production_controlled_terms.rb"
   puts "\n== Generate translation files =="
   system "bundle exec rake inaturalist:generate_translations_js", exception: true
 

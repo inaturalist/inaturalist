@@ -35,9 +35,10 @@ h2{line-height:1;margin:0;float:left;}
 #cover .timespan,
 #projectstats h2,
 #rtstats label {
-  font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
   font-weight: bold;
 }
+
 #cover:before {
   content: '';
   display:block;
@@ -139,7 +140,7 @@ h2{line-height:1;margin:0;float:left;}
 #projectstats .counts .stat a.label {
   color: #4f4f4f;
   font-size: 16px;
-  font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
 #projectstats .counts .stat a.label:after {
   content: " \00BB";
@@ -151,8 +152,9 @@ h2{line-height:1;margin:0;float:left;}
   color: #2d2d2d;
   font-size: 14px;
   font-weight: bold;
-  font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
+  font-family: Lato, "Trebuchet MS", Arial, sans-serif;
 }
+
 #projectstats .image .icon {
   font-size: 48px;
   display: block;

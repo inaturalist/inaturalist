@@ -732,7 +732,12 @@ describe "Observation Index" do
       expect( Observation.params_to_elastic_query({ geoprivacy: "any" }) ).to include(
         filters: [ ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "open" }) ).to include(
-        inverse_filters: [ { exists: { field: :geoprivacy } } ])
+        filters: [ { bool: {
+          should: [
+            { term: { geoprivacy: "open"} },
+            { bool: { must_not: { exists: { field: :geoprivacy } } } }
+          ]
+        }}])
       expect( Observation.params_to_elastic_query({ geoprivacy: "obscured" }) ).to include(
         filters: [ { term: { geoprivacy: "obscured" } } ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "obscured_private" }) ).to include(
@@ -751,6 +756,23 @@ describe "Observation Index" do
         filters: [ { range: { id: { gte: 99 } } } ])
     end
 
+    it "filters by single not_id integer" do
+      expect(
+        Observation.params_to_elastic_query( { not_id: 123 } )
+      ).to include( inverse_filters: [{ terms: { id: [123] } }] )
+    end
+
+    it "filters by single not_id array" do
+      expect(
+        Observation.params_to_elastic_query( { not_id: [123, 456] } )
+      ).to include( inverse_filters: [{ terms: { id: [123, 456] } }] )
+    end
+
+    it "filters by single not_id csv" do
+      expect(
+        Observation.params_to_elastic_query( { not_id: "123,456" } )
+      ).to include( inverse_filters: [{ terms: { id: [123, 456] } }] )
+    end
   end
 
   describe "prepare_batch_for_index" do

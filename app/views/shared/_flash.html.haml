@@ -1,0 +1,14 @@
+- alert_class = type.to_s == "notice" ? "info" : type
+:ruby
+  alert_class = case type.to_s
+  when "notice" then "info"
+  when "alert" then "warning"
+  else
+    type
+  end
+.bootstrap
+  .container.upstacked
+    %div{ class: "upstacked alert alert-#{alert_class}" }
+      - if flash["#{type}_title"]
+        %strong= flash["#{type}_title"]
+      %p.unstacked= flash[type].html_safe

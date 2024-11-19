@@ -40,7 +40,6 @@ const SimilarTab = ( {
               )}
               badgeTip={tip}
               height={190}
-              truncate={20}
               onClick={e => {
                 if ( !showNewTaxon ) return true;
                 if ( e.metaKey || e.ctrlKey ) return true;

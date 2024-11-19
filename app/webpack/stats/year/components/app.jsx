@@ -11,6 +11,7 @@ import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
 import Identifications from "./identifications";
+import BroaderImpacts from "./broader_impacts";
 import Taxa from "./taxa";
 import Publications from "./publications";
 import Growth from "./growth";
@@ -20,6 +21,7 @@ import Donate from "./donate";
 import DonateBanner from "./donate_banner";
 import Donor from "./donor";
 import Translators from "./translators";
+import CodeContributors from "./code_contributors";
 import { isTouchDevice } from "../util";
 
 const App = ( {
@@ -30,7 +32,8 @@ const App = ( {
   sites,
   data,
   rootTaxonID,
-  updatedAt
+  updatedAt,
+  isBotRequest
 } ) => {
   let body;
   const inatUser = user ? new inatjs.User( user ) : null;
@@ -56,7 +59,10 @@ const App = ( {
         </p>
       );
     }
-  } else {
+  } else if ( !isBotRequest ) {
+    // If this is a bot request, the data will not be rendered in page to keep
+    // page size small (all the metadata necessary for rendering previews
+    // will still be added)
     body = (
       <div>
         <Grid fluid={fluid}>
@@ -85,6 +91,11 @@ const App = ( {
                 site={site}
                 currentUser={currentUser}
               />
+              <BroaderImpacts
+                data={data.observations.outlink_counts}
+                user={user}
+                year={year}
+              />
               { data && data.growth && (
                 <Growth
                   data={{ ...data.growth, taxa: data.taxa.accumulation }}
@@ -108,6 +119,20 @@ const App = ( {
                     data={data.translators}
                     siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
                   />
+                )
+              }
+              {
+                // Need data
+                data.pull_requests
+                // Only on global YIR
+                && ( !site || site.id === DEFAULT_SITE_ID )
+                // Hide if header isn't translated
+                && (
+                  I18n.locale.match( /^en/ )
+                  || I18n.t( "code_contributors" ) !== I18n.t( "code_contributors", { locale: "en" } )
+                )
+                && (
+                  <CodeContributors data={data.pull_requests} />
                 )
               }
               {
@@ -385,7 +410,8 @@ App.propTypes = {
   site: PropTypes.object,
   sites: PropTypes.array,
   rootTaxonID: PropTypes.number,
-  updatedAt: PropTypes.object
+  updatedAt: PropTypes.object,
+  isBotRequest: PropTypes.bool
 };
 
 export default App;

@@ -4,7 +4,15 @@ class DeletedPhoto < ApplicationRecord
   scope :still_in_s3, ->{ where(removed_from_s3: false) }
 
   def remove_from_s3( options = { } )
-    return if removed_from_s3
+    return if removed_from_s3?
+    if orphan?
+      return if created_at > 1.month.ago
+    else
+      return if created_at > 6.month.ago
+    end
+    # do not remove from S3 if the DeletedPhoto is still associated to a Photo 
+    # (for example after resurrect)
+    return if photo
     client = options[:s3_client] || LocalPhoto.new.s3_client
     static_bucket = LocalPhoto.s3_bucket( false )
 
@@ -43,6 +51,17 @@ class DeletedPhoto < ApplicationRecord
         update( removed_from_s3: true )
         puts "#{photo_id} has no photos in S3"
       end
+    end
+  end
+
+  def self.remove_from_s3_batch( min_id, max_id )
+    client = LocalPhoto.new.s3_client
+    DeletedPhoto.still_in_s3.
+      where( "id >= ?", min_id ).
+      where( "id < ?", max_id ).
+      includes( :photo ).
+      find_each( batch_size: 1000 ) do |dp|
+      dp.remove_from_s3( s3_client: client )
     end
   end
 

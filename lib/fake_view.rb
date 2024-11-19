@@ -47,29 +47,4 @@ class FakeView
   def respond_to_missing?( method, include_private = false )
     controller.send( :respond_to_missing?, method, include_private ) || controller.helpers.send( :respond_to_missing?, method, include_private )
   end
-
-  # Overriding this so that assets we have chosen not to be used with a digest
-  # don't actually use a digest
-  def asset_path( source, options = {} )
-    if source !~ /^http/ && source =~ /#{NonStupidDigestAssets.whitelist.join( "|" )}/
-      return "/assets/#{source}"
-    end
-
-    super( source, options )
-  end
-
-  def place_geometry_kml_url( options = {} )
-    place = options[:place] || @place
-    return "" if place.blank?
-
-    place_geometry = options[:place_geometry]
-    place_geometry ||= place.place_geometry_without_geom if place.association( :place_geometry_without_geom ).loaded?
-    place_geometry ||= place.place_geometry if place.association( :place_geometry ).loaded?
-    place_geometry ||= PlaceGeometry.without_geom.where( place_id: place ).first
-    if place_geometry.blank?
-      "".html_safe
-    else
-      "#{place_geometry_url( place, format: "kml" )}?#{place_geometry.updated_at.to_i}".html_safe
-    end
-  end
 end

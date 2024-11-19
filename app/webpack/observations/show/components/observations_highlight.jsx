@@ -14,12 +14,11 @@ const ObservationsHighlight = ( {
 } ) => {
   const { testingApiV2 } = config || {};
   const loadObservationCallback = ( e, observation ) => {
-    if ( !e.metaKey ) {
-      e.preventDefault( );
-      showNewObservation( observation, {
-        useInstance: !testingApiV2
-      } );
-    }
+    if ( e.metaKey || e.ctrlKey ) return;
+    e.preventDefault( );
+    showNewObservation( observation, {
+      useInstance: !testingApiV2
+    } );
   };
   const empty = _.isEmpty( observations );
   let content = <span className="none">{ I18n.t( "none_found" ) }</span>;

@@ -2,10 +2,13 @@ module ObservationsHelper
   def observation_image_url(observation, params = {})
     return nil if observation.observation_photos.blank?
     size = params[:size].blank? ? "square" : params[:size]
-    photo = observation.observation_photos.sort_by do |op|
+    first_observation_photo = observation.observation_photos.
+     select{ |op| op.photo && !op.photo.hidden? && !op.photo.flagged? }.
+     sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i
-    end.first.photo
-    url = photo.best_url( size )
+    end.first
+    return nil if !first_observation_photo
+    url = first_observation_photo.photo.best_url( size )
     return nil if !url
     # this assumes you're not using SSL *and* locally hosted attachments for observations
     if params[:ssl] || ( defined?( request ) && request && request.protocol =~ /https/ )
@@ -42,7 +45,10 @@ module ObservationsHelper
   def observation_place_guess(observation, options = {})
     display_lat = observation.latitude
     display_lon = observation.longitude
-    coordinates_viewable = observation.coordinates_viewable_by?( current_user )
+    coordinates_viewable = observation.coordinates_viewable_by?(
+      current_user,
+      ignore_collection_projects: true
+    )
     display_place_guess = coordinates_viewable ? observation.private_place_guess : observation.place_guess
     display_place_guess = observation.place_guess if display_place_guess.blank?
     if !observation.private_latitude.blank? && coordinates_viewable
@@ -50,12 +56,12 @@ module ObservationsHelper
       display_lon = observation.private_longitude
     end
     
-    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank")
-    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank")
-    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank")
+    google_search_link = link_to("Google", "http://maps.google.com/?q=#{observation.place_guess}", :target => "_blank", rel: "noopener noreferrer")
+    google_coords_link = link_to("Google", "http://maps.google.com/?q=#{display_lat},#{display_lon}&z=#{observation.map_scale}", :target => "_blank", rel: "noopener noreferrer")
+    osm_search_link = link_to("OSM", "http://nominatim.openstreetmap.org/search?q=#{observation.place_guess}", :target => "_blank", rel: "noopener noreferrer")
     osm_coords_url = "http://www.openstreetmap.org/?mlat=#{display_lat}&mlon=#{display_lon}"
     osm_coords_url += "&zoom=#{observation.map_scale}" unless observation.map_scale.blank?
-    osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank")
+    osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank", rel: "noopener noreferrer")
     
     if coordinate_truncation = options[:truncate_coordinates]
       coordinate_truncation = 6 unless coordinate_truncation.is_a?(Integer)
@@ -78,7 +84,7 @@ module ObservationsHelper
         observations_path(:lat => observation.latitude, :lng => observation.longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
         
-    elsif !observation.private_latitude.blank? && observation.coordinates_viewable_by?(current_user)
+    elsif !observation.private_latitude.blank? && coordinates_viewable
       link_to("<nobr>#{display_lat}</nobr>, <nobr>#{display_lon}</nobr>".html_safe, 
         observations_path(:lat => observation.private_latitude, :lng => observation.private_longitude)) +
         " (#{google_coords_link}, #{osm_coords_link})".html_safe
@@ -98,29 +104,6 @@ module ObservationsHelper
     end
   end
 
-  def title_for_observation_params(options = {})
-    s = options[:lead] || t(:observation_stats, :default => "Observation stats")
-    s += " #{t :of} #{link_to_taxon @observations_taxon}" if @observations_taxon
-    if @rank
-      s += " #{t :of} #{t "ranks.#{@rank}"}"
-    elsif @hrank
-      s += " #{t :of} #{t "ranks.#{@hrank}"} #{t :or_lower, :default => "or lower"}"
-    elsif @lrank
-      s += " #{t :of} #{t "ranks.#{@lrank}"} #{t :or_higher, :default => "or higher"}"
-    end
-    s += " #{t(:from).downcase} #{link_to @place.display_name, @place}" if @place
-    s += " #{t :by} #{link_to @user.login, @user}" if @user
-    if @observed_on
-      s += " #{@observed_on_day ? t(:on).downcase : t(:in).downcase} #{@observed_on}"
-    elsif @d1 && @d2
-      s += " #{t(:between).downcase} #{@d1} #{t :and} #{@d2}"
-    end
-    if @projects
-      s += " #{ t(:in, default: "in").downcase} #{commas_and(@projects.map{|p| link_to(p.title, p)})}"
-    end
-    s.html_safe
-  end
-  
   def coordinate_system_select_options(options = {})
     return {} unless @site.coordinate_systems
     systems = if options[:skip_lat_lon]

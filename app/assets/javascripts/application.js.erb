@@ -783,12 +783,15 @@ $.fn.centerInContainer = function(options) {
       $(this).css({width: $(this).parents(containerSelector).width(), maxHeight: 'none', position: 'absolute'})
       $(this).css({left: 0, top: '50%', marginTop: '-' + (height / 2) + 'px'})
     } else if (w == 0 && h == 0) {
-      var that = this
+      if ( options.secondAttempt ) {
+        return;
+      }
+      var that = this;
       // hack for ff
-      setTimeout(function() {
-        $(that).centerInContainer(options)
-      }, 500)
-      return
+      setTimeout( function( ) {
+        $( that ).centerInContainer( _.extend( { }, options, { secondAttempt: true } ) )
+      }, 500 );
+      return;
     } else {
       $(this).css({width: $(this).parents(containerSelector).width(), maxWidth: 'none', maxHeight: 'none'})
       $(this).css({left: 0, top: 0, marginTop: '0px'})
@@ -1008,7 +1011,7 @@ function getMessagesCount() {
 function getHeaderCounts() {
   var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
   $.ajax({
-    url: "<%= CONFIG.node_api_url %>/users/notification_counts",
+    url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/notification_counts",
     headers: {
       Authorization: apiToken
     },
@@ -1459,7 +1462,7 @@ $.fn.textcompleteUsers = function( ) {
     index: 1,
     match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
-      $.getJSON( "<%= CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
+      $.getJSON( "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
           callback( $.map( data.results, function( user ) {
             var icon = user.icon || "/attachment_defaults/users/icons/defaults/mini.png";
@@ -1671,7 +1674,7 @@ $.fn.confirmModal = function( options ) {
     var dialogDiv = $( "<div/>" ).addClass( "dialog" );
     // prepare Proceed/Cancel buttons
     var confirm = $( "<input/>" ).addClass( "default button" ).
-      attr({ type: "button", value: I18n.t( "proceed" ) });
+      attr({ type: "button", value: options.confirmText || I18n.t( "proceed" ) });
     var cancel = $( "<input/>" ).addClass( "button" ).
       attr({ type: "button", value: I18n.t( "cancel" ) });
     // prepare Proceed/Cancel actions
@@ -1716,7 +1719,7 @@ $.fn.confirmModal = function( options ) {
     }
     dialogDiv.append( buttonsDiv );
     $( document.body ).append( dialogDiv )
-    dialogDiv.dialog({ modal: true, title: I18n.t( "attention" ),
+    dialogDiv.dialog({ modal: true, title: options.titleText || I18n.t( "attention" ),
       dialogClass: "confirm-modal", minWidth: 450, maxWidth: 600 });
     dialogDiv.centerDialog( );
     // just making sure nothing is highlighted, which looks weird
@@ -1729,6 +1732,27 @@ $(document).ready(function() {
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default');
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
   $('.bootstrap .button').addClass('btn btn-default').removeClass('button');
+
+  // enable popover toggle behavior everywhere
+  $( '[data-toggle="popover"]' ).popover( { html: true } );
+
+  // close bootstrap popovers when clicking outside them and not on the opening toggle
+  $( "html" ).on( "mouseup", function( e ) {
+    if ( !$( e.target ).closest( "[data-toggle]" ).length
+      && !$( e.target ).closest( ".popover" ).length
+    ) {
+      $( ".popover" ).each( function( ) {
+        // hide the popover
+        $( this.previousSibling ).popover( "hide" );
+        // reset the element state so it doesn't take two clicks to reopen
+        if ( $( this.previousSibling ).data( "bs.popover" )
+          && $( this.previousSibling ).data( "bs.popover" ).inState
+          && $( this.previousSibling ).data( "bs.popover" ).inState.click ) {
+          $( this.previousSibling ).data( "bs.popover" ).inState.click = false;
+        }
+      });
+    }
+  });
 })
 if ($ && $.fn && typeof($.fn.button) != 'undefined' && typeof($.fn.button.noConflict) != 'undefined') {
   var bootstrapButton = $.fn.button.noConflict();

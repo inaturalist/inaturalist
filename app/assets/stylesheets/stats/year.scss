@@ -1,5 +1,4 @@
 @import "../colors";
-@import "../c3";
 @import "../users/_user_image";
 @import "../shared/observations_grid_item";
 @import "../shared/loading_spinner";
@@ -87,6 +86,15 @@ $tip-opacity: 1;
   }
 }
 
+@mixin green-links {
+  a {
+    color: $inat-green;
+  }
+  a:hover, a:active, a:focus {
+    color: lighten( $inat-green, 10% );
+  }
+}
+
 #bodywrapper:after {
   height: 0px;
 }
@@ -101,6 +109,15 @@ $tip-opacity: 1;
       &:first-child {
         margin-left: 0px;
       }
+    }
+  }
+
+  .btn-dark {
+    border-color: $dark-gray;
+    background-color: $dark-gray;
+    color: #eee;
+    &:hover, &:focus {
+      color: inherit;
     }
   }
 
@@ -146,7 +163,7 @@ $tip-opacity: 1;
       a:hover {
         opacity: 1;
       }
-      font-weight: 100;
+      font-weight: 400;
     }
     // Bump bootstrap header margins by 10px
     h1,
@@ -181,9 +198,9 @@ $tip-opacity: 1;
       text-align: center;
     }
     .text-muted {
+      color: #ddd;
       strong {
-        color: #eee;
-        font-weight: normal;
+        color: white;
       }
     }
 
@@ -216,13 +233,17 @@ $tip-opacity: 1;
       opacity: 0.5;
     }
 
+    p.text-muted {
+      @include green-links;
+    }
+
     .btn-bordered,
     select {
       background-color: $background-color;
       color: white;
       border: 2px solid darken( $inat-green, 10% );
       border-radius: 100px;
-      font-weight: 100;
+      font-weight: 400;
       i {
         margin-right: 5px;
       }
@@ -248,6 +269,15 @@ $tip-opacity: 1;
         display: flex;
         align-items: center;
         justify-content: center;
+        @media (max-width: 500px) {
+          flex-direction: column;
+          & > .fb-share-button, & > .btn {
+            margin: 0;
+          }
+          & > a.btn {
+            margin-top: 20px;
+          }
+        }
       }
       a {
         i {
@@ -402,6 +432,7 @@ $tip-opacity: 1;
           font-size: 80%;
           margin-top: 0;
           text-transform: uppercase;
+          color: $medium-gray;
 
           a {
             color: $medium-gray;
@@ -504,10 +535,10 @@ $tip-opacity: 1;
         width: 100%;
         position: absolute;
         text-align: center;
-        top: 120px;
+        top: 115px;
         text-transform: uppercase;
-        font-weight: 100;
-        color: $gray;
+        font-weight: 600;
+        color: white;
         .count {
           display: block;
           font-size: 200%;
@@ -680,10 +711,7 @@ $tip-opacity: 1;
     .taxon {
       .display-name {
         color: white;
-        font-weight: 100;
-      }
-      .sciname {
-        white-space: nowrap;
+        font-weight: 400;
       }
     }
     .media {
@@ -707,14 +735,11 @@ $tip-opacity: 1;
       }
     }
   }
+  .popular .ObservationsGridItem .UserImage {
+    top: 180px;
+  }
 
   .Publications {
-    a {
-      color: $inat-green;
-    }
-    a:hover, a:active, a:focus {
-      color: lighten( $inat-green, 10% );
-    }
     .publication {
       display: flex;
       flex-direction: column;
@@ -781,11 +806,6 @@ $tip-opacity: 1;
 
     > .controls {
       margin: 20px 0;
-      .btn-default {
-        border-color: $dark-gray;
-        background-color: $dark-gray;
-        color: #eee;
-      }
       .btn-primary {
         background-color: $inat-green;
         border-color: $inat-green;
@@ -1018,7 +1038,8 @@ $tip-opacity: 1;
       $site-size: 150px;
       .site {
         width: $site-size;
-        height: $site-size + $user-image-overhang;
+        height: auto;
+        min-height: $site-size + $user-image-overhang;
         position: relative;
         margin: 0 30px;
         .site-icon {
@@ -1035,6 +1056,10 @@ $tip-opacity: 1;
             margin-top: ($site-size * 0.8) / -2;
           }
         }
+        @media (max-width: 500px) {
+          width: 30%;
+        }
+
 
         $ribbon-point-width: 8px;
         $ribbon-point-hypotenuse: 18px;
@@ -1054,6 +1079,8 @@ $tip-opacity: 1;
           .ribbon-content {
             max-height: none;
             word-break: break-word;
+            line-height: 14px;
+            padding: 3px 0px;
           }
         }
         a.ribbon:hover {
@@ -1134,12 +1161,6 @@ $tip-opacity: 1;
         margin-bottom: 0;
       }
     }
-    p {
-      a,
-      a:hover {
-        color: $inat-green;
-      }
-    }
     .btn-donate {
       font-weight: bold !important;
     }
@@ -1186,7 +1207,7 @@ $tip-opacity: 1;
 
         p {
           font-size: 19px;
-          font-weight: 100;
+          font-weight: 400;
         }
 
         > div {
@@ -1522,6 +1543,60 @@ $tip-opacity: 1;
     }
   }
 
+  .BroaderImpacts {
+    .outlinks {
+      display: flex;
+      justify-content: space-around;
+    }
+    .outlink-with-icon {
+      display: flex;
+      align-items: center;
+      .title-subtitle {
+        flex-grow: 2;
+        display: flex;
+        flex-direction: column;
+        .title {
+          font-size: 120%;
+          a {
+            color: white;
+          }
+        }
+        .subtitle {
+          font-size: 90%;
+          text-transform: uppercase;
+          a {
+            color: $gray;
+          }
+        }
+      }
+      .icon {
+        align-self: flex-start;
+        padding: 2px;
+        display: inline-block;
+        margin-right: 15px;
+        background: white;
+        img {
+          width: 40px;
+          height: 40px;
+          border: 1px solid #ccc
+        }
+      }
+    }
+  }
+
+  @media (max-width: 991px) {
+    .BroaderImpacts .outlinks-container {
+      text-align: center;
+      .outlinks {
+        display: inline-block;
+        text-align: left;
+        .outlink-with-icon + .outlink-with-icon {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
   @media (max-width: 500px) {
     .DonateBanner {
       flex-direction: column;
@@ -1566,5 +1641,65 @@ $tip-opacity: 1;
     margin-bottom: 20px;
     text-decoration: underline;
     color: $inat-green;
+    white-space: break-spaces;
+  }
+
+  #app {
+    .CodeContributors {
+      p {
+        margin-bottom: 20px;
+      }
+
+      li {
+        @include green-links;
+      }
+
+      .UserImage {
+        width: 64px;
+        height: 64px;
+        border-width: 3px;
+      }
+      .flex-row > :last-child {
+        width: 100%;
+      }
+      h4 {
+        font-size: 14px;
+        margin-top: 0;
+      }
+    }
+  }
+
+  #app {
+    .MonthlySupporters {
+      $monthly-supporter-dim: 80px;
+      margin-bottom: 20px;
+      .supporters {
+        @include green-links;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .monthly-supporter {
+        text-align: center;
+        width: $monthly-supporter-dim;
+        margin-bottom: 20px;
+        flex-grow: 1;
+        margin: 10px;
+      }
+      .UserImage {
+        width: $monthly-supporter-dim;
+        height: $monthly-supporter-dim;
+        margin-bottom: 10px;
+      }
+      .userlink {
+        display: block;
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
   }
 }

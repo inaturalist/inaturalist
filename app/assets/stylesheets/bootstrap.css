@@ -1294,7 +1294,7 @@ p {
 .lead {
   margin-bottom: 20px;
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
 }
 @media (min-width: 768px) {
@@ -3935,7 +3935,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-bottom-right-radius: 0;
 }
 .input-group-addon:first-child {
-  border-right: 0;
+  border-inline-end: 0;
 }
 .input-group .form-control:last-child,
 .input-group-addon:last-child,
@@ -4973,7 +4973,7 @@ a.badge:focus {
 .jumbotron p {
   margin-bottom: 15px;
   font-size: 21px;
-  font-weight: 200;
+  font-weight: 400;
 }
 .jumbotron > hr {
   border-top-color: #d5d5d5;

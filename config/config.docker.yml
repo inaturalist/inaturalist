@@ -1,0 +1,122 @@
+base: &base
+
+    default_site_name: <%= ENV.fetch("INAT_DEFAULT_SITE_NAME") { "iNaturalist" } %>
+
+    rest_auth:
+        REST_AUTH_SITE_KEY: <%= ENV.fetch("INAT_SECRET_DEVISE_PEPPER") { "INAT_SECRET_DEVISE_PEPPER" } %>
+        REST_AUTH_DIGEST_STRETCHES: 10
+
+    rails:
+        session_key: _inaturalist_session
+        secret: <%= ENV.fetch("INAT_SECRET_KEY_BASE") { "INAT_SECRET_KEY_BASE" } %>
+
+    tile_servers:
+        elasticsearch: <%= ENV.fetch("INAT_TILES_URL") { "http://localhost:4000/v1" } %>
+
+    facebook:
+        namespace: inaturalist
+
+    twitter:
+        key: <%= ENV.fetch("INAT_TWITTER_KEY") { "INAT_TWITTER_KEY" } %>
+        secret: <%= ENV.fetch("INAT_TWITTER_SECRET") { "INAT_TWITTER_SECRET" } %>
+    
+    apple:
+        app_id: <%= ENV.fetch("INAT_APPLE_APP_ID") { "INAT_APPLE_APP_ID" } %>
+        client_id: <%= ENV.fetch("INAT_APPLE_CLIENT_ID") { "INAT_APPLE_CLIENT_ID" } %>
+        team_id: <%= ENV.fetch("INAT_APPLE_TEAM_ID") { "INAT_APPLE_TEAM_ID" } %>
+        key_id: <%= ENV.fetch("INAT_APPLE_KEY_ID") { "INAT_APPLE_KEY_ID" } %>
+        pem: <%= ENV.fetch("INAT_APPLE_PEM") { "INAT_APPLE_PEM" } %>
+        applinks: <%= ENV.fetch("INAT_APPLINKS") { {} } %>
+        applinks2: <%= ENV.fetch("INAT_APPLINKS2") { {} } %>
+    
+    s3_bucket: <%= ENV.fetch("INAT_AWS_DOMAIN") { "INAT_AWS_DOMAIN" } %>
+    s3_protocol: <%= ENV.fetch("INAT_AWS_PROTOCOL") { "INAT_AWS_PROTOCOL" } %>
+    s3_region: <%= ENV.fetch("INAT_AWS_REGION") { "INAT_AWS_REGION" } %>
+    s3_public_host: <%= ENV.fetch("INAT_AWS_OPENDATA_DOMAIN") { "INAT_AWS_OPENDATA_DOMAIN" } %>
+    s3_public_region: <%= ENV.fetch("INAT_AWS_OPENDATA_REGION") { "INAT_AWS_OPENDATA_REGION" } %>
+    s3_public_bucket: <%= ENV.fetch("INAT_AWS_OPENDATA_BUCKET") { "INAT_AWS_OPENDATA_BUCKET" } %>
+
+    memcached: <%= ENV.fetch("INAT_MEMCACHED_HOST") { "memcached" } %>
+
+    elasticsearch_hosts:
+        - http://<%= ENV.fetch("INAT_ES_HOST") { "es" } %>:9200
+
+    node_api_url: <%= ENV.fetch("INAT_API_URL") { "http://localhost:4000/v1" } %>
+
+    google:
+        browser_api_key: <%= ENV.fetch("INAT_GOOGLE_BROWSER_API_KEY") { "INAT_GOOGLE_BROWSER_API_KEY" } %>
+        client_id: <%= ENV.fetch("INAT_GOOGLE_CLIENT_ID") { "INAT_GOOGLE_CLIENT_ID" } %>
+        secret: <%= ENV.fetch("INAT_GOOGLE_SECRET") { "INAT_GOOGLE_SECRET" } %>
+
+    soundcloud:
+        client_id: <%= ENV.fetch("INAT_SOUNDCLOUD_CLIENT_ID") { "INAT_SOUNDCLOUD_CLIENT_ID" } %>
+        secret: <%= ENV.fetch("INAT_SOUNDCLOUD_SECRET") { "INAT_SOUNDCLOUD_SECRET" } %>
+    
+    x_sendfile_header: X-Accel-Redirect
+    
+    flickr:
+        key: <%= ENV.fetch("INAT_FLICKR_KEY") { "INAT_FLICKR_KEY" } %>
+        shared_secret: <%= ENV.fetch("INAT_FLICKR_SHARED_SECRET") { "INAT_FLICKR_SHARED_SECRET" } %>
+    
+    rakismet:
+        key: <%= ENV.fetch("INAT_RAKISMET_KEY") { "INAT_RAKISMET_KEY" } %>
+        site_url: https://www.inaturalist.org
+    
+    gbif:
+        username: <%= ENV.fetch("INAT_GBIF_USERNAME") { "INAT_GBIF_USERNAME" } %>
+        password: <%= ENV.fetch("INAT_GBIF_PASSWORD") { "INAT_GBIF_PASSWORD" } %>
+        notification_address: <%= ENV.fetch("INAT_GBIF_NOTIFICATION_ADDRESS") { "INAT_GBIF_NOTIFICATION_ADDRESS" } %>
+    
+    orcid:
+        client_id: <%= ENV.fetch("INAT_ORCID_CLIENT_ID") { "INAT_ORCID_CLIENT_ID" } %>
+        client_secret: <%= ENV.fetch("INAT_ORCID_CLIENT_SECRET") { "INAT_ORCID_CLIENT_SECRET" } %>
+    
+    donorbox:
+        email: <%= ENV.fetch("INAT_DONORBOX_EMAIL") { "INAT_DONORBOX_EMAIL" } %>
+        key: <%= ENV.fetch("INAT_DONORBOX_KEY") { "INAT_DONORBOX_KEY" } %>
+
+    crowdin:
+        projects:
+            web:
+                identifier: inaturalistweb
+                key: <%= ENV.fetch("INAT_CROWDIN_WEB_KEY") { "INAT_CROWDIN_WEB_KEY" } %>
+            mobile:
+                identifier: inaturalistweb
+                key: <%= ENV.fetch("INAT_CROWDIN_MOBILE_KEY") { "INAT_CROWDIN_MOBILE_KEY" } %>
+            seek:
+                identifier: inaturalistweb
+                key: <%= ENV.fetch("INAT_CROWDIN_SEEK_KEY") { "INAT_CROWDIN_SEEK_KEY" } %>
+
+    sendgrid:
+        api_key: <%= ENV.fetch("INAT_SENDGRID_API_KEY") { "INAT_SENDGRID_API_KEY" } %>
+        validation_api_key: <%= ENV.fetch("INAT_SENDGRID_VALIDATION_API_KEY") { "INAT_SENDGRID_VALIDATION_API_KEY" } %>
+        asm_group_ids: <%= ENV.fetch("INAT_SENDGRID_ASM_GROUP_IDS") { {} } %>            
+        primary_ip_pool: <%= ENV.fetch("INAT_SENDGRID_PRIMARY_IP_POOL") { "INAT_SENDGRID_PRIMARY_IP_POOL" } %>
+        alternate_ip_pool: <%= ENV.fetch("INAT_SENDGRID_ALTERNATE_IP_POOL") { "INAT_SENDGRID_ALTERNATE_IP_POOL" } %>
+
+    jwt_secret: <%= ENV.fetch("INAT_JWT_SECRET") { "secret" } %>
+    jwt_application_secret: <%= ENV.fetch("INAT_JWT_APPLICATION_SECRET") { "application_secret" } %>
+
+    banned_emails: <%= ENV.fetch("INAT_BANNED_EMAILS") { ["INAT_BANNED_EMAILS"] } %>
+
+    aggregator_exception_project_ids: <%= ENV.fetch("INAT_AGGREGATOR_EXCEPTION_PROJECT_IDS") { ["INAT_AGGREGATOR_EXCEPTION_PROJECT_IDS"] } %>
+
+    allowed_email_recipient_patterns: <%= ENV.fetch("INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS") { ["INAT_ALLOWED_EMAIL_RECIPTION_PATTERNS"] } %>
+    
+    admin_user_email: <%= ENV.fetch("INAT_ADMIN_USER_EMAIL") { "INAT_ADMIN_USER_EMAIL" } %>
+
+    dangerous_taxa_list_id: <%= ENV.fetch("INAT_DANGEROUS_TAXA_LIST_ID") { "INAT_DANGEROUS_TAXA_LIST_ID" } %>
+
+development:
+    <<: *base
+
+test:
+    <<: *base
+    # We shouldn't assume a working instance of the node API is running in a
+    # test environment, so use different defaults to ensure we don't get fooled
+    # when a test passes in a development environment where the node API *is*
+    # running
+    node_api_url: http://<%= ENV.fetch("INAT_API_HOST") { "api" } %>:5000/v1
+
+production:
+    <<: *base

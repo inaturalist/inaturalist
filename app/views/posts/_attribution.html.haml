@@ -1,0 +1,12 @@
+- user_with_icon = capture do
+  - if post.user
+    = link_to_user post.user do
+      = user_image( post.user )
+  = link_to_user post.user
+- vow_or_con = post.user ? post.user.login[0].downcase : t( :deleted_user ).to_s[0].downcase
+- if post.published_at
+  - posted_date = capture do
+    %span.date= l post.published_at, format: :long
+  =t :posted_on_date_by_user_html, date: posted_date.html_safe, user: user_with_icon.html_safe, vow_or_con: vow_or_con
+- else
+  =t :draft_by_user_html, user: user_with_icon, vow_or_con: vow_or_con

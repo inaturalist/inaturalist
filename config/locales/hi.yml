@@ -1,34 +1,27 @@
 hi:
-  date:
-    abbr_month_names:
-      - 
-      - Jan
-      - Feb
-      - Mar
-      - Apr
-      - May
-      - Jun
-      - Jul
-      - Aug
-      - Sep
-      - Oct
-      - Nov
-      - Dec
-    month_names:
-      - 
-      - January
-      - February
-      - March
-      - April
-      - May
-      - June
-      - July
-      - August
-      - September
-      - October
-      - November
-      - December
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} परिवर्तन"
+    other: "%{count} परिवर्तन"
+  x_comments:
+    one: '%{count} टिप्पणी'
+    other: '%{count} टिप्पणियाँ'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> टिप्पणी'
+    other: '<span class="count">%{count}</span> टिप्पणियां'
+  x_faves:
+    one: '%{count} पसंद'
+    other: '%{count} पसंद'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> शिकायत समाधान"
+    other: "<span class='count'>%{count}</span> शिकायत समाधान"
+  lexicons:
+    malayalam: मलयाळम
+    tamil: तमिऴ्
   number:
+    format:
+      significant: false
+      strip_insignificant_zeros: false
     human:
       format:
         significant: true

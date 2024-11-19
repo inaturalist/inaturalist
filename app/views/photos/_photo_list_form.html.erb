@@ -83,7 +83,7 @@
               "revert to your saved copy."
           } %>
       <% end %>
-      <span class='small view_photo'><%= link_to(t(:view), photo.native_page_url || photo.becomes(Photo), :target => '_blank') %></span>
+      <span class='small view_photo'><%= link_to(t(:view), photo.native_page_url || photo.becomes(Photo), :target => '_blank', rel: "noopener noreferrer") %></span>
     </div>
   <% end %>
 <% end %>

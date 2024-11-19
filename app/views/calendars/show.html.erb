@@ -200,7 +200,6 @@
   <div class="quiet box">
     <%=t :calendars_only_show_x_observations_at_time, :x => @observations.per_page %>.
     <%= link_to t(:view_all_observations), observations_path( user_id: @selected_user.login, on: @date ) %>
-    <%=t :from %> <%= @date %>.
   </div>
 <% end -%>
 

@@ -201,7 +201,7 @@ class UserText extends React.Component {
           className="content"
           dangerouslySetInnerHTML={{ __html: htmlToDisplay }}
         />
-        { " " }
+        { moreLink ? " " : null }
         { moreLink }
       </div>
     );

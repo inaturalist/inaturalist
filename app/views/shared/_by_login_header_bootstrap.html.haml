@@ -9,15 +9,28 @@
   = before
   %h1
     = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
-    -if controller.controller_name=="users" && ( controller.action_name=="show" || controller.action_name=="dashboard" )
+    - if controller.controller_name == "users" && ( controller.action_name == "show" || controller.action_name == "dashboard" )
       = @selected_user.login
       - if logged_in? && is_not_me?( @selected_user ) && !current_user.blocked_by?( @selected_user ) && !@selected_user.blocked_by?( current_user )
-        - if true || current_user.privileged_with?( UserPrivilege::SPEECH )
+        - if current_user.privileged_with?( UserPrivilege::SPEECH )
           = link_to new_message_path(:to => @selected_user.login), :class => 'btn btn-primary btn-xs' do
             %span.glyphicon.glyphicon-envelope
-            =t :message
+            = t :message
         = friend_button current_user, @selected_user, {:id => 'follow_button'}
-    -else
+        - if @selected_user.muted_by?( @current_user )
+          - existing_mute = UserMute.where( user: @current_user, muted_user: @selected_user ).first
+          = link_to edit_user_path( @current_user, anchor: "relationships" ),
+            data: { muted_user_id: @selected_user.id, existing_mute_id: existing_mute.try( :id ) },
+            class: "btn btn-default btn-xs muting" do
+            %i.fa.fa-microphone
+            = t :unmute
+        - else
+          = link_to edit_user_path( @current_user, anchor: "relationships" ),
+            data: { muted_user_id: @selected_user.id },
+            class: "btn btn-default btn-xs muting" do
+            %i.fa.fa-microphone-slash
+            = t :mute
+    - else
       = title
       = after_title
   = render :partial => 'users/subnav_bootstrap', :locals => { :user => @selected_user }

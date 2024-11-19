@@ -36,7 +36,7 @@ class ProjectsController < ApplicationController
   before_action :filter_params, only: [ :update, :create ]
   before_action :site_required, only: [ :feature, :unfeature ]
 
-  prepend_around_action :enable_replica, only: [:show]
+  prepend_around_action :enable_replica, only: [:index, :show, :by_login, :members]
 
   requires_privilege :organizer, only: [:new_traditional]
   
@@ -217,12 +217,6 @@ class ProjectsController < ApplicationController
       @list_numerator = list_observed_and_total[:numerator]
 
       format.html do
-        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
-          where("provider_authorizations.provider_name = 'facebook'").
-          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
-          map(&:provider_uid)
-        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
-        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         # check if the project can be previewed as a new-style project
         if params.has_key?(:collection_preview) && logged_in? && !@project.is_new_project?
           project_user = current_user.project_users.where(project_id: @project.id).first
@@ -614,7 +608,6 @@ class ProjectsController < ApplicationController
       order("id DESC")
     @taxa = Taxon.where(id: @listed_taxa.map(&:taxon_id)).
       includes(:photos, :taxon_names)
-    
 
     # Load tips HTML
     @taxa.map! do |taxon|
@@ -628,36 +621,33 @@ class ProjectsController < ApplicationController
       taxon
     end
   end
-  
+
   def change_role
-    @project_user = @project.project_users.find_by_id(params[:project_user_id])
-    current_project_user = current_user.project_users.where(project_id: @project.id).first
-    role = params[:role] if ProjectUser::ROLES.include?(params[:role])
-    
+    @project_user = @project.project_users.find_by_id( params[:project_user_id] )
+    current_project_user = current_user.project_users.where( project_id: @project.id ).first
+    role = params[:role] if ProjectUser::ROLES.include?( params[:role] )
     if @project_user.blank?
-      flash[:error] = t(:project_user_cannot_be_found)
-      redirect_to project_members_path(@project)
+      flash[:error] = t( :project_user_cannot_be_found )
+      redirect_to project_members_path( @project )
       return
     end
-    
+
     unless current_project_user.is_manager?
-      flash[:error] = t(:only_a_project_manager_can_add)
-      redirect_to project_members_path(@project)
+      flash[:error] = t( :only_a_project_manager_can_add )
+      redirect_to project_members_path( @project )
       return
     end
-    
+
     @project_user.role = role
-    
+
     if @project_user.save
-      flash[:notice] = t(:grant_role, :grant => role.blank? ? t(:removed) : t(:added), :role => role)
-      redirect_to project_members_path(@project)
+      flash[:notice] = role.blank? ? t( :removed_role ) : t( :added_role )
     else
-      flash[:error] = t(:project_user_was_invalid, :project_user => @project_user.errors.full_messages.to_sentence)
-      redirect_to project_members_path(@project)
-      return
+      flash[:error] = t( :project_user_was_invalid, project_user: @project_user.errors.full_messages.to_sentence )
     end
+    redirect_to project_members_path( @project )
   end
-  
+
   def remove_project_user
     @project_user = @project.project_users.find_by_id(params[:project_user_id])
     if @project_user.blank?
@@ -829,7 +819,7 @@ class ProjectsController < ApplicationController
         year_months: {
           date_histogram: {
             field: "created_at",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM",
             keyed: true
           }
@@ -846,7 +836,7 @@ class ProjectsController < ApplicationController
         year_months: {
           date_histogram: {
             field: "created_at",
-            interval: "month",
+            calendar_interval: "month",
             format: "yyyy-MM",
             keyed: true
           },

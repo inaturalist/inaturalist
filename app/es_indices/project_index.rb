@@ -125,6 +125,7 @@ class Project < ApplicationRecord
         indexes :updated_at, type: "date"
       end
       indexes :slug, analyzer: "keyword_analyzer"
+      indexes :slug_keyword, type: "keyword"
       indexes :spam, type: "boolean"
       indexes :subproject_ids, type: "integer"
       indexes :terms, type: "text", index: false
@@ -186,6 +187,7 @@ class Project < ApplicationRecord
       hide_title: !!prefers_hide_title,
       description: description,
       slug: slug,
+      slug_keyword: slug,
       project_type: project_type,
       banner_color: preferred_banner_color,
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
@@ -198,9 +200,9 @@ class Project < ApplicationRecord
       user_ids: project_user_ids,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
-      icon: icon ? FakeView.asset_url( icon.url(:span2), host: Site.default.url ) : nil,
+      icon: icon ? ApplicationController.helpers.asset_url( icon.url(:span2), host: Site.default.url ) : nil,
       icon_file_name: icon_file_name,
-      header_image_url: cover.blank? ? nil : FakeView.asset_url( cover.url, host: Site.default.url ),
+      header_image_url: cover.blank? ? nil : ApplicationController.helpers.asset_url( cover.url, host: Site.default.url ),
       header_image_file_name: cover_file_name,
       header_image_contain: !!preferred_banner_contain,
       project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json),

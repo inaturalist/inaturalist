@@ -33,6 +33,10 @@ Rails.application.routes.draw do
 
   get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
 
+  get "/independence",
+    to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
+  get "/giving", to: redirect( "/pages/giving", status: 302 )
+
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
@@ -45,6 +49,7 @@ Rails.application.routes.draw do
   resources :user_mutes, only: [:create, :destroy]
   resources :guide_users
   resources :taxon_curators, except: [:show, :index]
+  resources :taxon_name_priorities, only: [:create, :update, :destroy]
 
   resources :guide_sections do
     collection do
@@ -119,11 +124,18 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :observation_field_values, only: [:create, :update, :destroy, :index]
+  resources :observation_field_values, only: [:create, :update, :destroy]
   resources :observation_fields do
     member do
       get :merge
       put :merge, to: "observation_fields#merge_field"
+    end
+  end
+  resources :observation_accuracy_experiments, only: [:show] do
+    member do
+      get "get_more_validators"
+      get "get_methods_data"
+      get "get_results_data"
     end
   end
   get "/" => "welcome#index"
@@ -162,10 +174,8 @@ Rails.application.routes.draw do
   delete "/auth/:provider/disconnect" => "provider_authorizations#destroy", :as => :omniauth_disconnect
   delete "/provider_authorizations/:id" => "provider_authorizations#destroy"
   get "/users/edit_after_auth" => "users#edit_after_auth", :as => :edit_after_auth
-  get "/facebook/photo_fields" => "facebook#photo_fields"
   get "/eol/photo_fields" => "eol#photo_fields"
   get "/wikimedia_commons/photo_fields" => "wikimedia_commons#photo_fields"
-  post "/facebook" => "facebook#index"
 
   resource :help, controller: :help, only: :index do
     collection do
@@ -233,6 +243,7 @@ Rails.application.routes.draw do
     end
     member do
       put :rotate
+      get :hide
     end
   end
 
@@ -261,13 +272,9 @@ Rails.application.routes.draw do
       get :taxa
       get :taxon_stats
       get :user_stats
-      get :accumulation
-      get :phylogram
       get :export
       get :map
       get :identify
-      get :moimport
-      post :moimport
       get :torquemap
       get :compare
     end
@@ -423,6 +430,9 @@ Rails.application.routes.draw do
   post "check_lists/:id/add_taxon_batch" => "check_lists#add_taxon_batch", :as => :check_list_add_taxon_batch,
     :constraints => { id: /\d+([\w\-%]*)/ }
   resources :comments, constraints: { id: id_param_pattern } do
+    member do
+      get "hide"
+    end
     resources :flags
   end
   get "comments/user/:login" => "comments#user", :as => :comments_by_login,
@@ -597,17 +607,21 @@ Rails.application.routes.draw do
     end
   end
 
+  get "build_info", to: "build_info#index"
+  get "admin/app_build_info", to: "build_info#app_build_info", as: "admin_app_build_info"
+
   resource :stats do
     collection do
       get :index
       get :summary
-      get :observation_weeks
       get :nps_bioblitz
       get :cnc2016
       get :cnc2017
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
+      get :user_segments
+      get :daily_active_user_model
       get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
       get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
       get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
@@ -687,6 +701,19 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :computer_vision_eval, only: :index, controller: :computer_vision_eval do
+    collection do
+      get :index
+    end
+  end
+
+  resource :vision_language_demo, only: :index, controller: :language_demo do
+    collection do
+      get :index
+      post :record_votes
+    end
+  end
+
   resources :computer_vision_demo_uploads do
     member do
       post :score
@@ -697,7 +724,11 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
-  resources :moderator_actions, only: [:create]
+  resources :moderator_actions, only: [:create] do
+    member do
+      get :resource_url, constraints: ->( req ) { req.format == :json }
+    end
+  end
 
   resource :lifelists, only: [] do
     collection do
@@ -723,6 +754,17 @@ Rails.application.routes.draw do
       get :locales
     end
   end
+
+  resources :geo_model do
+    collection do
+      get :index
+    end
+    member do
+      get :explain
+    end
+  end
+
+  resources :email_suppressions, only: [:index, :destroy]
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 

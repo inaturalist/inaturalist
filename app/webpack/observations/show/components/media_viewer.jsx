@@ -1,11 +1,12 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Lightbox from "react-images";
+// eslint-disable-next-line no-unused-vars
 import EasyZoom from "EasyZoom/dist/easyzoom";
-/* global SITE */
+
+import Lightbox from "../../../shared/components/inat_lightbox";
 
 class MediaViewer extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.close = this.close.bind( this );
@@ -67,7 +68,7 @@ class MediaViewer extends Component {
   render( ) {
     const { observation } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    let images = this.props.observation.photos.map( photo => {
+    let images = _.filter( this.props.observation.photos, p => !p.hidden ).map( photo => {
       let original = photo.photoUrl( "original" );
       let large = photo.photoUrl( "large" );
       let medium = photo.photoUrl( "medium" );
@@ -97,18 +98,20 @@ class MediaViewer extends Component {
     // expression of the component state or the props.
     return (
       <Lightbox
-        key={ `lightbox-${this.props.mediaViewer.activeIndex}` }
+        key={`lightbox-${this.props.mediaViewer.activeIndex}`}
         ref="lightbox"
-        onClickPrev={ this.prev }
-        onClickNext={ this.next }
-        isOpen={ this.props.mediaViewer.show }
-        currentImage={ this.props.mediaViewer.activeIndex }
-        onClose={ this.close }
-        onClickShowNextImage={ false }
-        showImageCount={ false }
-        images={ images }
+        onClickPrev={this.prev}
+        onClickNext={this.next}
+        isOpen={this.props.mediaViewer.show}
+        currentImage={this.props.mediaViewer.activeIndex}
+        onClose={this.close}
+        onClickShowNextImage={false}
+        showImageCount={false}
+        images={images}
         backdropClosesModal
-        width={ 5000 }
+        width={5000}
+        leftArrowTitle={I18n.t( "previous_photo" )}
+        rightArrowTitle={I18n.t( "next_photo" )}
       />
     );
   }

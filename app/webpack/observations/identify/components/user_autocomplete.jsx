@@ -6,9 +6,10 @@ import inaturalistjs from "inaturalistjs";
 class UserAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    const opts = Object.assign( {}, this.props, {
+    const opts = {
+      ...this.props,
       idEl: $( "input[name='user_id']", domNode )
-    } );
+    };
     $( "input[name='user_login']", domNode ).userAutocomplete( opts );
     this.fetchUser( );
   }
@@ -21,9 +22,16 @@ class UserAutocomplete extends React.Component {
   }
 
   fetchUser( ) {
-    const { initialUserID } = this.props;
+    const { initialUserID, config } = this.props;
+    const params = { };
+    if ( config.testingApiV2 ) {
+      params.fields = {
+        id: true,
+        login: true
+      };
+    }
     if ( initialUserID ) {
-      inaturalistjs.users.fetch( initialUserID ).then( r => {
+      inaturalistjs.users.fetch( initialUserID, params ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateUser( { user: r.results[0] } );
         }
@@ -32,14 +40,12 @@ class UserAutocomplete extends React.Component {
   }
 
   updateUser( options = { } ) {
-    const domNode = ReactDOM.findDOMNode( this );
     if ( options.user ) {
-      $( "input[name='user_login']", domNode )
-        .trigger( "assignSelection", Object.assign(
-          {},
-          options.user,
-          { title: options.user.login }
-        ) );
+      this.inputElement( )
+        .trigger( "assignSelection", {
+          ...options.user,
+          title: options.user.login
+        } );
     }
   }
 
@@ -49,13 +55,14 @@ class UserAutocomplete extends React.Component {
   }
 
   render( ) {
-    const { className, placeholder } = this.props;
+    const { className, placeholder, disabled } = this.props;
     return (
       <span className="UserAutocomplete form-group">
         <input
           type="search"
           name="user_login"
           className={`form-control ${className}`}
+          disabled={disabled}
           placeholder={placeholder || I18n.t( "username_or_user_id" )}
         />
         <input type="hidden" name="user_id" />
@@ -63,7 +70,6 @@ class UserAutocomplete extends React.Component {
     );
   }
 }
-
 
 UserAutocomplete.propTypes = {
   // eslint-disable-next-line react/no-unused-prop-types
@@ -83,7 +89,14 @@ UserAutocomplete.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/no-unused-prop-types
-  projectID: PropTypes.number
+  projectID: PropTypes.number,
+  disabled: PropTypes.bool,
+  config: PropTypes.object
+};
+
+UserAutocomplete.defaultProps = {
+  config: {},
+  disabled: false
 };
 
 export default UserAutocomplete;

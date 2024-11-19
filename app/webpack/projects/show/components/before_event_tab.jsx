@@ -19,7 +19,6 @@ const BeforeEventTab = props => {
               { I18n.t( "status" ) }
             </h2>
             <EventCountdown
-              {...props}
               startTimeObject={project.startDate}
             />
           </Col>

@@ -40,16 +40,26 @@ cs:
     few: '%{count} Identifikace'
     many: '%{count} Identifikací'
     other: '%{count} Identifikací'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFIKACE'
+    few: '<span class="count">%{count}</span> IDENTIFIKACE'
+    many: '<span class="count">%{count}</span> IDENTIFIKACÍ'
+    other: '<span class="count">%{count}</span> IDENTIFIKACÍ'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
     one: '<span class="count">%{count}</span> Identifikátor'
     #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifikátory'
+    few: '<span class="count">%{count}</span> Identifikátoři'
     #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Identifikátory'
+    many: '<span class="count">%{count}</span> Identifikátorů'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikátory'
+    other: '<span class="count">%{count}</span> Identifikátorů'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID vytvořeno pro ostatní'
+    few: '<span class="count">%{count}</span> ID vytvořena pro ostatní'
+    many: '<span class="count">%{count}</span> ID vytvořeno pro ostatní'
+    other: '<span class="count">%{count}</span> ID vytvořena pro ostatní'
   x_languages:
     one: "%{count} jazyk"
     few: "%{count} jazyky"
@@ -112,6 +122,11 @@ cs:
     few: "<span class='count'>%{count}</span> pozorování"
     many: "<span class='count'>%{count}</span> pozorování"
     other: "<span class='count'>%{count}</span> pozorování"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> POZOROVÁNÍ"
+    few: "<span class='count'>%{count}</span> POZOROVÁNÍ"
+    many: "<span class='count'>%{count}</span> POZOROVÁNÍ"
+    other: "<span class='count'>%{count}</span> POZOROVÁNÍ"
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} pozorování</a>"
     few: "<a href='%{url}'>%{count} pozorování</a>"
@@ -137,6 +152,11 @@ cs:
     few: "%{count} lidé"
     many: "%{count} lidí"
     other: "%{count} lidí"
+  x_people_html:
+    one: '<span class="count">%{count}</span> člověk'
+    few: '<span class="count">%{count}</span> lidé'
+    many: '<span class="count">%{count}</span> lidí'
+    other: '<span class="count">%{count}</span> lidí'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} lidí</strong> pomohlo %{user} s <strong>%{y} ID</strong>"
   x_photos:
     one: "%{count} fotografie"
@@ -158,6 +178,11 @@ cs:
     few: '%{count} druhy'
     many: '%{count} druhů'
     other: '%{count} druhů'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> DRUH"
+    few: "<span class='count'>%{count}</span> DRUHY"
+    many: "<span class='count'>%{count}</span> DRUHŮ"
+    other: "<span class='count'>%{count}</span> DRUH"
   x_species_html:
     one: "<span class='count'>%{count}</span> druh"
     few: "<span class='count'>%{count}</span> druhy"
@@ -269,31 +294,23 @@ cs:
   about_this_bioblitz: O tomto bioblitzu.
   about_this_map: O této mapě
   about_this_project: O tomto Projektu
-  about_trips_html: |
+  about_trips2_html: |
     <h4>
-    Výlety umožňují shromažďování údajů o nepřítomnosti nebo přítomnosti přidáním kontextu
-    vaše pozorování
+    Výlety umožňují shromažďování údajů o přítomnosti a nepřítomnosti přidáním kontextu k vašim pozorováním
     </h4>
     <p>
-    <strong> Proč </strong> Údaje o nepřítomnosti nebo přítomnosti zahrnují informace o
-    vzorkovacím úsilí, které je užitečné pro vědecké analýzy, jako je distribuce
-    modelování (hrubá iNaturalistická pozorování jsou data „pouze přítomná“).
+    <strong>Proč</strong> Údaje o přítomnosti a nepřítomnosti zahrnují informace o námaze odběru vzorků, které jsou užitečné pro vědecké analýzy, jako je modelování distribuce (nezpracovaná pozorování iNaturalistů jsou data „pouze přítomnost“).
     </p>
     <p>
-    <strong> Jak </strong> Cesta přidává do vašich pozorování kontext zaznamenáním:
+    <strong>Jak</strong> Výlet přidá kontext k vašim pozorováním tím, že zaznamená:
     </p>
     <ul>
-    <li> <strong> Co </strong>, které jste hledali (seznam cílů) </li>
-    <li> <strong> Kde </strong> jste hledali (oblast vyhledávání) </li>
-    <li> <strong> Když </strong> jste hledali (interval vyhledávání) </li>
+    <li><strong>Co</strong> jste hledali (seznam cílů)</li>
+    <li><strong>Kde</strong> jste hledali (oblast vyhledávání)</li>
+    <li><strong>Kdy</strong> jste vyhledávali (interval vyhledávání)</li>
     </ul>
     <p>
-    Druhy ve vašem cílovém seznamu, které jste byli schopni pozorovat v rámci
-    oblasti hledání a interval, jsou interpretovány jako přítomnost. Zatímco druhy na
-    vašem cílovém seznamu, který jste nemohli pozorovat, se interpretují jako
-    nepřítomnost. Kliknutím na „zapište do tabulek data přítomnosti nebo nepřítomnosti z tras, vygenerujete
-    tabulku záznamů o přítomnosti a nepřítomnosti druhu z výletů a souvisejících
-    pozorování. <a href='%{url}'> Další informace </a>
+    Druhy na vašem cílovém seznamu, které jste mohli pozorovat v oblasti a intervalu hledání, jsou interpretovány jako přítomnost. Zatímco druhy na vašem cílovém seznamu, které jste nemohli pozorovat, jsou interpretovány jako nepřítomnosti. Kliknutím na „Vytvořit tabulku údajů o přítomnosti a nepřítomnosti z výletů“ vytvoříte tabulku záznamů přítomnosti a nepřítomnosti pro druh z výletů a souvisejících pozorování. <a href='%{url}'>Další informace</a>
     </p>
   about_trusting_projects: O důvěryhodných projektech
   about_trusting_projects_options_any: Všechna vaše pozorování v tomto projektu
@@ -329,10 +346,16 @@ cs:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Přesnost (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Přesnost nad
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Přesnost pod
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Přesnost pod nebo neznámá
   account: Účet
   account_creation: Vytvoření účtů
   account_settings: Nastavení účtu
-  accept_community_identifications: Přijmout komunitní identifikátory
+  accept_community_identifications: Přijmout komunitní identifikace
   accuracy: Přesnost
   accuracy_meters: Přesnost (v metrech)
   accuracy_of_the_coordinates: |
@@ -347,6 +370,7 @@ cs:
   active_taxon_status: Aktivní
   active_users: Aktivní uživatelé
   activity: Aktivita
+  activity_on_a_flag_for_x: Aktivita označení pro %{x}
   adapted_by_name_from_a_work_by_original: "Upravil/a %{name}, převzato z práce %{original}"
   add: Vložit
   add_a_batch_of_observations: Vložit soubor sledování
@@ -354,6 +378,8 @@ cs:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Přidat odrážkový seznam
   add_a_comment: Vložit komentář
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Přidat stav ochrany
   add_a_field: Vložit pole
   add_a_flag: Označit
   #Tool tip for a button that adds a link to a text area
@@ -376,6 +402,8 @@ cs:
   add_annotations_for_controlled_attribute:
     sex: Přidat poznámky pro "Pohlaví"
     plant_phenology: Přidat poznámky pro "Fenologii rostlin"
+    flowers_and_fruits: Přidat poznámky pro "Květy a plody"
+    leaves: Přidat poznámky pro "Listy"
     life_stage: Přidat poznámky pro "Vývojové stádium"
     evidence_of_presence: Přidat anotace k "Důkazům přítomnosti"
   add_another_flag: Označit další
@@ -411,6 +439,7 @@ cs:
   add_notes_about_this_taxon: Vložit poznámky o taxonu na tomto místě, tzn. kde a kdy se vysktl.
   add_obs_from_a_link: "Vložit pozorování ze seznamu: %{link}"
   add_obs_from_a_list: Vložit pozorování ze ze seznamu
+  add_observation_fields: Přidat pole pozorování
   add_observations: Vložit pozorování
   add_observations_by_checking_off: Přidat pozorování odškrtnutím druhu v seznamu.
   add_observations_project: Vložit poorování do tohoto projektu
@@ -431,6 +460,14 @@ cs:
   add_plant_phenology_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: kvetení“'
   add_plant_phenology_fruiting_annotation: 'Přidat anotaci „Fenologie rostliny: plození“'
   add_plant_phenology_no_evidence_of_flowering_annotation: 'Přidat anotaci „Fenologie rostliny: žádný důkaz o kvetení"'
+  add_flowers_and_fruits_flower_buds_annotation: 'Přidat poznámku "Květy a plody: Květní pupeny"'
+  add_flowers_and_fruits_flowers_annotation: 'Přidat anotaci "Květiny a plody: květiny"'
+  add_flowers_and_fruits_fruits_and_seeds_annotation: 'Přidat poznámku "Květy a plody: Květy a semena"'
+  add_flowers_and_fruits_no_flower_or_fruits: 'Přidat poznámku "Květy a plody: Žádné květy ani plody"'
+  add_leaves_breaking_leaf_buds: 'Přidat poznámku "Listy: Listové pupeny"'
+  add_leaves_green_leaves: 'Přidat poznámku "Listy: Zelené listy"'
+  add_leaves_colored_leaves: 'Přidat poznámku "Listy: Barevné listy"'
+  add_leaves_no_live_leaves: 'Přidat poznámku "Listy: Žádné živé listy"'
   add_life_stage_adult_annotation: 'Přidat anotaci „Stádium života: dospělý“'
   add_life_stage_teneral_annotation: 'Přidat anotaci „Stádium života: tenerální“'
   add_life_stage_subimago_annotation: 'Přidat anotaci „Stádium života: subimago“'
@@ -446,6 +483,11 @@ cs:
   add_evidence_of_presence_track_annotation: 'Přidat anotaci „Důkaz přítomnosti: stopa“'
   add_evidence_of_presence_bone_annotation: 'Přidat anotaci „Důkaz přítomnosti: kost“'
   add_evidence_of_presence_molt_annotation: 'Přidat anotaci „Důkaz přítomnosti: svlečka“'
+  add_evidence_of_presence_leafmine_annotation: 'Přidat anotaci "Důkaz přítomnosti: okus"'
+  add_evidence_of_presence_hair_annotation: 'Přidat anotaci "Důkaz přítomnosti: chlupy"'
+  add_evidence_of_presence_egg_annotation: 'Přidat anotaci "Důkaz přítomnosti: vejce"'
+  add_evidence_of_presence_construction_annotation: 'Přidat anotaci "Důkaz přítomnosti: stavba"'
+  add_established_not_established: 'Přidat anotaci "Založeno: nezaloženo"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Přidat vztah'
   #As in a Guide Section
@@ -490,6 +532,8 @@ cs:
   added_by: Přidáno uživatelem
   added_by_user_on_date_html: "Přidáno uživatelem %{user} dne %{date}"
   added_on_datetime: "Přidáno na %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Role přidána
   added_to_favorites_html: |
     Přidáno k <a href="%{url}">oblíbeným</a>
   adding: "Přidávání..."
@@ -503,14 +547,18 @@ cs:
   agree_: Souhlasím
   agree?: Souhlasíte?
   agree_with_current_taxon: Souhlasím s aktuálním taxonem
+  agree_with_observation_taxon: Souhlasit s pozorovacím taxonem
   agreeing: Souhlasím...
   aka: alias
   #Noun, title of a popup alerting you to something
   alert: Výstraha
   all: Vše
+  #Title for a list of all 3rd party applications
+  all_applications: Všechny aplikace
   all_comments: Všechny komentáře
   all_flags_must_be_resolved: Všechna označení musí být vyřešena
   all_life: Veškerý život
+  all_media_must_be_unhidden: Všechna média musí být neskrytá
   all_names: Všechny názvy
   all_observations: Všechna pozorování
   all_photos: Všechny fotografie
@@ -654,7 +702,6 @@ cs:
   analyze_clashes: Analyzovat nezamýšlené neshody
   analyze_ids: Analyzovat ID
   ancestor_taxon: Předek taxonu
-  and: a
   and_other_taxa: "&amp; Další taxony"
   android: Android
   animals: Zvířata
@@ -797,6 +844,7 @@ cs:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Jste si jisti, že chcete odstranit toto pozorování z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Jste si jistí, že chcete odstranit tento taxon ze seznamu %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Opravdu chcete tohoto uživatele označit jako spammera?
   associated_observations: Související pozorování
   associated_taxa: Související taxony
   attention: Upozornění
@@ -827,7 +875,7 @@ cs:
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
-  attribution_uploaded_by_user: "%{attribution}, nahrál %{user}"
+  attribution_uploaded_by_user: "%{attribution}, nahrál/a %{user}"
   authority_list:
     iucn_red_list: Červený seznam IUCN
     natureserve: NatureServe
@@ -884,6 +932,21 @@ cs:
   back_to_your_observations: Zpátky na vaše pozorování
   back_to_your_profile: Zpátky na váš profil
   badges: Odznaky
+  base_map_copyright_openstreetmap_html: Základní mapa © %{startTag}OpenStreetMap%{endTag}
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      k <strong>%{count} nezamýšlené neshodě</strong> s ID %{child}.
+    few: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      ke <strong>%{count} nezamýšleným neshodám</strong> s ID %{child}.
+    many: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      k <strong>%{count} nezamýšleným neshodám</strong> s ID %{child}.
+    other: |
+      Na základě vzorku %{percent} % těchto ID odhadujeme, že to povede
+      k <strong>%{count} nezamýšleným neshodám </strong> s ID %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Může být na základě důkazů komunitní ID stále potvrzeno nebo vylepšeno?
   batch: Série
@@ -911,11 +974,11 @@ cs:
   bioblitz: Bioblitz
   birds: ptáci
   birthday: Narozeniny
-  black: černá
+  block: Blokovat
+  blocking_description: Blokování zabraňuje jakékoli komunikaci mezi vámi a jiným uživatelem. Slouží pro situace, kdy může vaši bezpečnost ohrozit jiný uživatel, jako je stalking nebo jiné obtěžující chování.
   block_removed: Zablokování zrušeno
   blocked_users: Zablokovaní uživatelé
   blog_widget: Zásuvný modul pro blog
-  blue: modrá
   blue_butterfly_etc: "modrý, motýl atd."
   body: Tělo
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -929,7 +992,6 @@ cs:
   #shown
   breadcrumbs_description: "Toto nahradí h1 a základní nastavení výzev, proto je přidejte, pokud jsou pro tento projekt důležité, a nezapomeňte, že maximální povolená velikost je 950px"
   brief_caption: Stručný titulek
-  brown: hnědá
   browse: Procházet
   browse_all_projects: Procházet všechny projekty
   browse_all_species: Procházet všechny druhy
@@ -939,7 +1001,6 @@ cs:
   browse_species_that_occur_near_this_observation: Procházet druhy, které se vyskytují v blízkosti tohoto pozorování.
   built_with_site_guides_html: "Vytvořeno s průvodci <a href='%{url}'>%{site_name}</a>"
   bulk_import_of_filename_is_complete: "Hromadný import %{filename} byl dokončen"
-  by: od
   by_everyone: Všichni
   by_user: "uživatel %{user}"
   by_you: vámi
@@ -987,6 +1048,8 @@ cs:
   change_group: Změna skupiny
   change_icon: Změna ikony
   change_password: Změna hesla
+  #Message shown after you change your email address
+  change_to_email_requested_html: Požadovaná změna na <strong>%{email}</strong>. Zkontrolujte svůj e-mail na této adrese a potvrďte změnu.
   change_types:
     activated_soon: aktivováno brzy
     change_types: Typy změn
@@ -1000,13 +1063,7 @@ cs:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: rozdělit na
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: sloučit do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: sloučeno do
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: nahrazeno
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: nahradit s
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: nahradit
     dropped: zahozeno
@@ -1023,6 +1080,8 @@ cs:
   change_your_password: Změna vašeho hesla
   #Plural noun, as in changes to a taxon record over time
   changes: Změny
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Změna předků tohoto rodiče může vést k nechtěným neshodám. Nejprve je prosím analyzujte, což může chvíli trvat.
   changing_the_geoprivacy: 'Změnou soukromí zeměpisné polohy změníte to, jak ostatní uvidí umístění vašeho pozorování.'
   check_above_for_errors: Zkontrolujte chyby výše
   check_back_soon: Brzy opět zkontrolujte!
@@ -1059,6 +1118,18 @@ cs:
   choose_what_kind_of_change_youre_creating: "Vyberte jakou změnu vytváříte"
   cid_d_to_genus: Identifikováno jako rod
   citation: Citace
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    K nezamýšleným neshodám dochází, když je rodič <strong>(B)</strong>
+    ztenčen přemístěním potomka <strong>(E)</strong> do jiné části
+    taxonomického stromu, což vede k interpretaci existujících ID rodiče
+    jako neshodě se současným ID přesunutého potomka.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    K nezamýšleným neshodám dochází, když je rodič <strong>(B)</strong>
+    ztenčen výměnou potomka <strong>(E)</strong> z/do jiné části
+    taxonomického stromu, což vede k interpretaci existujících ID rodiče
+    jako neshodě se stávajícími ID vyměněného potomka.
   classification: Klasifikace
   clear: Smazat
   clear_filters: Zrušit filtry
@@ -1066,6 +1137,8 @@ cs:
   click_the_map: "<strong>Klikněte na mapu</strong> a přidejte místo."
   close: Zavřít
   code: Kód
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Přispěvatelé do kódu
   colors: Barvy
   columns: Sloupce
   combine: Spojit
@@ -1137,14 +1210,8 @@ cs:
     zahrnut do automatizovaných návrhů se štítkem "Vizuálně podobný".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Čekající
-  computer_vision_model_pending_desc: |
-    Aktuální model počítačového vidění tento taxon nepoznává, takže zatímco
-    může být zahrnut do automatických návrhů se štítkem "Poblíž",
-    nebude mít štítek "Vizuálně podobný". Přestože požadavky na zahrnutí do modelu
-    se mění s každou změnou modelu, obecně je zahrnutí založeno na
-    počtu pozorování, čili aby se zvýšila šance, že se tento taxon dostane
-    do trénování příštího modelu, přidejte nebo identifikuje více pozorování
-    tohoto taxonu.
+  computer_vision_model_pending_desc2: |
+    Aktuální model počítačového vidění tento taxon nepoznává, takže zatímco může být zahrnut do automatických návrhů se štítkem "Očekáváno v okolí", nebude mít štítek "Vizuálně podobný". Přestože požadavky na zahrnutí do modelu se mění s každou změnou modelu, obecně je zahrnutí založeno na počtu pozorování, čili aby se zvýšila šance, že se tento taxon dostane do trénování příštího modelu, přidejte nebo identifikuje více pozorování tohoto taxonu.
   concept_status: Status konceptu
   confidential: Důvěrné
   configure: Konfigurovat
@@ -1154,6 +1221,8 @@ cs:
   confirm_new_password: Potvrzení nového hesla
   confirm_now: potvrďte nyní
   confirm_your_info: Potvrďte vaše informace
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Potvrzovací e-mail odeslán %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrzeno dne %{date}
   confirming_ids: Potvrzování ID
@@ -1166,7 +1235,6 @@ cs:
   connected_accounts_titlecase: Připojené účty
   connecting_flickr: "Připojování k Flickru..."
   connect_to_flickr_again_to_authorize_write_permissions: Připojte se znovu k Flickru a autorizujte oprávnění pro zápis
-  connecting_to_facebook: "Připojování k Facebooku..."
   connecting_your_inat_account_to_accounts_other_sites: "Propojení vašeho účtu na %{site_name} s účty na ostatních stránkách vám umožní se přihlašovat na %{site_name} pomocí oprávnění z těchto ostatních stránek."
   cannot_be_changed_during_a_content_freeze: Nelze změnit během zmrazení obsahu
   conservation_status: Stav ochrany
@@ -1213,6 +1281,10 @@ cs:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Jakákoliv
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Jakékoliv
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Jakékoliv
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Jakékoliv
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Jakýkoliv
@@ -1222,10 +1294,20 @@ cs:
     male: Samec
     female: Samice
     plant_phenology: Fenologie rostliny
+    flowers_and_fruits: Květy a plody
     budding: Pučení
     flower_budding: Květinové pučení
     flowering: Kvetení
     fruiting: Plození
+    no_flowers_or_fruits: Žádné květy ani plody
+    flower_buds: Květní pupeny
+    flowers: Květy
+    fruits_or_seeds: Plody nebo semena
+    leaves: Listy
+    breaking_leaf_buds: Listové pupeny
+    green_leaves: Zelené listy
+    colored_leaves: Barevné listy
+    no_live_leaves: Žádné živé listy
     life_stage: Životní stádium
     adult: Dospělý
     teneral: Tenerální
@@ -1234,10 +1316,11 @@ cs:
     no_evidence_of_flowering: Žádný důkaz o kvetení
     nymph: Nymfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Vejce
     juvenile: Mládě
     alive_or_dead: Živý nebo mrtvý
-    alive: Živé
+    alive: Živý
     dead: Mrtvý
     cannot_be_determined: Nelze určit
     evidence_of_presence: Důkazy přítomnosti
@@ -1257,24 +1340,49 @@ cs:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Svlečka
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Okus
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Srst
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstrukce
+    #Does the observation belong to a non-established population or not
+    established: Založeno
+    #Organism is not a member of an established population
+    not_established: Nezaloženo
   controlled_term_definitions:
     alive: Organismus žije a nevykazuje žádné známky bezprostřední smrti
-    dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
-    flower_budding: Květinové pupeny jsou viditelné a nejsou otevřené
-    flowering: Květiny viditelné, otevřené a stále připojené k rostlině
-    fruiting: Květiny viditelné a stále připojené k rostlině
-    no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
-    teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
-    cannot_be_determined: Na základě poskytnutých důkazů nelze určit
-    feather: Jedno nebo více per, které nejsou připevněny k organismu
-    organism: Celý organismus nebo jeho část
-    scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
-    track: Otisk v zemi nebo ve sněhu způsobený organismem
     bone: |
       Převážně pozůstatky vnitřní kostry; částečně odhalené kosti v jinak neporušeném organismu
       by měly být označeny jako „organismus“
-    molt: Odhozená kůže nebo exoskelet
+    cannot_be_determined: Na základě poskytnutých důkazů nelze určit
+    dead: Organismus je mrtvý a nevykazuje žádné známky bezprostřední smrti
+    feather: Jedno nebo více per, které nejsou připevněny k organismu
+    female: Důkazy naznačují, že organismus může produkovat vajíčka pro použití při sexuální reprodukci
+    flower_budding: Květinové pupeny jsou viditelné a nejsou otevřené
+    flowering: Květiny viditelné, otevřené a stále připojené k rostlině
+    fruiting: Květiny viditelné a stále připojené k rostlině
+    flowers: Alespoň jeden otevřený květ
+    flower_buds: Alespoň jedno uzavřené květní poupě
+    fruits_or_seeds: Alespoň jeden plod nebo semeno
+    breaking_leaf_buds: Alespoň jedno poupě s prvním novým listem nebo jehlicí neúplně otevřenou
+    green_leaves: Alespoň jeden zelený list nebo jehlice (nebo načervenalé, je-li to normální zdravá barva)
+    colored_leaves: Alespoň jeden list nebo jehlice má barvu pozdní sezóny nebo barvu sucha
+    no_live_leaves: Nejsou viditelné žádné listové pupeny ani zelené nebo barevné listy či jehlice
     gall: Deformovaný výrůst rostlinných tkání způsobený parazitickým organismem
+    male: Důkazy naznačují, že organismus může produkovat sperma pro použití při sexuální reprodukci
+    molt: Odhozená kůže nebo exoskelet
+    leafmine: Důkazy okusu mezi krajními vrstvami listu
+    hair: Chlupy, které již nejsou spojeny s organismem, z něhož pocházejí.
+    egg: Celé vejce nebo část vejce
+    construction: Něco vytvořené zvířetem, vyrobené z jiných materiálů nebo vytěžené z jiných materiálů
+    no_evidence_of_flowering: Média neposkytují žádné důkazy o reprodukčních strukturách
+    no_flowers_or_fruits: Nejsou viditelné žádné květy, plody ani semena (celé nebo jejich část)
+    not_established: Organismus patří k nepůvodní populaci, včetně vypuštěných nebo uniklých zvířat v zájmovém chovu, migrujících krajinou a toulavých zvířat.
+    organism: Celý organismus nebo jeho část
+    scat: Fekální hmota (ne vývržky sov nebo jiný natrávený materiál)
+    teneral: Dospělec, který se nedávno objevil, ale dosud nedosáhl konečné dospělé formy
+    track: Otisk v zemi nebo ve sněhu způsobený organismem
   controls: Ovládací prvky
   convert: Převést
   coordinate_systems: Systémy souřadnic
@@ -1290,6 +1398,8 @@ cs:
   copy_and_paste_the_following_code_to: Zkopírujte a vložte následující kód, pokud chcete toto hodnocení vložit na jinou webovou stránku.
   copy_and_paste_this_into_your_own_html: Zkopírujte a vložte do vašeho vlastního HTML.
   copy_guide_taxon_to: Zkopírujte pomocný taxon do...
+  copy_to_clipboard: Kopírovat do schránky
+  copied!: Zkopírováno!
   copyright:
     some_rights_reserved: některá práva vyhrazena
     some_rights_reserved_by: "(c) %{name}, některá práva vyhrazena (%{license_short})"
@@ -1392,12 +1502,16 @@ cs:
     Není schopen prokázat vlastní vhodné chování.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Abyste se mohli ucházet o kurátora stránek, musíte mít účet po dobu 60 dní nebo déle a musíte přidat 100 vylepšení identifikace do pozorování kohokoli, včetně svých vlastních (přidali jste %{num_idents}). Pokud splníte oba tyto požadavky, vraťte se sem a budete moci odeslat žádost.
-  curator_application_inelligible_error: |
+  curator_application_inelligible2: |
     Aby jste mohli být kurátorem, musíte mít účet po dobu 60
-    dní nebo více a přidali 100 vylepšení identifikací ke všem
-    pozorováním, včetně vašeho vlastního.
+    dní nebo déle, musíte přidat alespoň 5 příznaků, a musíte
+    přidat 100 vylepšení identifikace ke všem pozorováním, včetně
+    vašich vlastních (přidali jste %{num_idents}). Jakmile splníte tyto
+    požadavky, vraťte se sem a budete moci podat žádost.
+  curator_application_inelligible_error2: |
+    Aby jste mohli být kurátorem, musíte mít účet po dobu 60
+    dnů nebo více, přidáno alespoň 5 příznaků, a přidal 100 zlepšení
+    identifikací ke komukoliv pozorování, včetně vašich vlastních.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Žádost kurátora byla odeslána
   #Header
@@ -1458,6 +1572,9 @@ cs:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Přidáváte identifikaci a/nebo pozorování již několik měsíců
     a hodláte pokračovat.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Prokázali jste, že rozumíte procesu kurace přidáním
+    několika příznaků.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1468,6 +1585,8 @@ cs:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Můžete modelovat vhodné chování na iNaturalist a dodržovat pokyny Společenství. Spolu se sílou kurátorství přichází očekávání, že budete příkladným uživatelem iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Návod pro kurátory
   curators_changed_for_x_html: "Kurátoři změněni na %{x}"
   curators: Kurátoři
   curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a přibližných příspěvků do tohoto projektu.
@@ -1600,7 +1719,8 @@ cs:
   deviation: Odchylka
   devise:
     confirmations:
-      confirmed: "Vaše e-mailová adresa byla úspěšně potvrzena."
+      confirmed: |
+        Vaše e-mailová adresa byla úspěšně potvrzena.
       send_instructions: "Za několik minut obdržíte e-mail s pokyny, jak potvrdit vaši e-mailovou adresu."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
@@ -1635,6 +1755,7 @@ cs:
       signed_up_but_locked: "Úspěšně jste se zaregistrovali. Nicméně, nemohli jsme vás přihlásit, protože Váš účet je uzamčen."
       signed_up_but_unconfirmed: "Zpráva s potvrzovacím odkazem byla odeslána na vaši e-mailovou adresu. Pro aktivaci účtu prosím postupujte podle odkazu."
       updated: 'Účet byl úspěšně aktualizován.'
+      updated_but_not_signed_in: "Váš účet byl úspěšně aktualizován, ale z důvodu změny hesla se musíte znovu přihlásit."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
@@ -1642,11 +1763,11 @@ cs:
       email_changed:
         #Subject of an email sent when you try to change the email address
         #associated with your account
-        subject: Požadována změna e-mailu
+        subject: Požadavek na změnu e-mailu
       reset_password_instructions:
         subject: 'Pokyny pro obnovení hesla'
   devise_confirmation_instructions_if_you_did_not: |
-    Pokud jste se nepřihlásili k účtu @vow_or_con{vow:an|a} %{site_name} , prosím ignorujte tento e-mail.
+    Pokud jste se nezaregistrovali k účtu na %{site_name}, prosím ignorujte tento e-mail.
   devise_confirmation_instructions_please_click: |
     Klikněte prosím na odkaz níže pro potvrzení vaší e-mailové adresy:
   devise_confirmation_instructions_resend_instructions: |
@@ -1700,6 +1821,8 @@ cs:
   donate: DAROVAT
   donate_again_caps: DARUJTE ZNOVU
   donate_again_today_caps: DARUJTE ZNOVU JEŠTĚ DNES
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Přispět na iNaturalist
   done: Hotovo
   dont_have_an_account_sign_up_html: Nemáte účet? <strong> Zaregistrujte se. </strong>
   dont_use_double_quotes: Nikde jinde nepoužívejte dvojité uvozovky
@@ -1720,9 +1843,15 @@ cs:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Označené taxony
+  #Noun, as in a journal post that has not been published
   draft: koncept
+  #Noun, as in a journal post that has not been published
   draft_: koncept
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Návrh od %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: koncept uložen!
+  #Noun, as in journal posts that has not been published
   drafts: koncepty
   drag_and_drop_some_photos_or_sounds: Přetáhnout fotky nebo zvuky
   #Button label for drawing a circular boundary for an observation search
@@ -1798,15 +1927,19 @@ cs:
   editing_this: Editování %{elem}
   editing_x_in_y: "Editování %{x} v %{y}"
   editors: Editoři
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Návod pro pedagogy
   either_that_user_doesnt_exist_or: "Tento uživatel buď neexistuje, nebo už ho sledujete."
   eligible_for_research_grade: Vhodný pro výzkumnou klasifikaci
   email: E-mail
-  email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
   email_address_for_comments_and_other_feedback: E-mailové adresy pro komentáře a jinou zpětnou vazbu.
-  email_confirmation_banner_html: |
-    <strong>%{link_start_tag}Prosím, potvrďte svou e-mailovou adresu%{link_end_tag}</strong>.
-    Všichni uživatelé musí potvrdit svou e-mailovou adresu do %{date}. Po tomto datu se každý, kdo nepotvrdí svou e-mailovou adresu, nebude moci přihlásit, pokud si neobnoví heslo. Chcete-li potvrdit svou e-mailovou adresu, přejděte do %{link_start_tag}nastavení účtu%{link_end_tag}.
-  email_copyright: "Copyright &copy; %{x}, všechna práva vyhrazena"
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Milý/á %{user},
+  email_description: Váš e-mail není sdílen s ostatními uživateli iNaturalist
+  email_conf_required_after_grace_period: |
+    Od %{requirement_date} je vyžadováno potvrzení e-mailu a před koncem období jste nepotvrdili svou e-mailovou adresu. Pro přístup ke svému účtu si prosím obnovte heslo.
+  email_copyright2: "&copy; %{year} iNaturalist, všechna práva vyhrazena"
   email_notifications: E-mailová upozornění
   embed: 'Vložit'
   embed_place_widget: Vložit widget místa
@@ -1839,6 +1972,12 @@ cs:
     native: vyvinutý v této oblasti nebo přijatý neantropogenními prostředky
     endemic: původní a nikde jinde se neobjevuje
     introduced: do regionu přišel prostřednictvím antropogenního působení
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Odhadněte, které identifikace vstupního taxonu budou nahrazeny
+    identifikací výstupního taxonu a které budou zestručněny na úroveň
+    společného předka, jakmile bude rozdělení provedeno. Výpočet může chvíli trvat. 
+    Odkazy na pozorování jsou zkráceny na podmnožiny po 200.
   event_in_progress: Událost probíhá
   event_stats: Statistiky události
   event_url: URL události
@@ -1849,6 +1988,7 @@ cs:
   everywhere: všude
   exact: Přesný
   exact_date: Přesné datum
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Přesné pořadí
   except: mimo
   exclude_places: Vyloučit místa
@@ -1860,6 +2000,7 @@ cs:
   exit_full_screen: "Ukončit celou obrazovku"
   examples_of_data_use_by_network_members: Příklady využití dat členy sítě
   examples_of_ranking_organizations: Příklady klasifikujících organizací
+  expected_nearby: Očekáváno v okolí
   explore: Prozkoumat
   export: Exportovat
   export_observations: Exportovat pozorování
@@ -1875,14 +2016,8 @@ cs:
   extinct_in_the_wild: vyhynulý v přírodě
   extra_properties: Další vlastnosti
   evidence_of_organism: Důkaz o organismu
+  evidence_related_to_single_subject: Důkazy týkající se jediného subjektu
   facebook: Facebook
-  facebook_account_information: Informace z vašeho facebookového účtu
-  facebook_account_not_linked: "%{user} už nemá propojený facebookový účet, proto %{site_name} nemá povolení přístupu k této fotce."
-  facebook_access_token_expired: "Platnost přístupového kódu vypršela. %{user} si musí znovu propojit svůj facebookový účet."
-  facebook_needs_the_owner_of_that_photo_to: Facebook vyžaduje, aby vlastník této fotky opětovně potvrdil své propojení s %{site_name_short}.
-  facebook_options: Možnosti Facebooku
-  facebook_photo_import_disabled_notice: |
-    V listopadu 2020 nás Facebook požádal o ověření, zda skutečně potřebujeme přístup k fotografiím, a kvůli problémům s ověřovacím systémem Facebooku se nám tento proces nepodařilo dokončit. V důsledku toho již nemůžeme podporovat import fotografií ze sítě Facebook.
   failed_to_find_your_location: Vaše lokalita nebyla nalezena.
   failed_to_repair_photo: "Oprava fotky se nezdařila: %{errors}"
   failed_to_save_record: "Nelze uložit záznam. Prosím, zkuste to znovu o chvíli později."
@@ -1920,6 +2055,7 @@ cs:
   filter: Filtrovat
   filter_by_curator_identification: Filtrovat podle identifikace kurátora
   filter_by_place: Filtrovat podle polohy
+  filter_by_species: Filtrovat podle druhů
   filter_by_taxon: Filtrovat podle taxonu
   filter_by_place_taxon_and_color: Filtrovat podle místa, taxonu a barvy pomocí ovládacích prvků.
   filter_list_by_this_taxon: Filtrovat seznam podle tohoto taxonu
@@ -1987,6 +2123,7 @@ cs:
     Označení pro uživatele: %{title}
   flag_it!: Označit!
   flag_marked_as_resolved_html: '<span class="meta">Vlajka označena jako</span> <strong>vyřešená.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Označeno jako</span> <strong>nevyřešené.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objekt
   flag_reason: "&ldquo;Tento %{record} označuji, protože"
@@ -2022,7 +2159,10 @@ cs:
   #Adjective, as in a fluid layout of images
   fluid: proměnlivý
   follow: Sledovat
+  #Text for a button to follow updates on an observation
+  follow_observation: Sledovat pozorování
   follow_receive_updates_about_new_observations: Sledujte (obdržíte informace o nových pozorováních)
+  #Text for a button to follow updates from a specific user
   follow_user: "Sledovat %{user}"
   followers: Sledující
   following: Sledovaní
@@ -2048,7 +2188,7 @@ cs:
   frequency: Frekvence
   from_a_place: Z místa
   from_eol_collection: Ze souboru EOL
-  from_flickr_facebook_etc: Z Flickru, Facebooku, apod.
+  from_flickr_etc: Z Flickru, atd.
   from_list: Ze seznamu
   from_photos: Z fotek
   from_place: Z místa
@@ -2064,15 +2204,28 @@ cs:
   generate_taxonomic_tags_for_flickr: Generovat taxonomické tagy pro vaše fotky na Flickru.
   generate_widget: Generovat widget
   generate_your_stats: Generovat vaše statistiky
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: VYGENEROVAT VÁŠ PŘEHLED ROKU %{year}
   generating_mobile_archive: "Generování mobilního archivu"
   Genus: Rod
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo skóre
+  geomodel_expected_nearby_label_is_derived: |
+    Štítek "Očekáváno v okolí" je odvozen od výstupů Geomodelu.
+    <a href="%{url}">O Geomodelu se dozvíte víc zde</a>.
   geoprivacy: Soukromí zeměpisné polohy
   geoprivacy_is_obscured: Soukromí zeměpisné polohy je nastaveno na přibližné
   geoprivacy_is_obscured_desc: Pozorovatel se rozhodl zveřejnit jen přibližné souřadnice.
   geoprivacy_is_private: Soukromí zeměpisné polohy je nastaveno na soukromé
   geoprivacy_is_private_desc: Pozorovatel se rozhodl skrýt souřadnice.
   georeferenced: Georeference?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoprostorový
   get_started: Začněte
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Začínáme
   getting_started_guide: Příručka pro nováčky
   #Prompt to donate money on a montly basis
   give_monthly_caps: DÁT MĚSÍČNĚ
@@ -2092,12 +2245,14 @@ cs:
   graft: Připojit
   graft_taxon: Připojit %{taxon}
   grafting_attemps_to_insert_this_taxon: Cílem připojení je vložit tento taxon do našeho taxonomického stromu, nalezení stávajícího hlavního taxonu nebo vytvoření všech nezbytných pomocných taxonů pro připojení ke stávajícímu taxonu vyšší úrovně.
-  grant_role: "%{grant} %{role} funkce"
   grid: mřížka
   grid_layout: Rozložení sítě
   grid_tooltip: zobrazit pohled s mřížkou
   group: Skupina
   grouping: Seskupování
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Odhadnout polohu z jiných pozorování?
   guides: Průvodci
   guide_compiled_by: Průvodce sestavil/a
   guide_deleted: Průvodce smazán
@@ -2146,7 +2301,6 @@ cs:
   heads_up_you_have_multiple: "Pozor: Máte několikanásobná automatické taxonomická označení pro stejné kategorie. Níže jsou jednotlivé kategorie barevně označeny."
   help: Nápověda
   help_confirm_observations!: Pomozte potvrdit pozorování!
-  help_support_inaturalist: "Nápověda iNaturalist"
   help_translate!: Pomozte s překladem!
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
   here_are_our_top_suggestions: Zde jsou naše nejlepší návrhy
@@ -2157,26 +2311,42 @@ cs:
   hide: Skrýt
   hide_content: Skrýt obsah
   hide_desc: |
-    Skrytí obsahu ho odstraní z veřejného náhledu, ale lidé budou i nadále
-    vidět, že něco bylo skryto, a kurátoři stránek a autor
-    bude stále moci vidět skrytý obsah. Obecně to
-    platí pouze pro psaný obsah, např. pokud skryjete obsah
-    identifikace, identifikace je stále viditelná, ale 
-    poznámky identifikátora jsou skryté. Tuto akci nelze vrátit zpět a pouze pracovníci webu mohou obsah odkrýt, jakmile je skrytý, proto buďte opatrní a používejte jej jen pro velmi
-    nevhodný obsah.
+    Skrytý obsah sice nebude vidět veřejně, ale bude vidět, že je něco skryté.
+    Obsah také i po skrytí zůstane viditelný jednak pro kurátory a jednak
+    pro autora obsahu. Skryté identifikace se nezapočítávají při určování
+    Komunitního taxonu daného pozorování.
+  hide_desc_staff_can_unhide: |
+    Jakmile je obsah jednou skryt, znovu ho odkrýt můžou jen správci stránky,
+    proto tuto možnost používejte jen v případě jasného porušení Pravidel komunity.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skrýt "Bez anotace"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Skrýt pozorování se soukromými umístěními
   #Label for a button to hide the running total of an accumulation chart
-  hide_running_total: Skrýt Running Total
+  hide_running_total: Skrýt průběžný součet
   hide_uncountable_species: Skrýt nespočitatelné druhy
   high: vysoká
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Nejvyšší pořadí
   highlights_and_stats_from_year_on_site: "Nejvýznamnější události a statistiky z roku %{year} v %{site}"
   history: Historie
   home: Domů
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hodiny k úpravě:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    Není však licencováno pro opakované použití a nebude sdíleno s datovým
+    úložištěm, které respektuje volbu licence.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Předvolby licencí můžete změnit ve svém
+    <a class="linky" href="/users/edit#content">nastavení účtu</a>.
   however_there_were_some_issues: "Objevily se však nějaké problémy: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2212,14 +2382,20 @@ cs:
   #Notification when an identification has been deleted
   identification_deleted: Identifikace smazána.
   identification_saved: "Identifikace uloženaǃ"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text identifikace odkryt
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identifikace skrytá
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identifikace neskrytá
   #Notification when an identification has been updated
   identification_updated: Identifikace aktualizovánaǃ
   identification_user_short: Ident. uživatele
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikace odstraněna.
   identifications: Identifikace
+  inaturalist_global_year_in_review: "Globální přehled roku %{year} na iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist je nezávislá nezisková organizace typu 501(c)(3), vyjmutá z federálních daní z příjmu,
+    se sídlem ve Spojených státech amerických (Tax ID: 92–1296468).
   computer_vision_suggestion: Návrh počítačového vidění
   computer_vision_suggestion_desc: |
     Počítačové vidění je proces, kterým se počítač učí rozpoznávat vzory v obrazech. Poskytujeme nástroje, které využívají modely počítačového vidění řízené fotografiemi z komunity, aby poskytly návrhy na identifikaci, jako jsou automatické úplnosti a funkce porovnání. Tento štítek označuje, kdy osoba přidala ID pomocí jednoho z těchto nástrojů.
@@ -2228,9 +2404,21 @@ cs:
   identotron_for: Identotron pro
   identotron_help: Nápověda pro Identotron
   ids: "ID"
-  ids_made_for_others: ID vytvořená pro ostatní
+  ids_made_for_others__title: ID vytvořená pro ostatní
   if_for_some_reason_a_user_doesnt_agree: |
     Pokud z nějakého důvodu nesouhlasíte s komunitním taxonem, můžete ho odmítnout, což znamená, že vaše ID se použije pro propojení s dalšími pozorováními, aktualizaci seznamů atd. Dále to znamená, že vaše pozorování se může dostat na úroveň výzkumu pouze tehdy, bude-li s vámi komunita souhlasit.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_moves_html: |
+    Pokud ztenčení rodiče vyústí ve více než 10 nezamýšlených neshod, 
+    měli byste rozdělit rodiče po přesunutí potomka, aby nahradili stávající ID
+    rodiče <strong>(B)</strong> s ID, která nesouhlasí.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  if_narrowing_a_parent_for_swaps_html: |
+    Pokud ztenčení rodiče vyústí ve více než 10 nezamýšlených neshod, 
+    měli byste rozdělit rodiče po výměně potomka, aby nahradili stávající ID
+    rodiče <strong>(B)</strong> s ID, která nesouhlasí.
   if_matches_come_from_a_comprehensive_list: Pokud kombinace pocházejí z kompletního seznamu, objeví se tady zelený pruh.
   if_this_is_a_scientific_name: Pokud je toto vědecký název, je v současnosti uznávaný?
   if_this_link_will_apply_to_descendant: Pokud bude tento odkaz použit pro následné taxony, můžete použít tagy šablony k vyplnění názvu taxonu v URL
@@ -2268,6 +2456,7 @@ cs:
   include_places: Zahrnout místa
   include_projects: Zahrnout projekty
   include_suggestions_not_seen_nearby: Zahrnout i návrhy neviděné v okolí
+  include_suggestions_not_expected_nearby: Zahrnout i návrhy neočekávané v okolí
   include_taxa: Zahrnout taxony
   include_users: Zahrnout uživatele
   including: včetně
@@ -2291,7 +2480,6 @@ cs:
   inaturalist_activity_notifications: "Oznámení o aktivitě %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplikace iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} je společná iniciativa Kalifornské akademie věd a Národní geografické společnosti."
   inaturalist_places: "%{site_name} Místa"
   info: Informace
   input_taxon: Vstupní taxon
@@ -2318,6 +2506,11 @@ cs:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Jsou předložené důkazy dostatečné k potvrzení, že toto je %{taxon}?
   is_this_offensive_html: 'Je toto <a href="/help#inappropriate">nevhodné</a>, spam, nebo urážlivé?'
   is_this_place_a_duplicate: Je toto místo duplikát?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Je tento vědecký název v současné době uznávaný?
   it_can_now_be_used_for_research: Nyní může být využito pro výzkum a zobrazováno na dalších webových stránkách
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: text v kurzívě
@@ -2339,6 +2532,7 @@ cs:
   journal: Deník
   journal_archives_for: Archivy deníků pro
   journal_post: Záznam v deníku
+  journal_post_: záznam v deníku
   journal_post_deleted: Záznam v deníku smazán.
   journal_posts: Deník
   jpg_png_or_gif: "JPG, PNG, nebo GIF"
@@ -2373,6 +2567,8 @@ cs:
   last_seen: Naposledy viděný
   last_year: Minulý rok
   lat: Zeměpisná šířka
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: z.š./z.d.
   latitude: Zeměpisná šířka
   latitude_in_decimals: 'Zeměpisná šířka v desetinných stupních, např. 38.123'
   latitude_slash_y_coord_slash_northing: Zeměpisná šířka / souřadnice y / severně od rovníku
@@ -2408,18 +2604,25 @@ cs:
   lexicon: Slovník
   lexicon_cannot_contain_words: "nemůže obsahovat následující slova: %{words}"
   lexicons:
-    scientific_names: Vědecké názvy
     afrikaans: Afrikánština
+    alabama: Alabama
     albanian: Albánština
+    aou_4_letter_codes: Čtyřpísmenný kód AOU
+    aou_6_letter_codes: Šestipísmenný kód AOU
     arabic: Arabština
     armenian: Arménština
+    asturian: Asturština
+    basque: Baskičtina
     belarusian: Běloruština
     bengali: Bengálština
+    bikol: Bikol
     bulgarian: Bulharština
+    carolinian: karolínština
     catalan: Katalánština
     cebuano: Cebuánština
     chinese_simplified: Čínština (zjednodušená)
     chinese_traditional: Čínština (tradiční)
+    chuvash: Čuvaština
     creole_french: Kreolšina (francouzská)
     creole_portuguese: Kreolština (portugalská)
     croatian: Chorvatština
@@ -2428,28 +2631,41 @@ cs:
     davawenyo: Davawenyo
     dutch: Holandština
     english: Angličtina
+    esperanto: Esperanto
     estonian: Estonština
     faroese: Faerština
+    fijian: Fidžijština
     finnish: Finština
     french: Francouzština
     galician: Galicijština
     gela: Gela
+    georgian: Gruzínština
     german: Němčina
     greek: Řečtina
+    gujarati: Gudžarátština
     hawaiian: Havajština
     hebrew: Hebrejština
+    herero: hererština
     hiligaynon: Hiligaynon
+    hill_mari: Hill Mari
+    hodges_number: Identifikátor MONA
+    hokkien: Hokkienština
     hungarian: Maďarština
     icelandic: Islandština
     ilokano: Ilokano
     indonesian: Indonéština
+    irish: Irština
     italian: Italština
     japanese: Japonština
     kannada: Kannadština
+    kazakh: Kazachština
     korean: Korejština
+    kweyol: Antilská kreolština
     latvian: Lotyština
     lithuanian: Litevština
+    lozi: Lozi
     luxembourgish: Lucemburština
+    malagasy: Malgaština
     malay: Malajština
     malayalam: Malajámština
     maltese: Maltština
@@ -2459,6 +2675,8 @@ cs:
     misima_paneati: Misima-paneati
     mongolian: Mongolština
     nahuatl: Nahuatl
+    navajo: navažština
+    ndebele: Ndebele
     norwegian: norsky
     occitan: okcitánština
     ojibwe: Ojibwe
@@ -2470,22 +2688,38 @@ cs:
     romanian: rumunština
     russian: rusky
     santali: santálština
+    scientific_names: Vědecké názvy
     serbian: Srbština
-    setswana: Setswanština
+    shona: Šona
     sinhala: Sinhálština
     slovak: Slovenština
     slovenian: Slovinština
+    sotho: Sotho
+    sotho_northern: Sotho (severní)
     spanish: španělsky
     swahili: Svahilština
+    swati: Siswati
     swedish: švédsky
     tagalog: Tagalog
     tahitian: tahitsky
+    tamil: Tamilština
     thai: Thajština
     tokelauan: Tokelauan
+    totonaco: Totonaco
+    tsonga: Tsongština
+    tswana: Tswanština
     turkish: turecky
+    u_s_d_a_symbol: Znak U.S.D.A.
     ukrainian: Ukrajinština
-    waray_waray: Waray-Waray
+    uyghur: Ujghurština
+    venda: Venda
+    vermont_flora_codes: Kódy Flóry Vermontu
+    vietnamese: Vietnamština
     visayan: Visayan
+    waray_waray: Waray-Waray
+    xhosa: Xhoština
+    zapoteco: Zapotečtina
+    zulu: Zuluština
   less: Méně
   #Button show less text
   less__context_text: Méně
@@ -2501,14 +2735,8 @@ cs:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Odkaz na autorizační kód
-  link_your_facebook_account: Propojit váš účet na Facebooku
   link_your_flickr_account: Propojit váš účet na Flickru
   link_your_google_account: Propojit váš účet na Googlu
-  linked_facebook: "Váš účet na %{site_name}je nyní propojen s vaším účtem na Facebooku."
-  linked_facebook_automaticaly: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Facebook, automaticky znovu propojíme váš účet na %{site_name} s účtem na Facebooku. Zdá se rozumné, že pokud používáte Facebook, budete chtít importovat fotky z Facebooku, že?"
-  linked_facebook_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Facebooku, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Facebook oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Facebooku, s kterým chcete propojit %{site_name}."
-  linked_facebook_howto: "Pokud chcete propojit Facebook a %{site_name}, klikněte na odkaz vpravo a přihlaste se na Facebook.com."
-  linked_facebook_password: "Nikdy vás nebudeme žádat o vaše heslo na Facebook (Facebook o něj však žádat může, zkontrolujte url a ověřte si, že se jedná o Facebook.com). Také nebudeme měnit vaše údaje na Facebooku, pokud nás o to nepožádáte."
   linked_flickr: "Váš účet na %{site_name} je teď propojen s vaším účtem na Flickru."
   linked_flickr_automatically: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Flickr, automaticky znovu propojíme váš účet na %{site_name} s účtem na Flickru. Zdá se rozumné, že pokud používáte Flickr, budete chtít importovat fotky z Flickru, že?"
   linked_flickr_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Flickru, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Flickr oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Flickru, s kterým chcete propojit %{site_name}."
@@ -2526,6 +2754,10 @@ cs:
     taxonomic: taxonomický
     photo: fotka
   list_was_successfully_created: Seznam byl úspěšně vytvořen.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} a %{three}"
+  list_with_two_items: "%{one} a %{two}"
   listed_taxa: Taxony uvedené v seznamu
   listed_taxon: Taxon uvedený v seznamu
   listed_taxon_updated: Taxon uvedený v seznamu byl aktualizován
@@ -2564,6 +2796,7 @@ cs:
     es: španělsky
     es-AR: španělsky (Argentina)
     es-CO: španělsky (Kolumbie)
+    es-CR: Španělština (Kostarika)
     es-MX: španělsky (Mexiko)
     et: estonsky
     eu: baskicky
@@ -2577,6 +2810,8 @@ cs:
     id: indonésky
     it: italsky
     ja: japonsky
+    ka: gruzínsky
+    kk: kazašsky
     kn: kannadsky
     ko: korejsky
     lb: lucembursky
@@ -2622,7 +2857,7 @@ cs:
   log_out_caps: ODHLÁSIT SE
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Odhlásit se z %{site_name}?"
-  log_scale_label: Protokol
+  log_scale_label: logaritmické
   #Status message shown while logging in
   logging_in: Přihlašování...
   logo:
@@ -2641,7 +2876,11 @@ cs:
   looks_like_no_species_in_guide: Vypadá to, že ve svém průvodci nemáte ještě žádný druh.
   lookup: Vyhledat
   low: nízká
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Nejnižší hodnost
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Dělat admina
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Hlavní obsah
@@ -2674,7 +2913,7 @@ cs:
       every_publicly_visible_observation: Každé veřejně viditelné pozorování vytvořené v síti iNaturalist
       featured_observations: Doporučené pozorování
       gbif_network: GBIF síť
-      gbif_network_description: Záznamy z muzeí a jiných poskytovatelů výskytu, které distribuuje Globální informační společnost pro biologickou rozmanitost
+      gbif_network_description2: Záznamy z muzejí a jiných poskytovatelů výskytu, které distribuuje Globální informační společnost pro biologickou rozmanitost
       observations: Pozorování
       place_boundary: Umístit hranici
       checklist_places: Místa seznamů
@@ -2694,14 +2933,14 @@ cs:
   maximum_positional_accuracy_including_unknown: |
     Maximální přesnost polohy včetně pozorování bez polohové přesnosti
   media: Média
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: a
   media_type: Typ média
   medium: střední
   meet: setkat se
   member_of_the_inaturalist_network_html: |
     Člen sítě <a href="%{url}"> iNaturalist </a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Člen sítě %{partial_inat_network_tag_html}iNaturalist</a>, společná iniciativa
-     %{cas_tag_html} a %{nat_geo_tag_html}.
   #As in members of a project
   members: Členové
   membership_model: Členský model
@@ -2754,6 +2993,14 @@ cs:
   moderation_history_for_user_html: Historie moderování pro %{user}
   moderation_history_desc_html: |
     Patří sem akce moderátora (např. skrývání nebo rušení skrývání komentářů), poznámky a příznaky u všeho, co tento uživatel vytvořil, kromě taxonů. Toto je <strong>viditelné pouze pro kurátory</strong> a <strong>kurátoři nemohou prohlížet svou vlastní historii</strong>, takže poznámky o dané osobě by nikdy neměly být viditelné pro tuto osobu.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Skrýt
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Odkrýt
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Pozastavit
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Obnovit
   moderator_note_desc: |
     Moderátorské poznámky jsou záznamy o reakcích moderátorů nebo o obavách ohledně uživatele, například o tom, zda se nejedná o falešný účet. Neuvádějte prosím osobní názory nebo pomluvy o uživateli.
   #Person who executed a moderator action or flagged something
@@ -2841,6 +3088,9 @@ cs:
   most_observed_introduced_species: Nejvíce pozorovaných nepůvodních druhů
   most_observed_threatened_species: Nejvíce pozorovaných ohrožených druhů
   move_input_children_to_output?: Přesunout potomky do výstupu?
+  moving_child_out_of_old_parent_would_narrow_html: |
+    Přesunutím %{child} mimo %{old_parent} by se zúžilo to, co považujeme za 
+    %{old_parent}. Existuje %{id_count} identifikátorů týkajících se %{old_parent}.
   multiple: vícero
   multiple_select_option: '-- vícero --'
   multiple_taxa_for_taxon_change: "Několik taxonů (vstup pro záměnu/sloučení, výstup pro rozdělení)"
@@ -2863,8 +3113,12 @@ cs:
   must_have_quality_grades: "musí mít úroveň kvality: %{grades}"
   must_have_sounds: musí mít zvuky
   must_have_x: "musí mít %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Ztlumit
+  #Mute is a noun here
   mute_removed: Ztlumení zrušeno
   muted_users: Ztlumení uživatelé
+  muting_description: Ztlumení někoho vám brání být informováni o jakékoli jejich aktivitě, včetně "@", zpráv nebo komentářů a identifikací na vašich pozorováních.
   n_ago: "před %{n}"
   n_people_agrees: "%{amount} lidí souhlasí"
   n_people_disagrees: "%{amount} lidí nesouhlasí"
@@ -2896,7 +3150,6 @@ cs:
   needs_id_: Potřebuje identifikaci
   needs_id_expandable_html: "<span class='full'>Potřebuje</span> identifikaci"
   needs_id_tooltip_html: 'Pozorování úrovně "Potřebuje ID" mají média, umístění a datum, ale stále vyžadují konsensus komunity o přesné identifikaci. <a href="https://www.inaturalist.org/pages/help#quality">Další informace o úrovních kvality</a>'
-  needs_to_be_identified: Musí být identifikován
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong> je součástí mezinárodní sítě iNaturalist
@@ -2924,7 +3177,7 @@ cs:
   new_check_list: Nový seznam
   new_check_list_for: "Vytvořit nový seznam pro %{place}&raquo;"
   new_check_list_record: "Pokud chcete tento seznam označit jako kompletní, vytvořte ho, přidejte taxony, potom zvolte možnost editovat, kde můžete seznam označit jako kompletní."
-  new_comment_on_a_parent_by_user_link: Nový komentář na @vow_or_con{vow:an|a} %{parent} od uživatele %{user_link}
+  new_comment_on_a_parent_by_user_link: Nový komentář na %{parent} od uživatele %{user_link}
   new_conservation_status: Nový stav ochrany
   new_flag_for: Nové označení pro
   new_guide: Nový průvodce
@@ -2972,6 +3225,8 @@ cs:
   next_tab: Další panel
   next_taxon_short: Další
   'no': 'Ne'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Zatím žádné aplikace
   no_assessments_have_been_added_to_this_project_yet: K tomuto projektu zatím nebyla přidána žádná hodnocení.
   no_but_it_is_a_member_of_taxon: "Ne, ale patří do %{taxon}"
   no_comments_yet: Žádné komentáře.
@@ -3065,11 +3320,15 @@ cs:
   not_confident: Nejsme si dostatečně jistí, abychom provedli doporučení.
   not_confident_top_suggestions: Nejsme dostatečně přesvědčeni, abychom mohli něco doporučit, ale zde jsou naše nejlepší návrhy
   not_covered_by_any_taxon_frameworks: Není pokryto žádným taxonem
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Neočekáváno poblíž
   not_evaluated: nehodnoceno
   not_findig_what_you_want: Nenašli jste, co jste chtěli?
   not_finding_place_you_want?: Nenašli jste místo, které jste hledali?
   not_found: Nenalezeno
-  not_linked_facebook: "Váš účet na %{site_name} není propojen s vaším účtem na Facebooku"
+  #Filter for observations not in a particular place
+  not_in_place: Mimo místo
   not_linked_flickr: "Váš účet na %{site_name} není propojen s vaším účtem na Flickru"
   not_on_this_list: Není na tomto seznamu.
   not_recorded: Nezaznamenáno
@@ -3094,6 +3353,93 @@ cs:
     Veřejné souřadnice zobrazené jako náhodný bod v prostoru velikosti 0,2 x 0,2 stupně zeměpisné šířky/délky okolo skutečných souřadnic.
   observation: Pozorování
   observation_: pozorování
+  observation_accuracy_experiment_the_sample_for: "Vzorek pro tento experiment ještě nebyl vytvořen."
+  observation_accuracy_experiment_our_accuracy_estimate: "Na základě tohoto experimentu odhadujeme správnost (accuracy) na %{percent}."
+  observation_accuracy_experiment_our_goak: "Náš cíl pro odhadovanou přesnost (Správnost) a přesnost podskupiny výzkumného stupně je vyšší než 95 % (čárkovaná čára)"
+  observation_accuracy_experiment_precision_results: "Výsledná přesnost podle podmnožiny"
+  observation_accuracy_experiment_taxon_rank_level: "Taxonomická kategorie"
+  observation_accuracy_experiment_taxon_observations_count: "Počet pozorování taxonu"
+  observation_accuracy_experiment_iconic_taxon_name: "Ikonický taxon"
+  observation_accuracy_experiment_continent: "Světadíl"
+  observation_accuracy_experiment_year: "Rok"
+  observation_accuracy_experiment_quality_grade: "Úroveň kvality"
+  observation_accuracy_experiment_show_frequency: "zobrazit frekvenci"
+  observation_accuracy_experiment_click_on_bars: "Kliknutím na lišty prozkoumáte podmnožiny."
+  observation_accuracy_experiment_bars_will: "Na sloupce bude možné kliknout po uplynutí lhůty pro validaci vzorků."
+  observation_accuracy_experiment_accuracy_results: "Výsledná správnost podle podmnožiny"
+  observation_accuracy_experiment_as_observations: "Při ověřování pozorování z tohoto vzorku se bude snižovat procento nejistoty a zvyšovat procento správných a nesprávných pozorování."
+  observation_accuracy_experiment_experiment_still: "Experiment stále probíhá. Statistiky budou denně aktualizovány až do termínu pro ověření vzorků %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experiment na správnost pozorování"
+  observation_accuracy_experiment_validators: "Validátoři:"
+  observation_accuracy_experiment_show_additional_validators: "(zobrazit další validátory)"
+  observation_accuracy_experiment_hide_additional_validators: "(skrýt další validátory)"
+  observation_accuracy_experiment_additional_validators: "(%{number} dalších validátorů)"
+  observation_accuracy_experiment_abstract: "Abstrakt: Vygenerovali jsme vzorek pozorování %{sample_generation_date} a koordinovali jsme tým ověřovatelů, aby posoudili jeho přesnost %{deadline_date}. Všechny níže uvedené výsledky ukazují vlastnosti pozorování vzorku v době, kdy byl vzorek generován (např. výzkumná třída či ne). Přesnost pozorování vzorku byla posouzena %{assessment_date}. Pro více detailů se podívejte na záložku metody."
+  observation_accuracy_experiment_research_grade_results: "Výsledky pro Výzkumný stupeň"
+  observation_accuracy_experiment_verifiable_results: "Ověřitelné výsledky"
+  observation_accuracy_experiment_all_results: "Všechny výsledky"
+  observation_accuracy_experiment_methods: "Metodika"
+  observation_accuracy_experiment_step_1: "Krok 1: vytvoření a rozřazení vzorku"
+  observation_accuracy_experiment_from_the2: "Z databáze pozorování (A) iNaturalist jsme vytvořili náhodný vzorek (B). Subvzorky byly přiděleny kandidátským osobám provádějícím validaci (C) na základě níže popsaných kritérií. Zaměřili jsme se na přiřazení každého pozorování vzorku více kandidátským ověřovatelům ( \"cílová redundance ověřovatele\" )."
+  observation_accuracy_experiment_sample_generated: "Vzorek generován: %{date}"
+  observation_accuracy_experiment_sample_size: "Velikost vzorku: %{number}"
+  observation_accuracy_experiment_target_validator: "Cílová redundance validátora: %{number}"
+  observation_accuracy_experiment_number_of: "Počet kandidátských ověřovatelů: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Střední velikost dílčího vzorku na jednoho kandidáta ověřovatele: %{number}"
+  observation_accuracy_experiment_mean_number: "Průměrný počet ověřovatelů na jedno pozorování vzorku: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Kritéria pro kandidáty na validátora"
+  observation_accuracy_experiment_if_an_identifier: "Pokud identifikátor provedl alespoň 3 zlepšení identifikace taxonu, považovali jsme je za kvalifikované k ověření tohoto taxonu. Zlepšení identifikace jsou prvním návrhem taxonu, se kterým komunita následně souhlasí."
+  observation_accuracy_experiment_if_an_identifier_continent: "Pokud identifikátor provedl alespoň 3 zlepšení identifikace taxonu na kontinentu, považovali jsme je za způsobilé k ověření tohoto taxonu na tomto kontinentu. Zlepšení identifikace jsou prvním návrhem taxonu, se kterým komunita následně souhlasí."
+  observation_accuracy_experiment_for_example: "Například, identifikátor 1 přidá k pozorování ID typu A. Pokud identifikátor 2 později přidá hlavní ID B, identifikátor 1 na A se stává vylepšujícím ID. Pokud identifikátor 3 později přidá k B podpůrné ID, zlepšující se ID identifikátoru 2 se stává identifikátorem B."
+  observation_accuracy_experiment_step_2: "Krok 2: Ověření vzorků"
+  observation_accuracy_experiment_we_contacted: "Kontaktovali jsme kandidáty na validátory a požádali je o doplnění identifikací do jejich dílčích vzorků. Graf vpravo seskupuje pozorování vzorku podle počtu validátorů."
+  observation_accuracy_experiment_number_percent_of: "Počet zúčastněných validátorů: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Procento validovaného vzorku: %{percent}"
+  observation_accuracy_experiment_step_3: "Krok 3: Bodování vzorků pozorování z validací"
+  observation_accuracy_experiment_we_scored: "Pozorování ve vzorku jsme hodnotili jako správná, nejistá nebo nesprávná porovnáním identifikací validátorů s taxony jednotlivých pozorování ve vzorku. Identifikace shodné nebo přesnější než taxon pozorování vzorku byly hodnoceny jako správné. Nesouhlasné hrubší identifikace byly hodnoceny jako nejisté, stejně jako scénáře, kdy se neshodlo více validátorů. Nesouhlasné hrubší identifikace nebo identifikace na různých větvích byly hodnoceny jako nesprávné."
+  observation_accuracy_experiment_correct: "Správně"
+  observation_accuracy_experiment_uncertain: "Nejisté"
+  observation_accuracy_experiment_incorrect2: "Nesprávný"
+  observation_accuracy_experiment_step_4: "Krok 4: výpočet správnosti a přesnosti"
+  observation_accuracy_experiment_accuracy: "Správnost (accuracy)"
+  observation_accuracy_experiment_we_calculated: "Přesnost jsme vypočítali jako procento správnosti pro celý vzorek i podsoubory, jako je například podsoubor Research Grade. Vypočítali jsme také procento nejistoty a procento nesprávnosti. V příkladovém obrázku vpravo by procento správných bylo 83, procento nejistých 6 a procento nesprávných 11."
+  observation_accuracy_experiment_precision: "Přesnost (precision)"
+  observation_accuracy_experiment_if_every_sample: "Pokud by se každé pozorování vzorku určovalo jenom obecně, jako je například říše, mohlo by být hodně dat přesných, ale ne určitých. Aby byl datový soubor užitečný, musí se pozorování určit přesněji. Pro odhad přesnosti jsme spočítali počet organismů v taxonomii iNaturalist pro každý taxon spojený s každým pozorováním vzorku. Přesnost jsme vypočítali jako podíl 1 a počet organismů. Pokud byl taxon mateřským taxonem (druh), přesnost je 100%. Při výpočtu přesnosti jsme ignorovali poddruhy."
+  observation_accuracy_experiment_in_the_example: "V příkladu na obrázku vpravo by průměrná přesnost tří výběrových pozorování činila 51 %."
+  observation_accuracy_experiment_read_more_html: |
+    Více informací o uspořádání tohoto experimentu naleznete v přiloženém <a href="%{url}">příspěvku na blogu</a>.
+  observation_accuracy_validator_email_subject2: "Pomůžete nám s experimentem %{version} odhadnout přesnost pozorování iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Pomůžete nám s <a href="%{url}">experimentem (verze %{version})</a> k odhadu přesnosti pozorování na iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Urči všechna pozorování níže co nejpřesněji i přes to, že jsou na výzkumném stupni a bylo by vaše nejlepší určení na nejvyšší taxonomické úrovni (říše).</li>
+    <li>Pokud se zobrazí vyskakovací okno „Potenciální neshoda“…
+    <ul>
+    <li>a vy jste si jisti, že je tato identifikace, klikněte na oranžové tlačítko,</li>
+    <li>nebo pokud jste si nejistí vaší identifikací, klikněte na zelené tlačítko</li>
+    </ul>
+    </li>
+    <li>Udělejte tak do <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Zde je <a href="%{sample_url}">souhrn %{num_obs} pozorování</a>* u kterých si myslíme, že byste je dokákazal určit. Podle vaší minulé aktivity na iNat. <b>Prosíme o nejpřesnější určení těchto pozorování do %{validator_deadline_date}</b>.
+    *<i>Tento odkaz vás přenese na stránku iNaturalist a otevře nástroj pro určování pozorování, což vyžaduje přihlášení se. Doporučujeme toto dělat na počítači, ale je možné to dělat i z prohlížeči na telefonu. Pokud tuto zprávu čtete z mobilní aplikace iNaturalist, ujistěte se, že otevřete tento odkaz v prohlížeči. Možná se budete muset přihlásit do aplikce v prohlížeči.</i>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Přesnost vypočítáme porovnáním Vašeho ID s taxonem pozorování. Můžete přeskočit pozorování, kde jste dříve přidali ID, pokud je toto ID stále relevantní. Pro více informací o tom, jak budeme počítat shody a neshody, pokračujte ve čtení.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Stejná identifikace (A) nebo konkrétnější (B), než taxon pozorování, bude započítána mezi Shody.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    ID na různých větvích (C) nebo hrubší než u taxonu pozorování, kde v dialogu 'Potenciální neshoda' (D) zvolíte „Ne, ale…“ se budou počítat jako neshody.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    ID hrubší než taxon pozorování, kde v dialogovém okně "Potenciální neshoda" (E) zvolíte "Nevím, ale...", budou započítána jako Nejistá.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Jsme velmi vděční za vaši pomoc jako identifikátor na iNaturalistu a velmi děkujeme za účast v této studii. Přečtěte si prosím <a href="%{url}">metody</a>, kde se dozvíte více o designu experimentu.
+  observation_accuracy_validator_email_with_gratitude: S vděčností,
+  observation_accuracy_validator_email_the_inaturalist_team: Tým iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Prosím, neodpovídejte na tuto zprávu. Pokud máte dotazy nebo zpětnou vazbu, prosím komentujte <a href="%{url}">tento příspěvek na blogu</a> nebo napište na <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Prosím, neodpovídejte na tuto zprávu. Pokud máte dotazy nebo zpětnou vazbu, napište prosím na e-mail <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "Pozorování přidáno k projektu \"%{project}\""
   observation_aggregation: Seskupení pozorování
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -3160,6 +3506,14 @@ cs:
   observation_curation: Správa pozorování
   observation_date: Datum
   observation_date?: Datum?
+  #Basic observation export fields
+  observation_export_column_type_basic: Základní
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Taxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Doplňky taxonu
   observation_field: Pole pozorování
   observation_field_details: Podrobnosti pole pozorování
   observation_field_type_text: Text
@@ -3222,6 +3576,7 @@ cs:
   observations_widget: Widget pozorování
   observations_with_this_field: Pozorování s tímto polem
   observations_with_this_field_and_value: Pozorování s tímto polem a hodnotou
+  observations_without_this_field: Pozorování bez tohoto pole
   observations_without_media: Pozorování bez médií
   observationcounts_refreshed: Počet pozorování znovu načten
   observed: Pozorováno
@@ -3229,10 +3584,12 @@ cs:
   observed_on: Pozorováno dne
   observer: Pozorovatel
   observers: Pozorovatelé
-  observer_prefers_no_project_addition: |
-    Pozorovatel neumožňuje ostatním lidem přidávat svá pozorování do projektů.
-  observer_prefers_addition_to_projects_joined: |
-    Pozorovatel umožňuje ostatním lidem přidávat svá pozorování pouze do projektů, ke kterým se připojil.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    Pozorovatel pouze umožňuje ostatním lidem přidávat svá pozorování k tradičním
+    projektům, ke kterým se připojili.
+  observer_prefers_no_traditional_project_addition: |
+    Pozorovatel neumožňuje ostatním lidem přidávat svá pozorování do
+    tradičních projektů.
   observer_short: Pozorovatel
   occurence_status_describes_how: 'Status výskytu uvádí, jak běžně nebo zřídka se taxon v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.'
   occurrence_status: Status výskytu
@@ -3319,7 +3676,9 @@ cs:
   only_the_project_admin_can_delete_this_project: Tento projekt může smazat pouze správce projektu.
   only_view_nearby_suggestions: Zobrazit pouze návrhy v blízkosti
   only_you: Jen vy
+  #Geoprivacy status in which no privacy has been applied
   open: otevřený
+  #Geoprivacy status in which no privacy has been applied
   open_: Otevřený
   open_description: "Souřadnice uvidí všichni, pokud není taxon ohrožený."
   open_street_map: OpenStreetMap
@@ -3327,15 +3686,15 @@ cs:
   options: Možnosti
   or: nebo
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: NEBO
   or_choose_high_level_taxa: "... nebo vybrat z taxonů vyšší úrovně"
-  orange: oranžový
   order: Řadit
   order_by: Řadit podle
   organism_is_wild: Organismus žije ve volné přírodě
   organisms: Organismy
   original: Původní
+  original_flag: Původní označení
   originally_flagged_by: Původně označeno uživatelem
   originally_imported_from_url_html: "Původně importováno z <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Původní URL stránky pro tuto fotku."
@@ -3383,10 +3742,13 @@ cs:
     invalid_email: Neplatný formát emailu
   password: Heslo
   password_confirmation: 'Potvrzení hesla'
+  password_change_description: Změna hesla vás odhlásí ze všech aktivních relací iNaturalist napříč vašimi zařízeními
+  password_change_logout_warning: Poté, co změníte své heslo, budete odhlášeni a budete se muset znovu přihlásit svým novým heslem.
+  password_change_observations_warning: Budete také odhlášeni z mobilních aplikací iNaturalist a jakýchkoli dalších aplikací nebo webových stránek, které vaším jménem publikují do iNaturalist, proto se ujistěte, že jste nahráli veškerá čekající pozorování, než to uděláte. Všechna pozorování, která nejsou nahrána, budou ztracena.
   paste: Vložit
   paste_in_a_bunch_of_names: Vložte skupinu názvů, 1 na každý řádek, a zmáčkněte tlačítko!
   people: Lidé
-  people_following_user: "lidí sleduje uživatele %{user}"
+  people_following_user: "Lidé sledující uživatele %{user}"
   people_user_follows: "Lidé, které sleduje uživatel %{user}"
   people_added:
     #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
@@ -3404,8 +3766,8 @@ cs:
       without_observation: přidal/a <strong>ID</strong>
     post: vložil/a %{post_link}
     comment:
-      with_by: vložil/a komentář k @vow_or_con{vow:an|a} %{comment_subject_link} %{by_link}
-      without_by: okomentoval/a @vow_or_con{vow:an|a} %{comment_subject_link}
+      with_by: vložil/a komentář k %{comment_subject_link} od %{by_link}
+      without_by: okomentoval/a %{comment_subject_link}
   per_day: Za den
   per_month: Za měsíc
   per_week: Za týden
@@ -3418,8 +3780,12 @@ cs:
   photo_credits: Foto kredity
   photo_deleted: Fotka smazána
   photo_destroyed_because_it_was_deleted_from: "Fotka byla zničena, protože byla smazána z externí stránky nebo %{site_name} už nemá povolení k jejímu zobrazování"
+  #Message displayed after a photo has been hidden
+  photo_hidden: Fotka skryta
   photo_licensing: Licence k fotce
   photo_type: Typ fotky
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Fotka odkryta
   photo_urls_repaired: URL fotky opravena
   photos_chosen_for_this_taxon: Fotky vybrané pro tento taxon
   photos_from: Fotky z
@@ -3470,7 +3836,6 @@ cs:
   data_transfer_consent_child_label: |
     Souhlasím s tím, aby byly osobní údaje mého dítěte předávány do Spojených států amerických
   pin_verb: Připnout
-  pink: růžový
   pinned_locations_desc: |
     Připnout tuto kombinaci souřadnic, přesnosti, soukromí zeměpisné polohy a poznámky k místu pro pozdější použití.
   place: Místo
@@ -3800,6 +4165,7 @@ cs:
     north_korea: Severní Korea
     northern_cyprus: Severní Kypr
     norway: Norsko
+    oceania: Oceánie
     oman: Omán
     pakistan: Pakistán
     palau: Palau
@@ -3894,8 +4260,10 @@ cs:
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">jejich stažení z GBIF</a>,
     kde můžete nakreslit libovolné hranice, nebo je exportujte z iNat pomocí
     existujících míst nebo ohraničujícího obdélníku a pak data znovu filtrujte po stažení.
-  places_warning_look_for_existing_html: |
-    Hledejte <a href="/search?source[]=places">existující místa</a> , abyste se ujistili, že nevytváříte duplikát. Již máme místa pro všechny světadíly a státy, a stejně tak i pro další dvě administrativní úrovně států.
+  places_warning_look_for_existing2_html: |
+    Hledejte <a href="/search?source[]=places">existující místa</a> , abyste se ujistili, že
+    nevytváříte duplicitu. Již máme místa pro všechny
+    kontinenty a země a mnoho dalších politických hranic.
   places_warning_please_keep_in_mind: |
     Mějte prosím na paměti následující omezení:
   places_warning_projects_can_have_multiple_places: |
@@ -3939,7 +4307,10 @@ cs:
   post_from_your_journal_html: Příspěvek od <a href="%{url}">your journal</a>
   post_published: Příspěvek byl zveřejněn!
   posted_by: Autor příspěvku
-  posted_on: Příspěvek ze dne
+  #Shows the date a journal post was published
+  posted_on_date_html: Zveřejněno dne %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Zveřejněno dne %{date} uživatelem %{user}
   posts: Příspěvky
   potential_disagreement: Potenciální neshoda
   powered_by: Vytvořeno pomocí
@@ -4052,7 +4423,6 @@ cs:
     Společnost Google neuvedla e-mailovou adresu tohoto účtu, která je vyžadována. Místo přihlašování přes Google si prosím vytvořte účet na těchto stránkách.
   public_domain: Veřejná doména
   publish: Publikovat
-  purple: purpurový
   quality_grade: Úroveň kvality
   quality_grade_: Úroveň kvality
   quality_grade_colon: "Úroveň kvality:"
@@ -4063,7 +4433,11 @@ cs:
   radius_value: "Poloměr (m): %{radius}"
   random: Náhodně
   range: Rozsah
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikace
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Klasifikace
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -4249,12 +4623,12 @@ cs:
   recently_resolved: Nedávno vyřešené
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Záznam
-  red: červený
   redo_search_in_map: Opakovat hledání v mapě
   redo_search_in_map_area: Opakovat hledání v části mapy
   refresh: Obnovit
   refreshing: obnovování
   regenerate_stats: Obnovit statistiky
+  regional_names: Regionální názvy
   register_for_this_event_at_x_html: "Registrovat se na událost na %{x}"
   reject?: Odmítnout?
   relative_observations: Příbuzná pororování
@@ -4305,6 +4679,8 @@ cs:
   remove_tags: Odstranit tagy
   removed: Odstraněno
   removed_project_user: Odstraněný projektový uživatel
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Role odstraněna
   removing: "Odstraňování..."
   reorder_by_taxonomy: Znovu uspořádat podle taxonomie
   repair_broken_urls: Opravit rozbité URL
@@ -4362,6 +4738,15 @@ cs:
   rotate_left: Otočit doleva
   rotate_right: Otočit doprava
   row_singular_or_plural: Řádek/Řádky
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Připojíte se k testu rozložení zprava doleva? Můžete také použít parametr test=rtl v URL.
+    Pozor: ne všechny stránky jsou upravené na rozložení zprava doleva.
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Připojili jste se k testu rozložení zprava doleva
   rules_and_formatting: "Pravidla a formátování"
   rules_for_adding_observations: Pravidla pro přidávání pozorování
   rules_for_becoming_a_member: Pravidla pro vznik členství
@@ -4375,7 +4760,7 @@ cs:
     must_be_coordinates_shareable_by_project_curators: pozorovatel musí kurátorům projektu zpřístupnit náhled souřadnic.
     must_be_verifiable: musí být ověřitelné
     must_be_wild: musí být volně žijící
-  running_total: Spuštění celkem
+  running_total: Průběžný součet
   said: řekl/a
   satellite: satelitní
   save: Uložit
@@ -4443,7 +4828,7 @@ cs:
   second_person_possessive_singular: "Váš %{noun}"
   see_something_wrong_with_taxon: Je s tímto taxonem něco v nepořádku? Dejte to vědět kurátorům.
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
-  seek: Hledat
+  seek: Seek
   seen_nearby: Viděn poblíž
   seen_one: Viděli jste ho?
   select: Vybrat
@@ -4463,6 +4848,10 @@ cs:
   selected_taxon: Vybraný taxon
   select_this_taxon: Vybrat tento taxon
   send: odeslat
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Odeslat a odhlásit
+  send_confirmation_email: Odeslat ověřovací e-mail
   send_me_reset_password_instructions: Odešlete mi pokyny k obnovení hesla
   sending: Odesílá se…
   #Label for messages you've sent
@@ -4476,6 +4865,8 @@ cs:
   share_colon: "Sdílet:"
   short_code_for_this_place: Zkratka pro toto místo, např. USA pro Spojené státy
   short_or_abbreviated_title_for_display: Krátký nebo zkrácený název pro zobrazení v omezených sekcích. Max. 10 znaků.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Má být tento obecný název zobrazen ve výchozím nastavení pro tento taxon?
   show: Zobrazit
   show_active_and_inactive_taxa: Zobrazit aktivní a neaktivní taxony
   show_hidden_content: Zobrazit skrytý obsah
@@ -4485,14 +4876,18 @@ cs:
   show_keyboard_shortcuts: Zobrazit klávesové zkratky
   show_less: Zobrazit méně
   show_more: Zobrazit více
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Zobrazit další možnosti přihlášení
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Zobrazit "Bez anotace"
   show_off_your_recent_observations: Ukažte svá poslední pozorování na svém blogu nebo webové stránce!
   show_only: Zobrazit jen
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Zobrazit OpenStreetMap
   show_relative_proportions_of_all_observations: Zobrazte příbuzné části všech pozorování
   #Label for a button to show the running total of an accumulation chart
-  show_running_total: Zobrazit Running Total
+  show_running_total: Zobrazit průběžný součet
   show_taxa_from_both: (zobrazit taxony z obou seznamů)
   show_taxa_from_everywhere: "Zobrazit taxony ze všech míst"
   show_taxa_from_place: "Zobrazit taxony z %{place}"
@@ -4517,6 +4912,8 @@ cs:
   #Journal post formatting option
   simple: Jednoduché
   single_observation: Jediné pozorování
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "Rok %{year} webu %{site} v přehledech"
   sizes: Velikosti
   skip_to_next_page: "Přeskočit na další stránku"
   small: malý
@@ -4566,8 +4963,12 @@ cs:
   sites_affiliation_overview_you_can_continue_html: |
     Můžete se nadále přihlašovat prostřednictvím webu iNaturalist.org nebo na webových stránkách konkrétní sítě. Bez ohledu na vaši příslušnost budou všechna vaše data umístěna na stejném místě a vy budete moci i nadále komunikovat s širší mezinárodní komunitou iNaturalist. Každý účet iNaturalist může být přidružen pouze k jednomu členu sítě. Svou příslušnost si můžete zkontrolovat nebo změnit v %{start_tag_settings}nastavení účtu%{end_tag_settings}.
   sites_affiliation_title: Další informace o přiřazování k síti
-  sites_network_cas_and_nat_geo_html: |
-    %{start_tag_cas}Kalifornská akademie věd%{end_tag_cas} a %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} mají formální dohody s organizacemi v každé z těchto geografických oblastí na podporu používání platformy iNaturalist. <strong>Pokud má vaše organizace zájem o připojení k síti iNaturalist Network, další podrobnosti naleznete %{start_tag_join}zde%{end_tag_join}.</strong>
+  sites_network_agreements_html: |
+    iNaturalist má formální dohody s organizacemi v každé z těchto
+    zeměpisných oblastí na podporu využívání platformy iNaturalist. 
+    <strong>Pokud má vaše organizace zájem připojit se k síti iNaturalist, 
+    naleznete další podrobnosti
+    %{start_tag_join}zde%{end_tag_join}.</strong>
   sites_network_consists_of: "Síť iNaturalist Network se skládá z několika organizací:"
   sites_network_inaturalist_network_collection: |
     Síť iNaturalist je soubor lokalizovaných webových stránek, které jsou plně propojeny s celosvětovou komunitou iNaturalist. Stránky sítě jsou podporovány místními institucemi, které podporují místní využití a usnadňují využívání dat z iNaturalist ve prospěch místní biologické rozmanitosti. Mají přístup ke skutečným souřadnicím v rámci svých zeměpisných oblastí, které jsou automaticky zakryty před zraky veřejnosti, aby se lépe chránily ohrožené druhy.
@@ -4677,7 +5078,6 @@ cs:
   start_a_new_project: Začít nový projekt
   start_a_project: Začít projekt
   start_date_time: Datum / čas zahájení
-  start_one: začít
   start_one_now: Začít teď!
   start_typing_field_name: Začít psát název pole...
   start_typing_place_name: Začít psát název místa...
@@ -4686,6 +5086,10 @@ cs:
   stats: Statistika
   stats_for_this_year_have_not_been_generated: Statistika pro tento rok nebyla vygenerována.
   status: Stav
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Stav použit z taxonu vyšší úrovně:</strong> %{taxon}
   status_globally: '%{status} globálně'
   status_in_place: '%{status} v %{place}'
   stay_and_try_again: Zůstat a zkusit znovu
@@ -4700,13 +5104,12 @@ cs:
   #can buy merchandise. Please try to keep translations as short as possible
   store: OBCHOD
   store_caps: OBCHOD
-  studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data v %{year}
+  studies_that_used_inaturalist_data_in_year: Studie používající data iNaturalist v roce %{year}
   stuff_just_added: "Zrovna jste přidali..."
   subject_resolved_noun_html: "%{subject} vyřešeno %{noun}"
-  subject_affecting_stuff_html: "%{subject} ovlivňující %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} spojený s %{thing} ovlivňující %{stuff}"
   submission_model: Model pro předložení
   submission_model_description: Kdo může přidávat pozorování k vašemu projektu?
+  submit: Odeslat
   submit_observations:
     one: Vložit 1 pozorování
     few: Vložit %{count} pozorování
@@ -4757,12 +5160,12 @@ cs:
   synonyms: Synonyma
   table: Tabulka
   table_of_contents: Obsah
+  tabulate_presence_absence_data_from_trips: tabulka s údaji o přítomnosti a nepřítomnosti z jízd
   #Noun, as in "add a tag to this observation"
   tag: Štítek
   tagging: 'Označování...'
   tags: Tagy
   tags_are_a_way: 'Tagy jsou způsob, jak organizovat vaše pozorování. Například můžete tagy označit všechna svá pozorování v přílivových bazénech jako „přílivové bazény“, abyste je později snadno našli.'
-  take_me_facebook: Ano, chci jít na Facebook!
   take_me_flickr!: Ano, chci jít na Flickr!
   target_list_alert: Jste si jisti, že jste se pokusili pozorovat všechny druhy, na které se vztahuje váš cílový seznam? Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali, bude interpretováno jako nepřítomnost, takže je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít.
   target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam, co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
@@ -4875,6 +5278,8 @@ cs:
   taxon_deleted: Taxon smazán.
   taxon_doesnt_have_a_range: Taxon nemá rozsah.
   taxon_drop: zahodit taxon
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: Pokles taxonu ovlivňující %{taxon}
   taxon_id: ID taxonu
   taxon_ids: ID taxonů
   taxon_map:
@@ -4898,6 +5303,9 @@ cs:
   taxon_framework_taxon: Taxon rámce taxonu
   taxon_history_notice: Historie byla zavedena v únoru 2022, takže před tímto datem není k dispozici žádná historie.
   taxon_merge: sloučení taxonů
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: Sloučení taxonu ovlivňující %{taxa}
   taxon_name: Název taxonu
   taxon_name_must_match_an_existing_taxon_in_our_database: Název taxonu musí odpovídat stávajícímu taxonu v naší databázi
   taxon_observed_by_html: |
@@ -4925,6 +5333,7 @@ cs:
     V popisu vysvětlete, jak byla mapa odvozena, a uveďte odkazy na příslušné příznaky, taxonomické rozdělení nebo jiné diskuse o tom, proč bylo nutné změnit publikovaný rozsah Červeného seznamu IUCN.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Další informace o rozsahu taxonů
   taxon_range_updated_notice: Rozsah taxonu byl úspěšně aktualizován. Počkejte prosím pár minut, než se objeví na mapách.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Pořadí taxonu
   taxon_removed_from_list: Taxon byl odstraněn ze seznamu.
   taxon_scheme: Plán taxonu
@@ -4932,9 +5341,17 @@ cs:
   taxon_search: Prohledávání taxonů
   taxon_search_results_for: Výsledky prohledávání taxonů pro
   taxon_split: rozdělení taxonu
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: Rozdělení taxonu ovlivňující %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: stádium taxonu
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: Stádium taxonu ovlivňující %{taxon}
   taxon_swap: záměna taxonů
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: Výměna taxonu ovlivňující %{taxa}
   taxon_swap_only_has_one_input: pro záměnu je povolen pouze jeden vstup
   taxon_swap_has_inputs_and_outputs: záměna musí mít vstupy i výstupy
   taxon_name_was_deleted: Název taxonu byl smazán.
@@ -4965,8 +5382,10 @@ cs:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Parametry formátování textu
   text_editing_controls: Ovládací prvky pro úpravu textu
+  thank_you!: Děkujeme Vám!
   thanks!: Děkujeme!
   thanks_from_all_of_us_here_at: Poděkování od nás všech z
+  that_account_is_already_connected: Tento účet je již připojen s jiným uživatelem
   that_photo_doesnt_exist: Tato fotka neexistuje.
   that_observation_doesnt_exist: Toto pozorování neexistuje.
   that_observation_doesnt_have_any_photos: "Toto pozorování nemá žádné fotky."
@@ -5005,13 +5424,12 @@ cs:
     Na světě je spousta zajímavých míst a každé z nich je plné zvláštních a úžasných forem života. Některé jsou na druhém konci světa, zatímco jiné jsou ve vaší ulici! %{site_name} Místa vám umožní procházet život na celé planetě. Začněte objevovat!
   then_keybord_sequence: potom
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  there_are_no_current_ids: Neexistují žádné ID žádného potenciálně menšího nadřazeného taxonu.
+  there_are_no_current_ids: Neexistují žádné ID jakéhokoliv potenciálně menšího nadřazeného taxonu.
   there_are_x_synonyms_html:
     one: "Tady je <span class='count'>1</span> synonym</span>"
     few: "Tady jsou <span class='count'>%{count}</span> synonym</span>"
     many: "Tady jsou <span class='count'>%{count}</span> synonym</span>"
     other: "Tady jsou <span class='count'>%{count}</span> synonyma</span>"
-  there_is_no_wikipedia_page_matching: Žádná odpovídající stránka na Wikipedii
   there_isnt_a_wikipedia_article_titled_x_html: |
     Na Wikipedii není žádný článek ani odkaz s názvem  '%{x}'.  Chcete <a href='http://en.wikipedia.org/wiki/%{x}'>ho vytvořit</a>?
   there_merge_problems_with_the_merge: "Při slučování nastaly problémy: %{merged_errors}"
@@ -5277,6 +5695,8 @@ cs:
   unable_to_save_comment: Bohužel jsme nebyli schopni tento komentář uložit.
   unblock: Odblokovat
   unclassified: Nezařazeno
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Porozumět projektům
   ungrafted_taxa: Nepřiřazené taxony
   unhide_content: Odkrýt obsah
   unhide_desc: |
@@ -5286,7 +5706,10 @@ cs:
   unknown: Neznámý
   unknown_error: Neznámá chyba
   unknown_rank: '(Neznámé zařazení)'
-  unfollow: Přestat sledovat
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Přestat sledovat pozorování
+  #Text for a button to stop following updates from a user
+  unfollow_user: Přestat sledovat uživatele
   unlink_your_google_account: Zrušit propojení vašeho účtu na Googlu
   unlink_your_flickr_account: "Odpojit svůj účet na Flickru"
   unmute: Zapnout zvuk
@@ -5384,21 +5807,35 @@ cs:
   user_added_a_comment_html: "Uživatel %{user} přidal komentář"
   user_added_a_fave_html: "%{user} přidal oblíbené"
   user_added_a_flag_html: "%{user} přidal praporek"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} přidal(a) %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} přidal %{x} k %{noun}"
   user_added_an_identification_html: "Uživatel %{user} přidal pozorování"
   user_added_an_observation_field_html: 'Uživatel %{user} přidal hodnotu pro "%{field_name}" k pozorování %{owner}'
   user_added_an_observation_field_value_html: "Uživatel %{user} přidal hodnotu pole pozorování"
   user_added_an_observation_html: "Uživatel %{user} přidal pozorování"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} přidal(a) %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "Uživatel %{user} přidal %{x} k %{noun} podle %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} přidal %{x} k %{noun} od %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} přidal %{x} k %{noun} podle vás"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Uživatel %{user} přidal %{x} k %{noun}"
-  user_added_x_observations_html: "Uživatel %{user} přidal %{x} pozorování"
+  user_added_x_observations2_html:
+    one: "%{user} přidal %{count} pozorování"
+    few: "%{user} přidal %{count} pozorování"
+    many: "%{user} přidal %{count} pozorování"
+    other: "%{user} přidal %{count} pozorování"
   user_already_authenticated: Uživatel je již ověřen
   user_already_app_owner: Uživatel je již vlastníkem aplikace
   user_autocomplete_placeholder: kueda, simon123, atd.
@@ -5408,13 +5845,20 @@ cs:
     %{user} se domnívá, že toto je komplexní seznam %{taxon} v %{place}
   user_blocked: Uživatel zablokován
   user_commented: "Uživatel %{user} přidal komentář"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} se dopustil rozdělení taxonu ovlivňujícího %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} se dopustil přípravy taxonu ovlivňující %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} provedl výměnu taxonu ovlivňující %{taxa}"
   user_disagrees_this_is_taxon: "Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nesouhlasí s předchozí identifikací"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "Uživatel %{user} označený jako oblíbený %{noun} %{owner}"
+  user_faved_an_observation_by_you: "%{user} si oblíbil jedno z vašich pozorování"
   user_faved_this_observation: "Uživatel %{user} upřednostnil toto pozorování"
   user_flagged_as_a_non_spammer_html: "%{user} označen jako nespammer"
   user_flagged_as_a_spammer_html: "%{user} označen jako spammer"
+  user_has_been_removed_from_site: |
+    %{username} bylo odstraněno z %{site_name} (úplné smazání veškerého souvisejícího obsahu může trvat až hodinu)
   user_has_opted_out_of_community_id: Uživatel se rozhodl nepoužít komunitní ID
   user_hasnt_joined_any_projects: "%{user} se nepřipojil k žádnému projektu"
   user_helped_x_people_with_y_ids_html: "%{user} pomoci <strong>%{x} lidé</strong> s <strong>%{y} IDs</strong>"
@@ -5442,6 +5886,7 @@ cs:
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.
+  user_updated_an_observation_field_html: '%{user} aktualizoval hodnotu "%{field_name}" na pozorování %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> napsal,
   username: Uživatelské jméno
   username_description: Toto je uživatelské jméno, které použijete k přihlášení, a ostatní uživatelé mohou použít k identifikaci vás na iNaturalist
@@ -5451,6 +5896,46 @@ cs:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Po opětovném odeslání ověřovacího e-mailu budete odhlášeni a nebudete se moci přihlásit ke svému účtu, dokud nekliknete na odkaz v e-mailu, takže <strong>se naprosto ujistěte, že jste svou e-mailovou adresu zadali správně.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Ujistěte se, že je vaše e-mailová adresa správná. Zde je e-mailová adresa,
+    na kterou zašleme potvrzení:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Pokud e-mail neobdržíte, zde je několik tipů:
+    </p>
+    <ul>
+    <li><p>Zkontrolujte složku se spamem</p></li>
+    <li><p>Zkontrolujte, zda nemáte vytvořené filtry, které by mohly odstranit naše e-maily z vaší doručené pošty</p></li>
+    </ul>
+    <p>
+    Pokud stále neobdržíte potvrzovací e-mail, kontaktujte nás prosíme na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+    abychom vám mohli pomoci.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Chystáte se odhlásit</h3>
+    <p>
+    Po odeslání potvrzovacího e-mailu budete odhlášeni a nebudete se moci 
+    přihlásit ke svému účtu, dokud nekliknete na odkaz
+    v e-mailu, takže se<strong class="bg-warning">ujistěte, že jste
+    zadali správně svou e-mailovou adresu.</strong>
+    </p>
+    <p>
+    Zde je e-mailová adresa, na kterou zašleme potvrzení:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Pokud jste se odhlásili z odběru všech e-mailů...</h4>
+    <p>
+    Pokud jste se odhlásili z odběru <em>všech</em> e-mailů od nás, nemůžeme vám odeslat
+    potvrzovací e-mail. Chcete-li se znovu přihlásit k odběru, musíte najít předchozí
+    poslaný e-mail, klepnout na odkaz pro odhlášení odběru a v dalším mailu zvolit možnost 
+    Přihlásit k odběru. Pokud to nemůžete udělat, pošlete prosím
+    e-mail na
+    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 
+    z e-mailové adresy, kterou jste zde zadali, abychom vám mohli pomoci.
+    </p>
   users_favorites: "Oblíbené uživatele %{user}"
   users_highlights_and_stats_from_year_on_site: "významné události a statistiky uživatele %{user} za rok %{year} na %{site}"
   users_id: "ID uživatele %{user}"
@@ -5460,11 +5945,14 @@ cs:
   users_lists: "Seznamy uživatele %{user}"
   users_profile: "Profil uživatele %{user}"
   users_projects: "%{user} projekty"
+  #@vow_or_con should work with %{site}
+  users_site_year_in_review: "Rok %{year} webu %{site} uživatele %{user} v přehledech"
   valid_options_are: Platné možnosti jsou
   value: Hodnota
   values: Hodnoty
   verbing_x_of_y: "%{verb} %{x} %{y}..."
   verifiable_observations_by_observation_date: Ověřitelná pozorování podle data pozorování
+  video_tutorials: Video návody
   view: Zobrazit
   view_all: Zobrazit vše
   view_all_caps: ZOBRAZIT VŠE
@@ -5490,6 +5978,12 @@ cs:
   view_flags_for_x_html: "Zobrazit štítky pro %{x}"
   view_full_observation: Zobrazit celé pozorování
   view_full_size_photo: Zobrazit fotografii v plné velikosti
+  view_inaturalist_global_year_in_review: Zobrazit globální přehled roku %{year} v iNaturalist
+  view_inaturalist_global_year_in_review_caps: ZOBRAZIT GLOBÁLNÍ PŘEHLED ROKU %{year} V INATURALIST
+  #Text in link to view Year in Review for a specific site. %{site} should
+  #support @vow_or_con
+  view_site_year_in_review: Zobrazit přehled roku %{year} webu %{site}
+  view_site_year_in_review_caps: ZOBRAZIT PŘEHLED ROKU %{year} WEBU %{site}
   view_journal: Zobrazit deník
   view_leaderboard_from_last_month: Zobrazit přehled nejlepších za minulý měsíc
   view_leaderboard_from_last_year: Zobrazit přehled nejlepších za minulý rok
@@ -5534,9 +6028,10 @@ cs:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Zobrazit váš přehled nejlepších</a> a aktualizace"
   view_your_inbox: Zobrazit vaši příchozí poštu
   view_your_observations: Zobrazit vaše pozorování
+  view_your_personal_year_in_review: "Zobrazit Váš osobní přehled roku %{year}"
+  view_your_personal_year_in_review_caps: "ZOBRAZIT VÁŠ OSOBNÍ PŘEHLED ROKU %{year}"
   view_yours: Zobrazit váš
   view_all_of_your_observations_from_x: "Zobrazit všechna vaše pozorování z %{x}"
-  video_tutorials: Video návody
   visually_similar: Vizuálně podobný
   vulnerable: zranitelný
   w00t_no_ungrafted_taxa: w00t! Žádné nepřiřazené taxony!
@@ -5546,10 +6041,9 @@ cs:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Hledaný
   was_it_captive_cultivated?: "Byl v zajetí / pěstovaný?"
-  we_also_support: |
-    Ke zveřejňování obrázků podporujeme také <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> a
-    <a href="http://facebook.com">Facebook</a>.
+  we_also_support2: |
+    Podporujeme také import fotografií z <a href="http://flickr.com">Flickr</a>
+    a <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Rozumíme pouze CSV v následujícím formátu
   we_couldnt_find_a_user: Nepodařilo se nám najít uživatele s touto e-mailovou adresou.
   we_couldnt_find_a_user_with_that_activation_code: "Nepodařilo se nám najít uživatele s tímto aktivačním kódem. Možná už jste si účet aktivovali, zkuste se prosím přihlásit."
@@ -5598,9 +6092,9 @@ cs:
   where_were_they?: Kde byli?
   where_were_you?: Kde jste byli?
   which_projects_can_add_your_observations?: K jakým projektům můžete přidat svá pozorování?
-  white: bílý
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Proč provádíte tuto změnu? (volitelné)
+  why_are_you_making_this_change_cite_source_required: Proč provádíte tuto změnu? Vysvětlete prosím a citujte zdroj, pokud je to možné. (Požadované)
   why_you_can_see_the_coordinates: Proč můžete vidět souřadnice
   who_can_add_observation_fields_to_my_obs: Kdo může přidat pole pozorování do mých pozorování?
   who_can_add_observations_to_this_project?: Kdo může přidávat pozorování k vašemu projektu?
@@ -5625,6 +6119,8 @@ cs:
     Commons Uveďte autora-Sdílej-Podobně 3.</a>Obsah byl možná
     vynechán v originálu, ale žádný obsah nebyl změněn ani rozšířen.
   with: s
+  #Filter for observations not in a particular taxon
+  without_taxon: Není v taxonu
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Odstranit
@@ -5674,9 +6170,10 @@ cs:
   x_wrote_y_new_posts_html: "%{x} napsal/a %{y} nových příspěvků"
   year: Rok
   year_in_review: "Rok kontroly %{year}"
+  year_in_review2: "Přehled roku %{year}"
+  year_in_review_caps: "PŘEHLED ROKU %{year}"
   year_month: rok/měsíc
   year_on_site: "Rok %{site} na %{year}"
-  yellow: žlutý
   'yes': "Ano"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5694,6 +6191,10 @@ cs:
   yes_reject_it: Ano, odmítnout
   yes_show_this_in_the_box: Ano, zobrazit toto ve velkém boxu v horní části/taxonech
   yesterday: Včera
+  yir_code_contributors_desc_html: |
+    Náš <a href="%{url}">software</a> je téměř celý open-source, což znamená,
+    že kdokoli může přispět, pokud ví, jak na to. Zde jsou lidé, kteří
+    letos dobrovolně poskytli kód. Děkujeme vám, programátoři!
   yir_donate_banner_inaturalist_in_year: "INATURALIST V ROCE %{year}:"
   yir_donate_banner_reaching_millions: Oslovení miliónů. Osvěta biodiverzity. Globální spolupráce.
   #"You" is singular
@@ -5704,12 +6205,64 @@ cs:
   yir_donate_banner_you_helped_inaturalist_thrive: Tento rok iNaturalist vzkvétá i díky Vám. Děkujeme!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist potřebuje Vaši podporu
+  yir_email_because_of_you: |
+    Díky Vám máme letos více údajů o biodiverzitě než v minulém roce. Roční přehled je dárek od nás za vše, co jste prostřednictvím iNaturalist pro biologickou rozmanitost udělali.
+  yir_email_log_in_to_generate: |
+    Přihlaste se a nechte si vytvořit svůj roční přehled, ve kterém se to dozvíte!
+  yir_email_of_your_observations:
+    one: Víte, kolik z Vašeho %{count} pozorování jste provedli v roce %{year}?
+    few: Víte, kolik z Vašich %{count} pozorování jste provedli v roce %{year}?
+    many: Víte, kolik z Vašich %{count} pozorování jste provedli v roce %{year}?
+    other: Víte, kolik z Vašich %{count} pozorování jste provedli v roce %{year}?
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    Váš přehled roku %{year} na iNaturalist - oslavte svůj rok biodiverzity
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: Tým iNaturalist
+  yir_email_the_year_isnt_over: |
+    Rok ještě neskončil a nikdy není pozdě zveřejňovat starší
+    pozorování. Až budete sdílet více pozorování, ujistěte se, že
+    vyberete "Obnovit statistiky" v dolní části vašeho ročního přehledu, abyste viděli
+    aktualizace.
+  yir_email_what_else_will_you_observe_caps: CO DALŠÍHO BUDETE OBJEVOVAT?
+  yir_email_what_new_to_you: |
+    Kolik pro vás nových druhů se vám povedlo zaznamenat? Kolik lidí vám pomohlo s identifikací (a kolika jste pomohl/a vy)?
+  yir_email_with_gratitude: S vděčností,
+  yir_email_year_on_inaturalist_globally_caps: "ROK %{year} GLOBÁLNĚ NA INATURALIST"
+  yir_email_you_are_part_of_something: |
+    Účastníte se něčeho velkého! Každý, kdo publikuje pozorování,
+    přidá identifikace nebo šíří slovo o iNaturalistu, dělá něco pro biologickou
+    rozmanitost. Naše společné úsilí pomáhá zpřístupňovat data a poznatky
+    o biodiverzitě v bezprecedentním měřítku. Děkujeme, že se zapojujete
+    do komunity iNaturalist!
+  yir_email_you_make_a_difference: |
+    Prostřednictvím iNaturalist pomáháte biologické rozmanitosti. Děkujeme Vám za všechno, co děláte!
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    Tento e-mail jste obdrželi, protože %{email} je propojen s účtem https://www.inaturalist.org/people/%{username} na iNaturalist vytvořeným dne %{created_date}.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    Tento e-mail jste obdrželi, protože adresa %{email} je spojena s
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a>,
+    účtem iNaturalistu vytvořeným dne %{created_date}.
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated: |
+    Váš účet je přidružen k %{site_name} (%{site_url}).
+  #@vow_or_con works on %{site_name}
+  your_account_is_affiliated_html: |
+    Váš účet je přidružen k <a href="%{site_url}">%{site_name}</a>.
   yir_generating_and_sharing: |
     Vytváření a sdílení dat o biodiverzitě s vysokým impaktem v tomto nevídaném měřítku a rychlosti nese zvyšující se náklady.
   yir_millions_of_people_used_inaturalist: |
     Miliony lidí použily tento rok iNaturalist a Seek od iNaturalist aby se propojili s přírodou
-  yir_thank_your_for_being_generous: |
-    Děkujeme vám za váš štědrý čas, pozornost, odborné znalosti a dary! iNaturalist je společná nezisková iniciativa Kalifornské akademie věd a National Geographic Society. Program je závislý na četných grantech a darech, včetně dobročinných darů od nevelkého zlomku komunity. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucnost.
+  yir_monthly_supporters_random_selection: |
+    Zde je náhodný výběr hrdinných členů komunity iNat, kteří přispívají každý měsíc.
+  yir_thank_your_for_being_generous2: |
+    Děkujeme, že jste velkoryse věnovali svůj čas, pozornost, odborné znalosti a zkušenosti.
+    iNaturalist je nezisková, veřejně prospěšná organizace. Náš program je
+    závislý na četných grantech a darech, včetně charitativních darů od menšího než nepatrného zlomku komunity. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucí rozvoj.
   yir_your_gift_sustains: |
     Váš dar podporuje tento program s celosvětovým dosahem a hlubokým osobním a ekologickým dopadem.
   you: vy
@@ -5805,6 +6358,8 @@ cs:
   your_account_has_been_activated: Váš účet byl aktivován!
   your_account_has_been_verified: "Váš účet na %{site_name} byl ověřen! Přihlaste se a pokračujte."
   your_activation_code_was_missing: "Chyběl váš aktivační kód. Použijte prosím URL v e-mailu."
+  #Title for a list of 3rd party applications you control
+  your_applications: Vaše aplikace
   your_browser_does_not_support_the_audio_element: Váš prohlížeč tento zvukový prvek nepodporuje.
   your_comment_was_saved: Váš obsah byl uložen
   your_content: Váš obsah
@@ -5846,6 +6401,9 @@ cs:
     announcements:
       locales_desc: |
         Podržte CMD nebo SHIFT a klikněte, pokud chcete vybrat více položek. Pokud nevyberete žádné, oznámení se zobrazí všem uživatelům bez ohledu na místo. Když vyberete místo jazyka bez regionu, *nedojde* k nastavení míst společně s regiony, např. pokud chcete vybrat angličtinu, nezobrazí se lidem, kteří vybrali angličtina-US. Pokud chcete cílit na obojí, vyberte obojí. Pokud chcete oznámení zobrazit všem členům na stránce, nechte pole prázdné.
+      clients_desc: |
+        Kliknutím na CMD nebo SHIFT vyberte více položek. Když nevyberete nic,
+        oznámení bude zobrazeno všem uživatelům bez ohledu na klienta.
     content_freeze:
       content_freeze: Zmrazení obsahu
       during_this_time: |
@@ -5866,57 +6424,102 @@ cs:
             <a href="%{url}">Projděte si Pravidla komunity</a>, kde najdete tipy, jak zachovat iNaturalist jako přátelské a přívětivé místo.
           please_read_the_teachers_guide_html: |
             Pokud ano, přečtěte si prosím našeho <a href="%{url}">Průvodce pro učitele</a>, kde najdete tipy, jak používat %{site_name} se studenty.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Pokud ano, přečtěte si prosím naši <a href="%{url}">Příručku pro pedagogy</a>, kde najdete tipy na používání %{site_name} se studenty.
     donate:
       donate_short_desc: "Darujte nyní, abyste ukázali, že nás podporujete!"
-      donate_desc_html: |
+      donate_desc_moore_html: |
+        <p class="lead">
+        <strong>Svůj dar můžete <u>zdvojnásobit</u> nebo <u>ztrojnásobit</u>! Díky nadaci Gordon and Betty Moore Foundation se všechny měsíční, čtvrtletní a roční opakované dary ztrojnásobí a jednorázové dary se zdvojnásobí do 31. prosince 2023.</strong>
+        </p>
+        <p class="lead">
+        iNaturalist je jednou z největších světových komunit věnovaných biodiverzitě. Děkujeme, že jste toho součástí!
+        </p>
+        <p class="lead">
+        Pokud věříte v sílu této globální komunity milovníků přírody sdílet znalosti a vytvářet nenahraditelná data o biologické rozmanitosti, zvažte prosím jednorázový nebo opakující se dar online nebo prozkoumejte <a href="https://www.inaturalist.org/ pages/giving">další způsoby darování</a>.
+        </p>
+        <p class="lead">
+        Váš dar je pro iNaturalist životně důležitý, protože naše komunita roste, od vylepšování naší technologie k přesné identifikaci druhů a implementaci nových funkcí až po podporu našich serverů a zaměstnanců.
+        </p>
+        <p class="text-muted">
+        iNaturalist je nezávislá nezisková organizace 501(c)(3), osvobozená od daní, se sídlem ve Spojených státech amerických (Tax ID: 92-1296468).
+        </p>
+      donate_desc3_html: |
         <p class="lead">
         <strong>iNaturalist je jednou z největších světových komunit věnovaných
         průzkumu biologické rozmanitosti. Děkujeme, že jste se na něm podíleli!</strong>
         </p>
         <p class="lead">
-        Pokud věříte v sílu této globální komunity přírody,
-        sdílejte znalosti a generujte nenahraditelné údaje o biologické rozmanitosti.
-        Zvažte prosím jednorázový nebo opakovaný dárek online, nebo viz <a
+        Pokud věříte v sílu této globální komunity milovníků přírody,
+        sdílejte znalosti a vytvářejte nenahraditelná data o biologické rozmanitosti.
+        Zvažte prosím jednorázový nebo opakovaný příspěvek online, nebo prozkoumejte <a
         href="https://www.inaturalist.org/pages/giving">další způsoby, jak
-        darovat</a>.
+        pomoci</a>.
         </p>
         <p class="lead">
-        Váš dar pomáhá podpořit iNaturalist s růstem komunity, od
-        pokročilé počítačové vize a implementace nových funkcí na podporu
+        Váš dar pomáhá iNaturalist v podpoře růstu komunity, od
+        zlepšování pokročilé počítačové identifikace a zavádění nových funkcí až po podporu
         našich serverů a zaměstnanců.
         </p>
         <p class="text-muted">
-        iNaturalist je společná iniciativa Kalifornské akademie věd
-        a Národní geografické společnosti. Všechny dary obdrží
-        Kalifornské akademie věd, organizace 501(c)(3) nezisková organizace osvobozená od daně
-        se sídlem ve Spojených státech amerických (Tax ID: 94–1156258).
+        iNaturalist je nezávislá nezisková organizace 501(c)(3) se sídlem ve 
+        Spojených státech amerických osvobozená od daně. (daňové identifikační číslo:
+        92-1296468).
         </p>
       post_donate_social_media_text: Podporuji iNaturalist protože...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Staňte se měsíčním podporovatelem iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: STAŇTE SE MĚSÍČNÍM PODPOROVATELEM INATURALIST
-        desc_html: |
+        desc_moore_html: |
           <p class="lead">
-          <strong>iNaturalist je jednou z největších světových komunit věnovaných
-          průzkumu biologické rozmanitosti. Děkujeme, že jste se na něm podíleli!</strong>
+          <strong>Svůj dárek můžete <u>ztrojnásobit</u>! Díky nadaci Gordona a Betty Mooreových se všechny dary měsíčních podporovatelů do 31. prosince 2023 ztrojnásobí.</strong>
           </p>
           <p class="lead">
-          Chceme, aby byl iNaturalist volně použitelný, ale nefunguje zadarmo. Pokud máte rádi iNaturalist, zvažte prosím možnost stát se měsíční podporovatelem. Opakované dary nám pomáhají zajistit pokračování iNaturalist. Můžete se také rozhodnout a ukazovat na
-          vašem uživatelském profilu, že patříte mezi měsíční podporovatele.
+          iNaturalist je jednou z největších světových komunit věnovaných zkoumání biologické rozmanitosti. Děkujeme, že jste toho součástí!
           </p>
           <p class="lead">
-          Váš dar pomáhá podpořit iNaturalist s růstem komunity, od
-          pokročilé počítačové vize a implementace nových funkcí na podporu
-          našich serverů a zaměstnanců. Jestliže preferujete jednorázový dar, prosím <a href="%{donate_url}">klikněte zde</a>.
+          Pokud máte rádi iNaturalista, zvažte, zda se stát měsíčním podporovatelem. Opakující se dary pomáhají zajistit, že iNaturalist může pokračovat v rozšiřování naší infrastruktury a zaměstnanců poskytováním předvídatelných příjmů. A váš měsíční dárek má trojnásobný dopad! Můžete se také rozhodnout zobrazovat svůj status měsíčního podporovatele ve svém uživatelském profilu.
+          </p>
+          <p class="lead">
+          Vaše charitativní dary pomáhají podporovat iNaturalist, jak se komunita rozrůstá, od vylepšování počítačového vidění a implementace nových funkcí až po podporu našich serverů a zaměstnanců. Můžete také poskytnout <a href="%{donate_url}">jednorázový dar</a> a prozkoumat <a href="https://www.inaturalist.org/pages/giving">další způsoby, jak darovat </a>.
           </p>
           <p class="text-muted">
-          iNaturalist je společná iniciativa Kalifornské akademie věd
-          a Národní geografické společnosti. Všechny dary obdrží
-          Kalifornské akademie věd, organizace 501(c)(3) nezisková organizace osvobozená od daně
-          se sídlem ve Spojených státech amerických.
+          iNaturalist je nezávislá nezisková organizace 501(c)(3), osvobozená od daní, se sídlem ve Spojených státech amerických (Tax ID: 92-1296468).
+          </p>
+        desc3_html: |
+          <p class="lead">
+          <strong>iNaturalist je jednou z největších světových komunit věnovaných
+          průzkumu biologické rozmanitosti. Děkujeme, že se na ní podílíte!</strong>
+          </p>
+          <p class="lead">
+          Chceme, aby byl iNaturalist dostupný zdarma, ale bez financování se neobejde.
+          Pokud máte iNaturalist rádi, zvažte prosím možnost stát se měsíční podporovatelem.
+          Pravidelné dary nám pomáhají zajistit, aby iNaturalist i nadále rozvíjel
+          svou infrastrukturu a zaměstnance. Jako podporovatel se také můžete
+          svou podporou pochlubit na svém uživatelském profilu, pokud chcete.
+          </p>
+          <p class="lead">
+          Vaše dary pomáhají podpořit iNaturalist i při rostoucí komunitě - od
+          vylepšování počítačového vidění a implementace nových funkcí až po financování
+          našich serverů a zaměstnanců. Pokud preferujete jednorázový dar, prosím <a href="%{donate_url}">klikněte zde</a>.
+          </p>
+          <p class="text-muted">
+          iNaturalist je nezávislá nezisková organizace se sídlem ve Spojených státech amerických,
+          podle 501(c)(3) osvobozená od daně z příjmu (Tax ID: 92-1296468).
           </p>
         thank_you_for_being_a_monthly_supporter: Děkujeme, že jste měsíční podporovatel!
         thank_you_for_being_a_monthly_supporter_caps: DĚKUJEME ŽE JSTE SE STAL MĚSÍČNÍM PODPO|RO|VATELEM
+      temporarily_unavailable: |
+        Děkujeme vám za váš zájem o podporu iNaturalist! Přispění na
+        iNaturalist je dočasně nedostupné, jelikož aktualizujeme naše dárcovské systémy.
+        Prosíme, zkuste to brzy znovu.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikněte zde pro opětovné odeslání potvrzovacího e-mailu
+      please_add_an_email_and_password: Prosím, přidejte e-mail a heslo, abyste neztratili přístup ke svému účtu
+      please_click_the_link_sent_to_email_to_confirm_html: Kliknutím na odkaz odeslaný na adresu <span class="email">%{email}</span> potvrďte svou e-mailovou adresu.
+      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je nejlepší způsob, jak vás kontaktovat.
+      your_site_account_has_no_email: Váš %{site_name} účet nemá přiřazenou e-mailovou adresu.
     flags:
       show:
         flaggable_content_desc: |
@@ -5925,6 +6528,100 @@ cs:
         flags_that_should_not_be_resolved_desc_html: |
           Vyřešte prosím <code>spam</code> and <code>copyright
           infringement</code> pouze v případě, že obsah není spam nebo se nejedná o porušení autorských práv.
+    geo_model:
+      explain:
+        geomodel_predictions_of_taxon: |
+          Predikce Geomodelu pro %{taxon}
+        the_geo_model_makes_predictions: |
+          Geomodel predikuje, kde se druhy vyskytují a kde ne. Používáme ho pro jednak pro označení
+          vybraných návrhů štítkem "Očekáváno v okolí", a jednak pro vážení těchto návrhů na základě
+          polohy pozorování.
+        the_geo_model_is_trained: |
+          Podobně jako Model počítačového vidění je Geomodel natrénovaný na pozorováních
+          z iNaturalist - na stejném datasetu druhů s více než cca 100 fotkami. Geomodel nedokáže
+          predikovat dokonale. Můžete si o něm přečíst více <a href="%{url}">zde</a>.
+        nearby_map:
+          expected_nearby_map: Očekáváno v okolí
+          we_use_this_map: |
+            Tuto mapu používáme pro označování vybraných návrhů štítkem "Očekáváno v okolí"
+            na základě polohy pozorování.
+          for_example: |
+            Například je možné, že pro pozorování ještěra uprostřed USA bude mít návrh identifikace
+            <i>Sceloporus consobrinus</i> štítek "Očekáváno v okolí", zatímco návrh identifikace
+            <i>Sceloporus occidentalis</i> takto označen nebude, v souladu s mapami Očekáváno v okolí.
+          you_can_think: |
+            Můžete si představit mapu Očekáváno v okolí jako odhad, jestli se daný druh
+            vyskytuje někde uvnitř buňky mapy, anebo se tam vůbec nevyskytuje.
+          figure_alt_text: Geomodel vytváří štítky Očekáváno v okolí
+        unthresholded_map:
+          unthresholded_map: Predikce Geomodelu před prahováním
+          we_use_the_unthresholded_map: |
+            Při nabízení návrhů používáme bezprahovou mapu k vážení skóre počítačového vidění podle polohy.
+          for_example: |
+            Například pozorování ještěrky v centru Spojených států by mohlo mít
+            více návrhů <i>Sceloporus consobrinus</i> než návrhů
+             <i>Sceloporus occidentalis</i> založené na porovnání nelimitovaných map, navzdory tomu, že je vizuálně podobná.
+          you_can_think: |
+            Bezprahovou mapu si můžete představit jako relativní pravděpodobnost výskytu druhu v buňce mřížky.
+          figure_alt_text: Výsledky počítačového vidění s váhou geomodelu
+        range_comparison:
+          expected_nearby_vs_taxon_range: Očekáváno v okolí vs mapa výskytu
+          this_map_shows: |
+            Tato mapa zobrazuje rozsah taxonů pro tento druh překrývá mapu očekávaného okolí, kterou používáme k vyhodnocení Geomodelu.
+          this_gridded_version: |
+            Tato mřížkovaná verze rozsahu taxonů je snímek pořízený při trénování modelu a mřížkovaná ve stejném rozlišení jako mapa očekávaného okolí. Rozsahy taxonů používáme pouze v případě, že alespoň 90 % tréninkových dat pro daný druh spadá do rozsahu taxonů, abychom mohli kontrolovat chyby v rozsahu taxonů.
+          by_combining: |
+            Kombinací mapy očekávaného okolí s mapou taxonů vypočítáme statistiku.
+            abychom odhadli, jak dobře geomodel funguje.
+          figure_alt_text: Porovnává se mapa očekávaných v okolí a rozsah taxonů
+          combining_these_maps_produces: |
+            Po zkombinování těchto tří map vzniknou tři druhy oblastí:
+          #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
+          true_presences_colon: |
+            Pravdivě přítomné:
+          true_presences_definition2: Oblasti, kde jak mapa očekávaných v okolí, tak rozsah taxonu předpovídají, že daný taxon existuje
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falešně přítomné:
+          false_presences_definition: Místa, kde je taxon Očekáván v okolí, ačkoliv je to mimo oblast výskytu
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falešně nepřítomné:
+          false_absences_definition: Místa, kde taxon není Očekáván v okolí, ačkoli je to v oblasti výskytu
+          evaluation_statistics_for_taxon: Metriky pro %{taxon}
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Přesnost:
+          precision_description: V jak velké části mapy Očekáváno v okolí se taxon skutečně vyskytuje
+          #Equation showing how we calculate precision of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          precision_equation: |
+            Pravdivě přítomné / (Pravdivě přítomné + Falešně přítomné) = %{precision}
+          #The fraction of the Taxon Range that are True Presences
+          recall_colon: |
+            Senzitivita:
+          recall_description: Jak velká část mapy skutečného výskytu taxonu je označena Očekáváno v okolí
+          #Equation showing how we calculate recall of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          recall_equation: |
+            Pravdivě přítomné / (Pravdivě přítomné + Falešně nepřítomné) = %{recall}
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1-skóre:
+          f1_description: Harmonický průměr z přesnosti a senzitivity
+          #Equation showing how we calculate the F1 statstitic of the Expected Nearby Map
+          #True Presences: areas where both the Expected Nearby Map and the Taxon Range predict that the taxon exists
+          #False Presences: areas where only the Expected Nearby Map predicts the taxon exists
+          #False Absences: areas where only the Taxon Range is present
+          f1_equation: |
+            2 × Pravdivě přítomné / (2 × Pravdivě přítomné + Falešně přítomné + Falešně nepřítomné) = %{f1}
+          perfect_overlap: |
+            Dokonalý překryv se projeví přesností, senzitivitou i F1-skórem rovnými 1.
+            Žádný překryv se projeví přesností, senzitivitou i F1-skórem rovnými 0.
     guides:
       index:
         deprecated_banner: |
@@ -6126,6 +6823,31 @@ cs:
           pokud odstraníte kopii této konverzace, takže je bezpečné tak činit, pokud už to nechcete vidět.
         privacy_notice_html: |
           Ačkoliv zprávy mezi vámi a příjemcem jsou soukromé, zaměstnanci iNaturalist mohou tyto zprávy rovněž zobrazit, a učiní tak, pokud je zpráva označena k moderaci. Pokud potřebujete skutečně soukromou komunikaci, podívejte se prosím po jiných komunikačních kanálech, které podporují silné šifrování.
+    nls_demo:
+      what_do_you_want_to_search_for: Co chcete vyhledat?
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: např. %{query_in_english}
+      try_one_of_these_example_searches_colon: "Zkuste jeden z těchto příkladů vyhledávání:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: Pomozte nám zlepšit
+      to_help_us_improve: Abychom mohli tento model vylepšit, rádi bychom věděli, které z obrázků na této stránce jsou relevantní pro Vaše vyhledávání &quot;%{searched_term}&quot;. Označte prosím každý obrázek jako relevantní %{thumbs_up_icon}, pokud se shoduje s vaším vyhledáváním, a jako nerelevantní %{thumbs_down_icon}, pokud se neshoduje. Po dokončení klikněte prosím na tlačítko Odeslat. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Označit zbývající jako relevantní
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Označit zbývající jako nerelevantní
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Zobrazit tato pozorování v Identifikovat
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> se spojil s výzkumníky na <a href="https://www. cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed. ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">University of Edinburgh</a>, cíl <a href="https://www.ucl.ac.uk" ="_blank" rel="noopener noreferrer">University College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel= "noopener noreferrer">MIT</a> a se štědrou podporou od <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview /" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a> k lepšímu pochopení potenciálu jazykových modelů Vision, které pomohou organizovat, zkoumat a vysvětlovat pozorování iNaturalistů. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Tento demo nástroj vám umožní zadat hledaná fráze (například "<a href="%{url}">%{query_in_english}</a>"), a porovnává to s 10 miliony iNaturalist fotografiemi. Výsledky jsou seřazeny od většiny do nejmenšího významu. Můžete použít toto demo jako nový způsob, jak najít zajímavá pozorování iNaturalist pro anotování nebo přidání do vašeho projektu.
+      you_can_also_use_this_demo: Můžete také použít toto demo aby nám pomohlo vyhodnotit model Vision Language model powering this demo tím, že nám řeknete, který z vrácených obrázků byl relevantní pro vaši vyhledávací frázi. Toto demo používá <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">model CLIP Vision Language CLIP</a> , který nebyl vyškolen na údajích iNaturalist ani týmem iNaturalist. Někdy může nástroj přinášet nepřesné, předpojaté nebo urážlivé výsledky. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Přečtěte si více na iNaturalist Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Pokud chcete podpořit tuto práci
+      thank_you_for_your_submission!: Děkujeme za váš příspěvek!
     oauth:
       authorizations:
         new:
@@ -6375,6 +7097,10 @@ cs:
       show:
         allow_curator_coordinate_access_desc_html: |
           Umožnit kurátorům projektu zobrazit soukromé souřadnice tohoto pozorování.
+        ancestor_disagreements_desc2: |
+          Počet identifikovaných taxonů, které patří mezi předky taxonu, ale
+          nesouhlasí s taxonem (tj. "Myslím, že patří do rodu, ale 
+          nesouhlasím s tím, že je to tento druh")
         community_taxon_desc_html: |
           <p class="ui">
           Komunitní taxon (nebo komunitní identifikace) představuje to, jaký taxon je podle komunity %{site_name} zobrazen v pozorování. Pokud vás zajímá, jak komunitní taxon volíme, podívejte se na poznámky k algoritmu níže, ale obecně se snažíme <strong>vybírat taxony, s nimiž souhlasí více než 2/3
@@ -6391,69 +7117,61 @@ cs:
         cumulative_count_desc: '# identifikací jednotlivého taxonu a všech následných taxonů'
         curator_coordinate_access_disabled_desc_html: |
           Tento projekt nepovoluje pozorování se souřadnicemi, které kurátoři projektu nemohou zobrazit. Pokud nechcete souřadnice tohoto pozorování s kurátory sdílet, musíte pozorování z projektu odebrat.
-        data_quality_assessment_desc_html: |
-          Posouzení kvality dat je vyhodnocení 
-          přesnosti pozorování. Výzkumný stupeň pozorování mohou vědci použít pro
-          výzkum. Hlasujte níže:
+        data_quality_assessment_desc3_html: |
+          Kvalita shrnuje přesnost, preciznost, úplnost,
+          význam a vhodnost pozorování iNaturalist jako
+          údajů o biologické rozmanitosti. Některé atributy jsou automaticky určeny,
+          zatímco jiné jsou předmětem hlasování uživatelů iNat. iNaturalist
+          sdílí licencovaná pozorování "Výzkumného stupně" s mnoha
+          partnery pro použití ve vědě a ochraně přírody.
         disagreement_count_desc: "# identifikovaných taxonů, které nespadají do základních taxonů"
         identification_count_desc: '# identifikací daného taxonu'
         flagged_photos_desc_html: |
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
-          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna
-          pozorování začínají jako <strong>"neformální"</strong> a stávají se
-          <strong>„vyžaduje ID“</strong> když
-          </p>
+          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna pozorování začínají jako <strong>příležitostná</strong> a stanou se <strong>„potřebuje ID“</strong>, když </p>
 
           <ul>
           <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky a délky)</li>
+          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky/délky)</li>
           <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
-          <li>pozorování <strong>se netýká člověka</strong></li>
+          <li>to pozorování <strong>není od člověka</strong></li>
           </ul>
           <p>
-          Pozorování se stanou <strong>„výzkumným stupněm“</strong>, když
+          Pozorování se stanou <strong>„stupněm pro výzkum“</strong>, když
           </p>
           <ul>
           <li>
-          komunita %{site_name} <strong>souhlasí s ID na úrovni druhu nebo
-          nižší</strong> tj. když se více než 2/3 identifikátorů shoduje na
-          taxonu (pokud komunita hlasovala, že komunitní taxon nemůže být dále vylepšen, pak se ID vrátí na úroveň podčeledi nebo nižší)
+          %{site_name} <strong>komunita souhlasí s ID na úrovni druhu nebo nižší</strong>, tj. když více než 2/3 identifikátorů souhlasí s taxonem (pokud komunita odhlasovala, že komunitní taxon již nelze vylepšovat , toto se vrátí na ID na úrovni podrodiny nebo nižší)
           </li>
           </ul>
           <p>
-          Pokud nebudou splněny výše uvedené podmínky, nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„neformální“</strong>
+          Pokud nebudou splněny výše uvedené podmínky nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„příležitostná“</strong>
           </p>
           <ul>
           <li>
-          <strong>místo nevypadá
-          přesné</strong> (např. opice uprostřed oceánu,
-          hroši v kancelářských budovách atd.)
+          <strong>místo nevypadá přesně</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách atd.)
           </li>
           <li>
-          <strong>organismus není divoký/zdivočelý</strong> (např. v zajetí nebo kultivovaný lidmi
-          nebo inteligentní vesmírní mimozemšťané)
+          <strong>organismus není divoký/naturalizovaný</strong> (např. v zajetí nebo kultivovaný lidmi)
           </li>
           <li>
-          pozorování <strong>nepředkládá důkaz o 
-          organismu</strong>např. obrázky vodních prvků,
-          skály, krajiny, které nezahrnují organismus atd.
+          pozorování <strong>neprokazuje existenci organismu</strong>, např. obrázky vodních prvků, skal, krajin, které nezahrnují organismus atd.
           </li>
           <li>
-          pozorování <strong>nepředkládá nedávné (~100 let) důkazy
-          organismu</strong>(např. fosilie, ale stopy, trus a odumřelé listy
-          jsou v pořádku)
+          pozorování <strong>nepředkládá nedávné (~ 100 let) důkazy o organismu</strong> (např. fosilie, ale stopy, strupy a mrtvé listy jsou v pořádku)
           </li>
           <li>
-          pozorování již nepotřebuje ID <em>a</em> ID komunity je vyšší, než čeleď
+          pozorování <strong>neobsahuje důkazy týkající se jednoho předmětu</strong> (např. má čtyři fotografie nepříbuzných organismů. Fotografie zobrazující stanoviště předmětu pozorování je v pořádku.)
           </li>
           <li>
-          pozorovatel se odhlásil z ID komunity a komunitní
-          ID taxonu není předkem ani potomkem souvisejícího taxonu
-          s ID pozorovatele
+          pozorování již nepotřebuje ID <em>a</em> ID komunity je v rodině nebo výše
+          </li>
+          <li>
+          pozorovatel se odhlásil z ID komunity a taxon ID komunity není předkem ani potomkem taxonu spojeného s ID pozorovatele
           </li>
           </ul>
           <p>
@@ -6461,11 +7179,7 @@ cs:
           </p>
           <ul>
           <li>
-          Systém bude hlasovat, že pozorování není divoké/zdivočelé
-          pokud existuje alespoň 10 dalších pozorování rodu nebo nižší úrovně v
-          nejmenším ekvivalentu kraje, státu nebo země, které
-          obsahuje toto pozorování a 80 % nebo více těchto pozorování
-          byly označeny jako nikoli divoké/zdivočelé.
+          Systém bude hlasovat, že pozorování není divoké/naturalizované, pokud existuje alespoň 10 dalších pozorování rodu nebo nižšího v nejmenším ekvivalentním místě okresu, státu nebo země, které obsahuje toto pozorování a 80 % nebo více z nich pozorování byla označena jako nikoli divoká/naturalizovaná.
           </li>
           </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
@@ -6634,9 +7348,10 @@ cs:
         view_original_html: |
           Originál si můžete zobrazit na <a href="%{url}">%{url}</a>. Pokud tato fotka porušuje autorská práva, nechte prosím vlajky označující porušení autorských práv jako nevyřešené.
     places:
-      kml_field_desc: |
-        KML hranice místa. Můžete ho vytvořit pomocí Google Maps, Google
-        Earth nebo většiny aplikací GIS. Musí mít aspoň jeden mnohoúhelník, velikost do 1 MB (5 MB pro kurátory stránky) a oblast musí být menší než stát Texas v USA.
+      kml_field_desc3: |
+        KML hranic místa. KML je soubor pro distribuci geografických dat, můžete jej vytvořit pomocí Google Maps, Google Earth, nebo většiny GIS aplikací. Musí obsahovat alespoň jeden polygon, být
+        menší než 1 MB (5 MB pro kurátory webu), a mít plochu menší než ~700 000 km2
+         (zhruba velikost Somálska nebo státu Texas).
       edit:
         complex_boundary_note_html: |
           Toto ohraničení je pro editování na webu příliš složité. Můžete si ale
@@ -6681,6 +7396,8 @@ cs:
           Pokud odcházíte jen proto, že nechcete, aby kurátoři projektu viděli vaše soukromé souřadnice.
       edit:
         admins_must_be_existing_members: Administrátoři musí být existujícími členy projektu.
+        admins_can_only_be_added_after_creation: |
+          Administrátoři mohou být přidáni pouze po vytvoření projektu.
         aggregation_pending: Seskupení ve frontě
         new_place_desc_html: |
           Zkuste si projít
@@ -6805,6 +7522,8 @@ cs:
         do_you_need_features_from_traditional: |
           Potřebujete informace z tradičních projektů, jako je přístup k souřadnicím, nebo přidávání jednotlivých pozorování, která nemohou být automaticky
           filtrována?
+        do_you_need_features_from_traditional2: |
+          Potřebujete funkce z tradičních projektů, jako jsou vlastní pole pozorování, nebo přidávání jednotlivých pozorování, která nelze automaticky filtrovat?
         duplicate_project: Duplikovat projekt
         include_annotated_observations: |
           Zahrnout pouze pozorování anotované určitým atributem (např. životní stádium),
@@ -6996,6 +7715,16 @@ cs:
           Vytvořeno pomocí <a href="https://www.inaturalist.org"> iNaturalist </a>
           <a href="%{url}"> iNaturalist síť </a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Přidáno obojí
+        added_only_identifications: Přidány pouze identifikace
+        added_only_observations: Přidána pouze pozorování
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Široké dopady
+        broader_impacts_desc: |
+          Několik externích partnerů pravidelně importuje pozorování iNaturalist kvůli 
+          podpoře vědy a ochraně přírody. Vaše pozorování, identifikace a možnosti otevřené licence umožňují těmto organizacím poskytovat užitečné informace o biologické rozmanitosti lidem, kteří je potřebují po celém světě.
         compare_desc: |
           Jak se tento rok porovnával s vašimi předchozími roky? Se třemi roky
           nebo více můžeme začít srovnávat ukazatele roční aktivity.
@@ -7010,14 +7739,14 @@ cs:
           za všechny roky.
         compared_to_previous_years: Porovnat s předchozími roky
         donate_title: "Zvláštní poděkování všem našim podporovatelům"
-        donate_desc_html: |
-          Děkujeme vám za váš štědrý čas, pozornost, odborné znalosti a dary! iNaturalist je společná nezisková iniciativa Kalifornské akademie věd a National Geographic Society. Podporuje ho <a href="%{team_url}">malý tým</a>, který se stará o veškerý design a softwarové inženýrství pro web, mobilní zařízení a <a href="%{seek_url}">Vyhledávání iNaturalist</a>, a navíc spravuje podporu komunity, spolupráci a integrace, které zajišťují chod (a rychlý růst!). Program je závislý na četných grantech a darech, včetně dobročinných darů od méně než nepatrného zlomku přispěvatelů. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucnost. Přispívat můžete v různých měnách a podpořit tak základní činnost iNaturalist. Děkujeme všem, kteří se podíleli na tom, že %{year} byl pro iNaturalist dosud největším rokem!
+        donate_desc2_html: |
+          Děkujeme vám za váš štědrý čas, pozornost, odborné znalosti a dary! iNaturalist je společná nezisková iniciativa Kalifornské akademie věd a National Geographic Society. Podporuje ho <a href="%{team_url}">malý tým</a>, který se stará o veškerý design a softwarové inženýrství pro web, mobilní zařízení a <a href="%{seek_url}">Vyhledávání iNaturalist</a>, a navíc spravuje podporu komunity, spolupráci a integrace, které zajišťují chod (a rychlý růst!). Program je závislý na četných grantech a darech, včetně dobročinných darů od méně než nepatrného zlomku přispěvatelů. Jsme obzvláště vděční měsíčním podporovatelům, jejichž pravidelné dary nám pomáhají plánovat budoucnost. Přispívat můžete v různých měnách a podpořit tak základní činnost iNaturalist. Děkujeme všem, kteří se podíleli na tom, že rok %{year} byl pro iNaturalist dosud největším rokem!
         donors: Dárci
         donors_guide_label_our_goal_is_1000: Naším cílem je 1000 pravidelných dárců měsíčně
         inaturalist_network: síť iNaturalist
         inaturalist_network_desc: |
           Podívejte se na rok v recenzi pro členy sítě iNaturalist.
-        include_usa: Zahrnuje US
+        include_usa: Zahrnout USA
         growth_by_country_desc_html: |
           Kde je růst? Tato mapa a graf se snaží sdílet tyto informace podle zemí, což je komplikované, protože růst země může být velmi nevyvážený. Zde jsme se rozhodli vynechat Spojené státy a použít výchozí logaritmické měřítko k zvýraznění rozdílů s ostatními zeměmi. Pokud se země objeví v černém, znamená to, že k tomuto procentu významně nepřispěla, nebo že letos neprokázala růst, nebo v tomto roce neměla více pozorování než v loňském roce (více informací najdete nad zemí). <strong> „% celkového růstu“ </strong> znamená podíl globálního růstu pocházejícího z určité země, například pokud je v roce 2018 20 pozorování a 10 v roce 2017, představuje to 10 pozorování růstu a pokud se jich 5 týká Beninu, pak Benin přispěl k 50% celkového růstu. <strong> "% růst" </strong> představuje procento letošních pozorování v této zemi ve srovnání s loňskými pozorováními v této zemi, takže pokud by bylo 10 pozorování o Laosu za rok minulost a 20 letošního roku představuje 100% růst, a pokud by bylo loni a 1 letos 0, představuje to nekonečné procento růstu.
         growth_by_country_title: Růst podle země
@@ -7026,7 +7755,7 @@ cs:
           %{site_name} vložená lidmi, kteří nejsou přidruženi k
           %{site_name}, zatímco "Uživatelé" graf zobrazuje pouze data, kdy se uživatelé
           připojili k %{site_name} k iNaturalist.
-        growth_in_year_obs: "Růst v%{year}(obs)"
+        growth_in_year_obs: "Růst v %{year} (pozorování)"
         growth_title: Růst
         #Label when a mark on a chart has a value that is too small to
         #visualize. low_value is the value (usually a number), low_desc is
@@ -7074,21 +7803,21 @@ cs:
           Chceš ukázat svou hrdost na iNat všude na cestě? Podívej se na iNat
           Obchod!
         sunburst_desc_html: |
-          Pozorované taxony jsou uspořádány jako hierarchický „paprskovitý“ diagram. Základní úroveň hierarchie je uprostřed, začíná „Životem“ a končí druhy na vnějších okrajích. Velikost každého oblouku je úměrná počtu pozorování daného taxonu a barvy zhruba odpovídají obvyklým „tradičním“ barvám taxonů (zelená pro rostliny, oranžová pro hmyz, modrá pro většinu ostatních zvířat atd.), takže pokud vidíte hodně zelené, znamená to, že jste pozorovali hodně rostlin. <strong>Taxon do středu umístíte kliknutím na oblouk</strong> a jeho následné taxony rozmístíte okole, nebo <strong>klikněte na střed a posuňte se výš v hierarchii</strong>.
+          Pozorované taxony jsou uspořádány jako hierarchický „paprskovitý“ diagram. Základní úroveň hierarchie je uprostřed, začíná „Životem“ a končí druhy na vnějších okrajích. Velikost každého oblouku je úměrná počtu pozorování daného taxonu a barvy zhruba odpovídají obvyklým „tradičním“ barvám taxonů (zelená pro rostliny, oranžová pro hmyz, modrá pro většinu ostatních zvířat atd.), takže pokud vidíte hodně zelené, znamená to, že jste pozorovali hodně rostlin. <strong>Taxon do středu umístíte kliknutím na oblouk</strong> a jeho následné taxony se rozmístí okolo, nebo <strong>klikněte na střed a posuňte se výš v hierarchii</strong>.
         translators_title: Překladatelé
         translators_desc: |
           Věděli jste, že iNaturalist byl přeložen do %{x_languages},
-          téměř úplně %{x_people}, z nichž někteří iNat nepoužívají? Tady
-          jsou úžasní překladatelé, kteří letos přidali překlady,
-          spolu s počtem slov, která přeložili do
-          %{website_link_tag} web %{link_tag_end}, náš
+          téměř celý od %{x_people}, z nichž někteří iNat nepoužívají? Tady
+          jsou úžasní překladatelé, kteří letos překlady přidali,
+          spolu s počtem slov, která přeložili na
+          %{website_link_tag} webové stránce %{link_tag_end}, v našich aplikacích pro
           %{iphone_link_tag} iPhone %{link_tag_end} a
-          %{android_link_tag} Aplikace pro Android %{link_tag_end} a
-          %{seek_link_tag} Vyhledejte %{link_tag_end}. Můžete si prohlédnout
-          všichny lidi, kteří přispěli překlady,
-          včetně lidí z minulých let a lidí z Translatewiki
-          %{view_all_web_link_tag} webu %{link_tag_end} a
-          %{view_all_mobile_link_tag} mobilního %{link_tag_end} úložiště kódů.
+          %{android_link_tag} Android %{link_tag_end} a v aplikaci
+          %{seek_link_tag} Seek %{link_tag_end}. Můžete si prohlédnout
+          všichny, kteří přispěli překlady,
+          včetně lidí z minulých let a lidí z Translatewiki, na náš
+          %{view_all_web_link_tag} web %{link_tag_end} a do
+          %{view_all_mobile_link_tag} mobilních aplikaci %{link_tag_end} v úložišti kódů.
         translators_desc_for_site: |
           Věděli jste, že %{site_name} byl přeložen téměř úplně uživateli %{x_people}? Zde jsou všichni úžasní překladatelé, kteří
           přidali překlady letos společně s počtem slov,
@@ -7100,7 +7829,7 @@ cs:
            %{view_all_web_link_tag}webo%{link_tag_end} a
            %{view_all_mobile_link_tag}mobilního%{link_tag_end} úložiště kódů.
         translators_prompt: |
-          Pokud chcete pomoci s překladem, %{link_tag}se dozvíte, jak%{link_tag_end}.
+          Pokud chcete pomoci s překladem, %{link_tag}podívejte se jak%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -7117,13 +7846,18 @@ cs:
       show:
         about_names_desc: |
           <p>
-            Většina kategorií organismů má v mluvené řeči své „obecné názvy“. Tyto názvy jsou obvykle srozumitelné, snadno se vyslovují a jsou trvalé, ale mnoho organismů má na různých místech několik různých názvů, a to i v jednom jazyce, což může komplikovat komunikaci o těchto organismech. Vědci tento problém řeší tak, že používají jeden „vědecký název“ pro každou kategorii organismů, která splňuje pravidla <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické terminologie</a>, ale tyto názvy většinou vycházejí z latiny, což je jazyk, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak snadno zapamatovatelné jako obecné názvy. Vědecké názvy mohou také odrážet taxonomické zařazení organismu, takže se mohou změnit, pokud vědci vytvoří přesnější teorie o evolučních vztazích mezi jednotlivými organismy, což opět snižuje jejich užitečnost při komunikaci, a to i mezi lidmi, kteří znají vědecké názvy.
+          Většina kategorií organismů má v mluvených jazycích „běžné názvy“. Tyto názvy jsou obvykle rozpoznatelné, snadno se vyslovují a v průběhu času jsou stabilní, ale mnoho organismů má několik různých názvů na různých místech, dokonce i ve stejném jazyce, což může ztížit komunikaci o těchto organismech bez zmatku. Vědci tento problém řeší používáním jediného „vědeckého názvu“ pro každou kategorii organismu, který odpovídá pravidlům <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">biologické nomenklatury</a>, ale tyto názvy mají tendenci vycházet z latiny, jazyka, kterým nikdo nemluví, takže pro mnoho lidí nejsou tak zapamatovatelná jako běžné názvy. Vědecké názvy mohou také odrážet taxonomické umístění organismu, takže se mohou změnit, když vědci vyvinou přesnější teorie o evolučních vztazích mezi různými organismy, což opět sníží jejich užitečnost v komunikaci, a to i mezi lidmi, kteří znají vědecké názvy. </p>
+          <p>
+          Staré pořekadlo to shrnuje: "Běžné názvy se mění místo od místa a vědecké názvy se mění čas od času."
           </p>
           <p>
-           \ Jak se říká: „Obecné názvy jsou různé na různých místech a vědecké názvy jsou různé v různých dobách.“ 
+          Tyto nedostatky se snažíme řešit tím, že všude, kde je to možné, zobrazujeme jak běžné, tak vědecké názvy a volíme běžné názvy na základě jazykových a geografických preferencí uživatele. Názvy jsou uvedeny podle jejich globální priority v rámci každého jazyka / typu. </p>
+        about_regional_names_desc: |
+          <p>
+          Názvy mohou být přidány k místům (obvykle zemím) v případech, kdy různé země nebo oblasti používají různé běžné názvy ve stejném jazyce. Například Mexiko a Kostarika mohou mít různé španělské názvy pro stejný druh.
           </p>
           <p>
-            My se snažíme tyto nedostatky řešit tím, že zobrazujeme jak obecné tak vědecké názvy, kdykoliv je to možné, a obecné názvy vybíráme podle jazykových a geografických preferencích čtenáře.
+          Tato tabulka ukazuje, které názvy byly přidány ke kterým místům, a jsou uvedeny v pořadí podle priority pro každé místo. Pokud jsou do Mexika přidány dva španělské názvy, zobrazí se ten, který je uveden jako první, pokud chcete, aby byl do Mexika přidán španělská název.
           </p>
         about_conservation_status_desc: |
           Ochranářský status shrnuje riziko vyhynutí pro skupinu organismů.
@@ -7131,6 +7865,7 @@ cs:
           „Způsob vzniku“ popisuje, jak se druh ocitl tam, kde se v současnosti vyskytuje. Nepůvodní znamená, že se v místě ocitl v důsledku lidské činnosti, zatímco původní znamená, že se v místě ocitl bez lidského přičinění. Endemické druhy se vyskytují pouze na konkrétním místě a nikde jinde.
         about_taxon_curators_desc: |
           Tito lidé spravují část taxonomického stromu, do které patří tento taxon. Pokud chcete provést změny, označte prosím tento taxon nebo kontaktujte některou z těchto osob.
+        charts_caps: GRAFY
         charts_help_seasonality: |
           Tento graf zobrazuje počet pozorování tohoto taxonu podle měsíců. Nezapomeňte, že toto jsou počty pozorování, takže jsou ovlivněny jak tím, kdy je možné organismus pozorovat, tak také tím, kdy jsou lidé ochotní ho pozorovat. Takže to může vypadat, že nějaký pták je velmi aktivní v květnu, to však může být také proto, že v květnu ptáky pozoruje víc lidí, kteří tento druh v následujících měsících ignorují. Podobně když vidíte více vážek v červnu než v lednu, je to pravděpodobně proto, že máme více pozorovatelů na severní polokouli než na jižní polokouli a ne proto, že by vážky byly v červnu aktivnější, proto se podívejte společně s těmito grafy taky na mapu. Je vhodné být k těmto grafům mírně skeptický v případě, že je málo pozorování a/nebo velké rozpory mezi počtem „Ověřitelných“ a „Výzkumných“ pozorování.
         charts_help_history: |
@@ -7154,8 +7889,15 @@ cs:
           "Plant Phenology=Flower Budding": Květinové pučení
           "Plant Phenology=Flowering": Kvetoucí
           "Plant Phenology=Fruiting": Plození
-          "Plant Phenology=No Evidence": Bez důkazu
-          "Life Stage=Adult": Dospělec
+          "Plant Phenology=No Evidence of Flowering": Žádné známky kvetení
+          "Flowers and Fruits=Flower Buds": Květní pupeny
+          "Flowers and Fruits=Flowers": Květy
+          "Flowers and Fruits=Fruits or Seeds": Plody nebo semena
+          "Flowers and Fruits=No Flowers or Fruits": Žádné květy ani plody
+          "Leaves=Breaking Leaf Buds": Listové pupeny
+          "Leaves=Green Leaves": Zelené listy
+          "Leaves=Colored Leaves": Barevné listy
+          "Leaves=No Live Leaves": Žádné živé listy
           "Life Stage=Egg": Vejce
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Nedospělý
@@ -7186,8 +7928,8 @@ cs:
       move_children_desc: |
         Děti daného taxonu, které jsou rodové nebo ještě hruběji určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu s novým názvem rodu nebo druhu.
       form:
-        move_children_desc_html: |
-          Zaškrtnutím tohoto políčka přesunete děti vstupního taxonu do cílového taxonu pro Swaps and Merges, pokud bude tato změna ověřena. Pokud se přesune na rod nebo níže, vytvoří se výměna taxonů pro všechny potomky, kteří mají implicitní změnu jména. Například, jestliže vy zaměníte rodinu Canidae do Dogidae, to modifikuje Canidae <i>Canis</i>rod do Dogidae. Změníte-li žánr <i>Canis</i>na<i>Dogis</i>, vytvoříte a validujete výměny taxonů pro změnu <i>Canis lupus </i> do <i>Dogis lupus</i> a <i>Canis lupus</i>ssp.<i>lupus</i>v<i>Dogis lupus</i>ssp.<i>lupus</i>do<i>Dogis lupus</i>ssp.<i>lupus</i>. To může způsobit určité nejasnosti, a proto to používejte opatrně.
+        move_children_desc2_html: |
+          Zaškrtnutím tohoto políčka přesunete potomky vstupního taxonu do výstupního taxonu pro výměnu taxonu a sloučení taxonu, když je tato změna potvrzena. Pokud se jedná o změnu rodu nebo nižšího, vytvoří se swapy taxonů pro všechny potomky se jmény, která je třeba změnit. Pokud například zaměníte čeleď Canidae za Dogidae, změní se tím rodič rodu <i>Canis</i> z Canidae na Dogidae. Pokud zaměníte rod <i>Canis</i> za rod <i>Dogis</i>, vytvoří se a provede výměna taxonu za změnu <i>Canis lupus</i> na <i>Dogis lupus</i> a <i>Canis lupus</i> ssp. <i>lupus</i> až <i>Dogis lupus</i> ssp. <i>lupus</i>. To může způsobit docela nepořádek, proto používejte opatrně.
     taxon_links:
       form:
         name_with_rank_desc: |
@@ -7196,20 +7938,24 @@ cs:
       form:
         new_name_guidelines_html: |
           <ul>
-            <li><p>Zkuste přidat názvy, které se používají jinde. Nevymýšlejte prosím nové názvy.</p></li>
-            <li><p>Nepřidávejte zdvojené názvy, např. nepojmenovávejte několik jestřábů „jestřáb“</p></li>
-            <li><p>Pro taxony vyšší úrovně se snažte používat názvy, které zahrnují všechny následné, například „volavky a příbuzné rody“ nebo „čeleď vřesovcovité“
-          </p></li>
-           \ <li>
-              <p>
-                Nepřidávejte jiné informace než název, např. vsunuté informace o tom, jak by se podle vás měl název používat
-              </p>
-            </li>
-           \ <li>
-              <p>
-                Slovníky by měly být v angličtině. Nepřidávejte prosím přeložené názvy jazyků, např. „French, francouzština“, protože to nám jen stíží nebo znemožní zobrazování lokalizovaných názvů lidem, kteří stránku používají v jiných jazycích. 
-              </p>
-            </li>
+          <li><p>Zkuste přidat názvy, které byly použity jinde. Prosím, nevymýšlejte nová jména.</p></li>
+          <li><p>Nepřidávejte duplicitní názvy, např. nejmenujte četné jestřáby „jestřáb“</p></li>
+          <li><p>U taxonů vyšších úrovní se snažte použít jména, která zahrnují všechny potomky, jako „volavky a spojenci“ nebo „rodina vřesoviště“</p></li>
+          <li>
+          <p>
+          Nepřidávejte informace, které nejsou jménem, ​​např. v závorkách informace o tom, jak si myslíte, že by se měl název používat
+          </p>
+          </li>
+          <li>
+          <p>
+          Nové lexikony by měly být v angličtině. Nepřidávejte prosím přeložené názvy jazyků, jako je „francouzština, francouzština“, protože to nám jen ztíží nebo znemožní zobrazení lokalizovaných názvů pro lidi, kteří používají stránky v různých jazycích.
+          </p>
+          </li>
+          <li>
+          <p>
+          Běžné názvy spojené s přeloženými jazyky se zobrazí jako výchozí běžný název pro daný jazyk (bez vlivu předvoleb místa, řazení názvů atd.). <a class="readmore" href="/pages/translate">Další informace o překladu</a>
+          </p>
+          </li>
           </ul>
         places_help_html: |
           Přidáním názvu místa mu dáte prioritu pro stránky a uživatele z tohoto místa. Pokud k místu patří několik názvů, můžete je seřadit podle priority <a href="%{url}">zde</a>. <strong>Nepřidávejte</strong> prosím názvy pro KAŽDÉ místo, kde se název používá, pouze pro místa, která jsou v rozporu s jinými místy.
@@ -7309,6 +8055,7 @@ cs:
           Pokud vás někdo na %{site_name} obtěžuje nebo pronásleduje, <a href="mailto:%{help_email}">dejte nám prosím vědět</a>. Pokud to představuje porušení našich Podmínek použití nebo jiné chování, které považujeme za nevhodné pro naše stránky, uděláme to
           vyšetřovat.
           </p>
+        common_scientific_name_display_order: Zobrazení obecných a vědeckých názvů
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           Jestliže změníte svůj názor, můžete kdykoli
           <a href='/users/edit'>změnit své nastavení</a>.
@@ -7326,13 +8073,7 @@ cs:
           Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.
         monthly_supporter_desc_html: |
-          měsíční podporovatelé iNaturalist poskytují automatické měsíční příspěvky, které obdrží Kalifornská akademie věd (Spojené státy
-          IRS EIN 94-1156258) na podporu neziskových operací
-          stránek iNaturalist a iNaturalist sítě.
-          <a href="%{url}">Klikněte zde, abyste se stali Měsíčním podporovatelem</a>.
-          Když jsme potvrdili vaši podporu, budete moci zaškrtnout toto
-          políčko pro zobrazení tohoto stavu na vašem profilu. Poznámka: budete muset použít
-          přesnou, stejnou e-mailovou adresu na Donorboxu jako na iNaturalist, abyste mohli potvrdit, že jste se stali Měsíční podporovatel.
+          Měsíční příznivci iNaturalist automaticky měsíčně přispívají na iNaturalist (IRS EIN 92-1296468 Spojených států), aby podpořili neziskový provoz stránek sítě iNaturalist a iNaturalist. <a href="%{url}">Kliknutím sem se stanete měsíčním podporovatelem</a>. Jakmile potvrdíme vaši podporu, budete moci zaškrtnutím tohoto políčka zobrazit tento stav ve vašem profilu. Poznámka: E-mailové adresy na Donorbox a iNaturalist se musí přesně shodovat, abychom mohli potvrdit, že jste měsíčním příznivcem. Pokud se liší, změňte jeden, aby odpovídal druhému.
         muting_desc_html: |
           <p>
             Když někoho ztlumíte, nebudete dostávat oznámení o tom, co dělají, včetně komentářů u vašich pozorování, zpráv, zmínek o vás atd. Ztlumením můžete někoho ignorovat, aniž byste mu bránili v nějaké činnosti. 
@@ -7418,6 +8159,26 @@ cs:
         same_day_geoprivacy_protection: Ochrana soukromí zeměpisné polohy ve stejný den
         taxon_change_desc: |
           Když jsou na %{site_name} sloučeny nebo přejmenovány taxony, vaše pozorování, taxony na seznamu, identifikace atd. budou automaticky aktualizovány na nové taxony, pokud je změna jasná. Pokud si aktualizace zrušíte nebo je změna nejednoznačná (např. kvůli nejednotnosti názorů), dostanete oznámení o změně s odkazem na nástroj, který můžete použít k manuální aktualizaci svého obsahu, pokud chcete.
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: Přidat slovník obecných názvů
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: Přidat místo (volitelné)
+          common_name_lexicon_display_order: Pořadí zobrazení obecných názvů
+          common_name_lexicons: Slovníky obecných názvů
+          common_name_lexicons_description: Implicitně se zobrazují obecné názvy podle jazyka/lokalizace vašeho účtu. Pokud chcete vidět jiné jazyky nebo upřednostnit konkrétní regiony (jako Angličtina (Austrálie) nebo Španělština (Kostarika)), navolte si slovníky obecných názvů. Zobrazit se můžou maximálně 3 obecné názvy najednou. Pokud se v daném slovníku nevyskytuje žádný obecný název, nezobrazí se.
+          for_multiple_common_name_lexicons_drag_and_drop: Přetažením položek můžete nastavit několik slovníků obecných názvů, včetně pořadí, ve kterém se mají zobrazovat.
+          same_as_locale: Podle lokalizace
+          #used as a form select dropdown option that users can choose instead of a choosing
+          #a fixed locale. Choosing this setting will allow the user to see common names in
+          #a lexicon matching their account language/locale setting dynamically
+          same_as_language_locale_preference: Podle nastavení jazyka/lokalizace v účtu
+          select_a_lexicon: Vyberte slovník
+          #a warning message given when users have added the maximum number of common name
+          #lexicon settings that we currently allow
+          the_maximum_number_of_lexicons_have_been_added: Už byl vybrán maximální počet 3 slovníků obecných názvů
         this_only_applies_to_traditional_projects: |
           To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.
           Další informace <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">zde</a>.
@@ -7486,9 +8247,21 @@ cs:
       index:
         connect_with_nature: Spojte se s přírodou
         explore_and_share: Objevujte a sdílejte svá pozorování ze světa přírody.
-        observations_to_date: 'Pozorování k dnešnímu dni'
-        species_observed: 'Pozorované druhy'
-        people_signed_up: 'Zaregistrovaní lidé'
+        observations_to_date:
+          one: "Pozorování k datu"
+          few: "Pozorování k datu"
+          many: "Pozorování k datu"
+          other: "Pozorování k datu"
+        species_observed:
+          one: "Pozorovaný druh"
+          few: "Pozorované druhy"
+          many: "Pozorovaných druhů"
+          other: "Pozorovaných druhů"
+        people_signed_up:
+          one: "Osoba se zaregistrovala"
+          few: "Osoby se zaregistrovaly"
+          many: "Osob se zaregistrovalo"
+          other: "Osob se zaregistrovalo"
         how_it_works: Jak to funguje
         record_your_observations: Zaznamenejte své pozorování
         share_with_fellow_naturalists: Sdílejte s našimi přírodovědci
@@ -7560,19 +8333,19 @@ cs:
       6: pá
       7: so
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d.%m.%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d. %B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%m %d'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short_with_year: '%d. %b %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%d. %B %Y'
     month_names:
       - 
@@ -7647,25 +8420,25 @@ cs:
         many: '%{count} sekund'
         other: '%{count} sekund'
     countdown_x_days:
-      one: den
-      few: dny
-      many: dny
-      other: dny
+      one: DEN
+      few: DNY
+      many: DNÍ
+      other: DNÍ
     countdown_x_hours:
-      one: hodina
-      few: hodiny
-      many: hodiny
-      other: hodiny
+      one: HODINA
+      few: HODINY
+      many: HODIN
+      other: HODIN
     countdown_x_minutes:
-      one: min
-      few: min
-      many: min
-      other: min
+      one: MIN
+      few: MIN
+      many: MIN
+      other: MIN
     countdown_x_seconds:
-      one: sec
-      few: sec
-      many: sec
-      other: sec
+      one: S
+      few: S
+      many: S
+      other: S
     prompts:
       day: Den
       hour: Hodina
@@ -7673,54 +8446,6 @@ cs:
       month: Měsíc
       second: Sekundy
       year: Rok
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: musí být přijato
-      blank: nesmí být prázdné
-      confirmation: nesouhlasí kontrola
-      empty: nesmí být prázdné
-      equal_to: musí se rovnat %{count}
-      even: musí být vyrovnané
-      exclusion: je rezervováno
-      greater_than: musí být větší než %{count}
-      greater_than_or_equal_to: musí být větší nebo rovno %{count}
-      inclusion: není zahrnuto v seznamu
-      invalid: je neplatné
-      less_than: musí být méně než %{count}
-      less_than_or_equal_to: musí být menší než nebo rovno %{count}
-      new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
-      not_a_number: není číslo
-      not_an_integer: musí být celé číslo
-      odd: musí být liché číslo
-      only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
-      record_invalid: 'Schválení se nezdařilo: %{errors}'
-      requires_privilege_speech: |
-        musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
-      requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
-      taken: už je obsazené
-      too_long:
-        one: je příliš dlouhý (maximum je %{count} znak)
-        few: je příliš dlouhý (maximum je %{count} znaků)
-        many: je příliš dlouhý (maximum je %{count} znaků)
-        other: je příliš dlouhý (maximum je %{count} znaků)
-      too_short:
-        one: je příliš krátký (minimum je %{count} znak)
-        few: je příliš krátký (minimum je %{count} znaků)
-        many: je příliš krátký (minimum je %{count} znaků)
-        other: je příliš krátký (minimum je %{count} znaků)
-      wrong_length:
-        one: má špatnou délku (měla by být %{count} znaků)
-        few: má špatnou délku (měla by být %{count} znaků)
-        many: má špatnou délku (měla by být %{count} znaků)
-        other: má špatnou délku (mělo by být %{count} znaků)
-    template:
-      body: 'Následující pole obsahují chybně vyplněné údaje:'
-      header:
-        one: "%{count} chyba zabránila %{model} v uložení"
-        few: '%{count} chyba zabránila %{model} v uložení'
-        many: '%{count} chyb zabránilo %{model} v uložení'
-        other: '%{count} chyb zabránilo %{model} v uložení'
   helpers:
     defaults:
       title: "TOTO JE TITULKA"
@@ -7785,72 +8510,21 @@ cs:
   time:
     am: dopoledne
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%b. %d, %Y %H:%M:%S %z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d %b %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%B %d, %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%l:%M %p"
     pm: odpoledne
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: musí být přijato
-        blank: nesmí být prázdné
-        confirmation: nesouhlasí heslo
-        empty: nesmí být prázdné
-        equal_to: musí se rovnat %{count}
-        even: musí být sudé číslo
-        exclusion: je rezervováno
-        greater_than: musí být větší než %{count}
-        greater_than_or_equal_to: musí být větší nebo rovno %{count}
-        inclusion: není zahrnuto v seznamu
-        invalid: je neplatné
-        less_than: musí být méně než %{count}
-        less_than_or_equal_to: musí být menší než nebo rovno %{count}
-        new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
-        not_a_number: není číslo
-        not_an_integer: musí být celé číslo
-        odd: musí být liché číslo
-        only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
-        record_invalid: 'Schválení se nezdařilo: %{errors}'
-        requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
-        requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
-        taken: už je obsazené
-        too_long:
-          one: je příliš dlouhý (maximum je %{count} znaků)
-          few: je příliš dlouhý (maximum je %{count} znaků)
-          many: je příliš dlouhý (maximum je %{count} znaků)
-          other: je příliš dlouhý (maximum je %{count} znaků)
-        too_short:
-          one: je příliš krátká (minimum je %{count} znak)
-          few: je příliš krátký (maximum je %{count} znak)
-          many: je příliš krátký (maximum je %{count} znaků)
-          other: je příliš krátký (maximum je %{count} znaků)
-        wrong_length:
-          one: má špatnou délku (měla by být %{count} znaků)
-          few: má špatnou délku (mělo by být %{count} znaků)
-          many: má špatnou délku (mělo by být %{count} znaků)
-          other: má špatnou délku (mělo by být %{count} znaků)
-      template:
-        body: 'Následující pole obsahují chybně vyplněné údaje:'
-        header:
-          one: '%{count} chyba zabránila %{model} v uložení'
-          few: '%{count} chyb zabránilo %{model} v uložení'
-          many: '%{count} chyb zabránilo %{model} v uložení'
-          other: '%{count} chyb zabránilo %{model} v uložení'
   activerecord:
     models:
       #Information authored by site admins shown to users at various places
@@ -7859,9 +8533,11 @@ cs:
       AssessmentSection: Části hodnocení
       Atlas: Atlas
       BlockedUser: Blokovaný uživatel
+      Comment: Komentář
       CompleteSet: Dokončit sady
       #Noun
       Flag: Označit
+      Identification: Identifikace
       #Action taken by a moderator in response to a flag or concern with
       #immediate consequences in functionality, e.g. hiding an offensive
       #comment without deleting it
@@ -7873,6 +8549,8 @@ cs:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Žádost
+      Photo: Fotka
+      Post: Záznam v deníku
       TaxonLink: Odkazy taxonu
     attributes:
       announcement:
@@ -7881,6 +8559,13 @@ cs:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID webu
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Cílit na zaměstnance (pro testování)
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Jen pro nepotvrzené uživatele
+        prefers_exclude_monthly_supporters: Bez měsíčních podporovatelů
+        clients: Klienti
       assessment:
         description: Popis
       assessment_section:
@@ -8035,6 +8720,7 @@ cs:
         position: Pozice
         source_url: URL zdroje
         source_identifier: Identifikátor zdroje
+        audit_comment: Poznámka
       taxon_link:
         url: URL
         #Name of the web site being linked to bey a taxon link, e.g. Global
@@ -8047,6 +8733,9 @@ cs:
         taxon: Taxon
         #Place this link is associated with
         place: Místo
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Zobrazit pro taxony potomků
       user:
         email: E-mail
         login: Uživatelské jméno
@@ -8063,22 +8752,43 @@ cs:
         blank: nesmí být prázdné
         confirmation: nesouhlasí heslo
         empty: nesmí být prázdné
-        equal_to: musí se rovnat %{count}
+        equal_to:
+          one: musí být rovno %{count}
+          few: musí být rovno %{count}
+          many: musí být rovno %{count}
+          other: musí být rovno %{count}
         even: musí být sudé číslo
         exclusion: je rezervováno
-        greater_than: musí být větší než %{count}
-        greater_than_or_equal_to: musí být větší nebo rovno %{count}
+        greater_than:
+          one: musí být větší než %{count}
+          few: musí být větší než %{count}
+          many: musí být větší než %{count}
+          other: musí být větší než %{count}
+        greater_than_or_equal_to:
+          one: musí být větší nebo rovno %{count}
+          few: musí být větší nebo rovno %{count}
+          many: musí být větší nebo rovno %{count}
+          other: musí být větší nebo rovno %{count}
         inclusion: není zahrnuto v seznamu
         invalid: je neplatné
-        less_than: musí být méně než %{count}
-        less_than_or_equal_to: musí být menší než nebo rovno %{count}
+        less_than:
+          one: musí být menší než %{count}
+          few: musí být menší než %{count}
+          many: musí být menší než %{count}
+          other: musí být menší než %{count}
+        less_than_or_equal_to:
+          one: musí být menší než nebo rovno %{count}
+          few: musí být menší než nebo rovno %{count}
+          many: musí být menší než nebo rovno %{count}
+          other: musí být menší než nebo rovno %{count}
         new_project_owner_must_be_a_manager: Nový vlastník projektu musí být správcem
         not_a_number: není číslo
         not_an_integer: musí být celé číslo
         odd: musí být liché číslo
         only_project_owner_can_change_project_owner: Vlastníka projektu může změnit pouze vlastník projektu
         record_invalid: 'Schválení se nezdařilo: %{errors}'
-        requires_privilege_speech: musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
+        requires_privilege_speech: |
+          musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
         taken: už je obsazené
         too_long:
@@ -8099,11 +8809,28 @@ cs:
       template:
         body: 'Následující pole obsahují chybně vyplněné údaje:'
         header:
-          one: '%{count} chyba zabránila %{model} v uložení'
+          one: "%{count} chyba zabránila %{model} v uložení"
           few: '%{count} chyb zabránilo %{model} v uložení'
           many: '%{count} chyb zabránilo %{model} v uložení'
           other: '%{count} chyb zabránilo %{model} v uložení'
       models:
+        announcement:
+          attributes:
+            clients:
+              #Error message shown when an Announcement has a value in the
+              #clients attribute that is not a valid client for the
+              #annoumcement's placement attribute. This might be used in a
+              #sentence like "clients must be valid for specified
+              #placement". Only site admins will see this text, so it's ok
+              #if it's not translated perfectly.
+              must_be_valid_for_specified_placement: musí být platné pro dané umístění
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: musí být platné pro stanovenou cílovou skupinu
         application:
           attributes:
             redirect_uri:
@@ -8140,15 +8867,14 @@ cs:
             action:
               not_supported_for_this_kind_of_content: není podporováno pro tento druh obsahu
             base:
-              only_staff_can_unhide: Pouze personál může odkrýt skrytý obsah
+              only_staff_and_hiding_curators_can_unhide: Pouze zaměstnanci a kurátoři, kteří skryjí obsah, jej mohou znovu odkrýt
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "Import nebo čekání na import API klíče"
-              api_key_missing: "Chybí klíč Mushroom Observer API"
+            user:
+              must_be_a_curator: musí být kurátor
         observation:
           attributes:
             base:
@@ -8183,14 +8909,22 @@ cs:
             place_geometry:
               is_too_large_to_edit: je příliš velký k nahrání
               is_too_large_to_import: je příliš velký k nahrání
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: je příliš velký nebo složitý na zpracování před vypršením časového limitu
               contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
+              cannot_be_blank: nemůže být prázdné
+              invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
+              must_have_more_than_three_points: musí mít více než 3 body
+              polygon_with_less_than_four_points: má polygon s méně než 4 body
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: nemůže být prázdné
               invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
               must_have_more_than_three_points: musí mít více než 3 body
-              polygon_with_fewer_than_four_points: má mnohoúhelník s méně než 4 body
+              polygon_with_less_than_four_points: má polygon s méně než 4 body
         post:
           attributes:
             parent:
@@ -8262,6 +8996,8 @@ cs:
                 musí odpovídat názvu taxonu, pokud se jedná o platný vědecký název
               bad_format: |
                 může obsahovat pouze standartní písmena Latinky, pomlčky, mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
+            audit_comment:
+              needs_to_be_at_least_10_characters: musí mít alespoň 10 znaků
         taxon_photo:
           attributes:
             taxon:
@@ -8286,9 +9022,11 @@ cs:
           attributes:
             base:
               user_already_blocked: Tohoto uživatele již blokujete
-              user_cannot_be_staff: |
-                Nemůžete blokovat zaměstnance. Zaměstnanci iNat musí být schopni
-                komunikovat se všemi na iNat, mít přístup ke všem údajům na iNat, a jsou konečnými mediátory sporů, takže blokování jim nebrání v komunikaci s Vámi. Pokud máte problém se zaměstnancem, prosím, nahlaste jej jednomu ze spoluředitelů iNat, nebo se, pokud máte problém s jedním ze spoluředitelů, můžete obrátit na vědeckého ředitele Institutu pro biologickou a udržitelnou vědu Kalifornské akademie věd.
+              user_cannot_be_staff2: |
+                Nemůžete blokovat zaměstnance. iNat zaměstnanci musí být schopni
+                komunikovat se všemi na iNat, mít přístup ke všem údajům na
+                iNat, a jsou konečnými zprostředkovateli sporů, takže blokování
+                jim nebrání v komunikaci s vámi.
         user_parent:
           attributes:
             email:
@@ -8342,7 +9080,7 @@ cs:
   i18n:
     inflections:
       "@vow_or_con":
-        vow: vowel
+        vow: samohláska
         con: souhláska
         a: "@vow"
         e: "@vow"
@@ -8462,6 +9200,20 @@ cs:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@n"
+      "@iconic_taxon":
+        Animalia: Zvířata
+        Actinopterygii: Paprskoploutví
+        Aves: Ptáci
+        Reptilia: Plazi
+        Amphibia: Obojživelníci
+        Mammalia: Savci
+        Arachnida: Pavoukovci
+        Insecta: Hmyz
+        Plantae: Rostliny
+        Fungi: Houby
+        Protozoa: Prvoci
+        Mollusca: Měkkýši
+        Chromista: Chromisté
   #Title of a section warning the user about something
   warning_title: Upozornění
   wikimedia: Wikimedia

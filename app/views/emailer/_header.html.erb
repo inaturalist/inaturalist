@@ -5,7 +5,7 @@
   img_url = if site_logo_email_banner =~ /http/
     site_logo_email_banner
   else
-    uri_join( site_url, FakeView.image_url( site_logo_email_banner ) )
+    ::UrlHelper.uri_join( site_url, image_url( site_logo_email_banner ) )
   end
   site_name = site.name
 -%>
@@ -14,37 +14,14 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <style type="text/css">
-      @font-face {
-        font-family: Whitney;
-        src: url('<%= asset_url "fonts/Whitney-Book-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: bold;
-        src: url('<%= asset_url "fonts/Whitney-Medium-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: 100;
-        src: url('<%= asset_url "fonts/Whitney-Light-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: 600;
-        src: url('<%= asset_url "fonts/Whitney-Semibold-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
-      @font-face {
-        font-family: Whitney;
-        font-weight: 800;
-        src: url('<%= asset_url "fonts/Whitney-Bold-Pro.otf", host: Site.default.url, skip_pipeline: true %>') format("opentype");
-      }
+      <%= render partial: "emailer/fonts", formats: [:css] %>
       #outlook a{padding:0;}
       .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
       .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;}
       body, table, td, p, a, li, blockquote, div {
         -webkit-text-size-adjust:100%;
         -ms-text-size-adjust:100%;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
       }
       table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
       img{-ms-interpolation-mode:bicubic;}
@@ -66,7 +43,7 @@
       h1{
         color:#202020 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:26px;
         font-style:normal;
         font-weight:bold;
@@ -81,7 +58,7 @@
       h2{
         color:#404040 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
          font-size:20px;
          font-style:normal;
          font-weight:bold;
@@ -96,7 +73,7 @@
       h3{
         color:#606060 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:16px;
         font-style:italic;
         font-weight:normal;
@@ -111,7 +88,7 @@
       h4{
         color:#808080 !important;
         display:block;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:14px;
         font-style:italic;
         font-weight:normal;
@@ -129,7 +106,7 @@
       }
       .preheaderContent{
         color:#808080;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:10px;
         line-height:125%;
         text-align:left;
@@ -146,7 +123,7 @@
       }
       .headerContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:20px;
         font-weight:bold;
         line-height:100%;
@@ -173,7 +150,7 @@
       }
       .bodyContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:16px;
         line-height:150%;
         padding-top:20px;
@@ -200,7 +177,7 @@
       }
       .leftColumnContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:14px;
         line-height:150%;
         padding-top:0;
@@ -216,7 +193,7 @@
       }
       .rightColumnContent{
         color:#505050;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:14px;
         line-height:150%;
         padding-top:0;
@@ -241,7 +218,7 @@
       }
       .footerContent{
         color:#808080;
-        font-family:Whitney, Helvetica;
+        font-family: Lato, Helvetica;
         font-size:10px;
         line-height:150%;
         padding-top:20px;

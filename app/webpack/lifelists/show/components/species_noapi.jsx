@@ -85,11 +85,11 @@ class SpeciesNoAPI extends Component {
             }
           };
           return (
-            <div className="result" key={`grid_taxon_${s.id}`}>
+            <div className="result d-flex" key={`grid_taxon_${s.id}`}>
               <TaxonThumbnail
+                className="flex-grow-1"
                 taxon={s}
                 config={config}
-                truncate={null}
                 height={210}
                 noInactive
                 onClick={onClick}
@@ -121,9 +121,12 @@ class SpeciesNoAPI extends Component {
 
     const rankOptions = (
       <DropdownButton
-        title={`${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel(
-          { rank: lifelist.speciesViewRankFilter }
-        )}`}
+        title={`${I18n.t( "views.lifelists.dropdowns.show" )}: ${rankLabel( {
+          rank: lifelist.speciesViewRankFilter,
+          iconicTaxonName: detailsTaxon
+            ? detailsTaxon.iconic_taxon_name
+            : null
+        } )}`}
         id="rankDropdown"
         onSelect={key => setRankFilter( key )}
       >
@@ -147,7 +150,12 @@ class SpeciesNoAPI extends Component {
                 && ( detailsTaxon.rank_level <= 20 || detailsTaxon.rank_level <= r.rank_level )}
               className={lifelist.speciesViewRankFilter === r.filter ? "selected" : null}
             >
-              { I18n.t( `ranks.x_${r.filter}`, { count: 2 } ) }
+              { I18n.t( `ranks.x_${r.filter}`, {
+                count: 2,
+                iconic_taxon: detailsTaxon
+                  ? detailsTaxon.iconic_taxon_name
+                  : null
+              } ) }
             </MenuItem>
         ) )}
         <MenuItem

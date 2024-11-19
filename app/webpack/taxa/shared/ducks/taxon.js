@@ -2,6 +2,7 @@ import inatjs from "inaturalistjs";
 import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
+import utf8 from "utf8";
 import { fetch } from "../../../shared/util";
 import { defaultObservationParams } from "../util";
 
@@ -214,8 +215,35 @@ export function showPhotoChooserIfSignedIn( ) {
   };
 }
 
+const termIsRelevantForTaxon = ( term, taxon ) => {
+  // if there are taxon requirements, this taxon or its ancestors must be among them
+  if ( !_.isEmpty( term.taxon_ids )
+    && _.isEmpty(
+      _.intersection(
+        _.flatten( [taxon.ancestor_ids, taxon.id] ),
+        term.taxon_ids
+      )
+    )
+  ) {
+    return false;
+  }
+
+  // if there are taxon exceptions, this taxon or its ancestors must not be among them
+  if ( !_.isEmpty( term.excepted_taxon_ids )
+    && !_.isEmpty(
+      _.intersection(
+        _.flatten( [taxon.ancestor_ids, taxon.id] ),
+        term.excepted_taxon_ids
+      )
+    )
+  ) {
+    return false;
+  }
+  return true;
+};
+
 export function fetchTerms( options = { histograms: false } ) {
-  return ( dispatch, getState ) => {
+  return async ( dispatch, getState ) => {
     const s = getState( );
     const { testingApiV2 } = s.config;
     const params = { taxon_id: s.taxon.taxon.id, per_page: 50 };
@@ -236,11 +264,14 @@ export function fetchTerms( options = { histograms: false } ) {
         controlled_attribute: {
           id: true,
           label: true,
-          taxon_ids: true
+          taxon_ids: true,
+          excepted_taxon_ids: true
         },
         controlled_value: {
           id: true,
-          label: true
+          label: true,
+          taxon_ids: true,
+          excepted_taxon_ids: true
         },
         unannotated: "all"
       };
@@ -251,24 +282,24 @@ export function fetchTerms( options = { histograms: false } ) {
         return memo;
       }, {} );
       const relevantResults = _.filter( r.results, f => (
-        !f.controlled_attribute.taxon_ids
-        || _.intersection(
-          s.taxon.taxon.ancestor_ids,
-          f.controlled_attribute.taxon_ids
-        ).length > 0
-        || f.controlled_attribute.taxon_ids.length === 0
+        termIsRelevantForTaxon( f.controlled_attribute, s.taxon.taxon )
       ) );
       const fieldValues = _.groupBy( relevantResults, f => f.controlled_attribute.id );
-      if ( options.histograms ) {
-        _.each( r.unannotated, ( data, controlledAttributeId ) => {
-          fieldValues[Number( controlledAttributeId )].push( {
-            count: data.count,
-            month_of_year: data.month_of_year,
-            controlled_attribute: controlledAttributes[Number( controlledAttributeId )],
-            controlled_value: {
-              label: "No Annotation"
-            }
-          } );
+      // If there's data about how many observations do *not* have annotations
+      // of these relevant attributes, add "No Annotation" data
+      if ( options.histograms && r.unannotated ) {
+        const usedAttributeIds = _.keys( fieldValues ).map( Number );
+        _.each( r.unannotated, ( data, unannotatedAttributeId ) => {
+          if ( usedAttributeIds.indexOf( Number( unannotatedAttributeId ) ) >= 0 ) {
+            fieldValues[Number( unannotatedAttributeId )].push( {
+              count: data.count,
+              month_of_year: data.month_of_year,
+              controlled_attribute: controlledAttributes[Number( unannotatedAttributeId )],
+              controlled_value: {
+                label: "No Annotation"
+              }
+            } );
+          }
         } );
       }
       dispatch( {
@@ -371,11 +402,13 @@ export function fetchDescription( ) {
     }
     fetch( url ).then(
       response => {
-        const source = response.headers.get( "X-Describer-Name" );
-        const describerUrl = response.headers.get( "X-Describer-URL" );
+        const sourceName = response.headers.get( "X-Describer-Name" );
+        const sourceURL = response.headers.get( "X-Describer-URL" );
+        // the URL is being sent in an HTTP header, which does not support UTF-8, so force encoding
+        const describerUrl = _.isEmpty( sourceURL ) ? null : utf8.decode( sourceURL );
         response.text( ).then( body => {
           if ( body && body.length > 0 ) {
-            dispatch( setDescription( source, describerUrl, body ) );
+            dispatch( setDescription( sourceName, describerUrl, body ) );
           }
         } );
       },
@@ -408,7 +441,7 @@ export function fetchLinks( ) {
 export function fetchNames( taxon ) {
   return ( dispatch, getState ) => {
     const t = taxon || getState( ).taxon.taxon;
-    fetch( `/taxon_names.json?per_page=200&taxon_id=${t.id}` ).then(
+    fetch( `/taxon_names.json?per_page=400&taxon_id=${t.id}` ).then(
       response => {
         response.json( ).then( json => dispatch( setNames( json ) ) );
       },

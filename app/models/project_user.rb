@@ -14,6 +14,8 @@ class ProjectUser < ApplicationRecord
   validates_presence_of :project, :user
   validates_rules_from :project, :rule_methods => [:has_time_zone?]
   validate :user_invited?
+  validate :not_blocked_by_owner
+  validate :doesnt_block_owner
 
   # curator_coordinate_access on ProjectUser controls the default value for
   # curator_coordinate_access on ProjectObservation
@@ -49,16 +51,16 @@ class ProjectUser < ApplicationRecord
 
   notifies_subscribers_of :project, on: :save, notification: CURATOR_CHANGE_NOTIFICATION,
     include_notifier: true,
-    # don't bother queuing this if there's no relevant role change
-    queue_if: Proc.new{ |pu|
-      !pu.project.is_new_project? &&
-        pu.previous_changes[:role] &&
-        ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
+    # don't notify if there isn't a relevant role change
+    unless: lambda {| pu |
+      return true if pu.project.is_new_project?
+      return true unless pu.previous_changes[:role]
+      return true unless ROLES.include?( pu.role ) || pu.user_id == pu.project.user_id
     },
     # check to make sure role status hasn't changed since queuing
-    if: Proc.new{ |pu|
+    if: lambda {| pu, _project, _subscription |
       !pu.project.is_new_project? &&
-        ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
+        ( ROLES.include?( pu.role ) || pu.user_id == pu.project.user_id )
     }
 
   scope :curator_privilege, -> { where("role IN ('curator', 'manager')") }
@@ -137,6 +139,22 @@ class ProjectUser < ApplicationRecord
     pid = project_id || project.try(:id)
     unless ProjectUserInvitation.where(:invited_user_id => uid, :project_id => pid).exists?
       errors.add(:user, "hasn't been invited to this project")
+    end
+  end
+
+  def not_blocked_by_owner
+    return unless project_id && user_id
+
+    if UserBlock.where(user_id: project.user_id, blocked_user_id: user_id).any?
+      errors.add(:user, "has been blocked by the owner of this project")
+    end
+  end
+
+  def doesnt_block_owner
+    return unless project_id && user_id
+
+    if UserBlock.where(user_id: user_id, blocked_user_id: project.user_id).any?
+      errors.add(:user, "has blocked the owner of this project")
     end
   end
 

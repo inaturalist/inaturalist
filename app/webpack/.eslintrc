@@ -18,6 +18,7 @@
   },
   "globals": {
     I18n: true,
+    CONFIG: true,
     CURRENT_USER: true,
     PREFERRED_PLACE: true,
     PREFERRED_SEARCH_PLACE: true,
@@ -46,8 +47,18 @@
     "quotes": [2, "double"],
     "space-in-parens": [2, "always"],
     "no-restricted-globals": 0,
+    "no-restricted-syntax": [
+      "error",
+      // This disallows things like `photo.constructor.name === "Photo"`
+      // because webpack's minifier will abbreviate `constructor.name` to
+      // something like `p` so we can't rely on that value. Instead do
+      // something like `photo.constuctor === Photo`.
+      // https://stackoverflow.com/a/49610802
+      "MemberExpression[object.property.name='constructor'][property.name='name']"
+    ],
     "no-param-reassign": 0,
     "prefer-const": [2, { "destructuring": "all" }],
+    "prefer-object-spread": 0,
     "react/forbid-prop-types": 0,
     "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
     "react/require-default-props": 0,

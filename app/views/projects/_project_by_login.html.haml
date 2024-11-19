@@ -5,7 +5,7 @@
   = link_to project_path( project ), class: "float left" do
     = image_tag( project.icon.url( :span2 ), alt: "#{h( project.title )} icon", width: 70, height: 70 )
   %h4.truncate
-    = link_to strip_tags( project.title ), project
+    = link_to raw( strip_tags( project.title ) ), project
   - unless project.description.blank?
     .truncate-2
       = h truncate( strip_tags( project.description ), length: 120 )

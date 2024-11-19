@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 function nodeObsCount( lifelist, search ) {
   return function ( node ) {
     if ( lifelist.speciesPlaceFilter
@@ -56,11 +58,13 @@ function filteredNodes( lifelist, search ) {
   }
   if ( !nodeShouldDisplay ) return null;
 
-  return _.filter( lifelist.taxa,
-    t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && obsCount( t ) );
+  return _.filter(
+    lifelist.taxa,
+    t => nodeIsDescendant( t ) && nodeShouldDisplay( t ) && obsCount( t )
+  );
 }
 
-function rankLabel( { rank: filter, withLeaves = true } = {} ) {
+function rankLabel( { rank: filter, withLeaves = true, iconicTaxonName = null } = {} ) {
   switch ( filter ) {
     case "kingdoms":
     case "phyla":
@@ -69,7 +73,7 @@ function rankLabel( { rank: filter, withLeaves = true } = {} ) {
     case "families":
     case "genera":
     case "species":
-      return I18n.t( `ranks.x_${filter}`, { count: 2 } );
+      return I18n.t( `ranks.x_${filter}`, { count: 2, iconic_taxon: iconicTaxonName } );
     case "leaves":
       return ( withLeaves ? I18n.t( "ranks.leaves" ) : I18n.t( "ranks.x_species", { count: 2 } ) );
     default:

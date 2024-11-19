@@ -7,24 +7,15 @@
     - else
       = link_to t(:apply_to_be_an_app_owner), app_owner_application_path, :class => "right button"
     %h2= @title
-  %table.table.table-striped
-    %thead
-      %tr
-        %th=t(:name)
-        %th=t(:callback_url)
-        %th=t(:owner)
-        %th=t(:confidential)
-        %th
-        %th
-    %tbody
-      - @applications.each do |application|
-        %tr{:id => "application_#{application.id}"}
-          %td= link_to application.name, oauth_application_path(application)
-          %td= application.redirect_uri
-          %td= link_to_user(application.owner) if application.owner
-          %td= application.confidential
-          %td= link_to t(:edit), edit_oauth_application_path(application) if is_admin? || is_me?(application.owner)
-          %td
-            - if is_admin? || is_me?(application.owner)
-              = link_to t(:destroy), oauth_application_path(application), :data => { :confirm => t(:are_you_sure?) }, :method => :delete
+
+  - if @current_user_applications
+    %h3=t :your_applications
+    - if @current_user_applications.size == 0
+      %p.center-block.nocontent=t :no_applications_yet
+    - else
+      = render "table", applications: @current_user_applications
+    %h3=t :all_applications
+    = render "table", applications: @applications
+  - else
+    = render "table", applications: @applications
   = will_paginate @applications

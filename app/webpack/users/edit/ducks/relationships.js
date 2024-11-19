@@ -1,8 +1,6 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 
-import { fetchUserSettings } from "./user_settings";
-
 const SET_RELATIONSHIPS = "user/edit/SET_RELATIONSHIPS";
 const SET_RELATIONSHIP_TO_DELETE = "user/edit/SET_RELATIONSHIP_TO_DELETE";
 const SET_USER_AUTOCOMPLETE = "user/edit/SET_USER_AUTOCOMPLETE";
@@ -16,7 +14,7 @@ export default function reducer( state = {
   filters: {
     following: "any",
     trusted: "any",
-    order_by: "users.login",
+    order_by: "friendships.id",
     order: "desc"
   },
   relationships: []
@@ -94,15 +92,14 @@ export function fetchMutedUsers( ) {
     const { mutedUsers } = relationships;
     const currentMutedUsers = profile.muted_user_ids || [];
 
-    const params = { };
-    if ( config.testingApiV2 ) {
-      params.fields = {
+    const params = {
+      fields: {
         id: true,
         login: true,
         name: true,
         icon_url: true
-      };
-    }
+      }
+    };
 
     if ( mutedUsers.length === 0 ) {
       currentMutedUsers.forEach( id => inatjs.users.fetch( id, params ).then( ( { results } ) => {
@@ -136,15 +133,14 @@ export function fetchBlockedUsers( ) {
     const { blockedUsers } = relationships;
     const currentBlockedUsers = profile.blocked_user_ids || [];
 
-    const params = { };
-    if ( config.testingApiV2 ) {
-      params.fields = {
+    const params = {
+      fields: {
         id: true,
         login: true,
         name: true,
         icon_url: true
-      };
-    }
+      }
+    };
 
     if ( blockedUsers.length === 0 ) {
       currentBlockedUsers.forEach( id => inatjs.users.fetch( id, params ).then( ( { results } ) => {
@@ -188,11 +184,8 @@ export function fetchRelationships( firstRender, currentPage = 1 ) {
 
     const paramsWithFilters = {
       ...params,
-      ...filters
-    };
-
-    if ( state.config.testingApiV2 ) {
-      paramsWithFilters.fields = {
+      ...filters,
+      fields: {
         id: true,
         trust: true,
         following: true,
@@ -202,8 +195,8 @@ export function fetchRelationships( firstRender, currentPage = 1 ) {
           login: true,
           icon_url: true
         }
-      };
-    }
+      }
+    };
     inatjs.relationships.search( _.omitBy( paramsWithFilters, _.isNil ) ).then( response => {
       const { results, page } = response;
 
@@ -230,11 +223,11 @@ export function setRelationshipFilters( newFilters ) {
   };
 }
 
-export function updateRelationship( id, relationship ) {
+export function updateRelationship( id, relationship, page ) {
   // user id, not friendUser id
   const params = { id, relationship };
   return dispatch => inatjs.relationships.update( params ).then( ( ) => {
-    dispatch( fetchRelationships( ) );
+    dispatch( fetchRelationships( false, page ) );
   } ).catch( e => console.log( `Failed to update relationship: ${e}` ) );
 }
 
@@ -242,13 +235,12 @@ export function handleCheckboxChange( e, id ) {
   const { name, checked } = e.target;
 
   return ( dispatch, getState ) => {
-    const { relationships } = getState( );
-    const friends = relationships.relationships;
-    const targetFriend = friends.filter( user => user.id === id );
+    const { relationships: { relationships, page } } = getState( );
+    const targetFriend = relationships.filter( user => user.id === id );
 
     targetFriend[0][name] = checked;
 
-    dispatch( updateRelationship( id, { [name]: checked } ) );
+    dispatch( updateRelationship( id, { [name]: checked }, page ) );
   };
 }
 
@@ -262,40 +254,4 @@ export function deleteRelationship( ) {
       dispatch( fetchRelationships( ) );
     } ).catch( e => console.log( `Failed to delete relationships: ${e}` ) );
   };
-}
-
-export function muteUser( id ) {
-  const params = { id };
-  return dispatch => inatjs.users.mute( params ).then( ( ) => {
-    dispatch( fetchUserSettings( false, true ) );
-  } ).catch( e => console.log( `Failed to mute user: ${e}` ) );
-}
-
-export function unmuteUser( id ) {
-  const params = { id };
-  return dispatch => inatjs.users.unmute( params ).then( ( ) => {
-    dispatch( fetchUserSettings( false, true ) );
-  } ).catch( e => console.log( `Failed to unmute user: ${e}` ) );
-}
-
-export function blockUser( id ) {
-  const params = { id };
-  return dispatch => inatjs.users.block( params ).then( ( ) => {
-    dispatch( fetchUserSettings( false, true ) );
-  } ).catch( e => {
-    e.response.json( ).then( json => {
-      const baseErrors = _.get( json, "error.original.errors.base", [] );
-      if ( baseErrors.length > 0 ) {
-        alert( baseErrors.join( "; " ) );
-      }
-    } );
-    console.log( `Failed to block user: ${e}` );
-  } );
-}
-
-export function unblockUser( id ) {
-  const params = { id };
-  return dispatch => inatjs.users.unblock( params ).then( ( ) => {
-    dispatch( fetchUserSettings( false, true ) );
-  } ).catch( e => console.log( `Failed to unblock user: ${e}` ) );
 }

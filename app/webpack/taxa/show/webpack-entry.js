@@ -1,5 +1,6 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -15,7 +16,7 @@ import observationsReducer from "./ducks/observations";
 import leadersReducer from "./ducks/leaders";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import { fetchTaxonAssociates } from "./actions/taxon";
-import { windowStateForTaxon } from "../shared/util";
+import { windowStateForTaxon, tabFromLocationHash } from "../shared/util";
 
 const { Taxon } = inatjs;
 
@@ -36,34 +37,29 @@ const store = createStore(
   ] ) )
 );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
 
-if (
-  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
-) {
-  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
-  const defaultApiUrl = element && element.getAttribute( "content" );
-  if ( defaultApiUrl ) {
-    store.dispatch( setConfig( {
-      testingApiV2: true
-    } ) );
-    inatjs.setConfig( {
-      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
-      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
-    } );
-  }
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  store.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 /* global SERVER_PAYLOAD */
@@ -74,7 +70,7 @@ if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
   } ) );
 }
 store.dispatch( setConfig( {
-  chosenTab: serverPayload.chosenTab || "articles"
+  chosenTab: tabFromLocationHash( ) || serverPayload.chosenTab || "articles"
 } ) );
 if ( serverPayload.ancestorsShown ) {
   store.dispatch( setConfig( {
@@ -108,7 +104,7 @@ history.replaceState( s.state, s.title, s.url );
 window.onpopstate = e => {
   // User returned from BACK
   if ( e.state && e.state.taxon ) {
-    store.dispatch( setTaxon( e.state.taxon ) );
+    store.dispatch( setTaxon( new Taxon( e.state.taxon ) ) );
     store.dispatch( fetchTaxon( e.state.taxon ) );
     store.dispatch( fetchTaxonAssociates( e.state.taxon ) );
   }

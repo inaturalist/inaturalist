@@ -1,15 +1,16 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class LocalPhoto < Photo
   include LogsDestruction
   after_create :set_urls
   after_update :change_photo_bucket_if_needed
-  
+
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
     record.rotation.blank? ? "-auto-orient" : nil
   }
   
-  file_options = {
+  FILE_OPTIONS = {
     preserve_files: true,
     styles: {
       original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator, :metadata_filter ] },
@@ -51,7 +52,7 @@ class LocalPhoto < Photo
     #   s3_public_acl: You can set this to `bucket-owner-full-control` to transfer ownership
     #     when moving photos to this bucket
 
-    has_attached_file :file, file_options.merge(
+    has_attached_file :file, FILE_OPTIONS.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
@@ -72,7 +73,7 @@ class LocalPhoto < Photo
     )
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
-    has_attached_file :file, file_options.merge(
+    has_attached_file :file, FILE_OPTIONS.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id/:style.:content_type_extension",
       url: "/attachments/:class/:attachment/:id/:style.:content_type_extension",
     )
@@ -169,6 +170,7 @@ class LocalPhoto < Photo
   def could_be_public
     return false unless Shared::LicenseModule::ODP_LICENSES.include?( self.license )
     return false if flags.any?{ |f| !f.resolved? }
+    return false if hidden?
     true
   end
 
@@ -245,7 +247,7 @@ class LocalPhoto < Photo
   end
 
   def reset_file_from_original
-    interpolated_original_url = FakeView.image_url( self.file.url(:original) )
+    interpolated_original_url = ApplicationController.helpers.image_url( self.file.url(:original) )
     
     # If we're using local file storage and using some kind of development-ish
     # setup, it probably means we're running a single server process, which
@@ -264,7 +266,7 @@ class LocalPhoto < Photo
     else
       {}
     end
-    old_interpolated_original_url = FakeView.image_url(
+    old_interpolated_original_url = ApplicationController.helpers.image_url(
       Paperclip::Interpolations.interpolate( "photos/:id/:style.:extension", self.file, "original" ),
       image_url_opts
     )
@@ -273,7 +275,7 @@ class LocalPhoto < Photo
     
     # If it's not at the old path, use the cached original_url if it's not copyright infringement
     elsif original_url !~ /copyright/
-      FakeView.image_url( original_url )
+      ApplicationController.helpers.image_url( original_url )
 
     # If this is a copyright violation AND we don't have access to an original file, we're screwed.
     else
@@ -401,12 +403,12 @@ class LocalPhoto < Photo
     o
   end
 
-  def to_tags(options = {})
+  def to_tags( options = {} )
     tags = []
     if !metadata.blank? && !metadata[:dc].blank?
-      tags += [metadata[:dc][:subject]].flatten.reject(&:blank?).map(&:strip)
+      tags += [metadata[:dc][:subject]].flatten.reject( &:blank? ).map( &:strip )
       if options[:with_title] && !metadata[:dc][:title].blank?
-        tags += [metadata[:dc][:title]].flatten.reject(&:blank?).map(&:strip)
+        tags += [metadata[:dc][:title]].flatten.reject( &:blank? ).map( &:strip )
       end
     end
     if options[:with_file_name] && file.file? && !file.original_filename.blank?
@@ -414,18 +416,21 @@ class LocalPhoto < Photo
       # or numbers). Ignore the last since it's almost always a file extension
       # Note that I'm trying to handle unicode characters here, but there's
       # still a high chance of encoding weirdness happening
-      words = file.original_filename.scan(/[\p{L}\p{M}\'\’]+/)
-      words = words.reject do |word|
-        word.size < 4 || word =~ /^original|img|inat|dsc.?|jpe?g|png|gif|open-uri$/i
+      words = file.original_filename.scan( /[\p{L}\p{M}'\’]+/ ).map( &:downcase ).uniq
+      words = words.reject do | word |
+        word.size < 4 || word =~ /^(original|img|inat|dsc.?|jpe?g|png|gif|open-uri)$/i
       end
       # Collect all combinations of these words from 1-word combinations up to
-      # the combination that includes all words. Note that a combination
-      # preserves order, unlike permutations
-      tags += ( 1..words.size ).map {|i|
-        words.combination( i ).to_a.map{|c| c.join( " " ) }
-      }.flatten
+      # 3-word combinations (median word length for taxon names is 2, avg
+      # ~1.72, though the avg varies between lexicons, so a max of 3 should
+      # cover most cases). Note that a combination preserves order, unlike
+      # permutations
+      max_combos = [words.size, 3].min
+      tags += ( 1..max_combos ).map do | combo_size |
+        words.combination( combo_size ).to_a.map {| combo | combo.join( " " ) }
+      end.flatten
     end
-    tags
+    tags.uniq
   end
 
   def to_taxa(options = {})
@@ -468,6 +473,14 @@ class LocalPhoto < Photo
     end
   end
 
+  def reindex_taxa
+    taxa.each do |taxon|
+      Taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
+        unique_hash: { "Taxon::elastic_index": taxon.id } ).
+        elastic_index!( ids: [taxon.id] )
+    end
+  end
+
   def prune_odp_duplicates( options = { } )
     return unless in_public_s3_bucket?
     client = options[:s3_client] || LocalPhoto.new.s3_client
@@ -479,6 +492,43 @@ class LocalPhoto < Photo
     puts "deleting photo #{id} [#{images.size} files] from S3"
     # delete the duplicates in the static bucket
     client.delete_objects( bucket: static_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+  end
+
+  def presigned_url( size = "original" )
+    return unless CONFIG.usingS3
+    return if processing?
+    s3_credentials = LocalPhoto.new.file.s3_credentials
+    signer = Aws::Sigv4::Signer.new(
+      service: "s3",
+      access_key_id: s3_credentials[:access_key_id],
+      secret_access_key: s3_credentials[:secret_access_key],
+      region: CONFIG.s3_region
+    )
+    signer.presign_url(
+      http_method: "GET",
+      # creating the URL here instead of using an existing method like sized_url
+      # as that method will use custom URLs for hidden photos
+      url: "https://s3.amazonaws.com/#{CONFIG.s3_bucket}/photos/#{id}/#{size}.#{file_extension.extension}",
+      expires_in: 60,
+      body_digest: "UNSIGNED-PAYLOAD"
+    )
+  end
+
+  def set_acl
+    return unless CONFIG.usingS3
+    return if in_public_s3_bucket?
+    images = LocalPhoto.aws_images_from_bucket( s3_client, s3_bucket, self )
+    return if images.blank?
+    acl = hidden? ? "private" : "public-read"
+    images.each do |image|
+      s3_client.put_object_acl( bucket: s3_bucket, key: image.key, acl: acl )
+    end
+    if acl === "private"
+      LocalPhoto.delay(
+        priority: INTEGRITY_PRIORITY,
+        unique_hash: { "LocalPhoto::invalidate_cloudfront_cache_for": id }
+      ).invalidate_cloudfront_cache_for( id, :file, "photos/:id/*" )
+    end
   end
 
   def self.prune_odp_duplicates_batch( min_id, max_id )
@@ -530,13 +580,14 @@ class LocalPhoto < Photo
       photo.update_column( :file_prefix_id, FilePrefix.id_for_prefix( photo.parse_url_prefix ) )
       photo.reload
 
-      # if the photo is being removed as a result of a flag being applied,
-      # then remove it from the source bucket
-      if photo.flags.detect{ |f| !f.resolved? }
-        LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
-      end
+      # remove the photo from the source bucket
+      LocalPhoto.delete_images_from_bucket( s3_client, source_bucket, images )
+      
       # mark the observation as being updated, re-index only the updated_at column
       photo.mark_observations_as_updated
+
+      # reindex associated taxa
+      photo.reindex_taxa
     else
       # move failed, so remove any files that did get copied to the target before the failure
       LocalPhoto.delete_images_from_bucket( s3_client, target_bucket, images )
@@ -581,8 +632,15 @@ class LocalPhoto < Photo
     source_images.each do |source_image|
       target_image = target_images.find{ |target| target.key == source_image.key }
       return false unless target_image
-      return false unless target_image.etag == source_image.etag
       return false unless target_image.size == source_image.size
+      # Large files uploaded in multipart have ETags containing a hyphen '-'
+      # When moving such object between buckets, copy_object will not use multipart requests
+      # and the generated ETag will be different, even though the files are the same
+      return false unless ( 
+        ( target_image.etag == source_image.etag ) || 
+        target_image.etag.include?( "-" ) ||
+        source_image.etag.include?( "-" )
+      )
     end
     true
   end
@@ -600,6 +658,18 @@ class LocalPhoto < Photo
       return false
     end
     true
+  end
+
+  def self.migrate_to_odp_bucket( start_index, end_index )
+    static_bucket_id = FilePrefix.where( prefix: "https://#{LocalPhoto.s3_host_alias}/photos" ).first.id
+    LocalPhoto.joins( "LEFT JOIN flags ON (photos.id = flags.flaggable_id)" ).
+    where( "flags.id IS NULL" ).
+    where( "photos.file_prefix_id=?", static_bucket_id ).
+    where( "photos.license not in (?)", Shared::LicenseModule::LICENSE_NUMBERS - Shared::LicenseModule::ODP_LICENSES ).
+    where( "photos.id between ? and ?", start_index, end_index ).
+    each do |photo|
+      LocalPhoto.change_photo_bucket_if_needed( photo )
+    end
   end
 
 end

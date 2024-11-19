@@ -8,6 +8,8 @@ class GuideTaxaController < ApplicationController
   end
   layout "bootstrap"
 
+  prepend_around_action :enable_replica, only: [:index, :show]
+
   # GET /guide_taxa
   # GET /guide_taxa.json
   def index
@@ -127,10 +129,6 @@ class GuideTaxaController < ApplicationController
       redirect_to edit_guide_taxon_path(@guide_taxon)
   rescue Errno::ETIMEDOUT
     flash[:error] = "Request timed out!"
-    redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
-  rescue Koala::Facebook::APIError => e
-    raise e unless e.message =~ /OAuthException/
-    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{@site.preferred_site_name_short}."
     redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
   end
 

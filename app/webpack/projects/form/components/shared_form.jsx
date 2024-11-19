@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -107,9 +108,30 @@ class SharedForm extends React.Component {
               <Dropzone
                 ref={this.iconDropzone}
                 className="dropzone"
-                onDrop={droppedFiles => onFileDrop( droppedFiles, "droppedIcon" )}
+                onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+                  // trying to protect against treating images dragged from the
+                  // same page from being treated as new files. Images dragged from
+                  // the same page will appear as multiple dataTransferItems, the
+                  // first being a "string" kind and not a "file" kind
+                  if ( dropEvent.nativeEvent.dataTransfer
+                    && dropEvent.nativeEvent.dataTransfer.items
+                    && dropEvent.nativeEvent.dataTransfer.items.length > 0
+                    && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+                    return;
+                  }
+                  _.each( acceptedFiles, file => {
+                    try {
+                      file.preview = file.preview || window.URL.createObjectURL( file );
+                    } catch ( err ) {
+                      // eslint-disable-next-line no-console
+                      console.error( "Failed to generate preview for file", file, err );
+                    }
+                  } );
+                  onFileDrop( onFileDrop( acceptedFiles, "droppedIcon" ) );
+                }}
                 activeClassName="hover"
                 disableClick
+                disablePreview
                 accept="image/png,image/jpeg,image/gif"
                 multiple={false}
               >
@@ -156,9 +178,30 @@ class SharedForm extends React.Component {
               <Dropzone
                 ref={this.bannerDropzone}
                 className="dropzone"
-                onDrop={droppedFiles => onFileDrop( droppedFiles, "droppedBanner" )}
+                onDrop={( acceptedFiles, rejectedFiles, dropEvent ) => {
+                  // trying to protect against treating images dragged from the
+                  // same page from being treated as new files. Images dragged from
+                  // the same page will appear as multiple dataTransferItems, the
+                  // first being a "string" kind and not a "file" kind
+                  if ( dropEvent.nativeEvent.dataTransfer
+                    && dropEvent.nativeEvent.dataTransfer.items
+                    && dropEvent.nativeEvent.dataTransfer.items.length > 0
+                    && dropEvent.nativeEvent.dataTransfer.items[0].kind === "string" ) {
+                    return;
+                  }
+                  _.each( acceptedFiles, file => {
+                    try {
+                      file.preview = file.preview || window.URL.createObjectURL( file );
+                    } catch ( err ) {
+                      // eslint-disable-next-line no-console
+                      console.error( "Failed to generate preview for file", file, err );
+                    }
+                  } );
+                  onFileDrop( onFileDrop( acceptedFiles, "droppedBanner" ) );
+                }}
                 activeClassName="hover"
                 disableClick
+                disablePreview
                 accept="image/*"
                 multiple={false}
               >

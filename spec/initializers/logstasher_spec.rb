@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe "Logstasher" do
-
-  before(:all) do
+  before( :all ) do
     @test_host = "localhost"
   end
 
   it "creates a logger" do
-    expect( Rails.env ).to receive(:test?).and_return(false)
+    expect( Rails.env ).to receive( :test? ).and_return( false )
     expect( Logstasher.logger ).to be_a Logger
   end
 
@@ -25,35 +26,37 @@ describe "Logstasher" do
       "Mozilla/5.0 (compatible; MegaIndex.ru/2.0; +http://megaindex.com/crawler)",
       "NewRelicPinger/1.0 (733677)",
       "Python-urllib/2.7",
-      "Ruby"
+      "Ruby",
+      "http.rb/5.1.1 (Mastodon/4.2.1; +https://scicomm.xyz/)"
     ]
     not_bots = [
       "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36",
       "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko",
       "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:37.0) Gecko/20100101 Firefox/37.0",
-      "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0",
+      "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:37.0) Gecko/20100101 Firefox/37.0"
     ]
-    bots.each do |bot|
-      expect( Logstasher.is_user_agent_a_bot?(bot) ).to be true
+    bots.each do | bot |
+      expect( Logstasher.user_agent_a_bot?( bot ) ).to be( true ), "#{bot} should be a bot"
     end
-    not_bots.each do |not_bot|
-      expect( Logstasher.is_user_agent_a_bot?(not_bot) ).to be false
+    not_bots.each do | not_bot |
+      expect( Logstasher.user_agent_a_bot?( not_bot ) ).to be false
     end
   end
 
   it "returns the original IP in a list of IPs" do
-    expect( Logstasher.original_ip_in_list(nil) ).to be nil
-    expect( Logstasher.original_ip_in_list(100) ).to be nil
-    expect( Logstasher.original_ip_in_list([ "127.0.0.1" ]) ).to be nil
-    expect( Logstasher.original_ip_in_list("127.0.0.1") ).to eq "127.0.0.1"
-    expect( Logstasher.original_ip_in_list("127.0.0.1, 192.168.1.1") ).to eq "192.168.1.1"
+    expect( Logstasher.original_ip_in_list( nil ) ).to be nil
+    expect( Logstasher.original_ip_in_list( 100 ) ).to be nil
+    expect( Logstasher.original_ip_in_list( ["127.0.0.1"] ) ).to be nil
+    expect( Logstasher.original_ip_in_list( "127.0.0.1" ) ).to eq "127.0.0.1"
+    expect( Logstasher.original_ip_in_list( "127.0.0.1, 192.168.1.1" ) ).to eq "192.168.1.1"
   end
 
   it "cleans up multiple IPs and adds originals to new field" do
-    expect( Logstasher.split_multiple_ips({
-      "REMOTE_ADDR" => "127.0.0.1, 192.168.1.1"}) ).to eq ({
-        "REMOTE_ADDR" => "192.168.1.1",
-        "REMOTE_ADDR_ALL" => [ "127.0.0.1", "192.168.1.1" ] })
+    expect( Logstasher.split_multiple_ips( {
+      "REMOTE_ADDR" => "127.0.0.1, 192.168.1.1"
+    } ) ).to eq( {
+      "REMOTE_ADDR" => "192.168.1.1",
+      "REMOTE_ADDR_ALL" => ["127.0.0.1", "192.168.1.1"]
+    } )
   end
-
 end

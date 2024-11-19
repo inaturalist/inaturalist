@@ -2,9 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
+import * as d3 from "d3";
 import { COLORS } from "../../../shared/util";
 import PieChart from "./pie_chart";
 import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
+
+/* global DEFAULT_SITE_ID */
 
 const Summary = ( {
   data,
@@ -14,7 +17,7 @@ const Summary = ( {
   site
 } ) => {
   const pieMargin = {
-    top: 0, bottom: 120, left: 0, right: 0
+    top: 0, bottom: 130, left: 0, right: 0
   };
   const donutWidth = 20;
   let baseObsUrl = `/observations?d1=${year}-01-01&d2=${year}-12-31`;
@@ -30,9 +33,11 @@ const Summary = ( {
   } else {
     baseObsUrl += "&place_id=any";
   }
+  const hasDataForPeopleChart = data.users && data.users.obs_and_id_activity_counts;
+  const colWidth = hasDataForPeopleChart ? 3 : 4;
   return (
     <Row className="Summary">
-      <Col sm={12} md={4}>
+      <Col sm={12} md={colWidth}>
         { data.observations.quality_grade_counts ? (
           <div className="summary-panel">
             <div
@@ -71,18 +76,18 @@ const Summary = ( {
               legendColumnWidth={50}
               margin={pieMargin}
               donutWidth={donutWidth}
-              onClick={d => {
+              onClick={( _clickEvent, d ) => {
                 let url = `${baseObsUrl}&quality_grade=${d.data.qualityGrade}`;
                 if ( d.data.qualityGrade === "casual" ) {
                   url += "&verifiable=any";
                 }
-                window.open( url, "_blank" );
+                window.open( url, "_blank", "noopener,noreferrer" );
               }}
             />
           </div>
         ) : null }
       </Col>
-      <Col sm={12} md={4}>
+      <Col sm={12} md={colWidth}>
         { data.taxa && data.taxa.iconic_taxa_counts ? (
           <div className="summary-panel">
             <div
@@ -117,7 +122,7 @@ const Summary = ( {
           </div>
         ) : null }
       </Col>
-      <Col sm={12} md={4}>
+      <Col sm={12} md={colWidth}>
         { data.identifications && data.identifications.category_counts ? (
           <div className="summary-panel">
             <div
@@ -162,13 +167,67 @@ const Summary = ( {
               legendColumnWidth={100}
               margin={pieMargin}
               donutWidth={donutWidth}
-              onClick={currentUser && currentUser.id ? d => {
+              onClick={currentUser && currentUser.id ? ( _clickEvent, d ) => {
                 let url = `/identifications?for=others&current=true&category=${d.data.category}&d1=${year}-01-01&d2=${year}-12-31`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
-                window.open( url, "_blank" );
+                window.open( url, "_blank", "noopener,noreferrer" );
               } : null}
+            />
+          </div>
+        ) : null }
+      </Col>
+      <Col sm={12} md={colWidth}>
+        { hasDataForPeopleChart ? (
+          <div className="summary-panel">
+            <div
+              className="main"
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "x_people_html", {
+                  count: I18n.toNumber(
+                    data.users.obs_and_id_activity_counts.observed_or_identified_count,
+                    { precision: 0 }
+                  )
+                } )
+              }}
+            />
+            <PieChart
+              data={[
+                {
+                  label: _.truncate(
+                    I18n.t( "views.stats.year.added_only_observations" ),
+                    { length: 31 }
+                  ),
+                  fullLabel: I18n.t( "views.stats.year.added_only_observations" ),
+                  value: data.users.obs_and_id_activity_counts.only_observed_count,
+                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ),
+                  chartDisplayOrder: 0
+                },
+                {
+                  label: _.truncate(
+                    I18n.t( "views.stats.year.added_only_identifications" ),
+                    { length: 31 }
+                  ),
+                  fullLabel: I18n.t( "views.stats.year.added_only_identifications" ),
+                  value: data.users.obs_and_id_activity_counts.only_identified_count,
+                  color: d3.color( COLORS.iconic.Insecta ).brighter( ),
+                  chartDisplayOrder: 2
+                },
+                {
+                  label: _.truncate(
+                    I18n.t( "views.stats.year.added_both" ),
+                    { length: 31 }
+                  ),
+                  fullLabel: I18n.t( "views.stats.year.added_both" ),
+                  value: data.users.obs_and_id_activity_counts.observed_and_identified_count,
+                  color: COLORS.inatGreenLight,
+                  chartDisplayOrder: 1
+                }
+              ]}
+              legendColumnWidth={190}
+              margin={pieMargin}
+              donutWidth={donutWidth}
             />
           </div>
         ) : null }

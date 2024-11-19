@@ -43,7 +43,7 @@ opts = Optimist.options do
   opt :core,
     "Core type. Options: occurrence, taxon",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User, VernacularNames (taxon core only)",
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ResourceRelationships, ProjectObservations, User, VernacularNames (taxon core only)",
     type: :strings, short: "-x"
   opt :metadata, "
     Path to metadata template. Default: {core}/dwc.eml.erb. \"skip\" will skip EML file generation.
@@ -68,9 +68,9 @@ opts = Optimist.options do
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :taxon_private_coordinates, "Include private coordinates if obscured by taxon geoprivacy but not user geoprivacy", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
+  opt :places_for_site, "Export observations associated with this site's place and export places (lower priority than place_id)", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
-  opt :with_taxa, "Include a taxa.csv file if the core is observations", type: :boolean
   opt :post_taxon_archive_to_url, "Post the second archive with taxa.csv to this URL", type: :string
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
   opt :community_taxon, "Use the community taxon for the taxon associated with the occurrence, not the default taxon",
@@ -91,7 +91,9 @@ opts = Optimist.options do
   opt :with_annotations, "Only include observations with annotations that have occurrence fields", type: :boolean, default: false
   opt :with_controlled_terms, "Only include observations with annotations of this term name", type: :strings
   opt :with_controlled_values, "Only include observations with annotations with this value (must be combined with `with_controlled_terms`)", type: :strings
+  opt :include_humans, "Include observations of humans", type: :boolean, default: false
   opt :processes, "Number of processes to use with the parallel gem", type: :integer
+  opt :log_task_name, "Log with the specified task name", type: :string
 end
 
 if opts.debug
@@ -99,4 +101,15 @@ if opts.debug
 else
   opts[:logger] = Logger.new(STDOUT, level: Logger::INFO)
 end
-DarwinCore::Archive.generate(opts)
+
+if opts.log_task_name
+  task_logger = TaskLogger.new( opts.log_task_name, nil, "export" )
+end
+
+begin
+  task_logger&.start
+  DarwinCore::Archive.generate( opts )
+  task_logger&.end
+rescue => e
+  task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
+end

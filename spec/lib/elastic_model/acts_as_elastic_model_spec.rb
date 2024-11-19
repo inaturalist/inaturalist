@@ -137,7 +137,7 @@ describe ActsAsElasticModel do
 
       it "exceptions are caught silently" do
         expect(Observation.__elasticsearch__.client).to receive(:bulk).
-          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+          and_raise(Elastic::Transport::Transport::Errors::BadRequest)
         obs = Observation.make!
         obs.elastic_delete!
         Observation.elastic_index!
@@ -162,6 +162,16 @@ describe ActsAsElasticModel do
         Delayed::Worker.new.work_off
         obs.reload
         expect( obs.last_indexed_at ).to be > 1.minute.ago
+      end
+
+      it "can be delayed to run in the future" do
+        Observation.make!
+        run_job_at = 5.minutes.from_now
+        Observation.elastic_index!( delay: true, run_at: run_job_at )
+        delayed_job = Delayed::Job.last
+        # there is a precision problem with CI where the times are not equal,
+        # so instead ensure they match to some sub-second level of precision
+        expect( ( delayed_job.run_at - run_job_at ).abs ).to be <= 0.0001
       end
 
       it "doesn't re-index obs indexed more than 5 minutes after delayed index request" do
@@ -200,11 +210,43 @@ describe ActsAsElasticModel do
     describe "result_to_will_paginate_collection" do
       it "returns an empty WillPaginate Collection on errors" do
         expect(WillPaginate::Collection).to receive(:create).
-          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+          and_raise(Elastic::Transport::Transport::Errors::BadRequest)
         expect(Taxon.result_to_will_paginate_collection(
           OpenStruct.new(current_page: 2, per_page: 11, total_entries: 57,
             results: OpenStruct.new(results: [])))).
           to eq WillPaginate::Collection.new(1, 30, 0)
+      end
+    end
+
+    describe "elastic_get" do
+      it "returns elasticsearch documents" do
+        u = User.make!
+        es_doc = User.elastic_get( u.id )
+        expect( es_doc ).to be_a Elasticsearch::API::Response
+        expect( es_doc["_source"]["id"] ).to eq u.id
+        expect( es_doc["_source"]["login"] ).to eq u.login
+      end
+
+      it "returns nil for unknown IDs" do
+        expect( User.elastic_get( 31_415 ) ).to be_nil
+      end
+    end
+
+    describe "elastic_mget" do
+      it "returns elasticsearch sources" do
+        u1 = User.make!
+        u2 = User.make!
+        docs = User.elastic_mget( [u1.id, u2.id] )
+        expect( docs ).to be_a Array
+        expect( docs.find {| d | d["id"] == u1.id }["login"] ).to eq u1.login
+        expect( docs.find {| d | d["id"] == u2.id }["login"] ).to eq u2.login
+      end
+
+      it "returns an empty array if none are found" do
+        expect( User.elastic_mget( [] ) ).to eq []
+        expect( User.elastic_mget( [31_415] ) ).to eq []
+        expect( User.elastic_mget( [31_415, 31_416] ) ).to eq []
+        expect( User.elastic_mget( [31_415, 31_416, "missing"] ) ).to eq []
       end
     end
   end
@@ -222,7 +264,7 @@ describe ActsAsElasticModel do
       it "exceptions are caught silently" do
         taxon = Taxon.make!
         expect(taxon.__elasticsearch__).to receive(:index_document).
-          and_raise(Elasticsearch::Transport::Transport::Errors::BadRequest)
+          and_raise(Elastic::Transport::Transport::Errors::BadRequest)
         Taxon.all.each{ |t| t.elastic_delete! }
         expect( Taxon.elastic_search( ).count ).to eq 0
         taxon.elastic_index!

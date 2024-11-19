@@ -52,7 +52,7 @@ class ProjectForm extends React.Component {
                 <button
                   type="button"
                   className="btn-white"
-                  onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" )}
+                  onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank", "noopener,noreferrer" )}
                 >
                   <i className="fa fa-external-link" />
                   { I18n.t( "preview_observations_with_these_observation_requirements" ) }
@@ -128,7 +128,7 @@ class ProjectForm extends React.Component {
               </label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
-                { project.id && I18n.t( "views.projects.edit.admins_must_be_existing_members" ) }
+                { I18n.t( "views.projects.edit.admins_must_be_existing_members" ) }
               </div>
               <UserAutocomplete
                 ref={this.ua}
@@ -137,10 +137,17 @@ class ProjectForm extends React.Component {
                   addManager( e.item );
                   this.ua.current.inputElement( ).val( "" );
                 }}
+                config={config}
                 bootstrapClear
+                disabled={!project.id}
                 placeholder={I18n.t( "user_autocomplete_placeholder" )}
                 projectID={project.id}
               />
+              { !project.id && (
+                <div className="alert alert-warning">
+                  { I18n.t( "views.projects.edit.admins_can_only_be_added_after_creation" ) }
+                </div>
+              ) }
               { !_.isEmpty( project.undestroyedAdmins ) && (
                 <div className="icon-previews">
                   <table className="table">

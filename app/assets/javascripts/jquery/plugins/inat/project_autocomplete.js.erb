@@ -29,7 +29,7 @@ $.fn.projectAutocomplete = function ( opts ) {
         params.has_params = true;
       }
       $.ajax( {
-        url: "<%= CONFIG.node_api_url %>/projects/autocomplete",
+        url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/projects/autocomplete",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "projectAutocompleteCallback",

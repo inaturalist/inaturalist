@@ -26,7 +26,7 @@ $.fn.observationFieldAutocomplete = function( options ) {
         }
       } else {
         $.ajax({
-        url: "<%= CONFIG.node_api_url %>/observation_fields/autocomplete",
+        url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/observation_fields/autocomplete",
           dataType: "jsonp",
           cache: true,
           jsonpCallback: "observationFieldAutocompleteCallback",

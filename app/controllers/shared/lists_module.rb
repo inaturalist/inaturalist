@@ -50,9 +50,7 @@ module Shared::ListsModule
           return redirect_to @list
         end
         @allow_batch_adding = allow_batch_adding(@list, current_user)
-
         ListedTaxon.preload_associations(@listed_taxa, @find_options[:include])
-        @taxon_names_by_taxon_id = set_taxon_names_by_taxon_id(@listed_taxa, @iconic_taxa, @taxa)
         @iconic_taxon_counts ||= get_iconic_taxon_counts(@list, @iconic_taxa, main_list)
         @total_listed_taxa ||= @listed_taxa.count
         @total_observed_taxa ||= @listed_taxa.confirmed.count
@@ -67,6 +65,13 @@ module Shared::ListsModule
             where(:primary_listing => true, :place_id => @list.place_id).
             where("taxon_id IN (?)", non_primary_listed_taxa.map(&:taxon_id))
           @primary_listed_taxa_by_taxon_id = primary_listed_taxa.index_by(&:taxon_id)
+          ListedTaxon.preload_associations( @listed_taxa, {
+            last_observation: [ :user, {
+              taxon: {
+                taxon_names: :place_taxon_names
+              }
+            }]
+          })
         end
 
         case @view
@@ -444,9 +449,9 @@ private
     end
     per_page = 200 if per_page > 200
     find_options = {
-      :page => page,
-      :per_page => per_page,
-      :include => [
+      page: page,
+      per_page: per_page,
+      include: [
         :list, :user, :first_observation, :last_observation,
         { taxon: [
           :iconic_taxon,

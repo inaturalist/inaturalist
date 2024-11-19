@@ -27,6 +27,15 @@ const OBSERVATION_FIELDS = {
     url: true
   },
   reviewed_by: true,
+  identifications: {
+    current: true,
+    user: {
+      id: true
+    },
+    taxon: {
+      id: true
+    }
+  },
   taxon: {
     id: true,
     uuid: true,
@@ -118,7 +127,7 @@ function fetchObservations( ) {
       apiParams.fields = OBSERVATION_FIELDS;
     }
     _.each( apiParams, ( v, k ) => {
-      if ( _.isNull( v ) || v === "" || v === "any" ) {
+      if ( ( _.isNull( v ) || v === "" || v === "any" ) && !_.startsWith( k, "field:" ) ) {
         delete apiParams[k];
       } else if ( /license$/.test( k ) ) {
         apiParams[k] = _.toLower( v );
@@ -141,6 +150,10 @@ function fetchObservations( ) {
               // with Object.assign you lose all the Observation model stuff
               o.reviewedByCurrentUser = true;
             }
+            o.identifications_count = _.size( _.filter( o.identifications, "current" ) );
+            o.identifications_count = _.size(
+              _.filter( o.identifications, i => ( i.current && !i.hidden ) )
+            );
             return o;
           } );
         }

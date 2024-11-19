@@ -23,7 +23,7 @@ $changed-color: #74ac00;
   }
 
   .FiltersButtonContainer {
-    width: 901px !important;
+    width: 920px !important;
 
     > button.btn-default {
       background-color: $bg-color;
@@ -44,7 +44,7 @@ $changed-color: #74ac00;
     .filter-changed label,
     .filter-changed input {
       color: $changed-color;
-      font-weight: bold;
+      font-weight: 600;
     }
     .filter-changed select,
     .filter-changed .form-control,
@@ -78,8 +78,9 @@ $changed-color: #74ac00;
     /* ICONIC TAXA */
     .iconic-taxon {
       margin: 0 5px 5px 0;
-      padding: 0px 6px;
+      padding: 6px;
       font-size: 26.5px;
+      line-height: 0.5;
     }
     .btn.iconic-taxon:focus {
       outline: none;
@@ -190,7 +191,7 @@ $changed-color: #74ac00;
 
     label.sectionlabel {
       display: block;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 16px;
       .text-muted {
         font-weight: normal;

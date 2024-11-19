@@ -1,5 +1,6 @@
-class Observation < ApplicationRecord
+# frozen_string_literal: true
 
+class Observation < ApplicationRecord
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 100
@@ -9,12 +10,12 @@ class Observation < ApplicationRecord
 
   scope :load_for_index, -> { includes(
     { user: [ :flags, :stored_preferences ] }, :confirmed_reviews, :flags,
-    :observation_links, :quality_metrics,
+    :observation_links, :quality_metrics, :observation_geo_score,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
     { photos: :flags },
     { sounds: :user },
-    { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
+    { identifications: [ :stored_preferences, :taxon, :moderator_actions ] }, :project_observations,
     { taxon: [ :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags, :moderator_actions ] } ) }
@@ -31,7 +32,7 @@ class Observation < ApplicationRecord
         indexes :resource_type, type: "keyword"
         indexes :uuid, type: "keyword"
         indexes :user_id, type: "keyword"
-        indexes :vote_score, type: "byte"
+        indexes :vote_score_short, type: "short"
         indexes :votes do
           indexes :created_at, type: "date", index: false
           indexes :id, type: "integer", index: false
@@ -306,6 +307,7 @@ class Observation < ApplicationRecord
         indexes :vote_flag, type: "boolean"
         indexes :vote_scope, type: "keyword"
       end
+      indexes :geo_score, type: "scaled_float", scaling_factor: 1_000_000
     end
   end
 
@@ -334,7 +336,7 @@ class Observation < ApplicationRecord
         for_identification: options[:for_identification]) : nil
     }
 
-    current_ids = identifications.select(&:current?)
+    current_ids = identifications.select( &:current? ).reject( &:hidden? )
     if options[:no_details]
       json.merge!({
         user_id: user.id
@@ -386,7 +388,7 @@ class Observation < ApplicationRecord
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
-        annotations: annotations.map(&:as_indexed_json),
+        annotations: annotations.reject( &:term_taxon_mismatch? ).map( &:as_indexed_json ),
         photos_count: photos.any? ? photos.select{|p|
           p.flags.detect{|f| f.flag == Flag::COPYRIGHT_INFRINGEMENT && !f.resolved?}.blank?
         }.length : nil,
@@ -418,7 +420,8 @@ class Observation < ApplicationRecord
         preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
         flags: flags.map(&:as_indexed_json),
         quality_metrics: quality_metrics.map(&:as_indexed_json),
-        spam: known_spam? || owned_by_spammer?
+        spam: known_spam? || owned_by_spammer?,
+        geo_score: observation_geo_score&.geo_score
       })
 
       add_taxon_statuses(json, t) if t && json[:taxon]
@@ -619,6 +622,7 @@ class Observation < ApplicationRecord
     # params to search based on value
     [ { http_param: :rank, es_field: "taxon.rank" },
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
+      { http_param: :observed_on_week, es_field: "observed_on_details.week" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
       { http_param: :day, es_field: "observed_on_details.day" },
@@ -639,12 +643,13 @@ class Observation < ApplicationRecord
     # own observations
     params_user_ids = [p[:user_id]].flatten.map(&:to_i)
     unless p[:place_id].blank? || p[:place_id] == "any"
+      place_id = p[:place_id].is_a?( String ) ? p[:place_id].split( "," ) : p[:place_id]
       if p[:viewer] && params_user_ids.size == 1 && p[:viewer].id == params_user_ids[0]
-        search_filters << { terms: { "private_place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "private_place_ids.keyword" => [place_id].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       else
-        search_filters << { terms: { "place_ids.keyword" => [ p[:place_id] ].flatten.map{ |v|
+        search_filters << { terms: { "place_ids.keyword" => [place_id].flatten.map{ |v|
           ElasticModel.id_or_object(v)
         } } }
       end
@@ -944,9 +949,8 @@ class Observation < ApplicationRecord
           path: "annotations",
           query: { bool: { must: [
             { terms: { "annotations.controlled_attribute_id.keyword": p[:term_id].to_s.split( "," ) } },
-            { range: { "annotations.vote_score": { gte: 0 } } }
-          ] }
-          }
+            { range: { "annotations.vote_score_short": { gte: 0 } } }
+          ] } }
         }
       }
       if p[:term_value_id]
@@ -954,6 +958,18 @@ class Observation < ApplicationRecord
           { terms: { "annotations.controlled_value_id.keyword": p[:term_value_id].to_s.split( "," ) } }
       end
       search_filters << nested_query
+    end
+
+    if p[:without_term_id]
+      nested_query = {
+        nested: {
+          path: "annotations",
+          query: { bool: { filter: [
+            { terms: { "annotations.controlled_attribute_id.keyword": p[:without_term_id].to_s.split( "," ) } }
+          ] } }
+        }
+      }
+      inverse_filters << nested_query
     end
 
     if p[:ofv_params]
@@ -1077,7 +1093,10 @@ class Observation < ApplicationRecord
       unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
         case p[geoprivacy_type]
         when Observation::OPEN
-          inverse_filters << { exists: { field: geoprivacy_type } }
+          search_filters << { bool: { should: [
+            { term: { geoprivacy_type => "open" } },
+            { bool: { must_not: { exists: { field: geoprivacy_type } } } }
+          ]}}
         when "obscured_private"
           search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
         else
@@ -1103,6 +1122,14 @@ class Observation < ApplicationRecord
     end
     if p[:id_below]
       search_filters << { range: { id: { lt: p[:id_below] } } }
+    end
+    if p[:not_id]
+      not_ids = [p[:not_id]].flatten.
+        map {| id | id.to_s.split( "," ).map( &:to_i ) }.
+        flatten.compact
+      if not_ids.size.positive?
+        inverse_filters << { terms: { id: not_ids } }
+      end
     end
 
     { filters: search_filters,

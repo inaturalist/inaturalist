@@ -4,11 +4,12 @@ import ResearchGradeProgress from "../components/research_grade_progress";
 
 function mapStateToProps( state ) {
   return {
+    config: state.config,
     observation: state.observation,
-    qualityMetrics: Object.assign( { },
-      _.groupBy( state.qualityMetrics, "metric" ),
-      _.groupBy( state.observation.votes, "vote_scope" )
-    )
+    qualityMetrics: {
+      ..._.groupBy( state.qualityMetrics, "metric" ),
+      ..._.groupBy( state.observation.votes, "vote_scope" )
+    }
   };
 }
 

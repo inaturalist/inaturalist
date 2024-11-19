@@ -7,6 +7,8 @@
     .messages > tbody > tr:first-child > td { border-top: 0 transparent; }
     td.body {overflow:hidden; max-width: 600px; }
     textarea {min-height:300px;}
+= content_for :extrajs do
+  = javascript_include_tag "messages/show"
 
 .container
   .row

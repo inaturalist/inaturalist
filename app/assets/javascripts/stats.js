@@ -43,7 +43,6 @@ Stats.loadChartsFromJSON = function ( json ) {
 
   Stats.loadObservations7Days( json );
   Stats.loadPlatforms( json );
-  Stats.loadTTID( json );
   Stats.loadActiveUsers( json );
   Stats.loadRecentUsers( json );
   Stats.loadDailyUsers( json );
@@ -74,10 +73,12 @@ Stats.loadPercentIdSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function ( stat ) {
-      if ( stat.data.identifier ) {
-        return [Stats.dateForStat( stat ), stat.data.identifier.percent_id];
-      }
-      return [Stats.dateForStat( stat ), 0];
+      return [
+        Stats.dateForStat( stat ),
+        ( stat.data.observations.community_identified
+          / stat.data.observations.last_7_days
+        )
+      ];
     } )
   } );
 };
@@ -89,10 +90,12 @@ Stats.loadPercentCIDToGenusSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function ( stat ) {
-      if ( stat.data.identifier ) {
-        return [Stats.dateForStat( stat ), stat.data.identifier.percent_cid_to_genus];
-      }
-      return [Stats.dateForStat( stat ), 0];
+      return [
+        Stats.dateForStat( stat ),
+        ( stat.data.observations.community_identified_to_genus
+          / stat.data.observations.last_7_days
+        )
+      ];
     } )
   } );
 };
@@ -165,6 +168,8 @@ Stats.loadCumulativePlatforms = function ( json ) {
         { label: I18n.t( "website" ) },
         { label: I18n.t( "iphone" ) },
         { label: I18n.t( "android" ) },
+        { label: I18n.t( "seek" ) },
+        { label: I18n.t( "inat_next" ) },
         { label: I18n.t( "other" ) }
       ],
       data: _.map( json, function ( stat ) {
@@ -174,6 +179,8 @@ Stats.loadCumulativePlatforms = function ( json ) {
           stat.data.platforms_cumulative.web,
           stat.data.platforms_cumulative.iphone,
           stat.data.platforms_cumulative.android,
+          stat.data.platforms_cumulative.seek,
+          stat.data.platforms_cumulative.inat_next,
           stat.data.platforms_cumulative.other
         ];
       } )
@@ -216,6 +223,8 @@ Stats.loadPlatforms = function ( json ) {
         { label: I18n.t( "website" ) },
         { label: I18n.t( "iphone" ) },
         { label: I18n.t( "android" ) },
+        { label: I18n.t( "seek" ) },
+        { label: I18n.t( "inat_next" ) },
         { label: I18n.t( "other" ) }
       ],
       data: _.map( json, function ( stat ) {
@@ -225,49 +234,11 @@ Stats.loadPlatforms = function ( json ) {
           stat.data.platforms.web,
           stat.data.platforms.iphone,
           stat.data.platforms.android,
+          stat.data.platforms.seek,
+          stat.data.platforms.inat_next,
           stat.data.platforms.other
         ];
       } )
-    } );
-  } );
-};
-
-Stats.loadTTID = function ( json ) {
-  var dodgerblue = d3.rgb( "dodgerblue" );
-  var ldodgerblue = d3.rgb( dodgerblue.r + 75, dodgerblue.g + 75, dodgerblue.b + 75 );
-  var pink = d3.rgb( "deeppink" );
-  var lpink = d3.rgb( pink.r + 100, pink.g + 100, pink.b + 100 );
-  google.charts.setOnLoadCallback( function ( ) {
-    Stats.simpleChart( {
-      element_id: "ttid",
-      chartType: "AnnotationChart",
-      series: [
-        { label: I18n.t( "views.stats.index.med_ttid" ) },
-        { label: I18n.t( "views.stats.index.avg_ttid" ) },
-        { label: I18n.t( "views.stats.index.med_ttcid" ) },
-        { label: I18n.t( "views.stats.index.avg_ttcid" ) }
-      ],
-      data: _.map( json, function ( stat ) {
-        if ( stat.data.identifier ) {
-          return [
-            Stats.dateForStat( stat ),
-            stat.data.identifier.med_ttid / 60,
-            stat.data.identifier.avg_ttid / 60,
-            stat.data.identifier.med_ttcid / 60,
-            stat.data.identifier.avg_ttcid / 60
-          ];
-        }
-        return [Stats.dateForStat( stat ), null, null, null, null];
-      } ),
-      chartOptions: {
-        scaleType: "allfixed",
-        colors: [
-          dodgerblue.toString(),
-          ldodgerblue.toString(),
-          pink.toString(),
-          lpink.toString()
-        ]
-      }
     } );
   } );
 };
@@ -406,7 +377,7 @@ Stats.loadRanksPie = function ( json ) {
     Stats.simpleChart( {
       element_id: "ranks_pie",
       data: _.map( json[0].data.taxa.count_by_rank, function ( value, rank ) {
-        return [I18n.t( "ranks." + rank, { defaultValue: rank } ), parseInt( value, 0 )];
+        return [I18n.t( "ranks." + rank, { defaultValue: rank } ), parseInt( value, 10 )];
       } ),
       chartType: "PieChart"
     } );

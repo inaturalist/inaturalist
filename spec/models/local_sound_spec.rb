@@ -17,3 +17,26 @@ describe LocalSound, "creation" do
     expect( ["audio/mp3", "audio/mpeg"]  ).to include ls.file.content_type
   end
 end
+
+describe LocalSound, "hiding" do
+
+  elastic_models( Observation )
+
+  it "should make associated observations casual grade when hidden" do
+    o = make_research_grade_candidate_observation
+    sound = ObservationSound.make!( observation: o ).sound
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    ModeratorAction.make!( resource: sound, action: ModeratorAction::HIDE )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
+  end
+
+  it "should re-index the observation" do
+    o = make_research_grade_observation
+    sound = ObservationSound.make!( observation: o ).sound
+    original_last_indexed_at = o.last_indexed_at
+    ModeratorAction.make!( resource: sound, action: ModeratorAction::HIDE )
+    o.reload
+    expect( o.last_indexed_at ).to be > original_last_indexed_at
+  end
+end

@@ -133,7 +133,7 @@ class ProjectMap extends Component {
               <div className="stat">
                 {
                   I18n.t( "x_observations_html", {
-                    count: parseInt( this.props.overallStats.observations, 0 ) || 0
+                    count: parseInt( this.props.overallStats.observations, 10 ) || 0
                   } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
@@ -145,7 +145,7 @@ class ProjectMap extends Component {
               <div className="stat">
                 {
                   I18n.t( "x_species_html", {
-                    count: parseInt( this.props.overallStats.species, 0 ) || 0
+                    count: parseInt( this.props.overallStats.species, 10 ) || 0
                   } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
@@ -157,7 +157,7 @@ class ProjectMap extends Component {
               <div className="stat">
                 {
                   I18n.t( "x_identifiers_html", {
-                    count: parseInt( this.props.overallStats.identifiers, 0 ) || 0
+                    count: parseInt( this.props.overallStats.identifiers, 10 ) || 0
                   } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>
@@ -169,7 +169,7 @@ class ProjectMap extends Component {
               <div className="stat">
                 {
                   I18n.t( "x_observers_html", {
-                    count: parseInt( this.props.overallStats.observers, 0 ) || 0
+                    count: parseInt( this.props.overallStats.observers, 10 ) || 0
                   } ).replace( /<.+?\/.+?>/g, "" )
                 }
               </div>

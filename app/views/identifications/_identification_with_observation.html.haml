@@ -1,9 +1,9 @@
 .row
   - identification ||= identification_with_observation || @identification
-  .mini.observations.observationcol.col-xs-6
+  .observationcol.col-xs-6.mini.observations
     = render :partial => "observations/cached_component", :locals => { :observation => identification.observation }
 
-  .identificationcol.last.col-xs-6
+  .identificationcol.col-xs-6
     - extra = capture do
       .small.description
         = t :added_on_datetime, datetime: l( identification.created_at.to_date, format: :month_day_year )

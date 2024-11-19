@@ -30,8 +30,9 @@ class UpdateAction < ApplicationRecord
     notifier_user ||= notifier.try(:user)
     if notifier_user
       excepted_user_ids = UserBlock.
-        where( "user_id = ? OR blocked_user_id = ?", notifier_user.id, notifier_user.id ).
-        pluck(:user_id, :blocked_user_id).flatten.uniq
+        where( "user_id = ?", notifier_user.id ).pluck( :blocked_user_id )
+      excepted_user_ids += UserBlock.
+        where( "blocked_user_id = ?", notifier_user.id ).pluck( :user_id )
       excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
       return user_ids -= excepted_user_ids.uniq
     end
@@ -214,9 +215,20 @@ class UpdateAction < ApplicationRecord
     grouped_updates.sort_by {|key, updates| updates.last.sort_by_date.to_i * -1}
   end
 
-  def self.user_viewed_updates(updates, user_id)
+  def self.user_viewed_updates( updates, user_id, options = {} )
     updates = updates.to_a.compact
     return if updates.blank?
+
+    # fetch these updates from Elasticsearch which
+    # will include the array of viewed_subscriber_ids
+    es_actions = UpdateAction.elastic_mget( updates.map( &:id ) )
+    update_actions_to_index = es_actions.reject do | es_action |
+      !es_action["subscriber_ids"]&.include?( user_id ) ||
+        es_action["viewed_subscriber_ids"]&.include?( user_id )
+    end
+    # return if this user is not subscribed, or has already viewed all updates
+    return if update_actions_to_index.empty?
+
     update_script = {
       script: {
         source: "
@@ -232,11 +244,11 @@ class UpdateAction < ApplicationRecord
     }
     UpdateAction.__elasticsearch__.client.bulk(
       index: UpdateAction.index_name,
-      refresh: Rails.env.test?,
-      body: updates.map do |update|
+      refresh: options[:wait_for_index_refresh] ? "wait_for" : Rails.env.test?,
+      body: update_actions_to_index.map do | update_action |
         [{
           update: {
-            _id: update.id,
+            _id: update_action["id"],
             retry_on_conflict: 10
           }
         }, update_script]
@@ -314,7 +326,12 @@ class UpdateAction < ApplicationRecord
 
   def append_subscribers( user_ids )
     raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
+
     if es_source
+      user_ids_to_append = user_ids_without_blocked_and_muted( user_ids )
+      # return if all users are already subscribed
+      return if ( user_ids_to_append - es_source["subscriber_ids"] ).empty?
+
       UpdateAction.__elasticsearch__.client.bulk(
         index: UpdateAction.index_name,
         refresh: Rails.env.test?,
@@ -337,7 +354,7 @@ class UpdateAction < ApplicationRecord
                 ctx.op = 'none';
               }",
             params: {
-              user_ids: user_ids_without_blocked_and_muted( user_ids )
+              user_ids: user_ids_to_append
             }
           }
         }]

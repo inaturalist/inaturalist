@@ -9,7 +9,7 @@ import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_conta
 const ObservationsMapView = ( { project, config, updateCurrentUser } ) => {
   const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
   return (
-    <div className="ObservationsListView">
+    <div className="ObservationsMapView">
       <Grid>
         <Row>
           <Col xs={12}>

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
@@ -8,6 +9,8 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
   if (
     !taxonChange
     || ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id )
+    || ( taxonChange.type === "TaxonSwap" && taxonChange.committed_on
+      && _.includes( _.map( taxonChange.output_taxa, "id" ), taxon.id ) )
   ) {
     return ( <div /> );
   }

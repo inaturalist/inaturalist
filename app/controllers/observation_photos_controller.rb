@@ -5,7 +5,8 @@ class ObservationPhotosController < ApplicationController
   before_action :require_owner, :only => [:destroy]
   
   def show
-    @observation_photo = ObservationPhoto.find_by_id(params[:id])
+    @observation_photo = ObservationPhoto.find_by_uuid( params[:id] ) ||
+      ObservationPhoto.find_by_id( params[:id] )
     respond_to do |format|
       format.json do
         render :json => @observation_photo.as_json(:include => {
@@ -94,7 +95,8 @@ class ObservationPhotosController < ApplicationController
   end
   
   def update
-    unless @observation_photo = ObservationPhoto.find_by_id( params[:id] )
+    unless @observation_photo = ObservationPhoto.find_by_uuid( params[:id] ) ||
+      ObservationPhoto.find_by_id( params[:id] )
       return create
     end
     return unless require_owner

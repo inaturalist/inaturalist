@@ -1,8 +1,8 @@
-(function(){
+var loadMap3 = function ( ) {
 /**
  * iNaturalist map object
  * Copyright (c) iNaturalist, 2007-2008
- * 
+ *
  * @created: 2008-01-01
  * @updated: 2008-04-12
  * @author: n8agrin
@@ -10,8 +10,7 @@
  */
 
 // requires GoogleMap classes
-if (typeof(google) == 'undefined' || typeof(google.maps) == 'undefined') {
-  console.log( "The Google Maps libraries must be loaded to use the iNaturalist Map extensions." );
+if ( typeof( google ) == "undefined" || typeof(google.maps) == "undefined") {
   return;
 }
 
@@ -28,40 +27,39 @@ var deselectText = function() {
 };
 
 var emptyLayer = new google.maps.ImageMapType({
-  tileSize: new google.maps.Size(256, 256),
+  tileSize: new google.maps.Size( 256, 256 ),
   getTileUrl: function(tile, zoom) { }
 });
-
 
 google.maps.Map.prototype.createMarker = function(lat, lng, options) {
   options = options || {}
   options.position = new google.maps.LatLng(lat, lng)
   return new google.maps.Marker(options);
 };
-  
+
 // remove a single marker
 google.maps.Map.prototype.removeMarker = function(marker) {
   // gracefully clear the listeners out of memory
   google.maps.event.clearInstanceListeners(marker);
-  
+
   // remove the marker from the map
   marker.setMap(null);
   this.removeOverlay(marker);
 };
-  
+
 google.maps.Map.prototype.addNewCenteredMarker = function(options) {
   return this.addNewUnsavedMarker(this.getCenter().lat(),
                                   this.getCenter().lng(),
                                   options);
 };
-  
+
 google.maps.Map.prototype.addNewUnsavedMarker = function(lat, lng, options) {
   this.removeLastUnsavedMarker();
   this.lastUnsavedMarker = this.createMarker(lat, lng, options);
   this.lastUnsavedMarker.setMap(this);
   return this.lastUnsavedMarker;
 };
-  
+
 // Call this to remove the marker object from the lastUnsavedMarker value in the
 // iNaturalist.Map object.  This is usually used when canceling input into
 // a form, or when the lastUnsavedMarker object needs to be cleared out.
@@ -156,7 +154,7 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   // return the observation for futher use
   return observation;
 };
-  
+
 google.maps.Map.prototype.removeObservation = function(observation) {
   this.removeMarker(this.observations[observation.id]);
   if (this.observations[observation.id]) {
@@ -358,7 +356,7 @@ google.maps.Map.prototype.buildObservationInfoWindow = function(observation) {
         observation.user.login
       )
     )
-  }else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
+  } else if(typeof(observation.identifications) != 'undefined' && observation.identifications.length > 0){
     if( typeof(observation.identifications[0].user) != 'undefined' ){
       wrapper.append(
         ', by ',
@@ -413,9 +411,24 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
   }
 ], {name: "Map (no labels)"});
 
+iNaturalist.Map.MapTypeId = iNaturalist.Map.MapTypeId || {};
+// Note that OSM doesn't seem to translate the names "OpenStreetMap" or "OSM"
+// in its own interface, so we're hardcoding it here
+iNaturalist.Map.MapTypeId.OSM = "OSM";
+
 iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   zoom: 1,
   mapTypeId: google.maps.MapTypeId.TERRAIN,
+  mapTypeControlOptions: {
+    mapTypeIds: [
+      google.maps.MapTypeId.ROADMAP,
+      google.maps.MapTypeId.TERRAIN,
+      google.maps.MapTypeId.SATELLITE,
+      google.maps.MapTypeId.HYBRID,
+      iNaturalist.Map.MapTypeId.OSM
+    ],
+    style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+  },
   streetViewControl: false,
   rotateControl: false,
   backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
@@ -423,7 +436,14 @@ iNaturalist.Map.DEFAULT_GOOGLE_MAP_OPTIONS = {
   gestureHandling: "greedy",
   controlSize: 26,
   scaleControl: true,
-  tilt: 0
+  tilt: 0,
+  zoomControlOptions: {
+    position: google.maps.ControlPosition.BLOCK_START_INLINE_START
+  }
+};
+
+iNaturalist.Map.API_PARAMS = function( ) {
+  return <%= INatAPIService::MAPPABLE_PARAMS.to_s %>;
 };
 
 // static functions
@@ -483,7 +503,10 @@ iNaturalist.Map.createMap = function(options) {
   })
   map._inatMapBackgroundColor = options.backgroundColor || iNaturalist.Map.MAP_BACKGROUND_COLOR
   if ( !options.disableFullscreen ) {
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(new iNaturalist.FullScreenControl(map));
+    var fullScreenPosition = $( 'html[dir="rtl"]' ).length > 0
+      ? google.maps.ControlPosition.TOP_LEFT
+      : google.maps.ControlPosition.TOP_RIGHT
+    map.controls[fullScreenPosition].push(new iNaturalist.FullScreenControl(map));
   }
 
   if (options.bounds) {
@@ -496,6 +519,14 @@ iNaturalist.Map.createMap = function(options) {
       )
       map.fitBounds(bounds)
     }
+  }
+
+  map.mapTypes.set( iNaturalist.Map.MapTypeId.OSM, iNaturalist.Map.createOsmMapTypeForMap( map ) );
+  google.maps.event.addListener( map, "maptypeid_changed", function () {
+    iNaturalist.Map.toggleOsmAttributionForMap( this );
+  } );
+  if ( options.mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {;
+    iNaturalist.Map.toggleOsmAttributionForMap( map );
   }
   
   return map;
@@ -784,15 +815,19 @@ iNaturalist.OverlayControl.prototype.removeAll = function( ) {
 // in `layers` at the same time. If the overlay was not previously displayed
 // on the map, it will be added to the top-right corner of the map.
 iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( layers, options ) {
-  if( ! _.isArray( layers ) || layers.length === 0 ) { return; }
+  if( ! Array.isArray( layers ) || layers.length === 0 ) { return; }
   var map = this.map,
       ul = $("ul", this.div),
       title = iNaturalist.OverlayControl.safeTitle( options.title ) || "Layer",
       id = "layer_" + layers[0].layerID,
       description = options.description,
       checkbox = $("<input type='checkbox'/>"),
-      li = $("<li/>"),
-      controlPosition = google.maps.ControlPosition[options.controlPosition] || google.maps.ControlPosition.TOP_RIGHT;
+      li = $("<li/>");
+  var controlPosition = google.maps.ControlPosition[options.controlPosition] || (
+    $( "html[dir='rtl']" ).length > 0
+      ? google.maps.ControlPosition.TOP_LEFT
+      : google.maps.ControlPosition.TOP_RIGHT
+  );
   if (options.taxon) {
     // Stopgap solution to dealing with multiple taxon maps on a single page.
     // Will break if multiple maps have the same taxon
@@ -824,7 +859,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   li.append( legendLeft, legendRight );
   if ( options.link ) {
     label.append(
-      " <a href='" + options.link + "' target='_blank'><i class='icon-link' /></a>"
+      " <a href='" + options.link + "' target='_blank' rel='noopener noreferrer'><i class='icon-link' /></a>"
     );
   }
   if( options.taxon ) {
@@ -1026,6 +1061,16 @@ google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
   return this.addPostgisLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
+google.maps.Map.prototype.addTaxonGeomodelLayer = function( options ) {
+  _.defaults( options, { validParams: [ "thresholded", "tile_size" ] });
+  return this.addPostgisLayerByEndpoint( "geomodel", options.taxon.id, options );
+};
+
+google.maps.Map.prototype.addTaxonGeomodelComparisonLayer = function( options ) {
+  _.defaults( options, { validParams: [ "tile_size" ] });
+  return this.addPostgisLayerByEndpoint( "geomodel_comparison", options.taxon.id, options );
+};
+
 var cachedGBIFColors;
 var GBIFMapColors = function( ) {
   if( cachedGBIFColors ) { return cachedGBIFColors; }
@@ -1072,7 +1117,13 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   tilejson.interactive = false;
   var layer = new wax.g.connector( tilejson );
   layer.title = options.title;
-  var layerID = this.overlayMapTypes.push( layer );
+  var layerID;
+  if ( options.layerID ) {
+    layerID = options.layerID;
+    this.overlayMapTypes.setAt( layerID - 1, layer );
+  } else {
+    layerID =  this.overlayMapTypes.push( layer );
+  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper
@@ -1080,7 +1131,7 @@ google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
     // above and immediately set to null here.
     this.overlayMapTypes.setAt( layerID - 1, emptyLayer );
   }
-  if( this._overlayControl ) {
+  if( this._overlayControl && !options.noOverlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
       [ { layer: layer, layerID: layerID } ], options );
   }
@@ -1108,7 +1159,7 @@ function intereactionsServer( ) {
 // different clusters running the same code. node_api_url will
 // be faster for DB/postgis queries
 function postgisTileservers( ) {
-  var nodeApiURL = "<%= CONFIG.node_api_url %>";
+  var nodeApiURL = "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>";
   if( nodeApiURL ) { return [ nodeApiURL ]; }
   return elasticsearchTileservers( );
 }
@@ -1168,105 +1219,10 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     options.featured_observation_id = options.observation_id;
   }
   // these are the parameters that will be sent to the node API
-  var paramKeys = [
-    "acc",
-    "acc_above",
-    "acc_below",
-    "acc_below_or_unknown",
-    "apply_project_rules_for",
-    "border_opacity",
-    "cache",
-    "captive",
-    "collection_preview",
-    "color",
-    "created_d1",
-    "created_d2",
-    "created_on",
-    "d1",
-    "d2",
-    "day",
-    "endemic",
-    "featured_observation_id",
-    "geo",
-    "geoprivacy",
-    "has",
-    "has",
-    "hrank",
-    "id",
-    "id_above",
-    "iconic_taxa",
-    "iconic_taxa",
-    "ident_taxon_id",
-    "ident_taxon_id_exclusive",
-    "ident_user_id",
-    "identifications",
-    "identified",
-    "introduced",
-    "lat",
-    "line_color",
-    "line_opacity",
-    "line_width",
-    "list_id",
-    "lng",
-    "lrank",
-    "members_of_project",
-    "month",
-    "native",
-    "nelat",
-    "nelng",
-    "not_in_place",
-    "not_in_project",
-    "not_matching_project_rules_for",
-    "not_user_id",
-    "oauth_application_id",
-    "on",
-    "opacity",
-    "photo_license",
-    "photos",
-    "place_id",
-    "popular",
-    "precision",
-    "precision_offset",
-    "project_id",
-    "project_ids",
-    "projects[]",
-    "q",
-    "quality_grade",
-    "radius",
-    "rank",
-    "reviewed",
-    "scaled",
-    "search_on",
-    "skip_top_hits",
-    "sounds",
-    "style",
-    "swlat",
-    "swlng",
-    "taxon_geoprivacy",
-    "taxon_id",
-    "taxon_ids",
-    "taxon_ids[]",
-    "term_id",
-    "term_value_id",
-    "threatened",
-    "tile_size",
-    "ttl",
-    "unobserved_by_user_id",
-    "user_after",
-    "user_before",
-    "user_id",
-    "verifiable",
-    "viewer_id",
-    "viewer_id",
-    "width",
-    "without_taxon_id",
-    "without_term_value_id",
-    "year"
-  ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
-    options, { validParams: paramKeys, endpoint: "grid" } ));
+    options, { validParams: iNaturalist.Map.API_PARAMS( ), endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
-    options, { validParams: paramKeys, endpoint: "points" } ));
+    options, { validParams: iNaturalist.Map.API_PARAMS( ), endpoint: "points" } ));
   // add a layer to the map for the grid
   gridLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + gridTileSuffix;
@@ -1277,7 +1233,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled,
     infoWindowCallback: options.infoWindowCallback,
-    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256,
+    layerID: options.layerID
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + pointTileSuffix;
@@ -1288,7 +1245,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled,
     infoWindowCallback: options.infoWindowCallback,
-    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256,
+    layerID: options.layerID + 1
   });
   gridLayer.layer.title = title;
   pointLayer.layer.title = title;
@@ -1333,7 +1291,13 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
     "template": "{{species_guess}}"
   }, options);
   var layer = new wax.g.connector( waxOptions );
-  var layerID =  this.overlayMapTypes.push( layer );
+  var layerID;
+  if ( options.layerID ) {
+    layerID = options.layerID;
+    this.overlayMapTypes.setAt( layerID - 1, layer );
+  } else {
+    layerID =  this.overlayMapTypes.push( layer );
+  }
   if( options.disabled ) {
     this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
@@ -1435,7 +1399,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
               iwOpts.pixelOffset = new google.maps.Size(0, 0);
             }
             if( options.infoWindowCallback ) {
-              return options.infoWindowCallback( map, iw, latLng, o.data['id'], iwOpts );
+              return options.infoWindowCallback( map, iw, latLng, o.data, iwOpts );
             }
             $.ajax({
               url:  '/observations/' + o.data['id'] + '.html?partial=cached_component',
@@ -1483,12 +1447,77 @@ google.maps.Map.prototype.infoWindowSetContent = function( iw, latLng, content, 
   iw.position = latLng;
   iw.setContent( content );
   iw.open( this );
-  // make sure the InfoWindow has focus
-  $( iw ).focus( );
   // remove any text highlighting, which happens when the user clicks around
   deselectText( );
   // setting infoWindowOpenTime to prevent rapid window toggling
   infoWindowOpenTime = new Date( );
+};
+
+
+iNaturalist.Map.createOsmMapTypeForMap = function ( map ) {
+  var name = map.getDiv().offsetWidth > 300
+    ? "OpenStreetMap"
+    : "OSM";
+  // https://wiki.openstreetmap.org/wiki/Google_Maps_Example
+  return new google.maps.ImageMapType( {
+    getTileUrl: function(coord, zoom) {
+      var tilesPerGlobe = 1 << zoom;
+      var x = coord.x % tilesPerGlobe;
+      if (x < 0) x = tilesPerGlobe + x;
+      iNaturalist.log( { "map-tile": "osm" } );
+      return "https://tile.openstreetmap.org/" + zoom + "/" + x + "/" + coord.y + ".png";
+    },
+    tileSize: new google.maps.Size( 256, 256 ),
+    name: name,
+    alt: I18n.t( "show_openstreetmap" ),
+    // Required, even though not documented
+    maxZoom: 19
+  } );
+}
+iNaturalist.Map.createOsmAttributionControl = function( position ) {
+  var div = document.createElement( "div" );
+  div.setAttribute( "id", "OsmAttributionControl" );
+  div.style.padding = "0 6px";
+  div.style.fontSize = "10px";
+  div.style.height = "14px";
+  div.style.lineHeight = "14px";
+  div.style.marginBottom = "1px";
+  if ( position === google.maps.ControlPosition.BOTTOM_RIGHT ) {
+    div.style.marginBottom = "0px";
+    div.style.marginRight = "0.1px";
+  }
+  div.style.backgroundColor = "rgba(255, 255, 255, 0.5)";
+  var content = jQuery.parseHTML( I18n.t( "base_map_copyright_openstreetmap_html", {
+    startTag: "<a href='https://www.openstreetmap.org/copyright' target='_blank' rel='nofollow noopener'>",
+    endTag: "</a>"
+  } ) );
+  $( div ).append( content );
+  return div;
+};
+iNaturalist.Map.toggleOsmAttributionForMap = function ( map ) {
+  var mapTypeId = map.getMapTypeId( );
+  // Note that Google does not change the orientation of its own
+  // attribution in RTL, so we don't need to do so either. However it
+  // does help to put it next to the other attribution elements when
+  // there's space
+  var position = google.maps.ControlPosition.RIGHT_BOTTOM;
+  if ( map.getDiv().offsetWidth > 500 ) {
+    position = google.maps.ControlPosition.BOTTOM_RIGHT;
+  }
+  if ( mapTypeId === iNaturalist.Map.MapTypeId.OSM ) {
+    map.controls[position].insertAt(
+      0,
+      iNaturalist.Map.createOsmAttributionControl( position )
+    );
+  } else {
+    var targetIdx = -1;
+    map.controls[position].forEach( function ( ctrl, idx ) {
+      if ( ctrl.getAttribute( "id" ) === "OsmAttributionControl" ) {
+        targetIdx = idx;
+      }
+    } );
+    if ( targetIdx >= 0 ) map.controls[position].removeAt( targetIdx );
+  }
 };
 
 // Static constants
@@ -1561,6 +1590,10 @@ iNaturalist.Map.ICONIC_TAXON_COLORS = {
 }
 
 
+};
+
+( function( ) {
+  loadMap3( );
 })();
 
 function markerObscuredRectangle( marker, shapeOptions ) {

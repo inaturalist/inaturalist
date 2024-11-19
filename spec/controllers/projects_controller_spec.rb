@@ -201,3 +201,21 @@ describe ProjectsController, "destroy" do
       count ).to eq 1
   end
 end
+
+describe ProjectsController, "stats" do
+  elastic_models( Observation )
+  let( :project ) { Project.make! }
+  before do
+    sign_in project.user
+  end
+  it "should successfully process stats endpoint" do
+    ProjectObservation.make!( project: project )
+    get :stats, params: { id: project.id }, format: :json
+    expect( response.response_code ).to eq 200
+    body = JSON.parse( response.body )
+    expect( body["project_id"] ).to eq project.id
+    expect( body["total_project_observations"] ).to eq 1
+    expect( body["data"][0]["New_observations"] ).to eq 1
+    expect( body["data"][0]["unique_observers"] ).to eq 1
+  end
+end

@@ -2,10 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xml:lang="<%= I18n.locale %>"
       lang="<%= I18n.locale %>"
+      <% if @rtl %>
+        dir="rtl"
+      <% else %>
+        dir="ltr"
+      <% end %>
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
-    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %> </title>
+    <title><%= content_for(:title) ? "#{content_for(:title)} · " : ( @page_title && "#{@page_title} · " ) %> <%= @site.try(:name) %></title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <% if responsive? %>
@@ -16,8 +21,24 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
+    <%= stylesheet_link_tag 'bootstrap-rtl' if @rtl %>
+    <% # Bump font size so Safari doesn't auto-zoom on input selection. %>
+    <% if is_inatrn_app? %>
+      <style type="text/css">
+        body,
+        .bootstrap,
+        .bootstrap .form-control {
+          font-size: 16px;
+        }
+      </style>
+    <% end -%>
+    <% if params[:noh1] %>
+      <style type="text/css">
+        h1 { display: none; }
+      </style>
+    <% end -%>
     <%= csrf_meta_tag %>
-    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>">
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
@@ -26,12 +47,12 @@
     <% end -%>
     <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>
-    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
-    <% end %>
     <% if !@headless && @site && !@site.ios_app_id.blank? -%>
       <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
+    <% if @site && !@site.preferred_fathom_analytics_tracker_id.blank? && !( current_user && current_user.prefers_no_tracking? ) %>
+      <script src="https://cdn.usefathom.com/script.js" data-site="<%= @site.preferred_fathom_analytics_tracker_id %>" data-canonical="false" defer></script>
+    <% end %>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <% if @site && @shareable_image_url.blank? && @site.shareable_image? %>
@@ -39,41 +60,14 @@
     <% end %>
   </head>
   <body>
-    <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
+    <div id="bodywrapper" class="<%=raw 'no-footer-gap' if @no_footer_gap %> <%=raw 'noh1' if params[:noh1] %>">
+      <%= render partial: "shared/confirmation_banner", locals: { bootstrap: true } %>
       <% unless @headless -%>
         <%= render :partial => 'shared/header' %>
       <% end -%>
 
-      <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
-        <div class="bootstrap">
-          <div class="container upstacked">
-            <div class="alert alert-warning upstacked">
-              <%= (flash[:notice] || flash[:alert]).html_safe %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
-      <% if flash[:error] && !@flash_js %>
-        <div class="bootstrap">
-          <div class="container upstacked">
-            <div class="alert alert-error upstacked">
-              <%= raw flash[:error] %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
       <% if !@headless && flash.empty? %>
-        <% if current_user && !current_user.confirmed? && !( controller.controller_name == "users" && controller.action_name == "edit" ) %>
-          <div class="bootstrap">
-            <div id="full-width-notice" class="bg-warning">
-              <div class="container">
-                <p><%=t :email_confirmation_banner_html, date: l( Date.parse( "2023-07-01" ), format: :short_with_year ), link_start_tag: "<a href='#{generic_edit_user_path( anchor: "profile" )}'>".html_safe, link_end_tag: "</a>".html_safe %></p>
-              </div>
-            </div>
-          </div>
-        <% elsif current_user && session[:potential_site] %>
+        <% if current_user && session[:potential_site] %>
           <div class="bootstrap">
             <div id="full-width-notice" class="bg-warning">
               <div class="container">
@@ -123,23 +117,17 @@
         <% end %>
       <% end %>
 
+      <% unless @flash_js %>
+        <%- for flash_type in [:success, :notice, :alert, :error] %>
+          <%= render( "shared/flash", type: flash_type ) if flash[flash_type] %>
+        <% end -%>
+      <% end -%>
+
       <div id="wrapper" class="bootstrap">
         <% if @feature_test -%>
           <div class="container">
             <div class="box bg-warning">
                 <b><%= @feature_test %> test</b>. This is only a test, so please don't expect everything to work correctly.
-            </div>
-          </div>
-        <% end -%>
-        <% if flash[:warning] && !@flash_js -%>
-          <div class="container">
-            <div class="alert alert-warning">
-              <% if flash[:warning_title] -%>
-                <strong><%=raw flash[:warning_title] %></strong>
-              <% end -%>
-              <p class="unstacked">
-                <%=raw flash[:warning] %>
-              </p>
             </div>
           </div>
         <% end -%>
@@ -176,9 +164,11 @@
         CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
+          email: "<%= current_user.email %>",
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_gbif_layer_maps: <%= current_user.prefers_gbif_layer_maps %>,
           prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>,
           prefers_captive_obs_maps: <%= current_user.prefers_captive_obs_maps %>,
           preferred_observations_search_map_type: "<%= current_user.preferred_observations_search_map_type %>",
@@ -222,10 +212,19 @@
         $.fn.btn = btn;
       }
     </script>
-    <%= google_maps_js( libraries: %w(places geometry drawing) ) unless @skip_external_connections %>
-    <%= javascript_include_tag "map_bundle" unless @minimal_header || @skip_external_connections %>
+    <% unless @skip_external_connections || @asynchronous_google_maps_loading %>
+      <%= javascript_include_tag google_maps_loader_uri(libraries: %w(places geometry drawing)) %>
+      <%= javascript_include_tag "map_bundle" %>
+    <% end %>
+    <% if @asynchronous_google_maps_loading %>
+      <%= javascript_include_tag "map_bundle" %>
+      <%= google_maps_async_js %>
+    <% end %>
+    <%= javascript_include_tag "webpack/runtime-webpack" %>
+    <%= javascript_include_tag "webpack/react-main-webpack" %>
+    <%= javascript_include_tag "webpack/users-confirmation-banner-webpack" %>
     <%= yield :extrajs %>
-    <% if logged_in? && !@minimal_header -%>
+    <% if logged_in? -%>
       <script type="text/javascript" charset="utf-8">
         setUpdatesCount(<%= session[:updates_count].to_i %>)
         setMessagesCount(<%= session[:messages_count].to_i %>)

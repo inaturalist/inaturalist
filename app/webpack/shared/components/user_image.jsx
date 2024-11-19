@@ -21,6 +21,7 @@ const UserImage = ( { user, linkTarget } ) => {
         title={user.login}
         style={style}
         target={linkTarget}
+        rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
       >
         { icon }
       </a>

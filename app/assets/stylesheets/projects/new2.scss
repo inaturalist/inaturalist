@@ -59,7 +59,7 @@ body {
 }
 
 button.btn-white {
-  font-weight: 700;
+  font-weight: 600;
   padding: 6px 15px;
   border-radius: 3px;
   background: white;
@@ -182,7 +182,7 @@ body>div>.popover[role="tooltip"].popover-error {
     }
   }
   label {
-    font-weight: 700 !important;
+    font-weight: 600 !important;
     line-height: 1.7em;
   }
   label.section-label {
@@ -495,28 +495,13 @@ body>div>.popover[role="tooltip"].popover-error {
   .UserAutocomplete {
     max-width: 250px;
   }
+  .alert {
+    margin: 15px 0px 10px;
+  }
 }
 
 .admin-tools {
   border: 1px solid $border-grey;
   padding: 15px;
   background: white;
-}
-
-@media (min-width: 768px) {
-  .bootstrap .container {
-    width: auto;
-  }
-}
-
-@media (min-width: 992px) {
-  .bootstrap .container {
-    width: 970px;
-  }
-}
-
-@media (min-width: 1200) {
-  .bootstrap .container {
-    width: 1170px;
-  }
 }

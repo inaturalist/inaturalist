@@ -1,21 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const UserLink = ( { user } ) => {
+const UserLink = ( { user, useName } ) => {
   if ( !user ) { return null; }
+  let displayName = user.login;
+  if ( useName && user.name && user.name.length > 0 ) {
+    displayName = user.name;
+  }
   return (
     <a
       className="userlink"
       href={`/people/${user.login || user.id}`}
-      title={user.login}
+      title={displayName}
     >
-      { user.login }
+      { displayName }
     </a>
   );
 };
 
 UserLink.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  useName: PropTypes.bool
 };
 
 export default UserLink;

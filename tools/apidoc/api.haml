@@ -117,7 +117,7 @@
     %a{:href => "http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3"}
       http://tools.ietf.org/html/draft-ietf-oauth-assertions-01#section-6.3
     and used to retrieve an access token for a
-    user based on a 3rd party access token from Facebook or Google. It
+    user based on a 3rd party access token from Google. It
     assumes the user is already a member of iNat or wants to be, and
     uses the 3rd party token to sign them up and / or authenticate them.
     It returns an access token without the authorization step. This method
@@ -137,11 +137,9 @@
     To retrieve an access token using this method, you just need to send your user to
     = succeed '.' do
       %code /oauth/bounce?provider=PROVIDER&client_id=YOUR_CLIENT_ID
-    The options for
+    The only option for
     %code provider
-    are
-    %code facebook
-    and
+    is
     = succeed '.' do
       %code google
     If auth is sucessful, the user should be redirected back to your app's

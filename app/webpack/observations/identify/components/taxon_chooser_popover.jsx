@@ -163,7 +163,7 @@ class TaxonChooserPopover extends React.Component {
         )}
       >
         <div
-          className={`TaxonChooserPopoverTrigger RecordChooserPopoverTrigger ${taxon ? "chosen" : ""} ${className}`}
+          className={`TaxonChooserPopoverTrigger RecordChooserPopoverTrigger d-flex ${taxon ? "chosen" : ""} ${className}`}
         >
           { preIconClass ? <i className={`${preIconClass} pre-icon`} /> : null }
           { label ? ( <label>{ label }</label> ) : null }

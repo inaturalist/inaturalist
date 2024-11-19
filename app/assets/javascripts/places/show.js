@@ -117,7 +117,7 @@ $.fn.loadWikipediaDescription = function() {
     url: WIKIPEDIA_DESCRIPTION_URL,
     method: 'get',
     success: function(data, status) {
-      $(self).html(data)
+      $( self ).html( data || "" );
     },
     error: function(request, status, error) {
       $('.noresults', self).show()

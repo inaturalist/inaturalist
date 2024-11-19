@@ -56,7 +56,7 @@
         else
           @taxon.name
         end
-        ref = "<ref name=\"inaturalist-#{@taxon.name}\">{{cite web |title=#{render( "taxa/taxon.txt.erb", taxon: @taxon )} |url=#{taxon_url(@taxon)} |website=#{@site.name} |access-date=#{l Date.today} |language=#{I18n.locale}}}</ref>"
+        ref = "<ref name=\"inaturalist-#{@taxon.name}\">{{cite web |title=#{render( "taxa/taxon.txt.erb", taxon: @taxon )} |url=#{taxon_url(@taxon)} |website=#{@site.name} |access-date=#{l Date.today.strftime('%d %B %Y')} |language=#{I18n.locale}}}</ref>"
         ref_link = "<ref name=\"inaturalist-#{@taxon.name}\" />"
         structure = <<-WIKI
           #{I18n.t(:taxon_is_a_rank,
@@ -94,21 +94,24 @@
         box = <<-WIKI
           {{Automatic taxobox
           | taxon = #{@taxon.name}
-          #{"| rank = #{Taxon::WIKIPEDIA_RANKS[@taxon.rank]}" unless @taxon.rank.blank?}
-          #{"| parent = #{parent_title}" if parent_title}
           #{"| image = #{image}" if image}
+          #{"| image_caption =" if image}
+          | authority =
+          | type_species =
+          | type_species_authority =
           }}
         WIKI
         if @taxon.species? && @taxon.genus
           box = <<-WIKI
             {{Speciesbox
-            | parent = #{@taxon.genus.name}
             | taxon = #{@taxon.name}
             #{"| image = #{image}" if image}
+            #{"| image_caption =" if image}
+            | authority =
             }}
           WIKI
         end
-        wikitext = if @taxon.rank_level && @taxon.rank_level < Taxon::SPECIES_LEVEL
+        wikitext = if @taxon.rank_level && @taxon.rank_level < Taxon::SPECIES_LEVEL && @taxon.species
           <<-WIKI
             #REDIRECT [[#{@taxon.species.name}]]
           WIKI

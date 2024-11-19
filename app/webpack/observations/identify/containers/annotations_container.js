@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
     observation: state.currentObservation.observation,
     config: state.config,
     controlledTerms: state.controlledTerms.allTerms,
-    collapsible: false
+    context: "identify"
   };
 }
 

@@ -2,14 +2,14 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-/* global OUTLINK_SITE_ICONS */
+/* global OUTLINK_SITES */
 
 class ResearchGradeProgress extends React.Component {
   constructor( ) {
     super( );
     const criteria = ["date", "location", "media", "ids", "metric-date",
       "metric-location", "metric-wild", "metric-evidence", "metric-recent",
-      "rank", "flags", "rank_or_needs_id"];
+      "metric-subject", "rank", "flags", "rank_or_needs_id"];
     this.criteriaOrder = _.zipObject( criteria, [...Array( criteria.length ).keys( )] );
   }
 
@@ -56,12 +56,14 @@ class ResearchGradeProgress extends React.Component {
         remainingCriteria.rank_or_needs_id = true;
       }
     }
+    remainingCriteria["hidden-media"] = _.some( _.flatten( [observation.photos, observation.sounds] ), "hidden" );
     remainingCriteria = _.pickBy( remainingCriteria, bool => ( bool === true ) );
-    const sortedCriteria = _.sortBy(
-      _.map( remainingCriteria, ( bool, type ) => ( { type, bool } ) ), c => (
-        this.criteriaOrder[c.type]
-      )
-    );
+    const sortedCriteria = _.sortBy( _.map(
+      remainingCriteria,
+      ( bool, type ) => ( { type, bool } )
+    ), c => (
+      this.criteriaOrder[c.type]
+    ) );
     return (
       <ul className="remaining">
         { _.map( sortedCriteria, c => {
@@ -133,6 +135,10 @@ class ResearchGradeProgress extends React.Component {
               icon = "icon-icn-dna";
               label = I18n.t( "evidence_of_organism" );
               break;
+            case "metric-subject":
+              icon = "icon-icn-subject";
+              label = I18n.t( "evidence_related_to_single_subject" );
+              break;
             case "metric-recent":
               icon = "fa-clock-o";
               label = I18n.t( "recent_evidence_of_organism" );
@@ -144,6 +150,10 @@ class ResearchGradeProgress extends React.Component {
             case "flags":
               icon = "fa-flag danger";
               label = I18n.t( "all_flags_must_be_resolved" );
+              break;
+            case "hidden-media":
+              icon = "fa-eye-slash danger";
+              label = I18n.t( "all_media_must_be_unhidden" );
               break;
             default:
               return null;
@@ -162,13 +172,14 @@ class ResearchGradeProgress extends React.Component {
   }
 
   render( ) {
-    const { observation } = this.props;
+    const { config, observation } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const grade = observation.quality_grade;
     const needsIDActive = ( grade === "needs_id" || grade === "research" );
     let description;
     let criteria;
     let outlinks;
+    const viewerIsObserver = config.currentUser && config.currentUser.id === observation.user.id;
     if ( grade === "research" ) {
       description = (
         <span>
@@ -176,7 +187,18 @@ class ResearchGradeProgress extends React.Component {
             { I18n.t( "this_observation_is_research_grade" ) }
           </span>
           { " " }
-          { I18n.t( "it_can_now_be_used_for_research" ) }
+          {
+            observation.license_code
+              ? I18n.t( "it_can_now_be_used_for_research" )
+              : I18n.t( "however_not_licensed" )
+          }
+          { !observation.license_code && viewerIsObserver && (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "however_not_licensed_action_html" )
+              }}
+            />
+          ) }
         </span>
       );
     } else {
@@ -205,7 +227,7 @@ class ResearchGradeProgress extends React.Component {
             <div className="outlink" key={`outlink-${ol.source}`}>
               <a href={ol.url}>
                 <div className="squareIcon">
-                  <img alt={ol.source} src={OUTLINK_SITE_ICONS[ol.source]} />
+                  <img alt={ol.source} src={OUTLINK_SITES[ol.source].icon} />
                 </div>
                 <div className="title">{ ol.source }</div>
               </a>
@@ -225,7 +247,7 @@ class ResearchGradeProgress extends React.Component {
               <div className={`separator ${grade === "research" ? "active" : "incomplete"}`} />
             </Col>
           </div>
-          <div className="checks">
+          <div className="checks clearfix">
             <Col xs={4}>
               <div className="check casual active">
                 <i className="fa fa-check" />
@@ -265,6 +287,7 @@ class ResearchGradeProgress extends React.Component {
 }
 
 ResearchGradeProgress.propTypes = {
+  config: PropTypes.object,
   observation: PropTypes.object,
   qualityMetrics: PropTypes.object
 };

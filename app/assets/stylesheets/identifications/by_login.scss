@@ -1,37 +1,45 @@
-.observations.mini .observation {
-  padding: 10px 0;
-  margin-bottom: 0;
-  border: 0;
-}
-
-.identification {
-  padding: 10px;
-  background-color: #eee;
-  
-  .identification_image { width: 75px; }
-  
-  span.withdrawbutton, span.agree {
-    color: blue; 
-    text-decoration: underline;
-    font-size: smaller;
-    cursor: pointer;
-    padding:0;
-    border:0;
-    float:none;
-    background-color: transparent;
-  }
-}
-
 .bootstrap {
-  .observations.mini .icon { top:7px; }
-  .identification { display:flex; }
-}
+  .observations.mini {
+    .observation {
+      padding: 10px 0;
+      margin-bottom: 0;
+      border: 0;
+    }
 
-.row {
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
-}
+    .icon {
+      top: 7px;
+    }
+  }
 
-.count {
-  font-weight: bold;
+  .identification {
+    display: flex;
+    padding: 10px;
+    background-color: #eee;
+
+    .identification_image {
+      width: 75px;
+    }
+
+    span.withdrawbutton, span.agree {
+      color: blue;
+      text-decoration: underline;
+      font-size: smaller;
+      cursor: pointer;
+      padding: 0;
+      border: 0;
+      float: none;
+      background-color: transparent;
+    }
+  }
+
+  #identifications {
+    .row {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eee;
+    }
+  }
+
+  .count {
+    font-weight: bold;
+  }
 }

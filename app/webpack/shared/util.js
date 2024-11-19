@@ -124,7 +124,7 @@ const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
   // For some time zones, moment cannot output something nice like PDT and
   // instead does something like -08. In this situations, we print a full offset
   // like -08:00 instead
-  if ( parseInt( d.format( "z" ), 0 ) && parseInt( d.format( "z" ), 0 ) !== 0 ) {
+  if ( parseInt( d.format( "z" ), 10 ) && parseInt( d.format( "z" ), 10 ) !== 0 ) {
     format = I18n.t( "momentjs.datetime_with_offset" );
   }
   return d.format( format );
@@ -195,6 +195,76 @@ const shortFormattedNumber = d => {
   return d;
 };
 
+function translateWithConsistentCase( key, options = {} ) {
+  const lowerRequested = options.case !== "upper";
+  delete options.case;
+  const translation = I18n.t( key, options );
+  const en = I18n.t( key, { ...options, locale: "en" } );
+  const defaultIsLower = ( en === en.toLowerCase( ) );
+  const lowerRequestedAndDefaultIsLower = lowerRequested && defaultIsLower;
+  const upperRequestedAndDefaultIsUpper = !lowerRequested && !defaultIsLower;
+  if ( lowerRequestedAndDefaultIsLower || upperRequestedAndDefaultIsUpper ) {
+    return translation;
+  }
+  return I18n.t( `${key}_`, options );
+}
+
+function parseRailsErrorsResponse( text ) {
+  const body = JSON.parse( text );
+  let railsErrors;
+  if ( body && body.errors && Array.isArray( body.errors ) && _.isObject( body.errors[0] )
+    && body.errors[0].from === "externalAPI" ) {
+    const railsErrorJson = JSON.parse( body.errors[0].message );
+    if ( railsErrorJson.errors ) {
+      // apiv2 passes on errors from rails in an object, e.g.:
+      //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
+      railsErrors = railsErrorJson.errors;
+    } else {
+      railsErrors = _.flatten( _.map( railsErrorJson, ( errors, attr ) => (
+        _.map( errors, error => `${attr}: ${error}` )
+      ) ) );
+    }
+  } else if ( body && body.error && body.error.original && body.error.original.errors ) {
+    // sometimes it's an array
+    railsErrors = body.error.original.errors;
+  } else if ( body && body.error && body.error.original && body.error.original.error ) {
+    // sometimes it's just a string
+    railsErrors = [body.error.original.error];
+  } else if ( body && body.error && body.error.original ) {
+    // sometimes we get rails errors keyed by attribute
+    railsErrors = _.flatten( _.map( body.error.original, ( errors, attr ) => (
+      _.map( errors, error => `${attr}: ${error}` )
+    ) ) );
+  } else if ( body && body.error ) {
+    if ( typeof ( body.error ) === "string" ) {
+      railsErrors = JSON.parse( body.error ).errors;
+    } else if ( body.error.errors ) {
+      railsErrors = body.error.errors;
+    }
+  }
+  return railsErrors;
+}
+
+function controlledTermLabel( termLabel ) {
+  const translationLabel = _.snakeCase( termLabel );
+  const defaults = {
+    defaultValue: termLabel
+  };
+
+  return I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, defaults );
+}
+
+function controlledTermDefinition( termLabel ) {
+  const translationLabel = _.snakeCase( termLabel );
+  const defaults = {
+    defaultValue: I18n.t( `controlled_term_labels.${_.snakeCase( translationLabel )}`, {
+      defaultValue: termLabel
+    } )
+  };
+
+  return I18n.t( `controlled_term_definitions.${_.snakeCase( translationLabel )}`, defaults );
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -239,16 +309,20 @@ const COLORS = {
 };
 
 export {
+  addImplicitDisagreementsToActivity,
+  COLORS,
+  controlledTermDefinition,
+  controlledTermLabel,
   fetch,
-  updateSession,
-  objectToComparable,
-  resizeUpload,
+  formattedDateTimeInTimeZone,
+  inatreact,
   isBlank,
   numberWithCommas,
-  addImplicitDisagreementsToActivity,
-  formattedDateTimeInTimeZone,
-  COLORS,
-  inatreact,
+  objectToComparable,
+  parseRailsErrorsResponse,
+  resizeUpload,
+  shortFormattedNumber,
   stripTags,
-  shortFormattedNumber
+  translateWithConsistentCase,
+  updateSession
 };

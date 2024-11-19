@@ -27,10 +27,10 @@ const normalizeParams = params => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
     // remove blank params
-    if (
+    if ( !_.startsWith( k, "field:" ) && (
       v === null
       || v === undefined
-      || ( typeof ( v ) === "string" && v.length === 0 )
+      || ( typeof ( v ) === "string" && v.length === 0 ) )
     ) {
       return;
     }
@@ -46,7 +46,7 @@ const normalizeParams = params => {
       newValue = parseInt( newValue, 10 );
     }
     // coerce arrayish strings to arrays
-    if ( k === "month" && !_.isArray( newValue ) ) {
+    if ( k === "month" && !Array.isArray( newValue ) ) {
       newValue = newValue.toString( ).split( "," ).map( m => parseInt( m, 10 ) );
     } else if ( typeof ( newValue ) === "string" && newValue.split( "," ).length > 1 ) {
       newValue = newValue.split( "," );
@@ -74,7 +74,9 @@ const normalizeParams = params => {
       newParams.createdDateType = "month";
     }
   }
-  if ( newParams.without_term_value_id && !newParams.term_id ) {
+  if ( newParams.without_term_value_id && !(
+    newParams.term_id || newParams.term_id_or_unknown
+  ) ) {
     delete newParams.without_term_value_id;
   }
   if (
@@ -90,13 +92,13 @@ const normalizeParams = params => {
 };
 
 // Filter search params for use in API requests
-const paramsForSearch = params => {
+const paramsForSearch = ( params, options = { } ) => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
     if ( HIDDEN_PARAMS.indexOf( k ) >= 0 ) {
       return;
     }
-    if ( _.isArray( v ) && v.length === 0 ) {
+    if ( Array.isArray( v ) && v.length === 0 ) {
       return;
     }
     newParams[k] = v;
@@ -139,6 +141,17 @@ const paramsForSearch = params => {
     delete newParams.created_d2;
     delete newParams.created_month;
   }
+  if ( !options.forURL ) {
+    // `with_private_location` is a surrogate for multiple parameters. We only want the surrogate
+    // to be present in the URL, not what it deconstructs into
+    if ( _.has( newParams, "with_private_location" ) ) {
+      if ( newParams.with_private_location.toString( ) === "false" ) {
+        newParams.geoprivacy = "open,obscured";
+        newParams.taxon_geoprivacy = "open,obscured";
+      }
+      delete newParams.with_private_location;
+    }
+  }
   return newParams;
 };
 
@@ -146,11 +159,11 @@ const setUrl = ( newParams, defaultParams ) => {
   // don't put defaults in the URL
   const urlState = {};
   const oldUrlState = $.deparam.querystring( );
-  _.forEach( paramsForSearch( newParams ), ( v, k ) => {
+  _.forEach( paramsForSearch( newParams, { forURL: true } ), ( v, k ) => {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
     }
-    if ( _.isArray( v ) ) {
+    if ( Array.isArray( v ) ) {
       urlState[k] = v.join( "," );
     } else {
       urlState[k] = v;

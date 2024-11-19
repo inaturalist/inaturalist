@@ -21,7 +21,8 @@ function mapStateToProps( state ) {
     ( state.taxon.taxon.rank_level <= 10 && speciesTabs.indexOf( state.config.chosenTab ) >= 0 )
     || ( state.taxon.taxon.rank_level === 20 && genusTabs.indexOf( state.config.chosenTab ) >= 0 )
     || (
-      state.taxon.taxon.rank_level > 20
+      ( state.taxon.taxon.rank_level > 20
+      || ( state.taxon.taxon.rank_level > 10 && state.taxon.taxon.rank_level < 20 ) )
       && aboveGenusTabs.indexOf( state.config.chosenTab ) >= 0
     )
   ) {

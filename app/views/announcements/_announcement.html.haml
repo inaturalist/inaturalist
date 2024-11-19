@@ -1,4 +1,5 @@
-- unless announcement.dismissed_by?( current_user )
+- unless announcement.dismissed_by?( current_user ) || !announcement.targeted_to_user?( current_user )
+  - create_announcement_impression( announcement )
   .announcement
     = announcement.body.html_safe
     - if announcement.dismissible? && current_user

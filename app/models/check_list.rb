@@ -197,7 +197,7 @@ class CheckList < List
         end
       end
       batch.map( &:taxon_id ).uniq.each do |taxon_id|
-        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
+        Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 2.hours.from_now,
           unique_hash: { "Taxon::elastic_index": taxon_id }).
           elastic_index!(ids: [taxon_id])
       end
@@ -273,7 +273,7 @@ class CheckList < List
     unless listed_taxa.blank? || options[:new]
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, updating #{listed_taxa.size} existing listed taxa"
       listed_taxa.each do |lt|
-        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 2.hours.from_now,
+        CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow", run_at: 8.hours.from_now,
           unique_hash: { "CheckList::refresh_listed_taxon": lt.id }
         ).refresh_listed_taxon( lt.id )
       end

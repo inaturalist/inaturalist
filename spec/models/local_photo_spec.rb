@@ -83,6 +83,28 @@ describe LocalPhoto, "to_observation" do
       expect( o.taxon ).to eq t
     end
 
+    it "should set a taxon from the middle of a file name" do
+      photo = LocalPhoto.make
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "tidepooling-Cuthona_abronia-december.png"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      taxon = Taxon.make!( name: "Cuthona abronia" )
+      observation = photo.to_observation
+      expect( observation.taxon ).to eq taxon
+    end
+
+    it "should not set a taxon with a four-word name in the file name" do
+      taxon_name = TaxonName.make!( name: "very awesome bee mimic" )
+      photo = LocalPhoto.make
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "foo-#{taxon_name.name.split.join( '_' )}-bar.png"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      observation = photo.to_observation
+      expect( observation.taxon ).not_to eq taxon_name.taxon
+    end
+
     it "should not set a taxon based on an invalid name in the tags if a valid synonym exists" do
       p = LocalPhoto.make
       p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
@@ -359,7 +381,44 @@ describe LocalPhoto, "flagging" do
   it "should re-index the observation" do
     o = make_research_grade_observation
     original_last_indexed_at = o.last_indexed_at
-    without_delay { Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
+    Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT )
+    o.reload
+    expect( o.last_indexed_at ).to be > original_last_indexed_at
+  end
+end
+
+describe LocalPhoto, "hiding" do
+  elastic_models( Observation )
+  let( :lp ) { LocalPhoto.make! }
+
+  it "should change the value returned by URL methods for hidden photos" do
+    ModeratorAction.make!( resource: lp, action: ModeratorAction::HIDE )
+    lp.reload
+    %w(original large medium small thumb square).each do | size |
+      expect( lp.send( "#{size}_url" ) ).to be =~ /media-hidden/
+    end
+  end
+
+  it "should not change the actual photo URLs for hidden photos" do
+    ModeratorAction.make!( resource: lp, action: ModeratorAction::HIDE )
+    lp.reload
+    %w(original large medium small thumb square).each do | size |
+      expect( lp["#{size}_url"] ).not_to be =~ /media-hidden/
+    end
+  end
+
+  it "should make associated observations casual grade when hidden" do
+    o = make_research_grade_candidate_observation
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    ModeratorAction.make!( resource: o.photos.first, action: ModeratorAction::HIDE )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
+  end
+
+  it "should re-index the observation" do
+    o = make_research_grade_observation
+    original_last_indexed_at = o.last_indexed_at
+    ModeratorAction.make!( resource: o.photos.first, action: ModeratorAction::HIDE )
     o.reload
     expect( o.last_indexed_at ).to be > original_last_indexed_at
   end
@@ -371,5 +430,39 @@ describe LocalPhoto do
     expect( lp.source_title ).to eq Site.default.name
     lp = LocalPhoto.new( subtype: "FlickrPhoto" )
     expect( lp.source_title ).to eq "Flickr"
+  end
+end
+
+describe LocalPhoto, "to_tags" do
+  context "with_file_name" do
+    it "should return unique tags" do
+      photo = LocalPhoto.make(
+        photo_metadata: PhotoMetadata.make(
+          metadata: { dc: { subject: ["tidepooling"] } }
+        )
+      )
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "tidepooling-Tidepooling-is-great-december.png"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      tags = photo.to_tags( with_file_name: true )
+      expect( tags ).to include "tidepooling"
+      expect( tags ).to include "tidepooling great december"
+      expect( tags.size ).to eq tags.uniq.size
+    end
+
+    it "should not return more than 12000 tags" do
+      photo = LocalPhoto.make(
+        photo_metadata: PhotoMetadata.make(
+          metadata: { dc: { subject: Faker::Lorem.words( number: 1000 ) } }
+        )
+      )
+      allow( photo ).to receive_message_chain( :file, :original_filename ) {
+        "#{Faker::Lorem.words( number: 24 )}.jpg"
+      }
+      allow( photo ).to receive_message_chain( :file, :file? ) { true }
+      tags = photo.to_tags( with_file_name: true )
+      expect( tags.size ).to be < 12_000
+    end
   end
 end

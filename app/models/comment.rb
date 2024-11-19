@@ -52,10 +52,6 @@ class Comment < ApplicationRecord
     "<Comment #{id} user_id: #{user_id} parent_type: #{parent_type} parent_id: #{parent_id}>"
   end
 
-  def to_plain_s(options = {})
-    "Comment #{id}"
-  end
-
   def as_indexed_json
     return unless user
     {
@@ -85,7 +81,8 @@ class Comment < ApplicationRecord
   def deletable_by?( deleting_user )
     return false if deleting_user.blank?
     return true if deleting_user.id == user_id
-    return true if deleting_user.id == parent.try_methods( :user_id )
+    return true if deleting_user.id == parent.try_methods( :user_id ) &&
+      !( parent.is_a?( Flag ) || parent.is_a?( TaxonChange ) )
     return true if deleting_user.is_admin?
 
     false
@@ -109,6 +106,7 @@ class Comment < ApplicationRecord
   end
 
   def flagged_with(flag, options)
+    parent&.touch
     evaluate_new_flag_for_spam(flag)
     index_parent
   end

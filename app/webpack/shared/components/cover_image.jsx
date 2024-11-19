@@ -108,7 +108,7 @@ class CoverImage extends React.Component {
 CoverImage.propTypes = {
   src: PropTypes.string.isRequired,
   low: PropTypes.string,
-  height: PropTypes.number.isRequired,
+  height: PropTypes.number,
   className: PropTypes.string,
   lazyLoad: PropTypes.bool,
   backgroundSize: PropTypes.string,

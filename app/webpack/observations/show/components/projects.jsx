@@ -15,9 +15,11 @@ class Projects extends React.Component {
 
   constructor( props ) {
     super( props );
+    const { context } = props;
     const currentUser = props.config && props.config.currentUser;
+    this.collapsePreference = `prefers_hide_${context}_projects`;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_projects : true
+      open: currentUser ? !currentUser[this.collapsePreference] : true
     };
     this.setUpProjectAutocomplete = this.setUpProjectAutocomplete.bind( this );
   }
@@ -26,8 +28,19 @@ class Projects extends React.Component {
     this.setUpProjectAutocomplete( );
   }
 
-  componentDidUpdate( ) {
+  componentDidUpdate( prevProps, prevState ) {
     this.setUpProjectAutocomplete( );
+    if ( prevState.open === this.state.open ) {
+      this.setOpenStateOnConfigUpdate( );
+    }
+  }
+
+  setOpenStateOnConfigUpdate( ) {
+    const { config } = this.props;
+    if ( config.currentUser
+      && config.currentUser[this.collapsePreference] === this.state.open ) {
+      this.setState( { open: !config.currentUser[this.collapsePreference] } );
+    }
   }
 
   setUpProjectAutocomplete( ) {
@@ -63,10 +76,17 @@ class Projects extends React.Component {
   }
 
   render( ) {
-    const { observation, config } = this.props;
+    const {
+      observation,
+      config,
+      updateSession
+    } = this.props;
+    const { open } = this.state;
     const loggedIn = config && config.currentUser;
 
-    const projectsOrProjObs = observation.non_traditional_projects || [];
+    const projectsOrProjObs = observation.non_traditional_projects
+      ? _.cloneDeep( observation.non_traditional_projects )
+      : [];
     _.each( observation.project_observations, po => {
       // trying to avoid duplicate project listing. This can happen for formerly
       // traditional projects that have been turned into collection projects
@@ -96,11 +116,11 @@ class Projects extends React.Component {
       if ( config.currentUser.id !== observation.user.id && observation.user.preferences ) {
         if ( observation.user.preferences.prefers_project_addition_by === "none" ) {
           addProjectInput = (
-            <p className="text-muted">{ I18n.t( "observer_prefers_no_project_addition" ) }</p>
+            <p className="text-muted">{ I18n.t( "observer_prefers_no_traditional_project_addition" ) }</p>
           );
         } else if ( observation.user.preferences.prefers_project_addition_by === "joined" ) {
           projectAdditionNotice = (
-            <p className="text-muted">{ I18n.t( "observer_prefers_addition_to_projects_joined" ) }</p>
+            <p className="text-muted">{ I18n.t( "observer_prefers_addition_to_traditional_projects_joined" ) }</p>
           );
         }
       }
@@ -117,42 +137,41 @@ class Projects extends React.Component {
         </form>
       );
     }
+
+    const panelContent = (
+      <div>
+        { addProjectInput }
+        { _.sortBy( projectsOrProjObs, po => po.project.title ).map( obj => (
+          <ProjectListing
+            key={obj.project.id}
+            displayObject={obj}
+            {...this.props}
+          />
+        ) ) }
+      </div>
+    );
+
     const count = projectsOrProjObs.length > 0
       ? `(${projectsOrProjObs.length})`
       : "";
-    const sectionOpen = this.state.open;
     return (
       <div className="Projects collapsible-section">
-        <button
-          type="button"
-          className="btn btn-nostyle"
+        <h4
+          className="collapsible"
           onClick={( ) => {
             if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_projects: sectionOpen } );
+              updateSession( { [this.collapsePreference]: open } );
             }
-            this.setState( { open: !sectionOpen } );
+            this.setState( { open: !open } );
           }}
         >
-          <h4 className="collapsible">
-            <i className={`fa fa-chevron-circle-${this.state.open ? "down" : "right"}`} />
-            { I18n.t( "projects" ) }
-            { " " }
-            { count }
-          </h4>
-        </button>
-        <Panel id="projects-panel" expanded={this.state.open} onToggle={() => null}>
-          <Panel.Collapse>
-            <Panel.Body>
-              { addProjectInput }
-              { projectsOrProjObs.map( obj => (
-                <ProjectListing
-                  key={obj.project.id}
-                  displayObject={obj}
-                  {...this.props}
-                />
-              ) ) }
-            </Panel.Body>
-          </Panel.Collapse>
+          <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
+          { I18n.t( "projects" ) }
+          { " " }
+          { count }
+        </h4>
+        <Panel id="projects-panel" expanded={open} onToggle={() => null}>
+          <Panel.Collapse>{ panelContent }</Panel.Collapse>
         </Panel>
       </div>
     );
@@ -168,7 +187,12 @@ Projects.propTypes = {
   observation: PropTypes.object,
   setErrorModalState: PropTypes.func,
   updateSession: PropTypes.func,
-  showProjectFieldsModal: PropTypes.func
+  showProjectFieldsModal: PropTypes.func,
+  context: PropTypes.string
+};
+
+Projects.defaultProps = {
+  context: "obs_show"
 };
 
 export default Projects;

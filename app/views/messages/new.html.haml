@@ -10,24 +10,7 @@
     #new_message .user-field .ac-chooser { width: 100%; }
     #new_message .user-field .usericon { max-height: 34px; margin-right: 10px; }
 = content_for :extrajs do
-  :javascript
-    $( document ).ready( function( ) {
-      if ($('#new_message .user_name').length > 0) {
-        $( "#new_message .user_name" ).userAutocomplete( {
-          resetOnChange: false,
-          idEl: $( "#new_message .user_name" ),
-          afterSelect: function( result ) {
-            console.log("selected ", result);
-            $( "#new_message .user-field img" ).attr( { src: result.item.icon } );
-            $( "#message_to_user_id" ).val( result.item.user_id );
-          },
-          afterUnselect: function( ) {
-            $( "#new_message .user-field img" ).attr( { src: $( "#new_message .user-field img" ).data( "original-src" ) } );
-            $( "#message_to_user_id" ).val( "" );
-          }
-        } );
-      }
-    } );
+  = javascript_include_tag "messages/new"
 .container
   .row
     .col-sm-8.col-sm-offset-2.col-md-6.col-md-offset-3

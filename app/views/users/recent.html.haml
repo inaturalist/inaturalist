@@ -109,7 +109,7 @@
                 %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
                 %td
                   - unless user.spammer?
-                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true, return_to: request.path ), method: :post, class: "btn btn-danger btn-block btn-sm", data: { confirm: t(:are_you_sure?) }
+                    = flag_as_spammer_button(user, return_to: request.path, class_name: "btn btn-danger btn-block btn-sm")
                   - unless user.known_non_spammer?
                     = link_to t(:flag_as_non_spammer), set_spammer_path( user, spammer: false, return_to: request.path ), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }, class: "btn btn-success btn-block btn-sm"
                   - if user.active?

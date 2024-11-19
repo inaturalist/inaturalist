@@ -48,7 +48,9 @@ class TaxaController < ApplicationController
     :tag_flickr_photos_from_observations]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
-  prepend_around_action :enable_replica, only: [:describe, :links, :show]
+  prepend_around_action :enable_replica, only: [
+    :describe, :links, :show, :search, :browse_photos, :schemes, :taxonomy_details
+  ]
 
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
@@ -93,7 +95,9 @@ class TaxaController < ApplicationController
         # Shuffle the taxa (http://snippets.dzone.com/posts/show/2994)
         @featured_taxa = @featured_taxa.sort_by{rand}[0..10]
         Taxon.preload_associations(@featured_taxa, [
-          :iconic_taxon, :photos, :taxon_descriptions,
+          :iconic_taxon,
+          { photos: [:user, :file_prefix, :file_extension, :flags, :moderator_actions] },
+          :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
         @featured_taxa_obs = @featured_taxa.map do |taxon|
           taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
@@ -110,6 +114,9 @@ class TaxaController < ApplicationController
           render :action => :search
         else
           @iconic_taxa = Taxon::ICONIC_TAXA
+          Taxon.preload_associations(@iconic_taxa, [
+            { photos: [:user, :file_prefix, :file_extension, :flags, :moderator_actions] }
+          ] )
           recent_params = { d1: 1.month.ago.to_date.to_s,
             quality_grade: :research, order_by: :observed_on }
           if @site
@@ -119,7 +126,10 @@ class TaxaController < ApplicationController
           @recent = Observation.page_of_results(recent_params).
             group_by(&:taxon_id).map{ |k,v| v.first }[0...5]
           Observation.preload_associations(@recent,{
-            taxon: [ { taxon_names: :place_taxon_names }, :photos ] } )
+            taxon: [
+              { taxon_names: :place_taxon_names },
+              { photos: [:user, :file_prefix, :file_extension, :flags, :moderator_actions] }
+            ] } )
           @recent = @recent.sort_by(&:id).reverse
         end
       end
@@ -182,11 +192,16 @@ class TaxaController < ApplicationController
         return render_404 unless @node_taxon_json
         @node_place_json = ( place_id.blank? || place_id == 0 ) ?
           nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
-        @chosen_tab = session[:preferred_taxon_page_tab]
-        @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+        @chosen_tab = current_user.preferred_taxon_page_tab if logged_in?
+        @chosen_tab = session[:preferred_taxon_page_tab] if @chosen_tab.blank?
+        @ancestors_shown = if logged_in?
+          current_user.preferred_taxon_page_ancestors_shown
+        else
+          session[:preferred_taxon_page_ancestors_shown]
+        end
         render layout: "bootstrap", action: "show"
       end
-      
+
       format.xml do
         render :xml => @taxon.to_xml(
           :include => [:taxon_names, :iconic_taxon], 
@@ -221,6 +236,7 @@ class TaxaController < ApplicationController
         site_place = @site && @site.place
         user_place = current_user && current_user.place
         preferred_place = user_place || site_place
+        options[:authenticate] = current_user
         @node_taxon_json = INatAPIService.get_json(
           "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}",
           options
@@ -327,7 +343,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This active taxon has more than #{Taxon::NUM_OBSERVATIONS_REQUIRING_CURATOR_TO_EDIT} downstream observations or is covered by a taxon framework, so some taxonomic attributes can only be editable by staff or taxon curators associated with that taxon framework."
+      flash.now[:notice] ||= "This active taxon has more than #{Taxon::NUM_OBSERVATIONS_REQUIRING_ADMIN_TO_EDIT_TAXON} downstream observations or is covered by a taxon framework, so some taxonomic attributes can only be editable by staff or taxon curators associated with that taxon framework."
     end
   end
 
@@ -405,6 +421,10 @@ class TaxaController < ApplicationController
 
     if params[:taxon_id]
       @taxon = Taxon.find_by_id(params[:taxon_id].to_i)
+      if @taxon
+        @ancestors = @taxon.ancestors
+        Taxon.preload_associations( @ancestors, { taxon_names: :place_taxon_names } )
+      end
     end
     
     if params[:is_active] == "true" || params[:is_active].blank?
@@ -865,7 +885,7 @@ class TaxaController < ApplicationController
       format.html { render partial: "wikipedia_taxobox", object: @taxon }
     end
   end
-  
+
   def update_photos
     if @taxon.photos_locked? && !current_user.is_admin?
       respond_to do |format|
@@ -911,19 +931,6 @@ class TaxaController < ApplicationController
       format.json { render json: { error: t(:request_timed_out) }, status: :request_timeout }
       format.any do
         flash[:error] = t(:request_timed_out)
-        redirect_back_or_default( taxon_path( @taxon ) )
-      end
-    end
-  rescue Koala::Facebook::APIError => e
-    raise e unless e.message =~ /OAuthException/
-    msg = t(
-      :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: @site.site_name_short
-    )
-    respond_to do |format|
-      format.json { render json: { error: msg }, status: :unprocessable_entity }
-      format.any do
-        flash[:error] = msg 
         redirect_back_or_default( taxon_path( @taxon ) )
       end
     end
@@ -1019,21 +1026,8 @@ class TaxaController < ApplicationController
         redirect_back_or_default( taxon_path( @taxon ) )
       end
     end
-  rescue Koala::Facebook::APIError => e
-    raise e unless e.message =~ /OAuthException/
-    msg = t(
-      :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: @site.site_name_short
-    )
-    respond_to do |format|
-      format.json { render json: { error: msg }, status: :unprocessable_entity }
-      format.any do
-        flash[:error] = msg 
-        redirect_back_or_default( taxon_path( @taxon ) )
-      end
-    end
   end
-  
+
   def describe
     @describers = if @site.taxon_describers
       @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
@@ -1080,7 +1074,7 @@ class TaxaController < ApplicationController
             break unless @description.blank?
           end
         end
-        if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+        if @describers.detect {| d | d.is_a?( TaxonDescribers::Wikipedia ) } && @taxon.wikipedia_summary.blank?
           @taxon.wikipedia_summary( refresh_if_blank: true )
         end
       else
@@ -1336,7 +1330,7 @@ class TaxaController < ApplicationController
   end
   
   def flickr_tagger    
-    f = get_flickraw
+    f = get_flickr
     
     @taxon ||= Taxon.find_by_id(params[:id].to_i) if params[:id]
     @taxon ||= Taxon.find_by_id(params[:taxon_id].to_i) if params[:taxon_id]
@@ -1352,7 +1346,7 @@ class TaxaController < ApplicationController
           end
         end
         flickr_photo
-      rescue FlickRaw::FailedResponse => e
+      rescue Flickr::FailedResponse => e
         flash[:notice] = t(:sorry_one_of_those_flickr_photos_either_doesnt_exist_or)
         nil
       end
@@ -1378,7 +1372,7 @@ class TaxaController < ApplicationController
       redirect_to :action => 'flickr_tagger' and return
     end
     
-    flickr = get_flickraw
+    flickr = get_flickr
     
     photos = Photo.where(subtype: 'FlickrPhoto', native_photo_id: params[:flickr_photos]).includes(:observations)
     
@@ -1417,7 +1411,7 @@ class TaxaController < ApplicationController
       return redirect_back_or_default( flickr_tagger_path )
     end
     
-    flickr = get_flickraw
+    flickr = get_flickr
 
     flickr_photo_ids = []
     @observations.each do | observation |
@@ -1440,7 +1434,7 @@ class TaxaController < ApplicationController
   end
   
   def flickr_photos_tagged
-    flickr = get_flickraw
+    flickr = get_flickr
     
     @tags = params[:tags]
     
@@ -1452,8 +1446,8 @@ class TaxaController < ApplicationController
     @flickr_photos = params[:flickr_photos].map do |flickr_photo_id|
       begin
         fp = flickr.photos.getInfo(:photo_id => flickr_photo_id)
-        FlickrPhoto.new_from_flickraw(fp, :user => current_user)
-      rescue FlickRaw::FailedResponse => e
+        FlickrPhoto.new_from_flickr(fp, :user => current_user)
+      rescue Flickr::FailedResponse => e
         nil
       end
     end.compact
@@ -1654,7 +1648,7 @@ class TaxaController < ApplicationController
   end
   
   def tag_flickr_photo(flickr_photo_id, tags, options = {})
-    flickr = options[:flickr] || get_flickraw
+    flickr = options[:flickr] || get_flickr
     # Strip and enclose multiword tags in quotes
     if tags.is_a?(Array)
       tags = tags.map do |t|
@@ -1664,7 +1658,7 @@ class TaxaController < ApplicationController
     
     begin
       flickr.photos.addTags(:photo_id => flickr_photo_id, :tags => tags)
-    rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
+    rescue Flickr::FailedResponse, Flickr::OAuthClient::FailedResponse => e
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
         flash[:error] = ("#{@site.site_name_short} can't add tags to your photos until " +

@@ -27,10 +27,10 @@ export function setUserData( userData, savedStatus = "unsaved" ) {
 export function fetchUserSettings( savedStatus, relationshipsPage ) {
   return ( dispatch, getState ) => {
     const { profile, config } = getState( );
-    const params = { useAuth: true };
-    if ( config.testingApiV2 ) {
-      params.fields = "all";
-    }
+    const params = {
+      useAuth: true,
+      fields: "all"
+    };
     const initialLoad = _.isEmpty( profile );
     inatjs.users.me( params ).then( ( { results } ) => {
       // this is kind of unnecessary, but removing these since they're read-only keys
@@ -48,7 +48,8 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         "spam",
         "species_count",
         "suspended",
-        "universal_search_rank"
+        "universal_search_rank",
+        "annotated_observations_count"
       ];
 
       const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
@@ -57,6 +58,13 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         }
         return object;
       }, {} );
+
+      // We may have pre-set confirmation_sent_at before actually requesting
+      // it, so we're keeping it there until we get a new value from the
+      // server
+      if ( profile.confirmation_sent_at && !userSettings.confirmation_sent_at ) {
+        userSettings.confirmation_sent_at = profile.confirmation_sent_at;
+      }
 
       dispatch( setUserData( userSettings, savedStatus ) );
 
@@ -94,7 +102,15 @@ export async function handleSaveError( e ) {
     return {};
   }
   const body = await e.response.json( );
-  return body.error.original.errors;
+  if ( body && body.errors && Array.isArray( body.errors ) && _.isObject( body.errors[0] )
+    && body.errors[0].from === "externalAPI" && body.errors[0].message ) {
+    // apiv2 passes on errors from rails in an object, e.g.:
+    //   { errors: [{ from: "externalAPI", message: "**JSON encoded errors object**"}] }
+    return JSON.parse( body.errors[0].message ).errors;
+  }
+  if ( body && body.errors ) return body.errors;
+  if ( body && body.error && body.error.original ) return body.error.original.errors;
+  return null;
 }
 
 export function saveUserSettings( ) {
@@ -134,12 +150,15 @@ export function saveUserSettings( ) {
     delete params.user.monthly_supporter;
     delete params.user.muted_user_ids;
     delete params.user.orcid;
+    delete params.user.taxon_name_priorities;
     delete params.user.privileges;
     delete params.user.roles;
     delete params.user.saved_status;
     delete params.user.site;
     delete params.user.unconfirmed_email;
     delete params.user.updated_at;
+    delete params.user.place_id;
+    delete params.user.search_place_id;
 
     // fetching user settings here to get the source of truth
     // currently users.me returns different results than
@@ -250,20 +269,37 @@ export function removePhoto( ) {
 export function changePassword( input ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile.password = input.new_password;
-    profile.password_confirmation = input.confirm_new_password;
-    dispatch( setUserData( profile ) );
+    const params = {
+      id: profile.id,
+      user: {
+        password: input.new_password,
+        password_confirmation: input.confirm_new_password
+      }
+    };
+    // send an update request immediately to change the password. Use
+    // same_origin: true to ensure rails will update the users' session
+    // with the password change flash message
+    return inatjs.users.update( params, { same_origin: true } )
+      .then( ( ) => {
+        // redirect to the login page on success
+        window.location = "/login";
+      } )
+      .catch( e => handleSaveError( e ).then( errors => {
+        // catch errors such as validation errors so they can be displayed
+        profile.errors = errors;
+        dispatch( setUserData( profile, null ) );
+      } ) );
   };
 }
 
 export function resendConfirmation( ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
-    profile.confirmation_sent_at = ( new Date( ) ).toISOString( );
-    dispatch( setUserData( profile ) );
     return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
       dispatch( fetchUserSettings( "saved" ) );
-      window.location.reload( );
+      // If we go back to signing people out after sending the confirmation,
+      // we will need to reload the window
+      // window.location.reload( );
     } ).catch( e => {
       handleSaveError( e ).then( errors => {
         profile.errors = errors;
@@ -278,14 +314,21 @@ export function confirmResendConfirmation( ) {
     const state = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: I18n.t( "users_edit_send_confirmation_prompt_html", {
-        email: state.profile.email || "",
-        defaultValue: I18n.t( "users_edit_resend_confirmation_prompt_html" )
+      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace_html", {
+        email: state.profile.email || ""
       } ),
-      confirmText: I18n.t( "send_and_sign_out", {
-        defaultValue: I18n.t( "resend_and_sign_out" )
-      } ),
+      confirmText: I18n.t( "send_confirmation_email" ),
+      // If we want to go back to signing people out, this is the text we should use
+      // confirmText: I18n.t( "send_and_sign_out", {
+      //   defaultValue: I18n.t( "resend_and_sign_out" )
+      // } ),
       onConfirm: async ( ) => {
+        // Preemptively set confirmation_sent_at so the user sees a change
+        // immediately
+        await dispatch( setUserData( {
+          ...getState( ).profile,
+          confirmation_sent_at: ( new Date( ) ).toISOString( )
+        } ) );
         await dispatch( saveUserSettings( ) );
         const { profile } = getState( );
         if ( !profile.errors || profile.errors.length <= 0 ) {

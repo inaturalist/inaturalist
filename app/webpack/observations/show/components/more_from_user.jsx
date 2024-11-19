@@ -23,8 +23,10 @@ const MoreFromUser = ( {
   }
   let dateObserved;
   if ( observation.time_observed_at ) {
-    dateObserved = moment.tz( observation.time_observed_at,
-      observation.observed_time_zone );
+    dateObserved = moment.tz(
+      observation.time_observed_at,
+      observation.observed_time_zone
+    );
   } else if ( observation.observed_on ) {
     dateObserved = moment( observation.observed_on );
   }
@@ -32,10 +34,9 @@ const MoreFromUser = ( {
   const calendarDate = dateObserved ? dateObserved.format( "YYYY/M/D" ) : null;
   const { testingApiV2 } = config || {};
   const loadObservationCallback = ( e, o ) => {
-    if ( !e.metaKey ) {
-      e.preventDefault( );
-      showNewObservation( o, { useInstance: !testingApiV2 } );
-    }
+    if ( e.metaKey || e.ctrlKey ) return;
+    e.preventDefault( );
+    showNewObservation( o, { useInstance: !testingApiV2 } );
   };
   const userLogin = observation.user.login;
   // obs list starts with the previous 3 obs
@@ -75,7 +76,7 @@ const MoreFromUser = ( {
               <span>
                 <span className="separator">·</span>
                 <a href={`/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any`}>
-                  { dateObserved.format( "MMMM D, YYYY" ) }
+                  { dateObserved.format( I18n.t( "momentjs.date_long" ) ) }
                 </a>
                 <span className="separator">·</span>
                 <a href={`/calendar/${userLogin}/${calendarDate}`}>
@@ -86,7 +87,7 @@ const MoreFromUser = ( {
           </div>
         </h3>
       </Col>
-      <div className="list">
+      <div className="list d-flex">
         { observations.map( o => {
           let taxonJSX = I18n.t( "unknown" );
           if ( o.taxon && o.taxon !== null ) {
@@ -98,8 +99,8 @@ const MoreFromUser = ( {
             ? o.taxon.iconic_taxon_name.toLowerCase( )
             : "unknown";
           return (
-            <Col xs={2} key={`more-obs-${o.uuid}`}>
-              <div className="obs">
+            <Col xs={2} key={`more-obs-${o.uuid}`} className="d-flex">
+              <div className="obs d-flex flex-column">
                 <div className="photo">
                   <a
                     href={`/observations/${o.id}`}
@@ -107,7 +108,6 @@ const MoreFromUser = ( {
                       ? { backgroundImage: `url( '${o.photo( "medium" )}' )` }
                       : null
                     }
-                    target="_self"
                     className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
                     onClick={e => { loadObservationCallback( e, o ); }}
                   >

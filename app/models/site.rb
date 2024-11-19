@@ -276,6 +276,10 @@ class Site < ApplicationRecord
   preference :twitter_url, :string
   preference :instagram_url, :string
   preference :blog_url, :string
+  preference :understanding_projects_url, :string
+  preference :educators_guide_url, :string
+  preference :video_tutorials_url, :string
+  preference :curator_guide_url, :string
 
   preference :twitter_username, :string
 
@@ -322,6 +326,9 @@ class Site < ApplicationRecord
   # we've used them all
   preference :twitter_sign_in, :boolean, default: false
 
+  # fathom analytics, https://usefathom.com/
+  preference :fathom_analytics_tracker_id, :string
+
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in
@@ -353,6 +360,8 @@ class Site < ApplicationRecord
   after_save :refresh_default_site
 
   def self.default( options = {} )
+    return Site.find_by_name( CONFIG.default_site_name ) if CONFIG.default_site_name
+
     if options[:refresh]
       Rails.cache.delete( "sites_default" )
     end
@@ -551,5 +560,37 @@ class Site < ApplicationRecord
       end
       observations
     end
+  end
+
+  def users_index_recent_activity
+    Rails.cache.fetch( "Site::#{id}::users_index_recent_activity", expires_in: 1.hour ) do
+      updates = []
+      [Observation, Identification, Post, Comment].each do | klass |
+        scope = klass.limit( 30 ).
+          order( "#{klass.table_name}.id DESC" ).
+          includes( :user )
+        if prefers_site_only_users?
+          scope = scope.joins( :user )
+          scope = scope.where( "users.site_id = ?", id )
+        end
+        updates += scope.all
+      end
+      Observation.preload_associations( updates, :user )
+      updates.delete_if do | u |
+        u.user.blank? ||
+          ( u.is_a?( Post ) && u.draft? ) ||
+          ( u.is_a?( Identification ) && u.taxon_change_id ) ||
+          ( u.is_a?( Identification ) && u.observation.user_id == u.user_id )
+      end
+      user_activity_hash = {}
+      updates.sort_by( &:created_at ).each do | record |
+        user_activity_hash[record.user_id] = record
+      end
+      user_activity_hash.values.sort_by( &:created_at ).reverse[0..11]
+    end
+  end
+
+  def inat_next_app_url
+    "https://apps.apple.com/us/app/inaturalist-next/id6475737561"
   end
 end

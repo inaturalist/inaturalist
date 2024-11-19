@@ -1,5 +1,5 @@
 import inatjs from "inaturalistjs";
-import { callAPI, hasObsAndLoggedIn } from "./observation";
+import { joinProject as sharedJoinProject } from "../../shared/ducks/projects";
 
 // eslint-disable-next-line import/prefer-default-export
 export function joinProject( project ) {

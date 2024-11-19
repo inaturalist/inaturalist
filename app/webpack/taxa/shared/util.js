@@ -15,17 +15,17 @@ const urlForTaxonPhotos = ( t, params ) => {
 const urlForUser = u => `/people/${u.login}`;
 const urlForPlace = p => `/places/${p.slug || p.id}`;
 
-const defaultObservationParams = state => {
+const defaultObservationParams = ( state, options = { } ) => {
   const { config } = state;
   const params = {
     verifiable: true,
     taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
     place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
-    preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
-    locale: I18n.locale
+    preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null
   };
   if ( state.config.chosenPlace ) {
-    params.place_id = config.testingApiV2
+    // TODO: explore should use integer IDs until the explore-apiv2 branch is merged
+    params.place_id = ( config.testingApiV2 && !options.forExplore )
       ? state.config.chosenPlace.uuid
       : state.config.chosenPlace.id;
   }
@@ -92,11 +92,16 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
 };
 
 const commasAnd = items => {
+  const listWithNItems = I18n.t( "list_with_n_items", { one: "-ONE-", two: "-TWO-", three: "-THREE-" } );
+  const listWithTwoItems = I18n.t( "list_with_two_items", { one: "-ONE-", two: "-TWO-" } );
+  const separator = listWithNItems.match( /-ONE-(.*)-TWO-/ )[1];
+  const finalSeparator = listWithNItems.match( /-TWO-(.*)-THREE-/ )[1];
+  const twoItemSeparator = listWithTwoItems.match( /-ONE-(.*)-TWO-/ )[1];
   if ( items.length <= 2 ) {
-    return items.join( ` ${I18n.t( "and" )} ` );
+    return items.join( twoItemSeparator );
   }
   const last = items.pop( );
-  return `${items.join( ", " )}, ${I18n.t( "and" )} ${last}`;
+  return `${items.join( separator )}${finalSeparator}${last}`;
 };
 
 const windowStateForTaxon = taxon => {
@@ -150,10 +155,15 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
     updateCurrentUser,
     observation
   } = options;
-  const currentUserPrefersMedialessObs = currentUser
-    && currentUser.prefers_medialess_obs_maps;
-  const currentUserPrefersCaptiveObs = currentUser
-    && currentUser.prefers_captive_obs_maps;
+  const {
+    prefers_captive_obs_maps: currentUserPrefersCaptiveObs,
+    prefers_gbif_layer_maps: currentUserPrefersGbifLayer,
+    prefers_medialess_obs_maps: currentUserPrefersMedialessObs
+  } = currentUser || {
+    prefers_captive_obs_maps: false,
+    prefers_gbif_layer_maps: false,
+    prefers_medialess_obs_maps: false
+  };
   return {
     taxon,
     observationLayers: [
@@ -190,10 +200,37 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
           && ( e => updateCurrentUser( { prefers_captive_obs_maps: e.target.checked } ) )
       }
     ],
-    gbif: { disabled: true, legendColor: "#F7005A" },
+    gbif: {
+      disabled: !currentUserPrefersGbifLayer,
+      legendColor: "#F7005A",
+      onChange: currentUser && ( e => updateCurrentUser( {
+        prefers_gbif_layer_maps: e.target.checked
+      } ) )
+    },
     places: true,
     ranges: true
   };
+};
+
+const tabFromLocationHash = ( ) => {
+  const validTabs = [
+    "map",
+    "articles",
+    "highlights",
+    "interactions",
+    "taxonomy",
+    "status",
+    "similar",
+    "curation"
+  ];
+  const urlTabMatches = window.location.hash.match( /^#([a-z-]+)-tab$/ );
+  if ( urlTabMatches ) {
+    const tabMatch = urlTabMatches[1];
+    if ( _.includes( validTabs, tabMatch ) ) {
+      return tabMatch;
+    }
+  }
+  return null;
 };
 
 const RANK_LEVELS = {
@@ -245,6 +282,7 @@ export {
   commasAnd,
   windowStateForTaxon,
   taxonLayerForTaxon,
+  tabFromLocationHash,
   RANK_LEVELS,
   MAX_TAXON_PHOTOS
 };

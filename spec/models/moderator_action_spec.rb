@@ -23,6 +23,72 @@ describe ModeratorAction do
       end
     end
 
+    describe "UNHIDE" do
+      it "admins can unhide" do
+        u = make_admin
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: u, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be false
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be false
+      end
+
+      it "normal users cannot unhide" do
+        u = make_admin
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: User.make!, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be true
+      end
+
+      it "curators who hid the content can unhide" do
+        u = make_curator
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: u, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be false
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be false
+      end
+
+      it "curators who didnt hide the content cannot unhide" do
+        u = make_curator
+        comment = Comment.make!
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
+          reason: "reason for hiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
+          user: make_curator, reason: "reson for unhiding" )
+        comment.reload
+        expect( comment.hidden? ).to be true
+        expect( unhide_action.errors.any? do | e |
+          e.message == "Only staff and curators who hide content can unhide it"
+        end ).to be true
+      end
+    end
+
     describe "SUSPEND" do
       it "should not be possible for a comment" do
         expect(
@@ -56,6 +122,7 @@ describe ModeratorAction do
         expect( u.suspended_by_user ).to eq ma.user
       end
     end
+
     describe "UNSUSPEND" do
       it "should unsuspend a user" do
         u = create :user
@@ -63,6 +130,32 @@ describe ModeratorAction do
         expect( u ).to be_suspended
         create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
         u.reload
+        expect( u ).not_to be_suspended
+      end
+
+      it "marks spam users as non-spammers" do
+        u = User.make!( spammer: true )
+        u.suspend!
+        expect( u.spammer ).to be true
+        expect( u.spammer? ).to be true
+        expect( u ).to be_suspended
+        create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
+        u.reload
+        expect( u.spammer ).to be false
+        expect( u.spammer? ).to be false
+        expect( u ).not_to be_suspended
+      end
+
+      it "marks users with unknown spammer status as non-spammers" do
+        u = User.make!
+        u.suspend!
+        expect( u.spammer ).to be_nil
+        expect( u.spammer? ).to be false
+        expect( u ).to be_suspended
+        create( :moderator_action, action: ModeratorAction::UNSUSPEND, resource: u )
+        u.reload
+        expect( u.spammer ).to be false
+        expect( u.spammer? ).to be false
         expect( u ).not_to be_suspended
       end
     end

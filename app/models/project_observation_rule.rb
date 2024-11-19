@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProjectObservationRule < Rule
   OPERAND_OPERATORS_CLASSES = {
     "not_observed_in_place?" => "Place",
@@ -10,9 +12,9 @@ class ProjectObservationRule < Rule
     "observed_by_user?" => "User",
     "observed_before?" => "Time",
     "in_project?" => "Project"
-  }
+  }.freeze
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
-  
+
   before_save :clear_operand
   after_save :reset_last_aggregated_if_rules_changed
   after_save :touch_projects
@@ -21,11 +23,12 @@ class ProjectObservationRule < Rule
   after_create :notify_trusting_members
   after_destroy :notify_trusting_members
   validate :operand_present
-  validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
+  validates_uniqueness_of :operator, scope: [:ruler_type, :ruler_id, :operand_id]
 
   def operand_present
     return unless OPERAND_OPERATORS.include?( operator )
-    return unless operand.blank? || !operand.is_a?( Object.const_get( OPERAND_OPERATORS_CLASSES[operator] ) )
+    return unless operand.blank? ||
+      !operand.is_a?( Object.const_get( OPERAND_OPERATORS_CLASSES[operator] ) )
 
     msg = <<~MSG
       Must select a
@@ -36,22 +39,23 @@ class ProjectObservationRule < Rule
   end
 
   def clear_operand
-    return true if OPERAND_OPERATORS.include?(operator)
+    return true if OPERAND_OPERATORS.include?( operator )
+
     self.operand = nil
     true
   end
-  
+
   def terms
     if operator == "observed_in_place?" && operand
       I18n.t( :must_be_observed_in_place, place: send( :operand ).display_name )
     elsif operator == "not_observed_in_place?" && operand
       I18n.t( :must_be_not_observed_in_place, place: send( :operand ).display_name )
     elsif operator == "has_observation_field?" && operand
-      I18n.t(:must_have_observation_field, operand: operand.name)
+      I18n.t( :must_have_observation_field, operand: operand.name )
     elsif operator == "observed_after?" && operand
-      I18n.t(:must_be_observed_after, operand: operand.name)
+      I18n.t( :must_be_observed_after, operand: operand.name )
     elsif operator == "observed_before?" && operand
-      I18n.t(:must_be_observed_before, operand: operand.name)
+      I18n.t( :must_be_observed_before, operand: operand.name )
     elsif operator == "observed_by_user?" && operand
       I18n.t( :must_be_observed_by_user, user: operand.login )
     elsif operator == "not_observed_by_user?" && operand
@@ -63,26 +67,26 @@ class ProjectObservationRule < Rule
     elsif operator == "in_project?" && operand
       I18n.t( :must_be_in_project, project: operand.title )
     elsif operator =~ /has.+/
-      thing_it_has = operator.split('_')[1..-1].join('_').gsub(/\?/, '')
-      I18n.t(:must_have_x, :x => I18n.t(thing_it_has, :default => thing_it_has.humanize.downcase))
+      thing_it_has = operator.split( "_" )[1..].join( "_" ).gsub( /\?/, "" )
+      I18n.t( :must_have_x, x: I18n.t( thing_it_has, default: thing_it_has.humanize.downcase ) )
     else
-      I18n.t("rules_types.#{super.gsub(' ','_')}")
+      I18n.t( "rules_types.#{super.gsub( ' ', '_' )}" )
     end
   end
 
   def reset_last_aggregated_if_rules_changed
-    if ruler && ruler.is_a?(Project)
-      ruler.update_columns(last_aggregated_at: nil)
-    end
+    return unless ruler.is_a?( Project )
+
+    ruler.update_columns( last_aggregated_at: nil )
   end
 
   def touch_projects
-    if ruler && ruler.is_a?( Project )
-      ruler.touch unless ruler.saved_change_to_id?
-      if operand && operand.is_a?( Project )
-        operand.touch unless operand.saved_change_to_id?
-      end
-    end
+    return unless ruler.is_a?( Project )
+
+    ruler.touch unless ruler.saved_change_to_id?
+    return unless operand.is_a?( Project )
+
+    operand.touch unless operand.saved_change_to_id?
   end
 
   def notify_trusting_members
@@ -93,5 +97,4 @@ class ProjectObservationRule < Rule
     end
     true
   end
-
 end

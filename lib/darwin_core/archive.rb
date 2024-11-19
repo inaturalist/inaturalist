@@ -5,6 +5,7 @@ module DarwinCore
       :occurrence,
       :simple_multimedia,
       :observation_fields,
+      :resource_relationships,
       :project_observations,
       :user
     ]
@@ -40,6 +41,8 @@ module DarwinCore
       @opts[:work_path] = Dir.mktmpdir
       FileUtils.mkdir_p @opts[:work_path], :mode => 0755
       logger.debug "Using working directory: #{@opts[:work_path]}"
+
+      @places_for_site = Site.find_by_id( @opts[:places_for_site].to_i )
 
       @place = Place.find_by_id(@opts[:place].to_i) || Place.find_by_name(@opts[:place])
       logger.debug "Found place: #{@place}"
@@ -87,13 +90,12 @@ module DarwinCore
       data_paths = make_data
       logger.debug "Data: #{data_paths.inspect}"
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
-      if @opts[:with_taxa]
-        logger.info "Making taxa extension..."
-        paths += [make_api_all_taxon_data]
-      end
       archive_path = make_archive( *paths )
       logger.debug "Archive: #{archive_path}"
       FileUtils.mv( archive_path, @opts[:path] )
+      unless @opts[:path].starts_with?( @opts[:work_path] )
+        FileUtils.rm_rf( @opts[:work_path] )
+      end
       logger.info "Archive generated: #{@opts[:path]}"
       if @benchmarks
         logger.info %w(BENCHMARK TOTAL AVG).map{|h| h.ljust( 30 )}.join( " " )
@@ -143,6 +145,12 @@ module DarwinCore
               row_type: "http://www.inaturalist.org/observation_fields",
               files: ["observation_fields.csv"],
               terms: DarwinCore::ObservationFields::TERMS
+            }
+          when "ResourceRelationships"
+            extensions << {
+              row_type: "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
+              files: ["resource_relationships.csv"],
+              terms: DarwinCore::ResourceRelationship::TERMS
             }
           when "ProjectObservations"
             extensions << {
@@ -225,7 +233,12 @@ module DarwinCore
     def observations_params
       params = {}
       params[:license] = [@opts[:licenses]].flatten.compact.join( "," ) unless @opts[:licenses].include?( "ignore" )
-      params[:place_id] = @place.id if @place
+      params[:place_id] = []
+      if @place
+        params[:place_id].push( @place.id )
+      elsif @places_for_site
+        params[:place_id] = ( [@places_for_site.place_id] + @places_for_site.export_places.map( &:id ) ).compact
+      end
       params[:taxon_ids] = @taxa.map(&:id) if @taxa
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
@@ -444,12 +457,14 @@ module DarwinCore
       preloads = [ {
         observation_photos: {
           photo: [
-            :file_prefix, :file_extension, :user, :flags, :photo_metadata
+            :file_prefix, :file_extension, :user, :flags, :photo_metadata, :moderator_actions
           ] }
         },
         {
           observation_sounds: {
-            sound: :user
+            sound: [
+              :user, :flags, :moderator_actions
+            ]
           }
         }
       ]
@@ -469,6 +484,7 @@ module DarwinCore
             next if op.nil?
             next if op.created_at.nil?
             next if op.photo.nil?
+            next if op.photo.hidden?
             next unless op.created_at <= @generate_started_at
             if !@opts[:media_licenses].include?( "ignore" )
               next if op.photo.all_rights_reserved?
@@ -481,6 +497,7 @@ module DarwinCore
             next if os.nil?
             next if os.created_at.nil?
             next if os.sound.nil?
+            next if os.sound.hidden?
             next unless os.sound.is_a?( LocalSound ) # Soundcloud sounds don't come with stable file URLs we can share
             next unless os.created_at <= @generate_started_at
             if !@opts[:media_licenses].include?( "ignore" )
@@ -515,6 +532,33 @@ module DarwinCore
           next unless ofv.created_at <= @generate_started_at
           DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
           csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
+        end
+      end
+    end
+
+    def make_resource_relationships_file
+      headers = DarwinCore::ResourceRelationship::TERM_NAMES
+      fname = "resource_relationships.csv"
+      tmp_path = File.join(@opts[:work_path], fname)
+      preloads = [ { observation_field_values: :observation_field } ]
+      file = CSV.open( tmp_path, "w" )
+      file << headers
+      file.close
+      { path: tmp_path, preloads: preloads }
+    end
+
+    def write_resource_relationships_data( observations, csv )
+      @generate_started_at ||= Time.now
+      observations.each do |observation|
+        # fields must have datatype "taxon", values must have a user and the value must be numeric
+        observation.observation_field_values.select do |ofv|
+          ofv.observation_field.datatype === "taxon" &&
+          ofv.user &&
+          ActiveModel::Validations::NumericalityValidator::INTEGER_REGEX.match?( ofv.value )
+        end.each do |ofv|
+          next unless ofv.created_at <= @generate_started_at
+          DarwinCore::ResourceRelationship.adapt( ofv, observation: observation, core: @opts[:core] )
+          csv << DarwinCore::ResourceRelationship::TERMS.map{ |field, uri, default, method| ofv.send( method || field ) }
         end
       end
     end
@@ -561,61 +605,6 @@ module DarwinCore
 
     def make_vernacular_names_data
       DarwinCore::VernacularName.data( @opts )
-    end
-
-    def make_api_all_taxon_data
-      headers = [ "taxonID", "scientificName", "parentNameUsageID", "taxonRank" , "vernacularName", "wikipedia_url" ]
-      fname = "taxa.csv"
-      tmp_path = File.join(@opts[:work_path], fname)
-
-      params = { is_active: true }
-      last_id = 0
-      start_time = Time.now
-      rows_written = 0
-      total_results = nil
-      localization_place_id = Place.find_by_name("United States").try(:id)
-      CSV.open(tmp_path, "w") do |csv|
-        csv << headers
-        beginning_or_more_results = true
-        while beginning_or_more_results
-          begin
-            response = INatAPIService.taxa( params.merge({
-              order_by: "id",
-              order: "asc",
-              per_page: 500,
-              id_above: last_id,
-              preferred_place_id: localization_place_id,
-              locale: "en"
-            }), { retry_delay: 2.0, retries: 30 })
-            if !response || !response.results || response.results.length == 0
-              beginning_or_more_results = false
-              break
-            end
-            total_results ||= response.total_results
-            response.results.each do |taxon|
-              csv << [
-                taxon["id"],
-                taxon["name"],
-                taxon["parent_id"],
-                taxon["rank"],
-                taxon["preferred_common_name"],
-                taxon["wikipedia_url"]
-              ]
-            end
-            last_id = response.results.last["id"]
-            rows_written += response.results.length
-            running_seconds = Time.now - start_time
-            rows_per_second = ( rows_written / running_seconds ).round( 2 )
-            estimated_remaining_time = ( ( total_results - rows_written ) / rows_per_second ).round( 2 )
-            logger.debug "Taxa: #{rows_written} rows, #{rows_per_second}r/s, estimated #{estimated_remaining_time}s left"
-          rescue Exception => e
-            pp e
-            beginning_or_more_results = false
-            break
-          end
-        end
-      end
-      tmp_path
     end
 
     def self.partition_range( start_id, max_id, partitions = 1 )
@@ -676,8 +665,8 @@ module DarwinCore
         params[:min_id] = chunk_start_id
         params[:max_id] = [chunk_start_id + search_chunk_size - 1, end_id].min
         try_and_try_again( [
-                  Elasticsearch::Transport::Transport::Errors::ServiceUnavailable,
-                  Elasticsearch::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
+                  Elastic::Transport::Transport::Errors::ServiceUnavailable,
+                  Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
           Observation.search_in_batches( params.merge(
             per_page: 1000
           ), logger: logger ) do |batch|
@@ -703,6 +692,14 @@ module DarwinCore
               ! ( ( @opts[:community_taxon] && observation.community_taxon.blank? ) ||
                   ( max_observation_created && observation.created_at > max_observation_created ) ||
                   ( last_seen_observation_id && observation.id <= last_seen_observation_id ) )
+            end
+            unless @opts[:include_humans] || ::Taxon::HOMO.blank? || ::Taxon::HUMAN.blank?
+              filtered_obs = filtered_obs.select do | observation |
+                observation.taxon_id != ::Taxon::HOMO.id &&
+                  observation.taxon_id != ::Taxon::HUMAN.id &&
+                  observation.community_taxon_id != ::Taxon::HOMO.id &&
+                  observation.community_taxon_id != ::Taxon::HUMAN.id
+              end
             end
             batch.uniq!
             batch.sort!

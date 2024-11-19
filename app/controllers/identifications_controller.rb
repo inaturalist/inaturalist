@@ -11,6 +11,7 @@ class IdentificationsController < ApplicationController
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 
     c.params.merge(:sequence => Digest::MD5.hexdigest(c.params[:sequence]))
   }
+  prepend_around_action :enable_replica, only: [:by_login]
 
   def index
     per_page = 50
@@ -76,6 +77,9 @@ class IdentificationsController < ApplicationController
     params[:page] = 1 unless params[:page] > 0
     user_filter = { term: { "user.id": @selected_user.id } }
     ownership_filter = { term: { "own_observation": false } }
+    unless logged_in? && current_user == @selected_user
+      hidden_filter = { term: { hidden: false } }
+    end
     date_parts = Identification.conditions_for_date("col", params[:on])
     # only if conditions_for_date determines a valid range will it return
     # an array of [ condition_to_interpolate, min_date, max_date ]
@@ -86,7 +90,7 @@ class IdentificationsController < ApplicationController
       ]
     end
     result = Identification.elastic_search(
-      filters: [ user_filter, date_filters, ownership_filter ].flatten.compact,
+      filters: [ user_filter, date_filters, ownership_filter, hidden_filter ].flatten.compact,
       size: limited_per_page,
       from: (params[:page] - 1) * limited_per_page,
       sort: {
@@ -102,11 +106,23 @@ class IdentificationsController < ApplicationController
       h._source.id
     end
     # fetch the Identification instances and preload
-    instances = Identification.where(id: ids).order(id: :desc).includes(
-      { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
-      { taxon: [{taxon_names: :place_taxon_names}, :photos] },
-      :user
-    )
+    instances = Identification.where( id: ids ).order( id: :desc ).includes( {
+      observation: [
+        { identifications: :moderator_actions },
+        :user,
+        { photos: [:file_prefix, :file_extension, :flags, :moderator_actions] },
+        { taxon: [
+          { taxon_names: :place_taxon_names },
+          :photos
+        ] }
+      ]
+    }, {
+      taxon: [
+        { taxon_names: :place_taxon_names },
+        { photos: [:file_prefix, :file_extension, :flags, :moderator_actions] }
+      ]
+    },
+      :user, :moderator_actions )
     # turn the instances into a WillPaginate Collection
     @identifications = WillPaginate::Collection.create(params[:page], limited_per_page,
       result.response.hits.total.value) do |pager|
@@ -180,13 +196,19 @@ class IdentificationsController < ApplicationController
           end
           redirect_to @identification.observation and return
         end
-        
+
         format.json do
-          @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
-          render :json => @identification.to_json(
-            :methods => [:html, :vision], 
-            :include => {
-              :observation => {:methods => [:iconic_taxon_name]}
+          response_methods = [:vision]
+          unless params[:no_html]
+            @identification.html = view_context.render_in_format(
+              :html, partial: "identifications/identification"
+            )
+            response_methods << :html
+          end
+          render json: @identification.to_json(
+            methods: response_methods,
+            include: {
+              observation: { methods: [:iconic_taxon_name] }
             }
           ).html_safe
         end

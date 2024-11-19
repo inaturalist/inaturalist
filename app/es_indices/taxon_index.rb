@@ -16,7 +16,8 @@ class Taxon < ApplicationRecord
       :user,
       :flags,
       :file_extension,
-      :file_prefix
+      :file_prefix,
+      :moderator_actions
     ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -83,6 +84,7 @@ class Taxon < ApplicationRecord
         indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
         indexes :is_valid, type: "boolean"
         indexes :locale, type: "keyword"
+        indexes :lexicon, type: "keyword"
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, type: "text",
           analyzer: "autocomplete_analyzer",
@@ -106,6 +108,7 @@ class Taxon < ApplicationRecord
       indexes :rank, type: "keyword"
       indexes :rank_level, type: "scaled_float", scaling_factor: 100
       indexes :statuses do
+        indexes :id, type: "integer"
         indexes :authority, type: "keyword"
         indexes :geoprivacy, type: "keyword"
         indexes :iucn, type: "byte"

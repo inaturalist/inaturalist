@@ -133,4 +133,44 @@ describe Comment do
     end
   end
 
+  describe "deletable_by?" do
+    it "is not deletable by nil users" do
+      expect( Comment.make!.deletable_by?( nil ) ).to be false
+    end
+
+    it "is deletable by the creator" do
+      c = Comment.make!
+      expect( c.deletable_by?( c.user ) ).to be true
+    end
+
+    it "is deletable by the creator of the parent" do
+      o = Observation.make!
+      c = Comment.make!( parent: o )
+      expect( o.user_id ).to_not eq c.user_id
+      expect( c.deletable_by?( o.user ) ).to be true
+    end
+
+    it "is not deletable by the creator of the parent if the parent is a Flag" do
+      f = Flag.make!
+      c = Comment.make!( parent: f )
+      expect( f.user_id ).to_not eq c.user_id
+      expect( c.deletable_by?( f.user ) ).to be false
+    end
+
+    it "is not deletable by the creator of the parent if the parent is a TaxonChange" do
+      tc = make_taxon_swap
+      c = Comment.make!( parent: tc )
+      expect( tc.user_id ).to_not eq c.user_id
+      expect( c.deletable_by?( tc.user ) ).to be false
+    end
+
+    it "is deletable by admins" do
+      expect( Comment.make!.deletable_by?( make_admin ) ).to be true
+    end
+
+    it "is not deletable by anyone else" do
+      expect( Comment.make!.deletable_by?( make_curator ) ).to be false
+      expect( Comment.make!.deletable_by?( User.make! ) ).to be false
+    end
+  end
 end

@@ -181,7 +181,7 @@ def work_on_collection(eol_collection_id)
     taxon_concepts.each do |node|
       name = node.at('name').text
       puts "\t #{name}"
-      list_item = TaxonName.strip_author(Taxon.remove_rank_from_name(FakeView.strip_tags(name)))
+      list_item = TaxonName.strip_author(Taxon.remove_rank_from_name(ApplicationController.helpers.strip_tags(name)))
       puts "\t #{list_item}"
       object_id = node.at(:object_id).text
       collection_item_dwc_names << list_item

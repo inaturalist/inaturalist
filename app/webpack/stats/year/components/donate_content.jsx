@@ -14,7 +14,7 @@ const DonateContent = ( { year, data, isTouchDevice } ) => (
         </h3>
         <p
           dangerouslySetInnerHTML={{
-            __html: I18n.t( "views.stats.year.donate_desc_html", {
+            __html: I18n.t( "views.stats.year.donate_desc2_html", {
               team_url: "https://www.inaturalist.org/pages/about",
               seek_url: "https://www.inaturalist.org/pages/seek_app",
               year

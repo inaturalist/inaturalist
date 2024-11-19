@@ -3,8 +3,9 @@ import inatjs from "inaturalistjs";
 import moment from "moment-timezone";
 import util from "../util";
 
-const Project = class Project {
+const Project = class Project extends inatjs.Project {
   constructor( attrs, additionalSearchParams = { } ) {
+    super( attrs );
     Object.assign( this, attrs );
     this.is_traditional = this.project_type !== "collection" && this.project_type !== "umbrella";
     this.is_umbrella = ( this.project_type === "umbrella" );
@@ -21,18 +22,24 @@ const Project = class Project {
         const MappedClass = mappings[rule.operand_type];
         const attr = MappedClass.name.toLowerCase( );
         if ( rule[attr] ) {
-          return Object.assign( { }, rule, { [attr]: new MappedClass( rule[attr] ) } );
+          return { ...rule, [attr]: new MappedClass( rule[attr] ) };
         }
       }
       return rule;
     } );
     this.createSpecificRuleAttributes( );
     this.createRulePreferenceAttributes( );
+    const updatedSecondsAgo = moment( ).diff( this.updated_at, "seconds" );
     this.search_params = {
       project_id: this.id,
-      ttl: 900,
-      v: moment( this.updated_at ).format( "x" )
+      ttl: 900
     };
+    if ( updatedSecondsAgo < 900 ) {
+      // the project was recently updated. Add a parameter ?v to the query,
+      // representing the value of updated_at, so results cached with
+      // potentially old search parameters are not used
+      this.search_params.v = moment( this.updated_at ).format( "x" );
+    }
     if ( this.is_traditional ) {
       this.search_params.collection_preview = true;
     }

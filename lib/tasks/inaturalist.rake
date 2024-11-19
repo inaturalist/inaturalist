@@ -47,33 +47,35 @@ namespace :inaturalist do
   end
 
   desc "Delete expired updates"
-  task :delete_expired_updates => :environment do
+  task :delete_expired_updates, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     earliest_id = CONFIG.update_action_rollover_id || 1
-    min_id = UpdateAction.where( "id >= ?", earliest_id ).where(["created_at < ?", 3.months.ago]).minimum( :id )
-    return unless min_id
+    min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
     # using an ID clause to limit the number of rows in the query
     last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
-      where("id >= #{min_id} AND id < #{ min_id + 2000000 }").maximum( :id )
-    return unless last_id_to_delete
-    UpdateAction.delete_and_purge("id >= #{ min_id } AND id <= #{ last_id_to_delete }")
-    # delete anything that may be left in Elasticsearch
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-        body: { query: { range: { id: { gte: min_id, lte: last_id_to_delete } } } })
-    end
+      where( "id >= #{min_id} AND id < #{min_id + 1_000_000}" ).maximum( :id )
+    next unless last_id_to_delete
 
-    # # suspend subscriptions of users with no viewed updates
-    # Update.select(:subscriber_id).group(:subscriber_id).having("max(viewed_at) IS NULL").
-    #   order(:subscriber_id).pluck(:subscriber_id).each_slice(500) do |batch|
-    #   # get this batch's users
-    #   users_to_suspend = User.where(id: batch.compact).where(subscriptions_suspended_at: nil)
-    #   # send them emails that we're suspending their subscriptions
-    #   users_to_suspend.each do |u|
-    #     Emailer.user_updates_suspended(u).deliver_now
-    #   end
-    #   # suspend their subscriptions
-    #   User.where(id: users_to_suspend.pluck(:id)).update_all(subscriptions_suspended_at: Time.now)
-    # end
+    UpdateAction.delete_and_purge( "id >= #{earliest_id} AND id <= #{last_id_to_delete}" )
+    # delete anything that may be left in Elasticsearch
+    try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Elasticsearch::Model.client.delete_by_query( index: UpdateAction.index_name,
+        body: {
+          query: {
+            range: {
+              id: {
+                gte: min_id,
+                lte: last_id_to_delete
+              }
+            }
+          }
+        } )
+    end
+    task_logger&.end
   end
 
   desc "Delete expired S3 photos"
@@ -85,7 +87,7 @@ namespace :inaturalist do
       where("photos.id IS NULL").
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |dp|
+        6.months.ago, 1.month.ago).includes( :photo ).find_each do |dp|
       begin
         dp.remove_from_s3( s3_client: client )
       rescue
@@ -212,15 +214,27 @@ namespace :inaturalist do
 
 
   desc "Delete orphaned and expired photos"
-  task :delete_orphaned_and_expired_photos => :environment do
+  task :delete_orphaned_and_expired_photos, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     Rake::Task["inaturalist:delete_orphaned_photos"].invoke
     Rake::Task["inaturalist:delete_expired_photos"].invoke
+    task_logger&.end
   end
 
   desc "Delete orphaned and expired sounds"
-  task :delete_orphaned_and_expired_sounds => :environment do
+  task :delete_orphaned_and_expired_sounds, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
+    end
+    task_logger&.start
     Rake::Task["inaturalist:delete_orphaned_sounds"].invoke
     Rake::Task["inaturalist:delete_expired_sounds"].invoke
+    task_logger&.end
   end
 
   def get_i18n_keys_in_rb
@@ -269,6 +283,8 @@ namespace :inaturalist do
       "date.formats.month_day_year",
       "date_added",
       "date_format.month",
+      "date_observed",
+      "date_observed_",
       "date_picker",
       "date_updated",
       "default_",
@@ -281,6 +297,7 @@ namespace :inaturalist do
       "flowering_phenology",
       "frequency",
       "fungi",
+      "geo_score",
       "green",
       "grey",
       "imperiled",
@@ -397,7 +414,8 @@ namespace :inaturalist do
       "yellow",
       "you_are_setting_this_project_to_aggregate",
       "i18n.inflections.@gender",
-      "i18n.inflections.@vow_or_con"
+      "i18n.inflections.@vow_or_con",
+      "i18n.inflections.@iconic_taxon"
     ]
     %w(
       all_rank_added_to_the_database
@@ -410,7 +428,7 @@ namespace :inaturalist do
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
     all_keys += ControlledTerm.attributes.map{|a|
-      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.parameterize.underscore}_annotation" }
     }.flatten
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
@@ -589,12 +607,24 @@ namespace :inaturalist do
   end
 
   desc "Remove expired sessions"
-  task :remove_expired_sessions => :environment do
-    expiration_date = 7.days.ago
-    ActiveRecord::SessionStore::Session.select(:id, :updated_at).find_in_batches(batch_size: 10000) do |batch|
-      expired_ids = batch.select{ |s| s.updated_at < expiration_date }.map(&:id)
-      ActiveRecord::SessionStore::Session.where(id: expired_ids).delete_all
+  task :remove_expired_sessions, [:log_task_name] => :environment do | _, args |
+    log_task_name = args[:log_task_name]
+    if log_task_name
+      task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
+    task_logger&.start
+    expiration_date = 7.days.ago
+    ActiveRecord::SessionStore::Session.select(:session_id, :updated_at).find_in_batches(batch_size: 1000) do |batch|
+      expired_ids = batch.select{ |s| s.updated_at < expiration_date }.map(&:id)
+      ActiveRecord::SessionStore::Session.where(session_id: expired_ids).delete_all
+    end
+    task_logger&.end
   end
 
+  desc "Unlock unfailed delayed jobs"
+  task unlock_unfailed_delayed_jobs: :environment do
+    Delayed::Job.where( "locked_at IS NOT NULL OR locked_by IS NOT NULL" ).
+      where( "failed_at IS NULL" ).
+      update( locked_by: nil, locked_at: nil )
+  end
 end

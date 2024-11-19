@@ -63,7 +63,7 @@ function mapDispatchToProps( dispatch ) {
       dispatch( untrustUser( user ) );
     },
     showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) ),
-    hideContent: item => dispatch( showModeratorActionForm( item ) ),
+    hideContent: item => dispatch( showModeratorActionForm( item, "hide" ) ),
     unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) ),
     updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) )
   };

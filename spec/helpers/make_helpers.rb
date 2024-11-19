@@ -1,36 +1,37 @@
 module MakeHelpers
   def make_annotation( options = {} )
-    attribute = ControlledTerm.make!
-    value = ControlledTerm.make!( is_value: true )  
-    attribute.controlled_term_values << ControlledTermValue.new(
-      controlled_attribute: attribute,
-      controlled_value: value
-    )
-    make_method = options.delete(:create) ? :make! : :make
+    attribute = make_controlled_term_with_label
+    value = make_controlled_value_with_label( nil, attribute )
+    make_method = options.delete( :create ) ? :make! : :make
     Annotation.send( make_method, options.merge(
       controlled_attribute: attribute,
-      controlled_value: value  
+      controlled_value: value
     ) )
   end
 
-  def make_controlled_term_with_label( label, options = { } )
-    controlled_term = ControlledTerm.make!( {
+  def make_controlled_term_with_label( label = nil, options = {} )
+    label_attrs = label ? { label: label } : {}
+    controlled_term = ControlledTerm.make( {
       active: true,
-      is_value: false
+      is_value: false,
+      labels: [
+        ControlledTermLabel.make( label_attrs )
+      ]
     }.merge( options ) )
-    controlled_term.labels << ControlledTermLabel.make!(
-      label: label,
-      controlled_term: controlled_term
-    )
+    controlled_term.save!
     controlled_term
   end
 
-  def make_controlled_value_with_label( label, controlled_attribute )
+  def make_controlled_value_with_label( label, controlled_attribute = nil )
+    controlled_attribute ||= make_controlled_term_with_label
     controlled_term = make_controlled_term_with_label( label, is_value: true )
     ControlledTermValue.make!(
       controlled_attribute: controlled_attribute,
       controlled_value: controlled_term
     )
+    # tests that passed in the attribute and expect to use it to make an
+    # annotation need the attribute to know it has this value
+    controlled_attribute.reload
     controlled_term
   end
 
@@ -41,11 +42,11 @@ module MakeHelpers
   def make_curator(opts = {})
     make_user_with_role(:curator, opts)
   end
-  
+
   def make_admin
     make_user_with_role(User::JEDI_MASTER_ROLE)
   end
-  
+
   def make_user_with_role(role_name, opts = {})
     user = User.make!(opts)
     role = Role.find_by_name( role_name ) || Role.make!( name: role_name.to_s )
@@ -267,7 +268,7 @@ module MakeHelpers
     if existing_in_memory = instance_variable_get( "@#{varname}" )
       return existing_in_memory
     end
-    if existing_in_db = Taxon.find_by_name( name )
+    if ( existing_in_db = Taxon.find_by_name( name ) )
       instance_variable_set( "@#{varname}", existing_in_db )
       return instance_variable_get( "@#{varname}" )
     end
@@ -291,8 +292,11 @@ module MakeHelpers
 
   def make_atlas_with_presence( options = { } )
     taxon = options[:taxon]
-    presence_place = options.delete(:place) || make_place_with_geom( place_type: Place::COUNTRY, admin_level: Place::COUNTRY_LEVEL )
-    listed_taxon = presence_place.check_list.add_taxon( taxon )
+    presence_place = options.delete(:place) || make_place_with_geom(
+      place_type: Place::COUNTRY,
+      admin_level: Place::COUNTRY_LEVEL
+    )
+    presence_place.check_list.add_taxon( taxon )
     PlaceDenormalizer.denormalize
     Atlas.make!( options )
   end

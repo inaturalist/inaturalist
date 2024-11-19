@@ -24,12 +24,18 @@ ca:
   x_identifications_:
     one: '1 identificació'
     other: '%{count} identificacions'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICACIÓ'
+    other: '<span class="count">%{count}</span> IDENTIFICACIONS'
   #Number of people who have added identifications
   x_identifiers_html:
     #Number of people who have added identifications
     one: '<span class="count">%{count}</span> identificador'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> identificadors'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span>ID fetes per altri'
+    other: '<span class="count">%{count}</span>IDs fetes per altri'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomes"
@@ -68,6 +74,9 @@ ca:
   x_observations_html:
     one: "<span class='count'>1</span> observació"
     other: "<span class='count'>%{count}</span> observacions"
+  x_observations_caps_html:
+    one: "<span class=\"count\">%{count}</span> OBSERVACIÓ"
+    other: "<span class='count'>%{count}</span> OBSERVACIONS"
   x_observations_link_html:
     one: "<a href='%{url}'>1 observació</a>"
     other: "<a href='%{url}'>%{count} observacions</a>"
@@ -83,6 +92,9 @@ ca:
   x_people:
     one: "%{count} persona"
     other: "%{count} persones"
+  x_people_html:
+    one: '<span class="count">%{count}</span> persona'
+    other: '<span class="count">%{count}</span> persones'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} Persones</strong> han ajudat %{user} amb <strong>%{y} IDs</strong>"
   x_photos:
     one: "1 foto"
@@ -96,6 +108,9 @@ ca:
   x_species:
     one: '1 espècie'
     other: '%{count} espècies'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> ESPÈCIE"
+    other: "<span class='count'>%{count}</span> ESPÈCIES"
   x_species_html:
     one: "<span class='count'>1</span> espècie"
     other: "<span class='count'>%{count}</span> espècies"
@@ -185,8 +200,6 @@ ca:
   about_this_bioblitz: Quant aquest bioblitz
   about_this_map: Quant a aquest mapa
   about_this_project: Sobre aquest projecte
-  about_trips_html: |
-    <h4>Els viatges permeten recopilar dades de presència/absència donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les dades sobre presència/absència inclouen informació sobre esforç de mostreig que és útil per a l'anàlisi científica com els estudis de distribució (les observacions d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong> Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca) </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar una taula de registres de presència/absència d’una espècie a partir de viatges i de les observacions associades. <a href='%{url}'>Més informació </a></p>
   about_trusting_projects: Sobre la Confiança en Projectes
   about_trusting_projects_options_any: Totes les vostres observacions en aquest projecte
   about_trusting_projects_options_any_desc: |-
@@ -212,6 +225,12 @@ ca:
   #positional_accuracy attribute of an observation, which is really more like
   #positional uncertainty
   acc: 'Exactitud (m)'
+  #Filter for observations with positional accuracy above a certain value
+  acc_above: Precisió superior a
+  #Filter for observations with positional accuracy below a certain value
+  acc_below: Precisió inferior a
+  #Filter for observations with positional accuracy below a certain value or missing
+  acc_below_or_unknown: Precisió inferior o desconeguda
   account: Compte
   account_creation: Creació de compta
   account_settings: Configuració del compte
@@ -230,6 +249,7 @@ ca:
   active_taxon_status: Actiu
   active_users: Usuaris Actius
   activity: Activitat
+  activity_on_a_flag_for_x: Activitat en una marca per a %{x}
   adapted_by_name_from_a_work_by_original: "Adaptat per %{name} a partir d'un treball de %{original}"
   add: Afegiu
   add_a_batch_of_observations: Afegiu un grup d'observacions
@@ -259,6 +279,8 @@ ca:
   add_annotations_for_controlled_attribute:
     sex: Afegiu anotacions sobre "Sexe"
     plant_phenology: Afegiu anotacions sobre "Fenologia de la Planta"
+    flowers_and_fruits: Afegiu anotació per a "Flors i Fruits"
+    leaves: Afegiu anotacions sobre "Fulles"
     life_stage: Afegiu anotacions sobre "Estat Biològic"
     evidence_of_presence: Afegiu anotacions per "Evidència de Presència"
   add_another_flag: Afegiu una altra etiqueta.
@@ -294,9 +316,13 @@ ca:
   add_notes_about_this_taxon: Afegiu notes sobre aquest tàxon en aquest lloc, per exemple, on i quan hi és present.
   add_obs_from_a_link: "Afegiu observacions d'una llista %{link}"
   add_obs_from_a_list: Afegiu observacions d'una llista
+  add_observation_fields: Afegeix Camps d'Observació
   add_observations: Afegiu observacions
   add_observations_by_checking_off: Afegiu observacions seleccionant espècies d'una llista.
   add_observations_project: Afegiu observacions a aquest projecte
+  #Used for buttons to add observations where the words "Add"
+  #and "Observations" need to be styled differently
+  add_observations_split_html: "<span>Afegir</span> <span>Observacions</span>"
   #Prompt to add a new journal post
   add_one: Afegiu-ne un!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
@@ -326,6 +352,11 @@ ca:
   add_evidence_of_presence_track_annotation: 'Afegiu l''anotació "Evidència de Presència: Petjades"'
   add_evidence_of_presence_bone_annotation: 'Afegiu l''anotació "Evidència de Presència: Ossos"'
   add_evidence_of_presence_molt_annotation: 'Afegiu l''anotació "Evidència de Presència: Muda"'
+  add_evidence_of_presence_leafmine_annotation: 'Afegiu l''anotació "Evidència de presència: fulles mossegades"'
+  add_evidence_of_presence_hair_annotation: 'Afegir anotació "Evidència de Presència: Pèls"'
+  add_evidence_of_presence_egg_annotation: 'Afegiu l''anotació "Evidència de presència: Ous"'
+  add_evidence_of_presence_construction_annotation: 'Afegiu l''anotació "Evidència de presència: Construccions".'
+  add_established_not_established: 'Afegiu l''anotació "Establiment: No establerta".'
   #As in a Taxon Framework Relationship
   add_relationship: 'Afegeix una relació'
   #As in a Guide Section
@@ -367,6 +398,8 @@ ca:
   added_by: Afegit per
   added_by_user_on_date_html: "Afegit per %{user} el %{date}"
   added_on_datetime: "Afegit el %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Rol afegit
   added_to_favorites_html: |
     Afegit <a href="%{url}">als preferits</a>
   adding: "Afegint..."
@@ -380,14 +413,18 @@ ca:
   agree_: D'acord
   agree?: Hi estàs d'acord?
   agree_with_current_taxon: D'acord amb actual taxon
+  agree_with_observation_taxon: D'acord amb el tàxon d'observació
   agreeing: Acceptant...
   aka: alies
   #Noun, title of a popup alerting you to something
   alert: Alerta
   all: Tots
+  #Title for a list of all 3rd party applications
+  all_applications: Totes les aplicacions
   all_comments: Tots els comentaris
   all_flags_must_be_resolved: Cal completar totes les etiquetes
   all_life: Tota la vida
+  all_media_must_be_unhidden: Tots els mitjans s'han d'ocultar
   all_names: Tots els noms
   all_observations: Totes les observacions
   all_photos: Totes les fotos
@@ -503,7 +540,6 @@ ca:
   analyze_clashes: Analitza els desacords no intencionats
   analyze_ids: Analiza IDs
   ancestor_taxon: Tàxon Ancestral
-  and: i
   and_other_taxa: "&amp; altres tàxons"
   android: Android
   animals: Animals
@@ -646,6 +682,7 @@ ca:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Esteu segur que voleu eliminar aquesta observació de %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Esteu segur que voleu eliminar aquesta espècie o grup de la llista de comprovació de %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Esteu segur de voler marcar aquest usuari com a spammer?
   associated_observations: Observacions associades
   associated_taxa: Tàxons associats
   attention: Atenció
@@ -673,6 +710,10 @@ ca:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
   attribution: Reconeixement
+  #Shows photo attribution along with who uploaded the photo. %
+  #{attribution} will be one of the copyright.* keys, like
+  #copyright.all_rights_reserved. @vow_or_con refers to %{user}
+  attribution_uploaded_by_user: "%{attribution}, pujat per %{user}"
   authority_list:
     iucn_red_list: Llista vermella d'UICN
     natureserve: NatureServe
@@ -761,11 +802,11 @@ ca:
   bioblitz: Bioblitz
   birds: aus
   birthday: Aniversari
-  black: negre
+  block: Bloquejar
+  blocking_description: El bloqueig impedeix qualsevol comunicació entre vostè i un altre usuari. És per a situacions en què un altre usuari pot posar en risc la vostra seguretat, com ara l'assetjament o altres comportaments abusius.
   block_removed: Blocatge eliminat
   blocked_users: Usuaris bloquejats
   blog_widget: Giny del blog
-  blue: blau
   blue_butterfly_etc: "blau, papallona, etc."
   body: Cos
   #Common pattern for when we show some label and some value, e.g. "Name: Tony" or "Apr: 31 observations"
@@ -779,7 +820,6 @@ ca:
   #shown
   breadcrumbs_description: "Això reemplaçarà l'h1 i la configuració per defecte de l'acció; assegureu-vos d'incloure-hi totes les opcions importants per a aquest projecte i recordeu que l'amplada màxima permesa és de 950 px."
   brief_caption: Breu llegenda
-  brown: marró
   browse: Navega
   browse_all_projects: Navegar per tots els projectes
   browse_all_species: Examina totes les espècies
@@ -789,7 +829,6 @@ ca:
   browse_species_that_occur_near_this_observation: Veure espècies que es trobin prop d'aquesta observació.
   built_with_site_guides_html: "Fet amb les <a href=\"%{url}\">Guies %{site_name}</a>"
   bulk_import_of_filename_is_complete: "La importació massiva de %{filename} s'ha completat"
-  by: per
   by_everyone: De tothom
   by_user: "per %{user}"
   by_you: Pròpies
@@ -837,6 +876,8 @@ ca:
   change_group: Cambiar grupo
   change_icon: Canvia la icona
   change_password: Canvieu la contrasenya
+  #Message shown after you change your email address
+  change_to_email_requested_html: Canvi sol·licitat a <strong>%{email}</strong>. Comproveu el vostre correu electrònic en aquesta adreça per confirmar el canvi.
   change_types:
     activated_soon: activat fa poc
     change_types: Tipus de canvis
@@ -850,13 +891,7 @@ ca:
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     split_into: dividit en
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    merge_into: combinat a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     merged_into: es va combinar a
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replaced_by: reemplaçat per
-    #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
-    replace_with: reemplaçat amb
     #Used on https://www.inaturalist.org/taxon_changes between two complex representations of the taxa this change affected
     replaced_with: reemplaçat per
     dropped: eliminat
@@ -925,6 +960,8 @@ ca:
   click_the_map: "<strong>Feu clic al mapa</strong> per afegir-hi una localització."
   close: Tanca
   code: Codi HTML
+  #People who have contributed code to iNat open-source software projects
+  code_contributors: Col·laboradors de codi
   colors: Colors
   columns: Columnes
   combine: Combinar
@@ -998,8 +1035,8 @@ ca:
     L’actual Model de Visió per Ordinador reconeix aquest tàxon, per tant, podria ser inclòs en suggeriments automatitzats amb l'etiqueta "Visualment similar".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Pendent
-  computer_vision_model_pending_desc: |
-    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper" no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien amb cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon obtingui la inclusió durant el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
+  computer_vision_model_pending_desc2: |
+    L’actual Model de Visió per Ordinador no reconeix aquest tàxon, per tant podria incloure's com a suggeriments automatitzats amb l'etiqueta "Proper", no tindrà l'etiqueta "Visualment similar". Malgrat els requisits pel model d'inclusió canvien per a cada model, generalment la inclusió es basa en el nombre d'observacions, per tant, per augmentar la possibilitat que aquest tàxon sigui inclòs en el següent model de formació, afegiu o identifiqueu més observacions d’aquest tàxon.
   concept_status: Concepte de la situació
   confidential: Confidencial
   configure: Configura
@@ -1009,6 +1046,10 @@ ca:
   confirm_new_password: Confirmeu la contrasenya nova
   confirm_now: Confirmeu ara
   confirm_your_info: Confirmeu les vostres dades
+  #date will be formated with momentjs.datetime_with_zone_no_year
+  confirmation_email_sent_at_datetime: Correu electrònic de confirmació enviat el %{datetime}
+  #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
+  confirmed_on_date: Confirmat el %{date}
   confirming_ids: Confirmació d'Identificació
   confirming_ids_description: Si ho desactiveu no sereu informats quan algú fa una identificació que correspon amb la vostra.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1019,7 +1060,6 @@ ca:
   connected_accounts_titlecase: Comptes connectats
   connecting_flickr: "Connectant-se a Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Connecteu el Flickr novament per a autoritzar els permesos d’escriptura
-  connecting_to_facebook: "Connectant-se a Facebook..."
   connecting_your_inat_account_to_accounts_other_sites: "Connecteu el vostre compte de %{site_name} amb comptes en altres llocs permetrà que entreu a %{site_name} amb les dades d'aquests llocs."
   cannot_be_changed_during_a_content_freeze: No es pot canviar mentre el contingut està congelat
   conservation_status: Estat de conservació
@@ -1063,6 +1103,10 @@ ca:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Qualsevol
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Qualsevol
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Qualsevol
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Qualsevol
@@ -1072,10 +1116,20 @@ ca:
     male: Mascle
     female: Femella
     plant_phenology: Fenologia de la planta
+    flowers_and_fruits: Flors i Fruits
     budding: Gemmació
     flower_budding: Gemmes florals
     flowering: Floració
     fruiting: Fructificació
+    no_flowers_or_fruits: Sense Flors o Fruits
+    flower_buds: Gemmes de Flors
+    flowers: Flors
+    fruits_or_seeds: Fruits o Llavors
+    leaves: Fulles
+    breaking_leaf_buds: Botons de les Fulles
+    green_leaves: Fulles Verdes
+    colored_leaves: Fulles acolorides
+    no_live_leaves: Sense Fulles Vives
     life_stage: Etapa biològica
     adult: Adult
     teneral: Imago tendre
@@ -1084,6 +1138,7 @@ ca:
     no_evidence_of_flowering: Sense evidència de Floració
     nymph: Nimfa
     larva: Larva
+    #Evidence of an egg of an organism
     egg: Ou
     juvenile: Juvenil
     alive_or_dead: Viu o Mort
@@ -1107,23 +1162,43 @@ ca:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Muda
+    #Evidence of an organism feeding between the dermal layers of a leaf
+    leafmine: Fulla mossegada
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: Pèl
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Construcció
+    #Does the observation belong to a non-established population or not
+    established: Establerta
+    #Organism is not a member of an established population
+    not_established: No establerta
   controlled_term_definitions:
     alive: L'organisme està viu i no mostra signes de probable mort imminent
+    bone: |
+      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
+    cannot_be_determined: No es pot determinar a partir de les dades aportades
     dead: L'organisme està mort o mostra signes de probable mort imminent
+    feather: Una o més plomes, no unides a un organisme
+    female: L'evidència indica que l'organisme pot produir òvuls per utilitzar-los en la reproducció sexual
     flower_budding: Es veuen les flors però no s'han obert
     flowering: Flors visibles, obertes, i encara fixades a la planta
     fruiting: Fruit visible i encara fixat a la planta
+    flowers: Almenys una flor oberta
+    flower_buds: Almenys una gemma de flor
+    fruits_or_seeds: Almenys un fruit o llavor
+    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
+    male: L'evidència indica que l'organisme pot produir espermatozoides per utilitzar-los en la reproducció sexual
+    molt: Restes de pell o exoesquelet
+    leafmine: Evidència d'alimentació entre les capes de la dermis d'una fulla
+    hair: Pèl que ja no està fixat a l'organisme del qual es va originar
+    egg: Part o ou sencer
+    construction: Quelcom construït per un animal, fet amb materials o excavat
     no_evidence_of_flowering: Les imatges no aporten evidències d'estructures reproductives
-    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
-    cannot_be_determined: No es pot determinar a partir de les dades aportades
-    feather: Una o més plomes, no unides a un organisme
+    not_established: L'organisme pertany a una població no establerta la qual cosa pot incloure mascotes alliberades/escapades, transportades i divagants.
     organism: Tot o part d'un organisme
     scat: Matèria fecal (no egagròpiles de rapinyaires o altres materials regurgitats)
+    teneral: Adult que ha emergit recentment però encara no ha assolit la seva forma adulta definitiva
     track: Impressió al terra o la neu feta per un organisme
-    bone: |
-      Predominantment restes d'endoesquelet; els ossos parcialment exposats d'altra forma en organismes intactes haurien d'etiquetar-se com a "organisme"
-    molt: Restes de pell o exoesquelet
-    gall: Creixement deforme d'un teixit vegetal causat per un organisme paràsit
   controls: Controls
   convert: Convertiu
   coordinate_systems: Sistemes de coordenades
@@ -1139,6 +1214,8 @@ ca:
   copy_and_paste_the_following_code_to: Copieu i enganxeu el codi següent per incrustar aquesta avaluació en una altra pàgina web.
   copy_and_paste_this_into_your_own_html: Copieu i enganxeu en un HTML.
   copy_guide_taxon_to: Copia guia del tàxon a…
+  copy_to_clipboard: Copia al porta-retalls
+  copied!: Copiat!
   copyright:
     some_rights_reserved: alguns drets reservats
     some_rights_reserved_by: "(c) %{name}, alguns drets reservats (%{license_short})"
@@ -1232,10 +1309,10 @@ ca:
     No demostra que tingui un comportament adequat.
   #Message shown when the viewer is not yet elligible to apply to become a
   #curator
-  curator_application_inelligible: |
-    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies i afegit 100 millores de la identificació de les observacions, incloses les vostres (heu afegit %{num_idents}). Quan compliu els dos requisits, torneu aquí i podreu enviar la vostra sol·licitud.
-  curator_application_inelligible_error: |
-    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies i afegit 100 millores de la identificació de les observacions, incloses les vostres.
+  curator_application_inelligible2: |
+    Per sol·licitar ser un supervisor del lloc, heu d'haver tingut un compte durant 60 dies o més, heu d'haver afegit almenys 5 marques i heu d'haver afegit 100 identificacions de millora a les observacions de qualsevol persona, incloses les vostres pròpies (heu afegit %{num_idents}). Quan hàgiu complert aquests requisits, torneu aquí i podreu enviar la sol·licitud.
+  curator_application_inelligible_error2: |
+    Per sol·licitar ser un supervisor del lloc heu d'haver tingut un compte un mínim de 60 dies, haver afegit almenys 5 marques i haver afegit 100 identificacions de millora a les observacions de qualsevol, incloses les vostres.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Sol·licitud com a Supervisor lliurada
   #Header
@@ -1294,6 +1371,8 @@ ca:
     Únicament podeu sol·licitar ser Supervisor si:
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Heu estat afegint identificacions i/o observacions els darrers mesos i voleu continuar fent-ho.
+  curator_application_you_should_apply_if_you_have_added_flags: |
+    Heu demostrat que enteneu el procés de supervisió afegint unes quantes marques.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
@@ -1302,6 +1381,8 @@ ca:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Podeu seguir un comportament adequat a iNaturalist i complir les Directrius de la Comunitat. Amb la capacitat de supervisió s'espera que sigueu un usuari exemplar d'iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Guia del Supervisor
   curators_changed_for_x_html: "Supervisors han canviat per a %{x}"
   curators: Supervisors
   curators_can_remove_observations_from: Els supervisors poden eliminar observacions del projecte i les seves identificacions es mostren en certes vistes (com a referència). A més, poden veure les coordenades enfosquides o privades del projecte.
@@ -1433,6 +1514,9 @@ ca:
   deviation: Desviació
   devise:
     confirmations:
+      confirmed: |
+        La teva adreça de correu electrònic s'ha confirmat correctament.
+      send_instructions: "Rebreu un correu electrònic amb instruccions per confirmar la vostra adreça de correu electrònic en pocs minuts."
       #Message a user sees when they try to manually trigger email
       #confirmation. This is a feature we'd like to use in the future.
       send_paranoid_instructions: |
@@ -1442,6 +1526,8 @@ ca:
       unauthenticated: 'Heu d''iniciar la sessió o registrar-vos abans de continuar'
       invalid: 'Correu electrònic o contrasenya incorrectes'
       invalid_token: 'Autenticació no vàlida'
+      unconfirmed: |
+        Si us plau, comproveu el vostre correu electrònic i premeu sobre l'enllaç del correu electrònic que heu rebut per confirmar el vostre compte.
       user:
         suspended: El vostre compte s'ha suspès
     sessions:
@@ -1459,13 +1545,31 @@ ca:
     registrations:
       destroyed: 'Adéu! El vostre compte s''ha cancel·lat correctament. Esperem tornar-te a veure aviat.'
       signed_up: 'Benvingut/da! Heu iniciat la sessió amb èxit.'
+      signed_up_but_inactive: "Heu iniciat la sessió amb èxit. Però, no heu pogut obrir la sessió perquè el vostre compte encara no està activat."
+      signed_up_but_locked: "Us heu registrat amb èxit. Però, no heu pogut iniciar la sessió perquè el vostre compte està bloquejat."
+      signed_up_but_unconfirmed: "S'ha enviat un missatge amb un enllaç de confirmació a la vostra adreça de correu electrònic. Si us plau, seguiu l'enllaç per activar el vostre compte."
       updated: 'Heu actualitzat el vostre compte amb èxit.'
+      updated_but_not_signed_in: "El vostre compte s'ha actualitzat correctament, però com que s'ha canviat la contrasenya, heu de tornar a iniciar la sessió."
     mailer:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Instruccions de confirmació
+      email_changed:
+        #Subject of an email sent when you try to change the email address
+        #associated with your account
+        subject: Canvi de correu electrònic sol·licitat
       reset_password_instructions:
         subject: 'Instruccions de regeneració de la contrasenya'
+  devise_confirmation_instructions_if_you_did_not: |
+    Si no us heu inscrit amb un compte a %{site_name}, ignoreu aquest correu electrònic.
+  devise_confirmation_instructions_please_click: |
+    Feu clic a l'enllaç següent per confirmar la vostra adreça de correu electrònic:
+  devise_confirmation_instructions_resend_instructions: |
+    Heu de tenir una adreça de correu electrònic activa per utilitzar l'iNaturalist. En sol·licitar un compte, hauríeu d'haver rebut un correu electrònic de confirmació amb un enllaç per fer clic i confirmar que la vostra adreça de correu electrònic funciona, però si no ho heu fet, podeu enviar-vos un altre correu electrònic de confirmació aquí.
+  devise_confirmation_instructions_send_confirmation_email: Envia un correu electrònic de confirmació
+  devise_email_changed_you_requested: Heu demanat un canvi de %{old_email} a %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Rebreu un correu electrònic a l'adreça nova per confirmar el canvi, però us ho volíem notificar a la vostra adreça antiga per si algú altre ha tingut accés al vostre compte i està intentant canviar-lo sense que ho sabeu. Si no heu canviat intencionadament la vostra adreça de correu electrònic, reenvieu aquest correu electrònic a help@inaturalist.org immediatament perquè ho puguem investigar.
   devise_reset_password_instructions_hello_email: Hola %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si no ho heu demanat vosaltres, si us plau, ignoreu aquest correu.
@@ -1511,6 +1615,8 @@ ca:
   donate: DONAR
   donate_again_caps: DONEU DE NOU
   donate_again_today_caps: DONEU DE NOU, AVUI
+  #Title for pages and sections that encourage people to donate to iNaturalist
+  donate_to_inaturalist: Feu una donació a iNaturalist
   done: Fet
   dont_have_an_account_sign_up_html: No teniu un compte?<strong>Registreu-vos</strong>
   dont_use_double_quotes: No utilitzeu cometes dobles en cap altre lloc
@@ -1531,9 +1637,15 @@ ca:
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Tàxons coberts cap a vall marcats
+  #Noun, as in a journal post that has not been published
   draft: esborrany
+  #Noun, as in a journal post that has not been published
   draft_: Esborrany
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Esborrany de %{user}
+  #Noun, as in a journal post that has not been published
   draft_saved: Esborrany desat!
+  #Noun, as in journal posts that has not been published
   drafts: Esborranys
   drag_and_drop_some_photos_or_sounds: Arrossegueu i deseu algunes fotos o sons
   #Button label for drawing a circular boundary for an observation search
@@ -1607,12 +1719,19 @@ ca:
   editing_this: Modificant %{elem}
   editing_x_in_y: "Editant %{x} en %{y}"
   editors: Editors
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Guia del Professor
   either_that_user_doesnt_exist_or: "Aquest usuari no existeix o ja l'esteu seguint."
   eligible_for_research_grade: Elegible per a grau de Recerca
   email: Correu
-  email_description: El vostre correu-e no es compartirà amb altres usuaris d'iNaturalist
   email_address_for_comments_and_other_feedback: Adreça de correu electrònic per a comentaris i altres comentaris
-  email_copyright: "Copyright &copy; %{x}, tots els drets reservats"
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Benvolgut/da %{user},
+  email_description: El vostre correu-e no es compartirà amb altres usuaris d'iNaturalist
+  email_conf_required_after_grace_period: |
+    La confirmació del correu electrònic és necessària a partir de %{requirement_date} i no heu confirmat la vostra adreça electrònica abans de la data límit. Si us plau reinicieu la vostra contrasenya per accedir al vostre compte.
+  email_copyright2: "&copy; %{year} iNaturalist, tots els drets reservats"
   email_notifications: Notificacions per correu electrònic
   embed: 'Insereix:'
   embed_place_widget: Insereix un giny de lloc
@@ -1645,6 +1764,9 @@ ca:
     native: desenvolupat en aquesta regió o arribà per mitjans no antropogènics
     endemic: nadiu i no succeeix a enlloc més
     introduced: va arribar a la regió per mitjans antropogènics
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Estima quines identificacions del tàxon d'entrada seran substituïdes per identificacions dels tàxons de sortida i que s'agruparan a un ancestre comú una vegada s'ha efectuat la divisió. Això pot trigar una estona per calcular-ho. Els enllaços de les observacions es truncaran en grups de 200.
   event_in_progress: Esdeveniment en curs
   event_stats: Estadístiques de l'Esdeveniment
   event_url: URL de l'Esdeveniment
@@ -1655,6 +1777,7 @@ ca:
   everywhere: a tot arreu
   exact: Exacte
   exact_date: Data exacta
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rang exacte
   except: excepte
   exclude_places: Excloure Llocs
@@ -1666,6 +1789,7 @@ ca:
   exit_full_screen: "Surt del mode de pantalla completa."
   examples_of_data_use_by_network_members: Exemples d'Ús de Dades per Membres de la Xarxa
   examples_of_ranking_organizations: Exemples de Classificació d'Organitzacions
+  expected_nearby: Esperat a prop
   explore: Exploreu-ne
   export: Exportar
   export_observations: Exporta observacions
@@ -1681,14 +1805,8 @@ ca:
   extinct_in_the_wild: Extingit en estat silvestre
   extra_properties: Propietats extres
   evidence_of_organism: Evidència d'organisme
+  evidence_related_to_single_subject: Evidència relacionada amb un únic individu
   facebook: Facebook
-  facebook_account_information: Informació del vostre compte de Facebook
-  facebook_account_not_linked: "L'usuari %{user} no té un enllaç a un compte de facebook, per tant %{site_name} no té permís per accedir a aquesta foto."
-  facebook_access_token_expired: "L'accés ha caducat. %{user} ha de tornar a enllaçar amb el seu compte de Facebook."
-  facebook_needs_the_owner_of_that_photo_to: Facebook necessita la confirmació del propietari d'aquesta foto %@ per poder realitzar la connexió a %{site_name_short}.
-  facebook_options: Opcions de Facebook
-  facebook_photo_import_disabled_notice: |
-    A partir de novembre de 2020 Facebook ens demana verificar que realment necessitem accedir a les fotos, però no hem estat capaços de completar el procés a causa de problemes amb el sistema de verificació de Facebook. Com a resultat, no podem donar suport a la importació de fotografies de Facebook.
   failed_to_find_your_location: No ha estat possible trobar la vostra localització
   failed_to_repair_photo: "Ha fallat la reparació de la fotografia: %{errors}"
   failed_to_save_record: "No s'ha pogut desar el registre. Intenteu-ho de nou."
@@ -1707,6 +1825,8 @@ ca:
   feedback: Participa
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Fonts:'
+  #Button to show fewer places
+  fewer__context_places: Menys
   failed: Ha fallat
   field_note: |
     <strong>Nota:</strong> Si heu de crear un camp comproveu abans si algú ja l'ha creat per evitar duplicats.
@@ -1724,6 +1844,7 @@ ca:
   filter: Filtre
   filter_by_curator_identification: Filtre per Identificació del Supervisor
   filter_by_place: Filtrar per lloc
+  filter_by_species: Filtrar per espècie
   filter_by_taxon: Filtre per tàxon
   filter_by_place_taxon_and_color: Filtra per lloc, color, espècie o grup utilitzant els controls.
   filter_list_by_this_taxon: Filtrar per aquest tàxon
@@ -1791,6 +1912,7 @@ ca:
     Marqueu Usuari: %{title}
   flag_it!: Marca’l!
   flag_marked_as_resolved_html: '<span class=meta>Marca com a</span> <strong>resolt.</strong>'
+  flag_marked_as_unresolved_html: '<span class=meta>Marca com a</span> <strong>no resolta.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Objecte
   flag_reason: "\"Marco aquest %{record} perquè"
@@ -1827,7 +1949,10 @@ ca:
   #Adjective, as in a fluid layout of images
   fluid: fluida
   follow: Seguiu
+  #Text for a button to follow updates on an observation
+  follow_observation: Segueix l'observació
   follow_receive_updates_about_new_observations: Seguiu (rebeu actualitzacions de les noves observacions)
+  #Text for a button to follow updates from a specific user
   follow_user: "Segueix a %{user}"
   followers: seguidors
   following: Seguint
@@ -1851,7 +1976,7 @@ ca:
   frequency: Freqüència
   from_a_place: d'un lloc
   from_eol_collection: De la col·lecció EOL
-  from_flickr_facebook_etc: Des de Flickr, Facebook, etc.
+  from_flickr_etc: Des de Flickr, etc.
   from_list: De la llista
   from_photos: De fotos
   from_place: Del lloc
@@ -1865,8 +1990,13 @@ ca:
   generate_taxonomic_tags_for_flickr: Genera etiquetes taxonòmiques per a les vostres fotos de Flickr.
   generate_widget: Genera el giny
   generate_your_stats: Genereu les vostres estadístiques
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: GENERAR EL TEU RESUM DE L'ANY %{year}
   generating_mobile_archive: "Generant arxiu mòbil"
   Genus: Gènere
+  geomodel_expected_nearby_label_is_derived: |
+    L'etiqueta "Esperat a prop" deriva del Geomodel.
+    <a href="%{url}">Obteniu més informació sobre el Geomodel aquí</a>.
   geoprivacy: Geoprivacitat
   geoprivacy_is_obscured: Geoprivacitat està oculta
   geoprivacy_is_obscured_desc: L'observador ha escollit enfosquir les coordenades.
@@ -1874,6 +2004,8 @@ ca:
   geoprivacy_is_private_desc: L'Observador ha escollit ocultar les coordenades.
   georeferenced: Geolocalització?
   get_started: Comenceu
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Primers passos
   getting_started_guide: Guia d'inici
   #Prompt to donate money on a montly basis
   give_monthly_caps: DONAR MENSUALMENT
@@ -1893,12 +2025,14 @@ ca:
   graft: Insereix
   graft_taxon: Insereix %{taxon}
   grafting_attemps_to_insert_this_taxon: L’acció d’afegir pot fer referència a inserir aquest tàxon al nostre arbre taxonòmic, trobar un tàxon pare existent o crear tots els tàxons necessaris al mig per incorporar-lo a un tàxon existent d’un rang superior.
-  grant_role: "Es %{grant} el permís de %{role}"
   grid: Quadrícula
   grid_layout: Disseny en graella
   grid_tooltip: Mostra la visualització en quadrícula
   group: Grup
   grouping: Agrupació
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Inferiu la localització a partir d'altres observacions?
   guides: Guies
   guide_compiled_by: Guia elaborada per
   guide_deleted: Guia eliminada
@@ -1945,7 +2079,6 @@ ca:
   heads_up_you_have_multiple: "Vigileu. Heu generat diverses etiquetes taxonòmiques per a rangs idèntics. Estan codificades a sota per colors segons el rang."
   help: Ajuda
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
-  help_support_inaturalist: "Ajudeu a iNaturalist"
   help_translate!: Ajuda'ns a traduir!
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_our_top_suggestions: Aquí estan els nostres principals suggeriments
@@ -1957,6 +2090,8 @@ ca:
   hide_content: Amaga Contingut
   hide_desc: |
     Amagant el contingut eviteu que el públic ho vegi, però poden saber que s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden veure el contingut amagat. Normalment, això únicament afecta el contingut escrit, p.e. si amagueu el contingut d'una identificació, la identificació encara és visible però les marques de l'identificador s'amaguen. No podeu desfer això, únicament els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos, i useu-lo únicament per continguts molt objectivables.
+  hide_desc_staff_can_unhide: |
+    Només el personal del lloc pot mostrar el contingut un cop s'ha amagat, així que utilitzeu-ho únicament per a infraccions clares de les directrius de la comunitat.
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Amaga "Sense anotacions"
@@ -1964,12 +2099,23 @@ ca:
   hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
   high: Alta
+  #Highest taxonomic rank to filter by, where the "highest" possible rank is
+  #kingdom
   highest_rank: Tàxon superior
   highlights_and_stats_from_year_on_site: "Destacats i estadístiques des de%{year} a %{site}"
   history: Historial
   home: Inici
   #Label showing hours adjusted in the time shifter in the Uploader
   hours_to_adjust: "Hores a ajustar:"
+  #Message displayed on an observation detail page when the observation is
+  #not licensed. "It" refers to the observation.
+  however_not_licensed: |
+    No obstant això, no té llicència per a la reutilització i no es compartirà amb repositoris de dades que respecten les opcions de llicència.
+  #Message displayed on an observation detail page when the observation is
+  #not licensed and the page is being viewed by the person who made the
+  #observation. "You" is the person that made the observation.
+  however_not_licensed_action_html: |
+    Podeu canviar les vostres preferències de llicència als <a class="linky" href="/users/edit#content">paràmetres del vostre compte</a>.
   however_there_were_some_issues: "Malgrat això, hi havia alguns problemes: %{issues}"
   #disagreements are identifications that disagree with other identifications on the same observation
   #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
@@ -2003,8 +2149,10 @@ ca:
   #Notification when an identification has been deleted
   identification_deleted: Identificació eliminada.
   identification_saved: "Identificació desada!"
-  #Notice when the text content of an identification has been unhidden by moderators
-  identification_text_hidden: Text de la identificació mostrat de nou
+  #Notice when an identification has been hidden by moderators
+  identification_hidden: Identificació oculta
+  #Notice when an identification has been unhidden by moderators
+  identification_unhidden: Identificació no oculta
   #Notification when an identification has been updated
   identification_updated: Identificació actualitzada!
   identification_user_short: Ident. Usuari
@@ -2012,6 +2160,8 @@ ca:
   identification_withdrawn: Identificació retirada.
   identifications: Identificacions
   inaturalist_global_year_in_review: "Resum global de l'any %{year} d'iNaturalist"
+  inaturalist_is_an_independent_nonprofit: |
+    iNaturalist és una organització independent 501(c)(3), exempta d'impostos i sense ànim de lucre amb seu als Estats Units d'Amèrica (ID fiscal: 92-1296468).
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -2020,7 +2170,6 @@ ca:
   identotron_for: Identotron per a
   identotron_help: Ajuda amb l'identotron
   ids: "IDs"
-  ids_made_for_others: ID fetes per altres usuaris
   if_for_some_reason_a_user_doesnt_agree: |
     Si per algun motiu no esteu d'acord amb el tàxon de la comunitat, el podeu refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que la vostra observació només podrà ser de grau de recerca si la comunitat està d'acord amb vostè.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2059,6 +2208,8 @@ ca:
   improving: Millorant
   in_n: "a %{n}"
   in_place_x: a %{place}
+  #As in a reason to flag something
+  inappropriate: Inapropiat
   inaturalist_network: Xarxa iNaturalist
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   #Label for messages you've received
@@ -2066,6 +2217,7 @@ ca:
   include_places: Incloure Llocs
   include_projects: Incloure Projectes
   include_suggestions_not_seen_nearby: Incloure suggeriments no vistos aprop
+  include_suggestions_not_expected_nearby: Incloure suggeriments no esperats a prop
   include_taxa: Incloure Tàxons
   include_users: Incloure Usuaris
   including: inclou
@@ -2089,7 +2241,6 @@ ca:
   inaturalist_activity_notifications: "Notificacions d'Activitat de %{site_name}"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "Aplicacions d'iNaturalist"
-  inaturalist_is_a_joint_initiative: "%{site_name} és una iniciativa conjunta de la California Academy of Sciences i National Geographic Society.."
   inaturalist_places: "Llocs %{site_name}"
   info: Informació
   input_taxon: Introduir tàxon
@@ -2138,6 +2289,7 @@ ca:
   journal: Revista
   journal_archives_for: Arxius de revistes de
   journal_post: Article a Revista
+  journal_post_: publicació de diari
   journal_post_deleted: La nota de la Revista s’ha esborrat.
   journal_posts: Article de Revista
   jpg_png_or_gif: "JPG, PNG o GIF"
@@ -2172,6 +2324,8 @@ ca:
   last_seen: Vist per última vegada
   last_year: Darrer any
   lat: Lat
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Lon
   latitude: Latitud
   latitude_in_decimals: 'Latitud en graus amb decimals, p. ex. 38.123'
   latitude_slash_y_coord_slash_northing: Latitud / coord. Y / nord
@@ -2208,18 +2362,25 @@ ca:
   lexicon: Lèxic
   lexicon_cannot_contain_words: "no pot contenir les següents paraules: %{words}"
   lexicons:
-    scientific_names: Noms científics
     afrikaans: Afrikaans
+    alabama: Alabama
     albanian: Albanès
+    aou_4_letter_codes: Codi AOU de 4 lletres
+    aou_6_letter_codes: Codi AOU de 6 lletres
     arabic: Àrab
     armenian: Armeni
+    asturian: Asturià
+    basque: Basc
     belarusian: Bielorús
     bengali: Bengalí
+    bikol: Bicol
     bulgarian: Búlgar
+    carolinian: Carolinià
     catalan: Català
     cebuano: Cebuà
     chinese_simplified: Xinès (simplificat)
     chinese_traditional: Xinès (tradicional)
+    chuvash: Txuvaix
     creole_french: Crioll (francès)
     creole_portuguese: Crioll (portuguès)
     croatian: Croat
@@ -2228,28 +2389,41 @@ ca:
     davawenyo: Davawenyo
     dutch: Holandès
     english: Anglès
+    esperanto: Esperanto
     estonian: Estonià
     faroese: Feroès
+    fijian: Fijià
     finnish: Finès
     french: Francès
     galician: Gallec
     gela: Gela
+    georgian: Georgià
     german: Alemany
     greek: Grec
+    gujarati: Gujarati
     hawaiian: Hawaià
     hebrew: Hebreu
+    herero: Herero
     hiligaynon: Híligaynon
+    hill_mari: Txeremís
+    hodges_number: Número Hodges (o MONA)
+    hokkien: Hokkien
     hungarian: Hongarès
     icelandic: Islandès
     ilokano: Ilocano
     indonesian: Indonesi
+    irish: Irlandès
     italian: Italià
     japanese: Japonès
     kannada: Kanarès
+    kazakh: Kazakh
     korean: Coreà
+    kweyol: Crioll francès
     latvian: Letó
     lithuanian: Lituà
+    lozi: Lozi
     luxembourgish: Luxemburguès
+    malagasy: Malgaix
     malay: Malai
     malayalam: Malaiàlam
     maltese: Maltès
@@ -2259,6 +2433,8 @@ ca:
     misima_paneati: Misima-paneati
     mongolian: Mongol
     nahuatl: Nàhuatl
+    navajo: Navaho
+    ndebele: Ndebele
     norwegian: Noruec
     occitan: Occità
     ojibwe: Ojibwa
@@ -2270,23 +2446,41 @@ ca:
     romanian: Romanès
     russian: Rus
     santali: Santali
+    scientific_names: Noms científics
     serbian: Serbi
-    setswana: Setsuana
+    shona: Shona
     sinhala: Singalès
     slovak: Eslovac
     slovenian: Eslovè
+    sotho: Sesotho
+    sotho_northern: Sotho Septentrional
     spanish: Castellà
     swahili: Suahili
+    swati: Swazi
     swedish: Suec
     tagalog: Tagal
     tahitian: Tahitià
+    tamil: Tàmil
     thai: Tailandès
     tokelauan: Tokelauà
+    totonaco: Totonaca
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turc
+    u_s_d_a_symbol: Símbol de l'U.S.D.A.
     ukrainian: Ucraïnès
-    waray_waray: Samarà
+    uyghur: Uigur
+    venda: Venda
+    vermont_flora_codes: Codis de la Flora de Vermont
+    vietnamese: Vietnamita
     visayan: Visayà
+    waray_waray: Samarà
+    xhosa: Xosa
+    zapoteco: Zapoteca
+    zulu: Zulú
   less: Menys
+  #Button show less text
+  less__context_text: Menys
   licensed_site_photos: "Fotos amb llicència de %{site_name}"
   license: Llicència
   licensing: Llicències
@@ -2299,14 +2493,8 @@ ca:
   #user to iNat to authorize the app's use of their iNat account. "Link" is
   #a noun.
   link_to_authorization_code: Enllaç al codi d'autorització
-  link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
   link_your_google_account: Vinculeu el compte de Google
-  linked_facebook: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Facebook."
-  linked_facebook_automaticaly: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Facebook, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Facebook. Sembla raonable que, si utilitzeu Facebook voldreu poder importar fotos de Facebook, és així?"
-  linked_facebook_description: "Mantenir el vostre compte d’%{site_name} vinculat al compte de Facebook us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Facebook en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Facebook i el voleu vincular a %{site_name}."
-  linked_facebook_howto: "Per connectar Facebook amb %{site_name}, feu clic a l’enllaç de la dreta i inicieu sessió a facebook.com."
-  linked_facebook_password: "Mai no us demanarem la contrasenya de Facebook (però Facebook podria demanar-vos-la; verifique que l’adreça on us redirigeix el botó és facebook.com). Tampoc no canviarem les vostres dades de Facebook, tret que ho sol·liciteu."
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
@@ -2324,6 +2512,10 @@ ca:
     taxonomic: taxonomia
     photo: fotos
   list_was_successfully_created: La llista s'ha creat amb èxit.
+  #Template for a comma-separated list of items. We'll use this to generate
+  #lists of this form for an arbitrary number of items, not just three.
+  list_with_n_items: "%{one}, %{two} i %{three}"
+  list_with_two_items: "%{one} i %{two}"
   listed_taxa: Tàxon llistat
   listed_taxon: Tàxon llistat
   listed_taxon_updated: S'ha actualitzat el llistat de tàxons
@@ -2362,6 +2554,7 @@ ca:
     es: Castellà
     es-AR: Espanyol (Argentina)
     es-CO: Espanyol (Colòmbia)
+    es-CR: Espanyol, Costa Riqueny
     es-MX: Castellà (Mèxic)
     et: Estonià
     eu: Basc
@@ -2375,6 +2568,8 @@ ca:
     id: Indonesi
     it: Italià
     ja: Japonès
+    ka: Georgià
+    kk: Kazakh
     kn: Kanarès
     ko: Coreà
     lb: Luxemburguès
@@ -2439,7 +2634,11 @@ ca:
   looks_like_no_species_in_guide: Sembla que encara no teniu cap espècie a la vostra guia.
   lookup: Cerca
   low: Baixa
+  #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
+  #subspecies or variety
   lowest_rank: Tàxon inferior
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: Macrostrat
   make_admin: Fer administrador
   #Header for main content section of the project detail page when editing custom project data.
   main_content: Contingut principal
@@ -2472,7 +2671,7 @@ ca:
       every_publicly_visible_observation: Cada observació visible públicament creada a la xarxa iNaturalist
       featured_observations: Observacions destacades
       gbif_network: Xarxa GBIF
-      gbif_network_description: Registres de museus i altres proveïdors de dades distribuïdes per la Global Biodiversity Informatics Facility
+      gbif_network_description2: Registres de museus i altres proveïdors de dades distribuïts per la Global Biodiversity Information Facility
       observations: Observacions
       place_boundary: Límit del lloc
       checklist_places: Llista de comprovació de llocs
@@ -2491,13 +2690,14 @@ ca:
   maximum_positional_accuracy_including_unknown: |
     Màxima precisió de la posició, incloent-hi les observacions sense precisió de la seva localització
   media: Multimèdia
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: i
   media_type: Tipus de fitxer multimèdia
   medium: mitjà
   meet: Conegueu-ne
   member_of_the_inaturalist_network_html: |
     Membre de la <a href="%{url}">Xarxa iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membre de la xarxa %{partial_inat_network_tag_html}iNaturalist</a>, una iniciativa conjunta de %{cas_tag_html} i %{nat_geo_tag_html}.
   #As in members of a project
   members: Membres
   membership_model: Model d'adhesió
@@ -2545,6 +2745,14 @@ ca:
   moderation_history_for_user_html: Història de moderació de %{user}
   moderation_history_desc_html: |
     Això inclou les accions del moderador (com ocultar o mostrar comentaris), notes i marques de qualsevol mena que aquest usuari ha creat i no són tàxons. Això <strong>només és visible als supervisors</strong>, però <strong>els supervisors no poden veure el seu historial</strong>, per tant, les notes sobre una persona mai són visibles per aquesta persona.
+  #Action a moderator can take to hide content; verb
+  moderator_actions_hide: Amaga
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: Mostra
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspèn
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Deixa de suspendre
   moderator_note_desc: |
     Les notes del moderador són registres de les respostes de moderació o dubtes basades en evidències sobre un usuari, com un possible compte fals. No incloeu opinions personals o impressions sobre l'usuari.
   #Person who executed a moderator action or flagged something
@@ -2601,6 +2809,14 @@ ca:
     <a href="%{url}">Patrocinador mensual</a> des de %{date}
   months: Mesos
   more: Més
+  #Button to show more observations
+  more__context_observations_caps: MÉS
+  #Button to show more places
+  more__context_places: Més
+  #Button to show more text
+  more__context_text: Més
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MÉS
   more_caps: MÉS
   more_about_sharing: Més Sobre Compartir
   more_fields: Més camps
@@ -2648,8 +2864,12 @@ ca:
   must_have_quality_grades: "ha de tenir el grau de qualitat: %{grades}"
   must_have_sounds: ha de tenir sons
   must_have_x: "ha de tenir %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Silenciar
+  #Mute is a noun here
   mute_removed: Emmudiment eliminat
   muted_users: Usuaris silenciats
+  muting_description: Silenciar algú impedeix que rebeu notificacions sobre cap activitat seva, incloses les mencions "@", els missatges o els comentaris i identificacions a les vostres observacions.
   n_ago: "fa %{n}"
   n_people_agrees: "%{amount} persones hi estan d'acord"
   n_people_disagrees: "%{amount} persones no hi estan d'acord"
@@ -2681,7 +2901,6 @@ ca:
   needs_id_: Necessita ID
   needs_id_expandable_html: "<span class='full'>Necessita</span>ID"
   needs_id_tooltip_html: 'Les observacions qualificades com a "Necessita Identificació" tenen imatges o sons, localització i data però encara necessiten una identificació precisa consensuada per la comunitat. <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
-  needs_to_be_identified: Ha de ser identificat
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, part de la xarxa internacional iNaturalist
@@ -2703,7 +2922,7 @@ ca:
   new_application: Nova aplicació
   new_assessment: Valoració nova
   new_check_list: Llista de comprovació nova
-  new_check_list_for: "Crea una nova llista de verificació per a {place} »"
+  new_check_list_for: "Crea una nova llista de verificació per a %{place} »"
   new_check_list_record: "Si vol marcar aquesta llista com a exhaustiva, creeu-la, afegiu-hi els tàxons i després modifiqueu-la per poder marcar-la com a exhaustiva."
   new_comment_on_a_parent_by_user_link: Nou comentari sobre @vow_or_con{vot:un|un} %{parent} de %{user_link}
   new_conservation_status: Nou estat de conservació
@@ -2753,6 +2972,8 @@ ca:
   next_tab: Propera pestanya
   next_taxon_short: Següent
   'no': 'No'
+  #Shown when a list of 3rd party applications has no applications
+  no_applications_yet: Encara no hi ha aplicacions
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració a aquest projecte.
   no_but_it_is_a_member_of_taxon: "No, però es un membre de %{taxon}"
   no_comments_yet: Encara no hi ha comentaris
@@ -2850,7 +3071,8 @@ ca:
   not_findig_what_you_want: No trobeu el que cercàveu?
   not_finding_place_you_want?: No heu trobat el lloc que cercàveu?
   not_found: No trobat
-  not_linked_facebook: "El vostre compte a %{site_name} no està vinculat amb  Facebook."
+  #Filter for observations not in a particular place
+  not_in_place: No està al lloc
   not_linked_flickr: "El vostre compte a %{site_name} no està vinculat amb Flickr"
   not_on_this_list: No sou en aquesta llista.
   not_recorded: No enregistrat
@@ -2875,6 +3097,93 @@ ca:
     Les coordenades públiques es mostren en un punt triat a l'atzar  dins la cel·la  de 0,2 graus de latitud i longitud que conté les coordenades reals.
   observation: Observació
   observation_: observació
+  observation_accuracy_experiment_the_sample_for: "La mostra d'aquest experiment no ha estat generada"
+  observation_accuracy_experiment_our_accuracy_estimate: "La nostra estimació d'exactitud, resultat d'aquest experiment és correcta al %{percent}"
+  observation_accuracy_experiment_our_goak: "El nostre objectiu de l'exactitud (correcta) i precisió estimada del subconjunt del conjunt amb Grau d'Investigació és superior al 95% (línia discontínua)"
+  observation_accuracy_experiment_precision_results: "Resultats de precisió del conjunt"
+  observation_accuracy_experiment_taxon_rank_level: "Nivell de Tàxon"
+  observation_accuracy_experiment_taxon_observations_count: "Compte d'Observacions del Tàxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nom del Tàxon Icònic"
+  observation_accuracy_experiment_continent: "Continent"
+  observation_accuracy_experiment_year: "Any"
+  observation_accuracy_experiment_quality_grade: "Grau de qualitat"
+  observation_accuracy_experiment_show_frequency: "mostra freqüència"
+  observation_accuracy_experiment_click_on_bars: "Clica a les barres per explorar els conjunts."
+  observation_accuracy_experiment_bars_will: "Les barres es podran clicar un cop hagi passat el termini per validar les mostres."
+  observation_accuracy_experiment_accuracy_results: "Resultats d'exactitud del conjunt"
+  observation_accuracy_experiment_as_observations: "A mesura que es validen les observacions d'aquesta mostra, el percentatge d'incertesa disminuirà, i augmentarà el percentatge correcte i l'incorrecte."
+  observation_accuracy_experiment_experiment_still: "L'experiment encara està en curs. Les estadístiques s'actualitzaran diàriament fins a la data límit per validar les mostres el %{date}"
+  observation_accuracy_experiment_observation_accuracy_experiment: "Experiment d'Exactitud de l'Observació"
+  observation_accuracy_experiment_validators: "Validadors:"
+  observation_accuracy_experiment_show_additional_validators: "(mostra validadors addicionals)"
+  observation_accuracy_experiment_hide_additional_validators: "(amaga validadors addicionals)"
+  observation_accuracy_experiment_additional_validators: "(%{number} validadors addicionals)"
+  observation_accuracy_experiment_abstract: "Resum: Vam generar una mostra d'observacions el %{sample_generation_date} i vam coordinar un equip de validadors per avaluar-ne la precisió el %{deadline_date}. Tots els resultats indicats a continuació mostren les característiques de les observacions de la mostra en el moment en el qual es va generar (per exemple, el grau de recerca o no). La precisió de les observacions de la mostra es va avaluar el %{assessment_date}. Consulteu la pestanya de mètodes per obtenir més detalls."
+  observation_accuracy_experiment_research_grade_results: "Resultats de Grau de Recerca"
+  observation_accuracy_experiment_verifiable_results: "Resultats Verificables"
+  observation_accuracy_experiment_all_results: "Tots els resultats"
+  observation_accuracy_experiment_methods: "Mètodes"
+  observation_accuracy_experiment_step_1: "Pas 1: Generació de la Mostra i Assignació"
+  observation_accuracy_experiment_from_the2: "De la base de dades d'observacions d'iNaturalist (A), vam generar una mostra aleatòria (B). Les submostres es van assignar als validadors candidats (C) d'acord amb els criteris que es descriuen a continuació. L'objectiu és assignar cada observació de mostra a diversos validadors candidats (\"Redundància de validadors objectiu\")."
+  observation_accuracy_experiment_sample_generated: "Mostra generada: %{date}"
+  observation_accuracy_experiment_sample_size: "Grandària de Mostra: %{number}"
+  observation_accuracy_experiment_target_validator: "Redundància de validadors objectiu: %{number}"
+  observation_accuracy_experiment_number_of: "Nombre de validadors candidats: %{number}"
+  observation_accuracy_experiment_mean_subsample: "Mida mitjana de la mostra per cada validador candidat: %{number}"
+  observation_accuracy_experiment_mean_number: "Nombre mitjà de validadors per observació de mostra: %{number}"
+  observation_accuracy_experiment_validator_candidate: "Criteri de candidat validador"
+  observation_accuracy_experiment_if_an_identifier: "Si un identificador ha fet almenys 3 identificacions de millora en un tàxon, el consideràvem qualificat per validar aquest tàxon. La millora de les identificacions és el primer suggeriment d'un tàxon amb el qual la comunitat està d'acord posteriorment."
+  observation_accuracy_experiment_if_an_identifier_continent: "Si un identificador ha fet almenys 3 identificacions de millora en un tàxon a un continent, el considerem qualificat per validar aquest tàxon en aquest continent. La millora de les identificacions és el primer suggeriment d'un tàxon amb el qual la comunitat està d'acord posteriorment."
+  observation_accuracy_experiment_for_example: "Per exemple, l'identificador 1 afegeix una ID de A a una observació. Si més tard l'identificador 2 afegeix una ID de B, l'identificador de l'identificador 1 a A es converteix en una millora de ID. Si més tard l'identificador 3 afegeix una ID de suport a B, l'identificador de l'ID 2 a B es converteix en una ID millorada."
+  observation_accuracy_experiment_step_2: "Pas 2: Validació de mostres"
+  observation_accuracy_experiment_we_contacted: "Contactem amb els validadors candidats i els demanem que afegeixin identificacions a les seves submostres. El gràfic de la dreta agrupa la mostra d'observacions pel nombre de validadors."
+  observation_accuracy_experiment_number_percent_of: "Nombre de validadors participants: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "Percentatge de la mostra validat: %{percent}"
+  observation_accuracy_experiment_step_3: "Pas 3: Puntuació de la mostra d'observacions a partir de validacions"
+  observation_accuracy_experiment_we_scored: "Puntuem les observacions de la mostra com a correctes, incertes o incorrectes comparant les identificacions del validador amb el tàxon de cada observació de la mostra. Les identificacions que coincideixen o són més acurades que la mostra d'observacions del tàxon es puntuen com a correctes. Les identificacions més imprecises, però no en desacord es puntuen com a Incertes, així com els escenaris en els quals els diversos validadors no estaven d'acord. Les identificacions més imprecises en desacord o les identificacions que les situen a diferents branques es puntuen com a Incorrectes."
+  observation_accuracy_experiment_correct: "Correcte"
+  observation_accuracy_experiment_uncertain: "Incerta"
+  observation_accuracy_experiment_incorrect2: "Incorrecta"
+  observation_accuracy_experiment_step_4: "Pas 4: Càlcul de Precisió i Exactitud"
+  observation_accuracy_experiment_accuracy: "Exactitud"
+  observation_accuracy_experiment_we_calculated: "Calculem l'exactitud com el percentatge correcte per a tota la mostra, així com subconjunts com el de Grau de Recerca. També calculem el percentatge d'Incertesa i el percentatge d'Incorrecte. A la figura d'exemple de la dreta, el percentatge correcte seria 83, el percentatge d'incertesa seria 6 i el d'incorrecte seria 11."
+  observation_accuracy_experiment_precision: "Precisió"
+  observation_accuracy_experiment_if_every_sample: "Si cada observació de mostra es trobava en un tàxon ample, com el regne, la precisió del conjunt de dades iNaturalist seria molt alta, però la precisió seria massa baixa per fer que el conjunt de dades sigui útil. Per estimar la precisió, comptem el nombre de fulles descendents a la taxonomia d'iNaturalist per a cada tàxon associat a cada observació de la mostra. Calculem la precisió com a 1 dividit pel nombre de fulles descendents. Si el tàxon era un tàxon de la fulla final, la precisió és del 100%. S'ignoren els rangs per sota de les espècies en el càlcul de precisió."
+  observation_accuracy_experiment_in_the_example: "A la figura d'exemple de la dreta, la precisió mitjana de tres mostres d'observacions seria del 51%."
+  observation_accuracy_experiment_read_more_html: |
+    Per obtenir més informació sobre com organitzar aquest experiment, consulteu l'<a href="%{url}">entrada de bloc</a> que s'adjunta.
+  observation_accuracy_validator_email_subject2: "Ens voleu ajudar amb l'experiment %{version} per estimar la precisió de les observacions d'iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    Ens voleu ajudar amb un <a href="%{url}">experiment (versió %{version})</a> per a estimar la precisió de les observacions d'iNaturalist?
+  observation_accuracy_validator_email_if_so3_html: |
+    <ol>
+    <li>Identifiqueu totes les observacions a l'enllaç següent amb la màxima precisió possible, encara que siguin de grau d'investigació, i fins i tot si el vostre millor identificador és a un nivell taxonòmic superior (encara que sigui el de regne).</li>
+    <li>Si veieu la finestra emergent indicant "Potencial desacord"...
+    <ul>
+    <li>i esteu segurs que és una "mala-ID" feu clic al botó taronja,</li>
+    <li>o si no esteu segurs de la vostra ID, feu clic al botó verd</li>
+    </ul>
+    </li>
+    <li>Feu-ho abans del <b>%{validator_deadline_date}</b></li>
+    </ol>
+    Aquí teniu un <a href="%{sample_url}">subconjunt de %{num_obs} observacions</a>* que creiem que podeu identificar a partir de la vostra activitat a iNat. <b>Afegiu la vostra millor identificació possible a cadascuna de les observacions abans del %{validator_deadline_date}</b>.
+    *<i>Aquest enllaç obrirà l'eina d'identificació al lloc web d'iNaturalist, requereix que hàgiu iniciat sessió. Us recomanem que feu aquesta tasca des d'un ordinador, però és possible fer-ho des de l'aplicació del vostre navegador mòbil. Si esteu llegint aquest missatge a l'aplicació iNaturalist per a Android, assegureu-vos d'obrir l'enllaç en una aplicació del navegador (no a l'aplicació iNat). És possible que hàgiu d'iniciar sessió al lloc web mitjançant l'aplicació del navegador.</i>
+  observation_accuracy_validator_email_we_will_calculate: |
+    Calcularem la precisió comparant la vostra ID amb el Taxó d'Observació. Podeu ometre les observacions on hàgiu afegit anteriorment un identificador si aquest identificador encara és rellevant. Per obtenir més informació sobre com comptarem els acords i els desacords, seguiu llegint.
+  observation_accuracy_validator_email_ids_equal_to: |
+    Les identificacions iguals a (A) o superiors a (B) del tàxon d'observació es comptaran com a Acords.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    Les identificacions de branques diferents (C) o més imprecises que el tàxon d'observació on trieu "No, però..." al diàleg "Desacord potencial" (D) es comptaran com a Desacords.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    Els identificadors més imprecisos que el tàxon d'observació on trieu "No ho sé, però..." al diàleg "Desacord Potencial" (E) es comptaran com a incerts.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    Estem molt agraïts per la vostra ajuda com a identificador a iNaturalist, i moltes gràcies per haver participat en aquest estudi. Si us plau, llegiu <a href="%{url}">el mètode</a> per obtenir més informació sobre el disseny de l'experiment.
+  observation_accuracy_validator_email_with_gratitude: Agraïts,
+  observation_accuracy_validator_email_the_inaturalist_team: L'equip d'iNaturalist
+  observation_accuracy_validator_email_please_do_not_reply_html: |
+    <b>Si us plau, no respongueu a aquest missatge. Si teniu preguntes o comentaris, comenteu <a href="%{url}">aquesta publicació del bloc</a> o envieu un correu electrònic a <a href="mailto:help+accuracy_experiment@inaturalist.org">help+accuracy_experiment@inaturalist.org </a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>Si us plau, no respongueu a aquest missatge. Si teniu preguntes o comentaris, envieu un correu electrònic a <a href="mailto:help+accuracy_experiment@inaturalist.org">help+accuracy@inaturalist.org</a></b>
   observation_added_to_the_project: "Observació afegida al projecte %{project}"
   observation_aggregation: Agregació d'observació
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2939,6 +3248,14 @@ ca:
   observation_curation: Administra l’observació
   observation_date: Data
   observation_date?: Data?
+  #Basic observation export fields
+  observation_export_column_type_basic: Bàsic
+  #Geographic observation export fields
+  observation_export_column_type_geo: Geo
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Tàxon
+  #Extra taxon-related observation export fields
+  observation_export_column_type_taxon_extras: Extres del tàxon
   observation_field: Camp d'observació
   observation_field_details: Detalls del camp d'observació
   observation_field_type_text: Text
@@ -3002,6 +3319,7 @@ ca:
   observations_widget: Giny d'Observacions
   observations_with_this_field: Observacions amb aquest camp
   observations_with_this_field_and_value: Observacions amb aquest camp i valor
+  observations_without_this_field: Observacions sense aquest camp
   observations_without_media: Observacions sense Suport gràfic
   observationcounts_refreshed: Nombre actualitzat d'observacions
   observed: Observat el
@@ -3009,10 +3327,10 @@ ca:
   observed_on: Observat el
   observer: Observador
   observers: Observadors
-  observer_prefers_no_project_addition: |
-    L'observador no permet altres persones a afegir les seves observacions a projectes.
-  observer_prefers_addition_to_projects_joined: |
-    L'observador només permet altres persones a afegir les seves observacions a projectes als quals s'ha unit.
+  observer_prefers_addition_to_traditional_projects_joined: |
+    L'observador només permet a altres persones afegir les seves observacions als projectes tradicionals als quals s'han unit.
+  observer_prefers_no_traditional_project_addition: |
+    L'observador no permet a altres persones afegir les seves observacions a projectes tradicionals.
   observer_short: Obs.
   occurence_status_describes_how: 'L''estat d''ocurrència indica el grau de presència o raresa d''un tàxon en una àrea determinada. Aneu a DarwinCore <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus"> per tenir més informació sobre terminologia </a>.'
   occurrence_status: Estat d'ocurrència
@@ -3098,22 +3416,25 @@ ca:
   only_the_project_admin_can_delete_this_project: Només l'administrador del projecte pot eliminar aquest projecte.
   only_view_nearby_suggestions: Veure només suggeriments propers
   only_you: Només tu
+  #Geoprivacy status in which no privacy has been applied
   open: Transparent
+  #Geoprivacy status in which no privacy has been applied
   open_: Obre
   open_description: "Tots els usuaris poden veure les coordenades tret que el tàxon estigui en perill."
   open_street_map: OpenStreetMap
   optional: opcional
+  options: Opcions
   or: o
   #Usually used to separate buttons or functional areas of the interface, e.g.
-  #sign in fields OR sign in with Facebook
+  #sign in with Apple OR Google
   or_all_caps: O
   or_choose_high_level_taxa: "... o seleccioneu un tàxon de rang superior"
-  orange: taronja
   order: Ordre
   order_by: Ordenar per
   organism_is_wild: L'organisme és salvatge
   organisms: Organismes
   original: Original
+  original_flag: Marca original
   originally_flagged_by: Originalment posat com a advertència per
   originally_imported_from_url_html: "Originalment importat des de <a href='%{url}'>%{url}</a>"
   original_page_url_for_this_photo: "Pàgina URL original per a aquesta foto."
@@ -3161,6 +3482,9 @@ ca:
     invalid_email: Format de correu electrònic no vàlid
   password: Contrasenya
   password_confirmation: 'Confirmeu la contrasenya'
+  password_change_description: Canviar la vostra contrasenya, tancarà totes les sessions actives d'iNaturalist als vostres dispositius
+  password_change_logout_warning: Un cop canvieu la vostra contrasenya, es tancarà la sessió i haureu de tornar a iniciar-la amb la vostra nova contrasenya.
+  password_change_observations_warning: També es tancarà la sessió de les aplicacions mòbils d'iNaturalist i de qualsevol altra aplicació o lloc web que publiqui a iNaturalist en nom vostre, així que assegureu-vos d'haver pujat qualsevol observació pendent abans de fer-ho. Totes les observacions que no s'hagin pujat es perdran.
   paste: Enganxa
   paste_in_a_bunch_of_names: Enganxa un grup de noms, 1 per línia i feu clic a l’enllaç!
   people: Persones
@@ -3196,8 +3520,12 @@ ca:
   photo_credits: Crèdit de la foto
   photo_deleted: Foto esborrada
   photo_destroyed_because_it_was_deleted_from: "La foto s'ha eliminat perquè s’ha esborrat d'un web extern o perquè %{site_name} no té permís per mostrar-la."
+  #Message displayed after a photo has been hidden
+  photo_hidden: Foto oculta
   photo_licensing: Llicència de la foto
   photo_type: Tipus de foto
+  #Message displayed after a photo has been unhidden, i.e. made visible again.
+  photo_unhidden: Foto no oculta
   photo_urls_repaired: L’URL de la foto s'ha reparat.
   photos_chosen_for_this_taxon: Fotos escollides per a aquest tàxon
   photos_from: Fotos de
@@ -3244,7 +3572,6 @@ ca:
   data_transfer_consent_child_label: |
     Dono el meu consentiment per a transmetre la informació personal dels meus infants als Estats Units d'Amèrica.
   pin_verb: Posar al mapa
-  pink: rosa
   pinned_locations_desc: |
     Enganxeu aquesta combinació de coordenades, precisió, geoprivacitat i notes de localitat per utilitzar-les més tard.
   place: Lloc
@@ -3573,6 +3900,7 @@ ca:
     north_korea: Corea del Nord
     northern_cyprus: Xipre del nord
     norway: Noruega
+    oceania: Oceania
     oman: Oman
     pakistan: Pakistan
     palau: Palau
@@ -3664,8 +3992,8 @@ ca:
   places_merged_successfully: Els llocs s'han combinat satisfactòriament!
   places_warning_export_complex_boundary_html: |
     Si esteu intentant exportar observacions d'un territori amb una forma complexa, proveu <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">baixar-les des de GBIF</a> , des d'on podreu dibuixar límits arbitraris, o exportar-les des d'iNat utilitzant llocs existents o dibuixant una caixa i filtrant després les dades de nou una vegada les heu descarregat.
-  places_warning_look_for_existing_html: |
-    Busqueu <a href="/search?source[]=places">llocs existents</a> per estar segurs que no esteu creant un duplicat. Ja hem definit llocs per a tots els continents i països, així com dos nivells administratius per sota del de país.
+  places_warning_look_for_existing2_html: |
+    Cerqueu a <a href="/search?source[]=places">llocs existents</a> per assegurar-vos que no esteu creant cap duplicat. Ja tenim llocs per a tots els continents i països, i per molts altres límits administratius.
   places_warning_please_keep_in_mind: |
     Tingueu en compte les següents restriccions:
   places_warning_projects_can_have_multiple_places: |
@@ -3679,6 +4007,7 @@ ca:
   places_warning_the_future: |
     Per això, si és necessari, en el futur podríem restringir les condicions per les quals els usuaris poden afegir nous llocs atès el ritme de creixement d'iNat.
   plants: Plantes
+  play_first_sound: Reprodueix el primer so
   please_add_a_citation_for_this_change: Heu d'afegir una referència per a aquest canvi.
   please_allow_a_few_weeks_for_external_sites: Si us plau, espereu algunes setmanes perquè els llocs externs sincronitzin els canvis d'aquesta observació #Request that a known child ask their parents for permission to use this service
   please_ask_your_parents_for_permission: Si us plau, demana permís als teus pares o tutors.
@@ -3700,7 +4029,10 @@ ca:
   post_from_your_journal_html: Publicació de <a href="%{url}">el vostre diari</a>
   post_published: Nota publicada!
   posted_by: Publicat per
-  posted_on: Introduït a
+  #Shows the date a journal post was published
+  posted_on_date_html: Publicat el %{date}
+  #Shows the date a journal post was published and who published it. @vow_or_con applies to %{user}
+  posted_on_date_by_user_html: Publicat el %{date} per %{user}
   posts: Publicacions
   potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
@@ -3793,9 +4125,16 @@ ca:
   proposed_taxa_that_support_the_community_id: Taxa proposat que recolza l'ID de Comunitat
   protozoans: protozous
   provider_authorizations: Autoritzacions de proveïdors
+  provider_without_email_error_apple: |
+    Apple no ha proporcionat una adreça de correu electrònic per a aquest compte, i aquesta és necessària. Creeu un compte en aquest lloc en comptes d'iniciar la sessió mitjançant Apple.
+  provider_without_email_error_flickr: |
+    Flickr no ha proporcionat una adreça de correu electrònic per a aquest compte, i aquesta és necessària. Creeu un compte en aquest lloc en comptes d'iniciar la sessió mitjançant Flickr.
+  provider_without_email_error_generic: |
+    Aquest servei no ha proporcionat una adreça de correu electrònic per a aquest compte, la qual és necessària. Creeu un compte en aquest lloc en comptes d'iniciar la sessió a través de tercers.
+  provider_without_email_error_google_oauth2: |
+    Google no ha proporcionat una adreça de correu electrònic per a aquest compte, la qual és necessària. Creeu un compte en aquest lloc en comptes d'iniciar la sessió a través de Google.
   public_domain: Domini públic
   publish: Publica
-  purple: porpra
   quality_grade: Grau de qualitat
   quality_grade_: Grau de qualitat
   quality_grade_colon: "Grau de qualitat:"
@@ -3806,7 +4145,11 @@ ca:
   radius_value: "Radi (m): %{radius}"
   random: A l’atzar
   range: Interval
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  #A person's rank on an ordinal scale (e.g. "first place," "second place,"
+  #etc.). Generally used as a column header in lists of observers and
+  #identifiers
   rank_position: Classificació
   #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
   #Genus Noctua (but generally not Species Noctua pronuba)
@@ -3978,12 +4321,12 @@ ca:
   recently_resolved: Resolt recentment
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Registre
-  red: vermell
   redo_search_in_map: Refer la cerca al mapa
   redo_search_in_map_area: Torneu a realitzar la cerca a l'àrea del mapa
   refresh: Actualitza
   refreshing: actualitzant
   regenerate_stats: Torna a generar les estadístiques
+  regional_names: Noms regionals
   register_for_this_event_at_x_html: "Registrar-se per aquest event a %{x}"
   reject?: Ho refuseu?
   relative_observations: Observacions relacionades
@@ -4032,6 +4375,8 @@ ca:
   remove_tags: Eliminar etiquetes
   removed: eliminat
   removed_project_user: Usuari eliminat del projecte
+  #Message displayed after a project user loses a role, e.g. they are no longer a manager or a curator
+  removed_role: Rol eliminat
   removing: "Eliminant..."
   reorder_by_taxonomy: Reordenar per taxonomia
   repair_broken_urls: Repareu URLs trencades
@@ -4053,6 +4398,10 @@ ca:
   research_grade_tooltip_html: 'Les observacions qualificades com a "Grau de Recerca" tenen imatges o sons, localització i data, i la seva identificació precisa ha estat consensuada per la comunitat (normalment a nivell específic). <a href="https://www.inaturalist.org/pages/help#quality">Coneix més sobre els graus de qualitat</a>'
   research_grade_observations_have: 'Les observacions amb "Grau de recerca" disposen de data, foto, coordenades i una ID recolzada per la comunitat. Feu clic aquí per veure l''avaluació de la qualitat de les dades.'
   research_grade_qualification: Qualificació de Grau de Recerca
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  resend_and_sign_out: Torna a enviar i tanca la sessió
+  resend_confirmation_email: Torna a enviar el correu de confirmació
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
   reset: Reinicia
   reset_filters_short: Restablir
@@ -4084,6 +4433,14 @@ ca:
   rotate_left: Gira a l'esquerra
   rotate_right: Gira a la dreta
   row_singular_or_plural: Fila(es)
+  #Prompt to join a test of right-to-left layouts, e.g. for languages like
+  #Arabic and Hebrew
+  rtl_test_prompt: |
+    Vols provar el disseny de dreta a esquerra? També podeu utilitzar el paràmetre d'URL test=rtl. Tingueu en compte que no totes les pàgines s'han convertit al disseny de dreta a esquerra
+  #Message displayed when you have joined a test of right-to-left layouts,
+  #e.g. for languages like Arabic and Hebrew. Could also be translated
+  #as "You have joined..."
+  rtl_test_joined_status: Us heu unit a la prova de disseny de dreta a esquerra
   rules_and_formatting: "Normes i format"
   rules_for_adding_observations: Normes per agregar observacions
   rules_for_becoming_a_member: Normes per ser membre
@@ -4183,6 +4540,10 @@ ca:
   selected_taxon: Tàxon seleccionat
   select_this_taxon: Seleccionar aquest Tàxon
   send: envia
+  #Label for a button that re-sends the account confirmation email and signs
+  #you out until you do
+  send_and_sign_out: Envia i tanca la sessió
+  send_confirmation_email: Envia un correu electrònic de confirmació
   send_me_reset_password_instructions: Envia'm les instruccions per restablir la contrasenya
   sending: Enviant...
   #Label for messages you've sent
@@ -4205,6 +4566,8 @@ ca:
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_less: Mostrar menys
   show_more: Mostrar més
+  #Button text to show more login options, e.g. third party sign in buttons
+  show_more_login_options: Mostra més opcions d'inici de sessió
   #Option to show data series that show "No Annotation" data, i.e. records that
   #have no annotation
   show_no_annotation: Mostra "Sense anotacions"
@@ -4286,8 +4649,9 @@ ca:
   sites_affiliation_overview_you_can_continue_html: |
     Podeu continuar iniciant la sessió a través d’iNaturalist.org o a través del vostre lloc web específic de la xarxa. Independentment de la vostra afiliació, totes les vostres dades s’allotjaran al mateix lloc i podreu continuar interactuant amb la comunitat iNaturalist internacional, més àmplia. Cada compte d'iNaturalist només es pot afiliar a un únic membre de la xarxa. Podeu revisar o canviar la vostra afiliació a la %{start_tag_settings}configuració del compte%{end_tag_settings}.
   sites_affiliation_title: Coneix més sobre l'Afiliació a la Xarxa
-  sites_network_cas_and_nat_geo_html: |
-    L' %{start_tag_cas}Acadèmia de Ciències de Califòrnia%{end_tag_cas} i el %{start_tag_nat_geo}National Geographic Society%{end_tag_nat_geo} tenen acords formals amb organitzacions de cadascuna d’aquestes àrees geogràfiques per donar suport a l’ús de la plataforma iNaturalist. <strong> Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu obtenir més detalls %{start_tag_join} aquí%{end_tag_join}. </strong>
+  sites_network_agreements_html: |
+    iNaturalist té acords formals amb organitzacions de cadascuna d'aquestes àrees geogràfiques per donar suport a l'ús de la plataforma iNaturalist.
+    <strong>Si la vostra organització està interessada a unir-se a la xarxa iNaturalist, podeu consultar més detalls a %{start_tag_join}aquí%{end_tag_join}.</strong>
   sites_network_consists_of: "La Xarxa iNaturalist està formada per moltes organitzacions:"
   sites_network_inaturalist_network_collection: |
     La xarxa iNaturalist és un conjunt de llocs web localitzats totalment connectats a la comunitat iNaturalist global. Els llocs de la xarxa tenen el suport d’institucions locals que promouen el seu ús local i faciliten l’ús de les dades d’iNaturalist per beneficiar la biodiversitat local. Tenen accés a les coordenades autèntiques dins de les seves àrees geogràfiques, les quals s’amaguen automàticament de la vista pública per protegir millor les espècies amenaçades.
@@ -4394,7 +4758,6 @@ ca:
   start_a_new_project: Inicieu un nou projecte
   start_a_project: Inicieu un projecte
   start_date_time: Hora/Data d'inici
-  start_one: Inicieu un
   start_one_now: Inicieu un ara!
   start_typing_field_name: Comenceu a escriure el nom del camp…
   start_typing_place_name: Comenceu a escriure el nom del lloc…
@@ -4403,6 +4766,10 @@ ca:
   stats: Estadístiques
   stats_for_this_year_have_not_been_generated: Les estadístiques d'aquest no s'han generat
   status: Estat
+  #Displayed on the taxon detail page when a conservation status is being
+  #applied from a taxon that contains the current taxon
+  status_applied_from_higher_level_taxon_html: |
+    <strong>Estat de conservació aplicat des d'un tàxon de nivell superior:</strong> %{taxon}
   status_globally: '"%{status}" Globalment'
   status_in_place: '"%{status}" a %{place}'
   stay_and_try_again: Romandre i provar de nou
@@ -4420,10 +4787,9 @@ ca:
   studies_that_used_inaturalist_data_in_year: Estudi que han utilitzat dades d'iNaturalist l'any %{year}
   stuff_just_added: "El que acabeu d'afegir ..."
   subject_resolved_noun_html: "%{subject} resol %{noun}"
-  subject_affecting_stuff_html: "%{subject} afecta %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} ha validat una %{thing} que afecta %{stuff}"
   submission_model: Model de submissió
   submission_model_description: Qui pot afegir observacions al vostre projecte?
+  submit: Enviar
   submit_observations:
     one: Enviar 1 observació
     other: Enviar %{count} observacions
@@ -4468,12 +4834,12 @@ ca:
   synonyms: Sinònims
   table: Taula
   table_of_contents: Taula de continguts
+  tabulate_presence_absence_data_from_trips: Tabular dades de Presència/Absència des de Viatges
   #Noun, as in "add a tag to this observation"
   tag: Etiqueta
   tagging: 'Etiquetant...'
   tags: Etiquetes
   tags_are_a_way: 'Les etiquetes són paraules clau que podeu afegir a les observacions perquè sigui més fàcil trobar-les.'
-  take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   target_list_alert: Esteu segur que heu intentat observar totes les espècies incloses a la vostra llista d'objectius? Recordeu que qualsevol cosa que estigui en aquesta llista i que no hagueu observat s’interpretarà com una absència, de manera que és molt important que la vostra llista de objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar.
   target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius que no hagueu observat en el radi i la durada del viatge s’interpretarà com una absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una espècie a la vostra llista de destinataris o a totes les espècies inclosa en un grup de la vostra llista d'objectius, elimineu-la.
@@ -4557,6 +4923,8 @@ ca:
   taxon_deleted: El tàxon s’ha esborrat.
   taxon_doesnt_have_a_range: El tàxon no té un rang
   taxon_drop: abandona tàxon
+  #Notification about a taxon drop, @vow_or_con operates on %{taxon}
+  taxon_drop_affecting_taxon: La retirada del tàxon afecta %{taxon}
   taxon_id: ID del Tàxon
   taxon_ids: ID del tàxon
   taxon_map:
@@ -4580,6 +4948,9 @@ ca:
   taxon_framework_taxon: Marc taxonòmic de tàxon
   taxon_history_notice: Els històrics es van introduir el febrer de 2022, per tant, no hi ha històrics disponibles anteriors a aquesta data.
   taxon_merge: fusiona tàxons
+  #Notification about a taxon merge, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_merge_affecting_taxa: La fusió de tàxon afecta %{taxa}
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de correspondre amb un d'existent a la nostra base de dades
   taxon_observed_by_html: |
@@ -4608,6 +4979,7 @@ ca:
     Utilitzeu la descripció per explicar com es va modificar el mapa i enllaçar-hi qualsevol indicador rellevant, fraccionaments taxonòmics o altres discussions sobre el motiu pel qual el rang publicat a la Llista Vermella de la UICN requeria una modificació.
   taxon_range_guidelines_learn_more_about_taxon_ranges: Coneix més sobre la distribució dels tàxons
   taxon_range_updated_notice: El rang del tàxon a estat actualitzat correctament. Espereu uns minut perquè els canvis apareguin als mapes.
+  #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
   taxon_ranks: Categories del Taxon
   taxon_removed_from_list: Tàxon eliminat de la llista.
   taxon_scheme: Esquema de taxonomia
@@ -4615,9 +4987,17 @@ ca:
   taxon_search: Cerca de tàxon
   taxon_search_results_for: Resultats de cerca de tàxon per a
   taxon_split: divisió de tàxon
+  #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
+  #is a comma-separated list of taxon names
+  taxon_split_affecting_taxa: La divisió del tàxon afecta %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
   taxon_stage: munta a partir de tàxon
+  #Notification about a taxon stage, @vow_or_con operates on %{taxon}
+  taxon_stage_affecting_taxon: L'activació del tàxon afecta %{taxon}
   taxon_swap: intercanvi de tàxon
+  #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
+  #a comma-separated list of taxon names
+  taxon_swap_affecting_taxa: L'intercanvi de tàxons afecta %{taxa}
   taxon_swap_only_has_one_input: només es permesa una entrada per a un intercanvi
   taxon_swap_has_inputs_and_outputs: l'intercanvi ha de tenir tant les entrades com les sortides
   taxon_name_was_deleted: El nom del tàxon es va eliminar.
@@ -4648,8 +5028,10 @@ ca:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Eines de control de formatat de text
   text_editing_controls: Eines de control d'edició de text
+  thank_you!: Gràcies!
   thanks!: Gràcies"
   thanks_from_all_of_us_here_at: Gràcies de tots els que estem darrere de
+  that_account_is_already_connected: Aquest compte ja està connectat a un altre usuari
   that_photo_doesnt_exist: Aquesta foto no existeix.
   that_observation_doesnt_exist: Aquesta observació no existeix.
   that_observation_doesnt_have_any_photos: "Aquesta observació no té cap foto."
@@ -4690,7 +5072,6 @@ ca:
   there_are_x_synonyms_html:
     one: "Hi ha <span class=\"count\">1</span> sinònim</span>"
     other: "Hi ha <span class=\"count\">%{count}</span> sinònims</span>"
-  there_is_no_wikipedia_page_matching: No hi ha pàgines a Viquipèdia coincidents
   there_isnt_a_wikipedia_article_titled_x_html: |
     A Viquipèdia no hi ha cap article que tingui relació amb el nom '%{x}. Us agradaria <a href='http://en.wiquipèdia.org/wiki/%{x}'>crear-ne</a> un?
   there_merge_problems_with_the_merge: "Hi ha hagut problemes en intentar combinar els llocs: %{merged_errors}"
@@ -4949,6 +5330,8 @@ ca:
   unable_to_save_comment: Malauradament, no hem pogut desar el comentari.
   unblock: Desbloca
   unclassified: Sense classificar
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Entenent els Projectes
   ungrafted_taxa: Tàxons no inserits
   unhide_content: Deixa d'amagar el contingut
   unhide_desc: |
@@ -4958,7 +5341,10 @@ ca:
   unknown: Desconegut
   unknown_error: Error desconegut
   unknown_rank: '(Classificació desconeguda)'
-  unfollow: Deixeu de seguir
+  #Text for a button to stop following updates on an observation
+  unfollow_observation: Deixar de seguir l'observació
+  #Text for a button to stop following updates from a user
+  unfollow_user: Deixar de seguir l'usuari
   unlink_your_google_account: Desvinculeu el vostre compte de Google
   unlink_your_flickr_account: "Desenllaçar el compte de Flickr"
   unmute: No silenciar
@@ -5050,21 +5436,33 @@ ca:
   user_added_a_comment_html: "%{user} ha afegit un comentari"
   user_added_a_fave_html: "%{user} ha afegit un favorit"
   user_added_a_flag_html: "%{user} ha afegit una marca"
+  #@gender operates on %{x}
   user_added_a_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} per %{by}"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_a_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
   user_added_an_identification_html: "%{user} ha afegit una identificació"
   user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}" a una observació de %{owner}'
   user_added_an_observation_field_value_html: "%{user} ha afegit un valor a un camp d'observació"
   user_added_an_observation_html: "%{user} ha afegit una observació"
+  #@gender operates on %{x}
   user_added_an_x: "%{user} ha afegit una %{x}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_user_html: "%{user} ha afegit %{x} a %{noun} de %{by}"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user} ha afegit %{x} a %{noun} vostre"
+  #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user} ha afegit una %{x} a %{noun}"
-  user_added_x_observations_html: "%{user} ha afegit %{x} observacions"
+  user_added_x_observations2_html:
+    one: "%{user} ha afegit %{count} observació"
+    other: "%{user} ha afegit %{count} observacions"
   user_already_authenticated: L'usuari ja es va autenticar
   user_already_app_owner: L'usuari ja és propietari d'una app
   user_autocomplete_placeholder: kueda, simon123, etc.
@@ -5074,10 +5472,19 @@ ca:
     %{user} considera que aquesta és la llista completa de %{taxon} a %{place}
   user_blocked: Usuari blocat
   user_commented: "%{user} ha comentat"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} ha eliminat un tàxon que afecta %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} ha unit un tàxon que afecta %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} ha separart un tàxon que afecta %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} ha incorporat una etapa de tàxon que afecta %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} ha intercanviat un tàxon que afecta %{taxa}"
   user_disagrees_this_is_taxon: "%{user} no creu que sigui %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} discrepa amb identificacions anteriors adequades"
-  #%{noun} will include an indefinite article here, so in English this might look like "kueda faved an observation by tiwane"
-  user_faved_a_noun_by_owner: "%{user} preferit %{noun} per %{owner}"
+  user_faved_an_observation_by_you: "%{user} ha fet favorita una observació vostra"
   user_faved_this_observation: "%{user} ha marcat com a favorita aquesta observació"
   user_flagged_as_a_non_spammer_html: "%{user} marca com a no spammer"
   user_flagged_as_a_spammer_html: "%{user} marcat com spammer"
@@ -5114,6 +5521,36 @@ ca:
   username_or_user_id: Nom o identificador de l'usuari
   users: Usuaris
   users_contributions_to_project_html: Contribucions de <a href="%{url}">%{login}</a> al projecte %{project_title}
+  users_edit_resend_confirmation_prompt_html: |
+    Després de tornar a enviar el correu de confirmació, se us tancarà la sessió i no podreu iniciar la sessió al vostre compte fins que no feu clic a l'enllaç del correu electrònic, de manera que <strong>assegureu-vos completament que heu introduït la vostra adreça electrònica correctament.</strong>
+  users_edit_send_confirmation_prompt_with_grace_html: |
+    <p>
+    Assegureu-vos que la vostra adreça de correu electrònic és correcta. Aquesta és l'adreça de correu electrònic a la qual se us enviarà la confirmació:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <p>
+    Si no rebeu el correu electrònic, aquí teniu alguns consells:
+    </p>
+    <ul>
+    <li><p>Comprova la carpeta de correu brossa</p></li>
+    <li><p>Comprova els filtres que heu posat que poden eliminar els nostres correus electrònics de la safata d'entrada</p></li>
+    </ul>
+    <p>
+    Si encara no esteu rebent el correu de confirmació, contacteu amb nosaltres a <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> per poder ajudar-te.
+    </p>
+  users_edit_send_confirmation_prompt_html: |
+    <h3>Esteu a punt de tancar la sessió</h3>
+    <p>
+    Després d'enviar el correu de confirmació, se us tancarà la sessió i no podreu iniciar la sessió al vostre compte fins que feu clic a l'enllaç el correu electrònic, així que <strong class="bg-warning">assegura't que heu introduït correctament la vostra adreça electrònica.</strong>
+    </p>
+    <p>
+    Aquesta és l'adreça de correu electrònic a la qual enviarem la confirmació:
+    </p>
+    <pre class="text-center text-large">%{email}</pre>
+    <h4>Si us heu donat de baixa de tots els correus electrònics...</h4>
+    <p>
+    Si heu cancel·lat la subscripció de <em>tots</em> els nostres correus electrònics, no podem enviar un correu electrònic de confirmació. Per tornar a subscriure-us, heu de trobar un correu electrònic anterior nostre, feu clic a l'enllaç de donar-nos de baixa i trieu tornar a rebre correu electrònic. Si no podeu fer això, si us plau envia'ns un correu electrònic a <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> utilitzant l'adreça de correu electrònic que heu introduït aquí perquè us puguem ajudar.
+    </p>
   users_favorites: "Favorits de %{user}"
   users_highlights_and_stats_from_year_on_site: "Destacats i estadístiques de %{user} del %{year} a %{site}"
   users_id: "ID de %{user}"
@@ -5130,6 +5567,7 @@ ca:
   values: Valors
   verbing_x_of_y: "%{verb} %{x} de %{y}..."
   verifiable_observations_by_observation_date: Observacions verificables per data d'observació
+  video_tutorials: Vídeo-tutorial
   view: Mostra
   view_all: Mostra-ho tot
   view_all_caps: VEURE-HO TOT
@@ -5207,7 +5645,6 @@ ca:
   view_your_personal_year_in_review_caps: "VEURE EL TEU RESUM PERSONAL DE L'ANY %{year}"
   view_yours: Veure el vostre
   view_all_of_your_observations_from_x: "Veure totes les vostres observacions des de %{x}"
-  video_tutorials: Vídeo-tutorial
   visually_similar: Visualment Semblant
   vulnerable: Vulnerable
   w00t_no_ungrafted_taxa: Ep! No s'accepten tàxons sense relacions taxonòmiques!
@@ -5217,10 +5654,9 @@ ca:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
-  we_also_support: |
-    També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Fotografies de Google</a> i
-    <a href="http://facebook.com">Facebook</a>.
+  we_also_support2: |
+    També admetem la importació de fotografies des de <a href="http://flickr.com">Flickr</a>
+    i des de <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
   we_couldnt_find_a_user_with_that_activation_code: "No hem trobat cap usuari amb aquest codi d'activació. Pot ser que el compte ja s’hagi activat; proveu d’entrar al sistema."
@@ -5269,9 +5705,9 @@ ca:
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
   which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar les vostres observacions?
-  white: blanc
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Perquè esteu fent aquest canvi? (opcional)
+  why_are_you_making_this_change_cite_source_required: Per què heu fet aquest canvi? Si us plau, expliqueu i, si és possible, citeu una font. (obligatori)
   why_you_can_see_the_coordinates: Per què podeu veure les coordenades?
   who_can_add_observation_fields_to_my_obs: Qui pot afegir camps d'observació a les meves observacions?
   who_can_add_observations_to_this_project?: Qui pot afegir observacions a aquest projecte?
@@ -5293,6 +5729,8 @@ ca:
     Aquest article utilitza material de l'article de la Wikipèdia <a href="%{url}">"%{title}"</a>, alliberat sota 
     <a href="https://creativecommons.org/licenses/by-sa/3.0/">Llicencia Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver estat eliminat en el original però no s'ha canviat o estès.
   with: amb
+  #Filter for observations not in a particular taxon
+  without_taxon: No està al tàxon
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Retirar
@@ -5337,9 +5775,9 @@ ca:
   year: Any
   year_in_review: "Revisió de l'any %{year}"
   year_in_review2: "Resum de l'any %{year}"
+  year_in_review_caps: "ANY EN REVISIÓ %{year}"
   year_month: any/mes
   year_on_site: "L'any %{year} a %{site}"
-  yellow: groc
   'yes': "Sí­"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates but only for observations of
@@ -5356,6 +5794,8 @@ ca:
   yes_reject_it: Sí, refusa'l
   yes_show_this_in_the_box: Sí, mostrar-ho al requadre superior sobre els tàxons
   yesterday: Ahir
+  yir_code_contributors_desc_html: |
+    El nostre programari <a href="%{url}"></a> és gairebé tot de codi obert, el que significa que qualsevol pot contribuir si sap com fer-ho. Aquestes són les persones que han contribuït voluntàriament al codi enguany. Gràcies, programadors!
   yir_donate_banner_inaturalist_in_year: "INATURALIST EL %{year}:"
   yir_donate_banner_reaching_millions: Arribant a milions. Il·luminant la biodiversitat. Col·laboració global.
   #"You" is singular
@@ -5366,12 +5806,23 @@ ca:
   yir_donate_banner_you_helped_inaturalist_thrive: Heu ajudat a millorar iNaturalist aquest any. Gràcies!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist Necessita el teu Suport
+  yir_email_because_of_you: |
+    Gràcies a tu, aquest any hi ha més dades sobre la biodiversitat que l'any passat. l'Any en Revisió és el nostre regal per a tot el que heu fet per la biodiversitat a través d'iNaturalist.
+  yir_email_log_in_to_generate: |
+    Entreu per a generar la vostra revisió personal de l'any per trobar-ho!
+  yir_email_of_your_observations:
+    one: De la teva %{count} observació, saps quantes vau fer el %{year}?
+    other: De les teve %{count} observación, saps quantes vau fer el %{year}?
+  #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
+  yir_email_the_inaturalist_team: L'Equip d'iNaturalist
+  yir_email_what_else_will_you_observe_caps: QUÈ MÉS OBSERVAREU?
+  yir_email_with_gratitude: Agraïts,
   yir_generating_and_sharing: |
     Generar i compartir dades sobre biodiversitat d'alt impacte, a aquesta escala i velocitat sense precedents, té un cost creixent
   yir_millions_of_people_used_inaturalist: |
     Milions de persones han emprat iNaturalist i Seek d'iNaturalist al llarg d'aquest any per connectar amb la natura
-  yir_thank_your_for_being_generous: |
-    Gràcies per ser generós amb el vostre temps, atenció, experiència i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre la California Academy of Sciences i la National Geographic Society. El programa es basa en nombroses subvencions i donacions, incloses les donacions benèfiques d'una petita part de la comunitat. Estem especialment agraïts als patrocinadors mensuals, les donacions recurrents dels quals ens ajuden a planificar el futur.
+  yir_monthly_supporters_random_selection: |
+    Aquí hi ha una selecció aleatòria dels heroics membres de la comunitat d'iNat que donen cada mes.
   yir_your_gift_sustains: |
     La vostra donació sosté aquest programa d'abast global i profunds impactes personals i ecològics
   you: vós
@@ -5435,6 +5886,7 @@ ca:
   you_dont_have_permission_to_edit_those_photos: No teniu permís per editar aquestes fotos.
   you_faved_this: Heu fet favorit això!
   you_have_left_x_project: "Heu abandonat el projecte %{project}."
+  you_have_not_confirmed_your_email_address: No heu confirmat la vostra adreça electrònica!
   you_havent_linked_your_inaturalist_google_account: "Encara no heu vinculat el compte de %{site_name} amb el vostre compte de Google."
   you_joined_this_project: Us heu unit a aquest projecte!
   you_must_be_a_member_of_this_project_to_do_that: Heu de ser un membre del projecte per poder fer això.
@@ -5465,6 +5917,8 @@ ca:
   your_account_has_been_activated: S’ha activat el vostre compte.
   your_account_has_been_verified: "S’ha confirmat el vostre compte d’%{site_name}! Si us plau, ingresseu per continuar."
   your_activation_code_was_missing: "El vostre codi d'activació s'ha perdut. Si us plau, accediu a l'enllaç des del correu electrònic"
+  #Title for a list of 3rd party applications you control
+  your_applications: Les vostres aplicacions
   your_browser_does_not_support_the_audio_element: El vostre navegador no admet l'element d'àudio.
   your_comment_was_saved: S’ha desat el vostre contingut.
   your_content: El vostre Contingut
@@ -5528,46 +5982,36 @@ ca:
             Si és així, si us plau llegiu la nostra <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar %{site_name} amb els alumnes.
     donate:
       donate_short_desc: "Doneu ara per mostrar el vostre suport!"
-      donate_desc_html: |
-        <p class="lead">
-        <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-        </p>
-        <p class="lead">
-        Si creus en el poder d'aquesta comunitat global d'amants de la natura per compartir el coneixement i generar dades irreemplaçables de biodiversitat, si us plau considera fer una donació puntual o periòdica en línia, o coneix <a
-        href="https://www.inaturalist.org/pages/giving">altres formes de donar</a>.
-        </p>
-        <p class="lead">
-        Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal.
-        </p>
-        <p class="text-muted">
-        iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-        </p>
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Convertiu-vos en un patrocinador Mensual d'iNaturalist
         become_a_monthly_supporter_of_inaturalist_caps: CONVERTEIX-TE EN UN PATROCINADOR MENSUAL D'INATURALIST
-        desc_html: |
-          <p class="lead">
-          <strong>iNaturalist és una de les majors comunitats del món dedicada a explorar la biodiversitat. Gràcies per formar part d'ella!</strong>
-          </p>
-          <p class="lead">
-          Volem mantenir l'ús gratuït d'iNaturalist, però la seva operació no és gratis.
-          Si us agrada iNaturalist, si us plau considereu convertir-vos en un patrocinador mensual. Les donacions recurrents ens ajuden a assegurar que iNaturalist pot continuar augmentant la seva infraestructura i personal proporcionant ingressos previsibles. També podeu mostrar el vostre estat de patrocinador mensual en el vostre perfil d'usuari.
-          </p>
-          <p class="lead">
-          Les seves donacions ajuden a recolzar iNaturalist a mesura la comunitat creix, des de la millora de la visió per ordinador fins a implementar noves característiques per recolzar els nostres servidors i el personal. Si preferiu fer una donació única, si us plau <a href="%{donate_url}">premeu aquí</a>.
-          </p>
-          <p class="text-muted">
-          iNaturalist és una iniciativa conjunta de la California Academy of Sciences i la National Geographic Society. Tores les donacions són rebudes a la California Academy of Sciences, una organització exempta de taxes i sense ànim de lucre 501(c)(3) dels Estats Units d'Amèrica (Tax ID: 94-1156258).
-          </p>
         thank_you_for_being_a_monthly_supporter: Gràcies per ser un Patrocinador Mensual!
         thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Feu clic per tornar a enviar un correu electrònic de confirmació
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Contingut que pot ser marcat
         flaggable_content_desc: |
           El contingut que es pot marcar és l'atribut de text principal de l'objecte marcat en el moment que es va crear la marca. Només els supervisors i el personal pot veure això. Només el nostre personal pot veure això en els missatges.
         flags_that_should_not_be_resolved_desc_html: |
           Si us plau, retireu les marques  per <code>spam</code> i <code>d'incompliment de copyright</code> únicament si els contingut no és spam o no hi ha cap incompliment del copyright, respectivament.
+    geo_model:
+      explain:
+        range_comparison:
+          #Areas where only the Expected Nearby Map predicts the taxon exists
+          false_presences_colon: |
+            Falses Presències:
+          #Areas where only the Taxon Range is present
+          false_absences_colon: |
+            Falses Absències:
+          #The fraction of the Expected Nearby Map that are True Presences
+          precision_colon: |
+            Precisió:
     guides:
       index:
         deprecated_banner: |
@@ -5672,7 +6116,7 @@ ca:
         Si us plau tingueu paciència, generar arxius PDF grans pot necessitar un o dos minuts.
       tags_help_html: |
         Les etiquetes són com les categories per a les espècies de la guia, excepte que diverses espècies poden tenir la mateixa etiqueta.
-        Introduir etiquetes com una llista separada per comes aquí, per exemple, <code>petit,pelut</code>. Per afegir categories amb nom, utilitza etiquetes com <code>NOM=valor</code>, 
+        Introduir etiquetes com una llista separada per comes aquí, per exemple, <code>petit,pelut</code>. Per afegir categories amb nom, utilitza etiquetes com <code>NOM=valor</code>,
         per exemple, <code>color=groc</code>.
       sorts:
         default: Ordre de la Guia
@@ -5978,6 +6422,8 @@ ca:
       show:
         allow_curator_coordinate_access_desc_html: |
           Permet als supervisors del projecte veure les coordenades ocultes d'aquesta observació.
+        ancestor_disagreements_desc2: |
+          Nombre de tàxons identificats que es troben entre els avantpassats d'un tàxon, però que no estan d'acord amb el tàxon (és a dir, "crec que pertany al gènere, però no estic d'acord que sigui aquesta espècie")
         community_taxon_desc_html: |
           <p class="ui">
           El tàxon comunitari (o identificació per la comunitat) indica quin tàxon de %{site_name} creu la comunitat que representa una observació. Si esteu interessats en saber com seleccionen un tàxon comunitari, consulteu les notes de l'algorisme a continuació, però en general, intentem <strong>triar el tàxon amb el que més de 2/3 dels identificadors estan d'acord</strong>. De vegades això implica triar un tàxon d'un nivell superior que contingui diversos tàxons en els que no s'està d'acord (per exemple, si algú IDentifica una observació com una Colobra i creieu que es tracta d'una Víbora, iNat triarà el subordre Serpentes, que conté totes les serps). L'algorisme també afavoreix lleugerament la dissidència, perquè hem trobat que els dissidents són sovint correctes.
@@ -5989,58 +6435,64 @@ ca:
         cumulative_count_desc: '# d''identificacions per a un tàxon individual i els seus descendents'
         curator_coordinate_access_disabled_desc_html: |
           Aquest projecte no permet les observacions amb coordenades que no són accessibles als seus supervisors. Si no voleu compartir les coordenades d'aquesta observació amb els supervisors d'aquest projecte hauríeu de treure l'observació d'aquest projecte.
-        data_quality_assessment_desc_html: |
-          L'Anàlisi de la Qualitat de les Dades és una avaluació de la precisió d'una observació. Les observacions amb Grau de Recerca poden ser utilitzades pels científics per a la recerca.
-          Doneu el vostre vot sota:
+        data_quality_assessment_desc3_html: |
+          El grau de qualitat resumeix l'exactitud, precisió, exhaustivitat, rellevància i adequació d'una observació iNaturalist com a dada de biodiversitat. Alguns atributs es determinen automàticament, mentre que d'altres estan subjectes a la votació dels usuaris d'iNat. iNaturalist comparteix observacions autoritzades de "Grau de Recerca" amb diversos socis de dades per utilitzar-les en ciència i conservació.
         disagreement_count_desc: "# dels tàxons identificats que no estan entre els ancestres del tàxon"
         identification_count_desc: '# de les identificacions per a un tàxon individual'
         flagged_photos_desc_html: |
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
-        quality_assessment_help2_html: |
+        quality_assessment_help3_html: |
           <p>
-          L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>"casual"</strong>, i es classifiquen com <strong>"necessita ID"</strong> quan
-          </p>
+          L'avaluació de la qualitat de les dades és un resum de la precisió d'una observació. Totes les observacions comencen com a nota <strong>"casual"</strong> i es converteixen en <strong>"necessita identificació"</strong> quan</p>
 
           <ul>
-          <li>l'observació <strong>té una data</​1></li>
-          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
-          <li>l'observació <strong>s'acompanya de fotos o sons</strong></li>
-          <li>l'observació <strong>no és d'un humà</strong></li>
-          </ul>
-          <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
-          <ul>
-          <li>
-          la comunitat de %{site_name} <strong>està d'acord amb la ID donada a escala específica o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acord amb el tàxon (si la comunitat ha indicat que el Tàxon de la Comunitat no pot ser millorat més, es reverteix al nivell d'ID de subfamília o inferior)
-          </li>
+          <li>l'observació <strong>té data</strong></li>
+          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té coordenades lat/lon)</li>
+          <li>l'observació <strong>té fotos o sons</strong></li>
+          <li>l'observació <strong>no és d'un ésser humà</strong></li>
           </ul>
           <p>
-          Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord a dir que:
+          Les observacions es converteixen en <strong>"qualificació de recerca"</strong> quan
           </p>
           <ul>
           <li>
-          la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, etc.)
-          </li>
-          <li>
-          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents)
-          </li>
-          <li>
-          l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, etc. que no mostren cap organisme
-          </li>
-          <li>
-          l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organisme</strong> (p.ex. fòssils, però sí que s'accepten rastres, excrements i fulles mortes)
-          </li>
-          <li>
-          l'observació no necessita una ID <em>i</em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família
+          la %{site_name} <strong>comunitat està d'acord amb un identificador a escala d'espècie o inferior</strong>, és a dir, quan més de 2/3 dels identificadors estan d'acord en un tàxon (si la comunitat ha votat que el tàxon comunitari ja no es pot millorar , això torna a l'identificador de nivell de subfamília o inferior)
           </li>
           </ul>
           <p>
-          I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
+          Les observacions tornaran a ser <strong>"casuals"</strong> si no es compleixen les condicions anteriors o la comunitat hi està d'acord
           </p>
           <ul>
           <li>
-          El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitud (municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a no salvatge/naturalitzat.
+          la <strong>ubicació no sembla precisa</strong> (p. ex., micos al mig de l'oceà, hipopòtams a edificis d'oficines, etc.)
+          </li>
+          <li>
+          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o cultivat per humans)
+          </li>
+          <li>
+          l'observació <strong>no presenta proves d'un organisme</strong>, p. imatges d'elements d'aigua, roques, paisatges que no inclouen l'organisme, etc.
+          </li>
+          <li>
+          l'observació <strong>no presenta proves recents (~100 anys) de l'organisme</strong> (per exemple, fòssils, però les petjades, els excrements i les fulles mortes estan bé)
+          </li>
+          <li>
+          l'observació <strong>no presenta proves relacionades amb el mateix tema</strong> (p. ex., té quatre fotos d'organismes no relacionats. Una foto que mostri l'hàbitat del subjecte de l'observació està bé.)
+          </li>
+          <li>
+          l'observació ja no necessita un identificador <em>i</em> l'identificador de la comunitat és de la família o superior
+          </li>
+          <li>
+          l'observador ha desactivat l'identificador de comunitat i el tàxon d'identificació de comunitat no és un avantpassat o descendent del tàxon associat amb l'identificador de l'observador
+          </li>
+          </ul>
+          <p>
+          I per si això no fos prou complicat, també hi ha situacions en què el sistema obté un vot:
+          </p>
+          <ul>
+          <li>
+          El sistema votarà que l'observació no és salvatge/naturalitzada si hi ha almenys 10 observacions més d'un gènere o inferior al lloc més petit equivalent al comtat, estat o país que conté aquesta observació i el 80% o més d'aquestes observacions s'han marcat com a no salvatges/naturalitzades.
           </li>
           </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
@@ -6204,8 +6656,6 @@ ca:
         view_original_html: |
           Podeu veure l'original a <a href="%{url}">%{url}</a>. Si us plau no marqueu les caselles sobre violació dels drets d'autor si aquesta foto no els viola.
     places:
-      kml_field_desc: |
-        KML dels límits del lloc. Podeu fer-ho amb Google Maps, Google, Google Earth o moltes altres aplicacions SIG. Ha de tractar-se, almenys, d'un polígon de menys d'1 MB (5 MB pels supervisors del lloc), i una superfície inferior a la de l'Estat americà de Texas.
       edit:
         complex_boundary_note_html: |
           Aquest límit és massa complicat per editar-ho al web. Malgrat això podeu <a href="%{url}">descarregar l'arxiu KML</a>, editar-ho en una aplicació SIG i pujar el KML editat directament.
@@ -6371,6 +6821,8 @@ ca:
         display_project_name: Mostra nom del projecte
         do_you_need_features_from_traditional: |
           Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
+        do_you_need_features_from_traditional2: |
+          Necessiteu característiques dels projectes tradicionals, com ara camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         duplicate_project: Duplica el projecte
         include_annotated_observations: |
           Incloure només observacions marcades amb un atribut determinat (p.e. estat biològic), o un atribut i valors determinats (p.e. estat biològic=adult). Hi ha una limitació d'un filtre d'atribut per projecte.
@@ -6549,15 +7001,21 @@ ca:
         website_desc_html: |
           Creat via <a href="https://www.inaturalist.org">iNaturalist</a> o els websites de la <a href="%{url}">Xarxa iNaturalist</a>
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Afegides ambdues
+        added_only_identifications: Afegides només les Identificacions
+        added_only_observations: Afegides només les Observacions
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Impactes amples
+        broader_impacts_desc: |
+          Molts col·laboradors externs importen, de forma regular observacions d'iNaturalist donant suport a la ciència i la conservació. Les vostres observacions, identificacions i selecció de llicències lliures permeten a aquestes organitzacions subministrar informació útil sobre biodiversitat a les persones de tot el món que les necessiten.
         compare_desc: |
           Com ha estat aquest any comparat amb els vostres darrers anys? Després de tres o més anys d'ús podem comparar les mètriques anuals d'activitat.
         compare_site_desc: |
           Com ha estat aquest any en comparació amb l'anterior? La barra verda mostra aquest any, la barra vertical blanca mostra l'any passat i l'àrea grisa mostra el menor i el major, així com la mitjana de tots els anys.
         compared_to_previous_years: Compara amb Anys Anteriors
         donate_title: "Moltes gràcies a tots els nostres Patrocinadors"
-        donate_desc_html: |
-          Gràcies per ser tant generós amb el vostre temps, atenció, expertesa i donacions! iNaturalist és una iniciativa conjunta sense ànim de lucre de l'Acadèmia de Ciències de Califòrnia de Ciències i la National Geographic Society.
-          Està recolzada per un <a href="%{team_url}">petit equip</a> que s'encarrega de tot el disseny i enginyeria del programari per a la web, el mòbil, i <a href="%{seek_url}">Seek d'iNaturalist</a>, a més de gestionar el suport comunitari, les col·laboracions, i integracions que mantenen tot elles en funcionament (i creixent ràpidament!). El programa confia en nombroses donacions i beques, incloent donacions benèfiques d'una petita part dels col·laboradors. Estem especialment agraïts als Patrocinadors Mensuals, les seves donacions recurrents ens permeten fer plans de futur. Podeu donar en diverses monedes per recolzar les operacions nuclears d'iNaturalist. Gràcies a tothom per a la vostra contribució a fer de l'any %{year} el millor any per a iNaturalist fins ara!
         donors: Donants
         donors_guide_label_our_goal_is_1000: El nostre objectiu és aconseguir 1.000 donants recurrents al mes
         inaturalist_network: Xarxa iNaturalist
@@ -6610,8 +7068,6 @@ ca:
         stats_generation_schedule: Les estadístiques es generaran cada diumenge de desembre i l'1 de gener
         store_prompt: |
           Vols mostrar amb orgull la teva pertinença a iNat allà on vagis? Fes-li una ullada a la Botiga d'iNat!
-        sunburst_desc_html: |
-          Els tàxons observats es disposen en un diagrama radial (Sunburst) jeràrquic. La base de la jerarquia és al centre, començant per "Vida" i acaba amb les espècies als extrems exteriors. La mida de cada arc és proporcional al nombre d’observacions d’aquest tàxon i els colors corresponen als colors habituals amb els quals representem els tàxons (verd per a plantes, taronja per a insectes, blau per a la majoria d’altres animals, etc.), així que si veieu molt de verd, això significa que heu observat moltes plantes. <strong> Feu clic a un arc per col·locar aquest tàxon al centre </strong> i els seus fills al seu voltant o <strong> feu clic al centre per tornar a la jerarquia </strong>.
         translators_title: Traductors
         translators_desc: |
           Sabies que iNaturalist ha estat traduït a %{x_languages}, gairebé en la seva totalitat per %{x_people}, algunes de les qual, fins i tot, no han utilitzat mai iNat? Aquí tens tots els extraordinaris traductors que han afegit traduccions enguany, juntament amb el número de mots han traduït per al %{website_link_tag}lloc web%{link_tag_end}, les nostres Apps a %{iphone_link_tag}iPhone%{link_tag_end} i %{android_link_tag}Android%{link_tag_end}, i a %{seek_link_tag}Seek%{link_tag_end}. Pots veure
@@ -6635,18 +7091,6 @@ ca:
           Breu resum d'aquest tàxon basat a la seva <a target="_blank"
           href="%{url}">pàgina de la Viquipèdia</a>, la qual guardem indefinidament fins que és actualitzada manualment. L'actualització d'aquest sumari també actualitzar automàticament la nostra còpia del contingut de la Viquipèdia que mostrem en el lloc Web, el qual s'actualitza automàticament passada una setmana.
       show:
-        about_names_desc: |
-          <p>
-          La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
-          Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
-          però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre la història evolutiva de les relacions entre els diferents organismes, reduint novament la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
-          </p>
-          <p>
-          El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."
-          </p>
-          <p>
-          Intentem respondre a aquestes mancances mostrant tant el nom comú com el científic, sempre que sigui possible, i elegint els noms comuns basant-nos en l'idioma i localització geogràfica de les preferències de l'usuari.
-          </p>
         about_conservation_status_desc: |
           L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.
         about_establishment_desc: |
@@ -6675,8 +7119,7 @@ ca:
           "Plant Phenology=Flower Budding": Gemmes florals
           "Plant Phenology=Flowering": Florint
           "Plant Phenology=Fruiting": Fructificant
-          "Plant Phenology=No Evidence": Sense evidències
-          "Life Stage=Adult": Adult
+          "Plant Phenology=No Evidence of Flowering": Sense evidència de Floració
           "Life Stage=Egg": Ou
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Juvenil
@@ -6705,33 +7148,12 @@ ca:
     taxon_changes:
       move_children_desc: |
         Els tàxons d’entrada que són gèneres o superiors es dirigiran als tàxons de destí; les espècies, les subespècies, les varietats, etc. es canviaran amb els noms equivalents amb el nom del nou gènere o espècie.
-      form:
-        move_children_desc_html: |
-          Marcant aquesta opció mourà els fills del tàxon indicat al nou tàxon per Intercanviar i Mesclar quan el canvi s'hagi produït. Si el canvi afecta un gènere o categoria inferior, crearà un Intercanvi de Tàxons de tots els fills que tinguin el nom implicat. Per exemple, i canvieu la família Canidae a la Dogidae, aixó suposa el canvi de la tàxon superior del gènere <i>Canis</i> de Canidae a Dogidae. Si canvieu el gènere el gènere <i>Canis</i> al gènere <i>Dogis</i> crearà i produirà un Tàxon d'inercanvi per canviar <i>Canis lupus</i> a <i>Dogis lupus</i>i <i>Canis lupus</i> ssp.<i>lupus</i> a <i>Dogis lupus</i> ssp.<i>lupus</i>. El que suposarà introduir un gran desordre taxonòmic, així que aneu amb cura.
     taxon_links:
       form:
         name_with_rank_desc: |
           El nom del tàxon està en el rang.Per a rangs infraespecífics, el rang s'insereix desprès del binomial.
     taxon_names:
       form:
-        new_name_guidelines_html: |
-          <ul>
-          <li><p>Intenteu afegir noms que efectivament estiguin en ús. Si us plau, no inventeu nous noms.</p></li>
-          <li><p>No afegir noms duplicats, per exemple, no poseu diversos falcons "falcó"</p></li>
-          <li><p>Per a tàxons de més alt nivell de tàxons, proveu d'utilitzar noms que incloguin tots els descendents, com "garses i similars" o "Família dels Brucs"<p></li>
-          <li>
-          <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom</p>
-          </li>
-          <li>
-          <p>Els nous lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
-          </li>
-          <li>
-          <p>
-          Els noms comuns associats a traduccions apareixen com a noms per defecte per aquest idioma (amb independpencia de l'efecte del lloc de preferència, l'ordre dels noms...).
-          <a class="readmore" href="/pages/translate">Llegiu més sobre les traduccions</a>
-          </p>
-          </li>
-          </ul>
         places_help_html: |
           Afegir un nom a un lloc per donar-li prioritat per aquest lloc i els seus usuaris. Si hi ha diversos noms pel mateix lloc pot prioritzar-los <a href="%{url}">aquí</a>. Si us plau, <strong>no</strong> afegiu noms per TOTS els
           llocs on el nom és utilitzat, només per a llocs que presentin conflictes amb altres llocs.
@@ -6807,8 +7229,8 @@ ca:
         licensing_desc_html: |
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
         monthly_supporter_desc_html: |
-          Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i la Xarxa d'iNaturalist.
-          <a href="%{url}"> Faci clic aquí per a convertir-se en un Patrocinador Mensual</a>. Quan confirmem el seu suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: necessitarà indicar exactament la mateixa adreça de correu electrònic a Donorbox i a iNaturalist perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual.
+          Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i de la Xarxa d'iNaturalist.
+          <a href="%{url}"> Feu clic aquí per a convertir-vos en un Patrocinador Mensual</a>. Quan confirmem el vostre suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: Les adreces de correu electrònic a Donorbox i a iNaturalist hauran de ser exactament les mateixes perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual. Si són diferents, canviï una perquè sigui igual a l'altre.
         muting_desc_html: |
           <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
           <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
@@ -6928,9 +7350,15 @@ ca:
       index:
         connect_with_nature: Connecta amb la Natura
         explore_and_share: Exploreu i compartiu les vostres observacions sobre el món natural
-        observations_to_date: 'Observacions fins Ara'
-        species_observed: 'Espècies Observades'
-        people_signed_up: 'Persones Registrades'
+        observations_to_date:
+          one: "Observació fins a la data"
+          other: "Observacions fins a la data"
+        species_observed:
+          one: "Espècie observada"
+          other: "Espècies observades"
+        people_signed_up:
+          one: "Persona registrada"
+          other: "Persones registrades"
         how_it_works: Com funciona
         record_your_observations: Deseu les vostres observacions
         share_with_fellow_naturalists: Compartiu amb companys naturalistes
@@ -7003,19 +7431,17 @@ ca:
       6: dv
       7: ds
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d/%m/%Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d de %b'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%b %e"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      short_with_year: '%d de %B del %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%d de %B de %Y'
     month_names:
       - 
@@ -7068,17 +7494,17 @@ ca:
         one: "1 segon"
         other: '%{count} segons'
     countdown_x_days:
-      one: dia
-      other: dies
+      one: DIA
+      other: DIES
     countdown_x_hours:
-      one: hora
-      other: hores
+      one: HORA
+      other: HORES
     countdown_x_minutes:
-      one: min.
-      other: mins.
+      one: min
+      other: min
     countdown_x_seconds:
-      one: seg.
-      other: segs.
+      one: s
+      other: s
     prompts:
       day: Dia
       hour: Hora
@@ -7086,46 +7512,6 @@ ca:
       month: Mes
       second: Segons
       year: Any
-  errors:
-    format: '%{attribute} %{message}'
-    messages:
-      accepted: s'ha d'acceptar
-      blank: no pot estar en blanc
-      confirmation: no coincideix amb la contrasenya
-      empty: no pot estar buit
-      equal_to: ha de ser igual a %{count}
-      even: ha de ser parell
-      exclusion: està reservat
-      greater_than: ha de ser superior a %{count}
-      greater_than_or_equal_to: ha de ser superior o igual a %{count}
-      inclusion: no està inclòs a la llista
-      invalid: no és vàlid
-      less_than: ha de ser inferior a %{count}
-      less_than_or_equal_to: ha de ser inferior o igual a %{count}
-      new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
-      not_a_number: no és un nombre
-      not_an_integer: ha de ser un nombre enter
-      odd: ha de ser imparell
-      only_project_owner_can_change_project_owner: Únicament el propietari d'un joc pot canviar el seu propietari
-      record_invalid: 'La validació ha fallat: %{errors}'
-      requires_privilege_speech: |
-        heu de tenir tres observacions verificables o tres identificacions d'altres per fer això
-      requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
-      taken: ja està en ús
-      too_long:
-        one: és massa llarg (el màxim és 1 caràcter)
-        other: és massa llarg (el màxim és %{count} caràcters)
-      too_short:
-        one: és massa curt (el mínim és 1 caràcter)
-        other: és massa curt (el mínim es %{count} caràcters)
-      wrong_length:
-        one: no té la longitud correcta (ha de tenir 1 caràcter)
-        other: no té la longitud correcta (ha de tenir %{count} caràcters)
-    template:
-      body: 'S''han detectat problemes en els camps següents:'
-      header:
-        one: "No s’ha pogut desar aquest/a %{model} perquè s’hi ha detectat 1 error."
-        other: 'No s’ha pogut desar aquest/a %{model} perquè s’hi han detectat %{count} errors.'
   helpers:
     defaults:
       title: "AIXÒ ÉS UN TÍTOL"
@@ -7166,6 +7552,7 @@ ca:
           quadrillion: mil bilions
           thousand: mil
           trillion: bilió
+          unit: ''
       format:
         precision: 1
         significant: true
@@ -7188,66 +7575,24 @@ ca:
   time:
     am: del matí
     formats:
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %b %Y %H:%M:%S %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      long: '%d de %B de %Y'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%d/%m/%Y %H:%M'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
-      rfc: "%d %B %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%d %b. %Y"
-      #See https://github.com/fnando/i18n-js#date-formatting for formatting codes
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       hours: "%I:%M %p %Z"
     pm: de la tarda
-  #remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
-  activemodel:
-    errors:
-      format: '%{attribute} %{message}'
-      messages:
-        accepted: ha de ser acceptat
-        blank: no pot estar en blanc
-        confirmation: no coincideix amb la contrasenya
-        empty: no pot estar buit
-        equal_to: ha de ser igual a %{count}
-        even: ha de ser parell
-        exclusion: està reservat
-        greater_than: ha de ser superior a %{count}
-        greater_than_or_equal_to: ha de ser superior o igual a %{count}
-        inclusion: no està inclòs a la llista
-        invalid: no és vàlid
-        less_than: ha de ser inferior a %{count}
-        less_than_or_equal_to: ha de ser inferior o igual a %{count}
-        new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
-        not_a_number: no és un número
-        not_an_integer: ha de ser un nombre enter
-        odd: ha de ser senar
-        only_project_owner_can_change_project_owner: Únicament el propietari d'un projecte pot canviar el seu propietari
-        record_invalid: 'Ha fallat la validació: %{errors}'
-        requires_privilege_speech: Heu de tenir tres observacions verificables o tres identificacions d'altres per fer això
-        requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
-        taken: ja està en ús
-        too_long:
-          one: és massa llarg (el màxim és 1 caràcter)
-          other: és massa llarg (el màxim és %{count} caràcters)
-        too_short:
-          one: és massa curt (el mínim és 1 caràcter)
-          other: és massa curt (el mínim és %{count} caràcters)
-        wrong_length:
-          one: la longitud és errònia (ha de ser d'1 caràcter)
-          other: la longitud és errònia (ha de ser de %{count} caràcters)
-      template:
-        body: 'Hi ha problemes amb els camps següents:'
-        header:
-          one: No s’ha pogut desar aquest %{model} perquè s’hi ha detectat 1 error.
-          other: No s’ha pogut desar aquest %{model} perquè s’hi han detectat %{count} errors.
   activerecord:
     models:
+      #Information authored by site admins shown to users at various places
+      #on the web site, mostly on the dashboard
+      Announcement: Anunci
       AssessmentSection: Secció de valoració
       Atlas: Atles
       BlockedUser: Usuari blocat
@@ -7265,8 +7610,20 @@ ca:
       #Software application that operates iNat on a user's behalf, e.g. the
       #iNaturalist Android app or an app made by a third party
       OauthApplication: Aplicació
+      Photo: Foto
+      Post: Article de Revista
       TaxonLink: Enllaç al Tàxon
     attributes:
+      announcement:
+        created_at: Creat el
+        updated_at: Actualitzat el
+        #Numerical IDs of the iNaturalist Network partner sites the
+        #announcement should be shown on
+        site_ids: Identificadors del lloc
+        #Preference for an announcement that is only shown to users who have
+        #not confirmed their email address
+        prefers_target_unconfirmed_users: Per a usuaris sense confirmació.
+        clients: Clients
       assessment:
         description: Descripció
       assessment_section:
@@ -7286,6 +7643,8 @@ ca:
       flag:
         #The reason the item was flagged
         reason: Raó
+        #The person who resolved the flag
+        resolver_id: Solucionador
         #The kind of flag that was made
         flag: Marca
       guide:
@@ -7419,6 +7778,22 @@ ca:
         position: Posició
         source_url: Adreça web de la font
         source_identifier: Identificador de la font
+        audit_comment: Nota
+      taxon_link:
+        url: URL
+        #Name of the web site being linked to bey a taxon link, e.g. Global
+        #Biodiversity Information Facility
+        site_title: Títol del lloc
+        #Short or abbreviated title for the web site being linked to bey a
+        #taxon link, e.g. GBIF
+        short_title: Títol curt
+        #Taxon this link is associated with
+        taxon: Tàxon
+        #Place this link is associated with
+        place: Lloc
+        #Controls whether the taxon link is visible for descendants of this
+        #taxon
+        show_for_descendent_taxa: Mostra per als tàxons descendents
       user:
         email: Correu
         login: Nom d’usuari
@@ -7435,22 +7810,33 @@ ca:
         blank: no pot estar en blanc
         confirmation: no coincideix amb la contrasenya
         empty: no pot estar buit
-        equal_to: ha de ser igual a %{count}
+        equal_to:
+          one: ha de ser igual a %{count}
+          other: han de ser iguals a %{count}
         even: ha de ser parell
         exclusion: està reservat
-        greater_than: ha de ser més gran que %{count}
-        greater_than_or_equal_to: ha de ser més gran o igual a %{count}
+        greater_than:
+          one: ha de ser major que %{count}
+          other: han de ser majors que %{count}
+        greater_than_or_equal_to:
+          one: ha de ser major o igual a %{count}
+          other: han de ser majors o iguals a %{count}
         inclusion: no està inclòs a la llista
         invalid: no és vàlid
-        less_than: ha de ser inferior a %{count}
-        less_than_or_equal_to: ha de ser més petit o igual a %{count}
+        less_than:
+          one: ha de ser menor que %{count}
+          other: han de ser menors que %{count}
+        less_than_or_equal_to:
+          one: ha de ser menor o igual a %{count}
+          other: han de ser menors o iguals a %{count}
         new_project_owner_must_be_a_manager: El nou propietari del projecte ha de ser un administrador
         not_a_number: no és un nombre
         not_an_integer: ha de ser un nombre sencer
         odd: ha de ser senar
         only_project_owner_can_change_project_owner: Únicament el propietari d'un projecte pot canviar el seu propietari
         record_invalid: 'La validació ha fallat: %{errors}'
-        requires_privilege_speech: heu de tenir tres observacions verificable o tres identificacions d'altres per fer això
+        requires_privilege_speech: |
+          heu de tenir tres observacions verificable o tres identificacions d'altres per fer això
         requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
         taken: ja està en ús
         too_long:
@@ -7465,8 +7851,8 @@ ca:
       template:
         body: 'Hi ha problemes amb els camps següents:'
         header:
-          one: No s’ha pogut desar aquest %{model} perquè s'ha detectat 1 error.
-          other: No s’ha pogut desar aquest %{model} perquè s'han detectat %{count} errors.
+          one: "No s’ha pogut desar aquest %{model} perquè s'ha detectat 1 error."
+          other: 'No s’ha pogut desar aquest %{model} perquè s''han detectat %{count} errors.'
       models:
         application:
           attributes:
@@ -7502,15 +7888,13 @@ ca:
             action:
               not_supported_for_this_kind_of_content: no està suportat per aquest tipus de contigut
             base:
-              only_staff_can_unhide: Només el personal pot ocultar i tornar a mostrar el contingut ocult.
               staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
-        mushroom_observer_import_flow_task:
+        moderator_note:
           attributes:
-            base:
-              api_key_in_use: "La importació d'aquest usuari del 'Mushroom Observer' s'està realitzant o està en cua per a la importació"
-              api_key_missing: "Falta la clau API del 'Mushroom Observer'"
+            user:
+              must_be_a_curator: ha de ser supervisor
         observation:
           attributes:
             base:
@@ -7546,13 +7930,15 @@ ca:
               is_too_large_to_edit: és massa gran per editar
               is_too_large_to_import: és massa gran per a importar-ho
               contains_too_many_observations: Conté massa observacions per importar
+              cannot_be_blank: no pot estar en blanc
+              invalid_point: té un punt no vàlid, p.e. la longitud és superior a 180 o la latitud inferior a -90
+              must_have_more_than_three_points: ha de tenir més de 3 punts
         place_geometry:
           attributes:
             geom:
               cannot_be_blank: no pot estar en blanc
               invalid_point: té un punt no vàlid, p.e. la longitud és més gran de 180 o la latitud inferior a -90
               must_have_more_than_three_points: ha de tenir més de 3 punts
-              polygon_with_fewer_than_four_points: té un polígon amb menys de 4 punts
         post:
           attributes:
             parent:
@@ -7645,8 +8031,6 @@ ca:
           attributes:
             base:
               user_already_blocked: Ja heu blocat aquest usuari
-              user_cannot_be_staff: |
-                No podeu blocar el personal d'iNat. El personal d'iNat s'ha de poder comunicar amb tots els usuaris d'iNat, tenir accés a totes les dades d'iNat i són els mediadors últims de les disputes, per tant, blocar-los no impedeix que es puguin comunicar amb vostè. Si teniu algun problema amb alguna persona d'iNat, si us plau, informeu algun dels codirectors d'iNat, o, si el problema és amb algun dels codirectors, podeu contactar amb el Responsable Científic de l'Institute for Biodiversity and Sustainability Science de la California Academy of Sciences.
         user_parent:
           attributes:
             email:
@@ -7819,6 +8203,20 @@ ca:
         variety: "@f"
         #Default gender for nouns that aren't listed here
         default: "@m"
+      "@iconic_taxon":
+        Animalia: Animals
+        Actinopterygii: Actinopterigis
+        Aves: Aus
+        Reptilia: Rèptils
+        Amphibia: Amfibis
+        Mammalia: Mamífers
+        Arachnida: Aràcnids
+        Insecta: Insectes
+        Plantae: Plantes
+        Fungi: Fongs
+        Protozoa: Protozous
+        Mollusca: Mol·luscs
+        Chromista: Algues brunes i parents
   #Title of a section warning the user about something
   warning_title: Atenció
   wikimedia: Wikimedia

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import * as d3 from "d3";
-import d3tip from "d3-tip";
+import { tip as d3tip } from "d3-v6-tip";
 import legend from "d3-svg-legend";
 
 class PieChart extends React.Component {
@@ -28,10 +28,14 @@ class PieChart extends React.Component {
     const height = svgHeight - margin.top - margin.bottom;
     const radius = Math.min( width, height ) / 2;
     const g = svg.append( "g" ).attr( "transform", `translate(${width / 2},${height / 2})` );
-    const color = d3.scaleOrdinal( d3.schemeCategory20 );
+    const color = d3.scaleOrdinal( d3.schemeCategory10 );
     const colorForDatum = datum => ( datum.color || color( datum.label ) );
 
-    const data = this.props.data;
+    let { data } = this.props;
+    let dataOrderedForChart = data;
+    if ( _.some( data, d => _.has( d, "chartDisplayOrder" ) ) ) {
+      dataOrderedForChart = _.sortBy( data, "chartDisplayOrder" );
+    }
 
     // Setup tips
     const angleInBottomHalf = angle => ( angle > ( Math.PI / 2 ) && angle < ( 1.5 * Math.PI ) );
@@ -51,13 +55,13 @@ class PieChart extends React.Component {
         }
         return "n";
       } )
-      .html( d => {
+      .html( ( _event, d ) => {
         if ( this.props.labelForDatum ) {
           return this.props.labelForDatum( d );
         }
         const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
         const percent = _.round( degrees / 360 * 100, 2 );
-        return `<strong>${d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
+        return `<strong>${d.data.fullLabel || d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
       } );
     svg.call( tip );
 
@@ -76,9 +80,9 @@ class PieChart extends React.Component {
       .outerRadius( radius - 10 )
       .innerRadius( innerRadius );
     const arcGroup = g.selectAll( ".arc" )
-      .data( pie( data ) )
+      .data( pie( dataOrderedForChart ) )
       .enter( ).append( "g" )
-        .attr( "class", "arc" );
+      .attr( "class", "arc" );
     const arc = arcGroup.append( "path" )
       .attr( "d", path )
       .attr( "class", d => d.data.label )
@@ -124,7 +128,7 @@ class PieChart extends React.Component {
   render( ) {
     return (
       <div className="PieChart">
-        <div className="chart"></div>
+        <div className="chart" />
       </div>
     );
   }

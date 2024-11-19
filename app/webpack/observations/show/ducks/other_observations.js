@@ -1,8 +1,11 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
+import moment from "moment";
 
 const SET_EARLIER_USER_OBSERVATIONS = "obs-show/other_observations/SET_EARLIER_USER_OBSERVATIONS";
 const SET_LATER_USER_OBSERVATIONS = "obs-show/other_observations/SET_LATER_USER_OBSERVATIONS";
+const SET_EARLIER_USER_OBSERVATIONS_BY_OBSERVED = "obs-show/other_observations/SET_EARLIER_USER_OBSERVATIONS_BY_OBSERVED";
+const SET_LATER_USER_OBSERVATIONS_BY_OBSERVED = "obs-show/other_observations/SET_LATER_USER_OBSERVATIONS_BY_OBSERVED";
 const SET_NEARBY = "obs-show/other_observations/SET_NEARBY";
 const SET_MORE_FROM_CLADE = "obs-show/other_observations/SET_MORE_FROM_CLADE";
 
@@ -15,6 +18,8 @@ const OTHER_OBSERVATIONS_DEFAULT_STATE = {
 
 const OTHER_OBSERVATION_FIELDS = {
   id: true,
+  latitude: true,
+  obscured: true,
   photos: {
     id: true,
     uuid: true,
@@ -57,6 +62,14 @@ export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, actio
       return Object.assign( { }, state, {
         laterUserObservations: _.filter( action.observations, otherObsFilter )
       } );
+    case SET_EARLIER_USER_OBSERVATIONS_BY_OBSERVED:
+      return Object.assign( { }, state, {
+        earlierUserObservationsByObserved: action.observations
+      } );
+    case SET_LATER_USER_OBSERVATIONS_BY_OBSERVED:
+      return Object.assign( { }, state, {
+        laterUserObservationsByObserved: action.observations
+      } );
     case SET_NEARBY:
       return Object.assign( { }, state, {
         nearby: Object.assign( {}, action.data, {
@@ -85,6 +98,20 @@ export function setEarlierUserObservations( observations ) {
 export function setLaterUserObservations( observations ) {
   return {
     type: SET_LATER_USER_OBSERVATIONS,
+    observations
+  };
+}
+
+export function setEarlierUserObservationsByObserved( observations ) {
+  return {
+    type: SET_EARLIER_USER_OBSERVATIONS_BY_OBSERVED,
+    observations
+  };
+}
+
+export function setLaterUserObservationsByObserved( observations ) {
+  return {
+    type: SET_LATER_USER_OBSERVATIONS_BY_OBSERVED,
     observations
   };
 }
@@ -126,7 +153,7 @@ export function fetchNearby( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -162,7 +189,7 @@ export function fetchMoreFromClade( ) {
       photos: true,
       not_id: observation.uuid,
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
@@ -172,16 +199,16 @@ export function fetchMoreFromClade( ) {
 }
 
 export function fetchMoreFromThisUser( ) {
-  return ( dispatch, getState ) => {
+  return async ( dispatch, getState ) => {
     const s = getState( );
-    const { testingApiV2 } = s.config;
+    const { testingApiV2, currentUser } = s.config;
     const { observation } = s;
     if ( !observation || !observation.user ) { return null; }
     const baseParams = {
       user_id: observation.user.id,
       order_by: "id",
       per_page: 6,
-      skip_total_hits: true,
+      no_total_hits: true,
       details: "all",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
@@ -192,11 +219,53 @@ export function fetchMoreFromThisUser( ) {
     }
     const prevParams = Object.assign( {}, baseParams, { order: "desc", id_below: observation.id } );
     const nextParams = Object.assign( {}, baseParams, { order: "asc", id_above: observation.id } );
-    return inatjs.observations.search( prevParams ).then(
-      responseBefore => inatjs.observations.search( nextParams ).then( responseAfter => {
-        dispatch( setEarlierUserObservations( responseBefore.results ) );
-        dispatch( setLaterUserObservations( responseAfter.results ) );
-      } ).catch( ( ) => { } )
-    ).catch( ( ) => { } );
+    const responseBefore = await inatjs.observations.search( prevParams );
+    const responseAfter = await inatjs.observations.search( nextParams );
+    dispatch( setEarlierUserObservations( responseBefore.results ) );
+    dispatch( setLaterUserObservations( responseAfter.results ) );
+
+    // Fetch observations for missing location interpolation
+
+    // If we have a location we don't need to interpolate
+    if ( observation.latitude || observation.obscured ) return Promise.resolve();
+    // If the viewer isn't the observer we shouldn't interpolate
+    if ( !currentUser || currentUser.id !== observation.user.id ) return Promise.resolve();
+    const obsDateTime = moment( observation.time_observed_at || observation.observed_on );
+    // If we don't have a date/time we can't interpolate
+    if ( !obsDateTime ) return Promise.resolve();
+
+    const byObservedBaseParams = Object.assign( {}, baseParams, {
+      fields: Object.assign( {}, baseParams.fields, {
+        geojson: true,
+        obscured: true
+      } )
+    } );
+    const prevByObservedParams = Object.assign( {}, byObservedBaseParams, {
+      order: "desc",
+      d1: moment( observation.time_observed_at || observation.observed_on ).subtract( 1, "days" ).format( ),
+      d2: obsDateTime.format(),
+      geo: true,
+      per_page: 1,
+      not_id: testingApiV2 ? observation.uuid : observation.id
+    } );
+    const responseObservedBefore = await inatjs.observations.search( prevByObservedParams );
+
+    const nextByObservedParams = Object.assign( {}, byObservedBaseParams, {
+      order: "asc",
+      d1: obsDateTime.format(),
+      d2: moment( observation.time_observed_at || observation.observed_on ).add( 1, "days" ).format( ),
+      has_geo: true,
+      per_page: 1,
+      not_id: testingApiV2 ? observation.uuid : observation.id
+    } );
+    const responseObservedAfter = await inatjs.observations.search( nextByObservedParams );
+    if (
+      responseObservedBefore.results.length === 0
+      || responseObservedBefore.results.length === 0
+    ) {
+      return Promise.resolve();
+    }
+    dispatch( setEarlierUserObservationsByObserved( responseObservedBefore.results ) );
+    return dispatch( setLaterUserObservationsByObserved( responseObservedAfter.results ) );
   };
 }

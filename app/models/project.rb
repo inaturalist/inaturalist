@@ -169,10 +169,15 @@ class Project < ApplicationRecord
       bucket: CONFIG.s3_bucket,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
       processors: [:deanimator],
-      path: "projects/:id-icon-:style.:extension",
+      path: proc {| a | a.instance.paperclip_versioned_path( :icon ) },
       url: ":s3_alias_url",
       default_url: "/attachment_defaults/general/:style.png"
-    invalidate_cloudfront_caches :icon, "projects/:id-icon-*"
+    paperclip_path_versioning(
+      :icon, [
+        "projects/:id-icon-:style.:extension",
+        "projects/:id-icon-:icon_version-:style.:extension"
+      ]
+    )
   else
     has_attached_file :icon,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
@@ -180,7 +185,7 @@ class Project < ApplicationRecord
       url: "/attachments/:class/:attachment/:id/:style/:basename.:extension",
       default_url: "/attachment_defaults/general/:style.png"
   end
-  
+
   validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
     message: "must be JPG, PNG, or GIF"
 
@@ -192,10 +197,15 @@ class Project < ApplicationRecord
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
       s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
-      path: "projects/:id-cover.:extension",
+      path: proc {| a | a.instance.paperclip_versioned_path( :cover ) },
       url: ":s3_alias_url",
       default_url: ""
-    invalidate_cloudfront_caches :cover, "projects/:id-cover.*"
+    paperclip_path_versioning(
+      :cover, [
+        "projects/:id-cover.:extension",
+        "projects/:id-cover-:cover_version.:extension"
+      ]
+    )
   else
     has_attached_file :cover,
       path: ":rails_root/public/attachments/:class/:id-cover.:extension",
@@ -1089,9 +1099,26 @@ class Project < ApplicationRecord
     is_new = new_record?
     yield
     return if admin_attributes.blank?
-    admin_attributes.each do |k, admin_attr|
+
+    # like ActiveRecord::NestedAttributes.assign_nested_attributes_for_collection_association,
+    # the association attributes might be a hash with keys that are unused (they
+    # are a representation of array indices), or they could be an array. If they are a
+    # Hash, then all that is needed are the values. The following is borrowed from that method
+    if admin_attributes.is_a?( Hash )
+      keys = admin_attributes.keys
+      attributes_array = if keys.include?( "id" ) || keys.include?( :id )
+        [admin_attributes]
+      else
+        attributes_array = admin_attributes.values
+      end
+    else
+      attributes_array = admin_attributes
+    end
+
+    attributes_array.each do | admin_attr |
       next unless admin_attr["user_id"]
-      new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
+
+      new_role = admin_attr["_destroy"] == "true" ? nil : "manager"
       if is_new
         project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else

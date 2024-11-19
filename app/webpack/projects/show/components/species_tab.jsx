@@ -5,12 +5,12 @@ import { Grid, Row, Col } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroller";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 
-const SpeciesTab = function ( {
+const SpeciesTab = ( {
   project,
   config,
   species,
   infiniteScrollSpecies
-} ) {
+} ) => {
   if ( _.isEmpty( species ) ) { return ( <span /> ); }
   const loader = <div key="species-tab-loading-spinner" className="loading_spinner huge" />;
   const scrollIndex = config.speciesScrollIndex || 30;
@@ -21,18 +21,18 @@ const SpeciesTab = function ( {
           <Col xs={12}>
             <InfiniteScroll
               loadMore={( ) => {
-                infiniteScrollSpecies( scrollIndex + 30 );
+                infiniteScrollSpecies( scrollIndex, scrollIndex + 30 );
               }}
               hasMore={species.length >= scrollIndex}
               loader={loader}
-              className="results"
+              className="results d-flex flex-wrap"
             >
               { _.map( species.slice( 0, scrollIndex ), s => (
-                <div className="result" key={`grid_taxon_${s.taxon.id}`}>
+                <div className="result d-flex" key={`grid_taxon_${s.taxon.id}`}>
                   <TaxonThumbnail
+                    className="flex-grow-1"
                     taxon={s.taxon}
                     config={config}
-                    truncate={null}
                     height={210}
                     noInactive
                     overlay={(

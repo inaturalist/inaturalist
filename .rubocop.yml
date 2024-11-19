@@ -46,6 +46,9 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: false
 
+Metrics/BlockNesting:
+  Enabled: false
+
 Metrics/ClassLength:
   Enabled: false
 
@@ -58,10 +61,16 @@ Metrics/MethodLength:
 Metrics/ModuleLength:
   Enabled: false
 
+Metrics/ParameterLists:
+  Enabled: false
+
 Metrics/PerceivedComplexity:
   Enabled: false
 
 Naming/AccessorMethodName:
+  Enabled: false
+
+Naming/PredicateName:
   Enabled: false
 
 Naming/VariableNumber:
@@ -79,6 +88,9 @@ Style/PercentLiteralDelimiters:
 
 # Not sure why but this causes some weird failures
 Style/RedundantSort:
+  Enabled: false
+
+Style/RedundantBegin:
   Enabled: false
 
 Style/SymbolArray:

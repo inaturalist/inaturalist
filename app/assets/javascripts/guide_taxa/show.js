@@ -1,4 +1,8 @@
-$('.taxonmap').taxonMap()
+$('.taxonmap').taxonMap( {
+  mapTypeControlOptions: {
+    style: typeof ( google ) !== "undefined" && google.maps.MapTypeControlStyle.DROPDOWN_MENU
+  }
+} );
 $('#reuse_guide_taxon_dialog').on('shown.bs.modal', function() {
   var current = $('.modal-body', this)
   if (current.hasClass('loaded')) {

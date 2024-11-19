@@ -14,30 +14,33 @@ class ProjectObservation < ApplicationRecord
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
-    :georeferenced?, 
+    :georeferenced?,
     :has_a_photo?,
     :has_a_sound?,
     :has_media?,
-    :identified?, 
-    :in_taxon?, 
+    :identified?,
+    :in_taxon?,
     :observed_in_place?,
     :on_list?,
     :verifiable?,
     :wild?
-  ], unless: lambda {|po| po.errors.any? }
+  ], unless: lambda {| po | po.errors.any? }
   validate :observed_in_bioblitz_time_range?
-  validates_uniqueness_of :observation_id, :scope => :project_id, :message => "already added to this project"
+  validates_uniqueness_of :observation_id,
+    scope: :project_id, message: "already added to this project"
 
   preference :curator_coordinate_access, :boolean, default: nil
   before_validation :set_curator_coordinate_access
 
-  notifies_owner_of :observation, 
-    queue_if: lambda { |record| record.user_id != record.observation.user_id },
+  notifies_owner_of :observation,
+    unless: lambda {| record |
+      record.user_id == record.observation.user_id
+    },
     with: :notify_observer
 
   include ActsAsUUIDable
 
-  def notify_observer(association)
+  def notify_observer( association )
     return if CONFIG.has_subscribers == :disabled
     return unless observation
     existing_project_updates = UpdateAction.elastic_paginate(
@@ -231,10 +234,13 @@ class ProjectObservation < ApplicationRecord
 
   def expire_caches
     return true if project_id.blank?
+
     begin
-      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
+      FileUtils.rm( private_page_cache_path( UrlHelper.all_project_observations_path( project, format: "csv" ) ),
+        force: true )
     rescue ActionController::RoutingError, ActionController::UrlGenerationError
-      FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
+      FileUtils.rm( private_page_cache_path( UrlHelper.all_project_observations_path( project_id, format: "csv" ) ),
+        force: true )
     end
     true
   end

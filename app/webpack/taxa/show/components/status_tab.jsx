@@ -10,8 +10,20 @@ import {
 } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../shared/util";
 
-const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
+const StatusTab = ( {
+  listedTaxa,
+  listedTaxaCount,
+  statuses,
+  taxon,
+  currentUser
+} ) => {
+  const isCurator = currentUser && currentUser.roles && (
+    currentUser.roles.indexOf( "curator" ) >= 0
+    || currentUser.roles.indexOf( "admin" ) >= 0
+  );
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -57,6 +69,9 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 </span>
               </OverlayTrigger>
             </th>
+            { isCurator && (
+              <th />
+            ) }
           </tr>
         </thead>
         <tbody>
@@ -98,6 +113,10 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             } else if ( status.user ) {
               source = <a href={`/people/${status.user.login}`}>{ status.user.login }</a>;
             }
+            const statusTaxon = _.find(
+              taxon.ancestors,
+              ancestor => ancestor.id === status.taxon_id
+            );
             return (
               <tr
                 key={`statuses-${status.authority}-${status.place ? status.place.id : "global"}`}
@@ -114,19 +133,19 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                             <i className="fa fa-invert fa-map-marker" />
                           </a>
                         )
-                        : <i className="fa fa-invert fa-globe" />
-                      }
+                        : <i className="fa fa-invert fa-globe" />}
                     </div>
                     <div className="media-body">
                       { status.place
                         ? (
                           <a href={`/places/${status.place.id}`} className="place-link">
-                            { I18n.t( `places_name.${_.snakeCase( status.place.display_name )}`,
-                              { defaultValue: status.place.display_name } ) }
+                            { I18n.t(
+                              `places_name.${_.snakeCase( status.place.display_name )}`,
+                              { defaultValue: status.place.display_name }
+                            ) }
                           </a>
                         )
-                        : I18n.t( "globally" )
-                      }
+                        : I18n.t( "globally" )}
                     </div>
                   </div>
                 </td>
@@ -139,6 +158,18 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                       truncate={550}
                       className="text-muted"
                       text={status.description}
+                    />
+                  ) }
+                  { status.taxon_id && status.taxon_name && status.taxon_id !== taxon.id && (
+                    <div
+                      className="text-muted"
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "status_applied_from_higher_level_taxon_html", {
+                          taxon: ReactDOMServer.renderToString(
+                            <SplitTaxon taxon={statusTaxon} url={urlForTaxon( statusTaxon )} />
+                          )
+                        } )
+                      }}
                     />
                   ) }
                   { status.user && status.created_at && (
@@ -181,6 +212,13 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 <td>
                   { geoprivacy }
                 </td>
+                { isCurator && (
+                  <td>
+                    <a href={`/conservation_statuses/${status.id}/edit`}>
+                      { I18n.t( "edit" ) }
+                    </a>
+                  </td>
+                ) }
               </tr>
             );
           } ) }
@@ -218,19 +256,19 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                             <i className="fa fa-invert fa-map-marker" />
                           </a>
                         )
-                        : <i className="fa fa-invert fa-globe" />
-                      }
+                        : <i className="fa fa-invert fa-globe" />}
                     </div>
                     <div className="media-body">
                       { lt.place
                         ? (
                           <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                            { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                              { defaultValue: lt.place.display_name } ) }
+                            { I18n.t(
+                              `places_name.${_.snakeCase( lt.place.name )}`,
+                              { defaultValue: lt.place.display_name }
+                            ) }
                           </a>
                         )
-                        : I18n.t( "globally" )
-                      }
+                        : I18n.t( "globally" )}
                     </div>
                   </div>
                 </td>
@@ -272,6 +310,19 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                   <i className="icon-link-external" />
                 </a>
               </p>
+              { isCurator ? (
+                <ul className="tab-links list-group">
+                  <li className="list-group-item internal">
+                    <a
+                      href={`/taxa/${taxon.id}/conservation_statuses/new`}
+                      rel="nofollow"
+                    >
+                      <i className="fa fa-plus accessory-icon" />
+                      { I18n.t( "add_a_conservation_status" ) }
+                    </a>
+                  </li>
+                </ul>
+              ) : null }
               <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
               <ul className="tab-links list-group iconified-list-group">
                 {
@@ -337,7 +388,9 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
 StatusTab.propTypes = {
   statuses: PropTypes.array,
   listedTaxa: PropTypes.array,
-  listedTaxaCount: PropTypes.number
+  listedTaxaCount: PropTypes.number,
+  taxon: PropTypes.object,
+  currentUser: PropTypes.object
 };
 
 StatusTab.defaultProps = {

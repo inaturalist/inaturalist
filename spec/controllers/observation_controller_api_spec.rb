@@ -1991,6 +1991,12 @@ shared_examples_for "an ObservationsController" do
       expect( UpdateAction.unviewed_by_user_from_query( user.id, resource: @o ) ).to eq false
       expect( UpdateAction.unviewed_by_user_from_query( @c.user_id, resource: @o ) ).to eq true
     end
+
+    it "waits for an elasticsearch index refresh" do
+      expect( UpdateAction.__elasticsearch__.client ).to receive( :bulk ).
+        with( hash_including( refresh: "wait_for" ) )
+      put :viewed_updates, format: :json, params: { id: @o.id }
+    end
   end
 
   describe "update_fields" do

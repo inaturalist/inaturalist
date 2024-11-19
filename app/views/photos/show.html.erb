@@ -1,17 +1,16 @@
-<%- content_for(:title) do -%>
-  <%= @title = t(:photo_by_id_attribution, :id => @photo.id, :attribution => @photo.attribution) %>
+<%- content_for( :title ) do -%>
+  <%= @title = t( :photo_by_id_attribution, id: @photo.id, attribution: @photo.attribution ) %>
 <%- end -%>
-<%- content_for(:extracss) do -%>
-  <%= stylesheet_link_tag "taxa" %>
-  <style type="text/css" media="screen">
-    th, td { vertical-align: top;}
-    .photocell {min-width: 500px;}
-    .mini.observations .observation {border: 0 transparent;}
-    th {border-bottom: 1px solid #DDD;}
-    .button.rotateleft {padding-left:25px; background: url(<%= asset_path("silk/arrow_turn_left.png") %>) 5px 5px no-repeat;}
-    .button.rotateright {padding-left:25px; background: url(<%= asset_path("silk/arrow_turn_right.png") %>) 5px 5px no-repeat;}
-  </style>
+<%- content_for( :extracss ) do -%>
+  <%= stylesheet_link_tag "photos/show" %>
 <%- end -%>
+<%- content_for( :extrajs ) do -%>
+  <%= javascript_include_tag "photos/show" %>
+<%- end -%>
+<%-
+  photo_hidden = @photo.hidden?
+  last_moderator_action = @photo.moderator_actions.last
+-%>
 
 <h2><%= @title %></h2>
 
@@ -31,7 +30,18 @@
 <table>
   <tr>
     <td class="photocell">
-      <% if @photo.send("#{@size}_url") -%>
+      <% if photo_hidden -%>
+        <h3 class="content-hidden">
+          <span
+            data-content="<%= render( partial: "moderator_actions/popover", locals: { item: @photo.becomes( Photo ) } ).to_str %>"
+            data-placement="top"
+            data-toggle="popover"
+          >
+            <i class="fa fa-eye-slash content-hidden" ></i>
+            <%= t :content_hidden %>
+          </span>
+        </h3>
+      <% elsif @photo.send("#{@size}_url") -%>
         <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
       <% else %>
         <div class="nocontent meta">
@@ -112,28 +122,37 @@
           </tr>
         <% end -%>
 
-        <tr>
-          <th><%= t(:sizes).capitalize %></th>
-          <td>
-            <ul>
-              <% %w(small medium large original).each do |size| %>
-                <%- next if @photo.send("#{size}_url").blank? -%>
-                <li>
-                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), photo_url( @photo, size: size ) %>
-                </li>
-              <% end -%>
-            </ul>
+        <% unless photo_hidden && !@photo.hidden_content_viewable_by?( current_user ) -%>
+          <tr>
+            <th><%= t(:sizes).capitalize %></th>
+            <td>
+              <ul>
+                <% %w(small medium large original).each do |size| %>
+                  <%- next if @photo.send("#{size}_url").blank? -%>
+                  <li>
+                    <% if photo_hidden -%>
+                      <a href="" class="hidden-image" data-size=<%= size %> data-moderator-action-id=<%= last_moderator_action.id %>>
+                        <%= t( "photos_size.#{size}", default: t( size ) ) %>
+                      </a>
+                    <% else -%>
+                      <%= link_to t( "photos_size.#{size}", default: t( size ) ), photo_url( @photo, size: size ) %>
+                    <% end -%>
+                  </li>
+                <% end -%>
+              </ul>
 
-            <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
-              <span class="button">
-                <%= link_to t( :repair_broken_urls ), photo_repair_path(@photo), :method => :put,
-                  :data => {
-                    :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?"
-                  } %>
-              </span>
-            <% end -%>
-          </td>
-        </tr>
+              <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
+                <span class="button">
+                  <%= link_to t( :repair_broken_urls ), photo_repair_path(@photo), :method => :put,
+                    :data => {
+                      :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?"
+                    } %>
+                </span>
+              <% end -%>
+            </td>
+          </tr>
+        <% end %>
+
         <% if is_me?(@photo.user) -%>
           <tr>
             <th><%= t(:actions).capitalize %></th>
@@ -171,6 +190,12 @@
       <% elsif logged_in? %>
         <p class="description ui">
           <%= link_to t(:flag_this_photo), new_photo_flag_path(@photo), :id => "flag_this", :rel => "nofollow", :class => "flaglink" %>
+        </p>
+      <% end %>
+
+      <% if ( @photo.hidden? && @photo.unhideable_by?( current_user ) ) || ( !@photo.hidden? && @photo.hideable_by?( current_user ) ) %>
+        <p class="description ui">
+          <%= link_to @photo.hidden? ? t( :unhide_content ) : t( :hide_content ), hide_photo_path( @photo ), rel: "nofollow" %>
         </p>
       <% end %>
     </td>

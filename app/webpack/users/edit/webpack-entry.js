@@ -1,5 +1,7 @@
 import _ from "lodash";
-import "@babel/polyfill";
+import "core-js/stable";
+import moment from "moment";
+import "regenerator-runtime/runtime";
 import React from "react";
 import { render } from "react-dom";
 import thunkMiddleware from "redux-thunk";
@@ -20,11 +22,13 @@ import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
 import revokeAccessModalReducer from "./ducks/revoke_access_modal";
 import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from "./ducks/authorized_applications";
-import relationshipsReducer, { fetchRelationships } from "./ducks/relationships";
+import relationshipsReducer from "./ducks/relationships";
 import thirdPartyTrackingModalReducer from "./ducks/third_party_tracking_modal";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 import AppContainer from "./containers/app_container";
+
+moment.locale( I18n.locale );
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -46,31 +50,22 @@ const store = createStore(
   compose( ..._.compact( [
     applyMiddleware( thunkMiddleware ),
     // enable Redux DevTools if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__( )
   ] ) )
 );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
 }
-
-if (
-  ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
-  || window.location.search.match( /test=apiv2/ )
-) {
-  const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
-  const defaultApiUrl = element && element.getAttribute( "content" );
-  if ( defaultApiUrl ) {
-    store.dispatch( setConfig( {
-      testingApiV2: true
-    } ) );
-    inatjs.setConfig( {
-      apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
-      writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
-    } );
-  }
+const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
+const defaultApiUrl = element && element.getAttribute( "content" );
+if ( defaultApiUrl ) {
+  inatjs.setConfig( {
+    apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
+    writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
+  } );
 }
 
 if ( window.location.hash ) {

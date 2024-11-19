@@ -1,4 +1,5 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Observation < ApplicationRecord
 
   include ActsAsElasticModel
@@ -10,32 +11,33 @@ class Observation < ApplicationRecord
     :identifications => {:notification => "activity", :include_owner => true}
   }
   notifies_subscribers_of :user, :notification => "created_observations",
-    :queue_if => lambda { |observation| !observation.bulk_import }
+    unless: lambda {| observation | observation.bulk_import }
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::ORGANIZER
   earns_privilege UserPrivilege::COORDINATE_ACCESS
-  
+
   # Why aren't we using after_save? Because we need this to run before the
   # after_create created by notifies_subscribers_of :public_places runs
   after_create :update_observations_places
   after_update :update_observations_places
-  
+
   notifies_subscribers_of :public_places,
     notification: "new_observations",
     on: :create,
-    queue_if: lambda {|observation|
-      observation.georeferenced? && !observation.bulk_import
+    unless: lambda {| observation |
+      !observation.georeferenced? || observation.bulk_import
     },
-    if: lambda {|observation, place, subscription|
+    if: lambda {| observation, _place, subscription |
       return false unless observation.georeferenced?
       return true if subscription.taxon_id.blank?
       return false if observation.taxon.blank?
       return true if observation.taxon_id == subscription.taxon_id
-      observation.taxon.ancestor_ids.include?(subscription.taxon_id)
+
+      observation.taxon.ancestor_ids.include?( subscription.taxon_id )
     },
-    before_notify: lambda{|observation|
-      Observation.preload_associations( observation, [ :taxon, {
+    before_notify: lambda {| observation |
+      Observation.preload_associations( observation, [:taxon, {
         observations_places: {
           place: :update_subscriptions_with_unsuspended_users
         }
@@ -43,11 +45,14 @@ class Observation < ApplicationRecord
     }
   notifies_subscribers_of :taxon_and_ancestors,
     notification: "new_observations",
-    queue_if: lambda {|observation| !observation.taxon_id.blank? && !observation.bulk_import},
-    if: lambda {|observation, taxon, subscription|
+    unless: lambda {| observation |
+      observation.taxon_id.blank? || observation.bulk_import
+    },
+    if: lambda {| observation, taxon, subscription |
       return true if observation.taxon_id == taxon.id
       return false if observation.taxon.blank?
-      observation.taxon.ancestor_ids.include?(subscription.resource_id)
+
+      observation.taxon.ancestor_ids.include?( subscription.resource_id )
     }
   notifies_users :mentioned_users,
     on: :save,
@@ -75,7 +80,7 @@ class Observation < ApplicationRecord
   attr_accessor :skip_refresh_check_lists, :skip_identifications,
     :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
     :taxon_introduced, :taxon_endemic, :taxon_native,
-    :skip_identification_indexing, :will_be_saved_with_photos
+    :skip_identification_indexing, :will_be_saved_with_photos, :skip_update_observations_places
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -153,20 +158,20 @@ class Observation < ApplicationRecord
   end
   PREFERRED_LICENSES = [CC_BY, CC_BY_NC, CC0]
   CSV_COLUMNS = [
-    "id", 
+    "id",
     "species_guess",
-    "scientific_name", 
-    "common_name", 
+    "scientific_name",
+    "common_name",
     "iconic_taxon_name",
     "taxon_id",
     "num_identification_agreements",
     "num_identification_disagreements",
     "observed_on_string",
-    "observed_on", 
+    "observed_on",
     "time_observed_at",
     "time_zone",
     "place_guess",
-    "latitude", 
+    "latitude",
     "longitude",
     "positional_accuracy",
     "private_place_guess",
@@ -178,14 +183,14 @@ class Observation < ApplicationRecord
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
-    "user_id", 
+    "user_id",
     "user_login",
     "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
     "license",
-    "url", 
+    "url",
     "image_url",
     "sound_url",
     "tag_list",
@@ -194,19 +199,19 @@ class Observation < ApplicationRecord
     "captive_cultivated"
   ]
   BASIC_COLUMNS = [
-    "id", 
+    "id",
     "observed_on_string",
-    "observed_on", 
+    "observed_on",
     "time_observed_at",
     "time_zone",
-    "user_id", 
+    "user_id",
     "user_login",
     "user_name",
     "created_at",
     "updated_at",
     "quality_grade",
     "license",
-    "url", 
+    "url",
     "image_url",
     "sound_url",
     "tag_list",
@@ -218,7 +223,7 @@ class Observation < ApplicationRecord
   ]
   GEO_COLUMNS = [
     "place_guess",
-    "latitude", 
+    "latitude",
     "longitude",
     "positional_accuracy",
     "private_place_guess",
@@ -239,8 +244,8 @@ class Observation < ApplicationRecord
   ]
   TAXON_COLUMNS = [
     "species_guess",
-    "scientific_name", 
-    "common_name", 
+    "scientific_name",
+    "common_name",
     "iconic_taxon_name",
     "taxon_id"
   ]
@@ -267,8 +272,10 @@ class Observation < ApplicationRecord
     subspecies
     variety
     form
-  ).map{|r| "taxon_#{r}_name"}.compact
-  ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
+  ).map {| r | "taxon_#{r}_name" }.compact
+  ALL_EXPORT_COLUMNS = (
+    CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS
+  ).uniq
   WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
   ALLOWED_DESCRIPTION_TAGS = %w(
     a
@@ -329,6 +336,7 @@ class Observation < ApplicationRecord
   has_many :observation_reviews, :dependent => :destroy
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
+  has_one :observation_geo_score, dependent: :delete
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
 
@@ -417,7 +425,8 @@ class Observation < ApplicationRecord
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
-              :set_iconic_taxon
+              :set_iconic_taxon,
+              :reassess_geo_score
 
   before_update :set_quality_grade
 
@@ -759,10 +768,13 @@ class Observation < ApplicationRecord
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
-      { identifications: :stored_preferences },
-      { photos: [ :flags, :user, :file_extension, :file_prefix ] },
+      { identifications: [:stored_preferences, :moderator_actions] },
+      { photos: [:flags, :user, :file_extension, :file_prefix, :moderator_actions] },
+      { sounds: [:flags, :moderator_actions] },
       :stored_preferences, :flags, :quality_metrics,
-      :votes_for ]
+      :votes_for,
+      :taggings
+    ]
     # why do we need taxon_descriptions when logged in?
     if logged_in
       preloads.delete(:iconic_taxon)
@@ -816,7 +828,7 @@ class Observation < ApplicationRecord
     i18n_vars = {}
     key = if taxon
       i18n_vars[:taxon] = if options[:viewer]
-        FakeView.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
+        ApplicationController.render( partial: "taxa/taxon.txt", locals: { taxon: taxon, viewer: options[:viewer] } )
       else
         common_name( locale: I18n.locale )
       end
@@ -879,7 +891,10 @@ class Observation < ApplicationRecord
     viewer = viewer.is_a?( User ) ? viewer : User.find_by_id( viewer.to_i )
     options[:except] ||= []
     options[:except] += [:user_agent]
-    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
+    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?(
+      viewer,
+      ignore_collection_projects: options[:ignore_collection_projects]
+    )
       options[:except] += [:private_latitude, :private_longitude, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
     end
@@ -935,6 +950,7 @@ class Observation < ApplicationRecord
     end
     # Only re-interpret the date if observed_on_string or time_zone changed
     return unless observed_on_string_changed? || time_zone_changed?
+
     date_string = observed_on_string.strip
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
@@ -1065,53 +1081,61 @@ class Observation < ApplicationRecord
     date_string.sub!( /\s#{I18n.t( "time.am" )}\s/i, " AM " )
     date_string.sub!( /\s#{I18n.t( "time.pm" )}$/i, " PM" )
     date_string.sub!( /\s#{I18n.t( "time.pm" )}\s/i, " PM " )
-    
+
     # Set the time zone appropriately
     old_time_zone = Time.zone
     begin
-      Time.zone = time_zone || user.try(:time_zone)
+      Time.zone = time_zone || user.try( :time_zone )
     rescue ArgumentError
       # Usually this would happen b/c of an invalid time zone being specified
       self.time_zone = time_zone_was || old_time_zone.name
     end
     puts "Setting Chronic time_class to #{Time.zone}" if debug
     Chronic.time_class = Time.zone
-    
+
     begin
       # Start parsing...
-      t = begin
+      candidate_datetime = begin
         puts "Parsing #{date_string}" if debug
         Chronic.parse( date_string, context: :past )
       rescue ArgumentError
         nil
       end
-      t = Chronic.parse( date_string.split[0..-2].join(' '), context: :past ) unless t 
-      if !t && (locale = user.locale || I18n.locale)
-        date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-        t = Chronic.parse( date_string, context: :past )
-      end
-
-      if !t
-        I18N_SUPPORTED_LOCALES.each do |locale|
-          next if locale =~ /^en.*/
-          new_date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-          break if t = Chronic.parse( new_date_string, context: :past )
+      candidate_datetime ||= Chronic.parse( date_string.split[0..-2].join( " " ), context: :past )
+      if !candidate_datetime && ( locale = user.locale || I18n.locale )
+        englishized_date_string = englishize_month_abbrevs_for_locale( date_string, locale )
+        candidate_datetime = Chronic.parse( englishized_date_string, context: :past )
+        if candidate_datetime
+          date_string = englishized_date_string
         end
       end
-      return true unless t
-    
+
+      unless candidate_datetime
+        I18N_SUPPORTED_LOCALES.each do | supported_locale |
+          next if supported_locale =~ /^en.*/
+
+          englishized_date_string = englishize_month_abbrevs_for_locale( date_string, supported_locale )
+          candidate_datetime = Chronic.parse( englishized_date_string, context: :past )
+          if candidate_datetime
+            date_string = englishized_date_string
+            break
+          end
+        end
+      end
+      return true unless candidate_datetime
+
       # Re-interpret future dates as being in the past
-      t = Chronic.parse( date_string, context: :past) if t > Time.now
-      
-      self.observed_on = t.to_date if t
+      candidate_datetime = Chronic.parse( candidate_datetime.to_s, context: :past ) if candidate_datetime > Time.now
+
+      self.observed_on = candidate_datetime.to_date if candidate_datetime
       puts "Set observed_on to #{observed_on}" if debug
-    
+
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
-      if tspan = Chronic.parse( date_string, context: :past, guess: false )
+      if ( tspan = Chronic.parse( date_string, context: :past, guess: false ) )
         # If tspan is less than a day and the string wasn't 'today', set time
-        if tspan.width < 86400 && date_string.strip.downcase != 'today'
-          self.time_observed_at = t
+        if tspan.width < 86400 && date_string.strip.downcase != "today"
+          self.time_observed_at = candidate_datetime
         else
           self.time_observed_at = nil
         end
@@ -1121,37 +1145,42 @@ class Observation < ApplicationRecord
       # ignore these, just don't set the date
       return true
     end
-    
+
     # don't store relative observed_on_strings, or they will change
     # every time you save an observation!
     if date_string =~ /today|yesterday|ago|last|this|now|monday|tuesday|wednesday|thursday|friday|saturday|sunday/i
-      self.observed_on_string = self.observed_on.to_s
-      if self.time_observed_at
-        self.observed_on_string = self.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
+      self.observed_on_string = observed_on.to_s
+      if time_observed_at
+        self.observed_on_string = time_observed_at.strftime( "%Y-%m-%d %H:%M:%S" )
       end
     end
-    
+
     # Set the time zone back the way it was
     Time.zone = old_time_zone
     true
   end
 
-  def englishize_month_abbrevs_for_locale(date_string, locale)
+  def englishize_month_abbrevs_for_locale( date_string, locale )
     # HACK attempt to translate month abbreviations into English. 
     # A much better approach would be add Spanish and any other supported
     # locales to https://github.com/olojac/chronic-l10n and switch to the
     # 'localized' branch of Chronic, which seems to clear our test suite.
     return date_string if locale.to_s =~ /^en/
-    return date_string unless I18N_SUPPORTED_LOCALES.include?(locale)
-    I18n.t('date.abbr_month_names', :locale => :en).each_with_index do |en_month_name,i|
-      next if i == 0
-      localized_month_name = I18n.t('date.abbr_month_names', :locale => locale)[i]
+    return date_string unless I18N_SUPPORTED_LOCALES.include?( locale )
+
+    new_date_string = date_string.clone
+    I18n.t( "date.abbr_month_names", locale: :en ).each_with_index do | en_month_name, i |
+      next if i.zero?
+
+      localized_month_name = I18n.t( "date.abbr_month_names", locale: locale )[i]
+      next if localized_month_name.blank?
       next if localized_month_name == en_month_name
-      date_string.gsub!(/#{localized_month_name}([\s\,])/, "#{en_month_name}\\1")
+
+      new_date_string.gsub!( /#{localized_month_name}([\s,])/, "#{en_month_name}\\1" )
     end
-    date_string
+    new_date_string
   end
-  
+
   #
   # Adds, updates, or destroys the identification corresponding to the taxon
   # the user selected.
@@ -1263,6 +1292,14 @@ class Observation < ApplicationRecord
     true
   end
 
+  def reassess_geo_score
+    return unless observation_geo_score
+    return unless coordinates_changed? || taxon_id_changed?
+
+    observation_geo_score.destroy
+    self.observation_geo_score = nil
+  end
+
   def replace_inactive_taxon
     return true if taxon.blank? || ( taxon && taxon.is_active? )
     return true unless candidate = taxon.current_synonymous_taxon
@@ -1367,14 +1404,18 @@ class Observation < ApplicationRecord
     key
   end
   
+  def current_identifications_count
+    identifications.select( &:current? ).reject( &:hidden? ).length
+  end
+
   def num_identifications_by_others
     num_identification_agreements + num_identification_disagreements
   end
   
   def appropriate?
     return false if flagged?
-    return false if photos.detect{ |p| p.flagged? }
-    return false if sounds.detect{ |p| p.flagged? }
+    return false if photos.detect{ |p| p.flagged? || p.hidden? }
+    return false if sounds.detect{ |s| s.flagged? || s.hidden? }
     true
   end
   
@@ -1447,24 +1488,26 @@ class Observation < ApplicationRecord
   def sounds?
     sounds.loaded? ? ! sounds.empty? : sounds.exists?
   end
-  
-  def set_quality_grade(options = {})
+
+  def set_quality_grade
     self.quality_grade = get_quality_grade
     true
   end
-  
-  def self.set_quality_grade(id)
-    return unless observation = Observation.find_by_id(id)
-    observation.set_quality_grade(:force => true)
-    observation.save
+
+  def self.set_quality_grade( id )
+    observation = Observation.find_by_id( id )
+    return unless observation
+
+    observation.set_quality_grade
     if observation.quality_grade_changed?
-      CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "CheckList::refresh_with_observation": id }).
-        refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+      observation.save
+      CheckList.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "CheckList::refresh_with_observation": id } ).
+        refresh_with_observation( observation.id, taxon_id: observation.taxon_id )
     end
     observation.quality_grade
   end
-  
+
   def get_quality_grade
     if !research_grade_candidate?
       CASUAL
@@ -1526,13 +1569,12 @@ class Observation < ApplicationRecord
     geoprivacy == OBSCURED
   end
   
-  def coordinates_viewable_by?( viewer )
+  def coordinates_viewable_by?( viewer, options = { } )
     return true unless coordinates_obscured?
     return false if viewer.blank?
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
-    return true if user_id == viewer.id
-    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
+    return true if user.trusts?( viewer )
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
@@ -1549,6 +1591,8 @@ class Observation < ApplicationRecord
         return true
       end
     end
+    return false if options[:ignore_collection_projects]
+
     cps = collection_projects( authenticate: viewer ).select do |cp|
       curated_project_ids.include?( cp.id )
     end
@@ -1778,8 +1822,10 @@ class Observation < ApplicationRecord
     # work on current identifications
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
-      identifications.current.includes(:taxon)
-    working_idents = ids.select{|i| i.taxon.is_active }.sort_by(&:id)
+      identifications.current.includes( :taxon, :moderator_actions )
+    working_idents = ids.select do |i|
+      i.taxon.is_active && !i.hidden?
+    end.sort_by( &:id )
     if options[:before].to_i > 0
       working_idents = working_idents.select{|i| i.id < options[:before].to_i }
     elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
@@ -1813,6 +1859,9 @@ class Observation < ApplicationRecord
           if (
             i.disagreement? &&
             i.previous_observation_taxon &&
+            # if all ids of/descending from previous_observation_taxon have been withdrawn, treat
+            # the ancestor id as a non-disagreement
+            working_idents.any? {| j | j.taxon.self_and_ancestor_ids.include?( i.previous_observation_taxon.id ) } &&
             ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
           )
 
@@ -1849,7 +1898,7 @@ class Observation < ApplicationRecord
     community_taxon = get_community_taxon(options)
     self.community_taxon = community_taxon
     if self.changed? && !community_taxon.nil? && !community_taxon_rejected?
-      self.species_guess = (community_taxon.common_name.try(:name) || community_taxon.name)
+      self.species_guess = ( community_taxon.common_name( user: user ).try( :name ) || community_taxon.name )
     end
     true
   end
@@ -1921,6 +1970,9 @@ class Observation < ApplicationRecord
       if first_id_of_prob_taxon && first_id_of_community_taxon && first_id_of_prob_taxon.id < first_id_of_community_taxon.id
         # prob_taxon was subspecific but first
         prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      elsif prob_taxon.species
+        # when the subspecific prob_taxon was added later, use it's species ancestor
+        prob_taxon.species.id
       else
         # prob_taxon was subspecific and not first, using CID
         ct.id
@@ -1932,9 +1984,7 @@ class Observation < ApplicationRecord
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
       update_stats( skip_save: true )
       self.species_guess = if taxon
-        taxon.common_name.try(:name) || taxon.name
-      else
-        nil
+        taxon.common_name( user: user ).try( :name ) || taxon.name
       end
     end
     true
@@ -2086,15 +2136,17 @@ class Observation < ApplicationRecord
     return true if species_guess =~ /\?$/
     return true unless species_guess_changed? && taxon_id.blank?
     return true if species_guess.blank?
-    self.taxon_id = single_taxon_id_for_name(species_guess)
+    if taxon = single_taxon_for_name( species_guess )
+      self.taxon_id = taxon.try( :id ) if taxon.is_active?
+    end
     true
   end
 
   def set_taxon_geoprivacy
-    taxon_ids = if identifications.loaded? 
-      identifications.select{|i| i.current? }.map(&:taxon_id)
+    taxon_ids = if identifications.loaded?
+      identifications.select( &:current? ).reject( &:hidden? ).map( &:taxon_id )
     else
-      identifications.current.pluck(:taxon_id)
+      identifications.current.includes( :moderator_actions ).reject( &:hidden? ).pluck( :taxon_id )
     end
     self.taxon_geoprivacy = Taxon.max_geoprivacy(
       taxon_ids,
@@ -2102,7 +2154,7 @@ class Observation < ApplicationRecord
       longitude: private_longitude.blank? ? longitude : private_longitude
     )
   end
-  
+
   def single_taxon_for_name(name)
     Taxon.single_taxon_for_name(name)
   end
@@ -2210,7 +2262,7 @@ class Observation < ApplicationRecord
 
   def set_uri
     if uri.blank?
-      Observation.where(id: id).update_all(uri: FakeView.observation_url(id))
+      Observation.where( id: id ).update_all( uri: UrlHelper.observation_url( id ) )
     end
     true
   end
@@ -2240,7 +2292,7 @@ class Observation < ApplicationRecord
       taxon_ids_including_ancestors.each do |tid|
         Taxon.delay(
           priority: INTEGRITY_PRIORITY,
-          run_at: 1.hour.from_now,
+          run_at: 2.hours.from_now,
           unique_hash: { "Taxon::update_observation_counts": tid }
         ).update_observation_counts( taxon_ids: [tid] )
       end
@@ -2284,6 +2336,7 @@ class Observation < ApplicationRecord
 
   def update_user_counter_caches
     return if bulk_delete
+
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 15.minutes.from_now
@@ -2305,46 +2358,45 @@ class Observation < ApplicationRecord
   end
 
   def delete_observations_places
-    ObservationsPlace.where(observation_id: self.id).delete_all
+    ObservationsPlace.where( observation_id: id ).delete_all
   end
 
   def update_quality_metrics
     return true if skip_quality_metrics
+
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+    elsif captive_flag.noish? && ( qm = quality_metrics.detect do | m |
+      m.user_id == user_id && m.metric == QualityMetric::WILD
+    end )
       qm.update( agree: true )
-    elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+    elsif force_quality_metrics && ( qm = quality_metrics.detect do | m |
+      m.user_id == user_id && m.metric == QualityMetric::WILD
+    end )
       qm.destroy
     end
-    system_captive_vote = quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
-    if probably_captive?
-      QualityMetric.vote( nil, self, QualityMetric::WILD, false ) unless system_captive_vote
-    elsif system_captive_vote
+    system_captive_vote = quality_metrics.detect do | m |
+      m.user_id.blank? && m.metric == QualityMetric::WILD
+    end
+    if probably_captive? && !system_captive_vote
+      QualityMetric.vote( nil, self, QualityMetric::WILD, false )
+      set_quality_grade
+    elsif system_captive_vote && !probably_captive?
       system_captive_vote.destroy
+      set_quality_grade
     end
     true
   end
-  
-  # def update(attributes)
-  #   # hack around a weird android bug
-  #   attributes.delete(:iconic_taxon_name)
-    
-  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-  #   # end
-  #   super(attributes)
-  # end
-  
+
   def license_name
     return nil if license.blank?
+
     s = "Creative Commons "
-    s += LICENSES.detect{|row| row.first == license}.try(:[], 1).to_s
+    s += LICENSES.detect {| row | row.first == license }.try( :[], 1 ).to_s
     s
   end
-  
-  # I'm not psyched about having this stuff here, but it makes generating 
+
+  # I'm not psyched about having this stuff here, but it makes generating
   # more compact JSON a lot easier.
   include ObservationsHelper
   include ActionView::Helpers::SanitizeHelper
@@ -2362,7 +2414,7 @@ class Observation < ApplicationRecord
   end
 
   def sound_url
-    if s = sounds.detect{|s| s.is_a?( LocalSound ) }
+    if s = sounds.select{ |s| !s.flagged? && !s.hidden? }.detect{|s| s.is_a?( LocalSound ) }
       return s.file.url
     end
   end
@@ -2374,13 +2426,21 @@ class Observation < ApplicationRecord
   def scientific_name
     taxon.scientific_name.name if taxon && taxon.scientific_name
   end
-  
-  def common_name(options = {})
+
+  def common_name( options = {} )
     options[:locale] ||= localize_locale
     options[:place] ||= localize_place
-    taxon.common_name(options).name if taxon && taxon.common_name(options)
+    name_from_taxon_names = taxon&.common_name( options )&.name
+    return name_from_taxon_names if name_from_taxon_names
+    return unless taxon&.is_iconic? || taxon&.root?
+
+    I18n.t(
+      taxon.name.parameterize.underscore,
+      scope: :all_taxa,
+      locale: options[:locale] || user.try( :locale )
+    )
   end
-  
+
   def url
     uri
   end
@@ -2452,11 +2512,14 @@ class Observation < ApplicationRecord
         results_remaining = false
         break
       end
-      Observation.preload_associations(observations, [
-        :taxon, :flags, :quality_metrics, :sounds, :votes_for,
-        { identifications: :taxon },
-        { photos: :flags }
-      ])
+      Observation.preload_associations( observations,
+        [
+          :taxon, :flags, :quality_metrics, :sounds, :votes_for,
+          :stored_preferences,
+          { user: :stored_preferences },
+          { identifications: [:moderator_actions, :taxon] },
+          { photos: [:flags, :moderator_actions] }
+        ] )
       changed_ids = []
       observations.each do |o|
         o.set_community_taxon
@@ -2685,58 +2748,67 @@ class Observation < ApplicationRecord
   end
 
   {
-    0     => "Undefined", 
-    2     => "Street Segment", 
-    4     => "Street", 
-    5     => "Intersection", 
-    6     => "Street", 
-    7     => "Town", 
-    8     => "State", 
-    9     => "County",
-    10    => "Local Administrative Area",
-    12    => "Country",
-    13    => "Island",
-    14    => "Airport",
-    15    => "Drainage",
-    16    => "Land Feature",
-    17    => "Miscellaneous",
-    18    => "Nationality",
-    19    => "Supername",
-    20    => "Point of Interest",
-    21    => "Region",
-    24    => "Colloquial",
-    25    => "Zone",
-    26    => "Historical State",
-    27    => "Historical County",
-    29    => "Continent",
-    33    => "Estate",
-    35    => "Historical Town",
-    36    => "Aggregate",
-    100   => "Open Space",
-    101   => "Territory"
-  }.each do |code, type|
+    0 => "Undefined",
+    2 => "Street Segment",
+    4 => "Street",
+    5 => "Intersection",
+    6 => "Street",
+    7 => "Town",
+    8 => "State",
+    9 => "County",
+    10 => "Local Administrative Area",
+    12 => "Country",
+    13 => "Island",
+    14 => "Airport",
+    15 => "Drainage",
+    16 => "Land Feature",
+    17 => "Miscellaneous",
+    18 => "Nationality",
+    19 => "Supername",
+    20 => "Point of Interest",
+    21 => "Region",
+    24 => "Colloquial",
+    25 => "Zone",
+    26 => "Historical State",
+    27 => "Historical County",
+    29 => "Continent",
+    33 => "Estate",
+    35 => "Historical Town",
+    36 => "Aggregate",
+    100 => "Open Space",
+    101 => "Territory"
+  }.each do | code, type |
     define_method "place_#{type.underscore}" do
-      public_places.detect{|p| p.place_type == code}
+      # first attempt to match a place based on `place_type`
+      place_by_place_type = public_places.detect {| p | p.place_type == code }
+      return place_by_place_type if place_by_place_type
+
+      # fallback to matching a place with a corresponding admin_level
+      type_constant = type.parameterize.underscore.upcase
+      admin_level = "Place::#{type_constant}_LEVEL".safe_constantize
+      return if admin_level.nil?
+
+      public_places.detect {| p | p.admin_level == admin_level }
     end
     define_method "place_#{type.underscore}_name" do
-      send("place_#{type.underscore}").try(:name)
+      send( "place_#{type.underscore}" ).try( :name )
     end
   end
 
   # Actually referring to Place::STATE_LEVEL seems to cause trouble here
-  [10, 20].each do |admin_level|
-    define_method "place_admin#{admin_level/10}" do
-      public_places.detect{|p| p.admin_level == admin_level}
+  [10, 20].each do | admin_level |
+    define_method "place_admin#{admin_level / 10}" do
+      public_places.detect {| p | p.admin_level == admin_level }
     end
-    define_method "place_admin#{admin_level/10}_name" do
-      send( "place_admin#{admin_level/10}" ).try(:name)
+    define_method "place_admin#{admin_level / 10}_name" do
+      send( "place_admin#{admin_level / 10}" ).try( :name )
     end
   end
 
   def taxon_and_ancestors
     taxon ? taxon.self_and_ancestors.to_a : []
   end
-  
+
   def mobile?
     return false unless user_agent
     MOBILE_APP_USER_AGENT_PATTERNS.each do |pattern|
@@ -2772,21 +2844,27 @@ class Observation < ApplicationRecord
   def owners_identification
     if identifications.loaded?
       # if idents are loaded, the most recent current identification might be a new record
-      identifications.sort_by{|i| i.created_at || 1.minute.from_now}.select {|ident| 
-        ident.user_id == user_id && ident.current?
-      }.last
+      identifications.sort_by do |i|
+        i.created_at || 1.minute.from_now
+      end.select do |ident|
+        ident.user_id == user_id && ident.current? && !ident.hidden?
+      end.last
     else
-      identifications.current.by(user_id).last
+      identifications.current.by( user_id ).select do |i|
+        !i.hidden?
+      end.last
     end
   end
 
   def others_identifications
     if identifications.loaded?
       identifications.select do |i|
-        i.current? && i.user_id != user_id
+        i.current? && i.user_id != user_id && !i.hidden?
       end
     else
-      identifications.current.not_by(user_id)
+      identifications.current.not_by( user_id ).select do |i|
+        !i.hidden?
+      end
     end
   end
 
@@ -2864,16 +2942,20 @@ class Observation < ApplicationRecord
 
   def reassess_annotations
     return true unless saved_change_to_taxon_id?
-    annotations.each do |a|
-      a.destroy unless a.valid?
+
+    annotations.each do | a |
+      if a.taxon_mismatch_needs_updating?
+        a.update_columns( term_taxon_mismatch: !a.term_taxon_mismatch )
+      end
     end
     true
   end
 
   def create_deleted_observation
     DeletedObservation.create(
-      :observation_id => id,
-      :user_id => user_id
+      observation_id: id,
+      user_id: user_id,
+      observation_created_at: created_at
     )
     true
   end
@@ -3059,6 +3141,8 @@ class Observation < ApplicationRecord
   end
 
   def update_observations_places
+    return if skip_update_observations_places
+
     Observation.update_observations_places(ids: [ id ])
     # reload the association since we added the records using SQL
     observations_places.reload
@@ -3105,39 +3189,64 @@ class Observation < ApplicationRecord
     end
   end
 
-  def observation_photos_finished_processing
+  def publicly_viewable_observation_photos
     observation_photos.select do |op|
-      ! (op.photo.is_a?(LocalPhoto) && op.photo.processing?)
+      op.photo &&
+      ! ( op.photo.is_a?( LocalPhoto ) && op.photo.processing? ) &&
+      !op.photo.flagged? &&
+      !op.photo.hidden?
     end
+  end
+
+  def publicly_viewable_observation_sounds
+    observation_sounds.select{ |os| !os.sound.flagged? && !os.sound.hidden? }
   end
 
   def interpolate_coordinates
     return unless time_observed_at
-    scope = user.observations.where("latitude IS NOT NULL or private_latitude IS NOT NULL")
-    prev_obs = scope.where("time_observed_at < ?", time_observed_at).order("time_observed_at DESC").first
-    next_obs = scope.where("time_observed_at > ?", time_observed_at).order("time_observed_at ASC").first
-    return unless prev_obs && next_obs
+
+    base_params = { user_id: user.id, with_geo: true, order_by: "observed_on", not_id: id }
+    prev_obs = Observation.elastic_query( base_params.merge( d2: time_observed_at, order: "desc" ) ).first
+    return unless prev_obs
+
+    next_obs = Observation.elastic_query( base_params.merge(
+      d1: time_observed_at,
+      order: "asc",
+      not_id: [id, prev_obs.id]
+    ) ).first
+    return unless next_obs
+
     prev_lat = prev_obs.private_latitude || prev_obs.latitude
     prev_lon = prev_obs.private_longitude || prev_obs.longitude
     next_lat = next_obs.private_latitude || next_obs.latitude
     next_lon = next_obs.private_longitude || next_obs.longitude
 
     # time-weighted interpolation between prev and next observations
-    weight = (next_obs.time_observed_at - time_observed_at) / (next_obs.time_observed_at-prev_obs.time_observed_at)
-    new_lat = (1-weight)*next_lat + weight*prev_lat
-    new_lon = (1-weight)*next_lon + weight*prev_lon
+    weight = (
+      ( next_obs.time_observed_at - time_observed_at ) /
+      ( next_obs.time_observed_at - prev_obs.time_observed_at )
+    )
+    # If for some reason prev and next have identification time_observed_at
+    # values, weight will be NaN and we will assume even weighting
+    weight = 0.5 if weight.nan?
+    new_lat = ( ( 1 - weight ) * next_lat ) + ( weight * prev_lat )
+    new_lon = ( ( 1 - weight ) * next_lon ) + ( weight * prev_lon )
     self.latitude = new_lat
     self.longitude = new_lon
 
     # we can only set a new uncertainty if the uncertainty of the two points are known
-    if prev_obs.positional_accuracy && next_obs.positional_accuracy
-      f = RGeo::Geographic.simple_mercator_factory
-      prev_point = f.point(prev_lon, prev_lat)
-      next_point = f.point(next_lon, next_lat)
-      interpolation_uncertainty = prev_point.distance(next_point)/2.0
-      new_acc = Math.sqrt(interpolation_uncertainty**2 + prev_obs.positional_accuracy**2 + next_obs.positional_accuracy**2)
-      self.positional_accuracy = new_acc
-    end
+    return unless prev_obs.positional_accuracy && next_obs.positional_accuracy
+
+    f = RGeo::Geographic.simple_mercator_factory
+    prev_point = f.point( prev_lon, prev_lat )
+    next_point = f.point( next_lon, next_lat )
+    interpolation_uncertainty = prev_point.distance( next_point ) / 2.0
+    new_acc = Math.sqrt(
+      ( interpolation_uncertainty**2 ) +
+      ( prev_obs.positional_accuracy**2 ) +
+      ( next_obs.positional_accuracy**2 )
+    )
+    self.positional_accuracy = new_acc
   end
 
   def self.as_csv(scope, methods, options = {})
@@ -3308,9 +3417,9 @@ class Observation < ApplicationRecord
     true
   end
 
-  def user_viewed_updates(user_id)
-    obs_updates = UpdateAction.where(resource: self)
-    UpdateAction.user_viewed_updates(obs_updates, user_id)
+  def user_viewed_updates( user_id, options = {} )
+    obs_updates = UpdateAction.where( resource: self )
+    UpdateAction.user_viewed_updates( obs_updates, user_id, options )
   end
 
   def in_collection_projects?( projects, api_params = {} )
@@ -3380,29 +3489,13 @@ class Observation < ApplicationRecord
   end
 
   # this method will set the updated_at column on this observation to the current time,
-  # and re-index only the updated_at attribute of the observation doc in Elasticsearch
+  # and queue the observation to be re-indexed shortly
   def mark_as_updated
-    updated_time = Time.now
-    update_column( :updated_at, updated_time )
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
-      Observation.__elasticsearch__.client.update_by_query(
-        index: Observation.index_name,
-        refresh: Rails.env.test?,
-        body: {
-          query: {
-            term: {
-              "id": id
-            }
-          },
-          script: {
-            source: "ctx._source.updated_at = params.updated_time",
-            params: {
-              updated_time: updated_time
-            }
-          }
-        }
-      )
-    end
+    update_column( :updated_at, Time.now )
+    Observation.delay(
+      run_at: 10.minutes.from_now,
+      priority: INTEGRITY_PRIORITY,
+      unique_hash: { "Observation::elastic_index": id }
+    ).elastic_index!( ids: [id] )
   end
-
 end

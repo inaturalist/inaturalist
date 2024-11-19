@@ -7,7 +7,7 @@ module TaxonDescribers
     end
 
     def page_url( taxon )
-      fake_view.taxon_url( taxon )
+      UrlHelper.taxon_url( taxon )
     end
 
     def name

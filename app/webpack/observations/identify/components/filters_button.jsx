@@ -136,11 +136,12 @@ class FiltersButton extends React.Component {
       "infrahybrid"
     ];
     const orderByFields = [
-      { value: "id", default: "date added", label: "date_added" },
-      { value: "observed_on", default: "date observed", label: "date_observed_" },
-      { value: "updated_at", default: "date updated", label: "date_updated" },
-      { value: "votes", default: "faves", label: "faves" },
-      { value: "random", default: "random", label: "random" }
+      { value: "id", label: "date_added" },
+      { value: "observed_on", label: "date_observed_" },
+      { value: "updated_at", label: "date_updated" },
+      { value: "votes", label: "faves" },
+      { value: "random", label: "random" },
+      { value: "geo_score", label: "geo_score" }
     ];
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0
@@ -257,7 +258,7 @@ class FiltersButton extends React.Component {
               <input
                 className="params-q form-control"
                 placeholder={I18n.t( "blue_butterfly_etc" )}
-                value={params.q}
+                value={params.q || ""}
                 onChange={e => {
                   updateSearchParams( { q: e.target.value } );
                 }}
@@ -354,19 +355,19 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { I18n.t( field.label, { defaultValue: field.default } ) }
+                  { I18n.t( field.label, { defaultValue: field.label } ) }
                 </option>
               ) ) }
             </select>
           </Col>
           <Col xs="6">
             <select
-              defaultValue="desc"
               className={
                 "params-order form-control"
                 + ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
               }
               onChange={e => updateSearchParams( { order: e.target.value } )}
+              value={params.order}
             >
               <option value="asc">
                 { I18n.t( "ascending" ) }
@@ -499,6 +500,7 @@ class FiltersButton extends React.Component {
           <div className="input-group">
             <span className="input-group-addon icon-person" />
             <UserAutocomplete
+              config={config}
               resetOnChange={false}
               initialUserID={params.user_id}
               bootstrapClear
@@ -598,7 +600,7 @@ class FiltersButton extends React.Component {
             </option>
             { terms.map( t => (
               <option value={t.id} key={`with-term-id-${t.id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
               </option>
             ) ) }
           </select>
@@ -616,7 +618,7 @@ class FiltersButton extends React.Component {
                 </option>
                 { chosenTerm.values.map( t => (
                   <option value={t.id} key={`annotation-term-value-id-${t.id}`}>
-                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
                   </option>
                 ) ) }
               </select>
@@ -642,7 +644,7 @@ class FiltersButton extends React.Component {
             </option>
             { terms.map( t => (
               <option value={t.id} key={`without-term-id-${t.id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
               </option>
             ) ) }
           </select>
@@ -660,7 +662,7 @@ class FiltersButton extends React.Component {
                 </option>
                 { ( rejectedTerm || chosenTerm ).values.map( t => (
                   <option value={t.id} key={`without-term-value-id-${t.id}`}>
-                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}` ) }
                   </option>
                 ) ) }
               </select>
@@ -706,6 +708,32 @@ class FiltersButton extends React.Component {
           updateSearchParams={updateSearchParams}
           prefix="created"
         />
+        <label className="sectionlabel">
+          { I18n.t( "geospatial" ) }
+        </label>
+        <FilterCheckboxWrapper
+          param="with_private_location"
+          label={I18n.t( "hide_observations_with_private_locations" )}
+          checked="false"
+        />
+        <FilterCheckboxWrapper
+          param="expected_nearby"
+          label={I18n.t( "not_expected_nearby" )}
+          checked="false"
+        />
+        <div className="form-group">
+          <div className="input-group accuracy" title={I18n.t( "accuracy_meters" )}>
+            <span className="input-group-addon fa fa-dot-circle-o" />
+            <input
+              className="params-q form-control"
+              placeholder={I18n.t( "maximum_positional_accuracy" )}
+              value={params.acc_below_or_unknown || ""}
+              onChange={e => {
+                updateSearchParams( { acc_below_or_unknown: e.target.value } );
+              }}
+            />
+          </div>
+        </div>
       </Col>
     );
     const moreFilters = (

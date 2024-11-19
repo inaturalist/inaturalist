@@ -132,4 +132,118 @@ describe UpdateAction do
       }.to_not raise_error
     end
   end
+
+  describe "user_ids_without_blocked_and_muted" do
+    it "returns the notifier user when there are no blocks or mutes" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      user_ids = [flag.user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to eq user_ids
+    end
+
+    it "returns any user when there are no blocks or mutes" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      user_ids = [flag.user_id, User.make!.id, User.make!.id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to eq user_ids
+    end
+
+    it "removes users the notifier has blocked" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      block = UserBlock.make!( user: flag.user )
+      user_ids = [flag.user_id, block.blocked_user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( block.blocked_user_id )
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to include( flag.user_id )
+    end
+
+    it "removes users that have blocked the notifier" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      block = UserBlock.make!( blocked_user: flag.user )
+      user_ids = [flag.user_id, block.user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( block.user_id )
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).to include( flag.user_id )
+    end
+
+    it "removes users that have muted the notifier" do
+      flag = Flag.make!
+      action = UpdateAction.make!( notifier: flag, resource: flag )
+      mute = UserMute.make!( muted_user: flag.user )
+      user_ids = [flag.user_id, mute.user_id]
+      expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( mute.user_id )
+    end
+  end
+
+  describe "user_viewed_updates" do
+    let( :observation ) { Observation.make! }
+    let( :comment ) { without_delay { Comment.make!( parent: observation ) } }
+    let( :update_action ) do
+      UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+    end
+
+    it "adds users to viewed_subscriber_ids" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+      UpdateAction.user_viewed_updates( [update_action], observation.user_id )
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
+    end
+
+    it "does not attempt to re-add users that have already viewed" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).to receive( :bulk ).and_call_original
+      UpdateAction.user_viewed_updates( [update_action], observation.user_id )
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      UpdateAction.user_viewed_updates( [update_action], observation.user_id )
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
+    end
+
+    it "does not attempt to add users that are not subscribed" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      UpdateAction.user_viewed_updates( [update_action], 31_415 )
+    end
+  end
+
+  describe "append_subscribers" do
+    let( :observation ) { Observation.make! }
+    let( :comment ) { without_delay { Comment.make!( parent: observation ) } }
+    let( :update_action ) do
+      UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+    end
+
+    it "adds users to subscriber_ids" do
+      other_user = User.make!
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).not_to include( other_user.id )
+      update_action.append_subscribers( [other_user.id] )
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
+    end
+
+    it "does not attempt to re-add users that are already subscribed" do
+      other_user = User.make!
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).not_to include( other_user.id )
+
+      expect( UpdateAction.__elasticsearch__.client ).to receive( :bulk ).and_call_original
+      update_action.append_subscribers( [other_user.id] )
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      update_action.append_subscribers( [other_user.id] )
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
+    end
+  end
 end

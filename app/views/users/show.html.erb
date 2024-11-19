@@ -17,24 +17,7 @@
   <!--[if lt IE 8]>
   <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
   <![endif]-->
-  <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-      $('#nodescription .cancellink').click(function(e) {
-        $('#nodescription').removeClass('editing')
-        $('#nodescription').find('.more').show()
-        $('#nodescription').find('form').hide()
-        e.stopPropagation()
-        return false;
-      })
-      $('#nodescription').click(function(e) {
-        if ($(this).hasClass('editing')) { return true; };
-        $(this).addClass('editing')
-        $(this).find('.more').hide()
-        $(this).find('form').show()
-        return false;
-      })
-    })
-  </script>
+  <%= javascript_include_tag "users/show" %>
 <% end %>
 
 <%- content_for(:extrahead) do -%>

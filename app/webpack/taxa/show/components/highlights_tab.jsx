@@ -44,7 +44,7 @@ const HighlightsTab = ( {
         { discoveriesShown ? (
           <LazyLoad
             debounce={false}
-            height={391}
+            minHeight={391}
             offset={100}
             onContentVisible={fetchRecent}
           >
@@ -94,7 +94,7 @@ const HighlightsTab = ( {
         { wantedShown ? (
           <LazyLoad
             debounce={false}
-            height={371}
+            minHeight={371}
             offset={100}
             onContentVisible={fetchWanted}
           >

@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import ProjectFieldsModal from "../components/project_fields_modal";
-import { addObservationFieldValue,
-  updateObservationFieldValue } from "../ducks/observation";
+import {
+  addObservationFieldValue,
+  updateObservationFieldValue
+} from "../ducks/observation";
 import { setProjectFieldsModalState } from "../ducks/project_fields_modal";
 
 function mapStateToProps( state ) {

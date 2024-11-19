@@ -35,12 +35,32 @@
         </span>
         <%- if parent.class.to_s == "Observation" -%>
             <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: parent.class.to_s.downcase,
+              parent: translate_with_consistent_case(
+                parent.class.name.parameterize.underscore,
+                default: t(
+                  parent.class.name,
+                  scope: [:activerecord, :models]
+                )
+              ),
+              user_link:  link_to( parent.user.login, parent.user ),
+              vow_or_con: parent.class.to_s.first.downcase ) %>
+        <%- elsif parent.class.to_s == "Post" -%>
+            <%= raw t( "new_comment_on_a_parent_by_user_link",
+              parent: translate_with_consistent_case(
+                :journal_post,
+                default: t( "Post", scope: [:activerecord, :models] )
+              ),
               user_link:  link_to( parent.user.login, parent.user ),
               vow_or_con: parent.class.to_s.first.downcase ) %>
         <%- elsif parent.user %>
             <%= raw t( "new_comment_on_a_parent_by_user_link",
-              parent: parent.class.to_s.downcase,
+              parent: translate_with_consistent_case(
+                parent.class.name.parameterize.underscore,
+                default: t(
+                  parent.class.name,
+                  scope: [:activerecord, :models]
+                )
+              ),
               user_link:  link_to( parent.user.login, parent.user ),
               vow_or_con: parent.class.to_s.first.downcase ) %>
         <%- end -%>

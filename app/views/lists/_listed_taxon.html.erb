@@ -80,11 +80,9 @@
     <div class="description">
       <% if list.is_a?( CheckList ) && primary_listed_taxon.last_observation %>
         <span class="observation">
-         <%=t :last_seen %>
-          <a href="<%= observation_url(primary_listed_taxon.last_observation) %>">
-            <%= one_line_observation primary_listed_taxon.last_observation, :skip => %w(user taxon) %>
-          </a>
-          <span class="button"><%= link_to "(" + t(:view_all) + ")", observations_url(:place_id => list.place_id, :taxon_id => primary_listed_taxon.taxon_id) %></span>
+          <%=t :bold_label_colon_value_html, label: t( :last_observation ), value: link_to( primary_listed_taxon.last_observation.to_plain_s( viewer: current_user ), primary_listed_taxon.last_observation ) %>
+          &nbsp;
+          <span class="button"><%= link_to "(#{t :view_all})", observations_path( place_id: list.place_id, taxon_id: primary_listed_taxon.taxon_id ) %></span>
         </span>
         |
       <% end %>

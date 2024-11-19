@@ -150,6 +150,42 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     expect( csv.size ).to eq 1 # just the header
   end
 
+  it "should not include hidden photos" do
+    ModeratorAction.make!( resource: p, action: "hide" )
+    expect( p.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    csv = CSV.read( path )
+    expect( csv.size ).to eq 1 # just the header
+  end
+
+  it "should include sounds" do
+    p.destroy!
+    sound = Sound.make!( user: o.user )
+    ObservationSound.make!( sound: sound, observation: o )
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    CSV.foreach( path, headers: true) do |row|
+      expect( row["type"] ).to eq "Sound"
+    end
+  end
+
+  it "should not include hidden sounds" do
+    p.destroy!
+    sound = Sound.make!( user: o.user )
+    ObservationSound.make!( sound: sound, observation: o )
+    ModeratorAction.make!( resource: sound, action: "hide" )
+    expect( sound.hidden? ).to be true
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    archive.make_data
+    path = archive.extension_paths[:simple_multimedia]
+    CSV.foreach( path, headers: true) do |row|
+      expect( row["type"] ).to eq "Sound"
+    end
+  end
+
   describe "with photo_license is ignore" do
     it "should include CC_BY images" do
       expect( p.license ).to eq Photo::CC_BY
@@ -213,6 +249,60 @@ describe DarwinCore::Archive, "make_observation_fields_data" do
   end
 end
 
+describe DarwinCore::Archive, "make_resource_relationships_data" do
+  elastic_models( Observation )
+
+  let( :o ) { make_research_grade_observation }
+  let( :of_taxon ) { ObservationField.make!( datatype: "taxon" ) }
+  let( :of_taxon_non_numeric ) { ObservationField.make!( datatype: "taxon" ) }
+  let( :of_numeric ) { ObservationField.make!( datatype: "numeric" ) }
+  let!( :ofv_taxon ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_taxon, value: Taxon.make!.id )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+  let!( :ofv_taxon_non_numeric_value ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_taxon_non_numeric, value: "not_a_number" )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+  let!( :ofv_numeric ) {
+    ofv = ObservationFieldValue.make!( observation: o, observation_field: of_numeric )
+    DarwinCore::ObservationFields.adapt( ofv, observation: o )
+  }
+
+  before do
+    expect( ofv_taxon.observation ).to eq o
+  end
+
+  it "should add rows to the file" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    expect( CSV.read( path ).size ).to be > 1
+    CSV.foreach( path, headers: true ) do |row|
+      expect( row["identifier"] ).to eq ofv_taxon.id.to_s
+      expect( row["relationshipOfResource"] ).to eq ofv_taxon.observation_field.name
+      expect( row["relationshipEstablishedDate"] ).to eq ofv_taxon.created_at.iso8601
+    end
+  end
+
+  it "should set the first column to the observation_id" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    csv = CSV.read( path, headers: true )
+    row = csv.first
+    expect( row[0] ).to eq o.id.to_s
+  end
+
+  it "should only export observation field values for fields of datatype taxon with numeric values" do
+    archive = DarwinCore::Archive.new( extensions: %w( ResourceRelationships ) )
+    archive.make_data
+    path = archive.extension_paths[:resource_relationships]
+    expect( CSV.read( path ).select{ |r| r[0] != "id" }.size ).to eq 1
+    expect( ObservationFieldValue.count ).to be >= 3
+  end
+end
+
 describe DarwinCore::Archive, "make_project_observations_data" do
   elastic_models( Observation )
 
@@ -254,6 +344,30 @@ describe DarwinCore::Archive, "make_project_observations_data" do
     path = archive.extension_paths[:project_observations]
     csv = CSV.read( path, headers: true )
     expect( csv.size ).to eq 1
+  end
+end
+
+describe DarwinCore::Archive, "observations_params" do
+  it "should include parameters for place" do
+    p = make_place_with_geom
+    archive = DarwinCore::Archive.new( place: p.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
+  end
+
+  it "should include parameters for all site places" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id, site_place.place_id )
+  end
+
+  it "should prioritize place over places_for_site" do
+    p = make_place_with_geom
+    site = Site.make!( place: p )
+    site_place = PlacesSite.make!( site: site, scope: PlacesSite::EXPORTS )
+    archive = DarwinCore::Archive.new( place: p.id, places_for_site: site.id )
+    expect( archive.observations_params[:place_id] ).to contain_exactly( p.id )
   end
 end
 
@@ -495,6 +609,51 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     expect( obs['coordinateUncertaintyInMeters'] ).to eq o.uncertainty_cell_diagonal_meters.to_s
   end
 
+  describe "excluding humans" do
+    before( :all ) do
+      Taxon.instance_eval { remove_const( "HOMO" ) }
+      Taxon::HOMO = Taxon.make!( name: "Homo" )
+      Taxon.instance_eval { remove_const( "HUMAN" ) }
+      Taxon::HUMAN = Taxon.make!( name: "Homo sapiens" )
+    end
+
+    it "excludes observations of Homo by default" do
+      Observation.make!( taxon: Taxon::HOMO )
+      archive = DarwinCore::Archive.new( quality_grade: "any" )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be true
+    end
+
+    it "excludes observations of Homo sapiens by default" do
+      Observation.make!( taxon: Taxon::HUMAN )
+      archive = DarwinCore::Archive.new( quality_grade: "any" )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be true
+    end
+
+    it "includes observations of Homo if requested" do
+      Observation.make!( taxon: Taxon::HOMO )
+      archive = DarwinCore::Archive.new( quality_grade: "any", include_humans: true )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be false
+    end
+
+    it "includes observations of Homo sapiens if requested" do
+      Observation.make!( taxon: Taxon::HUMAN )
+      archive = DarwinCore::Archive.new( quality_grade: "any", include_humans: true )
+      archive.make_data
+      path = archive.extension_paths[:occurrence]
+      obs = CSV.read( path, headers: true )
+      expect( obs.empty? ).to be false
+    end
+  end
+
   describe "annotation filters" do
     before( :all ) do
       @sex_attribute = make_controlled_term_with_label( "Sex" )
@@ -508,6 +667,9 @@ describe DarwinCore::Archive, "make_occurrence_data" do
       )
       @unannotated_o = make_research_grade_observation
       @sex_annotated_o = make_research_grade_observation
+      @sex_attribute.reload
+      @life_stage_attribute.reload
+      @unrecognized_attribute.reload
       Annotation.make!(
         resource: @sex_annotated_o,
         controlled_attribute: @sex_attribute,
@@ -703,5 +865,30 @@ describe DarwinCore::Archive, "make_occurrence_data" do
     CSV.foreach( path, headers: true ) do |row|
       expect( row['countryCode'] ).to eq country.code
     end
+  end
+end
+
+describe DarwinCore::Archive, "generate" do
+  elastic_models( Observation, Taxon )
+
+  let( :o ) { make_research_grade_observation }
+
+  it "removes tmp directory after moving completed archive" do
+    final_archive_path = File.join( Dir.tmpdir, "dwca_from_archive_spec.zip" )
+    if File.exist?( final_archive_path )
+      FileUtils.rm( final_archive_path )
+    end
+    archive = DarwinCore::Archive.new(
+      taxon: o.taxon_id,
+      extensions: %w(SimpleMultimedia),
+      path: final_archive_path
+    )
+    archive_work_path = archive.instance_variable_get( "@opts" )[:work_path]
+    expect( Dir.exist?( archive_work_path ) ).to be true
+    expect( File.exist?( final_archive_path ) ).to be false
+    archive.generate
+    expect( Dir.exist?( archive_work_path ) ).to be false
+    expect( File.exist?( final_archive_path ) ).to be true
+    FileUtils.rm( final_archive_path )
   end
 end

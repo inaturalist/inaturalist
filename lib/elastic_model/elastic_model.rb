@@ -136,6 +136,7 @@ module ElasticModel
     end
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
+    elastic_hash[:search_after] = options[:search_after] if options[:search_after]
     elastic_hash[:_source] = options[:source] if options[:source]
     if options[:aggregate]
       elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
@@ -262,7 +263,8 @@ module ElasticModel
   end
 
   def self.elasticsearch_url
-    url = Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:host]
+    url = Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:host] ||
+      Taxon.__elasticsearch__.client.transport.instance_variable_get( "@options" )[:hosts].try( :first )
     unless url.starts_with?("http://")
       url = "http://" + url
     end

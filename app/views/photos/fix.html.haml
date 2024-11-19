@@ -36,7 +36,7 @@
     .col-xs-12
       %h1=t :repair_external_photos
       %p
-        We used to only import the URLs of photos from external sites (e.g. Facebook). If they changed the URL, we lost access to the photo. Now we import the actual photo, but a lot of photos with broken URLs remain. This tool will let repair any broken photos you might have.
+        We used to only import the URLs of photos from external sites. If they changed the URL, we lost access to the photo. Now we import the actual photo, but a lot of photos with broken URLs remain. This tool will let repair any broken photos you might have.
         %strong Note:
         It will
         %em not
@@ -45,7 +45,7 @@
     .col-xs-12
       = link_to "Repair your #{@type}s", "#repair", data: {toggle: :modal}, :class => "pull-right btn btn-success"
       %ul.nav.nav-pills
-        - %w(FacebookPhoto FlickrPhoto PicasaPhoto).each do |type|
+        - %w(FlickrPhoto PicasaPhoto).each do |type|
           %li{:class => type == @type ? 'active' : nil}
             = link_to t(type.underscore.gsub(/_photo/, '')), url_for(type: type)
   - if @photos.blank?
