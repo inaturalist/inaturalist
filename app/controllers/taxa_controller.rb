@@ -1074,7 +1074,7 @@ class TaxaController < ApplicationController
             break unless @description.blank?
           end
         end
-        if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+        if @describers.detect {| d | d.is_a?( TaxonDescribers::Wikipedia ) } && @taxon.wikipedia_summary.blank?
           @taxon.wikipedia_summary( refresh_if_blank: true )
         end
       else

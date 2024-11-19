@@ -153,6 +153,9 @@ ActiveRecord::Base.include_root_in_json = false
 ActiveRecord::SessionStore::Session.primary_key = "session_id"
 
 Rack::Utils.multipart_part_limit = 2048
+# allow 4x the default amount of multipart request parts. Some endpoints, like updating a collection
+# project with thousands of rules, while updating its icon or banner, need this increased limit
+Rack::Utils.multipart_total_part_limit = 16_384
 
 # load SiteConfig class and config
 require "site_config"

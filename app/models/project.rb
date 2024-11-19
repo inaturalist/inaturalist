@@ -1099,9 +1099,26 @@ class Project < ApplicationRecord
     is_new = new_record?
     yield
     return if admin_attributes.blank?
-    admin_attributes.each do |k, admin_attr|
+
+    # like ActiveRecord::NestedAttributes.assign_nested_attributes_for_collection_association,
+    # the association attributes might be a hash with keys that are unused (they
+    # are a representation of array indices), or they could be an array. If they are a
+    # Hash, then all that is needed are the values. The following is borrowed from that method
+    if admin_attributes.is_a?( Hash )
+      keys = admin_attributes.keys
+      attributes_array = if keys.include?( "id" ) || keys.include?( :id )
+        [admin_attributes]
+      else
+        attributes_array = admin_attributes.values
+      end
+    else
+      attributes_array = admin_attributes
+    end
+
+    attributes_array.each do | admin_attr |
       next unless admin_attr["user_id"]
-      new_role = admin_attr["_destroy"] == "true" ? nil : "manager" 
+
+      new_role = admin_attr["_destroy"] == "true" ? nil : "manager"
       if is_new
         project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else
