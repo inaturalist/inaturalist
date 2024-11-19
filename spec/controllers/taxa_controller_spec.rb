@@ -379,4 +379,42 @@ describe TaxaController do
       expect( es_taxon.default_photo.id ).to eq photo.id
     end
   end
+
+  describe "describe" do
+    let( :taxon ) { create :taxon, name: "Homo sapiens" }
+
+    it "should create a TaxonDescription if one does not exist" do
+      expect( taxon.taxon_descriptions ).to be_blank
+      after_delayed_job_finishes do
+        get :describe, params: { id: taxon.id }
+      end
+      taxon.reload
+      expect( taxon.taxon_descriptions ).not_to be_blank
+      expect( taxon.taxon_descriptions.first.body ).to include "Human"
+    end
+
+    it "should not create a new TaxonDescription if one does exist" do
+      create :taxon_description, taxon: taxon
+      expect( taxon.taxon_descriptions.size ).to eq 1
+      after_delayed_job_finishes do
+        get :describe, params: { id: taxon.id }
+      end
+      taxon.reload
+      expect( taxon.taxon_descriptions.size ).to eq 1
+    end
+
+    it "should create a localized TaxonDescription if one does not exist" do
+      create :taxon_description, taxon: taxon
+      expect( taxon.taxon_descriptions.size ).to eq 1
+      expect( taxon.taxon_descriptions.detect {| td | td.locale == "fi" } ).to be_blank
+      after_delayed_job_finishes do
+        get :describe, params: { id: taxon.id, locale: "fi" }
+      end
+      taxon.reload
+      expect( taxon.taxon_descriptions.size ).to eq 2
+      fi_desc = taxon.taxon_descriptions.detect {| td | td.locale == "fi" }
+      expect( fi_desc ).not_to be_blank
+      expect( fi_desc.body ).to include "Ihminen"
+    end
+  end
 end
