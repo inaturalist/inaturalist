@@ -200,6 +200,7 @@ class Observation < ApplicationRecord
   ]
   BASIC_COLUMNS = [
     "id",
+    "uuid",
     "observed_on_string",
     "observed_on",
     "time_observed_at",
