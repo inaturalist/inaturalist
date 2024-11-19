@@ -10,7 +10,6 @@ class StatsController < ApplicationController
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments, :daily_active_user_model],
     unless: -> { authenticated_with_oauth? }
   before_action :admin_required, only: [:user_segments, :daily_active_user_model]
-  before_action :allow_external_iframes, only: [:wed_bioblitz]
 
   allow_external_iframes( only: [:wed_bioblitz] )
 
