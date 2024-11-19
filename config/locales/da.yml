@@ -1160,6 +1160,10 @@ da:
   content_and_display: Indhold og Visning
   content_author: Indholdsforfatter
   content_hidden: Skjult indhold
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Indhold skjult pr. %{date} grundet: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Indhold skjult af %{user} den %{date} fordi: "%{reason}"
   content_type: Indholdstype
@@ -2341,6 +2345,8 @@ da:
   in_place_x: i %{place}
   #As in a reason to flag something
   inappropriate: Upassende
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
@@ -2712,6 +2718,7 @@ da:
     lv: Lettisk
     mi: Maori
     mk: Makedonsk
+    ml: Malayalam
     mr: Marathi
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -2726,6 +2733,7 @@ da:
     sq: Albansk
     sr: Serbisk
     sv: Svensk
+    ta: Tamilsk
     th: Thailandsk
     tr: Tyrkisk
     uk: Ukrainsk
@@ -7362,21 +7370,27 @@ da:
         subject: Dit barns iNaturalist-konto er blevet aktiveret
         content_html: |
           <p>
-          Tak fordi du har oprettet en iNaturalist-konto til dit barn! Kontoen er blevet aktiveret. Her er de detaljer, som du oplyste, og som vi har gemt:
+          Tak, fordi at have oprettet en iNaturalist-konto til dit barn! Kontoen
+          er blevet aktiveret. Her er de oplyste detaljer, som vi har
+          registreret:
           </p>
           <ul>
           <li><strong>Forælder eller værges navn:</strong> %{parent_name}</li>
-          <li><strong>Forælder eller værges e-mail:</strong> %{parent_email}</li>
-          <li><strong>Barns navn:</strong> %{child_name}</li>
-          <li><strong>Barns fødselsdag:</strong> %{child_birthday}</li>
-          <li><strong>Børnekonto e-mail:</strong> %{child_email}</li>
-          <li><strong>Børnekonto brugernavn:</strong> %{child_username}</li>
+          <li><strong>Forældres eller værges e-mail:</strong> %{parent_email}</li>
+          <li><strong>Barnets navn:</strong> %{child_name}</li>
+          <li><strong>Barnets fødselsdag:</strong> %{child_birthday}</li>
+          <li><strong>E-mail til børnekonto:</strong> %{child_email}</li>
+          <li><strong>Brugernavn for børnekonto:</strong> %{child_username}</li>
           </ul>
           <p>
-          Log venligst ind på kontoen fra dit barns Seek's app ved at trykke på "iNaturalist"-knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
+          Log ind på kontoen via barnets Seek-app ved at trykke på
+          knappen "iNaturalist" i menuen og dernæst "Log ind med
+          iNaturalist" nederst på skærmen.
           </p>
           <p>
-          Dit barn vil da kunne oprette observationer på deres iNaturalist-konto med Seek-app'en, så de kan ses på iNaturalist.org.
+          Barnet vil derefter kunne sende observationer til sin
+          iNaturalist-konto vha. Seek-appen, så disse kan ses på
+          iNaturalist.org.
           </p>
       users_updates_suspended:
         message: |
@@ -7593,8 +7607,6 @@ da:
         data_visualizations: Data visualiseringer
         delete_project: Slet projekt
         display_project_name: Vis projektnavn
-        do_you_need_features_from_traditional: |
-          Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
         do_you_need_features_from_traditional2: |
           Brug for funktioner fra traditionelle projekter, såsom tilpassede observationsfelter,
           eller tilføjelse af individuelle observationer, som ikke automatisk kan filtreres?
@@ -7774,6 +7786,8 @@ da:
         avg_ttcid: Gnms TTFID
         avg_ttid: Gnms TTID
         identifiers_desc: Tilføjede et ID til en andens obs på denne dag
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Oprettet via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Oprettet via <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTFID
         med_ttid: Med TTID
@@ -7794,6 +7808,8 @@ da:
         recent_w_0_obs_desc: Tilmeldte sig i de seneste 7 dage Og tilføjede 0 obs
         recent_w_7_obs: Nylige m/> 7 obs
         recent_w_7_obs_desc: Tilmeldte sig i de seneste 7 dage og tilføjede >= 7 obs
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Oprettet via <a href="%{url}">Seek</a>
         time_to_id_desc: Tid til ID (timer, 1 løbende uge)
         TTCID: TTCID
         TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs taksonen

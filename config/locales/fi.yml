@@ -1055,6 +1055,10 @@ fi:
   content_and_display: Sisältö ja näyttö
   content_author: Sisällöntuottaja
   content_hidden: Sisältö piilotettu
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Sisältö piilotettu %{date}, koska: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} on piilottanut sisällön %{date} koska: %{reason}
   content_type: Sisältötyyppi
@@ -2129,6 +2133,8 @@ fi:
   in_place_x: paikassa %{place}
   #As in a reason to flag something
   inappropriate: Sopimaton
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-verkosto
   inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
@@ -2474,6 +2480,7 @@ fi:
     lv: Latvia
     mi: maori
     mk: makedonia
+    ml: malajalam
     mr: Marathi
     nb: kirjanorja
     nl: hollanti
@@ -2488,6 +2495,7 @@ fi:
     sq: albania
     sr: Serbia
     sv: ruotsi
+    ta: tamili
     th: Thai
     tr: turkki
     uk: Ukraina
@@ -5918,7 +5926,7 @@ fi:
           Ole hyvä ja kirjaudu käyttäjätilille lapsesi Seek-sovelluksesta painamalla valikon iNaturalist-nappia ja valitsemalla "Kirjaudu sisään iNaturalistilla" ruudun alareunassa.
           </p>
           <p>
-          Tämän jälkeen lapsesi voi ilmoittaa havaintoja iNaturalist-tililleen Seek-sovelluksen kautta ja havainnot näkyvät iNaturalis.org:ssa.
+          Tämän jälkeen lapsesi voi ilmoittaa havaintoja iNaturalist-tililleen Seek-sovelluksen kautta ja havainnot näkyvät iNaturalist-palvelussa.
           </p>
       users_updates_suspended:
         message: |
@@ -6074,8 +6082,6 @@ fi:
         data_visualizations: Tietojen visualisoinnit
         delete_project: Poista projekti
         display_project_name: Näytä projektin nimi
-        do_you_need_features_from_traditional: |
-          iNaturalistissa on vielä kolmaskin projektityyppi, ns. perinteiset projektit. Sen avulla projektin ylläpitäjät saavat havaintojen tarkat koordinaatit ja voivat käyttää mukautettuja havaintokenttiä. Perinteisessä projektissa jokainen havainto pitää liittää siihen käsin yksi kerrallaan, joten sen käyttäminen vatii enemmän työtä.
         duplicate_project: Kopioi projekti
         include_annotated_observations: |
           Sisällytä vain havainnot, joilla on tietty merkintä (esim. elinvaihe), tai tietty ominaisuus ja arvo (esim. elinvaihe = aikuinen). Yksi projekti voi käyttää vain yhtä tällaista suodatinta.
@@ -6214,6 +6220,8 @@ fi:
         avg_ttcid: Keskimääräinen TTID
         avg_ttid: Keskimääräinen TTID
         identifiers_desc: Lisäsi tänään tunnistuksen jonkun muun havaintoon
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Luotu <a href="%{url}">iNatNext</a>-sovelluksella
         iphone_desc_html: Luotu <a href="%{url}">iNaturalist iPhone-sovelluksen</a> kautta
         med_ttcid: Mediaani TTID
         med_ttid: Mediaani TTID
@@ -6232,6 +6240,8 @@ fi:
         recent_desc: Rekisteröity viimeisen 7 päivän aikana
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa
         recent_w_7_obs_desc: Rekisteröitynyt edeltävänä 7 päivänä ja lisännyt >= 7 havaintoa
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Luotu <a href="%{url}">Seek</a>-sovelluksella
         time_to_id_desc: Aika tunnistukseen (tunteina, 1 viikon siirtyvä aikaikkuna)
         TTCID: TTCID (aika yhteisömääritykseen)
         TTID: Aika tunnistukseen

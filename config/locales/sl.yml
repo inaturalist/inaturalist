@@ -1060,6 +1060,7 @@ sl:
   content_and_display: Vsebina & Prikaz
   content_author: Avtor vsebine
   content_hidden: Vsebina skrita
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Vsebino je skril %{user} %{date} zaradi: "%{reason}"
   content_type: Vrste vsebine

@@ -1,60 +1,338 @@
 ta:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} மாற்றம்"
+    other: "%{count} மாற்றங்கள்"
+  x_faves:
+    one: '%{count} பிடித்தது'
+    other: '%{count} பிடித்தவை'
+  x_identifications:
+    one: '%{count} அடையாளப்படுத்தல்'
+    other: '%{count} அடையாளப்படுத்தல்'
+  x_identifications_:
+    one: '%{count} அடையாளப்படுத்தல்'
+    other: '%{count} அடையாளப்படுத்தல்கள்'
   x_languages:
     one: "%{count} மொழி"
     other: "%{count} மொழிகள்"
+  x_matching_taxa:
+    one: '%{count} பொருந்துகிறது இனம்'
+    other: '%{count} பொருந்துகிறது இனங்கள்'
+  x_observations:
+    one: "%{count} கவனிப்பு"
+    other: "%{count} கவனிப்புகள்"
+  x_observations_:
+    one: "%{count} கவனிப்பு"
+    other: "%{count} கவனிப்புகள்"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> கவனிப்பு"
+    other: "<span class='count'>%{count}</span> கவனிப்புகள்"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> கவனிப்பு"
+    other: "<span class='count'>%{count}</span> கவனிப்புகள்"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count}கவனிப்பு</a>"
+    other: "<a href='%{url}'>%{count}கவனிப்புகள்</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> கவனிப்பு சரிபார்க்கப்பட்டது"
+    other: "<span class='count'>%{count}</span> கவனிப்புகள் சரிபார்க்கப்பட்டது"
+  x_others:
+    one: "%{count} மற்றவை"
+    other: "%{count} மற்றவர்கள்"
+  x_people:
+    one: "%{count} நபர்"
+    other: "%{count} மக்கள்"
+  x_photos:
+    one: "%{count} படம்"
+    other: "%{count} படங்கள்"
+  x_species:
+    one: '%{count} இனம்'
+    other: '%{count} இனங்கள்'
+  x_taxa:
+    one: "%{count} இனம்"
+    other: "%{count} இனங்கள்"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> ஆராய்ச்சி தரம் கவனிப்பு"
+    other: "<span class='count'>%{count}</span> ஆராய்ச்சி தரம் கவனிப்புகள்"
+  x_sounds:
+    one: "%{count} ஒலி"
+    other: "%{count} ஒலிகள்"
+  _percent_ID_d: "% ID'd"
+  a_community_for_naturalist: இயற்கை ஆராய்ச்சியாளர்களுக்கான சமூகம்
+  a_flag_for_x: "பிளாக் %{x}க்கு"
+  a_member_of_taxon_html: "ஒரு %{taxon} உறுப்பினர்"
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A முதல் Z"
+  about: பற்றி
+  about_charts: அட்டவணைகள் பற்றியது
   about_conservation_status: பாதுகாப்பு நிலை பற்றி
+  about_licenses: உரிமங்கள் பற்றி
+  #Header for a section describing taxon names
+  about_names: பெயர்கள் பற்றி
+  #Title for a section providing a text description of a place, @vow_or_con
+  #should work here
+  about_place: "%{place} பற்றி"
+  about_places: இடங்களைப் பற்றி
+  about_taxon_ranges: இனம் வரம்புகள் பற்றி
+  account: கணக்கு
+  account_settings: கணக்கு அமைப்புகள்
   accuracy: துல்லியம்
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: செயல்
   actions: செயல்கள்
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: சுறுசுறுப்புள்ள
+  add: சேர்
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: ஒரு பாதுகாப்பு நிலை சேர்க்கவும்
+  add_a_taxon: ஒரு இனம் சேர்க்கவும்
+  add_an_identification: ஒரு அடையாளப்படுத்தல் சேர்க்கவும்
+  add_an_observation: ஒரு கவனிப்பு சேர்க்கவும்
+  add_annotations_for_x: '"%{x}" க்கு விளக்கங்கள் சேர்க்கவும்'
+  add_annotations_for_controlled_attribute:
+    sex: '"பாலினம்" க்கு விளக்கங்கள் சேர்க்கவும்'
+    plant_phenology: '"தாவர நிகழ்வு" க்கு விளக்கங்கள் சேர்க்கவும்'
+    flowers_and_fruits: '"பூக்கள் மற்றும் பழங்கள்" க்கு விளக்கங்கள் சேர்க்கவும்'
+    leaves: '"இலைகள்" க்கு விளக்கங்கள் சேர்க்கவும்'
+    life_stage: '"வாழ்க்கை நிலை" க்கு விளக்கங்கள் சேர்க்கவும்'
+    evidence_of_presence: '"இருப்பின் ஆதாரம்" க்கு விளக்கங்கள் சேர்க்கவும்'
+  add_conservation_status: பாதுகாப்பு நிலை சேர்க்கவும்
+  add_editor: பதிப்பாசிரியர் சேர்க்கவும்
+  #Prompt to add add a default photo to a taxon when one doesn't exist, so here
+  #"one" refers to a photo
+  add_one_now: இப்போது ஒன்று சேர்க்கவும்
+  add_sex_female_annotation: '"பாலினம்: பெண்" விளக்கம் சேர்க்கவும்'
+  add_sex_male_annotation: '"பாலினம்: ஆண்" விளக்கம் சேர்க்கவும்'
+  add_sex_cannot_be_determined_annotation: '"பாலினம்: தீர்க்க முடியாது" விளக்கம் சேர்க்கவும்'
+  add_taxa: இனங்கள் சேர்க்கவும்
+  add_taxon_range: இனம் வரம்பு சேர்க்கவும்
+  add_to_favorites: பிடித்தவைகளில் சேர்க்கவும்
   added: சேர்க்கப்பட்டது
+  added!: சேர்க்கப்பட்டது!
+  added_by: சேர்க்கப்பட்டது
+  added_by_user_on_date_html: "%{user} என்பவரால் %{date} அன்று சேர்க்கப்பட்டது"
+  added_on_datetime: "%{datetime} அன்று சேர்க்கப்பட்டது"
+  added_to_favorites_html: |
+    <a href="%{url}">பிடித்தவை</a> க்கு சேர்க்கப்பட்டது
+  adding: "சேர்க்கப்படுகிறது..."
+  adjust_brightness: ஒளியை அமைக்கவும்
+  admin: நிர்வாகி
+  admin_s: நிர்வாகி(கள்)
+  admin_only: நிர்வாகிக்கு-மட்டும்
+  admin_tools: நிர்வாகி கருவிகள்
   agree_: ஒருமனப்படு
   agree?: ஒருமனப்படு?
+  agree_with_current_taxon: தற்போதைய இனம் உடன்படுகிறது
+  agree_with_observation_taxon: அவதானிப்புகளின் இனங்கள் உடன்படுகிறது
   agreeing: ஒப்புதல்...
+  aka: அல்லது
+  #Noun, title of a popup alerting you to something
+  alert: எச்சரிக்கை
+  all: அனைத்து
+  all_names: அனைத்து பெயர்கள்
+  all_observations: அனைத்து கவனிப்புகள்
   all_photos: அனைத்து புகைப்படங்கள்
   all_places: "அனைத்து இடங்கள்"
   all_taxa:
+    amphibians: நீர்நில வாழ்வன
+    animals: விலங்குகள்
+    arachnids: அராக்னிடா
     birds: பறவை
+    chromista: குரோமிஸ்டா
+    fungi: பூஞ்சை
+    fungi_including_lichens: பூஞ்சை உள்ளிட்ட கற்பாசி
     insects: பூச்சி
     mammals: பாலூட்டிகள்
+    mollusks: மெல்லுடலிகள்
+    other_animals: வேறு விலங்குகள்
     plants: தாவரங்கள்
     life: வாழ்க்கை
+  annotations: விளக்கங்கள்
   #Label for an option to show content from any date
   any_date: ஏதாவது
+  back_to_your_observations: உங்கள் கவனிப்புக்கு திரும்புங்கள்
+  be_the_first_to_fave_this_observation: இந்தக் கவனிப்பு முதலில் விரும்புபவராக இருங்கள்!
+  browse_observations: கவனிப்புகளை ஆராயுங்கள்
+  captive_observations: சிறை உயிரினம் கவனிப்புகள்
+  casual: சாதாரண
+  casual_: சாதாரண
+  casual_tooltip_html: '"சாதாரண" கவனிப்புகள் ஊடகம், இடம், அல்லது தேதி காணப்படவில்லை, அல்லது "ஆராய்ச்சி" அல்லது "ID தேவை" தரங்களுக்குப் பிற காரணங்களால் தேவைகளைப் பூர்த்தி செய்யவில்லை. <a href="https://www.inaturalist.org/pages/help#quality">தரங்கள்பற்றி மேலும் அறியவும்</a>'
+  cid_d_to_genus: பேரினமாக CID'd
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: ஏதாவது
+    sex: பாலினம்
+    male: ஆண்
+    female: பெண்
     flowers_and_fruits: பூக்கள் மற்றும் பழங்கள்
     flower_budding: பூ மொட்டாகும் செயல்முறை
     flowering: பூக்கும்
     flower_buds: பூ மொட்டுகள்
     flowers: பூக்கள்
     no_evidence_of_flowering: மலர்வதற்கான சாட்சியமில்லை
+    nymph: இளம்பூச்சி
+    juvenile: இளவயது
+  copyright:
+    attribution_noncommercial_sharealike_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற - அதே மாதிரிப் பகிர்தல் உரிமம்
+    attribution_noncommercial_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற உரிமம்
+    attribution_license: குறிப்பிடுதல் மட்டும் உரிமம்
   date_: தேதி
   date_added: தேதி சேர்க்கப்பட்டது
   date_authorized: ஒப்புக்கொள்ளப்பட்ட தேதி
   date_created: உருவாக்கிய தேதி
+  date_format:
+    date_long:
+      june: ஜூன் %{day} %{year}
+    month:
+      june: ஜூன்
+  date_joined: சேரும் தேதி
   disagree_: எதிர்மனப்படு
+  edit_project: கணிப்பு திருத்த
+  edit_taxa: இனங்கள் திருத்த
+  edit_taxon: இனம் திருத்த
+  edit_taxon_framework: இனங்கள் சட்ட திருத்த
+  edit_taxon_link: இனங்கள் லிங்க் திருத்த
+  edit_taxon_range: இனம் வரம்பு திருத்த
+  edit_your_default_settings: "உங்கள் டிஃபால்ட் அமைப்புகளைத் திருத்தவும்"
+  editing_project: திருத்துவது %{project}
+  editors: பதிப்பாசிரியர்கள்
+  #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
+  exact_rank: துல்லியமானது ரேங்க்
+  exclude_taxa: இனங்கள் விலக்கு
+  #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
+  faves: பிடித்தவை
+  favorite_taxa: பிடித்தது இனங்கள்
+  favorites: "பிடித்தவை"
+  Genus: பேரினம்
   got_it!: சரி!
+  guides: வழிகாட்டுகிறது
+  guide_taxon: வழிகாட்டி இனம்
+  has_one_or_more_faves: ஒரு அல்லது மேற்பட்ட பிடித்தங்கள் உள்ளன
+  header_your_favorites: உங்கள் பிடித்தவை
+  include_places: இடங்களைச் சேர்க்கவும்
+  'joined!': சேர்ந்தார்!
+  joined_projects: சேர்ந்தது கணிப்புகள்
+  joined_with_date: "சேர்ந்தார்: %{date}"
   lexicons:
     french: பிரெஞ்சு
+    hebrew: ஹீப்ரு
+    japanese: ஜாப்பனீஸ்
+    tamil: தமிழ்
+  license: உரிமம்
   locales:
     fr: பிரெஞ்சு
     fr-CA: பிரஞ்சு (கனடா)
+    he: ஹீப்ரு
+    ja: ஜாப்பனீஸ்
   location: இடம்
+  log_out: வெளியேறு செய்யவும்
+  log_out_caps: வெளியேறு செய்யவும்
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: மாக்ரோஸ்ட்ராட்
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: மற்றும்
+  #Button to show more places
+  more__context_places: இன்னும்
+  most_comments_and_faves: நிறைய கருத்துகளும் பாராட்டுகளும்
+  native_to_place: "பூர்வீகம் %{place}"
+  #Short for "navigation," used to describe a navigational component on the
+  #project detail page when editing custom project data
+  nav: வழிசெலுத்தல்
+  new_guide: புதிய வழிகாட்டி
+  no_favorites_added:
+    current_user: நீங்கள் இன்னும் பிடித்தவைகளைச் சேர்க்கவில்லை.
+    user: "%{user} அவர்கள் இன்னும் பிடித்தவைகளைச் சேர்க்கவில்லை."
+  no_more_mail_from_site: "நீங்கள் %{site_name} இல் இருந்து எந்த மின்னஞ்சலையும் பெற விரும்பவில்லை என்றால்? உங்கள் மின்னஞ்சல் அமைப்புகளைத் திருத்தவும்"
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: கவனிப்பு &copy; %{user}
+  observation_brief_taxon_from_place: "%{place}யிலிருந்து %{taxon}"
+  observation_brief_taxon_from_place_by_user: "%{place}யில் இருந்து %{taxon} %{user} மூலம்"
+  observation_brief_taxon_from_place_on_day: "%{place}யிலிருந்து %{taxon} %{day} அன்று"
+  observation_brief_taxon_from_place_on_day_by_user: "%{place}யில் இருந்து %{taxon} %{day} அன்று %{user} மூலம்"
+  observation_brief_taxon_from_place_on_day_at_time: "%{place}யிலிருந்து %{taxon} %{day} அன்று %{time} மணிக்கு"
+  observation_brief_taxon_from_place_on_day_at_time_by_user: "%{place}யிலிருந்து %{taxon} %{day} அன்று %{time} மணிக்கு %{user} மூலம்"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year: "%{place}யிலிருந்து %{taxon} %{month} %{year}ல்"
+  #%{month} will be filled in the name of the month
+  observation_brief_taxon_from_place_in_month_year_by_user: "%{place}யிலிருந்து %{taxon} %{month} %{year}ல் %{user} மூலம்"
   onboarding:
     observe_panel_body_p2: வெளியே சென்று பல்லுயிர்களின் ஒவ்வொரு பகுதியையும் பாருங்கள். வனவிலங்குகள் போன்றவற்றில் ஏதேனும் ஒன்றைத் தேர்ந்தெடுத்து அதன் முழு பிரேம் படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே வனவிலங்கு வகை படம் இருந்தால் <a href="%{new_observation_path}">இப்போதே சேர்க்கவும்</a>. பார்வைகளைப் பதிவுசெய்ய %{site_name} மொபைல் பயன்பாடுகளையும் நீங்கள் பயன்படுத்தலாம்.
   places_name:
     french_guiana: பிரெஞ்சு கயானா
     french_polynesia: பிரெஞ்ச் பாலிநீசியா
+    india: இந்தியா
+    israel: இஸ்ரேல்
+    japan: ஜப்பான்
+    north_america: நோர்த் அமெரிக்கா
+  projects: கணிப்புகள்
+  ranks:
+    genus: பேரினம்
+    x_genera:
+      one: பேரினம்
+      other: பேரினங்கள்
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
+  ranks_lowercase_stateofmatter: பொருட்களின் நிலை
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: குடும்பம்
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
+  ranks_lowercase_subfamily: துணைக்குடும்பம்
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: உயரினக்குழு
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
+  ranks_lowercase_tribe: குழு
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: பேரினம்
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genushybrid X"
+  ranks_lowercase_genushybrid: பேரினம்கலப்புப்பிறப்பு
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
+  ranks_lowercase_hybrid: கலப்புப்பிறப்பு
+  save_settings_caps: அமைப்புகளைச் சேமிக்கவும்.
+  search: தேடு
+  set_a_place_if_this_link_only_applies_to: இந்த லிங்க் குறிப்பிட்ட இடத்திலிருந்து வரும் இனங்கள் மட்டுமே பொருந்தினால், இடத்தை அமைக்கவும். உலகமெங்கும் வரும் இனங்களுக்கு பொருந்தினால், வெறுமையாக விலக்கவும்.
+  set_license: உரிமம் அமைக்கவும்
+  settings: அமைப்புகள்
+  sign_out: வெளியேறு
+  sign_up: பதிவு செய்யுங்கள்
+  species_from_around_the_world: உலகம் முழுவதும் உள்ள இனங்கள்
+  taxonomy_settings: உயிரியல் வகைப்பாடு அமைப்புகள்
+  teachers_guide: ஆசிரியர் வழிகாட்டி
+  tell_the_world_a_little_about_yourself: உங்களைப் பற்றி எங்களிடம் கூறுங்கள்
+  the_world: நம்ம உலகம்
+  the_world_is_full_of_interesting_places: |
+    உலகம் அதிகமான சுவாரஸ்யமான இடங்களில் நிறைந்துள்ளது, ஒவ்வொன்றும் விசித்திரமான மற்றும் அற்புதமான உயிரினங்கள் நிறைந்துள்ளன. சில உலகத்தின் மறுபக்கம் உள்ளன, மற்றவை அடியோரத்தில் இருக்கின்றன! %{site_name} இடங்கள் உங்களுக்கு உலகம் முழுவதும் உள்ள உயிரினங்களைப் பார்வையிட அனுமதிக்கிறது. ஆராயத் தொடங்குங்கள்!
+  update_existing_observations_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள கவனிப்புகளைப் புதுப்பிக்கவும்
+  update_existing_photos_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள புகைப்படங்களைப் புதுப்பிக்கவும்
+  update_existing_sounds_with_new_license: புதிய உரிமை விருப்பங்களுடன் உள்ள ஒலிகளைப் புதுப்பிக்கவும்
   upload: அப்லோடு செய்ய
   upload_a_csv_file: அப்லோடு செய்ய சசிவ் பைலை
+  user_added_a_fave_html: "%{user} பிடித்தவை சேர்க்கப்பட்டது"
+  user_faved_an_observation_by_you: "%{user} உங்கள் கணிப்பைப் பிடித்தது"
+  user_faved_this_observation: "%{user} இந்த கவனிப்பில் பிடித்தமாகக் கொண்டார்"
+  view_license: உரிமம் காண்க
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: இதுவே பேரினத்தில் இருக்க வாய்ப்பு
+  #Label for the most probable taxon in the automated suggestions when that taxon is a family
+  were_pretty_sure_this_is_in_the_family: இதுவே குடும்பத்தில் இருக்க வாய்ப்பு
+  #Label for the most probable taxon in the automated suggestions when that taxon is an order
+  were_pretty_sure_this_is_in_the_order: இதுவே வரிசையில் இருக்க வாய்ப்பு
+  #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
+  were_pretty_sure_this_is_in_the_subfamily: இதுவே துணைக்குடும்பத்தில் இருக்க வாய்ப்பு
   'yes': "ஆம்"
   yes_license_my_observations_so_scientists_can_use: ஆம், விஞ்ஞானிகள் தரவைப் பயன்படுத்துவதற்காக எனது படங்கள், பதிவுகள் மற்றும் அவதானிப்புகளுக்கு உரிமம் வழங்குகிறேன் (பரிந்துரைக்கப்பட்டது).
+  you_faved_this: நீங்கள் இதைப் பிடித்தமாகக்!
+  your_favorites: உங்கள் பிடித்தவை
   views:
+    guides:
+      pdf_layouts:
+        book: புத்தகம்
+        journal: சஞ்சிகை
     projects:
       project_user_curator_coordinate_access_labels:
         none: இல்லை.
@@ -66,6 +344,31 @@ ta:
       show:
         frequency:
           "Plant Phenology=Flowering": பூக்கும்
+          "Life Stage=Juvenile": இளவயது
+          "Life Stage=Nymph": இளம்பூச்சி
+          "Sex=Female": பெண்
+          "Sex=Male": ஆண்
+    users:
+      edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          நீங்கள் நினைப்பு மாறினால், நீங்கள் எப்போது வேண்டுமானாலும் <a href='/users/edit'>உங்கள் அமைப்புகளைத் திருத்தலாம்</a>.
+        place_preference_changed_notice_html: |
+          இடத்தின் முன்னுரிமை மாற்றப்பட்டது. நீங்கள் நினைப்பு மாறினால், நீங்கள் எப்போது வேண்டுமானாலும் <a href='/users/edit'>உங்கள் அமைப்புகளைத் திருத்தலாம்</a>.
+  date:
+    month_names:
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
+      - ஜூன்
+      - 
+      - 
+      - 
+      - 
+      - 
+      - 
   number:
     format:
       significant: false
@@ -74,3 +377,18 @@ ta:
       format:
         significant: true
         strip_insignificant_zeros: true
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: vowel
+        con: consonant
+      "@gender":
+        m: ஆண்
+        f: பெண்
+        "n": நடுநிலையான
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genus: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        genushybrid: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        subgenus: "@n"

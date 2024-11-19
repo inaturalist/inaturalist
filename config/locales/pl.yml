@@ -1136,6 +1136,7 @@ pl:
   content_and_display: Zawartość i wyświetlanie
   content_author: Autor zawartości
   content_hidden: Treść została ukryta
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Treść została ukryta %{date} przez %{user}, ponieważ "%{reason}"
   content_type: Typ zawartości

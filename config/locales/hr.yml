@@ -1188,6 +1188,7 @@ hr:
   content_and_display: Sadržaj i Prikaz
   content_author: Autor sadržaja
   content_hidden: Sadržaj Skriven
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Sadržaj je sakrio %{user} dana %{date} zbog: "%{reason}"
   content_type: Vrsta sadržaja
@@ -7559,28 +7560,6 @@ hr:
           Uključili smo linkove na pogođene fotografije ispod.
       user_parent_confirmation:
         subject: Račun vašeg djeteta na iNaturalist je aktiviran
-        content_html: |
-          <p>
-          Hvala vam što ste stvorili iNaturalist račun za vaše dijete! Račun
-          je aktiviran. Evo detalja koje ste unijeli i koje imamo zabilježene:
-          </p>
-          <ul>
-          <li><strong>Ime roditelja ili zakonskog staratelja:</strong> %{parent_name}</li>
-          <li><strong>Email roditelja ili zakonskog staratelja:</strong> %{parent_email}</li>
-          <li><strong>Ime djeteta:</strong> %{child_name}</li>
-          <li><strong>Datum rođenja djeteta:</strong> %{child_birthday}</li>
-          <li><strong>Email računa djeteta:</strong> %{child_email}</li>
-          <li><strong>Korisničko ime računa djeteta:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Molimo vas da se prijavite na račun iz aplikacije Seek vašeg djeteta tako da dodirnete
-          gumb "iNaturalist" u izborniku, a zatim "Prijava s iNaturalist" na dnu ekrana.
-          </p>
-          <p>
-          Vaše dijete će tada moći postavljati opažanja na svoj
-          iNaturalist račun koristeći aplikaciju Seek tako da ih se može vidjeti na
-          iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Bili ste neaktivni na %{site_name} neko vrijeme, pa smo obustavili
@@ -7767,10 +7746,6 @@ hr:
         data_visualizations: Vizualizacije podataka
         delete_project: Izbriši projekt
         display_project_name: Prikaz naziva projekta
-        do_you_need_features_from_traditional: |
-          Trebate li značajke iz tradicionalnih projekata, kao što su pristup stvarnim koordinatama,
-          prilagođena polja opažanja ili dodavanje pojedinačnih opažanja koja se ne mogu automatski
-          filtrirati?
         do_you_need_features_from_traditional2: |
           Trebate li značajke iz tradicionalnih projekata, kao što su prilagođena polja opažanja,
           ili dodavanje pojedinačnih opažanja koja se ne mogu automatski filtrirati?

@@ -307,10 +307,127 @@ ml:
   name_providers:
     ubio: uBio
   new_and_noteworthy: പുതിയത് & ശ്രദ്ധേയമായത്
+  'no': 'ഇല്ല'
   no_favorites_added:
     current_user: നിങ്ങൾ ഇതുവരെ പ്രിയപ്പെട്ടവ ചേർത്തിട്ടില്ല.
+    user: "%{user} പ്രിയപ്പെട്ടവ ചേർത്തിട്ടില്ല."
+  no_recent_activity: സമീപകാല പ്രവർത്തനങ്ങളൊന്നുമില്ല
+  no_suggestions_available: നിർദ്ദേശങ്ങൾ ലഭ്യമല്ല
+  non_human?: മാനവനല്ല?
+  note: കുറിപ്പ്
+  notes: കുറിപ്പുകൾ
+  notify_me_of_mentions: മെൻഷനുകളെ കുറിച്ച് എന്നെ അറിയിക്കുക (ഉദാ, @username)
+  obscured_description: |
+    സാമൂഹ്യ കോർഡിനേറ്റുകൾ യഥാർത്ഥ കോർഡിനേറ്റുകൾ ഉൾക്കൊള്ളുന്ന 0.2 ഡിഗ്രി ലാറ്റിറ്റ്യൂഡ്/ലോംഗിറ്റ്യൂഡ് സെലിന്റെ അകത്ത് ഒരു യാദൃശ്ചിക പോയിന്റ് ആയി കാണിക്കുന്നു.
+  observation_accuracy_validator_email_with_gratitude: കൃതജ്ഞതയോടെ,
+  #Attributes an observation to a user. %{user} can be a username or a full
+  #name. @vow_or_con will work here and use the first letter of the name used
+  observation_attribution: നിരീക്ഷണം %{user} നാൽ
+  #Attributes an observation to a user and specifies that copyright is retained
+  #(though a license may be applied). %{user} can be a username or a full name.
+  #@vow_or_con will work here and use the first letter of the name used. &copy;
+  #@is the HTML entity for the copyright symbol. If that doesn't make sense,
+  #@this could also be translated like "Observation by %{user} (copyright)" or
+  #@something.
+  observation_attribution_copyright_html: നിരീക്ഷണം &copy; %{user}
+  observation_date?: തീയതി?
+  observations_near_a_place_are: |
+    ഒരു സ്ഥലത്തോട് 'നികത്തുള്ള' നിരീക്ഷണങ്ങൾ, ആ സ്ഥലത്തിന്റെ അതിർത്തികളെ ചുറ്റി രേഖപ്പെടുത്തിയ ഒരു ചതുരത്തിലെ ഉൾപ്പെടുത്തിയവയാണ്, ഇത് ചതുരങ്ങളേക്കാൾ വ്യത്യസ്തമായ സ്ഥലങ്ങൾക്കായി ചില കൃത്യതക്കുറവുകൾക്ക് ഇടയാക്കാം. ഇത് നമ്മുടെ ഡേറ്റാബേസിന്റെ ഒരു പരിമിതിയാണ്, അത് പരിഹരിക്കാൻ ഞങ്ങൾ ജോലി ചെയ്യുന്നു.
+  onboarding:
+    observe_panel_body_p1_local: പ്രചോദനം വേണോ? സമീപത്തുള്ള ചില ജീവികൾ നിരീക്ഷിക്കപ്പെടുന്നു...
+    observe_panel_body_p1_global: പ്രചോദനം വേണോ? ഇവിടേക്ക് ചില ജീവികൾ നിരീക്ഷിക്കപ്പെടുന്നു...
+  only_view_nearby_suggestions: മാത്രം സമീപത്ത് ഉള്ള നിർദ്ദേശങ്ങൾ കാണുക
+  or: അഥവാ
+  password: രഹസ്യപദം
+  password_confirmation: 'രഹസ്യപദം സ്ഥിരീകരണം'
+  people: ആളുകൾ
+  photo_browser: ചിത്ര ബ്രൗസർ
+  photos_or_sounds?: ചിത്രങ്ങളോ ശബ്ദങ്ങളോ
+  pi_consent_desc_title: വ്യക്തിഗത വിവരങ്ങളെക്കുറിച്ച്
+  pi_consent_desc_html: |
+    <p>
+    നിങ്ങളുടെ അക്കൗണ്ടുകൾ പരിപാലിക്കുന്നതിന്, കൂടാതെ സ്വകാര്യതാ നിയമങ്ങൾ പാലിക്കുന്നതിന്, നാം ഉപയോക്തൃനാമങ്ങൾക്കും ഇമെയിൽ വിലാസങ്ങൾക്കും പോലുള്ള വ്യക്തിഗത വിവരങ്ങൾ സംഭരിക്കുന്നു. ഈ വ്യക്തിഗത വിവരങ്ങളുടെ ഉപയോഗത്തിനെ കുറിച്ച് നിങ്ങൾക്ക് അംഗീകാരം നൽകുന്നതായി സൂചിപ്പിക്കാൻ, ദയവായി ഈ ബോക്സ് അടയ്ക്കുക. എങ്ങനെയാണ് നാം ശേഖരിക്കുന്ന വിവരങ്ങൾ എന്തെല്ലാമാണെന്ന് കൂടാതെ അവയെ എങ്ങനെ ഉപയോഗിക്കുന്നു എന്നതിനെക്കുറിച്ച് കൂടുതൽ അറിയാൻ, ദയവായി ഞങ്ങളുടെ 
+    <a href='%{privacy_url}' target='_blank'>സ്വകാര്യതാ നയം</a> 
+    മറ്റു നമ്മുടെ 
+    <a href='%{terms_url}' target='_blank'>ഉപയോഗനിബന്ധനകൾ</a> 
+    നോക്കുക.
+    </p>
+    <p>
+    വ്യക്തിഗത വിവരങ്ങൾ സംഭരിക്കാതെ iNaturalist അക്കൗണ്ട് ഉണ്ടാക്കുന്നതിനുള്ള എതിരിനും മാർഗമില്ല, അതിനാൽ ഈ അംഗീകാരം ഒഴിവാക്കാനുള്ള ഏക മാർഗം നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുക ആണ്.
+    </p>
+  pi_consent_label: |
+    ഞാൻ എന്റെ അക്കൗണ്ട് പരിപാലിക്കാൻ iNaturalist-നെ എന്റെക്കുറിച്ചുള്ള ചില പരിമിതമായ വ്യക്തിഗത വിവരങ്ങൾ സംഭരിക്കാൻ ആസൂത്രണം ചെയ്യാൻ സമ്മതിക്കുന്നു
+  pi_consent_child_label: |
+    ഞാൻ എന്റെ കുഞ്ഞിന്റെ അക്കൗണ്ട് പരിപാലിക്കാൻ iNaturalist-നെ എന്റെ കുഞ്ഞിനെക്കുറിച്ചുള്ള ചില പരിമിതമായ വ്യക്തിഗത വിവരങ്ങൾ സംഭരിക്കാൻ ആസൂത്രണം ചെയ്യാൻ സമ്മതിക്കുന്നു
+  data_transfer_consent_desc_title: വ്യക്തിഗത വിവരങ്ങൾ മാറ്റുന്ന സമ്മതത്തെക്കുറിച്ച്
+  data_transfer_consent_desc_html: |
+    <p>
+    യൂറോപ്യൻ യൂണിയന്റെ ജനറൽ ഡാറ്റാ പ്രൊട്ടക്ഷൻ റഗുലേഷൻ (GDPR) പോലെയുള്ള ചില ഡാറ്റാ സ്വകാര്യതാ നിയമങ്ങൾ, വ്യക്തിഗത വിവരങ്ങൾ അവരുടെ മേഖലയിൽ നിന്ന് നിയമപരമായ സംരക്ഷണം പരിഗണിക്കാത്ത മറ്റ് മേഖലകളിലേക്ക് മാറ്റാൻ എക്സ്പ്ലിസിറ്റ് സമ്മതം ആവശ്യമാണ്. 
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a> മുതൽ, 
+    യൂറോപ്യൻ യൂണിയൻ യു.എസ്. -നെ വ്യക്തിഗത വിവരങ്ങൾക്കുള്ള ധാരാളം നിയമപരമായ സംരക്ഷണം നൽകുന്ന ഒരു മേഖല എന്ന നിലയിൽ പരിഗണിക്കുന്നില്ല, പ്രത്യേകിച്ച് യു.എസ്. സർക്കാർ യു.എസ്. -ലേക്ക് വരുന്ന ഡാറ്റ നിരീക്ഷിക്കാൻ സാധ്യതയുണ്ടെന്നതിനാൽ. മറ്റിടങ്ങളിൽക്കും അതേ അഭിപ്രായം ഉണ്ടാകാം.
+    </p>
+    <p>
+    iNaturalist ഉപയോഗിക്കാൻ നിങ്ങളുടെ ഇമെയിൽ വിലാസം പോലുള്ള വ്യക്തിഗത വിവരങ്ങൾ സംഭരിക്കുക ആവശ്യമാണ്, എല്ലാ iNaturalist ഡാറ്റയും യു.എസ്.-ലിൽ സംഭരിക്കുന്നു, നിങ്ങൾ iNaturalist ഉപയോഗിക്കുന്നപ്പോൾ നിങ്ങൾ എവിടെ നിയമപരമായ മേഖലയിൽ ആണെന്ന് ഞങ്ങൾക്ക് ഉറപ്പില്ല, അതിനാൽ GDPR പോലെയുള്ള സ്വകാര്യതാ നിയമങ്ങൾ പാലിക്കാൻ, നിങ്ങൾ ഈ അപകടം മനസ്സിലാക്കുകയും അംഗീകരിക്കുകയും ചെയ്യണമെന്ന് ഉറപ്പാക്കണം, കൂടാതെ നിങ്ങളുടെ വ്യക്തിഗത വിവരങ്ങൾ യു.എസ്.-ലിലെ iNaturalist-ന്റെ സെർവറിലേക്ക് മാറ്റാൻ സമ്മതിക്കണം.
+    </p>
+    <p>
+    എങ്ങനെയാണ് നാം ശേഖരിക്കുന്ന വിവരങ്ങൾ എന്തെല്ലാമാണെന്ന് കൂടാതെ അവയെ എങ്ങനെ ഉപയോഗിക്കുന്നു എന്നതിനെക്കുറിച്ച് കൂടുതൽ അറിയാൻ, ദയവായി ഞങ്ങളുടെ 
+    <a href='%{privacy_url}' target='_blank'>സ്വകാര്യതാ നയം</a> 
+    മറ്റു നമ്മുടെ 
+    <a href='%{terms_url}' target='_blank'>ഉപയോഗനിബന്ധനകൾ</a> 
+    നോക്കുക.
+    </p>
+    <p>
+    വ്യക്തിഗത വിവരങ്ങൾ സംഭരിക്കാതെ iNaturalist അക്കൗണ്ട് ഉണ്ടാക്കുന്നതിനുള്ള എതിരിനും മാർഗമില്ല, അതിനാൽ ഈ അംഗീകാരം ഒഴിവാക്കാനുള്ള ഏക മാർഗം നിങ്ങളുടെ അക്കൗണ്ട് ഇല്ലാതാക്കുക ആണ്.
+    </p>
+  place_geo:
+    geo_planet_place_types:
+      Airport: വിമാനത്താവളം
+      airport: വിമാനത്താവളം
+      Building: കെട്ടിടം
+      building: കെട്ടിടം
+      City Building: നഗരം കെട്ടിടം
+      city building: നഗരം കെട്ടിടം
+      Country: രാജ്യം
+      country: രാജ്യം
+      Historical_Town: ചരിത്രപരമായ പട്ടണം
+      historical_town: ചരിത്രപരമായ പട്ടണം
+      Island: ദ്വീപ്
+      island: ദ്വീപ്
+      Municipality: മുനിസിപ്പാലിറ്റി
+      municipality: മുനിസിപ്പാലിറ്റി
+      Nearby_Building: സമീപത്ത് കെട്ടിടം
+      nearby_building: സമീപത്ത് കെട്ടിടം
+      Point_of_Interest: രസകരമായ പോയിൻ്റ്
+      point_of_interest: രസകരമായ പോയിൻ്റ്
+      Town: പട്ടണം
+      town: പട്ടണം
+      Unknown: അജ്ഞാതം
+      unknown: അറിയപ്പെടാത്ത
+      Village_block: ഗ്രാമ ബ്ലോക്ക്
+      village_block: ഗ്രാമ ബ്ലോക്ക്
+      Zone: മേഖല
+      zone: മേഖല
+  place_must_have_a_boundary_defined: സ്ഥലത്തിന് ഒരു അതിരുകൾ നിർവചിക്കപ്പെട്ടിരിക്കണം.
+  places_name:
+    afghanistan: അഫ്ഗാനിസ്ഥാൻ
+    china: ചൈന
+    christmas_island: ക്രിസ്മസ് ഐലൻഡ്
+    cocos_islands: കൊക്കോസ് ഐലൻഡ്
+    japan: ജപ്പാൻ
+    new_zealand: ന്യൂസിലാൻഡ്
+    pakistan: പാക്കിസ്ഥാൻ
+    vatican_city: വത്തിക്കാൻ സിറ്റി
+  places_warning_export_complex_boundary_html: |
+    തീവ്രമായ അതിരുകളിൽ നിന്ന് നിരീക്ഷണങ്ങൾ കയറ്റുമതി ചെയ്യാൻ ശ്രമിക്കുന്നെങ്കിൽ, <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">GBIF-ൽ നിന്ന് അവയെ ഡൗൺലോഡ് ചെയ്യുന്നതിനെ പകരം പരിഗണിക്കുക</a>, അവിടെ നിങ്ങൾക്ക് സ്വതന്ത്ര അതിരുകൾ വരക്കാം, അല്ലെങ്കിൽ iNat-ൽ നിന്നുള്ള നിലവിലുള്ള സ്ഥലങ്ങൾ ഉപയോഗിച്ച് അല്ലെങ്കിൽ ഒരു ബൗണ്ടിംഗ് ബോക്സ് കയറ്റുമതി ചെയ്യുകയും, അത് ഡൗൺലോഡ് ചെയ്ത ശേഷം ഡാറ്റ വീണ്ടും ഫിൽട്ടർ ചെയ്യുകയും ചെയ്യാം.
+  please_confirm_your_inat_username: "ദയവായി നിങ്ങളുടെ %{site_name} ഉപയോക്തൃനാമം സ്ഥിരീകരിക്കുക."
+  profile: പരിചയ
+  profile_picture: പരിചയയുടെ ചിത്രങ്ങൾ
   ranks:
     genus: ജീനസ്സ്
+    x_genera:
+      one: ജീനസ്സ്
+      other: ജീനസുകൾ
+    subgenus: ഉപജീനസ്സ്
     #Singular
     species: സ്പീഷീസ്
     x_species:
@@ -320,11 +437,253 @@ ml:
   ranks_lowercase_genus: ജീനസ്സ്
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
   ranks_lowercase_species: സ്പീഷീസ്
+  relationships_user_settings: ബന്ധങ്ങൾ
+  replace_boundary_with_kml: അതിരുകൾ KML-ൽ മാറ്റുക.
+  save_settings_caps: കോമ്പിനേഷനുകൾ സംരക്ഷിക്കുക
+  settings: കോമ്പിനേഷനുകൾ
+  short_or_abbreviated_title_for_display: പരിമിതമായ ഇടങ്ങളിൽ പ്രദർശിപ്പിക്കാൻ ഹ്രസ്വമോ ചുരുക്കിയതോ ആയ ശീർഷകങ്ങൾ. പരമാവധി 10 പ്രതീകങ്ങൾ.
+  sign_in_with_provider: "%{provider} ഉപയോഗിച്ച് ലോഗിൻ ചെയ്യുക"
+  sites_network_your_username: |
+    നിങ്ങളുടെ ഉപയോക്തൃനാമവും രഹസ്യപദവും iNaturalist Network-ന്റെ ഭാഗമായ എല്ലാ സൈറ്റുകളിലും പ്രവർത്തിക്കുന്നു. Network സൈറ്റുമായി ബന്ധപ്പെടുകയാണെങ്കിൽ, ഓരോ സൈറ്റിനെയും പിന്തുണയ്ക്കുന്ന പ്രാദേശിക സ്ഥാപനങ്ങൾ നിങ്ങളുടെ ഇമെയിൽ വിലാസത്തിലേക്ക് (പ്രവർത്തനങ്ങൾക്കായുള്ള ബന്ധം മാത്രം) കൂടാതെ നിങ്ങൾ പൊതുവാക്കുന്നതായി അവക്തമായ അല്ലെങ്കിൽ സ്വകാര്യമാക്കിയ നിരീക്ഷണങ്ങൾക്കായുള്ള യഥാർത്ഥ നിശ്ചിതാങ്കങ്ങൾക്കുമായി പ്രവേശനം നേടും.
+  sorry_how_about_we_try_repeat: "ക്ഷമിക്കണം! സ്പീഷിസ് പേരുകളിൽ മറ്റെല്ലാ ഡാറ്റാബേസുകളിൽ നിങ്ങളുടെ തിരച്ചിൽ ആവർത്തിക്കാമോ? എന്തെങ്കിലും കണ്ടെത്തിയാൽ, അത് സംരക്ഷിക്കും, അപ്പോൾ അടുത്ത തവണ നിങ്ങൾക്ക് കണ്ടെത്താൻ കഴിയുന്നു."
+  sounds:
+    listen: കേൾക്കുക
+    no_photos_sounds: ചിത്രങ്ങളോ ശബ്ദങ്ങളോ ഇല്ല
+    photos_sounds: ചിത്രങ്ങൾ / ശബ്ദങ്ങൾ
+    sound: ശബ്ദം
+    sounds: ശബ്ദങ്ങൾ
+  #Plural
+  species: സ്പീഷീസ്
+  species_name_cap: സ്പീഷീസ് പേര്
+  species_names: സ്പീഷീസ് പേരുകൾ
+  still_no_luck?: ഇനി ഭാഗ്യം എങ്ങനെയുമില്ല?
+  suggestions: നിർദ്ദേശങ്ങൾ
+  taxon_map:
+    gbif_occurrences: GBIF സാന്നിധ്യങ്ങൾ
+  taxonomy_settings: ജൈവവർഗ്ഗീകരണശാസ്ത്രം കോമ്പിനേഷനുകൾ
+  tell_the_world_a_little_about_yourself: നിങ്ങളുടെ കുറിച്ച് പറയുക
+  thank_you!: നന്ദി!
+  thanks!: നന്ദി!
+  thats_not_a_real_date: അത് യാഥാർത്ഥികമായ തീയതി അല്ല!
+  the_world: നമ്മുടെ ലോകം
+  time_ago: "%{time} സമയം പിന്നിൽ"
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_africa_johannesburg: സൗത്ത് ആഫ്രിക്ക സമയം
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_chicago: കേന്ദ്രിയ സമയം (യു. എസ്. ഒപ്പം കനഡ)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_pacific_auckland: ന്യൂസിലാൻഡ് സമയം
+  type_species_name: "സ്പീഷീസ് പേര് ടൈപ്പ് ചെയ്യുക"
+  upload: അപ്‌ലോഡ് ചെയ്യുക
+  upload_a_csv_file: CSV ഫയല് അപ്‌ലോഡ് ചെയ്യുക
+  upload_a_csv_file_with_observation: |
+    നിരീക്ഷണ ഡാറ്റയുള്ള ഒരു CSV ഫയല് അപ്‌ലോഡ് ചെയ്യുക. നിങ്ങളുടെ ഡാറ്റ ഒരു സ്പ്രെഡ്‌ഷീറ്റ് അല്ലെങ്കിൽ ഡാറ്റാബേസിൽ ഉണ്ടെങ്കിൽ, ഇത് മികച്ച മാർഗം ആയിരിക്കും.
+  upload_new_photo: പുതിയ ചിത്രം അപ്‌ലോഡ് ചെയ്യുക
+  upload_photo: ചിത്രം അപ്‌ലോഡ് ചെയ്യുക
+  upload_range: പരിധി അപ്‌ലോഡ് ചെയ്യുക
+  #Label that notes who uploaded some content, not in a sentence
+  uploaded_by: അപ്‌ലോഡ് ചെയ്തത്
+  uploader:
+    tooltips:
+      add: നിരീക്ഷണം(കൾ) ചേർക്കുക
+      photo_failed: ചിത്രം അപ്‌ലോഡ് ചെയ്യാൻ പരാജയപ്പെട്ടു
+      upload_failed: അപ്‌ലോഡ് പരാജയപ്പെട്ടു
+  uploading_num_of_count_photos:
+    one: ചിത്രം അപ്‌ലോഡുചെയ്യുന്നു...
+    other: ചിത്രങ്ങൾ അപ്‌ലോഡുചെയ്യുന്നു %{num}/%{count}...
+  user_has_been_removed_from_site: |
+    %{username} നെ %{site_name} ൽ നിന്നു മാറ്റി (സംബന്ധിച്ച എല്ലാ ഉള്ളടക്കവും പൂർണ്ണമായും ഇല്ലാതാക്കാൻ ഒരു മണിക്കൂർ വരെ കാലയളവെടുക്കാം).
+  username: ഉപയോക്തൃനാമം
+  username_description: ഈ നിങ്ങളുടെ ലോഗിൻ ചെയ്യാൻ ഉപയോഗിക്കുന്ന ഉപയോക്തൃനാമമാണ്, മറ്റ് ഉപയോക്താക്കൾ നിങ്ങൾക്ക് iNaturalist-ൽ തിരിച്ചറിയാൻ ഉപയോഗിക്കും.
+  username_or_email: ഉപയോക്തൃനാമം അല്ലെങ്കിൽ ഇമെയിൽ
+  username_or_user_id: ഉപയോക്തൃനാമം അല്ലെങ്കിൽ ഉപയോക്തൃ ID
+  users_profile: "%{user} അവരുടെ പരിചയത്തിന്"
+  view_license: അനുമതി കാണുക
+  view_moderation_history: മോഡറേഷൻ ചരിത്രം കാണുക
+  view_moderation_history_for_this_comment: ഈ അഭിപ്രായത്തിൻ്റെ മോഡറേഷൻ ചരിത്രം കാണുക
+  #Label for the most probable taxon in the automated suggestions when that taxon is a genus
+  were_pretty_sure_this_is_in_the_genus: ഞങ്ങൾ ഇത് ജീനസ്സ്ൽ ആണെന്ന് ഉറപ്പാണ്
+  #Falback label for the most probable taxon in the automated suggestions.
+  #Most of the time were_pretty_sure_this_is_in_the_genus will be used
+  #instead. @gender should work here. %{rank} is usually genus or a
+  #higher-level rank like family
+  were_pretty_sure_this_is_in_the_rank: ഞങ്ങൾ ഇത് %{rank}ൽ ആണെന്ന് ഉറപ്പാണ്
+  yir_email_with_gratitude: കൃതജ്ഞതയോടെ,
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice: |
+    നിങ്ങൾക്ക് ഈ ഇമെയിൽ ലഭിച്ചത് കാരണം %{email} https://www.inaturalist.org/people/%{username} എന്ന iNaturalist അക്കൗണ്ടുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു, ഇത് %{created_date} ന് സൃഷ്ടിക്കപ്പെട്ടതാണ്.
+  #@vow_or_con works on %{username}. %{created_date} will use the date.long
+  #format (see https://crowdin.com/translate/inaturalistweb/38/en#71285)
+  you_received_this_email_notice_html: |
+    നിങ്ങൾക്ക് ഈ ഇമെയിൽ ലഭിച്ചത് കാരണം %{email} 
+    <a href="https://www.inaturalist.org/people/%{username}">https://www.inaturalist.org/people/%{username}</a> 
+    എന്ന iNaturalist അക്കൗണ്ടുമായി ബന്ധപ്പെട്ടിരിക്കുന്നു, 
+    ഇത് %{created_date} ന് സൃഷ്ടിക്കപ്പെട്ടതാണ്.
+  you_sure_delete_comment?: ഈ അഭിപ്രായം നീക്കം ചെയ്യാൻ നിങ്ങൾ ഉറപ്പാണ്?
+  your_comment_was_saved: നിങ്ങളുടെ ഉള്ളടക്കം സംരക്ഷിച്ചിരിക്കുന്നു
+  views:
+    geo_model:
+      explain:
+        range_comparison:
+          expected_nearby_vs_taxon_range: സമീപത്ത് പ്രതീക്ഷിക്കുന്നു വ്യത്യാസം ടാക്സോൺ പരിധി
+    observations:
+      field_descriptions:
+        user_login: നിരീക്ഷണത്തിനായുള്ള ഉപയോക്തൃനാമം
+    places:
+      kml_field_desc3: |
+        സ്ഥലത്തിന്റെ അതിരുകൾക്കുള്ള KML. നിങ്ങൾക്ക് ഇത് Google Maps, Google Earth, അല്ലെങ്കിൽ ഭൂരിപക്ഷം GIS ആപ്ലിക്കേഷനുകൾ ഉപയോഗിച്ച് സൃഷ്‌ടിക്കാം. കുറഞ്ഞത് ഒരു പോളിഗൺ ഉണ്ടായിരിക്കണം, 1 MB-ൽ താഴെ (സൈറ്റ് മേൽനോട്ടക്കാരൻമാർക്കായി 5 MB) ഉണ്ടായിരിക്കണം, ~700,000 ചതുരകിലോമീറ്റർ (സോമാലിയയുടെ അല്ലെങ്കിൽ അമേരിക്കയിലെ ടെക്സാസിന്റെ ചുരുങ്ങിയ അളവ്) കാഴ്ചപ്പാടിന് താഴെ ഉള്ള ഒരു വിസ്തീർണ്ണം ഉണ്ടാകണം
+    search:
+      index:
+        no_taxa_forum: ഫോറവുമായി ബന്ധപ്പെടുക
+    stats:
+      index:
+        active_desc: കഴിഞ്ഞ 30 ദിവസങ്ങളിൽ ഐഡി, നിരീക്ഷണം, അഭിപ്രായം, അല്ലെങ്കിൽ പോസ്റ്റ് സൃഷ്ടിച്ചു
+    taxa:
+      show:
+        frequency:
+          "Life Stage=Subimago": സുബിമാഗോ
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_comments: അഭിപ്രായങ്ങൾ
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: തിരിച്ചറിയലുകൾ
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_mentions: പരാമർശങ്ങൾ
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: സന്ദേശങ്ങൾ
+        prefers_no_tracking_label_desc_info_we_share_browser_details: |
+          ബ്രൗസർ വിശദാംശങ്ങൾ, പോലുള്ളത് നിർമ്മാണം, മോഡൽ, ഉം പതിപ്പ്.
+    welcome:
+      index:
+        run_a_bioblitz: ഒരു Bioblitz സംഘടിപ്പിക്കുക
+  date:
+    day_names:
+      - ഞായറാഴ്ച
+      - തിങ്കളാഴ്ച
+      - Tuesday
+      - ബുധനാഴ്ച
+      - വ്യാഴാഴ്ച
+      - വെള്ളിയാഴ്ച
+      - ശനിയാഴ്ച
+    month_names:
+      - 
+      - 
+      - 
+      - 
+      - ഏപ്രിൽ
+      - 
+      - ജൂണ്‍
+      - ജൂലൈ
+      - 
+      - സെപ്റ്റംബർ
+      - 
+      - 
+      - ഡിസംബർ
   number:
     format:
+      precision: 3
       significant: false
       strip_insignificant_zeros: false
     human:
       format:
+        precision: 3
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    models:
+      Comment: അഭിപ്രായം
+    attributes:
+      taxon_name:
+        audit_comment: കുറിപ്പ്
+      user:
+        login: ഉപയോക്തൃനാമം
+    errors:
+      models:
+        comment:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: അഭിപ്രായങ്ങൾ അസജീവമാക്കി
+        place:
+          attributes:
+            place_geometry:
+              contains_too_many_observations: കയറ്റുമതി ചെയ്യാൻ കൂടുതൽ നിരീക്ഷണങ്ങൾ ഉണ്ട്
+              cannot_be_blank: ശൂന്യമാക്കാൻ കഴിയില്ല
+              must_have_more_than_three_points: 3 പോയിന്റുകളിൽ കൂടുതൽ ഉണ്ടായിരിക്കണം
+        place_geometry:
+          attributes:
+            geom:
+              cannot_be_blank: ശൂന്യമാക്കാൻ കഴിയില്ല
+              must_have_more_than_three_points: 3 പോയിന്റുകളിൽ കൂടുതൽ ഉണ്ടായിരിക്കണം
+        post:
+          attributes:
+            parent:
+              #Error message shown when a client tries to create a comment on a
+              #post that does not allow comments. Theoretically an end user
+              #should never see this, though an API client might.
+              prefers_no_comments: പുതിയ അഭിപ്രായങ്ങൾ അനുവദിക്കുന്നില്ല
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                ഈ ടാക്സൺയുടെ മേൽനോട്ടക്കാരനിൽ മാത്രം മാറ്റം വരുത്താൻ സാധിക്കും
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                ഈ ടാക്സൺയുടെ മേൽനോട്ടക്കാരനിൽ മാത്രം മാറ്റം വരുത്താൻ സാധിക്കും
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                ഈ ടാക്സൺയുടെ മേൽനോട്ടക്കാരനിൽ മാത്രം മാറ്റം വരുത്താൻ സാധിക്കും
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                ഈ ടാക്സൺയുടെ മേൽനോട്ടക്കാരനിൽ മാത്രം മാറ്റം വരുത്താൻ സാധിക്കും
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                ഈ ടാക്സൺയുടെ മേൽനോട്ടക്കാരനിൽ മാത്രം മാറ്റം വരുത്താൻ സാധിക്കും
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                ഈ ടാക്സൺയുടെ മേൽനോട്ടക്കാരനിൽ മാത്രം മാറ്റം വരുത്താൻ സാധിക്കും
+            name:
+              bad_format: |
+                സാധാരണ ലാറ്റിൻ പ്രതിനിധികൾ, ഹൈഫൻ, ഇടവേളകൾ, × മാത്രം അടങ്ങിയിരിക്കണം; ഊഹിത ടാക്സയും സസ്യജാതികളും അനുവദിച്ചിട്ടില്ല.
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: കോമകളും സ്ലാഷുകളും അടങ്ങിയിരിക്കാവില്ല
+              should_match_english_translation: |
+                ഇംഗ്ലീഷിലായിരിക്കണം, എന്നാൽ നിലവിൽ ഇത് "%{suggested}"-ന്റെ %{suggested_locale} പരിഭാഷയുമായി പൊരുത്തപ്പെടുന്നു. നിങ്ങൾ അതാണെങ്കിൽ "%{suggested}" ഉപയോഗിക്കുക, ഇത് നിങ്ങള്‍ ആ ഭാഷയിൽ സൈറ്റ് കാണുമ്പോൾ വിവർത്തനം ചെയ്യപ്പെടും.
+              should_be_in_english: ഇംഗ്ലീഷിലായിരിക്കണം
+  i18n:
+    inflections:
+      "@vow_or_con":
+        vow: vowel
+        con: consonant
+        a: "@vow"
+        e: "@vow"
+        i: "@vow"
+        o: "@vow"
+        u: "@vow"
+        default: "@con"
+      "@gender":
+        m: male
+        f: female
+        "n": neuter
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        comment: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        profile: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        supertribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        tribe: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        variety: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  wild: വനമായ
+  #Descending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (descending)"
+  z_to_a: Z മുതൽ A

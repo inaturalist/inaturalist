@@ -1086,6 +1086,7 @@ ca:
   content_and_display: Contingut i Presentació
   content_author: Autor del contingut
   content_hidden: Contingut amagat
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contingut amagat per %{user} el %{date} per: %{reason}
   content_type: Tipus de contingut
@@ -6629,22 +6630,6 @@ ca:
           Hem inclòs enllaços que afecten les fotos següents.
       user_parent_confirmation:
         subject: El compte del vostre infant a iNaturalist s'ha activat
-        content_html: |
-          <p>
-          Gràcies per crear un compte a iNaturalist pel vostre infant! S'ha activat el compte. Aquests són els detalls que heu introduït que tenim en el nostre registre:
-          </p>
-          <ul>
-          <li><strong>Nom del Progenitor/a o Tutor/a Legal:</strong> %{parent_name}</li>
-          <li><strong>Correu electrònic del Progenitor/a o Tutor/a Legal:</strong> %{parent_email}</li>
-          <li><strong>Nom de l'infant:</strong> %{child_name}</li>
-          <li><strong>Dia de naixement de l'infant:</strong> %{child_birthday}</li>
-          <li><strong>Correu electrònic de l'infant:</strong> %{child_email}</li>
-          <li><strong>Nom d'usuari de l'infant:</strong> %{child_username}</li>
-          </ul>
-          <p>Si us plau accediu al compte del vostre infant, cerqueu l'App prement el botó d'iNaturalist en el menú i llavors "Entreu a iNaturalist" amb el botó a la pantalla.
-          </p>
-          <p>El vostre infant podrà incorporar observacions al seu compte d'iNaturalist utilitzant l'app de Cerca amb el que les podrà veure a iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Heu estat inactiu a %{site_name} per molt de temps, així que hem suspès les vostres subscripcions. Per continuar rebent actualitzacions sobre l'activitat del lloc, si us plau
@@ -6819,8 +6804,6 @@ ca:
         data_visualizations: Visualitzacions de dades
         delete_project: Elimina Projecte
         display_project_name: Mostra nom del projecte
-        do_you_need_features_from_traditional: |
-          Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         do_you_need_features_from_traditional2: |
           Necessiteu característiques dels projectes tradicionals, com ara camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         duplicate_project: Duplica el projecte

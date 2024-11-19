@@ -1140,6 +1140,10 @@ nl:
   content_and_display: Inhoud & Uiterlijk
   content_author: Auteur inhoud
   content_hidden: Inhoud is verborgen
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Inhoud is verborgen op %{date} met als reden: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Inhoud is verborgen door %{user} op %{date} met als reden: "%{reason}"
   content_type: Inhoudstype
@@ -2318,6 +2322,8 @@ nl:
   in_place_x: in %{place}
   #As in a reason to flag something
   inappropriate: Ongepast
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist netwerk
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
@@ -3199,7 +3205,7 @@ nl:
   obs_cid_d: Wrn CID'd
   obs_id_d: Wrn ID'd
   obscured: Verborgen
-  obscured_or_private: verborgen of privé
+  obscured_or_private: vervaagd of verborgen
   obscured_description: |
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
   observation: Waarneming
@@ -7151,7 +7157,7 @@ nl:
           "Aanmelden met iNaturalist" onderin het scherm.
           </p>
           <p>
-          Je kind kan daarna waarnemingen toevoegen aan zijn of haar iNaturalist-account 
+          Je kind kan daarna waarnemingen toevoegen aan zijn of haar iNaturalist-account
           met behulp van de Seek-app, zodat die zichtbaar worden op
           iNaturalist.org.
           </p>
@@ -7342,9 +7348,6 @@ nl:
         data_visualizations: Data visualisaties
         delete_project: Project verwijderen
         display_project_name: Toon project naam
-        do_you_need_features_from_traditional: |
-          Heb je functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,
-          aangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?
         do_you_need_features_from_traditional2: |
           Heb je functies nodig van traditionele projecten, zoals op maat gemaakte waarnemingsvelden,
           of individuele waarnemingen toevoegen die niet automatisch kunnen worden gefilterd?
@@ -7512,6 +7515,8 @@ nl:
         avg_ttcid: Gem TTCID
         avg_ttid: Gem TTID
         identifiers_desc: Een ID toegevoegd aan iemands waarneming op deze dag
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Gemaakt met <a href="%{url}">iNatNext</a>
         iphone_desc_html: Gemaakt met de <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -7532,6 +7537,8 @@ nl:
         recent_w_0_obs_desc: Aangemeld in de afgelopen 7 dagen en 0 wrn toegevoegd
         recent_w_7_obs: Recent met >= 7 wrn
         recent_w_7_obs_desc: Aangemeld in de afgelopen 7 dagen en >=7 wrn toegevoegd
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Gemaakt met <a href="%{url}">Seek</a>
         time_to_id_desc: Tijd tot ID (uren, meeschuivend tijdsbestek van 1 week)
         TTCID: TTCID
         TTCID_desc: Tijd om een determinatie van iemand anders te ontvangen die overeenkomt met het gemeenschapstaxon.

@@ -976,6 +976,10 @@ hu:
   content_and_display: Tartalom és megjelenítés
   content_author: Tartalom szerzője
   content_hidden: Tartalom elrejtve
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Tartalom elrejtve %{date}. napon, oka: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Tartalom elrejtve %{user} által %{date}. napon, mert: "%{reason}"
   content_type: Tartalom típusa
@@ -1955,6 +1959,8 @@ hu:
   in_place_x: 'itt: %{place}'
   #As in a reason to flag something
   inappropriate: Kifogásolható
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-hálózat
   inaturalist_network_affiliation: Hálózati szervezet kiválasztása
   #Label for messages you've received
@@ -2305,6 +2311,7 @@ hu:
     lv: Litván
     mi: maori
     mk: Macedón
+    ml: Malajálam
     mr: Maráthi
     nb: Norvég bokmal
     nl: Holland
@@ -2319,6 +2326,7 @@ hu:
     sq: Albán
     sr: szerb
     sv: Svéd
+    ta: Tamil
     th: Tháj
     tr: Török
     uk: Ukrán
@@ -4887,7 +4895,7 @@ hu:
   welcome_back!: Köszöntünk ismét!
   welcome_to_inat: "Üdvözlünk %{site_name}on!"
   welcome_to_guides: "Üdvözlünnk az %{site_name} Útmutatóján!"
-  welcome_to_x_project: "Üdvüzlünk a %{project} projekten"
+  welcome_to_x_project: "Üdvüzlünk a %{project} projektben"
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: Nagy bizonyossággal e nemzetség tagja
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
@@ -4940,7 +4948,7 @@ hu:
   #Loading status while an identification is being withdrawn
   withdrawing: Visszavonás...
   with_errors: Hibával
-  worldwide: globális
+  worldwide: Globális
   would_you_like_to: Szeretnél
   would_you_prefer_to_view_common_names_used_in_place_html: 'Szeretnéd a köznevek megjelenítését innen: <strong>%{place}</strong>?'
   x_blog: "%{x} blogja"
@@ -5623,7 +5631,7 @@ hu:
         can_be_included_in_multiple: Több ernyőprojekthez is adhatók
         check_the_box_to_include_member_observations: |
           Csak akkor jelöld be az alábbi négyzetet, ha csupán azon felhasználók megfigyeléseire terjeszted ki a projektet, akik csatlakoznak e projekthez. A fenti Felhasználók kizárása szűrővel kiszűrheted bizonyos felhasználók megfigyeléseit, beleértve a projekt létrehozóját és adminját.
-        click_through_to_individual_projects: Navigáció az egyéni győjtőprojektekhez
+        click_through_to_individual_projects: Navigáció az egyéni gyűjtőprojektekhez
         collection_projects: Gyűjtőprojektek
         collection_project_features: "Gyűjtőprojekt-funkciók"
         contain_entire_image_without_cropping: A teljes kép felhasználása méretrevágás nélkül
@@ -5631,8 +5639,6 @@ hu:
         data_visualizations: Adatvizualizáció
         delete_project: Projekt törlése
         display_project_name: A projektnév megjelenítése
-        do_you_need_features_from_traditional: |
-          Szükséged van a hagyományos projektek funkcióira, mint például a pontos koordináták, egyéni adatmezők vagy a megfigyelések manuális hozzáadása?
         do_you_need_features_from_traditional2: |
           Szükséged van a hagyományos projektek funkcióira, mint például az egyéni adatmezők vagy az olyan megfigyelések hozzáadásának lehetősége, amelyeket nem lehet szűrőkkel listázni?
         duplicate_project: Projekt duplikálása
@@ -5680,7 +5686,7 @@ hu:
         users_can_follow_your_project: A felhasználók követhetik azokat a Bejegyzések révén
         use_this_link_to_create_html: |
           <a href="%{url}">Kattints ide</a> egy hagyományos projekt létrehozásához.
-        visual_comparison_of_data_among: Vizuális adatösszehasonlítás az ernyőprojekt alá tartozó győjtőprojektek között
+        visual_comparison_of_data_among: Vizuális adatösszehasonlítás az ernyőprojekt alá tartozó gyűjtőprojektek között
         we_have_redesigned_projects: |
           A projekekbe automatikusan belekerülnek mindazok a megfigyelések, amelyek megfelelnek az általad megszabott területi, rendszertani, minőségi és időszaki követelményeknek. Két fő típus közül választhatsz: Gyűjtőprojektek és Ernyőprojektek, amelyek megegyeznek az alábbi funkcióikban:
         welcome_to_projects: A projektek bemutatása
@@ -5718,6 +5724,8 @@ hu:
         avg_ttcid: Átlag TTCID
         avg_ttid: Átlag TTID
         identifiers_desc: Meghatározást adott e napon más valaki megfigyeléséhez
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Létrehozva az <a href="%{url}">iNatNext</a> segítségével
         iphone_desc_html: Létrehozva az <a href="%{url}">iNaturalist iPhone alkalmazásból</a>
         med_ttcid: Med TTCID
         med_ttid: Medián TTID
@@ -5738,6 +5746,8 @@ hu:
         recent_w_0_obs_desc: Az utóbbi hét nap alatt regisztrált és 0 megfigyelése van
         recent_w_7_obs: Legújabb 7+ megfigyeléssel
         recent_w_7_obs_desc: Az utóbbi hét nap alatt regisztrált és 7+ megfigyelése van
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Létrehozva a <a href="%{url}">Seek</a> segítségével
         time_to_id_desc: Azonosításhoz szükséges idő (órában, 1 hetes mozgó ablak)
         TTCID: Közösségi azonosítási idő (TTCID)
         TTCID_desc: Azonosításhoz szükséges idő valaki mástól, ami egyezik a közösségi taxonnal.

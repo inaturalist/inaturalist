@@ -86,6 +86,9 @@ es-AR:
   x_others:
     one: "1 otro"
     other: "%{count} otros"
+  x_people:
+    one: "%{count} persona"
+    other: "%{count} personas"
   x_people_html:
     one: '<span class="count">%{count}</span> persona'
     other: '<span class="count">%{count}</span> personas'
@@ -96,6 +99,9 @@ es-AR:
   x_new_species:
     one: "1 Nueva especie"
     other: "%{count} Nuevas especies"
+  x_new_users:
+    one: '%{count} Nuevo usuario'
+    other: '%{count} Nuevos usuarios'
   x_species:
     one: '1 especie'
     other: '%{count} especies'
@@ -111,6 +117,9 @@ es-AR:
   x_suggestions_filtered_by_colon:
     one: "1 Sugerencia Filtrada por:"
     other: "%{count} Sugerencias Filtradas por:"
+  x_taxa:
+    one: "%{count} taxón"
+    other: "%{count} taxones"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxón observado"
     other: "<span class='count'>%{count}</span> taxones observados"
@@ -120,6 +129,9 @@ es-AR:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>%{count}</span> identificación de observación con grado de investigación para especies o descendientes"
     other: "<span class='count'>%{count}</span> identificaciones de observaciones con grado de investigación de especies o descendientes"
+  x_sounds:
+    one: "%{count} sonido"
+    other: "%{count} sonidos"
   x_taxa_curated_html:
     one: "<span class='count'>1</span> taxón curado"
     other: "<span class='count'>%{count}</span> taxones curados"
@@ -1084,6 +1096,7 @@ es-AR:
   content_and_display: Contenido y visualización
   content_author: Autor de contenido
   content_hidden: Contenido oculto
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} ocultó el contenido el %{date} porque: «%{reason}»
   content_type: Tipo de contenido
@@ -4115,15 +4128,27 @@ es-AR:
   ranks:
     stateofmatter: Estado de la materia
     kingdom: Reino
+    x_kingdoms:
+      one: Reino
+      other: Reinos
     subkingdom: Subreino
     phylum: Filo
+    x_phyla:
+      one: Filo
+      other: Filos
     subphylum: subfilo
     superclass: Superclase
     class: Clase
+    x_classes:
+      one: Clase
+      other: Clases
     subclass: Subclase
     infraclass: Infraclase
     superorder: Superorden
     order: orden
+    x_orders:
+      one: Orden
+      other: Órdenes
     suborder: Suborden
     infraorder: Infraorden
     subterclass: Subclase
@@ -4133,11 +4158,17 @@ es-AR:
     superfamily: Superfamilia
     epifamily: Epifamilia
     family: Familia
+    x_families:
+      one: Familia
+      other: Familias
     subfamily: subfamilia
     supertribe: Supertribu
     tribe: Tribu
     subtribe: Subtribu
     genus: género
+    x_genera:
+      one: Género
+      other: Géneros
     genushybrid: Género híbrido
     subgenus: Subgénero
     section: Sección
@@ -4145,6 +4176,9 @@ es-AR:
     complex: Complejo
     #Singular
     species: Especie
+    x_species:
+      one: Especie
+      other: Especies
     hybrid: Híbrido
     #Singular
     subspecies: Subespecie
@@ -5539,6 +5573,10 @@ es-AR:
   view_all_fields: Ver Todos los Campos
   view_all_flags: Ver Todas las Marcas
   view_all_members: Ve todos los miembros
+  #As in "View all 5" to view all 5 observations, comments, or other
+  view_all_number:
+    one: "Ver Todo %{count}"
+    other: "Ver todas las %{count}"
   view_all_observations: Ve todas las observaciones
   view_all_photocount_photos: "Ve todas las %{photo_count} fotos"
   view_assessment: Ve evaluación
@@ -6504,24 +6542,6 @@ es-AR:
           Hemos incluido enlaces a las fotos afectadas abajo.
       user_parent_confirmation:
         subject: La cuenta de iNaturalist de su hijo ha sido activada
-        content_html: |
-          <p>
-          ¡Gracias por crear una cuenta de INaturaList para su hijo! La cuenta ha sido activada. Aquí están los detalles que ingresó que tenemos registrados:
-          </p>
-          <ul>
-          <li><strong>Nombre del padre o tutor legal: </strong> %{parent_name}</li>
-          <li><strong>Correo electrónico del padre o tutor legal: </strong> %{parent_email}</li>
-          <li><strong>Nombre del niño: </strong> %{child_name}</li>
-          <li><strong>Fecha de nacimiento del niño: </strong> %{child_birthday}</li>
-          <li><strong>Correo electrónico de la cuenta del niño: </strong> %{child_email}</li>
-          <li><strong>Nombre de usuario de la cuenta del niño: </strong> %{child_username}</li>
-          </ul>
-          <p>
-          Inicie sesión en la cuenta desde la aplicación Busqueda de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
-          </p>
-          <p>
-          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Busqueda para que se puedan ver en iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido tus suscripciones. Para reanudar la obtención de actualizaciones sobre la actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu cuenta</a> de nuevo.
@@ -6685,8 +6705,6 @@ es-AR:
         data_visualizations: Visualizaciones de datos
         delete_project: Eliminar proyecto
         display_project_name: Exhibe nombre del proyecto
-        do_you_need_features_from_traditional: |
-          ¿Necesitás características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         duplicate_project: Proyecto duplicado
         leaderboards_among_individuals: Tabler de líderes entre <strong>@individuos</strong>
         leaderboards_among_projects_and_bioblitzes: |

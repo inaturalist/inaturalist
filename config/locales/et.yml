@@ -1068,6 +1068,7 @@ et:
   content_and_display: Sisu ja kuvamine
   content_author: Sisu autor
   content_hidden: Sisu on peidetud
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Kuupäeval %{date} on kasutaja %{user} peitnud antud sisu põhjusel: "%{reason}"
   content_type: Sisutüüp
@@ -5477,8 +5478,6 @@ et:
         data_visualizations: Admete visualiseerimine
         delete_project: Kustuta projekt
         display_project_name: Näita projekti nime
-        do_you_need_features_from_traditional: |
-          Kas sa vajad tavaprojektide võimalusi nagu ligipääsu tõelistele koordinaatidele, vaatluste spetsiaalväljasid või üksikute vaatluste lisamist, millega automaatfiltrid hakkama ei saa?
         include_annotated_observations: |
           Kaasa ainult vaatluseid, millel on olemas mingi spetsiifiline märge (nt "elujärk") või märke ja selle väärtuse paarik (nt "elujärk" = "täiskasvanu").
           Igal projekt saab kasutada vaid ühe märkuse filtrit.

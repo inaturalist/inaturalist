@@ -817,6 +817,7 @@ bg:
   content_and_display: Съдържание и изглед
   content_author: Автор на съдържанието
   content_hidden: Съдържанието е скрито
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Съдържанието е скрито от %{user} на %{date}, защото: „%{reason}“
   content_type: Тип на съдържанието
@@ -4602,8 +4603,6 @@ bg:
         data_visualizations: Визуализации на данни
         delete_project: Изтрий проекта
         display_project_name: Показвай името на проекта
-        do_you_need_features_from_traditional: |
-          Нуждаете ли се от особеностите на Традиционните проекти като достъп до реалните координати, собствени полета за наблюдения или ръчно добавяне на наблюдения, които не могат да бъдат автоматично открити?
         do_you_need_features_from_traditional2: |
           Нуждаете ли се от свойствата на Традиционните проекти като собствени полета за наблюдения или добавяне на отделни наблюдения, които не могат да бъдат автоматично открити?
         duplicate_project: Дублирай проекта

@@ -1153,6 +1153,10 @@ sv:
   content_and_display: Innehåll & Visning
   content_author: Författare av innehåll
   content_hidden: Dolt innehåll
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Innehåll dolt den %{date} på grund av: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Innehåll dolt av %{user} den %{date} på grund av: "%{reason}"
   content_type: Innehållstyp
@@ -2351,6 +2355,8 @@ sv:
   in_place_x: i %{place}
   #As in a reason to flag something
   inappropriate: Olämpligt
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-nätverket
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
@@ -2722,6 +2728,7 @@ sv:
     lv: Lettiska
     mi: Maori
     mk: Makedonska
+    ml: Malayalam
     mr: Marathi
     nb: Norska (Bokmål)
     nl: Nederländska
@@ -2736,6 +2743,7 @@ sv:
     sq: Albanska
     sr: Serbiska
     sv: Svenska
+    ta: Tamil
     th: Thailändska
     tr: Turkiska
     uk: Ukrainska
@@ -7265,7 +7273,7 @@ sv:
           Vänligen logga in på kontot från ditt barns Seek-app genom att trycka på "iNaturalist"-knappen i menyn och sedan "Logga in med iNaturalist" längst ned på skärmen.
           </p>
           <p>
-          Ditt barn kommer nu att kunna lägga upp fynd till sitt iNaturalist-konto med Seek-appen så att de blir synliga på iNaturalist.org.
+          Ditt barn kommer nu att kunna lägga upp fynd till sitt iNaturalist-konto med Seek-appen så att de kan ses på iNaturalist.org.
           </p>
       users_updates_suspended:
         message: |
@@ -7449,8 +7457,6 @@ sv:
         data_visualizations: Datavisualisering
         delete_project: Radera projekt
         display_project_name: Visa projektnamn
-        do_you_need_features_from_traditional: |
-          Behöver du funktioner från traditionella projekt, såsom tillgång till exakta koordinater, anpassade fyndfält eller möjlighet att lägga till individuella fynd som inte kan filtreras automatiskt?
         do_you_need_features_from_traditional2: |
           Behöver du funktioner från traditionella projekt, såsom anpassade fyndfält
           eller lägga till individuella fynd som inte kan filtreras automatiskt?
@@ -7611,6 +7617,8 @@ sv:
         avg_ttcid: Medel TTGB
         avg_ttid: Medel TTB
         identifiers_desc: Lade till en bestämning till någon annans obs denna dag
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Skapad via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Skapad via <a href="%{url}">iNaturalist iPhone-appen</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -7631,6 +7639,8 @@ sv:
         recent_w_0_obs_desc: Gick med under 7 föregående dagarna och lagt till 0 obsar
         recent_w_7_obs: Senaste m. >= 7 obs
         recent_w_7_obs_desc: Gick med under 7 föreg. d. och lagt till >= 7 obs
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Skapad via <a href="%{url}">Seek</a>
         time_to_id_desc: Tid till bestämning (timmar, 1 löpande vecka)
         TTCID: TTGB
         TTCID_desc: Tid till bestämning från någon annan som matchar communityns taxon.

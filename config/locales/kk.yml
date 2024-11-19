@@ -817,6 +817,7 @@ kk:
   content: Контент
   content_author: Контент авторы
   content_hidden: Контент жасырылған
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Контентті %{user} %{date} күні жасырды, себебі: "%{reason}"
   content_type: Контент түрі

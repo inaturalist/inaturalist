@@ -971,6 +971,7 @@ eu:
   content_and_display: Edukia eta bistaratzea
   content_author: Edukiaren egilea
   content_hidden: Ezkutatutako edukia
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} erabiltzaileak %{date} datan arrazoi honengatik ezkutatu zuen edukia: "%{reason}"
   content_type: Eduki Mota
@@ -2891,8 +2892,6 @@ eu:
         collection_project_features: "Bilduma-proiektuen ezaugarriak:"
         custom_banner_icon_and_project_description: Banner pertsonalizatua, proiektuaren ikonoa eta deskribapena
         data_visualizations: Datuen bistaratzeak
-        do_you_need_features_from_traditional: |
-          Proiektu tradizionalen ezaugarriak behar ditu, adibidez, behaketa-eremu pertsonalizatuak, edo automatikoki iragazi ezin diren banakako oharrak gehitu?
         do_you_need_features_from_traditional2: |
           Proiektu tradizionalen ezaugarriak behar ditu, adibidez, behaketa-eremu pertsonalizatuak, edo automatikoki iragazi ezin diren banakako oharrak gehitu?
         leaderboards_among_individuals: <strong>Banakoen</strong> emaitza-taulak

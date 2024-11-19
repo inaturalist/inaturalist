@@ -789,6 +789,7 @@ th:
   content_and_display: เนื้อหา & การแสดงผล
   content_author: ผู้สร้างเนื้อหา
   content_hidden: เนื้อหาถูกซ่อนไว้
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     เนื้อหาถูกซ่อนโดย %{user} เมื่อ %{date} เนื่องจาก "%{reason}"
   content_type: ประเภทเนื้อหา
@@ -3333,8 +3334,6 @@ th:
         data_visualizations: เห็นภาพจากข้อมูลได้
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
-        do_you_need_features_from_traditional: |
-          คุณต้องการใช้คุณสมบัติจากโครงการแบบดั้งเดิมหรือไม่? เช่น การเข้าถึงพิกัดจริง การกำหนดข้อมูลเสริมการสังเกตเอง หรือการเพิ่มการสังเกตที่รวมเข้าโครงการโดยอัตโนมัติไม่ได้
         duplicate_project: คัดลอกโครงการ
         include_annotated_observations: |
           รวมเฉพาะการสังเกตที่ระบุหมายเหตุ (เช่น ระยะการเจริญ) หรือคุณลักษณะ (เช่น ระยะการเจริญ = ตัวเต็มวัย) โดยแต่ละโครงการใช้ตัวกรองหมายเหตุได้เพียงหนึ่งอย่างเท่านั้น

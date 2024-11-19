@@ -1018,6 +1018,7 @@ zh-TW:
   content_and_display: 內容 & 顯示
   content_author: 內容作者
   content_hidden: 內容隱藏
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     內容由 %{user} 於 %{date} 做出隱藏，原因："%{reason}"
   content_type: 內容類型
@@ -6228,24 +6229,6 @@ zh-TW:
           我們已包含下列受影響照片的連結。
       user_parent_confirmation:
         subject: 您兒女的 iNaturalist 帳號已啟用
-        content_html: |
-          <p>
-          感謝您為您的兒女建立 iNaturalist 帳號！該帳號現已啟用，在此是您之前所輸入而我們記錄下來的內容：
-          </p>
-          <ul>
-          <li><strong>父母或法定監護人名稱：</strong> %{parent_name}</li>
-          <li><strong>父母或法定監護人電子郵件：</strong> %{parent_email}</li>
-          <li><strong>兒女的名稱：</strong> %{child_name}</li>
-          <li><strong>兒女的生日：</strong> %{child_birthday}</li>
-          <li><strong>兒女帳號電子郵件：</strong> %{child_email}</li>
-          <li><strong>兒女帳號名稱：</strong> %{child_username}</li>
-          </ul>
-          <p>
-          請從您兒女的 Seek 應用程式來透過輕觸在選單上的「iNaturalist」按鈕，然後輕觸在螢幕底部的「以 iNaturalist 登入」進行登入。
-          </p>
-          <p>
-          您兒女將能夠使用 Seek 應用程式來發佈觀察到他們的 iNaturalist 帳號，並可在 iNaturalist.org 上看見。
-          </p>
       users_updates_suspended:
         message: |
           您有段時間在 %{site_name} 上沒有活動，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
@@ -6422,8 +6405,6 @@ zh-TW:
         data_visualizations: 視覺化資料
         delete_project: 刪除專案
         display_project_name: 顯示專案名稱
-        do_you_need_features_from_traditional: |
-          您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？
         do_you_need_features_from_traditional2: |
           您需要傳統專案的功能嗎？例如像自定義觀察欄位或是新增無法自動篩選出來的個別觀察紀錄？
         duplicate_project: 重複專案

@@ -1048,6 +1048,10 @@ id:
   content_and_display: Konten & Tampilan
   content_author: Penulis Konten
   content_hidden: Konten Tersembunyi
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Konten disembunyikan pada %{date} karena: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Konten disembunyikan oleh %{user} pada %{date} karena: "%{reason}"
   content_type: Jenis Konten
@@ -2213,6 +2217,8 @@ id:
   in_place_x: di %{place}
   #As in a reason to flag something
   inappropriate: Tidak pantas
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Jaringan iNaturalist
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
@@ -2582,6 +2588,7 @@ id:
     lv: Latvia
     mi: Maori
     mk: Makedonia
+    ml: Malayalam
     mr: Marathi
     nb: Bokmål Norwegia
     nl: Belanda
@@ -2596,6 +2603,7 @@ id:
     sq: Albania
     sr: Serbia
     sv: Swedia
+    ta: Tamil
     th: Thai
     tr: Turki
     uk: Ukraina
@@ -7075,8 +7083,6 @@ id:
         data_visualizations: Visualisasi data
         delete_project: Hapus Proyek
         display_project_name: Hapus nama proyek
-        do_you_need_features_from_traditional: |
-          Apakah Anda memerlukan fitur dari proyek tradisional, seperti akses menuju koordinat sesungguhnya, kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         do_you_need_features_from_traditional2: |
           Apakah Anda memerlukan fitur dari proyek tradisional, seperti kolom pengamatan kustom, atau menambahkan pengamatan individu yang tidak dapat disaring secara otomatis?
         duplicate_project: Gandakan Proyek
@@ -7226,6 +7232,8 @@ id:
         avg_ttcid: Rata2 WUIDK
         avg_ttid: Rata2 WUID
         identifiers_desc: Telah menambahkan ID untuk pengamatan orang lain pada hari ini
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Dibuat menggunakan <a href="%{url}">iNatNext</a>
         iphone_desc_html: Dibuat melalui <a href="%{url}">aplikasi iNaturalist iPhone</a>
         med_ttcid: Median WUIDK
         med_ttid: Median WUID
@@ -7246,6 +7254,8 @@ id:
         recent_w_0_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan 0 pengamatan
         recent_w_7_obs: Baru dengan >= 7 pengamatan
         recent_w_7_obs_desc: Mendaftar dalam 7 hari terakhir dan menambahkan >= 7 pengamatan
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Dibuat menggunakan <a href="%{url}">Seek</a>
         time_to_id_desc: Waktu hingga ID (jam, jendela 1 minggu)
         TTCID: WUIDK
         TTCID_desc: Waktu hingga menerima identifikasi dari orang lain yang cocok dengan takson komunitas.

@@ -1031,6 +1031,7 @@ ja:
   content_and_display: コンテンツと表示
   content_author: コンテンツの作成者
   content_hidden: コンテンツ非表示
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} に%{user}さんがコンテンツを非表示にしました。理由："%{reason} "
   content_type: コンテンツの種類
@@ -6178,9 +6179,6 @@ ja:
         data_visualizations: データの可視化
         delete_project: プロジェクトを削除
         display_project_name: プロジェクト名を表示する
-        do_you_need_features_from_traditional: |
-          真の座標へのアクセスなど、手動プロジェクトの機能が必要ですか？
-          カスタム観測フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
         do_you_need_features_from_traditional2: |
           カスタムの観察フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
         duplicate_project: プロジェクトの複製

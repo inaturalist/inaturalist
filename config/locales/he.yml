@@ -1215,6 +1215,7 @@ he:
   content_and_display: תוכן ותצוגה
   content_author: יוצרי התוכן
   content_hidden: תוכן מוסתר
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     תוכן הוסתר על ידי %{user} בתאריך %{date} בגלל: "%{reason}"
   content_type: סוג התוכן
@@ -6883,24 +6884,6 @@ he:
           כללנו קישורים לתמונות המושפעות למטה.
       user_parent_confirmation:
         subject: הופעל חשבון ה-iNaturalist של הילד.ה שלך
-        content_html: |
-          <p>
-          תודה שיצרת חשבון iNaturalist עבור הילד.ה שלך! החשבון הופעל. הנה הפרטים שהכנסת כפי שמופיעים אצלנו:
-          </p>
-          <ul>
-          <li><strong>שם הורה או אפוטרופוס:</strong> %{parent_name}</li>
-          <li><strong>דוא"ל הורה או אפוטרופוס:</strong> %{parent_email}</li>
-          <li><strong>שם הילד.ה:</strong> %{child_name}</li>
-          <li><strong>יום הולדת הילד.ה:</strong> %{child_birthday}</li>
-          <li><strong>דוא"ל הילד.ה:</strong> %{child_email}</li>
-          <li><strong>שם המשתמש של חשבון הילד.ה:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          נא להיכנס לחשבון מאפליקציית Seek של הילד.ה שלך באמצעות לחיצה על כפתור "iNaturalist" בתפריט ואחר כך "התחברות באמצעות iNaturalist" בתחתית המסך.
-          </p>
-          <p>
-          זה יאפשר לילד.ה שלך להעלות תצפיות לחשבון iNaturalist באמצעות אפליקציית Seek כדי שייראו באתר iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           לא נרשמה פעילות שלך ב-%{site_name} מזה זמן רב, אז השהינו את המנויים שלך. על מנת לחזור לקבל עדכונים על פעילות האתר, נא <a href="%{login_url}">להיכנס אל החשבון שלך</a> שוב.
@@ -7072,8 +7055,6 @@ he:
         data_visualizations: החזיית מידע (ויזואליזציה של הנתונים)
         delete_project: מחיקת פרויקט
         display_project_name: מחיקת שם הפרויקט
-        do_you_need_features_from_traditional: |
-          האם את.ה צריכ.ה מאפיינים מפרויקטים בסיסיים כגון גישה לקואורדינטות אמיתיות, שדות תצפית מותאמים אישית, או הוספת תצפיות בודדות שלא ניתנות לסינון אוטומטי?
         do_you_need_features_from_traditional2: |
           האם את.ה צריכ.ה מאפיינים מפרויקטים בסיסיים כגון שדות תצפית מותאמים אישית, או הוספת תצפיות בודדות שלא ניתנות לסינון אוטומטי?
         duplicate_project: שכפול פרויקט

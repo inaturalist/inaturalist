@@ -1082,6 +1082,7 @@ lv:
   content_and_display: Saturs un attēlojums
   content_author: Satura autors
   content_hidden: Slēpts saturs
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} saturu noslēpis lietotājs: %{user}, jo: "%{reason}"
   content_type: Satura veids
@@ -6032,24 +6033,6 @@ lv:
           Zemāk pieejamas ietekmēto fotogrāfiju saites.
       user_parent_confirmation:
         subject: Tava bērna iNaturalist konts ir aktivizēts
-        content_html: |
-          <p>
-          Paldies, ka izveidoji savam bērnam iNaturalist kontu. Konts ir aktivizēts. Šeit vari apskatīt saglabātos datus:
-          </p>
-          <ul>
-          <li><strong>Vecāku vai aizbildņa vārds:</strong>%{parent_name}</li>
-          <li><strong>Vecāku vai aizbildņa e-pasta adrese:</strong> %{parent_email}</li>
-          <li><strong>Bērna vārds:</strong> %{child_name}</li>
-          <li><strong>Bērna dzimšanas dienas datums:</strong> %{child_birthday}</li>
-          <li><strong>Bērna konta e-pasta adrese</strong> %{child_email}</li>
-          <li><strong>Bērna konta lietotājvārds:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Lai pieslēgtos kontam no bērna Seek lietotnes, nospied izvēlnē "iNaturalist" un "Pieslēgties ar iNaturalist" pogu lapas apakšā.
-          </p>
-          <p>
-          Bērns varēs pievienot savam iNaturalist kontam novērojumus, izmantojot Seek lietotni, kas būs apskatāmi arī iNaturalist.org vietnē.
-          </p>
       users_updates_suspended:
         message: |
           Apturējām jaunumu saņemšanu, jo kādu laiku %{site_name} vietnē esi bijis neaktīvs. Lai atkal saņemtu jaunumus par notikumiem, lūdzu, no jauna <a href="%{login_url}">pieslēdzies savam kontam</a>.
@@ -6216,8 +6199,6 @@ lv:
         data_visualizations: Datu vizualizācijas
         delete_project: Dzēst projektu
         display_project_name: Publiskais projekta nosaukums
-        do_you_need_features_from_traditional: |
-          Vai tev būs nepieciešamas standarta projektu funkcijas, piemēram, pieeja patiesajām koordinātām, pielāgojami novērojumu lauki vai atsevišķi automātiski nefiltrējami novērojumi?
         duplicate_project: Kopēt projektu
         include_annotated_observations: |
           Iekļaut novērojumus tikai ar konkrētām īpašībām (piemēram, dzīves stadija), vai ar īpašībām un vērtību (piemēram, dzīves stadija = pieaudzis). Viena projekta ietvaros iespējams filtrēt, izmantojot tikai vienu īpašību.

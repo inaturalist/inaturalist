@@ -1143,6 +1143,7 @@ pt-BR:
   content_and_display: Conteúdo & Exibição
   content_author: Autor do Conteúdo
   content_hidden: Conteúdo oculto
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Conteúdo oculto por %{user} em %{date} porque: "%{reason}"
   content_type: Tipo de Conteúdo
@@ -2102,6 +2103,9 @@ pt-BR:
   geoprivacy_is_private: A geoprivacidade é privada
   geoprivacy_is_private_desc: Observador optou por esconder as coordenadas.
   georeferenced: Geo referenciado?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoespacial
   get_started: Começar
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Primeiros Passos
@@ -2210,6 +2214,9 @@ pt-BR:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sem Anotação"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Ocultar observações com localização privadas
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
@@ -3194,6 +3201,9 @@ pt-BR:
   not_confident: Não temos confiança suficiente para fazer uma recomendação.
   not_confident_top_suggestions: Não temos confiança suficiente para fazer uma recomendação, mas aqui estão as nossas melhores sugestões
   not_covered_by_any_taxon_frameworks: Não coberto por nenhuma estrutura de táxon
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Não esperado nas proximidades
   not_evaluated: Não avaliado
   not_findig_what_you_want: Não está encontrando o que você deseja?
   not_finding_place_you_want?: Não está encontrando o lugar que você deseja?
@@ -4852,6 +4862,10 @@ pt-BR:
     A %{start_tag_network}Rede iNaturalist%{end_tag_network} é uma
     coleção de sites localizados na %{start_tag_global}comunidade
     global iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    A %{start_tag_network}Rede iNaturalist%{end_tag_network} é um
+    conjunto de sites localizados na %{start_tag_global}comunidade
+    global iNaturalist%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Quando você se associa a um membro da Rede iNaturalist, o seu endereço de e-mail
     e as verdadeiras localizações das suas localizações ocultas e privadas são compartilhadas
@@ -4869,6 +4883,8 @@ pt-BR:
   sites_affiliation_title: Saiba Mais Sobre a Afiliação à Rede
   sites_network_agreements_html: |
     O iNaturalist possui acordos formais com organizações em cada uma dessas regiões geográficas para apoiar o uso da plataforma iNaturalist. <strong>Se sua organização está interessada em participar da Rede iNaturalist, você pode encontrar mais detalhes%{start_tag_join}aqui%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    O iNaturalist possui acordos formais com organizações em cada uma dessas regiões geográficas para apoiar o uso da plataforma iNaturalist. <strong>Se sua organização está interessada em participar da Rede iNaturalist, você pode encontrar mais detalhes%{start_tag_join}aqui%{end_tag_join}.</strong>
   sites_network_consists_of: "A Rede iNaturalist consiste em várias organizações:"
   sites_network_inaturalist_network_collection: |
     A Rede iNaturalist é uma coleção de sites localizados que estão totalmente
@@ -4876,6 +4892,13 @@ pt-BR:
     por instituições locais que promovem a utilização local e facilitam o uso de dados
     do iNaturalist para beneficiar a biodiversidade local. Eles têm acesso às verdadeiras
     coordenadas dentro das suas áreas geográficas que são automaticamente obscurecidas da
+    visão pública, a fim de melhor proteger as espécies ameaçadas.
+  sites_network_inaturalist_network_collection2: |
+    A Rede iNaturalist é uma coleção de sites locais que estão totalmente
+    conectados à comunidade global iNaturalist. Os sites da Rede são apoiados
+    por instituições locais que promovem a utilização local e facilitam o uso de dados
+    do iNaturalist para beneficiar a biodiversidade local. Eles têm acesso às
+    coordenadas reais, dentro das suas áreas geográficas, que são automaticamente obscurecidas da
     visão pública, a fim de melhor proteger as espécies ameaçadas.
   sites_network_your_username: |
     Se optar por se afiliar a um site da Rede, as instituições locais que apoiam cada site terão acesso ao seu endereço de e-mail (apenas para se comunicarem com você sobre atividades do site) e acesso às coordenadas verdadeiras das observações que você escolheu tornar publicamente ocultas ou privadas.
@@ -6278,6 +6301,9 @@ pt-BR:
             <a href="%{url}">Verificar as Diretrizes de Comunidade</a> para as dicas sobre como manter o iNaturalist um lugar amigável e acolhedor.
           please_read_the_teachers_guide_html: |
             Em caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre como usar o %{site_name} com os alunos.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Caso afirmativo, por favor leia o nosso <a href="%{url}">Guia do Professor</a> com dicas sobre como usar o %{site_name} com os alunos.
     donate:
       donate_short_desc: "Doe agora para mostrar seu apoio!"
       donate_desc_moore_html: |
@@ -7126,30 +7152,6 @@ pt-BR:
           Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
         subject: A conta iNaturalista do seu filho foi ativada
-        content_html: |
-          <p>
-          Obrigado por criar uma conta iNaturalist para o seu filho! o
-             conta foi ativada. Aqui estão os detalhes que você digitou
-             nós temos no registro:
-          </p>
-          <ul>
-            <li><strong>Nome do pais ou responsável legal:</strong> %{parent_name}</li>
-            <li><strong>E-mail dos pais ou responsável legal:</strong> %{parent_email}</li>
-            <li><strong>Nome da criança:</strong> %{child_name}</li>
-            <li><strong>Aniversário da criança:</strong> %{child_birthday}</li>
-           \ <li><strong>E-mail da conta infantil:</strong> %{child_email}</li>
-            <li><strong>Nome de usuário da conta da criança:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          Por favor, entre na conta do aplicativo Seek do seu filho tocando em
-             o botão "iNaturalist" no menu e, em seguida, "Entrar com
-             iNaturalist "na parte inferior da tela.
-          </p>
-          <p>
-          Seu filho poderá então postar observações em sua 
-             conta iNaturalist usando o aplicativo Seek para que eles possam ser vistos em
-             iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Você esteve inativo em %{site_name} por algum tempo, por este motivo suspendemos suas inscrições. Para receber o resumo de atualizações neste local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
@@ -7341,8 +7343,6 @@ pt-BR:
         data_visualizations: Visualizações de dados
         delete_project: Apagar Projeto
         display_project_name: Exibir nome do projeto
-        do_you_need_features_from_traditional: |
-          Você precisa de características de projetos tradicionais, como acessar coordenadas reais, campos de observação personalizados ou adicionar observações individuais que não podem ser filtradas automaticamente?
         do_you_need_features_from_traditional2: |
           Você precisa de características de projetos tradicionais, tais como campos personalizados para observações ou adicionar observações individuais que não podem ser filtradas automaticamente?
         duplicate_project: Projeto duplicado
@@ -8700,6 +8700,10 @@ pt-BR:
             place_geometry:
               is_too_large_to_edit: é muito grande para editar
               is_too_large_to_import: é muito grande para ser importado
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: é muito grande ou complexo para processar antes de expirar o tempo
               contains_too_many_observations: contém observações demais para ser importado
               cannot_be_blank: não pode deixar em branco
               invalid_point: tem um ponto inválido, por exemplo, longitude maior que 180 ou latitude menor que -90

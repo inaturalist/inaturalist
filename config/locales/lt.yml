@@ -1034,6 +1034,7 @@ lt:
   content_and_display: Turinys ir rodymas
   content_author: Turinio autorius
   content_hidden: Turinys paslėptas
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} turinį paslėpė %{user}, nes: "%{reason}"
   content_type: Turinio tipas
