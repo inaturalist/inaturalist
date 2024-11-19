@@ -976,6 +976,9 @@ hu:
   content_and_display: Tartalom és megjelenítés
   content_author: Tartalom szerzője
   content_hidden: Tartalom elrejtve
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Tartalom elrejtve %{date}. napon, oka: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Tartalom elrejtve %{user} által %{date}. napon, mert: "%{reason}"
