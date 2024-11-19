@@ -766,10 +766,7 @@ class ApplicationController < ActionController::Base
     # modify the content security policy for the actions specified in options to
     # disable the frame_ancestors policy, thus allowing iframes to request these actions
     content_security_policy( **options ) do |p|
-      p.frame_ancestors nil
-    end
-    before_action( options ) do
-      response.headers["X-Frame-Options"] = "ALLOWALL"
+      p.frame_ancestors "https:"
     end
   end
 
