@@ -6,7 +6,6 @@ import {
   handlePlaceAutocomplete,
   handleCustomDropdownSelect
 } from "../ducks/user_settings";
-import { setModalState } from "../ducks/third_party_tracking_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -24,8 +23,7 @@ function mapDispatchToProps( dispatch ) {
     },
     handleCustomDropdownSelect: ( eventKey, name ) => {
       dispatch( handleCustomDropdownSelect( eventKey, name ) );
-    },
-    setModalState: newState => { dispatch( setModalState( newState ) ); }
+    }
   };
 }
 
