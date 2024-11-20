@@ -74,7 +74,7 @@ class Assessment extends React.Component {
                   <div
                     className="contents"
                     dangerouslySetInnerHTML={{
-                      __html: I18n.t( "views.observations.show.quality_assessment_help3_html", {
+                      __html: I18n.t( "views.observations.show.quality_assessment_help4_html", {
                         site_name: SITE.short_name
                       } )
                     }}

@@ -7677,7 +7677,7 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help3_html: |
+        quality_assessment_help4_html: |
           <p>
             The data quality assessment is a summary of an observation's accuracy. All
             observations start as <strong>"casual"</strong> grade, and become
@@ -7705,6 +7705,10 @@ en:
             Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
           </p>
           <ul>
+            <li>
+              the <strong>day and year do not look accurate</strong> (e.g. snow appears in the
+              photo but the date is during summer. Do not take time of day into account)
+            </li>
             <li>
               the <strong>location doesn't look
               accurate</strong> (e.g. monkeys in the middle of the ocean,
