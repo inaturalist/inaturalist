@@ -249,7 +249,7 @@ const App = ( {
                   </SplitButton>
                 </Col>
               )
-              : ( <FollowButtonContainer /> ) }
+                : config && config.currentUser && ( <FollowButtonContainer /> ) }
           </Row>
           <Row>
             <Col xs={12}>
