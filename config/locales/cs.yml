@@ -7131,58 +7131,6 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help3_html: |
-          <p>
-          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna pozorování začínají jako <strong>příležitostná</strong> a stanou se <strong>„potřebuje ID“</strong>, když </p>
-
-          <ul>
-          <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky/délky)</li>
-          <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
-          <li>to pozorování <strong>není od člověka</strong></li>
-          </ul>
-          <p>
-          Pozorování se stanou <strong>„stupněm pro výzkum“</strong>, když
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>komunita souhlasí s ID na úrovni druhu nebo nižší</strong>, tj. když více než 2/3 identifikátorů souhlasí s taxonem (pokud komunita odhlasovala, že komunitní taxon již nelze vylepšovat , toto se vrátí na ID na úrovni podrodiny nebo nižší)
-          </li>
-          </ul>
-          <p>
-          Pokud nebudou splněny výše uvedené podmínky nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„příležitostná“</strong>
-          </p>
-          <ul>
-          <li>
-          <strong>místo nevypadá přesně</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách atd.)
-          </li>
-          <li>
-          <strong>organismus není divoký/naturalizovaný</strong> (např. v zajetí nebo kultivovaný lidmi)
-          </li>
-          <li>
-          pozorování <strong>neprokazuje existenci organismu</strong>, např. obrázky vodních prvků, skal, krajin, které nezahrnují organismus atd.
-          </li>
-          <li>
-          pozorování <strong>nepředkládá nedávné (~ 100 let) důkazy o organismu</strong> (např. fosilie, ale stopy, strupy a mrtvé listy jsou v pořádku)
-          </li>
-          <li>
-          pozorování <strong>neobsahuje důkazy týkající se jednoho předmětu</strong> (např. má čtyři fotografie nepříbuzných organismů. Fotografie zobrazující stanoviště předmětu pozorování je v pořádku.)
-          </li>
-          <li>
-          pozorování již nepotřebuje ID <em>a</em> ID komunity je v rodině nebo výše
-          </li>
-          <li>
-          pozorovatel se odhlásil z ID komunity a taxon ID komunity není předkem ani potomkem taxonu spojeného s ID pozorovatele
-          </li>
-          </ul>
-          <p>
-          A pokud to nebylo dost složité, existují také situace, kdy systém dostane hlas:
-          </p>
-          <ul>
-          <li>
-          Systém bude hlasovat, že pozorování není divoké/naturalizované, pokud existuje alespoň 10 dalších pozorování rodu nebo nižšího v nejmenším ekvivalentním místě okresu, státu nebo země, které obsahuje toto pozorování a 80 % nebo více z nich pozorování byla označena jako nikoli divoká/naturalizovaná.
-          </li>
-          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,
