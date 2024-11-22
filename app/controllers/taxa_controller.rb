@@ -46,6 +46,10 @@ class TaxaController < ApplicationController
   before_action :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
+  before_action :cannot_have_content_creation_restrictions, only: [
+    :set_photos,
+    :update_photos
+  ]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
   prepend_around_action :enable_replica, only: [

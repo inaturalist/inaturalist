@@ -608,6 +608,36 @@ class ApplicationController < ActionController::Base
     throw :abort
   end
 
+  def cannot_have_content_creation_restrictions
+    return unless !current_user || current_user&.content_creation_restrictions?
+
+    error_message = t( :you_dont_have_permission_to_do_that )
+    respond_to do | format |
+      format.html do
+        flash[:notice] = error_message
+        redirect_back_or_default( root_url )
+        return
+      end
+      format.js do
+        render status: :forbidden, json: {
+          error: error_message
+        }
+        return
+      end
+      format.json do
+        render status: :forbidden, json: {
+          error: error_message
+        }
+        return
+      end
+      format.all do
+        render status: :forbidden, plain: error_message
+        return
+      end
+    end
+    throw :abort
+  end
+
   def remove_header_and_footer_for_apps
     return true unless is_android_app? || is_iphone_app? || is_inatrn_app?
 
@@ -616,7 +646,7 @@ class ApplicationController < ActionController::Base
     @responsive = true if is_inatrn_app?
     true
   end
-  
+
   # http://blog.serendeputy.com/posts/how-to-prevent-browsers-from-caching-a-page-in-rails/
   def prevent_caching
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"

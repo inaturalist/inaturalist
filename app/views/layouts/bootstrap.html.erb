@@ -165,6 +165,7 @@
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
           email: "<%= current_user.email %>",
+          content_creation_restrictions: <%= current_user.content_creation_restrictions? %>,
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
           prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,

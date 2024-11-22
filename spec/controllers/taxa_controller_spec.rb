@@ -378,6 +378,20 @@ describe TaxaController do
       es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
       expect( es_taxon.default_photo.id ).to eq photo.id
     end
+
+    it "prevents access to users with content creation restrictions" do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+      taxon = Taxon.make!( photos_locked: true )
+      sign_in( User.make!( created_at: Time.now ) )
+      photo = LocalPhoto.make!
+      post :set_photos, format: :json, params: { id: taxon.id, photos: [
+        { id: photo.id, type: "LocalPhoto", native_photo_id: photo.id }
+      ] }
+      expect( response.response_code ).to eq 403
+      expect( JSON.parse( response.body ) ).to eq( {
+        "error" => I18n.t( :you_dont_have_permission_to_do_that )
+      } )
+    end
   end
 
   describe "describe" do
