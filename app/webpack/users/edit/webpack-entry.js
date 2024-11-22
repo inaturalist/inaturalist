@@ -60,6 +60,9 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
 const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
 const defaultApiUrl = element && element.getAttribute( "content" );
 if ( defaultApiUrl ) {
+  store.dispatch( setConfig( {
+    testingApiV2: true
+  } ) );
   inatjs.setConfig( {
     apiURL: defaultApiUrl.replace( "/v1", "/v2" ),
     writeApiURL: defaultApiUrl.replace( "/v1", "/v2" )
