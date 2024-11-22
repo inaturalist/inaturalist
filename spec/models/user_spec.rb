@@ -1635,6 +1635,46 @@ describe User do
     end
   end
 
+  describe "content_creation_restrictions?" do
+    before do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+    end
+
+    it "does not restrict admins" do
+      user = make_admin( created_at: Time.now )
+      expect( user.created_at ).to be > 1.hour.ago
+      expect( user.is_admin? ).to be true
+      expect( user.content_creation_restrictions? ).to be false
+    end
+
+    it "does not restrict curators" do
+      user = make_curator( created_at: Time.now )
+      expect( user.created_at ).to be > 1.hour.ago
+      expect( user.is_curator? ).to be true
+      expect( user.content_creation_restrictions? ).to be false
+    end
+
+    it "does restrict new users" do
+      user = User.make!( created_at: Time.now )
+      expect( user.created_at ).to be > 1.hour.ago
+      expect( User.make!.content_creation_restrictions? ).to be true
+    end
+
+    it "does restrict new users with organizer privilege" do
+      user = User.make!( created_at: Time.now )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: user )
+      expect( user.privileged_with?( UserPrivilege::ORGANIZER ) ).to be true
+      expect( user.content_creation_restrictions? ).to be true
+    end
+
+    it "does not restrict old users with organizer privilege" do
+      user = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: user )
+      expect( user.privileged_with?( UserPrivilege::ORGANIZER ) ).to be true
+      expect( user.content_creation_restrictions? ).to be false
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {

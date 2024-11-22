@@ -245,4 +245,98 @@ describe ApplicationController do
       end
     end
   end
+
+  describe "cannot_have_content_creation_restrictions" do
+    shared_examples_for "access is denied" do
+      describe TaxonNamesController do
+        let( :taxon ) { Taxon.make! }
+        before do
+          if user
+            allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+            sign_in( user )
+          end
+        end
+
+        it "redirects HTML requests with a flash message" do
+          get :new, format: :html, params: { id: taxon.id }
+          expect( response ).to be_redirect
+          expect( response ).to redirect_to( root_url )
+          expect( flash[:notice] ).to eq I18n.t( :you_dont_have_permission_to_do_that )
+        end
+
+        it "returns an error for JS requests" do
+          get :new, format: :js, params: { id: taxon.id }
+          expect( response.response_code ).to eq 403
+          expect( JSON.parse( response.body ) ).to eq( {
+            "error" => I18n.t( :you_dont_have_permission_to_do_that )
+          } )
+        end
+
+        it "returns an error for JSON requests" do
+          get :new, format: :json, params: { id: taxon.id }
+          expect( response.response_code ).to eq 403
+          expect( JSON.parse( response.body ) ).to eq( {
+            "error" => I18n.t( :you_dont_have_permission_to_do_that )
+          } )
+        end
+
+        it "renders an error for all other formats" do
+          get :new, format: :nonsense, params: { id: taxon.id }
+          expect( response.response_code ).to eq 403
+          expect( response.body ).to eq I18n.t( :you_dont_have_permission_to_do_that )
+        end
+      end
+    end
+
+    shared_examples_for "access is allowed" do
+      describe TaxonNamesController do
+        let( :taxon ) { Taxon.make! }
+        before do
+          if user
+            allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+            sign_in( user )
+          end
+        end
+
+        it "redirects HTML requests with a flash message" do
+          get :new, format: :html, params: { id: taxon.id }
+          expect( response.response_code ).to eq 200
+        end
+
+        it "returns an error for JS requests" do
+          get :new, format: :js, params: { id: taxon.id }
+          expect( response.response_code ).to eq 200
+        end
+
+        it "renders an error for all other formats" do
+          get :new, format: :nonsense, params: { id: taxon.id }
+          expect( response.response_code ).to eq 200
+        end
+      end
+    end
+
+    describe "new users" do
+      let( :user ) { User.make!( created_at: Time.now ) }
+      it_behaves_like "access is denied"
+    end
+
+    describe "admins" do
+      let( :user ) { make_admin }
+      it_behaves_like "access is allowed"
+    end
+
+    describe "curators" do
+      let( :user ) { make_curator }
+      it_behaves_like "access is allowed"
+    end
+
+    describe "older users with organizer privilege" do
+      let( :user ) do
+        user = User.make!( created_at: 2.days.ago )
+        UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: user )
+        user
+      end
+      it_behaves_like "access is allowed"
+    end
+  end
 end

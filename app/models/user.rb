@@ -691,6 +691,15 @@ class User < ApplicationRecord
     Observation.elastic_index!(ids: Observation.by(self).pluck(:id), wait_for_index_refresh: true)
   end
 
+  def content_creation_restrictions?
+    return false unless CONFIG&.content_creation_restriction_days&.positive?
+    return false if is_admin?
+    return false if is_curator?
+    return true unless privileged_with?( UserPrivilege::ORGANIZER )
+
+    created_at > CONFIG.content_creation_restriction_days.days.ago
+  end
+
   def merge( reject )
     raise "Can't merge a user with itself" if reject.id == id
 

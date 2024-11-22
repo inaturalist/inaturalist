@@ -334,13 +334,39 @@ export function fetchSpecies( taxon, options = { } ) {
   };
 }
 
-export function fetchTaxon( taxon, options = { } ) {
+export function fetchDescription( ) {
+  return ( dispatch, getState ) => {
+    const { taxon } = getState( ).taxon;
+    let url = `/taxa/${taxon.id}/description`;
+    if ( I18n.locale.match( /^en/ ) ) {
+      url += "?wiki_prompt=true";
+    }
+    fetch( url ).then(
+      response => {
+        const sourceName = response.headers.get( "X-Describer-Name" );
+        const sourceURL = response.headers.get( "X-Describer-URL" );
+        // the URL is being sent in an HTTP header, which does not support UTF-8, so force encoding
+        const describerUrl = _.isEmpty( sourceURL ) ? null : utf8.decode( sourceURL );
+        response.text( ).then( body => {
+          if ( body && body.length > 0 ) {
+            dispatch( setDescription( sourceName, describerUrl, body ) );
+          }
+        } );
+      },
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchTaxon( taxon, options = { params: { } } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const t = taxon || s.taxon.taxon;
     const { testingApiV2 } = s.config;
     const params = {
-      ...options,
+      ...options.params,
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale
     };
@@ -389,33 +415,10 @@ export function fetchTaxon( taxon, options = { } ) {
       $( "a[href='#charts-seasonality']" ).tab( "show" );
       dispatch( setTaxon( response.results[0] ) );
       dispatch( fetchTerms( ) );
-    } );
-  };
-}
-
-export function fetchDescription( ) {
-  return ( dispatch, getState ) => {
-    const { taxon } = getState( ).taxon;
-    let url = `/taxa/${taxon.id}/description`;
-    if ( I18n.locale.match( /^en/ ) ) {
-      url += "?wiki_prompt=true";
-    }
-    fetch( url ).then(
-      response => {
-        const sourceName = response.headers.get( "X-Describer-Name" );
-        const sourceURL = response.headers.get( "X-Describer-URL" );
-        // the URL is being sent in an HTTP header, which does not support UTF-8, so force encoding
-        const describerUrl = _.isEmpty( sourceURL ) ? null : utf8.decode( sourceURL );
-        response.text( ).then( body => {
-          if ( body && body.length > 0 ) {
-            dispatch( setDescription( sourceName, describerUrl, body ) );
-          }
-        } );
-      },
-      error => {
-        console.log( "[DEBUG] error: ", error );
+      if ( options.fetchDescription ) {
+        dispatch( fetchDescription( ) );
       }
-    );
+    } );
   };
 }
 
@@ -651,7 +654,12 @@ export function updatePhotos( photos ) {
     };
     fetch( `/taxa/${taxon.id}/set_photos.json`, params )
       .then( ( ) => {
-        dispatch( fetchTaxon( s.taxon.taxon, { ttl: -1 } ) );
+        dispatch( fetchTaxon( s.taxon.taxon, {
+          params: {
+            ttl: -1
+          },
+          fetchDescription: s.config.chosenTab === "articles"
+        } ) );
         dispatch( hidePhotoChooser( ) );
       } );
   };

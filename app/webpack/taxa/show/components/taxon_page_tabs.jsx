@@ -81,6 +81,32 @@ class TaxonPageTabs extends React.Component {
           </MenuItem>
         );
       }
+
+      let taxonPhotosItem;
+      if ( taxon.photos_locked && !isAdmin ) {
+        taxonPhotosItem = (
+          <MenuItem
+            className="disabled"
+            title={I18n.t( "photos_locked_desc" )}
+            eventKey="edit-photos-locked"
+          >
+            <i className="fa fa-picture-o" />
+            { " " }
+            { I18n.t( "photos_locked" ) }
+          </MenuItem>
+        );
+      } else if ( !currentUser.content_creation_restrictions ) {
+        taxonPhotosItem = (
+          <MenuItem
+            eventKey="edit-photos"
+          >
+            <i className="fa fa-picture-o" />
+            { " " }
+            { I18n.t( "edit_photos" ) }
+          </MenuItem>
+        );
+      }
+
       curationTab = (
         <li className="curation-tab">
           <Dropdown
@@ -139,27 +165,7 @@ class TaxonPageTabs extends React.Component {
                 { " " }
                 <span className="text-muted">{ `(${flagsCount})` }</span>
               </MenuItem>
-              { taxon.photos_locked && !isAdmin
-                ? (
-                  <MenuItem
-                    className="disabled"
-                    title={I18n.t( "photos_locked_desc" )}
-                    eventKey="edit-photos-locked"
-                  >
-                    <i className="fa fa-picture-o" />
-                    { " " }
-                    { I18n.t( "photos_locked" ) }
-                  </MenuItem>
-                )
-                : (
-                  <MenuItem
-                    eventKey="edit-photos"
-                  >
-                    <i className="fa fa-picture-o" />
-                    { " " }
-                    { I18n.t( "edit_photos" ) }
-                  </MenuItem>
-                ) }
+              { taxonPhotosItem }
               { atlasItem }
               <MenuItem
                 className={isCurator ? "" : "hidden"}
