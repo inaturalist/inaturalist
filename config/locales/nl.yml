@@ -6966,6 +6966,72 @@ nl:
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
+        quality_assessment_help4_html: |
+          <p>
+           De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
+           <strong>"ID nodig"</strong> als
+           </p>
+
+           <ul>
+           <li>de waarneming <strong>een datum heeft</strong></li>
+           <li>de waarneming <strong>een geolocatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
+           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
+           <li>de waarneming <strong>geen mens is</strong></li>
+           </ul>
+
+           <p>
+           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
+           </p>
+           <ul>
+           <li>
+           De %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
+           </strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
+           (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
+           onderfamilie-niveau ID of lager)
+           </li>
+           </ul>
+           <p>
+           Waarnemingen keren terug naar <strong>"onvolledig"</strong> als aan bovenstaande vereisten niet is voldaan
+          </p>
+          <ul>
+          <li>
+          de<strong>dag en jaar lijken niet nauwkeurig</strong> (bijvoorbeeld de sneeuw op de foto komt er niet voor in de zomer. Houd geen rekening met het tijdstip op de dag)
+          </li>
+          <li>
+           de <strong> locatie niet nauwkeurig lijkt </strong> (bijvoorbeeld apen in oceaan, nijlpaarden in kantoorgebouwen.)
+           </li>
+           <li>
+           het <strong>organisme is niet wild/verwilderd</strong> (bijvoorbeeld gevangen of gekweekt door mensen)
+           </li>
+           <li>
+           de waarneming <strong>toont geen aanwezigheid van het organisme</strong>, bijvoorbeeld foto's van water eigenschappen, rotsen, landschappen die geen organisme bevatten.
+           </li>
+           <li>
+           de waarneming <strong>toont geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
+           </li>
+           <li>
+           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's.</strong>
+           (bijvoorbeeld er zijn vier foto's van vier verschillende organismen. Een foto dat het habitat toont van het organisme dat het onderwerp is van de waarneming is OK.)
+           </li>
+           <li>
+           de waarneming heeft niet langer een ID nodig <em>en</em> het gemeenschapsID is op familieniveau of hoger.
+           </li>
+           <li>
+           de waarnemer heeft het gemeenschapsID uitgeschakeld en het gemeenschapstaxon is geen voorouder of afstammeling van het taxon gerelateerd aan het ID van de waarnemer.
+           </li>
+           </ul>
+           <p>
+           En alsof dat nog niet ingewikkeld genoeg is, zijn er ook situaties waarin het systeem een ​​stem krijgt:
+           </p>
+           <ul>
+           <li>
+           Het systeem zal stemmen dat de waarneming niet wild/genaturaliseerd is
+           als er minstens 10 andere waarnemingen zijn van een genus of lager
+           de kleinste provincie-, staats- of land-equivalente plaats die
+           bevat deze waarneming en 80% of meer van die waarnemingen
+           zijn gemarkeerd als niet wild/genaturaliseerd.
+           </li>
+           </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
