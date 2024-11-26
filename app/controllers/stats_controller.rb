@@ -93,7 +93,7 @@ class StatsController < ApplicationController
     if !@display_user &&
         !current_user&.is_admin? &&
         Date.today.year == @year &&
-        Date.today < Date.parse( "#{@year}-12-01" )
+        Date.today < Date.parse( "#{@year}-11-15" )
       @year_statistic = nil
     end
     @headless = @footless = true
