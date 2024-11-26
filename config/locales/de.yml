@@ -1069,9 +1069,9 @@ de:
     Inhalt von %{user} am %{date} versteckt aufgrund von: "%{reason}"
   content_type: Inhaltstyp
   user_hid_this_item_because_reason_html: |
-    %{user} versteckte %{item} weil "%{reason}"
+    %{user} hid this %{item} because "%{reason}"
   user_unhid_this_item_because_reason_html: |
-    %{user} machte %{item} wieder öffentlich wegen "%{reason}"
+    %{user} unhid this %{item} because "%{reason}"
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
@@ -4540,6 +4540,8 @@ de:
   share_colon: "Teilen:"
   short_code_for_this_place: Kürzel für diesen Ort, z.B. US für Vereinigte Staaten
   short_or_abbreviated_title_for_display: Kurztitel oder Abkürzung für eine Anzeige mit limitiertem Platz. Maximal 10 Zeichen.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Soll dieser Trivialname standardmäßig für dieses Taxon angezeigt werden?
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
