@@ -90,7 +90,7 @@ class Translators extends React.Component {
           className="text-muted"
           dangerouslySetInnerHTML={{
             __html: I18n.t( "views.stats.year.translators_prompt", {
-              link_tag: "<a href='https://www.inaturalist.org/pages/translate'>",
+              link_tag: "<a href='https://help.inaturalist.org/support/solutions/articles/151000194744-can-i-help-translate-inaturalist'>",
               link_tag_end: "</a>"
             } )
           }}
