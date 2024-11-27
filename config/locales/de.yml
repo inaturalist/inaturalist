@@ -2550,6 +2550,7 @@ de:
     lv: Lettisch
     mi: Maori
     mk: Mazedonisch
+    ml: Malayalam
     mr: Marathi
     nb: Norwegisch (Bokmål)
     nl: Niederländisch
@@ -2564,6 +2565,7 @@ de:
     sq: Albanisch
     sr: Serbisch
     sv: Schwedisch
+    ta: Tamilisch
     th: Thailändisch
     tr: Türkisch
     uk: Ukrainisch
@@ -4635,6 +4637,8 @@ de:
     Das %{start_tag_network}iNaturalist-Netzwerk%{end_tag_network} ist eine
     Sammlung von regionalen Websites innerhalb der %{start_tag_global}globalen
     iNaturalist-Community%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    Das %{start_tag_network}iNaturalist-Netzwerk%{end_tag_network} bietet regionale Erfahrungen innerhalb der %{start_tag_global}globalen iNaturalist-Community%{end_tag_global} an.
   sites_affiliation_overview_when_you_affiliate: |
     Wenn du einem Mitglied des iNaturalist-Netzwerkes beitrittst, werden deine E-Mail-Adresse
     sowie die konkreten Standorte deiner verdeckten und privaten Beobachtungen mit der Netzwerk-Organisation geteilt. Dadurch können deine Beobachtungen wertvoller für lokale Naturschutzmaßnahmen werden. Wenn du in einem Land lebst oder es häufig besuchst, welches Mitglied des Netzwerks ist, kannst du die Mitgliedschaft wählen, um zur Erleichterung des Datenaustauschs beizutragen.
@@ -4643,11 +4647,19 @@ de:
   sites_affiliation_title: Erfahre mehr über die Netzwerk-Zugehörigkeit
   sites_network_agreements_html: |
     iNaturalist hat formelle Vereinbarungen mit Organisationen in jedem dieser Länder, um die Nutzung der iNaturalist-Plattform zu unterstützen. <strong>Wenn Ihre Organisation daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, finden Sie weitere Informationen %{start_tag_join}here%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist hat formelle Vereinbarungen mit Organisationen in jedem dieser Länder, um die Nutzung der iNaturalist-Plattform zu unterstützen. Seit 2024 bieten wie einen einfachen Zugang zu Netzwerk-Partnerschaften an. <strong>Wenn Ihre Organisation daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, finden Sie weitere Informationen %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "Das iNaturalist-Netzwerk besteht aus mehreren Organisationen:"
   sites_network_inaturalist_network_collection: |
     Das iNaturalist-Netwerk ist eine Sammlung von regionalen Websites, die vollständig
     mit der globalen iNaturalist-Community verbunden sind. Netzwerk-Standorte werden
     von lokalen Institutionen unterstützt, die die lokale Nutzung fördern und die Verwendung von Daten
+    von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
+    Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
+    verborgen sind, um bedrohte Arten besser zu schützen.
+  sites_network_inaturalist_network_collection2: |
+    Das iNaturalist-Netwerk bietet für User eine regionale Erfahrung an, ist aber vollständig
+    mit der globalen iNaturalist-Community verbunden. Netzwerk-Mitglieder sind lokale Institutionen, die die lokale Nutzung fördern und die Verwendung von Daten
     von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
     Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
     verborgen sind, um bedrohte Arten besser zu schützen.
@@ -6746,6 +6758,29 @@ de:
           Wir haben unten Links zu den betroffenen Fotos angegeben.
       user_parent_confirmation:
         subject: Das iNaturalist-Konto deines Kindes wurde aktiviert
+        content_html: |
+          <p>
+           Danke, dass du ein iNaturalist-Konto für dein Kind erstellt hast! Das
+           Konto wurde aktiviert. Hier sind die Details von dir, die wir
+           gespeichert haben:
+          </p>
+          <ul>
+           <li><strong>Name des Elternteils oder erziehungsberechtigten Person:</strong> %{parent_name}</li>
+           <li><strong>E-Mail des Elternteils oder erziehungsberechtigten Person:</strong> %{parent_email}</li>
+           <li><strong>Name des Kindes:</strong> %{child_name}</li>
+           <li><strong>Geburtstag des Kindes:</strong> %{child_birthday}</li>
+           <li><strong>E-Mail des Kontos des Kindes:</strong> %{child_email}</li>
+           <li><strong>Anmeldename des Kontos des Kindes:</strong> %{child_username}</li>
+          </ul>
+          <p>
+           Bitte logge dich über die Seek-App deines Kindes in das Konto ein,
+           indem du den "iNaturalist"-Knopf im Menü und dann den 
+           "Einloggen mit iNaturalist"-Knopf am unteren Rand des Bildschirms drückst.
+          </p>
+          <p>
+           Dein Kind wird dann in der Lage sein, Beobachtungen in seinem iNaturalist-Konto
+           zu posten, indem es die Seek-App nutzt und so nach inaturalist.org gesendet werden.
+          </p>
       users_updates_suspended:
         message: |
           Du warst eine ganze Weile nicht mehr aktiv auf %{site_name}, daher haben wir deine Abonnements ausgesetzt. Wenn du wieder Updates von Aktivitäten auf der Webseite erhalten möchtest, bitte <a href="%{login_url}">logge dich wiederin dein Konto ein</a>.
@@ -7355,7 +7390,7 @@ de:
           </li>
           <li>
           <p>
-          Neue Lexika sollen immer einen englischen Namen haben. Bitte füge keine übersetzten Sprachnamen wie "French, Français" hinzu, da es sonst schwierig oder unmöglich wirdt, lokalisierte Namen für Benutzer anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
+          Neue Lexika sollen immer einen englischen Namen haben. Bitte füge keine übersetzten Sprachnamen wie "French, Français" hinzu, da es sonst schwierig oder unmöglich wird, lokalisierte Namen für Benutzer anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
           </p>
           </li>
           <li>
@@ -8027,7 +8062,7 @@ de:
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: Fotos gesperrt?
-        rank: Rang
+        rank: Taxonomischer Rang
         rank_level: Rangstufe
         source_id: Quellen-ID
         source_identifier: Quellbezeichner
