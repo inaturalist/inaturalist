@@ -2103,7 +2103,7 @@ fi:
   identotron: Identotron
   identotron_help: Identotron ohje
   ids: "Tunnistukset"
-  ids_made_for_others__title: muille tehtyä tunnistusta
+  ids_made_for_others__title: Muille tehtyjä tunnistuksia
   if_for_some_reason_a_user_doesnt_agree: |
     Jos jotain syystä et hyväksy yhteisön tunnistusta, voit hylätä sen, mikä tarkoittaa, että omaa tunnistustasi käytetään linkittämään muihin havaintoihin, päivittämään pinnalistoja jne. Voit kuitenkin saada havainnollesi Tutkimustaso-merkinnän vain, jos yhteisö on samaa mieltä kanssasi.
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty tällä hetkellä?
@@ -4625,7 +4625,7 @@ fi:
   text_editing_controls: Tekstin muokkaus
   thank_you!: Kiitos!
   thanks!: Kiitos!
-  thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta täällä sivustolla
+  thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta
   that_photo_doesnt_exist: Kuvaa ei ole olemassa.
   that_observation_doesnt_exist: Tätä havaintoa ei ole olemassa.
   that_observation_doesnt_have_any_photos: "Tässä havainnossa ei ole yhtään kuvaa."
@@ -5139,8 +5139,8 @@ fi:
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>Tarkastele kojelaudaltasi</a> lisää päivityksiä"
   view_your_inbox: Näytä saapuneet-kansiosi
   view_your_observations: Näytä omat havainnot
-  view_your_personal_year_in_review: "Näytä henkilökohtainen %{year} vuosikatsaus"
-  view_your_personal_year_in_review_caps: "NÄYTÄ HENKILÖKOHTAINEN %{year} VUOSIKATSAUS"
+  view_your_personal_year_in_review: "Näytä henkilökohtainen vuosikatsaus %{year}"
+  view_your_personal_year_in_review_caps: "NÄYTÄ HENKILÖKOHTAINEN VUOSIKATSAUS %{year}"
   view_yours: Näytä sinun
   visually_similar: Samannäköinen
   vulnerable: Vaarantunut
@@ -5203,7 +5203,7 @@ fi:
   who_can_see_the_coordinates: Kuka voi nähdä koordinaatit
   who_can_see_the_coordinates_observer: Henkilö, joka teki havainnon
   who_helped_user_the_most: "Kuka auttoi käyttäjää %{user} eniten"
-  who_user_helped_the_most: "Ketä %{user} auttoi eniten"
+  who_user_helped_the_most: "Keitä %{user} auttoi eniten"
   why_the_coordinates_are_obscured: Miksi koordinaatit on karkeistettu
   with_annotation: Merkinnällä
   without_annotation: Ilman merkintää
@@ -5291,10 +5291,10 @@ fi:
   #This is used in the signature of an email, e.g. "With thanks, The iNaturalist Team"
   yir_email_the_inaturalist_team: iNaturalist-tiimi
   yir_email_the_year_isnt_over: |
-    Vuosi ei ole vielä ohi, eikä ole koskaan liian myöhäistä lähettää vanhempia havaintoja. Jos tallennat lisää havaintoja, päivitä tilastosi “Luo tilastot uudelleen” -napista vuosiyhteenvedon alareunassa.
+    Vuosi ei ole vielä ohi, eikä ole koskaan liian myöhäistä tallentaa vanhempia havaintoja. Jos tallennat lisää havaintoja, päivitä tilastosi “Luo tilastot uudelleen” -napista vuosiyhteenvedon alareunassa.
   yir_email_what_else_will_you_observe_caps: MITÄ MUUTA HAVAITSIT?
   yir_email_what_new_to_you: |
-    Mitä uusia lajeja kirjasit tänä vuonna? Kuinka moni ihminen auttoi sinua tunnistamaan havaintoja (ja kuinka monta sinä autoit)?
+    Mitä uusia lajeja kirjasit tänä vuonna? Kuinka moni ihminen auttoi sinua tunnistamaan havaintoja (ja kuinka montaa muuta sinä autoit)?
   yir_email_with_gratitude: Kiitoksin,
   yir_email_year_on_inaturalist_globally_caps: "INATURALIST VUONNA %{year}"
   yir_email_you_are_part_of_something: |
@@ -6078,6 +6078,7 @@ fi:
         click_through_to_individual_projects: Pääsy yksittäisiin projekteihin
         collection_projects: Koontiprojektit
         collection_project_features: "Koontiprojektin ominaisuudet:"
+        contain_entire_image_without_cropping: Käytä koko kuvaa rajaamatta sitä.
         custom_banner_icon_and_project_description: Oma nimi, kuvausteksti, banneri ja ikoni
         data_visualizations: Tietojen visualisoinnit
         delete_project: Poista projekti
@@ -6106,6 +6107,7 @@ fi:
           Ole hyvä ja määrittele vaatimukset tähän projektiin lisättäville havainnoille.
         project_background_color: Projektin yhteenvedon taustaväri
         project_background_color_help: Valitse riittävän tumma väri, jotta sen päällä oleva valkoinen teksti on luettavissa.
+        project_banner: Projektin bannerikuva (PNG tai JPG)
         project_banner_help: Valinnainen bannerikuva. Ihanteelliset mitat ovat 760px x 320px.
         project_details: Projektin yksityiskohdat
         project_icon: Projektin ikoni (PNG, JPG, tai GIF)
@@ -6250,6 +6252,15 @@ fi:
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist-verkon</a> verkkosivustojen kautta
       year:
+        #label used for a chart component that shows the count of users that
+        #added both identifications and observations
+        added_both: Lisäsi molempia
+        added_only_identifications: Lisäsi vain tunnistuksia
+        added_only_observations: Lisäsi vain havaintoja
+        #heading for a section displaying use of iNaturalist data by other organizations
+        broader_impacts: Laajempi vaikutus
+        broader_impacts_desc: |
+          Useat ulkoiset yhteistyökumppanimme hakevat säännöllisesti iNaturalist-havaintoja tieteen ja luonnonsuojelun tueksi. Havaintojesi, tekemiesi tunnistusten ja avoimen lisenssin valintojen ansiosta nämä organisaatiot voivat tarjota hyödyllistä tietoa biologisesta monimuotoisuudesta sitä tarvitseville ihmisille eri puolilla maailmaa.
         compare_desc: |
           Kuinka tämä vuosi sujui verrattuna edellisiin vuosiin? Kun olet käyttänyt iNaturalistia kolmen vuoden ajan
           tai pidempään, voimme alkaa vertailla vuotuisia toimintatietoja.
@@ -6303,6 +6314,8 @@ fi:
         species_per_year_by_date_observed: Havainnointipäivämäärän mukaan
         stats_generated_datetime: Tilastot luotu %{datetime}
         stats_generation_schedule: Tilastot tuotetaan joka sunnuntai joulukuussa ja 1. tammikuuta
+        sunburst_desc_html: |
+          Lajihavainnot on esitetty kehämäisessä "sunburst"-kaaviossa, jossa eliökunnan hierarkia avautuu sisältä ulospäin. Kaavion keskipisteessä on "Elämä", josta haarautuvat eri taksonomisten tasojen kaaret päätyen ulkokehän yksittäisiin lajeihin. Kaarten koko kuvastaa kunkin taksonin havaintomäärää, ja väritys noudattaa lajiryhmien tunnusvärejä: kasvit vihreällä, hyönteiset oranssilla ja useimmat muut eläimet sinisellä. Esimerkiksi runsas vihreän värin määrä kaaviossa kertoisi suuresta kasvihavaintojen määrästä. Kaaviota voi tutkia interaktiivisesti. <strong>Yksittäistä kaarta klikkaamalla saat kyseisen taksonin siirtymään keskelle</strong> ja sen alakategoriat levittäytymään sen ympärille. <strong>Keskustaa klikkaamalla pääset siirtymään hierarkiassa takaisin ylöspäin</strong>.
         translators_title: Kääntäjät
         translators_desc: |
           Tiesitkö, että iNaturalistin %{x_languages} on käännetty lähes kokonaisuudessaan sellaisten %{x_people} toimesta, jotka eivät välttämättä edes käytä palvelua. Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käänöksiä tänä vuonna mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, meidän%{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös saada tietoa kaikista kielenkääntämistä tukeneista henkilöistä aiemmiltakin vuosilta ja Transwikin henkilöistä meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodi repositorioissa.
