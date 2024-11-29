@@ -596,6 +596,13 @@ Rails.application.routes.draw do
         get :pending
       end
     end
+    resources :blocked_ips, only: :index, controller: "admin/blocked_ips" do
+      collection do
+        get :index
+        put :block
+        delete :unblock
+      end
+    end
   end
   get "admin/user_content/:id/(:type)", to: "admin#user_content", as: "admin_user_content"
   delete "admin/destroy_user_content/:id/:type", to: "admin#destroy_user_content", as: "destroy_user_content"
