@@ -148,7 +148,7 @@ const App = ( { config, form, createNewProject } ) => {
             <p
               dangerouslySetInnerHTML={{
                 __html:
-                  I18n.t( "views.projects.new.you_can_learn_more_html" )
+                  I18n.t( "views.projects.new.you_can_learn_more_html2", { url: "https://help.inaturalist.org/en/support/solutions/articles/151000176472" } )
               }}
             />
             { config.currentUser.privileges.indexOf( "organizer" ) >= 0 && (
