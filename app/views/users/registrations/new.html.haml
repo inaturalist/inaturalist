@@ -1,6 +1,7 @@
 - u = resource || current_user
 - content_for(:extrajs) do
   %script{ src: "https://www.google.com/recaptcha/api.js?hl=#{I18n.locale}" }
+  %script{ src: "https://cdn.jsdelivr.net/gh/Joe12387/detectIncognito@main/dist/es5/detectIncognito.min.js" }
   = javascript_include_tag "moment_bundle"
 = form_for resource, url: users_path, html: { class: "sign-up" } do |f|
   %h1=t :join_the_largest_group_of_naturalists_in_the_world
