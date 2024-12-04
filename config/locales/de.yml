@@ -771,7 +771,7 @@ de:
   automatically_update_my_content_for_taxon_changes: Automatisch meine Inhalte bei Taxonänderungen aktualisieren
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg: Mittl.
+  avg: Ø
   back: Zurück
   back_to_applications: "&laquo; Zurück zu den Anwendungen"
   back_to_all_species: Zurück zu Alle Arten
@@ -2979,9 +2979,9 @@ de:
   new_users: Neue Benutzer
   new_users_in_year: "Neue Benutzer in %{year}"
   new_users_w_7_obs: Neue Benutzer mit 7 Beobachtungen
-  newly_added: Kürzlich hinzugefügt
+  newly_added: Neu hinzugefügt
   newly_added_species: Kürzlich hinzugefügte Arten
-  newly_observed_species: Kürzlich beobachtete Arten
+  newly_observed_species: Neu beobachtete Arten
   newly_observed_species_in_year: "Neu hinzugefügte Arten in %{year}"
   next: Weiter
   next_date_short: Weiter
@@ -7148,6 +7148,17 @@ de:
           name_already_taken: Projektname bereits vergeben
           cannot_have_more_than_x_project_rules: Nicht mehr als %{x} Projektregeln zugelassen
           summary_is_required: Projektzusammenfassung ist erforderlich
+      project_location_privacy_notice_html: |
+        <p>
+         Bitte denke daran, dass Projekt-Kuratoren in der Lage sein werden, private oder 
+         versteckte Standorte deiner Beobachtungen in diesem Projekt zu sehen, es sei denn, 
+         du widersprichtst dieser Erlaubnis. Außerdem werden sie in der Lage sein, jede deiner 
+         Beobachtungen zu diesem Projekt hinzuzufügen, es sei denn du <a href="/users/edit">änderst
+         deine Einstellungen</a>. Du kannst die Erlaubnis, Beobachtungen zu Projekten hinzuzufügen, auch von Fall zu Fall gewähren oder entziehen.
+        </p>
+        <p>
+         Wenn du dir Sorgen um deine Standort-Privatsphäre machst, solltest du Projekten nur beitreten, wenn du den Projektkuratoren vertraust.
+        </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, aber nur, wenn ich die Beobachtung dem Projekt selbst hinzufüge.
         any: Ja, egal wer die Beobachtung dem Projekt hinzufügt.
@@ -7343,13 +7354,13 @@ de:
         recurring: Wiederkehrend
         species_per_year: Arten / Jahr
         species_per_year_by_date_added: im jewlg. Jahr hinzugefügt
-        species_per_year_by_date_observed: Nach Beobachtungsdatum
+        species_per_year_by_date_observed: nach Beobachtungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
         stats_generation_schedule: Statistiken werden jeden Sonntag im Dezember und am 1. Januar erstellt
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
         sunburst_desc_html: |
-          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis beginnt mit 'Lebewesen' ist im Zentrum, und endet schließlich auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, blau für die meisten anderen Tiere, etc.), d. h. wenn viel Grün im Diagramm zu sehen ist, hast du viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon ins Zentrum zu setzen</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie wieder zurück zu gehen</strong>.
+          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis beginnt mit 'Lebewesen' im Zentrum, und endet schließlich auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, blau für die meisten anderen Tiere, etc.), d.h. wenn viel Grün im Diagramm zu sehen ist, hast du viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon ins Zentrum zu setzen</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie wieder zurück zu gehen</strong>.
         translators_title: Übersetzer
         translators_desc: |
           Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und dies fast ausschließlich von %{x_people} (von denen einige nicht einmal iNat verwenden)? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
