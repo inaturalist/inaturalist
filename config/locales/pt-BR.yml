@@ -33,6 +33,9 @@ pt-BR:
     one: '<span class="count">%{count}</span> Identificador'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificadores'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID feito para outros'
+    other: '<span class="count">%{count}</span> IDs feitos para outros'
   x_languages:
     one: "%{count} Idioma"
     other: "%{count} Idiomas"
@@ -1143,6 +1146,9 @@ pt-BR:
   content_and_display: Conteúdo & Exibição
   content_author: Autor do Conteúdo
   content_hidden: Conteúdo oculto
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Conteúdo ocultado em %{date} devido a: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Conteúdo oculto por %{user} em %{date} porque: "%{reason}"
@@ -2339,6 +2345,8 @@ pt-BR:
   in_place_x: no %{place}
   #As in a reason to flag something
   inappropriate: Inadequado
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Rede iNaturalist
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
@@ -2709,6 +2717,7 @@ pt-BR:
     lv: Letão
     mi: Maori
     mk: Macedônio
+    ml: Malaiala
     mr: Marata
     nb: Norueguês Bokmahl
     nl: Holandês
@@ -2723,6 +2732,7 @@ pt-BR:
     sq: Albanês
     sr: Sérvio
     sv: Sueco
+    ta: Tâmil
     th: Tailandês
     tr: Turco
     uk: Ucraniano
@@ -2747,7 +2757,7 @@ pt-BR:
   log_out_caps: SAIR
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sair de %{site_name}?"
-  log_scale_label: Registro
+  log_scale_label: Logarítmica
   #Status message shown while logging in
   logging_in: Iniciando sessão...
   logo:
@@ -6065,7 +6075,7 @@ pt-BR:
   yesterday: Ontem
   yir_code_contributors_desc_html: |
     Nossa programação de <a href="%{url}">software</a> é quase toda aberta, o que significa
-    quee qualquer um pode contribuir se souber como. Aqui estão as pessoas que
+    que qualquer um pode contribuir se souber como. Aqui estão as pessoas que
     programaram voluntariamente este ano. Obrigado, programadores!
   yir_donate_banner_inaturalist_in_year: "INATURALIST EM %{year}:"
   yir_donate_banner_reaching_millions: Alcançando milhões. Iluminando a biodiversidade. Colaboração global.
@@ -6951,6 +6961,66 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help4_html: |
+          <p>
+          A avaliação de qualidade dos dados é um resumo da precisão de uma observação. Todas as observações iniciam com nível <strong>"casual"</strong>, e recebem
+          <strong>"precisa de ID"</strong> quando
+          </p>
+
+          <ul>
+          <li>a observação <strong>possui uma data</strong></li>
+          <li>a observação <strong>está georeferenciada</strong> (ex. possui coordenadas de lat/lon)</li>
+          <li>a observação <strong>tem fotos ou sons</strong></li>
+          <li>a observação <strong>não é de um humano</strong></li>
+          </ul>
+          <p>
+          Observações viram <strong>"nível de pesquisa"</strong> quando
+          </p>
+          <ul>
+          <li>
+          a %{site_name} <strong>comunidade concorda na identificação em nível de espécie ou inferior</strong>, ex. quando mais de 2/3 dos identificadores concordam com um táxon (se a comunidade votou que o Táxon Comunitário não pode ser melhorado, isso é revertido para o nível de identificação de sub-família ou inferior)
+          </li>
+          </ul>
+          <p>
+          Observações serão revertidas para <strong>"casual"</strong> se as condições acima não forem atendidas ou a comunidade concorda que
+          </p>
+          <ul>
+          <li>
+          o <strong>o dia e ano não parecem precisos</strong> (ex. aparece neve na foto, mas a data é durante o verão. Não leve a hora do dia em consideração)
+          </li>
+          <li>
+          a <strong>localização não parece
+          precisa</strong> (ex. macacos no meio do oceano, hipopótamos em edifícios de escritórios, etc.)
+          </li>
+          <li>
+          o <strong>organismo não é selvagem/natural</strong> (ex. mantido em cativeiro ou cultivado por humanos)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidência de um organismo</strong>, ex. imagens de recursos hídricos,
+          pedras, paisagens que não incluam o organismo, etc.
+          </li>
+          <li>
+          a observação <strong>não apresenta evidência recente (~100 anos) do organismo</strong> (ex. fósseis; porém pegadas, esterco, e folhas mortas/secas são ok)
+          </li>
+          <li>
+          a observação <strong>não apresenta evidência relacionada a um assunto</strong>
+          (ex. contém quatro fotos de organismos não relacionados. Fotos mostrando o habitat do assunto são válidas.)
+          </li>
+          <li>
+          a observação não necessita mais de identificação <em>e</em> a ID da comunidade está no nível de família ou superior
+          </li>
+          <li>
+          o observador optou por não utilizar a ID da comunidade e o táxon da ID da comunidade não é um antecessor ou descentente do táxon associado à identificação do observador
+          </li>
+          </ul>
+          <p>
+          E se não fosse complicado o suficiente, há ainda situações onde o sistema ganha um voto:
+          </p>
+          <ul>
+          <li>
+          O sistema irá votar que a observação não é selvagem/natural se houver ao menos 10 outras observações em nível de um gênero ou inferior no menor local equivalente a condado, estado ou país que contenha esta observação e 80% ou mais delas estejam marcadas como não selvagens/naturalizadas.
+          </li>
+          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.
@@ -7082,6 +7152,24 @@ pt-BR:
           Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
         subject: A conta iNaturalista do seu filho foi ativada
+        content_html: |
+          <p>
+          Obrigado por criar uma conta iNaturalist para seu filho(a)! A conta foi ativada. Aqui estão os detalhes que você inseriu e que temos no registro:
+          </p>
+          <ul>
+          <li><strong>Nome do pai/mãe ou guardião legal:</strong>%{parent_name}</li>
+          <li><strong>Endereço eletrônico do pai/mãe ou guardião legal:</strong>%{parent_email}</li>
+          <li><strong>Nome da criança:</strong>%{child_name}</li>
+          <li><strong>Data de nascimento da criança:</strong>%{child_birthday}</li>
+          <li><strong>Endereço eletrônico da criança:</strong>%{child_email}</li>
+          <li><strong>Nome de usuário da criança:</strong>%{child_username}</li>
+          </ul>
+          <p>
+          Por favor, faça o login na conta de seu filho no aplicativo Seek clicando no botão "iNaturalist" no menu e então em "Login com iNaturalist" na parte inferior da tela.
+          </p>
+          <p>
+          Seu filho poderá então postar observações na conta iNaturalist dele utilizando o aplicativo Seek para que elas possam ser visualizadas em iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
           Você esteve inativo em %{site_name} por algum tempo, por este motivo suspendemos suas inscrições. Para receber o resumo de atualizações neste local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
@@ -7442,6 +7530,8 @@ pt-BR:
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTCID
         identifiers_desc: Adicionada uma identificação à observação de alguém neste dia
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Criado via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Criado pelo <a href="%{url}">aplicativo iNaturalist para iPhone</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTCID
@@ -7462,6 +7552,8 @@ pt-BR:
         recent_w_0_obs_desc: Conectado nos últimos 7 dias e adicionado 0 observações
         recent_w_7_obs: Recentes w /> = 7 observações
         recent_w_7_obs_desc: Conectado nos últimos 7 dias e adicionado> = 7 observações
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Criado via <a href="%{url}">Seek</a>
         time_to_id_desc: Tempo para identificação (horas, janela de 1 semana)
         TTCID: TTCID
         TTCID_desc: Hora de receber uma identificação de alguém que é semelhante ao grupo indicado pela comunidade.
