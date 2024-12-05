@@ -155,23 +155,11 @@ class Assessment extends React.Component {
                           __html: I18n.t( "views.observations.show.dqa_help_casual_voted_out_html" )
                         }}
                       />
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: I18n.t( "views.observations.show.dqa_help_casual_opted_out_maverick_html" )
-                        }}
-                      />
+                      <li>{ I18n.t( "views.observations.show.dqa_help_casual_opted_out_maverick" ) }</li>
                     </ul>
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: I18n.t( "views.observations.show.dqa_help_system_lead_html" )
-                      }}
-                    />
+                    <p>{ I18n.t( "views.observations.show.dqa_help_system_lead" ) }</p>
                     <ul>
-                      <li
-                        dangerouslySetInnerHTML={{
-                          __html: I18n.t( "views.observations.show.dqa_help_system_captive_vote_html" )
-                        }}
-                      />
+                      <li>{ I18n.t( "views.observations.show.dqa_help_system_captive_vote" ) }</li>
                     </ul>
                   </div>
                 </Popover>
