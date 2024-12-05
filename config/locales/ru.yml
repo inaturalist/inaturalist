@@ -1244,6 +1244,9 @@ ru:
   content_and_display: Контент и отображение
   content_author: Автор контента
   content_hidden: Содержание скрыто
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Содержание скрыто %{date}, поскольку: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Содержание скрыто пользователем %{user} %{date}, поскольку: "%{reason}"
@@ -2403,6 +2406,8 @@ ru:
   in_place_x: в %{place}
   #As in a reason to flag something
   inappropriate: Неприемлемо
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Сеть iNaturalist
   inaturalist_network_affiliation: Принадлежность к сети iNaturalist
   #Label for messages you've received
@@ -2774,6 +2779,7 @@ ru:
     lv: Латышский
     mi: Маори
     mk: Македонский
+    ml: Малаялам
     mr: Маратхи
     nb: Норвежский (букмол)
     nl: Голландский
@@ -2788,6 +2794,7 @@ ru:
     sq: албанский
     sr: Сербский
     sv: Шведский
+    ta: Тамильский
     th: Тайский
     tr: Турецкий
     uk: Украинский
@@ -7116,6 +7123,27 @@ ru:
           Мы включили ссылки на повреждённые фото ниже.
       user_parent_confirmation:
         subject: iNaturalist аккаунт вашего ребёнка был активирован
+        content_html: |
+          <p>
+          Благодарим вас за создание учетной записи iNaturalist для вашего ребенка! Учетная
+          запись активирована. Вот введенные вами данные, которые имеются у нас:
+          </p>
+          <ul>
+          <li><strong>Имя родителя или законного опекуна:</strong> %{parent_name}</li>
+          <li><strong>Адрес электронной почты родителя или законного опекуна:</strong> %{parent_email}</li>
+          <li><strong>Имя ребенка:</strong> %{child_name}</li>
+          <li><strong>День рождения ребенка:</strong> %{child_birthday}</li>
+          <li><strong>Электронная почта учетной записи ребенка:</strong> %{child_email}</li>
+          <li><strong>Название аккаунта учетной записи ребенка:</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Пожалуйста, войдите в учетную запись вашего ребенка в приложении Seek, нажав
+          кнопку "iNaturalist" в меню, а затем "Войдите в систему с помощью naturalist" в нижней части экрана.
+          </p>
+          <p>
+          После этого ваш ребенок сможет публиковать наблюдения в своей учетной записи iNaturalist с помощью приложения Seek, чтобы их можно было увидеть на
+          сайте iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
           Какое-то время вы были неактивны на %{site_name}, поэтому мы приостановили ваши подписки. Для возобновления получения обновлений с сайта войдите пожалуйста <a href="%{login_url}">в свою учётную запись</a> ещё раз.
@@ -7440,6 +7468,8 @@ ru:
         avg_ttcid: Ср TTCID
         avg_ttid: Ср TTID
         identifiers_desc: Добавили идентификацию к чужому наблюдению в этот день
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Создано с помощью <a href="%{url}">iNatNext</a>
         iphone_desc_html: Создано с помощью <a href="%{url}">приложения iNaturalist для iPhone</a>
         med_ttcid: Сред TTCID
         med_ttid: Мед TTID
@@ -7460,6 +7490,8 @@ ru:
         recent_w_0_obs_desc: Зарегистрировались в предыдущие 7 дней и добавили 0 наблюдений
         recent_w_7_obs: Недавние с набл>= 7
         recent_w_7_obs_desc: Зарегистрировались в предыдущие 7 дней и добавили >= 7 набл
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Создано с помощью <a href="%{url}">Seek</a>
         time_to_id_desc: Время до идентификации (часы, данные за 1 неделю обновляются в окне)
         TTCID: TTCID (Время до идентификации сообществом)
         TTCID_desc: Время до получения от кого-то другого идентификации, которая соответствует идентификации сообществом
