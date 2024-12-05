@@ -2513,6 +2513,7 @@ ja:
     lv: ラトビア語
     mi: マオリ語
     mk: マケドニア語
+    ml: マラヤーラム語
     mr: マラーティー語
     nb: ノルウェー・ブークモール語
     nl: オランダ語
@@ -2527,6 +2528,7 @@ ja:
     sq: アルバニア語
     sr: セルビア語
     sv: スウェーデン語
+    ta: タミル語
     th: タイ語
     tr: トルコ語
     uk: ウクライナ語
@@ -6070,6 +6072,24 @@ ja:
           <b>30日以内に</b>これらの問題に対処してください。30日後、iNaturalistが壊れた写真を削除し始めます。観察結果はすべて残ります。写真が削除された後、それらは再評価され、写真がなくなった場合、研究用の観察記録がカジュアルになる可能性があります。
       user_parent_confirmation:
         subject: お子様の iNaturalist アカウントがアクティベートされました
+        content_html: |
+          <p>
+          お子様のiNaturalistアカウントを作成いただきありがとうございます！アカウントは有効化されました。以下は、お子様が入力された内容です：
+          </p>
+          <ul>
+          <li><strong>親または法定後見人の名前：</strong>%{parent_name}</li>
+          <li><strong>親または法定後見人のEメール：</strong>%{parent_email}</li>
+          <li><strong>子供の名前：</strong>%{child_name}</li>
+          <li><strong>子供の誕生日：</strong>%{child_birthday}</li>
+          <li><strong>子供のアカウントのEメール：</strong>%{child_email}</li>
+          <li><strong>子供のアカウントのユーザーネーム：</strong>%{child_username}</li>
+          </ul>
+          <p>
+          お子様のSeekアプリから、メニューの「iNaturalist」をタップし、画面下部の「iNaturalistでログイン」からアカウントにログインしてください。
+          </p>
+          <p>
+          お子様はSeekアプリを使って観察記録をiNaturalistアカウントに投稿し、iNaturalist.orgで見ることができるようになります。
+          </p>
       users_updates_suspended:
         message: |
           しばらくのあいだ%{site_name}で活動をお休みしていたようなので、フォローを停止しました。再びサイト活動の更新情報を受けるには、<a href="%{login_url}">ご自分のアカウントにログインし直して</a>ください。
