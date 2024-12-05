@@ -6961,66 +6961,6 @@ pt-BR:
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
         join_project_desc_html: |
           Ao inscrever no projeto você permitirá o acesso dos administradores aos dados geográficos de suas observações, mesmo aquelas ocultas ou, privadas. Ao se inscrever você aceita os termos de participação <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help4_html: |
-          <p>
-          A avaliação de qualidade dos dados é um resumo da precisão de uma observação. Todas as observações iniciam com nível <strong>"casual"</strong>, e recebem
-          <strong>"precisa de ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>a observação <strong>possui uma data</strong></li>
-          <li>a observação <strong>está georeferenciada</strong> (ex. possui coordenadas de lat/lon)</li>
-          <li>a observação <strong>tem fotos ou sons</strong></li>
-          <li>a observação <strong>não é de um humano</strong></li>
-          </ul>
-          <p>
-          Observações viram <strong>"nível de pesquisa"</strong> quando
-          </p>
-          <ul>
-          <li>
-          a %{site_name} <strong>comunidade concorda na identificação em nível de espécie ou inferior</strong>, ex. quando mais de 2/3 dos identificadores concordam com um táxon (se a comunidade votou que o Táxon Comunitário não pode ser melhorado, isso é revertido para o nível de identificação de sub-família ou inferior)
-          </li>
-          </ul>
-          <p>
-          Observações serão revertidas para <strong>"casual"</strong> se as condições acima não forem atendidas ou a comunidade concorda que
-          </p>
-          <ul>
-          <li>
-          o <strong>o dia e ano não parecem precisos</strong> (ex. aparece neve na foto, mas a data é durante o verão. Não leve a hora do dia em consideração)
-          </li>
-          <li>
-          a <strong>localização não parece
-          precisa</strong> (ex. macacos no meio do oceano, hipopótamos em edifícios de escritórios, etc.)
-          </li>
-          <li>
-          o <strong>organismo não é selvagem/natural</strong> (ex. mantido em cativeiro ou cultivado por humanos)
-          </li>
-          <li>
-          a observação <strong>não apresenta evidência de um organismo</strong>, ex. imagens de recursos hídricos,
-          pedras, paisagens que não incluam o organismo, etc.
-          </li>
-          <li>
-          a observação <strong>não apresenta evidência recente (~100 anos) do organismo</strong> (ex. fósseis; porém pegadas, esterco, e folhas mortas/secas são ok)
-          </li>
-          <li>
-          a observação <strong>não apresenta evidência relacionada a um assunto</strong>
-          (ex. contém quatro fotos de organismos não relacionados. Fotos mostrando o habitat do assunto são válidas.)
-          </li>
-          <li>
-          a observação não necessita mais de identificação <em>e</em> a ID da comunidade está no nível de família ou superior
-          </li>
-          <li>
-          o observador optou por não utilizar a ID da comunidade e o táxon da ID da comunidade não é um antecessor ou descentente do táxon associado à identificação do observador
-          </li>
-          </ul>
-          <p>
-          E se não fosse complicado o suficiente, há ainda situações onde o sistema ganha um voto:
-          </p>
-          <ul>
-          <li>
-          O sistema irá votar que a observação não é selvagem/natural se houver ao menos 10 outras observações em nível de um gênero ou inferior no menor local equivalente a condado, estado ou país que contenha esta observação e 80% ou mais delas estejam marcadas como não selvagens/naturalizadas.
-          </li>
-          </ul>
         score_desc: "pontos = conta cumulativa / (conta cumulativa + conta de desacordos + ancestrais em desacordo)"
         observation_flagged_notice_html: |
           Esta observação foi marcada como spam e não está mais visível ao público. Você pode visualizá-la porque a criou, ou por que é um curador. Se você acredita que houve um engano, por favor <a href="mailto:%{help_email}" class="contact">nos contate</a>.
