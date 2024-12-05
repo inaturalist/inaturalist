@@ -6645,58 +6645,6 @@ de:
           die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
           Beobachtung im Projekt zu sehen und impliziert, dass du
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
-        quality_assessment_help4_html: |
-          <p>Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
-          </p>
-
-          <ul>
-          <li>die Beobachtung <strong>ein Datum hat</strong></li>
-          <li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. Lat/Lon-Koordinaten enthält)</li>
-          <li>die Beobachtung <strong>Bilder oder Tonaufnahmen enthält</strong></li>
-          <li>die Beobachtung <strong>nicht den Menschen (Homo sapiens) als ID hat</strong></li>
-          </ul>
-          <p>
-          Beobachtungen erreichen <strong>"Forschungsqualität"</strong>, wenn
-          </p>
-          <ul>
-          <li>
-          die %{site_name}<strong>-Community der Bestimmung (ID) auf (Unter-)Artniveau zustimmt</strong>, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
-          </li>
-          </ul>
-          <p>
-          Beobachtungen erhalten <strong>"Hobbyqualität"</strong>-Status, falls die oben angeführten Bedingungen nicht erfüllt werden, oder die Community dahingehend übereinstimmt, dass
-          </p>
-          <ul>
-          <li>
-          der <strong>Standort als nicht korrekt erscheint</strong> (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
-          </li>
-          <li>
-          das Lebewesen <strong>nicht wild/verwildert ist</strong> (z.B. angepflanzt oder in menschlicher Haltung)
-          </li>
-          <li>
-          die Beobachtung <strong>keine Hinweise auf einen Organismus zeigt</strong>, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
-          </li>
-          <li>
-          die Beobachtung <strong>kein rezenter Nachweis (~100 Jahre) des lebenden Organismus ist</strong> (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
-          </li>
-          <li>
-          die Beobachtung <strong>mehr als ein Foto hat, und nicht alle das gleiche Subjekt zeigen</strong> (z.B. unterschiedliche Arten in den einzelnen Fotos einer Beobachtung). Unterstützende Habitataufnamen assoziiert mit einer Art sind aber in Ordnung)
-           </li>
-          <li>
-          die Beobachtung markiert wurde als 'ID bereits so gut wie möglich' <em>und</em> die Community-ID auf Familenniveau oder höher ist
-          </li>
-          <li>
-          der Beobachter aus der "Community-ID" ausgetreten ist und die Community mehrheitlich dem vom Beobachter bestimmten Taxon widerspricht
-          </li>
-          </ul>
-          <p>
-          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System ein Wörtchen mitreden darf:
-          </p>
-          <ul>
-          <li>
-          Das System ist so eingestellt, dass eine Beobachtung automatisch als 'nicht wild/verwildert' eingestuft wird, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als 'nicht wild/verwildert' markiert wurden.
-          </li>
-          </ul>
         score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
         observation_flagged_notice_html: |
           Diese Beobachtung ist als Spam gemeldet worden und ist nicht mehr
