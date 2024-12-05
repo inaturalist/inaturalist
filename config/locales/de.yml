@@ -33,6 +33,9 @@ de:
     one: '<span class="count">%{count}</span> Bestimmer'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Bestimmer'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID für andere erstellt'
+    other: '<span class="count">%{count}</span> IDs für andere User'
   x_languages:
     one: "%{count} Sprache"
     other: "%{count} Sprachen"
@@ -263,6 +266,8 @@ de:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Aufzählungsliste hinzufügen
   add_a_comment: Kommentar hinzufügen
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Gefährdungsstatus hinzufügen
   add_a_field: Feld hinzufügen
   add_a_flag: Jetzt melden
   #Tool tip for a button that adds a link to a text area
@@ -600,9 +605,27 @@ de:
   anyone: Alle
   app_owner_application_explanation_required: |
     Du musst eine detailliertere Erklärung geben, was du bauen möchtest.
+  app_owner_application_about_p1a_html: |
+    iNaturalist apps allow authenticated use of the iNaturalist API. This
+    allows you to make API calls that do things like create observations or
+    identifications. Usual use cases are apps such as desktop apps or mobile
+    apps that include functionality for their user(s) to create iNaturalist
+    observations. This content must be generated with real human involvement
+    or oversight. Please read our <a href="/pages/community+guidelines"
+    target="_blank">Community Guidelines</a> prohibiting machine-generated
+    observations, identifications, and comments for more details.
+  app_owner_application_about_p2_html: |
+    As of 2022 we are requiring manual approval for users wishing to make API clients.
+    In order to create third-party apps, you must first submit an application to become
+    an "app owner." This application should describe the functionality of your proposed app
+    and how you plan to use it. In order to submit an application your account must be at
+    least 2 months old and must have made at least 10 <a href="/pages/help#identification"
+    target="_blank">improving identifications</a> in the last month. We may ask follow-up
+    questions about your plan and we reserve the right to turn down applications for any reason.
   app_owner_application_inelligible: |
     Um eine App einzureichen, musst du seit mindestens 2 Monaten ein Benutzerkonto haben, mit dem du im letzten Monat mindestens 10 verbessernde IDs beigetragen hast.
   app_owner_application_fields_explanation_html: Beschreibe die Funktionalität, die deine Anwendung haben wird und wie du sie nutzen möchtest.
+  app_owner_application_success: App owner application submitted
   #An app or service the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   application: Anwendungssoftware
@@ -613,6 +636,7 @@ de:
   #Button label and section header when submitting a form to request to be a
   #curator
   apply_curator: Beantragen
+  apply_to_be_an_app_owner: Apply to be an App Owner
   apply_to_create_applications_title: Anwenden, um Anwendungen zu erstellen
   apply_to_selected: Für Ausgewählte übernehmen
   apply_captive_cultivated: "In Haltung/kultiviert anwenden"
@@ -627,6 +651,9 @@ de:
   are_you_really_sure_want_delete_this_user: Bist du wirklich, wirklich sicher, dass du diesen Benutzer samt all seiner Inhalte löschen möchtest?
   are_you_sure?: Bist du sicher?
   are_you_sure_no_undo: Bist du sicher? Diese Aktion kann nicht rückgängig gemacht werden.
+  are_you_sure_delete_conservation_status: |
+    Are you sure you want to delete this conservation status? This may change
+    the obscuration of observations of this taxon and taxa within it.
   are_you_sure_delete_post: Bist du sicher, dass du diesen Beitrag löschen möchtest?
   are_you_sure_delete_taxon_move_associates: "Soll %{taxonname} (%{taxonid}) wirklich gelöscht werden und alle seine Verknüpfungen verschoben werden?"
   are_you_sure_delete_this_place: Bist du sicher, dass du diesen Ort löschen willst?
@@ -730,13 +757,21 @@ de:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Mit PKCE autorisieren
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Use <code>%{code_challenge}</code> as the
+    <code>%{code_verifier_param}</code>) Note: this is a basic example. In production code,
+    you MUST use <code>%{code_challenge_method}</code> and correctly hash
+    the <code>%{code_challenge_param}</code>.
   authorize_permissions_from_provider: "Berechtigungen von %{provider} zulassen"
   automatic_short: Auto
   automatically_add_observations_to_this_project: Automatisch Beobachtungen zu diesem Projekt hinzufügen
   automatically_update_my_content_for_taxon_changes: Automatisch meine Inhalte bei Taxonänderungen aktualisieren
   #Abbreviation of "average," i.e. the sum of all values divided by the numer
   #of values, and not a synonym of "typical" or "normal"
-  avg: Mittl.
+  avg: Ø
   back: Zurück
   back_to_applications: "&laquo; Zurück zu den Anwendungen"
   back_to_all_species: Zurück zu Alle Arten
@@ -770,6 +805,7 @@ de:
   back_to_your_observations: Zurück zu deinen Beobachtungen
   back_to_your_profile: Zurück zu deinem Profil
   badges: Abzeichen
+  base_map_copyright_openstreetmap_html: Base map © %{startTag}OpenStreetMap%{endTag}
   based_on_the_evidence_can_id_be_improved: |
     Kann die Community-ID anhand der vorhandenen Belege noch weiter verbessert werden?
   batch: Batch
@@ -819,6 +855,7 @@ de:
   by_you: Von dir
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalender zeigen nur %{x} Beobachtungen auf einmal
+  callback_url: Callback-URL
   cancel: Abbrechen
   cant_edit_or_delete_hidden_content: Du kannst keine Inhalte bearbeiten oder löschen, die von Kuratoren versteckt wurden
   cant_flag_an_object_that_doesnt_exist: Nicht vorhandenes Objekt kann nicht gemeldet werden.
@@ -1069,9 +1106,9 @@ de:
     Inhalt von %{user} am %{date} versteckt aufgrund von: "%{reason}"
   content_type: Inhaltstyp
   user_hid_this_item_because_reason_html: |
-    %{user} versteckte %{item} weil "%{reason}"
+    %{user} hid this %{item} because "%{reason}"
   user_unhid_this_item_because_reason_html: |
-    %{user} machte %{item} wieder öffentlich wegen "%{reason}"
+    %{user} unhid this %{item} because "%{reason}"
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
@@ -2299,6 +2336,8 @@ de:
   last_seen: Zuletzt gesehen
   last_year: Letztes Jahr
   lat: Breite
+  #shorthand for Latitude/Longitude to be used as a label when there is minimal space for text
+  latlon: Lat/Lon
   latitude: Breitengrad
   latitude_in_decimals: 'Geografische Breite in Dezimalgrad, z.B. 38.123'
   latitude_slash_y_coord_slash_northing: Breitengrad/ y-Koordinate/ Hochwert
@@ -2550,6 +2589,7 @@ de:
     lv: Lettisch
     mi: Maori
     mk: Mazedonisch
+    ml: Malayalam
     mr: Marathi
     nb: Norwegisch (Bokmål)
     nl: Niederländisch
@@ -2564,6 +2604,7 @@ de:
     sq: Albanisch
     sr: Serbisch
     sv: Schwedisch
+    ta: Tamilisch
     th: Thailändisch
     tr: Türkisch
     uk: Ukrainisch
@@ -2624,6 +2665,7 @@ de:
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
   make_this_your_default_license: "Zu deiner Standard-%{type}-Lizenz machen"
   make_this_the_primary_listing: "Dies zur primären Auflistung machen"
+  make_your_app_confidential: Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the PKCE flow
   mammals: Säugetiere
   manage_all_your_subscriptions: Alle deine Abos verwalten
   manage_names: Namen verwalten
@@ -2937,9 +2979,9 @@ de:
   new_users: Neue Benutzer
   new_users_in_year: "Neue Benutzer in %{year}"
   new_users_w_7_obs: Neue Benutzer mit 7 Beobachtungen
-  newly_added: Kürzlich hinzugefügt
+  newly_added: Neu hinzugefügt
   newly_added_species: Kürzlich hinzugefügte Arten
-  newly_observed_species: Kürzlich beobachtete Arten
+  newly_observed_species: Neu beobachtete Arten
   newly_observed_species_in_year: "Neu hinzugefügte Arten in %{year}"
   next: Weiter
   next_date_short: Weiter
@@ -4540,6 +4582,8 @@ de:
   share_colon: "Teilen:"
   short_code_for_this_place: Kürzel für diesen Ort, z.B. US für Vereinigte Staaten
   short_or_abbreviated_title_for_display: Kurztitel oder Abkürzung für eine Anzeige mit limitiertem Platz. Maximal 10 Zeichen.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: Soll dieser Trivialname standardmäßig für dieses Taxon angezeigt werden?
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_hidden_content: Ausgeblendeten Inhalt anzeigen
@@ -4633,6 +4677,8 @@ de:
     Das %{start_tag_network}iNaturalist-Netzwerk%{end_tag_network} ist eine
     Sammlung von regionalen Websites innerhalb der %{start_tag_global}globalen
     iNaturalist-Community%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    Das %{start_tag_network}iNaturalist-Netzwerk%{end_tag_network} bietet regionale Erfahrungen innerhalb der %{start_tag_global}globalen iNaturalist-Community%{end_tag_global} an.
   sites_affiliation_overview_when_you_affiliate: |
     Wenn du einem Mitglied des iNaturalist-Netzwerkes beitrittst, werden deine E-Mail-Adresse
     sowie die konkreten Standorte deiner verdeckten und privaten Beobachtungen mit der Netzwerk-Organisation geteilt. Dadurch können deine Beobachtungen wertvoller für lokale Naturschutzmaßnahmen werden. Wenn du in einem Land lebst oder es häufig besuchst, welches Mitglied des Netzwerks ist, kannst du die Mitgliedschaft wählen, um zur Erleichterung des Datenaustauschs beizutragen.
@@ -4641,11 +4687,19 @@ de:
   sites_affiliation_title: Erfahre mehr über die Netzwerk-Zugehörigkeit
   sites_network_agreements_html: |
     iNaturalist hat formelle Vereinbarungen mit Organisationen in jedem dieser Länder, um die Nutzung der iNaturalist-Plattform zu unterstützen. <strong>Wenn Ihre Organisation daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, finden Sie weitere Informationen %{start_tag_join}here%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist hat formelle Vereinbarungen mit Organisationen in jedem dieser Länder, um die Nutzung der iNaturalist-Plattform zu unterstützen. Seit 2024 bieten wie einen einfachen Zugang zu Netzwerk-Partnerschaften an. <strong>Wenn Ihre Organisation daran interessiert ist, dem iNaturalist-Netzwerk beizutreten, finden Sie weitere Informationen %{start_tag_join}here%{end_tag_join}.</strong>
   sites_network_consists_of: "Das iNaturalist-Netzwerk besteht aus mehreren Organisationen:"
   sites_network_inaturalist_network_collection: |
     Das iNaturalist-Netwerk ist eine Sammlung von regionalen Websites, die vollständig
     mit der globalen iNaturalist-Community verbunden sind. Netzwerk-Standorte werden
     von lokalen Institutionen unterstützt, die die lokale Nutzung fördern und die Verwendung von Daten
+    von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
+    Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
+    verborgen sind, um bedrohte Arten besser zu schützen.
+  sites_network_inaturalist_network_collection2: |
+    Das iNaturalist-Netwerk bietet für User eine regionale Erfahrung an, ist aber vollständig
+    mit der globalen iNaturalist-Community verbunden. Netzwerk-Mitglieder sind lokale Institutionen, die die lokale Nutzung fördern und die Verwendung von Daten
     von iNaturalist zum Nutzen der örtlichen Biodiversität erleichtern. Sie haben Zugang zu echten
     Koordinaten innerhalb ihrer geografischen Gebieten, die automatisch vor der Öffentlichkeit
     verborgen sind, um bedrohte Arten besser zu schützen.
@@ -5490,6 +5544,7 @@ de:
   user_trusts_you_with_their_private_coordinates: "%{user} vertraut Dir seine/ihre verborgenen Koordinaten an"
   user_trusts_you_with_their_private_coordinates_desc: |
     Der Beobachter hat dir die verborgenen Koordinaten all seiner Beobachtungen anvertraut.
+  user_updated_an_observation_field_html: 'Von %{user} wurde ein Wert für "%{field_name}" zu einer Beobachtung von %{owner} aktualisiert'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schrieb,
   username: Benutzername
   username_description: Dies ist der Benutzername um dich anzumelden und mit dem dich andere Nutzer bei iNaturalist identifizieren können.
@@ -6590,58 +6645,6 @@ de:
           die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
           Beobachtung im Projekt zu sehen und impliziert, dass du
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
-        quality_assessment_help3_html: |
-          <p>Die Beurteilung der Datenqualität fasst bestimmte Angaben einer Beobachtung zusammen. Alle Beobachtungen starten zunächst als <strong>"Hobbyqualität"</strong> und erhalten dann den Status <strong>"benötigt ID"</strong>, falls
-          </p>
-
-          <ul>
-          <li>die Beobachtung <strong>ein Datum hat</strong></li>
-          <li>die Beobachtung <strong>georeferenziert ist</strong> (d.h. Lat/Lon-Koordinaten enthält)</li>
-          <li>die Beobachtung <strong>Bilder oder Tonaufnahmen enthält</strong></li>
-          <li>die Beobachtung <strong>nicht die ID 'Mensch' (Homo sapiens) hat</strong></li>
-          </ul>
-          <p>
-          Beobachtungen erreichen <strong>"Forschungsqualität"</strong>, wenn
-          </p>
-          <ul>
-          <li>
-          die %{site_name}<strong>-Community der Bestimmung (ID) auf (Unter-)Artniveau zustimmt</strong>, d.h. wenn mehr als 2/3 der Bestimmer übereinstimmend ein Taxon gewählt haben. Falls die Mehrheit votiert hat, dass die 'Community-ID' nicht weiter verbessert werden kann, erhalten auch Beobachtungen bis hin zum Level einer Unterfamilie Forschungsqualität.
-          </li>
-          </ul>
-          <p>
-          Beobachtungen erhalten <strong>"Hobbyqualität"</strong>-Status, falls die oben angeführten Bedingungen nicht erfüllt werden, oder die Community dahingehend übereinstimmt, dass
-          </p>
-          <ul>
-          <li>
-          der <strong>Standort als nicht korrekt erscheint</strong> (z.B. Frösche in der Mitte des Ozeans, Nilpferde in Bürogebäuden usw.)
-          </li>
-          <li>
-          der Organismus <strong>nicht wild/verwildert ist</strong> (z.B. angepflanzt oder in menschlicher Haltung)
-          </li>
-          <li>
-          die Beobachtung <strong>keine Hinweise auf einen Organismus zeigt</strong>, z.B. Aufnahmen von Landschaft, Wasser, Steinen etc.
-          </li>
-          <li>
-          die Beobachtung <strong>keine rezente (~100 Jahre) Evidenz des lebenden Organismus aufweist</strong> (z.B. Fossilien). Spuren, Kot und abgestorbene Blätter sind jedoch in Ordnung.
-          </li>
-          <li>
-          die Beobachtung <strong>nicht nur Fotos in Bezug auf ein bestimmtes Subjekt enthält</strong> (z.B. unterschiedliche Arten in den einzelnen Fotos einer Beobachtung. Unterstützende Habitataufnamen assoziiert mit einer Art sind aber in Ordnung)
-          </li>
-          <li>
-          die Beobachtung markiert wurde als 'ID bereits so gut wie möglich' <em>und</em> die Community-ID auf Familenniveau oder höher ist
-          </li>
-          <li>
-          der Beobachter aus der "Community-ID" ausgetreten ist und die Community mehrheitlich dem vom Beobachter bestimmten Taxon widerspricht
-          </li>
-          </ul>
-          <p>
-          Und als ob das nicht schon kompliziert genug ist, gibt es auch Situationen, in denen das System ein Wörtchen mitreden darf:
-          </p>
-          <ul>
-          <li>
-          Das System ist so eingestellt, dass eine Beobachtung automatisch als nicht wild/verwildert eingestuft wird, wenn es auf Bezirks-, Landes- oder Staatsebene (die kleinste Einheit zählt dabei) mindestens 10 andere Beobachtungen auf Gattungniveau oder niedriger gibt, und mindestens 80% dieser Beobachtungen als nicht wild/verwildert markiert wurden.
-          </li>
-          </ul>
         score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
         observation_flagged_notice_html: |
           Diese Beobachtung ist als Spam gemeldet worden und ist nicht mehr
@@ -6796,6 +6799,29 @@ de:
           Wir haben unten Links zu den betroffenen Fotos angegeben.
       user_parent_confirmation:
         subject: Das iNaturalist-Konto deines Kindes wurde aktiviert
+        content_html: |
+          <p>
+           Danke, dass du ein iNaturalist-Konto für dein Kind erstellt hast! Das
+           Konto wurde aktiviert. Hier sind die Details von dir, die wir
+           gespeichert haben:
+          </p>
+          <ul>
+           <li><strong>Name des Elternteils oder erziehungsberechtigten Person:</strong> %{parent_name}</li>
+           <li><strong>E-Mail des Elternteils oder erziehungsberechtigten Person:</strong> %{parent_email}</li>
+           <li><strong>Name des Kindes:</strong> %{child_name}</li>
+           <li><strong>Geburtstag des Kindes:</strong> %{child_birthday}</li>
+           <li><strong>E-Mail des Kontos des Kindes:</strong> %{child_email}</li>
+           <li><strong>Anmeldename des Kontos des Kindes:</strong> %{child_username}</li>
+          </ul>
+          <p>
+           Bitte logge dich über die Seek-App deines Kindes in das Konto ein,
+           indem du den "iNaturalist"-Knopf im Menü und dann den 
+           "Einloggen mit iNaturalist"-Knopf am unteren Rand des Bildschirms drückst.
+          </p>
+          <p>
+           Dein Kind wird dann in der Lage sein, Beobachtungen in seinem iNaturalist-Konto
+           zu posten, indem es die Seek-App nutzt und so nach inaturalist.org gesendet werden.
+          </p>
       users_updates_suspended:
         message: |
           Du warst eine ganze Weile nicht mehr aktiv auf %{site_name}, daher haben wir deine Abonnements ausgesetzt. Wenn du wieder Updates von Aktivitäten auf der Webseite erhalten möchtest, bitte <a href="%{login_url}">logge dich wiederin dein Konto ein</a>.
@@ -7070,6 +7096,17 @@ de:
           name_already_taken: Projektname bereits vergeben
           cannot_have_more_than_x_project_rules: Nicht mehr als %{x} Projektregeln zugelassen
           summary_is_required: Projektzusammenfassung ist erforderlich
+      project_location_privacy_notice_html: |
+        <p>
+         Bitte denke daran, dass Projekt-Kuratoren in der Lage sein werden, private oder 
+         versteckte Standorte deiner Beobachtungen in diesem Projekt zu sehen, es sei denn, 
+         du widersprichtst dieser Erlaubnis. Außerdem werden sie in der Lage sein, jede deiner 
+         Beobachtungen zu diesem Projekt hinzuzufügen, es sei denn du <a href="/users/edit">änderst
+         deine Einstellungen</a>. Du kannst die Erlaubnis, Beobachtungen zu Projekten hinzuzufügen, auch von Fall zu Fall gewähren oder entziehen.
+        </p>
+        <p>
+         Wenn du dir Sorgen um deine Standort-Privatsphäre machst, solltest du Projekten nur beitreten, wenn du den Projektkuratoren vertraust.
+        </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, aber nur, wenn ich die Beobachtung dem Projekt selbst hinzufüge.
         any: Ja, egal wer die Beobachtung dem Projekt hinzufügt.
@@ -7265,13 +7302,13 @@ de:
         recurring: Wiederkehrend
         species_per_year: Arten / Jahr
         species_per_year_by_date_added: im jewlg. Jahr hinzugefügt
-        species_per_year_by_date_observed: Nach Beobachtungsdatum
+        species_per_year_by_date_observed: nach Beobachtungsdatum
         stats_generated_datetime: Statistiken generiert am %{datetime}
         stats_generation_schedule: Statistiken werden jeden Sonntag im Dezember und am 1. Januar erstellt
         store_prompt: |
           Willst du deine iNat-Zugehörigkeit überall mit Stolz zeigen? Dann schau dir den iNat-Store an!
         sunburst_desc_html: |
-          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis beginnt mit 'Lebewesen' ist im Zentrum, und endet schließlich auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, blau für die meisten anderen Tiere, etc.), d. h. wenn viel Grün im Diagramm zu sehen ist, hast du viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon ins Zentrum zu setzen</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie wieder zurück zu gehen</strong>.
+          Beobachtete Taxa sind in einem hierarchischen 'Sonnenstrahlen'-Diagramm angeordnet. Die Basis beginnt mit 'Lebewesen' im Zentrum, und endet schließlich auf Artlevel an den äußeren Rändern. Die Größe eines jeden Kreissegments is proportional zur Anzahl an Beobachtungen in diesem Taxon, und die Farben entsprechen ungefähr denen unserer Taxon-Hauptkategorien (grün für Pflanzen, orange für Insekten, blau für die meisten anderen Tiere, etc.), d.h. wenn viel Grün im Diagramm zu sehen ist, hast du viele Pflanzen beobachtet. <strong>Klicke auf ein Segment, um dieses Taxon ins Zentrum zu setzen</strong> und seine Untergruppen drumherum anzuordnen, oder <strong>klicke ins Zentrum, um in der Hierarchie wieder zurück zu gehen</strong>.
         translators_title: Übersetzer
         translators_desc: |
           Wusstest du, dass iNaturalist in %{x_languages} übersetzt wurde und dies fast ausschließlich von %{x_people} (von denen einige nicht einmal iNat verwenden)? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
@@ -7405,7 +7442,7 @@ de:
           </li>
           <li>
           <p>
-          Neue Lexika sollen immer einen englischen Namen haben. Bitte füge keine übersetzten Sprachnamen wie "French, Français" hinzu, da es sonst schwierig oder unmöglich wirdt, lokalisierte Namen für Benutzer anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
+          Neue Lexika sollen immer einen englischen Namen haben. Bitte füge keine übersetzten Sprachnamen wie "French, Français" hinzu, da es sonst schwierig oder unmöglich wird, lokalisierte Namen für Benutzer anzuzeigen, die die Website in verschiedenen Sprachen nutzen.
           </p>
           </li>
           <li>
@@ -8077,7 +8114,7 @@ de:
         #Boolean attribute determining whether users can add, remove, or
         #re-order photos of this taxon
         photos_locked: Fotos gesperrt?
-        rank: Rang
+        rank: Taxonomischer Rang
         rank_level: Rangstufe
         source_id: Quellen-ID
         source_identifier: Quellbezeichner

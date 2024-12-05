@@ -6739,62 +6739,6 @@ it:
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help3_html: |
-          <p>
-          La valutazione della qualità dei dati è un riassunto dell'accuratezza di un osservazione. Tutte le osservazioni
-          iniziano ad un livello <strong>"casuale"</strong>, e diventano
-          <strong>"serve ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>l'osservazione <strong>ha una data</strong></li>
-          <li>l'osservazione <strong>è georeferenziata</strong> (i.e. ha coordinate lat/lon)</li>
-          <li>l'osservazione <strong>ha foto o suoni</strong></li>
-          <li>l'osservazione <strong>non è un umano</strong></li>
-          </ul>
-          <p>
-          Le osservazioni diventano <strong>"livello ricerca"</strong> quando
-          </p>
-          <ul>
-          <li>
-          la %{site_name} <strong>comunità è d'accordo sulla ID a livello di specie o inferiore</strong>, i.e. quando più dei 2/3 di identificatori è d'accordo su un taxon (se la comunità ha votato che il Taxon della Comunità non può essere più affinato, questo torna a livello della ID della sotto-famiglia o inferiore)
-          </li>
-          </ul>
-          <p>
-          Le osservazioni tornano a <strong>"casuale"</strong> se non sono soddisfatte le condizioni qui sopra o la comunità è d'accordo che
-          </p>
-          <ul>
-          <li>
-          la <strong>località non pare accurata</strong> (ad esempio scimmie in mezzo all'oceano,
-          ippopotami negli edifici per uffici, ecc.)
-          </li>
-          <li>
-          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio in cattività o coltivato dall'uomo)
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove di un organismo</strong>, per esempio. immagini di giochi d'acqua, rocce, paesaggi che non includono l'organismo, ecc.
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove recenti (~ 100 anni) dell'organismo</strong> (ad esempio fossili, ma tracce, escrementi e foglie morte sono ok)
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove relative a un soggetto</strong> (ad esempio, contiene quattro foto di organismi non correlati. Una foto che mostra l'habitat del soggetto dell'osservazione va bene.)
-          </li>
-          <li>
-          l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a livello di famiglia o sopra
-          </li>
-          <li>
-          l'osservatore ha rinunciato all'ID della comunità e la ID della comunità per il taxon non è un antenato o un discendente del taxon associato con l'ID dell'osservatore
-          </li>
-          </ul>
-          <p>
-          E se ciò non fosse abbastanza complicato, ci sono anche situazioni in cui il sistema ottiene un voto:</p>
-          <ul>
-          <li>
-          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se ci sono almeno altre 10 osservazioni di un genere o inferiore
-          il più piccolo luogo equivalente a una contea, uno stato o un paese contiene questa osservazione e l'80% o più di tali osservazioni sono stati contrassegnate come non selvatiche/naturalizzate.
-          </li>
-          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore

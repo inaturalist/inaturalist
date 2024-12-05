@@ -6444,58 +6444,6 @@ ca:
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
-        quality_assessment_help3_html: |
-          <p>
-          L'avaluació de la qualitat de les dades és un resum de la precisió d'una observació. Totes les observacions comencen com a nota <strong>"casual"</strong> i es converteixen en <strong>"necessita identificació"</strong> quan</p>
-
-          <ul>
-          <li>l'observació <strong>té data</strong></li>
-          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té coordenades lat/lon)</li>
-          <li>l'observació <strong>té fotos o sons</strong></li>
-          <li>l'observació <strong>no és d'un ésser humà</strong></li>
-          </ul>
-          <p>
-          Les observacions es converteixen en <strong>"qualificació de recerca"</strong> quan
-          </p>
-          <ul>
-          <li>
-          la %{site_name} <strong>comunitat està d'acord amb un identificador a escala d'espècie o inferior</strong>, és a dir, quan més de 2/3 dels identificadors estan d'acord en un tàxon (si la comunitat ha votat que el tàxon comunitari ja no es pot millorar , això torna a l'identificador de nivell de subfamília o inferior)
-          </li>
-          </ul>
-          <p>
-          Les observacions tornaran a ser <strong>"casuals"</strong> si no es compleixen les condicions anteriors o la comunitat hi està d'acord
-          </p>
-          <ul>
-          <li>
-          la <strong>ubicació no sembla precisa</strong> (p. ex., micos al mig de l'oceà, hipopòtams a edificis d'oficines, etc.)
-          </li>
-          <li>
-          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o cultivat per humans)
-          </li>
-          <li>
-          l'observació <strong>no presenta proves d'un organisme</strong>, p. imatges d'elements d'aigua, roques, paisatges que no inclouen l'organisme, etc.
-          </li>
-          <li>
-          l'observació <strong>no presenta proves recents (~100 anys) de l'organisme</strong> (per exemple, fòssils, però les petjades, els excrements i les fulles mortes estan bé)
-          </li>
-          <li>
-          l'observació <strong>no presenta proves relacionades amb el mateix tema</strong> (p. ex., té quatre fotos d'organismes no relacionats. Una foto que mostri l'hàbitat del subjecte de l'observació està bé.)
-          </li>
-          <li>
-          l'observació ja no necessita un identificador <em>i</em> l'identificador de la comunitat és de la família o superior
-          </li>
-          <li>
-          l'observador ha desactivat l'identificador de comunitat i el tàxon d'identificació de comunitat no és un avantpassat o descendent del tàxon associat amb l'identificador de l'observador
-          </li>
-          </ul>
-          <p>
-          I per si això no fos prou complicat, també hi ha situacions en què el sistema obté un vot:
-          </p>
-          <ul>
-          <li>
-          El sistema votarà que l'observació no és salvatge/naturalitzada si hi ha almenys 10 observacions més d'un gènere o inferior al lloc més petit equivalent al comtat, estat o país que conté aquesta observació i el 80% o més d'aquestes observacions s'han marcat com a no salvatges/naturalitzades.
-          </li>
-          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 

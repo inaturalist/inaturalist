@@ -33,6 +33,9 @@ fr:
     one: '<span class="count">%{count}</span> identificateur'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> Identificateurs'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID fait pour d''autres'
+    other: '<span class="count">%{count}</span> ID faites pour d''autres'
   x_languages:
     one: "%{count} langue"
     other: "%{count} langues"
@@ -1241,7 +1244,10 @@ fr:
     gall: Excroissance d'un tissu végétal causée par un parasite
     male: Les informations indiquent que l'organisme peut produire du sperme pour la reproduction sexuelle
     molt: Dépouille ou exosquelette abandonné
+    leafmine: Preuve de nourrissage entre les couches épidermiques d'une feuille
+    hair: Poil qui n'est plus attaché sur l'organisme dont il provient
     egg: Œuf entier ou partie d'un œuf
+    construction: Quelque chose créé par un animal, fabriqué avec ou creusé dans d'autres matériaux
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     no_flowers_or_fruits: Aucune fleur, fruit ou graine (en tout ou partie) n’est visible
     organism: Tout ou partie d'un organisme
@@ -8681,6 +8687,13 @@ fr:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: doit être valide pour l'emplacement spécifié
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: doit être valide pour le groupe cible spécifié
         application:
           attributes:
             redirect_uri:
