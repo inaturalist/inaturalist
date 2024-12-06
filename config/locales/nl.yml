@@ -6965,6 +6965,21 @@ nl:
           deelt gelicenseerde "Onderzoekskwaliteit" waarnemingen met een aantal gegevenspartners
           voor gebruik in de wetenschap en natuurbehoud.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          de <strong>lokatie lijkt niet nauwkeurig</strong> (bijvoorbeeld apen midden in de oceaan, nijlpaarden in kantoorgebouwen, enzovoort)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          de waarneming <strong>toont geen bewijs van een
+          organism</strong>, bijvoorbeeld afbeeldingen van waterfuncties, rotsen, landschappen
+          die het organisme niet bevatten, enz.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          de waarneming heeft niet langer een ID <em>en</em> de community ID
+          is op familieniveau of hoger
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          de waarnemer heeft zich afgemeld voor het gemeenschapsID en het gemeenschapstaxon is geen voorouder of nakomeling van het taxon geassocieerd met het ID van de waarnemer.
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
           Sommige van deze foto's zijn gemeld wegens ongepaste inhoud of
