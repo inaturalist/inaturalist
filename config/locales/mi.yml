@@ -86,11 +86,14 @@ mi:
   add_taxa: Tāpiri ngā rōpū
   add_to_a_project: Tāpiri ki tētahi kohinga
   add_to_calendar: Tāpiri ki te maramataka
+  add_to_favorites: Tapiri ki āu tino mauhanga
   add_to_list: Tāpiri ki te rārangi
   add_to_project: Tāpiri ki te kohinga
   added: Kua tāpiritia
   added!: Kua tāpiritia!
   added_by: I tāpiri nā
+  added_to_favorites_html: |
+    Kua tapiri ki āu <a href="%{url}">tino mauhanga</a>
   adding: "E tāpiri ana..."
   agree_: Whakaae
   agree?: Whakaae?
@@ -180,6 +183,7 @@ mi:
   any_reviewed: Katoa
   #Label for an option to show/include content by any user
   any_user: Katoa
+  appropriate?: He tika?
   arachnids: pūngāwerewere
   asc: Piki
   ascending: Whakapiki
@@ -338,6 +342,7 @@ mi:
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
   curators: Kairauhī
   dashboard: Paemana
+  date_: Rā
   date_added: Rā tapiritia
   date_created: Rā waihanga
   date_format:
@@ -469,6 +474,7 @@ mi:
   facebook: Pukamata
   'false': 'Teka'
   Family: Whānau
+  favorites: "Tino mauhanga"
   file: Kōnae
   file_size: Rahi kōnae
   #The name of a computer file
@@ -521,6 +527,7 @@ mi:
   #Text for a button to follow updates from a specific user
   follow_user: "Aruhia a %{user}"
   followers: Kiriaru
+  following: E whai ana
   forgot_your_password: Kua warewarehia tō kupuhipa?
   forum: Wānanga
   full_screen: Mata katoa
@@ -540,6 +547,7 @@ mi:
   has_sounds: Whai oro
   header_your_observations: Āu mauhanga
   header_your_calendar: Tāu maramataka
+  header_your_favorites: Āu tino mauhanga
   header_your_lists: Āu tūtira
   header_your_identifications: Āu tautuhi
   header_your_projects: Āu kohinga
@@ -552,6 +560,7 @@ mi:
   #Verb, usually a button to hide an interface element
   hide: Huna
   high: Tiketike
+  home: Kāinga
   id_withdrawn: Kua maunuhia te tautuhi
   identify: Tautuhitia
   identify_title: "Tautuhitia"
@@ -566,6 +575,7 @@ mi:
   identification_withdrawn: Kua maunu te tautuhi
   identifications: Tautuhi
   identifiers: Ngā kaitautuhi
+  ids: "Tautuhi"
   ignore_and_continue: Waiho me haere tonu
   ignore_times: Waihotia ngā wā
   import: Kawe mai
@@ -731,6 +741,8 @@ mi:
   'no': 'Kāo'
   no_but_it_is_a_member_of_taxon: "Kāo, engari he huānga i %{taxon}"
   no_comments_yet: E kore ngā kōrero anō
+  no_favorites_added:
+    user: "Kaore a %{user} i tapiri ētahi tino mauhanga"
   no_license_all_rights_reserved: Raihana kore (kua rāhuitia ngā mōtika katoa)
   no_members_yet: "E kore ngā huānga anō"
   no_messages_yet: E kore ngā karere anō
@@ -1006,6 +1018,7 @@ mi:
   profile: Kīwhaiaro
   profile_picture: Atawhaiaro
   project: Kohinga
+  project_home: Kāinga kohinga
   project_list_defaults:
     description: Tūtira momo mō %{owner_name}
   project_start_time_datetime: "Wā tīmatanga: %{datetime}"
@@ -1197,6 +1210,7 @@ mi:
   start_date_time: Rā/Wā tīmatanga
   stats: Tauanga
   stats_for_this_year_have_not_been_generated: Kāore anō kia tatauhia ngā tauanga mō tēnei tau
+  stop_following_user: "Kati e whai ana a %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
   store: Toa
@@ -1305,6 +1319,7 @@ mi:
   username: Ingoa rorohiko
   username_or_email: Ingoa rorohiko rānei, īmera rānei
   users: Kaiwhakamahi
+  users_favorites: "Ngā tino mauhanga o %{user}"
   users_journal: "Rangitaki tō a %{user}"
   users_lists: "Tūtira ō %{user}"
   users_profile: "Kīwhaiaro tō %{user}"
@@ -1373,6 +1388,8 @@ mi:
   you_are_subscribed_to_observations_from_this_place: Kua ohauru koe ki kōrero i runga i te wāhi nei
   you_have_not_confirmed_your_email_address: Kāore koe i whakamanahia tāku wāhitau īmēra!
   your_email_address: Tōu īmēra
+  your_favorites: Āu tino mauhanga
+  your_home: Toku kāinga
   your_identification: Tāu tautuhi
   your_observations: Āu mauhanga
   your_projects: Āu kohinga
