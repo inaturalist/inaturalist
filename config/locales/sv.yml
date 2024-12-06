@@ -7032,6 +7032,78 @@ sv:
           delar fynd av "Forskningsklass" med ett antal datapartners
           för användning inom vetenskap och naturvård.
         disagreement_count_desc: "Antal bestämda taxa som inte hör till ett taxons föräldrar"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Bedömningen av datakvaliteten är en sammanfattning av fyndets
+          korrekthet. Alla fynd börjar som <strong>"grund"</strong>klass, och
+          blir <strong>"behöver ID"</strong> när
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: fyndet <strong>har ett datum</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: fyndet <strong>är georefererat</strong> (dvs har lat/long-koordinater)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: fyndet <strong>har bilder eller ljud</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: fyndet <strong>inte är av en människa</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Fynd får <strong>"forskningsklass"</strong> när
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name} <strong>-communityn är överens om artbestämning eller
+          lägre</strong>, dvs när mer än 2/3 av bestämmarna kommer överens om ett
+          taxon (om communityn har röstat om att communityns taxon inte längre
+          kan förbättras, återgår detta till underfamiljsbestämning eller lägre)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Fynd kommer att återgå till <strong>"grundklass"</strong> om ovanstående
+          villkor inte är uppfyllda eller om communityn är överens
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          <strong>dag och år ser inte korrekta ut</strong> (t.ex. snö
+          syns i bilden men datumet är på sommaren; bortse från tid på
+          dygnet)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>platsen ser inte riktig ut</strong> (t.ex. apor i
+          mitten av havet, flodhästar i kontorsbyggnader, etc.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismen är inte vild/naturaliserad</strong> (t.ex. i fångenskap
+          eller odlad av människor)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          fyndet <strong>ger inte stöd för en organism</strong>,
+          t.ex. bilder på våtmarker, klippor, landskap som inte
+          inkluderar organismen, etc.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          fyndet <strong>ger inte recent (~100 år) stöd för organismen
+          </strong> (t.ex. fossil, medan spår, avföring och döda löv är ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          fyndet <strong>ger inte stöd för endast en sak</strong> (t.ex. fyra
+          bilder på orelaterade organismer; en bild som visar på organismens
+          livsmiljö är OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          fyndet behöver inte längre bestämmas <em>och</em> communityns
+          bestämning är till familj eller högre
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          observatören har valt bort community-bestämning och community-
+          bestämningens taxon är inte över- eller underliggande det taxon
+          som förknippas med observatörens bestämning
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Och som om det inte var komplicerat nog, finns det också situationer
+          där systemet får en röst:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Systemet kommer att rösta på att fyndet inte är vilt/naturaliserat
+          om det finns minst 10 andra fynd av ett släkte eller lägre i den
+          minsta plats motsvarande län, stat-, eller land som innehåller
+          detta fynd och 80% eller fler av dessa fynd har markerats som
+          inte vilda/naturaliserade.
         identification_count_desc: 'Antal bestämningar för ett enskilt taxon'
         flagged_photos_desc_html: |
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
