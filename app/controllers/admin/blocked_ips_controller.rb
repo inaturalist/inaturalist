@@ -1,7 +1,5 @@
 #frozen_string_literal: true
 
-require "ipaddr"
-
 class Admin
   class BlockedIpsController < ApplicationController
     before_action :authenticate_user!
@@ -23,29 +21,26 @@ class Admin
     end
 
     def block
-      ip = params[:ip]
-      return unless is_ip?( ip )
+      blocked_ip = BlockedIp.find_or_initialize_by( ip: params[:ip] )
 
-      blocked_ip = BlockedIp.find_or_initialize_by( ip: ip )
+      unless blocked_ip.valid?
+        flash[:notice] = "Failed to block IP `#{ip}`: #{blocked_ip.errors.full_messages.to_sentence}"
+        return redirect_back_or_default( action: "index" )
+      end
+
       blocked_ip.update( user: current_user )
-
       Rails.cache.delete( "blocked_ips" )
 
       redirect_to admin_blocked_ips_path( q_ip: params[:q_ip], q_blocked_by: params[:q_blocked_by] )
     end
 
     def unblock
-      ip = params[:ip]
-      blocked_ip = BlockedIp.find_by( ip: ip )
+      blocked_ip = BlockedIp.find_by( ip: params[:ip] )
       blocked_ip&.destroy
 
       Rails.cache.delete( "blocked_ips" )
 
       redirect_to admin_blocked_ips_path( q_ip: params[:q_ip], q_blocked_by: params[:q_blocked_by] )
-    end
-
-    def is_ip?( ip )
-      !!IPAddr.new( ip ) rescue false
     end
   end
 end

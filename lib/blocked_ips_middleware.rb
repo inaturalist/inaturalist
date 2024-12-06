@@ -6,9 +6,9 @@ class BlockedIpsMiddleware
   end
 
   def call( request_env )
-    client_ip = ip_from_request_env( request_env )
+    client_ip = Logstasher.ip_from_request_env( request_env )
     if blocked_ips.include?( client_ip )
-      return [403, { "Content-Type" => "text/plain" }, ["Forbidden"]]
+      return render_error_403_with_haml
     end
 
     @app.call( request_env )
@@ -16,17 +16,19 @@ class BlockedIpsMiddleware
 
   private
 
-  def ip_from_request_env( request_env )
-    request = Rack::Request.new( request_env )
-    %w(HTTP_X_FORWARDED_ORIGINAL_FOR HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR).each do | param |
-      return request_env[param].split( "," ).first unless request_env[param].blank?
-    end
-    request.ip
-  end
-
   def blocked_ips
     Rails.cache.fetch( "blocked_ips", expires_in: 60.minutes ) do
       BlockedIp.pluck( :ip )
     end
+  end
+
+  def render_error_403_with_haml
+    haml_file = Rails.root.join( "app", "views", "errors", "error_403.html.haml" )
+    haml_content = File.read( haml_file )
+
+    engine = Haml::Engine.new( haml_content )
+    html = engine.render
+
+    [403, { "Content-Type" => "text/html" }, [html]]
   end
 end
