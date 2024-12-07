@@ -6747,7 +6747,7 @@ nl:
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
-        <strong>in gevangenschap</strong>? Bevond het zich bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het daar wilden hebben</strong>? Alle waarnemingen van levende wezens zijn welkom, maar we willen graag weten wanneer dingen niet wild / genaturaliseerd zijn.
+        <strong>in gevangenschap</strong>? Bevond het zich bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het daar wilden hebben</strong>? Alle waarnemingen van levende wezens zijn welkom, maar we willen graag weten wanneer dingen niet wild / ingeburgerd zijn.
       compare:
         about_missing_taxa: Over ontbrekende taxa
         about_total_taxa: "Over taxa in totaal"
@@ -6965,14 +6965,50 @@ nl:
           deelt gelicenseerde "Onderzoekskwaliteit" waarnemingen met een aantal gegevenspartners
           voor gebruik in de wetenschap en natuurbehoud.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> wanneer
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: de waarneming <strong>heeft een datum</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: de waarneming <strong>is georeferenced</strong> (d.w.z. heeft lat/lon-coördinaten)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: de waarneming <strong>heeft foto's of geluiden</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: de waarneming <strong>is niet van een mens</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> wanneer
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          de %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
+          </strong>, bijvoorbeeld wanneer meer dan 2/3 van de experts akkoord gaat met het taxon
+          (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
+          onderfamilie-niveau ID of lager)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Waarnemingen zullen teruggaan naar <strong>"onvolledig"</strong> als aan bovenstaande
+          voorwaarden niet is voldaan of als de gemeenschap akkoord gaat
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          de <strong>dag en het jaar zien er niet juist uit</strong> (bv. er is sneeuw
+          op de foto maar de datum is in de zomer; negeer de tijd van de dag)
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           de <strong>lokatie lijkt niet nauwkeurig</strong> (bijvoorbeeld apen midden in de oceaan, nijlpaarden in kantoorgebouwen, enzovoort)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          het <strong>organisme is niet wild/ingeburgerd</strong> (bijvoorbeeld gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_organism_html: |
           de waarneming <strong>toont geen bewijs van een
           organism</strong>, bijvoorbeeld afbeeldingen van waterfuncties, rotsen, landschappen
           die het organisme niet bevatten, enz.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          de waarneming <strong>toont geen recente (~100 jaar) bewijzen van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren zijn ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
           de waarneming heeft niet langer een ID <em>en</em> de community ID
@@ -6980,6 +7016,13 @@ nl:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_opted_out_maverick: |
           de waarnemer heeft zich afgemeld voor het gemeenschapsID en het gemeenschapstaxon is geen voorouder of nakomeling van het taxon geassocieerd met het ID van de waarnemer.
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          En als dat niet ingewikkeld genoeg was, zijn er ook situaties
+          waar het systeem een stem krijgt:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er minstens 10 andere waarnemingen van een geslacht of lager zijn in de kleinste provincie, Staat, of gemeente die deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/ingeburgerd.
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
           Sommige van deze foto's zijn gemeld wegens ongepaste inhoud of
@@ -7243,7 +7286,7 @@ nl:
           observed_in_place: ter plaatse waargenomen
           on_list: van een taxon op de projectlijst zijn
           verifiable: verifieerbaar zijn
-          wild: wild/genaturaliseerd zijn
+          wild: wild/ingeburgerd
         start_time_desc: "Starttijd voor je bioblitz. Formaat: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: iedereen
