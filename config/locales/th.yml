@@ -2551,6 +2551,7 @@ th:
   sending: กำลังส่ง...
   #Label for messages you've sent
   sent: ส่งแล้ว
+  separate_values_with_a_pipe: แยกแต่ละค่าด้วยขีดตั้ง เช่น "1-5|6-10|a lot" หรือ "yes|no|maybe"
   set_license: ตั้งค่าสัญญาอนุญาต
   settings: การตั้งค่า
   share: แชร์
@@ -2579,6 +2580,7 @@ th:
   showing_x_of_y: แสดง %{x} จาก %{y}
   showing_x_of_y_listings: "แสดง %{x} จาก %{y} รายการ"
   sign_out: ออกจากระบบ
+  sign_up: ลงทะเบียน
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
@@ -3150,6 +3152,12 @@ th:
   year_month: ปี/เดือน
   'yes': "ใช่"
   #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    เฉพาะการสังเกตที่เป็นชนิดพันธุ์ที่ถูกคุกคาม ยกเว้นการสังเกตที่ฉันตั้งค่าซ่อนพิกัดเอง
+  yes_find_them!: "ใช่ ค้นหาเลย!"
+  #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "ใช่ เปิดเผยพิกัดทุกการสังเกต"
   yes_i_want_to_join: ใช่ ฉันอยากเข้าร่วม
@@ -3409,10 +3417,12 @@ th:
         this_has_been_flagged_as_spam: การสังเกตนี้ถูกรายงานว่าเป็นสแปม
     stats:
       index:
+        new_users_desc: ลงทะเบียนวันนี้
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
         observers_desc: เพิ่มการสังเกตในวันนี้
+        recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
       year:
         #label used for a chart component that shows the count of users that
         #added both identifications and observations
