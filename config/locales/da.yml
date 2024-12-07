@@ -7154,6 +7154,41 @@ da:
         dqa_help_casual_not_wild_html: |
           <strong>organismen ikke er vild/naturaliseret</strong> (f.eks. i fangenskab
           eller dyrket af mennesker)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          observationen <strong>ikke præsenterer dokumentation for en
+          organisme</strong>, f.eks. fotos af vandomgivelser, klipper, landskaber,
+          som ikke inkluderer organismen mv.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          observationen <strong>ikke præsenterer nylige (~100 år) beviser på
+          organismen</strong> (f. eks. fossiler, dog er spor, ekskrementer og
+          døde blade OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          observationen <strong>ikke præsenterer bevis relateret til ét
+          emne</strong> (f.eks. har den fire fotos af ikke-beslægtede organismer;
+          dog er et foto, der viser emnets levested OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          observationen ikke længere behøver en ID <em>og</em>
+          Fællesskabs-ID er på familie eller derover
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          observatøren har fravalgt Fællesskabs-ID'en, og Fællesskabs-ID
+          taksonen ikke er en forfader eller efterkommer af den takson, der
+          er associeret med observatørens ID
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Og som om det ikke var kompliceret nok, er der også situationer,
+          hvor systemet får en afstemningsmulighed:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Systemet vil stemme for, at observationen ikke er vild/naturaliseret,
+          hvis der er mindst 10 andre observationer af en slægt eller lavere i det
+          mindste amt, stat eller landeækvivalente sted indeholdende denne
+          observation, og 80% eller flere af disse observationer er blevet markeret
+          som ikke vild/naturaliseret.
         identification_count_desc: 'Antal af identifikationer for en individuel takson'
         flagged_photos_desc_html: |
           Nogle af disse billeder er blevet markeret for upassende indhold eller
