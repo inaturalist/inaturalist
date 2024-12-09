@@ -65,13 +65,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.wait_for_index_refresh = true
       resource.oauth_application_id = oauth_application_from_user_agent.try(:id) || OauthApplication::WEB_APP_ID
       if resource.save
-        user_signup = UserSignup.new(
+        UserSignup.create(
           user_id: resource.id,
           ip: resource.last_ip,
           browser_id: resource.browser_id,
           incognito: resource.incognito_mode
         )
-        user_signup.save
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_in(resource_name, resource)

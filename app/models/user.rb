@@ -135,7 +135,6 @@ class User < ApplicationRecord
   has_one  :flickr_identity, dependent: :delete
   has_one  :soundcloud_identity, dependent: :delete
   has_one :user_daily_active_category, dependent: :delete
-  has_one :user_signups
   has_many :user_installations
   has_many :observations, dependent: :destroy
   has_many :deleted_observations
@@ -148,6 +147,9 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friendships_as_friend, class_name: "Friendship",
     foreign_key: "friend_id", inverse_of: :friend, dependent: :destroy
+  # user signup will be preserved even if the user is deleted
+  # to keep history - user signups are regularly deleted by another process
+  has_one :user_signup
 
   def followees
     User.where( "friendships.user_id = ?", id ).
