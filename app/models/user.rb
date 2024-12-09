@@ -967,37 +967,46 @@ class User < ApplicationRecord
     end
 
     User.preload_associations( self, [:stored_preferences, :roles, :flags] )
-    # delete observations without onerous callbacks
-    observations.includes( [
-      { user: :stored_preferences },
-      :votes_for,
-      :flags,
-      :stored_preferences,
-      :observation_photos,
-      :comments,
-      :annotations,
-      { identifications: [
-        :taxon,
-        :user,
-        :flags
-      ] },
-      :project_observations,
-      :quality_metrics,
-      :observation_field_values,
-      :observation_sounds,
-      :observation_reviews,
-      { listed_taxa: :list },
-      :tags,
-      :taxon,
-      :quality_metrics,
-      :sounds
-    ] ).find_each( batch_size: 100 ) do | o |
-      o.skip_refresh_check_lists = true
-      o.skip_identifications = true
-      o.bulk_delete = true
-      o.comments.each {| c | c.bulk_delete = true }
-      o.annotations.each {| a | a.bulk_delete = true }
-      o.destroy
+    # fetching all observation IDs to loop through. This can be more performant
+    # than using .find_each which will generate many queries with LIMITs, which
+    # for users with many observations can be very slow
+    observation_ids = Observation.where( user_id: id ).pluck( :id )
+    observation_ids.in_groups_of( 100, false ) do | batch_ids |
+      # delete observations without onerous callbacks
+      Observation.where( id: batch_ids ).
+        includes(
+        [
+          { user: :stored_preferences },
+          :votes_for,
+          :flags,
+          :stored_preferences,
+          :observation_photos,
+          :comments,
+          :annotations,
+          { identifications: [
+            :taxon,
+            :user,
+            :flags
+          ] },
+          :project_observations,
+          :quality_metrics,
+          :observation_field_values,
+          :observation_sounds,
+          :observation_reviews,
+          { listed_taxa: :list },
+          :tags,
+          :taxon,
+          :quality_metrics,
+          :sounds
+        ]
+      ).each do | o |
+        o.skip_refresh_check_lists = true
+        o.skip_identifications = true
+        o.bulk_delete = true
+        o.comments.each {| c | c.bulk_delete = true }
+        o.annotations.each {| a | a.bulk_delete = true }
+        o.destroy
+      end
     end
 
     identification_ids = Identification.where( user_id: id ).pluck( :id )
