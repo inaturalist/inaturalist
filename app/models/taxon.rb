@@ -1883,12 +1883,14 @@ class Taxon < ApplicationRecord
   end
 
   def default_photo
-    @default_photo ||= if taxon_photos.loaded?
-      taxon_photos.sort_by {| tp | tp.position || tp.id }.first.try( :photo )
+    candidates = if taxon_photos.loaded?
+      taxon_photos.sort_by {| tp | tp.position || tp.id }
     else
-      taxon_photos.includes( :photo ).first.try( :photo )
+      taxon_photos.includes( :photo ).order( position: :asc, id: :asc )
     end
-    @default_photo
+    @default_photo = candidates.reject do | tp |
+      tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
+    end.first&.photo
   end
 
   def self.update_descendants_with_new_ancestry( taxon, _child_ancestry_was )

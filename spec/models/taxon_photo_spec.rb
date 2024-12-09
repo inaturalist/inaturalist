@@ -1,4 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe TaxonPhoto do
   it { is_expected.to belong_to :taxon }
@@ -26,5 +28,20 @@ describe TaxonPhoto do
       t.reload
       expect( t.featured_at ).to be_blank
     end
+  end
+
+  it "flagged taxon photos are removed" do
+    taxon_photo = TaxonPhoto.make!
+    expect( TaxonPhoto.where( id: taxon_photo.id ).first ).not_to be_nil
+    Flag.make!( flaggable: taxon_photo.photo )
+    expect( TaxonPhoto.where( id: taxon_photo.id ).first ).to be_nil
+  end
+
+  it "cannot be created from flagged photos" do
+    photo = Photo.make!
+    Flag.make!( flaggable: photo )
+    taxon_photo = TaxonPhoto.make( photo: photo )
+    expect( taxon_photo ).not_to be_valid
+    expect( taxon_photo.errors[:photo] ).not_to be_empty
   end
 end
