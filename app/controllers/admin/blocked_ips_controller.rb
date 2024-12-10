@@ -4,6 +4,7 @@ class Admin
   class BlockedIpsController < ApplicationController
     before_action :authenticate_user!
     before_action :admin_required
+    before_action :load_record, only: [:destroy]
 
     layout "application"
 
@@ -20,11 +21,11 @@ class Admin
       end
     end
 
-    def block
+    def create
       blocked_ip = BlockedIp.find_or_initialize_by( ip: params[:ip] )
 
       unless blocked_ip.valid?
-        flash[:notice] = "Failed to block IP `#{ip}`: #{blocked_ip.errors.full_messages.to_sentence}"
+        flash[:notice] = "Failed to block IP `#{params[:ip]}`: #{blocked_ip.errors.full_messages.to_sentence}"
         return redirect_back_or_default( action: "index" )
       end
 
@@ -34,13 +35,18 @@ class Admin
       redirect_to admin_blocked_ips_path( q_ip: params[:q_ip], q_blocked_by: params[:q_blocked_by] )
     end
 
-    def unblock
-      blocked_ip = BlockedIp.find_by( ip: params[:ip] )
-      blocked_ip&.destroy
+    def destroy
+      @blocked_ip.destroy
 
       Rails.cache.delete( "blocked_ips" )
 
       redirect_to admin_blocked_ips_path( q_ip: params[:q_ip], q_blocked_by: params[:q_blocked_by] )
+    end
+
+    protected
+
+    def load_record( options = {} )
+      super( options.merge( klass: BlockedIp ) )
     end
   end
 end

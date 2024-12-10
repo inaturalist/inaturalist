@@ -11,6 +11,6 @@ class BlockedIp < ApplicationRecord
   def ip_format_valid
     return if IPAddr.new( ip ) rescue nil
 
-    errors.add( :ip, "IP is not a valid IP address" )
+    errors.add( :ip, "must be valid IP address" )
   end
 end

@@ -24,7 +24,7 @@
                 =link_to 'Reset', url_for, class: "btn btn-link"
     .col-xs-6
       #controls.well
-        =form_tag( { controller: :blocked_ips, action: :block }, method: :put ) do
+        =form_tag( { controller: :blocked_ips }, method: :post ) do
           .row
             .col-xs-3
               .text-right
@@ -56,5 +56,5 @@
                 %td= blocked_ip.login
                 %td= blocked_ip.created_at
                 %td
-                  = button_to unblock_admin_blocked_ips_path( ip: blocked_ip.ip ), method: :delete, class: "btn btn-warning" do
+                  = button_to admin_blocked_ip_path( blocked_ip ), method: :delete, class: "btn btn-warning" do
                     Unblock

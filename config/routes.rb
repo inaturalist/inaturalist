@@ -596,11 +596,9 @@ Rails.application.routes.draw do
         get :pending
       end
     end
-    resources :blocked_ips, only: :index, controller: "admin/blocked_ips" do
+    resources :blocked_ips, only: [:index, :create, :destroy], controller: "admin/blocked_ips" do
       collection do
         get :index
-        put :block
-        delete :unblock
       end
     end
   end
