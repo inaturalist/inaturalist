@@ -44,6 +44,11 @@ Atlas.blueprint do
   is_active { true }
 end
 
+BlockedIp.blueprint do
+  ip { Faker::Internet.ip_v4_address }
+  user { User.make }
+end
+
 CheckList.blueprint do
   place { make_place_with_geom }
 end

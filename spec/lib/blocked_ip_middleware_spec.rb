@@ -2,42 +2,46 @@
 
 require "spec_helper"
 
-describe BlockedIp, type: :request do
-  before( :all ) do
-    BlockedIp.destroy_all
-  end
-
+shared_examples "BlockedIp Middleware using header" do | header |
   it "non blocked IP should access page" do
-    get "/ping", headers: { "REMOTE_ADDR" => "192.168.0.1" }
+    get "/ping", headers: { header => "192.168.0.1" }
     expect( response.response_code ).to eq 200
     expect( response.body ).to include "status"
   end
 
   it "blocked IP should not access page" do
-    BlockedIp.create!( ip: "192.168.0.2" )
+    blocked_ip = BlockedIp.make!
     Rails.cache.delete( "blocked_ips" )
-    get "/ping", headers: { "REMOTE_ADDR" => "192.168.0.2" }
+    get "/ping", headers: { header => blocked_ip.ip }
     expect( response.response_code ).to eq 403
     expect( response.body ).to include "Forbidden"
   end
 
   it "cache is used, so new blocked IP should still access page" do
-    BlockedIp.create!( ip: "192.168.0.3" )
-    get "/ping", headers: { "REMOTE_ADDR" => "192.168.0.3" }
+    blocked_ip = BlockedIp.make!
+    get "/ping", headers: { header => blocked_ip.ip }
     expect( response.response_code ).to eq 200
     expect( response.body ).to include "status"
   end
 
   it "unblock IP should access page again" do
-    BlockedIp.create!( ip: "192.168.0.4" )
+    blocked_ip = BlockedIp.make!
+    ip = blocked_ip.ip
     Rails.cache.delete( "blocked_ips" )
-    get "/ping", headers: { "REMOTE_ADDR" => "192.168.0.4" }
+    get "/ping", headers: { header => ip }
     expect( response.response_code ).to eq 403
     expect( response.body ).to include "Forbidden"
-    BlockedIp.where( ip: "192.168.0.4" ).delete_all
+    blocked_ip.delete
     Rails.cache.delete( "blocked_ips" )
-    get "/ping", headers: { "REMOTE_ADDR" => "192.168.0.4" }
+    get "/ping", headers: { header => ip }
     expect( response.response_code ).to eq 200
     expect( response.body ).to include "status"
   end
+end
+
+describe "BlockedIp Middleware", type: :request do
+  include_examples "BlockedIp Middleware using header", "HTTP_X_FORWARDED_ORIGINAL_FOR"
+  include_examples "BlockedIp Middleware using header", "HTTP_X_FORWARDED_FOR"
+  include_examples "BlockedIp Middleware using header", "HTTP_X_CLUSTER_CLIENT_IP"
+  include_examples "BlockedIp Middleware using header", "REMOTE_ADDR"
 end
