@@ -2,6 +2,7 @@
 
 class BlockedIp < ApplicationRecord
   belongs_to :user
+  validates :user, presence: true
   validates_uniqueness_of :ip
   validate :ip_format_valid
 
