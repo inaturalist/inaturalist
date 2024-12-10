@@ -7676,6 +7676,11 @@ da:
         we_have_redesigned_projects: |
           Vi har redesignet projekter, så de automatisk inkluderer observationer, der matcher steder, taksa, brugere, kvalitet samt datoer, som du har defineret. Vælg mellem to typer: Samlingsprojekter og Paraplyprojekter, som deler følgende egenskaber:
         welcome_to_projects: Velkommen til projekter!
+        you_can_learn_more2_html: |
+          Man kan læse mere om projekthåndtering
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">her</a>
+          eller læse historikken for projekter på
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vores blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Du har ikke defineret nogen observationskrav. Sørg for at vælge en eller flere taksa
           (f.eks. fugle, nåletræer), steder (f.eks Brasilien, Yellowstone), brugere og/eller datoer for at definere de observationer, du vil medtage i dit projekt.
@@ -9166,6 +9171,10 @@ da:
             taxon:
               too_many_photos: |
                 kan ikke have mere end %{max} fotos
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                må ikke have uløste markeringer
         taxon_range:
           attributes:
             iucn_relationship:
