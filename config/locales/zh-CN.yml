@@ -6572,6 +6572,55 @@ zh-CN:
         data_quality_assessment_desc3_html: |
           出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确度、精度、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          数据质量评估是对于观察准确性的总结。所有观察均始于<strong>“非正式”</strong>等级，并在满足下列条件后可以达到<strong>“需鉴定”</strong>等级：
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: 观察<strong>包含日期</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: 观察<strong>是地理配准的</strong>（即具有纬度/经度坐标）
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: 观察 <strong>有照片或声音</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: 观察<strong>不是关于人类的</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: 在满足下列条件后，观察结果会变成 <strong>"研究等级"</strong>：
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name}<strong>社群同意鉴定到种或更低层级</strong>，即超过2/3的鉴定者同意的分类单元（如果社群投票决定社群分类单元不能被进一步改进了，那么可以回滚到亚科或更低层级）
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          如果上述条件未得到满足，或社群同意下列情况，则观察回滚到<strong>“非正式”</strong>等级：
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          <strong>日期和年份看起来不准确</strong>（比如照片里有雪，但日期却是夏天；不考虑一天之内的时间）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>位置看起来不准确</strong>（例如大洋中的猴子，办公大楼中的河马，等）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>生物不是野生/归化的</strong> (例如被人类饲育或栽培的)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          观察<strong>没有呈现出关于有机体的证据</strong>，如拍摄不包括生物体的水体特征、岩石、地貌，等。
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          观察<strong>不呈现近期（约100年内）的生物体的证据</strong>（如化石；但足迹、粪便和枯叶是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          观察<strong>不是关于单一主体的证据</strong>（如关于四个无关生物体的四张照片；但有一张照片呈现观察主体的生境是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          观察不再需要鉴定<em>且</em>社群鉴定在科或更高层级
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          观察者选择不接纳社群鉴定，而社群鉴定并非观察者鉴定结果的分类学父系或子系
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          如果这还不够复杂，还会有系统自动进行表决的情况：
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          系统会投票认为一个观察并非野生/归化的，如果该物种所属的属或更低层级分类单元在当地最小的县/州/或国家地区范围内包括不少于10个其他的观察，且不少于80%的上述观察被标记为非野生/归化的。
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
@@ -6954,6 +7003,11 @@ zh-CN:
         we_have_redesigned_projects: |
           我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞形项目，它们共享以下功能：
         welcome_to_projects: 欢迎来到项目！
+        you_can_learn_more2_html: |
+          您可以在
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">这里</a>
+          了解更多关于管理项目的信息，或者在
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">我们的博客</a>阅读项目的历史。
         you_have_not_defined_any_observation_requirements: |
           您没有定义任何观察要求。确保选择一个或多个分类群（例如鸟、针叶树）、地点（例如巴西、黄石公园）、用户和/或日期以定义您希望包含在您的项目中的观察。
         errors:
@@ -8156,6 +8210,10 @@ zh-CN:
             taxon:
               too_many_photos: |
                 不能有超过 %{max} 张照片
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                不能有未解决的标记
         taxon_range:
           attributes:
             iucn_relationship:
