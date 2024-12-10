@@ -213,14 +213,24 @@ module DarwinCore
       end
 
       def informationWithheld
-        if @show_private_coordinates
-          nil
-        elsif geoprivacy_private?
-          "Coordinates hidden at the request of the observer"
+        if geoprivacy_private?
+          if @show_private_coordinates
+            "Coordinates included here but private on iNaturalist"
+          else
+            "Coordinates hidden at the request of the observer"
+          end
         elsif geoprivacy_obscured?
-          "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
+          if @show_private_coordinates
+            "Coordinates not obscured here but publicly obscured on iNaturalist"
+          else
+            "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
+          end
         elsif coordinates_obscured?
-          "Coordinate uncertainty increased to #{public_positional_accuracy}m to protect threatened taxon"
+          if @show_private_coordinates
+            "Coordinates not obscured here but publicly obscured on iNaturalist due to taxon geoprivacy"
+          else
+            "Coordinate uncertainty increased to #{public_positional_accuracy}m to protect threatened taxon"
+          end
         end
       end
 
