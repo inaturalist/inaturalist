@@ -68,13 +68,24 @@ class ObservationsGrid extends React.Component {
                             { favesCount }
                           </span>
                         </span>
-                        <time
-                          className="time pull-right"
-                          dateTime={o.created_at}
-                          title={moment( o[dateField] ).format( "LLL" )}
-                        >
-                          { moment( o[dateField] ).format( "DD MMM" ) }
-                        </time>
+                        {
+                          o[dateField] && !o.obscured
+                            ? (
+                              <time
+                                className="time pull-right"
+                                dateTime={o.created_at}
+                                title={moment( o[dateField] ).format( "LLL" )}
+                              >
+                                { moment( o[dateField] ).format( "DD MMM" ) }
+                              </time>
+                            )
+                            : (
+                              <i
+                                className="icon-icn-location-obscured pull-right"
+                                title={I18n.t( "date_obscured_notice" )}
+                              />
+                            )
+                        }
                       </div>
                     )}
                   />
