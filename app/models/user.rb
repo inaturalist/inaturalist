@@ -912,25 +912,34 @@ class User < ApplicationRecord
   # If not, add numbers to the end until we find an available login. Particularly long requested logins may have
   # characters removed from the end.
   # If we somehow couldn't find a reasonable login, return nil.
-  def self.suggest_login(requested_login)
+  def self.suggest_login( requested_login = DEFAULT_LOGIN, suffix_range = 0..100_000 )
     base_login = sanitize_login( requested_login.to_s ).presence || DEFAULT_LOGIN
 
-    # Biggest random number to append to the login to make it unique
-    max_random_suffix = 100_000
-    random_suffixes = Enumerator.produce { rand( max_random_suffix ) }
-    numeric_suffixes =  ( 1..9 ).
+    # Make an enumerator that produces random numbers within the specified
+    # suffix range
+    random_suffixes = Enumerator.produce { suffix_range.min + rand( suffix_range.count ) }
+    # Generate some suffixes that don't end in bad numbers
+    numeric_suffixes = ( 1..9 ).
       chain( random_suffixes.take( 20 ) ).
-      reject { |number| LOGIN_SUFFIX_EXCLUSIONS.include? number }
+      reject {| number | LOGIN_SUFFIX_EXCLUSIONS.include? number }
     suffixes = [""].chain( numeric_suffixes.map( &:to_s ) )
 
-    # Delete some characters off the end of the end if necessary to fit the suffix while staying under
-    # MAX_LOGIN_SIZE.
+    # Delete some characters off the end of the end if necessary to fit the
+    # suffix while staying under MAX_LOGIN_SIZE.
     suggested_logins = suffixes.
-      map { |suffix| base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
-      reject { |login| login.size < MIN_LOGIN_SIZE }
+      map {| suffix | base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
+      reject {| login | login.size < MIN_LOGIN_SIZE }
 
     # Find an available login.
-    suggested_logins.find { |login| where( login: login ).none? }
+    suggestion = suggested_logins.find {| login | where( login: login ).none? }
+    return suggestion if suggestion
+
+    # If we could not find an available login, try again with a range of
+    # higher numbers
+    User.suggest_login(
+      requested_login,
+      Range.new( suffix_range.max, suffix_range.max + suffix_range.count )
+    )
   end
 
   # A sanitized login:
