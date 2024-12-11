@@ -23,13 +23,14 @@ class Admin
 
     def create
       blocked_ip = BlockedIp.find_or_initialize_by( ip: params[:ip] )
+      blocked_ip.user = current_user
 
       unless blocked_ip.valid?
         flash[:notice] = "Failed to block IP `#{params[:ip]}`: #{blocked_ip.errors.full_messages.to_sentence}"
         return redirect_back_or_default( action: "index" )
       end
 
-      blocked_ip.update( user: current_user )
+      blocked_ip.save!
       Rails.cache.delete( "blocked_ips" )
 
       redirect_to admin_blocked_ips_path( q_ip: params[:q_ip], q_blocked_by: params[:q_blocked_by] )
