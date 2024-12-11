@@ -65,6 +65,8 @@ mi:
   active_taxon_status: Hohe
   activity: Hohenga
   add: Tāpiri
+  add_a_comment: Tāpiri tētahi kōrero
+  add_a_field: Tāpiri te āpure
   add_a_name: Tāpiri tētahi ingoa
   add_a_single_observation: Tāpiritia mauhanga tautahi
   add_a_taxon: Tāpiri tētahi rōpū
@@ -72,12 +74,14 @@ mi:
   add_an_observation: Tāpiri tētahi mauhanga
   add_an_observation_of: "Tāpiritia tētahi mauhanga o %{taxon}"
   add_an_observation_to_project_html: Tāpiritia tētahi mauhanga ki %{project}
+  add_comment: Tāpiri tētahi kōrero
   add_conservation_status: Tāpiri tūnga whāomoomo
   add_description: "Tāpiri te %{description_name}"
   add_from_your_observations: Tāpiritia mai i āu mauhanga
   add_id: Tāpiri tautuhi
   add_new_place: Tāpiri tētahi wāhi hou
   add_obs_from_a_list: Tapiritia ngā mauhanga i tētahi tūtira
+  add_observation_fields: Tāpiri ngā āpure mauhanga
   add_observations: Tāpiri ngā mauhanga
   add_observations_project: Tapiritia ngā mauhanga ki te kohinga nei
   add_place: Tāpiri wāhi
@@ -196,6 +200,7 @@ mi:
   back_to_all_species: Hoki ki ngā momo katoa
   back_to_friends: Hoki ki ngā hoa
   back_to_observation: Hoki ki te mauhanga
+  back_to_observation_fields: Hoki ki te āpure mauhanga
   back_to_people: Hoki ki ngā tāngata
   back_to_places: Hoki ki ngā wāhi
   back_to_possessive_user_profile: "Hoki ki te kīwhaiaro tō %{possuser}"
@@ -238,6 +243,7 @@ mi:
     merge: Hanumi
     swap: Whakawhiti
   change_your_password: Ka tīni tō kupuhipa
+  choose_a_field: Kōwhiria āpure
   choose_a_place: Kōwhiria tetahi wāhi
   choose_columns: Kōwhiria ngā tīwae
   choose_file: Kōwhiri kōnae
@@ -251,6 +257,7 @@ mi:
   click_the_map: "<strong>Pāwhiria te mahere</strong> i tāpiritia tētahi wāhi."
   close: Kati
   columns: Tīwae
+  combine: Paheko
   #Noun, used to label a comment or a comment field in a form
   comment: kōrero
   #Verb, generally a label on a button that allows the user to add a comment
@@ -261,6 +268,7 @@ mi:
   comments: Kōrero
   community: Hapori
   community_guidelines: Aratohu hapori
+  community_id_heading: Rōpū o te Hapori
   compare: Ine
   configure: Whirihora
   confirm: Whakaū
@@ -330,6 +338,7 @@ mi:
   copyright_info_and_more: Mōhiohio manatārua me anō
   copyright_infringement: Hara manatārua
   couldnt_find_that_taxon: Kāore i kitea he tēnā rōpū
+  create_a_new_field: Hangaia he āpure hou
   create_a_new_place: Hangaia he wāhi hou
   create_a_new_taxon: Hangaia he rōpū hou
   create_an_account: Hangaia he pūkete
@@ -425,6 +434,9 @@ mi:
   donate_again_caps: TAKOHATIA ANŌ
   donate_again_today_caps: TAKOHATIA ANŌ INAIANEI
   done: Ka oti
+  #Prompt shown when you are dragging a file somewhere and should release it to
+  #add the file as, for example, a new photo in the Uploader
+  drop_it: Whakataka mai
   download: Tikiake
   download_caps: TIKIAKE
   #Noun, as in a journal post that has not been published
@@ -435,20 +447,27 @@ mi:
   draft_saved: Kua tiakina te hukihuki!
   #Noun, as in journal posts that has not been published
   drafts: Hukihuki
+  drag_and_drop_some_photos_or_sounds: Tōia me te whakataka ētahi whakaahua, oro rānei
+  duplicate_verb: Tārua
   duration_value: "Roanga: %{duration} mēneti"
   edit: Whakatika
   edit_account_settings_and_profile: "Whakatika i tautuhinga pūkete me kīwhaiaro"
+  edit_comment: Whakatika au kōrero
   edit_conservation_status: Whakatika tūnga whāomoomo
+  edit_field: Whakatika te āpure
   edit_notes: Whakatika ngā kupu tīpoka
   edit_observations: Whakatika ngā mauhanga
   edit_photos: Whakatika ngā whakaahua
   edit_photos_for_observation_id: "Whakatika ngā whakaahua mō mauhanga %{obs_id}"
   edit_place: Whakatika te wāhi
   edit_project: Whakatikatia te kohinga
+  edit_remove: Whakatika/Tangohia
   edit_taxa: Whakatika ngā rōpū
   edit_taxon: Whakatika te rōpū
   edit_your_account_and_profile_html: "Whakatika i tāu tautuhinga pūkete me tāu kīwhaiaro"
   edited_by_name_html: "I whakatika nā %{name}"
+  edited_by_name_some_rights_reserved_html: |
+    Whakatika nā %{name}, kua rāhuitia ngā mōtika ētahi (%{license})
   editing_announcement: E whakatika ana te pānui
   editing_observation_id: "E whakatika ana te mauhanga %{obs_id}"
   editing_project: E whakatika ana %{project}
@@ -465,6 +484,8 @@ mi:
   endemic_to_x: "Taketake ki %{x}"
   establishment:
     endemic: Taketake
+  everyone: tātou
+  everyone_: Tātou
   exact_date: Rā tino
   explore: Tuhuratia
   export: Kawe atu
@@ -475,6 +496,8 @@ mi:
   'false': 'Teka'
   Family: Whānau
   favorites: "Tino mauhanga"
+  fields: āpure
+  fields_: Āpure
   file: Kōnae
   file_size: Rahi kōnae
   #The name of a computer file
@@ -604,6 +627,7 @@ mi:
   leading: Whakamua
   learn: Ako
   learn_more: Akohia tonuhia
+  learn_more_raquo: "Akohia tonuhia &raquo;"
   lexicons:
     maori: Te reo Māori
     spanish: Pāniora
@@ -713,7 +737,17 @@ mi:
   month: Marama
   months: Marama
   more: Anō
+  #Button to show more observations
+  more__context_observations_caps: ANŌ
+  #Button to show more places
+  more__context_places: Anō
+  #Button to show more text
+  more__context_text: Anō
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: ANŌ
   more_caps: ANŌ
+  more_fields: Āpure anō
+  more_import_options: Kōwhiringa kawemai anō
   more_info: Mōhiohio anō
   more_info_title: Mōhiohio anō
   more_observations: Tonuhia ngā mauhanga
@@ -728,6 +762,7 @@ mi:
   new_list: Tūtira hou
   new_members: "Huānga hou"
   new_message: Karere hou
+  new_observation_field: Āpure mauhanga hou
   new_password: Kupuhipa hou
   new_project: Kohinga hou
   new_users: Kaiwhakamahi hou
@@ -762,6 +797,8 @@ mi:
   number_of_observers: "E hia ngā kaimātaki"
   observation: Mauhanga
   observation_: mauhanga
+  observation_accuracy_experiment_continent: "Paparahi"
+  observation_accuracy_experiment_year: "Tau"
   observation_added_to_the_project: "Kua tāpiri i mauhanga ki te kohinga \"%{project}\""
   #Attributes an observation to a user. %{user} can be a username or a full
   #name. @vow_or_con will work here and use the first letter of the name used
@@ -780,13 +817,20 @@ mi:
   observation_date?: Rā?
   #Taxon-related observation export fields
   observation_export_column_type_taxon: Rōpū
+  observation_field: Āpure mauhanga
+  observation_field_type_text: Kuputuhi
+  observation_field_type_numeric: Tau
+  observation_field_type_date: Rā
   observation_field_type_time: Wā
   observation_field_type_datetime: Rā/Wā
   observation_field_type_taxon: Rōpū
+  observation_field_type_dna: Pītau ira
+  observation_fields: Āpure mauhanga
   observations: Mauhanga
   observations_: mauhanga
   observations_by: Mauhanga nā
   observations_by_user: "Mauhanga nā %{user}"
+  observations_deleted: Kua mukua ngā mauhanga
   observations_from_this_place: Ngā mauhanga ki te wāhi nei
   observations_map: Mauhanga/Mahere
   observations_per_month: Mauhanga/Marama
@@ -962,8 +1006,10 @@ mi:
     nicaragua: Nikarāhua
     niger: Ngāika
     nigeria: Ngāitiria
+    north_africa: Awherika ki te Raki
     north_america: Amerika ki te Raki
     norway: Nōwei
+    oceania: Te Moana a Kiwa
     oman: Omāna
     pakistan: Pakitāne
     palau: Pārau
@@ -1143,18 +1189,28 @@ mi:
     one_to_many: kotahi-ki-maha
     error: hapa
   remember_me: Maumahara ki ahau
+  remove: Tangohia
+  remove_photo: Tangohia te whakaahua
+  remove_place: Tangohia te wāhi
+  reply: Whakahoki
   reptiles: ngārara
   research_grade: Kua pūruatia
   #Label for a button that re-sends the account confirmation email and signs
   #you out until you do
   resend_and_sign_out: Tukuna anō me takiputa
   resend_confirmation_email: Tukuna anō te īmera whakamana
+  #Label for a button to reset search parameters, as in "Reset the observation search parameters"
+  reset: Tautuhi anō
+  reset_filters_short: Tautuhi anō
   restore: Whakaoratia
   reviewed: I arotaketia
+  rotate_left: Huri ki mauī
+  rotate_right: Huri ki matau
   satellite: amiorangi
   save: Tiaki
   save_all: Tiaki katoa
   save_and_continue: "Tiaki &amp; haere tonu"
+  save_comment: Tiaki te kōrero
   save_identification: Tiakina te tautuhi
   save_observation: Tiakina te mauhanga
   save_photos: Tiakina ngā whakaahua
@@ -1179,6 +1235,7 @@ mi:
   send_and_sign_out: Tukuna me takiputa
   send_confirmation_email: Tukuna te īmera whakamana
   sending: E tuku ana...
+  show: Hura
   show_more: Hurahia tonuhia
   sign_in: Takiuru
   #Button to sign in to iNat with your Apple account
@@ -1191,11 +1248,14 @@ mi:
   similar_taxa: Rōpū rite
   small: iti
   site_stats: Tauanga paetukutuku
+  some_rights_reserved: kua rāhuitia ngā mōtika ētahi
   sort: Kōmaka
   sort_by: Kōmakatia mā
   sorting_by: E kōmaka ana mā
   sounds:
+    add_sounds: Tāpiri ngā oro
     listen: Whakarongo
+    no_photos_sounds: E kore ngā whakaahua, oro rānei
     photos_sounds: Whakaahua/Oro
     sound: Oro
     sounds: Oro
@@ -1205,11 +1265,13 @@ mi:
   #Plural
   species: Momo
   species_name_cap: Ingoa momo
+  species_names: ingoa momo
   species_taxon_name: Ingoa momo/rōpū
   start: Tīmata
   start_date_time: Rā/Wā tīmatanga
   stats: Tauanga
   stats_for_this_year_have_not_been_generated: Kāore anō kia tatauhia ngā tauanga mō tēnei tau
+  stop_editing: Kāti te whakatika
   stop_following_user: "Kati e whai ana a %{user}"
   #As in a place to purchase things. We use it as a link to a place where you
   #can buy merchandise. Please try to keep translations as short as possible
@@ -1225,7 +1287,9 @@ mi:
   subscribe_to_this: Ohaurutia ki tēnei
   suggest_an_identification: Marohitia tētahi tautuhi
   suggestions: Marohi
+  summary: Whakarapopotanga
   supporting: Tautoko
+  sync: Tukutahi?
   #Noun, as in "add a tag to this observation"
   tag: tūtohu
   tagging: 'E tūtohu ana...'
@@ -1246,6 +1310,7 @@ mi:
   terms: Kuputaka
   terms_service: Tikanga whakamahi
   terrain: takoto
+  text: Kuputuhi
   thanks!: Kia ora!
   the_people_of_inat: "Ngā tāngata o %{site_name}"
   the_world: Te Ao
@@ -1287,6 +1352,10 @@ mi:
   upload: Tukuatu
   uploader:
     tooltips:
+      combine: Paheko ngā mauhanga tīpakohia
+      duplicate: Tārua ngā mauhanga tīpakohia
+      remove_observation: Tangohia te mauhanga
+      remove_photo: Tangohia te whakaahua
       select_all: Tīpakohia te mauhanga katoa
   uploading_num_of_count_photos:
     other: E tukuatu ana %{num} o %{count} whakaahua...
@@ -1316,10 +1385,13 @@ mi:
   user_added_an_x_to_noun_by_you_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun} nāu"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
+  user_commented: "I kōrero a %{user}"
+  user_suggested_an_id: "I whakaaranga a %{user} tētahi tautuhi"
   username: Ingoa rorohiko
   username_or_email: Ingoa rorohiko rānei, īmera rānei
   users: Kaiwhakamahi
   users_favorites: "Ngā tino mauhanga o %{user}"
+  users_identifications: "Ngā tautuhi o %{user}"
   users_journal: "Rangitaki tō a %{user}"
   users_lists: "Tūtira ō %{user}"
   users_profile: "Kīwhaiaro tō %{user}"
@@ -1330,6 +1402,7 @@ mi:
   view: Tirohia
   view_all: Tirohia katoa
   view_all_caps: TIROHIA KATOA
+  view_all_fields: Tirohia ngā āpure katoa
   view_all_flags: Tirohia ngā kara katoa
   view_all_members: Tirohia ngā huānga katoa
   view_all_observations: Tirohia ngā mauhanga katoa
@@ -1342,6 +1415,8 @@ mi:
   view_more: Tirohia tonuhia
   view_observation: Tirohia te mauhanga
   view_observations: Tirohia ngā mauhanga
+  view_observations_by_everyone: Tirohia ngā mauhanga nā tātou
+  view_observations_of_this_taxon_by: Tirohia ngā mauhanga katoa o te rōpu nei nā
   view_place: Tirohia te wāhi
   view_stats: Tirohia tauanga
   view_taxon_page: Tirohia te whārangi rōpū
@@ -1360,11 +1435,15 @@ mi:
   welcome_back!: Hoki mai anō!
   welcome_to_inat: "Nau mai, haere mai ki %{site_name}!"
   welcome_to_x_project: "Nau mai, haere mai ki %{project}!"
+  what: He aha
   what_did_you_see: He aha i mātaki koe?
   what_do_you_think: He aha e whakaaro koe?
   what_were_you_looking_for?: "He aha i kimi koe? (tūtira ūnga)"
   whats_this?: He aha tēnei?
+  when: Inawhea
   when_did_you_see_it?: Inahea?
+  where: I hea
+  where_were_you?: I hea i a koe?
   #Label for a button to withdraw an identification, i.e. to deactivate it
   #without deleting it
   withdraw: Maunuhia
@@ -1376,6 +1455,9 @@ mi:
   x_project_journal: "%{name} tō %{project}"
   x_project_stats: "Tauanga mō %{project}"
   year: Tau
+  year_in_review: "Te arotake o te tau %{year}"
+  year_in_review2: "Te arotake o te tau %{year}"
+  year_in_review_caps: "TE AROTAKE O TE TAU %{year}"
   year_month: tau/marama
   'yes': "Āe"
   yes_license_my_childs_observations: Āe, e raihana ana ngā whakaahua, ngā oro, me ngā mauhanga o tāku tamaiti, ka whakamahi ngā kaiputaiao i āku raraunga (taunakitia)
@@ -1386,6 +1468,7 @@ mi:
   you_are_subscribed_to_comments_on_this_flag: Kua ohauru koe ki kōrero i runga i te kara nei
   you_are_subscribed_to_comments_on_this_post: Kua ohauru koe ki kōrero i runga i te pōhi nei
   you_are_subscribed_to_observations_from_this_place: Kua ohauru koe ki kōrero i runga i te wāhi nei
+  you_have_left_x_project: "Kua haere atu koe i %{project}"
   you_have_not_confirmed_your_email_address: Kāore koe i whakamanahia tāku wāhitau īmēra!
   your_email_address: Tōu īmēra
   your_favorites: Āu tino mauhanga
@@ -1420,14 +1503,26 @@ mi:
         name: Ingoa
         date_added_newest: Rā tapiritia, hou ki te tawhito
         date_added_oldest: Rā tapitiria, tawhito ki te hou
+        show: Hura
     messages:
       from: Mai i
       to: Ki
     observations:
+      community_id:
+        agreement: Whakaae
+        algorithm_summary: Te whakarapopotanga o te hātepe
+        disagreement: Whakaae kore
+        score: Tapeke
       compare:
         about_missing_taxa: Mō rōpū ngaro
+        #Label for a visualization that combines multiple series of data in a single chart
+        combined: Kua paheko
+        #Date field to use when grouping by date, e.g. date created or date added
+        date_field: Āpure Rā
         #Label for a visualization that compare multiple series of data in several charts displayed side by side
         horizontal: Huapae
+        #Date range to aggregate by, e.g. observations per month vs. observations per week
+        interval: Āputa
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Poutū
       field_descriptions:
@@ -1439,6 +1534,8 @@ mi:
     projects:
       new:
         delete_project: Mukua te kohinga
+        duplicate_project: Tārua te kohinga
+        or_drag_and_drop: (tōia me te whakataka rānei)
         project_details: Taipitopito kohinga
         project_name: Ingoa kohinga
       project_user_curator_coordinate_access_labels:
@@ -1454,11 +1551,15 @@ mi:
         translators_title: Kaiwhakareo
     taxa:
       show:
+        charts_caps: TŪTOHI
         frequency:
           research: Kua pūruatia
           "Alive or Dead=Alive": He ora
           "Alive or Dead=Dead": He mate
+          "Plant Phenology=Flowering": E putiputi ana
+          "Plant Phenology=Fruiting": E hua ana
           "Plant Phenology=No Evidence of Flowering": E kore ngā putiputi
+          "Flowers and Fruits=Flowers": Putiputi
           "Life Stage=Larva": Pūhouhou
           "Life Stage=Pupa": Tūngoungou
           "Sex=Female": Uwha
