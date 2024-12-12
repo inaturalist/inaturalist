@@ -9177,13 +9177,6 @@ CREATE UNIQUE INDEX index_observation_field_values_on_uuid ON public.observation
 
 
 --
--- Name: index_observation_geo_scores_on_observation_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.observation_geo_scores USING btree (observation_id);
-
-
---
 -- Name: index_observation_field_values_on_value_and_field; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9209,6 +9202,13 @@ CREATE INDEX index_observation_fields_on_name ON public.observation_fields USING
 --
 
 CREATE UNIQUE INDEX index_observation_fields_on_uuid ON public.observation_fields USING btree (uuid);
+
+
+--
+-- Name: index_observation_geo_scores_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.observation_geo_scores USING btree (observation_id);
 
 
 --
@@ -10545,7 +10545,7 @@ CREATE INDEX index_user_signups_on_ip_and_browser_id ON public.user_signups USIN
 -- Name: index_user_signups_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_user_signups_on_user_id ON public.user_signups USING btree (user_id);
+CREATE UNIQUE INDEX index_user_signups_on_user_id ON public.user_signups USING btree (user_id);
 
 
 --

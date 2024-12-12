@@ -190,4 +190,36 @@ describe Users::RegistrationsController, "create" do
     u = register_user_with_params( pi_consent: true )
     expect( u.pi_consent_at ).not_to be_blank
   end
+
+  it "should not create UserSignup if no browser ID" do
+    u = register_user_with_params
+    expect( u ).not_to be_nil
+    signup = UserSignup.find_by_user_id( u.id )
+    expect( signup ).to be_nil
+  end
+
+  it "should create UserSignup with browser ID" do
+    u = register_user_with_params( browser_id: "browser123" )
+    expect( u ).not_to be_nil
+    signup = UserSignup.find_by_user_id( u.id )
+    expect( signup ).not_to be_nil
+    expect( signup.browser_id ).to eq( "browser123" )
+    expect( signup.ip ).to eq( u.last_ip )
+  end
+
+  it "should create UserSignup with incognito mode true" do
+    u = register_user_with_params( browser_id: "browser123", incognito_mode: true )
+    expect( u ).not_to be_nil
+    signup = UserSignup.find_by_user_id( u.id )
+    expect( signup ).not_to be_nil
+    expect( signup.incognito ).to be true
+  end
+
+  it "should create UserSignup with incognito mode false" do
+    u = register_user_with_params( browser_id: "browser123", incognito_mode: false )
+    expect( u ).not_to be_nil
+    signup = UserSignup.find_by_user_id( u.id )
+    expect( signup ).not_to be_nil
+    expect( signup.incognito ).to be false
+  end
 end

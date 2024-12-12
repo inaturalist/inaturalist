@@ -2,10 +2,10 @@
 
 class VPNChecker
   CACHE_KEY = "vpn_ips"
-  URL = "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/ipv4.txt"
 
   def initialize( cache_expiry = 1.day )
     @cache_expiry = cache_expiry
+    @url = CONFIG.vpn_ips_url
   end
 
   def ip_in_vpn_range?( ip )
@@ -35,7 +35,7 @@ class VPNChecker
 
   def fetch_url_content
     begin
-      uri = URI( URL )
+      uri = URI( @url )
       response = Net::HTTP.get( uri )
 
       if response.nil? || response.strip.empty?

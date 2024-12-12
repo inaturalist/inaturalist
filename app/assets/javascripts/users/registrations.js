@@ -16,18 +16,14 @@ $( document ).ready( function ( ) {
     if ( browserIdField ) {
       browserIdField.value = browserId;
     }
-  }
-  catch ( error ) {
-    console.error( "Error using LocalStorage:", error );
-  }
-  detectIncognito().then( function( result ) {
-    var incognitoField = document.getElementById( "incognito_mode" );
-    if ( incognitoField ) {
-      incognitoField.value = result.isPrivate ? "true" : "false";
-    }
-  } ).catch( function( error ) {
-      console.error( "Error detecting incognito mode:", error );
-  } );
+    detectIncognito().then( function( result ) {
+      var incognitoField = document.getElementById( "incognito_mode" );
+      if ( incognitoField ) {
+        incognitoField.value = result.isPrivate ? "true" : "false";
+      }
+    } ).catch( function( error ) { } );
+  } 
+  catch ( error ) { }
   if ( $( ".time_zone_select" ).length > 0 ) {
     var userZone = moment.tz.guess( );
     if ( userZone ) {
