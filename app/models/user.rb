@@ -31,7 +31,9 @@ class User < ApplicationRecord
     :make_sound_licenses_same,
     :html,
     :pi_consent,
-    :data_transfer_consent
+    :data_transfer_consent,
+    :browser_id,
+    :incognito_mode
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -146,6 +148,9 @@ class User < ApplicationRecord
   has_many :friendships, dependent: :destroy
   has_many :friendships_as_friend, class_name: "Friendship",
     foreign_key: "friend_id", inverse_of: :friend, dependent: :destroy
+  # user signup will be preserved even if the user is deleted
+  # to keep history - user signups are regularly deleted by another process
+  has_one :user_signup
 
   def followees
     User.where( "friendships.user_id = ?", id ).
