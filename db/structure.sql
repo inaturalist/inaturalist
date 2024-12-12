@@ -5573,8 +5573,8 @@ CREATE TABLE public.user_signups (
     vpn boolean,
     browser_id character varying,
     incognito boolean,
-    root_user_id_by_ip character varying,
-    root_user_id_by_browser_id character varying,
+    root_user_id_by_ip integer,
+    root_user_id_by_browser_id integer,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );

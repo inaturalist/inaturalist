@@ -61,7 +61,7 @@ describe UserSignup do
       previous_signup = create( :user_signup, ip: "192.168.1.1", created_at: 3.days.ago )
       new_signup = build( :user_signup, ip: "192.168.1.1" )
       new_signup.validate
-      expect( new_signup.root_user_id_by_ip ).to eq( previous_signup.user_id.to_s )
+      expect( new_signup.root_user_id_by_ip ).to eq( previous_signup.user_id )
     end
 
     it "Matching IP older than the last 5 days" do
@@ -84,7 +84,7 @@ describe UserSignup do
       previous_signup = create( :user_signup, browser_id: "browser123" )
       new_signup = build( :user_signup, browser_id: "browser123" )
       new_signup.validate
-      expect( new_signup.root_user_id_by_browser_id ).to eq( previous_signup.user_id.to_s )
+      expect( new_signup.root_user_id_by_browser_id ).to eq( previous_signup.user_id )
     end
 
     it "No matching Browser ID" do

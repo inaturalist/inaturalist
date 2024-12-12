@@ -6,8 +6,8 @@ class AddUserSignups < ActiveRecord::Migration[6.1]
       t.boolean :vpn
       t.string :browser_id
       t.boolean :incognito
-      t.string :root_user_id_by_ip
-      t.string :root_user_id_by_browser_id
+      t.integer :root_user_id_by_ip
+      t.integer :root_user_id_by_browser_id
       t.timestamps
     end
 
