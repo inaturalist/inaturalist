@@ -7410,6 +7410,11 @@ fr:
         we_have_redesigned_projects: |
           Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types de projet, les projets de collections et les projets-cadres, qui partagent les fonctionnalités suivantes :
         welcome_to_projects: Bienvenue dans les projets !
+        you_can_learn_more2_html: |
+          Vous pouvez en savoir plus sur la gestion des projets 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">ici</a>
+           ou lire l'historique des projets sur 
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">notre blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Vous n'avez défini aucun critère d'observation. Vérifiez bien d'avoir sélectionné un ou plusieurs taxons (par exemple: oiseaux, connifères), places (par exemple: Brésil, Yellowstone), utilisateurs, et/ou dates des observations que vous voulez inclure dans votre projet.
         errors:
@@ -8446,6 +8451,8 @@ fr:
       assessment_section:
         title: Titre
         body: Corps
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Utilisateur bloqué
@@ -8866,6 +8873,10 @@ fr:
             taxon:
               too_many_photos: |
                 ne peut pas avoir plus de %{max} photos
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                ne peut pas contenir de signalements non résolus
         taxon_range:
           attributes:
             iucn_relationship:
