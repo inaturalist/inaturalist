@@ -1264,6 +1264,9 @@ cs:
   content_and_display: Obsah a zobrazení
   content_author: Autor obsahu
   content_hidden: Skrytý obsah
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Obsah je skrytý na %{date} z důvodu: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Obsah skrytý uživatelem %{user} na %{date}, protože: "%{reason}"
@@ -2450,6 +2453,8 @@ cs:
   in_place_x: v %{place}
   #As in a reason to flag something
   inappropriate: Nevhodné
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Síť iNaturalist
   inaturalist_network_affiliation: Příslušnost k síti iNaturalist
   #Label for messages you've received
@@ -2820,6 +2825,7 @@ cs:
     lv: lotyšsky
     mi: maorsky
     mk: makedonsky
+    ml: Malajámština
     mr: maráthsky
     nb: norsky (Bokmål)
     nl: holandsky
@@ -2834,6 +2840,7 @@ cs:
     sq: albánsky
     sr: srbsky
     sv: švédsky
+    ta: Tamilština
     th: thajsky
     tr: turecky
     uk: ukrajinsky
@@ -4959,6 +4966,8 @@ cs:
     Členové sítě mohou sdílet data z iNaturalist, aby podpořili výzkum a ochranu přírody ve svých oblastech. Mají povinnost posoudit oprávněnost a vhodnost žádostí o data a jejich potenciální výsledky; písemně sdělit odpovědnost za to, že zajistí také bezpečnost těchto dat a nebudou je žádným způsobem veřejně vystavovat, sdílet nebo používat nad rámec původního účelu; dokumentovat všechny případy sdílení spolu se souvisejícími výsledky, výstupy nebo zamýšleným použitím; a každoročně podávat iNaturalistovi zprávu.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     Síť %{start_tag_network}iNaturalist Network%{end_tag_network} je soubor lokalizovaných webových stránek v rámci %{start_tag_global}globální komunity iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    Síť %{start_tag_network}iNaturalist Network%{end_tag_network} je soubor lokalizovaných webových stránek v rámci %{start_tag_global}globální komunity iNaturalist%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Když se přidáte k některému členovi sítě iNaturalist, vaše e-mailová adresa a skutečné umístění vašich skrytých a soukromých lokalit jsou sdíleny s tímto členem sítě. Vaše pozorování se tak stávají cennějšími pro místní ochranářské úsilí. Pokud žijete v oblasti, která je členem sítě, nebo ji často navštěvujete, doporučujeme vám, abyste si ji zvolili jako svou afiliaci a usnadnili tak sdílení dat.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4970,9 +4979,23 @@ cs:
     <strong>Pokud má vaše organizace zájem připojit se k síti iNaturalist, 
     naleznete další podrobnosti
     %{start_tag_join}zde%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist má formální dohody s organizacemi v každé z těchto
+    zeměpisných oblastí na podporu využívání platformy iNaturalist. Od roku 2024,
+    pilotujeme zjednodušený přístup k partnerským sítím.
+    <strong>Pokud má vaše organizace zájem vstoupit do sítě iNaturalist
+    , další podrobnosti najdete
+    %{start_tag_join}zde%{end_tag_join}.</strong>
   sites_network_consists_of: "Síť iNaturalist Network se skládá z několika organizací:"
   sites_network_inaturalist_network_collection: |
     Síť iNaturalist je soubor lokalizovaných webových stránek, které jsou plně propojeny s celosvětovou komunitou iNaturalist. Stránky sítě jsou podporovány místními institucemi, které podporují místní využití a usnadňují využívání dat z iNaturalist ve prospěch místní biologické rozmanitosti. Mají přístup ke skutečným souřadnicím v rámci svých zeměpisných oblastí, které jsou automaticky zakryty před zraky veřejnosti, aby se lépe chránily ohrožené druhy.
+  sites_network_inaturalist_network_collection2: |
+    Síť iNaturalist je lokalizovaná zkušenost, která je plně
+    propojena s globální komunitou iNaturalist. Členové sítě jsou
+    místní instituce, které podporují místní využívání a usnadňují využívání dat
+    od iNaturalist ve prospěch místní biologické rozmanitosti. Mají přístup ke skutečným
+    souřadnicím ve svých zeměpisných oblastech, které jsou automaticky zakryty z pohledu veřejnosti
+    s cílem lépe chránit ohrožené druhy.
   sites_network_your_username: |
     Vaše uživatelské jméno a heslo funguje na všech stránkách, které jsou součástí sítě iNaturalist. Pokud se rozhodnete přidružit k některému ze stránek Sítě, místní instituce, které jednotlivé stránky podporují, budou mít také přístup k vaší e-mailové adrese (pouze za účelem komunikace s vámi o aktivitách na stránkách) a přístup ke skutečným souřadnicím pozorování, která jste se rozhodli učinit veřejně skrytými nebo soukromými.
   some_agree: někteří souhlasí
@@ -5846,6 +5869,10 @@ cs:
     %{user} se domnívá, že toto je komplexní seznam %{taxon} v %{place}
   user_blocked: Uživatel zablokován
   user_commented: "Uživatel %{user} přidal komentář"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_drop_affecting_taxon: "%{user} provedl pokles taxonu ovlivňující %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} provedl sloučení taxonu ovlivňující %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} se dopustil rozdělení taxonu ovlivňujícího %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
@@ -6523,6 +6550,10 @@ cs:
       your_site_account_has_no_email: Váš %{site_name} účet nemá přiřazenou e-mailovou adresu.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Označitelný obsah
         flaggable_content_desc: |
           Označený obsah je primární atribut textu označeného
           objektu v okamžiku vytvoření vlajky. Mohou ho vidět pouze kurátoři a zaměstnanci. Pouze zaměstnanci mohou vidět tyto zprávy.
@@ -6825,6 +6856,11 @@ cs:
         privacy_notice_html: |
           Ačkoliv zprávy mezi vámi a příjemcem jsou soukromé, zaměstnanci iNaturalist mohou tyto zprávy rovněž zobrazit, a učiní tak, pokud je zpráva označena k moderaci. Pokud potřebujete skutečně soukromou komunikaci, podívejte se prosím po jiných komunikačních kanálech, které podporují silné šifrování.
     nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Demo vidění jazyka
       what_do_you_want_to_search_for: Co chcete vyhledat?
       #Provides an example of a query to use with the Vision Language Demo.
       #query_in_english will be something like "a bird eating fruit".
@@ -7131,58 +7167,6 @@ cs:
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
         join_project_desc_html: |
           Pokud se připojíte k projektu, umožníte kurátorům projektu zobrazit skryté souřadnice tohoto i ostatních pozorování v projektu a zároveň vyjadřujete svůj souhlas s <a href="%{url}" target="_blank">podmínkami</a> projektu.
-        quality_assessment_help3_html: |
-          <p>
-          Hodnocení kvality dat je souhrnem přesnosti pozorování. Všechna pozorování začínají jako <strong>příležitostná</strong> a stanou se <strong>„potřebuje ID“</strong>, když </p>
-
-          <ul>
-          <li>pozorování <strong>má datum</strong></li>
-          <li>pozorování <strong>je georeferencováno</strong> (tj. má souřadnice zeměpisné šířky/délky)</li>
-          <li>pozorování <strong>obsahuje fotografie nebo zvuky</strong></li>
-          <li>to pozorování <strong>není od člověka</strong></li>
-          </ul>
-          <p>
-          Pozorování se stanou <strong>„stupněm pro výzkum“</strong>, když
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>komunita souhlasí s ID na úrovni druhu nebo nižší</strong>, tj. když více než 2/3 identifikátorů souhlasí s taxonem (pokud komunita odhlasovala, že komunitní taxon již nelze vylepšovat , toto se vrátí na ID na úrovni podrodiny nebo nižší)
-          </li>
-          </ul>
-          <p>
-          Pokud nebudou splněny výše uvedené podmínky nebo s tím komunita souhlasí, vrátí se pozorování na <strong>„příležitostná“</strong>
-          </p>
-          <ul>
-          <li>
-          <strong>místo nevypadá přesně</strong> (např. opice uprostřed oceánu, hroši v kancelářských budovách atd.)
-          </li>
-          <li>
-          <strong>organismus není divoký/naturalizovaný</strong> (např. v zajetí nebo kultivovaný lidmi)
-          </li>
-          <li>
-          pozorování <strong>neprokazuje existenci organismu</strong>, např. obrázky vodních prvků, skal, krajin, které nezahrnují organismus atd.
-          </li>
-          <li>
-          pozorování <strong>nepředkládá nedávné (~ 100 let) důkazy o organismu</strong> (např. fosilie, ale stopy, strupy a mrtvé listy jsou v pořádku)
-          </li>
-          <li>
-          pozorování <strong>neobsahuje důkazy týkající se jednoho předmětu</strong> (např. má čtyři fotografie nepříbuzných organismů. Fotografie zobrazující stanoviště předmětu pozorování je v pořádku.)
-          </li>
-          <li>
-          pozorování již nepotřebuje ID <em>a</em> ID komunity je v rodině nebo výše
-          </li>
-          <li>
-          pozorovatel se odhlásil z ID komunity a taxon ID komunity není předkem ani potomkem taxonu spojeného s ID pozorovatele
-          </li>
-          </ul>
-          <p>
-          A pokud to nebylo dost složité, existují také situace, kdy systém dostane hlas:
-          </p>
-          <ul>
-          <li>
-          Systém bude hlasovat, že pozorování není divoké/naturalizované, pokud existuje alespoň 10 dalších pozorování rodu nebo nižšího v nejmenším ekvivalentním místě okresu, státu nebo země, které obsahuje toto pozorování a 80 % nebo více z nich pozorování byla označena jako nikoli divoká/naturalizovaná.
-          </li>
-          </ul>
         score_desc: "skóre = kumulativní počet / (kumulativní počet + počet neshod + neshody u základních)"
         observation_flagged_notice_html: |
           Toto pozorování bylo označeno jako spam a už není zobrazováno jako veřejné. Vy ho vidíte, protože jste ho vytvořili nebo jste kurátor stránky. Pokud si myslíte, že došlo k chybě,
@@ -7316,6 +7300,28 @@ cs:
           Uvádíme odkazy na níže uvedené fotografie.
       user_parent_confirmation:
         subject: Účet iNaturalist vašeho dítěte byl aktivován
+        content_html: |
+          <p>
+          Děkujeme za vytvoření účtu iNaturalist pro vaše dítě!
+          Účet byl aktivován. Zde jsou podrobnosti, které jste zadali a které
+          máme v záznamu:
+          </p>
+          <ul>
+          <li> <strong> Jméno rodiče nebo zákonného zástupce: </strong>%{parent_name} </li>
+          <li> <strong> E-mail rodiče nebo zákonného zástupce: </strong>%{parent_email} </li>
+          <li> <strong> Jméno dítěte: </strong>%{child_name} </li>
+          <li> <strong> Narozeniny dítěte: </strong>%{child_birthday} </li>
+          <li> <strong> E-mailový účet pro děti: </strong>%{child_email} </li>
+          <li> <strong> Uživatelské jméno účtu dítěte: </strong>%{child_username} </li>
+          </ul>
+          <p>
+          Klepnutím na ikonu „iNaturalist“ se přihlaste do účtu vašeho dítěte pomocí aplikace Vyhledat vašeho dítěte a poté „Přihlásit se pomocí
+          iNaturalist “ve spodní části obrazovky.
+          </p>
+          <p>
+          Vaše dítě pak bude moci řidávat pozorování do jejich účtu iNaturalist pomocí aplikace Seek, aby je bylo možné zobrazit na
+          iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
           Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
@@ -7660,6 +7666,8 @@ cs:
         avg_ttcid: Průměrná hodnota TTCID
         avg_ttid: Průměrná hodnota TTID
         identifiers_desc: ID bylo dnes přidáno ke komentáři někoho jiného
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Vytvořeno pomocí <a href="%{url}">iNatNext</a>
         iphone_desc_html: Vytvořeno pomocí <a href="%{url}"> aplikace iPhone iNaturalist </a>
         med_ttcid: Medián TTCID
         med_ttid: Medián TTID
@@ -7680,6 +7688,8 @@ cs:
         recent_w_0_obs_desc: Přihlášen v minulých 7 dnech a přidáno 0 pozorování
         recent_w_7_obs: Nedávné se 7 nebo více pozorováními
         recent_w_7_obs_desc: Připojil se za posledních 7 dní a přidal alespoň 7 komentářů
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Vytvořeno pomocí <a href="%{url}">Seek</a>
         time_to_id_desc: Čas na identifikaci (hodiny, 1 týdenní pohyblivé okno)
         TTCID: TTCID
         TTCID_desc: Čas obdržet identifikaci od někoho jiného, ​​kdo odpovídá taxonu komunity.
@@ -7806,6 +7816,11 @@ cs:
            %{view_all_mobile_link_tag}mobilního%{link_tag_end} úložiště kódů.
         translators_prompt: |
           Pokud chcete pomoci s překladem, %{link_tag}podívejte se jak%{link_tag_end}.
+        view_all_publications_count_caps2:
+          one: "ZOBRAZIT %{count} ZVEŘEJNĚNÍ"
+          few: "ZOBRAZIT %{count} ZVEŘEJNĚNÍ"
+          many: "ZOBRAZIT %{count} ZVEŘEJNĚNÍ"
+          other: "ZOBRAZIT VŠECH %{count} ZVEŘEJNĚNÍ"
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

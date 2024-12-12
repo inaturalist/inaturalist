@@ -118,7 +118,10 @@ class PhotoChooserModal extends React.Component {
     queryParams.fields = {
       photos: {
         id: true,
-        url: true
+        url: true,
+        flags: {
+          resolved: true
+        }
       }
     };
     inatjs.observations.search( queryParams ).then( response => {
@@ -270,7 +273,11 @@ class PhotoChooserModal extends React.Component {
     }
     const photosToDisplay = _.filter(
       photos,
-      p => p.small_url && p.small_url.match( /\.(jpe?g|gif|png)/i )
+      p => (
+        p.small_url
+        && p.small_url.match( /\.(jpe?g|gif|png)/i )
+        && !_.some( p?.flags, flag => ( !flag.resolved ) )
+      )
     );
     const prevNextButtons = (
       <ButtonGroup className="pull-right">

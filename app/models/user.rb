@@ -136,6 +136,7 @@ class User < ApplicationRecord
   has_one  :soundcloud_identity, dependent: :delete
   has_one :user_daily_active_category, dependent: :delete
   has_many :user_installations
+  has_many :blocked_ips
   has_many :observations, dependent: :destroy
   has_many :deleted_observations
   has_many :deleted_photos
@@ -916,25 +917,34 @@ class User < ApplicationRecord
   # If not, add numbers to the end until we find an available login. Particularly long requested logins may have
   # characters removed from the end.
   # If we somehow couldn't find a reasonable login, return nil.
-  def self.suggest_login(requested_login)
+  def self.suggest_login( requested_login = DEFAULT_LOGIN, suffix_range = 0..100_000 )
     base_login = sanitize_login( requested_login.to_s ).presence || DEFAULT_LOGIN
 
-    # Biggest random number to append to the login to make it unique
-    max_random_suffix = 100_000
-    random_suffixes = Enumerator.produce { rand( max_random_suffix ) }
-    numeric_suffixes =  ( 1..9 ).
+    # Make an enumerator that produces random numbers within the specified
+    # suffix range
+    random_suffixes = Enumerator.produce { suffix_range.min + rand( suffix_range.count ) }
+    # Generate some suffixes that don't end in bad numbers
+    numeric_suffixes = ( 1..9 ).
       chain( random_suffixes.take( 20 ) ).
-      reject { |number| LOGIN_SUFFIX_EXCLUSIONS.include? number }
+      reject {| number | LOGIN_SUFFIX_EXCLUSIONS.include? number }
     suffixes = [""].chain( numeric_suffixes.map( &:to_s ) )
 
-    # Delete some characters off the end of the end if necessary to fit the suffix while staying under
-    # MAX_LOGIN_SIZE.
+    # Delete some characters off the end of the end if necessary to fit the
+    # suffix while staying under MAX_LOGIN_SIZE.
     suggested_logins = suffixes.
-      map { |suffix| base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
-      reject { |login| login.size < MIN_LOGIN_SIZE }
+      map {| suffix | base_login[0..MAX_LOGIN_SIZE - ( suffix.size + 1 )] + suffix }.
+      reject {| login | login.size < MIN_LOGIN_SIZE }
 
     # Find an available login.
-    suggested_logins.find { |login| where( login: login ).none? }
+    suggestion = suggested_logins.find {| login | where( login: login ).none? }
+    return suggestion if suggestion
+
+    # If we could not find an available login, try again with a range of
+    # higher numbers
+    User.suggest_login(
+      requested_login,
+      Range.new( suffix_range.max, suffix_range.max + suffix_range.count )
+    )
   end
 
   # A sanitized login:
@@ -972,37 +982,46 @@ class User < ApplicationRecord
     end
 
     User.preload_associations( self, [:stored_preferences, :roles, :flags] )
-    # delete observations without onerous callbacks
-    observations.includes( [
-      { user: :stored_preferences },
-      :votes_for,
-      :flags,
-      :stored_preferences,
-      :observation_photos,
-      :comments,
-      :annotations,
-      { identifications: [
-        :taxon,
-        :user,
-        :flags
-      ] },
-      :project_observations,
-      :quality_metrics,
-      :observation_field_values,
-      :observation_sounds,
-      :observation_reviews,
-      { listed_taxa: :list },
-      :tags,
-      :taxon,
-      :quality_metrics,
-      :sounds
-    ] ).find_each( batch_size: 100 ) do | o |
-      o.skip_refresh_check_lists = true
-      o.skip_identifications = true
-      o.bulk_delete = true
-      o.comments.each {| c | c.bulk_delete = true }
-      o.annotations.each {| a | a.bulk_delete = true }
-      o.destroy
+    # fetching all observation IDs to loop through. This can be more performant
+    # than using .find_each which will generate many queries with LIMITs, which
+    # for users with many observations can be very slow
+    observation_ids = Observation.where( user_id: id ).pluck( :id )
+    observation_ids.in_groups_of( 100, false ) do | batch_ids |
+      # delete observations without onerous callbacks
+      Observation.where( id: batch_ids ).
+        includes(
+        [
+          { user: :stored_preferences },
+          :votes_for,
+          :flags,
+          :stored_preferences,
+          :observation_photos,
+          :comments,
+          :annotations,
+          { identifications: [
+            :taxon,
+            :user,
+            :flags
+          ] },
+          :project_observations,
+          :quality_metrics,
+          :observation_field_values,
+          :observation_sounds,
+          :observation_reviews,
+          { listed_taxa: :list },
+          :tags,
+          :taxon,
+          :quality_metrics,
+          :sounds
+        ]
+      ).each do | o |
+        o.skip_refresh_check_lists = true
+        o.skip_identifications = true
+        o.bulk_delete = true
+        o.comments.each {| c | c.bulk_delete = true }
+        o.annotations.each {| a | a.bulk_delete = true }
+        o.destroy
+      end
     end
 
     identification_ids = Identification.where( user_id: id ).pluck( :id )

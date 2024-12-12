@@ -174,12 +174,17 @@ export function validateSubprojects( ) {
       project.initialSubprojectCount && project.initialSubprojectCount > UMBRELLA_SUBPROJECT_LIMIT
     ) ? project.initialSubprojectCount : UMBRELLA_SUBPROJECT_LIMIT;
     const countActiveSubprojects = _.filter(
-      project.project_observation_rules, rule => rule.operand_type === "Project" && !rule._destroy
+      project.project_observation_rules,
+      rule => rule.operand_type === "Project" && !rule._destroy
     ).length;
     if ( countActiveSubprojects > subprojectLimit ) {
-      dispatch( setProjectError( "subprojects",
-        I18n.t( "views.projects.new.errors.cannot_have_more_than_x_project_rules",
-          { x: subprojectLimit } ) ) );
+      dispatch( setProjectError(
+        "subprojects",
+        I18n.t(
+          "views.projects.new.errors.cannot_have_more_than_x_project_rules",
+          { x: subprojectLimit }
+        )
+      ) );
       return void null;
     }
     dispatch( setProjectError( "subprojects", null ) );
@@ -191,7 +196,6 @@ export function addProjectRule( operator, operandType, operand ) {
     const { project } = getState( ).form;
     if ( !project || !operand ) { return; }
     const operandID = operandType ? operand.id : operand;
-
 
     const newRules = [];
     let ruleExists = false;
@@ -309,7 +313,6 @@ export function showError( e ) {
   };
 }
 
-
 export function onFileDrop( droppedFiles, field ) {
   return dispatch => {
     if ( _.isEmpty( droppedFiles ) ) { return; }
@@ -362,8 +365,10 @@ export function submitProject( ) {
       errors = true;
     }
     if ( _.isEmpty( project.description ) ) {
-      dispatch( setProjectError( "description",
-        I18n.t( "views.projects.new.errors.summary_is_required" ) ) );
+      dispatch( setProjectError(
+        "description",
+        I18n.t( "views.projects.new.errors.summary_is_required" )
+      ) );
       errors = true;
     }
     if ( errors ) { return; }
@@ -373,8 +378,6 @@ export function submitProject( ) {
         user_id: project.user_id || state.config.currentUser.id,
         title: project.title,
         description: project.description,
-        icon: project.droppedIcon ? project.droppedIcon : null,
-        cover: project.droppedBanner ? project.droppedBanner : null,
         preferred_banner_color: project.banner_color,
         prefers_hide_title: !!project.hide_title,
         prefers_hide_umbrella_map_flags: !!project.hide_umbrella_map_flags,
@@ -402,10 +405,14 @@ export function submitProject( ) {
         prefers_user_trust: project.prefers_user_trust === true
       }
     };
-    if ( !payload.project.icon && project.iconDeleted ) {
+    if ( project.droppedIcon ) {
+      payload.project.icon = project.droppedIcon;
+    } else if ( project.iconDeleted ) {
       payload.icon_delete = true;
     }
-    if ( !payload.project.cover && project.bannerDeleted ) {
+    if ( project.droppedBanner ) {
+      payload.project.cover = project.droppedBanner;
+    } else if ( project.bannerDeleted ) {
       payload.cover_delete = true;
     }
 

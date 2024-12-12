@@ -320,6 +320,9 @@ class Photo < ApplicationRecord
       Observation.set_quality_grade( o.id )
       o.elastic_index!
     end
+    if flags.any? {| f | !f.resolved? } && taxon_photos.any?
+      taxon_photos.each( &:destroy )
+    end
     taxa.each( &:elastic_index! )
   end
 

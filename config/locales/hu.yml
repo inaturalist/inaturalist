@@ -879,6 +879,9 @@ hu:
   colors: Színek
   columns: Oszlopok
   combine: Összevonás
+  comma_separated_list_of_tracking_codes: |
+    Vesszővel elválasztott követési kódok listája. Add ezeket hozzá ha csatolni akarsz egy követési kódot amikor az embereket az új megfigyelésfeltöltőre irányítod, pl. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
+    Ezt arra használhatod, hogy kövesd a részvételt különböző helyekről. Hozzáférhetsz ezekhez a kódokhoz amikor letöltöd a projekt megfigyeléseit CSV-ben.
   comma_separated_please: Vesszővel elválasztva
   #Noun, used to label a comment or a comment field in a form
   comment: megjegyzés
@@ -1430,6 +1433,7 @@ hu:
   #Label for a button that dismisses an alert or popup
   dismiss: Bezárás
   display: Megjelenítés
+  display_link_to_checklist: Mutass linket a projektlistához a projekt lapján
   display_monthly_supporter_badge: A havi támogatói jelvény megjelenítése a profilon
   display_name: Megjelenített név
   display_name_description: Ez a név fog megjelenni a profilodon és a copyright megjegyzésnél
@@ -1669,6 +1673,7 @@ hu:
   find_places: Területek keresése
   find_species: Fajok keresése
   find_suitable_observations: Megfelelő megfigyelések keresése
+  find_unsuitable_observations: Alkalmatlan megfigyelések keresése
   find_your_current_location: A jelenlegi tartózkodási helyed lekérése
   finished: A végéhez értél
   finished_with_page: Az oldal végéhez értél
@@ -1846,6 +1851,7 @@ hu:
   has_photos_or_sounds: Hanggal
   has_sound: Hanggal
   has_sounds: Hanggal
+  hasnt_contributed_any_observations: még nem járult hozzá megfigyeléssel ehhez a projekthez.
   header_your_observations: Megfigyeléseim
   header_your_calendar: A naptárad
   header_your_favorites: Kedvenceid
@@ -1860,6 +1866,7 @@ hu:
   heads_up_this_photo_has_been_flagged: "FIGYELEM: ez a fotó meg volt jelölve"
   heads_up_this_photo_is_already_associated_with: "Figyelem: az a fotó már társítva van <a target='_blank' href='%{url}'>egy másik megfigyeléssel</a>"
   help: Súgó
+  help_confirm_observations!: Segíts a megfigyeléseket megerősíteni!
   help_translate!: Segíts fordítani!
   here_are_3_examples: Itt van 3 példa jó formátumban levő adatokra
   here_are_our_top_suggestions: Íme a legjobb javaslataink
@@ -1874,6 +1881,9 @@ hu:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: '"Megjelölés nélküli" elrejtése'
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Rejtsd el a rejtett koordinátákkal rendelkező megfigyeléseket
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Kumulatív elrejtése
   hide_uncountable_species: Megszámlálhatatlan fajok elrejtése
@@ -1941,6 +1951,7 @@ hu:
   if_for_some_reason_a_user_doesnt_agree: |
     Ha valamilyen okból nem értesz egyet a közösségi taxonnal, elutasíthatod azt. Ez azt jelenti, hogy a saját meghatározásod alapján fog a megfigyelés más megfigyelésekkel társulni, a saját mehatórozásod alapján fog ez az életlistádon megjelenni, stb. Fontos továbbá, hogy a megfigyelésed csak akkor lehet tudományos szintű, ha a közösség egyetért veled.
   if_this_is_a_scientific_name: Ha ez tudományos név, jelenleg elfogadott?
+  if_your_project_is: Ha a projekt egy bizonyos helyről szól, add meg a koordinátákat a térképre kattintva vagy írd be azokat kézzel.
   ignore_and_continue: Figyelmen kívül hagyod és folytatod
   #NatureServe G2 "Imperiled" conservation status for taxa: https://www.natureserve.org/conservation-tools/conservation-status-assessment
   imperiled: Veszélyeztetett
@@ -1949,6 +1960,7 @@ hu:
   import_from_csv: Importálás CSV-ből
   import_from_other_photo_sites: Importálás más fotószolgáltatásból
   import_observations: Megfigyelések importálása
+  import_observations_from_a_photo: Importálj megfigyeléseket egy képszolgáltatótól vagy egy fájlból a számítógépeden.
   import_photos: Fényképek importálása
   import_ranges: Intervallum importálása
   import_sections: Bekezdés importálása
@@ -2043,6 +2055,7 @@ hu:
   journal_posts: Bejegyzések
   jpg_png_or_gif: "JPG, PNG vagy GIF"
   jump_to_letter: Ugrás a betűre
+  just_a_reminder: Csak egy figyelmeztetés arról, hogy megengedted a projekt kurátorainak, hogy láthassák a megfigyeléseid rejtett koordinátáit.
   just_added!: Hozzáadva!
   keep_editing: Szerkesztés folytatása
   keyboard_shortcuts: Gyorsbillentyűk
@@ -2272,6 +2285,7 @@ hu:
   loading_metadata: Metaadatok betöltése...
   loading_suggestions: Javaslatok betöltése...
   loading_tags: "Címkék betöltése..."
+  loading_taxa_from_your: "Taxonok betöltése a megfigyeléseidből..."
   locales:
     ar: Arab
     be: Belorusz
@@ -2693,6 +2707,7 @@ hu:
   no_observations: Nincsenek megfigyelések
   no_observations_from_this_place_yet: Még nincs megfigyelés erről a területről.
   no_observations_matching_those_ids: Nincs az azonosításnak megfelelő megfigyelés.
+  no_observations_submitted: "Nincs beadott megfigyelés!"
   no_observations_yet: Még nincsenek megfigyelések
   no_one_has_added_any: Még senki sem adott megjegyzést ehhez a területhez
   no_one_has_been_invited_yet: Még senkit sem hívtál meg.
@@ -2764,6 +2779,7 @@ hu:
   observation_accuracy_experiment_the_sample_for: "A minta erre a kísérletre még nem készült el"
   observation_accuracy_experiment_our_accuracy_estimate: "A pontosság becslése erről a kísérletről %{percent} helyes."
   observation_accuracy_experiment_taxon_rank_level: "Taxon rangjának a szintje"
+  observation_accuracy_experiment_taxon_observations_count: "Taxonmegfigyelések száma"
   observation_accuracy_experiment_iconic_taxon_name: "Ikonnal rendelkező taxon neve"
   observation_accuracy_experiment_continent: "Földrész"
   observation_accuracy_experiment_year: "Év"
@@ -2848,10 +2864,12 @@ hu:
   observation_brief_taxon_from_place_in_month_year: "%{taxon} %{place} helyről, %{year} %{month}"
   #%{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year_by_user: "%{taxon} %{place} helyről, ekkor: %{year} %{month}, %{user} felhasználótól"
+  observations_by_category: "Megfigyelések kategória szerint"
   observations_by_app: Megfigyelések mobilalkalmazás szerint
   observations_by_rank: Megfigyelések besorolás szerint
   observations_by_user_on_date: "%{user} megfigyelései %{date} napon"
   observations_by_you: "Megfigyeléseid"
+  observations_by_you_on_date: "Megfigyeléseid %{date} napon"
   #The limit is currently 20
   observations_can_only_have_n_photos: A megfégyelések csak %{limit} fotót tartalmazhatnak
   observation_curation: Megfigyelés gondozása
@@ -2887,12 +2905,15 @@ hu:
   #project were last updated
   observation_requirements_updated_at: 'A megfigyelések követelményei frissítve itt:'
   observation_rules: Megfigyelések szabályai
+  observation_rules_description: |
+    Választhatsz szabályokat melyek eldöntik milyen megfigyelések kerülhetnek ebbe a projektbe, mint például a megfigyelések korlátozása egy bizonyos helyhez vagy taxonhoz. Ha több szabályod van egy bizonyos szabálytípusból akkor a megfigyelés elég, ha csak egyik ilyen szabálynak tesz eleget. Például, ha azok a szabályok, hogy "kétéltű kell legyen" és "hüllő kell legyen", akkor a projekt befogadja mind a hüllők és a kétéltűek megfigyeléseit egyaránt.
   observation_was_deleted: Megfigyelés törölve.
   observation_without_media: Megfigyelés fénykép/hang nélkül
   observations: Megfigyelések
   observations_: megfigyelés
   observations_added_by_x_html: "Megfigyeléseket hozzáadta %{x}"
   observations_annotated_with_annotation: "Megfigyelések %{annotation} megjelöléssel"
+  observations_by: 'Felhasználó megfigyelései:'
   observations_by_user: "Megfigyelések %{user} felhasználótól"
   observations_deleted: Megfigyelések törölve.
   observations_fields_are: |
@@ -2918,11 +2939,13 @@ hu:
     A szöveges keresés nemvárt találatokat eredményezhet a szűrökkel együtt használva. Ha egy meghatározott faj megfigyeléseit szeretnéd lekérdezni, használd a taxon szűrőt.
   observations_this_year_vs_last_year: Megfigyelések idén és tavaly
   observations_total: Minden megfigyelés
+  observations_w: Megfigyelések ezzel
   observations_w_field: Megfigyelések adatmezővel
   observations_was_successfully_updated: A megfigyelés(ek) sikeresen frissítve.
   observations_widget: Megfigyelésmodul
   observations_with_this_field: Megfigyelések ezzel az adatmezővel
   observations_with_this_field_and_value: Megfigyelések ezzel az adatmezővel és értékkel
+  observations_without_this_field: Megfigyelések ezen adatmező nélkül
   observations_without_media: Megfigyelés fénykép/hang nélkül
   observationcounts_refreshed: Megfigyelések száma frissítve
   observed: Megfigyelve
@@ -3639,16 +3662,20 @@ hu:
   project_icon: Projekt ikonja
   project_journal: Hírmondó
   project_id_or_url_slug: Projektazonosító vagy URL-paraméter, pl. 333 vagy magyarorszag-biodiverzitasa
+  project_list: Projektlista
   project_list_defaults:
     title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
     <a href="%{url}">%{project}</a> kurátorai hozzáadták pár megfigyelésedet
   project_members: "%{project} tagok"
   project_members_only: Csak projekttagok
+  project_membership_model_description: Nyitott a projekt mindenki számára vagy csak azoknak akiket meghívsz?
+  project_observations: Projekt megfigyelései
   project_requirements: Kritériumok
   project_rules: Projektszabályzat
   project_settings: Projektbeállítások
   project_start_time_datetime: "Kezdete: %{datetime}"
+  project_that_does_not_contain_these_observations: Projekt ami nem tartalmazza ezeket a megfigyeléseket
   project_was_successfully_updated: A projekt frissítése sikeres.
   projects: Projektek
   projects_description: |
@@ -3989,6 +4016,7 @@ hu:
   search_results_for_query: 'Találatok erre: %{query}'
   search_species: Fajok keresése
   search_species_: Fajok keresése...
+  search_the_map: Keress a térképen
   search_your_photos: Kényképeid keresése
   searching: "Keresés..."
   seasonality: Szezonalitás
@@ -4231,6 +4259,7 @@ hu:
   subscriptions_arent_available_for: Nem lehet feliratkozni határok nélküli területekre.
   successfully_changed_your_password: Sikeresen megváltoztattad a jelszavadat.
   suggest_an_identification: Meghatározás hozzáadása
+  suggest_or_require_that: Javasold vagy kötelezd a közreműködőket ezen adatmezők kitöltésére a projektedhez hozzáadandó megfigyeléseiknél.
   suggestions: Javaslatok
   summary: Összefoglaló
   supporting: Megerősítő
@@ -4372,6 +4401,7 @@ hu:
   tell_us_why: Miért gondolod?
   terms: Feltételek
   terms_and_rules_html: "Szabályzat"
+  terms_new_users: "Ha feltételeket adsz hozzá, az új felhasználók egyet kell értsenek ezekkel mielőtt csatlakoznának."
   terms_service: Felhasználási feltételek
   terrain: terep
   text: Szöveg
@@ -4849,6 +4879,7 @@ hu:
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
   view_observation_flags: Megfigyelés bejelentéseinek megtekintése
+  view_observations_by_these_users: E felhasználók megfigyeléseinek megtekintése
   view_observations_of_this_taxon_by: E taxon megfigyeléseinek megtekintése tőle
   view_on: 'Megtekintés itt:'
   view_on_flickr: Megtekintés Flickr-en
@@ -4927,6 +4958,7 @@ hu:
   why_are_you_making_this_change_cite_source_required: Mi a módosítás oka? Kérjük, hogy adj magyarázatot, lehetőleg forrásmegjelöléssel. (Kötelező)
   why_you_can_see_the_coordinates: Miért láthatod a koordinátákat
   who_can_add_observation_fields_to_my_obs: Ki adhat adatmezőket a megfigyeléseimhez?
+  who_can_add_observations_to_this_project?: Ki adhat hozzá megfigyeléseket ehhez a projekthez?
   who_can_see_the_coordinates: Ki láthatja a koordinátákat
   who_can_see_the_coordinates_observer: Az a személy aki a megfigyelést végezte
   who_can_see_the_coordinates_trusted: Egyének akikben a megfigyelő megbízik és számukra láthatóvá tette koordinátáit
@@ -5072,6 +5104,7 @@ hu:
   you_are_subscribed_to_observations_from_this_place: Feliratkoztál a megjegyzésekhez erről a területről.
   you_can_only_block_three_users: Csak három felhasználót blokkolhatsz
   you_can_show_the_boundary_of: Projekteden feltüntetheted a terület határait, ha a területnek vannak határai.
+  you_cant_delete_a_project_list: "Nem törölhetsz egy projektlistát"
   you_cant_delete_observation_fields_that_people_are_using: "Nem lehet használatban lévő adatmezőket törölni"
   you_cant_do_that_for_the_default_check_list_place: Nem teheted ezt egy terület alapértelmezett listájával!
   you_cant_flag_that: Azt nem jelentheted be
@@ -5390,6 +5423,7 @@ hu:
           <p>
           Ugyanakkor, a közösségi meghatározások fel vannak tüntetve, így bárki láthatja az összes meghatározást.
           </p>
+        you_have_opted_out: Kikapcsoltad a közösségi meghatározást
         your_id_does_not_match: |
           Az azonosításod (<span class="bold">%{taxon_name}</span>) nem egyezik a közösségi azonosítással
       copy_tip: "Adj hozzá egy új megfigyelést e megfigyelés dátumának, helyének, képeinek és adatmezőinek másolásával."
@@ -5592,16 +5626,28 @@ hu:
       edit:
         admins_can_only_be_added_after_creation: |
           Adminok csak a projekt létrehozása után adhatók hozzá.
+        new_place_desc_html: |
+          Próbáld átnézni a 
+          <a href="%{places_url}" target="_blank">létező helyeinket</a>
+          és bizonyosodj meg arról, hogy helyesen írtad a hely nevét. Ha tényleg nem találod a keresett helyet 
+          <a href="%{new_place_url}" target="_blank">hozz létre egy új helyet</a>,
+          de kérünk légy biztos benne, hogy nem csak duplikálsz egy már létező helyet.
         bioblitz_desc_html: |
           <p>
           A bioblitz egy olyan esemény, amely során a résztvevők minél több fajt próbálnak rögzíteni meghatározott területen és időben. Ez egy élvezetes módja a biodiverzitás népszerűsítésének, ugyanakkor értékes adatokat is gyűjtünk.
           </p>
+        cover_desc: "Opcionális széles kép ami a projekt lapján legfelül fog megjelenni. 950 pixel széles kell legyen és kevesebb mint 400 pixel magas."
         end_time_desc: "A bioblitzed vége. A kezdeti időtől számítva legfeljebb egy év lehet."
         icon_desc: "Négyzetre vágjuk"
         #Label for button to make another user the owner of a project
         make_owner: Legyen tulajdonos
+        project_list_desc_html: |
+          <p class="description">
+          Létrehozhatsz saját taxonlistát a projekt számára és csatolhatod ezt a projekthez. Ez arra jó, hogy korlátozd a megfigyeléseket a projektben csak ezekre a taxonokra a "tartozzon a projektlista egyik taxonjához" típusú szabály segítségével.
+          </p>
         rules:
           captive: legyen fogságban/kultivált
+          coordinates_shareable_by_project_curators: legyenek láthatóak a koordináták a projekt kurátorai számára
           georeferenced: legyenek koordináták
           has_a_photo: legyen kép
           has_a_sound: legyen hang
@@ -5699,7 +5745,13 @@ hu:
           cannot_have_more_than_x_project_rules: Nem lehet %{x} projekt szabálynál több
           summary_is_required: Projekt leíró szövege kötelező
       project_user_curator_coordinate_access_labels:
+        observer: Igen, de csak akkor ha én adom a projekthez hozzá a megfigyeléseimet.
+        any: Igen, bárki adja hozzá megfigyeléseimet a projekthez.
         none: Nem.
+      curator_coordinate_access_label: |
+        Láthatóvá akarod-e tenni a megfigyeléseid rejtett/kitakart koordinátáit a projekt kurátorainak?
+      curator_coordinate_access_note: |
+        Azt is választhatod, hogy külön-külön oszd meg rejtett megfigyeléseid koordinátáit a projektben, akár minden megfigyelés esetén másképp. Ez csak az alapértelmezés a projekthez újonnan hozzáadott megfigyelésekhez.
       updates_desc: |
         Az értesítések a vezérlőpulton és a napi emailekben érkeznek.
     search:
@@ -6343,7 +6395,10 @@ hu:
         terms: Feltételek
         map_type: Térkép típusa
         zoom_level: Nagyítás mértéke
+        preferred_membership_model: Kedvelt tagsági modell
+        preferred_submission_model: Kedvelt feltöltés modell
         prefers_place_boundary_visible: A terület határainak megjelenítése a térképen
+        tracking_codes: Követési kód
         source_url: Forrás URL
         start_time: Kezdés ideje
       project_observation:

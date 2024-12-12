@@ -236,7 +236,10 @@ iNatAPI.factory( "ObservationsFactory", [
       }
       // remove any params that are null, undefined, or whose value is "any"
       // as they will not affect search results and are not allowed in APIv2
-      return _.omitBy( params, function ( value ) {
+      return _.omitBy( params, function ( value, key ) {
+        if ( key === "verifiable" ) {
+          return false;
+        }
         return value === "any" || _.isNull( value ) || _.isUndefined( value );
       } );
     };

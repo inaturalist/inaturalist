@@ -1,4 +1,5 @@
-
+// We use dangerouslySetInnerHTML a lot in this file
+/* eslint-disable react/no-danger */
 import React from "react";
 import PropTypes from "prop-types";
 import {
@@ -71,14 +72,96 @@ class Assessment extends React.Component {
                   <div className="header">
                     { I18n.t( "data_quality_assessment" ) }
                   </div>
-                  <div
-                    className="contents"
-                    dangerouslySetInnerHTML={{
-                      __html: I18n.t( "views.observations.show.quality_assessment_help4_html", {
-                        site_name: SITE.short_name
-                      } )
-                    }}
-                  />
+                  <div className="contents">
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "views.observations.show.dqa_help_needs_id_lead_html" )
+                      }}
+                    />
+                    <ul>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_needs_id_has_a_date_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_needs_id_is_georeferenced_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_needs_id_has_photos_or_sounds_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_needs_id_is_not_of_human_html" )
+                        }}
+                      />
+                    </ul>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "views.observations.show.dqa_help_research_grade_lead_html" )
+                      }}
+                    />
+                    <ul>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_research_grade_community_species_html", {
+                            site_name: SITE.short_name
+                          } )
+                        }}
+                      />
+                    </ul>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: I18n.t( "views.observations.show.dqa_help_casual_lead_html" )
+                      }}
+                    />
+                    <ul>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_day_year_not_accurate_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_location_not_accurate_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_not_wild_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_not_organism_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_not_recent_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_not_one_subject_html" )
+                        }}
+                      />
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_voted_out_html" )
+                        }}
+                      />
+                      <li>{ I18n.t( "views.observations.show.dqa_help_casual_opted_out_maverick" ) }</li>
+                    </ul>
+                    <p>{ I18n.t( "views.observations.show.dqa_help_system_lead" ) }</p>
+                    <ul>
+                      <li>{ I18n.t( "views.observations.show.dqa_help_system_captive_vote" ) }</li>
+                    </ul>
+                  </div>
                 </Popover>
               )}
               className="cool"

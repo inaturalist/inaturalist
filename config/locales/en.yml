@@ -7668,6 +7668,79 @@ en:
           shares licensed "Research Grade" observations with a number of data
           partners for use in science and conservation.
         disagreement_count_desc: "# of identified taxa that are not among a taxon's ancestors"
+        # Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          The data quality assessment is a summary of an observation's
+          accuracy. All observations start as <strong>"casual"</strong>
+          grade, and become <strong>"needs ID"</strong> when
+        # One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: the observation <strong>has a date</strong>
+        # One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)
+        # One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: the observation <strong>has photos or sounds</strong>
+        # One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: the observation <strong>isn't of a human</strong>
+        # Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Observations become <strong>"research grade"</strong> when
+        # One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          the %{site_name} <strong>community agrees on species-level ID or
+          lower</strong>, i.e. when more than 2/3 of identifiers agree on a
+          taxon (if the community has voted that the Community Taxon can no
+          longer be improved, this reverts to subfamily-level ID or lower)
+        # Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Observations will revert to <strong>"casual"</strong> if the above
+          conditions aren't met or the community agrees
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          the <strong>day and year do not look accurate</strong> (e.g. snow
+          appears in the photo but the date is during summer; do not take
+          time of day into account)
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          the <strong>location doesn't look accurate</strong> (e.g. monkeys in
+          the middle of the ocean, hippos in office buildings, etc.)
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          the <strong>organism isn't wild/naturalized</strong> (e.g. captive
+          or cultivated by humans)
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          the observation <strong>doesn't present evidence of an
+          organism</strong>, e.g. images of water features, rocks, landscapes
+          that don't include the organism, etc.
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          the observation <strong>doesn't present recent (~100 years) evidence
+          of the organism</strong> (e.g. fossils, but tracks, scat, and dead
+          leaves are ok)
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          the observation <strong>doesn't present evidence related to one
+          subject</strong> (e.g. it has four photos of unrelated organisms; a
+          photo showing habitat of the observation’s subject is OK)
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          the observation no longer needs an ID <em>and</em> the community ID
+          is at family or above
+        # One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          the observer has opted out of the community ID and the community ID
+          taxon is not an ancestor or descendant of the taxon associated with
+          the observer's ID
+        # Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          And if that wasn't complicated enough, there are also situations
+          where the system gets a vote:
+        # One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          The system will vote that the observation is not wild/naturalized if
+          there are at least 10 other observations of a genus or lower in the
+          smallest county-, state-, or country-equivalent place that contains
+          this observation and 80% or more of those observations have been
+          marked as not wild/naturalized.
         identification_count_desc: '# of identifications for an individual taxon'
         flagged_photos_desc_html: |
           Some of these photos have been flagged for inappropriate content or
@@ -7677,82 +7750,6 @@ en:
           power to see the hidden coordinates of this or any
           other observation in the project and implies that you
           agree to the project <a href="%{url}" target="_blank">terms</a>.
-        quality_assessment_help4_html: |
-          <p>
-            The data quality assessment is a summary of an observation's accuracy. All
-            observations start as <strong>"casual"</strong> grade, and become
-            <strong>"needs ID"</strong> when
-          </p>
-
-          <ul>
-            <li>the observation <strong>has a date</strong></li>
-            <li>the observation <strong>is georeferenced</strong> (i.e. has lat/lon coordinates)</li>
-            <li>the observation <strong>has photos or sounds</strong></li>
-            <li>the observation <strong>isn't of a human</strong></li>
-          </ul>
-          <p>
-            Observations become <strong>"research grade"</strong> when
-          </p>
-          <ul>
-            <li>
-              the %{site_name} <strong>community agrees on species-level ID or
-              lower</strong>, i.e. when more than 2/3 of identifiers agree on a
-              taxon (if the community has voted that the Community Taxon can no
-              longer be improved, this reverts to subfamily-level ID or lower)
-            </li>
-          </ul>
-          <p>
-            Observations will revert to <strong>"casual"</strong> if the above conditions aren't met or the community agrees
-          </p>
-          <ul>
-            <li>
-              the <strong>day and year do not look accurate</strong> (e.g. snow appears in the
-              photo but the date is during summer. Do not take time of day into account)
-            </li>
-            <li>
-              the <strong>location doesn't look
-              accurate</strong> (e.g. monkeys in the middle of the ocean,
-              hippos in office buildings, etc.)
-            </li>
-            <li>
-              the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans)
-            </li>
-            <li>
-              the observation <strong>doesn't present evidence of an
-              organism</strong>, e.g. images of water features,
-              rocks, landscapes that don't include the organism, etc.
-            </li>
-            <li>
-              the observation <strong>doesn't present recent (~100 years) evidence of
-              the organism</strong> (e.g. fossils, but tracks, scat, and dead leaves
-              are ok)
-            </li>
-            <li>
-              the observation <strong>doesn't present evidence related to one subject</strong>
-               (e.g. it has four photos of unrelated organisms. A photo showing habitat of the
-               observation’s subject is OK.)
-            </li>
-            <li>
-              the observation no longer needs an ID <em>and</em> the community ID is at family or above
-            </li>
-            <li>
-              the observer has opted out of the community ID and the community
-              ID taxon is not an ancestor or descendant of the taxon associated
-              with the observer's ID
-            </li>
-          </ul>
-          <p>
-            And if that wasn't complicated enough, there are also situations where the system gets a vote:
-          </p>
-          <ul>
-            <li>
-              The system will vote that the observation is not wild/naturalized
-              if there are at least 10 other observations of a genus or lower in
-              the smallest county-, state-, or country-equivalent place that
-              contains this observation and 80% or more of those observations
-              have been marked as not wild/naturalized.
-            </li>
-          </ul>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
         observation_flagged_notice_html: |
           This observation has been flagged as spam and is no longer
@@ -8307,9 +8304,9 @@ en:
           places, taxa, users, quality, and dates that you define. Choose between two main types:
           Collection Projects and Umbrella Projects, which share the following features:
         welcome_to_projects: Welcome to Projects!
-        you_can_learn_more_html: |
+        you_can_learn_more2_html: |
           You can learn more about managing projects
-          <a href="https://www.inaturalist.org/pages/managing-projects">here</a>
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">here</a>
           or read the history of projects on
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">our blog</a>.
         you_have_not_defined_any_observation_requirements: |
@@ -9623,6 +9620,8 @@ en:
       assessment_section:
         title: Title
         body: Body
+      blocked_ip:
+        ip: IP
       blocked_user:
         # The user who has been blocked
         blocked_user: Blocked user
@@ -10047,6 +10046,10 @@ en:
             taxon:
               too_many_photos: |
                 cannot have more than %{max} photos
+            photo:
+              # validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                cannot have unresolved flags
         taxon_range:
           attributes:
             iucn_relationship:

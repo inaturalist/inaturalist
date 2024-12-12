@@ -117,6 +117,9 @@ module Inaturalist
 
     config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
 
+    require_dependency "blocked_ips_middleware"
+    config.middleware.use BlockedIpsMiddleware
+
     config.middleware.use Rack::MobileDetect
 
     config.middleware.insert_before 0, Rack::Cors do

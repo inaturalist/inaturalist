@@ -694,6 +694,38 @@ ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
+-- Name: blocked_ips; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.blocked_ips (
+    id bigint NOT NULL,
+    ip character varying,
+    user_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: blocked_ips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.blocked_ips_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: blocked_ips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.blocked_ips_id_seq OWNED BY public.blocked_ips.id;
+
+
+--
 -- Name: cohort_lifecycles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5987,6 +6019,13 @@ ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audit
 
 
 --
+-- Name: blocked_ips id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blocked_ips ALTER COLUMN id SET DEFAULT nextval('public.blocked_ips_id_seq'::regclass);
+
+
+--
 -- Name: cohort_lifecycles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7004,6 +7043,14 @@ ALTER TABLE ONLY public.atlases
 
 ALTER TABLE ONLY public.audits
     ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blocked_ips blocked_ips_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blocked_ips
+    ADD CONSTRAINT blocked_ips_pkey PRIMARY KEY (id);
 
 
 --
@@ -8292,6 +8339,13 @@ CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at
 --
 
 CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
+
+
+--
+-- Name: index_blocked_ips_on_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_blocked_ips_on_ip ON public.blocked_ips USING btree (ip);
 
 
 --
@@ -11335,6 +11389,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240828123245'),
 ('20240923134239'),
 ('20240923134658'),
+('20241127180606'),
 ('20241202092831');
 
 
