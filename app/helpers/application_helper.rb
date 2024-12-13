@@ -423,13 +423,36 @@ module ApplicationHelper
 
   def user_image( user, options = {} )
     user ||= User.new
-    size = options.delete( :size )
+    size = ( options[:size] || :mini ).to_s
     style = options[:style]
     css_class = "user_image #{options[:class]}"
-    css_class += " usericon" if %w(mini small thumb).include?( size.to_s ) || size.blank?
+    css_class += " usericon" if %w(mini small thumb).include?( size )
+    css_class += " #{options[:class]}"
     options[:alt] ||= user.login
     options[:title] ||= user.login
-    image_tag( user.icon.url( size || :mini ), options.merge( style: style, class: css_class ) )
+    widths = User.attachment_definitions[:icon][:styles].
+      map {| style_name, magick_size | [style_name.to_s, magick_size.to_i] }.
+      sort_by {| _, width | width }.
+      to_h
+    max_width = widths[size]
+    style = "#{style} max-width: #{max_width}px"
+    size_2x = widths.detect {| _, width | width >= widths[size] * 2 }.first
+    size_2x ||= widths.detect {| _, width | width > widths[size] }.first
+    if size_2x
+      # the next size up from thumb is medium, which is not square cropped, so
+      # we need to fudge that here
+      if size == "thumb"
+        return content_tag :div,
+          " ",
+          class: css_class,
+          style: "width: #{max_width}px;" \
+            " height: #{max_width}px; #{style};" \
+            " background-image: url(#{user.icon.url( size_2x )}), url(#{user.icon.url( size )});"
+      end
+
+      options[:srcset] = "#{user.icon.url( size )} 1x, #{user.icon.url( size_2x )} 2x"
+    end
+    image_tag( user.icon.url( size ), options.merge( style: style, class: css_class ) )
   end
 
   def user_seen_announcement?( announcement )
@@ -1000,14 +1023,13 @@ module ApplicationHelper
     resource = update.resource.flaggable if update.resource_type == "Flag"
     case resource.class.name
     when "User"
-      image_tag( resource.icon.url( :thumb ), options.merge( alt: "#{resource.login} icon", class: "usericon" ) )
+      user_image( resource, size: "thumb" )
     when "Observation"
       observation_image( resource, options.merge( style: "square" ) )
     when "Project"
       image_tag( resource.icon.url( :thumb ), options )
     when "ProjectUserInvitation"
-      image_tag( resource.user.icon.url( :thumb ),
-        options.merge( alt: "#{resource.user.login} icon", class: "usericon" ) )
+      user_image( resource.user, size: "thumb" )
     when "AssessmentSection"
       image_tag( resource.assessment.project.icon.url( :thumb ), options )
     when "ListedTaxon"
@@ -1015,7 +1037,7 @@ module ApplicationHelper
     when "Post"
       case resource.parent_type
       when "User"
-        image_tag( resource.user.icon.url( :thumb ), options.merge( class: "usericon" ) )
+        user_image( resource.user, size: "thumb" )
       when "Project"
         image_tag( resource.parent.icon.url( :thumb ), options.merge( class: "projecticon" ) )
       else
