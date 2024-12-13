@@ -28,7 +28,7 @@ h6 {
 $font-stack: Lato, "Trebuchet MS", Arial, sans-serif;
 
 .readable,
-p {
+p { 
   font-size: 100%;
   font-family: $font-stack;
 }
@@ -63,12 +63,12 @@ input.chooser {width: auto;}
 .gmapv3control label {margin-bottom: 0;}
 #map img, .latLonSelectorMap img, .taxonmap img {max-width: none;}
 .box {border-radius: 6px; padding: 20px; }
-.clear { display: inline-block; }
+.clear { display: inline-block; }   
 .clear:after, .container:after {
-  content: ".";
-  display: block;
-  height: 0;
-  clear: both;
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
   visibility: hidden;
 }
 * html .clear { height: 1%; }
@@ -90,8 +90,8 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
 .photoSelectorPhotos .photo img {width:100%;}
 .photoSelectorPhotos .photo label {margin-bottom: 0;}
 .photoSelectorSelected {
-  background-color: #eee;
-  padding:10px;
+  background-color: #eee; 
+  padding:10px; 
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
@@ -132,7 +132,7 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
 #pageheader h2 {margin: 0;}
 blockquote { font-size: 14px; }
 blockquote p {margin-bottom: inherit;}
-input.sortable-position {
+input.sortable-position { 
   border-radius: 500px;
   color:white;
   font-weight: bold;
@@ -151,7 +151,7 @@ ol.plain {
   list-style:none;
 }
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
-.stacked,
+.stacked, 
 .nav.nav-tabs,
 .nav.nav-pills {margin-bottom: 10px;}
 .unstacked {margin-bottom: 0px;}
