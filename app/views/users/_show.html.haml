@@ -114,6 +114,18 @@
           %p.lead
             = stripped_first_paragraph_of_text( description, "\n\n" )
           = remaining_paragraphs_of_text( description, "\n\n" )
+    - @should_show_yir_gen_link = is_me?( @selected_user ) && Date.today.month == 12 && @selected_user.observations_count > 0
+    - if @year_stats.size > 0 || @should_show_yir_gen_link
+      #yearstats
+        %strong=t :yearly_stats
+        %ul
+          - if @should_show_yir_gen_link && !@year_stats.detect {| ys | ys.year === Date.today.year }
+            %li
+              = link_to your_year_stats_path( Date.today.year ), class: "btn btn-xs btn-inat" do
+                %i.fa.fa-plus
+                = Date.today.year
+          - for stat in @year_stats do
+            %li= link_to stat.year, user_year_stats_path( stat.year, @selected_user.login )
     - if orcid_provider = @user.has_provider_auth( "orcid" )
       #elsewhere
         - orcid_uri = "https://orcid.org/#{orcid_provider.provider_uid}"

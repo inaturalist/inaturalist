@@ -217,6 +217,7 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :taxon_name_priorities, dependent: :destroy
   has_many :user_donations, dependent: :delete_all
+  has_many :year_statistics, dependent: :destroy
 
   file_options = {
     processors: [:deanimator],

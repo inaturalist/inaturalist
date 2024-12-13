@@ -291,6 +291,7 @@ class UsersController < ApplicationController
         ]).
         paginate(page: 1, per_page: 15).order("listed_taxa.id desc")
     end
+    @year_stats = @selected_user.year_statistics.order( "year desc" ).limit( 100 )
 
     respond_to do |format|
       format.html do

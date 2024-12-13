@@ -95,3 +95,26 @@ h1 {
     margin-right: 2px;
   }
 }
+
+#yearstats {
+  display: flex;
+  flex-direction: row;
+  ul {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin-inline-start: 0.5em;
+  }
+  li:before {
+    content: "•";
+    margin: 0 0.5em;
+  }
+  li:first-child:before {
+    display: none;
+  }
+  .btn-inat {
+    position: relative;
+    top: -2px;
+  }
+}
