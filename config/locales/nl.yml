@@ -8786,6 +8786,10 @@ nl:
             taxon:
               too_many_photos: |
                 mag niet meer dan %{max} foto's bevatten
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                kan geen onopgeloste vlaggen hebben
         taxon_range:
           attributes:
             iucn_relationship:
