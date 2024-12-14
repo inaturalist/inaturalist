@@ -771,6 +771,8 @@ Rails.application.routes.draw do
 
   resources :email_suppressions, only: [:index, :destroy]
 
+  resources :user_deaths, only: [:show, :new, :create, :edit, :destroy]
+
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
 
   # Hack to enable mail previews. You could also remove get

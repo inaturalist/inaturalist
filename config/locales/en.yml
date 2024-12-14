@@ -3053,6 +3053,31 @@ en:
   # As in members of a project
   members: Members
   membership_model: Membership Model
+  memoriam_user_passed_away:
+    zero: "%{user} passed away on %{date} after being a member of the iNat community for %{count} years."
+    one: "%{user} passed away on %{date} after being a member of the iNat community for %{count} year."
+    few: "%{user} passed away on %{date} after being a member of the iNat community for %{count} years."
+    many: "%{user} passed away on %{date} after being a member of the iNat community for %{count} years."
+    other: "%{user} passed away on %{date} after being a member of the iNat community for %{count} years."
+  # Title of a section giving notice about the death of a user. This Latin
+  # phrase is common in American English, but it just means "IN MEMORY" so
+  # feel free to translate in a respecful and appropriate way, even if it's
+  # not an exact translation.
+  memoriam_in_memoriam: IN MEMORIAM
+  memoriam_you_helped_them:
+    zero: "You helped %{user} with %{count} identifications."
+    one: "You helped %{user} with %{count} identification."
+    few: "You helped %{user} with %{count} identifications."
+    many: "You helped %{user} with %{count} identifications."
+    other: "You helped %{user} with %{count} identifications."
+  memoriam_they_helped_you:
+    zero: "%{user} helped you with %{count} identifications."
+    one: "%{user} helped you with %{count} identification."
+    few: "%{user} helped you with %{count} identifications."
+    many: "%{user} helped you with %{count} identifications."
+    other: "%{user} helped you with %{count} identifications."
+  memoriam_both_helped_each_other: |
+    %{user} helped you with %{x_identifications} and you helped them with %{y_identifications}.
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
   mentioned_you_in_noun_by_html: "%{user} mentioned you in %{noun} by %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} mentioned you in %{noun} by %{by}"

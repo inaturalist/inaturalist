@@ -90,6 +90,29 @@
             %i.icon-logomark
           =t :monthly_supporter_since_date_html, date: l( @donor_since, format: :month_year ), url: monthly_supporters_url_for_page
 
+    - if @user.user_death
+      #memoriam.box
+        %h3 IN MEMORIAM
+        %p
+          = @user.published_name
+          passed away on
+          =l @user.user_death.died_on, format: :long
+          after being a member of the iNaturalist community for
+          = Date.today.year - @user.created_at.year
+          years.
+          - if ( interactions = @user.user_death.interactions_with_user( current_user ) )
+            - if interactions[:num_identifications_given_by_deceased].yesish? && interactions[:num_identifications_received_by_deceased].yesish?
+              = t :memoriam_both_helped_each_other, user: @user.published_name, vow_or_con: @user.published_name[0].downcase, x_identifications: t( :x_identifications, count: interactions[:num_identifications_given_by_deceased] ), y_identifications: t( :x_identifications, count: interactions[:num_identifications_received_by_deceased] )
+            - elsif interactions[:num_identifications_given_by_deceased].yesish?
+              =t :memoriam_they_helped_you, user: @user.published_name, vow_or_con: @user.published_name[0].downcase, count: interactions[:num_identifications_given_by_deceased]
+            - else
+              =t :memoriam_you_helped_them, user: @user.published_name, vow_or_con: @user.published_name[0].downcase, count: interactions[:num_identifications_received_by_deceased]
+        - if !@user.user_death.obituary_url.blank? || !@user.user_death.tributes_url.blank?
+          %ul
+            - unless @user.user_death.obituary_url.blank?
+              %li= link_to "Obituary", @user.user_death.obituary_url
+            - unless @user.user_death.tributes_url.blank?
+              %li= link_to "Tributes", @user.user_death.tributes_url
     #description
       - if @user.description.blank?
         - if is_me?(@selected_user)

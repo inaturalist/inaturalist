@@ -5424,6 +5424,41 @@ ALTER SEQUENCE public.user_daily_active_categories_id_seq OWNED BY public.user_d
 
 
 --
+-- Name: user_deaths; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_deaths (
+    id bigint NOT NULL,
+    user_id integer,
+    died_on date,
+    obituary_url character varying,
+    tributes_url character varying,
+    updater_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: user_deaths_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_deaths_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_deaths_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_deaths_id_seq OWNED BY public.user_deaths.id;
+
+
+--
 -- Name: user_donations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6859,6 +6894,13 @@ ALTER TABLE ONLY public.user_daily_active_categories ALTER COLUMN id SET DEFAULT
 
 
 --
+-- Name: user_deaths id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_deaths ALTER COLUMN id SET DEFAULT nextval('public.user_deaths_id_seq'::regclass);
+
+
+--
 -- Name: user_donations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -8011,6 +8053,14 @@ ALTER TABLE ONLY public.user_blocks
 
 ALTER TABLE ONLY public.user_daily_active_categories
     ADD CONSTRAINT user_daily_active_categories_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_deaths user_deaths_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_deaths
+    ADD CONSTRAINT user_deaths_pkey PRIMARY KEY (id);
 
 
 --
@@ -10491,6 +10541,20 @@ CREATE UNIQUE INDEX index_user_daily_active_categories_on_user_id ON public.user
 
 
 --
+-- Name: index_user_deaths_on_updater_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_deaths_on_updater_id ON public.user_deaths USING btree (updater_id);
+
+
+--
+-- Name: index_user_deaths_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_deaths_on_user_id ON public.user_deaths USING btree (user_id);
+
+
+--
 -- Name: index_user_donations_on_donated_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11390,6 +11454,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240923134239'),
 ('20240923134658'),
 ('20241127180606'),
-('20241202092831');
+('20241202092831'),
+('20241214001307');
 
 

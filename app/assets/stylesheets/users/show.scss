@@ -95,3 +95,34 @@ h1 {
     margin-right: 2px;
   }
 }
+
+#memoriam {
+  color: white;
+  background-color: black;
+  padding: 2em;
+  h3 {
+    margin-top: 0;
+    color: #bbb;
+    font-size: 10pt;
+    letter-spacing: 0.5em;
+  }
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+    li {
+      padding: 0;
+      margin: 0 10px;
+      a {
+        color: white;
+        text-decoration: underline;
+      }
+      a:hover,
+      a:active {
+        color: white;
+      }
+    }
+  }
+}

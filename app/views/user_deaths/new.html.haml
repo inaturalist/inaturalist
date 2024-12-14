@@ -1,0 +1,7 @@
+%h1 New User Death
+= form_for @user_death, builder: BootstrapFormBuilder do | f |
+  = f.text_field :user_id
+  = f.date_field :died_on
+  = f.text_field :obituary_url
+  = f.text_field :tributes_url
+  = f.submit t( :create ), class: "btn btn-primary"
