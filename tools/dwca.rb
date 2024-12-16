@@ -112,4 +112,5 @@ begin
   task_logger&.end
 rescue => e
   task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
+  raise e
 end

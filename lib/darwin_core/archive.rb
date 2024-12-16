@@ -1,7 +1,7 @@
 module DarwinCore
   class Archive
-
     OBS_BASED_EXTENSIONS = [
+      :dna_derived_data,
       :occurrence,
       :simple_multimedia,
       :observation_fields,
@@ -514,6 +514,37 @@ module DarwinCore
       end
     end
 
+    def make_dna_derived_data_file
+      headers = DarwinCore::DnaDerivedData::TERM_NAMES
+      fname = "dna_derived_data.csv"
+      tmp_path = File.join( @opts[:work_path], fname )
+      preloads = [{ observation_field_values: :observation_field }]
+      file = CSV.open( tmp_path, "w" )
+      file << headers
+      file.close
+      { path: tmp_path, preloads: preloads }
+    end
+
+    # The extension is called DNADerivedData, but the method has to end
+    # in _data, hence the stupid name
+    def write_dna_derived_data_data( observations, csv )
+      @generate_started_at ||= Time.now
+      observations.each do | observation |
+        dna_ofvs = observation.observation_field_values.select do | ofv |
+          ofv.observation_field.datatype == ObservationField::DNA
+        end
+        dna_ofvs.each do | ofv |
+          next unless ofv.created_at <= @generate_started_at
+          next if ofv.value.blank?
+
+          DarwinCore::DnaDerivedData.adapt( ofv, observation: observation, core: @opts[:core] )
+          csv << DarwinCore::DnaDerivedData::TERMS.map do | field, _uri, _default, method |
+            ofv.send( method || field )
+          end
+        end
+      end
+    end
+
     def make_observation_fields_file
       headers = DarwinCore::ObservationFields::TERM_NAMES
       fname = "observation_fields.csv"
@@ -664,12 +695,18 @@ module DarwinCore
       while chunk_start_id <= end_id
         params[:min_id] = chunk_start_id
         params[:max_id] = [chunk_start_id + search_chunk_size - 1, end_id].min
-        try_and_try_again( [
-                  Elastic::Transport::Transport::Errors::ServiceUnavailable,
-                  Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
+        try_and_try_again(
+          [
+            Elastic::Transport::Transport::Errors::ServiceUnavailable,
+            Elastic::Transport::Transport::Errors::TooManyRequests
+          ],
+          sleep: 1,
+          tries: 10,
+          logger: logger
+        ) do
           Observation.search_in_batches( params.merge(
             per_page: 1000
-          ), logger: logger ) do |batch|
+          ), logger: logger ) do | batch |
             avg_batch_time = if batch_times.size > 0
               (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
             else
