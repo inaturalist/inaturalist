@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Naming/MethodName
 
 module DarwinCore
   class Occurrence
@@ -179,7 +180,6 @@ module DarwinCore
         @dwc_use_community_taxon = true
       end
 
-      # rubocop:disable Naming/MethodName
       def occurrenceID
         uri
       end
@@ -475,7 +475,6 @@ module DarwinCore
         end.join( "|" )
         v == "cannot be determined" ? nil : v
       end
-      # rubocop:enable Naming/MethodName
 
       def otherCatalogueNumbers
         uuid
@@ -515,3 +514,4 @@ module DarwinCore
     end
   end
 end
+# rubocop:enable Naming/MethodName
