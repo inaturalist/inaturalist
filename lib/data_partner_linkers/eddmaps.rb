@@ -16,8 +16,14 @@ module DataPartnerLinkers
         url = "https://api.bugwoodcloud.org/v2/occurrence?" \
           "reporter=#{EDDMAPS_REPORTER_ID}&pagesize=#{PER_PAGE}&page=#{page}&paging=true&sort=objectid&sortorder=asc"
         logger.info "Fetching #{url}"
-        response = JSON.parse( Net::HTTP.get( URI( url ) ) )
-        records = response["data"]
+        records = try_and_try_again( DataPartnerLinkerError, logger: logger ) do
+          response = JSON.parse( Net::HTTP.get( URI( url ) ) )
+          unless ( records = response["data"] )
+            raise DataPartnerLinkerError, "Failed to retrieve EDDMapS API response: #{response['message']}"
+          end
+
+          records
+        end
         break if records.size.zero?
 
         observation_ids = []
