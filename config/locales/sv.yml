@@ -7756,6 +7756,20 @@ sv:
           Visste du att %{site_name} har översatts nästan uteslutande av %{x_people}? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} och %{android_link_tag}Android%{link_tag_end} appar och %{seek_link_tag}Seek%{link_tag_end}. Du kan se
           alla personer som har bidragit med översättningar på alla språk, inklusive personer från tidigare år och folk från Translatewiki, i vår 
           %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+        translators_desc_for_site_2: |
+          Visste du att %{site_name} har översatts nästan uteslutande av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}appar,
+          %{seek_link_tag}Seek%{link_tag_end}, och
+          %{help_link_tag}iNatHelp%{link_tag_end}. Du kan se
+          alla personer som har bidragit med översättningar på alla språk,
+          inklusive personer från tidigare år och folk från Translatewiki, i våra
+          %{view_all_web_link_tag}webb-%{link_tag_end} och
+          %{view_all_mobile_link_tag}mobila%{link_tag_end} kodbibliotek.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
         view_all_publications_count_caps2:
