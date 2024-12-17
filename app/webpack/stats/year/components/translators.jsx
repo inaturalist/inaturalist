@@ -17,7 +17,8 @@ class Translators extends React.Component {
     const {
       data,
       perPage,
-      siteName
+      siteName,
+      year
     } = this.props;
     const {
       initialNumToShow,
@@ -58,9 +59,7 @@ class Translators extends React.Component {
       iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
       android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
       seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-      help_link_tag: "<a href='https://help.inaturalist.org'>",
-      view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
-      view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
+      help_link_tag: "<a href='https://help.inaturalist.org'>"
     };
     if ( siteName ) {
       desc = I18n.t( "views.stats.year.translators_desc_for_site_2", {
@@ -85,6 +84,9 @@ class Translators extends React.Component {
         } )
       } );
     }
+    const headers = year >= 2024
+      ? ["website", "mobile", "seek", "help", "total"]
+      : ["website", "mobile", "seek", "total"];
     return (
       <div className="Translators">
         <h3>
@@ -109,7 +111,7 @@ class Translators extends React.Component {
           <thead>
             <tr>
               <th>{ I18n.t( "name" ) }</th>
-              { ["website", "mobile", "seek", "help", "total"].map( a => (
+              { headers.map( a => (
                 <th
                   className={`number ${a === "total" ? "" : "hidden-xs hidden-sm"}`}
                   key={`translators-header-${a}`}
@@ -227,7 +229,8 @@ class Translators extends React.Component {
 Translators.propTypes = {
   data: PropTypes.object,
   perPage: PropTypes.number,
-  siteName: PropTypes.string
+  siteName: PropTypes.string,
+  year: PropTypes.number
 };
 
 Translators.defaultProps = {
