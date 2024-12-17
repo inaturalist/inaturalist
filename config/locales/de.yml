@@ -4599,6 +4599,8 @@ de:
   show_no_annotation: Beobachtungen ohne Angaben anzeigen
   show_off_your_recent_observations: Zeige Deine neuesten Beobachtungen auf Deinem Blog oder Deiner Webseite!
   show_only: 'beschränken auf:'
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMap anzeigen
   show_relative_proportions_of_all_observations: Relativen Anteil aller Beobachtungen anzeigen
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Gesamtzahl anzeigen
@@ -4838,6 +4840,7 @@ de:
   subject_resolved_noun_html: "%{subject} hat %{noun} geklärt"
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
+  submit: Absenden
   submit_observations:
     one: 1 Beobachtung absenden
     other: '%{count} Beobachtungen absenden'
@@ -5061,6 +5064,7 @@ de:
   #Describes buttons that let you control the format of text, e.g. bold, italic, etc.
   text_formatting_controls: Textformatierungskontrollen
   text_editing_controls: Textformatierungskontrollen
+  thank_you!: Vielen Dank!
   thanks!: Danke!
   thanks_from_all_of_us_here_at: Danke von uns allen hier bei
   that_account_is_already_connected: Dieses Konto ist bereits mit einem anderen Nutzer verbunden.
@@ -6131,6 +6135,12 @@ de:
       temporarily_unavailable: |
         Vielen Dank für das Interesse, iNaturalist unterstützen zu wollen! Die Spendenfunktion 
         ist vorübergehend nicht verfügbar, während wir unsere Systeme aktualisieren. Bitte demnächst wieder versuchen.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klicke hier, um erneut eine Bestätigungs-E-Mail zu senden.
+      please_add_an_email_and_password: Bitte füge eine E-Mail und ein Passwort hinzu, damit du den Zugriff auf dein Konto nicht verlierst
+      please_click_the_link_sent_to_email_to_confirm_html: Bitte klicke auf den Link, der an <span class="email">%{email}</span> gesendet wurde, um deine E-Mail-Adresse zu verifizieren.
+      please_confirm_that_email_is_the_best_contact_html: Bitte bestätige, dass <span class="email">%{email}</span> die beste Möglichkeit ist, dich zu kontaktieren.
+      your_site_account_has_no_email: Dein %{site_name}-Konto ist mit keiner E-Mail-Adresse verknüpft.
     flags:
       show:
         #Heading for display of content that has been flagged. This could
@@ -6422,15 +6432,35 @@ de:
           Während Nachrichten zwischen dir und dem Empfänger privat sind, können Mitarbeiter von iNaturalist in diese Nachrichten Einsicht nehmen und werden dies tun, falls Nachrichten
           zur Moderation gemeldet wurden. Wenn wirklich private Kommunikation stattfinden soll, verwende bitte andere Kommunikationskanäle, die eine starke Verschlüsselung unterstützen.
     nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Vision-Language-Demo
+      what_do_you_want_to_search_for: Wonach möchtest du suchen?
       #Provides an example of a query to use with the Vision Language Demo.
       #query_in_english will be something like "a bird eating fruit".
       #Queries do not need to be in English but the model should perform
       #better with English queries, so we want our example queries to
       #(mostly) be in English
       for_example_query: z.B. %{query_in_english}
+      try_one_of_these_example_searches_colon: "Versuche eine dieser Beispielsuchen:"
+      #shortened text for a button requesting users help us improve the model
+      #being using, hence the missing subject (implied to be the model). Try
+      #to keep it under 20 characters
+      help_us_improve: mach uns besser!
+      to_help_us_improve: Um uns bei der Verbesserung dieses Modells zu helfen, möchten wir wissen, welche der Bilder auf dieser Seite für deine Suche &quot;%{searched_term}&quot;relevant sind. Bitte markiere jedes Bild als relevant %{thumbs_up_icon}, wenn es zu deiner Suche passt, und nicht relevant %{thumbs_down_icon}, falls dies nicht der Fall ist. Wenn du fertig bist, klicke auf 'Absenden'. #text for a button where a user can mark images as relevnt to their search term
+      mark_remaining_as_relevant: Übrige als relevant markieren
+      #text for a button where a user can mark images as not relevant to their search term
+      mark_remaining_as_not_relevant: Übrige als nicht relevant markieren
+      #view the observations in the iNaturalist Identify tool
+      view_these_observations_in_identify: Diese Beobachtungen im ID-Modul ansehen
       #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
       inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> hat sich mit Wissenschaftlern der <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">University of Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">der University of Edinburgh</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">dem University College London</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">und dem MIT</a> zusammengetan, und großzügige Unterstützung von <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft KI for Good Lab</a> erhalten, um das Potenzial für Vision Language Models auszutesten, iNat-Beobachtungen zu erkunden, organisieren und ergründen. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
       this_demo_tool3: In diesem Demo-Tool können Suchbegriffe eingegeben werden (z.B. "<a href="%{url}">%{query_in_english}</a>") und mit 10 Millionen iNaturalist-Photos abgeglichen werden. Die Ergebnisse werden nach absteigender Relevanz geordnet. Du kannst dieses Demo-Tool verwenden um interessante Beobachtungen zu finden, sie zu annotieren oder zu einem Projekt hinzuzufügen.
+      you_can_also_use_this_demo: Du kannst diese Demo auch nutzen, um uns zu helfen, das Vision Language Modell zu bewerten, indem du uns sagst, welche der angezeigten Bilder für deine Suchbegriffe relevant waren. Diese Demo verwendet ein <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP Modell</a> von Drittanbietern, das weder mit iNaturalist-Daten noch vom iNaturalist-Team trainiert wurde. Manchmal kann das Tool zu ungenauen, voreingenommenen oder anstößigen Ergebnissen führen. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Lies mehr dazu im iNaturalist-Blog</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
+      if_youd_like_to_support_this_work: Wenn du diese Arbeit unterstützen möchtest
+      thank_you_for_your_submission!: Vielen Dank für deine Angaben!
     oauth:
       authorizations:
         new:
@@ -7372,6 +7402,9 @@ de:
         translators_desc_for_site: |
           Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
           %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end}- und %{android_link_tag}Android%{link_tag_end}-Apps, sowie %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in den jeweiligen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories für %{view_all_web_link_tag}Web%{link_tag_end} und %{view_all_mobile_link_tag}Smartphone%{link_tag_end} ansehen.
+        translators_desc_for_site_2: |
+          Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
+          %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end}- und %{android_link_tag}Android%{link_tag_end}-Apps, %{seek_link_tag}Seek%{link_tag_end} sowie %{help_link_tag}iNatHelp%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in den jeweiligen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories für %{view_all_web_link_tag}Web%{link_tag_end} und %{view_all_mobile_link_tag}Smartphone%{link_tag_end} ansehen.
         translators_prompt: |
           Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier%{link_tag_end} wie es geht.
         view_all_publications_count_caps2:
@@ -7415,6 +7448,7 @@ de:
           Diese Leute verwalten den Teil des Stammbaums, der
           dieses Taxon beinhaltet. Wenn du Änderungen vornehmen möchtest, markiere bitte dieses Taxon oder
           kontaktiere eine dieser Personen.
+        charts_caps: CHARTS
         charts_help_seasonality: |
           Dieses Diagramm zeigt die Anzahl von Beobachtungen von diesem Taxon, gruppiert nach Monaten. Bitte denke daran, dass dies Zahlen von Beobachtungen sind und diese somit dadurch beeinflusst werden, wann der Organismus beobachtet werden kann und wann Menschen versuchen, diesen zu beobachten. Es könnte so wirken, als sei ein Vogel im Mai sehr aktiv, aber es könnte auch sein, dass im Mai mehr Menschen Vögel beobachten und diese Art in späteren Monaten eher ignorieren. Und wenn du im Juni mehr Libellen als im Januar siehst, dann ist möglicherweise ein Grund dafür, dass wir mehr beobachtende Menschen auf der Nordhalbkugel als auf der Südhalbkugel haben. Dies liegt nicht daran, dass (global gesehen) Libellen im Juni aktiver sind. Überprüfe also die Karte, wenn du diese Tabelle verwendest. Es ist immer eine gute Idee, diese Graphen skeptisch zu betrachten, falls es eine geringe Anzahl von Beobachtungen und/oder große Unterschiede zwischen der Anzahl von „verifizierbaren“ und „ForschungsQualität“-Beobachtungen gibt.
         charts_help_history: |
@@ -8048,6 +8082,7 @@ de:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: Website-IDs
+        prefers_exclude_monthly_supporters: Monatliche Unterstützer ausschließen
       assessment:
         description: Beschreibung
       assessment_section:
