@@ -5736,8 +5736,8 @@ hu:
         we_have_redesigned_projects: |
           A projekekbe automatikusan belekerülnek mindazok a megfigyelések, amelyek megfelelnek az általad megszabott területi, rendszertani, minőségi és időszaki követelményeknek. Két fő típus közül választhatsz: Gyűjtőprojektek és Ernyőprojektek, amelyek megegyeznek az alábbi funkcióikban:
         welcome_to_projects: A projektek bemutatása
-        you_can_learn_more_html: |
-          <a href="https://www.inaturalist.org/pages/managing-projects">Itt</a> többet is megtudhatsz a projektek kezeléséről, a <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogunkon</a> pedig elolvashatod a projektek történetét.
+        you_can_learn_more2_html: |
+          A projektek kezeléséről <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">itt</a> olvashatsz, a projektek történetéről pedig a <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogunkon</a> találsz további információt.
         errors:
           name_is_required: A Projekt neve kötelező
           name_less_than_100_characters: A projektnév maximum 100 karakterből állhat
@@ -6325,6 +6325,8 @@ hu:
       assessment_section:
         title: Név
         body: Törzs
+      blocked_ip:
+        ip: IP-cím
       blocked_user:
         #The user who has been blocked
         blocked_user: Letiltott felhasználó
@@ -6661,6 +6663,10 @@ hu:
             taxon:
               too_many_photos: |
                 nem lehet több %{max} képnél
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                nem lehetnek megnemoldott megjelölések
         taxon_range:
           attributes:
             iucn_relationship:

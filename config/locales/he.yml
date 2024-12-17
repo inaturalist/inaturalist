@@ -1115,18 +1115,18 @@ he:
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit: אישור הגשה
+  commit: ביצוע
   #Adjective describing a taxon change that has been committed
   committed: בוצע
-  committed_by_user_on_date_html: אושר על ידי %{user} בתאריך %{date}
+  committed_by_user_on_date_html: בוצע על ידי %{user} בתאריך %{date}
   #Label for date the taxon change was committed
-  committed_on: הועלה ב %{date}
-  committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון מאושרים
+  committed_on: בוצע בתאריך %{date}
+  committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון שבוצעו
   #Status message while a taxon change is being committed
   committing: מבצע...
   #disagreements are identifications that disagree with previous identifications on the same observation
   #committing refers to committing a taxon swap
-  committing_this_swap_may_result: אישור עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
+  committing_this_swap_may_result: ביצוע עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
   common_name: שם עממי
   community: קהילה
   community_curated: נאצר על ידי הקהילה
@@ -1487,7 +1487,7 @@ he:
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_commit_complete_html: |
-    לאשר שינויי טקסון עבור <a href="/pages/curator+guide#completetaxa"
+    לבצע שינויי טקסון עבור <a href="/pages/curator+guide#completetaxa"
     target="_blank">טקסונים שלמים</a>.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
@@ -1646,7 +1646,7 @@ he:
   destination: יעד
   destroy: השמד
   details: פרטים
-  deviation: סטייה
+  deviation: חריגה
   devise:
     confirmations:
       confirmed: |
@@ -1767,8 +1767,8 @@ he:
   download_kml: הורד KML
   downstream_coverage_rank: 'דרגת כיסוי במורד העץ הטקסונומי:'
   downstream_coverage_colon_rank: "כיסוי במורד העץ הטקסונומי: דרגת %{rank}"
-  downstream_deviations: סטיות במורד העץ
-  downstream_deviations_for_taxon: "סטיות במורד העץ עבור %{taxon}"
+  downstream_deviations: חריגות במורד העץ
+  downstream_deviations_for_taxon: "חריגות במורד העץ עבור %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: טקסונים מסומנים במורד העץ הטקסונומי
@@ -2142,6 +2142,9 @@ he:
   geoprivacy_is_private: מיקום פרטי הוא פרטי
   geoprivacy_is_private_desc: הצופה בחר להסתיר מיקום.
   georeferenced: ממוקם במרחב?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: גאומרחבי
   get_started: להתחיל
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: הכנה להתחיל
@@ -2718,6 +2721,7 @@ he:
     lv: לטבית
     mi: מאורית
     mk: מקדונית
+    ml: מאלאיאלמית
     mr: מארטית
     nb: נורווגית - בוקמאל
     nl: הולנדית
@@ -2732,6 +2736,7 @@ he:
     sq: אלבנית
     sr: סרבית
     sv: שוודית
+    ta: טמילית
     th: תאילנדית
     tr: טורקית
     uk: אוקראינית
@@ -3207,6 +3212,9 @@ he:
   not_confident: אין לנו מספיק וודאות כדי לתת המלצה.
   not_confident_top_suggestions: אין לנו מספיק וודאות כדי לתת המלצה, אבל הנה ההצעות הנבחרות שלנו
   not_covered_by_any_taxon_frameworks: לא מכוסה על ידי אף מסגרת טקסון
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: לא צפוי בסביבה
   not_evaluated: טרם הוערך
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
   not_finding_place_you_want?: לא מצאת את המקום שחיפשת?
@@ -5052,7 +5060,7 @@ he:
   taxon_assessments_are: |
     הערכות טקסון הן מסמכים המעריכים את הסטטוס הנוכחי של מין, לרוב סטטוס שימור. למשל, ארגון שמירת טבע מקומי עשוי להשתמש בהן לסידור מידע ולבקש פידבק אודות הסטטוסים של טקסונים מרובים בסיכון באזור.
   taxon_change_commit_may_still_be_processing: |
-    אישור שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
+    ביצוע שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
   taxon_change_must_be_committed_to_update_records: שינוי טקסון חייב להיות מאושר כדי לעדכן רישומים
   taxon_change_title_taxon_drop: שחרור טקסונומי %{id}
   taxon_change_title_taxon_merge: איחוד טקסונומי %{id}
@@ -5472,7 +5480,7 @@ he:
   unclassified: לא מסווג
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: להבין פרויקטים
-  ungrafted_taxa: טקסונים שלא הורכבו
+  ungrafted_taxa: טקסונים לא מורכבים
   unhide_content: ביטול הסתרת תוכן
   unhide_desc: |
     ביטול ההסתרה יגלה את תוכן זה בפני כולן.ם. אוצרות ואוצרים עדיין יוכלו לבחור להסתיר אותו שוב בעתיד.
@@ -5858,8 +5866,8 @@ he:
   where_were_you?: היכן היית?
   which_projects_can_add_your_observations?: אילו פרויקטים בסיסיים יכולים להוסיף את התצפיות שלך?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
-  why_are_you_making_this_change_optional: מדוע החלטת על שינוי זה? (אופציונאלי)
-  why_are_you_making_this_change_cite_source_required: מדוע את.ה מבצע.ת את השינוי הזה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
+  why_are_you_making_this_change_optional: למה החלטת לבצע שינוי זה? (אופציונאלי)
+  why_are_you_making_this_change_cite_source_required: למה החלטת לבצע שינוי זה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
   why_you_can_see_the_coordinates: למה את.ה יכול.ה לראות את הקואורדינטות
   who_can_add_observation_fields_to_my_obs: מי יכול.ה להוסיף שדות תצפית לתצפיות שלי?
   who_can_add_observations_to_this_project?: מי יכולים להוסיף תצפיות לפרוייקט?
@@ -7114,9 +7122,6 @@ he:
         we_have_redesigned_projects: |
           פרויקטים בנויים להכיל באופן אוטומטי את כל התצפיות שמתאימות למקומות, טקסונים, שמות משתמשים.ות, איכות ותאריכים שהגדרת. ניתן לבחור בין שני סוגים עיקריים: פרויקט אוסף ופרויקט מטריה, שחולקים את המאפיינים הבאים:
         welcome_to_projects: ברוכות.ים הבאות.ים לפרויקטים!
-        you_can_learn_more_html: |
-          ניתן ללמוד עוד אודות ניהול פרויקטים <a href="https://www.inaturalist.org/pages/managing-projects">כאן</a>
-          או לקרוא על ההיסטוריה של פרויקטים ב<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">בלוג שלנו</a>.
         you_have_not_defined_any_observation_requirements: |
           לא הגדרת דרישות תצפיות. יש לוודא שסימנת טקסון אחד או יותר (למשל עופות, עצי מחט), מקומות (למשל ברזיל, ילוסטון), יוזרים, ו/או תאריכים כדי להגדיר את התצפיות שאת.ה שרוצה לכלול בפרויקט שלך.
         errors:

@@ -6140,8 +6140,11 @@ fi:
         we_have_redesigned_projects: |
           Projektit kokoavat automaattisesti yhteen havainnot, jotka sopivat määrittelemiisi hakuehtoihin: paikkoihin, taksoneihin (lajeihin), käyttäjiin, laatuluokituksiin ja/tai ajankohtaan. Projekteja on kahdenlaisia: koontiprojekteja ja sateenvarjoprojekteja. Näillä on seuraavia ominaisuuksia:
         welcome_to_projects: Tervetuloa projekteihin!
-        you_can_learn_more_html: |
-          <a href="https://www.inaturalist.org/pages/managing-projects">Lue lisää projektien ylläpidosta (englanniksi)</a> tai <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">projektien historiasta blogissamme (englanniksi)</a>.
+        you_can_learn_more2_html: |
+          Voit tutustua projektien hallintaan
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">tässä</a>
+          tai lukea projektien historiasta
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogissamme</a>.
         you_have_not_defined_any_observation_requirements: |
           Et ole määritellyt havaintojen vaatimuksia. Valitse ainakin yksi taksoni (esim. linnut, havupuut), paikka (esim. Suomi, Yellowstone), käyttäjät ja/tai päivämäärät, määrittääkseni havainnot, jotka haluat sisällyttää projektiin.
         errors:
@@ -6815,6 +6818,8 @@ fi:
       assessment_section:
         title: Otsikko
         body: Leipäteksti
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Estetty käyttäjä
@@ -7125,6 +7130,10 @@ fi:
             taxon:
               too_many_photos: |
                 ei saa sisältää enempää kuin %{max} valokuvaa
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                ei voi olla ratkaisemattomia lippuja
         taxon_range:
           attributes:
             iucn_relationship:
