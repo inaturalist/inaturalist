@@ -1115,18 +1115,18 @@ he:
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit: אישור הגשה
+  commit: ביצוע
   #Adjective describing a taxon change that has been committed
   committed: בוצע
-  committed_by_user_on_date_html: אושר על ידי %{user} בתאריך %{date}
+  committed_by_user_on_date_html: בוצע על ידי %{user} בתאריך %{date}
   #Label for date the taxon change was committed
-  committed_on: הועלה ב %{date}
-  committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון מאושרים
+  committed_on: בוצע בתאריך %{date}
+  committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון שבוצעו
   #Status message while a taxon change is being committed
   committing: מבצע...
   #disagreements are identifications that disagree with previous identifications on the same observation
   #committing refers to committing a taxon swap
-  committing_this_swap_may_result: אישור עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
+  committing_this_swap_may_result: ביצוע עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
   common_name: שם עממי
   community: קהילה
   community_curated: נאצר על ידי הקהילה
@@ -1487,7 +1487,7 @@ he:
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_commit_complete_html: |
-    לאשר שינויי טקסון עבור <a href="/pages/curator+guide#completetaxa"
+    לבצע שינויי טקסון עבור <a href="/pages/curator+guide#completetaxa"
     target="_blank">טקסונים שלמים</a>.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
@@ -1646,7 +1646,7 @@ he:
   destination: יעד
   destroy: השמד
   details: פרטים
-  deviation: סטייה
+  deviation: חריגה
   devise:
     confirmations:
       confirmed: |
@@ -1767,8 +1767,8 @@ he:
   download_kml: הורד KML
   downstream_coverage_rank: 'דרגת כיסוי במורד העץ הטקסונומי:'
   downstream_coverage_colon_rank: "כיסוי במורד העץ הטקסונומי: דרגת %{rank}"
-  downstream_deviations: סטיות במורד העץ
-  downstream_deviations_for_taxon: "סטיות במורד העץ עבור %{taxon}"
+  downstream_deviations: חריגות במורד העץ
+  downstream_deviations_for_taxon: "חריגות במורד העץ עבור %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: טקסונים מסומנים במורד העץ הטקסונומי
@@ -5060,7 +5060,7 @@ he:
   taxon_assessments_are: |
     הערכות טקסון הן מסמכים המעריכים את הסטטוס הנוכחי של מין, לרוב סטטוס שימור. למשל, ארגון שמירת טבע מקומי עשוי להשתמש בהן לסידור מידע ולבקש פידבק אודות הסטטוסים של טקסונים מרובים בסיכון באזור.
   taxon_change_commit_may_still_be_processing: |
-    אישור שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
+    ביצוע שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
   taxon_change_must_be_committed_to_update_records: שינוי טקסון חייב להיות מאושר כדי לעדכן רישומים
   taxon_change_title_taxon_drop: שחרור טקסונומי %{id}
   taxon_change_title_taxon_merge: איחוד טקסונומי %{id}
