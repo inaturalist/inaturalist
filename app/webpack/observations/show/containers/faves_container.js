@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Faves from "../components/faves";
 import { fave, unfave } from "../ducks/observation";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   return {
@@ -11,8 +12,11 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    fave: ( id ) => { dispatch( fave( id ) ); },
-    unfave: ( id ) => { dispatch( unfave( id ) ); }
+    fave: id => { dispatch( fave( id ) ); },
+    unfave: id => { dispatch( unfave( id ) ); },
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

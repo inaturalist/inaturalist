@@ -11,6 +11,8 @@ import StatsYearApp from "./components/app";
 /* global YEAR_DATA */
 /* global ROOT_TAXON_ID */
 /* global YEAR_STATISTIC_UPDATED_AT */
+/* global IS_BOT_REQUEST */
+
 render(
   // eslint-disable-next-line react/jsx-filename-extension
   <StatsYearApp

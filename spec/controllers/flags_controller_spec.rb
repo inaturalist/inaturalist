@@ -5,7 +5,7 @@ require "#{File.dirname( __FILE__ )}/../spec_helper"
 describe FlagsController do
   describe "create" do
     let( :taxon ) { Taxon.make! }
-    let( :user ) { User.make! }
+    let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
     it "should add an initial comment to a flag if it is submitted with the flag" do
       sign_in( user )
       first_comment = "first comment"
@@ -43,7 +43,11 @@ describe FlagsController do
     elastic_models( Observation )
 
     let( :curator ) { make_curator }
-    let( :user ) { make_curator }
+    let( :user ) do
+      user = make_curator
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      user
+    end
     let( :flag ) { Flag.make!( flaggable: Photo.make!, user: user ) }
 
     it "allows curators to update" do
@@ -84,7 +88,11 @@ describe FlagsController do
     elastic_models( Observation )
 
     let( :curator ) { make_curator }
-    let( :user ) { make_curator }
+    let( :user ) do
+      user = make_curator
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      user
+    end
     let( :admin ) { make_admin }
     let( :flag ) { Flag.make!( flaggable: Photo.make!, user: user ) }
 

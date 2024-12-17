@@ -175,11 +175,11 @@ describe "Observation Index" do
 
   it "should not count needs_id votes toward faves_count" do
     o = Observation.make!
-    o.vote_by voter: User.make!, vote: true, vote_scope: "needs_id"
+    o.vote_by voter: make_user_with_privilege( UserPrivilege::INTERACTION ), vote: true, vote_scope: "needs_id"
     expect( o.cached_votes_total ).to eq 1
     expect( o.faves_count ).to eq 0
     o.reload
-    o.vote_by voter: User.make!, vote: true
+    o.vote_by voter: make_user_with_privilege( UserPrivilege::INTERACTION ), vote: true
     expect( o.cached_votes_total ).to eq 2
     expect( o.faves_count ).to eq 1
   end

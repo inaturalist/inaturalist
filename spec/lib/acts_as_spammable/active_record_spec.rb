@@ -157,7 +157,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
   end
 
   it "does not allow spammers to create objects" do
-    u = User.make!
+    u = make_user_with_privilege( UserPrivilege::INTERACTION )
     expect{ Comment.make!(user: u) }.to_not raise_error
     u.update_column(:spammer, true)
     expect{ Comment.make!(user: u) }.to raise_error(ActiveRecord::RecordInvalid,

@@ -17,6 +17,7 @@ import {
 import { trustUser, untrustUser, setConfig } from "../../../shared/ducks/config";
 import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -65,7 +66,10 @@ function mapDispatchToProps( dispatch ) {
     showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) ),
     hideContent: item => dispatch( showModeratorActionForm( item, "hide" ) ),
     unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) ),
-    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) )
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) ),
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

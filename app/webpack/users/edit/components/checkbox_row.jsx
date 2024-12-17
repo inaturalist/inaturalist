@@ -85,7 +85,7 @@ CheckboxRow.propTypes = {
   confirm: PropTypes.string,
   confirmChangeTo: PropTypes.func,
   modalClassName: PropTypes.string,
-  modalDescription: PropTypes.string,
+  modalDescription: PropTypes.any,
   modalDescriptionTitle: PropTypes.string,
   showModalDescription: PropTypes.func
 };

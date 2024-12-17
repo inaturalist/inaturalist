@@ -313,7 +313,7 @@ export function confirmResendConfirmation( ) {
     const state = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace_html", {
+      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
         email: state.profile.email || ""
       } ),
       confirmText: I18n.t( "send_confirmation_email" ),

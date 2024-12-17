@@ -291,6 +291,7 @@ class User < ApplicationRecord
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
+  after_update :check_privileges_if_confirmed
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -1354,6 +1355,13 @@ class User < ApplicationRecord
     end
   end
 
+  def check_privileges_if_confirmed
+    return unless saved_change_to_confirmed_at?
+
+    UserPrivilege.check( id, UserPrivilege::INTERACTION )
+    UserPrivilege.check( id, UserPrivilege::ORGANIZER )
+  end
+
   def revoke_authorizations_after_password_change
     return unless encrypted_password_previously_changed?
     Doorkeeper::AccessToken.where( resource_owner_id: id, revoked_at: nil ).each( &:revoke )
@@ -1554,6 +1562,13 @@ class User < ApplicationRecord
 
   def privileged_with?( privilege )
     user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
+  end
+
+  def can_interact_with?( resource )
+    return true if privileged_with?( UserPrivilege::INTERACTION )
+    return true if resource&.user&.id == id
+
+    false
   end
 
   # Apparently some people, and maybe some third-party auth providers, sometimes

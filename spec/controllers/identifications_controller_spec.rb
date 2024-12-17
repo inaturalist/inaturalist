@@ -6,7 +6,7 @@ describe IdentificationsController, "agree" do
   it "should not result in two current identifications" do
     i1 = Identification.make!
     o = i1.observation
-    u = User.make!
+    u = make_user_with_privilege( UserPrivilege::INTERACTION )
     sign_in u
     post :agree, params: { observation_id: o.id, taxon_id: i1.taxon_id }
     post :agree, params: { observation_id: o.id, taxon_id: i1.taxon_id }
@@ -25,7 +25,7 @@ describe IdentificationsController, "agree" do
 
   it "should not raise an error if the observation does not exist" do
     o = Observation.make!
-    u = User.make!
+    u = make_user_with_privilege( UserPrivilege::INTERACTION )
     t = Taxon.make!
     sign_in u
     expect do

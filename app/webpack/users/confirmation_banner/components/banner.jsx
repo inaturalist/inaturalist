@@ -29,7 +29,7 @@ const Banner = ( {
       <span
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
-          __html: I18n.t( "views.email_confirmation.please_confirm_that_email_is_the_best_contact_html", {
+          __html: I18n.t( "views.email_confirmation.please_confirm_that_email_is_the_best_contact2_html", {
             email: config.currentUser.email
           } )
         }}
@@ -37,6 +37,7 @@ const Banner = ( {
       {" "}
       <button
         type="button"
+        id="emailConfirmationModalButton"
         onClick={( ) => confirmResendConfirmation( )}
       >
         {I18n.t( "views.email_confirmation.click_here_to_resend_a_confirmation_email" )}

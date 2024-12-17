@@ -3,8 +3,16 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a basic MessagesController" do
-  let( :user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
-  let( :to_user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
+  let( :to_user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
 
   it "should read a message" do
     message = make_message( user: user )
@@ -15,8 +23,16 @@ shared_examples_for "a basic MessagesController" do
 end
 
 shared_examples_for "a MessagesController" do
-  let( :user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
-  let( :to_user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
+  let( :to_user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
 
   describe "create" do
     def post_message

@@ -1,48 +1,24 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
 import _ from "lodash";
-import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import {
-  applyMiddleware,
-  combineReducers,
-  compose,
-  createStore
-} from "redux";
 import { Taxon } from "inaturalistjs";
 import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photos";
-import configReducer, { setConfig } from "../../shared/ducks/config";
+import { setConfig } from "../../shared/ducks/config";
 import taxonReducer, { setTaxon, fetchTerms } from "../shared/ducks/taxon";
 import photoModalReducer from "../shared/ducks/photo_modal";
 import AppContainer from "./containers/app_container";
+import sharedStore from "../../shared/shared_store";
 
-const rootReducer = combineReducers( {
+sharedStore.injectReducers( {
   photos: photosReducer,
-  config: configReducer,
   taxon: taxonReducer,
   photoModal: photoModalReducer
 } );
 
-const store = createStore(
-  rootReducer,
-  compose( ..._.compact( [
-    applyMiddleware( thunkMiddleware ),
-    // enable Redux DevTools if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  ] ) )
-);
-
-if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
-}
-
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   // we use this for requesting localized taxon names
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
@@ -50,25 +26,25 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 /* global SERVER_PAYLOAD */
 const serverPayload = SERVER_PAYLOAD;
 if ( serverPayload.place !== undefined && serverPayload.place !== null ) {
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     chosenPlace: serverPayload.place
   } ) );
 }
 if ( serverPayload.chosenTab ) {
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     chosenTab: serverPayload.chosenTab
   } ) );
 }
 if ( serverPayload.ancestorsShown ) {
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     ancestorsShown: serverPayload.ancestorsShown
   } ) );
 }
 const taxon = new Taxon( serverPayload.taxon );
-store.dispatch( setTaxon( taxon ) );
+sharedStore.dispatch( setTaxon( taxon ) );
 // fetch taxon terms before rendering the photo browser, in case
 // we need to verify a term grouping by termID
-store.dispatch( fetchTerms( ) ).then( ( ) => {
+sharedStore.dispatch( fetchTerms( ) ).then( ( ) => {
   let urlParams = {};
   if ( window.location.search && window.location.search.length > 0 ) {
     urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
@@ -79,17 +55,17 @@ store.dispatch( fetchTerms( ) ).then( ( ) => {
     urlParams = $.deparam( serverPayload.preferred_taxon_photos_query );
   }
   if ( !_.isEmpty( urlParams ) ) {
-    store.dispatch( hydrateFromUrlParams( urlParams ) );
+    sharedStore.dispatch( hydrateFromUrlParams( urlParams ) );
   }
   window.onpopstate = e => {
     // user returned from BACK
-    store.dispatch( hydrateFromUrlParams( e.state ) );
-    store.dispatch( reloadPhotos( ) );
+    sharedStore.dispatch( hydrateFromUrlParams( e.state ) );
+    sharedStore.dispatch( reloadPhotos( ) );
   };
-  store.dispatch( reloadPhotos( ) );
+  sharedStore.dispatch( reloadPhotos( ) );
 
   render(
-    <Provider store={store}>
+    <Provider store={sharedStore}>
       <AppContainer />
     </Provider>,
     document.getElementById( "app" )

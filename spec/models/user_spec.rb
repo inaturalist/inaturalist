@@ -587,7 +587,7 @@ describe User do
 
     it "should reindex observations faved by the user" do
       o = Observation.make!
-      u = User.make!
+      u = make_user_with_privilege( UserPrivilege::INTERACTION )
       o.vote_by voter: u, vote: true
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 1
@@ -606,10 +606,13 @@ describe User do
   end
 
   describe "sane_destroy" do
-
     elastic_models( Observation )
-    
-    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
+
+    let( :user ) do
+      user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      user
+    end
 
     it "should destroy the user" do
       user.sane_destroy
@@ -928,8 +931,8 @@ describe User do
   describe "merge" do
     elastic_models( Observation, Identification )
     
-    let(:keeper) { User.make! }
-    let(:reject) { User.make! }
+    let(:keeper) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let(:reject) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "should move observations" do
       o = Observation.make!(:user => reject)
@@ -1307,7 +1310,7 @@ describe User do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
 
-    let(:u) { User.make! }
+    let(:u) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
     let(:genus) { Taxon.make!(rank: Taxon::GENUS) }
     let(:species) { Taxon.make!(rank: Taxon::SPECIES, parent: genus) }
     let(:subspecies) { Taxon.make!(rank: Taxon::SUBSPECIES, parent: species) }
@@ -1364,8 +1367,12 @@ describe User do
   describe "when flagged as spam" do
     elastic_models( Observation, Identification, Project )
 
-    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
-    let(:flagger) { User.make! }
+    let( :user ) do
+      user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      user
+    end
+    let(:flagger) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "should reindex observations as spam" do
       o = Observation.make!( user: user )

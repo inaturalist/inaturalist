@@ -1,59 +1,42 @@
 import _ from "lodash";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import {
-  createStore, compose, applyMiddleware, combineReducers
-} from "redux";
 import AppContainer from "./containers/app_container";
 import lifelistReducer, { fetchUser, updateWithHistoryState } from "./reducers/lifelist";
 import exportModalReducer from "./reducers/export_modal";
-import configReducer, { setConfig } from "../../shared/ducks/config";
+import { setConfig, setCurrentUser } from "../../shared/ducks/config";
 import inatAPIReducer from "../../shared/ducks/inat_api_duck";
+import sharedStore from "../../shared/shared_store";
 
-const rootReducer = combineReducers( {
-  config: configReducer,
+sharedStore.injectReducers( {
   lifelist: lifelistReducer,
   inatAPI: inatAPIReducer,
   exportModal: exportModalReducer
 } );
 
-const store = createStore(
-  rootReducer,
-  compose( ..._.compact( [
-    applyMiddleware( thunkMiddleware ),
-    // enable Redux DevTools if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  ] ) )
-);
-
 if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
+  sharedStore.dispatch( setCurrentUser( CURRENT_USER ) );
 }
 
 if ( !_.isEmpty( SITE ) ) {
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     site: SITE
   } ) );
 }
 
 if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   // we use this for requesting localized taxon names
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
 
 /* global LIFELIST_USER */
-store.dispatch( fetchUser( LIFELIST_USER, {
+sharedStore.dispatch( fetchUser( LIFELIST_USER, {
   callback: ( ) => {
     render(
-      <Provider store={store}>
+      <Provider store={sharedStore}>
         <AppContainer />
       </Provider>,
       document.getElementById( "app" )
@@ -62,5 +45,5 @@ store.dispatch( fetchUser( LIFELIST_USER, {
 } ) );
 
 window.onpopstate = e => {
-  store.dispatch( updateWithHistoryState( e.state ) );
+  sharedStore.dispatch( updateWithHistoryState( e.state ) );
 };

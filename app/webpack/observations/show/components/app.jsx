@@ -248,8 +248,7 @@ const App = ( {
                     </MenuItem>
                   </SplitButton>
                 </Col>
-              )
-                : config && config.currentUser && ( <FollowButtonContainer /> ) }
+              ) : config && config.currentUser && ( <FollowButtonContainer /> ) }
           </Row>
           <Row>
             <Col xs={12}>

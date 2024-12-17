@@ -278,6 +278,7 @@ class TaxonAutocomplete extends React.Component {
     this.inputElement( ).bind( "assignSelection", ( e, t, options ) => {
       if ( !t.title ) {
         t.title = this.resultTitle( t );
+        t.textTitle = _.first( t.title.split( " · " ) );
       }
       this.updateWithSelection( t, options );
     } );

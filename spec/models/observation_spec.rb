@@ -1995,7 +1995,7 @@ end
 
 describe "ident getters" do
   it "should return taxon_id for a particular user by login" do
-    u = User.make!( login: "balthazar_salazar" )
+    u = make_user_with_privilege( UserPrivilege::INTERACTION, login: "balthazar_salazar" )
     i = Identification.make!( user: u )
     o = i.observation
     o.reload
@@ -2003,7 +2003,7 @@ describe "ident getters" do
   end
 
   it "should return taxon name for a particular user by login" do
-    u = User.make!( login: "balthazar_salazar" )
+    u = make_user_with_privilege( UserPrivilege::INTERACTION, login: "balthazar_salazar" )
     i = Identification.make!( user: u )
     o = i.observation
     o.reload
@@ -2011,7 +2011,7 @@ describe "ident getters" do
   end
 
   it "should return taxon_id for a particular user by id" do
-    u = User.make!
+    u = make_user_with_privilege( UserPrivilege::INTERACTION )
     i = Identification.make!( user: u )
     o = i.observation
     o.reload

@@ -1233,6 +1233,12 @@ en:
   confirmed_on_date: Confirmed on %{date}
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
+  confirm_your_email_to_comment:
+    <a href="%{user_settings_url}" class="emailConfirmationModalTrigger">Confirm your
+    email address</a> to add comments to content by other users.
+  confirm_your_email_to_add_ids:
+    <a href="%{user_settings_url}" class="emailConfirmationModalTrigger">Confirm your
+    email address</a> to add identifications to observations by other users.
   # Label for a button to connect your iNat account to another account, e.g.
   # connecting to Flickr
   connect: Connect
@@ -1826,6 +1832,9 @@ en:
     If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
   devise_confirmation_instructions_please_click: |
     Please click the link below to confirm your email address:
+  devise_confirmation_instructions_please_click2: |
+    Please click the link below to confirm your email address. If you do not confirm your email
+    address, you will not be able to interact with other users’ content.
   devise_confirmation_instructions_resend_instructions: |
     You must have a working email address to use iNaturalist. When you signed
     up for an account, you should have received a confirmation email with a
@@ -6168,10 +6177,10 @@ en:
     will not be able to sign in to your account until you click the link in
     the email, so <strong>make absolutely sure you have entered your email address
     correctly.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
+  users_edit_send_confirmation_prompt_with_grace2_html: |
     <p>
-      Please ensure your email address is correct. Here's the email address we
-      will send the confirmation to:
+      You need to confirm your email address to interact with other users' content
+      and access certain pages. Here's the email address we will send the confirmation to:
     </p>
     <pre class="text-center text-large">%{email}</pre>
     <p>
@@ -6865,6 +6874,8 @@ en:
         Please click the link sent to <span class="email">%{email}</span> to confirm your email address.
       please_confirm_that_email_is_the_best_contact_html:
         Please confirm that <span class="email">%{email}</span> is the best way to contact you.
+      please_confirm_that_email_is_the_best_contact2_html:
+        Please confirm your email address <span class="email">%{email}</span> so you can interact with other iNaturalist users.
       your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:
@@ -9835,6 +9846,7 @@ en:
           must have three verifiable observations or three identifications
           for others to do that
         requires_privilege_organizer: must have 50 verifiable observations to do that
+        requires_privilege_interaction: must have a confirmed email address
         taken: has already been taken
         too_long:
           one: is too long (maximum is %{count} character)

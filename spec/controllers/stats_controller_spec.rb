@@ -70,6 +70,7 @@ describe StatsController do
   end
 
   describe "year" do
+    after { I18n.locale = "en" }
     it "sets locale based on viewed user" do
       u = User.make!( locale: "fr" )
       I18n.locale = "en"

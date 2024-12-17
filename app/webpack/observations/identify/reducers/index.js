@@ -25,11 +25,9 @@
     }
   }
 */
-import { combineReducers } from "redux";
 import observations from "./observations_reducer";
 import observationsStats from "./observations_stats_reducer";
 import currentObservation from "./current_observation_reducer";
-import config from "../../../shared/ducks/config";
 import searchParams from "./search_params_reducer";
 import finishedModal from "./finished_modal_reducer";
 import alertModal from "../../../shared/ducks/alert_modal";
@@ -45,8 +43,7 @@ import brightnesses from "../ducks/brightnesses";
 import confirmModal from "../../show/ducks/confirm_modal";
 import projectFieldsModal from "../../show/ducks/project_fields_modal";
 
-const rootReducer = combineReducers( {
-  config,
+export default {
   observations,
   observationsStats,
   currentObservation,
@@ -64,6 +61,4 @@ const rootReducer = combineReducers( {
   brightnesses,
   confirmModal,
   projectFieldsModal
-} );
-
-export default rootReducer;
+};

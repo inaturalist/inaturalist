@@ -5,6 +5,7 @@ import {
 } from "../ducks/observation";
 import { setActiveTab } from "../ducks/comment_id_panel";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
+import { confirmResendConfirmation } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -22,7 +23,8 @@ function mapDispatchToProps( dispatch ) {
   return {
     addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
     setActiveTab: activeTab => { dispatch( setActiveTab( activeTab ) ); },
-    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) )
+    updateEditorContent: ( editor, content ) => dispatch( updateEditorContent( editor, content ) ),
+    confirmResendConfirmation: method => dispatch( confirmResendConfirmation( method ) )
   };
 }
 

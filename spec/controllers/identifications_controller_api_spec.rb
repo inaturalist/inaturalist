@@ -3,7 +3,7 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "an IdentificationsController basics" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   let( :observation ) { Observation.make! }
 
   describe "create" do
@@ -35,7 +35,7 @@ shared_examples_for "an IdentificationsController basics" do
 end
 
 shared_examples_for "an IdentificationsController" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   let( :observation ) { Observation.make! }
 
   describe "create" do

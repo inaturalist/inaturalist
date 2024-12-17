@@ -39,6 +39,13 @@ class Flag < ApplicationRecord
       !record.resolver.subscriptions.where( resource_type: "Flag", resource_id: record.id ).exists?
   }
 
+  requires_privilege :interaction, unless: proc {| flag |
+    flag.user_id.blank? ||
+      flag.user_id.zero? ||
+      ( flag.flaggable.respond_to?( :user ) && flag.flaggable.user.id == flag.user_id ) ||
+      ( flag.flaggable.is_a?( Message ) && flag.flaggable.to_user_id == flag.user_id )
+  }
+
   blockable_by ->( flag ) { flag.flaggable.try( :user_id ) }, on: :create
 
   # NOTE: Flags belong to a user

@@ -92,7 +92,7 @@ describe ObservationFieldValue do
     end
 
     it "should not create an update for subscribers who didn't add the value" do
-      u = User.make!
+      u = make_user_with_privilege( UserPrivilege::INTERACTION )
       without_delay { Comment.make!(:user => u, :parent => @o)}
       UpdateAction.destroy_all
       expect( UpdateAction.unviewed_by_user_from_query(u.id, resource: @o) ).to eq false

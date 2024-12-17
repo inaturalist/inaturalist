@@ -1,9 +1,14 @@
-#encoding: utf-8
+# frozen_string_literal: true
+
 class Identification < ApplicationRecord
   include ActsAsElasticModel
-  acts_as_spammable fields: [ :body ],
-                    comment_type: "comment",
-                    automated: false
+  acts_as_spammable fields: [:body],
+    comment_type: "comment",
+    automated: false
+
+  requires_privilege :interaction, unless: proc {| identification |
+    identification&.observation&.user_id == identification.user_id
+  }
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions %w(hide unhide)

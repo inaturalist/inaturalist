@@ -6,7 +6,7 @@ describe RelationshipsController do
   render_views
   describe "index" do
     describe "while signed in" do
-      let( :user ) { create :user }
+      let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
       before do
         sign_in user
       end

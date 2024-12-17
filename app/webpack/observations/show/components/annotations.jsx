@@ -199,13 +199,18 @@ class Annotations extends React.Component {
               <i className="fa fa-check" />
             ) : null }
           </span>
-          { this.loggedIn && (
-            <button type="button" className="btn btn-nostyle" onClick={voteAction}>
+          { this.userCanInteract && (
+            <button
+              type="button"
+              className="btn btn-nostyle"
+              onClick={voteAction}
+              label={I18n.t( "agree" )}
+            >
               <i className={`fa ${agreeClass}`} />
             </button>
           ) }
           <span className="count">{ votesForCount }</span>
-          { !this.loggedIn && <span className="fa" /> }
+          { !this.userCanInteract && <span className="fa" /> }
         </td>
         <td className="disagree">
           <span className="check">
@@ -213,7 +218,7 @@ class Annotations extends React.Component {
               <i className="fa fa-times" />
             ) : null }
           </span>
-          { this.loggedIn && (
+          { this.userCanInteract && (
             <button
               type="button"
               onClick={unvoteAction}
@@ -223,7 +228,7 @@ class Annotations extends React.Component {
             </button>
           ) }
           <span className="count">{ votesAgainstCount }</span>
-          { !this.loggedIn && <span className="fa" /> }
+          { !this.userCanInteract && <span className="fa" /> }
         </td>
       </tr>
     );
@@ -247,8 +252,10 @@ class Annotations extends React.Component {
       return ( <span /> );
     }
     this.loggedIn = config && config.currentUser;
+    this.userCanInteract = config?.currentUserCanInteractWithResource( observation );
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
-    if ( !this.loggedIn && _.isEmpty( observationAnnotations ) ) {
+    if ( !this.userCanInteract && _.isEmpty( observationAnnotations )
+    ) {
       return ( <span /> );
     }
     const annotations = _.filter(
@@ -310,7 +317,7 @@ class Annotations extends React.Component {
         </Popover>
       );
       if (
-        this.loggedIn
+        this.userCanInteract
         && availableValues.length > 0
         && !( groupedAnnotations[ct.id] && !ct.multivalued )
       ) {

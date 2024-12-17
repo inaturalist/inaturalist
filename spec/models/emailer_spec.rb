@@ -17,7 +17,7 @@ describe Emailer, "updates_notification" do
   after { disable_has_subscribers }
 
   it "should include a fave" do
-    without_delay { @observation.vote_by voter: create( :user ) }
+    without_delay { @observation.vote_by voter: make_user_with_privilege( UserPrivilege::INTERACTION ) }
     mail = Emailer.updates_notification( @user, @user.recent_notifications )
     expect( mail.body ).to match( /faved/ )
   end

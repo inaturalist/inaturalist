@@ -1,5 +1,5 @@
 import inatjs from "inaturalistjs";
-import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
+import { setConfirmModalState } from "../../observations/show/ducks/confirm_modal";
 
 const SET_CONFIRMATION_EMAIL_SENT = "users-confirmation-banner/SET_CONFIRMATION_EMAIL_SENT";
 
@@ -26,7 +26,7 @@ export function confirmResendConfirmation( ) {
     const state = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace_html", {
+      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
         email: state.config.currentUser.email || ""
       } ),
       confirmText: I18n.t( "send_confirmation_email" ),
@@ -37,5 +37,23 @@ export function confirmResendConfirmation( ) {
         } ).catch( console.log );
       }
     } ) );
+  };
+}
+
+export function performOrOpenConfirmationModal( method, options = { } ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state?.config?.currentUser ) {
+      return;
+    }
+    if ( options.permitOwnerOf?.user?.id === state?.config?.currentUser?.id ) {
+      method( );
+      return;
+    }
+    if ( !state.config.currentUser?.privilegedWith( "interaction" ) ) {
+      dispatch( confirmResendConfirmation( ) );
+      return;
+    }
+    method( );
   };
 }

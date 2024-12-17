@@ -5,7 +5,16 @@
   partial ||= nil
 -%>
 <div class="clear">
-  <% if logged_in? %>
+  <% if !logged_in? -%>
+    <%= link_to t(:sign_in), login_path %>
+    <%=t :or %> <%= link_to t(:sign_up), signup_path %>
+    <%=t :to_add_comments %>
+  <% elsif !current_user.can_interact_with?( comment.parent ) -%>
+    <%= raw t(
+      :confirm_your_email_to_comment,
+      user_settings_url: edit_person_path( current_user ),
+      class: "emailConfirmationModalTrigger" ) %>
+  <% else -%>
     <% if remote -%>
       <div id="<%= unique_id %>-loading" class="loading status" style="display:none"><%= t :saving %></div>
       <%= form_for(comment, 
@@ -33,9 +42,5 @@
         } %>
       <% end %>
     <% end -%>
-  <% else %>
-    <%= link_to t(:sign_in), login_path %>
-    <%=t :or %> <%= link_to t(:sign_up), signup_path %>
-    <%=t :to_add_comments %>
   <% end %>
 </div>

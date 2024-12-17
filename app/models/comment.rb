@@ -1,7 +1,8 @@
-class Comment < ApplicationRecord
+# frozen_string_literal: true
 
-  acts_as_spammable fields: [ :body ],
-                    comment_type: "comment"
+class Comment < ApplicationRecord
+  acts_as_spammable fields: [:body],
+    comment_type: "comment"
   acts_as_votable
   has_moderator_actions %w(hide unhide)
   SUBSCRIBABLE = false
@@ -11,6 +12,10 @@ class Comment < ApplicationRecord
   # requires_privilege :speech, if: Proc.new {|c|
   #   c.parent.respond_to?(:user) && c.parent.user.id != user.id
   # }
+
+  requires_privilege :interaction, unless: proc {| comment |
+    comment.parent.respond_to?( :user ) && comment.parent.user.id == comment.user_id
+  }
 
   belongs_to_with_uuid :parent, polymorphic: true
   belongs_to :user

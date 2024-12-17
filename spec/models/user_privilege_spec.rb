@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
+require "spec_helper"
 
 describe UserPrivilege do
   it { is_expected.to belong_to :user }
@@ -29,6 +29,7 @@ describe UserPrivilege do
       expect( UserPrivilege.earned_speech?( user ) ).to be false
     end
     it "should be earned when a user has 3 identifications" do
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
       expect( UserPrivilege.earned_speech?( user ) ).to be false
       3.times do
         Identification.make!( user: user )
@@ -37,6 +38,7 @@ describe UserPrivilege do
       expect( UserPrivilege.earned_speech?( user ) ).to be true
     end
     it "should still be true even if the privilege was revoked" do
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
       expect( UserPrivilege.earned_speech?( user ) ).to be false
       3.times do
         Identification.make!( user: user )
@@ -98,8 +100,10 @@ describe UserPrivilege do
         expect( UserPrivilege.earned_organizer?( user ) ).to be false
       end
     end
+
     describe "for identification" do
       it "should earn speech after 3 identifications for others" do
+        UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
         expect( user ).not_to be_privileged_with( :speech )
         3.times do
           Identification.make!( user: user )

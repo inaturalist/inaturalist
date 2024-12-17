@@ -435,6 +435,7 @@ describe ObservationsController do
     render_views
     before :each do
       @curator = make_curator
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: @curator )
       sign_in( @curator )
     end
 

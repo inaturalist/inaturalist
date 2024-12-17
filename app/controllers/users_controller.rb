@@ -1061,20 +1061,26 @@ class UsersController < ApplicationController
     end
   end
 
-protected
+  protected
 
   def add_friend
-    error_msg, notice_msg = [nil, nil]
-    friend_user = User.find_by_id(params[:friend_id])
-    if friend_user.blank? || friendship = current_user.friendships.where( friend_id: friend_user.id, following: true ).first
-      error_msg = t(:either_that_user_doesnt_exist_or)
+    error_msg = nil
+    notice_msg = nil
+    friend_user = User.find_by_id( params[:friend_id] )
+    friendship = current_user.friendships.where( friend_id: friend_user.id, following: true ).first
+    if friend_user.blank? || friendship
+      error_msg = t( :either_that_user_doesnt_exist_or )
     else
-      notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
-      if friendship = current_user.friendships.where( friend_id: friend_user.id ).first
+      notice_msg = t( :you_are_now_following_x, friend_user: friend_user.login )
+      friendship = current_user.friendships.where( friend_id: friend_user.id ).first
+      if friendship
         friendship.update( following: true )
       else
         friendship = current_user.friendships.create( friend: friend_user, following: true )
       end
+    end
+    if friendship.errors.any? && !error_msg
+      error_msg = friendship.errors.full_messages.to_sentence
     end
     respond_to do |format|
       format.html do

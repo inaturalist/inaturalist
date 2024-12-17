@@ -1,22 +1,15 @@
 import _ from "lodash";
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers
-} from "redux";
 import moment from "moment";
 import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
-import configReducer, { setConfig } from "../../shared/ducks/config";
+import { setConfig, setCurrentUser } from "../../shared/ducks/config";
 import confirmModalReducer from "./ducks/confirm_modal";
 import controlledTermsReducer from "./ducks/controlled_terms";
 import flaggingModalReducer from "./ducks/flagging_modal";
@@ -36,6 +29,7 @@ import suggestionsReducer from "../identify/ducks/suggestions";
 import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
 import textEditorReducer from "../shared/ducks/text_editors";
 import brightnessesReducer from "../identify/ducks/brightnesses";
+import sharedStore from "../../shared/shared_store";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -46,10 +40,9 @@ const relativeTime = {
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale( ), { relativeTime } );
 
-const rootReducer = combineReducers( {
+sharedStore.injectReducers( {
   commentIDPanel: commentIDPanelReducer,
   communityIDModal: communityIDModalReducer,
-  config: configReducer,
   confirmModal: confirmModalReducer,
   controlledTerms: controlledTermsReducer,
   flaggingModal: flaggingModalReducer,
@@ -72,24 +65,13 @@ const rootReducer = combineReducers( {
   brightnesses: brightnessesReducer
 } );
 
-const store = createStore(
-  rootReducer,
-  compose( ..._.compact( [
-    applyMiddleware( thunkMiddleware ),
-    // enable Redux DevTools if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  ] ) )
-);
-
 if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
+  sharedStore.dispatch( setCurrentUser( CURRENT_USER ) );
 }
 
 if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   // we use this for requesting localized taxon names
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
@@ -107,7 +89,7 @@ if (
   if ( defaultApiUrl ) {
     /* global INITIAL_OBSERVATION_UUID */
     obsId = INITIAL_OBSERVATION_UUID;
-    store.dispatch( setConfig( {
+    sharedStore.dispatch( setConfig( {
       testingApiV2: true
     } ) );
     // For some reason this seems to set it everywhere...
@@ -120,18 +102,18 @@ if (
 
 const testFeature = urlParams.get( "test_feature" );
 if ( testFeature ) {
-  store.dispatch( setConfig( {
-    testFeature: testFeature
+  sharedStore.dispatch( setConfig( {
+    testFeature
   } ) );
 }
 
-store.dispatch( fetchObservation( obsId, {
+sharedStore.dispatch( fetchObservation( obsId, {
   fetchAll: true,
   replaceState: true,
   initialPhotoID: urlParams.get( "photo_id" ),
   callback: ( ) => {
     render(
-      <Provider store={store}>
+      <Provider store={sharedStore}>
         <AppContainer />
       </Provider>,
       document.getElementById( "app" )
@@ -139,10 +121,10 @@ store.dispatch( fetchObservation( obsId, {
   }
 } ) );
 
-setupKeyboardShortcuts( store.dispatch );
+setupKeyboardShortcuts( sharedStore.dispatch );
 
 window.onpopstate = e => {
   if ( e.state && e.state.observation ) {
-    store.dispatch( showNewObservation( e.state.observation, { skipSetState: true } ) );
+    sharedStore.dispatch( showNewObservation( e.state.observation, { skipSetState: true } ) );
   }
 };
