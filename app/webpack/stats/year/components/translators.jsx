@@ -31,9 +31,11 @@ class Translators extends React.Component {
       web: userData.words_web || 0,
       mobile: userData.words_mobile || 0,
       seek: userData.words_seek || 0,
+      help: userData.words_help || 0,
       total: ( userData.words_web || 0 )
         + ( userData.words_mobile || 0 )
         + ( userData.words_seek || 0 )
+        + ( userData.words_help || 0 )
     } ) );
     if ( !perPage && initialNumToShow < dataWithTotals.length ) {
       numToShow = dataWithTotals.length;
@@ -45,6 +47,44 @@ class Translators extends React.Component {
     const scale = scaleLinear( )
       .domain( [0, maxVal] )
       .range( [0, 1] );
+
+    let desc;
+    const opts = {
+      x_people: I18n.t( "x_people", {
+        count: I18n.toNumber( _.size( dataWithTotals ), { precision: 0 } )
+      } ),
+      website_link_tag: `<a href='${window.location.origin}'>`,
+      link_tag_end: "</a>",
+      iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
+      android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
+      seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
+      help_link_tag: "<a href='https://help.inaturalist.org'>",
+      view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
+      view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
+    };
+    if ( siteName ) {
+      desc = I18n.t( "views.stats.year.translators_desc_for_site_2", {
+        ...opts,
+        site_name: siteName,
+        defaultValue: I18n.t( "views.stats.year.translators_desc_for_site", {
+          ...opts,
+          site_name: siteName
+        } )
+      } );
+    } else {
+      desc = I18n.t( "views.stats.year.translators_desc_2", {
+        ...opts,
+        x_languages: I18n.t( "x_languages", {
+          count: I18n.toNumber( languageNames.length, { precision: 0 } )
+        } ),
+        defaultValue: I18n.t( "views.stats.year.translators_desc", {
+          ...opts,
+          x_languages: I18n.t( "x_languages", {
+            count: I18n.toNumber( languageNames.length, { precision: 0 } )
+          } )
+        } )
+      } );
+    }
     return (
       <div className="Translators">
         <h3>
@@ -54,37 +94,7 @@ class Translators extends React.Component {
         </h3>
         <p
           className="text-muted"
-          dangerouslySetInnerHTML={{
-            __html: siteName
-              ? I18n.t( "views.stats.year.translators_desc_for_site", {
-                site_name: siteName,
-                x_people: I18n.t( "x_people", {
-                  count: I18n.toNumber( _.size( dataWithTotals ), { precision: 0 } )
-                } ),
-                website_link_tag: `<a href='${window.location.origin}'>`,
-                link_tag_end: "</a>",
-                iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
-                android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
-                seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
-                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
-              } )
-              : I18n.t( "views.stats.year.translators_desc", {
-                x_languages: I18n.t( "x_languages", {
-                  count: I18n.toNumber( languageNames.length, { precision: 0 } )
-                } ),
-                x_people: I18n.t( "x_people", {
-                  count: I18n.toNumber( _.size( dataWithTotals ), { precision: 0 } )
-                } ),
-                website_link_tag: `<a href='${window.location.origin}'>`,
-                link_tag_end: "</a>",
-                iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
-                android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
-                seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
-                view_all_web_link_tag: "<a href='https://github.com/inaturalist/inaturalist/blob/main/config/locales/CONTRIBUTORS.md'>",
-                view_all_mobile_link_tag: "<a href='https://github.com/inaturalist/iNaturalistAndroid/blob/main/iNaturalist/src/main/res/CONTRIBUTORS.md'>"
-              } )
-          }}
+          dangerouslySetInnerHTML={{ __html: desc }}
         />
         <p
           className="text-muted"
@@ -99,7 +109,7 @@ class Translators extends React.Component {
           <thead>
             <tr>
               <th>{ I18n.t( "name" ) }</th>
-              { ["website", "mobile", "seek", "total"].map( a => (
+              { ["website", "mobile", "seek", "help", "total"].map( a => (
                 <th
                   className={`number ${a === "total" ? "" : "hidden-xs hidden-sm"}`}
                   key={`translators-header-${a}`}
@@ -115,6 +125,7 @@ class Translators extends React.Component {
                       // I18n.t( "website" )
                       // I18n.t( "mobile" )
                       // I18n.t( "seek" )
+                      // I18n.t( "help" )
                       // I18n.t( "total" )
                       I18n.t( a )
                     }
@@ -157,6 +168,14 @@ class Translators extends React.Component {
                     style={{ width: `${100 * scale( d.words_seek || 0 )}%` }}
                   >
                     { I18n.toNumber( d.words_seek || 0, { precision: 0 } ) }
+                  </div>
+                </td>
+                <td className="number hidden-xs hidden-sm">
+                  <div
+                    className="bar"
+                    style={{ width: `${100 * scale( d.words_help || 0 )}%` }}
+                  >
+                    { I18n.toNumber( d.words_help || 0, { precision: 0 } ) }
                   </div>
                 </td>
                 <td className="number">
