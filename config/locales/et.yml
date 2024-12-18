@@ -5662,6 +5662,8 @@ et:
         translators_title: Tõlkijad
         translators_desc: |
           Kas sa teadsid, et iNaturalistis on kasutusel %{x_languages} ning selle eest tuleb tänada %{x_people}, kelledest mõned isegi ei kasuta iNati? Siin on kõik need imelised tõlkijad, kes on käesoleva aasta jooksul tõlkeid lisanud koos tõlgitud sõnade arvuga nii %{website_link_tag}kodulehele%{link_tag_end}, %{iphone_link_tag}iPhone'i%{link_tag_end} ja %{android_link_tag}Androidi%{link_tag_end} rakendusele kui%{seek_link_tag}Seeki%{link_tag_end} jaoks. Infot kõigi inimeste kohta, kes on tõlkimisega aidanud ning seda ka varasemate aastate ja Translatwiki-ga seotud isikute kohta, saab vaadata meie %{view_all_web_link_tag}kodulehe%{link_tag_end} ja %{view_all_mobile_link_tag}mobiilirakenduse%{link_tag_end} koodivaramutest.
+        translators_desc_for_site: |
+          Kas sa teadsid, et %{site_name} on pea täielikult tõlgitud %{x_people} poolt? Siin on kõik need imelised tõlkijad, kes on käesoleva aasta jooksul tõlkeid lisanud koos tõlgitud sõnade arvuga nii %{website_link_tag}kodulehele%{link_tag_end}, iNaturalisti %{iphone_link_tag}iPhone'i%{link_tag_end} ja %{android_link_tag}Androidi%{link_tag_end} rakendusele kui%{seek_link_tag}Seeki%{link_tag_end} jaoks. Infot kõigi inimeste kohta, kes on tõlkimisega aidanud ning seda ka varasemate aastate ja Translatwiki-ga seotud isikute kohta, saab vaadata meie %{view_all_web_link_tag}kodulehe%{link_tag_end} ja %{view_all_mobile_link_tag}mobiilirakenduse%{link_tag_end} koodivaramutest.
         translators_prompt: |
           Kui soovid ka ise tõlkimisega aidata, %{link_tag}loe selle kohta siit%{link_tag_end}.
     taxa:
