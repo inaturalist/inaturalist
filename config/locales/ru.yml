@@ -370,6 +370,8 @@ ru:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Добавить нумерованный список
   add_a_comment: Добавить комментарий
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Добавить природоохранный статус
   add_a_field: Добавить поле
   add_a_flag: Добавить флаг
   #Tool tip for a button that adds a link to a text area
@@ -6986,6 +6988,61 @@ ru:
           делится наблюдениями, имеющими оценку "Research Grade", с рядом партнеров
           для использования в науке и охране природы.
         disagreement_count_desc: "# идентифицированных таксонов, которые не относятся к предкам таксона"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Оценка качества данных представляет собой итог точности наблюдений. Все наблюдения начинаются с уровня <strong>«обыкновенный»</strong> и достигают уровня <strong>«исследовательский»</strong>, когда
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: наблюдение <strong>имеет дату</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: наблюдение <strong>имеет геолокацию</strong> (т.е. заданы координаты широта/долгота)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: наблюдение <strong>содержит фото или аудио</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: наблюдение <strong>не является изображением человека</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Наблюдение достигает уровня <strong>"исследовательский"</strong> когда
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          <strong>сообщество сайта %{site_name} соглашается на идентификатор на уровне вида или ниже</strong>, т. е. когда более 2/3 экспертов соглашаются на таксон (если сообщество проголосовало за то, что таксон сообщества больше не может быть улучшен, он возвращается к идентификатору на уровне подсемейства или ниже)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Наблюдения возвращаются к уровню <strong>«обыкновенный»</strong>, если вышеуказанные условия не будут выполнены или сообщество согласится
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          <strong> день и год выглядят неточно</strong> (например, на фотографии виден снег, но дата указана летняя; время суток не берётся во внимание)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>местоположение выглядит неточным</strong> (например, обезьяны оказываются посреди океана, бегемоты в офисных зданиях и т. д.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>организм не является диким/натурализованным</strong> (например, находится в неволе или выращен человеком)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          в наблюдении <strong>нет доказательств существования организма</strong>, например, включены изображения водных объектов, скал, ландшафтов,
+          которые не включают организм и т. д.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          в наблюдении <strong>нет недавних (~100 лет) доказательств существования организма</strong> (например, окаменелостей), но следы, помет и опавшие
+          листья приемлемы
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          наблюдение <strong>не представляет доказательств, относящихся к одному и тому же 
+          субъекту</strong> (например, оно имеет четыре фотографии неродственных организмов; фотография, показывающая среду обитания субъекта наблюдения, допустима)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          наблюдение больше не требует идентификации <em>и</em> идентификатора сообщества
+          на уровне семьи или выше
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          наблюдатель отказался от идентификатора сообщества, а таксон идентификатора сообщества не является предком или потомком таксона, связанного с
+          идентификатором наблюдателя
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          И если это не достаточно сложно, есть также ситуации, когда система получает голос:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Система проголосует за то, что наблюдение не является диким/натурализованным, если
+          есть не менее 10 других наблюдений рода или ниже в наименьших эквивалентных округу, штату или стране местах, содержащих это наблюдение, и 80% или более этих наблюдений были отмечены как не дикие/натурализованные.
         identification_count_desc: '# идентификаций отдельного таксона'
         flagged_photos_desc_html: |
           Некоторые из этих фото отмечены как содержащие недопустимый контент или как 
@@ -7374,6 +7431,11 @@ ru:
         we_have_redesigned_projects: |
           Проекты созданы так, чтобы автоматически включались все наблюдения, которые соответствуют местам, таксонам, пользователям, качеству и датам, которые вы задаёте. Выбирайте между двумя основными типами: проекты-коллекции и проекты-зонтики, которые имеют следующие особенности:
         welcome_to_projects: Добро пожаловать в проекты!
+        you_can_learn_more2_html: |
+          Вы можете узнать больше об управлении проектами здесь
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">here</a>
+          Или прочесть об истории проектов в
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist"> нашем блоге</a>.
         you_have_not_defined_any_observation_requirements: |
           Не определены требования к наблюдению. Обязательно выберите один или несколько таксонов (например, птицы, хвойные деревья), места (например, Бразилия, Йеллоустон), пользователей и/или даты, чтобы определить наблюдения, которые вы хотите включить в свой проект.
         errors:
@@ -7582,6 +7644,30 @@ ru:
           %{android_link_tag}Android%{link_tag_end} и 
           %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода 
           %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_2: |
+          Знаете ли вы, что iNaturalist был переведён на %{x_languages},
+          почти полностью силами %{x_people}, некоторые из которых даже не используют iNat? Вот замечательные переводчики, которые добавили переводы в этом году,
+          вместе с количеством слов, которые они перевели для
+          %{website_link_tag}веб-сайта%{link_tag_end}, наших приложений для
+          %{iphone_link_tag}iPhone%{link_tag_end} и
+          %{android_link_tag}Android%{link_tag_end} и
+          %{seek_link_tag}Seek%{link_tag_end}, и
+          %{help_link_tag}iNatHelp%{link_tag_end}.
+        translators_desc_for_site: |
+          Знаете ли вы, что %{site_name} был переведён почти полностью силами %{x_people}? Вот замечательные переводчики, которые добавили переводы в этом году,
+          вместе с количеством слов, которые они перевели для
+          %{website_link_tag}веб-сайта%{link_tag_end}, приложений iNaturalist для
+          %{iphone_link_tag}iPhone%{link_tag_end} и
+          %{android_link_tag}Android%{link_tag_end} и
+          %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы со всех языков, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Знаете ли вы, что iNaturalist был переведён почти полностью силами %{x_people}? Вот замечательные переводчики, которые добавили переводы в этом году,
+          с указанием количеством слов, которые они перевели для
+          %{website_link_tag}веб-сайта%{link_tag_end}, наших приложений для
+          %{iphone_link_tag}iPhone%{link_tag_end} и
+          %{android_link_tag}Android%{link_tag_end} и
+          %{seek_link_tag}Seek%{link_tag_end}} и 
+          %{help_link_tag}iNatHelp%{link_tag_end}
         translators_prompt: |
           Если вы хотите помочь с переводом, %{link_tag}узнайте, как это сделать%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -8298,6 +8384,8 @@ ru:
       assessment_section:
         title: Название
         body: Текст
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Заблокированный пользователь
@@ -8724,6 +8812,10 @@ ru:
             taxon:
               too_many_photos: |
                 не может быть больше %{max} фотографий
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                не может иметь неразрешенные флаги
         taxon_range:
           attributes:
             iucn_relationship:
