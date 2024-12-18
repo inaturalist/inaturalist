@@ -6322,9 +6322,8 @@ fi:
         translators_title: Kääntäjät
         translators_desc: |
           Tiesitkö, että iNaturalistin %{x_languages} on käännetty lähes kokonaisuudessaan sellaisten %{x_people} toimesta, jotka eivät välttämättä edes käytä palvelua. Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käänöksiä tänä vuonna mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, meidän%{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös saada tietoa kaikista kielenkääntämistä tukeneista henkilöistä aiemmiltakin vuosilta ja Transwikin henkilöistä meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodi repositorioissa.
-        translators_desc_for_site: |
-          Tiesitkö, että %{site_name} on käännetty melkein kokonaan
-          %{x_people} toimesta? Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käännöksiä tänä vuonna, mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} -sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös nähdä kaikki käännöksiin osallistuneet henkilöt kaikilla kielillä, mukaanlukien henkilöt aiemmilta vuosilta ja Transwikistä, meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodirepositorioissa.
+        translators_desc_2: |
+          Tiesitkö, että iNaturalist on käännetty %{x_languages} kielelle, lähes kokonaan %{x_people} henkilön toimesta, joista jotkut eivät edes käytä iNatia? Tässä ovat kaikki upeat kääntäjät, jotka ovat lisänneet käännöksiä tänä vuonna, sekä käännettyjen sanojen määrä seuraaville alustoille: %{website_link_tag}verkkosivusto%{link_tag_end}, %{iphone_link_tag}iPhone%{link_tag_end}- ja %{android_link_tag}Android%{link_tag_end}-sovellukset, %{seek_link_tag}Seek%{link_tag_end} ja %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
