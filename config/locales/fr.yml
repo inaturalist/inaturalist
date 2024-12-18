@@ -382,6 +382,7 @@ fr:
   add_evidence_of_presence_track_annotation: 'Ajouter l''annotation « Signe de présence : piste »'
   add_evidence_of_presence_bone_annotation: 'Ajouter l''annotation « Signe de présence : os »'
   add_evidence_of_presence_molt_annotation: 'Ajouter l''annotation « Signe de présence : mue »'
+  add_evidence_of_presence_leafmine_annotation: 'Ajouter l''annotation "Preuve de présence: mine foliaire"'
   add_evidence_of_presence_hair_annotation: 'Ajouter l''annotation "Preuve de Présence : poils"'
   add_evidence_of_presence_egg_annotation: 'Ajouter l''annotation "Preuve de Présence : Œuf"'
   add_evidence_of_presence_construction_annotation: 'Ajouter l''annotation "Preuve de Présence : construction"'
@@ -1250,6 +1251,7 @@ fr:
     construction: Quelque chose créé par un animal, fabriqué avec ou creusé dans d'autres matériaux
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     no_flowers_or_fruits: Aucune fleur, fruit ou graine (en tout ou partie) n’est visible
+    not_established: L'organisme appartient à une population non établie, y compris les animaux de compagnie libérés ou échappés, les randonneurs et les vagabonds.
     organism: Tout ou partie d'un organisme
     scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
     teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
@@ -3210,6 +3212,7 @@ fr:
   observation_accuracy_experiment_precision_results: "Résultats de la précision par sous-ensemble"
   observation_accuracy_experiment_taxon_rank_level: "Niveau de classement du taxon"
   observation_accuracy_experiment_taxon_observations_count: "Nombre d'observations de taxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nom du Taxon Emblématique"
   observation_accuracy_experiment_continent: "Continent"
   observation_accuracy_experiment_year: "Année"
   observation_accuracy_experiment_quality_grade: "Niveau de qualité"
@@ -3239,6 +3242,7 @@ fr:
   observation_accuracy_experiment_mean_number: "Nombre moyen de validateurs par observation : %{number}"
   observation_accuracy_experiment_validator_candidate: "Critère d'éligibilité du validateur"
   observation_accuracy_experiment_if_an_identifier: "Si un identificateur avait fait au moins 3 identifications améliorantes sur un taxon, nous l'avons considéré qualifié pour valider ce taxon. L'identification améliorante est la première suggestion d'un taxon avec laquelle la communauté est par la suite d'accord."
+  observation_accuracy_experiment_if_an_identifier_continent: "Si un identificateur a fait au moins 3 identifications d'amélioration sur un taxon sur un continent, nous l'avons considéré comme qualifié pour valider un taxon sur ce continent. Les identifications d'amélioration sont les premières suggestions du taxon que la communauté a ensuite accepté."
   observation_accuracy_experiment_step_2: "Étape 2 : Validation des échantillons"
   observation_accuracy_experiment_number_percent_of: "Nombre de validateurs participants : %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Pourcentage de l'échantillon validé : %{percent}"
@@ -6597,6 +6601,11 @@ fr:
           seront signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
           veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
     nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Démo de la vision-language
       what_do_you_want_to_search_for: Que voulez-vous rechercher ?
       #Provides an example of a query to use with the Vision Language Demo.
       #query_in_english will be something like "a bird eating fruit".
@@ -6915,6 +6924,32 @@ fr:
         data_quality_assessment_desc3_html: |
           Le niveau de qualité résume l'exactitude, la précision, l'exhaustivité, la pertinence et le caractère approprié d'une observation iNaturalist en tant que donnée sur la biodiversité. Certains attributs sont établis automatiquement, tandis que d'autres sont le résultat du vote des utilisateurs. Des partenaires d'iNaturalist dans le domaine des sciences et de la conservation ont accès aux données des observations sous licence de « niveau recherche ».
         disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          L'évaluation de la qualité des données est un résumé de l'exactitude d'une observation. Toutes les observations commencent avec une note <strong>"informel"</strong> et deviennent <strong>"besoin d'ID"</strong> quand
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: l'observation <strong>a une date</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: l'observation <strong>est géolocalisée</strong> (c.-à-d. avec des coordonnées lat/lon)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: l'observation <strong>a des photos ou des sons</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: l'observation <strong>n'est pas d'un</strong> humain
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Les observations deviennent <strong>"qualité rechercher"</strong> quand
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          la <strong>communauté %{site_name} s'accorde sur l'ID au niveau espèce ou 
+          inférieur</strong>, lorsque plus des 2/3 des identifieurs sont d'accord sur un 
+          taxon (si la communauté a validé que le Taxon de Communauté ne peut pas
+          être amélioré, celui-ci est alors ramené à l'ID de sous-famille ou inférieur)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Les observations reviendront à <strong>"occasionel"</strong> si les conditions
+          ci-dessus ne sont pas remplies ou si la communauté l'accepte
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          le <strong>jour et l'année ne semblent pas exacts</strong> (par exemple, de la neige apparaît sur la photo, mais la date se situe en été ; ne pas prendre en compte l'heure)
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
           Certaines de ces photos ont été signalées comme étant inappropriée ou
@@ -7671,6 +7706,19 @@ fr:
           %{iphone_link_tag}iPhone%{link_tag_end}, 
           %{android_link_tag}Android%{link_tag_end} et
           %{seek_link_tag}Seek%{link_tag_end}.
+        translators_desc_for_site: |
+          Saviez-vous que %{site_name} a été traduit presque entièrement par
+          %{x_people} personnes ? Voici tous les traducteurs extraordinaires qui
+          ont ajouté des traductions cette année, ainsi que le nombre de mots
+          qu'ils ont traduits pour le site
+          %{website_link_tag}%{link_tag_end}, les applications iNaturalist
+          %{iphone_link_tag}iOS%{link_tag_end} et
+          %{android_link_tag}Android%{link_tag_end} et
+          %{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir
+          toutes les personnes qui ont contribué aux traductions dans toutes les langues,
+          y compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code
+          %{view_all_web_link_tag}web%{link_tag_end} et
+          %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
         translators_prompt: |
           Si vous voulez aider à traduire, %{link_tag}apprenez comment%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -7714,6 +7762,7 @@ fr:
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
         about_taxon_curators_desc: |
           Ces personnes gèrent la partie de l’arbre taxinomique qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer ce taxon ou contacter l'une de ces personnes.
+        charts_caps: GRAPHIQUES
         charts_help_seasonality: |
           Ce graphique affiche le nombre d’observations de ce taxon, groupées par
           mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
@@ -8442,6 +8491,7 @@ fr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Pour les utilisateurs qui n'ont pas confirmé leur adresse mail
+        prefers_exclude_monthly_supporters: Exclure les soutiens mensuels
         clients: Clients
       assessment:
         description: Description
