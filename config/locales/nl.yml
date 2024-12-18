@@ -33,6 +33,9 @@ nl:
     one: '<span class="count">1</span> determineerder'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> determineerders'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID''s gemaakt voor anderen'
+    other: '<span class="count">%{count}</span>ID''s gemaakt voor anderen'
   x_languages:
     one: "%{count} taal"
     other: "%{count} talen"
@@ -2496,11 +2499,14 @@ nl:
     basque: Baskisch
     belarusian: Wit-Russisch
     bengali: Bengaals
+    bikol: Bikol
     bulgarian: Bulgaars
+    carolinian: Caroliniaans
     catalan: Catalaans
     cebuano: Creools (Frans)
     chinese_simplified: Chinees (vereenvoudigd)
     chinese_traditional: Chinees (traditioneel)
+    chuvash: Tsjoevasjisch
     creole_french: Creools (Frans)
     creole_portuguese: Creools (Portugees)
     croatian: Kroatisch
@@ -2512,6 +2518,7 @@ nl:
     esperanto: Esperanto
     estonian: Estlands
     faroese: Faeröers
+    fijian: Fijisch
     finnish: Fins
     french: Frans
     galician: Galicisch
@@ -2524,6 +2531,7 @@ nl:
     hebrew: Hebreeuws
     herero: Herero
     hiligaynon: "\nHiligaynon"
+    hill_mari: Hill Mari
     hodges_number: Hodges nummer
     hokkien: Hokkien
     hungarian: Hongaars
@@ -2536,8 +2544,10 @@ nl:
     kannada: Kannada
     kazakh: Kazachs
     korean: Koreaans
+    kweyol: Queyol
     latvian: Lets
     lithuanian: Litouws
+    lozi: Lozi
     luxembourgish: Luxemburgs
     malagasy: Malagasi
     malay: Maleis
@@ -2550,6 +2560,7 @@ nl:
     mongolian: Mongools
     nahuatl: Nahuatl
     navajo: Navajo
+    ndebele: Ndebele
     norwegian: Noors
     occitan: Provençaals
     ojibwe: Ojibwe
@@ -2563,26 +2574,35 @@ nl:
     santali: Santali
     scientific_names: Wetenschappelijke namen
     serbian: Servisch
+    shona: Shona
     sinhala: Singalees
     slovak: Slowaaks
     slovenian: Sloveens
+    sotho: Sotho
+    sotho_northern: Sotho (Noordelijk)
     spanish: Spaans
     swahili: Swahili
+    swati: Swati
     swedish: Zweeds
     tagalog: Tagalog
     tahitian: Tahitiaans
     tamil: Tamil
     thai: Thai
     tokelauan: Tokelaus
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turks
     u_s_d_a_symbol: V.S.D.A. Symbool
     ukrainian: Oekraïens
     uyghur: Oeigoers
+    venda: Venda
     vermont_flora_codes: Vermont Flora Codes
     vietnamese: Vietnamees
     visayan: Visayan
     waray_waray: Winaray
     xhosa: Xhosa
+    zapoteco: Zapoteco
     zulu: Zulu
   less: Minder
   #Button show less text
@@ -7649,6 +7669,11 @@ nl:
           Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} & %{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze
           %{view_all_web_link_tag}web-%{link_tag_end} en
           %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
+        translators_desc_2: |
+          Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, 
+          onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} & %{android_link_tag}Android%{link_tag_end}, 
+          %{seek_link_tag}Seek%{link_tag_end} en
+           %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Wist je dat %{site_name} bijna volledig is vertaald door %{x_people}? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, 
           de iNaturalist apps voor %{iphone_link_tag}iPhone%{link_tag_end} en
@@ -7656,6 +7681,14 @@ nl:
           en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze
           %{view_all_web_link_tag}web-%{link_tag_end} en
           %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
+        translators_desc_for_site_2: |
+          Wist je dat %{site_name} bijna volledig is vertaald door %{x_people}? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de
+           %{website_link_tag}website%{link_tag_end}, 
+          onze apps voor
+           %{iphone_link_tag}iPhone%{link_tag_end} & 
+          %{android_link_tag}Android%{link_tag_end}, 
+          %{seek_link_tag}Seek%{link_tag_end} en
+           %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Als je wil helpen met vertalen, %{link_tag}lees hier meer%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -8371,6 +8404,8 @@ nl:
       assessment_section:
         title: Titel
         body: Tekst
+      blocked_ip:
+        ip: IP-adres
       blocked_user:
         #The user who has been blocked
         blocked_user: Geblokkeerde gebruiker

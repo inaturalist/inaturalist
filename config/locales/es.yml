@@ -1128,6 +1128,9 @@ es:
   content_and_display: Contenido y Presentación
   content_author: Autor de contenido
   content_hidden: Contenido oculto
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Contenido oculto el %{date} debido a: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} ocultó el contenido el %{date} porque: «%{reason}»
@@ -2286,6 +2289,8 @@ es:
   in_place_x: en %{place}
   #As in a reason to flag something
   inappropriate: Inapropiado
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Red iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
@@ -2658,6 +2663,7 @@ es:
     lv: Letón
     mi: Maorí
     mk: Macedonio
+    ml: Malayalam
     mr: Maratí
     nb: Noruego Bokmål
     nl: Holandés
@@ -2672,6 +2678,7 @@ es:
     sq: Albanés
     sr: Serbio
     sv: Sueco
+    ta: Tamil
     th: Tailandés
     tr: Turco
     uk: Ucraniano
@@ -8030,6 +8037,8 @@ es:
       assessment_section:
         title: Título
         body: Cuerpo
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Usuario bloqueado
