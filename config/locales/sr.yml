@@ -5183,6 +5183,12 @@ sr:
           %{iphone_link_tag}iPhone%{link_tag_end} i
           %{android_link_tag}Android%{link_tag_end} aplikacije, kao i
           %{seek_link_tag}Seek%{link_tag_end}. Da bi video sve ljude koji su doprinelu prevodu na sve jezike, uključujući one iz prošlih godina kao i one sa Translatewiki, poseti %{view_all_web_link_tag}web verzija%{link_tag_end} i %{view_all_mobile_link_tag}mobile verzija%{link_tag_end} repozitorijume koda.
+        translators_desc_for_site: |
+          Da li znaš da su skoro u celosti %{site_name} preveli %{x_people}? Evo svih divnih prevodilaca koji su doprineli prevodu ove godine sa brojem reči koje je svaki od njih preveo za
+          %{website_link_tag}sajt%{link_tag_end}, iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end} i
+          %{android_link_tag}Android%{link_tag_end} aplikacije, kao i
+          %{seek_link_tag}Seek%{link_tag_end}. Da bi video sve ljude koji su doprinelu prevodu na sve jezike, uključujući one iz prošlih godina kao i one sa Translatewiki, poseti %{view_all_web_link_tag}web verzija%{link_tag_end} i %{view_all_mobile_link_tag}mobile verzija%{link_tag_end} repozitorijume koda.
         translators_prompt: |
           Ako želiš da pomogneš u prevođenju, %{link_tag}pogledaj kako%{link_tag_end}
         view_all_publications_count_caps2:
