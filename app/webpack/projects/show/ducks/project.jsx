@@ -123,7 +123,6 @@ export function fetchMembers( ) {
       id: project.id,
       per_page: 100,
       order_by: "login",
-      skip_counts: true,
       fields: { user: USER_FIELDS }
     };
     if ( config.currentUser ) {
