@@ -7162,6 +7162,71 @@ cs:
           sdílí licencovaná pozorování "Výzkumného stupně" s mnoha
           partnery pro použití ve vědě a ochraně přírody.
         disagreement_count_desc: "# identifikovaných taxonů, které nespadají do základních taxonů"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Posouzení kvality dat je souhrnem přesnosti pozorování. Všechna pozorování začínají jako <strong>"neformální"</strong> a <strong>"vyžadují ID"</strong> když
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: pozorování <strong>má datum</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: pozorování má <strong>geografickou referenci</strong> (má souřadnice z.d. a z.š.)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: pozorování <strong>má fotky nebo zvuky</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: pozorování <strong>není lidské</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Pozorování se stanou <strong>„výzkumným stupněm“</strong> , když
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name} <strong>komunita souhlasí s ID na úrovni druhu nebo
+          nižším</strong>, tj. když se více než 2/3 identifikátorů dohodnou na
+          taxonu (pokud komunita hlasovala, že komunitní taxon již nemůže být
+          vylepšen, tak se vrátí k ID nebo k nižší úrovni podrodiny)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Pozorování se vrátí na <strong>"neformální"</strong> , pokud nejsou splněny výše uvedené podmínky nebo pokud souhlasí komunita
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          <strong>den a rok nevypadá přesně</strong> (např. sníh
+          se objeví na fotce, ale datum je v létě; neberte v úvahu
+          denní čas)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>poloha nevypadá přesně</strong> (např. opice v
+          uprostřed oceánu, hroši v kancelářských budovách atd.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismus není přírodní/naturalizovaný</strong> (např. v zajetí
+          nebo je pěstován lidmi)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          pozorování <strong>neobsahuje důkazy o
+          organismu</strong> např. fotky vodních prvků, skal, krajiny, které nezahrnují organismus atd.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          pozorování <strong>není nedávný (~100 let) důkaz
+          organismu</strong> (např. fosílie, ale stopy, trus a mrtvé listy
+          jsou v pořádku)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          pozorování <strong>nepředkládá důkazy týkající se jednoho
+          subjektu</strong> (např. má čtyři fotografie nespřízněných organismů;
+          fotografie ukazující stanoviště předmětu pozorování je OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          pozorování již nepotřebuje ID <em>a</em> ID
+          je v rodině nebo vyšší
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          pozorovatel se rozhodl opustit komunitní ID a komunitní ID
+          taxon není předchůdcem nebo potomkem taxonu spojeného s
+          ID pozorovatele
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          A pokud by to nebylo dost složité, existují také situace kdy systém nabídne hlasování:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Systém bude hlasovat, že pozorování není volně žijící / naturalizované, pokud
+          existuje alespoň 10 dalších pozorování rodu nebo nižší v nejmenším okrese, státu nebo zemi odpovídající místu, které obsahuje toto pozorování a 80% nebo více těchto pozorování bylo označeno jako že není volně žijící / naturalizované.
         identification_count_desc: '# identifikací daného taxonu'
         flagged_photos_desc_html: |
           Některé z těchto fotek byly označeny kvůli nevhodnému obsahu nebo porušení autorských práv. Podrobnosti najdete zde %{links}
@@ -7801,6 +7866,16 @@ cs:
           včetně lidí z minulých let a lidí z Translatewiki, na náš
           %{view_all_web_link_tag} web %{link_tag_end} a do
           %{view_all_mobile_link_tag} mobilních aplikaci %{link_tag_end} v úložišti kódů.
+        translators_desc_for_site: |
+          Věděli jste, že %{site_name} byl přeložen téměř úplně uživateli %{x_people}? Zde jsou všichni úžasní překladatelé, kteří
+          přidali překlady letos společně s počtem slov,
+          přeložili pro %{website_link_tag} web%{link_tag_end}, iNaturalist%{iphone_link_tag} iPhone%{link_tag_end} a
+          %{android_link_tag} Aplikace pro Android%{link_tag_end} a
+          %{seek_link_tag} Vyhledejte%{link_tag_end}. Můžete si prohlédnout
+          všichny lidi, kteří přispěli překlady do všech jazyků,
+          včetně lidí z minulých let a lidí z Translatewiki
+           %{view_all_web_link_tag}webo%{link_tag_end} a
+           %{view_all_mobile_link_tag}mobilního%{link_tag_end} úložiště kódů.
         translators_prompt: |
           Pokud chcete pomoci s překladem, %{link_tag}podívejte se jak%{link_tag_end}.
         view_all_publications_count_caps2:
