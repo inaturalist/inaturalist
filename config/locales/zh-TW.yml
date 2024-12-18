@@ -6667,6 +6667,16 @@ zh-TW:
         translators_title: 譯者
         translators_desc: |
           您知道 iNaturalist 已經翻譯成%{x_languages}，幾乎全部由%{x_people}所翻譯，其中有些人甚至沒有使用 iNat 嗎？以下是今年新增翻譯的所有翻譯者，還有他們翻譯我們的%{website_link_tag}網站%{link_tag_end}、%{iphone_link_tag}iPhone%{link_tag_end}和%{android_link_tag}Android%{link_tag_end}手機 app 和%{seek_link_tag}探索(Seek)%{link_tag_end}。您可以在我們的%{view_all_web_link_tag}網頁%{link_tag_end}和%{view_all_mobile_link_tag}行動裝置%{link_tag_end}程式碼倉儲庫中來查閱所有人的翻譯，包含過去幾年的翻譯者和從 Translatewiki 的翻譯夥伴。
+        translators_desc_for_site: |
+          您知道%{site_name}已經幾乎整個由%{x_people}所翻譯了嗎？
+          以下是今年新增翻譯的所有超棒翻譯者，
+          以及他們為%{website_link_tag}網站%{link_tag_end}、
+          iNaturalist%{iphone_link_tag}iPhone%{link_tag_end}和
+          %{android_link_tag}Android%{link_tag_end}app 以及
+          %{seek_link_tag}探索(Seek)%{link_tag_end}
+          所翻譯的字數。您可以在我們的%{view_all_web_link_tag}網站%{link_tag_end}和
+          %{view_all_mobile_link_tag}行動裝置%{link_tag_end}的程式碼倉儲庫中來檢視
+          在不同語言中所有人的翻譯，包括過去幾年在 Translatewiki 上的翻譯夥伴。
         translators_prompt: |
           如果您想要協助翻譯，%{link_tag}在此學習如何翻譯%{link_tag_end}。
     taxa:
