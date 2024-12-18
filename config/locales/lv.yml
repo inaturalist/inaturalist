@@ -6430,6 +6430,12 @@ lv:
           %{android_link_tag}Android%{link_tag_end} un
           %{seek_link_tag}Seek%{link_tag_end} lietotnēs. Mūsu %{view_all_web_link_tag}tīmekļa vietņu%{link_tag_end} un
           %{view_all_mobile_link_tag}mobilo lietotņu %{link_tag_end} koda repozitorijos iespējams apskatīt visu tulkotāju vārdus, tai skaitā cilvēkus no pēdējiem gadiem un Translatewiki komandu.
+        translators_desc_for_site: |
+          Vai zināji, ka %{site_name} pārtulkojuši %{x_people}cilvēki ? Šeit redzami visi tie apbrīnojamie tulkotāji, kas šogad pievienojuši tulkojumus, un viņu pārtulkoto vārdu skaits šajās vietnēs un lietotnēs: %{website_link_tag}tīmekļa vietnē%{link_tag_end}, mūsu
+          %{iphone_link_tag}iPhone%{link_tag_end},
+          %{android_link_tag}Android%{link_tag_end} un
+          %{seek_link_tag}Seek%{link_tag_end} lietotnēs. Mūsu %{view_all_web_link_tag}tīmekļa vietņu%{link_tag_end} un
+          %{view_all_mobile_link_tag}mobilo lietotņu %{link_tag_end} koda repozitorijos iespējams apskatīt visu tulkotāju vārdus, tai skaitā cilvēkus no pēdējiem gadiem un Translatewiki komandu.
         translators_prompt: |
           Ja vēlies palīdzēt ar tulkošanu, %{link_tag}nospied šeit%{link_tag_end}.
     taxa:
