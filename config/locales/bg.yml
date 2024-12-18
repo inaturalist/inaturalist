@@ -4762,6 +4762,8 @@ bg:
         translators_title: Преводачи
         translators_desc: |
           Знаете ли, че iNaturalist е преведен на %{x_languages}, основно благодарение на %{x_people}, някои от които дори не използват iNat? Ето ги невероятните преводачи добавяли преводи тази година, заедно с броя думи, които са превели за %{website_link_tag}уебсайта%{link_tag_end}, нашите приложения за %{iphone_link_tag}iPhone%{link_tag_end} и %{android_link_tag}Android%{link_tag_end}, както и приложението %{seek_link_tag}Seek%{link_tag_end}. Можете да видите всички хора, които са допринесли с преводи – включително през изминалите години и хората от Translatewiki – на хранилищата ни за код за %{view_all_web_link_tag}уебсайта%{link_tag_end} и %{view_all_mobile_link_tag}приложенията%{link_tag_end}.
+        translators_desc_for_site: |
+          Знаете ли, че %{site_name} е преведен основно благодарение на %{x_people}? Ето ги невероятните преводачи добавяли преводи тази година, заедно с броя думи, които са превели за %{website_link_tag}уебсайта%{link_tag_end}, приложенията на iNaturalist за %{iphone_link_tag}iPhone%{link_tag_end} и %{android_link_tag}Android%{link_tag_end}, както и приложението %{seek_link_tag}Seek%{link_tag_end}. Можете да видите всички хора, които са допринесли с преводи на всички езици – включително през изминалите години и хората от Translatewiki – на хранилищата ни за код за %{view_all_web_link_tag}уебсайта%{link_tag_end} и %{view_all_mobile_link_tag}приложенията%{link_tag_end}.
         translators_prompt: |
           Ако искате да помогнете с превода, %{link_tag}научете как%{link_tag_end}.
     taxa:
