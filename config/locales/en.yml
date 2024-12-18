@@ -2059,10 +2059,20 @@ en:
   # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exact Rank
   except: except
+  # Label for a button that filters an observation search so it does not
+  # include observations of a specific taxon
+  exclude__taxon: Exclude
   exclude_places: Exclude Places
   exclude_projects: Exclude Projects
   exclude_taxa: Exclude Taxa
   exclude_users: Exclude Users
+  # Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    zero: Excluding %{count} taxa
+    one: Excluding %{count} taxon
+    few: Excluding %{count} taxa
+    many: Excluding %{count} taxa
+    other: Excluding %{count} taxa
   exclusion_filters: Exclusion Filters
   existing_flags: Existing Flags
   exit_full_screen: "Exit Full Screen"
@@ -2553,8 +2563,16 @@ en:
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
   inbox: Inbox
+  # Label for a button that filters an observation search so it only includes
+  # observations of a specific taxon
+  include__taxon: Include
   include_places: Include Places
   include_projects: Include Projects
+  # Title for an array of options that allows the user to include or exclude
+  # the taxa that contain another taxon from an observation search, e.g. if
+  # the search results include Homo sapiens, the user could choose to refine
+  # the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Include / Exclude Ancestor Taxa
   include_suggestions_not_seen_nearby: Include suggestions not seen nearby
   include_suggestions_not_expected_nearby: Include suggestions not expected nearby
   include_taxa: Include Taxa
