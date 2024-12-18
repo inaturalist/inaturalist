@@ -7661,19 +7661,16 @@ fr:
           y compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code
           %{view_all_web_link_tag}web%{link_tag_end} et
           %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
-        translators_desc_for_site: |
-          Saviez-vous que %{site_name} a été traduit presque entièrement par
-          %{x_people} personnes ? Voici tous les traducteurs extraordinaires qui
-          ont ajouté des traductions cette année, ainsi que le nombre de mots
-          qu'ils ont traduits pour le site
-          %{website_link_tag}%{link_tag_end}, les applications iNaturalist
-          %{iphone_link_tag}iOS%{link_tag_end} et
+        translators_desc_2: |
+          Saviez-vous que iNaturalist a été traduit presque entièrement par
+          %{x_people} personnes ? Voici tous les fantastiques traducteurs qui ont
+          ajouté des traductions cette année, avec le nombre de mots
+          qu'ils ont traduits pour 
+          %{website_link_tag}le site%{link_tag_end}, les applications
+          iNaturalist 
+          %{iphone_link_tag}iPhone%{link_tag_end}, 
           %{android_link_tag}Android%{link_tag_end} et
-          %{seek_link_tag}Seek%{link_tag_end}. Vous pouvez voir
-          toutes les personnes qui ont contribué aux traductions dans toutes les langues,
-          y compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code
-          %{view_all_web_link_tag}web%{link_tag_end} et
-          %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
+          %{seek_link_tag}Seek%{link_tag_end}.
         translators_prompt: |
           Si vous voulez aider à traduire, %{link_tag}apprenez comment%{link_tag_end}.
         view_all_publications_count_caps2:
