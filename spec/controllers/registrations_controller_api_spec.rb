@@ -205,6 +205,7 @@ describe Users::RegistrationsController, "create" do
     expect( signup ).not_to be_nil
     expect( signup.browser_id ).to eq( "browser123" )
     expect( signup.ip ).to eq( u.last_ip )
+    expect( signup.mobile ).to be false
   end
 
   it "should create UserSignup with incognito mode true" do
@@ -247,5 +248,6 @@ describe Users::RegistrationsController, "create" do
     expect( signup ).not_to be_nil
     expect( signup.browser_id ).to eq( "installation123" )
     expect( signup.ip ).to eq( u_created.last_ip )
+    expect( signup.mobile ).to be true
   end
 end

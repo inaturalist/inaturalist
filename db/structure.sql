@@ -5608,7 +5608,8 @@ CREATE TABLE public.user_signups (
     root_user_id_by_ip integer,
     root_user_id_by_browser_id integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    mobile boolean DEFAULT false
 );
 
 
@@ -11390,6 +11391,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240923134239'),
 ('20240923134658'),
 ('20241127180606'),
-('20241202092831');
+('20241202092831'),
+('20241218164832');
 
 
