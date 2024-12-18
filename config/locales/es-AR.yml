@@ -6905,6 +6905,15 @@ es-AR:
         observation_streaks_desc2: |
           Una racha de observaciones es un período de al menos cinco días cuando alguien se acercó a la naturaleza y registró observaciones nuevas y verificables cada día particular. Acá mostramos las rachas más largas que comenzaron este año o estaban en progreso cuando estas estadísticas se generaron (para usuarios individuales, también incluímos rachas que terminaron este año).
         stats_generated_datetime: Estadísticas generadas el %{datetime}
+        translators_desc: |
+          ¿Sabías que iNaturalist ha sido traducido a %{x_languages},
+          casi por completo por %{x_people}, algunos de los cuales ni siquiera usan iNat? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
+        translators_desc_for_site: |
+          ¿Sabías que %{site_name} ha sido traducido casi por completo por %{x_people}? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
