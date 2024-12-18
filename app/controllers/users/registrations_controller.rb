@@ -68,7 +68,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         UserSignup.create(
           user_id: resource.id,
           ip: resource.last_ip,
-          browser_id: resource.browser_id,
+          browser_id: is_mobile_app? ? request.headers["HTTP_X_INSTALLATION_ID"] : resource.browser_id,
           incognito: resource.incognito_mode
         )
         if resource.active_for_authentication?
