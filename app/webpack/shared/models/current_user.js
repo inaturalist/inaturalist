@@ -2,7 +2,10 @@ import _ from "lodash";
 
 const CurrentUser = class CurrentUser {
   constructor( attrs = { } ) {
-    Object.assign( this, attrs );
+    Object.assign( this, _.omit(
+      attrs,
+      ["loggedIn", "isAdmin", "isCurator"]
+    ) );
     this.loggedIn = this.loggedIn( );
     this.isAdmin = this.isAdmin( );
     this.isCurator = this.isCurator( );

@@ -8,7 +8,7 @@ describe HasSubscribers do
   it "notifies subscribers and owners" do
     UpdateAction.delete_all
     o = Observation.make!
-    s = Subscription.make!(resource: o, user: User.make!)
+    s = Subscription.make!(resource: o)
     c = Comment.make!(parent: o, body: "thebody")
     expect( UpdateAction.count ).to eq 0
     expect( UpdateAction.unviewed_by_user_from_query(o.user_id, notifier: c) ).to eq false
@@ -23,7 +23,8 @@ describe HasSubscribers do
   it "does not notify subscribers with suspended subscriptions" do
     UpdateAction.delete_all
     o = Observation.make!(user: User.make!(subscriptions_suspended_at: Time.now))
-    s = Subscription.make!(resource: o, user: User.make!(subscriptions_suspended_at: Time.now))
+    s = Subscription.make!(resource: o)
+    s.user.update( subscriptions_suspended_at: Time.now )
     c = Comment.make!(parent: o, body: "thebody")
     expect( UpdateAction.unviewed_by_user_from_query(o.user_id, { }) ).to eq false
     expect( UpdateAction.unviewed_by_user_from_query(s.user_id, { }) ).to eq false

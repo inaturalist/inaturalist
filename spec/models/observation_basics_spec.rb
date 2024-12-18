@@ -1645,7 +1645,7 @@ describe Observation do
     end
 
     it "should delete associated updates" do
-      subscriber = User.make!
+      subscriber = UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user
       user = User.make!
       Subscription.make!( user: subscriber, resource: user )
       o = Observation.make( user: user )

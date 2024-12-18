@@ -88,11 +88,13 @@ class ActivityCreatePanel extends React.Component {
     }
     return (
       // eslint-disable-next-line jsx-a11y/control-has-associated-label
-      <button
+      <span
         type="button"
         className="log-in"
-        onClick={( ) => {
+        onClick={e => {
           confirmResendConfirmation( );
+          e.preventDefault( );
+          e.stopPropagation( );
         }}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
@@ -171,11 +173,13 @@ class ActivityCreatePanel extends React.Component {
     }
     return (
       // eslint-disable-next-line jsx-a11y/control-has-associated-label
-      <button
+      <span
         type="button"
         className="log-in"
-        onClick={( ) => {
+        onClick={e => {
           confirmResendConfirmation( );
+          e.preventDefault( );
+          e.stopPropagation( );
         }}
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{

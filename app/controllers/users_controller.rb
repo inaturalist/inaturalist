@@ -1088,7 +1088,10 @@ class UsersController < ApplicationController
         flash[:notice] = notice_msg
         redirect_back_or_default(person_by_login_path(:login => current_user.login))
       end
-      format.json { render :json => {:msg => error_msg || notice_msg, :friendship => friendship} }
+      format.json do
+        render status: :unprocessable_entity,
+          json: { error: error_msg || notice_msg, friendship: friendship }
+      end
     end
   end
   

@@ -438,7 +438,7 @@ end
 
 Subscription.blueprint do
   resource { Observation.make! }
-  user { User.make! }
+  user { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user }
 end
 
 Taxon.blueprint do

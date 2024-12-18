@@ -273,6 +273,7 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_validation :set_canonical_email
   before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
@@ -316,25 +317,26 @@ class User < ApplicationRecord
   ].freeze
 
   # Regexes from restful_authentication
-  LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
-  login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
-  
-  validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
-  validates_uniqueness_of   :login
-  validates_format_of       :login,     with: login_regex, message: :must_begin_with_a_letter
-  validates_exclusion_of    :login,     in: %w(password new edit create update delete destroy)
+  LOGIN_PATTERN = "[A-Za-z][\\\w\\\-_]+"
+  login_regex = /\A#{LOGIN_PATTERN}\z/ # ASCII, strict
 
-  validates_exclusion_of    :password,     in: %w(password)
+  validates_length_of :login, within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
+  validates_uniqueness_of :login
+  validates_format_of :login, with: login_regex, message: :must_begin_with_a_letter
+  validates_exclusion_of :login, in: %w(password new edit create update delete destroy)
 
-  validates_length_of       :name,      maximum: 100, allow_blank: true
+  validates_exclusion_of :password, in: %w(password)
 
-  validates_format_of       :email,     with: Devise.email_regexp,
+  validates_length_of :name, maximum: 100, allow_blank: true
+
+  validates_format_of :email, with: Devise.email_regexp,
     message: :must_look_like_an_email_address, allow_blank: true
-  validates_length_of       :email,     within: 6..100, allow_blank: true
-  validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validates_length_of :email, within: 6..100, allow_blank: true
+  validates_length_of :time_zone, minimum: 3, allow_nil: true
   validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
+  validate :validate_canonical_email_is_unique
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -395,7 +397,24 @@ class User < ApplicationRecord
     end
     true
   end
-  
+
+  def validate_canonical_email_is_unique
+    return unless new_record? || email_changed?
+    return if email.blank?
+    return if errors[:email].any?
+
+    canonical_email = EmailAddress.canonical( email )
+    return if canonical_email.blank?
+
+    uniqueness_scope = User.where( canonical_email: canonical_email )
+    unless new_record?
+      uniqueness_scope = uniqueness_scope.where( "id != ?", id )
+    end
+    return unless uniqueness_scope.any?
+
+    errors.add( :email, :taken )
+  end
+
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
   end
@@ -773,6 +792,12 @@ class User < ApplicationRecord
   def set_time_zone
     self.time_zone = nil if time_zone.blank?
     true
+  end
+
+  def set_canonical_email
+    return unless new_record? || email_changed?
+
+    self.canonical_email = EmailAddress.canonical( email )
   end
 
   def set_uri

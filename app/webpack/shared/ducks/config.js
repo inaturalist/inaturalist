@@ -11,12 +11,18 @@ const UPDATE_CURRENT_USER = "config/update_current_user";
 
 // REDUCER
 export default function reducer( state = new Config( { } ), action ) {
+  let updatedState;
   switch ( action.type ) {
     case CONFIG:
-      return Object.assign( state, action.config );
+      updatedState = { ...action.config };
+      // eslint-disable-next-line no-restricted-syntax
+      if ( action.config.currentUser && action.config.currentUser.constructor !== CurrentUser ) {
+        updatedState.currentUser = new CurrentUser( action.config.currentUser );
+      }
+      return Object.assign( state, updatedState );
     case UPDATE_CONFIG: {
-      const updatedState = { ...action.config };
-      if ( action.config.currentUser ) {
+      updatedState = { ...action.config };
+      if ( action.config.currentUser && action.config.currentUser.constructor !== CurrentUser ) {
         updatedState.currentUser = new CurrentUser( action.config.currentUser );
       }
       return {

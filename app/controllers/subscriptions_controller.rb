@@ -107,19 +107,30 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscribe
-    @subscription = current_user.subscriptions.where(resource: @resource).first
-    if !@subscription && (params[:subscribe].nil? || params[:subscribe].yesish?)
-      @subscription = Subscription.create(resource: @resource, user: current_user)
+    @subscription = current_user.subscriptions.where( resource: @resource ).first
+    if !@subscription && ( params[:subscribe].nil? || params[:subscribe].yesish? )
+      @subscription = Subscription.create( resource: @resource, user: current_user )
     elsif @subscription
       @subscription.destroy
     end
-    respond_to do |format|
+    respond_to do | format |
+      if @subscription&.errors&.any?
+        format.html do
+          flash[:error] = "Failed to create subscription: #{@subscription.errors.full_messages.to_sentence}"
+          return redirect_back_or_default( @subscription.resource || "/" )
+        end
+        format.json do
+          render status: :unprocessable_entity, json: { error: @subscription.errors.full_messages }
+          return
+        end
+      end
       format.html { redirect_to @resource }
       format.json { head :no_content }
     end
   end
-  
+
   private
+
   def load_subscription
     @subscription = if params[:id]
       Subscription.find_by_id(params[:id])

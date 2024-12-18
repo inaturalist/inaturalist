@@ -47,6 +47,7 @@ gem "elasticsearch", "~> 8"
 gem "elasticsearch-api", "~> 8"
 gem "elasticsearch-model", "~> 8"
 gem "elasticsearch-rails", "8.0.0.pre"
+gem "email_address"
 gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem
 gem "fastimage"

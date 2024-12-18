@@ -389,9 +389,20 @@ describe User do
 
   it "should not allow duplicate emails" do
     existing = User.make!
-    u = User.make(:email => existing.email)
-    expect(u).to_not be_valid
-    expect(u.errors['email']).to_not be_blank
+    u = User.make( email: existing.email )
+    expect( u ).to_not be_valid
+    expect( u.errors["email"] ).to_not be_blank
+  end
+
+  it "should not allow duplicate canonical emails" do
+    taken_error = "Validation failed: Email has already been taken"
+    expect { User.make!( email: "T.e.sT+1@gmail.com" ) }.to_not raise_error
+    expect { User.make!( email: "test@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+    expect { User.make!( email: "T.e.sT@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+    expect { User.make!( email: "test+1@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+    expect { User.make!( email: "T.est+2@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+    expect { User.make!( email: "TEST@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+    expect { User.make!( email: "t..est+test2@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
   end
 
   describe 'allows legitimate logins:' do

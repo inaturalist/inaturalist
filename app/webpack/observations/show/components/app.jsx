@@ -248,7 +248,7 @@ const App = ( {
                     </MenuItem>
                   </SplitButton>
                 </Col>
-              ) : config && config.currentUser && ( <FollowButtonContainer /> ) }
+              ) : config?.currentUserCanInteractWithResource( observation ) && ( <FollowButtonContainer /> ) }
           </Row>
           <Row>
             <Col xs={12}>

@@ -33,7 +33,7 @@ class LicensingModal extends Component {
       const updatedUser = Object.assign( { }, this.props.config.currentUser, {
         preferred_observation_license: selectedLicense.toLowerCase( )
       } );
-      this.props.setConfig( { currentUser: updatedUser } );
+      this.props.updateCurrentUser( { currentUser: updatedUser } );
     }
     this.close( );
   }
@@ -293,7 +293,7 @@ LicensingModal.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   setAttributes: PropTypes.func,
-  setConfig: PropTypes.func,
+  updateCurrentUser: PropTypes.func,
   setLicensingModalState: PropTypes.func,
   updateObservation: PropTypes.func,
   show: PropTypes.bool

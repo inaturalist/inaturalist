@@ -173,7 +173,7 @@ describe Post do
 
       it "generates updates for subscribers and mentioned users" do
         mentioned_user = User.make!
-        subscribed_user = User.make!
+        subscribed_user = UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user
         posting_user = User.make!
         Subscription.make!( user: subscribed_user, resource: posting_user )
         expect( UpdateAction.unviewed_by_user_from_query( mentioned_user.id, {} ) ).to eq false
