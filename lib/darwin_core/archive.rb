@@ -306,11 +306,12 @@ module DarwinCore
       preloads = [
         :taxon,
         { user: [:stored_preferences, :provider_authorizations] },
-        :quality_metrics, 
+        :quality_metrics,
         { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place },
         { annotations: { controlled_value: [:labels], votes_for: {} } },
-        { site: :place }
+        { site: :place },
+        :projects
       ]
       if @opts[:community_taxon]
         preloads << :community_taxon

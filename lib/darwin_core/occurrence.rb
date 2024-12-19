@@ -61,7 +61,8 @@ module DarwinCore
       ["license", "http://purl.org/dc/terms/license", nil, "dwc_license"],
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick),
-      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry)
+      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry),
+      %w(projectId http://rs.gbif.org/terms/1.0/projectId)
     ] + ANNOTATION_TERMS
     cattr_accessor :annotation_controlled_attributes do
       {}
@@ -510,6 +511,10 @@ module DarwinCore
         return unless site.place.code.size == 2
 
         site.place.code.upcase
+      end
+
+      def projectId
+        projects.map {| project | FakeView.project_url( project ) }.join( "|" )
       end
     end
   end
