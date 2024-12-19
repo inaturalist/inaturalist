@@ -3,6 +3,12 @@
 class QualityMetric < ApplicationRecord
   blockable_by ->( qm ) { qm.observation.try( :user_id ) }
 
+  requires_privilege :interaction, unless: proc {| quality_metric |
+    quality_metric.user_id.blank? ||
+      quality_metric.user_id.zero? ||
+      quality_metric&.observation&.user_id == quality_metric.user_id
+  }
+
   belongs_to :user
   belongs_to :observation
 

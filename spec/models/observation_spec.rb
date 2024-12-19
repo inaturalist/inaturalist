@@ -369,7 +369,7 @@ describe Observation do
 
     it "scopes by reviewed_by" do
       o = Observation.make!
-      u = User.make!
+      u = make_user_with_privilege( UserPrivilege::INTERACTION )
       ObservationReview.make!( observation: o, user: u )
       expect( Observation.reviewed_by( u ).first ).to eq o
     end

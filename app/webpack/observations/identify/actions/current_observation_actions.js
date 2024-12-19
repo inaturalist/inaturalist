@@ -31,6 +31,8 @@ import {
   removeObservationFieldValue as sharedRemoveObservationFieldValue
 } from "../../shared/ducks/observation";
 import { updateSession } from "../../show/ducks/users";
+import { parseRailsErrorsResponse } from "../../../shared/util";
+import { showAlert } from "../../../shared/ducks/alert_modal";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -543,7 +545,21 @@ function toggleQualityMetric( observation, metric, agree ) {
         ( ) => {
           dispatch( fetchCurrentObservation( observation ) );
         }
-      );
+      ).catch( e => {
+        e.response.text( ).then( text => {
+          const railsErrors = parseRailsErrorsResponse( text ) || [I18n.t( "failed_to_save_record" )];
+          dispatch( showAlert(
+            railsErrors.join( "," ),
+            { title: I18n.t( "request_failed" ) }
+          ) );
+        } ).catch( ( ) => {
+          dispatch( showAlert(
+            I18n.t( "failed_to_save_record" ),
+            { title: I18n.t( "request_failed" ) }
+          ) );
+        } );
+        throw e;
+      } );
     }
   };
 }
@@ -555,9 +571,11 @@ function toggleCaptive( ) {
     const agree = observation.captiveByCurrentUser;
     dispatch( updateCurrentObservation( {
       captiveByCurrentUser: !observation.captiveByCurrentUser,
-      reviewedByCurrentUser: true
+      reviewedByCurrentUser: s.config?.currentUserCanInteractWithResource( observation )
     } ) );
-    if ( !observation.reviewedByCurrentUser ) {
+    if ( !observation.reviewedByCurrentUser
+      && s.config?.currentUserCanInteractWithResource( observation )
+    ) {
       const reviewParams = {
         id: s.config.testingApiV2 ? observation.uuid : observation.id
       };
@@ -571,6 +589,9 @@ function toggleReviewed( optionalObs = null ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const observation = optionalObs || s.currentObservation.observation;
+    if ( !s.config?.currentUserCanInteractWithResource( observation ) ) {
+      return;
+    }
     const reviewed = observation.reviewedByCurrentUser;
     const params = { id: observation.id, skip_refresh: true };
     if (
@@ -758,7 +779,19 @@ export function vote( scope, params = { } ) {
     iNaturalistJS.observations.fave( payload )
       .then( () => dispatch( fetchCurrentObservation( ) ) )
       .catch( e => {
-        console.log( "[DEBUG] Faile to add annotation: ", e );
+        e.response.text( ).then( text => {
+          const railsErrors = parseRailsErrorsResponse( text ) || [I18n.t( "failed_to_save_record" )];
+          dispatch( showAlert(
+            railsErrors.join( "," ),
+            { title: I18n.t( "request_failed" ) }
+          ) );
+        } ).catch( ( ) => {
+          dispatch( showAlert(
+            I18n.t( "failed_to_save_record" ),
+            { title: I18n.t( "request_failed" ) }
+          ) );
+        } );
+        throw e;
       } );
   };
 }

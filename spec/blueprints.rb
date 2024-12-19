@@ -270,7 +270,7 @@ end
 
 ObservationReview.blueprint do
   observation { Observation.make }
-  user { User.make! }
+  user { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user }
 end
 
 ObservationSound.blueprint do
@@ -380,7 +380,7 @@ ProviderAuthorization.blueprint do
 end
 
 QualityMetric.blueprint do
-  user { User.make }
+  user { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user }
   observation { Observation.make }
   metric { QualityMetric::METRICS.first }
 end

@@ -356,11 +356,17 @@ class PhotoBrowser extends React.Component {
                 <button
                   type="button"
                   className="btn btn-nostyle"
-                  onClick={( ) => setFlaggingModalState( {
-                    item: sound,
-                    show: true,
-                    radioOptions: ["spam", "copyright infringement", "inappropriate"]
-                  } )}
+                  onClick={( ) => {
+                    performOrOpenConfirmationModal( ( ) => {
+                      setFlaggingModalState( {
+                        item: sound,
+                        show: true,
+                        radioOptions: ["spam", "copyright infringement", "inappropriate"]
+                      } );
+                    }, {
+                      permitOwnerOf: observation
+                    } );
+                  } }
                   title={I18n.t( "flag_this_sound" )}
                 >
                   <i className="fa fa-flag" />

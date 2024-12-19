@@ -12,7 +12,10 @@ class ConfirmModal extends Component {
   }
 
   close( ) {
-    const { setConfirmModalState } = this.props;
+    const { setConfirmModalState, preventClose } = this.props;
+    if ( preventClose ) {
+      return;
+    }
     setConfirmModalState( { show: false } );
   }
 
@@ -126,7 +129,8 @@ ConfirmModal.propTypes = {
   confirmText: PropTypes.string,
   setConfirmModalState: PropTypes.func,
   hideCancel: PropTypes.bool,
-  hideFooter: PropTypes.bool
+  hideFooter: PropTypes.bool,
+  preventClose: PropTypes.bool
 };
 
 export default ConfirmModal;

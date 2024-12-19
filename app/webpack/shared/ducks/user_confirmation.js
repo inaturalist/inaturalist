@@ -21,17 +21,22 @@ export function setConfirmationEmailSent( ) {
   };
 }
 
-export function confirmResendConfirmation( ) {
+export function confirmResendConfirmation( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     dispatch( setConfirmModalState( {
       show: true,
+      hideCancel: ( options.cancellable === false ),
+      preventClose: ( options.cancellable === false ),
       message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
         email: state.config.currentUser.email || ""
       } ),
       confirmText: I18n.t( "send_confirmation_email" ),
       onConfirm: async ( ) => {
         inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
+          if ( options.cancellable === false ) {
+            return;
+          }
           dispatch( setConfirmationEmailSent( ) );
         // eslint-disable-next-line no-console
         } ).catch( console.log );

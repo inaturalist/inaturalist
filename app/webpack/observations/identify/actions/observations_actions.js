@@ -4,6 +4,7 @@ import { fetchObservationsStats, resetObservationsStats } from "./observations_s
 import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "../../../shared/ducks/alert_modal";
 import { paramsForSearch } from "../reducers/search_params_reducer";
+import { confirmResendConfirmation } from "../../../shared/ducks/user_confirmation";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
@@ -263,11 +264,12 @@ function setReviewed( results, apiMethod ) {
 
 function reviewAll( ) {
   return function ( dispatch, getState ) {
+    const state = getState( );
     dispatch( setConfig( { allReviewed: true } ) );
     dispatch( setReviewing( true ) );
     const unreviewedResults = _.filter(
-      getState( ).observations.results,
-      o => !o.reviewedByCurrentUser
+      state.observations.results,
+      o => !o.reviewedByCurrentUser && state.config.currentUserCanInteractWithResource( o )
     );
     dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
     dispatch( setReviewed( unreviewedResults, iNaturalistJS.observations.review ) );
@@ -276,11 +278,12 @@ function reviewAll( ) {
 
 function unreviewAll( ) {
   return function ( dispatch, getState ) {
+    const state = getState( );
     dispatch( setConfig( { allReviewed: false } ) );
     dispatch( setReviewing( true ) );
     const reviewedResults = _.filter(
-      getState( ).observations.results,
-      o => o.reviewedByCurrentUser
+      state.observations.results,
+      o => !o.reviewedByCurrentUser && state.config.currentUserCanInteractWithResource( o )
     );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     dispatch( setReviewed( reviewedResults, iNaturalistJS.observations.unreview ) );

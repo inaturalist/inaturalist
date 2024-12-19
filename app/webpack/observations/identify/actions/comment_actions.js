@@ -1,5 +1,6 @@
 import inatjs from "inaturalistjs";
 import { showAlert } from "../../../shared/ducks/alert_modal";
+import { parseRailsErrorsResponse } from "../../../shared/util";
 
 const POST_COMMENT = "post_comment";
 
@@ -10,10 +11,18 @@ function postComment( params ) {
       comment: params
     };
     return inatjs.comments.create( payload ).catch( e => {
-      dispatch( showAlert(
-        I18n.t( "failed_to_save_record" ),
-        { title: I18n.t( "request_failed" ) }
-      ) );
+      e.response.text( ).then( text => {
+        const railsErrors = parseRailsErrorsResponse( text ) || [I18n.t( "failed_to_save_record" )];
+        dispatch( showAlert(
+          railsErrors.join( "," ),
+          { title: I18n.t( "request_failed" ) }
+        ) );
+      } ).catch( ( ) => {
+        dispatch( showAlert(
+          I18n.t( "failed_to_save_record" ),
+          { title: I18n.t( "request_failed" ) }
+        ) );
+      } );
       throw e;
     } );
   };

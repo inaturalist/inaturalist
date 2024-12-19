@@ -2199,7 +2199,7 @@ shared_examples_for "an ObservationsController for a remembered user" do
 end
 
 describe ObservationsController, "oauth authentication" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   before do
     token = Doorkeeper::AccessToken.create(
       application: OauthApplication.make!,

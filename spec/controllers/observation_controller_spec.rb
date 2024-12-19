@@ -510,7 +510,7 @@ describe ObservationsController do
     end
     it "creates an observation review if one does not exist" do
       obs_to_review.observation_reviews.destroy_all
-      reviewer = User.make!
+      reviewer = make_user_with_privilege( UserPrivilege::INTERACTION )
       expect( obs_to_review.observation_reviews.where( user_id: reviewer.id ).size ).to eq 0
       sign_in reviewer
       post :review, params: { id: obs_to_review }
@@ -521,7 +521,7 @@ describe ObservationsController do
     end
     it "updates an existing observation review" do
       obs_to_review.observation_reviews.destroy_all
-      reviewer = User.make!
+      reviewer = make_user_with_privilege( UserPrivilege::INTERACTION )
       expect( obs_to_review.observation_reviews.where( user_id: reviewer.id ).size ).to eq 0
       sign_in reviewer
       post :review, params: { id: obs_to_review }
