@@ -1774,10 +1774,16 @@ id:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tingkat Pasti
   except: kecuali
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Kecualikan
   exclude_places: Tempat Yang Dikecualikan
   exclude_projects: Proyek Yang Dikecualikan
   exclude_taxa: Taksa Yang Dikecualikan
   exclude_users: Pengguna Yang Dikecualikan
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    other: Mengecualikan %{count} takson
   exclusion_filters: Saringan Yang Dikecualikan
   existing_flags: Tanda Yang Ada
   exit_full_screen: "Keluar Dari Layar Penuh"
@@ -2223,8 +2229,16 @@ id:
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
   inbox: Kotak Masuk
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Sertakan
   include_places: Sertakan Tempat
   include_projects: Sertakan Proyek
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Sertakan / Kecualikan Takson Induk
   include_suggestions_not_seen_nearby: Sertakan rekomendasi spesies yang tidak ditemukan di daerah sekitar
   include_suggestions_not_expected_nearby: Sertakan usulan yang tidak ditemukan di sekitar
   include_taxa: Sertakan Taksa
@@ -7295,6 +7309,8 @@ id:
           Apakah Anda tahu bahwa iNaturalist telah diterjemahkan ke %{x_languages}, hampir seluruhnya oleh %{x_people}, beberapa dari mereka bahkan belum pernah menggunakan iNat? Berikut adalah semua penerjemah yang keren yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, %{seek_link_tag}Seek%{link_tag_end}, dan %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Apakah Anda tahu bahwa iNaturalist telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang keren yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end}, %{seek_link_tag}Seek%{link_tag_end}, dan %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
         view_all_publications_count_caps2:
