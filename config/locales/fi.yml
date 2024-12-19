@@ -1755,10 +1755,17 @@ fi:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tarkka arvo
   except: paitsi
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Poissulje
   exclude_places: Rajaa pois paikat
   exclude_projects: Rajaa pois projektit
   exclude_taxa: Rajaa pois taksonit
   exclude_users: Rajaa pois käyttäjät
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Poissuljettu %{count} taksoni
+    other: Poissuljettu %{count} taksonia
   exclusion_filters: Poissulkevat suotimet
   existing_flags: Nykyiset liput
   exit_full_screen: "Poistu kokoruututilasta"
@@ -2139,8 +2146,16 @@ fi:
   inaturalist_network_affiliation: Verkosto, johon tunnuksesi on liitetty
   #Label for messages you've received
   inbox: Saapuneet
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Sisällytä
   include_places: Sisällytä paikat
   include_projects: Sisällytä projektit
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Sisällytä / poissulje ylemmät taksonit
   include_suggestions_not_seen_nearby: Sisällytä ehdotukset, joita ei ole nähty lähistöllä
   include_suggestions_not_expected_nearby: Anna ehdotuksia myös lajeista, joita ei ole odotettavissa lähistöllä
   include_taxa: Sisällytä taksonit
@@ -6326,7 +6341,9 @@ fi:
           Tiesitkö, että iNaturalist on käännetty %{x_languages} kielelle, lähes kokonaan %{x_people} henkilön toimesta, joista jotkut eivät edes käytä iNatia? Tässä ovat kaikki upeat kääntäjät, jotka ovat lisänneet käännöksiä tänä vuonna, sekä käännettyjen sanojen määrä seuraaville alustoille: %{website_link_tag}verkkosivusto%{link_tag_end}, %{iphone_link_tag}iPhone%{link_tag_end}- ja %{android_link_tag}Android%{link_tag_end}-sovellukset, %{seek_link_tag}Seek%{link_tag_end} ja %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Tiesitkö, että %{site_name} on käännetty melkein kokonaan
-          %{x_people} toimesta? Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käännöksiä tänä vuonna, mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} -sovelluksissa, ja %{seek_link_tag}hakupalvelussa%{link_tag_end}. Voit myös nähdä kaikki käännöksiin osallistuneet henkilöt kaikilla kielillä, mukaanlukien henkilöt aiemmilta vuosilta ja Transwikistä, meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodirepositorioissa.
+          %{x_people} toimesta? Tässä on luettelo kaikista mahtavista kääntäjistä, jotka ovat tehneet käännöksiä tänä vuonna, mukaanlukien käännettyjen sanojen lukumäärä. Käännökset on tehty %{website_link_tag} verkkosivuilla %{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} ja %{android_link_tag}Android%{link_tag_end} -sovelluksissa, ja %{seek_link_tag}Seek-palvelussa%{link_tag_end}. Voit myös nähdä kaikki käännöksiin osallistuneet henkilöt kaikilla kielillä, mukaanlukien henkilöt aiemmilta vuosilta ja Käännöswikistä, meidän %{view_all_web_link_tag}verkkopalvelun%{link_tag_end} ja%{view_all_mobile_link_tag}mobiilipalvelun%{link_tag_end} koodirepositorioissa.
+        translators_desc_for_site_2: |
+          Tiesitkö, että %{site_name} on käännetty lähes kokonaan %{x_people} henkilön toimesta? Tässä ovat kaikki upeat kääntäjät, jotka ovat lisänneet käännöksiä tänä vuonna, sekä käännettyjen sanojen määrä seuraaville alustoille: %{website_link_tag}verkkosivusto%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end}- ja %{android_link_tag}Android%{link_tag_end}-sovellukset sekä %{seek_link_tag}Seek%{link_tag_end}.
         translators_prompt: |
           Jos haluat auttaa käännöstyössä, %{link_tag}lue lisää miten%{link_tag_end}.
     taxa:
