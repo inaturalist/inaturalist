@@ -13,20 +13,26 @@ module DarwinCore
     ].freeze
     TERM_NAMES = TERMS.map {| name, _uri | name }
 
+    ITS = "ITS"
+    COI = "COI"
+    HSP90 = "HSP90"
+
     TARGET_GENE_FIELD_NAMES = {
-      "ITS" => [
+      ITS => [
         "DNA Barcode ITS",
         "Haplotype A (DNA Barcode ITS)",
         "Haplotype B (DNA Barcode ITS)",
         "Haplotype C (DNA Barcode ITS)"
       ],
-      "COI" => [
+      COI => [
         "DNA Barcode COI"
       ],
-      "HSP90" => [
+      HSP90 => [
         "DNA Barcode hsp90"
       ]
     }.freeze
+
+    SEQUENCING_TECHNOLOGY_FIELD_NAME = "Sequencing technology"
 
     def self.adapt( ofv, options = {} )
       if ofv.observation_field.datatype != ObservationField::DNA
@@ -35,14 +41,14 @@ module DarwinCore
 
       ofv.extend( InstanceMethods )
       ofv.extend( DarwinCore::Helpers )
-      ofv.observation = options[:observation]
+      ofv.observation = options[:observation] if options[:observation]
       ofv.core = options[:core]
       ofv
     end
 
     def self.sequencing_technology_field
       @_sequencing_technology_field ||= ObservationField.
-        where( datatype: ObservationField::TEXT, name: "Sequencing technology" ).
+        where( datatype: ObservationField::TEXT, name: SEQUENCING_TECHNOLOGY_FIELD_NAME ).
         first
       raise "Sequencing technology field does not exist" unless @_sequencing_technology_field
 
@@ -50,7 +56,7 @@ module DarwinCore
     end
 
     module InstanceMethods
-      attr_accessor :core, :observation
+      attr_accessor :core
 
       def created
         created_at.iso8601
