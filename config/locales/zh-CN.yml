@@ -1757,10 +1757,16 @@ zh-CN:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 精密排名
   except: 除外
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: 排除
   exclude_places: 排除地点
   exclude_projects: 排除项目
   exclude_taxa: 排除的分类群
   exclude_users: 排除用户
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    other: 排除%{count}个分类单元
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
@@ -2199,8 +2205,16 @@ zh-CN:
   inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
   inbox: 收件箱
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: 包含
   include_places: 包含的地点
   include_projects: 包含的项目
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: 包括/排除祖先分类群
   include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
   include_suggestions_not_expected_nearby: 包括不在预料在附近范围内的建议
   include_taxa: 包含分类
@@ -7205,6 +7219,8 @@ zh-CN:
           你知不知道iNaturalist已经被翻译成了%{x_languages}，而这几乎完全是由%{x_people}翻译的，其中一些人甚至不使用iNat？这里是所有在今年做出了翻译贡献的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_desc_for_site: |
           你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
+        translators_desc_for_site_2: |
+          你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年添加了翻译的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_prompt: |
           如果您想要帮助翻译， %{link_tag}点此了解更多%{link_tag_end}。
         view_all_publications_count_caps2:
