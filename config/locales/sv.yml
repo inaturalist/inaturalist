@@ -1886,10 +1886,17 @@ sv:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exakt rang
   except: förutom
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exkludera
   exclude_places: Uteslut fyndplatser
   exclude_projects: Uteslut projekt
   exclude_taxa: Uteslut taxa
   exclude_users: Uteslut användare
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Exkluderar %{count} taxon
+    other: Exkluderar %{count} taxa
   exclusion_filters: Exkluderingsfilter
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
@@ -2361,8 +2368,16 @@ sv:
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
   inbox: Inkorg
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inkludera
   include_places: Inkludera fyndplatser
   include_projects: Inkludera projekt
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inkludera / Exkludera överliggande taxa
   include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
   include_suggestions_not_expected_nearby: Inkludera förslag som inte förväntas i närheten
   include_taxa: Inkludera taxa
@@ -7763,9 +7778,28 @@ sv:
           %{seek_link_tag}Seek%{link_tag_end}, och
           %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
-          Visste du att %{site_name} har översatts nästan uteslutande av %{x_people}? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} och %{android_link_tag}Android%{link_tag_end} appar och %{seek_link_tag}Seek%{link_tag_end}. Du kan se
-          alla personer som har bidragit med översättningar på alla språk, inklusive personer från tidigare år och folk från Translatewiki, i vår 
-          %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+          Visste du att %{site_name} har översatts nästan helt av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}apparna, och
+          %{seek_link_tag}Seek%{link_tag_end}. Du kan se
+          alla personer som har bidragit med översättningar på alla språk,
+          inklusive personer från tidigare år och folk från Translatewiki, i våra
+          %{view_all_web_link_tag}webb-%{link_tag_end} och
+          %{view_all_mobile_link_tag}mobila%{link_tag_end} kodbibliotek.
+        translators_desc_for_site_2: |
+          Visste du att %{site_name} har översatts nästan uteslutande av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}appar,
+          %{seek_link_tag}Seek%{link_tag_end}, och
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
         view_all_publications_count_caps2:
