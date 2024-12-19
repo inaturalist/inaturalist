@@ -72,14 +72,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
           browser_id: is_mobile_app? ? request.headers["HTTP_X_INSTALLATION_ID"] : resource.browser_id,
           incognito: resource.incognito_mode
         )
-
-        puts "USER SIGNUP CREATE ###"
-        puts "USER SIGNUP is_mobile_app = #{is_mobile_app?}"
-        puts "USER SIGNUP HTTP_X_INSTALLATION_ID = #{request.headers["HTTP_X_INSTALLATION_ID"]}"
-        puts "USER SIGNUP browser_id = #{resource.browser_id}"
-        puts "USER SIGNUP result = #{is_mobile_app? ? request.headers["HTTP_X_INSTALLATION_ID"] : resource.browser_id}"
-        puts "USER SIGNUP headers = #{request.headers.to_h}"
-
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_in(resource_name, resource)
