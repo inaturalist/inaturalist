@@ -1889,10 +1889,17 @@ da:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Eksakt række
   except: bort set fra
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Undtag
   exclude_places: Ekskludér steder
   exclude_projects: Ekskludér projekter
   exclude_taxa: Ekskludér taksa
   exclude_users: Ekskludér brugere
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Undtager %{count} takson
+    other: Undtager %{count} taksa
   exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Afslut fuld skærm"
@@ -2351,8 +2358,16 @@ da:
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Medtag
   include_places: Inkludér steder
   include_projects: Inkludér projekter
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Medtag/Undtag stamfadertaksa
   include_suggestions_not_seen_nearby: Medtag forslag for ikke set i nærheden
   include_suggestions_not_expected_nearby: Medtag forslag ikke forventet i nærheden
   include_taxa: Inkludér taksa
@@ -7985,6 +8000,15 @@ da:
           herunder personer fra tidligere år og fra Translatewiki, i vores
           %{view_all_web_link_tag}web-%{link_tag_end} og
           %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
+        translators_desc_for_site_2: |
+          Vidste du, at iNaturalist er blevet oversat næsten udelukkende
+          af %{x_people}? Her er alle de fantastiske oversættere, som
+          har tilføjet oversættelser i år, samt det antal ord,
+          de har oversat til
+          %{website_link_tag}webstedet%{link_tag_end}, iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end}- og
+          %{android_link_tag}Android%{link_tag_end}-apperne samt
+          %{seek_link_tag}Seek%{link_tag_end}.
         translators_prompt: |
           Vil du hjælpe med at oversætte, %{link_tag}så tjek info hér%{link_tag_end}.
         view_all_publications_count_caps2:
