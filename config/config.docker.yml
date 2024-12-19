@@ -107,6 +107,8 @@ base: &base
 
     dangerous_taxa_list_id: <%= ENV.fetch("INAT_DANGEROUS_TAXA_LIST_ID") { "INAT_DANGEROUS_TAXA_LIST_ID" } %>
 
+    vpn_ips_url: <%= ENV.fetch("INAT_VPN_IPS_URL") {} %>
+
 development:
     <<: *base
 
