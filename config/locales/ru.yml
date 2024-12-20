@@ -7660,6 +7660,14 @@ ru:
           %{iphone_link_tag}iPhone%{link_tag_end} и
           %{android_link_tag}Android%{link_tag_end} и
           %{seek_link_tag}Seek%{link_tag_end}. Вы можете видеть всех тех, кто внёс вклад в переводы со всех языков, включая переводчиков прошлых лет из Translatewiki, в наших репозиториях исходного кода %{view_all_web_link_tag}web%{link_tag_end} и %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Знаете ли вы, что %{site_name} был переведён почти полностью силами %{x_people}? Вот замечательные переводчики, которые добавили переводы в этом году,
+          с указанием количеством слов, которые они перевели для
+          %{website_link_tag}веб-сайта%{link_tag_end}, наших приложений для
+          %{iphone_link_tag}iPhone%{link_tag_end} и
+          %{android_link_tag}Android%{link_tag_end} и
+          %{seek_link_tag}Seek%{link_tag_end}} и 
+          %{help_link_tag}iNatHelp%{link_tag_end}
         translators_prompt: |
           Если вы хотите помочь с переводом, %{link_tag}узнайте, как это сделать%{link_tag_end}.
         view_all_publications_count_caps2:
