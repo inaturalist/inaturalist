@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe DarwinCore::DnaDerivedData do
+describe DarwinCore::Extensions::DnaDerivedData do
   elastic_models( Observation, Taxon )
   let( :o ) { make_research_grade_observation }
   let( :of ) { create( :observation_field, datatype: ObservationField::DNA ) }
@@ -10,7 +10,7 @@ describe DarwinCore::DnaDerivedData do
   let( :seq_meth_of ) do
     create(
       :observation_field,
-      name: DarwinCore::DnaDerivedData::SEQUENCING_TECHNOLOGY_FIELD_NAME
+      name: DarwinCore::Extensions::DnaDerivedData::SEQUENCING_TECHNOLOGY_FIELD_NAME
     )
   end
   let( :seq_meth_ofv ) do
@@ -24,25 +24,31 @@ describe DarwinCore::DnaDerivedData do
   it "should upcase the sequence" do
     sequence_lc = "actg"
     ofv = build( :observation_field_value, observation_field: of, value: sequence_lc )
-    expect( DarwinCore::DnaDerivedData.adapt( ofv ).dna_sequence ).to eq sequence_lc.upcase
+    expect( DarwinCore::Extensions::DnaDerivedData.adapt( ofv ).dna_sequence ).to eq sequence_lc.upcase
   end
 
   it "should set target_gene to ITS for a field named DNA Barcode ITS" do
     its_of = build( :observation_field, datatype: ObservationField::DNA, name: "DNA Barcode ITS" )
     ofv = build( :observation_field_value, observation_field: its_of, value: sequence )
-    expect( DarwinCore::DnaDerivedData.adapt( ofv ).target_gene ).to eq DarwinCore::DnaDerivedData::ITS
+    expect(
+      DarwinCore::Extensions::DnaDerivedData.adapt( ofv ).target_gene
+    ).to eq DarwinCore::Extensions::DnaDerivedData::ITS
   end
 
   it "should set target_gene to COI for a field named DNA Barcode COI" do
     its_of = build( :observation_field, datatype: ObservationField::DNA, name: "DNA Barcode COI" )
     ofv = build( :observation_field_value, observation_field: its_of, value: sequence )
-    expect( DarwinCore::DnaDerivedData.adapt( ofv ).target_gene ).to eq DarwinCore::DnaDerivedData::COI
+    expect(
+      DarwinCore::Extensions::DnaDerivedData.adapt( ofv ).target_gene
+    ).to eq DarwinCore::Extensions::DnaDerivedData::COI
   end
 
   it "should set target_gene to HSP90 for a field named DNA Barcode hsp90" do
     its_of = build( :observation_field, datatype: ObservationField::DNA, name: "DNA Barcode hsp90" )
     ofv = build( :observation_field_value, observation_field: its_of, value: sequence )
-    expect( DarwinCore::DnaDerivedData.adapt( ofv ).target_gene ).to eq DarwinCore::DnaDerivedData::HSP90
+    expect(
+      DarwinCore::Extensions::DnaDerivedData.adapt( ofv ).target_gene
+    ).to eq DarwinCore::Extensions::DnaDerivedData::HSP90
   end
 
   it "should set seq_meth if the observation has only one DNA field" do
@@ -59,7 +65,7 @@ describe DarwinCore::DnaDerivedData do
         o_ofv.observation_field.datatype == ObservationField::DNA
       end.size
     ).to eq 1
-    expect( DarwinCore::DnaDerivedData.adapt( ofv ).seq_meth ).to eq seq_meth_ofv.value
+    expect( DarwinCore::Extensions::DnaDerivedData.adapt( ofv ).seq_meth ).to eq seq_meth_ofv.value
   end
 
   it "should not set seq_meth if the observation has more than one DNA field" do
@@ -83,7 +89,7 @@ describe DarwinCore::DnaDerivedData do
         o_ofv.observation_field.datatype == ObservationField::DNA
       end.size
     ).to eq 2
-    expect( DarwinCore::DnaDerivedData.adapt( ofv1 ).seq_meth ).to be_blank
-    expect( DarwinCore::DnaDerivedData.adapt( ofv2 ).seq_meth ).to be_blank
+    expect( DarwinCore::Extensions::DnaDerivedData.adapt( ofv1 ).seq_meth ).to be_blank
+    expect( DarwinCore::Extensions::DnaDerivedData.adapt( ofv2 ).seq_meth ).to be_blank
   end
 end

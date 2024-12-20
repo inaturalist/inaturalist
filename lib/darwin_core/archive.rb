@@ -126,8 +126,8 @@ module DarwinCore
     def make_descriptor
       extensions = []
       if @opts[:extensions]
-        @opts[:extensions].each do |e|
-          case e
+        @opts[:extensions].each do | ext_name |
+          case ext_name
           when "EolMedia"
             extensions << {
               :row_type => "http://eol.org/schema/media/Document",
@@ -164,8 +164,8 @@ module DarwinCore
               files: ["users.csv"],
               terms: DarwinCore::User::TERMS
             }
-          when "VernacularNames"
-            extensions << DarwinCore::VernacularName.descriptor
+          else
+            extensions << Object.const_get( "DarwinCore::Extensions::#{ext_name}" ).descriptor
           end
         end
       end
@@ -197,9 +197,15 @@ module DarwinCore
       if obs_based_extensions.any?
         obs_based_extension_info = { }
         preloads = []
-        obs_based_extensions.each do |ext|
+        obs_based_extensions.each do | ext |
           logger.info "Preparing #{ext} extension..."
-          obs_based_extension_info[ext] = send("make_#{ext}_file")
+          obs_based_extension_info[ext] = begin
+            # Older method of specifying methods in this class
+            send( "make_#{ext}_file" )
+          rescue NoMethodError
+            # Try newer method of specifying a `file` method in the extension class
+            Object.const_get( "DarwinCore::Extensions::#{ext.to_s.camelcase}" ).file( @opts )
+          end
           preloads += obs_based_extension_info[ext][:preloads]
           @extension_paths[ext] = obs_based_extension_info[ext][:path]
         end
@@ -212,9 +218,17 @@ module DarwinCore
           } )
         ) do |batch|
           batch = batch.filter{ |o| !observation_ids_written[o.id] }
-          obs_based_extensions.each do |ext|
+          obs_based_extensions.each do | ext |
             extension_file = CSV.open( @extension_paths[ext], "a" )
-            send( "write_#{ext}_data", batch, extension_file )
+            begin
+              send( "write_#{ext}_data", batch, extension_file )
+            rescue NoMethodError
+              Object.const_get( "DarwinCore::Extensions::#{ext.to_s.camelcase}" ).observations_to_csv(
+                batch,
+                extension_file,
+                generate_started_at: @generate_started_at
+              )
+            end
             extension_file.close
           end
           batch.each do |o|
@@ -225,7 +239,11 @@ module DarwinCore
 
       custom_extensions.each do |ext|
         logger.info "Making #{ext} extension..."
-        @extension_paths[ext] = send("make_#{ext}_data")
+        @extension_paths[ext] = begin
+          send( "make_#{ext}_data" )
+        rescue NoMethodError
+          Object.const_get( "DarwinCore::Extensions::#{ext.to_s.camelcase}" ).data( @opts )
+        end
       end
       @extension_paths.values
     end
@@ -515,37 +533,6 @@ module DarwinCore
       end
     end
 
-    def make_dna_derived_data_file
-      headers = DarwinCore::DnaDerivedData::TERM_NAMES
-      fname = "dna_derived_data.csv"
-      tmp_path = File.join( @opts[:work_path], fname )
-      preloads = [{ observation_field_values: :observation_field }]
-      file = CSV.open( tmp_path, "w" )
-      file << headers
-      file.close
-      { path: tmp_path, preloads: preloads }
-    end
-
-    # The extension is called DNADerivedData, but the method has to end
-    # in _data, hence the stupid name
-    def write_dna_derived_data_data( observations, csv )
-      @generate_started_at ||= Time.now
-      observations.each do | observation |
-        dna_ofvs = observation.observation_field_values.select do | ofv |
-          ofv.observation_field.datatype == ObservationField::DNA
-        end
-        dna_ofvs.each do | ofv |
-          next unless ofv.created_at <= @generate_started_at
-          next if ofv.value.blank?
-
-          DarwinCore::DnaDerivedData.adapt( ofv, observation: observation, core: @opts[:core] )
-          csv << DarwinCore::DnaDerivedData::TERMS.map do | field, _uri, _default, method |
-            ofv.send( method || field )
-          end
-        end
-      end
-    end
-
     def make_observation_fields_file
       headers = DarwinCore::ObservationFields::TERM_NAMES
       fname = "observation_fields.csv"
@@ -635,9 +622,9 @@ module DarwinCore
       end
     end
 
-    def make_vernacular_names_data
-      DarwinCore::VernacularName.data( @opts )
-    end
+    # def make_vernacular_names_data
+    #   DarwinCore::VernacularName.data( @opts )
+    # end
 
     def self.partition_range( start_id, max_id, partitions = 1 )
       partition_start_id = start_id
