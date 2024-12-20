@@ -116,7 +116,7 @@ module DarwinCore
         observations_params: metadata_observation_params,
         template: @opts[:metadata]
       ) )
-      tmp_path = File.join( @opts[:work_path], "metadata.eml.xml" )
+      tmp_path = File.join( @opts[:work_path], "eml.xml" )
       File.open( tmp_path, "w" ) do | f |
         f << m.render
       end
