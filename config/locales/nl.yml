@@ -1869,10 +1869,17 @@ nl:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exacte rang
   except: met uitzondering van
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exclusief
   exclude_places: Exclusief de plaatsen
   exclude_projects: Exclusief de projecten
   exclude_taxa: Exclusief de taxa
   exclude_users: Exclusief de gebruikers
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Uitsluitend %{count} taxon
+    other: Uitsluitend %{count} taxa
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
@@ -2334,8 +2341,16 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inclusief
   include_places: Inclusief de plaatsen
   include_projects: Inclusief de projecten
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inclusief / Exclusief vooroudertaxa
   include_suggestions_not_seen_nearby: Alle soorten
   include_suggestions_not_expected_nearby: Voeg suggesties toe die niet in de buurt worden verwacht
   include_taxa: Inclusief de taxa
