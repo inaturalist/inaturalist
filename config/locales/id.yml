@@ -6715,6 +6715,74 @@ id:
         data_quality_assessment_desc3_html: |
           Tingkat Kualitas merangkum akurasi, presisi, kelengkapan, relevansi, dan kelayakan dari suatu pengamatan iNaturalist sebagai suatu data keanekaragaman hayati. Beberapa atribut ditentukan secara otomatis, sedangkan beberapa atribut lain tergantung pada suara pengguna iNat. iNaturalist membagikan pengamatan-pengamatan "Tingkat Riset" yang berlisensi dengan beberapa mitra data untuk keperluan sains dan konservasi.
         disagreement_count_desc: "# taksa yang diidentifikasi yang bukan merupakan induk sebuah takson"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Penilaian kualitas data merupakan rangkuman akurasi dari suatu pengamatan. Pada awalnya, semua pengamatan memiliki kelas <strong>"kasual"</strong>. Pengamatannya menjadi <strong>"membutuhkan ID"</strong> ketika
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: pengamatannya <strong> memiliki tanggal </strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: pengamatannya <strong>digeoreferensikan</strong> (i.e. memiliki koordinat lin/buj)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: pengamatannya <strong>memiliki foto atau suara</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: pengamatannya <strong>bukan merupakan manusia</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Pengamatannya menjadi <strong>"kelas riset"</strong> ketika
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          <strong>komunitas %{site_name} setuju dengan ID bertingkat spesies atau lebih bawah </strong>, yaitu ketika lebih dari 2/3 pengidentifikasi setuju dengan 
+          suatu takson (jika komunitasnya telah memilih bahwa Takson Komunitasnya tidak bisa 
+          ditingkatkan kembali, hal ini merujuk kepada ID bertingkat subfamili atau lebih bawah)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Pengamatannya akan kembali ke tingkat <strong>"kasual"</strong> jika 
+          kondisi-kondisi di atas tidak terpenuhi atau komunitasnya setuju bahwa
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate_html: |
+          <strong>tanggal dan tahunnya tidak terlihat akurat</strong> (misalkan 
+          salju terlihat pada gambar, tetapi tanggalnya berada di musim panas; tidak 
+          perlu mempertimbangkan jam pengambilan)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>lokasinya tidak terlihat akurat</strong> (misalkan monyet di 
+          tengah samudra, kuda nil di kantor, dll.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismenya tidak liar/dinaturalisasi</strong> (contohnya 
+          dipelihara atau dibudidayakan oleh manusia)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          pengamatannya <strong>tidak menunjukkan bukti-bukti adanya 
+          organisme</strong>, seperti gambar perairan, bebatuan, pemandangan 
+          yang tidak menyertakan organisme, dll.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          pengamatannya <strong>tidak menunjukkan bukti organisme yang masih baru (~100 tahun) </strong> (seperti fosil; namun jejak, tahi, dan daun mati masih oke)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          pengamatannya <strong>tidak menunjukkan bukti terkait satu subjek</strong> 
+          (contohnya ia memiliki empat gambar yang berisi organisme-organisme yang tidak berkaitan; 
+          gambar yang menunjukkan habitat dari subjek pengamatannya masih oke)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          pengamatannya tidak memerlukan ID lagi <em>dan</em> ID komunitasnya 
+          berada di tingkat famili ke atas
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick: |
+          pengamatnya telah memilih untuk tidak memakai ID komunitas dan takson ID 
+          komunitas bukan merupakan nenek moyang atau keturunan dari takson yang 
+          terkait dengan ID pengamat
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Dan kalau ini masih belum terasa rumit, masih ada situasi tertentu 
+          di mana sistem memiliki hak suara:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Sistem akan menyatakan bahwa pengamatannya tidak liar/alami jika 
+          ada setidaknya 10 pengamatan lain dari suatu genus atau tingkat di bawahnya 
+          di wilayah administratif setingkat desa, provinsi, atau negara yang mengandung 
+          pengamatan ini dan 80% atau lebih pengamatannya telah ditandai sebagai 
+          tidak liar/alami.
         identification_count_desc: '# identifikasi untuk sebuah takson individu'
         flagged_photos_desc_html: |
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
