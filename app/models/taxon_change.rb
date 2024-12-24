@@ -260,9 +260,11 @@ class TaxonChange < ApplicationRecord
               batch_users_to_notify << record.user.id
               notified_user_ids << record.user.id
             end
-            if automatable? && ( !record_has_user || record.user.prefers_automatic_taxonomic_changes? )
-              auto_updatable_records << record
-            end
+            next unless automatable? &&
+              ( !record_has_user || record.user.prefers_automatic_taxonomic_changes? ) &&
+              !( record.is_a?( Identification ) && record.hidden? )
+
+            auto_updatable_records << record
           end
           if options[:debug]
             Rails.logger.info(
