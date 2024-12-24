@@ -648,7 +648,7 @@ nl:
   apply_fields: Velden toepassen
   apply_geoprivacy: Geoprivacy toevoegen
   apply_darr: "Toepassen &darr;"
-  apply_establishment_means_to_descendant_places: "Vestgingswijze toepassen op onderliggende plaatsen"
+  apply_establishment_means_to_descendant_places: "Vestgingswijze toepassen op onderliggende gebieden"
   apply_these_settings_to_all: Pas deze instellingen toe op alle onderstaande waarnemingen
   appropriate?: Passend?
   arachnids: spinachtigen
@@ -663,7 +663,7 @@ nl:
   are_you_sure_delete_taxon_move_associates: "Weet je zeker dat je %{taxonname} (%{taxonid}) wilt verwijderen en alle verwante items wilt verplaatsen?"
   are_you_sure_delete_this_place: Weet je zeker dat je dit gebied wilt verwijderen?
   are_you_sure_leave_this_project: Weet je zeker dat je dit project wilt verlaten?
-  are_you_sure_merge_these_places: Weet je zeker dat je deze plaatsen wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
+  are_you_sure_merge_these_places: Weet je zeker dat je deze gebieden wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
   are_you_sure_remove_photo: "Weet je zeker dat je deze foto wilt verwijderen?"
   are_you_sure_remove_relationship: Weet je zeker dat je deze relatie wilt verwijderen? Hierdoor wordt deze persoon niet meer gevolgd en wordt de toegang tot je verborgen coördinaten ingetrokken als je deze toegang had ingeschakeld.
   are_you_sure_remove_taxon_from_list: "Weet je zeker dat je dit taxon uit de lijst wilt verwijderen?"
@@ -977,7 +977,7 @@ nl:
   checklist: Checklist
   choose_a_field: Kies een veld
   choose_a_list_above: Kies een lijst hierboven.
-  choose_a_place: Kies een locatie
+  choose_a_place: Kies een gebied
   choose_a_taxon: Kies een taxon (optioneel)
   choose_columns: Kies kolommen
   choose_file: Bestand kiezen
@@ -1125,7 +1125,7 @@ nl:
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
     authority: |
       Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
-    place: Plek tot waar deze status is beperkt.
+    place: Gebied tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: |
       Standaard geoprivacy voor waarnemingen van dit taxon. Merk op dat de
@@ -1547,7 +1547,7 @@ nl:
   default_photo_license: Standaard fotolicentie
   default_search_place: Standaard zoekmachine
   default_search_place_description: |
-    Dit zal je standaard plaats zijn voor alle zoekopdrachten in Verkenner.
+    Dit zal je standaard gebied zijn voor alle zoekopdrachten in Verkenner.
   default_sound_license: Standaard opname licentie
   default_time_zone_desc: |
     Dit is de standaard tijdzone. De definitieve tijdzone wordt toegewezen op basis van de locatie van de waarneming wanneer deze wordt opgeslagen.
@@ -1823,7 +1823,7 @@ nl:
   email_copyright2: "&copy; %{year} iNaturalist, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
-  embed_place_widget: Plaatswidget invoegen
+  embed_place_widget: Gebiedswidget invoegen
   embed_this_assessment: Sluit deze beoordeling in
   embed_widget_project: Voeg een widget voor dit project in op je website
   enable_offline_access: Offline toegang inschakelen
@@ -1949,7 +1949,7 @@ nl:
   find: Zoeken
   find_a_guide: Vind een gids
   find_a_post: Zoek een bericht
-  find_a_place: Zoek een plaats
+  find_a_place: Zoek een gebied
   find_guides: Vind gidsen
   find_posts_for: "Vind berichten voor: %{journal_name}"
   find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken!
@@ -2070,12 +2070,12 @@ nl:
   forum_desc: |
     Op het forum kun je vragen stellen over iNaturalist, bijvoorbeeld over vertalingen, hulp & ondersteuning, functieverzoeken, foutmeldingen, aankondigingen en meer.
   frequency: Frequentie
-  from_a_place: van een plaats
+  from_a_place: van een gebied
   from_eol_collection: Van EOL collectie
   from_flickr_etc: Van Flickr, etc.
   from_list: Van lijst
   from_photos: Van fotos
-  from_place: van plaats
+  from_place: van gebied
   from_soundcloud: Van Soundcloud
   full_screen: Volledig scherm
   fungi:
