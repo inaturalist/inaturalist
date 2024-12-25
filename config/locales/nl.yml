@@ -963,7 +963,7 @@ nl:
   check_list_for_individual_taxa_that: 'Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".'
   check_list_for_taxon_html: "Checklist voor %{taxon}"
   check_lists_must_belong_to_a_place: |
-    Checklisten moeten bij een plaats horen. Ga om een nieuwe checklist te maken
+    Checklisten moeten bij een gebied horen. Ga om een nieuwe checklist te maken
     naar de standaard-checklist van een plaats en klik op de link 'Maak een nieuwe checklist'.
   check_list_place: "%{place} Checklist"
   check_list_updated: Checklist bijgewerkt!
@@ -1131,11 +1131,11 @@ nl:
       Standaard geoprivacy voor waarnemingen van dit taxon. Merk op dat de
       geoprivacy van een status geassocieerd met een continent, land of
       plaats op staatsniveau een status kan overschrijven die globaal is of geassocieerd is
-      met een plaats op een hoger niveau.
+      met een gebied op een hoger niveau.
     iucn: |
       Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
-    Default geoprivacy toegepast op alle waarnemingen van dit taxon op deze plaats.
+    Default geoprivacy toegepast op alle waarnemingen van dit taxon uit dit gebied
   contact_support: Neem contact op met support
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon die hier voorkomen?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1767,7 +1767,7 @@ nl:
   edit_observations: Waarnemingen bewerken
   edit_photos: Foto's bewerken
   edit_photos_for_observation_id: "Foto's voor waarneming %{obs_id} bewerken"
-  edit_place: Plaats bewerken
+  edit_place: Gebied bewerken
   edit_project: Project bewerken
   edit_remove: Bewerken of verwijderen
   edit_selected: Selectie bewerken
@@ -1939,10 +1939,10 @@ nl:
   filename: Bestandsnaam
   filter: Filter
   filter_by_curator_identification: Filteren op curatordeterminatie
-  filter_by_place: Filter op plaats
+  filter_by_place: Filter op gebied
   filter_by_species: Filteren op soort
   filter_by_taxon: Filter op taxon
-  filter_by_place_taxon_and_color: Zoek op plaats, taxon, en kleur met behulp van de besturingselementen.
+  filter_by_place_taxon_and_color: Zoek op gebied, taxon en kleur met behulp van de besturingselementen.
   filter_list_by_this_taxon: Zoek in lijst met dit taxon
   filtering: Filteren
   filters: Filters
@@ -2344,7 +2344,7 @@ nl:
   #Label for a button that filters an observation search so it only includes
   #observations of a specific taxon
   include__taxon: Inclusief
-  include_places: Inclusief de plaatsen
+  include_places: Inclusief de gebieden
   include_projects: Inclusief de projecten
   #Title for an array of options that allows the user to include or exclude
   #the taxa that contain another taxon from an observation search, e.g. if
@@ -3149,7 +3149,7 @@ nl:
   no_managers_set: Geen beheerders ingesteld
   no_matching_article_from_x: "Geen overeenkomend artikel van %{x}"
   no_matching_observations: Geen overeenkomende waarnemingen.
-  no_matching_places: Geen overeenkomende plaatsen
+  no_matching_places: Geen overeenkomende gebieden
   no_matching_projects: Geen overeenkomende projecten
   no_matching_species: Geen overeenkomende soorten.
   no_matching_taxa: Geen overeenkomende taxa
@@ -3518,7 +3518,7 @@ nl:
     irregular: onregelmatig
     doubtful: twijfelachtig
     absent: afwezig
-  of_places: plaatsen
+  of_places: gebieden
   of_this_taxon: Van dit taxon
   offensive_inappropriate: Aanstootgevend/ongepast
   off_caps: "UIT"
