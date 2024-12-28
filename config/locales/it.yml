@@ -1827,10 +1827,17 @@ it:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rank esatto
   except: eccetto
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Escludi
   exclude_places: Escludi Luoghi
   exclude_projects: Escludi Progetti
   exclude_taxa: Escludi Taxa
   exclude_users: Escludi Utenti
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Escludendo %{count} taxon
+    other: Esportando %{count} taxa
   exclusion_filters: Filtri di esclusione
   existing_flags: Contrassegni esistenti
   exit_full_screen: "Esci dalla modalità a tutto schermo"
@@ -2276,8 +2283,16 @@ it:
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   #Label for messages you've received
   inbox: Posta in arrivo
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Includi
   include_places: Includi Luoghi
   include_projects: Includi Progetti
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Includi / Escludi Taxa Antenati
   include_suggestions_not_seen_nearby: Includi suggerimenti non visti nelle vicinanze
   include_suggestions_not_expected_nearby: Includi suggerimenti delle non attese nelle vicinanze
   include_taxa: Includi Taxa
@@ -7469,6 +7484,8 @@ it:
           comprese quelle degli anni passati e quelle di Translatewiki, nei nostri repository di codice 
           delle versioni %{view_all_web_link_tag}web%{link_tag_end} e
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_2: |
+          Sapevi che iNaturalist è stato tradotto in %{x_languages}, quasi interamente da %{x_people}, alcune delle quali addirittura non usano iNat? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno, con il numero di parole che hanno tradotto per %{website_link_tag}il sito web%{link_tag_end}, le nostre app %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}, e per %{help_link_tag}iNatHelp%{link_tag_end}
         translators_desc_for_site: |
           Sapevi che %{site_name} è stato tradotto quasi interamente da
           %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,
@@ -7481,6 +7498,8 @@ it:
           comprese quelle degli anni passati e quelle di Translatewiki, nei nostri repository di codice 
           delle versioni %{view_all_web_link_tag}web%{link_tag_end} e
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Sapevi che %{site_name} è stato tradotto quasi interamente da %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno, con il numero di parole che hanno tradotto per %{website_link_tag}il sito web%{link_tag_end}, le nostre app %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}, e per %{help_link_tag}iNatHelp%{link_tag_end}
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
         view_all_publications_count_caps2:
