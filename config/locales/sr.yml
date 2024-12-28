@@ -1468,10 +1468,18 @@ sr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Precizan rang
   except: osim
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Izuzev
   exclude_places: Izostavi mesta
   exclude_projects: Izostavi projekte
   exclude_taxa: Izostavi taksone
   exclude_users: Izostavi korisnike
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Izuzev %{count} taksona
+    few: Izuzev %{count} taksona
+    other: Izuzev %{count} taksona
   exclusion_filters: Izostavi filtere
   existing_flags: Postojeće prijave
   exit_full_screen: "izađi iz rеžima cеlog еkrana"
