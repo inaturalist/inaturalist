@@ -1603,10 +1603,17 @@ hu:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Pontos rang
   except: kivéve
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Kizárás
   exclude_places: Területek kizárása
   exclude_projects: Projektek kizárása
   exclude_taxa: Taxonok kizárása
   exclude_users: Felhasználók kizárása
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: '%{count} taxon kizárása'
+    other: '%{count} taxon kizárása'
   exclusion_filters: Kizáró szűrők
   existing_flags: Létező bejelentések
   exit_full_screen: "Kilépés teljes képernyőből"
@@ -1977,8 +1984,16 @@ hu:
   inaturalist_network_affiliation: Hálózati szervezet kiválasztása
   #Label for messages you've received
   inbox: Beérkezett üzenetek
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Belefoglal
   include_places: Területek felvétele
   include_projects: Projekteket tartalmazza
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Felmenői taxonok belefoglalása vagy kizárása
   include_suggestions_not_seen_nearby: Földrajzilag távolabb eső javaslatok megjelenítése
   include_suggestions_not_expected_nearby: A közelben nem valószínűsíthető taxonok megjelenítése
   include_taxa: Taxonok felvétele
@@ -5081,6 +5096,8 @@ hu:
     Idén emberek milliói használták az iNaturalist-ot és a Seek-et a természettel való kapcsolattartáshoz
   yir_monthly_supporters_random_selection: |
     Itt egy véletlenszerű válogatás az iNat közösségéből, akik havonta támogatják a programotot.
+  yir_thank_your_for_being_generous2: |
+    Hálásak vagyunk a nagylelkű időráfordításodért, figyelmedért és szakértemedért. Az iNaturalist egy nonprofit, közhasznú szervezet. A program működését pályázati források és támogatások teszik lehetővé, beleértve a a közösség egy kis részétől kapott támogatásokat is. Különösen hálásak vagyunk a havi támogatóknak, akik rendszeres támogatásaival tervezhetővé válik a jövőnk.
   yir_your_gift_sustains: |
     Az adományod révén hozzájárulsz a program globális fenntartásához és eredményeihez személyes és ökológiai szinten
   you: te
@@ -5574,6 +5591,34 @@ hu:
         data_quality_assessment_desc3_html: |
           Az adatminőségi értékelés összegzi egy iNaturalist-megfigyelés mint biodiverzitási adat pontosságát, teljességét, relevanciáját és megfelelőségét. Egyes tulajdonságok automatikusan meghatározhatók, míg mások az iNat-felhasználók szavazásához kötöttek. Az iNaturalist a licencelt "Tudományos szintű" megfigyeléseket több adatpartnerrel is megosztja tudományos és természetvédelmi célokra.
         disagreement_count_desc: "Azon meghatározási taxonok száma, amelyek a magasabb szintű taxonokon is kívül esnek"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Az adatminőségi kiértékelés a megfigyelés pontosságát tükrözi. Minden megfigyelés <strong>"hobbiszintről"</strong> indul, és <strong>"meghatározásra vár"</strong> státuszra vált, ha
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: a megfigyésnek <strong>van dátuma</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: a megfigyelésnek <strong>van helye</strong> (szélességi és hosszúsági koordinátája)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: a megfigyeléshez tartozik <strong>legalább egy fénykép vagy hang</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: a megfigyelés tárgya <strong>nem ember</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: A megfigyelés <strong>"tudományos szintre"</strong> emelkedik, ha
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          A megfigyelés <strong>"hobbiszintűre"</strong> vált, ha a fenti feltételek sérülnek, vagy ha a közösség egyetért abban, hogy
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          a <strong>hely nem pontos</strong> (pl. majmok az óceán közepén, vizilovak irodaépületekben).
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          az <strong>élőlény nem vadon előforduló</strong> (pl. fogvatartott vagy kultivált)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          a megfigyelés <strong>nem szolgál az élőlény bizonyítékául</strong>, pl. tájképek, a környezetről készült képek, amelyen nem tartalmazzák az élőlényt.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          a megfigyelés <strong>nem szolgál időszerű (legfeljebb ~100 éves) bizonyítékként</strong>, pl. fosszíliák. A következők elfogadhatók: nyomok, ürülék, száraz levelek.
         identification_count_desc: 'A meghatározások száma az egyéni taxon szintjén'
         flagged_photos_desc_html: |
           Pár fotó be volt jelentve kifogásolható tartalomért vagy a szerzői jogok sértéséért. Részletekért lásd %{links}
@@ -5879,6 +5924,12 @@ hu:
           %{android_link_tag}Android%{link_tag_end} alkalmazásra, valamint a
           %{seek_link_tag}Seekre%{link_tag_end}. Minden fordítót megtekinthetsz, beleértve az előző évek fordítóit és a Translatewiki családot a mi %{view_all_web_link_tag}webes%{link_tag_end} és
           %{view_all_mobile_link_tag}mobil%{link_tag_end} forráskód tárunkban.
+        translators_desc_for_site_2: |
+          Tudtad, hogy az %{site_name} szinte teljes fordítását %{x_people} végezte? Itt vannak a csodálatos fordítók, akik idén fordítottak, valamint a lefordított szavak száma a 
+          %{website_link_tag}webes felületre%{link_tag_end}, a
+          %{iphone_link_tag}iPhone%{link_tag_end} és
+          %{android_link_tag}Android%{link_tag_end} alkalmazásra, valamint a
+          %{seek_link_tag}Seekre%{link_tag_end} és a %{help_link_tag}Súgóra%{link_tag_end}.
     taxa:
       show:
         about_names_desc: |
