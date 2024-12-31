@@ -1413,7 +1413,7 @@ nl:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Bewerk Community Gecorrigeerde Plaatsen en upload KML-bestanden groter dan 1 MB (maar
+    Bewerk Community Gecorrigeerde Gebieden en upload KML-bestanden groter dan 1 MB (maar
     kleiner dan 5 MB).
   #Header
   curator_application_what_curators_cannot_do: Wat Curatoren niet kunnen doen
@@ -2376,7 +2376,7 @@ nl:
   inaturalist_activity_notifications: "%{site_name} activiteitsnotificaties"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Toepassingen"
-  inaturalist_places: "%{site_name} Plaatsen"
+  inaturalist_places: "%{site_name} Gebieden"
   info: Informatie
   input_taxon: Invoer taxon
   insects: insecten
@@ -2818,7 +2818,7 @@ nl:
       observations: Waarnemingen
       place_boundary: Gebiedsgrens
       checklist_places: Checklist gebieden
-      checklist_places_description: Plaatsen waar dit taxon in de lijst is opgenomen
+      checklist_places_description: Gebieden waar dit taxon in de lijst is opgenomen
       range: Verspreiding
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
@@ -2858,10 +2858,10 @@ nl:
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} heeft je genoemd in een %{x} op %{noun} van jou"
   merge: Samenvoegen
   merge_it_with_another_place: Samenvoegen met een andere plaats
-  merge_two_places_together: Voeg twee plaatsen samen. Alle soorten van de checklists zullen samengevoegd worden, samen met alle geografische gegevens.
+  merge_two_places_together: Voeg twee gebieden samen. Alle soorten van de checklists zullen samengevoegd worden, samen met alle geografische gegevens.
   merge_observation_field_x_into: 'Waarnemingsveld %{x} samenvoegen met ...'
   merging: Samenvoegen
-  merging_places: Plaatsen samenvoegen
+  merging_places: Gebieden samenvoegen
   message: Bericht
   message_deleted: Bericht verwijderd
   message_from_user_at_time: Van %{user} om %{time}
@@ -3173,7 +3173,7 @@ nl:
   no_photo: Geen foto
   no_photos: Geen foto's
   no_photos_of_that_size: Geen foto van die grootte.
-  no_places_available: Geen plaatsen beschikbaar
+  no_places_available: Geen gebieden beschikbaar
   no_post_yet: Nog geen berichten!
   no_project_selected: Geen project geselecteerd
   no_project_to_admin_current_user: "Je administreert geen enkel project"
@@ -3455,14 +3455,14 @@ nl:
     Waarnemingsvelden zijn extra gegevens die zijn gekoppeld aan een
     waarneming, zoals het aantal waargenomen individuen, habitatbeschrijving of wat je maar wilt! projecten kunnen ook velden specificeren
     die ze graag ingevuld willen hebben.
-  observations_from_people_taxa_and_places_youre_following: "Waarnemingen van mensen, plaatsen en taxa die jij volgt"
+  observations_from_people_taxa_and_places_youre_following: "Waarnemingen van mensen, gebieden en taxa die jij volgt"
   observations_from_this_place: Waarnemingen van deze plaats
   observations_from_this_project: Waarnemingen van dit project
   observations_in_this_project_must: Waarnemingen in dit project moeten aan de volgende criteria voldoen
   observations_map: Waarnemingen / Kaart
   observation_must_dotdotdot: Waarneming moet ...
   observations_near_a_place_are: |
-    Waarnemingen "in de buurt van" een locatie vallen binnen een rechthoek getrokken
+    Waarnemingen "in de buurt van" een gebieden vallen binnen een rechthoek getrokken
     rond de grens van de locatie, wat kan resulteren in een aantal onnauwkeurige resultaten
     voor locaties die niet op rechthoeken lijken. Dit komt door een beperking van
     onze database die we proberen op te lossen.
@@ -3541,15 +3541,15 @@ nl:
     follow_panel_title_local: Volg enkele naturalisten uit de buurt
     follow_panel_title_global: Volg enkeke actieve naturalisten
     follow_panel_body: Als je deze profielen bezoekt en op de volgen knop klikt, word je geïnformeerd wanneer zij waarnemingen plaatsen
-    following_panel_title: Blijf op de hoogte van Personen, Taxa en Plaatsen
+    following_panel_title: Blijf op de hoogte van Personen, Taxa en Gebieden
     following_panel_body: |
       Op %{site_name} kun je mensen volgen om de waarnemingen bij te houden
       die ze hebben geplaatst. Je kunt je ook abonneren op bepaalde
-      soorten om nieuwe waarnemingen van die soorten in de gaten te houden, of hetzelfde doen met plaatsen.
+      soorten om nieuwe waarnemingen van die soorten in de gaten te houden, of hetzelfde doen met gebieden.
     comments_panel_title: Nieuwsgierig welke discussies plaatsvinden op %{site_name}?
     comments_panel_body: "<p>%{site_name} staat volledig in het teken van het delen en bespreken van waarnemingen van flora en fauna. Hieronder staan discussies die nu gaande zijn. (Let op: je wordt automatisch geabonneerd op discussies waar je opmerkingen of determinaties aan bijdraagt. Beheer deze updates in het gedeelte 'Abonnementen' aan de rechterkant.)</p>"
     updates_by_you_panel_title: Dit tabblad is een snelle manier om alleen nieuws over je eigen inhoud te zien.
-    updates_by_you_panel_body: Houd er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of plaatsen waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
+    updates_by_you_panel_body: Houd er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of gebieden waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
     youve_got_updates_panel_title: Er zijn updates!
     youve_got_updates_panel_body_p1: Blijf op de hoogte met nieuwtjes over ...
     youve_got_updates_panel_body_p2: |
@@ -3582,7 +3582,7 @@ nl:
   only_show_for_species_subspecies_varieties_etc: Alleen weergeven voor soorten, ondersoorten, variëteiten, enzovoort.
   only_show_taxa_fom_this_list: "Toon alleen taxa op deze lijst"
   only_showing_taxa_from: toont alleen taxa op deze lijst
-  only_staff_can_edit_large_places: Alleen de sitestaf kan zeer grote plaatsen bewerken
+  only_staff_can_edit_large_places: Alleen de sitestaf kan zeer grote gebieden bewerken
   only_staff_can_edit_standard_places: Alleen de staf van de site kan plaatsen in de standaardhiërarchie bewerken
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat doen. Niet gemeen doen.
   only_the_project_admin_can_delete_this_project: Alleen de projectadministrator kan dit project verwijderen.
@@ -3899,9 +3899,9 @@ nl:
     Deze plaats is te groot voor een checklist. Het berekenen van checklist-statistieken is vrij intensief, dus we staan dat niet toe voor zeer grote plaatsen, tenzij ze zijn toegevoegd door de siteadministratoren. Je kunt deze plaats echter nog steeds gebruiken voor het afgrenzen van projecten en het zoeken naar waarnemingen.
   place_updated: Plaats bijgewerkt!
   placement: plaatsing
-  places: Plaatsen
-  places_added_by_members_of_the_community: Plaatsen toegevoegd door leden van de gemeenschap
-  places_maintained_by_site_admins: Plaatsen die door siteadministratoren worden onderhouden
+  places: Gebieden
+  places_added_by_members_of_the_community: Gebieden toegevoegd door leden van de gemeenschap
+  places_maintained_by_site_admins: Gebieden die door siteadministratoren worden onderhouden
   places_name:
     afghanistan: Afghanistan
     africa: Afrika
@@ -4193,7 +4193,7 @@ nl:
     Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
   places_warning_quota: |
-    Je kunt slechts drie plaatsen per dag maken.
+    Je kunt slechts drie gebieden per dag maken.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
     mensen in de toekomst plaatsen kunnen toevoegen.
