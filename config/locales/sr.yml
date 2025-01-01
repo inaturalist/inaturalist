@@ -36,14 +36,6 @@ sr:
     one: '<span class=''count''>%{count}</span> IDENTIFIKACIJA'
     few: '<span class=''count''>%{count}</span> IDENTIFIKACIJE'
     other: '<span class=''count''>%{count}</span> IDENTIFIKACIJA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifikatora'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatora'
   x_languages:
     one: "%{count} jezik"
     few: "%{count} jezika"
@@ -98,10 +90,6 @@ sr:
     one: "<span class='count'>%{count}</span> opservacija pregledana"
     few: "<span class='count'>%{count}</span> opservacije pregledane"
     other: "<span class='count'>%{count}</span> opservacija pregledano"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Posmatrač'
-    few: '<span class="count">%{count}</span> Posmatrača'
-    other: '<span class="count">%{count}</span> Posmatrača'
   x_others:
     one: "još neko"
     few: "%{count} drugih"
