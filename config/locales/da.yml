@@ -27,12 +27,6 @@ da:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFIKATION'
     other: '<span class="count">%{count}</span> IDENTIFIKATIONER'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatorer'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID foretaget for andre'
     other: '<span class="count">%{count}</span> ID''er foretaget for andre'
@@ -83,9 +77,6 @@ da:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observation gennemgået"
     other: "<span class='count'>%{count}</span> observationer gennemgået"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observatør'
-    other: '<span class="count">%{count}</span> Observatører'
   x_others:
     one: "%{count} anden"
     other: "%{count} andre"
@@ -4671,7 +4662,6 @@ da:
     must_be_verifiable: skal være verificerbar
     must_be_wild: skal være vild
   running_total: Igangværende total
-  said: sagde
   satellite: satellit
   save: Gem
   save_all: Gem alle
@@ -7158,11 +7148,6 @@ da:
           Observationer reverseres til <strong>"uformel"</strong>, hvis ovenstående
           betingelser ikke er opfyldt eller fællesskabet er enige om, at
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          <strong>dag og år ikke ser præcist ud</strong> (f.eks. sne
-          ses på fotoet, men datoen er om sommeren; tager ikke
-          klokkeslæt i betragtning)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>placeringen ikke ser korrekt ud </strong> (f.eks. aber midt på havet, flodheste i kontorbygninger mv.)
         #One of a list of reasons for an observation to revert to Casual
@@ -7184,15 +7169,6 @@ da:
           observationen <strong>ikke præsenterer bevis relateret til ét
           emne</strong> (f.eks. har den fire fotos af ikke-beslægtede organismer;
           dog er et foto, der viser emnets levested OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          observationen ikke længere behøver en ID <em>og</em>
-          Fællesskabs-ID er på familie eller derover
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          observatøren har fravalgt Fællesskabs-ID'en, og Fællesskabs-ID
-          taksonen ikke er en forfader eller efterkommer af den takson, der
-          er associeret med observatørens ID
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Og som om det ikke var kompliceret nok, er der også situationer,
