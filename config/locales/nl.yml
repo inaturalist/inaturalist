@@ -27,12 +27,6 @@ nl:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> DETERMINATIE'
     other: '<span class="count">%{count}</span> DETERMINATIES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">1</span> determineerder'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> determineerders'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID''s gemaakt voor anderen'
     other: '<span class="count">%{count}</span>ID''s gemaakt voor anderen'
@@ -83,9 +77,6 @@ nl:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> waarneming nagekeken"
     other: "<span class='count'>%{count}</span> waarnemingen nagekeken"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> waarnemer'
-    other: '<span class="count">%{count}</span> waarnemers'
   x_others:
     one: "%{count} ander persoon"
     other: "%{count} anderen"
@@ -1955,7 +1946,7 @@ nl:
   find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken!
   find_observations: Vind waarnemingen
   find_photos: Foto's zoeken
-  find_places: Zoek plaatsen
+  find_places: Zoek gebieden
   find_some_people_to_follow: "Zoek een aantal mensen om te volgen"
   find_species: Soorten zoeken
   find_suitable_observations: Zoek passende waarnemingen
@@ -3891,10 +3882,10 @@ nl:
       Zone: Zone
       zone: zone
   place_guess: plaats raden
-  place_imported: Plaats geïmporteerd!
-  place_must_have_a_boundary_defined: Plaats moet een grens gedefinieerd hebben.
-  place_name: Plaatsnaam
-  place_notes: Plaats-notities
+  place_imported: Gebied geïmporteerd!
+  place_must_have_a_boundary_defined: Gebied moet een grens gedefinieerd hebben.
+  place_name: Gebiedsnaam
+  place_notes: Gebied-notities
   place_too_big_for_check_list: |
     Deze plaats is te groot voor een checklist. Het berekenen van checklist-statistieken is vrij intensief, dus we staan dat niet toe voor zeer grote plaatsen, tenzij ze zijn toegevoegd door de siteadministratoren. Je kunt deze plaats echter nog steeds gebruiken voor het afgrenzen van projecten en het zoeken naar waarnemingen.
   place_updated: Plaats bijgewerkt!
@@ -4168,27 +4159,25 @@ nl:
     yemen: Jemen
     zambia: Zambia
     zimbabwe: Zimbabwe
-  places_of_interest: Interessante plaatsen
+  places_of_interest: Interessante gebieden
   places_merged_successfully: Plaatsen succesvol samengevoegd!
   places_warning_export_complex_boundary_html: |
     Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
     waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
   places_warning_look_for_existing2_html: |
-    Zoek naar <a href="/search?source[]=places">bestaande plaatsen</a> om ervoor te zorgen dat je
-    geen kopie maakt. We hebben al plaatsen voor alle continenten en landen en veel andere politieke grenzen.
+    Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om ervoor te zorgen dat je
+    geen kopie maakt. We hebben al gebieden voor alle continenten en landen en veel andere politieke grenzen.
   places_warning_please_keep_in_mind: |
     Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
-    Als je een gebied probeert te maken voor een project bedenk dat projecten kunnen
-    meerdere plaatsen bevatten. Als je bijvoorbeeld een project wilt maken voor
-    Nieuw-Zeeland en Australië kun je alleen eisen toevoegen voor twee plaatsen
-    in plaats van één nieuwe.
+    Als je een gebied probeert te maken voor een project bedenk dan dat projecten meerdere gebieden kunnen bevatten. Als je bijvoorbeeld een project wilt maken voor Nieuw-Zeeland en Australië kun je in je eis beide gebieden toevoegen
+    in plaats van één nieuwe te maken.
   places_warning_new_places_are_slow_html: |
     Nieuwe gebieden zijn één van de grootste bronnen van vertraging in iNat dus
     <strong>overweeg om geen nieuw gebied aan te maken</strong>. Kleine gebieden
     met enkele duizenden waarnemingen zijn gewoonlijk geen probleem maar een
-    nieuwe plaats met veel waarnemingen gaat iNat vertragen voor alle anderen. Hier zijn enkele alternatieve benaderingen:
+    nieuwe gebied met veel waarnemingen gaat iNat vertragen voor alle anderen. Hier zijn enkele alternatieve benaderingen:
   places_warning_editing_places_is_slow: |
     Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
@@ -4196,7 +4185,7 @@ nl:
     Je kunt slechts drie gebieden per dag maken.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
-    mensen in de toekomst plaatsen kunnen toevoegen.
+    mensen in de toekomst gebieden kunnen toevoegen.
   plants: planten
   play_first_sound: Eerste geluid afspelen
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
@@ -4654,7 +4643,6 @@ nl:
     must_be_verifiable: moet controleerbaar zijn
     must_be_wild: moet wild zijn
   running_total: Lopend Totaal
-  said: gezegd
   satellite: satelliet
   save: Opslaan
   save_all: Alles opslaan
@@ -5057,7 +5045,7 @@ nl:
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonneer</a>
     op %{x} van @gender{n:dit|deze} %{y}.
   subscriptions: Abonnementen
-  subscriptions_arent_available_for: Abonnementen zijn niet beschikbaar voor plaatsen zonder grenzen.
+  subscriptions_arent_available_for: Abonnementen zijn niet beschikbaar voor gebieden zonder grenzen.
   successfully_changed_your_password: Je wachtwoord is succesvol gewijzigd.
   suggest_an_identification: Stel een determinatie voor
   suggest_or_require_that: Stel voor of eis dat de deelnemers deze velden invullen voor de waarnemingen die ze aan je project toevoegen.
@@ -5316,8 +5304,8 @@ nl:
   the_user_x_has_been_unsuspended: "De schorsing van gebruiker %{user} werd opgeheven"
   the_world: De wereld
   the_world_is_full_of_interesting_places: |
-    De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
-    prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-plaatsen laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
+    De wereld zit vol met interessante gebieden, elk gevuld met merkwaardige en
+    prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-gebieden laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
   then_keybord_sequence: dan
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   there_are_no_current_ids: Er zijn momenteel geen ID's van mogelijke oudertaxa.
@@ -6190,7 +6178,7 @@ nl:
   you_cant_do_that_for_the_default_check_list_place: Dat kun je niet doen met de standaard checklist van een plaats!
   you_cant_flag_that: Je kunt dat niet melden
   you_cant_leave_a_project_you_created: Je kan geen project verlaten dat je zelf hebt aangemaakt.
-  you_cant_merge_standard_places: Je kan standaardplaatsen niet samenvoegen
+  you_cant_merge_standard_places: Je kan standaardgebieden niet samenvoegen
   you_cant_rotate_photos_hostde_outside: "Je kunt foto's die buiten %{site_name} worden gehost niet roteren."
   you_cannot_delete_taxa_involved_in_taxon_changes: Je kunt geen taxa verwijderen die onderdeel zijn van taxonwijzigingen of die taxa bevatten die onderdeel zijn van taxonwijzigingen
   you_curate_a_project_that_contains_this_observation: Je stelt een project samen dat deze waarneming bevat
@@ -6542,7 +6530,7 @@ nl:
           van soorten creëren. Als je soorten uit een EOL-verzameling wilt importeren,
           plak dan hier de URL van die verzameling.
         guide_place_desc: |
-          Door jouw gids aan een plaats te koppelen kunnen mensen hem vinden wanneer ze zoeken naar plaatsen en het zal de plaatsgrens tonen op %{site_name}-kaart waar ze worden weergegeven als een grens is ingesteld (bijvoorbeeld "kaart"-weergave, taxon-pagina's, etc.)
+          Door jouw gids aan een gebied te koppelen kunnen mensen hem vinden wanneer ze zoeken naar gebieden en het zal de gebiedsgrens tonen op %{site_name}-kaart waar ze worden weergegeven als een grens is ingesteld (bijvoorbeeld "kaart"-weergave, taxon-pagina's, etc.)
         import_tags_from_csv_help_html: |
           <p>
           Upload een CSV-bestand dat labels bevat voor taxa in deze gids. Je CSV-bestand hoort er alsvolgt uit te zien:
@@ -6586,7 +6574,7 @@ nl:
         paste_note_html: |
           Plak maximaal 500 soortnamen, één per regel. %{site_name} zal proberen om lokale namen te koppelen aan soortenconcepten, maar om dubbelzinnigheid te vermijden is het beter om wetenschappelijke namen te gebruiken. Als je wilt geef ze dan allebei op, scheid de wetenschappelijke naam van de algemene naam met een komma, bijvoorbeeld <code>Homo sapiens, mens</code>.
         places_note: |
-          Opmerking: niet alle plaatsen hebben checklists met taxa. Als je problemen hebt met het vinden van een plaats met taxa, probeer dan grotere gebieden te kiezen met
+          Opmerking: niet alle gebieden hebben checklists met taxa. Als je problemen hebt met het vinden van een gebied met taxa, probeer dan grotere gebieden te kiezen met
           politieke grenzen, zoals naties, staten, provincies of graafschappen.
         replace_existing_eol_desc: Verwijder bestaande inhoud vóór de import van EOL
         place_choose_taxon_note: |
@@ -6686,7 +6674,7 @@ nl:
       establishment_field:
         confirmation: |
           Weet je het zeker? Dit zal de vestigingswijze voor ALLE 
-          vermelde taxa veranderen die onder deze plaats vallen. Je maakt hiermee wellicht veel werk ongedaan.
+          vermelde taxa veranderen die onder dit gebied vallen. Je maakt hiermee wellicht veel werk ongedaan.
         description_html: |
           Dit zal de vestigingswijze in <strong>"%{establishment_means}"</strong> veranderen voor <em>alle</em> vermeldingen van 
           dit taxon op alle plaatsen die onder <a href="%{place_url}">%{place_name}</a> vallen.
@@ -7024,10 +7012,6 @@ nl:
           Waarnemingen zullen teruggaan naar <strong>"onvolledig"</strong> als aan bovenstaande
           voorwaarden niet is voldaan of als de gemeenschap akkoord gaat
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          de <strong>dag en het jaar zien er niet juist uit</strong> (bv. er is sneeuw
-          op de foto maar de datum is in de zomer; negeer de tijd van de dag)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           de <strong>lokatie lijkt niet nauwkeurig</strong> (bijvoorbeeld apen midden in de oceaan, nijlpaarden in kantoorgebouwen, enzovoort)
         #One of a list of reasons for an observation to revert to Casual
@@ -7044,20 +7028,13 @@ nl:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          de waarneming heeft niet langer een ID <em>en</em> de community ID
-          is op familieniveau of hoger
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          de waarnemer heeft zich afgemeld voor het gemeenschapsID en het gemeenschapstaxon is geen voorouder of nakomeling van het taxon geassocieerd met het ID van de waarnemer.
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           En als dat niet ingewikkeld genoeg was, zijn er ook situaties
           waar het systeem een stem krijgt:
         #One of a list of wasy iNat itself can vote in the DQA
         dqa_help_system_captive_vote: |
-          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er minstens 10 andere waarnemingen van een geslacht of lager zijn in de kleinste provincie, Staat, of gemeente die deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/ingeburgerd.
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er minstens 10 andere waarnemingen van een geslacht of lager zijn in de kleinste gemeente-, staat, of land-equivalent gebied die deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/ingeburgerd.
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
           Sommige van deze foto's zijn gemeld wegens ongepaste inhoud of
@@ -7457,7 +7434,7 @@ nl:
           Lees <a href="https://www.inaturalist.org/pages/managing-projects">hier</a> meer over het beheren van projecten of over de geschiedenis van projecten op
            <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ons blog</a>.
         you_have_not_defined_any_observation_requirements: |
-          Je hebt geen enkele waarnemingsvereisten gedefinieerd. Zorg ervoor dat je een of meer taxa selecteert (bijvoorbeeld vogels, coniferen), plaatsen (bijvoorbeeld Nederland, Groningen), gebruikers en/of datums die de waarnemingen  definiëren die je in je project wilt opnemen.
+          Je hebt geen enkele waarnemingsvereisten gedefinieerd. Zorg ervoor dat je een of meer taxa selecteert (bijvoorbeeld vogels, coniferen), gebieden (bijvoorbeeld Nederland, Groningen), gebruikers en/of datums die de waarnemingen definiëren die je in je project wilt opnemen.
         errors:
           name_is_required: Een projectnaam invullen is verplicht
           name_less_than_100_characters: De projectnaam moet minder dan 100 tekens bevatten
@@ -7509,7 +7486,7 @@ nl:
         this_is_a_preview: |
           Dit is een voorproefje van hoe dit project eruit zou zien als een verzamelproject.
         this_project_has_not_defined_requirements: |
-          Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
+          Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), gebieden (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
       updates_desc: |
         Ontvang updates over dit project op je dashboard en de dagelijkse e-mail met nieuws.
     search:
@@ -7879,7 +7856,7 @@ nl:
           Geef <strong>geen</strong> namen op voor ELKE plaats waar die naam wordt gebruikt, maar alleen voor plaatsen die in conflict zijn met andere plaatsen.
       taxon:
         about_html: |
-          Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende plaatsen opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende plaatsen conflicterende namen hebben.
+          Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8000,7 +7977,7 @@ nl:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Waarnemingen door mensen die ik volg
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_or_place_observations: Waarnemingen van taxa of plaatsen waar ik me op abonneer
+        notification_preferences_taxon_or_place_observations: Waarnemingen van taxa of gebieden waar ik me op abonneer
         place_preference_changed_notice_html: |
           Plaatsvoorkeur gewijzigd. Als je van gedachten verandert, kun je dat altijd via 
           <a href='/users/edit'>je instellingen wijzigen</a>.
@@ -8053,7 +8030,7 @@ nl:
           add_a_place_optional: Voeg een plaats toe (optioneel)
           common_name_lexicon_display_order: Weergave volgorde van lokale-naam-lexicons
           common_name_lexicons: Lokale-naam-lexicons
-          common_name_lexicons_description: Lokale namen worden standaard weergegeven in jouw accounttaal/locale. Om namen in andere lexicons te zien of om voorrang te geven aan namen die op specifieke plaatsen worden gebruikt (zoals Engels (Australië) of Spaans (Costa Rica), voeg je lokale-naam-lexicons toe. Maximaal 3 lokale namen kunnen tegelijk worden weergegeven. Als er geen lokale naam bestaat voor een lexicon dat je hebt gekozen, zal het worden weggelaten van de weergave.
+          common_name_lexicons_description: Lokale namen worden standaard weergegeven in jouw accounttaal/locale. Om namen in andere lexicons te zien of om voorrang te geven aan namen die op specifieke gebieden worden gebruikt (zoals Engels (Australië) of Spaans (Costa Rica), voeg je lokale-naam-lexicons toe. Maximaal 3 lokale namen kunnen tegelijk worden weergegeven. Als er geen lokale naam bestaat voor een lexicon dat je hebt gekozen, zal het worden weggelaten van de weergave.
           for_multiple_common_name_lexicons_drag_and_drop: Bij verscheidene lokale-naam-lexicons sleep en plak je de instellingen hieronder om de volgorde waarin ze worden weergegeven aan te passen.
           same_as_locale: Hetzelfde als de locale
           #used as a form select dropdown option that users can choose instead of a choosing
