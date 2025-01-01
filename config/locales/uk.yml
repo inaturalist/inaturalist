@@ -40,16 +40,6 @@ uk:
     few: '%{count} визначення'
     many: '%{count} визначень'
     other: '%{count} визначення'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Ідентифікатор'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Ідентифікатори'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Ідентифікаторів'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Ідентифікатори'
   x_languages:
     one: "%{count} мовою"
     few: "%{count} мовами"
@@ -122,11 +112,6 @@ uk:
     few: "<span class='count'>%{count}</span> спостереження переглянуто"
     many: "<span class='count'>%{count}</span> спостережень переглянуто"
     other: "<span class='count'>%{count}</span> спостереження переглянуто"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Спостерігач'
-    few: '<span class="count">%{count}</span> Спостерігачі'
-    many: '<span class="count">%{count}</span> Спостерігачів'
-    other: '<span class="count">%{count}</span> Спостерігачі'
   x_others:
     one: "%{count} інший"
     few: "%{count} інших"
@@ -3989,7 +3974,6 @@ uk:
     must_be_in: мусить належати до таксону
     must_be_coordinates_shareable_by_project_curators: Спостерігач мусить дозволити кураторам проєкту бачити координати.
   running_total: Поточний підсумок
-  said: зазначив
   satellite: супутниковий
   save: Зберегти
   save_all: Зберегти Все
