@@ -45,16 +45,6 @@ ru:
     few: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИИ'
     many: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
     other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span>эксперт'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> эксперта'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> экспертов'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> экспертов'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> Идентификация,сделанная для других'
     few: '<span class="count">%{count}</span> идентификаций, сделанных для других'
@@ -137,11 +127,6 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения просмотрено"
     many: "<span class='count'>%{count}</span> наблюдений просмотрено"
     other: "<span class='count'>%{count}</span> наблюдений просмотрено"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> наблюдатель'
-    few: '<span class="count">%{count}</span> наблюдателя'
-    many: '<span class="count">%{count}</span> наблюдателей'
-    other: '<span class="count">%{count}</span> наблюдателей'
   x_others:
     one: "%{count} другой"
     few: "%{count} других"
@@ -1956,6 +1941,9 @@ ru:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Точный ранг
   except: за исключением
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Исключить
   exclude_places: Исключить места
   exclude_projects: Исключить проекты
   exclude_taxa: Исключить таксоны
@@ -2414,8 +2402,16 @@ ru:
   inaturalist_network_affiliation: Принадлежность к сети iNaturalist
   #Label for messages you've received
   inbox: Входящие
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Включить
   include_places: Включить места
   include_projects: Включить проекты
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Включить/Исключить Таксоны Предки
   include_suggestions_not_seen_nearby: Включать предложения, не встречающиеся поблизости
   include_suggestions_not_expected_nearby: Включать предложения, не встречающиеся поблизости
   include_taxa: Включить таксоны
@@ -4686,7 +4682,6 @@ ru:
     must_be_verifiable: должно быть проверяемым
     must_be_wild: должен быть диким
   running_total: Текущий итог
-  said: добавил
   satellite: спутниковый
   save: Сохранить
   save_all: Сохранить все
@@ -7008,9 +7003,6 @@ ru:
         dqa_help_casual_lead_html: |
           Наблюдения возвращаются к уровню <strong>«обыкновенный»</strong>, если вышеуказанные условия не будут выполнены или сообщество согласится
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          <strong> день и год выглядят неточно</strong> (например, на фотографии виден снег, но дата указана летняя; время суток не берётся во внимание)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>местоположение выглядит неточным</strong> (например, обезьяны оказываются посреди океана, бегемоты в офисных зданиях и т. д.)
         #One of a list of reasons for an observation to revert to Casual
@@ -7028,14 +7020,6 @@ ru:
         dqa_help_casual_not_one_subject_html: |
           наблюдение <strong>не представляет доказательств, относящихся к одному и тому же 
           субъекту</strong> (например, оно имеет четыре фотографии неродственных организмов; фотография, показывающая среду обитания субъекта наблюдения, допустима)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          наблюдение больше не требует идентификации <em>и</em> идентификатора сообщества
-          на уровне семьи или выше
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          наблюдатель отказался от идентификатора сообщества, а таксон идентификатора сообщества не является предком или потомком таксона, связанного с
-          идентификатором наблюдателя
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           И если это не достаточно сложно, есть также ситуации, когда система получает голос:
