@@ -27,12 +27,6 @@ eu:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFIKAZIOA'
     other: '<span class="count">%{count}</span> IDENTIFIKAZIOAK'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: 'Identifikatzaile <span class="count">%{count}</span>'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatzaile'
   x_languages:
     one: "hizkuntza %{count}"
     other: "%{count} hizkuntza"
@@ -2296,7 +2290,6 @@ eu:
     must_be_on_list: zerrendan egon behar dute
     must_be_observed_in_place: toki honetako behaketak izan behar dute
     must_be_in: espezie edo taldearen barruan egon behar dute
-  said: zioen
   satellite: satelitea
   save: Gorde
   save_all: Guztia gorde
