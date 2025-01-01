@@ -40,16 +40,6 @@ be:
     few: '%{count} Вызначэнні'
     many: '%{count} Вызначэнняў'
     other: '%{count} Вызначэння'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Вызначальнік'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Вызначальніка'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Вызначальнікаў'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Вызначальніка'
   x_languages:
     one: "%{count} мова"
     few: "%{count} мовы"
@@ -122,11 +112,6 @@ be:
     few: "<span class='count'>%{count}</span> назіранні прагледжана"
     many: "<span class='count'>%{count}</span> назіранняў прагледжана"
     other: "<span class='count'>%{count}</span> назірання прагледжана"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Назіральнік'
-    few: '<span class="count">%{count}</span> Назіральнікі'
-    many: '<span class="count">%{count}</span> Назіральнікаў'
-    other: '<span class="count">%{count}</span> Назіральніка'
   x_others:
     one: "%{count} іншы"
     few: "%{count} іншыя"
