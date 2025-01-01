@@ -23,12 +23,6 @@ pt:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
     other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
@@ -76,9 +70,6 @@ pt:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observação revista"
     other: "<span class='count'>%{count}</span> observações revistas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "1 outro"
     other: "%{count} outros"
@@ -3054,7 +3045,6 @@ pt:
     must_be_observed_in_place: tem de ser observado no local
     must_be_in: tem de estar no táxon
     must_be_coordinates_shareable_by_project_curators: o observador deve permitir que os curadores do projeto visualizem as coordenadas.
-  said: disse
   satellite: satélite
   save: Guardar
   save_all: Guardar Todas
