@@ -45,16 +45,6 @@ he:
     two: '<span class="count">%{count}</span> זיהויים'
     many: '<span class="count">%{count}</span> זיהויים'
     other: '<span class="count">%{count}</span> זיהויים'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: 'מזהה <span class="count">%{count}</span>'
-    #Number of people who have added identifications
-    two: '<span class="count">%{count}</span> מזהות.ים'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> מזהות.ים'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> מזהות.ים'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> זיהוי נעשה עבור אחרים'
     two: '<span class="count">%{count}</span> זיהויים נעשו עבור אחרים'
@@ -137,11 +127,6 @@ he:
     two: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     many: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     other: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
-  x_observers_html:
-    one: 'מתצפת.ת <span class="count">%{count}</span>'
-    two: '<span class="count">%{count}</span> מתצפתות.ים'
-    many: '<span class="count">%{count}</span> מתצפתות.ים'
-    other: '<span class="count">%{count}</span> מתצפתות.ים'
   x_others:
     one: "אחר %{count}"
     two: "%{count} אחרים"
@@ -4574,7 +4559,6 @@ he:
     must_be_verifiable: חייב להיות בר-אימות
     must_be_wild: חייב להיות בר
   running_total: סך הכל
-  said: נאמר
   satellite: לוויין
   save: שמירה
   save_all: לשמור הכול
