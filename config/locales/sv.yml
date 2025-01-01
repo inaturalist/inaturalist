@@ -27,12 +27,6 @@ sv:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> ARTBESTÄMNING'
     other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Determinatör'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Determinatörer'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> Bestämning för andra'
     other: '<span class="count">%{count}</span> Bestämningar för andra'
@@ -83,9 +77,6 @@ sv:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> fynd granskat"
     other: "<span class='count'>%{count}</span> fynd granskade"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> observatör'
-    other: '<span class="count">%{count}</span> observatörer'
   x_others:
     one: "%{count} annan"
     other: "%{count} andra"
@@ -4682,7 +4673,6 @@ sv:
     must_be_verifiable: måste gå att verifiera
     must_be_wild: måste vara vild
   running_total: Ackumulerat
-  said: sade
   satellite: satellit
   save: Spara
   save_all: Spara alla
@@ -7073,11 +7063,6 @@ sv:
           Fynd kommer att återgå till <strong>"grundklass"</strong> om ovanstående
           villkor inte är uppfyllda eller om communityn är överens
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          <strong>dag och år ser inte korrekta ut</strong> (t.ex. snö
-          syns i bilden men datumet är på sommaren; bortse från tid på
-          dygnet)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>platsen ser inte riktig ut</strong> (t.ex. apor i
           mitten av havet, flodhästar i kontorsbyggnader, etc.)
@@ -7099,15 +7084,6 @@ sv:
           fyndet <strong>ger inte stöd för endast en sak</strong> (t.ex. fyra
           bilder på orelaterade organismer; en bild som visar på organismens
           livsmiljö är OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          fyndet behöver inte längre bestämmas <em>och</em> communityns
-          bestämning är till familj eller högre
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          observatören har valt bort community-bestämning och community-
-          bestämningens taxon är inte över- eller underliggande det taxon
-          som förknippas med observatörens bestämning
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Och som om det inte var komplicerat nog, finns det också situationer
