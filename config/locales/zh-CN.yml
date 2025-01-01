@@ -18,10 +18,6 @@ zh-CN:
     other: '%{count} 次鉴定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span>个鉴定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span>个鉴定者'
   x_ids_made_for_others_html:
     other: '为他人做出了<span class="count">%{count}</span>个鉴定'
   x_languages:
@@ -56,8 +52,6 @@ zh-CN:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
-  x_observers_html:
-    other: '<span class="count">%{count}</span>个观察者'
   x_others:
     other: "%{count}个其他的"
   x_people:
@@ -4447,7 +4441,6 @@ zh-CN:
     must_be_verifiable: 必须可被验证
     must_be_wild: 必须是野生的
   running_total: 运行总计
-  said: 说
   satellite: 卫星
   save: 保存
   save_all: 保存全部
@@ -6606,9 +6599,6 @@ zh-CN:
         dqa_help_casual_lead_html: |
           如果上述条件未得到满足，或社群同意下列情况，则观察回滚到<strong>“非正式”</strong>等级：
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          <strong>日期和年份看起来不准确</strong>（比如照片里有雪，但日期却是夏天；不考虑一天之内的时间）
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>位置看起来不准确</strong>（例如大洋中的猴子，办公大楼中的河马，等）
         #One of a list of reasons for an observation to revert to Casual
@@ -6623,12 +6613,6 @@ zh-CN:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           观察<strong>不是关于单一主体的证据</strong>（如关于四个无关生物体的四张照片；但有一张照片呈现观察主体的生境是可以的）
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          观察不再需要鉴定<em>且</em>社群鉴定在科或更高层级
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          观察者选择不接纳社群鉴定，而社群鉴定并非观察者鉴定结果的分类学父系或子系
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           如果这还不够复杂，还会有系统自动进行表决的情况：
