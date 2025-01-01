@@ -27,12 +27,6 @@ fi:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> TUNNISTUS'
     other: '<span class="count">%{count}</span> TUNNISTUSTA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> tunnistaja'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> tunnistajaa'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> muille tehty tunnistus'
     other: '<span class="count">%{count}</span> muille tehtyä tunnistusta'
@@ -83,9 +77,6 @@ fi:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> havainto tarkistettu"
     other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> havainnoija'
-    other: '<span class="count">%{count}</span> havainnoijaa'
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
@@ -338,6 +329,7 @@ fi:
   add_notes_about_this_taxon: Lisää muistiinpanoja tästä taksonista tässä paikassa, esim. missä ja milloin se tapahtuu.
   add_obs_from_a_link: "Lisää havainto luettelosta: %{link}"
   add_obs_from_a_list: Lisää havainto luettelosta
+  add_observation_fields: Lisää havaintokenttiä
   add_observations: Tallenna havaintoja
   add_observations_by_checking_off: Tallenna havaintoja ruksaamalla lajeja luettelosta.
   add_observations_project: Tallenna havaintoja tähän projektiin
@@ -704,6 +696,7 @@ fi:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Oletko varma että haluat poistaa tämän havainnon projektista %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Haluatko varmasti poistaa tämän taksonin paikan %{place} lajiluettelosta?"
+  are_you_sure_you_want_to_flag_as_spammer: Oletko varma, että haluat merkitä tämän käyttäjän roskapostaajaksi?
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
   attention: Huom
@@ -1569,6 +1562,10 @@ fi:
   disable_comments: Poista kommentit käytöstä
   disable_comments_desc: Estä käyttäjiä lisäämästä uusia kommentteja
   disagree_: Eri mieltä
+  #Label for a button to disconnect your iNat account from another account,
+  #e.g. disconnecting your Flickr account
+  disconnect: Katkaise yhteys
+  disconnect_caps: KATKAISE YHTEYS
   disconnect_provider: "Katkaise yhteys palveluun %{provider}"
   #Label for a button that dismisses an alert or popup
   dismiss: Hylkää
@@ -1798,6 +1795,8 @@ fi:
   favorites: "Suosikit"
   feature_this_project_: "Nosta tämä projekti esille"
   featured: Esittelyssä
+  #Title for a button or section describing the "featured" status of a project
+  featuring: Mukana
   feedback: Palaute
   #Plural noun, as in Atom and RSS feeds
   feeds: 'Syötteet'
@@ -2337,6 +2336,7 @@ fi:
     finnish: Suomi
     french: Ranska
     galician: Galicia
+    gela: Gela
     georgian: Georgia
     german: Saksa
     greek: Kreikka
@@ -2371,6 +2371,7 @@ fi:
     misima_paneati: Misima-paneati
     mongolian: Mongolia
     nahuatl: Nahuatlkieli
+    navajo: Navajo
     norwegian: Norja
     occitan: Oksitaani
     ojibwe: Ojibwe
@@ -4168,7 +4169,6 @@ fi:
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin kuraattoreille mahdollisuus tarkistella koordinaatteja.
     must_be_wild: on oltava luonnonvarainen
   running_total: Kumulatiivinen summa
-  said: sanoi
   satellite: satelliitti
   save: Tallenna
   save_all: Tallenna kaikki
