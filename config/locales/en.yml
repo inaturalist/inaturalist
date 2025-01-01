@@ -43,17 +43,17 @@ en:
     many: '<span class="count">%{count}</span> IDENTIFICATIONS'
     other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   # Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     # Number of people who have added identifications
-    zero: '<span class="count">%{count}</span> Identifiers'
+    zero: '<span class="count">%{count}</span> IDENTIFIERS'
     # Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifier'
+    one: '<span class="count">%{count}</span> IDENTIFIER'
     # Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifiers'
+    few: '<span class="count">%{count}</span> IDENTIFIERS'
     # Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Identifiers'
+    many: '<span class="count">%{count}</span> IDENTIFIERS'
     # Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifiers'
+    other: '<span class="count">%{count}</span> IDENTIFIERS'
   x_ids_made_for_others_html:
     zero: '<span class="count">%{count}</span> IDs made for others'
     one: '<span class="count">%{count}</span> ID made for others'
@@ -128,12 +128,12 @@ en:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observation reviewed"
     other: "<span class='count'>%{count}</span> observations reviewed"
-  x_observers_html:
-    zero: '<span class="count">%{count}</span> Observers'
-    one: '<span class="count">%{count}</span> Observer'
-    few: '<span class="count">%{count}</span> Observers'
-    many: '<span class="count">%{count}</span> Observers'
-    other: '<span class="count">%{count}</span> Observers'
+  x_observers_caps_html:
+    zero: '<span class="count">%{count}</span> OBSERVERS'
+    one: '<span class="count">%{count}</span> OBSERVER'
+    few: '<span class="count">%{count}</span> OBSERVERS'
+    many: '<span class="count">%{count}</span> OBSERVERS'
+    other: '<span class="count">%{count}</span> OBSERVERS'
   x_others:
     one: "%{count} other"
     other: "%{count} others"
@@ -4953,7 +4953,6 @@ en:
     must_be_verifiable: must be verifiable
     must_be_wild: must be wild
   running_total: Running Total
-  said: said
   satellite: satellite
   save: Save
   save_all: Save All
@@ -6162,6 +6161,7 @@ en:
   user_muted: User muted
   user_observed_on_on_date_in_place: |
     %{user} observed one on %{date} in %{place}
+  user_said_comment_html: <span class="meta">%{user} said,</span> "%{comment}"
   user_suggested_an_id: "%{user} suggested an ID"
   user_trusts_this_project_for_none: User does not trust this project with hidden coordinates.
   user_trusts_this_project_for_any: |
@@ -7712,8 +7712,8 @@ en:
           Observations will revert to <strong>"casual"</strong> if the above
           conditions aren't met or the community agrees
         # One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          the <strong>day and year do not look accurate</strong> (e.g. snow
+        dqa_help_casual_day_year_not_accurate2_html: |
+          the <strong>day, month, and/or year do not look accurate</strong> (e.g. snow
           appears in the photo but the date is during summer; do not take
           time of day into account)
         # One of a list of reasons for an observation to revert to Casual
@@ -7741,13 +7741,13 @@ en:
           photo showing habitat of the observation’s subject is OK)
         # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
-          the observation no longer needs an ID <em>and</em> the community ID
-          is at family or above
+          the observation no longer needs an ID <em>and</em> the Community
+          Taxon is at family or above
         # One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          the observer has opted out of the community ID and the community ID
-          taxon is not an ancestor or descendant of the taxon associated with
-          the observer's ID
+        dqa_help_casual_opted_out_maverick_html: |
+          the taxon is not an ancestor or a descendant of the taxon associated
+          with the observer's ID <em>and</em> the observer has opted out of
+          the Community Taxon
         # Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           And if that wasn't complicated enough, there are also situations
