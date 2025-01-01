@@ -45,16 +45,6 @@ cs:
     few: '<span class="count">%{count}</span> IDENTIFIKACE'
     many: '<span class="count">%{count}</span> IDENTIFIKACÍ'
     other: '<span class="count">%{count}</span> IDENTIFIKACÍ'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikátor'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifikátoři'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Identifikátorů'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikátorů'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID vytvořeno pro ostatní'
     few: '<span class="count">%{count}</span> ID vytvořena pro ostatní'
@@ -137,11 +127,6 @@ cs:
     few: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
     many: "<span class='count'>%{count}</span> pozorování bylo zkontrolováno"
     other: "<span class='count'>%{count}</span> pozorování byla zkontrolována"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Pozorovatel'
-    few: '<span class="count">%{count}</span> Pozorovatelé'
-    many: '<span class="count">%{count}</span> Pozorovatelů'
-    other: '<span class="count">%{count}</span> Pozorovatelů'
   x_others:
     one: "%{count} další"
     few: "%{count} další"
@@ -1995,6 +1980,9 @@ cs:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Přesné pořadí
   except: mimo
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Vyloučit
   exclude_places: Vyloučit místa
   exclude_projects: Vyloučit projekty
   exclude_taxa: Vyloučit taxony
@@ -2459,8 +2447,16 @@ cs:
   inaturalist_network_affiliation: Příslušnost k síti iNaturalist
   #Label for messages you've received
   inbox: doručená pošta
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Zahrnout
   include_places: Zahrnout místa
   include_projects: Zahrnout projekty
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Zahrnout / vyloučit taxony předchůdce
   include_suggestions_not_seen_nearby: Zahrnout i návrhy neviděné v okolí
   include_suggestions_not_expected_nearby: Zahrnout i návrhy neočekávané v okolí
   include_taxa: Zahrnout taxony
@@ -4769,7 +4765,6 @@ cs:
     must_be_verifiable: musí být ověřitelné
     must_be_wild: musí být volně žijící
   running_total: Průběžný součet
-  said: řekl/a
   satellite: satelitní
   save: Uložit
   save_all: Uložit vše
@@ -7185,11 +7180,6 @@ cs:
         dqa_help_casual_lead_html: |
           Pozorování se vrátí na <strong>"neformální"</strong> , pokud nejsou splněny výše uvedené podmínky nebo pokud souhlasí komunita
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          <strong>den a rok nevypadá přesně</strong> (např. sníh
-          se objeví na fotce, ale datum je v létě; neberte v úvahu
-          denní čas)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>poloha nevypadá přesně</strong> (např. opice v
           uprostřed oceánu, hroši v kancelářských budovách atd.)
@@ -7211,15 +7201,6 @@ cs:
           pozorování <strong>nepředkládá důkazy týkající se jednoho
           subjektu</strong> (např. má čtyři fotografie nespřízněných organismů;
           fotografie ukazující stanoviště předmětu pozorování je OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          pozorování již nepotřebuje ID <em>a</em> ID
-          je v rodině nebo vyšší
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          pozorovatel se rozhodl opustit komunitní ID a komunitní ID
-          taxon není předchůdcem nebo potomkem taxonu spojeného s
-          ID pozorovatele
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           A pokud by to nebylo dost složité, existují také situace kdy systém nabídne hlasování:
@@ -7866,6 +7847,16 @@ cs:
           včetně lidí z minulých let a lidí z Translatewiki, na náš
           %{view_all_web_link_tag} web %{link_tag_end} a do
           %{view_all_mobile_link_tag} mobilních aplikaci %{link_tag_end} v úložišti kódů.
+        translators_desc_2: |
+          Věděli jste, že iNaturalist byl přeložen do %{x_languages},
+          téměř výhradně %{x_people}, někteří z nich ani nepoužívají iNat? Zde
+          jsou všichni úžasní překladatelé, kteří letos přidali překlady,
+          spolu s počtem slov, která přeložili pro 
+          %{website_link_tag}webovou stranu%{link_tag_end}, naše aplikace
+          %{iphone_link_tag}iPhone%{link_tag_end} a
+          %{android_link_tag}Android%{link_tag_end} ,
+          %{seek_link_tag}Seek%{link_tag_end}a
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Věděli jste, že %{site_name} byl přeložen téměř úplně uživateli %{x_people}? Zde jsou všichni úžasní překladatelé, kteří
           přidali překlady letos společně s počtem slov,
@@ -8624,6 +8615,8 @@ cs:
       assessment_section:
         title: Název
         body: Text
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Blokovaný uživatel
@@ -9056,6 +9049,10 @@ cs:
             taxon:
               too_many_photos: |
                 nemůže mít více než %{max} fotek
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                nemůže mít nevyřešené označení
         taxon_range:
           attributes:
             iucn_relationship:
