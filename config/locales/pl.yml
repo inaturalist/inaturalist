@@ -45,16 +45,6 @@ pl:
     few: '<span class="count">%{count}</span> OZNACZENIA'
     many: '<span class="count">%{count}</span> OZNACZEŃ'
     other: '<span class="count">%{count}</span> OZNACZENIA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> oznaczający'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> oznaczających'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> oznaczających'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> oznaczającego'
   x_languages:
     one: "%{count} język"
     few: "%{count} języki"
@@ -132,11 +122,6 @@ pl:
     few: "<span class='count'>%{count}</span> przejrzane obserwacje"
     many: "<span class='count'>%{count}</span> przejrzanych obserwacji"
     other: "<span class='count'>%{count}</span> przejrzanej obserwacji"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> obserwator'
-    few: '<span class="count">%{count}</span> obserwatorów'
-    many: '<span class="count">%{count}</span> obserwatorów'
-    other: '<span class="count">%{count}</span> obserwatora'
   x_others:
     one: "1 inna osoba"
     few: "%{count} inne osoby"
