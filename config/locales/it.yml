@@ -27,12 +27,6 @@ it:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAZIONE'
     other: '<span class="count">%{count}</span> IDENTIFICAZIONI'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">1</span> Identificatore'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificatori'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID fatta per altri'
     other: '<span class="count">%{count}</span> ID fatte per altri'
@@ -83,9 +77,6 @@ it:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> osservazione controllata"
     other: "<span class='count'>%{count}</span> osservazioni controllate"
-  x_observers_html:
-    one: '<span class="count">1</span> Osservatore'
-    other: '<span class="count">%{count}</span> Osservatori'
   x_others:
     one: "un altro"
     other: "%{count} altri"
@@ -4547,7 +4538,6 @@ it:
     must_be_verifiable: dev'esser verificabile
     must_be_wild: deve essere selvatico
   running_total: Totale attuale
-  said: detto
   satellite: satellite
   save: Salva
   save_all: Salva tutto
@@ -6823,11 +6813,6 @@ it:
           Le osservazioni torneranno a <strong>"casuale"</strong> se le condizioni
           di cui sopra non sono soddisfatte o la comunità accetta
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          il <strong>giorno e l'anno non sembrano accurati</strong> (ad es. la neve
-          appare nella foto ma la data è durante l'estate; non prendere in considerazione l'ora
-          del giorno)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           la community concorda che la <strong>posizione non sembra accurata</strong> (ad esempio: scimmie in mezzo all'oceano, ippopotami in ufficio, ecc.)
         #One of a list of reasons for an observation to revert to Casual
@@ -6848,14 +6833,6 @@ it:
           l'osservazione <strong>non presenta prove relative a un soggetto
           </strong> (es. ha quattro foto di organismi non correlati; una foto
           che mostra l’habitat del soggetto dell’osservazione è OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          l'osservazione non ha più bisogno di una ID <em>e</em> l'ID della comunità
-          è a livello di famiglia o superiore
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          l'osservatore ha optato per l'ID della comunità e il taxon dell'ID della comunità
-          non è un antenato o discendente del taxon associato all'ID dell'osservatore
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           E se questo non è abbastanza complicato, ci sono anche situazioni
