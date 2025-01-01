@@ -7712,8 +7712,8 @@ en:
           Observations will revert to <strong>"casual"</strong> if the above
           conditions aren't met or the community agrees
         # One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          the <strong>day and year do not look accurate</strong> (e.g. snow
+        dqa_help_casual_day_year_not_accurate2_html: |
+          the <strong>day, month, and/or year do not look accurate</strong> (e.g. snow
           appears in the photo but the date is during summer; do not take
           time of day into account)
         # One of a list of reasons for an observation to revert to Casual
@@ -7741,13 +7741,13 @@ en:
           photo showing habitat of the observation’s subject is OK)
         # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
-          the observation no longer needs an ID <em>and</em> the community ID
-          is at family or above
+          the observation no longer needs an ID <em>and</em> the Community
+          Taxon is at family or above
         # One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          the observer has opted out of the community ID and the community ID
-          taxon is not an ancestor or descendant of the taxon associated with
-          the observer's ID
+        dqa_help_casual_opted_out_maverick_html: |
+          the taxon is not an ancestor or a descendant of the taxon associated
+          with the observer's ID <em>and</em> the observer has opted out of
+          the Community Taxon
         # Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           And if that wasn't complicated enough, there are also situations
