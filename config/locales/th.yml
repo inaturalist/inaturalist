@@ -18,10 +18,6 @@ th:
     other: '%{count} การจำแนก'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> การจำแนก'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ผู้จำแนก'
   x_ids_made_for_others_html:
     other: '<span class="count">%{count}</span> การจำแนกให้ผู้อื่น'
   x_languages:
@@ -56,8 +52,6 @@ th:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตที่ตรวจสอบแล้ว"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
   x_people:
