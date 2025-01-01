@@ -4953,7 +4953,6 @@ en:
     must_be_verifiable: must be verifiable
     must_be_wild: must be wild
   running_total: Running Total
-  said: said
   satellite: satellite
   save: Save
   save_all: Save All
@@ -6162,6 +6161,7 @@ en:
   user_muted: User muted
   user_observed_on_on_date_in_place: |
     %{user} observed one on %{date} in %{place}
+  user_said_comment_html: <span class="meta">%{user} said,</span> "%{comment}"
   user_suggested_an_id: "%{user} suggested an ID"
   user_trusts_this_project_for_none: User does not trust this project with hidden coordinates.
   user_trusts_this_project_for_any: |
