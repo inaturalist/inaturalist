@@ -24,12 +24,6 @@ lb:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> BESTËMMUNG'
     other: '<span class="count">%{count}</span> BESTËMMUNGEN'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Bestëmmer'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Bestëmmer'
   x_languages:
     one: "%{count} Sprooch"
     other: "%{count} Sproochen"
@@ -74,9 +68,6 @@ lb:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> Bestëmmung iwwerpréift"
     other: "<span class='count'>%{count}</span> Bestëmmungen iwwerpréift"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Beobachter'
-    other: '<span class="count">%{count}</span> Beobachter'
   x_others:
     one: "1 anerer"
     other: "%{count} anerer"
@@ -2276,7 +2267,6 @@ lb:
   rules_types:
     must_be_captive: muss Gefaangen / Kultivéiert sinn
     must_be_verifiable: muss iwwerpréifbar sinn
-  said: gesot
   satellite: Satellit
   save: Späicheren
   save_all: All späicheren
