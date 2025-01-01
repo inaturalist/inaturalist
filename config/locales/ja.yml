@@ -18,10 +18,6 @@ ja:
     other: '%{count} 同定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> 件の同定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> 同定者'
   x_languages:
     other: "%{count} 言語"
   #Count of number of taxa that represent the first addition to a life list
@@ -54,8 +50,6 @@ ja:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
-  x_observers_html:
-    other: '<span class="count">%{count}</span>投稿者'
   x_others:
     other: "その他%{count}人"
   x_people:
@@ -4221,7 +4215,6 @@ ja:
     must_be_verifiable: 研究用グレードか要同定グレードでなければなりません
     must_be_wild: 野生である必要があります
   running_total: 現在の総計
-  said: が発言しました
   satellite: 航空写真
   save: 保存
   save_all: すべて保存
