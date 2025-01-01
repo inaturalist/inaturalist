@@ -35,22 +35,22 @@ const StatsHeader = ( { config, project, setSelectedTab } ) => {
               <li
                 className={`stat-tab ${tab === "observations" && "active"} ${obsDisabled}`}
                 onClick={( ) => setSelectedTab( "observations" )}
-                dangerouslySetInnerHTML={{ __html: I18n.t( "x_observations_html", { count: obsCount } ) }}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_observations_caps_html", { count: obsCount } ) }}
               />
               <li
                 className={`stat-tab ${tab === "species" && "active"} ${speciesDisabled}`}
                 onClick={( ) => setSelectedTab( "species" )}
-                dangerouslySetInnerHTML={{ __html: I18n.t( "x_species_html", { count: speciesCount } ) }}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_species_caps_html", { count: speciesCount } ) }}
               />
               <li
                 className={`stat-tab ${tab === "identifiers" && "active"} ${identifiersDisabled}`}
                 onClick={( ) => setSelectedTab( "identifiers" )}
-                dangerouslySetInnerHTML={{ __html: I18n.t( "x_identifiers_html", { count: identifiersCount } ) }}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_identifiers_caps_html", { count: identifiersCount } ) }}
               />
               <li
                 className={`stat-tab ${tab === "observers" && "active"} ${observersDisabled}`}
                 onClick={( ) => setSelectedTab( "observers" )}
-                dangerouslySetInnerHTML={{ __html: I18n.t( "x_observers_html", { count: observersCount } ) }}
+                dangerouslySetInnerHTML={{ __html: I18n.t( "x_observers_caps_html", { count: observersCount } ) }}
               />
               <li className="stats-tab">
                 <button
