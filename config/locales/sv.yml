@@ -27,12 +27,6 @@ sv:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> ARTBESTÄMNING'
     other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Determinatör'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Determinatörer'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> Bestämning för andra'
     other: '<span class="count">%{count}</span> Bestämningar för andra'
@@ -83,9 +77,6 @@ sv:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> fynd granskat"
     other: "<span class='count'>%{count}</span> fynd granskade"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> observatör'
-    other: '<span class="count">%{count}</span> observatörer'
   x_others:
     one: "%{count} annan"
     other: "%{count} andra"
@@ -1886,10 +1877,17 @@ sv:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exakt rang
   except: förutom
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exkludera
   exclude_places: Uteslut fyndplatser
   exclude_projects: Uteslut projekt
   exclude_taxa: Uteslut taxa
   exclude_users: Uteslut användare
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Exkluderar %{count} taxon
+    other: Exkluderar %{count} taxa
   exclusion_filters: Exkluderingsfilter
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
@@ -2361,8 +2359,16 @@ sv:
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
   inbox: Inkorg
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inkludera
   include_places: Inkludera fyndplatser
   include_projects: Inkludera projekt
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inkludera / Exkludera överliggande taxa
   include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
   include_suggestions_not_expected_nearby: Inkludera förslag som inte förväntas i närheten
   include_taxa: Inkludera taxa
@@ -4667,7 +4673,6 @@ sv:
     must_be_verifiable: måste gå att verifiera
     must_be_wild: måste vara vild
   running_total: Ackumulerat
-  said: sade
   satellite: satellit
   save: Spara
   save_all: Spara alla
@@ -7058,11 +7063,6 @@ sv:
           Fynd kommer att återgå till <strong>"grundklass"</strong> om ovanstående
           villkor inte är uppfyllda eller om communityn är överens
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          <strong>dag och år ser inte korrekta ut</strong> (t.ex. snö
-          syns i bilden men datumet är på sommaren; bortse från tid på
-          dygnet)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>platsen ser inte riktig ut</strong> (t.ex. apor i
           mitten av havet, flodhästar i kontorsbyggnader, etc.)
@@ -7084,15 +7084,6 @@ sv:
           fyndet <strong>ger inte stöd för endast en sak</strong> (t.ex. fyra
           bilder på orelaterade organismer; en bild som visar på organismens
           livsmiljö är OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          fyndet behöver inte längre bestämmas <em>och</em> communityns
-          bestämning är till familj eller högre
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          observatören har valt bort community-bestämning och community-
-          bestämningens taxon är inte över- eller underliggande det taxon
-          som förknippas med observatörens bestämning
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Och som om det inte var komplicerat nog, finns det också situationer
@@ -7763,9 +7754,28 @@ sv:
           %{seek_link_tag}Seek%{link_tag_end}, och
           %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
-          Visste du att %{site_name} har översatts nästan uteslutande av %{x_people}? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} och %{android_link_tag}Android%{link_tag_end} appar och %{seek_link_tag}Seek%{link_tag_end}. Du kan se
-          alla personer som har bidragit med översättningar på alla språk, inklusive personer från tidigare år och folk från Translatewiki, i vår 
-          %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+          Visste du att %{site_name} har översatts nästan helt av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}apparna, och
+          %{seek_link_tag}Seek%{link_tag_end}. Du kan se
+          alla personer som har bidragit med översättningar på alla språk,
+          inklusive personer från tidigare år och folk från Translatewiki, i våra
+          %{view_all_web_link_tag}webb-%{link_tag_end} och
+          %{view_all_mobile_link_tag}mobila%{link_tag_end} kodbibliotek.
+        translators_desc_for_site_2: |
+          Visste du att %{site_name} har översatts nästan uteslutande av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}appar,
+          %{seek_link_tag}Seek%{link_tag_end}, och
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
         view_all_publications_count_caps2:

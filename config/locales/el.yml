@@ -23,12 +23,6 @@ el:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span>ΤΑΥΤΟΠΟΙΗΣΗ'
     other: '<span class="count">%{count}</span>ΤΑΥΤΟΠΟΙΗΣΕΙΣ'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Ταυτοποιητής'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Ταυτοποιητές'
   x_languages:
     one: "%{count}γλώσσα"
     other: "%{count}γλώσσες"
@@ -73,9 +67,6 @@ el:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> παρατήρηση εξετάστηκε"
     other: "<span class='count'>%{count}</span> παρατηρήσεις εξετάστηκαν"
-  x_observers_html:
-    one: '<span class="count">%{count}</span>Παρατηρητής'
-    other: '<span class="count">%{count}</span>Παρατηρητές'
   x_others:
     one: "1 άλλο"
     other: "%{count} άλλα"
@@ -3536,7 +3527,6 @@ el:
     must_be_in: Πρέπει να βρίσκεται σε ταξινομική βαθμίδα
     must_be_coordinates_shareable_by_project_curators: Ο παρατηρητής πρέπει να επιτρέπει στους επιμελητές της εργασίας να βλέπουν τις συντεταγμένες.
   running_total: Τρέχον σύνολο
-  said: είπε
   satellite: δορυφόρος
   save: Αποθήκευση
   save_all: Αποθήκευση όλων

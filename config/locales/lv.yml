@@ -32,14 +32,6 @@ lv:
     zero: '%{count} identifikācijas'
     one: '%{count} identifikāciju'
     other: '%{count} identifikācijas'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    zero: '<span class="count">%{count}</span> identificētāji'
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificētājs'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identificētāji'
   x_languages:
     zero: "%{count} valodas"
     one: "%{count} valoda"
@@ -98,10 +90,6 @@ lv:
     zero: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
     one: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
     other: "<span class='count'>%{count}</span> pārbaudīti novērojumi"
-  x_observers_html:
-    zero: '<span class="count">%{count}</span> novērotāji'
-    one: '<span class="count">%{count}</span> novērotājs'
-    other: '<span class="count">%{count}</span> novērotāji'
   x_others:
     zero: "%{count} citi"
     one: "%{count} cits"
@@ -4060,7 +4048,6 @@ lv:
     must_be_verifiable: jābūt pierādāmam
     must_be_wild: jābūt savvaļā
   running_total: Kopējais skaits
-  said: teica
   satellite: satelīts
   save: Saglabāt
   save_all: Saglabāt visu

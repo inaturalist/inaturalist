@@ -27,12 +27,6 @@ nb:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFIKASJON'
     other: '<span class="count">%{count}</span> IDENTIFIKASJONER'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identifikator'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identifikatorer'
   x_languages:
     one: "%{count} språk"
     other: "%{count} språk"
@@ -80,9 +74,6 @@ nb:
   x_observations_reviewed_html:
     one: "<span class='antal'>%{count}</span> observasjon revidert"
     other: "<span class=\"count\">%{count}</span> observasjoner revidert"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> observatør'
-    other: '<span class="count">%{count}</span> observatører'
   x_others:
     one: "%{count} annen"
     other: "%{count} andre"
@@ -4275,7 +4266,6 @@ nb:
     must_be_verifiable: må være verifiserbar
     must_be_wild: må være vill
   running_total: Løpende total
-  said: sa
   satellite: satellitt
   save: Lagre
   save_all: Lagre alle

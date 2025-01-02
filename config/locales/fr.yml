@@ -27,12 +27,6 @@ fr:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICATION'
     other: '<span class="count">%{count}</span> IDENTIFICATIONS'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificateur'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificateurs'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID fait pour d''autres'
     other: '<span class="count">%{count}</span> ID faites pour d''autres'
@@ -83,9 +77,6 @@ fr:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observation vérifiée"
     other: "<span class='count'>%{count}</span> observations vérifiées"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observateur'
-    other: '<span class="count">%{count}</span> Observateurs'
   x_others:
     one: "1 autre"
     other: "%{count} autres"
@@ -130,8 +121,8 @@ fr:
     one: "<span class='count'>1</span> observation de calibre recherche</span>"
     other: "<span class='count'>%{count}</span> observations de calibre recherche</span>"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>%{count}</span> observation de calibre recherche identifiée au niveau de l'espèce ou à un niveau inférieur</span>"
-    other: "<span class='count'>%{count}</span> observations de calibre recherche identifiées au niveau de l'espèce ou à un niveau inférieur</span>"
+    one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au niveau de l'espèce ou à un niveau inférieur"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche identifiées au niveau de l'espèce ou à un niveau inférieur"
   x_sounds:
     one: "%{count} son"
     other: "%{count} sons"
@@ -179,12 +170,12 @@ fr:
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
   about_complete_taxa: À propos des taxons complets
-  about_conservation_status: À propos de l’état de conservation
+  about_conservation_status: À propos des statuts de conservation
   about_editing_observation_fields: À propos de la modification des champs d’observation
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: À propos des moyens d’implantation
+  about_establishment_means: À propos des types d'implantation
   about_license_options: À propos des options de licence
   about_licenses: À propos des licences
   #Header for a section describing taxon names
@@ -4569,7 +4560,6 @@ fr:
     must_be_verifiable: doit être vérifiable
     must_be_wild: doit être sauvage
   running_total: Total actuel
-  said: a dit
   satellite: satellite
   save: Enregistrer
   save_all: Enregistrer tout
@@ -6947,9 +6937,6 @@ fr:
         dqa_help_casual_lead_html: |
           Les observations reviendront à <strong>"occasionel"</strong> si les conditions
           ci-dessus ne sont pas remplies ou si la communauté l'accepte
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          le <strong>jour et l'année ne semblent pas exacts</strong> (par exemple, de la neige apparaît sur la photo, mais la date se situe en été ; ne pas prendre en compte l'heure)
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
           Certaines de ces photos ont été signalées comme étant inappropriée ou

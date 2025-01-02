@@ -24,12 +24,6 @@ sat:
   x_identifications_:
     one: '%{count} ᱪᱤᱱᱦᱟᱹᱯ'
     other: '%{count} ᱪᱤᱱᱦᱟᱹᱯ ᱠᱚ'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯᱤᱭᱟᱹ'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ᱪᱤᱱᱦᱟᱹᱯᱤᱭᱟᱹ ᱠᱚ'
   x_languages:
     one: "%{count} ᱯᱟᱹᱨᱥᱤ"
     other: "%{count} ᱯᱟᱹᱨᱥᱤ ᱠᱚ"
@@ -54,9 +48,6 @@ sat:
   x_observations_html:
     one: "<span class='count'>%{count}</span> ᱧᱮᱞ ᱯᱚᱨᱚᱠ"
     other: "<span class='count'>%{count}</span> ᱧᱮᱞ ᱯᱚᱨᱚᱠ ᱠᱚ"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> ᱧᱮᱧᱮᱞᱤᱭᱟᱹ'
-    other: '<span class="count">%{count}</span> ᱧᱮᱧᱮᱞᱤᱭᱟᱹ ᱠᱚ'
   x_species_html:
     one: "<span class='count'>%{count}</span> ᱡᱟᱹᱛ"
     other: "<span class='count'>%{count}</span> ᱡᱟᱹᱛ ᱠᱚ"

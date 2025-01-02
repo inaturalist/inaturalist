@@ -27,12 +27,6 @@ et:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> MÄÄRATLUS'
     other: '<span class="count">%{count}</span> MÄÄRATLUST'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> määraja'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> määrajat'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> teistele tehtud määratlus'
     other: '<span class="count">%{count}</span> teistele tehtud määratlust'
@@ -83,9 +77,6 @@ et:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> kontrollitud vaatlus"
     other: "<span class='count'>%{count}</span> kontrollitud vaatlust"
-  x_observers_html:
-    one: '<span class="count">1</span> vaatleja'
-    other: '<span class="count">%{count}</span> vaatlejat'
   x_others:
     one: "1 muu"
     other: "%{count} muud"
@@ -3892,7 +3883,6 @@ et:
     must_be_in: peab olema taksonis
     must_be_coordinates_shareable_by_project_curators: vaatleja peab lubama projekti kuraatoritel koordinaate näha.
   running_total: Hetke koguarv
-  said: ütles
   satellite: satelliit
   save: Salvesta
   save_all: Salvesta kõik

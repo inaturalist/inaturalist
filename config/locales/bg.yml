@@ -21,12 +21,6 @@ bg:
   x_identifications_:
     one: '1 Разпознаване'
     other: '%{count} Разпознавания'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span>Разпознавач'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span>Разпознавачи'
   x_languages:
     one: "%{count} език"
     other: "%{count} езика"
@@ -62,9 +56,6 @@ bg:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> рецензирано наблюдение"
     other: "<span class='count'>%{count}</span> рецензирани наблюдения"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> наблюдател'
-    other: '<span class="count">%{count}</span> наблюдатели'
   x_others:
     one: "%{count} друг"
     other: "%{count} други"
@@ -3290,7 +3281,6 @@ bg:
     must_be_in: трябва да бъде от таксон
     must_be_coordinates_shareable_by_project_curators: наблюдателят трябва да позволи на кураторите на проекта да виждат координатите.
   running_total: Нарастващ сбор
-  said: каза
   satellite: сателит
   save: Съхраняване
   save_all: Запази всичко

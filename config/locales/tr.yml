@@ -27,12 +27,6 @@ tr:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> TANIMLAMA'
     other: '<span class="count">%{count}</span> TANIMLAMA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Tanımlayıcı'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Tanımlayıcı'
   x_languages:
     one: "%{count} dil"
     other: "%{count} dil"
@@ -80,9 +74,6 @@ tr:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
     other: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Gözlemci'
-    other: '<span class="count">%{count}</span> Gözlemci'
   x_others:
     one: "diğer %{count}"
     other: "diğer %{count}"
@@ -4392,7 +4383,6 @@ tr:
     must_be_verifiable: doğrulanabilir olmalı
     must_be_wild: yabani olmalı
   running_total: Toplam Bulunan
-  said: şunu dedi
   satellite: uydu
   save: Kaydet
   save_all: Tümünü Kaydet

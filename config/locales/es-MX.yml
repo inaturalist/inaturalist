@@ -27,12 +27,6 @@ es-MX:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
     other: '<span class="count">%{count}</span> IDENTIFICACIONES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificadores'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
@@ -80,9 +74,6 @@ es-MX:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
-  x_observers_html:
-    one: '<span class="count">1</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "%{count} otros"
     other: "%{count} otros"
@@ -4537,7 +4528,6 @@ es-MX:
     must_be_verifiable: debe ser verificable
     must_be_wild: debe ser salvaje
   running_total: Total acumulado
-  said: decia
   satellite: satélite
   save: Guardar
   save_all: Guardar todo

@@ -27,12 +27,6 @@ ca:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓ'
     other: '<span class="count">%{count}</span> IDENTIFICACIONS'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identificadors'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span>ID fetes per altri'
     other: '<span class="count">%{count}</span>IDs fetes per altri'
@@ -83,9 +77,6 @@ ca:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observació revisada"
     other: "<span class='count'>%{count}</span> observacions revisades"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadors'
   x_others:
     one: "1 altre"
     other: "%{count} més"
@@ -4456,7 +4447,6 @@ ca:
     must_be_verifiable: ha de ser verificable
     must_be_wild: ha de ser silvestre
   running_total: Acumulat total
-  said: deia
   satellite: satèl·lit
   save: Desa
   save_all: Desa-ho tot

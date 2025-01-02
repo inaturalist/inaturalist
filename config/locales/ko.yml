@@ -18,10 +18,6 @@ ko:
     other: '동정 %{count} 개'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span>번의 동정'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '동정한 사용자 <span class="count">%{count}</span>'
   x_languages:
     other: "%{count}개의 언어"
   x_journal_posts_html:
@@ -48,8 +44,6 @@ ko:
     other: "<a href='%{url}'>관찰 %{count} 개</a>"
   x_observations_reviewed_html:
     other: "검토한 관찰 <span class='count'>%{count}</span> 개"
-  x_observers_html:
-    other: '관찰자 <span class="count">%{count}</span>'
   x_others:
     other: "외 %{count} 명"
   x_people:

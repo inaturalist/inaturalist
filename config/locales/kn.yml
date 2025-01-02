@@ -21,12 +21,6 @@ kn:
   x_identifications_:
     one: '%{count} ಗುರುತಿಸುವಿಕೆ'
     other: '%{count} ಗುರುತಿಸುವಿಕೆಗಳು'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> ಪತ್ತೆದಾರರು'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ಪತ್ತೆದಾರರು'
   x_languages:
     one: "%{count} ಭಾಷೆ"
     other: "%{count} ಭಾಷೆಗಳು"
@@ -71,9 +65,6 @@ kn:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆ ಪರಿಶೀಲನೆಯಾಗಿದೆ"
     other: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆಗಳು ಪರಿಶೀಲನೆಯಾಗಿವೆ"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> ವೀಕ್ಷಕರು'
-    other: '<span class="count">%{count}</span> ವೀಕ್ಷಕರುಗಳು'
   x_others:
     one: "%{count} ಇತರೆ"
     other: "%{count} ಇತರೆ"
@@ -3607,7 +3598,6 @@ kn:
     must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
     must_be_wild: ವನ್ಯಜೀವಿಯಾಗಿರಲೇಬೇಕು
   running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತ
-  said: ಹೇಳಿದ್ದಾರೆ
   satellite: ಉಪಗ್ರಹ
   save: ಉಳಿಸಿ
   save_all: ಎಲ್ಲಾ ಉಳಿಸಿ

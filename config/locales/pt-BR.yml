@@ -27,12 +27,6 @@ pt-BR:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
     other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID feito para outros'
     other: '<span class="count">%{count}</span> IDs feitos para outros'
@@ -83,9 +77,6 @@ pt-BR:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observações revisadas"
     other: "<span class='count'>%{count}</span> observações revisadas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "1 outra"
     other: "%{count} outras"
@@ -1883,6 +1874,9 @@ pt-BR:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Classificação exata
   except: exceto
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Excluir
   exclude_places: Excluir Locais
   exclude_projects: Excluir Projetos
   exclude_taxa: Excluir Táxons
@@ -2351,8 +2345,16 @@ pt-BR:
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
   inbox: Caixa de entrada
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Incluir
   include_places: Incluir lugares
   include_projects: Incluir Projetos
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Incluir / Excluir táxons ancestrais
   include_suggestions_not_seen_nearby: Incluir sugestões não vistas nas proximidades
   include_suggestions_not_expected_nearby: Incluir sugestões não esperadas nas proximidades
   include_taxa: Incluir Táxons
@@ -4651,7 +4653,6 @@ pt-BR:
     must_be_verifiable: Deve ser verificável
     must_be_wild: deve ser selvagem
   running_total: Total acumulado
-  said: disse
   satellite: satélite
   save: Salvar
   save_all: Salvar tudo
@@ -6977,10 +6978,6 @@ pt-BR:
           As observações serão revertidas para <strong>"casual"</strong> se as condições acima
           não forem cumpridas ou se a comunidade concordar que
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          a <strong>dia e ano não parecem ser corretos</strong> (por exemplo, neve
-          aparece na foto, mas a data é de verão; o horário está inconsistente)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           a localização <strong>não parece correta</strong> (por exemplo, macacos
           no meio do oceano, hipopótamos em prédios de escritório, etc.)
@@ -7001,13 +6998,6 @@ pt-BR:
           a observação <strong>não apresenta evidências relacionadas a um
           assunto</strong> (por exemplo, tem quatro fotos de organismos não relacionados entre sí; porém uma foto
           mostrando o habitat do assunto da observação é OK)
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          a observação não mais precisa de uma identificação <em>e</em> a ID da comunidade
-          está na família ou acima
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          o observador optou por sair da ID da comunidade e o táxon da ID da comunidade não é um ancestral ou descendente do táxon associado com a identificação do observador
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           E se isso não foi complicado o suficiente, há também situações
@@ -7662,6 +7652,16 @@ pt-BR:
           todas as pessoas que contribuíram com traduções, incluindo pessoas dos últimos anos e pessoas da Translatewiki, em nossos repositórios de códigos de
           %{view_all_web_link_tag}web%{link_tag_end} e
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_2: |
+          Você sabia que o iNaturalist foi traduzido em %{x_languages},
+          quase inteiramente por %{x_people}, algumas dessas que nem mesmo usam o iNat? Aqui
+          estão todos os incríveis tradutores que ajudaram a adicionar traduções este ano,
+          juntamente com o número de palavras que eles traduziram para o
+          %{website_link_tag}website%{link_tag_end}, nosso aplicativo para 
+          %{iphone_link_tag}iPhone%{link_tag_end} e
+          %{android_link_tag}Android%{link_tag_end},
+          %{seek_link_tag}Seek%{link_tag_end}, e
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Você sabia que o %{site_name} foi traduzido quase inteiramente por %{x_people}? Aqui estão todos os tradutores incríveis que adicionaram traduções este ano, junto ao número de palavras que eles traduziram para o %{website_link_tag}site%{link_tag_end}, o aplicativo iNaturalist para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, bem como o %{seek_link_tag}Seek%{link_tag_end}.Você pode ver todas as pessoas que contribuíram para traduções em todos os idiomas incluindo pessoas de anos passados e o pessoal da Translatewiki, em nosso repositório de códigos da%{view_all_web_link_tag}web%{link_tag_end} e %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_desc_for_site_2: |

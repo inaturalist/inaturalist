@@ -5,10 +5,6 @@ mi:
     other: '<span class="count">%{count}</span> tautuhi'
   x_identifications_:
     other: '%{count} Tautuhi'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> kaitautuhi'
   x_languages:
     other: "%{count} ngā reo"
   x_observations:
@@ -17,8 +13,6 @@ mi:
     other: "%{count} Mauhanga"
   x_observations_html:
     other: "<span class='count'>%{count}</span> mauhanga"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> kaimātaki'
   x_new_species:
     other: "%{count} Momo hou"
   x_species:

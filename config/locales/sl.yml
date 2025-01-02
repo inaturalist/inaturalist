@@ -45,16 +45,6 @@ sl:
     two: '<span class="count">%{count}</span> DOLOČITVI'
     few: '<span class="count">%{count}</span> DOLOČITVE'
     other: '<span class="count">%{count}</span> DOLOČITEV'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Določevalec'
-    #Number of people who have added identifications
-    two: '<span class="count">%{count}</span> Določevalca'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Določevalci'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Določevalci'
   x_languages:
     one: "%{count} jezik"
     two: "%{count} jezika"
@@ -132,11 +122,6 @@ sl:
     two: "<span class='count'>%{count}</span> pregledani opazovanji"
     few: "<span class='count'>%{count}</span> pregledana opazovanja"
     other: "<span class='count'>%{count}</span> pregledanih opazovanj"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Opazovalec'
-    two: '<span class="count">%{count}</span> Opazovalca'
-    few: '<span class="count">%{count}</span> Opazovalci'
-    other: '<span class="count">%{count}</span> Opazovalcev'
   x_others:
     one: "%{count} drugi"
     two: "%{count} druga"
@@ -4013,7 +3998,6 @@ sl:
     must_be_verifiable: mora biti preverljivo
     must_be_wild: more biti divje
   running_total: Tekoči seštevek
-  said: rečeno
   satellite: satelit
   save: Shrani
   save_all: Shrani vse

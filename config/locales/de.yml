@@ -27,12 +27,6 @@ de:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> BESTIMMUNG'
     other: '<span class="count">%{count}</span> BESTIMMUNGEN'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Bestimmer'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Bestimmer'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID für andere erstellt'
     other: '<span class="count">%{count}</span> IDs für andere User'
@@ -83,9 +77,6 @@ de:
   x_observations_reviewed_html:
     one: "<span class='count'>Eine</span> Beobachtung begutachtet"
     other: "<span class='count'>%{count}</span> Beobachtungen begutachtet"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Beobachter'
-    other: '<span class="count">%{count}</span> Beobachter'
   x_others:
     one: "%{count} weitere Person"
     other: "%{count} weitere Personen"
@@ -1096,7 +1087,7 @@ de:
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Inhalt
   content_and_display: Inhalt & Anzeige
-  content_author: Inhaltsautor
+  content_author: Urheber
   content_hidden: Inhalt versteckt
   #message on hidden content displaying when and why the content was hidden
   content_hidden_on_date_because_reason_html: |
@@ -2641,7 +2632,7 @@ de:
     none: Nichts
   long: Länge
   longitude: Längengrad
-  longitude_in_decimal: 'Längengrad in dezimal Grad, z.B. 38.123'
+  longitude_in_decimal: 'Geographische Länge in Dezimalgrad, z.B. 38.123'
   longitude_slash_x_coord_slash_easting: Längengrad/ x-Koordinate/ Rechtswert
   longitude_value: "Längengrad: %{longitude}"
   look_up_name: "Namen nachschlagen"
@@ -2968,7 +2959,7 @@ de:
   new_project_asset: Neues project_asset
   new_project_asset_for: Neue Projektdatei für
   new_source: Neue Quelle
-  new_species_added_in_interval: Neue Art in %{interval} hinzugefügt
+  new_species_added_in_interval: Neue Arten im %{interval} hinzugefügt
   new_species_added_in_interval_x_of_y: Neue Arten hinzugefügt in %{interval} (Zeige %{x} von %{y})
   new_taxon_change: Neue Taxon-Änderung
   new_taxon_link: Neuer Taxon-Link
@@ -4396,7 +4387,7 @@ de:
   remove_place: Gebiet entfernen
   remove_range: Bereich entfernen
   remove_relationship: Beziehung entfernen
-  remove_relationship_caps: BEZIEHUNGEN ENTFERNEN
+  remove_relationship_caps: BEZIEHUNG ENTFERNEN
   remove_relationship_question: Beziehung entfernen?
   remove_section: Abschnitt entfernen
   remove_selected: Ausgewählte entfernen
@@ -4481,7 +4472,6 @@ de:
     must_be_verifiable: muss verifizierbar sein
     must_be_wild: muss wild sein
   running_total: Gesamtzahl
-  said: sagte
   satellite: Satellit
   save: Speichern
   save_all: Alles speichern
@@ -4869,7 +4859,7 @@ de:
   suggest_an_identification: Eine Bestimmung vorschlagen
   suggest_or_require_that: Wähle optionale oder verpflichtende Felder aus, die für zum Projekt hinzuzufügende Beobachtungen ausgefüllt werden können/müssen.
   suggestions: Vorschläge
-  suitable_for_the_global_biodiversity_information_facility: Für die 'Global Biodiversity Information Facility' geeignet
+  suitable_for_the_global_biodiversity_information_facility: Geeignet für die 'Global Biodiversity Information Facility'
   suitable_for_wikipedia_and_other_wikimedia_foundation_projects: Geeignet für Wikipedia und andere Projekte der Wikimedia Foundation
   summary: Zusammenfassung
   supporting: bestätigend
@@ -5840,7 +5830,7 @@ de:
   #"You" is singular
   yir_donate_banner_inaturalist_thrives: iNaturalist hat Erfolg dank Leuten wie dir!
   #"You" is singular
-  yir_donate_banner_you_helped_inaturalist_thrive: iNaturalist hatte auch dank dir ein erfolgreiches Jahr. Vielen Dank!
+  yir_donate_banner_you_helped_inaturalist_thrive: iNaturalist hatte auch dank dir wieder ein erfolgreiches Jahr. Vielen Dank!
   #"Your" is singular
   yir_donate_inaturalist_needs_your_support: iNaturalist braucht deine Unterstützung
   yir_email_because_of_you: |
@@ -6689,9 +6679,6 @@ de:
           Beobachtungen werden auf <strong>"Hobbyqualität"</strong> zurückgesetzt, wenn die obigen
           Bedingungen nicht erfüllt sind oder die Community zustimmt,
         #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          dass <strong>das Datum nicht korrekt erscheint</strong> (z.B. Schnee auf dem Foto zu sehen obwohl laut Datum Sommer sein sollte)
-        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           dass der <strong>Standort nicht korrekt aussieht</strong> (z.B. Landtiere 
           mitten im Ozean, Parkbäume in geschlossenen Gebäuden, usw.)
@@ -6709,13 +6696,6 @@ de:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           dass die Beobachtung <strong> unterschiedliche Lebewesen</strong> in den einzelnen Fotos enthält (z.B sind vier Fotos von Lebewesen in der Beobachtung, die nichts miteinander zu tun haben) - ein Lebensraumfoto ist aber ok
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_voted_out_html: |
-          dass die Bestimmung nicht weiter verbessert werden kann <em>und</em> die Community-ID
-          auf Familieniveau oder höher ist
-        #One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          wenn der Beobachter sich aus der Community-ID zurückgezogen hat und die IDs dem vom Beobachter gewählten Taxon widersprechen
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Und wenn das nicht kompliziert genug wäre, gibt es auch Situationen, in denen das System mitentscheidet:
@@ -7001,7 +6981,7 @@ de:
         it_looks_like_this_project_can_be_converted: |
           Es sieht so aus, als könne dieses Projekt in ein neues <a href="%{url}">Sammel-Projekt</a> umgewandelt werden.
         #Label for button to make another user the owner of a project
-        make_owner: zum Besitzer machen
+        make_owner: zum Eigentümer machen
         no_curators: |
           Es existieren keine Projektkuratoren. Wenn du eine neue Person als
           Admin zuweisen möchtest, muss sie zuerst diesem Projekt beitreten und du musst sie
@@ -7319,7 +7299,7 @@ de:
           sowie die Entscheidung zu offener Lizenzierung ermöglichen diesen Organisationen, nützliche
           Informationen über die biologische Vielfalt mit Menschen zu teilen, die damit etwas Sinnvolles anfangen können.
         compare_desc: |
-          Wie verlief dieses Jahr im Vergleich zu den Vorjahren? Mit mindestens drei Jahren iNaturalist-Verwendung können wir anfangen, jährliche Aktivitätsmetriken zu vergleichen.
+          Wie war dieses Jahr im Vergleich zu den Vorjahren? Ab drei Jahren iNaturalist-Nutzung können jährliche Aktivitätsmetriken verglichen werden. Die grünen Balken repräsentieren das aktuelle Jahr, die weißen senkrechten Balken das letzte Jahr und die grauen Hintergrundbereiche die niedrigsten und höchsten Jahre, sowie der Durchschnitt über alle Jahre gemittelt. Jahre ohne Werte (0) werden nicht berücksichtigt.
         compare_site_desc: |
           Wie verlief dieses Jahr im Vergleich mit den Vorjahren? Die grüne Leiste zeigt dieses
           Jahr, die weiße vertikale Leiste zeigt letztes Jahr und die grauen Bereiche im Hintergrund zeigen die niedrigsten und höchsten Jahre sowie den Durchschnitt für
@@ -7402,6 +7382,15 @@ de:
         translators_desc_for_site: |
           Wusstest du, dass %{site_name} fast ausschließlich von %{x_people} übersetzt wurde? Hier sind all die großartigen Übersetzer, die dieses Jahr Übersetzungen hinzugefügt haben, aufgelistet nach der Anzahl der von ihnen übersetzten Wörter für die
           %{website_link_tag}Webseite%{link_tag_end}, unsere %{iphone_link_tag}iPhone%{link_tag_end}- und %{android_link_tag}Android%{link_tag_end}-Apps, sowie %{seek_link_tag}Seek%{link_tag_end}. Du kannst alle Personen, die Übersetzungen in den jeweiligen Sprachen beigetragen haben, einschließlich Personen aus den vergangenen Jahren und Personen aus Translatewiki, in unseren Code-Repositories für %{view_all_web_link_tag}Web%{link_tag_end} und %{view_all_mobile_link_tag}Smartphone%{link_tag_end} ansehen.
+        translators_desc_for_site_2: |
+          Wusstest du, dass %{site_name} fast ausschließlich von
+          %{x_people} übersetzt wurde? Hier sind all die großartigen Übersetzer, die
+          dieses Jahr Übersetzungen hinzugefügt haben, zusammen mit der Anzahl der Wörter
+          die sie für die
+          %{website_link_tag}Webseite%{link_tag_end}, die iNaturalist-Apps für
+          %{iphone_link_tag}iPhone%{link_tag_end} und
+          %{android_link_tag}Android%{link_tag_end}, 
+          %{seek_link_tag}Seek%{link_tag_end} sowie %{help_link_tag}iNatHelp%{link_tag_end} übersetzt haben.
         translators_prompt: |
           Wenn du beim Übersetzen helfen möchtest, %{link_tag}lerne hier%{link_tag_end} wie es geht.
         view_all_publications_count_caps2:

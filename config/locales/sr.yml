@@ -36,14 +36,6 @@ sr:
     one: '<span class=''count''>%{count}</span> IDENTIFIKACIJA'
     few: '<span class=''count''>%{count}</span> IDENTIFIKACIJE'
     other: '<span class=''count''>%{count}</span> IDENTIFIKACIJA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifikatora'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatora'
   x_languages:
     one: "%{count} jezik"
     few: "%{count} jezika"
@@ -98,10 +90,6 @@ sr:
     one: "<span class='count'>%{count}</span> opservacija pregledana"
     few: "<span class='count'>%{count}</span> opservacije pregledane"
     other: "<span class='count'>%{count}</span> opservacija pregledano"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Posmatrač'
-    few: '<span class="count">%{count}</span> Posmatrača'
-    other: '<span class="count">%{count}</span> Posmatrača'
   x_others:
     one: "još neko"
     few: "%{count} drugih"
@@ -1468,10 +1456,18 @@ sr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Precizan rang
   except: osim
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Izuzev
   exclude_places: Izostavi mesta
   exclude_projects: Izostavi projekte
   exclude_taxa: Izostavi taksone
   exclude_users: Izostavi korisnike
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Izuzev %{count} taksona
+    few: Izuzev %{count} taksona
+    other: Izuzev %{count} taksona
   exclusion_filters: Izostavi filtere
   existing_flags: Postojeće prijave
   exit_full_screen: "izađi iz rеžima cеlog еkrana"

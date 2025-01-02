@@ -18,10 +18,6 @@ id:
     other: '%{count} identifikasi'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> IDENTIFIKASI'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Pengidentifikasi'
   x_ids_made_for_others_html:
     other: '<span class="count">%{count}</span> ID yang dibuat untuk orang lain'
   x_languages:
@@ -56,8 +52,6 @@ id:
     other: "<a href='%{url}'>%{count} pengamatan</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> pengamatan telah ditinjau"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> Pengamat'
   x_others:
     other: "%{count} lainnya"
   x_people:
@@ -1774,10 +1768,16 @@ id:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tingkat Pasti
   except: kecuali
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Kecualikan
   exclude_places: Tempat Yang Dikecualikan
   exclude_projects: Proyek Yang Dikecualikan
   exclude_taxa: Taksa Yang Dikecualikan
   exclude_users: Pengguna Yang Dikecualikan
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    other: Mengecualikan %{count} takson
   exclusion_filters: Saringan Yang Dikecualikan
   existing_flags: Tanda Yang Ada
   exit_full_screen: "Keluar Dari Layar Penuh"
@@ -2223,8 +2223,16 @@ id:
   inaturalist_network_affiliation: Afiliasi Jaringan iNaturalist
   #Label for messages you've received
   inbox: Kotak Masuk
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Sertakan
   include_places: Sertakan Tempat
   include_projects: Sertakan Proyek
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Sertakan / Kecualikan Takson Induk
   include_suggestions_not_seen_nearby: Sertakan rekomendasi spesies yang tidak ditemukan di daerah sekitar
   include_suggestions_not_expected_nearby: Sertakan usulan yang tidak ditemukan di sekitar
   include_taxa: Sertakan Taksa
@@ -4484,7 +4492,6 @@ id:
     must_be_verifiable: harus bisa diverifikasi
     must_be_wild: harus liar
   running_total: Total Akumulasi
-  said: mengatakan
   satellite: satelit
   save: Simpan
   save_all: Simpan Semua
@@ -6701,6 +6708,60 @@ id:
         data_quality_assessment_desc3_html: |
           Tingkat Kualitas merangkum akurasi, presisi, kelengkapan, relevansi, dan kelayakan dari suatu pengamatan iNaturalist sebagai suatu data keanekaragaman hayati. Beberapa atribut ditentukan secara otomatis, sedangkan beberapa atribut lain tergantung pada suara pengguna iNat. iNaturalist membagikan pengamatan-pengamatan "Tingkat Riset" yang berlisensi dengan beberapa mitra data untuk keperluan sains dan konservasi.
         disagreement_count_desc: "# taksa yang diidentifikasi yang bukan merupakan induk sebuah takson"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Penilaian kualitas data merupakan rangkuman akurasi dari suatu pengamatan. Pada awalnya, semua pengamatan memiliki kelas <strong>"kasual"</strong>. Pengamatannya menjadi <strong>"membutuhkan ID"</strong> ketika
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: pengamatannya <strong> memiliki tanggal </strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: pengamatannya <strong>digeoreferensikan</strong> (i.e. memiliki koordinat lin/buj)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: pengamatannya <strong>memiliki foto atau suara</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: pengamatannya <strong>bukan merupakan manusia</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Pengamatannya menjadi <strong>"kelas riset"</strong> ketika
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          <strong>komunitas %{site_name} setuju dengan ID bertingkat spesies atau lebih bawah </strong>, yaitu ketika lebih dari 2/3 pengidentifikasi setuju dengan 
+          suatu takson (jika komunitasnya telah memilih bahwa Takson Komunitasnya tidak bisa 
+          ditingkatkan kembali, hal ini merujuk kepada ID bertingkat subfamili atau lebih bawah)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Pengamatannya akan kembali ke tingkat <strong>"kasual"</strong> jika 
+          kondisi-kondisi di atas tidak terpenuhi atau komunitasnya setuju bahwa
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>lokasinya tidak terlihat akurat</strong> (misalkan monyet di 
+          tengah samudra, kuda nil di kantor, dll.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismenya tidak liar/dinaturalisasi</strong> (contohnya 
+          dipelihara atau dibudidayakan oleh manusia)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          pengamatannya <strong>tidak menunjukkan bukti-bukti adanya 
+          organisme</strong>, seperti gambar perairan, bebatuan, pemandangan 
+          yang tidak menyertakan organisme, dll.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          pengamatannya <strong>tidak menunjukkan bukti organisme yang masih baru (~100 tahun) </strong> (seperti fosil; namun jejak, tahi, dan daun mati masih oke)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          pengamatannya <strong>tidak menunjukkan bukti terkait satu subjek</strong> 
+          (contohnya ia memiliki empat gambar yang berisi organisme-organisme yang tidak berkaitan; 
+          gambar yang menunjukkan habitat dari subjek pengamatannya masih oke)
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Dan kalau ini masih belum terasa rumit, masih ada situasi tertentu 
+          di mana sistem memiliki hak suara:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Sistem akan menyatakan bahwa pengamatannya tidak liar/alami jika 
+          ada setidaknya 10 pengamatan lain dari suatu genus atau tingkat di bawahnya 
+          di wilayah administratif setingkat desa, provinsi, atau negara yang mengandung 
+          pengamatan ini dan 80% atau lebih pengamatannya telah ditandai sebagai 
+          tidak liar/alami.
         identification_count_desc: '# identifikasi untuk sebuah takson individu'
         flagged_photos_desc_html: |
           Beberapa foto ini telah ditandai karena konten yang tidak pantas atau pelanggaran hak cipta. Untuk informasi selengkapnya, lihat %{links}
@@ -7295,6 +7356,8 @@ id:
           Apakah Anda tahu bahwa iNaturalist telah diterjemahkan ke %{x_languages}, hampir seluruhnya oleh %{x_people}, beberapa dari mereka bahkan belum pernah menggunakan iNat? Berikut adalah semua penerjemah yang keren yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, %{seek_link_tag}Seek%{link_tag_end}, dan %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang kece yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end} kami, dan %{seek_link_tag}Seek%{link_tag_end}. Anda dapat melihat semua orang yang telah ikut menerjemahkan, termasuk orang-orang dari tahun-tahun yang lampau dan teman-teman dari Translatewiki, di penyimpanan kode %{view_all_web_link_tag}web%{link_tag_end} dan %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Apakah Anda tahu bahwa %{site_name} telah diterjemahkan hampir seluruhnya oleh %{x_people}? Berikut adalah semua penerjemah yang keren yang telah menambahkan terjemahan tahun ini, beserta jumlah kata yang telah mereka terjemahkan untuk %{website_link_tag}situs web%{link_tag_end}, aplikasi iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} dan %{android_link_tag}Android%{link_tag_end}, %{seek_link_tag}Seek%{link_tag_end}, dan %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Jika Anda ingin membantu penerjemahan, %{link_tag}pelajari caranya%{link_tag_end}.
         view_all_publications_count_caps2:

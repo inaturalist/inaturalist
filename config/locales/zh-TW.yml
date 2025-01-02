@@ -18,10 +18,6 @@ zh-TW:
     other: '%{count} 項鑑定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> 筆鑑定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> 個鑑定者'
   x_languages:
     other: "%{count} 種語言"
   #Count of number of taxa that represent the first addition to a life list
@@ -54,8 +50,6 @@ zh-TW:
     other: "<a href='%{url}'>%{count}</a>個觀察記錄"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 個觀察記錄已檢閱"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> 個觀察者'
   x_others:
     other: "%{count} 個其它"
   x_people:
@@ -4209,7 +4203,6 @@ zh-TW:
     must_be_verifiable: 必須是可證實的
     must_be_wild: 必須是野生的
   running_total: 運行總計
-  said: 說
   satellite: 衛星
   save: 儲存
   save_all: 儲存全部
