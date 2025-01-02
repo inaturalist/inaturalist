@@ -60,4 +60,4 @@ You should report security issues that require confidential communication to [he
 
 # Conduct and Behavior
 
-We expect all contributors to abide by the [iNaturalist Community Guidelines](https://www.inaturalist.org/pages/community+guidelines), or at least the parts that aren't specific to the use of iNaturailst itself.
+We expect all contributors to abide by the [iNaturalist Community Guidelines](https://www.inaturalist.org/pages/community+guidelines), or at least the parts that aren't specific to the use of iNaturalist itself.

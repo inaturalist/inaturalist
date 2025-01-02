@@ -10,7 +10,8 @@ class StatsController < ApplicationController
     only: [:cnc2017_taxa, :cnc2017_stats, :generate_year, :user_segments, :daily_active_user_model],
     unless: -> { authenticated_with_oauth? }
   before_action :admin_required, only: [:user_segments, :daily_active_user_model]
-  before_action :allow_external_iframes, only: [:wed_bioblitz]
+
+  allow_external_iframes( only: [:wed_bioblitz] )
 
   prepend_around_action :enable_replica, only: [:index, :summary]
 
@@ -92,7 +93,7 @@ class StatsController < ApplicationController
     if !@display_user &&
         !current_user&.is_admin? &&
         Date.today.year == @year &&
-        Date.today < Date.parse( "#{@year}-12-01" )
+        Date.today < Date.parse( "#{@year}-11-15" )
       @year_statistic = nil
     end
     @headless = @footless = true

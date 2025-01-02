@@ -21,6 +21,9 @@ af:
     one: '%{count} Spesie'
     other: '%{count} Spesies'
   _100_day_trends: 100-dae neiging
+  #Ascending alphabetical sort option. Could be alternatively be translated as
+  #"Alphabetical (ascending)"
+  a_to_z: "A tot Z"
   about_conservation_status: Oor Bewaringstatus
   #Header for a section describing taxon names
   about_names: Oor Name
@@ -46,19 +49,26 @@ af:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Jy kan kies om weggesteekte koördinate te deel vir
+  accuracy: Akkuraatheid
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aksie
   actions: Aksies
   active: Aktief
+  #Status of a complete set that is available for use
+  active_complete_set_status: Aktief
+  #Status of a taxon that is available for use on iNat
+  active_taxon_status: Aktief
   active_users: Aktiewe Gebruikers
   activity: Aktiwiteit
   add: Sit By
   add_a_comment: Voeg Kommentaar By
+  add_a_taxon: Voeg 'n takson by
   add_an_observation: Voeg 'n waarneming by
   add_another_photo: Voeg nog 'n foto by
   add_blocked_users: Voeg geblokte gebruikers by
   add_comment: Lewer kommentaar
   add_conservation_status: Sit Bewaringstatus by
+  add_id: Voeg 'n ID by
   add_new_place: Voeg 'n Nuwe Plek by
   add_new_taxon_name: Voeg 'n Nuwe Takson Naam by
   add_obs_from_a_list: Sit Waarnemings by vanaf 'n Lys
@@ -82,6 +92,9 @@ af:
   added_by: Bygesit deur
   added_by_user_on_date_html: "Bygesit deur %{user} op %{date}"
   added_on_datetime: "Bygesit op %{datetime}"
+  agree_: Stem saam
+  agree?: Stem saam?
+  all: Almal
   #Title for a list of all 3rd party applications
   all_applications: Alle Toepassings
   all_comments: Alle kommentaar
@@ -117,7 +130,9 @@ af:
     insects: Insekte
     mammals: Soogdiere
     other_animals: Ander Diere
+    plants: Plante
   amphibians: amfibieë
+  android: Android
   animals: Diere
   app_owner_application_inelligible: |
     Om 'n aansoek in te dien moet jou rekening minstens 2 maande oud wees en minstens 10 verbeterende identifiserings gemaak het in die afgelope maand.
@@ -142,6 +157,8 @@ af:
   assessment: assessering
   assessment_has_benn_completed: Assessering is voltooid
   assessment_sections: Assessering seksies
+  authority_list:
+    cites: CITES
   back: Terug
   back_to_all_species: Terug na Alle Spesies toe
   back_to_friends: Terug na vriende toe
@@ -163,6 +180,7 @@ af:
   back_to_your_observations: Terug na jou waarnemings
   back_to_your_profile: Terug na jou profiel
   be_the_first_to_fave_this_observation: Wees die eerste om hierdie waarneming onder jou gunstelinge te tel!
+  birds: voëls
   by_everyone: Deur almal
   by_user: "Deur %{user}"
   by_you: Deur jou
@@ -201,6 +219,7 @@ af:
   comments: Kommentaar
   comments_by_me: Kommentaar deur my
   comments_on_my_observations: Kommentaar op my waarnemings
+  common_name: Algemene naam
   community: Gemeenskap
   community_guidelines: Gemeenskapsriglyne
   community_id_at_species_or_lower?: Gemeenskap takson op spesievlak of laer?
@@ -225,6 +244,7 @@ af:
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
   content: Inhoud
   content_hidden: Inhoud weggesteek
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Inhoud weggesteek deur %{user} op %{date} want: "%{reason}"
   content_type: Inhoudstipe
@@ -248,6 +268,8 @@ af:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_evidence_of_presence: Enige
     sex: Seks
+    male: Mannetjie
+    female: Wyfie
     flowers_and_fruits: Blomme en Vrugte
     fruiting: Dra vrugte
     no_flowers_or_fruits: Geen Blomme of Vrugte
@@ -258,6 +280,11 @@ af:
     green_leaves: Groen Blare
     colored_leaves: Gekleurde Blare
     life_stage: Lewensstadium
+    #Evidence of an egg of an organism
+    egg: Ei
+    #Refers to an observation that depicts the actual organism and not some
+    #kind of secondary evidence like a footprint
+    organism: Organisme
   controlled_term_definitions:
     flowers: Ten minste een oop blom
     flower_buds: Ten minste een toe blomknop
@@ -282,8 +309,17 @@ af:
   created_by: Geskep deur
   created_by_user_on_date: Geskep deur %{user} op %{date}
   created_on: Geskep op
+  date_: Datum
   date_format:
     month:
+      january: Januarie
+      february: Februarie
+      march: Maart
+      april: April
+      may: Mei
+      june: Junie
+      july: Julie
+      august: Augustus
       september: September
       october: Oktober
       november: November
@@ -300,14 +336,429 @@ af:
     nextText: Volgende
   date_time: Datum/Tyd
   day: Dag
+  #Default option
+  default: verstek
+  #Default option
+  default_: Verstek
   definitions: Definisies
+  description: Beskrywing
+  desription: Beskrywing
+  devise_reset_password_instructions_hello_email: Hallo %{email}
+  email: E-pos
+  email_notifications: E-poskennisgewings
+  end: Einde
+  endemic: Endemies
+  facebook: Facebook
+  Family: Familie
+  favorites: "Gunstelinge"
+  filter: Filter
+  find: Vind
+  #Adjective, as in a fluid layout of images
+  fluid: vloeistof
+  follow: Volg
+  #Text for a button to follow updates from a specific user
+  follow_user: "Volg %{user}"
+  forum: Forum
+  gbif: GBIF
+  Genus: Genus
+  go: Gaan
+  google: Google
+  group: Groep
+  help: Help
+  help_translate!: Help met Vertaling!
+  high: Hoog
+  icon: Ikoon
+  id: ID
+  identify: Identifiseer
+  identifications: Identifikasie
+  identifiers: Identifiseerder
+  ids: "ID's"
+  inaturalist_network: iNaturalist Netwerk
+  inactive: Onaktief
+  #Status of a complete set that is not available for general use on iNat, e.g.
+  #a draft
+  inactive_complete_set_status: Onaktief
+  #Status of a taxon that is not available for general use on iNat, e.g. an
+  #output taxon in a split that hasn't been committed
+  inactive_taxon_status: Onaktief
+  insects: insekte
+  instagram: Instagram
+  iphone: iPhone
+  #Large photo size
+  large: groot
+  latitude: Breedtegraad
+  leaderboards: Ranglyste
+  learn_more: Leer meer
+  lexicons:
+    afrikaans: Afrikaans
+    albanian: Albanees
+    bulgarian: Bulgaars
+    croatian: Kroaties
+    dutch: Nederlands
+    english: Engels
+    finnish: Fins
+    french: Frans
+    german: Duits
+    italian: Italiaans
+    japanese: Japannees
+    korean: Koreaans
+    persian: Persies
+    portuguese: Portugees
+    russian: Russies
+    serbian: Serwies
+    spanish: Spaans
+    swedish: Sweeds
+    ukrainian: Oekraïens
+    xhosa: Xhosa
+    zulu: Zoeloe
+  link: Skakel
+  list: Lys
+  list_views:
+    photo: foto
+  lists: Lyste
+  locales:
+    ar: Arabies
+    bg: Bulgaars
+    da: Deens
+    de: Duits
+    el: Grieks
+    en: Engels
+    en-GB: Engels (VK)
+    es: Spaans
+    eu: Baskies
+    fi: Fins
+    fr: Frans
+    fr-CA: Frans (Kanada)
+    hr: Kroaties
+    it: Italiaans
+    ja: Japannees
+    nl: Nederlands
+    pl: Pools
+    pt: Portugees
+    pt-BR: Portugees (Brasilië)
+    ru: Russies
+  longitude: Lengtegraad
+  low: Laag
+  map: Kaart
+  maps:
+    overlays:
+      all_observations: Alle waarnemings
+      observations: Waarnemings
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: en
+  merge: Kombineer
+  message: Boodskap
+  messages: Boodskape
+  month: Maand
+  months: Maande
+  more: Meer
+  #Button to show more observations
+  more__context_observations_caps: MEER
+  #Button to show more places
+  more__context_places: Meer
+  #Button to show more text
+  more__context_text: Meer
+  #Button to show more translators, as in people who added translations
+  more__context_translators_caps: MEER
+  more_caps: MEER
+  more_photos: Meer foto's
+  next: Volgende
+  next_date_short: Volgende
+  next_page_short: Volgende
+  next_photo: Volgende foto
+  next_post_short: Volgende
+  next_taxon_short: Volgende
+  'no': 'Nee'
+  none: Geen
+  observation: Waarneming
+  observation_: waarneming
+  observation_accuracy_experiment_year: "Jaar"
+  observation_accuracy_experiment_accuracy: "Akkuraatheid"
+  observation_date: Datum
+  observation_date?: Datum?
+  #Taxon-related observation export fields
+  observation_export_column_type_taxon: Takson
+  observation_field_type_date: Datum
+  observation_field_type_time: Tyd
+  observation_field_type_taxon: Takson
+  observation_field_type_dna: DNS
+  observations: Waarnemings
+  observations_: waarnemings
+  observer: Waarnemer
+  observers: Waarnemers
+  observer_short: Waarnemer
+  of_places: plekke
+  organisms: Organisme
+  owner: Eienaar
+  people: Mense
+  photo: Foto
+  photo_attribution: "Foto %{attribution}"
+  photos_size:
+    large: groot
+  place: Plek
+  place_geo:
+    geo_planet_place_types:
+      Airport: Lughawe
+      airport: lughawe
+      Building: Gebou
+      building: gebou
+      District: Distrik
+      district: distrik
+      Island: Eiland
+      island: eiland
+      Municipality: Munisipaliteit
+      municipality: munisipaliteit
+      Postal_Code: Poskode
+      postal_code: poskode
+      Province: Provinsie
+      province: provinsie
+      Time_Zone: Tydsone
+      time_zone: tydsone
+      Town: Dorp
+      town: dorp
   places_name:
+    albania: Albanië
+    angola: Angola
+    australia: Australië
+    botswana: Botswana
+    brazil: Brasilië
+    canada: Kanada
+    croatia: Kroasië
+    democratic_republic_of_the_congo: Demokratiese Republiek van die Kongo
+    denmark: Denemarke
+    france: Frankryk
     georgia: Georgië
+    germany: Duitsland
+    greece: Griekeland
+    indonesia: Indonesië
+    italy: Italië
+    madagascar: Madagaskar
+    malaysia: Maleisië
+    mozambique: Mosambiek
+    namibia: Namibië
+    netherlands: Nederland
+    new_zealand: Nieu-Seeland
+    norway: Noorweë
+    palestine: Palestina
+    papua_new_guinea: Papoea-Nieu-Guinee
+    peru: Peru
+    poland: Pole
+    serbia: Serwië
+    singapore: Singapoer
+    sint_maarten: Sint Maarten
+    slovenia: Slowenië
+    south_africa: Suid-Afrika
+    spain: Spanje
+    sweden: Swede
+    switzerland: Switserland
+    tanzania: Tanzanië
+    thailand: Thailand
+    tunisia: Tunisië
+    ukraine: Oekraïne
+    united_kingdom: Verenigde Koninkryk
+    united_states: Verenigde State
+    zimbabwe: Zimbabwe
+  plants: plante
+  position: Posisie
+  posts: Plasings
+  private_: Privaat
+  project: Projek
+  project_group_label: Groep
+  projects: Projekte
+  ranks:
+    family: Familie
+    genus: Genus
+    #Singular
+    species: Spesies
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the family X"
+  ranks_lowercase_family: familie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the genus X"
+  ranks_lowercase_genus: genus
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the species X"
+  ranks_lowercase_species: spesies
+  recent: Onlangs
+  refresh: Herlaai
+  reptiles: reptiele
+  required: benodig
+  required_: Benodig
+  restore: Herstel
+  search: Soek
+  #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
+  seek: Seek
+  settings: Instellings
+  share: Deel
+  share_caps: DEEL
+  share_colon: "Deel:"
+  sign_up: Registreer
+  small: klein
+  some_rights_reserved: sommige regte voorbehou
+  sounds:
+    sound: Klank
+    sounds: Klanke
+  source: Bron
+  source_: 'Bron:'
+  source_wikipedia: "Bron: Wikipedia"
+  source_list:
+    inaturalist: iNaturalist
+  #Plural
+  species: Spesies
+  start: Begin
+  stats: Statistieke
+  status: Status
+  suggestions: Voorstelle
+  taxon: Takson
+  taxonomy: Taksonomie
+  taxon_id: Takson ID
+  terms_service: Gebruiksvoorwaardes
+  text: Teks
+  thank_you!: Dankie!
+  thanks!: Dankie!
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_etc_utc: UTC
+  today: Vandag
+  total: Totaal
+  'true': 'Waar'
+  unblock: Deblokkeer
+  unknown: Onbekend
+  update: Opdateer
+  user: Gebruiker
+  user_blocked: Gebruiker geblokkeer
+  username: Gebruikersnaam
+  username_or_email: Gebruikersnaam of e-pos
+  #Species that are "wanted," e.g. we know they exist but haven't been observed
+  wanted: Gesoek
+  weather: Weer
+  welcome: welkom
+  welcome_back!: Welkom terug!
+  what: Wat
+  when: Wanneer
+  where: Waar
+  with: met
+  #Label for a button to withdraw an identification, i.e. to deactivate it
+  #without deleting it
+  withdraw: Ontrek
+  worldwide: Wêreldwyd
+  year: Jaar
+  'yes': "Ja"
+  yesterday: Gister
+  verifiable: Verifieerbaar
+  views:
+    guides:
+      pdf_layouts:
+        book: boek
+    lifelists:
+      all_species: Alle spesies
+      all_observations: Alle waarnemings
+    messages:
+      from: Vanaf
+    observations:
+      community_id:
+        score: Telling
+    projects:
+      edit:
+        submission_models:
+          any: enigiemand
+    stats:
+      year:
+        translators_title: Vertalers
+    taxa:
+      show:
+        frequency:
+          verifiable: Verifieerbaar
+          "Alive or Dead=Alive": Lewendig
+          "Alive or Dead=Dead": Dood
+          "Flowers and Fruits=Flowers": Blomme
+          "Flowers and Fruits=Fruits or Seeds": Vrugte of Sade
+          "Flowers and Fruits=No Flowers or Fruits": Geen Blomme of Vrugte
+          "Life Stage=Egg": Ei
+          "Sex=Female": Wyfie
+          "Sex=Male": Mannetjie
+    users:
+      edit:
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_identifications: Identifikasie
+        #Checkbox label for user preference about what to receive in the daily email update
+        notification_preferences_messages: Boodskappe
+        project_addition_preferences:
+          any: Enige
+  date:
+    day_names:
+      - Sondag
+      - Maandag
+      - Dinsdag
+      - Woensdag
+      - Donderdag
+      - Vrydag
+      - Saterdag
+    month_names:
+      - 
+      - Januarie
+      - Februarie
+      - Maart
+      - April
+      - Mei
+      - Junie
+      - Julie
+      - Augustus
+      - September
+      - Oktober
+      - November
+      - Desember
+  datetime:
+    prompts:
+      day: Dag
+      hour: Uur
+      minute: Minuut
+      month: Maand
+      second: Sekondes
+      year: Jaar
   number:
     format:
       significant: false
       strip_insignificant_zeros: false
     human:
+      decimal_units:
+        units:
+          billion: Miljard
+          million: Miljoen
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    models:
+      Identification: Identifikasie
+      Photo: Foto
+    attributes:
+      assessment:
+        description: Beskrywing
+      conservation_status:
+        description: Beskrywing
+        place_id: Plek
+        geoprivacy: Geoprivaatheid
+      oauth_application:
+        #Unique identifier for an application
+        uid: ID
+      project:
+        description: Beskrywing
+      place:
+        latitude: Breedtegraad
+        longitude: Lengtegraad
+      taxon:
+        #Boolean attribute stating whether this taxon is active (i.e. available for use)
+        is_active: Aktief?
+        rank: Rang
+      taxon_link:
+        #Taxon this link is associated with
+        taxon: Takson
+        #Place this link is associated with
+        place: Plek
+      user:
+        email: E-pos
+        time_zone: Tydsone
+        place_id: Plek
+  i18n:
+    inflections:
+      "@gender":
+        m: mannetjie
+        f: wyfie

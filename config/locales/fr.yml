@@ -27,12 +27,9 @@ fr:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICATION'
     other: '<span class="count">%{count}</span> IDENTIFICATIONS'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificateur'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificateurs'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID fait pour d''autres'
+    other: '<span class="count">%{count}</span> ID faites pour d''autres'
   x_languages:
     one: "%{count} langue"
     other: "%{count} langues"
@@ -80,9 +77,6 @@ fr:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observation vérifiée"
     other: "<span class='count'>%{count}</span> observations vérifiées"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observateur'
-    other: '<span class="count">%{count}</span> Observateurs'
   x_others:
     one: "1 autre"
     other: "%{count} autres"
@@ -127,8 +121,8 @@ fr:
     one: "<span class='count'>1</span> observation de calibre recherche</span>"
     other: "<span class='count'>%{count}</span> observations de calibre recherche</span>"
   x_research_grade_observations_to_species_html:
-    one: "<span class='count'>%{count}</span> observation de calibre recherche identifiée au niveau de l'espèce ou à un niveau inférieur</span>"
-    other: "<span class='count'>%{count}</span> observations de calibre recherche identifiées au niveau de l'espèce ou à un niveau inférieur</span>"
+    one: "<span class='count'>%{count}</span> observation de qualité recherche identifiée au niveau de l'espèce ou à un niveau inférieur"
+    other: "<span class='count'>%{count}</span> observations de qualité recherche identifiées au niveau de l'espèce ou à un niveau inférieur"
   x_sounds:
     one: "%{count} son"
     other: "%{count} sons"
@@ -176,12 +170,12 @@ fr:
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
   about_complete_taxa: À propos des taxons complets
-  about_conservation_status: À propos de l’état de conservation
+  about_conservation_status: À propos des statuts de conservation
   about_editing_observation_fields: À propos de la modification des champs d’observation
   #Header for a section explaining Establishment Means. See the
   #about_establishment_desc key or
   #https://dwc.tdwg.org/terms/#establishmentMeans for more detail
-  about_establishment_means: À propos des moyens d’implantation
+  about_establishment_means: À propos des types d'implantation
   about_license_options: À propos des options de licence
   about_licenses: À propos des licences
   #Header for a section describing taxon names
@@ -379,6 +373,7 @@ fr:
   add_evidence_of_presence_track_annotation: 'Ajouter l''annotation « Signe de présence : piste »'
   add_evidence_of_presence_bone_annotation: 'Ajouter l''annotation « Signe de présence : os »'
   add_evidence_of_presence_molt_annotation: 'Ajouter l''annotation « Signe de présence : mue »'
+  add_evidence_of_presence_leafmine_annotation: 'Ajouter l''annotation "Preuve de présence: mine foliaire"'
   add_evidence_of_presence_hair_annotation: 'Ajouter l''annotation "Preuve de Présence : poils"'
   add_evidence_of_presence_egg_annotation: 'Ajouter l''annotation "Preuve de Présence : Œuf"'
   add_evidence_of_presence_construction_annotation: 'Ajouter l''annotation "Preuve de Présence : construction"'
@@ -1130,6 +1125,10 @@ fr:
   content_and_display: Contenu et affichage
   content_author: Auteur du contenu
   content_hidden: Contenu masqué
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Contenu caché le %{date} : "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contenu masqué par %{user} le %{date} car&nbsp;: "%{reason}"
   content_type: Type de Contenu
@@ -1237,9 +1236,13 @@ fr:
     gall: Excroissance d'un tissu végétal causée par un parasite
     male: Les informations indiquent que l'organisme peut produire du sperme pour la reproduction sexuelle
     molt: Dépouille ou exosquelette abandonné
+    leafmine: Preuve de nourrissage entre les couches épidermiques d'une feuille
+    hair: Poil qui n'est plus attaché sur l'organisme dont il provient
     egg: Œuf entier ou partie d'un œuf
+    construction: Quelque chose créé par un animal, fabriqué avec ou creusé dans d'autres matériaux
     no_evidence_of_flowering: Les données ne fournissent aucune preuve de structures reproductrices
     no_flowers_or_fruits: Aucune fleur, fruit ou graine (en tout ou partie) n’est visible
+    not_established: L'organisme appartient à une population non établie, y compris les animaux de compagnie libérés ou échappés, les randonneurs et les vagabonds.
     organism: Tout ou partie d'un organisme
     scat: Excréments (pas des pelotes de réjection de chouettes ni d'autres matières régurgitées)
     teneral: Adulte récemment sorti de son cocon/sa pupe mais qui n'as pas atteint sa forme adulte finale
@@ -2290,6 +2293,8 @@ fr:
   in_place_x: '%{place}'
   #As in a reason to flag something
   inappropriate: Inapproprié
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Réseau iNaturalist
   inaturalist_network_affiliation: Affiliation au réseau iNaturalist
   #Label for messages you've received
@@ -2663,6 +2668,7 @@ fr:
     lv: letton
     mi: Maori
     mk: Macédonien
+    ml: Malayalam
     mr: Marathi
     nb: Bokmål norvégien
     nl: néerlandais
@@ -2677,6 +2683,7 @@ fr:
     sq: Albanais
     sr: Serbe
     sv: Suédois
+    ta: Tamoul
     th: Thaï
     tr: Turc
     uk: ukrainien
@@ -3196,6 +3203,7 @@ fr:
   observation_accuracy_experiment_precision_results: "Résultats de la précision par sous-ensemble"
   observation_accuracy_experiment_taxon_rank_level: "Niveau de classement du taxon"
   observation_accuracy_experiment_taxon_observations_count: "Nombre d'observations de taxon"
+  observation_accuracy_experiment_iconic_taxon_name: "Nom du Taxon Emblématique"
   observation_accuracy_experiment_continent: "Continent"
   observation_accuracy_experiment_year: "Année"
   observation_accuracy_experiment_quality_grade: "Niveau de qualité"
@@ -3225,6 +3233,7 @@ fr:
   observation_accuracy_experiment_mean_number: "Nombre moyen de validateurs par observation : %{number}"
   observation_accuracy_experiment_validator_candidate: "Critère d'éligibilité du validateur"
   observation_accuracy_experiment_if_an_identifier: "Si un identificateur avait fait au moins 3 identifications améliorantes sur un taxon, nous l'avons considéré qualifié pour valider ce taxon. L'identification améliorante est la première suggestion d'un taxon avec laquelle la communauté est par la suite d'accord."
+  observation_accuracy_experiment_if_an_identifier_continent: "Si un identificateur a fait au moins 3 identifications d'amélioration sur un taxon sur un continent, nous l'avons considéré comme qualifié pour valider un taxon sur ce continent. Les identifications d'amélioration sont les premières suggestions du taxon que la communauté a ensuite accepté."
   observation_accuracy_experiment_step_2: "Étape 2 : Validation des échantillons"
   observation_accuracy_experiment_number_percent_of: "Nombre de validateurs participants : %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Pourcentage de l'échantillon validé : %{percent}"
@@ -4551,7 +4560,6 @@ fr:
     must_be_verifiable: doit être vérifiable
     must_be_wild: doit être sauvage
   running_total: Total actuel
-  said: a dit
   satellite: satellite
   save: Enregistrer
   save_all: Enregistrer tout
@@ -6583,6 +6591,11 @@ fr:
           seront signalés pour modération. Si vous avez besoin d'une communication vraiment privée,
           veuillez considérer d'autres mécanismes de communication doté d'un chiffrement fort.
     nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: Démo de la vision-language
       what_do_you_want_to_search_for: Que voulez-vous rechercher ?
       #Provides an example of a query to use with the Vision Language Demo.
       #query_in_english will be something like "a bird eating fruit".
@@ -6901,6 +6914,29 @@ fr:
         data_quality_assessment_desc3_html: |
           Le niveau de qualité résume l'exactitude, la précision, l'exhaustivité, la pertinence et le caractère approprié d'une observation iNaturalist en tant que donnée sur la biodiversité. Certains attributs sont établis automatiquement, tandis que d'autres sont le résultat du vote des utilisateurs. Des partenaires d'iNaturalist dans le domaine des sciences et de la conservation ont accès aux données des observations sous licence de « niveau recherche ».
         disagreement_count_desc: "Nombre de taxons identifiés qui ne font pas partie des parents d’un taxon"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          L'évaluation de la qualité des données est un résumé de l'exactitude d'une observation. Toutes les observations commencent avec une note <strong>"informel"</strong> et deviennent <strong>"besoin d'ID"</strong> quand
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: l'observation <strong>a une date</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: l'observation <strong>est géolocalisée</strong> (c.-à-d. avec des coordonnées lat/lon)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: l'observation <strong>a des photos ou des sons</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: l'observation <strong>n'est pas d'un</strong> humain
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Les observations deviennent <strong>"qualité rechercher"</strong> quand
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          la <strong>communauté %{site_name} s'accorde sur l'ID au niveau espèce ou 
+          inférieur</strong>, lorsque plus des 2/3 des identifieurs sont d'accord sur un 
+          taxon (si la communauté a validé que le Taxon de Communauté ne peut pas
+          être amélioré, celui-ci est alors ramené à l'ID de sous-famille ou inférieur)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Les observations reviendront à <strong>"occasionel"</strong> si les conditions
+          ci-dessus ne sont pas remplies ou si la communauté l'accepte
         identification_count_desc: 'Nombre d’identifications pour un taxon distinct'
         flagged_photos_desc_html: |
           Certaines de ces photos ont été signalées comme étant inappropriée ou
@@ -7097,26 +7133,24 @@ fr:
         subject: Le compte iNaturalist de votre enfant a été activé
         content_html: |
           <p>
-            Merci d'avoir créé un compte iNaturalist pour votre enfant! Le
-            compte a été activé. Voici les détails que vous avez saisis et que 
-            nous avons enregistrés :
+          Merci d'avoir créé un compte iNaturalist pour votre enfant ! Le
+          compte a été activé. Voici les détails que vous avez saisis et que
+          nous avons enregistrés :
           </p>
           <ul>
-            <li><strong>Nom du parent ou du représentant légal :</strong> %{parent_name}</li>
-            <li><strong>Courriel du parent ou du représentant légal :</strong> %{parent_email}</li>
-            <li><strong>Nom de l'enfant :</strong> %{child_name}</li>
-            <li><strong>Anniversaire de l'enfant :</strong> %{child_birthday}</li>
-            <li><strong>Courriel de l'enfant :</strong> %{child_email}</li>
-            <li><strong>Nom d'utilisateur du compte de l'enfant :</strong> %{child_username}</li>
+          <li><strong>Nom du parent ou du représentant légal :</strong> %{parent_name}</li>
+          <li><strong>Courriel du parent ou du représentant légal :</strong> %{parent_email}</li>
+          <li><strong>Nom de l'enfant :</strong> %{child_name}</li>
+          <li><strong>Anniversaire de l'enfant :</strong> %{child_birthday}</li>
+          <li><strong>Courriel de l'enfant :</strong> %{child_email}</li>
+          <li><strong>Nom d'utilisateur du compte de l'enfant :</strong> %{child_username}</li>
           </ul>
           <p>
-            Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant \ 
-            sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
+          Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant \
+          sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
           </p>
           <p>
-            Votre enfant pourra ensuite poster les observations sur son compte 
-            iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur 
-            iNaturalist.org. 
+          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org.
           </p>
       users_updates_suspended:
         message: |
@@ -7335,8 +7369,6 @@ fr:
         data_visualizations: Visualisations des données
         delete_project: Supprimer le projet
         display_project_name: Afficher le nom du projet
-        do_you_need_features_from_traditional: |
-          Avez-vous besoin de fonctionnalités des projets traditionnels, comme l'accès aux coordonnées réelles, des champs d’observation personnalisés ou l'ajout d'observations qui ne peuvent pas être filtrées automatiquement ?
         do_you_need_features_from_traditional2: |
           Avez-vous besoin de fonctionnalités propres aux projets traditionnels, tels que des champs d’observation personnalisés, ou l’ajout d’observations individuelles qui ne peuvent pas être filtrées automatiquement ?
         duplicate_project: Dupliquer le projet
@@ -7400,10 +7432,10 @@ fr:
         we_have_redesigned_projects: |
           Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types de projet, les projets de collections et les projets-cadres, qui partagent les fonctionnalités suivantes :
         welcome_to_projects: Bienvenue dans les projets !
-        you_can_learn_more_html: |
-          Vous pouvez en savoir plus sur la gestion des projets
-          <a href="https://www.inaturalist.org/pages/managing-projects">ici</a>
-          ou lire l’historique des projets sur
+        you_can_learn_more2_html: |
+          Vous pouvez en savoir plus sur la gestion des projets 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">ici</a>
+           ou lire l'historique des projets sur 
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">notre blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Vous n'avez défini aucun critère d'observation. Vérifiez bien d'avoir sélectionné un ou plusieurs taxons (par exemple: oiseaux, connifères), places (par exemple: Brésil, Yellowstone), utilisateurs, et/ou dates des observations que vous voulez inclure dans votre projet.
@@ -7517,6 +7549,8 @@ fr:
         avg_ttcid: TTCID moyen
         avg_ttid: TTID moyen
         identifiers_desc: Ont ajouté une ID à l’observation de quelqu’un d’autre ce jour là
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Créé avec <a href="%{url}">iNatNext</a>
         iphone_desc_html: Créée avec l'<a href="%{url}">application iPhone iNaturalist</a>
         med_ttcid: TTCID médian
         med_ttid: TTID médian
@@ -7537,6 +7571,8 @@ fr:
         recent_w_0_obs_desc: Inscrit pendant les sept derniers jours et n'ayant ajouté aucune observation
         recent_w_7_obs: Récent avec au moins sept observations
         recent_w_7_obs_desc: Inscrit pendant les sept derniers jours et ayant ajouté au moins sept observations
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Créé avec <a href="%{url}">Seek</a>
         time_to_id_desc: Délai d'identification (en heures, fenêtre d’une semaine glissante)
         TTCID: TTCID
         TTCID_desc: Temps nécessaire à recevoir une identification de quelqu'un d'autre vérifiant le taxon de la communauté.
@@ -7703,6 +7739,7 @@ fr:
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
         about_taxon_curators_desc: |
           Ces personnes gèrent la partie de l’arbre taxinomique qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer ce taxon ou contacter l'une de ces personnes.
+        charts_caps: GRAPHIQUES
         charts_help_seasonality: |
           Ce graphique affiche le nombre d’observations de ce taxon, groupées par
           mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
@@ -8431,12 +8468,15 @@ fr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: Pour les utilisateurs qui n'ont pas confirmé leur adresse mail
+        prefers_exclude_monthly_supporters: Exclure les soutiens mensuels
         clients: Clients
       assessment:
         description: Description
       assessment_section:
         title: Titre
         body: Corps
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Utilisateur bloqué
@@ -8673,6 +8713,13 @@ fr:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: doit être valide pour l'emplacement spécifié
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: doit être valide pour le groupe cible spécifié
         application:
           attributes:
             redirect_uri:
@@ -8850,6 +8897,10 @@ fr:
             taxon:
               too_many_photos: |
                 ne peut pas avoir plus de %{max} photos
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                ne peut pas contenir de signalements non résolus
         taxon_range:
           attributes:
             iucn_relationship:

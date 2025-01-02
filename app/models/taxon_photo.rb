@@ -19,6 +19,7 @@ class TaxonPhoto < ApplicationRecord
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
   validate :reasonable_number_of_photos, on: :create
+  validate :photo_cannot_have_unresolved_flags
 
   attr_accessor :skip_taxon_indexing
 
@@ -28,6 +29,12 @@ class TaxonPhoto < ApplicationRecord
     if taxon && taxon.taxon_photos.count >= MAX_TAXON_PHOTOS
       errors.add( :taxon, :too_many_photos, max: MAX_TAXON_PHOTOS )
     end
+  end
+
+  def photo_cannot_have_unresolved_flags
+    return unless photo&.flags&.any? {| f | !f.resolved? }
+
+    errors.add( :photo, :cannot_have_unresolved_flags )
   end
 
   def to_s

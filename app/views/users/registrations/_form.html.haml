@@ -34,3 +34,7 @@
 = render "users/registrations/tos_privacy_guidelines", f: f
 .form-group.hidden
   = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { include_blank: true }, { class: "time_zone_select" }
+.form-group.hidden
+  = f.hidden_field :browser_id, value: "", id: "browser_id"
+.form-group.hidden
+  = f.hidden_field :incognito_mode, value: "", id: "incognito_mode"

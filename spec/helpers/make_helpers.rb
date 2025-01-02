@@ -39,16 +39,16 @@ module MakeHelpers
     make_annotation( options.merge( create: true ) )
   end
 
-  def make_curator(opts = {})
-    make_user_with_role(:curator, opts)
+  def make_curator( opts = {} )
+    make_user_with_role( :curator, opts )
   end
 
-  def make_admin
-    make_user_with_role(User::JEDI_MASTER_ROLE)
+  def make_admin( opts = {} )
+    make_user_with_role( User::JEDI_MASTER_ROLE, opts )
   end
 
-  def make_user_with_role(role_name, opts = {})
-    user = User.make!(opts)
+  def make_user_with_role( role_name, opts = {} )
+    user = User.make!( opts )
     role = Role.find_by_name( role_name ) || Role.make!( name: role_name.to_s )
     user.roles << role
     user

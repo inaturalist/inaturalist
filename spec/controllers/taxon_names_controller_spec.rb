@@ -21,7 +21,6 @@ describe TaxonNamesController do
 
     it "should record audit comments" do
       taxon = Taxon.make!
-      before_names_count = taxon.taxon_names.count
       sign_in user
       post :create, params: { taxon_id: taxon.id, taxon_name: {
         taxon_id: taxon.id,
@@ -48,6 +47,21 @@ describe TaxonNamesController do
       } }
       taxon.reload
       expect( taxon.taxon_names.count ).to eq( before_names_count )
+    end
+
+    it "prevents access to users with content creation restrictions" do
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+      taxon = Taxon.make!( photos_locked: true )
+      sign_in( User.make!( created_at: Time.now ) )
+      post :create, format: :json, params: { taxon_id: taxon.id, taxon_name: {
+        taxon_id: taxon.id,
+        name: "newname",
+        lexicon: TaxonName::ENGLISH
+      } }
+      expect( response.response_code ).to eq 403
+      expect( JSON.parse( response.body ) ).to eq( {
+        "error" => I18n.t( :you_dont_have_permission_to_do_that )
+      } )
     end
   end
 
@@ -107,7 +121,7 @@ describe TaxonNamesController do
       tn = create :taxon_name, creator: user, lexicon: TaxonName::ENGLISH, position: 1
       sign_in user
       put :update, params: { id: tn.id, taxon_name: {
-        position: 2,
+        position: 2
       } }
       tn.reload
       expect( tn.position ).to eq 2
@@ -128,6 +142,21 @@ describe TaxonNamesController do
       } }
       ptn.reload
       expect( ptn.position ).to eq 2
+    end
+
+    it "prevents access to users with content creation restrictions" do
+      user = User.make!( created_at: Time.now )
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+      tn = create :taxon_name, creator: user, lexicon: TaxonName::SPANISH
+      sign_in( user )
+      put :update, format: :json, params: { id: tn.id, taxon_name: {
+        lexicon: TaxonName::ENGLISH,
+        audit_comment: audit_comment
+      } }
+      expect( response.response_code ).to eq 403
+      expect( JSON.parse( response.body ) ).to eq( {
+        "error" => I18n.t( :you_dont_have_permission_to_do_that )
+      } )
     end
   end
 
@@ -190,6 +219,23 @@ describe TaxonNamesController do
       sign_in user
       delete :destroy, params: { id: tn.id }
       expect( TaxonName.find_by_id( tn.id ) ).to_not be_blank
+    end
+
+    it "prevents access to users with content creation restrictions" do
+      user = User.make!( created_at: Time.now )
+      allow( CONFIG ).to receive( :content_creation_restriction_days ).and_return( 1 )
+      tn = TaxonName.make!(
+        creator: user,
+        lexicon: TaxonName::LEXICONS[:ENGLISH]
+      )
+      sign_in( user )
+      delete :destroy, format: :json, params: { id: tn.id, taxon_name: {
+        audit_comment: audit_comment
+      } }
+      expect( response.response_code ).to eq 403
+      expect( JSON.parse( response.body ) ).to eq( {
+        "error" => I18n.t( :you_dont_have_permission_to_do_that )
+      } )
     end
   end
 end

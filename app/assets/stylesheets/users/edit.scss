@@ -209,6 +209,21 @@ select.dropdown {
   resize: vertical;
 }
 
+body>div>[role="dialog"] .modal-dialog {
+  margin: 30px auto;
+}
+
+.AlertModal.modal {
+  .modal-dialog {
+    width: 100%;
+    max-width: 60%;
+    @media (max-width: 500px) {
+      width: 90%;
+      max-width: 90%;
+    }
+  }
+}
+
 .RevokeAccessModal.modal {
   .modal-dialog {
     .modal-header {
@@ -223,19 +238,7 @@ select.dropdown {
 .ThirdPartyTrackingModal.modal {
   .modal-dialog {
     width: 90%;
-    .modal-title {
-      line-height: 1;
-      padding: 0;
-    }
-    .modal-content {
-      max-height: none;
-      height: 100%;
-      overflow: hidden;
-    }
-    .modal-body {
-      overflow-x: auto;
-      max-height: none;
-    }
+    max-width: 90%;
   }
 }
 
@@ -529,13 +532,6 @@ select.dropdown {
   }
 }
 
-.AlertModal.modal {
-  .modal-dialog {
-    width: 100%;
-    max-width: 60%;
-  }
-}
-
 .TaxonNamePriorities {
   .alert {
     margin: 0px 0px 5px;
@@ -597,10 +593,6 @@ select.dropdown {
 
 .BlockMutedUsers + .BlockMutedUsers {
   margin-top: 50px;
-}
-
-body>div>[role="dialog"] .modal-dialog {
-  margin: 30px auto;
 }
 
 .noh1 {

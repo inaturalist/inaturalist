@@ -198,6 +198,7 @@ var SearchController = function (
     page: 1,
     spam: false
   };
+  $scope.withoutTaxa = [];
   $scope.earthRadiusInKm = 6371;
   $scope.dragIconOffset = 20;
   $scope.dragRectDeltaXInPx = null;
@@ -473,6 +474,13 @@ var SearchController = function (
       $scope.updateTaxonAutocomplete( );
       $scope.taxonInitialized = true;
     }
+    if ( $scope.params.without_taxon_id ) {
+      TaxaFactory.show( $scope.params.without_taxon_id, iNaturalist.localeParams( ) )
+        .then( function ( response ) {
+          var taxa = TaxaFactory.responseToInstances( response );
+          $scope.withoutTaxa = taxa;
+        } );
+    }
   };
   $scope.initializePlaceParams = function ( ) {
     $scope.params.place_id = $scope.params["place_id[]"] || $scope.params.place_id;
@@ -481,9 +489,6 @@ var SearchController = function (
     }
     if ( Array.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
       $scope.params.place_id = $scope.params.place_id[0];
-    }
-    if ( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
-      $scope.params.place_id = parseInt( $scope.params.place_id, 10 );
     }
     if ( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
       // load place name and polygon from ID
@@ -617,8 +622,10 @@ var SearchController = function (
         params: stateParams,
         selectedPlace: JSON.stringify( $scope.selectedPlace ),
         selectedTaxon: JSON.stringify( $scope.selectedTaxon ),
+        withoutTaxa: JSON.stringify( $scope.withoutTaxa ),
         mapBounds: $scope.mapBounds
       };
+
       currentSearch = urlParams;
     }
 
@@ -1161,6 +1168,34 @@ var SearchController = function (
     $scope.drawing.manager.setMap( $rootScope.map );
   };
 
+  $scope.addTaxon = function( taxon ) {
+    $scope.selectedTaxon = new iNatModels.Taxon( taxon );
+    $scope.params.taxon_id = taxon.id;
+    $scope.updateTaxonAutocomplete( );
+    $scope.searchAndUpdateStats( );
+  }
+
+  $scope.subtractTaxon = function( taxon ) {
+    if ( $scope.params.taxon_id === taxon.id ) {
+      $scope.selectedTaxon = null;
+      $scope.params.taxon_id = null;
+      $scope.updateTaxonAutocomplete( );
+      $scope.searchAndUpdateStats( );
+    } else {
+      $scope.witoutTaxa = $scope.witoutTaxa || [];
+      var existing = $scope.witoutTaxa.find( function( wt ) { return wt.id === taxon.id; } );
+      if ( !existing ) {
+        $scope.withoutTaxa.push( taxon );
+      }
+      $scope.params.without_taxon_id = $scope.withoutTaxa.map( function ( wt ) { return wt.id; } ).join( "," );
+    }
+  }
+
+  $scope.removeWithoutTaxon = function ( taxon ) {
+    $scope.withoutTaxa = $scope.withoutTaxa.filter( function( wt ) { return wt.id !== taxon.id; } );
+    $scope.params.without_taxon_id = $scope.withoutTaxa.map( function ( wt ) { return wt.id; } ).join( "," );
+  }
+
   $scope.filterByBounds = function ( ) {
     $scope.params.lat = null;
     $scope.params.lng = null;
@@ -1546,6 +1581,10 @@ var SearchController = function (
       if ( state.selectedTaxon ) {
         state.selectedTaxon = new iNatModels.Taxon( JSON.parse( state.selectedTaxon ) );
       }
+      if ( state.withoutTaxa ) {
+        state.withoutTaxa = JSON.parse( state.withoutTaxa )
+          .map( function( wt ) { return new iNatModels.Taxon( wt ) } );
+      }
       if ( state.selectedPlace ) {
         state.selectedPlace = new iNatModels.Place( JSON.parse( state.selectedPlace ) );
       }
@@ -1570,6 +1609,11 @@ var SearchController = function (
         // useful for selecting a taxon from the observations grid view
         $scope.params.taxon_id = state.params.taxon_id;
         $scope.initializeTaxonParams( );
+      }
+      if ( state.withoutTaxa !== $scope.withoutTaxa ) {
+        $scope.withoutTaxa = state.withoutTaxa;
+      } else if ( state.params && state.params.without_taxon_id !== $scope.params.without_taxon_id ) {
+        $scope.params.without_taxon_id = state.params.without_taxon_id;
       }
       var previousProcessedParams = ObservationsFactory.processParamsForAPI(
         previousParams,
@@ -2278,3 +2322,10 @@ var MapController = function (
     $scope.fullscreen = !$scope.fullscreen;
   };
 };
+document.addEventListener( 'click', function( e ) {
+  document.querySelectorAll( 'details.explore-details-popover' ).forEach( function( f ) {
+    if ( !f.contains( e.target ) ) {
+      f.removeAttribute( "open" );
+    }
+  } );
+} );

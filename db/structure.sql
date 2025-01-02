@@ -694,6 +694,38 @@ ALTER SEQUENCE public.audits_id_seq OWNED BY public.audits.id;
 
 
 --
+-- Name: blocked_ips; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.blocked_ips (
+    id bigint NOT NULL,
+    ip character varying,
+    user_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: blocked_ips_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.blocked_ips_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: blocked_ips_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.blocked_ips_id_seq OWNED BY public.blocked_ips.id;
+
+
+--
 -- Name: cohort_lifecycles; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5563,6 +5595,44 @@ ALTER SEQUENCE public.user_privileges_id_seq OWNED BY public.user_privileges.id;
 
 
 --
+-- Name: user_signups; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_signups (
+    id bigint NOT NULL,
+    user_id integer,
+    ip character varying,
+    vpn boolean,
+    browser_id character varying,
+    incognito boolean,
+    root_user_id_by_ip integer,
+    root_user_id_by_browser_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL,
+    mobile boolean DEFAULT false
+);
+
+
+--
+-- Name: user_signups_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_signups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_signups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_signups_id_seq OWNED BY public.user_signups.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5947,6 +6017,13 @@ ALTER TABLE ONLY public.atlases ALTER COLUMN id SET DEFAULT nextval('public.atla
 --
 
 ALTER TABLE ONLY public.audits ALTER COLUMN id SET DEFAULT nextval('public.audits_id_seq'::regclass);
+
+
+--
+-- Name: blocked_ips id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blocked_ips ALTER COLUMN id SET DEFAULT nextval('public.blocked_ips_id_seq'::regclass);
 
 
 --
@@ -6818,6 +6895,13 @@ ALTER TABLE ONLY public.user_privileges ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: user_signups id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_signups ALTER COLUMN id SET DEFAULT nextval('public.user_signups_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6960,6 +7044,14 @@ ALTER TABLE ONLY public.atlases
 
 ALTER TABLE ONLY public.audits
     ADD CONSTRAINT audits_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: blocked_ips blocked_ips_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.blocked_ips
+    ADD CONSTRAINT blocked_ips_pkey PRIMARY KEY (id);
 
 
 --
@@ -7963,6 +8055,14 @@ ALTER TABLE ONLY public.user_privileges
 
 
 --
+-- Name: user_signups user_signups_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_signups
+    ADD CONSTRAINT user_signups_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -8240,6 +8340,13 @@ CREATE INDEX index_audits_on_created_at ON public.audits USING btree (created_at
 --
 
 CREATE INDEX index_audits_on_request_uuid ON public.audits USING btree (request_uuid);
+
+
+--
+-- Name: index_blocked_ips_on_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_blocked_ips_on_ip ON public.blocked_ips USING btree (ip);
 
 
 --
@@ -9125,13 +9232,6 @@ CREATE UNIQUE INDEX index_observation_field_values_on_uuid ON public.observation
 
 
 --
--- Name: index_observation_geo_scores_on_observation_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.observation_geo_scores USING btree (observation_id);
-
-
---
 -- Name: index_observation_field_values_on_value_and_field; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9157,6 +9257,13 @@ CREATE INDEX index_observation_fields_on_name ON public.observation_fields USING
 --
 
 CREATE UNIQUE INDEX index_observation_fields_on_uuid ON public.observation_fields USING btree (uuid);
+
+
+--
+-- Name: index_observation_geo_scores_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.observation_geo_scores USING btree (observation_id);
 
 
 --
@@ -10469,6 +10576,34 @@ CREATE INDEX index_user_privileges_on_user_id ON public.user_privileges USING bt
 
 
 --
+-- Name: index_user_signups_on_browser_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_signups_on_browser_id ON public.user_signups USING btree (browser_id);
+
+
+--
+-- Name: index_user_signups_on_ip; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_signups_on_ip ON public.user_signups USING btree (ip);
+
+
+--
+-- Name: index_user_signups_on_ip_and_browser_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_signups_on_ip_and_browser_id ON public.user_signups USING btree (ip, browser_id);
+
+
+--
+-- Name: index_user_signups_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_user_signups_on_user_id ON public.user_signups USING btree (user_id);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11227,6 +11362,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230907210748'),
 ('20231017190352'),
 ('20231025144604'),
+('20231206194146'),
 ('20240109034635'),
 ('20240109035846'),
 ('20240109035854'),
@@ -11254,6 +11390,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240828123245'),
 ('20240923134239'),
 ('20240923134658'),
-('20231206194146');
+('20241127180606'),
+('20241202092831'),
+('20241218164832');
 
 

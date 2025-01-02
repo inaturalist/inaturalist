@@ -225,7 +225,9 @@ class Taxon < ApplicationRecord
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
-        taxon_photos: taxon_photos.select{ |tp| !tp.photo.blank? }.map do | tp |
+        taxon_photos: taxon_photos.reject do | tp |
+          tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
+        end.map do | tp |
           tp.as_indexed_json( for_taxon: true )
         end,
         atlas_id: atlas.try( :id ),

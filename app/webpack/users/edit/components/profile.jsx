@@ -35,7 +35,7 @@ const Profile = ( {
           href={`/people/${profile.login || profile.id}`}
           title={profile.login}
           label={I18n.t( "profile_picture" )}
-          style={{ "background-image": `url("${profile.icon.preview}")` }}
+          style={{ backgroundImage: `url("${profile.icon.preview}")` }}
         />
       );
     }

@@ -8,6 +8,7 @@ const CheckboxRow = ( {
   disabled,
   handleCheckboxChange,
   label,
+  modalClassName,
   modalDescription,
   modalDescriptionTitle,
   name,
@@ -43,7 +44,10 @@ const CheckboxRow = ( {
               className="btn btn-link btn-nostyle"
               onClick={( ) => showModalDescription(
                 modalDescription,
-                { title: modalDescriptionTitle }
+                {
+                  title: modalDescriptionTitle,
+                  className: modalClassName
+                }
               )}
             >
               <i className="fa fa-info-circle" />
@@ -80,6 +84,7 @@ CheckboxRow.propTypes = {
   disabled: PropTypes.bool,
   confirm: PropTypes.string,
   confirmChangeTo: PropTypes.func,
+  modalClassName: PropTypes.string,
   modalDescription: PropTypes.string,
   modalDescriptionTitle: PropTypes.string,
   showModalDescription: PropTypes.func

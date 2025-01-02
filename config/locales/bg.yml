@@ -21,12 +21,6 @@ bg:
   x_identifications_:
     one: '1 Разпознаване'
     other: '%{count} Разпознавания'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span>Разпознавач'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span>Разпознавачи'
   x_languages:
     one: "%{count} език"
     other: "%{count} езика"
@@ -62,9 +56,6 @@ bg:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> рецензирано наблюдение"
     other: "<span class='count'>%{count}</span> рецензирани наблюдения"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> наблюдател'
-    other: '<span class="count">%{count}</span> наблюдатели'
   x_others:
     one: "%{count} друг"
     other: "%{count} други"
@@ -817,6 +808,7 @@ bg:
   content_and_display: Съдържание и изглед
   content_author: Автор на съдържанието
   content_hidden: Съдържанието е скрито
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Съдържанието е скрито от %{user} на %{date}, защото: „%{reason}“
   content_type: Тип на съдържанието
@@ -3289,7 +3281,6 @@ bg:
     must_be_in: трябва да бъде от таксон
     must_be_coordinates_shareable_by_project_curators: наблюдателят трябва да позволи на кураторите на проекта да виждат координатите.
   running_total: Нарастващ сбор
-  said: каза
   satellite: сателит
   save: Съхраняване
   save_all: Запази всичко
@@ -4602,8 +4593,6 @@ bg:
         data_visualizations: Визуализации на данни
         delete_project: Изтрий проекта
         display_project_name: Показвай името на проекта
-        do_you_need_features_from_traditional: |
-          Нуждаете ли се от особеностите на Традиционните проекти като достъп до реалните координати, собствени полета за наблюдения или ръчно добавяне на наблюдения, които не могат да бъдат автоматично открити?
         do_you_need_features_from_traditional2: |
           Нуждаете ли се от свойствата на Традиционните проекти като собствени полета за наблюдения или добавяне на отделни наблюдения, които не могат да бъдат автоматично открити?
         duplicate_project: Дублирай проекта
@@ -4662,8 +4651,6 @@ bg:
         we_have_redesigned_projects: |
           Проектите са направени така, че да включват автоматично всички наблюдения, които отговарят на зададените от Вас места, таксони, потребители, качество и дати. Изберете измежду два основни типа: Събирателен проект или Обединителен проект, които имат следните общи черти:
         welcome_to_projects: Добре дошли в Проекти!
-        you_can_learn_more_html: |
-          Можете да научите повече за управлението на проекти <a href="https://www.inaturalist.org/pages/managing-projects">тук</a> или да прочетете за историята на проектите на <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">нашия блог</a>.
         you_have_not_defined_any_observation_requirements: |
           Не сте задали никакви изисквания към наблюденията. Изберете един или повече таксона (напр. птици, гъби), места (напр. България, Витоша), потребители и/или дати, за да зададете какви наблюдения искате да включвате в проекта.
         errors:

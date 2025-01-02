@@ -40,16 +40,6 @@ lt:
     few: '%{count} identifikacijos'
     many: '%{count} identifikacijos'
     other: '%{count} identifikacijos'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identifikuotojas'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> identifikuotojai'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> identifikuotojai'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identifikuotojai'
   x_languages:
     one: "%{count} kalba"
     few: "%{count} kalbos"
@@ -117,11 +107,6 @@ lt:
     few: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
     many: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
     other: "<span class='count'>%{count}</span> stebėjimai peržiūrėti"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Stebėtojas'
-    few: '<span class="count">%{count}</span> Stebėtojai'
-    many: '<span class="count">%{count}</span> Stebėtojai'
-    other: '<span class="count">%{count}</span> Stebėtojai'
   x_others:
     one: "%{count} kitas"
     few: "%{count} kiti"
@@ -1034,6 +1019,7 @@ lt:
   content_and_display: Turinys ir rodymas
   content_author: Turinio autorius
   content_hidden: Turinys paslėptas
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} turinį paslėpė %{user}, nes: "%{reason}"
   content_type: Turinio tipas
@@ -3422,7 +3408,6 @@ lt:
     must_be_in: turi būti taksone
     must_be_coordinates_shareable_by_project_curators: stebėtojas turi leisti projekto kuratoriams žiūrėti koordinates.
     must_be_wild: turi būti laukinis
-  said: pasakė
   satellite: palydovas
   save: Išsaugoti
   save_all: Saugoti viską
@@ -4554,8 +4539,6 @@ lt:
           Galite pasirinkti rūšis (arba taksonus), vietas, datas ir kitus kriterijus, pagal kuriuos stebėjimai bus automatiškai įtraukti.
         start_and_end_times_for_bioblitzes: Pradžios ir pabaigos datos/laikai (skirta bioblico tipo renginiams)
         welcome_to_projects: Sveiki atvykę į projektus!
-        you_can_learn_more_html: |
-          Apie projektų valdymą daugiau sužinoti galite <a href="https://www.inaturalist.org/pages/managing-projects">čia</a> arba galite paskaityti apie mūsų projektų istoriją <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">mūsų tinklaraštyje</a>.
         errors:
           name_is_required: Projekto pavadinimas yra būtinas
           name_less_than_100_characters: Projekto pavadinimas negali viršyti 100 simbolių

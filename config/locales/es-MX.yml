@@ -27,12 +27,6 @@ es-MX:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
     other: '<span class="count">%{count}</span> IDENTIFICACIONES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificadores'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
@@ -80,9 +74,6 @@ es-MX:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
-  x_observers_html:
-    one: '<span class="count">1</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "%{count} otros"
     other: "%{count} otros"
@@ -1116,6 +1107,7 @@ es-MX:
   content_and_display: Contenido y presentación
   content_author: Autor del contenido
   content_hidden: Contenido oculto
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} ocultó el contenido el %{date} porque: «%{reason}»
   content_type: Tipo de contenido
@@ -4536,7 +4528,6 @@ es-MX:
     must_be_verifiable: debe ser verificable
     must_be_wild: debe ser salvaje
   running_total: Total acumulado
-  said: decia
   satellite: satélite
   save: Guardar
   save_all: Guardar todo
@@ -6807,52 +6798,6 @@ es-MX:
           Algunas de estas fotos se han marcado por su contenido inapropiado o porque violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto, los curadores del proyecto podrán ver las coordenadas oscurecidas de cualquier observación en el proyecto y esto implica que tu estás de acuerdo a los <a href="%{url}" target="_blank">términos</a> del proyecto.
-        quality_assessment_help3_html: |
-          <p>La Evaluación de la calidad de datos es un resumen de la exactitud de una observación. Todas las observaciones comienzan con grado <strong>"casual"</strong> y se etiquetan como <strong>"Necesita ID"</strong> cuando:
-          </p>
-          <ul>
-          <li>la observación <strong>tiene fecha</strong>
-          </li>
-          <li>la observación <strong>está georreferenciada</strong> (es decir, tiene coordenadas lat/lon )
-          </li>
-          <li>la observación<strong>tiene fotos o sonidos</strong>
-          </li>
-          <li>la observación<strong>no es de un humano</strong>
-          </li>
-          </ul>
-          <p>
-          Las observaciones adquieren <strong>"Grado de investigación"</strong> cuando:
-          </p>
-          <ul>
-          <li>la <strong>comunidad de %{site_name} está de acuerdo con la ID a nivel de especie o inferior</strong>, es decir, cuando más de 2/3 de los identificadores están de acuerdo en un taxón (si la comunidad ha votado que el taxón de la comunidad no se puede mejorar, esto se revierte a ID a nivel de subfamilia o inferior).
-          </li>
-          </ul>
-          <p>
-          Las observaciones volverán a ser <strong>"casual"</strong> si no cumplen las condiciones anteriores o si la comunidad está de acuerdo en que:
-          </p>
-          <ul>
-          <li>la <strong>ubicación no parece precisa</strong> (p. ej., monos en medio del océano, hipopótamos en oficinas, etc.),
-          </li>
-          <li>el <strong>organismo no es salvaje/naturalizado</strong> (p. ej., en cautividad o cultivados por humanos),
-          </li>
-          <li>la observación <strong>no presenta evidencia de un organismo</strong>, p. ej., p.e. imágenes de fuentes de agua, rocas, paisajes, que no incluyen al organismo, etc.,
-          </li>
-          <li>la observación <strong>no presenta evidencia reciente del organismo(~100 años) </strong> (p. ej., fósiles. Pero rastros, excrementos y hojas muertas están bien),
-          </li>
-          <li>la observación <strong>no presenta evidencia relacionada con un solo tema</strong> (p. ej., tiene cuatro fotos de organismos no relacionados. Una foto que muestra el hábitat del sujeto de la observación está bien),
-          </li>
-          <li>la observación ya no necesita una ID <em>y</em> la ID de la comunidad es a nivel de familia o superior,
-          </li>
-          <li>el observador ha optado por no participar de la ID de la comunidad y la ID de la comunidad no es un ancestro o descendiente del taxón asociado con la ID del observador.
-          </li>
-          </ul>
-          <p>
-          Y si eso no fuera lo suficientemente complicado, hay situaciones en las que el sistema también tiene voto:
-          </p>
-          <ul>
-          <li>El sistema votará que la observación no es salvaje/naturalizada si hay al menos otras 10 observaciones de un género o categoría inferior en el lugar más pequeño equivalente a una provincia, estado o país que contiene esta observación y el 80% o más de esas observaciones se han marcado como no silvestre/naturalizado.
-          </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -6990,24 +6935,6 @@ es-MX:
           Hemos incluido enlaces a las fotos afectadas abajo.
       user_parent_confirmation:
         subject: La cuenta de iNaturalist de su hijo ha sido activada
-        content_html: |
-          <p>
-          ¡Gracias por crear una cuenta de INaturalist para su hijo! La cuenta ha sido activada. Aquí están los detalles que ingresó que tenemos registrados:
-          </p>
-          <ul>
-          <li><strong>Nombre del padre o tutor legal: </strong> %{parent_name}</li>
-          <li><strong>Correo electrónico del padre o tutor legal: </strong> %{parent_email}</li>
-          <li><strong>Nombre del niño: </strong> %{child_name}</li>
-          <li><strong>Fecha de nacimiento del niño: </strong> %{child_birthday}</li>
-          <li><strong>Correo electrónico de la cuenta del niño: </strong> %{child_email}</li>
-          <li><strong>Nombre de usuario de la cuenta del niño: </strong> %{child_username}</li>
-          </ul>
-          <p>
-          Inicie sesión en la cuenta desde la aplicación Seek de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
-          </p>
-          <p>
-          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Seek para que se puedan ver en iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido tus suscripciones. Para reanudar la obtención de actualizaciones sobre la actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu cuenta</a> de nuevo.
@@ -7217,8 +7144,6 @@ es-MX:
         data_visualizations: Visualizaciones de datos
         delete_project: Eliminar proyecto
         display_project_name: Exhibe nombre del proyecto
-        do_you_need_features_from_traditional: |
-          ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         do_you_need_features_from_traditional2: |
           ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         duplicate_project: Duplicar Proyecto
@@ -7283,9 +7208,6 @@ es-MX:
           Rediseñamos los proyectos para incluir automáticamente todas las observaciones adecuadas de sitios, taxa, usuarios, calidad, y fechas que definas. Escoge entre dos tipos:
           Proyectos de colección y Proyectos contenedores, los cuales comparten las siguientes características:
         welcome_to_projects: '¡Te damos la bienvenida a los proyectos!'
-        you_can_learn_more_html: |
-          Puedes obtener más información sobre la gestión de los proyectos
-          <a href="https://www.naturalista.mx/pages/proyectos">aquí</a> o leer el historial de proyectos en <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nuestro blog</a>.
         you_have_not_defined_any_observation_requirements: |
           No has definido ningún requisito para las observación. Asegúrate de seleccionar uno o más taxa (p. ej. aves, coníferas), sitios (p. ej. Brasil, Yellowstone), usuarios, y/o fechas para definir las observaciones que quieres incluir en tu proyecto.
         errors:
