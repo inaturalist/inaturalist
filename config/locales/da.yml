@@ -27,6 +27,12 @@ da:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFIKATION'
     other: '<span class="count">%{count}</span> IDENTIFIKATIONER'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFIKATOR'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFIKATORER'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID foretaget for andre'
     other: '<span class="count">%{count}</span> ID''er foretaget for andre'
@@ -77,6 +83,9 @@ da:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observation gennemgået"
     other: "<span class='count'>%{count}</span> observationer gennemgået"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVATØR'
+    other: '<span class="count">%{count}</span> OBSERVATØRER'
   x_others:
     one: "%{count} anden"
     other: "%{count} andre"
@@ -5814,6 +5823,7 @@ da:
   user_muted: Slukket for bruger
   user_observed_on_on_date_in_place: |
     %{user} observeredes en den %{date} i %{place}
+  user_said_comment_html: <span class="meta">%{user} postede,</span> "%{comment}"
   user_suggested_an_id: "%{user} foreslog et ID"
   user_trusts_this_project_for_none: Bruger har ikke tillid til dette projekt med skjulte koordinater.
   user_trusts_this_project_for_any: |
@@ -7148,6 +7158,11 @@ da:
           Observationer reverseres til <strong>"uformel"</strong>, hvis ovenstående
           betingelser ikke er opfyldt eller fællesskabet er enige om, at
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>dag og år ikke ser præcist ud</strong> (f.eks. sne
+          ses på fotoet, men datoen er om sommeren; tager ikke
+          klokkeslæt i betragtning)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>placeringen ikke ser korrekt ud </strong> (f.eks. aber midt på havet, flodheste i kontorbygninger mv.)
         #One of a list of reasons for an observation to revert to Casual
@@ -7169,6 +7184,15 @@ da:
           observationen <strong>ikke præsenterer bevis relateret til ét
           emne</strong> (f.eks. har den fire fotos af ikke-beslægtede organismer;
           dog er et foto, der viser emnets levested OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          observationen behøver ikke længere en ID <em>og</em>
+          Fællesskabs-ID er på familie eller derover
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          taksonen er ikke en forfader eller efterkommer af taksonen associeret
+          med observatørens ID <em>og</em> observatøren har fravalgt
+          fællesskabstaksonen
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Og som om det ikke var kompliceret nok, er der også situationer,
@@ -7976,16 +8000,6 @@ da:
           herunder personer fra tidligere år og fra Translatewiki, i vores
           %{view_all_web_link_tag}web-%{link_tag_end} og
           %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
-        translators_desc_for_site_2: |
-          Vidste du, at iNaturalist er blevet oversat næsten udelukkende
-          af %{x_people}? Her er alle de fantastiske oversættere, som
-          har tilføjet oversættelser i år, samt det antal ord,
-          de har oversat til
-          %{website_link_tag}webstedet%{link_tag_end}, iNaturalist
-          %{iphone_link_tag}iPhone%{link_tag_end}- og
-          %{android_link_tag}Android%{link_tag_end}-apperne,
-          %{seek_link_tag}Seek%{link_tag_end} og
-          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Vil du hjælpe med at oversætte, %{link_tag}så tjek info hér%{link_tag_end}.
         view_all_publications_count_caps2:
