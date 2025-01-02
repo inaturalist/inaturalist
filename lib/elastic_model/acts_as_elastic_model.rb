@@ -86,7 +86,7 @@ module ActsAsElasticModel
         options[:batch_size] ||=
           defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
         options[:sleep] ||=
-          defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 0.2
+          defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 1
         debug = options.delete(:debug)
         filter_scope = options.delete(:scope)
         run_at = options.delete(:run_at)
