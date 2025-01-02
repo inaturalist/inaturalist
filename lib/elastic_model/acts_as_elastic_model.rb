@@ -86,7 +86,7 @@ module ActsAsElasticModel
         options[:batch_size] ||=
           defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
         options[:sleep] ||=
-          defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 1
+          defined?(self::DEFAULT_ES_BATCH_SLEEP) ? self::DEFAULT_ES_BATCH_SLEEP : 0.2
         debug = options.delete(:debug)
         filter_scope = options.delete(:scope)
         run_at = options.delete(:run_at)
@@ -101,11 +101,11 @@ module ActsAsElasticModel
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
               elastic_index!(options.merge(ids: slice, run_at: run_at))
-              if batch_sleep && !options[:delay]
+              if batch_sleep.is_a?( Numeric ) && !options[:delay]
                 # sleep after index an ID batch, since during indexing
                 # we only sleep when indexing multiple batches, and here
                 # we explicitly requested a single batch to be indexed
-                sleep batch_sleep.to_i
+                sleep batch_sleep
               end
             end
             return
@@ -276,26 +276,36 @@ module ActsAsElasticModel
       private
 
       # standard wrapper for bulk indexing with Elasticsearch::Model
-      def bulk_index(batch, options = { })
-        try_and_try_again( [
-          Elastic::Transport::Transport::Errors::ServiceUnavailable,
-          Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do
+      def bulk_index( batch, options = {} )
+        batch_to_index = if respond_to?( :prune_batch_for_index )
+          prune_batch_for_index( batch )
+        else
+          batch
+        end
+        return if batch_to_index.empty?
+
+        try_and_try_again(
+          [
+            Elastic::Transport::Transport::Errors::ServiceUnavailable,
+            Elastic::Transport::Transport::Errors::TooManyRequests
+          ], sleep: 1, tries: 10
+        ) do
           begin
-            __elasticsearch__.client.bulk({
+            __elasticsearch__.client.bulk( {
               index: __elasticsearch__.index_name,
-              body: prepare_for_index(batch, options),
+              body: prepare_for_index( batch_to_index, options ),
               refresh: options[:wait_for_index_refresh] ? "wait_for" : false
-            })
-            if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
+            } )
+            if batch_to_index.first.respond_to?( :last_indexed_at )
               ActiveRecord::Base.connection.without_sticking do
-                where(id: batch).update_all(last_indexed_at: Time.now)
+                where( id: batch_to_index ).update_all( last_indexed_at: Time.now )
               end
             end
             GC.start
           rescue Elastic::Transport::Transport::Errors::BadRequest => e
-            Logstasher.write_exception(e)
-            Rails.logger.error "[Error] elastic_index! failed: #{ e }"
-            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+            Logstasher.write_exception( e )
+            Rails.logger.error "[Error] elastic_index! failed: #{e}"
+            Rails.logger.error "Backtrace:\n#{e.backtrace[0..30].join( "\n" )}\n..."
           end
         end
       end
@@ -332,10 +342,13 @@ module ActsAsElasticModel
           end
         end
       end
-
     end
 
     def elastic_index!
+      if self.class.respond_to?( :prune_batch_for_index ) && self.class.prune_batch_for_index( [self] ).empty?
+        return
+      end
+
       try_and_try_again( [
         Elastic::Transport::Transport::Errors::ServiceUnavailable,
         Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10 ) do

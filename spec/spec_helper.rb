@@ -51,6 +51,7 @@ RSpec.configure do | config |
       Place,
       Project,
       Taxon,
+      TaxonPhoto,
       UpdateAction,
       User
     ].freeze
