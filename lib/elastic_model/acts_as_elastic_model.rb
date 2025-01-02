@@ -345,7 +345,7 @@ module ActsAsElasticModel
     end
 
     def elastic_index!
-      if respond_to?( :prune_batch_for_index ) && prune_batch_for_index( [self] ).empty?
+      if self.class.respond_to?( :prune_batch_for_index ) && self.class.prune_batch_for_index( [self] ).empty?
         return
       end
 

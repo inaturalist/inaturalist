@@ -3,7 +3,7 @@
 class TaxonPhoto < ApplicationRecord
   include ActsAsElasticModel
 
-  DEFAULT_ES_BATCH_SIZE = 100
+  DEFAULT_ES_BATCH_SIZE = 50
 
   attr_accessor :calculated_embedding
 
@@ -20,14 +20,14 @@ class TaxonPhoto < ApplicationRecord
   }
 
   settings index: {
-    number_of_shards: Rails.env.production? ? 6 : 4,
+    number_of_shards: Rails.env.production? ? 8 : 4,
     analysis: ElasticModel::ANALYSIS
   } do
     mappings( dynamic: false ) do
       indexes :ancestor_ids, type: "integer" do
         indexes :keyword, type: "keyword"
       end
-      indexes :photo_file_updated_at, type: "date", index: false
+      indexes :photo_file_updated_at, type: "date"
       indexes :embedding,
         type: "dense_vector",
         index: true,
@@ -66,14 +66,14 @@ class TaxonPhoto < ApplicationRecord
       id: id,
       taxon_id: taxon_id,
       photo_id: photo_id,
-      photo_file_update_at: photo&.file_updated_at,
-      ancestor_ids: ( taxon&.ancestry&.split( "/" )&.map( &:to_i ) || [] ) << id,
+      photo_file_updated_at: photo&.file_updated_at,
+      ancestor_ids: taxon&.self_and_ancestor_ids,
       embedding: calculated_embedding.blank? ? nil : calculated_embedding
     }
   end
 
   def self.prepare_batch_for_index( taxon_photos )
-    taxon_photos.in_groups_of( 100, false ) do | taxon_photos_group |
+    taxon_photos.in_groups_of( 50, false ) do | taxon_photos_group |
       embeddings_json = embeddings_for_taxon_photos( taxon_photos_group )
       next if embeddings_json.blank?
 
@@ -85,22 +85,38 @@ class TaxonPhoto < ApplicationRecord
 
   def self.prune_batch_for_index( batch )
     existing_indexed_documents = TaxonPhoto.elastic_mget(
-      batch.map( &:id ), source: [:id, :photo_id, :photo_file_update_at]
+      batch.map( &:id ), source: [
+        :id,
+        :photo_id,
+        :photo_file_updated_at,
+        :embedding,
+        :ancestor_ids
+      ]
     ).index_by {| d | d["id"] }
     batch.reject do | taxon_photo |
       indexed_doc = existing_indexed_documents[taxon_photo.id]
-      # if there is an existing indexed document with the same photo and version, no need to reindex
+      # if there is an existing indexed document with an embedding, the same taxon ancestors,
+      # and the same photo and version, no need to reindex
       next unless indexed_doc
+      next if indexed_doc["embedding"].blank?
+      next unless indexed_doc["ancestor_ids"] &&
+        indexed_doc["ancestor_ids"].sort == taxon_photo&.taxon&.self_and_ancestor_ids&.sort
       next unless indexed_doc["photo_id"] == taxon_photo.photo_id
-      next unless indexed_doc["photo_file_update_at"].nil? ||
-        Time.parse( indexed_doc["photo_file_update_at"] ).floor ==
-          taxon_photo.photo&.file_updated_at&.floor
+      next unless (
+        indexed_doc["photo_file_updated_at"].blank? && taxon_photo.photo&.file_updated_at.blank?
+      ) || Time.parse( indexed_doc["photo_file_updated_at"] ).floor ==
+        taxon_photo.photo&.file_updated_at&.floor
 
       true
     end
   end
 
   def self.embeddings_for_taxon_photos( taxon_photos )
+    # many tests will create taxa, which in turn will create taxon photos, which will want
+    # to be indexed and call the API to generate embeddings. Instead of mocking an API response
+    # for all those tests, do not allow this method to run in specs
+    return {} if Rails.env.test?
+
     5.times do
       begin
         Timeout.timeout( 20 ) do
