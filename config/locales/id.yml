@@ -18,6 +18,10 @@ id:
     other: '%{count} identifikasi'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> IDENTIFIKASI'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> PENGIDENTIFIKASI'
   x_ids_made_for_others_html:
     other: '<span class="count">%{count}</span> ID yang dibuat untuk orang lain'
   x_languages:
@@ -52,6 +56,8 @@ id:
     other: "<a href='%{url}'>%{count} pengamatan</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> pengamatan telah ditinjau"
+  x_observers_caps_html:
+    other: '<span class="count">%{count}</span> PENGAMAT'
   x_others:
     other: "%{count} lainnya"
   x_people:
@@ -5531,6 +5537,7 @@ id:
   user_muted: Pengguna diredam
   user_observed_on_on_date_in_place: |
     %{user} mengamatinya pada %{date} di %{place}
+  user_said_comment_html: <span class="meta">%{user} mengatakan,</span> "%{comment}"
   user_suggested_an_id: "%{user} menyarankan sebuah ID"
   user_trusts_this_project_for_none: Pengguna tidak mempercayakan proyek dengan koordinat tersembunyi ini.
   user_trusts_this_project_for_any: |
@@ -6731,6 +6738,11 @@ id:
           Pengamatannya akan kembali ke tingkat <strong>"kasual"</strong> jika 
           kondisi-kondisi di atas tidak terpenuhi atau komunitasnya setuju bahwa
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>tanggal, bulan, dan/atau tahunnya tidak terlihat akurat</strong> (misalkan 
+          salju terlihat pada gambar, tetapi tanggalnya berada di musim panas; tidak 
+          perlu mempertimbangkan jam pengambilan)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>lokasinya tidak terlihat akurat</strong> (misalkan monyet di 
           tengah samudra, kuda nil di kantor, dll.)
@@ -6751,6 +6763,15 @@ id:
           pengamatannya <strong>tidak menunjukkan bukti terkait satu subjek</strong> 
           (contohnya ia memiliki empat gambar yang berisi organisme-organisme yang tidak berkaitan; 
           gambar yang menunjukkan habitat dari subjek pengamatannya masih oke)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          pengamatannya tidak memerlukan ID lagi <em>dan</em> Takson Komunitasnya 
+          berada di tingkat famili ke atas
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          taksonnya bukan merupakan nenek moyang atau keturunan dari takson yang berkaitan 
+          dengan ID pengamat <em>dan</em> pengamat telah memilih untuk tidak 
+          mengaktifkan Takson Komunitas
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Dan kalau ini masih belum terasa rumit, masih ada situasi tertentu 
