@@ -27,6 +27,12 @@ sv:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> ARTBESTÄMNING'
     other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> BESTÄMMARE'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> BESTÄMMARE'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> Bestämning för andra'
     other: '<span class="count">%{count}</span> Bestämningar för andra'
@@ -77,6 +83,9 @@ sv:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> fynd granskat"
     other: "<span class='count'>%{count}</span> fynd granskade"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVATÖR'
+    other: '<span class="count">%{count}</span> OBSERVATÖRER'
   x_others:
     one: "%{count} annan"
     other: "%{count} andra"
@@ -5777,6 +5786,7 @@ sv:
   user_muted: Användare tystad
   user_observed_on_on_date_in_place: |
     %{user} observerade en den %{date} i %{place}
+  user_said_comment_html: <span class="meta">%{user} sade:</span> "%{comment}"
   user_suggested_an_id: "%{user} föreslog en bestämning"
   user_trusts_this_project_for_none: Användaren litar inte tillräckligt på detta projekt för att dela dolda koordinater.
   user_trusts_this_project_for_any: |
@@ -7063,6 +7073,11 @@ sv:
           Fynd kommer att återgå till <strong>"grundklass"</strong> om ovanstående
           villkor inte är uppfyllda eller om communityn är överens
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>dag, månad och/eller år ser inte korrekta ut</strong> (t.ex. snö
+          visas i bilden men datumet är på sommaren; ta inte hänsyn till 
+          tid på dagen)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>platsen ser inte riktig ut</strong> (t.ex. apor i
           mitten av havet, flodhästar i kontorsbyggnader, etc.)
@@ -7084,6 +7099,15 @@ sv:
           fyndet <strong>ger inte stöd för endast en sak</strong> (t.ex. fyra
           bilder på orelaterade organismer; en bild som visar på organismens
           livsmiljö är OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          fyndet behöver inte längre bestämmas <em>och</em> communityns
+          bestämning är till familj eller högre
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          detta taxon är inte en över- eller underliggande det taxon kopplat
+          till observatörens bestämning <em>och</em> observatören har valt bort
+          communitytaxon
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Och som om det inte var komplicerat nog, finns det också situationer
