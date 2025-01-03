@@ -27,6 +27,12 @@ de:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> BESTIMMUNG'
     other: '<span class="count">%{count}</span> BESTIMMUNGEN'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> BESTIMMER'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> BESTIMMER'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID für andere erstellt'
     other: '<span class="count">%{count}</span> IDs für andere User'
@@ -77,6 +83,9 @@ de:
   x_observations_reviewed_html:
     one: "<span class='count'>Eine</span> Beobachtung begutachtet"
     other: "<span class='count'>%{count}</span> Beobachtungen begutachtet"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> BEOBACHTER'
+    other: '<span class="count">%{count}</span> BEOBACHTER'
   x_others:
     one: "%{count} weitere Person"
     other: "%{count} weitere Personen"
@@ -5530,6 +5539,7 @@ de:
   user_muted: Benutzer gesperrt
   user_observed_on_on_date_in_place: |
     Von %{user} beobachtet am %{date} in %{place}
+  user_said_comment_html: <span class="meta">%{user} schrieb,</span> "%{comment}"
   user_suggested_an_id: "%{user} hat eine Bestimmung (ID) vorgeschlagen"
   user_trusts_this_project_for_none: Der Benutzer vertraut diesem Projekt nicht die verborgenen Koordinaten an.
   user_trusts_this_project_for_any: |
@@ -6679,6 +6689,9 @@ de:
           Beobachtungen werden auf <strong>"Hobbyqualität"</strong> zurückgesetzt, wenn die obigen
           Bedingungen nicht erfüllt sind oder die Community zustimmt,
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          dass <strong>das Datum nicht korrekt erscheint</strong> (z.B. Schnee auf dem Foto zu sehen, obwohl laut Datum Sommer sein sollte)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           dass der <strong>Standort nicht korrekt aussieht</strong> (z.B. Landtiere 
           mitten im Ozean, Parkbäume in geschlossenen Gebäuden, usw.)
@@ -6696,6 +6709,13 @@ de:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           dass die Beobachtung <strong> unterschiedliche Lebewesen</strong> in den einzelnen Fotos enthält (z.B sind vier Fotos von Lebewesen in der Beobachtung, die nichts miteinander zu tun haben) - ein Lebensraumfoto ist aber ok
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          dass die Bestimmung nicht weiter verbessert werden kann <em>und</em> das Community-Taxon
+          auf Familieniveau oder höher ist
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          dass das Taxon nicht in direkter Abstammungslinie mit derTaxon-ID des Beobachters liegt <em>und</em> der Beobachter das Community-Taxon abgelehnt hat
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           Und wenn das nicht kompliziert genug wäre, gibt es auch Situationen, in denen das System mitentscheidet:
