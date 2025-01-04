@@ -898,7 +898,7 @@ fr:
     drop: Le concept de taxon est non valide mais conservé à des fins historiques ou de compatibilité avec le partenaire
     stage: Préparer un concept inactif pour publication dans un groupe de modifications
   change_geoprivacy: 'Modifier la géoconfidentialité'
-  change_group: Modifier le groupe
+  change_group: Groupe de modifications
   change_icon: Modifier l’icône
   change_password: Modifier le mot de passe
   #Message shown after you change your email address
@@ -1317,7 +1317,7 @@ fr:
   csv_should_not_contain_a_header_row: Le format CSV ne doit pas contenir de ligne d’entête
   cumulative_ids: "ID cumulées : %{count} sur %{total}"
   curate_observations: Organiser les observations
-  curate_taxa: Organiser les taxons
+  curate_taxa: Curation des taxons
   curate_user: Superviser l’utilisateur
   curating: Organisation en cours
   curation: Organisation
@@ -2347,7 +2347,7 @@ fr:
   iphone: iPhone
   is_not_following_anyone: ne suit personne.
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'information fournie est suffisante pour confirmer que c'est %{taxon} ?
-  is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou du pourriel ?'
+  is_this_offensive_html: 'S’agit-il de quelque chose <a href="/help#inappropriate">d’inapproprié</a>, d’injurieux ou de spam ?'
   is_this_place_a_duplicate: Ce lieu est-il en double?
   #Form field label for setting a scientific name as the currently "accepted"
   #scientific name for a taxon. "Accepted" in this case is a term used in
@@ -4167,7 +4167,7 @@ fr:
   private: privé
   private_: Privé
   private_description: "Coordonnées complètement masquées des cartes publiques. Les vraies coordonnées ne sont visibles que par vous et les responsables de projets auxquels vous avez ajouté l’observation. Les observations avec des coordonnées masquées seront toujours utilisées pour vérifier les check-lists de lieux."
-  probably_spam: Sans doute du pourriel
+  probably_spam: Sans doute du spam
   proceed: Procéder
   processing: Traitement
   processing3p: "Traitement en cours…"
@@ -4860,7 +4860,7 @@ fr:
   sources_youve_added: Sources que vous avez ajoutées
   sources_and_credits: Sources et générique
   sourcing: Source
-  spam: Pourriel
+  spam: Spam
   spammer: Pollueur
   #Plural
   species: Espèces
@@ -5222,7 +5222,7 @@ fr:
   therefore_committing_additional_taxon_changes: Par conséquent, il ne sera pas nécessaire de valider d'autres modifications de taxon après avoir validé cette permutation de taxon.
   therefore_committing_taxon_changes: Par conséquent, il n'est pas nécessaire de valider des changements de taxon à la suite de ce changement de généalogie.
   these_are_items_people_on: |
-    Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur 'Suspendez l’utilisateur' en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un drapeau doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
+    Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le spam doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur 'Suspendez l’utilisateur' en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un signalement doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
   these_are_taxa_that: |
     Voici les taxons que %{site} ne peut pas ajouter de façon automatique à notre arbre taxinomique pour une raison donnée. Vous pouvez les ajouter à l’arbre en modifiant le taxon et en choisissant un enregistrement parent. Par exemple, le parent de ''Homo sapiens'' serait le genre ''Homo''. Vous pouvez aussi vouloir vérifier s’il y a des taxons synonymes et les fusionner.
   these_folks_kindly_volunteer_to: Ces utilisateurs ont eu la gentillesse de se porter volontaires pour maintenir notre taxinomie et gérer les problèmes courants.
@@ -6280,8 +6280,7 @@ fr:
           signalé au moment de la création du signalement. Seuls les responsables de l’organisation et le personnel peuvent
           le voir. Seul le personnel peut le voir pour les messages.
         flags_that_should_not_be_resolved_desc_html: |
-          Veuillez résoudre les marques <code>spam</code> et <code>copyright
-          infringement</code> uniquement si le contenu n’est pas du pourriel ou une violation de droit d’auteur, respectivement.
+          Veuillez résoudre les signalement de <code>spam</code> et <code>violation du droit d'auteur</code> uniquement si le contenu n’est pas du spam ou une violation de droit d’auteur, respectivement.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -6994,11 +6993,11 @@ fr:
           <a href="%{url}" target="_blank">conditions</a> du projet.
         score_desc: "pointage = nombre cumulé/(nombre cumulé + nombre en désaccord + désaccords au rang parent)"
         observation_flagged_notice_html: |
-          Cette observation a été marquée comme pourriel et n’est plus
+          Cette observation a été marquée comme spam et n’est plus
           visible publiquement. Vous pouvez la voir parce que vous l’avez créée, ou êtes un
           responsable du site. SI vous pensez que c’est une erreur, veuillez
           <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
-          <a href="/observations/%{observation_id}/flags">Gérer les marques</a>
+          <a href="/observations/%{observation_id}/flags">Gérer les signalements</a>
         observer_does_not_allow_observation_fields: L'observateur n'autorise pas les champs d'observation supplémentaires
         observer_only_allows_curators_to_add_fields: L'observateur autorise uniquement les superviseurs du site à ajouter des champs d'observation
       user_stats:
@@ -7581,11 +7580,11 @@ fr:
           Vous avez bloqué le propriétaire de cette ressource, ce qui vous empêche de communiquer avec lui. D’autres fonctionnalités interactives sur cette page ne fonctionneront pas.
       spam:
         message_for_owner_and_curators_html: |
-          Cet enregistrement a été signalé comme pourriel et n’est plus visible
+          Cet enregistrement a été signalé comme spam et n’est plus visible
           par tout le monde. Vous pouvez le voir, car vous l’avez créé ou parce que vous êtes un responsable de l’organisation
           du site. Si vous pensez que c’est une erreur, veuillez
           <a href="mailto:%{email}">nous contacter</a>.
-        this_has_been_flagged_as_spam: Signalé comme pourriel
+        this_has_been_flagged_as_spam: Signalé comme spam
       not_found:
         sorry_that_doesnt_exist: Désolé, ça n'existe pas !
         even_our_dedicated_search_mole_couldnt: Même notre taupe de recherche n’a rien pu trouver !
@@ -8163,7 +8162,7 @@ fr:
           Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
       recent:
         about_recent_users: À propos
-        definitions_html: <dl> <dt>Sans doute du pourriel</dt> <dd> Utilisateur qui est sans doute un pollueur, ce qui veut dire qu’ils n’ont pas d’observations ou d’identifications, mais une description e profil. </dd> <dt>Pourriel automatique</dt> <dd> Pollueur qui a été marqué automatiquement comme tel par le système. </dd> <dt>Pourriel manuel</dt> <dd> Pollueur qui a été marqué comme tel par un responsable du site. </dd> <dt>Faux positifs</dt> <dd> Utilisateurs qui ont été marqués comme pollueurs mais les marquages ont été résolus par les responsables du site parce qu’ils ne sont pas vraiment des pollueurs. </dd> </dl>
+        definitions_html: <dl> <dt>Sans doute du spam</dt> <dd> Utilisateur qui est sans doute un pollueur, ce qui veut dire qu’ils n’ont pas d’observations ou d’identifications, mais une description e profil. </dd> <dt>Spam automatique</dt> <dd> Spammeur qui a été marqué automatiquement comme tel par le système. </dd> <dt>Spam manuel</dt> <dd> Spammeurqui a été marqué comme tel par un responsable du site. </dd> <dt>Faux positifs</dt> <dd> Utilisateurs qui ont été marqués comme spammeurs mais les marquages ont été résolus par les curateurs du site parce qu’ils ne sont pas vraiment des spammeurs. </dd> </dl>
         recent_users_desc_html: |
           <p>
           Nous voulons accueillir les nouveaux utilisateurs, mais aussi combattre
