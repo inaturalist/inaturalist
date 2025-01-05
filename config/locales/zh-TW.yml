@@ -18,6 +18,10 @@ zh-TW:
     other: '%{count} 項鑑定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> 筆鑑定'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span>位鑑定者'
   x_languages:
     other: "%{count} 種語言"
   #Count of number of taxa that represent the first addition to a life list
@@ -50,6 +54,8 @@ zh-TW:
     other: "<a href='%{url}'>%{count}</a>個觀察記錄"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 個觀察記錄已檢閱"
+  x_observers_caps_html:
+    other: '<span class="count">%{count}</span>位觀察者'
   x_others:
     other: "%{count} 個其它"
   x_people:
@@ -6083,6 +6089,9 @@ zh-TW:
         curator_coordinate_access_disabled_desc_html: |
           此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
         disagreement_count_desc: "# 已鑑定物種分類群不在物種分類的祖先之中"
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name}<strong>社群同意鑑定到種或種以下階層</strong>，即當超過三分之二的鑑定者同意該分類群（若社群投票決定鑑定出來的分類群無法進一步改善的話，則回到亞科或更低的解析度等級）。
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: |
           一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
