@@ -27,6 +27,12 @@ fr:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICATION'
     other: '<span class="count">%{count}</span> IDENTIFICATIONS'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICATEUR'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICATEURS'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID fait pour d''autres'
     other: '<span class="count">%{count}</span> ID faites pour d''autres'
@@ -282,7 +288,7 @@ fr:
   add_a_single_observation: Ajouter une observation unique.
   add_a_taxon: Ajouter un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    Ajouter une <a target="_blank" href="%{url}">permutation de taxon</a> si vous voulez changer le nom
+    Ajouter une <a target="_blank" href="%{url}">changement de taxon</a> si vous voulez changer le nom
   add_an_assessment: Ajouter une évaluation
   add_an_identification: Ajouter une identification
   add_an_observation: Ajouter une observation
@@ -416,10 +422,10 @@ fr:
     <a target="%{target}" class="%{class}" href="%{url}">fusion de taxon</a>
   added_as_a_part_of_a_taxon_split_html: |
     Ajouté dans le cadre d'une 
-    <a target="%{target}" class="%{class}" href="%{url}">scission de taxon</a>
+    <a target="%{target}" class="%{class}" href="%{url}">division de taxon</a>
   added_as_a_part_of_a_taxon_swap_html: |
     Ajouté dans le cadre d'une 
-    <a target="%{target}" class="%{class}" href="%{url}">permutation de taxons</a>
+    <a target="%{target}" class="%{class}" href="%{url}">changement de taxon</a>
   added_by: Ajouté par
   added_by_user_on_date_html: "Ajouté par %{user} le %{date}"
   added_on_datetime: "Ajouté le %{datetime}"
@@ -548,7 +554,7 @@ fr:
   all_taxa_in_this_guide: Tous les taxons dans ce guide
   all_taxonomic_groups: "&laquo; Tous les groupes taxinomiques"
   all_updates: Toutes les notifications
-  allow_curator_access: Autoriser l’accès au responsable
+  allow_curator_access: Autoriser l’accès aux responsables
   allow_project_curators_to_view_your_private_coordinates: Autoriser les responsables de projets à voir vos coordonnées géographiques masquées
   allowed_establish_means_values: Valeurs des types d'implantation autorisés
   allowed_html: HTML autorisé
@@ -633,7 +639,7 @@ fr:
   apply_fields: Appliquer les champs
   apply_geoprivacy: Appliquer la géoconfidentialité
   apply_darr: "Appliquer &darr;"
-  apply_establishment_means_to_descendant_places: "Appliquer les types d'implantation aux lieu de niveaux inférieurs inclus"
+  apply_establishment_means_to_descendant_places: "Appliquer les types d'implantation aux lieux englobés"
   apply_these_settings_to_all: Appliquer ces paramètres à toutes les observations ci-dessous.
   appropriate?: Approprié ?
   arachnids: arachnides
@@ -736,7 +742,7 @@ fr:
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
-  attribution_uploaded_by_user: "%{attribution}, mise en ligne par %{user}"
+  attribution_uploaded_by_user: "%{attribution}, téléversé par %{user}"
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
     natureserve: NatureServe
@@ -812,7 +818,7 @@ fr:
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_act_html: |
     Étant donné que nous estimons que ce changement entraînera plus de 10 désaccords
-    involontaires, <strong>nous vous recommandons de valider également un changement de taxon concernant %{old_parent}, par exemple en séparant %{new_parent} de %{old_parent}</strong>.
+    involontaires, <strong>nous vous recommandons de valider également un changement de taxon concernant %{old_parent}, par exemple en divisant %{new_parent} de %{old_parent}</strong>.
   #disagreements are identifications that disagree with other identifications on the same observation
   because_we_estimate_this_change_dont_act_html: |
     Étant donné que nous estimons que ce changement entraînera au plus 10 désaccords involontaires,
@@ -984,8 +990,8 @@ fr:
   #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
   clashes_occur_for_swaps_html: |
     Des désaccords involontaires surviennent lorsqu'un taxon de rang supérieur <strong>(B)</strong> est
-    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxinomique, avec pour conséquence que les ID existants du taxon de rang supérieur sont interprétés
-    comme des désaccords avec les ID existants du taxon dérivé déplacé.
+    réduit par le déplacement d'un taxon dérivé <strong>(E)</strong> vers une autre partie de l'arbre taxinomique, avec pour conséquence que les ID existantes du taxon de rang supérieur sont interprétés
+    comme des désaccords avec les ID existantes du taxon dérivé déplacé.
   classification: Classification
   clear: effacer
   clear_filters: Effacer les filtres
@@ -1206,7 +1212,7 @@ fr:
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: Mue
     #Evidence of an organism feeding between the dermal layers of a leaf
-    leafmine: Mine dans une feuille
+    leafmine: Mine foliaire
     #Evidence of hair no longer attached to the organism from which it originated
     hair: Poils
     #Evidence of something made my an organism, made with or excavated from other materials
@@ -1350,6 +1356,8 @@ fr:
   #Header
   curator_application_how_curators_lose_their_powers: |
     Comment les responsables peuvent perdre leurs pouvoirs
+  curator_application_how_curators_lose_their_powers_desc: |
+    Les membres de l'équipe iNat peuvent retirer ses pouvoirs à un curateur dans les cas suivants :
   #Description of one way a curator may lose their curator status; part of list
   #of things, so you might imagine it is preceded with "iNat staff may remove
   #curatorial powers if a curator repeatedly..."
@@ -1373,7 +1381,7 @@ fr:
   #Description of a curator's ability to edit the taxonomy; part of a list of
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
-  curator_application_what_curators_can_do_edit_taxonomy_html: 'Modifier la taxinomie d''iNaturalist en suivant les règles définies dans la <a href="/pages/curator+guide#policies" target="_blank">section correspondante du Guide des curateurs</a>. Autrement dit, ils peuvent ajouter, scinder, permuter, fusionner, désactiver et supprimer des taxons sur iNaturalist. Ils peuvent également modifier la situation quant à la conservation et la géoconfidentialité des taxons, ainsi que modifier et gérer les noms vernaculaires, quel que soit l''utilisateur qui les a ajoutés.'
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Modifier la taxinomie d''iNaturalist en suivant les règles définies dans la <a href="/pages/curator+guide#policies" target="_blank">section correspondante du Guide des curateurs</a>. Autrement dit, ils peuvent ajouter, diviser, échanger, fusionner, désactiver et supprimer des taxons sur iNaturalist. Ils peuvent également modifier la situation quant à la conservation et la géoconfidentialité des taxons, ainsi que modifier et gérer les noms vernaculaires, quel que soit l''utilisateur qui les a ajoutés.'
   curator_application_what_curators_can_do_hide_comments_html: |
     Masquer les commentaires et suspendre les utilisateurs qui ont enfreint les <a
     href="/pages/community+guidelines" target="_blank">règles de la communauté
@@ -1393,7 +1401,7 @@ fr:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Modifier des lieux organisés par la communauté et télécharger des fichiers KML de plus de 1 Mo (mais
+    Modifier des lieux organisés par la communauté et téléverser des fichiers KML de plus de 1 Mo (mais
     de moins de 5 Mo)
   #Header
   curator_application_what_curators_cannot_do: Ce que les curateurs ne peuvent pas faire
@@ -1548,7 +1556,7 @@ fr:
   delete_taxon_and_merge_most_data_html: |
     Supprimez <i>%{taxon}</i> et fusionnez la plupart de ses données dans un autre taxon. Utilisez
     cet outil pour <strong>supprimer les taxons en double</strong>. Si vous voulez
-    supprimer un synonyme désuet, créez une permutation de taxons. <strong>ATTENTION !</strong> La suppression des taxons peut être très destructive. Consultez le
+    supprimer un synonyme désuet, créez un changement de taxons. <strong>ATTENTION !</strong> La suppression des taxons peut être très destructive. Consultez le
     <a href="%{curator_url}">Guide des curateurs</a> pour obtenir plus de détails.
   delete_user: Supprimer l’utilisateur
   delete_your_account: Supprimer votre compte
@@ -1828,7 +1836,7 @@ fr:
     introduced: Arrivé dans la région par des moyens anthropiques
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
   estimate_which_input2: |
-    Estimation des Id du taxon d'entrée qui seront remplacées par les taxons de sortie et de celles qui seront ramenées à un parent commun une fois la scission validée. Le calcul peut prendre
+    Estimation des identifications du taxon d'entrée qui seront remplacées par les taxons de sortie et de celles qui seront ramenées à un parent commun une fois la division validée. Le calcul peut prendre
     un moment. Les liens vers les observations sont tronqués à des sous-ensembles de 200.
   event_in_progress: Activité en cours
   event_stats: Statistiques de l'évènement
@@ -1843,10 +1851,17 @@ fr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rang exact
   except: exception
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exclure
   exclude_places: Exclure des lieux
   exclude_projects: Exclure des projets
   exclude_taxa: Exclure des taxons
   exclude_users: Exclude des utilisateurs
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: '%{count} taxon exclu'
+    other: '%{count} taxons exclus'
   exclusion_filters: Filtres d'exclusion
   existing_flags: Signalements existants
   exit_full_screen: "Sortir du mode plein écran"
@@ -2135,9 +2150,9 @@ fr:
   heads_up_automatable_draft_split_notice_html: |
     <strong>Avertissement :</strong> Lorsque vous validerez ce changement, les identifications seront réaffectées aux taxons de sortie en fonction de leurs atlas. Si une partie ou la totalité des sorties n'ont pas d'atlas ou si des atlas se chevauchent pour un enregistrement donné, les identifications seront remplacées par l'identification du taxon parent le plus proche (%{taxon})
   heads_up_non_automatable_draft_split_notice_html: |
-    <strong>Avertissement :</strong> Cette scission de taxons a des taxons de sortie qui n'ont pas d'atlas ou qui n'ont pas de parent commun. Par conséquent, les enregistrements associés aux taxons d'entrée ne pourront pas être automatiquement assignés aux taxons de sortie à la validation de cette scission et la communauté devra ajouter de nouvelles identifications pour ces enregistrements.
+    <strong>Avertissement :</strong> Cette division de taxons a des taxons de sortie qui n'ont pas d'atlas ou qui n'ont pas de parent commun. Par conséquent, les enregistrements associés aux taxons d'entrée ne pourront pas être automatiquement assignés aux taxons de sortie à la validation de cette division et la communauté devra ajouter de nouvelles identifications pour ces enregistrements.
   heads_up_automatable_split_notice_html: |
-    <strong>Avertissement :</strong> Certaines ou toutes les identifications affectées par cette scission peuvent avoir été remplacées par des identifications de %{taxon}. Ceci se produit lorsque nous ne pouvons pas assigner automatiquement une identification à l'un des taxons de sortie.
+    <strong>Avertissement :</strong> Certaines ou toutes les identifications affectées par cette division peuvent avoir été remplacées par des identifications de %{taxon}. Ceci se produit lorsque nous ne pouvons pas assigner automatiquement une identification à l'un des taxons de sortie.
   heads_up_observose_taxon_change_html: |
     <strong>Avertissement :</strong> Un ou plusieurs des taxons d'entrée impliqués dans cette modification a plus de %{observose_taxon_threshold} observations en aval. Seuls les administrateurs ou les responsables de ce cadre taxinomique peuvent valider cette modification.
   heads_up_taxon_change_inputs_covered_by_framework_html: |
@@ -2296,8 +2311,16 @@ fr:
   inaturalist_network_affiliation: Affiliation au réseau iNaturalist
   #Label for messages you've received
   inbox: Boîte de réception
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inclure
   include_places: Ajouter des lieux
   include_projects: Ajouter des projets
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inclure ou exclure les taxons supérieurs
   include_suggestions_not_seen_nearby: Inclure les suggestions de taxons qui n'ont pas été observés à proximité
   include_suggestions_not_expected_nearby: Inclure les taxons dont la présence n'est pas attendue à proximité
   include_taxa: Ajouter des taxons
@@ -2358,7 +2381,7 @@ fr:
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: texte en italique
   item_flagged_notice_html: |
-    Ceci a été marqué comme pourriel et n’est plus
+    Ceci a été marqué comme spam et n’est plus
     visible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un
     responsable du site. Si vous pensez que c’est une erreur, veuillez
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
@@ -2735,7 +2758,7 @@ fr:
   #Stub text for the main content section when editing custom project data
   main_content_description: Tapez ici le contenu principal
   make_a_new_place: Créer un nouveau lieu
-  make_a_taxon_swap_instead?: Voulez-vous plutôt faire une permutation de taxons ?
+  make_a_taxon_swap_instead?: Voulez-vous plutôt faire un échange de taxons ?
   make_curator: Créer un responsable de l’organisation
   make_manager: Créer un gestionnaire
   make_sure_the_default_photo_looks_good: Assurez-vous que la photo s’affiche bien en grande taille.
@@ -2939,7 +2962,7 @@ fr:
     %{old_parent}. %{old_parent} a %{id_count} ID.
   multiple: multiple
   multiple_select_option: '-- multiple --'
-  multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins de permutation/fusion, sortie aux fins de séparation)"
+  multiple_taxa_for_taxon_change: "Taxons multiples (entrée aux fins d’échange/fusion, sortie aux fins de division)"
   multiple_taxon_ids_separated_by_commas: 'IDs de taxon multiples séparés par des virgules, par ex. 123,654'
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
@@ -3230,10 +3253,13 @@ fr:
   observation_accuracy_experiment_validator_candidate: "Critère d'éligibilité du validateur"
   observation_accuracy_experiment_if_an_identifier: "Si un identificateur avait fait au moins 3 identifications d'amélioration sur un taxon, nous l'avons considéré qualifié pour valider ce taxon. L'identification d'amélioration est la première suggestion d'un taxon avec laquelle la communauté est par la suite d'accord."
   observation_accuracy_experiment_if_an_identifier_continent: "Si un identificateur a fait au moins 3 identifications d'amélioration sur un taxon sur un continent, nous l'avons considéré comme qualifié pour valider un taxon sur ce continent. Les identifications d'amélioration sont les premières suggestions du taxon que la communauté a ensuite accepté."
+  observation_accuracy_experiment_for_example: "Par exemple, Identificateur 1 ajoute une ID A à une observation. Si Identificateur 2 ajoute ensuite une ID en tête de B, l'ID sur A de l'identificateur 1 devient une ID amélioration. Si Identificateur 3 ajoute ensuite une ID soutien à B, l'ID d'Identificateur 2 sur B devient une ID amélioration."
   observation_accuracy_experiment_step_2: "Étape 2 : Validation des échantillons"
+  observation_accuracy_experiment_we_contacted: "Nous avons contacté des validateurs candidats et nous leur avons demandé d'ajouter des identifications à leur sous-échantillon. Le graphe sur la droite groupe les échantillons d'observations par le nombre de validateurs."
   observation_accuracy_experiment_number_percent_of: "Nombre de validateurs participants : %{number} (%{percentage})"
   observation_accuracy_experiment_percent_of: "Pourcentage de l'échantillon validé : %{percent}"
   observation_accuracy_experiment_step_3: "Étape 3 : Évaluation des observations d'un échantillon à partir des validations"
+  observation_accuracy_experiment_we_scored: "Nous avons noté les identifications dans l'échantillon comme Correct, Incertain ou Incorrect en comparant les identifications des validateurs avec chaque taxon de l'observation de l'échantillon. Les identifications identiques ou plus fines que le taxon des observations de l'échantillon ont été notées comme Correct. Les identifications non divergentes plus grossières ont été notées comme Incertain comme les scénarios dans lesquels plusieurs validateurs étaient en désaccord. Les identifications divergentes plus grossières ou les identifications sur d'autres branches ont été notées comme Incorrect."
   observation_accuracy_experiment_correct: "Correct"
   observation_accuracy_experiment_uncertain: "Incertain"
   observation_accuracy_experiment_incorrect2: "Incorrect"
@@ -3241,6 +3267,7 @@ fr:
   observation_accuracy_experiment_accuracy: "Exactitude"
   observation_accuracy_experiment_we_calculated: "Nous avons calculé la précision comme le pourcentage correct pour l'ensemble de l'échantillon ainsi que des sous-ensembles tels que le sous-ensemble de la note de recherche. Nous avons aussi calculé le pourcentage d'incertain et le pourcentage d'incorrect. Dans l'exemple à droite, le pourcentage correct serait 83, le pourcentage d'incertain serait de 6 et le pourcentage incorrect serait de 11."
   observation_accuracy_experiment_precision: "Précision"
+  observation_accuracy_experiment_if_every_sample: "Si toute l'observation était à un taxon grossier, comme un règne, la précision de l'ensemble de données d'iNaturalist aurait été très haut, mais la précision pourrait être trop basse pour rendre l'ensemble de données très utile. Pour estimer la précision, nous avons compté le nombre de descendants \"feuille\" dans la taxinomie d'iNaturalist pour chaque taxon associé à chaque observation échantillonnée. Nous avons calculé la précision comme 1 divisé par le nombre de descendants \"feuille\". Si le taxon était un taxon \"feuille\", la précision est de 100%. Nous avons ignoré les taxons infraspécifiques dans le calcul de la précision."
   observation_accuracy_experiment_in_the_example: "Dans l'exemple à droite, la précision moyenne de trois observations d'échantillonnage serait de 51 %."
   observation_accuracy_experiment_read_more_html: |
     Pour en savoir plus sur l'orchestration de cette expérience, consultez le post de blog <a href="%{url}"></a>.
@@ -4541,7 +4568,7 @@ fr:
   #access their iNat account
   revoke_external_application: "Révoquer %{site_name}?"
   revoke_privacy_consent_warning: "La seule façon de retirer ce consentement est de supprimer votre compte et toutes les données qui y sont associées."
-  rg_observations: Observations CR
+  rg_observations: Observations QR
   role: Rôle
   rotate_left: Pivoter vers la gauche
   rotate_right: Pivoter vers la droite
@@ -4736,7 +4763,7 @@ fr:
   sites_affiliation_examples_canada_cdc_html: |
     %{start_tag_inat_canada}iNaturalist Canada%{end_tag_inat_canada} permet d'intégrer les données d'iNaturalist dans des systèmes sécurisés de niveau provincial gérés par des centres de données sur la conservation (CDC). Ces systèmes sont utilisés lorsque des évaluations sont effectuées (deux fois par an) pour déterminer la vulnérabilité des espèces ainsi que l'habitat essentiel des espèces menacées ou en voie de disparition. Ainsi, il a également été possible de localiser et d'atténuer les risques des points névralgiques en matière de mortalité routière pour des espèces en péril ; de délimiter et, ensuite, de protéger les zones clés pour la biodiversité ; de confirmer à nouveau la présence d'espèces qui n'avaient plus été signalées depuis des décennies.
   sites_affiliation_examples_ecuardor_bndb_html: |
-    %{start_tag_ecuador}iNaturalist Equateur%{end_tag_ecuador} alimente la base de données nationale de la biodiversité de l'Équateur (BNDB), un grand référentiel de données provenant de travaux scientifiques ainsi que de la science citoyenne. Le but est d'intégrer les connaissances et les données qui contribuent à la compréhension environnementale de la flore et de la faune de l'Équateur.
+    %{start_tag_ecuador}iNaturalist Équateur%{end_tag_ecuador} alimente la base de données nationale de la biodiversité de l'Équateur (BNDB), un grand référentiel de données provenant de travaux scientifiques ainsi que de la science citoyenne. Le but est d'intégrer les connaissances et les données qui contribuent à la compréhension environnementale de la flore et de la faune de l'Équateur.
   sites_affiliation_examples_mexico_nbis_html: |
     Les observations de %{start_tag_naturalista}Naturalista%{end_tag_naturalista} Mexique alimentent le système national d'information sur la biodiversité (de la CONABIO, la commission nationale pour la connaissance et l'utilisation de la biodiversité) avec les données d'eBird. On trouve à la fois des données scientifiques et des données de science citoyenne dans %{start_tag_enciclovida}EncicloVida%{end_tag_enciclovida}.
   sites_affiliation_examples_portugal_atlas_html: |
@@ -4924,7 +4951,7 @@ fr:
   subscribe_to_comments_on_this_taxon_swap_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cet échange de taxon"
   subscribe_to_comments_on_this_taxon_merge_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette fusion de taxon"
   subscribe_to_comments_on_this_taxon_split_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce partage de taxon"
-  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cette désactivation de taxon"
+  subscribe_to_comments_on_this_taxon_drop_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur cet abandon de taxon"
   subscribe_to_observations_from_this_place_html: <a>Abonnez-vous</a> aux observations de cet endroit
   subscribe_to_observations_in_a_taxon: S’abonner à toutes les observations publiées sur une espèce ou un groupe d’organismes (par ex. 'scorpions').
   subscribe_to_observations_in_a_place: S’abonner à toutes les observations publiées dans cet emplacement. Vous pouvez aussi ajouter un filtre de taxon facultatif (par ex. 'scorpions du Texas').
@@ -5036,15 +5063,16 @@ fr:
   taxon_change_commit_may_still_be_processing: |
     La validation du changement de taxon est peut-être toujours en cours. Gardez à l'esprit que certains enregistrements pourraient ne pas encore avoir été mis à jour
   taxon_change_must_be_committed_to_update_records: La modification de taxon doit être validée pour mettre à jour les enregistrements
-  taxon_change_title_taxon_drop: Désactivation taxinomique %{id}
+  taxon_change_title_taxon_drop: Abandon taxinomique %{id}
   taxon_change_title_taxon_merge: Fusion taxinomique %{id}
-  taxon_change_title_taxon_split: Scission taxinomique %{id}
-  taxon_change_title_taxon_stage: Activation taxinomique %{id}
+  taxon_change_title_taxon_split: Division taxinomique %{id}
+  taxon_change_title_taxon_stage: Préparation taxonomique %{id}
+  taxon_change_title_taxon_swap: Échange de taxons %{id}
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
-  taxon_drop: perte de taxon
+  taxon_drop: abandon de taxon
   #Notification about a taxon drop, @vow_or_con operates on %{taxon}
-  taxon_drop_affecting_taxon: Suppression du taxon affectant %{taxon}
+  taxon_drop_affecting_taxon: Abandon de taxon affectant %{taxon}
   taxon_id: Identifiant de taxon
   taxon_ids: IDs de taxon
   taxon_map:
@@ -5090,12 +5118,12 @@ fr:
   taxon_range_guidelines_if_you_are_not_uploading: "Il peut y avoir deux raisons de ne pas téléverser une carte de la liste rouge de l'UICN :"
   taxon_range_guidelines_iucn_red_list_range_map_is_unsuitable: La carte d'aire de répartition de la liste rouge de l'UICN n'est pas appropriée pour ce taxon
   taxon_range_guidelines_for_example_you_have_manually_narrowed: |
-    par exemple, vous l'avez réduite manuellement pour refléter une séparation taxinomique non représentée sur la liste rouge de l'UICN, ou la carte d'aire de répartition de la liste rouge de l'UICN comporte des erreurs majeures qui rendent son emploi inapproprié.
+    par exemple, vous l'avez réduite manuellement pour refléter une division taxinomique non représentée sur la liste rouge de l'UICN, ou la carte d'aire de répartition de la liste rouge de l'UICN comporte des erreurs majeures qui rendent son emploi inapproprié.
   taxon_range_guidelines_taxon_is_not_in_the_iucn_red_list: Ce taxon n'est pas sur la liste rouge de l'UICN
   taxon_range_guidelines_for_example_the_taxon_is_lumped: |
     par exemple, le taxon est regroupé avec un autre taxon sur la liste rouge de l’UICN et vous l’avez donc circonscrit manuellement ici, ou le taxon n'a pas d'évaluation ni de carte de son aire de répartition sur la liste rouge de l'UICN.
   taxon_range_guidelines_please_provide_details: |
-    Veuillez utiliser la description pour expliquer comment la carte a été préparée et renvoyer à tout signalement pertinent, toute séparation taxinomique ou toute autre discussion des raisons pour lesquelles l'aire de répartition publiée de la liste rouge de l'UICN devait être modifiée.
+    Veuillez utiliser la description pour expliquer comment la carte a été préparée et renvoyer à tout signalement pertinent, toute division taxinomique ou toute autre discussion des raisons pour lesquelles l'aire de répartition publiée de la liste rouge de l'UICN devait être modifiée.
   taxon_range_guidelines_learn_more_about_taxon_ranges: En savoir plus sur les aires de répartition de taxons
   taxon_range_updated_notice: L'aire de répartition du taxon a bien été mise à jour. Veuillez attendre quelques minutes pour que les modifications apparaissent sur les cartes.
   #Taxonomic ranks, e.g. "genus," "subfamily", "kingdom", etc.
@@ -5105,20 +5133,20 @@ fr:
   taxon_schemes: "Schémas Taxinomiques"
   taxon_search: Recherche de taxon
   taxon_search_results_for: Résultats de recherche de taxon pour
-  taxon_split: séparation de taxon
+  taxon_split: division de taxon
   #Notification about a taxon split, @vow_or_con operates on %{taxa}, which
   #is a comma-separated list of taxon names
-  taxon_split_affecting_taxa: Fractionnement du taxon affectant %{taxa}
+  taxon_split_affecting_taxa: Division du taxon affectant %{taxa}
   #A Taxon Stage is a a kind of Taxon Change that stages a taxon for activation
-  taxon_stage: organisation du taxon
+  taxon_stage: préparation de taxon
   #Notification about a taxon stage, @vow_or_con operates on %{taxon}
-  taxon_stage_affecting_taxon: Mise en attente du taxon affectant %{taxon}
-  taxon_swap: permutation de taxon
+  taxon_stage_affecting_taxon: Préparation de taxon affectant %{taxon}
+  taxon_swap: échange de taxons
   #Notification about a taxon swap, @vow_or_con operates on %{taxa}, which is
   #a comma-separated list of taxon names
   taxon_swap_affecting_taxa: Échange de taxons affectant %{taxa}
-  taxon_swap_only_has_one_input: un seul taxon est permis en entrée pour une permutation
-  taxon_swap_has_inputs_and_outputs: une permutation doit avoir une entrée et une sortie
+  taxon_swap_only_has_one_input: limite d'un taxon en entrée pour un échange
+  taxon_swap_has_inputs_and_outputs: un échange doit avoir une entrée et une sortie
   taxon_name_was_deleted: Le nom du taxon a été supprimé.
   taxon_name_was_successfully_updated: Le nom du taxon a bien été mis à jour.
   taxon_was_successfully_created: Le taxon a bien été créé.
@@ -5219,7 +5247,7 @@ fr:
   there_were_some_problems_with_fields: "Il y a eu des problèmes avec les champs suivants :"
   there_were_some_problems_with_these_files: "Il y a eu quelques problèmes avec ces fichiers :"
   theres_something_wrong_with_taxon_framework_relationship: Il y a quelque chose en erreur ici — nous ne pouvons pas déterminer la relation entre des taxons interne et externe
-  therefore_committing_additional_taxon_changes: Par conséquent, il ne sera pas nécessaire de valider d'autres modifications de taxon après avoir validé cette permutation de taxon.
+  therefore_committing_additional_taxon_changes: Par conséquent, il ne sera pas nécessaire de valider d'autres modifications de taxon après avoir validé cet échange de taxon.
   therefore_committing_taxon_changes: Par conséquent, il n'est pas nécessaire de valider des changements de taxon à la suite de ce changement de généalogie.
   these_are_items_people_on: |
     Il y a des articles que les personnes membres de ce site ont signalés aux fins d’organisation. Le spam doit être supprimé et les utilisateurs responsables doivent être suspendus (allez sur leur page de profil et cliquez sur 'Suspendez l’utilisateur' en bas à droite pour les empêcher de se connecter). Les autres articles qui font l’objet d’un signalement doivent seulement être supprimés s’ils sont clairement haineux, illégaux, etc. La grossièreté, les insultes, etc., doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être signalés à un administrateur du site ou %{email}
@@ -5459,7 +5487,7 @@ fr:
   type_species_name: "Saisissez un nom d’espèce"
   type_taxon_name: "Saisissez un nom de taxon"
   uicn_red_list_status: "Situation selon la liste rouge de UICN :"
-  umbrella_projects: Projets-cadres
+  umbrella_projects: Projets de compilation
   unable_to_save_comment: Malheureusement, nous n'avons pas pu enregistrer le commentaire.
   unblock: Débloquer
   unclassified: Non classifié
@@ -5554,7 +5582,7 @@ fr:
     Utilisez <span class='ac-placeholder'>"%{name}"</span> comme signet
   use_this_form_to_create_a_new: |
     Utilisez ce formulaire pour créer l’ébauche d’une modification taxinomique décrivant une proposition de
-    scission, de fusion ou de permutation de taxons actifs.
+    division, de fusion ou d'échange de taxons à valider plus tard.
   #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une façon particulière. Si le taxon n’est pas une espèce ou un taxon infraspécifique, tout ce qui se trouve entre [GENRE] et [ESPÈCE] sera remplacé par le nom du taxon. Utilisez-donc cette action avec modération.
@@ -5611,11 +5639,11 @@ fr:
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_merge_affecting_taxa2: "%{user} a effectué une fusion de taxons affectant %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa2: "%{user} a effectué une séparation de taxons affectant %{taxa}"
+  user_committed_taxon_split_affecting_taxa2: "%{user} a effectué une division de taxons affectant %{taxa}"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_stage_affecting_taxon2: "%{user} a mis le taxon %{taxon} en attente"
+  user_committed_taxon_stage_affecting_taxon2: "%{user} a validé une préparation de taxon affectant %{taxon}"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa2: "%{user} a effectué une permutation de taxons affectant %{taxa}"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} a effectué un échange de taxons affectant %{taxa}"
   user_disagrees_this_is_taxon: "%{user} pense que ce n’est pas %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} est en désaccord avec les identifications précédentes plus fines"
   user_faved_an_observation_by_you: "%{user} a ajouté une de vos observations à ses favoris"
@@ -5642,6 +5670,7 @@ fr:
   user_muted: Utilisateur réduit au silence
   user_observed_on_on_date_in_place: |
     %{user} en a observé un le %{date} à %{place}
+  user_said_comment_html: '<span class="meta">%{user} a dit : </span>"%{comment}"'
   user_suggested_an_id: "%{user} a suggéré un ID"
   user_trusts_this_project_for_none: L'utilisateur ne donne pas à ce projet l'accès à ses coordonnées masquées.
   user_trusts_this_project_for_any: |
@@ -6039,11 +6068,11 @@ fr:
     Vous soumettez des observations sans date ou lieu. Les observations sans cette information sont souvent impossibles à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_subscribed_to_comments_on_this_flag: Vous êtes abonné aux commentaires sur ce signalement.
   you_are_subscribed_to_comments_on_this_post: Vous êtes abonné aux commentaires sur cet article.
-  you_are_subscribed_to_comments_on_this_taxon_stage: Vous êtes abonné aux commentaires sur cette activation de taxon
-  you_are_subscribed_to_comments_on_this_taxon_swap: Vous êtes abonné aux commentaires sur cette permutation
+  you_are_subscribed_to_comments_on_this_taxon_stage: Vous êtes abonné aux commentaires sur cette préparation de taxon
+  you_are_subscribed_to_comments_on_this_taxon_swap: Vous êtes abonné aux commentaires sur cet échange de taxons
   you_are_subscribed_to_comments_on_this_taxon_merge: Vous êtes abonné aux commentaires sur la fusion de ce taxon
-  you_are_subscribed_to_comments_on_this_taxon_split: Vous êtes abonné aux commentaires sur ce partage de taxon
-  you_are_subscribed_to_comments_on_this_taxon_drop: Vous êtes abonné aux commentaires sur cette désactivation de taxon
+  you_are_subscribed_to_comments_on_this_taxon_split: Vous êtes abonné aux commentaires sur cette division de taxons
+  you_are_subscribed_to_comments_on_this_taxon_drop: Vous êtes abonné aux commentaires sur cet abandon de taxon
   you_are_subscribed_to_observations_from_this_place: Vous êtes abonné aux commentaires de cet endroit.
   you_arent_a_member_of_that_project: Vous n’êtes pas membre de ce projet.
   you_arent_following_that_person: "Vous ne suivez pas cette personne."
@@ -6547,7 +6576,7 @@ fr:
         show: Afficher
         children: Enfants
         simplified_tree: Arbre simplifié
-        full_taxonomy: Taxinomie complète
+        full_taxonomy: Taxinomie Complète
     listed_taxa:
       establishment_field:
         confirmation: |
@@ -7238,7 +7267,7 @@ fr:
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
       collection_and_umbrellas_do_not_support: |
-        Actuellement, les collections et les projets-cadres ne prennent pas en charge l’accès aux coordonnées masquées.
+        Actuellement, les projets de collection et de compilation ne prennent pas en charge l’accès aux coordonnées masquées.
       curator_coordinate_access_desc_html: |
         Souvenez-vous, <strong>les responsables du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
@@ -7396,13 +7425,13 @@ fr:
         a_project_allows_you_to_gather: |
           Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche natifs d'iNaturalist. Tout ce qui correspond aux paramètres définis par le projet sera automatiquement inclus.
         an_umbrella_project_can_be_used_to: |
-          Un projet-cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets dans un seul projet-cadre. Les projets-cadres ne peuvent pas contenir d’autres projets-cadres.
+          Un projet de compilation peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets dans un seul projet de compilation. Les projets de compilation ne peuvent pas contenir d’autres projets de compilation.
         are_you_ready_to_duplicate: |
           Êtes-vous prêt à quitter cette page pour dupliquer ce projet ? Veuillez noter que l’icône du projet
           et sa bannière ne seront pas dupliqués, et devront être rechargées dans le projet
           dupliqué.
         are_you_sure_you_want_to_delete: Êtes-vous sûr de vouloir supprimer ce projet ?
-        can_be_included_in_multiple: Peuvent être inclus dans plusieurs projets-cadres
+        can_be_included_in_multiple: Peuvent être inclus dans plusieurs projets de compilation
         check_the_box_to_include_member_observations: |
           Cochez la case ci-dessous pour inclure uniquement les observations faites par les utilisateurs qui font partie de ce projet.
           Utilisez le filtre Exclure Utilisateurs ci-dessus pour exclure les observations d'utilisateurs spécifiques,
@@ -7442,7 +7471,7 @@ fr:
         please_specify_the_requirements: |
           Veuillez spécifier les prérequis des observations à ajouter à ce projet.
         project_background_color: Couleur d'arrière plan du résumé du projet
-        project_background_color_help: Assurez-vous de choisir une couleur assez sombre pour que le texte blanc recouvrant soit lisible.
+        project_background_color_help: Assurez-vous de choisir une couleur assez sombre pour que le texte blanc par-dessus soit lisible.
         project_banner: Bannière du projet (PNG ou JPG)
         project_banner_help: Image de bannière facultative. Les dimensions idéales sont 760x320px.
         project_details: Détails du projet
@@ -7467,16 +7496,16 @@ fr:
         traditional_projects_cannot_be_copied: Un projet traditionnel ne peut pas être copié
         trusting_members_will_be_notified: |
           Vous avez changé les critères du projet. Ceci va notifier tous les membres qui ont donné au projet l'accès aux coordonnées masquées de leurs observations pour qu'ils puissent décider s'ils veulent continuer à faire confiance au projet après ce changement.
-        umbrella_project_features: "Fonctionnalités des projets-cadres :"
+        umbrella_project_features: "Fonctionnalités des projets de compilation :"
         unique_url_for_outreach: URL unique pour diffusion
         use_this_for_a_time_limited_event: |
           Utilisez ceci pour un événement ponctuel, un bioblitz ou un projet saisonnier. Sélectionnez une seule date, une plage de dates ou bien les mois de l'année pendant lesquels les observations doivent être faites (quelle que soit l'année). Si vous utilisez la section Plage de Dates, assurez-vous d'avoir sélectionné les bons horaires et fuseaux horaires, ou bien supprimez la zone de texte des heures pour inclure des observations faites à n'importe quel moment de la journée. Vous pouvez laisser la date de début ou la date de fin vide si vous voulez limiter le projet à une seule date.
         users_can_follow_your_project: Les utilisateurs peuvent suivre les progrès de votre projet via les articles du journal
         use_this_link_to_create_html: |
           Créez plutôt un projet traditionnel en utilisant <a href="%{url}">ce lien</a>.
-        visual_comparison_of_data_among: Comparaison visuelle des données entre les projets inclus dans le projet-cadre
+        visual_comparison_of_data_among: Comparaison visuelle des données entre les projets inclus dans la compilation
         we_have_redesigned_projects: |
-          Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types de projet, les projets de collections et les projets-cadres, qui partagent les fonctionnalités suivantes :
+          Les projets sont conçus pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous définissez. Vous avez le choix entre deux types de projet, les Projets de Collection et les Projets de Compilation, qui partagent les fonctionnalités suivantes :
         welcome_to_projects: Bienvenue dans les projets !
         you_can_learn_more2_html: |
           Vous pouvez en savoir plus sur la gestion des projets 
@@ -7729,6 +7758,9 @@ fr:
           y compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code
           %{view_all_web_link_tag}web%{link_tag_end} et
           %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
+        translators_desc_2: |
+          Saviez-vous qu'iNaturalist avait été traduit en %{x_languages}, quasiment intégralement par %{x_people}, dont certains n'utilisant même pas iNat ? Voici tous les incroyables traducteurs qui ont ajouté des traductions cette année, ainsi que le nombre de mots qu'ils ont traduit pour le
+          %{website_link_tag}site web%{link_tag_end}, nos applications %{iphone_link_tag}iPhone%{link_tag_end} et %{android_link_tag}Android%{link_tag_end}, %{seek_link_tag}Seek%{link_tag_end} et %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Saviez-vous que %{site_name} a été traduit presque entièrement par
           %{x_people} personnes ? Voici tous les traducteurs extraordinaires qui
@@ -7742,6 +7774,9 @@ fr:
           y compris les contributeurs des années passées et ceux de Translatewiki, dans nos archives de code
           %{view_all_web_link_tag}web%{link_tag_end} et
           %{view_all_mobile_link_tag}mobiles%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Saviez-vous qu'%{site_name} avait été traduit quasiment intégralement par %{x_people} ? Voici tous les incroyables traducteurs qui ont ajouté des traductions cette année, ainsi que le nombre de mots qu'ils ont traduit pour le
+          %{website_link_tag}site web%{link_tag_end}, les applications iNaturalist pour %{iphone_link_tag}iPhone%{link_tag_end} et %{android_link_tag}Android%{link_tag_end}, %{seek_link_tag}Seek%{link_tag_end} et %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Si vous voulez aider à traduire, %{link_tag}apprenez comment%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -7883,11 +7918,11 @@ fr:
         Les enfants du taxon saisi qui sont des genres ou plus gros seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc. seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
       form:
         move_children_desc2_html: |
-          Cocher cette case déplacera les enfants du taxon d'entrée vers le taxon cible pour les Permutations de Taxons et les Fusions de Taxons lorsque cette modification est validée. Si cela concerne un changement au niveau d'un genre ou inférieur, cela créera des Permutations de Taxons pour tous les descendants dont les noms doivent être modifiés. Par exemple, si vous échangez la famille Canidae par Dogidae, cela changera le parent du genre <i>Canis</i> de Canidae à Dogidae. Si vous échangez le genre <i>Canis</i> par le genre <i>Dogis</i>, cela créera et validera des échanges de taxons pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp. <i>lupus</i>. Cela peut créer beaucoup de confusion, alors utilisez-le avec précaution.
+          Cocher cette case déplacera les enfants du taxon d'entrée vers le taxon cible pour les Échanges de Taxons et les Fusions de Taxons lorsque cette modification est validée. Si cela concerne un changement au niveau d'un genre ou inférieur, cela créera des Échanges de Taxons pour tous les descendants dont les noms doivent être modifiés. Par exemple, si vous échangez la famille Canidae par Dogidae, cela changera le parent du genre <i>Canis</i> de Canidae à Dogidae. Si vous échangez le genre <i>Canis</i> par le genre <i>Dogis</i>, cela créera et validera des échanges de taxons pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp. <i>lupus</i>. Cela peut créer beaucoup de confusion, alors utilisez-le avec précaution.
     taxon_links:
       form:
         name_with_rank_desc: |
-          Le nom du tacon avec son rang. Pour des rangs infraspécifiques, le rang est affiché après le binôme.
+          Le nom du taxon avec son rang. Pour des rangs infraspécifiques, le rang est affiché après le nom binomial.
     taxon_names:
       form:
         new_name_guidelines_html: |
@@ -8130,10 +8165,10 @@ fr:
         same_day_geoprivacy_protection: Protection de géoconfidentialité le jour même
         taxon_change_desc: |
           Quand des taxons sont fusionnés ou renommés sur %{site_name}, vos
-          observations, taxons répertoriés, identifications, etc., seront
+          observations, taxons répertoriés, identifications, etc. seront
           automatiquement mis à jour avec les nouveaux taxons si la
           modification est sans ambiguïté. Si vous décidez de ne pas choisir
-          cette option ou si le changement est ambigu (par ex. une séparation),
+          cette option ou si le changement est ambigu (par ex. une division),
           vous recevrez une mise à jour sur le changement et un lien vers un outil que
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
@@ -8158,7 +8193,7 @@ fr:
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Le maximum de 3 lexiques de noms communs a déjà été ajouté
         this_only_applies_to_traditional_projects: |
-          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets-cadres, qui sont essentiellement des recherches sauvegardées.
+          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des projets de collection ni de compilation, qui sont essentiellement des recherches sauvegardées.
           Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
       recent:
         about_recent_users: À propos
