@@ -16,27 +16,27 @@ module Ambidextrous
     "(iNaturalistReactNative)/([0-9.]+)"
   ]
 
-  def is_android_user_agent?
+  def is_android_user_agent?( user_agent )
     return false if user_agent.nil?
 
     ANDROID_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
-      request.user_agent =~ /#{pattern}/
+      user_agent =~ /#{pattern}/
     end
   end
 
-  def is_iphone_user_agent?
+  def is_iphone_user_agent?( user_agent )
     return false if user_agent.nil?
 
     IPHONE_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
-      request.user_agent =~ /#{pattern}/
+      user_agent =~ /#{pattern}/
     end
   end
 
-  def is_inatrn_user_agent?
+  def is_inatrn_user_agent?( user_agent )
     return false if user_agent.nil?
 
     REACT_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
-      request.user_agent =~ /#{pattern}/
+      user_agent =~ /#{pattern}/
     end
   end
 
