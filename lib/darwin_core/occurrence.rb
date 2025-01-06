@@ -142,7 +142,7 @@ module DarwinCore
     ANNOTATION_CONTROLLED_TERM_MAPPING = {
       sex: "Sex",
       lifeStage: "Life Stage",
-      reproductiveCondition: "Plant Phenology"
+      reproductiveCondition: "Flowers and Fruits"
     }
 
     # Extend observation with DwC methods.  For reasons unclear to me, url

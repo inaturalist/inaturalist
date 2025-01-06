@@ -147,21 +147,21 @@ describe DarwinCore::Occurrence do
     describe "reproductiveCondition" do
       before( :all ) do
         @controlled_attribute = make_controlled_term_with_label(
-          "Plant Phenology",
+          "Flowers and Fruits",
           active: true,
           is_value: false,
           multivalued: true
         )
       end
-      it "should add flowering for Plant Phenology=Flowering" do
+      it "should add flowering for Flowers and Fruits=Flowers" do
         annotation = Annotation.make!(
           resource: Observation.make!,
           controlled_attribute: @controlled_attribute,
-          controlled_value: make_controlled_value_with_label( "Flowering", @controlled_attribute )
+          controlled_value: make_controlled_value_with_label( "Flowers", @controlled_attribute )
         )
-        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to eq "flowering"
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to eq "flowers"
       end
-      it "should be blank for Plant Phenology=Cannot Be Determined" do
+      it "should be blank for Flowers and Fruits=Cannot Be Determined" do
         annotation = Annotation.make!(
           resource: Observation.make!,
           controlled_attribute: @controlled_attribute,
@@ -174,14 +174,14 @@ describe DarwinCore::Occurrence do
         Annotation.make!(
           resource: obs,
           controlled_attribute: @controlled_attribute,
-          controlled_value: make_controlled_value_with_label( "Flowering", @controlled_attribute )
+          controlled_value: make_controlled_value_with_label( "Flowers", @controlled_attribute )
         )
         Annotation.make!(
           resource: obs,
           controlled_attribute: @controlled_attribute,
-          controlled_value: make_controlled_value_with_label( "Fruiting", @controlled_attribute )
+          controlled_value: make_controlled_value_with_label( "Fruits or Seeds", @controlled_attribute )
         )
-        expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowering|fruiting"
+        expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowers|fruits or seeds"
       end
     end
   end
