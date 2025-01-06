@@ -16,7 +16,8 @@ module DarwinCore
     ANNOTATION_TERMS = [
       ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
       ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
-      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil],
+      ["vitality", "http://rs.tdwg.org/dwc/terms/vitality", nil]
     ].freeze
     TERMS = [
       %w(id id),
@@ -142,8 +143,9 @@ module DarwinCore
     ANNOTATION_CONTROLLED_TERM_MAPPING = {
       sex: "Sex",
       lifeStage: "Life Stage",
-      reproductiveCondition: "Flowers and Fruits"
-    }
+      reproductiveCondition: "Flowers and Fruits",
+      vitality: "Alive or Dead"
+    }.freeze
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -475,7 +477,16 @@ module DarwinCore
         end.join( "|" )
         v == "cannot be determined" ? nil : v
       end
-      # rubocop:enable Naming/MethodName
+
+      def vitality
+        winning_value = winning_annotation_value_for_term( "vitality" )
+        case winning_value
+        when "cannot be determined"
+          "undetermined"
+        else
+          winning_value
+        end
+      end
 
       def otherCatalogueNumbers
         uuid
@@ -512,6 +523,7 @@ module DarwinCore
 
         site.place.code.upcase
       end
+      # rubocop:enable Naming/MethodName
     end
   end
 end
