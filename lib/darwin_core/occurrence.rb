@@ -16,7 +16,8 @@ module DarwinCore
     ANNOTATION_TERMS = [
       ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
       ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
-      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil],
+      ["dynamicProperties", "http://rs.tdwg.org/dwc/terms/dynamicProperties", nil]
     ].freeze
     TERMS = [
       %w(id id),
@@ -144,6 +145,11 @@ module DarwinCore
       lifeStage: "Life Stage",
       reproductiveCondition: "Flowers and Fruits"
     }
+
+    ANNOTATION_ATTRIBUTES_FOR_DYNAMIC_PROPERTIES = [
+      "Evidence of Presence",
+      "Leaves"
+    ].freeze
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -474,6 +480,25 @@ module DarwinCore
           a.controlled_value.label.downcase
         end.join( "|" )
         v == "cannot be determined" ? nil : v
+      end
+
+      # dynamicProperties can be used to list additional measurements, facts, etc in a format
+      # such as JSON. Currently the values for selected annotation categories, those in
+      # ANNOTATION_ATTRIBUTES_FOR_DYNAMIC_PROPERTIES, are included as a JSON string
+      def dynamicProperties
+        dynamic_properties = {}
+        ANNOTATION_ATTRIBUTES_FOR_DYNAMIC_PROPERTIES.each do | label |
+          values = winning_annotations_for_term( label ).map do | annotation |
+            annotation.controlled_value.label.downcase
+          end
+          next if values.empty?
+
+          dynamic_property_label = label.downcase.tr( " ", "_" ).camelize( :lower )
+          dynamic_properties[dynamic_property_label] = values.size == 1 ? values.first : values.sort
+        end
+        return nil if dynamic_properties.blank?
+
+        dynamic_properties.to_json
       end
       # rubocop:enable Naming/MethodName
 

@@ -184,6 +184,72 @@ describe DarwinCore::Occurrence do
         expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowers|fruits or seeds"
       end
     end
+
+    describe "dynamicProperties" do
+      before( :all ) do
+        @evidence = make_controlled_term_with_label(
+          "Evidence of Presence",
+          active: true,
+          is_value: false,
+          multivalued: true
+        )
+        @leaves = make_controlled_term_with_label(
+          "Leaves",
+          active: true,
+          is_value: false,
+          multivalued: true
+        )
+      end
+      it "includes single annotations as strings" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Feather", @evidence )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).dynamicProperties ).to eq( {
+          evidenceOfPresence: "feather"
+        }.to_json )
+      end
+      it "includes multiple annotations as arrays" do
+        first_annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Feather", @evidence )
+        )
+        Annotation.make!(
+          resource: first_annotation.resource,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Bone", @evidence )
+        )
+        expect( DarwinCore::Occurrence.adapt( first_annotation.resource ).dynamicProperties ).to eq( {
+          evidenceOfPresence: ["bone", "feather"]
+        }.to_json )
+      end
+      it "includes both evidence and leaves annotations" do
+        first_annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Feather", @evidence )
+        )
+        Annotation.make!(
+          resource: first_annotation.resource,
+          controlled_attribute: @leaves,
+          controlled_value: make_controlled_value_with_label( "Breaking Leaf Buds", @leaves )
+        )
+        Annotation.make!(
+          resource: first_annotation.resource,
+          controlled_attribute: @leaves,
+          controlled_value: make_controlled_value_with_label( "Green Leaves", @leaves )
+        )
+        expect( DarwinCore::Occurrence.adapt( first_annotation.resource ).dynamicProperties ).to eq( {
+          evidenceOfPresence: "feather",
+          leaves: ["breaking leaf buds", "green leaves"]
+        }.to_json )
+      end
+      it "is emtpy for observations without annotations" do
+        expect( DarwinCore::Occurrence.adapt( Observation.make! ).dynamicProperties ).to be_blank
+      end
+    end
   end
 
   describe "publishingCountry" do
