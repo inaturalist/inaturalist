@@ -1,6 +1,7 @@
-class ObservationField < ApplicationRecord
+# frozen_string_literal: true
 
-  include ActsAsElasticModel
+class ObservationField < ApplicationRecord
+  acts_as_elastic_model
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do

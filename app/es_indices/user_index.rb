@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model
 
   scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }
 

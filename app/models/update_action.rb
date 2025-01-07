@@ -1,6 +1,6 @@
 class UpdateAction < ApplicationRecord
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
 
   belongs_to :resource, polymorphic: true
   belongs_to :notifier, polymorphic: true
