@@ -1,6 +1,7 @@
-class Taxon < ApplicationRecord
+# frozen_string_literal: true
 
-  include ActsAsElasticModel
+class Taxon < ApplicationRecord
+  acts_as_elastic_model
 
   DEFAULT_ES_BATCH_SIZE = 500
 

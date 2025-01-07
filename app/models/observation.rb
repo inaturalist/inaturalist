@@ -2,7 +2,7 @@
 
 class Observation < ApplicationRecord
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ObservationSearch
   include ActsAsUUIDable
 

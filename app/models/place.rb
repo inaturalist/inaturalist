@@ -2,7 +2,7 @@
 
 class Place < ApplicationRecord
   acts_as_flaggable
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid

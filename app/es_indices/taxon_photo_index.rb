@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TaxonPhoto < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model lifecycle_callbacks: [:destroy]
 
   DEFAULT_ES_BATCH_SIZE = 50
 
