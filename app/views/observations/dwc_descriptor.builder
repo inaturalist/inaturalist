@@ -15,7 +15,7 @@ else
 end
 xml.instruct!
 xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",
-    :metadata => "metadata.eml.xml" do
+    :metadata => "eml.xml" do
   xml.core :encoding => "UTF-8", 
       :linesTerminatedBy => "\\n", 
       :fieldsTerminatedBy => ",",

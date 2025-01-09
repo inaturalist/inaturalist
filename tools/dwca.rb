@@ -43,7 +43,9 @@ opts = Optimist.options do
   opt :core,
     "Core type. Options: occurrence, taxon",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ResourceRelationships, ProjectObservations, User, VernacularNames (taxon core only)",
+  opt :extensions,
+    "Extensions to include. Options: DnaDerivedData, EolMedia, SimpleMultimedia, ObservationFields, " \
+      "ResourceRelationships, ProjectObservations, User, VernacularNames (taxon core only)",
     type: :strings, short: "-x"
   opt :metadata, "
     Path to metadata template. Default: {core}/dwc.eml.erb. \"skip\" will skip EML file generation.
@@ -112,4 +114,5 @@ begin
   task_logger&.end
 rescue => e
   task_logger&.error( "#{e}\n#{e.backtrace[0..30].join( "\n" )}" )
+  raise e
 end
