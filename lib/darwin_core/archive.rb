@@ -622,10 +622,6 @@ module DarwinCore
       end
     end
 
-    # def make_vernacular_names_data
-    #   DarwinCore::VernacularName.data( @opts )
-    # end
-
     def self.partition_range( start_id, max_id, partitions = 1 )
       partition_start_id = start_id
       partition_ranges = []

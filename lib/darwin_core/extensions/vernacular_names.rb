@@ -93,7 +93,6 @@ module DarwinCore
           raise "VernacularNames extension can only be used with a taxon core"
         end
 
-        # fname = "vernacular_names.csv"
         if options[:work_path]
           work_path = options[:work_path]
         else
