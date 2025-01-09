@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
 module DataPartnerLinkers
   def self.linker_for( data_partner, options = {} )
     case data_partner.name
     when "GBIF" then DataPartnerLinkers::GBIF.new( data_partner, options )
-    when "Maryland Biodiversity Project" then DataPartnerLinkers::MarylandBiodiversityProject.new( data_partner, options )
+    when "Maryland Biodiversity Project" then DataPartnerLinkers::MarylandBiodiversityProject.new( data_partner,
+      options )
     when "Calflora" then DataPartnerLinkers::Calflora.new( data_partner, options )
+    when "EDDMapS" then DataPartnerLinkers::Eddmaps.new( data_partner, options )
     end
   end
 
@@ -21,14 +25,14 @@ module DataPartnerLinkers
       @logger ||= Rails.logger
     end
 
-    def system_call(cmd)
+    def system_call( cmd )
       logger.info "[#{Time.now}] Running #{cmd}"
       system cmd
       logger.info
     end
 
     def run
-      raise "You need to implement this in your subclass!"  
+      raise "You need to implement this in your subclass!"
     end
   end
 
