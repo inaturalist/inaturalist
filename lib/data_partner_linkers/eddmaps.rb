@@ -2,64 +2,67 @@
 
 module DataPartnerLinkers
   class Eddmaps < DataPartnerLinkers::DataPartnerLinker
-    # identifier for iNat on EDDMapS
-    EDDMAPS_REPORTER_ID = 105_332
-    PER_PAGE = 500
+    CSV_GZ_URL = "https://bugwoodcloud.org/downloads/inaturalist/eddmaps-to-inaturalist.csv.gz"
+
+    def download
+      filename = File.basename( CSV_GZ_URL )
+      tmp_path = File.join( Dir.tmpdir, File.basename( __FILE__, ".*" ) )
+      archive_path = File.join( tmp_path, filename )
+      FileUtils.mkdir_p tmp_path, mode: 0755
+      unless File.exist?( archive_path )
+        system_call "curl -L -o #{archive_path} #{CSV_GZ_URL}"
+      end
+      system_call "gunzip --force #{archive_path}"
+      csv_filename = File.basename( CSV_GZ_URL, ".gz" )
+      csv_path = File.join( tmp_path, csv_filename )
+      unless File.exist?( csv_path )
+        raise "Unzipped file does not exist at #{csv_path}"
+      end
+
+      csv_path
+    end
 
     def run
       start_time = Time.now
       new_count = 0
       old_count = 0
-      page = 1
+      num_indexed = 0
+      observation_ids = []
 
-      while true
-        url = "https://api.bugwoodcloud.org/v2/occurrence?" \
-          "reporter=#{EDDMAPS_REPORTER_ID}&pagesize=#{PER_PAGE}&page=#{page}&paging=true&sort=objectid&sortorder=asc"
-        logger.info "Fetching #{url}"
-        records = try_and_try_again( DataPartnerLinkerError, logger: logger ) do
-          response = JSON.parse( Net::HTTP.get( URI( url ) ) )
-          unless ( records = response["data"] )
-            raise DataPartnerLinkerError, "Failed to retrieve EDDMapS API response: #{response['message']}"
-          end
+      csv_path = download
+      puts "parsing #{csv_path}"
+      CSV.foreach( csv_path, headers: true ) do | row |
+        observation_id = row[0]
+        observation = Observation.find_by_id( observation_id )
+        if observation.blank?
+          logger.debug "\tobservation #{observation_id} doesn't exist, skipping..."
+          next
+        end
+        href = row[2]
+        existing = ObservationLink.where( observation_id: observation_id, href: href ).first
+        if existing
+          existing.touch unless @opts[:debug]
+          old_count += 1
+          logger.debug "\tobservation link for obs #{observation.id} already exists, skipping"
+        else
+          ol = ObservationLink.new(
+            observation: observation,
+            href: href,
+            href_name: @data_partner.name,
+            rel: "alternate"
+          )
+          observation_ids << observation.id
+          ol.save unless @opts[:debug]
+          new_count += 1
+          logger.debug "\tCreated #{ol}"
+        end
+      end
 
-          records
-        end
-        break if records.size.zero?
-
-        observation_ids = []
-        records.each do | record |
-          observation_id = record["url"].to_s[%r{/(\d+)$}, 1]
-          observation = Observation.find_by_id( observation_id )
-          if observation.blank?
-            logger.debug "\tobservation #{observation_id} doesn't exist, skipping..."
-            next
-          end
-          href = "https://www.eddmaps.org/distribution/point.cfm?id=#{record['objectid']}"
-          existing = ObservationLink.where( observation_id: observation_id, href: href ).first
-          if existing
-            existing.touch unless @opts[:debug]
-            old_count += 1
-            logger.debug "\tobservation link for obs #{observation.id} already exists, skipping"
-          else
-            ol = ObservationLink.new(
-              observation: observation,
-              href: href,
-              href_name: @data_partner.name,
-              rel: "alternate"
-            )
-            observation_ids << observation.id
-            ol.save unless @opts[:debug]
-            new_count += 1
-            logger.debug "\tCreated #{ol}"
-          end
-        end
-        if observation_ids.size.positive?
-          logger.info "Re-indexing #{observation_ids.size} observations..."
-          unless @opts[:debug]
-            Observation.elastic_index!( ids: observation_ids, wait_for_index_refresh: true )
-          end
-        end
-        page += 1
+      # Reindex affected obs
+      observation_ids.in_groups_of( 500 ) do | group |
+        Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
+        num_indexed += group.size
+        logger.info "#{num_indexed} re-indexed (#{( num_indexed / observation_ids.size.to_f * 100 ).round( 2 )})"
       end
 
       delete_scope = ObservationLink.
