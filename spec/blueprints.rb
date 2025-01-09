@@ -214,7 +214,7 @@ LocalSound.blueprint do
 end
 
 Message.blueprint do
-  from_user { User.make! }
+  from_user { UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user }
   to_user { User.make! }
   subject { Faker::Lorem.sentence }
   body { Faker::Lorem.paragraph }

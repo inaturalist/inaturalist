@@ -6,7 +6,7 @@
   :javascript
     $('.observationcontrols').observationControls()
     $("#comment_body").textcompleteUsers( );
-    $( ".emailConfirmationModalTrigger, #flag_this" ).click( function( e ) {
+    $( ".emailConfirmationModalTrigger, #flag_this, a.flaglink" ).click( function( e ) {
       if ( $( "#emailConfirmationModalButton" ).length === 1 ) {
         $( "#emailConfirmationModalButton" ).click( );
         e.preventDefault( );

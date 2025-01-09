@@ -340,11 +340,12 @@ class User < ApplicationRecord
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
-    order("? ?", sort_by, sort_dir)
+    order( "? ?", sort_by, sort_dir )
   }
-  scope :curators, -> { joins(:roles).where("roles.name IN ('curator', 'admin')") }
-  scope :admins, -> { joins(:roles).where("roles.name = 'admin'") }
-  scope :active, -> { where("suspended_at IS NULL") }
+  scope :curators, -> { joins( :roles ).where( "roles.name IN ('curator', 'admin')" ) }
+  scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
+  scope :active, -> { where( "suspended_at IS NULL" ) }
+  scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
 
   def validate_email_pattern
     return unless new_record? || email_changed?
@@ -406,7 +407,7 @@ class User < ApplicationRecord
     canonical_email = EmailAddress.canonical( email )
     return if canonical_email.blank?
 
-    uniqueness_scope = User.where( canonical_email: canonical_email )
+    uniqueness_scope = User.suspended.where( canonical_email: canonical_email )
     unless new_record?
       uniqueness_scope = uniqueness_scope.where( "id != ?", id )
     end

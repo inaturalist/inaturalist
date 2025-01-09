@@ -21,14 +21,22 @@
   .row
     .col-xs-12.col-lg-8.col-lg-offset-2
       %h2=t :messages
-      - unless current_user.privileged_with?( UserPrivilege::SPEECH )
+      - if !current_user.privileged_with?( UserPrivilege::SPEECH ) &&  |
+          !current_user.privileged_with?( UserPrivilege::INTERACTION ) |
+        .box.notice
+          =t "views.messages.index.privilege_notice"
+      - elsif !current_user.privileged_with?( UserPrivilege::SPEECH )
         .box.notice
           =t "views.messages.index.speech_privilege_notice"
+      - elsif !current_user.privileged_with?( UserPrivilege::INTERACTION )
+        .box.notice
+          =t "views.messages.index.interaction_privilege_notice"
       %ul.nav.nav-pills{ role: "tablist" }
         - for box in Message::BOXES
           %li{ role: "presentation", class: @box == box ? "active" : "" }
             = link_to t(box), @box == box ? url_for_params : url_for_params( box: box, without: [:page] ), :title => t(box)
-        - if current_user.privileged_with?( UserPrivilege::SPEECH )
+        - if current_user.privileged_with?( UserPrivilege::SPEECH ) &&  |
+            current_user.privileged_with?( UserPrivilege::INTERACTION ) |
           %li.pull-right
             = link_to new_message_path do
               %i.fa.fa-envelope

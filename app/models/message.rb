@@ -1,37 +1,45 @@
+# frozen_string_literal: true
+
 class Message < ApplicationRecord
-  acts_as_spammable fields: [ :subject, :body ],
+  acts_as_spammable fields: [:subject, :body],
     user: :from_user
 
-  blockable_by lambda { |message| message.to_user_id },
-    blockable_user_id: lambda { |message| message.from_user_id }
-  
-  requires_privilege :speech, if: Proc.new {|m|
-    from_user_id == user_id && ( m.thread_id.blank? || m.thread_id == m.id )
+  blockable_by lambda {| message | message.to_user_id },
+    blockable_user_id: lambda{| message | message.from_user_id }
+
+  requires_privilege :speech, if: proc {| message |
+    message.from_user_id == message.user_id && (
+      message.thread_id.blank? || message.thread_id == message.id
+    )
+  }
+  requires_privilege :interaction, if: proc {| message |
+    message.from_user_id == message.user_id && (
+      message.thread_id.blank? || message.thread_id == message.id
+    )
   }
 
   belongs_to :user
-  belongs_to :from_user, :class_name => "User"
-  belongs_to :to_user, :class_name => "User"
+  belongs_to :from_user, class_name: "User"
+  belongs_to :to_user, class_name: "User"
 
   validates_presence_of :user
   validates :from_user_id, presence: true, numericality: { greater_than: 0 }
   validates :to_user_id, presence: true, numericality: { greater_than: 0 }
   validate :validate_to_not_from
-  validates :body, :presence => true
+  validates :body, presence: true
   before_create :set_read_at, :set_subject_for_reply
   after_save :set_thread_id
   after_create :deliver_email
-  
-  scope :inbox, -> { where("user_id = to_user_id") } #.select("DISTINCT ON (thread_id) messages.*")
-  scope :sent, -> { where("user_id = from_user_id") } #.select("DISTINCT ON (thread_id) messages.*")
-  scope :unread, -> { where("read_at IS NULL") }
+
+  scope :inbox, -> { where( "user_id = to_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
+  scope :sent, -> { where( "user_id = from_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
+  scope :unread, -> { where( "read_at IS NULL" ) }
 
   INBOX = "inbox"
   SENT = "sent"
-  BOXES = [INBOX, SENT]
+  BOXES = [INBOX, SENT].freeze
 
-  attr_accessor :html
-  attr_accessor :skip_email
+  attr_accessor :html, :skip_email
 
   def to_s
     "<Message #{id} user:#{user_id} from:#{from_user_id} to:#{to_user_id} subject:#{subject.to_s[0..10]}>"
@@ -39,6 +47,7 @@ class Message < ApplicationRecord
 
   def send_message
     return if from_user.suspended? || known_spam?
+
     reload
     new_message = dup
     new_message.user = to_user
@@ -48,12 +57,14 @@ class Message < ApplicationRecord
 
   def to_user_copy
     return self if to_user_id == user_id
-    to_user.messages.inbox.where(:thread_id => thread_id).detect{|m| m.body == body}
+
+    to_user.messages.inbox.where( thread_id: thread_id ).detect {| m | m.body == body }
   end
 
   def from_user_copy
     return self if from_user_id == user_id
-    from_user.messages.sent.where(:thread_id => thread_id).detect{|m| m.body == body}
+
+    from_user.messages.sent.where( thread_id: thread_id ).detect {| m | m.body == body }
   end
 
   def set_read_at
@@ -65,7 +76,7 @@ class Message < ApplicationRecord
 
   def set_thread_id
     if thread_id.blank?
-      Message.where(id: id).update_all(thread_id: id)
+      Message.where( id: id ).update_all( thread_id: id )
     end
     true
   end
@@ -79,7 +90,8 @@ class Message < ApplicationRecord
 
   def set_subject_for_reply
     return true if thread_id.blank?
-    first = Message.where(:thread_id => thread_id, :user_id => user_id).order("id asc").first
+
+    first = Message.where( thread_id: thread_id, user_id: user_id ).order( "id asc" ).first
     if first && first != self
       self.subject = first.subject
       self.subject = "Re: #{subject}" unless subject.to_s =~ /^Re:/
@@ -88,9 +100,9 @@ class Message < ApplicationRecord
   end
 
   def validate_to_not_from
-    if to_user_id == from_user_id
-      errors.add(:base, "You can't send a message to yourself")
-    end
+    return unless to_user_id == from_user_id
+
+    errors.add( :base, "You can't send a message to yourself" )
   end
 
   def deliver_email
@@ -99,11 +111,12 @@ class Message < ApplicationRecord
     return true if UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
     return true if UserBlock.where( user_id: to_user, blocked_user_id: from_user ).exists?
     return true if from_user.suspended? || known_spam?
-    Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
+
+    Emailer.delay( priority: USER_INTEGRITY_PRIORITY ).new_message( id )
     true
   end
 
-  def flagged_with(flag, options = {})
-    evaluate_new_flag_for_spam(flag)
+  def flagged_with( flag, _options = {} )
+    evaluate_new_flag_for_spam( flag )
   end
 end

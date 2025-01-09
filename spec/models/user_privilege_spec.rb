@@ -113,25 +113,4 @@ describe UserPrivilege do
       end
     end
   end
-
-  describe "requires_privilege" do
-    # This might belong in the message spec
-    # describe "for message" do
-    #   it "should allow creation with speech" do
-    #     up = UserPrivilege.make!( privilege: UserPrivilege::SPEECH, user: user )
-    #     m = Message.make( user: user, from_user: user )
-    #     expect( m ).to be_valid
-    #   end
-    #   it "should disallow creation without speech" do
-    #     m = Message.make( user: user, from_user: user )
-    #     expect( m ).not_to be_valid
-    #   end
-    #   it "should allow creation without speech for replies" do
-    #     existing_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
-    #     m1 = Message.make!( user: user, from_user: existing_user, to_user: user )
-    #     m2 = Message.make( user: user, from_user: user, to_user: m1.from_user, thread_id: m1.id )
-    #     expect( m2 ).to be_valid
-    #   end
-    # end
-  end
 end

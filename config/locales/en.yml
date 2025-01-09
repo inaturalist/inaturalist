@@ -7230,10 +7230,23 @@ en:
       index:
         show_messages_from_user: Show messages from %{user}
         show_messages_to_user: Show messages to %{user}
+        # Users cannot create messages if they lack the criteria for
+        # earning speech privilege
         speech_privilege_notice: |
           You'll be able to send new messages after you've added three
           verifiable observations or three identifications for others. For now
           you can read and reply to message other people send you.
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
+        interaction_privilege_notice: |
+          You'll be able to send new messages after you've confirmed your email
+          address. For now you can read and reply to message other people send you.
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
+        privilege_notice: |
+          You'll be able to send new messages after you've confirmed your email
+          address, and added three verifiable observations or three identifications
+          for others. For now you can read and reply to message other people send you.
       show:
         flag_notice_html: |
           You flagged this conversation on %{date}. The flag will persist even
@@ -9846,7 +9859,7 @@ en:
           must have three verifiable observations or three identifications
           for others to do that
         requires_privilege_organizer: must have 50 verifiable observations to do that
-        requires_privilege_interaction: must have a confirmed email address
+        requires_privilege_interaction: must have a confirmed email address to do that
         taken: has already been taken
         too_long:
           one: is too long (maximum is %{count} character)

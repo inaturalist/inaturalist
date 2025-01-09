@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
   check_spam only: [:create, :update], instance: :message
 
   requires_privilege :speech, only: [:new]
+  requires_privilege :interaction, only: [:new]
 
   layout "bootstrap"
 
@@ -129,7 +130,11 @@ class MessagesController < ApplicationController
   def new
     unless current_user.privileged_with?( UserPrivilege::SPEECH )
       flash[:notice] = t( "activerecord.errors.messages.requires_privilege_speech" )
-      redirect_back_or_default( messages_path )
+      return redirect_back_or_default( messages_path )
+    end
+    unless current_user.privileged_with?( UserPrivilege::INTERACTION )
+      flash[:notice] = t( "activerecord.errors.messages.requires_privilege_interaction" )
+      return redirect_back_or_default( messages_path )
     end
     @message = current_user.messages.build
     @contacts = User.

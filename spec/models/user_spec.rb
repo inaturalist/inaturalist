@@ -394,15 +394,42 @@ describe User do
     expect( u.errors["email"] ).to_not be_blank
   end
 
-  it "should not allow duplicate canonical emails" do
-    taken_error = "Validation failed: Email has already been taken"
-    expect { User.make!( email: "T.e.sT+1@gmail.com" ) }.to_not raise_error
-    expect { User.make!( email: "test@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
-    expect { User.make!( email: "T.e.sT@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
-    expect { User.make!( email: "test+1@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
-    expect { User.make!( email: "T.est+2@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
-    expect { User.make!( email: "TEST@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
-    expect { User.make!( email: "t..est+test2@gmail.com" ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+  describe "canonical emails" do
+    let( :original_email ) { "T.e.sT+1@gmail.com" }
+    let( :duplicate_emails ) do
+      [
+        "test@gmail.com",
+        "T.e.sT@gmail.com",
+        "test+1@gmail.com",
+        "T.est+2@gmail.com",
+        "t..est+test2@gmail.com"
+      ]
+    end
+    let( :taken_error ) { "Validation failed: Email has already been taken" }
+
+    it "cannot share a canonical email with a suspended account" do
+      original_user = User.make!( email: original_email )
+      original_user.suspend!
+      duplicate_emails.each do | email |
+        expect { User.make!( email: email ) }.to raise_error( ActiveRecord::RecordInvalid, taken_error )
+      end
+    end
+
+    it "can share a canonical email with an unsuspended account" do
+      User.make!( email: original_email )
+      duplicate_emails.each do | email |
+        expect { User.make!( email: email ) }.to_not raise_error
+      end
+    end
+
+    it "existing suspended accounts can update their email with canonical variants" do
+      original_user = User.make!( email: original_email )
+      original_user.suspend!
+      original_user.email = duplicate_emails.first
+      # checking that for existing users, their canonical email is not being checked
+      # against itself. Checking only occurs against suspended users
+      expect( original_user ).to be_valid
+    end
   end
 
   describe 'allows legitimate logins:' do
@@ -862,8 +889,9 @@ describe User do
 
   describe "suspension" do
     it "deletes unread sent messages" do
-      fu = UserPrivilege.make!.user # User.make!
-      tu = UserPrivilege.make!.user # User.make!
+      fu = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: fu, privilege: UserPrivilege::INTERACTION )
+      tu = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       m = make_message(:user => fu, :from_user => fu, :to_user => tu)
       m.send_message
       expect(m.to_user_copy).not_to be_blank
@@ -873,8 +901,9 @@ describe User do
     end
 
     it "should not delete the suspended user's messages" do
-      fu = UserPrivilege.make!.user # User.make!
-      tu = UserPrivilege.make!.user # User.make!
+      fu = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: fu, privilege: UserPrivilege::INTERACTION )
+      tu = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       m = make_message(:user => fu, :from_user => fu, :to_user => tu)
       m.send_message
       expect(m.to_user_copy).not_to be_blank
