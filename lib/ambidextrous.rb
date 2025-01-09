@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 module Ambidextrous
   IPHONE_APP_USER_AGENT_PATTERN_2 = /^iNaturalist\/\d+.+iOS/i
 
   ANDROID_APP_USER_AGENT_REGEX_PATTERNS = [
     "(iNaturalist)/([0-9.]+) \\(Build [0-9]+; Android"
-  ]
+  ].freeze
   IPHONE_APP_USER_AGENT_REGEX_PATTERNS = [
     "(iNaturalist)/([0-9]+) CFNetwork",
     "(iNaturalist)/([0-9.]+) \\(iOS",
     "(iNaturalist)/([0-9.]+) \\(iPad",
     "(iNaturalist)/([0-9.]+) \\(iPhone"
-  ]
+  ].freeze
   REACT_APP_USER_AGENT_REGEX_PATTERNS = [
     "(iNaturalistRN)/([0-9.]+) \\(Build",
     "(iNaturalistRN)/([0-9.]+) Handset",
     "(iNaturalistReactNative)/([0-9.]+)"
-  ]
+  ].freeze
 
-  def is_android_user_agent?( user_agent )
+  def is_android_app_user_agent?( user_agent )
     return false if user_agent.nil?
 
     ANDROID_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
@@ -24,7 +26,7 @@ module Ambidextrous
     end
   end
 
-  def is_iphone_user_agent?( user_agent )
+  def is_iphone_app_user_agent?( user_agent )
     return false if user_agent.nil?
 
     IPHONE_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
@@ -32,12 +34,18 @@ module Ambidextrous
     end
   end
 
-  def is_inatrn_user_agent?( user_agent )
+  def is_inatrn_app_user_agent?( user_agent )
     return false if user_agent.nil?
 
     REACT_APP_USER_AGENT_REGEX_PATTERNS.any? do | pattern |
       user_agent =~ /#{pattern}/
     end
+  end
+
+  def is_mobile_app_user_agent?( user_agent )
+    is_android_app_user_agent?( user_agent ) ||
+      is_iphone_app_user_agent?( user_agent ) ||
+      is_inatrn_app_user_agent?( user_agent )
   end
 
   protected
@@ -62,13 +70,13 @@ module Ambidextrous
   def is_android_app?
     return false if is_inaturalistjs_request?
 
-    is_android_user_agent?( request.user_agent )
+    is_android_app_user_agent?( request.user_agent )
   end
 
   def is_iphone_app?
     return false if is_inaturalistjs_request?
 
-    is_iphone_user_agent?( request.user_agent )
+    is_iphone_app_user_agent?( request.user_agent )
   end
 
   def is_iphone_app_2?
@@ -79,7 +87,7 @@ module Ambidextrous
   def is_inatrn_app?
     return false if is_inaturalistjs_request?
 
-    is_inatrn_user_agent?( request.user_agent )
+    is_inatrn_app_user_agent?( request.user_agent )
   end
 
   def is_mobile_app?

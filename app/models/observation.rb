@@ -2809,6 +2809,11 @@ class Observation < ApplicationRecord
   def taxon_and_ancestors
     taxon ? taxon.self_and_ancestors.to_a : []
   end
+  
+  def mobile?
+    return false unless user_agent
+    is_mobile_app_user_agent?( user_agent )
+  end
 
   def owners_identification
     if identifications.loaded?
@@ -3331,10 +3336,10 @@ class Observation < ApplicationRecord
 
   def application_id_to_index
     return oauth_application_id if oauth_application_id
-    if is_iphone_user_agent?( user_agent )
+    if is_iphone_app_user_agent?( user_agent )
       return OauthApplication.inaturalist_iphone_app.try(:id)
     end
-    if is_android_user_agent?( user_agent )
+    if is_android_app_user_agent?( user_agent )
       return OauthApplication.inaturalist_android_app.try(:id)
     end
   end
