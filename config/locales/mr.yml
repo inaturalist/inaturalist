@@ -20,12 +20,6 @@ mr:
   x_identifications_:
     one: '%{count} ओळख'
     other: '%{count} ओळखी'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> ओळखकर्ता'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ओळखकर्ता'
   x_languages:
     one: "%{count} भाषा"
     other: "%{count} भाषा"
@@ -70,9 +64,6 @@ mr:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> निरीक्षण समीक्षा"
     other: "<span class='count'>%{count}</span> निरीक्षणे समीक्षा"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> निरीक्षक'
-    other: '<span class="count">%{count}</span> निरीक्षक'
   x_others:
     one: "%{count} इतर"
     other: "%{count} इतर अनेक"

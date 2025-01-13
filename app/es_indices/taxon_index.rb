@@ -208,7 +208,7 @@ class Taxon < ApplicationRecord
       json.merge!({
         created_at: created_at,
         default_photo: default_photo ?
-          default_photo.as_indexed_json(sizes: [ :square, :medium ]) : nil,
+          default_photo.as_indexed_json(for_taxon: true, sizes: [ :square, :medium ]) : nil,
         colors: colors.map(&:as_indexed_json),
         ancestry: ancestry,
         taxon_changes_count: taxon_changes_count,
@@ -225,7 +225,11 @@ class Taxon < ApplicationRecord
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
-        taxon_photos: taxon_photos.select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
+        taxon_photos: taxon_photos.reject do | tp |
+          tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
+        end.map do | tp |
+          tp.as_indexed_json( for_taxon: true )
+        end,
         atlas_id: atlas.try( :id ),
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil

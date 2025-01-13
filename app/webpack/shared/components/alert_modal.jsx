@@ -8,6 +8,7 @@ import {
 
 const AlertModal = ( {
   backdrop,
+  className,
   confirmText,
   content,
   onCancel,
@@ -49,7 +50,7 @@ const AlertModal = ( {
   return (
     <Modal
       show={visible}
-      className="AlertModal"
+      className={_.compact( ["AlertModal", className] ).join( " " )}
       bsSize="small"
       backdrop={backdrop}
       onHide={onClose}
@@ -79,7 +80,8 @@ AlertModal.propTypes = {
   onConfirm: PropTypes.func,
   onClose: PropTypes.func,
   onCancel: PropTypes.func,
-  backdrop: PropTypes.bool
+  backdrop: PropTypes.bool,
+  className: PropTypes.string
 };
 
 export default AlertModal;

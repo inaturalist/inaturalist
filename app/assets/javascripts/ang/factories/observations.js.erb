@@ -58,6 +58,9 @@ iNatAPI.constant( "V2_TAXON_FIELDS", {
     iconic_taxon_name: true,
     is_active: true,
     preferred_common_name: true,
+    preferred_common_names: {
+      name: true
+    },
     rank: true,
     rank_level: true
   },
@@ -116,7 +119,10 @@ iNatAPI.factory( "ObservationsFactory", [
     var speciesCounts = function ( params ) {
       var url = "/observations/species_counts";
       return shared.basicGet( url, _.extend( { }, params, {
-        fields: { taxon: V2_TAXON_FIELDS }
+        include_ancestors: true,
+        fields: {
+          taxon: V2_TAXON_FIELDS
+        }
       } ) );
     };
     var identifiers = function ( params ) {
@@ -236,7 +242,10 @@ iNatAPI.factory( "ObservationsFactory", [
       }
       // remove any params that are null, undefined, or whose value is "any"
       // as they will not affect search results and are not allowed in APIv2
-      return _.omitBy( params, function ( value ) {
+      return _.omitBy( params, function ( value, key ) {
+        if ( key === "verifiable" ) {
+          return false;
+        }
         return value === "any" || _.isNull( value ) || _.isUndefined( value );
       } );
     };

@@ -27,12 +27,9 @@ it:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAZIONE'
     other: '<span class="count">%{count}</span> IDENTIFICAZIONI'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">1</span> Identificatore'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificatori'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID fatta per altri'
+    other: '<span class="count">%{count}</span> ID fatte per altri'
   x_languages:
     one: "%{count} lingua"
     other: "%{count} lingue"
@@ -80,9 +77,6 @@ it:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> osservazione controllata"
     other: "<span class='count'>%{count}</span> osservazioni controllate"
-  x_observers_html:
-    one: '<span class="count">1</span> Osservatore'
-    other: '<span class="count">%{count}</span> Osservatori'
   x_others:
     one: "un altro"
     other: "%{count} altri"
@@ -269,6 +263,8 @@ it:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Aggiungi un elenco puntato
   add_a_comment: Aggiungi un commento
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Aggiungi stato di conservazione
   add_a_field: Aggiungi un campo
   add_a_flag: Aggiungi un contrassegno
   #Tool tip for a button that adds a link to a text area
@@ -796,6 +792,7 @@ it:
   back_to_your_observations: Torna alle tue osservazioni
   back_to_your_profile: Torna al tuo profilo
   badges: Distintivi
+  base_map_copyright_openstreetmap_html: Mappa di base ©️ %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1113,6 +1110,10 @@ it:
   content_and_display: Contenuto & Vista
   content_author: Autore del Contenuto
   content_hidden: Contenuto nascosto
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Contenuto nascosto il %{date} perché: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contenuto nascosto da %{user} il %{date} perché: "%{reason}"
   content_type: Tipo di Contenuto
@@ -1817,10 +1818,17 @@ it:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rank esatto
   except: eccetto
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Escludi
   exclude_places: Escludi Luoghi
   exclude_projects: Escludi Progetti
   exclude_taxa: Escludi Taxa
   exclude_users: Escludi Utenti
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Escludendo %{count} taxon
+    other: Esportando %{count} taxa
   exclusion_filters: Filtri di esclusione
   existing_flags: Contrassegni esistenti
   exit_full_screen: "Esci dalla modalità a tutto schermo"
@@ -2030,6 +2038,9 @@ it:
   generate_your_year_in_review_caps: GENERA LA TUA RASSEGNA DELL'ANNO %{year}
   generating_mobile_archive: "Creazione di un archivio mobile"
   Genus: Genere
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Punteggio Geo
   geomodel_expected_nearby_label_is_derived: |
     L'etichetta "Attese nelle Vicinanze" è derivata dal Geomodello.
     <a href="%{url}">Scopri di più sul Geomodello qui</a>.
@@ -2039,6 +2050,9 @@ it:
   geoprivacy_is_private: La geoprivacy è privata
   geoprivacy_is_private_desc: L'osservatore ha scelto di nascondere le coordinate.
   georeferenced: Georeferenziata?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geospaziale
   get_started: Inizia
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Per iniziare
@@ -2135,6 +2149,9 @@ it:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Nascondi «Nessuna annotazione»
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Nascondi le osservazioni con posizioni private
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
@@ -2210,6 +2227,7 @@ it:
   identotron_for: Identotron per
   identotron_help: Aiuto su Identotron
   ids: "ID"
+  ids_made_for_others__title: ID fatte per altri
   if_for_some_reason_a_user_doesnt_agree: |
     Se per qualche ragione non concordi con il taxon della comunità, puoi rifiutarlo; significa che la tua ID è quella usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa anche che le tue osservazioni possono raggiungere il Livello Ricerca solo quando la comunità è d'accordo con te.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2250,12 +2268,22 @@ it:
   in_place_x: in %{place}
   #As in a reason to flag something
   inappropriate: Inappropriato
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Rete di iNaturalist
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   #Label for messages you've received
   inbox: Posta in arrivo
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Includi
   include_places: Includi Luoghi
   include_projects: Includi Progetti
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Includi / Escludi Taxa Antenati
   include_suggestions_not_seen_nearby: Includi suggerimenti non visti nelle vicinanze
   include_suggestions_not_expected_nearby: Includi suggerimenti delle non attese nelle vicinanze
   include_taxa: Includi Taxa
@@ -2620,6 +2648,7 @@ it:
     lv: Lettone
     mi: Maori
     mk: Macedone
+    ml: Malayalam
     mr: Marathi
     nb: Norvegese Bokmål
     nl: Olandese
@@ -2634,6 +2663,7 @@ it:
     sq: Albanese
     sr: Serbo
     sv: Svedese
+    ta: Tamil
     th: Thailandese
     tr: Turco
     uk: Ucraino
@@ -3112,6 +3142,9 @@ it:
   not_confident: Non siamo abbastanza sicuri per fare una raccomandazione.
   not_confident_top_suggestions: Non siamo abbastanza sicuri per fare una raccomandazione, ma qui ci sono i nostri migliori suggerimenti.
   not_covered_by_any_taxon_frameworks: Non coperto da nessun quadro del taxon
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Non atteso nelle vicinanze
   not_evaluated: Non Valutata
   not_findig_what_you_want: Non trovi quello che vuoi?
   not_finding_place_you_want?: Non trovi il luogo che cerchi?
@@ -4505,7 +4538,6 @@ it:
     must_be_verifiable: dev'esser verificabile
     must_be_wild: deve essere selvatico
   running_total: Totale attuale
-  said: detto
   satellite: satellite
   save: Salva
   save_all: Salva tutto
@@ -4625,6 +4657,8 @@ it:
   show_no_annotation: Mostra «Nessuna annotazione»
   show_off_your_recent_observations: Mostra le tue recenti osservazioni sul tuo blog o sul tuo sito!
   show_only: Mostra solo
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Mostra OpenStreetMap
   show_relative_proportions_of_all_observations: Mostra le proporzioni relative di tutte le osservazioni
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostra il totale attuale
@@ -4695,6 +4729,10 @@ it:
     Per avanzare nella ricerca e conservazione nelle rispettive aree, i Membri della Rete potrebbero condividere i dati da iNaturalist. Hanno la responsabilità di valutare la validità e appropriatezza delle richieste di dati e dei loro potenziali risultati; trasmettono per iscritto la responsabilità di assicurare anche la sicurezza di tali dati e di non esporli pubblicamente in alcun modo, né condividerli o usarli oltre al loro scopo originalmente inteso; per documentare tutte le istanze di condivisione insieme ai risultati associati o gli usi intesi; e segnalarli annualmente a iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     La %{start_tag_network}Rete di iNaturalist%{end_tag_network} è una raccolta di siti web locali nella %{start_tag_global}community globale di iNaturalist%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    La %{start_tag_network}Rete di iNaturalist%{end_tag_network} offre una
+    esperianza localizzata nella %{start_tag_global}comunità globale di
+    iNaturalist%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     Quando ti affili a un Membro della Rete di iNaturalist, il tuo indirizzo email e le posizioni reali delle tue posizioni oscurate e private sono condivise con il Membro della Rete. Questo consente alle tue osservazioni di divenire più preziose per gli sforzi di conservazione locali. Se vivi o visiti frequentemente un'area di un membro della Rete, sei incoraggiato a sceglierla come tua affiliazione per facilitare la condivisione dei dati.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4705,9 +4743,17 @@ it:
     aree geografiche, per supportarre l'utilizzo della piattaforma di iNaturalist.
     <strong>Se la tua organizzazione vorrebbe aderire alla Rete di iNaturalist,
     puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
+  sites_network_agreements2_html: |
+    iNaturalist ha stipulato accordi formali con organizzazioni in ognuna di queste
+    aree geografiche, per supportarre l'utilizzo della piattaforma di iNaturalist. A partire dal 2024,
+    stiamo sperimentando un approccio semplificato ai partenariati di rete.
+    <strong>Se la tua organizzazione vuole aderire alla Rete di iNaturalist,
+    puoi trovare ulteriori dettagli %{start_tag_join}qui%{end_tag_join}.</strong>
   sites_network_consists_of: "La Rete di iNaturalist consiste in diverse organizzazioni:"
   sites_network_inaturalist_network_collection: |
     La Rete di iNaturalist è una raccolta di siti web localizzati, completamente connessi alla community globale di iNaturalist. I siti della rete sono supportati dalle istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
+  sites_network_inaturalist_network_collection2: |
+    La Rete di iNaturalist è una esperienza localizzata che è completamente connessa alla community globale di iNaturalist. I membri della rete sono istituzioni locali che promuovono l'uso locale e facilitano l'uso dei dati da iNaturalist per beneficiare la biodiversità locale. Hanno accesso alle vere coordinate nelle aree geografiche automaticamente oscurate dalla vista pubblica per meglio proteggere le specie minacciate.
   sites_network_your_username: |
     Il tuo nome utente e la tua password su tutti i siti parte della Rete di iNaturalist. Se scegli di affiliarti con un sito della Rete, le istituzioni locali che supportano ogni sito avranno anche accesso al tuo indirizzo email (solo per comunicare con te sulle attività del sito) e accedere alle vere coordinate per le osservazioni che hai scelto di rendere pubblicamente oscurate o private.
   some_agree: alcuni concordano
@@ -5542,6 +5588,9 @@ it:
   user_faved_this_observation: "%{user} ha messo nei preferiti questa osservazione"
   user_flagged_as_a_non_spammer_html: "%{user} l'ha segnato come un non-spammer"
   user_flagged_as_a_spammer_html: "%{user} l'ha contrassegnato come uno spammer"
+  user_has_been_removed_from_site: |
+    %{username} è stato rimosso da %{site_name} (potrebbe volerci fino a un'ora
+    per eliminare completamente tutti i contenuti associati)
   user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
   user_hasnt_joined_any_projects: "%{user} non si è unito a nessun progetto"
   user_helped_x_people_with_y_ids_html: "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>"
@@ -5568,6 +5617,7 @@ it:
   user_trusts_you_with_their_private_coordinates: "%{user} ti ha rivelato le sue coordinate nascoste"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'osservatore ha deciso di rivelarti le coordinate nascoste di tutte le sue osservazioni.
+  user_updated_an_observation_field_html: '%{user} ha aggiunto un valore per "%{field_name}" a un''osservazione compiuta da %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> ha scritto,
   username: Nome utente
   username_description: Questo è il nome utente che utilizzerai per effettuare il login, e quello attraverso cui gli altri utenti potranno identificarti su iNaturalist
@@ -6081,6 +6131,9 @@ it:
             <a href="%{url}">Controlla le linee guida della Comunità</a> per le indicazioni su come mantenere iNaturalist un posto amichevole e accogliente.
           please_read_the_teachers_guide_html: |
             Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Se così, per favore leggi la nostra <a href="%{url}">Guida per gli insegnanti</a> per suggerimenti su come usare %{site_name} con gli studenti
     donate:
       donate_short_desc: "Dona ora per mostrare il tuo supporto!"
       donate_desc_moore_html: |
@@ -6179,6 +6232,10 @@ it:
       your_site_account_has_no_email: Il tuo account %{site_name} non ha un indirizzo email ad esso associato.
     flags:
       show:
+        #Heading for display of content that has been flagged. This could
+        #also be translated as "Flagged Content" since the existence of a
+        #flag implies that the content was flagged.
+        flaggable_content: Contenuto Flaggabile
         flaggable_content_desc: |
           Il contenuto contrassegnabile è il l'attributo di testo principale dell'oggetto contrassegnato nel momento in cui il contrassegno è stato creato. Solo i curatori e lo staff lo possono vedere. Solo lo staff lo può vedere per i messaggi.
         flags_that_should_not_be_resolved_desc_html: |
@@ -6733,67 +6790,64 @@ it:
         data_quality_assessment_desc3_html: |
           La Qualità dei Dati riassume l'accuratezza, la precisione, la completezza, la rilevanza e l'appropriatezza di un osservazione iNaturalist come dato di biodiversità. Alcuni attributi sono determinati in automatico, mentre altri sono oggetto di votazione da parte degli utenti di iNat. iNaturalist condivide le osservazioni "Livello Ricerca" licenziate con alcuni partner di gestione dati per il loro uso nella scienza e nella conservazione.
         disagreement_count_desc: "# di taxa identificati che non sono tra gli antenati del taxon"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          La valutazione della qualità dei dati è un riassunto dell'accuratezza di un'osservazione. Tutte le osservazioni partono da un livello <strong>"casuale"</strong>, e diventano un livello <strong>"ha bisogno di ID"</strong> quando
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: l'osservazione <strong>ha una data</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: l'osservazione <strong>è georeferenziata</strong> (e.g. ha le coordinate lat/lon)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: l'osservazione <strong>ha foto o suoni</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: l'osservazione <strong>non è di un umano</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Le osservazioni diventano <strong>"livello ricerca"</strong> quando
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          la %{site_name} <strong> comunità è d'accordo sull'ID a livello di specie o
+          inferiore</strong>, cioè quando più di 2/3 degli identificatori concordano su un
+          taxon (se la comunità ha votato che il Taxon comunitario non può essere più migliorato, questo ritorna all'ID di livello sottofamiglia o inferiore)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Le osservazioni torneranno a <strong>"casuale"</strong> se le condizioni
+          di cui sopra non sono soddisfatte o la comunità accetta
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          la community concorda che la <strong>posizione non sembra accurata</strong> (ad esempio: scimmie in mezzo all'oceano, ippopotami in ufficio, ecc.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          l'organismo <strong>non è selvatico/naturalizzato</strong> (ad es. cattività
+          o coltivato dall'uomo)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          l'osservazione <strong>non presenta prove di un organismo
+          </strong>, e. . immagini di caratteristiche dell'acqua, rocce, paesaggi
+          che non includono l'organismo, ecc.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          l'osservazione <strong>non presenta prove recenti (~100 anni) dell'organismo</strong> (ad esempio fossili, ma tracce, truffe e foglie
+          morte sono ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          l'osservazione <strong>non presenta prove relative a un soggetto
+          </strong> (es. ha quattro foto di organismi non correlati; una foto
+          che mostra l’habitat del soggetto dell’osservazione è OK)
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          E se questo non è abbastanza complicato, ci sono anche situazioni
+          in cui il sistema ottiene un voto:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se
+          ci sono almeno 10 altre osservazioni di un genere o di livelli inferiore nella contea, stato, o stato-equivalemte che contiene
+          questa osservazione e l'80% o più di tali osservazioni sono state
+          contrassegnate come non selvatiche/naturalizzate.
         identification_count_desc: '# di identificazioni per un singolo taxon'
         flagged_photos_desc_html: |
           Alcune di queste foto sono state etichettate per contenuti inappropriati o che violano il copyright. Per dettagli: %{links}
         join_project_desc_html: |
           Prendendo parte al progetto darai ai curatori la possibilità di vedere le coordinate nascoste di queste e di tutte le osservazioni nel progetto, e implica che tu acconsenta ai <a href="%{url}" target="_blank">termini</a> del progetto.
-        quality_assessment_help3_html: |
-          <p>
-          La valutazione della qualità dei dati è un riassunto dell'accuratezza di un osservazione. Tutte le osservazioni
-          iniziano ad un livello <strong>"casuale"</strong>, e diventano
-          <strong>"serve ID"</strong> quando
-          </p>
-
-          <ul>
-          <li>l'osservazione <strong>ha una data</strong></li>
-          <li>l'osservazione <strong>è georeferenziata</strong> (i.e. ha coordinate lat/lon)</li>
-          <li>l'osservazione <strong>ha foto o suoni</strong></li>
-          <li>l'osservazione <strong>non è un umano</strong></li>
-          </ul>
-          <p>
-          Le osservazioni diventano <strong>"livello ricerca"</strong> quando
-          </p>
-          <ul>
-          <li>
-          la %{site_name} <strong>comunità è d'accordo sulla ID a livello di specie o inferiore</strong>, i.e. quando più dei 2/3 di identificatori è d'accordo su un taxon (se la comunità ha votato che il Taxon della Comunità non può essere più affinato, questo torna a livello della ID della sotto-famiglia o inferiore)
-          </li>
-          </ul>
-          <p>
-          Le osservazioni tornano a <strong>"casuale"</strong> se non sono soddisfatte le condizioni qui sopra o la comunità è d'accordo che
-          </p>
-          <ul>
-          <li>
-          la <strong>località non pare accurata</strong> (ad esempio scimmie in mezzo all'oceano,
-          ippopotami negli edifici per uffici, ecc.)
-          </li>
-          <li>
-          l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio in cattività o coltivato dall'uomo)
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove di un organismo</strong>, per esempio. immagini di giochi d'acqua, rocce, paesaggi che non includono l'organismo, ecc.
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove recenti (~ 100 anni) dell'organismo</strong> (ad esempio fossili, ma tracce, escrementi e foglie morte sono ok)
-          </li>
-          <li>
-          l'osservazione <strong>non presenta prove relative a un soggetto</strong> (ad esempio, contiene quattro foto di organismi non correlati. Una foto che mostra l'habitat del soggetto dell'osservazione va bene.)
-          </li>
-          <li>
-          l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a livello di famiglia o sopra
-          </li>
-          <li>
-          l'osservatore ha rinunciato all'ID della comunità e la ID della comunità per il taxon non è un antenato o un discendente del taxon associato con l'ID dell'osservatore
-          </li>
-          </ul>
-          <p>
-          E se ciò non fosse abbastanza complicato, ci sono anche situazioni in cui il sistema ottiene un voto:</p>
-          <ul>
-          <li>
-          Il sistema voterà che l'osservazione non è selvatica/naturalizzata se ci sono almeno altre 10 osservazioni di un genere o inferiore
-          il più piccolo luogo equivalente a una contea, uno stato o un paese contiene questa osservazione e l'80% o più di tali osservazioni sono stati contrassegnate come non selvatiche/naturalizzate.
-          </li>
-          </ul>
         score_desc: "punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio dei non d'accordo + numero di disaccordi sugli antenati)"
         observation_flagged_notice_html: |
           Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perché l'hai creata o perché sei curatore del sito. Se pensi che sia un errore, per favore
@@ -7118,8 +7172,6 @@ it:
         data_visualizations: Visualizzazione dei dati
         delete_project: Elimina progetto
         display_project_name: Visualizza il nome del Progetto
-        do_you_need_features_from_traditional: |
-          Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?
         do_you_need_features_from_traditional2: |
           Hai bisogno di funzionalità dei progetti tradizionali, come campi di osservazione personalizzati, o l'aggiunta di singole osservazioni che non possono essere filtrate automaticamente?
         duplicate_project: Duplica progetto
@@ -7188,8 +7240,11 @@ it:
         we_have_redesigned_projects: |
           I progetti sono stati ideati per includere tutte le osservazioni che soddisfano i criteri di luogo, taxon, utente, qualità del dato e periodo che decidi tu. Puoi scegliere tra due tipi principali: Progetti Collezione e Progetti Ombrello, che condividono le seguenti caratteristiche:
         welcome_to_projects: Benvenuti nei progetti
-        you_can_learn_more_html: |
-          Puoi saperne di più sulla gestione dei progetti <a href="https://www.inaturalist.org/pages/managing-projects">qui</a> o leggere la storia dei progetti sul <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nostro blog</a>.
+        you_can_learn_more2_html: |
+          Puoi saperne di più sulla gestione dei progetti
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">qui</a>
+          o leggere la storia dei progetti sul
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nostro blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Non hai definito alcun requisito per le osservazioni. Accertati di aver selezionato uno o più taxa (e.g. uccelli, conifere), luoghi (e.g. Brasile, Yellowstone), utenti, e/o date che definiscano le osservazioni che vuoi includere nel tuo progetto.
         errors:
@@ -7278,6 +7333,8 @@ it:
         avg_ttcid: TTCID Media
         avg_ttid: TTID Media
         identifiers_desc: Hanno aggiunto in questo giorno un'ID ad un'osservazione di qualcun altro
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Creato tramite <a href="%{url}">iNatNext</a>
         iphone_desc_html: Create con l'<a href="%{url}">app iPhone iNaturalist</a>
         med_ttcid: TTCID Mediana
         med_ttid: TTID Mediana
@@ -7298,6 +7355,8 @@ it:
         recent_w_0_obs_desc: Iscritti nei 7 giorni precedenti e aggiunte 0 osservazioni
         recent_w_7_obs: Recenti con >= 7 osservazioni
         recent_w_7_obs_desc: Iscritti nei precedenti 7 giorni e aggiunte >=7 osservazioni
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Creato tramite <a href="%{url}">Seek</a>
         time_to_id_desc: Tempo per l’ID (ore, finestra mobile di 1 settimana)
         TTCID: TTCID (Time To Community Identification)
         TTCID_desc: Tempo per avere una identificazione da parte di qualcun altro che corrisponde al taxon della comunità.
@@ -7402,6 +7461,8 @@ it:
           comprese quelle degli anni passati e quelle di Translatewiki, nei nostri repository di codice 
           delle versioni %{view_all_web_link_tag}web%{link_tag_end} e
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_2: |
+          Sapevi che iNaturalist è stato tradotto in %{x_languages}, quasi interamente da %{x_people}, alcune delle quali addirittura non usano iNat? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno, con il numero di parole che hanno tradotto per %{website_link_tag}il sito web%{link_tag_end}, le nostre app %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}, e per %{help_link_tag}iNatHelp%{link_tag_end}
         translators_desc_for_site: |
           Sapevi che %{site_name} è stato tradotto quasi interamente da
           %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno,
@@ -7414,6 +7475,8 @@ it:
           comprese quelle degli anni passati e quelle di Translatewiki, nei nostri repository di codice 
           delle versioni %{view_all_web_link_tag}web%{link_tag_end} e
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Sapevi che %{site_name} è stato tradotto quasi interamente da %{x_people}? Qui trovi i fantastici traduttori che hanno aggiunto traduzioni quest'anno, con il numero di parole che hanno tradotto per %{website_link_tag}il sito web%{link_tag_end}, le nostre app %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, e %{seek_link_tag}Seek%{link_tag_end}, e per %{help_link_tag}iNatHelp%{link_tag_end}
         translators_prompt: |
           Se vuoi aiutarci nella traduzione, %{link_tag}scopri come%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -7534,6 +7597,23 @@ it:
           Il nome dal taxon con il rango. Per ranghi infraspecifici, il rango è inserito dopo il nome binomiale.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Cerca di aggiungere nomi già utilizzati altrove. Per favore non inventare nuovi nomi.</p></li>
+          <li><p>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</p></li>
+          <li><p>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</p></li>
+          <li><p>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato </p></li>
+          <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte come "Francese, Français" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali alle persone che usano il sito in lingue diverse.
+          </p>
+          </li>
+          <li>
+          <p>
+          Verranno visualizzati i nomi comuni associati alle lingue tradotte
+          come nome comune predefinito per quella lingua (salvo l'effetto delle preferenze di luogo, dell’ordine dei nomi, ecc.).
+          <a class="readmore" href="/pages/translate">Learn more about translation</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Aggiungi un nome per un luogo al fine di dargli una priorità per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso luogo puoi dargli una priorità <a href="%{url}">qui</a>. Per favore <strong>non</strong> aggiungere nomi per OGNI luogo dove quel nome è usato, ma solo per i luoghi in conflitto con altri.
       taxon:
@@ -8049,6 +8129,8 @@ it:
       assessment_section:
         title: Titolo
         body: Corpo
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Utente bloccato
@@ -8367,6 +8449,10 @@ it:
             place_geometry:
               is_too_large_to_edit: è troppo grande per essere modificato
               is_too_large_to_import: è troppo grande per essere importato
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: è troppo grande o complicato da elaborare prima della scadenza
               contains_too_many_observations: contiene troppe osservazioni da importare
               cannot_be_blank: non può essere vuoto
               invalid_point: ha un punto non valido, es. longitudine maggiore di 180 o latitudine inferiore a -90
@@ -8455,6 +8541,10 @@ it:
             taxon:
               too_many_photos: |
                 non può avere più di %{max} foto
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                non può avere contrassegni irrisolti
         taxon_range:
           attributes:
             iucn_relationship:

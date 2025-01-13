@@ -157,6 +157,7 @@ export function saveUserSettings( ) {
     delete params.user.site;
     delete params.user.unconfirmed_email;
     delete params.user.updated_at;
+    delete params.user.place_id;
 
     // fetching user settings here to get the source of truth
     // currently users.me returns different results than

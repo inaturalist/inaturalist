@@ -18,10 +18,8 @@ th:
     other: '%{count} การจำแนก'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> การจำแนก'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ผู้จำแนก'
+  x_ids_made_for_others_html:
+    other: '<span class="count">%{count}</span> การจำแนกให้ผู้อื่น'
   x_languages:
     other: "%{count} ภาษา"
   #Count of number of taxa that represent the first addition to a life list
@@ -54,8 +52,6 @@ th:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตที่ตรวจสอบแล้ว"
-  x_observers_html:
-    other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
   x_people:
@@ -509,10 +505,10 @@ th:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: แอปพลิเคชัน
-  apply_app_owner: นำไปใช้
+  apply_app_owner: สมัคร
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator: นำไปใช้
+  apply_curator: สมัคร
   apply_to_selected: นำไปใช้กับไฟล์ที่เลือก
   apply_captive_cultivated: "นำไปใช้กับการเพาะเลี้ยง/เพาะปลูก"
   apply_fields: นำไปใช้กับงานสนาม
@@ -789,6 +785,7 @@ th:
   content_and_display: เนื้อหา & การแสดงผล
   content_author: ผู้สร้างเนื้อหา
   content_hidden: เนื้อหาถูกซ่อนไว้
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     เนื้อหาถูกซ่อนโดย %{user} เมื่อ %{date} เนื่องจาก "%{reason}"
   content_type: ประเภทเนื้อหา
@@ -1368,6 +1365,7 @@ th:
   inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
   ids: "การจำแนก"
+  ids_made_for_others__title: การจำแนกให้ผู้อื่น
   if_this_is_a_scientific_name: ถ้านี่เป็นชื่อวิทยาศาสตร์ ขณะนี้ได้รับการยอมรับหรือยัง?
   import_all_photos_as_observations: เพิ่มการสังเกตจากรูปภาพทั้งหมด
   import_date_time_location_taxonomic: "นำเข้าข้อมูลวันที่ เวลา ตำแหน่ง คำอธิบาย และอนุกรมวิธานจากรูปนี้"
@@ -1698,6 +1696,7 @@ th:
   misidentifications: การจำแนกผิด
   #Label shown when a date has not been entered
   missing_date: ไม่มีวันที่
+  mobile: โทรศัพท์
   #Person who executed a moderator action or flagged something
   moderator_or_flagger: ผู้ควบคุม / ผู้รายงาน
   momentjs:
@@ -2546,6 +2545,7 @@ th:
   sending: กำลังส่ง...
   #Label for messages you've sent
   sent: ส่งแล้ว
+  separate_values_with_a_pipe: แยกแต่ละค่าด้วยขีดตั้ง เช่น "1-5|6-10|a lot" หรือ "yes|no|maybe"
   set_license: ตั้งค่าสัญญาอนุญาต
   settings: การตั้งค่า
   share: แชร์
@@ -2574,6 +2574,7 @@ th:
   showing_x_of_y: แสดง %{x} จาก %{y}
   showing_x_of_y_listings: "แสดง %{x} จาก %{y} รายการ"
   sign_out: ออกจากระบบ
+  sign_up: ลงทะเบียน
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
@@ -2906,11 +2907,13 @@ th:
   top_identifiers_of_taxon: ผู้ที่มีการจำแนก%{taxon}สูงสุด
   top_observer_caps: ผู้ที่มีการสังเกตสูงสุด
   top_observers: ผู้ที่มีการสังเกตสูงสุด
+  total: รวม
   totals: รวม
   total_members: สมาชิกทั้งหมด
   total_observations: การสังเกตทั้งหมด
   total_observations_caps: การสังเกตทั้งหมด
   total_species_observed_caps: ชนิดที่ถูกสังเกตทั้งหมด
+  translated_languages: ภาษาที่แปล
   'true': 'จริง'
   trends: แนวโน้ม
   #Noun
@@ -3076,6 +3079,7 @@ th:
   was_it_captive_cultivated?: "ถูกจับมา / เพาะปลูกหรือไม่?"
   we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
   we_have_no_establishment_data_for_this_taxon: "เราไม่มีข้อมูลการตั้งถิ่นฐานสำหรับหน่วยอนุกรมวิธานนี้"
+  website: เว็บไซต์
   welcome_to_inat: "ยินดีต้อนรับเข้าสู่ %{site_name}!"
   welcome_to_guides: "ยินดีต้อนรับเข้าสู่คู่มือสำรวจ %{site_name}!"
   welcome_to_x_project: "ยินดีต้อนรับเข้าสู่ %{project}"
@@ -3142,6 +3146,12 @@ th:
   year_month: ปี/เดือน
   'yes': "ใช่"
   #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    เฉพาะการสังเกตที่เป็นชนิดพันธุ์ที่ถูกคุกคาม ยกเว้นการสังเกตที่ฉันตั้งค่าซ่อนพิกัดเอง
+  yes_find_them!: "ใช่ ค้นหาเลย!"
+  #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "ใช่ เปิดเผยพิกัดทุกการสังเกต"
   yes_i_want_to_join: ใช่ ฉันอยากเข้าร่วม
@@ -3151,6 +3161,8 @@ th:
   yir_donate_banner_reaching_millions: เข้าถึงผู้คนนับล้าน เผยให้เห็นความหลากหลายทางชีวภาพ สร้างความร่วมมือระดับโลก
   #"You" is singular
   yir_donate_banner_all_thanks: ขอขอบคุณทุกท่านที่มีส่วนร่วม!
+  #"Your" is singular
+  yir_donate_inaturalist_needs_your_support: iNaturalist ต้องการให้คุณสนับสนุน
   yir_email_because_of_you: |
     คุณเป็นผู้ที่ทำให้ข้อมูลความหลากหลายทางชีวภาพเพิ่มขึ้นกว่าปีที่แล้ว การสรุปภาพรวมประจำปีจึงเป็นของขวัญสำหรับคุณที่ได้ส่งเสริมความหลากหลายทางชีวภาพผ่านทาง iNaturalist มาโดยตลอด
   yir_email_log_in_to_generate: |
@@ -3333,8 +3345,6 @@ th:
         data_visualizations: เห็นภาพจากข้อมูลได้
         delete_project: ลบโครงการ
         display_project_name: แสดงชื่อโครงการ
-        do_you_need_features_from_traditional: |
-          คุณต้องการใช้คุณสมบัติจากโครงการแบบดั้งเดิมหรือไม่? เช่น การเข้าถึงพิกัดจริง การกำหนดข้อมูลเสริมการสังเกตเอง หรือการเพิ่มการสังเกตที่รวมเข้าโครงการโดยอัตโนมัติไม่ได้
         duplicate_project: คัดลอกโครงการ
         include_annotated_observations: |
           รวมเฉพาะการสังเกตที่ระบุหมายเหตุ (เช่น ระยะการเจริญ) หรือคุณลักษณะ (เช่น ระยะการเจริญ = ตัวเต็มวัย) โดยแต่ละโครงการใช้ตัวกรองหมายเหตุได้เพียงหนึ่งอย่างเท่านั้น
@@ -3381,8 +3391,6 @@ th:
         we_have_redesigned_projects: |
           โครงการจะช่วยรวบรวมทุกการสังเกตตามเงื่อนไขที่คุณกำหนด ได้แก่ สถานที่ หน่วยอนุกรมวิธาน ผู้ใช้งาน คุณภาพข้อมูล และวันที่ โดยสามารถเลือกสร้างโครงการ 2 ประเภทหลัก ได้แก่ โครงการสะสมชนิด และโครงการครอบคลุม ซึ่งมีลักษณะการใช้งานดังนี้:
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
-        you_can_learn_more_html: |
-          เรียนรู้เพิ่มเติมเกี่ยวกับการจัดการโครงการได้<a href="https://www.inaturalist.org/pages/managing-projects">ที่นี่</a> หรืออ่านประวัติการเปลี่ยนแปลงโครงการได้ที่<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">บล็อกของเรา</a>
         you_have_not_defined_any_observation_requirements: |
           คุณยังไม่ได้กำหนดเกณฑ์การสังเกต ตรวจสอบว่าได้เลือกอย่างน้อย 1 หน่วยอนุกรมวิธาน (เช่น นก สนเขา) สถานที่ (เช่น Brazil, Yellowstone) ผู้ใช้งาน และ/หรือวันที่สังเกต เพื่อรวมการสังเกตตามเกณฑ์เหล่านี้เข้าโครงการของคุณ
         errors:
@@ -3401,10 +3409,12 @@ th:
         this_has_been_flagged_as_spam: การสังเกตนี้ถูกรายงานว่าเป็นสแปม
     stats:
       index:
+        new_users_desc: ลงทะเบียนวันนี้
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
         observers_desc: เพิ่มการสังเกตในวันนี้
+        recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
       year:
         #label used for a chart component that shows the count of users that
         #added both identifications and observations
@@ -3416,12 +3426,13 @@ th:
         inaturalist_network_desc: |
           ดูภาพรวมประจำปีสำหรับสมาชิกเครือข่าย iNaturalist
         include_usa: รวมสหรัฐอเมริกา
+        growth_by_country_title: การเติบโตในแต่ละประเทศ
         growth_in_year_obs: "การเติบโตในปี %{year} (การสังเกต)"
         growth_title: การเติบโต
         new_species_desc: |
           ชนิดที่สังเกตเป็นครั้งแรกบน %{site_name} ในปีนี้ แสดง %{x} จาก <a href="%{url}">%{y} ชนิด</a>
         new_species_desc_html: |
-          หมายถึงชนิดที่เพิ่มใหม่เป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูจำนวนชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และสามารถดูจำนวนชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ แผนภูมินี้แสดงจำนวนชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่นับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
+          หมายถึงชนิดที่เพิ่มใหม่เป็นครั้งแรกในปีนี้ คลิกที่เดือนเพื่อดูจำนวนชนิดใหม่ที่เพิ่มเข้ามาในเดือนนั้น และสามารถดูจำนวนชนิดสะสมทั้งหมดหรือใช้ตัวเลื่อนย้อนไปดูชนิดที่เพิ่งถูกสังเกตอื่น ๆ แผนภูมินี้แสดงจำนวนชนิดจากการสังเกตที่ตรวจสอบได้ในเดือนที่อัปโหลดไปที่ %{site_name} (ไม่ใช่เดือนที่มีการสังเกต) และไม่รวมลำดับอนุกรมวิธานที่สูงหรือต่ำกว่าระดับชนิด ดังนั้นการสังเกตที่จำแนกว่าเป็นสัตว์เลี้ยงลูกด้วยนมก็จะไม่ถูกนับ และการสังเกตของ <i>Canis lupus</i> ssp. <i>arctos</i> ก็จะนับว่าเป็นชนิด <i>Canis lupus</i> เท่านั้น
         new_species_per_year: ชนิดใหม่ / ปี
         new_species_per_year_by_date_added: ตามวันที่เพิ่ม
         obs_in_year: การสังเกตในปี %{year}

@@ -18,7 +18,12 @@ const HiddenContentMessage = ( {
   if ( !item.hidden ) {
     return null;
   }
-  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
+  const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+  const viewerIsActor = loggedInUser && item.user.id === loggedInUser.id;
+  const viewerIsCurator = loggedInUser && loggedInUser.roles && (
+    loggedInUser.roles.indexOf( "admin" ) >= 0
+    || loggedInUser.roles.indexOf( "curator" ) >= 0
+  );
   const moderatorAction = _.sortBy(
     _.filter( item.moderator_actions, ma => ma.action === "hide" ),
     ma => ma.id * -1
@@ -45,21 +50,38 @@ const HiddenContentMessage = ( {
           id={`hidden-${itemType}-${item[itemIDField]}`}
           className="unhide-popover"
         >
-          <span
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "content_hidden_by_user_on_date_because_reason_html", {
-                user: ReactDOMServer.renderToString( maUserLink ),
-                date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
-                reason: ReactDOMServer.renderToString(
-                  <UserText
-                    text={moderatorAction.reason}
-                    className="inline"
-                    stripWhitespace
-                  />
-                )
-              } )
-            }}
-          />
+          {viewerIsCurator ? (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "content_hidden_by_user_on_date_because_reason_html", {
+                  user: ReactDOMServer.renderToString( maUserLink ),
+                  date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
+                  reason: ReactDOMServer.renderToString(
+                    <UserText
+                      text={moderatorAction.reason}
+                      className="inline"
+                      stripWhitespace
+                    />
+                  )
+                } )
+              }}
+            />
+          ) : (
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "content_hidden_on_date_because_reason_html", {
+                  date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
+                  reason: ReactDOMServer.renderToString(
+                    <UserText
+                      text={moderatorAction.reason}
+                      className="inline"
+                      stripWhitespace
+                    />
+                  )
+                } )
+              }}
+            />
+          )}
           <div className="upstacked text-muted">
             <a
               href={`/${itemType}/${item[itemIDField]}/flags`}

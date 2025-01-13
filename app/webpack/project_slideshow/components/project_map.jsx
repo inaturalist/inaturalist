@@ -156,7 +156,7 @@ class ProjectMap extends Component {
               </div>
               <div className="stat">
                 {
-                  I18n.t( "x_identifiers_html", {
+                  I18n.t( "x_identifiers_caps_html", {
                     count: parseInt( this.props.overallStats.identifiers, 10 ) || 0
                   } ).replace( /<.+?\/.+?>/g, "" )
                 }
@@ -168,7 +168,7 @@ class ProjectMap extends Component {
               </div>
               <div className="stat">
                 {
-                  I18n.t( "x_observers_html", {
+                  I18n.t( "x_observers_caps_html", {
                     count: parseInt( this.props.overallStats.observers, 10 ) || 0
                   } ).replace( /<.+?\/.+?>/g, "" )
                 }

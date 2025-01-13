@@ -72,8 +72,7 @@
               t(:deleted_user)
             end
           -%>
-          <span class="meta"><%= username %> <%= t :said %>,</span>
-          "<%= item.comment %>"
+          <%=t :user_said_comment_html, user: username, comment: item.comment %>
         <% end -%>
       </div>
     <% elsif item.is_a? ObservationFieldValue %>

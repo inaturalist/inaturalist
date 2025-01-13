@@ -18,10 +18,6 @@ ja:
     other: '%{count} 同定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> 件の同定'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> 同定者'
   x_languages:
     other: "%{count} 言語"
   #Count of number of taxa that represent the first addition to a life list
@@ -54,8 +50,6 @@ ja:
     other: "<a href='%{url}'>%{count}件の観察記録</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span>件の観察記録を確認済み"
-  x_observers_html:
-    other: '<span class="count">%{count}</span>投稿者'
   x_others:
     other: "その他%{count}人"
   x_people:
@@ -1031,6 +1025,7 @@ ja:
   content_and_display: コンテンツと表示
   content_author: コンテンツの作成者
   content_hidden: コンテンツ非表示
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} に%{user}さんがコンテンツを非表示にしました。理由："%{reason} "
   content_type: コンテンツの種類
@@ -2512,6 +2507,7 @@ ja:
     lv: ラトビア語
     mi: マオリ語
     mk: マケドニア語
+    ml: マラヤーラム語
     mr: マラーティー語
     nb: ノルウェー・ブークモール語
     nl: オランダ語
@@ -2526,6 +2522,7 @@ ja:
     sq: アルバニア語
     sr: セルビア語
     sv: スウェーデン語
+    ta: タミル語
     th: タイ語
     tr: トルコ語
     uk: ウクライナ語
@@ -4218,7 +4215,6 @@ ja:
     must_be_verifiable: 研究用グレードか要同定グレードでなければなりません
     must_be_wild: 野生である必要があります
   running_total: 現在の総計
-  said: が発言しました
   satellite: 航空写真
   save: 保存
   save_all: すべて保存
@@ -6069,6 +6065,24 @@ ja:
           <b>30日以内に</b>これらの問題に対処してください。30日後、iNaturalistが壊れた写真を削除し始めます。観察結果はすべて残ります。写真が削除された後、それらは再評価され、写真がなくなった場合、研究用の観察記録がカジュアルになる可能性があります。
       user_parent_confirmation:
         subject: お子様の iNaturalist アカウントがアクティベートされました
+        content_html: |
+          <p>
+          お子様のiNaturalistアカウントを作成いただきありがとうございます！アカウントは有効化されました。以下は、お子様が入力された内容です：
+          </p>
+          <ul>
+          <li><strong>親または法定後見人の名前：</strong>%{parent_name}</li>
+          <li><strong>親または法定後見人のEメール：</strong>%{parent_email}</li>
+          <li><strong>子供の名前：</strong>%{child_name}</li>
+          <li><strong>子供の誕生日：</strong>%{child_birthday}</li>
+          <li><strong>子供のアカウントのEメール：</strong>%{child_email}</li>
+          <li><strong>子供のアカウントのユーザーネーム：</strong>%{child_username}</li>
+          </ul>
+          <p>
+          お子様のSeekアプリから、メニューの「iNaturalist」をタップし、画面下部の「iNaturalistでログイン」からアカウントにログインしてください。
+          </p>
+          <p>
+          お子様はSeekアプリを使って観察記録をiNaturalistアカウントに投稿し、iNaturalist.orgで見ることができるようになります。
+          </p>
       users_updates_suspended:
         message: |
           しばらくのあいだ%{site_name}で活動をお休みしていたようなので、フォローを停止しました。再びサイト活動の更新情報を受けるには、<a href="%{login_url}">ご自分のアカウントにログインし直して</a>ください。
@@ -6178,9 +6192,6 @@ ja:
         data_visualizations: データの可視化
         delete_project: プロジェクトを削除
         display_project_name: プロジェクト名を表示する
-        do_you_need_features_from_traditional: |
-          真の座標へのアクセスなど、手動プロジェクトの機能が必要ですか？
-          カスタム観測フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
         do_you_need_features_from_traditional2: |
           カスタムの観察フィールドや、自動フィルタリングできない個々の観察記録の追加など、手動プロジェクトの機能が必要ですか？
         duplicate_project: プロジェクトの複製
@@ -6241,11 +6252,6 @@ ja:
 
           まずはプロジェクトを、コレクションプロジェクトかアンブレラプロジェクトのどちらのタイプにするか選択してください。以下の機能は２つのタイプで共通です:
         welcome_to_projects: プロジェクトへようこそ！
-        you_can_learn_more_html: |
-          プロジェクトの管理について学習するには
-          <a href="https://www.inaturalist.org/pages/managing-projects">こちら</a>
-          またプロジェクトの歴史については
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ブログ</a>をご覧ください。
         errors:
           name_is_required: プロジェクト名が必要です
           name_less_than_100_characters: プロジェクト名は100文字未満にする必要があります

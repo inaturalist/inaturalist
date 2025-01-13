@@ -36,14 +36,6 @@ sr:
     one: '<span class=''count''>%{count}</span> IDENTIFIKACIJA'
     few: '<span class=''count''>%{count}</span> IDENTIFIKACIJE'
     other: '<span class=''count''>%{count}</span> IDENTIFIKACIJA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifikatora'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatora'
   x_languages:
     one: "%{count} jezik"
     few: "%{count} jezika"
@@ -98,10 +90,6 @@ sr:
     one: "<span class='count'>%{count}</span> opservacija pregledana"
     few: "<span class='count'>%{count}</span> opservacije pregledane"
     other: "<span class='count'>%{count}</span> opservacija pregledano"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Posmatrač'
-    few: '<span class="count">%{count}</span> Posmatrača'
-    other: '<span class="count">%{count}</span> Posmatrača'
   x_others:
     one: "još neko"
     few: "%{count} drugih"
@@ -688,6 +676,7 @@ sr:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
+  attribution: Autorstvo
   #Shows photo attribution along with who uploaded the photo. %
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
@@ -792,6 +781,7 @@ sr:
   casual_tooltip_html: '"Neobavezno" opservacije nemaju medije, lokaciju, datum ili ne zadovoljavaju kriterijume "Istraživanje" ili "Potreban ID" kvalitet podataka iz drugih razloga. <a href="https://www.inaturalist.org/pages/help#quality">Saznaj više o merilu kvaliteta podataka</a>'
   categories: Kategorije
   cc_0_name: Nema zaštite autorskih prava (CC0)
+  cc_by_name: Autorstvo
   change_admin: Promeni administratora
   #Button to change the cover (or banner) image for a project
   change_cover: Izmeni naslovnu fotografiju
@@ -957,6 +947,7 @@ sr:
   content_and_display: Sadržaj i prikaz
   content_author: Autor sadržaja
   content_hidden: Sadržaj sakriven
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Sadržaj sakrio/la %{user} datuma %{date} iz razloga: "%{reason}"
   content_type: Tip sadržaja
@@ -1057,6 +1048,7 @@ sr:
     public_domain: javno vlasništvo
     copyright: autorsko pravo
     no_copyright: nema zaštite autorskih prava (CC0)
+    attribution_license: Autorska licenca
   copyright_holder: Nosilac autorskih prava
   copyright_info: Informacije o autorskim pravima
   copyright_info_and_more: Informacije o autorskim pravima i više
@@ -1369,6 +1361,8 @@ sr:
   draft: nacrt
   #Noun, as in a journal post that has not been published
   draft_: Nacrt
+  #Attribution for a journal post that has not been published
+  draft_by_user_html: Nacrt korisnika %{user}
   #Noun, as in a journal post that has not been published
   draft_saved: Nacrt sačuvan!
   #Noun, as in journal posts that has not been published
@@ -1462,10 +1456,18 @@ sr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Precizan rang
   except: osim
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Izuzev
   exclude_places: Izostavi mesta
   exclude_projects: Izostavi projekte
   exclude_taxa: Izostavi taksone
   exclude_users: Izostavi korisnike
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Izuzev %{count} taksona
+    few: Izuzev %{count} taksona
+    other: Izuzev %{count} taksona
   exclusion_filters: Izostavi filtere
   existing_flags: Postojeće prijave
   exit_full_screen: "izađi iz rеžima cеlog еkrana"
@@ -2010,7 +2012,7 @@ sr:
   loading_suggestions: Učitavanje predloga...
   loading_tags: "Učitavanje oznaka..."
   loading_taxa_from_your: "Učitavanje taksona iz tvojih opservacija..."
-  loading_wikipedia_description: "Učitavanje Wikipedija opisa..."
+  loading_wikipedia_description: "Učitavanje Vikipedija opisa..."
   locales:
     ar: arapski
     be: beloruski
@@ -2321,6 +2323,7 @@ sr:
   new_password: Nova lozinka
   new_post: Nova objava
   new_project: Novi projekat
+  new_source: Novi izvor
   new_species_added_in_interval: Nova vrsta dodata u %{interval}
   new_taxon_change: Nova izmena taksona
   new_taxon_link: Novi link taksona
@@ -3327,7 +3330,7 @@ sr:
   re_order_photos: "Presloži fotografije &raquo;"
   read_more: Pročitaj više
   read_our_getting_started_guide: pročitaj naš Vodič za početnike
-  read_the_full_wikipedia: Pročitaj ceo Wikipedia opis
+  read_the_full_wikipedia: Pročitaj ceo Vikipedija opis
   real_time_discussions: Diskusije u realnom vremenu
   reason: Razlog
   reason_you_are_flagging_this_item: Razlog zašto ovo prijavljuješ.
@@ -3403,6 +3406,7 @@ sr:
   removed_role: Uklonjena uloga
   removing: "Uklanjanje..."
   reorder_by_taxonomy: Presloži po taksonomiji
+  repair_broken_urls: Ispravi neispravne URL-ove
   replace_parentesis: (zameni)
   reply: Odgovori
   reptiles: reptili
@@ -4210,7 +4214,7 @@ sr:
   user_flagged_as_a_spammer_html: "%{user} označen/a kao spamer"
   user_has_opted_out_of_community_id: Korisnik/ca je isključio opciju taksona zajednice
   user_hasnt_joined_any_projects: "%{user} nije se pridružio nijednom projektu"
-  user_helped_x_people_with_y_ids_html: "%{user} je pomogao <strong>%{x} ljudi</strong> sa<strong>%{y} ID-jeva</strong>"
+  user_helped_x_people_with_y_ids_html: "%{user} je pomogao <strong>%{x} ljudi</strong> sa <strong>%{y} ID-jeva</strong>"
   user_invited_you_to_join_html: "%{user} te je pozvao da se pridružiš"
   user_invited_you_to_join_project: "%{user} te je pozvao da se pridružiš projektu %{project}"
   user_invited_you_to_join_this_project_on_date_html: "%{user} te je pozvao da se pridružiš ovom projektu %{date}"
@@ -4719,6 +4723,9 @@ sr:
         journal: dnevnik
       sorts:
         alphaname: Alfabetski po naučnom imenu
+    guide_taxa:
+      edit:
+        site_explanation: "Dodaj narodni naziv, do 5 licenciranih fotografija, i Vikipedija rezime sa %{site_name}."
     lifelists:
       list_view: Prikaz liste
       tree_view: Prikaz stabla
@@ -4989,8 +4996,6 @@ sr:
         data_visualizations: Vizuelizacija podataka
         delete_project: Izbriši projekat
         display_project_name: Prikaži naziv projekta
-        do_you_need_features_from_traditional: |
-          Da li su ti potrebne odlike tradicionalnih projekata kao što su pristup pravim koordinatama, posebno prilagođena opservaciona polja ili dodavanje pojedinačnih opservacija koje se ne mogu automatski filtrirati?
         do_you_need_features_from_traditional2: |
           Da li su ti potrebne odlike tradicionalnih projekata kao što su posebno prilagođena opservaciona polja ili dodavanje pojedinačnih opservacija koje se ne mogu automatski filtrirati?
         duplicate_project: Dupliraj projekat
@@ -5029,8 +5034,6 @@ sr:
         we_have_redesigned_projects: |
           Projekti su osmišljeni sa ciljem da okupe sve opservacije na osnovu parametara koje definišeš kao što su mesta, taksoni, korisnici, kvalitet i datumi. Izaberi jedan od 2 tipa: pretražni ili skupni projekat, koji imaju neke zajedničke odlike:
         welcome_to_projects: Dobrodošli u projekte!
-        you_can_learn_more_html: |
-          Saznaj više o upravljanju projektima <a href="https://www.inaturalist.org/pages/managing-projects">ovde</a> ili pročitaj istoriju projekata na <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">našem blogu</a>.
         errors:
           name_is_required: Naziv projekta je obavezan
           name_less_than_100_characters: Naziv projekta mora imat manje od 100 karaktera
@@ -5107,6 +5110,8 @@ sr:
         recent_w_0_obs_desc: Registrovani u poslednjih 7 dana i bez opservacija
         recent_w_7_obs: Skorašnji sa >= 7 opservacija
         recent_w_7_obs_desc: Registrovani u poslednjih 7 dana i sa >= 7 opservacija
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Kreirano pomoću <a href="%{url}">Seek-a</a>
         time_to_id_desc: Vreme do ID-ja (u satima, na nedeljnom nivou)
         TTCID: VDIDZ
         TTCID_desc: Vreme potrebno da neko doda identifikaciju koja se poklapa sa taksonom zajednice.
@@ -5656,6 +5661,7 @@ sr:
       OauthApplication: Aplikacija
       Photo: Fotografija
       Post: Rubrika dnevnika
+      TaxonLink: Link taksona
     attributes:
       announcement:
         created_at: Kreirano
@@ -5777,6 +5783,7 @@ sr:
         rank: Rang
         source_id: Izvorni ID
         source_url: Izvorni URL
+        wikipedia_summary: Vikipedija rezime
         wikipedia_title: Vikipedija naslov
       taxon_name:
         is_valid: validan?

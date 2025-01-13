@@ -51,6 +51,7 @@ RSpec.configure do | config |
       Place,
       Project,
       Taxon,
+      TaxonPhoto,
       UpdateAction,
       User
     ].freeze
@@ -73,6 +74,7 @@ RSpec.configure do | config |
     Delayed::Job.delete_all
     make_default_site
     CONFIG.has_subscribers = :disabled
+    CONFIG.content_creation_restriction_days = nil
   end
 
   config.after( :each ) do

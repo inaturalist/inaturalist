@@ -27,12 +27,9 @@ nl:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> DETERMINATIE'
     other: '<span class="count">%{count}</span> DETERMINATIES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">1</span> determineerder'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> determineerders'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID''s gemaakt voor anderen'
+    other: '<span class="count">%{count}</span>ID''s gemaakt voor anderen'
   x_languages:
     one: "%{count} taal"
     other: "%{count} talen"
@@ -80,9 +77,6 @@ nl:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> waarneming nagekeken"
     other: "<span class='count'>%{count}</span> waarnemingen nagekeken"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> waarnemer'
-    other: '<span class="count">%{count}</span> waarnemers'
   x_others:
     one: "%{count} ander persoon"
     other: "%{count} anderen"
@@ -645,7 +639,7 @@ nl:
   apply_fields: Velden toepassen
   apply_geoprivacy: Geoprivacy toevoegen
   apply_darr: "Toepassen &darr;"
-  apply_establishment_means_to_descendant_places: "Vestgingswijze toepassen op onderliggende plaatsen"
+  apply_establishment_means_to_descendant_places: "Vestgingswijze toepassen op onderliggende gebieden"
   apply_these_settings_to_all: Pas deze instellingen toe op alle onderstaande waarnemingen
   appropriate?: Passend?
   arachnids: spinachtigen
@@ -660,7 +654,7 @@ nl:
   are_you_sure_delete_taxon_move_associates: "Weet je zeker dat je %{taxonname} (%{taxonid}) wilt verwijderen en alle verwante items wilt verplaatsen?"
   are_you_sure_delete_this_place: Weet je zeker dat je dit gebied wilt verwijderen?
   are_you_sure_leave_this_project: Weet je zeker dat je dit project wilt verlaten?
-  are_you_sure_merge_these_places: Weet je zeker dat je deze plaatsen wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
+  are_you_sure_merge_these_places: Weet je zeker dat je deze gebieden wilt samenvoegen. Dit kan niet ongedaan gemaakt worden.
   are_you_sure_remove_photo: "Weet je zeker dat je deze foto wilt verwijderen?"
   are_you_sure_remove_relationship: Weet je zeker dat je deze relatie wilt verwijderen? Hierdoor wordt deze persoon niet meer gevolgd en wordt de toegang tot je verborgen coördinaten ingetrokken als je deze toegang had ingeschakeld.
   are_you_sure_remove_taxon_from_list: "Weet je zeker dat je dit taxon uit de lijst wilt verwijderen?"
@@ -960,7 +954,7 @@ nl:
   check_list_for_individual_taxa_that: 'Checklists voor individuele taxa die hier voorkomen, bv. "Vogels van %{place}".'
   check_list_for_taxon_html: "Checklist voor %{taxon}"
   check_lists_must_belong_to_a_place: |
-    Checklisten moeten bij een plaats horen. Ga om een nieuwe checklist te maken
+    Checklisten moeten bij een gebied horen. Ga om een nieuwe checklist te maken
     naar de standaard-checklist van een plaats en klik op de link 'Maak een nieuwe checklist'.
   check_list_place: "%{place} Checklist"
   check_list_updated: Checklist bijgewerkt!
@@ -974,7 +968,7 @@ nl:
   checklist: Checklist
   choose_a_field: Kies een veld
   choose_a_list_above: Kies een lijst hierboven.
-  choose_a_place: Kies een locatie
+  choose_a_place: Kies een gebied
   choose_a_taxon: Kies een taxon (optioneel)
   choose_columns: Kies kolommen
   choose_file: Bestand kiezen
@@ -1122,17 +1116,17 @@ nl:
     description: Korte beschrijving van de reden waarom dit in een lijst is opgenomen.
     authority: |
       Organisatie die deze status heeft vastgesteld. Gebruik alsjeblieft de autocomplete-functie om een bestaande autoriteit te kiezen voordat je een nieuwe toevoegt. Je kunt dit overslaan als *jij* als de autoriteit wilt worden aangemerkt.
-    place: Plek tot waar deze status is beperkt.
+    place: Gebied tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: |
       Standaard geoprivacy voor waarnemingen van dit taxon. Merk op dat de
       geoprivacy van een status geassocieerd met een continent, land of
       plaats op staatsniveau een status kan overschrijven die globaal is of geassocieerd is
-      met een plaats op een hoger niveau.
+      met een gebied op een hoger niveau.
     iucn: |
       Equivalent van de IUCN Rode Lijst code. Dit is niet de huidige IUCN-beoordeling maar de IUCN-code die het beste overeenkomt met de dreiging van het openbaar maken van de coördinaten door deze status. Dit zal de geoprivacy overschrijven als het Niet bedreigd (veilig) is of lager. Dus als je waarnemingen van dit taxon wilt vervagen, stel deze in op "Gevoelig" of hoger.
   conservation_status_geoprivacy_desc: |
-    Default geoprivacy toegepast op alle waarnemingen van dit taxon op deze plaats.
+    Default geoprivacy toegepast op alle waarnemingen van dit taxon uit dit gebied
   contact_support: Neem contact op met support
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon die hier voorkomen?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1140,6 +1134,10 @@ nl:
   content_and_display: Inhoud & Uiterlijk
   content_author: Auteur inhoud
   content_hidden: Inhoud is verborgen
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Inhoud is verborgen op %{date} met als reden: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Inhoud is verborgen door %{user} op %{date} met als reden: "%{reason}"
   content_type: Inhoudstype
@@ -1406,7 +1404,7 @@ nl:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Bewerk Community Gecorrigeerde Plaatsen en upload KML-bestanden groter dan 1 MB (maar
+    Bewerk Community Gecorrigeerde Gebieden en upload KML-bestanden groter dan 1 MB (maar
     kleiner dan 5 MB).
   #Header
   curator_application_what_curators_cannot_do: Wat Curatoren niet kunnen doen
@@ -1540,7 +1538,7 @@ nl:
   default_photo_license: Standaard fotolicentie
   default_search_place: Standaard zoekmachine
   default_search_place_description: |
-    Dit zal je standaard plaats zijn voor alle zoekopdrachten in Verkenner.
+    Dit zal je standaard gebied zijn voor alle zoekopdrachten in Verkenner.
   default_sound_license: Standaard opname licentie
   default_time_zone_desc: |
     Dit is de standaard tijdzone. De definitieve tijdzone wordt toegewezen op basis van de locatie van de waarneming wanneer deze wordt opgeslagen.
@@ -1760,7 +1758,7 @@ nl:
   edit_observations: Waarnemingen bewerken
   edit_photos: Foto's bewerken
   edit_photos_for_observation_id: "Foto's voor waarneming %{obs_id} bewerken"
-  edit_place: Plaats bewerken
+  edit_place: Gebied bewerken
   edit_project: Project bewerken
   edit_remove: Bewerken of verwijderen
   edit_selected: Selectie bewerken
@@ -1816,7 +1814,7 @@ nl:
   email_copyright2: "&copy; %{year} iNaturalist, alle rechten voorbehouden"
   email_notifications: E-mailnotificaties
   embed: 'Invoegen'
-  embed_place_widget: Plaatswidget invoegen
+  embed_place_widget: Gebiedswidget invoegen
   embed_this_assessment: Sluit deze beoordeling in
   embed_widget_project: Voeg een widget voor dit project in op je website
   enable_offline_access: Offline toegang inschakelen
@@ -1862,10 +1860,17 @@ nl:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exacte rang
   except: met uitzondering van
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exclusief
   exclude_places: Exclusief de plaatsen
   exclude_projects: Exclusief de projecten
   exclude_taxa: Exclusief de taxa
   exclude_users: Exclusief de gebruikers
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Uitsluitend %{count} taxon
+    other: Uitsluitend %{count} taxa
   exclusion_filters: Uitsluitingsfilters
   existing_flags: Bestaande meldingen
   exit_full_screen: "Volledig Schermmodus Verlaten"
@@ -1925,23 +1930,23 @@ nl:
   filename: Bestandsnaam
   filter: Filter
   filter_by_curator_identification: Filteren op curatordeterminatie
-  filter_by_place: Filter op plaats
+  filter_by_place: Filter op gebied
   filter_by_species: Filteren op soort
   filter_by_taxon: Filter op taxon
-  filter_by_place_taxon_and_color: Zoek op plaats, taxon, en kleur met behulp van de besturingselementen.
+  filter_by_place_taxon_and_color: Zoek op gebied, taxon en kleur met behulp van de besturingselementen.
   filter_list_by_this_taxon: Zoek in lijst met dit taxon
   filtering: Filteren
   filters: Filters
   find: Zoeken
   find_a_guide: Vind een gids
   find_a_post: Zoek een bericht
-  find_a_place: Zoek een plaats
+  find_a_place: Zoek een gebied
   find_guides: Vind gidsen
   find_posts_for: "Vind berichten voor: %{journal_name}"
   find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken!
   find_observations: Vind waarnemingen
   find_photos: Foto's zoeken
-  find_places: Zoek plaatsen
+  find_places: Zoek gebieden
   find_some_people_to_follow: "Zoek een aantal mensen om te volgen"
   find_species: Soorten zoeken
   find_suitable_observations: Zoek passende waarnemingen
@@ -2056,12 +2061,12 @@ nl:
   forum_desc: |
     Op het forum kun je vragen stellen over iNaturalist, bijvoorbeeld over vertalingen, hulp & ondersteuning, functieverzoeken, foutmeldingen, aankondigingen en meer.
   frequency: Frequentie
-  from_a_place: van een plaats
+  from_a_place: van een gebied
   from_eol_collection: Van EOL collectie
   from_flickr_etc: Van Flickr, etc.
   from_list: Van lijst
   from_photos: Van fotos
-  from_place: van plaats
+  from_place: van gebied
   from_soundcloud: Van Soundcloud
   full_screen: Volledig scherm
   fungi:
@@ -2076,6 +2081,9 @@ nl:
   generate_your_year_in_review_caps: BEKIJK JE %{year} JAAROVERZICHT
   generating_mobile_archive: "Genereren van het mobiele archief"
   Genus: Geslacht
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Geo score
   geomodel_expected_nearby_label_is_derived: |
     Het "In de buurt verwacht" label is afgeleid van het Geomodel.
     <a href="%{url}">Meer informatie over het Geomodel</a>.
@@ -2318,12 +2326,22 @@ nl:
   in_place_x: in %{place}
   #As in a reason to flag something
   inappropriate: Ongepast
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist netwerk
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   #Label for messages you've received
   inbox: Postvak IN
-  include_places: Inclusief de plaatsen
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inclusief
+  include_places: Inclusief de gebieden
   include_projects: Inclusief de projecten
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inclusief / Exclusief vooroudertaxa
   include_suggestions_not_seen_nearby: Alle soorten
   include_suggestions_not_expected_nearby: Voeg suggesties toe die niet in de buurt worden verwacht
   include_taxa: Inclusief de taxa
@@ -2349,7 +2367,7 @@ nl:
   inaturalist_activity_notifications: "%{site_name} activiteitsnotificaties"
   #Software developed by iNaturalist, like Seek or the iNaturalist iPhone app
   inaturalist_applications: "iNaturalist Toepassingen"
-  inaturalist_places: "%{site_name} Plaatsen"
+  inaturalist_places: "%{site_name} Gebieden"
   info: Informatie
   input_taxon: Invoer taxon
   insects: insecten
@@ -2487,11 +2505,14 @@ nl:
     basque: Baskisch
     belarusian: Wit-Russisch
     bengali: Bengaals
+    bikol: Bikol
     bulgarian: Bulgaars
+    carolinian: Caroliniaans
     catalan: Catalaans
     cebuano: Creools (Frans)
     chinese_simplified: Chinees (vereenvoudigd)
     chinese_traditional: Chinees (traditioneel)
+    chuvash: Tsjoevasjisch
     creole_french: Creools (Frans)
     creole_portuguese: Creools (Portugees)
     croatian: Kroatisch
@@ -2503,6 +2524,7 @@ nl:
     esperanto: Esperanto
     estonian: Estlands
     faroese: Faeröers
+    fijian: Fijisch
     finnish: Fins
     french: Frans
     galician: Galicisch
@@ -2515,6 +2537,7 @@ nl:
     hebrew: Hebreeuws
     herero: Herero
     hiligaynon: "\nHiligaynon"
+    hill_mari: Hill Mari
     hodges_number: Hodges nummer
     hokkien: Hokkien
     hungarian: Hongaars
@@ -2527,8 +2550,10 @@ nl:
     kannada: Kannada
     kazakh: Kazachs
     korean: Koreaans
+    kweyol: Queyol
     latvian: Lets
     lithuanian: Litouws
+    lozi: Lozi
     luxembourgish: Luxemburgs
     malagasy: Malagasi
     malay: Maleis
@@ -2541,6 +2566,7 @@ nl:
     mongolian: Mongools
     nahuatl: Nahuatl
     navajo: Navajo
+    ndebele: Ndebele
     norwegian: Noors
     occitan: Provençaals
     ojibwe: Ojibwe
@@ -2554,26 +2580,35 @@ nl:
     santali: Santali
     scientific_names: Wetenschappelijke namen
     serbian: Servisch
+    shona: Shona
     sinhala: Singalees
     slovak: Slowaaks
     slovenian: Sloveens
+    sotho: Sotho
+    sotho_northern: Sotho (Noordelijk)
     spanish: Spaans
     swahili: Swahili
+    swati: Swati
     swedish: Zweeds
     tagalog: Tagalog
     tahitian: Tahitiaans
     tamil: Tamil
     thai: Thai
     tokelauan: Tokelaus
+    totonaco: Totonaco
+    tsonga: Tsonga
+    tswana: Tswana
     turkish: Turks
     u_s_d_a_symbol: V.S.D.A. Symbool
     ukrainian: Oekraïens
     uyghur: Oeigoers
+    venda: Venda
     vermont_flora_codes: Vermont Flora Codes
     vietnamese: Vietnamees
     visayan: Visayan
     waray_waray: Winaray
     xhosa: Xhosa
+    zapoteco: Zapoteco
     zulu: Zulu
   less: Minder
   #Button show less text
@@ -2674,6 +2709,7 @@ nl:
     lv: Lets
     mi: Maori
     mk: Macedonisch
+    ml: Malayalam
     mr: Marathi
     nb: Noors Bokmål
     nl: Nederlands
@@ -2688,6 +2724,7 @@ nl:
     sq: Albanees
     sr: Servisch
     sv: Zweeds
+    ta: Tamil
     th: Thai
     tr: Turks
     uk: Oekraïens
@@ -2772,7 +2809,7 @@ nl:
       observations: Waarnemingen
       place_boundary: Gebiedsgrens
       checklist_places: Checklist gebieden
-      checklist_places_description: Plaatsen waar dit taxon in de lijst is opgenomen
+      checklist_places_description: Gebieden waar dit taxon in de lijst is opgenomen
       range: Verspreiding
   map_tooltip: Kaartweergave tonen
   mark_as_reviewed: Markeren als nagekeken
@@ -2812,10 +2849,10 @@ nl:
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} heeft je genoemd in een %{x} op %{noun} van jou"
   merge: Samenvoegen
   merge_it_with_another_place: Samenvoegen met een andere plaats
-  merge_two_places_together: Voeg twee plaatsen samen. Alle soorten van de checklists zullen samengevoegd worden, samen met alle geografische gegevens.
+  merge_two_places_together: Voeg twee gebieden samen. Alle soorten van de checklists zullen samengevoegd worden, samen met alle geografische gegevens.
   merge_observation_field_x_into: 'Waarnemingsveld %{x} samenvoegen met ...'
   merging: Samenvoegen
-  merging_places: Plaatsen samenvoegen
+  merging_places: Gebieden samenvoegen
   message: Bericht
   message_deleted: Bericht verwijderd
   message_from_user_at_time: Van %{user} om %{time}
@@ -3103,7 +3140,7 @@ nl:
   no_managers_set: Geen beheerders ingesteld
   no_matching_article_from_x: "Geen overeenkomend artikel van %{x}"
   no_matching_observations: Geen overeenkomende waarnemingen.
-  no_matching_places: Geen overeenkomende plaatsen
+  no_matching_places: Geen overeenkomende gebieden
   no_matching_projects: Geen overeenkomende projecten
   no_matching_species: Geen overeenkomende soorten.
   no_matching_taxa: Geen overeenkomende taxa
@@ -3127,7 +3164,7 @@ nl:
   no_photo: Geen foto
   no_photos: Geen foto's
   no_photos_of_that_size: Geen foto van die grootte.
-  no_places_available: Geen plaatsen beschikbaar
+  no_places_available: Geen gebieden beschikbaar
   no_post_yet: Nog geen berichten!
   no_project_selected: Geen project geselecteerd
   no_project_to_admin_current_user: "Je administreert geen enkel project"
@@ -3199,7 +3236,7 @@ nl:
   obs_cid_d: Wrn CID'd
   obs_id_d: Wrn ID'd
   obscured: Verborgen
-  obscured_or_private: verborgen of privé
+  obscured_or_private: vervaagd of verborgen
   obscured_description: |
     Openbare coördinaten worden weergegeven als een willekeurig punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
   observation: Waarneming
@@ -3409,14 +3446,14 @@ nl:
     Waarnemingsvelden zijn extra gegevens die zijn gekoppeld aan een
     waarneming, zoals het aantal waargenomen individuen, habitatbeschrijving of wat je maar wilt! projecten kunnen ook velden specificeren
     die ze graag ingevuld willen hebben.
-  observations_from_people_taxa_and_places_youre_following: "Waarnemingen van mensen, plaatsen en taxa die jij volgt"
+  observations_from_people_taxa_and_places_youre_following: "Waarnemingen van mensen, gebieden en taxa die jij volgt"
   observations_from_this_place: Waarnemingen van deze plaats
   observations_from_this_project: Waarnemingen van dit project
   observations_in_this_project_must: Waarnemingen in dit project moeten aan de volgende criteria voldoen
   observations_map: Waarnemingen / Kaart
   observation_must_dotdotdot: Waarneming moet ...
   observations_near_a_place_are: |
-    Waarnemingen "in de buurt van" een locatie vallen binnen een rechthoek getrokken
+    Waarnemingen "in de buurt van" een gebieden vallen binnen een rechthoek getrokken
     rond de grens van de locatie, wat kan resulteren in een aantal onnauwkeurige resultaten
     voor locaties die niet op rechthoeken lijken. Dit komt door een beperking van
     onze database die we proberen op te lossen.
@@ -3472,7 +3509,7 @@ nl:
     irregular: onregelmatig
     doubtful: twijfelachtig
     absent: afwezig
-  of_places: plaatsen
+  of_places: gebieden
   of_this_taxon: Van dit taxon
   offensive_inappropriate: Aanstootgevend/ongepast
   off_caps: "UIT"
@@ -3495,15 +3532,15 @@ nl:
     follow_panel_title_local: Volg enkele naturalisten uit de buurt
     follow_panel_title_global: Volg enkeke actieve naturalisten
     follow_panel_body: Als je deze profielen bezoekt en op de volgen knop klikt, word je geïnformeerd wanneer zij waarnemingen plaatsen
-    following_panel_title: Blijf op de hoogte van Personen, Taxa en Plaatsen
+    following_panel_title: Blijf op de hoogte van Personen, Taxa en Gebieden
     following_panel_body: |
       Op %{site_name} kun je mensen volgen om de waarnemingen bij te houden
       die ze hebben geplaatst. Je kunt je ook abonneren op bepaalde
-      soorten om nieuwe waarnemingen van die soorten in de gaten te houden, of hetzelfde doen met plaatsen.
+      soorten om nieuwe waarnemingen van die soorten in de gaten te houden, of hetzelfde doen met gebieden.
     comments_panel_title: Nieuwsgierig welke discussies plaatsvinden op %{site_name}?
     comments_panel_body: "<p>%{site_name} staat volledig in het teken van het delen en bespreken van waarnemingen van flora en fauna. Hieronder staan discussies die nu gaande zijn. (Let op: je wordt automatisch geabonneerd op discussies waar je opmerkingen of determinaties aan bijdraagt. Beheer deze updates in het gedeelte 'Abonnementen' aan de rechterkant.)</p>"
     updates_by_you_panel_title: Dit tabblad is een snelle manier om alleen nieuws over je eigen inhoud te zien.
-    updates_by_you_panel_body: Houd er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of plaatsen waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
+    updates_by_you_panel_body: Houd er rekening mee dat je op het tabblad 'Alle updates' niet alleen updates over je eigen inhoud krijgt, maar ook over inhoud van mensen die je volgt en de taxa of gebieden waar je je op abonneert via de Abonnementen-tool aan de rechterkant.
     youve_got_updates_panel_title: Er zijn updates!
     youve_got_updates_panel_body_p1: Blijf op de hoogte met nieuwtjes over ...
     youve_got_updates_panel_body_p2: |
@@ -3536,7 +3573,7 @@ nl:
   only_show_for_species_subspecies_varieties_etc: Alleen weergeven voor soorten, ondersoorten, variëteiten, enzovoort.
   only_show_taxa_fom_this_list: "Toon alleen taxa op deze lijst"
   only_showing_taxa_from: toont alleen taxa op deze lijst
-  only_staff_can_edit_large_places: Alleen de sitestaf kan zeer grote plaatsen bewerken
+  only_staff_can_edit_large_places: Alleen de sitestaf kan zeer grote gebieden bewerken
   only_staff_can_edit_standard_places: Alleen de staf van de site kan plaatsen in de standaardhiërarchie bewerken
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat doen. Niet gemeen doen.
   only_the_project_admin_can_delete_this_project: Alleen de projectadministrator kan dit project verwijderen.
@@ -3845,17 +3882,17 @@ nl:
       Zone: Zone
       zone: zone
   place_guess: plaats raden
-  place_imported: Plaats geïmporteerd!
-  place_must_have_a_boundary_defined: Plaats moet een grens gedefinieerd hebben.
-  place_name: Plaatsnaam
-  place_notes: Plaats-notities
+  place_imported: Gebied geïmporteerd!
+  place_must_have_a_boundary_defined: Gebied moet een grens gedefinieerd hebben.
+  place_name: Gebiedsnaam
+  place_notes: Gebied-notities
   place_too_big_for_check_list: |
     Deze plaats is te groot voor een checklist. Het berekenen van checklist-statistieken is vrij intensief, dus we staan dat niet toe voor zeer grote plaatsen, tenzij ze zijn toegevoegd door de siteadministratoren. Je kunt deze plaats echter nog steeds gebruiken voor het afgrenzen van projecten en het zoeken naar waarnemingen.
   place_updated: Plaats bijgewerkt!
   placement: plaatsing
-  places: Plaatsen
-  places_added_by_members_of_the_community: Plaatsen toegevoegd door leden van de gemeenschap
-  places_maintained_by_site_admins: Plaatsen die door siteadministratoren worden onderhouden
+  places: Gebieden
+  places_added_by_members_of_the_community: Gebieden toegevoegd door leden van de gemeenschap
+  places_maintained_by_site_admins: Gebieden die door siteadministratoren worden onderhouden
   places_name:
     afghanistan: Afghanistan
     africa: Afrika
@@ -4122,35 +4159,33 @@ nl:
     yemen: Jemen
     zambia: Zambia
     zimbabwe: Zimbabwe
-  places_of_interest: Interessante plaatsen
+  places_of_interest: Interessante gebieden
   places_merged_successfully: Plaatsen succesvol samengevoegd!
   places_warning_export_complex_boundary_html: |
     Als je waarnemingen probeert te exporteren van een gebied met een ingewikkelde grens overweeg
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">dan ze te downloaden van GBIF</a> 
     waar je willekeurige grenzen kunt tekenen of exporteer ze uit iNat via bestaande gebieden of een selectievakje om de gegevens opnieuw te filteren nadat je de gegevens hebt gedownload.
   places_warning_look_for_existing2_html: |
-    Zoek naar <a href="/search?source[]=places">bestaande plaatsen</a> om ervoor te zorgen dat je
-    geen kopie maakt. We hebben al plaatsen voor alle continenten en landen en veel andere politieke grenzen.
+    Zoek naar <a href="/search?source[]=places">bestaande gebieden</a> om ervoor te zorgen dat je
+    geen kopie maakt. We hebben al gebieden voor alle continenten en landen en veel andere politieke grenzen.
   places_warning_please_keep_in_mind: |
     Houd de volgende beperkingen in gedachten:
   places_warning_projects_can_have_multiple_places: |
-    Als je een gebied probeert te maken voor een project bedenk dat projecten kunnen
-    meerdere plaatsen bevatten. Als je bijvoorbeeld een project wilt maken voor
-    Nieuw-Zeeland en Australië kun je alleen eisen toevoegen voor twee plaatsen
-    in plaats van één nieuwe.
+    Als je een gebied probeert te maken voor een project bedenk dan dat projecten meerdere gebieden kunnen bevatten. Als je bijvoorbeeld een project wilt maken voor Nieuw-Zeeland en Australië kun je in je eis beide gebieden toevoegen
+    in plaats van één nieuwe te maken.
   places_warning_new_places_are_slow_html: |
     Nieuwe gebieden zijn één van de grootste bronnen van vertraging in iNat dus
     <strong>overweeg om geen nieuw gebied aan te maken</strong>. Kleine gebieden
     met enkele duizenden waarnemingen zijn gewoonlijk geen probleem maar een
-    nieuwe plaats met veel waarnemingen gaat iNat vertragen voor alle anderen. Hier zijn enkele alternatieve benaderingen:
+    nieuwe gebied met veel waarnemingen gaat iNat vertragen voor alle anderen. Hier zijn enkele alternatieve benaderingen:
   places_warning_editing_places_is_slow: |
     Gebiedsgrenzen bewerken is een van de grootste bronnen van vertraging op iNat.
     Voorkom het toevoegen, veranderen of wijzigen van gebiedsgrenzen tenzij het absoluut noodzakelijk is.
   places_warning_quota: |
-    Je kunt slechts drie plaatsen per dag maken.
+    Je kunt slechts drie gebieden per dag maken.
   places_warning_the_future: |
     Voor wat het waard is, in het huidige groeitempo van iNat zullen de voorwaarden strenger worden waaronder
-    mensen in de toekomst plaatsen kunnen toevoegen.
+    mensen in de toekomst gebieden kunnen toevoegen.
   plants: planten
   play_first_sound: Eerste geluid afspelen
   please_add_a_citation_for_this_change: Voeg een citaat toe voor deze wijziging.
@@ -4608,7 +4643,6 @@ nl:
     must_be_verifiable: moet controleerbaar zijn
     must_be_wild: moet wild zijn
   running_total: Lopend Totaal
-  said: gezegd
   satellite: satelliet
   save: Opslaan
   save_all: Alles opslaan
@@ -5011,7 +5045,7 @@ nl:
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonneer</a>
     op %{x} van @gender{n:dit|deze} %{y}.
   subscriptions: Abonnementen
-  subscriptions_arent_available_for: Abonnementen zijn niet beschikbaar voor plaatsen zonder grenzen.
+  subscriptions_arent_available_for: Abonnementen zijn niet beschikbaar voor gebieden zonder grenzen.
   successfully_changed_your_password: Je wachtwoord is succesvol gewijzigd.
   suggest_an_identification: Stel een determinatie voor
   suggest_or_require_that: Stel voor of eis dat de deelnemers deze velden invullen voor de waarnemingen die ze aan je project toevoegen.
@@ -5230,7 +5264,7 @@ nl:
   text_editing_controls: Tekstbewerkings-elementen
   thank_you!: Bedankt!
   thanks!: Bedankt!
-  thanks_from_all_of_us_here_at: Bedankt van ons allemaal hier bij
+  thanks_from_all_of_us_here_at: Bedankt van iedereen hier bij
   that_account_is_already_connected: Dat account is al gekoppeld aan een andere gebruiker
   that_photo_doesnt_exist: Die foto bestaat niet.
   that_observation_doesnt_exist: Die waarneming bestaat niet.
@@ -5270,8 +5304,8 @@ nl:
   the_user_x_has_been_unsuspended: "De schorsing van gebruiker %{user} werd opgeheven"
   the_world: De wereld
   the_world_is_full_of_interesting_places: |
-    De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
-    prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-plaatsen laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
+    De wereld zit vol met interessante gebieden, elk gevuld met merkwaardige en
+    prachtige levensvormen. Sommigen aan de andere kant van de wereld, anderen gewoon om de hoek! %{site_name}-gebieden laten je door het leven van over de hele wereld bladeren. Begin met ontdekken!
   then_keybord_sequence: dan
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
   there_are_no_current_ids: Er zijn momenteel geen ID's van mogelijke oudertaxa.
@@ -6144,7 +6178,7 @@ nl:
   you_cant_do_that_for_the_default_check_list_place: Dat kun je niet doen met de standaard checklist van een plaats!
   you_cant_flag_that: Je kunt dat niet melden
   you_cant_leave_a_project_you_created: Je kan geen project verlaten dat je zelf hebt aangemaakt.
-  you_cant_merge_standard_places: Je kan standaardplaatsen niet samenvoegen
+  you_cant_merge_standard_places: Je kan standaardgebieden niet samenvoegen
   you_cant_rotate_photos_hostde_outside: "Je kunt foto's die buiten %{site_name} worden gehost niet roteren."
   you_cannot_delete_taxa_involved_in_taxon_changes: Je kunt geen taxa verwijderen die onderdeel zijn van taxonwijzigingen of die taxa bevatten die onderdeel zijn van taxonwijzigingen
   you_curate_a_project_that_contains_this_observation: Je stelt een project samen dat deze waarneming bevat
@@ -6496,7 +6530,7 @@ nl:
           van soorten creëren. Als je soorten uit een EOL-verzameling wilt importeren,
           plak dan hier de URL van die verzameling.
         guide_place_desc: |
-          Door jouw gids aan een plaats te koppelen kunnen mensen hem vinden wanneer ze zoeken naar plaatsen en het zal de plaatsgrens tonen op %{site_name}-kaart waar ze worden weergegeven als een grens is ingesteld (bijvoorbeeld "kaart"-weergave, taxon-pagina's, etc.)
+          Door jouw gids aan een gebied te koppelen kunnen mensen hem vinden wanneer ze zoeken naar gebieden en het zal de gebiedsgrens tonen op %{site_name}-kaart waar ze worden weergegeven als een grens is ingesteld (bijvoorbeeld "kaart"-weergave, taxon-pagina's, etc.)
         import_tags_from_csv_help_html: |
           <p>
           Upload een CSV-bestand dat labels bevat voor taxa in deze gids. Je CSV-bestand hoort er alsvolgt uit te zien:
@@ -6540,7 +6574,7 @@ nl:
         paste_note_html: |
           Plak maximaal 500 soortnamen, één per regel. %{site_name} zal proberen om lokale namen te koppelen aan soortenconcepten, maar om dubbelzinnigheid te vermijden is het beter om wetenschappelijke namen te gebruiken. Als je wilt geef ze dan allebei op, scheid de wetenschappelijke naam van de algemene naam met een komma, bijvoorbeeld <code>Homo sapiens, mens</code>.
         places_note: |
-          Opmerking: niet alle plaatsen hebben checklists met taxa. Als je problemen hebt met het vinden van een plaats met taxa, probeer dan grotere gebieden te kiezen met
+          Opmerking: niet alle gebieden hebben checklists met taxa. Als je problemen hebt met het vinden van een gebied met taxa, probeer dan grotere gebieden te kiezen met
           politieke grenzen, zoals naties, staten, provincies of graafschappen.
         replace_existing_eol_desc: Verwijder bestaande inhoud vóór de import van EOL
         place_choose_taxon_note: |
@@ -6640,7 +6674,7 @@ nl:
       establishment_field:
         confirmation: |
           Weet je het zeker? Dit zal de vestigingswijze voor ALLE 
-          vermelde taxa veranderen die onder deze plaats vallen. Je maakt hiermee wellicht veel werk ongedaan.
+          vermelde taxa veranderen die onder dit gebied vallen. Je maakt hiermee wellicht veel werk ongedaan.
         description_html: |
           Dit zal de vestigingswijze in <strong>"%{establishment_means}"</strong> veranderen voor <em>alle</em> vermeldingen van 
           dit taxon op alle plaatsen die onder <a href="%{place_url}">%{place_name}</a> vallen.
@@ -6736,7 +6770,7 @@ nl:
       copy_tip: "Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden van deze waarneming te kopiëren."
       captive_help_html: |
         Was het organisme <strong>gecultiveerd</strong> of
-        <strong>in gevangenschap</strong>? Bevond het zich bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het daar wilden hebben</strong>? Alle waarnemingen van levende wezens zijn welkom, maar we willen graag weten wanneer dingen niet wild / genaturaliseerd zijn.
+        <strong>in gevangenschap</strong>? Bevond het zich bijvoorbeeld in een <strong>tuin, dierentuin, aquarium</strong> of een andere situatie waarin het alleen aanwezig was <strong>omdat mensen het daar wilden hebben</strong>? Alle waarnemingen van levende wezens zijn welkom, maar we willen graag weten wanneer dingen niet wild / ingeburgerd zijn.
       compare:
         about_missing_taxa: Over ontbrekende taxa
         about_total_taxa: "Over taxa in totaal"
@@ -6954,76 +6988,59 @@ nl:
           deelt gelicenseerde "Onderzoekskwaliteit" waarnemingen met een aantal gegevenspartners
           voor gebruik in de wetenschap en natuurbehoud.
         disagreement_count_desc: "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden <strong>"ID nodig"</strong> wanneer
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: de waarneming <strong>heeft een datum</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: de waarneming <strong>is georeferenced</strong> (d.w.z. heeft lat/lon-coördinaten)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: de waarneming <strong>heeft foto's of geluiden</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: de waarneming <strong>is niet van een mens</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> wanneer
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          de %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
+          </strong>, bijvoorbeeld wanneer meer dan 2/3 van de experts akkoord gaat met het taxon
+          (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
+          onderfamilie-niveau ID of lager)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Waarnemingen zullen teruggaan naar <strong>"onvolledig"</strong> als aan bovenstaande
+          voorwaarden niet is voldaan of als de gemeenschap akkoord gaat
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          de <strong>lokatie lijkt niet nauwkeurig</strong> (bijvoorbeeld apen midden in de oceaan, nijlpaarden in kantoorgebouwen, enzovoort)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          het <strong>organisme is niet wild/ingeburgerd</strong> (bijvoorbeeld gevangen of gekweekt door mensen of intelligente buitenaardse wezens)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          de waarneming <strong>toont geen bewijs van een
+          organism</strong>, bijvoorbeeld afbeeldingen van waterfuncties, rotsen, landschappen
+          die het organisme niet bevatten, enz.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          de waarneming <strong>toont geen recente (~100 jaar) bewijzen van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren zijn ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          En als dat niet ingewikkeld genoeg was, zijn er ook situaties
+          waar het systeem een stem krijgt:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Het systeem zal stemmen dat de waarneming niet wild/verwilderd is als er minstens 10 andere waarnemingen van een geslacht of lager zijn in de kleinste gemeente-, staat, of land-equivalent gebied die deze waarneming bevat en 80% of meer van deze waarnemingen zijn gemarkeerd als niet wild/ingeburgerd.
         identification_count_desc: 'Aantal determinaties voor een individueel taxon'
         flagged_photos_desc_html: |
           Sommige van deze foto's zijn gemeld wegens ongepaste inhoud of
           schending van auteursrechten. Zie %{links} voor details
         join_project_desc_html: |
           Deelnemen aan het project geeft projectcuratoren de rechten om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project<a href="%{url}" target="_blank">voorwaarden </a>.
-        quality_assessment_help3_html: |
-          <p>
-           De beoordeling van de gegevenskwaliteit is een samenvatting van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig"</strong> en worden
-           <strong>"ID nodig"</strong> als
-           </p>
-
-           <ul>
-           <li>de waarneming <strong>een datum heeft</strong></li>
-           <li>de waarneming <strong>een geolocatie heeft</strong> (dwz heeft lengte- en breedtegraadcoördinaten)</li>
-           <li>de waarneming <strong>foto's of geluiden heeft</strong></li>
-           <li>de waarneming <strong>geen mens is</strong></li>
-           </ul>
-           
-           <p>
-           Waarnemingen worden <strong>"onderzoekskwaliteit"</strong> als
-           </p>
-          <ul>
-          <li>
-          De %{site_name} <strong> gemeenschap akkoord gaat met een ID op soortniveau of lager 
-          </strong>, bijvoorbeeld wanneer meer dan 2/3 akkoord gaat met het taxon
-          (als de gemeenschap heeft gekozen dat het Gemeenschapstaxon niet langer kan worden verbeterd keert het terug naar 
-           onderfamilie-niveau ID of lager)
-          </li>
-          </ul>
-          <p>
-          Waarnemingen keren terug naar <strong>"onvolledig"</strong> als aan bovenstaande vereisten niet is voldaan
-          </p>
-          <ul>
-          <li>
-          de <strong> locatie niet nauwkeurig lijkt </strong> (bijvoorbeeld apen in oceaan, nijlpaarden in kantoorgebouwen.)
-          </li>
-          <li>
-          het <strong>organisme is niet wild/verwilderd</strong> (bijvoorbeeld gevangen of gekweekt door mensen)
-          </li>
-          <li>
-          de waarneming <strong>toont geen aanwezigheid van het organisme</strong>, bijvoorbeeld foto's van water eigenschappen, rotsen, landschappen die geen organisme bevatten.
-          </li>
-          <li>
-          de waarneming <strong>toont geen recent (~100 jaar) bewijs van het organisme</strong> (bijvoorbeeld fossielen, maar sporen, uitwerpselen en dode bladeren mogen wel.)
-          </li>
-          <li>
-          de waarneming <strong>toont geen bewijs voor één organisme op alle foto's.</strong>
-          (bijvoorbeeld er zijn vier foto's van vier verschillende organismen. Een foto dat het habitat toont van het organisme dat het onderwerp is van de waarneming is OK.)
-          </li>
-          <li>
-          de waarneming heeft niet langer een ID nodig <em>en</em> het gemeenschapsID is op familieniveau of hoger.
-          </li>
-          <li>
-          de waarnemer heeft het gemeenschapsID uitgeschakeld en het gemeenschapstaxon is geen voorouder of afstammeling van het taxon gerelateerd aan het ID van de waarnemer.
-          </li>
-          </ul>
-          <p>
-
-          En alsof dat nog niet ingewikkeld genoeg is, zijn er ook situaties waarin het systeem een ​​stem krijgt:
-          </p>
-          <ul>
-          <li>
-          Het systeem zal stemmen dat de waarneming niet wild/genaturaliseerd is
-          als er minstens 10 andere waarnemingen zijn van een genus of lager
-          de kleinste provincie-, staats- of land-equivalente plaats die
-          bevat deze waarneming en 80% of meer van die waarnemingen
-          zijn gemarkeerd als niet wild/genaturaliseerd.
-          </li>
-          </ul>
         score_desc: "score = cumulatief aantal / (cumulatief aantal + meningsverschil aantal + voorouder meningsverschillen)"
         observation_flagged_notice_html: |
           Deze waarneming is gemeld als spam en is niet langer
@@ -7151,7 +7168,7 @@ nl:
           "Aanmelden met iNaturalist" onderin het scherm.
           </p>
           <p>
-          Je kind kan daarna waarnemingen toevoegen aan zijn of haar iNaturalist-account 
+          Je kind kan daarna waarnemingen toevoegen aan zijn of haar iNaturalist-account
           met behulp van de Seek-app, zodat die zichtbaar worden op
           iNaturalist.org.
           </p>
@@ -7281,7 +7298,7 @@ nl:
           observed_in_place: ter plaatse waargenomen
           on_list: van een taxon op de projectlijst zijn
           verifiable: verifieerbaar zijn
-          wild: wild/genaturaliseerd zijn
+          wild: wild/ingeburgerd
         start_time_desc: "Starttijd voor je bioblitz. Formaat: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: iedereen
@@ -7342,9 +7359,6 @@ nl:
         data_visualizations: Data visualisaties
         delete_project: Project verwijderen
         display_project_name: Toon project naam
-        do_you_need_features_from_traditional: |
-          Heb je functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,
-          aangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?
         do_you_need_features_from_traditional2: |
           Heb je functies nodig van traditionele projecten, zoals op maat gemaakte waarnemingsvelden,
           of individuele waarnemingen toevoegen die niet automatisch kunnen worden gefilterd?
@@ -7416,11 +7430,11 @@ nl:
           plaatsen, taxa, gebruikers, kwaliteit en datums die je definieert. Je kunt kiezen uit twee hoofdsoorten:
           verzamelprojecten en overkoepelende projecten, die de volgende kenmerken gemeen hebben:
         welcome_to_projects: Welkom bij Projecten!
-        you_can_learn_more_html: |
+        you_can_learn_more2_html: |
           Lees <a href="https://www.inaturalist.org/pages/managing-projects">hier</a> meer over het beheren van projecten of over de geschiedenis van projecten op
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ons blog</a>.
+           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ons blog</a>.
         you_have_not_defined_any_observation_requirements: |
-          Je hebt geen enkele waarnemingsvereisten gedefinieerd. Zorg ervoor dat je een of meer taxa selecteert (bijvoorbeeld vogels, coniferen), plaatsen (bijvoorbeeld Nederland, Groningen), gebruikers en/of datums die de waarnemingen  definiëren die je in je project wilt opnemen.
+          Je hebt geen enkele waarnemingsvereisten gedefinieerd. Zorg ervoor dat je een of meer taxa selecteert (bijvoorbeeld vogels, coniferen), gebieden (bijvoorbeeld Nederland, Groningen), gebruikers en/of datums die de waarnemingen definiëren die je in je project wilt opnemen.
         errors:
           name_is_required: Een projectnaam invullen is verplicht
           name_less_than_100_characters: De projectnaam moet minder dan 100 tekens bevatten
@@ -7472,7 +7486,7 @@ nl:
         this_is_a_preview: |
           Dit is een voorproefje van hoe dit project eruit zou zien als een verzamelproject.
         this_project_has_not_defined_requirements: |
-          Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), plaatsen (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
+          Dit project heeft geen vereisten voor waarnemingen opgegeven. Projecten moeten één of meerdere taxa (bijv. vogels, coniferen), gebieden (bijv. Brazilië, Yellowstone), gebruikers, en/of data selecteren om waarnemingen te beginnen weer te geven.
       updates_desc: |
         Ontvang updates over dit project op je dashboard en de dagelijkse e-mail met nieuws.
     search:
@@ -7512,6 +7526,8 @@ nl:
         avg_ttcid: Gem TTCID
         avg_ttid: Gem TTID
         identifiers_desc: Een ID toegevoegd aan iemands waarneming op deze dag
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Gemaakt met <a href="%{url}">iNatNext</a>
         iphone_desc_html: Gemaakt met de <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -7532,6 +7548,8 @@ nl:
         recent_w_0_obs_desc: Aangemeld in de afgelopen 7 dagen en 0 wrn toegevoegd
         recent_w_7_obs: Recent met >= 7 wrn
         recent_w_7_obs_desc: Aangemeld in de afgelopen 7 dagen en >=7 wrn toegevoegd
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Gemaakt met <a href="%{url}">Seek</a>
         time_to_id_desc: Tijd tot ID (uren, meeschuivend tijdsbestek van 1 week)
         TTCID: TTCID
         TTCID_desc: Tijd om een determinatie van iemand anders te ontvangen die overeenkomt met het gemeenschapstaxon.
@@ -7643,6 +7661,11 @@ nl:
           Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} & %{android_link_tag}Android%{link_tag_end}, en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze
           %{view_all_web_link_tag}web-%{link_tag_end} en
           %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
+        translators_desc_2: |
+          Wist je dat iNaturalist bijna volledig is vertaald in %{x_languages} door %{x_people}, waarvan sommigen iNat niet eens gebruiken? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, 
+          onze apps voor %{iphone_link_tag}iPhone%{link_tag_end} & %{android_link_tag}Android%{link_tag_end}, 
+          %{seek_link_tag}Seek%{link_tag_end} en
+           %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Wist je dat %{site_name} bijna volledig is vertaald door %{x_people}? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de %{website_link_tag}website%{link_tag_end}, 
           de iNaturalist apps voor %{iphone_link_tag}iPhone%{link_tag_end} en
@@ -7650,6 +7673,14 @@ nl:
           en %{seek_link_tag}Seek%{link_tag_end}. Je kunt alle mensen bekijken die in alle talen hebben bijgedragen met vertalingen, waaronder mensen van eerdere jaren en mensen van Translatewiki, in onze
           %{view_all_web_link_tag}web-%{link_tag_end} en
           %{view_all_mobile_link_tag}mobiele%{link_tag_end} code repositories.
+        translators_desc_for_site_2: |
+          Wist je dat %{site_name} bijna volledig is vertaald door %{x_people}? Hier zijn alle fantastische vertalers die dit jaar vertalingen hebben toegevoegd, samen met het aantal woorden dat ze vertaald hebben voor de
+           %{website_link_tag}website%{link_tag_end}, 
+          onze apps voor
+           %{iphone_link_tag}iPhone%{link_tag_end} & 
+          %{android_link_tag}Android%{link_tag_end}, 
+          %{seek_link_tag}Seek%{link_tag_end} en
+           %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Als je wil helpen met vertalen, %{link_tag}lees hier meer%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -7825,7 +7856,7 @@ nl:
           Geef <strong>geen</strong> namen op voor ELKE plaats waar die naam wordt gebruikt, maar alleen voor plaatsen die in conflict zijn met andere plaatsen.
       taxon:
         about_html: |
-          Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende plaatsen opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende plaatsen conflicterende namen hebben.
+          Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
     users:
       dashboard:
         taxon_change_desc: |
@@ -7946,7 +7977,7 @@ nl:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Waarnemingen door mensen die ik volg
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_or_place_observations: Waarnemingen van taxa of plaatsen waar ik me op abonneer
+        notification_preferences_taxon_or_place_observations: Waarnemingen van taxa of gebieden waar ik me op abonneer
         place_preference_changed_notice_html: |
           Plaatsvoorkeur gewijzigd. Als je van gedachten verandert, kun je dat altijd via 
           <a href='/users/edit'>je instellingen wijzigen</a>.
@@ -7999,7 +8030,7 @@ nl:
           add_a_place_optional: Voeg een plaats toe (optioneel)
           common_name_lexicon_display_order: Weergave volgorde van lokale-naam-lexicons
           common_name_lexicons: Lokale-naam-lexicons
-          common_name_lexicons_description: Lokale namen worden standaard weergegeven in jouw accounttaal/locale. Om namen in andere lexicons te zien of om voorrang te geven aan namen die op specifieke plaatsen worden gebruikt (zoals Engels (Australië) of Spaans (Costa Rica), voeg je lokale-naam-lexicons toe. Maximaal 3 lokale namen kunnen tegelijk worden weergegeven. Als er geen lokale naam bestaat voor een lexicon dat je hebt gekozen, zal het worden weggelaten van de weergave.
+          common_name_lexicons_description: Lokale namen worden standaard weergegeven in jouw accounttaal/locale. Om namen in andere lexicons te zien of om voorrang te geven aan namen die op specifieke gebieden worden gebruikt (zoals Engels (Australië) of Spaans (Costa Rica), voeg je lokale-naam-lexicons toe. Maximaal 3 lokale namen kunnen tegelijk worden weergegeven. Als er geen lokale naam bestaat voor een lexicon dat je hebt gekozen, zal het worden weggelaten van de weergave.
           for_multiple_common_name_lexicons_drag_and_drop: Bij verscheidene lokale-naam-lexicons sleep en plak je de instellingen hieronder om de volgorde waarin ze worden weergegeven aan te passen.
           same_as_locale: Hetzelfde als de locale
           #used as a form select dropdown option that users can choose instead of a choosing
@@ -8365,6 +8396,8 @@ nl:
       assessment_section:
         title: Titel
         body: Tekst
+      blocked_ip:
+        ip: IP-adres
       blocked_user:
         #The user who has been blocked
         blocked_user: Geblokkeerde gebruiker
@@ -8780,6 +8813,10 @@ nl:
             taxon:
               too_many_photos: |
                 mag niet meer dan %{max} foto's bevatten
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                kan geen onopgeloste vlaggen hebben
         taxon_range:
           attributes:
             iucn_relationship:

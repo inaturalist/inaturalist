@@ -33,7 +33,10 @@ function mapDispatchToProps( dispatch ) {
       } ) );
     },
     showModalDescription: ( description, options = { } ) => dispatch(
-      showAlert( description, { title: options.title || I18n.t( "about" ) } )
+      showAlert( description, {
+        ...options,
+        title: options.title || I18n.t( "about" )
+      } )
     )
   };
 }

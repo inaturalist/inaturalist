@@ -66,6 +66,30 @@ describe Taxon do
     expect( Taxon::ROOT_LEVEL ).to eq 100
     expect( Taxon::ROOT_LEVEL ).to eq Taxon::STATEOFMATTER_LEVEL
   end
+
+  describe "default_photo" do
+    it "returns a photo" do
+      taxon = Taxon.make!
+      TaxonPhoto.make!( taxon: taxon )
+      taxon.reload
+      expect( taxon.default_photo ).to be_a Photo
+    end
+
+    it "does not return flagged photos" do
+      taxon = Taxon.make!
+      taxon_photo = TaxonPhoto.make!( taxon: taxon )
+      taxon.reload
+      expect( taxon.default_photo ).to be_a Photo
+
+      # skip callback that would delete the TaxonPhoto after flagging,
+      # simulating taxon photos flagged before that callback was created
+      allow( taxon_photo.photo ).to receive( :flagged_with ).and_return( true )
+      Flag.make!( flaggable: taxon_photo.photo )
+      taxon.reload
+      expect( taxon.taxon_photos ).not_to be_empty
+      expect( taxon.default_photo ).to be_nil
+    end
+  end
 end
 
 describe Taxon, "creation" do

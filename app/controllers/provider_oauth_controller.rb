@@ -168,7 +168,7 @@ class ProviderOauthController < ApplicationController
     id_token = assertion_json["id_token"]
     if id_token.blank?
       error_message = "Failed to parse id_token out of Apple assertion"
-      Rails.logger.error = error_message
+      Rails.logger.error error_message
       LogStasher.write_hash(
         error_message: error_message,
         request: request,
@@ -184,26 +184,26 @@ class ProviderOauthController < ApplicationController
     # CONFIG.apple.client_id is the client ID for the *web*. Assertions from the
     # app will use the package ID... which should probably be specified
     # separately in the config, but this works for now
-    iphone_app_id = CONFIG.apple.app_id
+    app_bundle_ids = CONFIG.apple.app_bundle_ids || []
     # JWT is handling the JWS signature verification using the JWKs. That's a
     # lot of JW
-    id_token_conents, _header = ::JWT.decode( id_token, nil, true, {
+    id_token_contents, _header = ::JWT.decode( id_token, nil, true, {
       verify_iss: true,
       iss: "https://appleid.apple.com",
       verify_iat: true,
       verify_aud: true,
-      aud: [iphone_app_id], # .concat(options.authorized_client_ids),
+      aud: app_bundle_ids,
       algorithms: ["RS256"],
       jwks: jwks
     } )
     # Verify the contents of the token
-    issuer_is_apple = id_token_conents["iss"] == "https://appleid.apple.com"
-    audience_is_inat = id_token_conents["aud"] == iphone_app_id
-    token_is_current = Time.now < Time.at( id_token_conents["exp"] )
+    issuer_is_apple = id_token_contents["iss"] == "https://appleid.apple.com"
+    audience_is_inat = app_bundle_ids.include?( id_token_contents["aud"] )
+    token_is_current = Time.now < Time.at( id_token_contents["exp"] )
     unless issuer_is_apple && audience_is_inat && token_is_current
       error_message = <<~MSG
-        Invalid identity token. iss: #{id_token_conents['iss']},
-        aud: #{id_token_conents['aud']}, exp: #{id_token_conents['exp']}
+        Invalid identity token. iss: #{id_token_contents['iss']},
+        aud: #{id_token_contents['aud']}, exp: #{id_token_contents['exp']}
       MSG
       Rails.logger.error = error_message
       LogStasher.write_hash(
@@ -215,7 +215,7 @@ class ProviderOauthController < ApplicationController
       return
     end
     # Get the Apple unique user identifier (the "sub"ject)
-    provider_uid = id_token_conents["sub"]
+    provider_uid = id_token_contents["sub"]
     if provider_uid.blank?
       error_message = "No user identifier in the Apple identity token"
       Rails.logger.error = error_message
@@ -229,15 +229,15 @@ class ProviderOauthController < ApplicationController
     end
     existing_pa = ProviderAuthorization.where( provider_name: "apple", provider_uid: provider_uid ).first
     user = existing_pa&.user
-    user ||= User.find_by_email( id_token_conents["email"] ) unless id_token_conents["email"].blank?
+    user ||= User.find_by_email( id_token_contents["email"] ) unless id_token_contents["email"].blank?
     unless user
       auth_info = {
         "provider" => "apple",
         "uid" => provider_uid,
         "info" => {
-          "email" => id_token_conents["email"],
+          "email" => id_token_contents["email"],
           "name" => assertion_json["name"],
-          "verified" => id_token_conents["email_verified"] == "true"
+          "verified" => id_token_contents["email_verified"] == "true"
         }
       }
       user = User.create_from_omniauth( auth_info, client )

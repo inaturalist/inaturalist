@@ -20,12 +20,6 @@ gl:
   x_identifications_:
     one: '%{count} Identificación'
     other: '%{count} Identificacións'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_languages:
     one: "%{count} língua"
     other: "%{count} línguas"
@@ -70,9 +64,6 @@ gl:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observación revisada"
     other: "<span class='count'>%{count}</span> observacións revisadas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "%{count} outro"
     other: "%{count} outros"
@@ -973,6 +964,7 @@ gl:
   content_and_display: Contido e Presentación
   content_author: Autor do Contido
   content_hidden: Contido Ocultado
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contido ocultado por %{user} no %{date} porque:"%{reason}"
   content_type: Tipo de Contido
@@ -3791,7 +3783,6 @@ gl:
     must_be_in: deben estar dentro da especie ou grupo
     must_be_coordinates_shareable_by_project_curators: o observador debe permitir ós conservadores do proxecto ver as coordenadas.
   running_total: Total Acumulado
-  said: Dicía
   satellite: satélite
   save: Gardar
   save_all: Gardar todo
@@ -5484,24 +5475,6 @@ gl:
           Incluímos vínculos ás fotos afectadas embaixo.
       user_parent_confirmation:
         subject: A conta do teu fillo ou filla en iNaturalist foi activada
-        content_html: |
-          <p>
-          ¡Gracias por crear unha conta de iNaturalista para o teu fillo ou filla! A conta foi activada. Aquí tes os detalles que nos forneceches que temos nos nosos rexistros:
-          </p>
-          <ul>
-          <li><strong>Nome de pai, nai ou titor legal:</strong>%{parent_name}</li>
-          <li><strong>Correo electrónico de pai, nai ou titor legal:</strong>%{parent_email}</li>
-          <li><strong>Nome do rapaz:</strong>%{child_name}</li>
-          <li><strong>Data de nacemento do rapaz:</strong>%{child_birthday}</li>
-          <li><strong>Conta de correo electrónico do rapaz:</strong>%{child_email}</li>
-          <li><strong>Nome do usuario da conta do rapaz:</strong>%{child_username}</li>
-          </ul>
-          <p>
-          Por favor, entra na conta de Seek do teu neno ou nena, toca o botón "iNaturalist" no menú e logo "Entrar en iNaturalist" no fondo da pantalla.
-          </p>
-          <p>
-          O rapaz vai ser quen de publicar observacións á súa conta iNaturalist usando a aplicación Seek, de xeito que poderán ser vistas en iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Estiveches moito tempo inactivo en %{site_name}, así que suspendimos as túas subscricións. Para retomar o recibo de novas na actividade do sitio, por favor, <a href="%{login_url}">entra na túa conta</a> outra vez.
@@ -5677,8 +5650,6 @@ gl:
         data_visualizations: Visualización de dados
         delete_project: Eliminar Proxecto
         display_project_name: Mostrar nome do proxecto
-        do_you_need_features_from_traditional: |
-          ¿Necesitas características de proxectos tradicionais, tales coma accesso ás coordenadas verdadeiras, campos de observación personalizados, ou engadir observacións individuais que non poidan ser filtrados automáticamente?
         duplicate_project: Duplicar proxecto
         include_annotated_observations: |
           Incluír só observacións anotadas cun atributo particular (p.e. estadio de vida), ou cun atributo particular e seu valor (p.e. estadio de vida = adulto).
@@ -5736,8 +5707,6 @@ gl:
         we_have_redesigned_projects: |
           Os proxectos están deseñados para incluír automáticamente tódalas observacións que cumpran cás definicións de ubicacións, taxons, usuarios, calidade e datas que ti definas. Escolle entre dous tipos principais: Proxectos de Recolla ou Proxectos Paraugas, que comparten as seguintes características:
         welcome_to_projects: '¡Benvido/a a Proxectos!'
-        you_can_learn_more_html: |
-          Podes aprender máis sobre a xestión de proxectos <a href="https://www.inaturalist.org/pages/managing-projects">aquí</a> ou le a historia dos proxectos no <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">noso blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Non definiches ningún requisito para as observacións. Asegúrate de seleccionar un ou máis taxons (p.e. aves, coníferas), lugares (p.e. Brasil, Yellowstone), usuarios, e/ou datas para definir as observacións que queres incluír no teu proxecto.
         errors:

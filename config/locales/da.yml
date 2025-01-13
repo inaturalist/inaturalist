@@ -28,11 +28,11 @@ da:
     one: '<span class="count">%{count}</span> IDENTIFIKATION'
     other: '<span class="count">%{count}</span> IDENTIFIKATIONER'
   #Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
+    one: '<span class="count">%{count}</span> IDENTIFIKATOR'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatorer'
+    other: '<span class="count">%{count}</span> IDENTIFIKATORER'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID foretaget for andre'
     other: '<span class="count">%{count}</span> ID''er foretaget for andre'
@@ -83,9 +83,9 @@ da:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observation gennemgået"
     other: "<span class='count'>%{count}</span> observationer gennemgået"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observatør'
-    other: '<span class="count">%{count}</span> Observatører'
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVATØR'
+    other: '<span class="count">%{count}</span> OBSERVATØRER'
   x_others:
     one: "%{count} anden"
     other: "%{count} andre"
@@ -1160,6 +1160,10 @@ da:
   content_and_display: Indhold og Visning
   content_author: Indholdsforfatter
   content_hidden: Skjult indhold
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Indhold skjult pr. %{date} grundet: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Indhold skjult af %{user} den %{date} fordi: "%{reason}"
   content_type: Indholdstype
@@ -1885,10 +1889,17 @@ da:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Eksakt række
   except: bort set fra
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Undtag
   exclude_places: Ekskludér steder
   exclude_projects: Ekskludér projekter
   exclude_taxa: Ekskludér taksa
   exclude_users: Ekskludér brugere
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Undtager %{count} takson
+    other: Undtager %{count} taksa
   exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Afslut fuld skærm"
@@ -2341,12 +2352,22 @@ da:
   in_place_x: i %{place}
   #As in a reason to flag something
   inappropriate: Upassende
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist Network
   inaturalist_network_affiliation: iNaturalist Network-tilknytning
   #Label for messages you've received
   inbox: Indbakke
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Medtag
   include_places: Inkludér steder
   include_projects: Inkludér projekter
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Medtag/Undtag stamfadertaksa
   include_suggestions_not_seen_nearby: Medtag forslag for ikke set i nærheden
   include_suggestions_not_expected_nearby: Medtag forslag ikke forventet i nærheden
   include_taxa: Inkludér taksa
@@ -2712,6 +2733,7 @@ da:
     lv: Lettisk
     mi: Maori
     mk: Makedonsk
+    ml: Malayalam
     mr: Marathi
     nb: Norsk Bokmål
     nl: Hollandsk
@@ -2726,6 +2748,7 @@ da:
     sq: Albansk
     sr: Serbisk
     sv: Svensk
+    ta: Tamilsk
     th: Thailandsk
     tr: Tyrkisk
     uk: Ukrainsk
@@ -4648,7 +4671,6 @@ da:
     must_be_verifiable: skal være verificerbar
     must_be_wild: skal være vild
   running_total: Igangværende total
-  said: sagde
   satellite: satellit
   save: Gem
   save_all: Gem alle
@@ -5801,6 +5823,7 @@ da:
   user_muted: Slukket for bruger
   user_observed_on_on_date_in_place: |
     %{user} observeredes en den %{date} i %{place}
+  user_said_comment_html: <span class="meta">%{user} postede,</span> "%{comment}"
   user_suggested_an_id: "%{user} foreslog et ID"
   user_trusts_this_project_for_none: Bruger har ikke tillid til dette projekt med skjulte koordinater.
   user_trusts_this_project_for_any: |
@@ -7109,6 +7132,78 @@ da:
           mens andre er underlagt en afstemning af iNat-brugere. iNaturalist
           deler licenserede observationer af "Forskningskvalitet" med en række datapartnere til videnskabelig brug samt bevaring.
         disagreement_count_desc: "Antal af identificerede taksa, der ikke er blandt en taksons stamfædre"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Datakvalitetsvurderingen er en opsummering af en observations
+          nøjagtighed. Alle observationer starter som <strong>"uformel"</strong>-
+          klasse og opnår <strong>"behøver ID"</strong>-klasse, når
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: observationen <strong>har en dato</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: observationen <strong>er georefereret</strong> (f.eks. har br.gr./lgd.gr. koordinater)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: observation <strong>har fotos eller lyde</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: observationen <strong>ikke er af et menneske</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Observationer opnår <strong>"forskningskvalitet/-klasse"</strong>, når
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name}-<strong>fællesskabet er enige om artsniveau-ID eller
+          lavere</strong>, dvs. når flere end 2/3 af identifikatorer er enige om en
+          takson (har fællesskabet stemt for, at Fællesskabstakson ikke længere kan
+          forbedres, reverseres den til underfamilieniveau-ID eller lavere)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Observationer reverseres til <strong>"uformel"</strong>, hvis ovenstående
+          betingelser ikke er opfyldt eller fællesskabet er enige om, at
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>dag og år ikke ser præcist ud</strong> (f.eks. sne
+          ses på fotoet, men datoen er om sommeren; tager ikke
+          klokkeslæt i betragtning)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>placeringen ikke ser korrekt ud </strong> (f.eks. aber midt på havet, flodheste i kontorbygninger mv.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismen ikke er vild/naturaliseret</strong> (f.eks. i fangenskab
+          eller dyrket af mennesker)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          observationen <strong>ikke præsenterer dokumentation for en
+          organisme</strong>, f.eks. fotos af vandomgivelser, klipper, landskaber,
+          som ikke inkluderer organismen mv.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          observationen <strong>ikke præsenterer nylige (~100 år) beviser på
+          organismen</strong> (f. eks. fossiler, dog er spor, ekskrementer og
+          døde blade OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          observationen <strong>ikke præsenterer bevis relateret til ét
+          emne</strong> (f.eks. har den fire fotos af ikke-beslægtede organismer;
+          dog er et foto, der viser emnets levested OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          observationen behøver ikke længere en ID <em>og</em>
+          Fællesskabs-ID er på familie eller derover
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          taksonen er ikke en forfader eller efterkommer af taksonen associeret
+          med observatørens ID <em>og</em> observatøren har fravalgt
+          fællesskabstaksonen
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Og som om det ikke var kompliceret nok, er der også situationer,
+          hvor systemet får en afstemningsmulighed:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Systemet vil stemme for, at observationen ikke er vild/naturaliseret,
+          hvis der er mindst 10 andre observationer af en slægt eller lavere i det
+          mindste amt, stat eller landeækvivalente sted indeholdende denne
+          observation, og 80% eller flere af disse observationer er blevet markeret
+          som ikke vild/naturaliseret.
         identification_count_desc: 'Antal af identifikationer for en individuel takson'
         flagged_photos_desc_html: |
           Nogle af disse billeder er blevet markeret for upassende indhold eller
@@ -7118,78 +7213,6 @@ da:
           beføjelse til at se de skjulte koordinater for denne eller enhver
           anden observation i projektet og indebærer at du
           acceptere projektets <a href="%{url}" target="_blank"> vilkår </a>.
-        quality_assessment_help3_html: |
-          <p>
-          Datakvalitetsvurderingen er en opsummering af en observations nøjagtighed. Alle
-          observationer starter med klassen/kvaliteten <strong>"uformel"</strong> og bliver
-          <strong>"behøver ID"</strong>, når
-          </p>
-
-          <ul>
-          <li>observationen <strong>har en dato</strong></li>
-          <li>observationen <strong>er georefereret</strong> (dvs. har lgd.-/brd.-koordinater)</li>
-          <li>observationen <strong>har billeder eller lyde</strong></li>
-          <li>observationen <strong>er ikke af et menneske</strong></li>
-          </ul>
-          <p>
-          Observationer bliver <strong>"forskningskvalitet"</strong>, når
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>fællesskabet er enige om artsniveau-ID eller
-          lavere</strong>, altså når flere end 2/3 af identifikatorerne er enige om en
-          takson (afgør fællesskabsafstemningen, at Community Taxon ikke 
-          længere kan forbedres, vender dette tilbage til underfamilieniveau eller lavere)
-          </li>
-          </ul>
-          <p>
-          Observationer vil vende tilbage til <strong>"uformel"</strong>, hvis ovenstående betingelser ikke er opfyldt, eller fællesskabet er enige om, at
-          </p>
-          <ul>
-          <li>
-          <strong>placeringen ikke virker 
-          præcis</strong>(f.eks. aber midt i havet,
-          flodheste i kontorbygninger mv.)
-          </li>
-          <li>
-          <strong>organismen er ikke vild/naturaliseret</strong> (f.eks. fanget eller dyrket af mennesker)
-          </li>
-          <li>
-          observationen <strong>ikke præsenterer bevis for en
-          organisme</strong>, f.eks. billeder af vandelementer,
-          klipper, landskaber, som ikke inkluderer organismen mv.
-          </li>
-          <li>
-          observationen <strong>ikke præsenterer nyere (~100 år) beviser for
-          organismen</strong>(f.eks. er fossiler, undtagen spor, afføring og døde blade
-          OK)
-          </li>
-          <li>
-          observationen <strong>ikke præsenterer beviser relateret til ét emne</strong>
-          (den har f.eks. fire fotos af ubeslægtede organismer. Et foto, der viser levested for
-          observationens emne er OK.)
-          </li>
-          <li>
-          observationen behøver ikke længere et id <em>og</em> fællesskabs-ID'et er på niveauet familie eller derover
-          </li>
-          <li>
-          observatøren har fravalgt fællesskabs-ID'et og fællesskabs-
-          ID taksonen er ikke en forfader eller efterkommer af taksonen associeret
-          med observatørens ID
-          </li>
-          </ul>
-          <p>
-          Og som om det ikke er kompliceret nok, så er der også situationer, hvor systemet får en stemme:
-          </p>
-          <ul>
-          <li>
-          Systemet vil stemme, at observationen ikke er vild/naturaliseret,
-          hvis der er mindst 10 andre observationer af en slægt eller lavere i
-          det mindste amts-, stat- eller land-ækvivalente sted, der
-          indeholder denne observation og 80% eller flere af disse observationer,
-          er blevet markeret som ikke vilde/naturaliserede.
-          </li>
-          </ul>
         score_desc: "score = kumulativ antal / (kumulativ antal  + uenighed antal  + stamfader uenigheder)"
         observation_flagged_notice_html: |
           Denne observation er blevet markeret som spam og er ikke længere
@@ -7362,21 +7385,27 @@ da:
         subject: Dit barns iNaturalist-konto er blevet aktiveret
         content_html: |
           <p>
-          Tak fordi du har oprettet en iNaturalist-konto til dit barn! Kontoen er blevet aktiveret. Her er de detaljer, som du oplyste, og som vi har gemt:
+          Tak, fordi at have oprettet en iNaturalist-konto til dit barn! Kontoen
+          er blevet aktiveret. Her er de oplyste detaljer, som vi har
+          registreret:
           </p>
           <ul>
           <li><strong>Forælder eller værges navn:</strong> %{parent_name}</li>
-          <li><strong>Forælder eller værges e-mail:</strong> %{parent_email}</li>
-          <li><strong>Barns navn:</strong> %{child_name}</li>
-          <li><strong>Barns fødselsdag:</strong> %{child_birthday}</li>
-          <li><strong>Børnekonto e-mail:</strong> %{child_email}</li>
-          <li><strong>Børnekonto brugernavn:</strong> %{child_username}</li>
+          <li><strong>Forældres eller værges e-mail:</strong> %{parent_email}</li>
+          <li><strong>Barnets navn:</strong> %{child_name}</li>
+          <li><strong>Barnets fødselsdag:</strong> %{child_birthday}</li>
+          <li><strong>E-mail til børnekonto:</strong> %{child_email}</li>
+          <li><strong>Brugernavn for børnekonto:</strong> %{child_username}</li>
           </ul>
           <p>
-          Log venligst ind på kontoen fra dit barns Seek's app ved at trykke på "iNaturalist"-knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
+          Log ind på kontoen via barnets Seek-app ved at trykke på
+          knappen "iNaturalist" i menuen og dernæst "Log ind med
+          iNaturalist" nederst på skærmen.
           </p>
           <p>
-          Dit barn vil da kunne oprette observationer på deres iNaturalist-konto med Seek-app'en, så de kan ses på iNaturalist.org.
+          Barnet vil derefter kunne sende observationer til sin
+          iNaturalist-konto vha. Seek-appen, så disse kan ses på
+          iNaturalist.org.
           </p>
       users_updates_suspended:
         message: |
@@ -7593,8 +7622,6 @@ da:
         data_visualizations: Data visualiseringer
         delete_project: Slet projekt
         display_project_name: Vis projektnavn
-        do_you_need_features_from_traditional: |
-          Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
         do_you_need_features_from_traditional2: |
           Brug for funktioner fra traditionelle projekter, såsom tilpassede observationsfelter,
           eller tilføjelse af individuelle observationer, som ikke automatisk kan filtreres?
@@ -7664,8 +7691,11 @@ da:
         we_have_redesigned_projects: |
           Vi har redesignet projekter, så de automatisk inkluderer observationer, der matcher steder, taksa, brugere, kvalitet samt datoer, som du har defineret. Vælg mellem to typer: Samlingsprojekter og Paraplyprojekter, som deler følgende egenskaber:
         welcome_to_projects: Velkommen til projekter!
-        you_can_learn_more_html: |
-          Du kan lære mere om at administrere projekter <a href="https://www.inaturalist.org/pages/managing-projects">her</a> eller læse historien om projekter på <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vores blog</a>.
+        you_can_learn_more2_html: |
+          Man kan læse mere om projekthåndtering
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">her</a>
+          eller læse historikken for projekter på
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vores blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Du har ikke defineret nogen observationskrav. Sørg for at vælge en eller flere taksa
           (f.eks. fugle, nåletræer), steder (f.eks Brasilien, Yellowstone), brugere og/eller datoer for at definere de observationer, du vil medtage i dit projekt.
@@ -7774,6 +7804,8 @@ da:
         avg_ttcid: Gnms TTFID
         avg_ttid: Gnms TTID
         identifiers_desc: Tilføjede et ID til en andens obs på denne dag
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Oprettet via <a href="%{url}">iNatNext</a>
         iphone_desc_html: Oprettet via <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTFID
         med_ttid: Med TTID
@@ -7794,6 +7826,8 @@ da:
         recent_w_0_obs_desc: Tilmeldte sig i de seneste 7 dage Og tilføjede 0 obs
         recent_w_7_obs: Nylige m/> 7 obs
         recent_w_7_obs_desc: Tilmeldte sig i de seneste 7 dage og tilføjede >= 7 obs
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: Oprettet via <a href="%{url}">Seek</a>
         time_to_id_desc: Tid til ID (timer, 1 løbende uge)
         TTCID: TTCID
         TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs taksonen
@@ -7944,6 +7978,16 @@ da:
           herunder personer fra tidligere år og fra Translatewiki, i vores
           %{view_all_web_link_tag}web-%{link_tag_end} og
           %{view_all_mobile_link_tag}mobil-%{link_tag_end}kodedepoter.
+        translators_desc_2: |
+          Vidste du, at iNaturalist er blevet oversat til %{x_languages} næsten
+          udelukkende af %{x_people}, hvoraf nogle endda ikke bruger iNat? Her
+          er alle de fantastiske oversættere, som har bidraget i år, samt det
+          antal ord, de har oversat til
+          %{website_link_tag}webstedet%{link_tag_end}, vores
+          %{iphone_link_tag}iPhone%{link_tag_end}- og
+          %{android_link_tag}Android%{link_tag_end}-apps,
+          %{seek_link_tag}Seek%{link_tag_end} og
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Vidste du, at %{site_name} er blevet oversat næsten udelukkende
           af %{x_people}? Her er alle de fantastiske oversættere,
@@ -8735,6 +8779,8 @@ da:
       assessment_section:
         title: Titel
         body: Indhold
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Blokeret bruger
@@ -9152,6 +9198,10 @@ da:
             taxon:
               too_many_photos: |
                 kan ikke have mere end %{max} fotos
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                må ikke have uløste markeringer
         taxon_range:
           attributes:
             iucn_relationship:

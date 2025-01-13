@@ -27,12 +27,6 @@ es:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
     other: '<span class="count">%{count}</span> IDENTIFICACIONES'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">1</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID efectuada por otros'
     other: '<span class="count">%{count}</span> IDs efectuadas por otros'
@@ -83,9 +77,6 @@ es:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
-  x_observers_html:
-    one: '<span class="count">1</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "1 otro"
     other: "%{count} otros"
@@ -363,7 +354,10 @@ es:
   add_flowers_and_fruits_flowers_annotation: 'Añadir anotación "Flores y frutos: Flores"'
   add_flowers_and_fruits_fruits_and_seeds_annotation: 'Añade anotación "Flores y Frutos: Frutos y Semillas"'
   add_flowers_and_fruits_no_flower_or_fruits: 'Añade anotación "Flores y Frutos: Sin Flores o Semillas"'
+  add_leaves_breaking_leaf_buds: 'Añadir anotación "Hojas: Brotación de yemas foliares"'
   add_leaves_green_leaves: 'Añadir anotación "Hojas: Hojas Verdes"'
+  add_leaves_colored_leaves: 'Añadir anotación "Hojas: Hojas de colores"'
+  add_leaves_no_live_leaves: 'Añadir anotación "Hojas: Sin hojas vivas"'
   add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
   add_life_stage_teneral_annotation: 'Agregar anotación "Etapa de vida: Imago tierno"'
   add_life_stage_subimago_annotation: 'Agregar anotación "Etapa de vida: sub-imago"'
@@ -802,6 +796,7 @@ es:
   back_to_your_observations: Regresa a tus observaciones
   back_to_your_profile: Regresa a tu perfil
   badges: Insignias
+  base_map_copyright_openstreetmap_html: Mapa base © %{startTag}OpenStreetMap%{endTag}
   #disagreements are identifications that disagree with other identifications on the same observation
   based_on_a_sample_of_percent_of_these_ids_html:
     one: |
@@ -1124,6 +1119,10 @@ es:
   content_and_display: Contenido y Presentación
   content_author: Autor de contenido
   content_hidden: Contenido oculto
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Contenido oculto el %{date} debido a: "%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} ocultó el contenido el %{date} porque: «%{reason}»
   content_type: Tipo de contenido
@@ -1154,16 +1153,19 @@ es:
     male: Macho
     female: Hembra
     plant_phenology: Fenología de la planta
-    flowers_and_fruits: Flores y Frutas
+    flowers_and_fruits: Flores y Frutos
     budding: En germinación
     flower_budding: Yemas Florales
     flowering: Floración
     fruiting: Fructificación
     no_flowers_or_fruits: Sin flores ni frutas
+    flower_buds: Botones florales
     flowers: Flores
     fruits_or_seeds: Frutos o semillas
     leaves: Hojas
+    breaking_leaf_buds: Brotación de yemas foliares
     green_leaves: Hojas Verdes
+    colored_leaves: Hojas coloreadas
     no_live_leaves: Sin hojas vivas
     life_stage: Etapa de vida
     adult: Adulto
@@ -1219,7 +1221,12 @@ es:
     flowering: Flores visibles, abiertas y todavía adheridas a la planta
     fruiting: Fruto visible y todavía unido a la planta
     flowers: Al menos una flor abierta
+    flower_buds: Al menos un botón floral cerrado
     fruits_or_seeds: Al menos un fruto o semilla
+    breaking_leaf_buds: Al menos una yema con su primera hoja o aguja nueva sin desplegar completamente
+    green_leaves: Al menos una hoja verde o aguja (o rojiza si este es su color saludable normal)
+    colored_leaves: Al menos una hoja o aguja ha cambiado a color de final de temporada o de sequía
+    no_live_leaves: No hay yemas foliares en brotación, ni hojas o agujas verdes o coloreadas visibles
     gall: Brote de tejido vegetal deformado causado por un organismo parásito o infección
     male: La evidencia muestra que el organismo puede producir esperma para la reproducción sexual
     molt: Restos de piel o exoesqueleto
@@ -1888,6 +1895,7 @@ es:
   filter: Filtro
   filter_by_curator_identification: Filtra por identificación del curador
   filter_by_place: Filtra por lugar
+  filter_by_species: Filtrar por especies
   filter_by_taxon: Filtra por taxón
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando los controles.
   filter_list_by_this_taxon: Filtra esta lista haciendo este taxón
@@ -2046,6 +2054,9 @@ es:
   geoprivacy_is_private: Geoprivacidad es privada
   geoprivacy_is_private_desc: El observador ha escogido ocultar las coordenadas.
   georeferenced: '¿Geo referenciado?'
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoespacial
   get_started: Comienza
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Cómo Empezar
@@ -2228,6 +2239,7 @@ es:
   identotron_for: Identotrón para
   identotron_help: Ayuda con el identotrón
   ids: "Identificaciones"
+  ids_made_for_others__title: IDs hechas para otros
   if_for_some_reason_a_user_doesnt_agree: |
     Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2268,6 +2280,8 @@ es:
   in_place_x: en %{place}
   #As in a reason to flag something
   inappropriate: Inapropiado
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Red iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
@@ -2640,6 +2654,7 @@ es:
     lv: Letón
     mi: Maorí
     mk: Macedonio
+    ml: Malayalam
     mr: Maratí
     nb: Noruego Bokmål
     nl: Holandés
@@ -2654,6 +2669,7 @@ es:
     sq: Albanés
     sr: Serbio
     sv: Sueco
+    ta: Tamil
     th: Tailandés
     tr: Turco
     uk: Ucraniano
@@ -3138,6 +3154,9 @@ es:
   not_confident: No estamos lo suficientemente seguros para hacer una recomendación.
   not_confident_top_suggestions: 'No estamos suficientemente seguros para hacer una recomendación, pero he aquí nuestras mejores sugerencias:'
   not_covered_by_any_taxon_frameworks: No está cubierto por ningún marco de taxón
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: No se espera cerca
   not_evaluated: no evaluado
   not_findig_what_you_want: '¿No encuentra lo que desea?'
   not_finding_place_you_want?: '¿No encontraste el lugar que buscabas?'
@@ -4499,7 +4518,6 @@ es:
     must_be_verifiable: debe ser verificable
     must_be_wild: debe ser silvestre
   running_total: Total acumulado
-  said: decia
   satellite: satélite
   save: Guardar
   save_all: Guardar todo
@@ -5907,7 +5925,7 @@ es:
     ¡Gracias por ser tan generoso con tu tiempo, atención, experiencia y donaciones! iNaturalist es una organización sin ánimo de lucro orientada al público. El programa depende de numerosas subvenciones y donaciones, incluidas las donaciones caritativas aportadas por una pequeña parte de la comunidad. Estamos especialmente agradecidos a los patrocinadores mensuales cuyas donaciones recurrentes nos ayudan a planificar el futuro.
   yir_your_gift_sustains: |
     Tu donación sostiene este programa de alcance global y profundos impactos personales y ecológicos
-  you: tu
+  you: ti
   you_: Tú
   you_appear_offline_try_again: |
     Parece que no está conectado. Por favor vuelva a intentarlo cuando esté conectado a Internet.
@@ -6733,52 +6751,6 @@ es:
           que violan derechos de autor. Para más detalles ver %{links}
         join_project_desc_html: |
           Al unirte al proyecto los curadores podrán ver las coordenadas ocultas de esta o cualquier observación en el proyecto y esto implica que estás de acuerdo con los <a href="%{url}" target="_blank">términos </a>del proyecto.
-        quality_assessment_help3_html: |
-          <p>La Evaluación de la calidad de datos es un resumen de la exactitud de una observación. Todas las observaciones comienzan con grado <strong>"casual"</strong> y se etiquetan como <strong>"Necesita ID"</strong> cuando:
-          </p>
-          <ul>
-          <li>la observación <strong>tiene fecha</strong>
-          </li>
-          <li>la observación <strong>está georreferenciada</strong> (es decir, tiene coordenadas lat/lon )
-          </li>
-          <li>la observación<strong>tiene fotos o sonidos</strong>
-          </li>
-          <li>la observación<strong>no es de un humano</strong>
-          </li>
-          </ul>
-          <p>
-          Las observaciones adquieren <strong>"Grado de investigación"</strong> cuando:
-          </p>
-          <ul>
-          <li>la <strong>comunidad de %{site_name} está de acuerdo con la ID a nivel de especie o inferior</strong>, es decir, cuando más de 2/3 de los identificadores están de acuerdo en un taxón (si la comunidad ha votado que el taxón de la comunidad no se puede mejorar, esto se revierte a ID a nivel de subfamilia o inferior).
-          </li>
-          </ul>
-          <p>
-          Las observaciones volverán a ser <strong>"casual"</strong> si no cumplen las condiciones anteriores o si la comunidad está de acuerdo en que:
-          </p>
-          <ul>
-          <li>la <strong>ubicación no parece precisa</strong> (p. ej., monos en medio del océano, hipopótamos en oficinas, etc.),
-          </li>
-          <li>el <strong>organismo no es salvaje/naturalizado</strong> (p. ej., en cautividad o cultivados por humanos),
-          </li>
-          <li>la observación <strong>no presenta evidencia de un organismo</strong>, p. ej., p.e. imágenes de fuentes de agua, rocas, paisajes, que no incluyen al organismo, etc.,
-          </li>
-          <li>la observación <strong>no presenta evidencia reciente del organismo(~100 años) </strong> (p. ej., fósiles. Pero rastros, excrementos y hojas muertas están bien),
-          </li>
-          <li>la observación <strong>no presenta evidencia relacionada con un solo tema</strong> (p. ej., tiene cuatro fotos de organismos no relacionados. Una foto que muestra el hábitat del sujeto de la observación está bien),
-          </li>
-          <li>la observación ya no necesita una ID <em>y</em> la ID de la comunidad es a nivel de familia o superior,
-          </li>
-          <li>el observador ha optado por no participar de la ID de la comunidad y la ID de la comunidad no es un ancestro o descendiente del taxón asociado con la ID del observador.
-          </li>
-          </ul>
-          <p>
-          Y si eso no fuera lo suficientemente complicado, hay situaciones en las que el sistema también tiene voto:
-          </p>
-          <ul>
-          <li>El sistema votará que la observación no es salvaje/naturalizada si hay al menos otras 10 observaciones de un género o categoría inferior en el lugar más pequeño equivalente a una provincia, estado o país que contiene esta observación y el 80% o más de esas observaciones se han marcado como no silvestre/naturalizado.
-          </li>
-          </ul>
         score_desc: "puntuación = número acumulado / (conteo acumulado + conteo de desacuerdos  + desacuerdos de ancestros)"
         observation_flagged_notice_html: |
           Esta observación ha sido marcada como spam y ya no se encuentra visible de forma pública. Puedes visualizarla porque la has creado, o eres un moderador del sitio. Si crees que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctanos</a>.
@@ -6920,24 +6892,6 @@ es:
           Hemos incluido enlaces a las fotos afectadas abajo.
       user_parent_confirmation:
         subject: La cuenta de iNaturalist de su hijo ha sido activada
-        content_html: |
-          <p>
-          ¡Gracias por crear una cuenta de INaturaList para su hijo! La cuenta ha sido activada. Aquí están los detalles que ingresó que tenemos registrados:
-          </p>
-          <ul>
-          <li><strong>Nombre del padre o tutor legal: </strong> %{parent_name}</li>
-          <li><strong>Correo electrónico del padre o tutor legal: </strong> %{parent_email}</li>
-          <li><strong>Nombre del niño: </strong> %{child_name}</li>
-          <li><strong>Fecha de nacimiento del niño: </strong> %{child_birthday}</li>
-          <li><strong>Correo electrónico de la cuenta del niño: </strong> %{child_email}</li>
-          <li><strong>Nombre de usuario de la cuenta del niño: </strong> %{child_username}</li>
-          </ul>
-          <p>
-          Inicie sesión en la cuenta desde la aplicación Busqueda de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
-          </p>
-          <p>
-          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Busqueda para que se puedan ver en iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido tus suscripciones. Para reanudar la obtención de actualizaciones sobre la actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu cuenta</a> de nuevo.
@@ -7122,8 +7076,6 @@ es:
         data_visualizations: Visualizaciones de datos
         delete_project: Eliminar proyecto
         display_project_name: Exhibe nombre del proyecto
-        do_you_need_features_from_traditional: |
-          ¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?
         do_you_need_features_from_traditional2: |
           ¿Necesita características de proyectos tradiciones, como campos de observaciones personalizados, o añadir observaciones personales que no se pueden filtrar automáticamente?
         duplicate_project: Duplicar proyecto
@@ -7190,9 +7142,6 @@ es:
         we_have_redesigned_projects: |
           Los proyectos están diseñados para incluir automáticamente todas las observaciones que se ajusten a los lugares, taxones, usuarios, calidad y fechas que tu definas. Elije entre dos tipos principales: proyectos de colección o proyectos paraguas, que comparten las siguientes características:
         welcome_to_projects: '¡Te damos la bienvenida a los proyectos!'
-        you_can_learn_more_html: |
-          Puede obtener más información sobre la gestión de proyectos.
-          <a href="https://www.inaturalist.org/pages/managing-projects"> aquí </a> o leer el historial de proyectos en <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist"> nuestro blog </a>.
         you_have_not_defined_any_observation_requirements: |
           No has definido ningún requisito para las observación. Asegúrate de seleccionar uno o más taxa (p. ej. aves, coníferas), sitios (p. ej. Brasil, Yellowstone), usuarios, y/o fechas para definir las observaciones que quieres incluir en tu proyecto.
         errors:
@@ -7477,8 +7426,11 @@ es:
           "Plant Phenology=Flowering": Floreciendo
           "Plant Phenology=Fruiting": Fructificando
           "Plant Phenology=No Evidence of Flowering": Sin evidencias de Floración
+          "Flowers and Fruits=Flower Buds": Botones florales
           "Flowers and Fruits=Flowers": Flores
           "Flowers and Fruits=Fruits or Seeds": Frutas o semillas
+          "Flowers and Fruits=No Flowers or Fruits": Sin flores ni frutos
+          "Leaves=Breaking Leaf Buds": Brotación de yemas foliares
           "Leaves=Green Leaves": Hojas verdes
           "Leaves=Colored Leaves": Hojas de colores
           "Leaves=No Live Leaves": Sin hojas vivas
@@ -8075,6 +8027,8 @@ es:
       assessment_section:
         title: Título
         body: Cuerpo
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Usuario bloqueado

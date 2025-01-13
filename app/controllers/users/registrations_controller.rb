@@ -7,11 +7,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     return unless params[:user]
     params.require(:user).permit(
       :birthday,
+      :browser_id,
       :description,
       :data_transfer_consent,
       :email,
       :icon,
       :icon_url,
+      :incognito_mode,
       :locale,
       :login,
       :name,
@@ -63,6 +65,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       resource.wait_for_index_refresh = true
       resource.oauth_application_id = oauth_application_from_user_agent.try(:id) || OauthApplication::WEB_APP_ID
       if resource.save
+        UserSignup.create(
+          user_id: resource.id,
+          ip: resource.last_ip,
+          mobile: is_mobile_app?,
+          browser_id: is_mobile_app? ? request.headers["HTTP_X_INSTALLATION_ID"] : resource.browser_id,
+          incognito: resource.incognito_mode
+        )
         if resource.active_for_authentication?
           set_flash_message :notice, :signed_up if is_navigational_format?
           sign_in(resource_name, resource)
