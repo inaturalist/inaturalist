@@ -65,7 +65,7 @@ class DataPartner < ApplicationRecord
       logger.info "DataPartner.sync_observation_links  for #{dp}"
       begin
         dp.sync_observation_links( options )
-      rescue RestClient::BadRequest => e
+      rescue RestClient::RequestFailed => e
         logger.error "Failed to sync observat links for #{dp}: #{e}"
       end
     end

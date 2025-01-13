@@ -251,9 +251,11 @@ def enable_elastic_indexing( *args )
     ) do
       klass.__elasticsearch__.client.delete_by_query( index: klass.index_name, body: { query: { match_all: {} } } )
     end
-    klass.send :after_save, :elastic_index!
+    unless klass == TaxonPhoto
+      klass.send :after_save, :elastic_index!
+      klass.send :after_touch, :elastic_index!
+    end
     klass.send :after_destroy, :elastic_delete!
-    klass.send :after_touch, :elastic_index!
   end
 end
 
@@ -262,9 +264,11 @@ end
 def disable_elastic_indexing( *args )
   classes = [args].flatten
   classes.each do | klass |
-    klass.send :skip_callback, :save, :after, :elastic_index!
+    unless klass == TaxonPhoto
+      klass.send :skip_callback, :save, :after, :elastic_index!
+      klass.send :skip_callback, :touch, :after, :elastic_index!
+    end
     klass.send :skip_callback, :destroy, :after, :elastic_delete!
-    klass.send :skip_callback, :touch, :after, :elastic_index!
     try_and_try_again(
       [
         Elastic::Transport::Transport::Errors::Conflict,

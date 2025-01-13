@@ -185,6 +185,43 @@ describe DarwinCore::Occurrence do
       end
     end
 
+    describe "vitality" do
+      before( :all ) do
+        @controlled_attribute = make_controlled_term_with_label(
+          "Alive or Dead",
+          active: true,
+          is_value: false,
+          multivalued: false
+        )
+      end
+      it "should add vitality alive for alive annotations" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Alive", @controlled_attribute )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).vitality ).to eq "alive"
+      end
+      it "should add vitality alive for alive annotations" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Dead", @controlled_attribute )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).vitality ).to eq "dead"
+      end
+      it "should add vitality undetermined for cannot be determined annotations" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Cannot Be Determined", @controlled_attribute )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).vitality ).to eq "undetermined"
+      end
+      it "should not vitality when there are no annotations" do
+        expect( DarwinCore::Occurrence.adapt( Observation.make! ).vitality ).to be_blank
+      end
+    end
     describe "dynamicProperties" do
       before( :all ) do
         @evidence = make_controlled_term_with_label(

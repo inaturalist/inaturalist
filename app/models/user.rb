@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   include ActsAsSpammable::User
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   include HasJournal
 

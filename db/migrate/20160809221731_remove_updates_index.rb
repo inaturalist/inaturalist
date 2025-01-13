@@ -1,5 +1,5 @@
 class Update < ActiveRecord::Base
-  include ActsAsElasticModel
+  acts_as_elastic_model
 end
 
 class RemoveUpdatesIndex < ActiveRecord::Migration

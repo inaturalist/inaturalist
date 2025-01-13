@@ -80,7 +80,7 @@ const CONFIG = {
 class UserText extends React.Component {
   // Imperfect solution until we can get an API endpoint to check for the existence of these users
   static hyperlinkMentions( text ) {
-    return text.replace( /(\B)@([A-z][\\\w\\\-_]*)/g, "$1<a href=\"/people/$2\">@$2</a>" );
+    return text.replace( /(\B)(?<!\/)@([A-z][\\\w\\\-_]*)/g, "$1<a href=\"/people/$2\">@$2</a>" );
   }
 
   constructor( ) {

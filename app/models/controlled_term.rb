@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ControlledTerm < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid

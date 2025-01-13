@@ -1,6 +1,7 @@
-class UpdateAction < ApplicationRecord
+# frozen_string_literal: true
 
-  include ActsAsElasticModel
+class UpdateAction < ApplicationRecord
+  acts_as_elastic_model
 
   settings index: { number_of_shards: Rails.env.production? ? 6 : 4, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
