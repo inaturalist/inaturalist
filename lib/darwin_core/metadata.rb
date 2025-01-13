@@ -54,6 +54,7 @@ module DarwinCore
         @taxonomy = ::Taxon.where( id: @taxa.map( &:self_and_ancestor_ids ).flatten.uniq.compact ).arrange
       end
       @freq = options[:freq]
+      @extensions = options[:extensions] || []
     end
 
     def render
@@ -68,6 +69,7 @@ module DarwinCore
           creator: @creator,
           end_date: @end_date,
           extent: @extent,
+          extensions: @extensions,
           freq: @freq,
           license: @license,
           metadata_provider: @metadata_provider,

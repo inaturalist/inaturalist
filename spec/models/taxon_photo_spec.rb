@@ -44,4 +44,29 @@ describe TaxonPhoto do
     expect( taxon_photo ).not_to be_valid
     expect( taxon_photo.errors[:photo] ).not_to be_empty
   end
+
+  describe "indexing" do
+    elastic_models( Taxon, TaxonPhoto )
+    it "does not index on create" do
+      expect_any_instance_of( TaxonPhoto ).not_to receive( :elastic_index! )
+      taxon_photo = TaxonPhoto.make!
+      expect( TaxonPhoto.elastic_get( taxon_photo.id ) ).to be_blank
+    end
+
+    it "does not index on update" do
+      taxon_photo = TaxonPhoto.make!
+      expect( taxon_photo ).not_to receive( :elastic_index! )
+      taxon_photo.update( updated_at: Time.now )
+      expect( TaxonPhoto.elastic_get( taxon_photo.id ) ).to be_blank
+    end
+
+    it "removes from index on destroy" do
+      taxon_photo = TaxonPhoto.make!
+      taxon_photo.elastic_index!
+      expect( TaxonPhoto.elastic_get( taxon_photo.id ) ).not_to be_blank
+      expect( taxon_photo ).to receive( :elastic_delete! ).at_least( :once ).and_call_original
+      taxon_photo.destroy
+      expect( TaxonPhoto.elastic_get( taxon_photo.id ) ).to be_blank
+    end
+  end
 end

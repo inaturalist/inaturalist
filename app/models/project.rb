@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include HasJournal
 
   belongs_to :user

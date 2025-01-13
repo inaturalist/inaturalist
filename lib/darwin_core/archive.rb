@@ -1,7 +1,7 @@
 module DarwinCore
   class Archive
-
     OBS_BASED_EXTENSIONS = [
+      :dna_derived_data,
       :occurrence,
       :simple_multimedia,
       :observation_fields,
@@ -116,7 +116,7 @@ module DarwinCore
         observations_params: metadata_observation_params,
         template: @opts[:metadata]
       ) )
-      tmp_path = File.join( @opts[:work_path], "metadata.eml.xml" )
+      tmp_path = File.join( @opts[:work_path], "eml.xml" )
       File.open( tmp_path, "w" ) do | f |
         f << m.render
       end
@@ -126,8 +126,8 @@ module DarwinCore
     def make_descriptor
       extensions = []
       if @opts[:extensions]
-        @opts[:extensions].each do |e|
-          case e
+        @opts[:extensions].each do | ext_name |
+          case ext_name
           when "EolMedia"
             extensions << {
               :row_type => "http://eol.org/schema/media/Document",
@@ -164,8 +164,8 @@ module DarwinCore
               files: ["users.csv"],
               terms: DarwinCore::User::TERMS
             }
-          when "VernacularNames"
-            extensions << DarwinCore::VernacularName.descriptor
+          else
+            extensions << Object.const_get( "DarwinCore::Extensions::#{ext_name}" ).descriptor
           end
         end
       end
@@ -197,9 +197,15 @@ module DarwinCore
       if obs_based_extensions.any?
         obs_based_extension_info = { }
         preloads = []
-        obs_based_extensions.each do |ext|
+        obs_based_extensions.each do | ext |
           logger.info "Preparing #{ext} extension..."
-          obs_based_extension_info[ext] = send("make_#{ext}_file")
+          obs_based_extension_info[ext] = begin
+            # Older method of specifying methods in this class
+            send( "make_#{ext}_file" )
+          rescue NoMethodError
+            # Try newer method of specifying a `file` method in the extension class
+            Object.const_get( "DarwinCore::Extensions::#{ext.to_s.camelcase}" ).file( @opts )
+          end
           preloads += obs_based_extension_info[ext][:preloads]
           @extension_paths[ext] = obs_based_extension_info[ext][:path]
         end
@@ -212,9 +218,17 @@ module DarwinCore
           } )
         ) do |batch|
           batch = batch.filter{ |o| !observation_ids_written[o.id] }
-          obs_based_extensions.each do |ext|
+          obs_based_extensions.each do | ext |
             extension_file = CSV.open( @extension_paths[ext], "a" )
-            send( "write_#{ext}_data", batch, extension_file )
+            begin
+              send( "write_#{ext}_data", batch, extension_file )
+            rescue NoMethodError
+              Object.const_get( "DarwinCore::Extensions::#{ext.to_s.camelcase}" ).observations_to_csv(
+                batch,
+                extension_file,
+                generate_started_at: @generate_started_at
+              )
+            end
             extension_file.close
           end
           batch.each do |o|
@@ -225,7 +239,11 @@ module DarwinCore
 
       custom_extensions.each do |ext|
         logger.info "Making #{ext} extension..."
-        @extension_paths[ext] = send("make_#{ext}_data")
+        @extension_paths[ext] = begin
+          send( "make_#{ext}_data" )
+        rescue NoMethodError
+          Object.const_get( "DarwinCore::Extensions::#{ext.to_s.camelcase}" ).data( @opts )
+        end
       end
       @extension_paths.values
     end
@@ -306,11 +324,12 @@ module DarwinCore
       preloads = [
         :taxon,
         { user: [:stored_preferences, :provider_authorizations] },
-        :quality_metrics, 
+        :quality_metrics,
         { identifications: { user: [:provider_authorizations] } },
         { observations_places: :place },
         { annotations: { controlled_value: [:labels], votes_for: {} } },
-        { site: :place }
+        { site: :place },
+        :projects
       ]
       if @opts[:community_taxon]
         preloads << :community_taxon
@@ -603,10 +622,6 @@ module DarwinCore
       end
     end
 
-    def make_vernacular_names_data
-      DarwinCore::VernacularName.data( @opts )
-    end
-
     def self.partition_range( start_id, max_id, partitions = 1 )
       partition_start_id = start_id
       partition_ranges = []
@@ -664,12 +679,18 @@ module DarwinCore
       while chunk_start_id <= end_id
         params[:min_id] = chunk_start_id
         params[:max_id] = [chunk_start_id + search_chunk_size - 1, end_id].min
-        try_and_try_again( [
-                  Elastic::Transport::Transport::Errors::ServiceUnavailable,
-                  Elastic::Transport::Transport::Errors::TooManyRequests], sleep: 1, tries: 10, logger: logger ) do
+        try_and_try_again(
+          [
+            Elastic::Transport::Transport::Errors::ServiceUnavailable,
+            Elastic::Transport::Transport::Errors::TooManyRequests
+          ],
+          sleep: 1,
+          tries: 10,
+          logger: logger
+        ) do
           Observation.search_in_batches( params.merge(
             per_page: 1000
-          ), logger: logger ) do |batch|
+          ), logger: logger ) do | batch |
             avg_batch_time = if batch_times.size > 0
               (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
             else

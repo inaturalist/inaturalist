@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Naming/MethodName
 
 module DarwinCore
   class Occurrence
@@ -61,7 +62,8 @@ module DarwinCore
       ["license", "http://purl.org/dc/terms/license", nil, "dwc_license"],
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick),
-      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry)
+      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry),
+      %w(projectId http://rs.gbif.org/terms/1.0/projectId)
     ] + ANNOTATION_TERMS
     cattr_accessor :annotation_controlled_attributes do
       {}
@@ -181,7 +183,6 @@ module DarwinCore
         @dwc_use_community_taxon = true
       end
 
-      # rubocop:disable Naming/MethodName
       def occurrenceID
         uri
       end
@@ -523,7 +524,11 @@ module DarwinCore
 
         site.place.code.upcase
       end
-      # rubocop:enable Naming/MethodName
+
+      def projectId
+        projects.map {| project | FakeView.project_url( project ) }.join( "|" )
+      end
     end
   end
 end
+# rubocop:enable Naming/MethodName

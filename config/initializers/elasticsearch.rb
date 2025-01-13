@@ -9,4 +9,6 @@ else
 end
 Elasticsearch::Model.client = Elasticsearch::Client.new(es_config)
 # load our own Elasticsearch logic
-require 'elastic_model'
+require "elastic_model"
+
+ActiveRecord::Base.send( :include, ActsAsElasticModel )

@@ -28,6 +28,7 @@ describe "TaxonPhoto Index" do
     tp = TaxonPhoto.make!( id: taxon_photo_id )
     tp.elastic_index!
     tp.elastic_index!
+    tp.elastic_index!
   end
 
   it "as_indexed_json does need to regenerate embedding if the photo has been updated" do
@@ -37,7 +38,9 @@ describe "TaxonPhoto Index" do
     tp = TaxonPhoto.make!( id: taxon_photo_id )
     tp.elastic_index!
     tp.elastic_index!
+    tp.elastic_index!
     tp.photo.touch
+    tp.elastic_index!
     tp.elastic_index!
     tp.elastic_index!
   end
@@ -49,7 +52,9 @@ describe "TaxonPhoto Index" do
     tp = TaxonPhoto.make!( id: taxon_photo_id )
     tp.elastic_index!
     tp.elastic_index!
+    tp.elastic_index!
     tp.photo = Photo.make!
+    tp.elastic_index!
     tp.elastic_index!
     tp.elastic_index!
   end
@@ -61,7 +66,9 @@ describe "TaxonPhoto Index" do
     tp = TaxonPhoto.make!( id: taxon_photo_id )
     tp.elastic_index!
     tp.elastic_index!
+    tp.elastic_index!
     tp.taxon.update( parent: Taxon.make! )
+    tp.elastic_index!
     tp.elastic_index!
     tp.elastic_index!
   end
