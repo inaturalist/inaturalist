@@ -80,7 +80,14 @@ const CONFIG = {
 class UserText extends React.Component {
   // Imperfect solution until we can get an API endpoint to check for the existence of these users
   static hyperlinkMentions( text ) {
-    return text.replace( /(\B)(?<!\/)@([A-z][\\\w\\\-_]*)/g, "$1<a href=\"/people/$2\">@$2</a>" );
+    return text.replace( /(.?)(\B)@([A-z][\\\w\\\-_]*)/g, ( match, group1, group2, group3 ) => {
+      if ( group1 === "/" ) {
+        // older versions of Safari do not support lookbehind. Instead of using negative lookbehind
+        // in the regex, replicate that behavior by checking the preceeding chacter, if it exists
+        return match;
+      }
+      return `${group1}${group2}<a href="/people/${group3}">@${group3}</a>`;
+    } );
   }
 
   constructor( ) {
