@@ -26,7 +26,7 @@ module DataPartnerLinkers
     end
 
     def system_call( cmd )
-      logger.info "[#{Time.now}] Running #{cmd}"
+      logger.info "Running #{cmd}"
       system cmd
       logger.info
     end

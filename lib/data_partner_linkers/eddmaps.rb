@@ -8,10 +8,12 @@ module DataPartnerLinkers
       filename = File.basename( CSV_GZ_URL )
       tmp_path = File.join( Dir.tmpdir, File.basename( __FILE__, ".*" ) )
       archive_path = File.join( tmp_path, filename )
-      FileUtils.mkdir_p tmp_path, mode: 0755
+      FileUtils.mkdir_p tmp_path, mode: 0o755
       unless File.exist?( archive_path )
+        logger.info "Eddmaps: downloading #{CSV_GZ_URL}"
         system_call "curl -L -o #{archive_path} #{CSV_GZ_URL}"
       end
+      logger.info "Eddmaps: downloading #{CSV_GZ_URL}"
       system_call "gunzip --force #{archive_path}"
       csv_filename = File.basename( CSV_GZ_URL, ".gz" )
       csv_path = File.join( tmp_path, csv_filename )
@@ -23,6 +25,7 @@ module DataPartnerLinkers
     end
 
     def run
+      logger.info "Eddmaps: START run"
       start_time = Time.now
       new_count = 0
       old_count = 0
@@ -30,7 +33,7 @@ module DataPartnerLinkers
       observation_ids = []
 
       csv_path = download
-      puts "parsing #{csv_path}"
+      logger.info "Eddmaps: working through #{csv_path}"
       CSV.foreach( csv_path, headers: true ) do | row |
         observation_id = row[0]
         observation = Observation.find_by_id( observation_id )
@@ -59,23 +62,29 @@ module DataPartnerLinkers
       end
 
       # Reindex affected obs
+      logger.info "Eddmaps: Re-indexing"
       observation_ids.in_groups_of( 500 ) do | group |
         Observation.elastic_index!( ids: group.compact, wait_for_index_refresh: true ) unless @opts[:debug]
         num_indexed += group.size
         logger.info "#{num_indexed} re-indexed (#{( num_indexed / observation_ids.size.to_f * 100 ).round( 2 )})"
       end
 
+      logger.info "Eddmaps: Deleting"
       delete_scope = ObservationLink.
         where( href_name: @data_partner.name ).
         where( "updated_at < ?", start_time )
       delete_count = delete_scope.count
-      logger.info "Deleting #{delete_count} ObservationLinks"
-      return unless delete_count.positive? && !@opts[:debug]
+      logger.info "Eddmaps: Deleting #{delete_count} ObservationLinks"
+      unless delete_count.positive? && !@opts[:debug]
+        logger.info "Eddmaps: FINISH run"
+        return
+      end
 
       observation_ids = delete_scope.pluck( :observation_id )
       delete_scope.delete_all
-      logger.info "Re-indexing observations with deleted ObservationLinks"
+      logger.info "Eddmaps: Re-indexing observations with deleted ObservationLinks"
       Observation.elastic_index!( ids: observation_ids, wait_for_index_refresh: true )
+      logger.info "Eddmaps: FINISH run"
     end
   end
 end
