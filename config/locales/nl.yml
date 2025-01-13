@@ -27,6 +27,12 @@ nl:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> DETERMINATIE'
     other: '<span class="count">%{count}</span> DETERMINATIES'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> EXPERT'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> EXPERTS'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID''s gemaakt voor anderen'
     other: '<span class="count">%{count}</span>ID''s gemaakt voor anderen'
@@ -77,6 +83,9 @@ nl:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> waarneming nagekeken"
     other: "<span class='count'>%{count}</span> waarnemingen nagekeken"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> WAARNEMER'
+    other: '<span class="count">%{count}</span> WAARNEMERS'
   x_others:
     one: "%{count} ander persoon"
     other: "%{count} anderen"
@@ -5756,6 +5765,7 @@ nl:
   user_muted: Gebruiker gedempt
   user_observed_on_on_date_in_place: |
     %{user} nam één waar op %{date} in %{place}
+  user_said_comment_html: <span class="meta">%{user} gezegd,</span> "%{comment}"
   user_suggested_an_id: "%{user} heeft een ID voorgesteld"
   user_trusts_this_project_for_none: Lid staat niet toe dat dit project verborgen coördinaten krijgt.
   user_trusts_this_project_for_any: |
@@ -7012,6 +7022,10 @@ nl:
           Waarnemingen zullen teruggaan naar <strong>"onvolledig"</strong> als aan bovenstaande
           voorwaarden niet is voldaan of als de gemeenschap akkoord gaat
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          de <strong>dag, maand en het jaar zien er niet juist uit</strong> (bv. er is sneeuw
+          op de foto maar de datum is in de zomer; negeer de tijd van de dag)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           de <strong>lokatie lijkt niet nauwkeurig</strong> (bijvoorbeeld apen midden in de oceaan, nijlpaarden in kantoorgebouwen, enzovoort)
         #One of a list of reasons for an observation to revert to Casual
@@ -7028,6 +7042,14 @@ nl:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           de waarneming <strong>toont geen bewijs voor één organisme op alle foto's</strong> (bijvoorbeeld het heeft vier foto's van niet-verwante organismen; een foto met de leefomgeving van het organisme in de waarneming is OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          de waarneming heeft niet langer een ID <em>en</em> het GemeenschapsTaxon is een familie of hoger taxon
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          het taxon is geen voorouder of nakomeling van het taxon geassocieerd
+          met de waarnemersdeterminatie <em>en</em> de waarnemer heeft zich afgemeld voor
+          het Gemeenschapstaxon
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           En als dat niet ingewikkeld genoeg was, zijn er ook situaties

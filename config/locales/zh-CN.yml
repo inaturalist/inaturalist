@@ -18,6 +18,10 @@ zh-CN:
     other: '%{count} 次鉴定'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span>个鉴定'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span>名鉴定者'
   x_ids_made_for_others_html:
     other: '为他人做出了<span class="count">%{count}</span>个鉴定'
   x_languages:
@@ -52,6 +56,8 @@ zh-CN:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
+  x_observers_caps_html:
+    other: '<span class="count">%{count}</span>名观察者'
   x_others:
     other: "%{count}个其他的"
   x_people:
@@ -5476,6 +5482,7 @@ zh-CN:
   user_muted: 用户已禁言
   user_observed_on_on_date_in_place: |
     %{user}于%{date}在%{place}观察到一个
+  user_said_comment_html: <span class="meta">%{user}说，</span>“%{comment}”
   user_suggested_an_id: "%{user}提出了一个鉴定"
   user_trusts_this_project_for_none: 用户不信任该项目，因此不会向该项目展示隐藏坐标。
   user_trusts_this_project_for_any: |
@@ -6599,6 +6606,9 @@ zh-CN:
         dqa_help_casual_lead_html: |
           如果上述条件未得到满足，或社群同意下列情况，则观察回滚到<strong>“非正式”</strong>等级：
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>日期、月份和/或年份看起来不准确</strong>（比如照片里有雪，但日期却是夏天；不考虑一天之内的时间）
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>位置看起来不准确</strong>（例如大洋中的猴子，办公大楼中的河马，等）
         #One of a list of reasons for an observation to revert to Casual
@@ -6613,6 +6623,12 @@ zh-CN:
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_not_one_subject_html: |
           观察<strong>不是关于单一主体的证据</strong>（如关于四个无关生物体的四张照片；但有一张照片呈现观察主体的生境是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          观察不再需要鉴定<em>且</em>社群鉴定在科或更高层级
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          这一分类单元不是观察者鉴定的分类单元的祖先或子代，<em>且</em>该观察者已选择退出社群分类。
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           如果这还不够复杂，还会有系统自动进行表决的情况：
@@ -7759,13 +7775,13 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日 %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      compact: "%I:%M %p"
+      compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      observed_at: '%I:%M %p %Z'
+      observed_at: '%p %I:%M %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      hours: "%I:%M %p"
+      hours: "%p %l:%M"
     pm: 下午
   activerecord:
     models:
