@@ -1,7 +1,8 @@
 .col-md-3.col-sm-3
   .media
     .media-left
-      = link_to(image_tag(friend.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(friend.login))
+      = link_to_user friend do
+        = user_image friend, size: "thumb", class: "media-object img-circle followee"
     .media-body
       %h4.media-heading= link_to friend.login, person_by_login_path(friend.login)
       %i.fa.fa-binoculars{"aria-hidden" => "true"}

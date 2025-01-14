@@ -1,7 +1,7 @@
 - post = updates.first.notifier
 - author = resource
 - the_post_path = journal_post_path(:login => resource.login, :id => post.id)
-- target_id = bootstrapTargetID
+- target_id = bootstrap_target_id
 .timeline-body
   %h3= post.title
   = formatted_user_text(stripped_first_paragraph_of_text(post.body,"\r\n\r\n"), scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (post.preferred_formatting == Post::FORMATTING_NONE))

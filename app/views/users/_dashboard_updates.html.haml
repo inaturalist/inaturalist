@@ -47,7 +47,7 @@
               - if updates[0].resource_type == 'Observation'
                 - observations = [updates[0].resource]
                 = render partial: 'observations/observations_component_for_dashboard', locals: { for_idents: true, observations: observations }
-              - target_id = bootstrapTargetID
+              - target_id = bootstrap_target_id
               .collapse.out{:class => "expand#{target_id}"}
                 %ul.timeline.timeline_observation
                   - for u in updates

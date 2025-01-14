@@ -3,7 +3,7 @@
 .row
   .col-sm-4
     - if @selected_user.icon.file?
-      %h1= user_image @user, :size => "medium", :class => "img-thumbnail img-responsive"
+      %h1.text-center= user_image @user, :size => "large", :class => "img-thumbnail img-responsive"
     - if is_me?(@user)
       %p
         = link_to t(:edit_account_settings_and_profile).html_safe, edit_person_path(current_user), :class => "btn btn-primary btn-lg btn-group-justified"

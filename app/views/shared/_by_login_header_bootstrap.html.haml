@@ -8,7 +8,8 @@
 .col-md-12
   = before
   %h1
-    = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
+    = link_to_user( @selected_user ) do
+      = user_image( @selected_user, size: "thumb" )
     - if controller.controller_name == "users" && ( controller.action_name == "show" || controller.action_name == "dashboard" )
       = @selected_user.login
       - if logged_in? && is_not_me?( @selected_user ) && !current_user.blocked_by?( @selected_user ) && !@selected_user.blocked_by?( current_user )
