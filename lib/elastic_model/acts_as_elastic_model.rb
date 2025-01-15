@@ -181,74 +181,55 @@ module ActsAsElasticModel
       __elasticsearch__.refresh_index! if Rails.env.test?
     end
 
-    def elastic_sync(start_id, end_id, options)
-      return if !start_id || !end_id || start_id >= end_id
-      options[:batch_size] ||=
-        defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
-      batch_start_id = start_id
-      while batch_start_id <= end_id
-        Rails.logger.debug "[DEBUG] Processing from #{ batch_start_id }"
-        batch_end_id = batch_start_id + options[:batch_size]
-        if batch_end_id > end_id + 1
-          batch_end_id = end_id + 1
-        end
-        scope = self.where("id >= ? AND id < ?", batch_start_id, batch_end_id)
-        if self.respond_to?(:load_for_index)
-          scope = scope.load_for_index
-        end
-        batch = scope.to_a
-        prepare_for_index(batch)
-        results = elastic_search(
-          sort: { id: :asc },
-          size: options[:batch_size],
-          filters: [
-            { range: { id: { gte: batch_start_id } } },
-            { range: { id: { lt: batch_end_id } } }
-          ],
-          source: ["id"]
-        ).group_by{ |r| r.id.to_i }
-        bulk_index(batch, skip_prepare_batch: true)
-        ids_only_in_es = results.keys - batch.map(&:id)
-        unless ids_only_in_es.empty?
-          Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-          elastic_delete_by_ids!( [ids_only_in_es] )
-        end
-        batch_start_id = batch_end_id
+    def elastic_sync( opts = {} )
+      options = opts.clone
+      options[:index_records] = true unless options.include?( :index_records )
+      options[:only_index_missing] = false unless options.include?( :index_records )
+      options[:remove_orphans] = true unless options.include?( :remove_orphans )
+      if !options[:index_records] == false && !options[:remove_orphans]
+        return
       end
-    end
 
-    def elastic_prune(start_id, end_id, options)
-      return if !start_id || !end_id || start_id >= end_id
-      options[:batch_size] ||=
-        defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
-      batch_start_id = start_id
-      while batch_start_id <= end_id
-        Rails.logger.debug "[DEBUG] Processing from #{ batch_start_id }"
-        batch_end_id = batch_start_id + options[:batch_size]
-        if batch_end_id > end_id + 1
-          batch_end_id = end_id + 1
-        end
-        scope = self.where("id >= ? AND id < ?", batch_start_id, batch_end_id)
-        batch_ids = scope.pluck(:id)
-        ids_only_in_es = elastic_search(
+      batch_start_id = options[:start_id] || 1
+      maximum_id = options[:end_id] || maximum( :id )
+      batch_size = options[:batch_size] || 1_000
+      start_time = Time.now
+      while batch_start_id <= maximum_id
+        run_time = ( Time.now - start_time ).round( 2 )
+        Rails.logger.debug "Loop starting at #{batch_start_id}; time: #{run_time}"
+        batch_id_below = batch_start_id + batch_size
+        ids_from_db = where( "id >= ?", batch_start_id ).
+          where( "id < ?", batch_id_below ).pluck( :id )
+        ids_from_es = elastic_search(
           sort: { id: :asc },
-          size: options[:batch_size],
+          size: batch_size,
           filters: [
             { range: { id: { gte: batch_start_id } } },
-            { range: { id: { lt: batch_end_id } } },
-            { bool: {
-              must_not: {
-                terms: { id: batch_ids }
-              }
-            } }
+            { range: { id: { lt: batch_id_below } } }
           ],
           source: ["id"]
-        ).map(&:id)
-        unless ids_only_in_es.empty?
-          Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
-          elastic_delete_by_ids!( [ids_only_in_es] )
+        ).map {| doc | doc.id.to_i }
+        if options[:index_records]
+          ids_to_index = if options[:only_index_missing]
+            ids_from_db - ids_from_es
+          else
+            ids_from_db
+          end
+
+          unless ids_to_index.empty?
+            Rails.logger.debug "[DEBUG] Indexing #{ids_to_index.size} records"
+            elastic_index!( ids: ids_to_index, sleep: 0.01 )
+          end
         end
-        batch_start_id = batch_end_id
+
+        if options[:remove_orphans]
+          ids_only_in_es = ids_from_es - ids_from_db
+          unless ids_only_in_es.empty?
+            Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ids_only_in_es}"
+            elastic_delete_by_ids!( ids_only_in_es )
+          end
+        end
+        batch_start_id += batch_size
       end
     end
 
@@ -282,15 +263,17 @@ module ActsAsElasticModel
 
     def preload_for_elastic_index( instances )
       return if instances.blank?
+
       klass = instances.first.class
-      if klass.respond_to?(:load_for_index)
-        klass.preload_associations( instances,
-          klass.load_for_index.values[:includes] )
-      end
+      return unless klass.respond_to?( :load_for_index )
+
+      klass.preload_associations( instances,
+        klass.load_for_index.values[:includes] )
     end
 
-    def elastic_delete_by_ids!( ids, options = { } )
+    def elastic_delete_by_ids!( ids, options = {} )
       return if ids.blank?
+
       bulk_delete( ids, options )
       __elasticsearch__.refresh_index! if Rails.env.test?
     end

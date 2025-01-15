@@ -3,7 +3,7 @@
 class TaxonPhoto < ApplicationRecord
   acts_as_elastic_model lifecycle_callbacks: [:destroy]
 
-  DEFAULT_ES_BATCH_SIZE = 50
+  DEFAULT_ES_BATCH_SIZE = 25
 
   attr_accessor :calculated_embedding
 
