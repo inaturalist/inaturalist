@@ -75,8 +75,8 @@ class ComputerVisionEvalApp extends Component {
   }
 
   visionResults( ) {
-    const { obsCard } = this.props;
-    if ( _.isEmpty( obsCard.visionResults.results ) ) {
+    const { apiResponse } = this.props;
+    if ( _.isEmpty( apiResponse.results ) ) {
       return (
         <Row>
           <Col xs={12}>
@@ -88,7 +88,7 @@ class ComputerVisionEvalApp extends Component {
       );
     }
 
-    const leaves = _.filter( obsCard.visionResults.results, t => t.right === t.left + 1 );
+    const leaves = _.filter( apiResponse.results, t => t.right === t.left + 1 );
     const firstLeaf = _.first( _.reverse( _.sortBy( leaves, "normalized_combined_score" ) ) );
     return (
       <div>
@@ -137,7 +137,7 @@ class ComputerVisionEvalApp extends Component {
   }
 
   mainContent( ) {
-    const { obsCard, score } = this.props;
+    const { obsCard, score, apiResponse } = this.props;
     if ( _.isEmpty( obsCard ) ) {
       return this.initialDisplay( );
     }
@@ -168,7 +168,7 @@ class ComputerVisionEvalApp extends Component {
           </Button>
           { obsCard.visionStatus === "failed" ? this.otherActionButtons( ) : "" }
         </div>
-        { obsCard.visionResults && (
+        { !_.isEmpty( apiResponse ) && (
           <Grid fluid className="results">
             { this.visionResults( ) }
             { this.otherActionButtons( ) }
@@ -233,6 +233,7 @@ class ComputerVisionEvalApp extends Component {
 }
 
 ComputerVisionEvalApp.propTypes = {
+  apiResponse: PropTypes.object,
   obsCard: PropTypes.object,
   onFileDrop: PropTypes.func,
   resetState: PropTypes.func,
