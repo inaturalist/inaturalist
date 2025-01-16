@@ -431,4 +431,14 @@ describe TaxaController do
       expect( fi_desc.body ).to include "Ihminen"
     end
   end
+
+  describe "map" do
+    render_views
+    it "should render" do
+      load_test_taxa( iconic: true )
+      species = Taxon.where( rank: Taxon::SPECIES ).limit( 2 )
+      get :map, params: { taxa: species.map( &:id ) }
+      expect( response ).to be_successful
+    end
+  end
 end
