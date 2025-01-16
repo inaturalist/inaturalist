@@ -12,11 +12,21 @@ const SET_OBS_CARD = "computer_vision_eval/SET_OBS_CARD";
 const SET_HOVER_RESULT = "computer_vision_eval/SET_HOVER_RESULT";
 const UPDATE_STATE = "computer_vision_eval/UPDATE_STATE";
 const UPDATE_OBS_CARD = "computer_vision_eval/UPDATE_OBS_CARD";
+const UPDATE_API_RESPONSE = "computer_vision_eval/UPDATE_API_RESPONSE";
+const SET_ATTRIBUTES = "computer_vision_eval/SET_ATTRIBUTES";
 
 const DEFAULT_STATE = {
   obsCard: { },
   locationChooser: { },
-  hoverResult: null
+  hoverResult: null,
+  apiResponse: { },
+  toggleableSettings: {
+    openTaxonCombinedThreshold: 0.1,
+    scoreCutoffRatio: 0.01,
+    maxResultsToConsider: 15
+  },
+  filteredResults: [],
+  filteredResultLeaves: []
 };
 
 export default function reducer( state = DEFAULT_STATE, action ) {
@@ -31,6 +41,8 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       return { ...state, obsCard: action.obsCard };
     case SET_HOVER_RESULT:
       return { ...state, hoverResult: action.result };
+    case UPDATE_API_RESPONSE:
+      return { ...state, apiResponse: action.apiResponse };
     case UPDATE_STATE:
       modified = { ...state };
       _.each( action.newState, ( val, attr ) => {
@@ -47,6 +59,8 @@ export default function reducer( state = DEFAULT_STATE, action ) {
           ...action.obsCard
         }
       };
+    case SET_ATTRIBUTES:
+      return { ...state, ...action.attributes };
     default:
   }
   return state;
@@ -84,10 +98,58 @@ export function updateObsCard( obsCard ) {
   };
 }
 
+export function setAPIResponse( apiResponse ) {
+  return {
+    type: UPDATE_API_RESPONSE,
+    apiResponse
+  };
+}
+
 export function setHoverResult( result ) {
   return {
     type: SET_HOVER_RESULT,
     result
+  };
+}
+
+export function setAttributes( attributes ) {
+  return {
+    type: SET_ATTRIBUTES,
+    attributes
+  };
+}
+
+const setFilteredTaxa = ( ) => (
+  ( dispatch, getState ) => {
+    const { computerVisionEval } = getState( );
+    const filteredResults = _.filter(
+      computerVisionEval.apiResponse.results,
+      r => (
+        r.normalized_combined_score
+          > computerVisionEval.toggleableSettings.openTaxonCombinedThreshold
+      )
+    );
+    const filteredTaxonParents = _.compact( _.uniq(
+      _.map( filteredResults, "parent_id" )
+    ) );
+    const filteredResultLeaves = _.orderBy( _.reject( filteredResults, r => (
+      _.includes( filteredTaxonParents, r.taxon_id )
+    ) ), "normalized_combined_score", "desc" );
+    dispatch( setAttributes( {
+      filteredResults,
+      filteredResultLeaves
+    } ) );
+  }
+);
+
+export function updateUserSetting( setting, value ) {
+  return dispatch => {
+    dispatch( updateState( {
+      toggleableSettings: {
+        [setting]: value
+      }
+    } ) );
+    dispatch( setFilteredTaxa( ) );
   };
 }
 
@@ -125,7 +187,9 @@ export function score( obsCard ) {
 
     inaturalistjs.computervision.score_image( scoreParams )
       .then( r => {
-        dispatch( updateObsCard( { visionResults: r, visionStatus: null } ) );
+        dispatch( updateObsCard( { visionStatus: null } ) );
+        dispatch( setAPIResponse( r ) );
+        dispatch( setFilteredTaxa( ) );
       } ).catch( e => {
         console.log( ["Error fetching vision response for photo", e] );
       } );
@@ -199,7 +263,7 @@ export function lookupObservation( observationID ) {
 }
 
 export function fetchAndEvalObservation( observationID ) {
-  return async ( dispatch ) => {
+  return async dispatch => {
     await dispatch( setObsCard( { } ) );
     await dispatch( lookupObservation( observationID ) );
   };
