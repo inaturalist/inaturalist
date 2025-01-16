@@ -114,7 +114,7 @@
     <div class="clear">
       <% @project_curators.each do |project_curator| %>
         <div class="stacked column span-5">
-          <%= link_to_user project_curator.user %>
+          <%= link_to_user project_curator.user do %>
             <%= user_image project_curator.user, size: "thumb", class: "left" %>
           <% end -%>
           <div class="column span-3">

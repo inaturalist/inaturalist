@@ -575,6 +575,29 @@ describe ObservationsController, "spam" do
   end
 end
 
+describe ObservationsController, "new" do
+  render_views
+  describe "logged-in" do
+    before do
+      sign_in User.make!
+    end
+    it "should render for logged-in users" do
+      get :new
+      expect( response.response_code ).to eq 200
+    end
+  end
+
+  describe "logged-out" do
+    it "should redirect logged-out users to log in" do
+      controller.request.host = URI.parse( Site.default.url ).host
+      get :new
+      expect( response.response_code ).to eq 302
+      expect( response ).to be_redirect
+      expect( response ).to redirect_to( new_user_session_url )
+    end
+  end
+end
+
 describe ObservationsController, "new_batch" do
   describe "routes" do
     before do
