@@ -668,7 +668,11 @@ module ApplicationHelper
       options[:class] = "#{options[:class]} sciname".strip
     end
     content_tag :span, class: "taxon #{iconic_taxon_name} #{taxon.rank}" do
-      "#{link_to( iconic_taxon_image( taxon, size: 15 ), url, options )} #{link_to( taxon_name, url, options )}"
+      # rubocop:disable Style/StringConcatenation
+      link_to( iconic_taxon_image( taxon, size: 15 ), url, options ) +
+        " " +
+        link_to( taxon_name, url, options )
+      # rubocop:enable Style/StringConcatenation
     end
   end
 
