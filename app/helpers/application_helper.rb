@@ -871,13 +871,13 @@ module ApplicationHelper
     # iconic taxon colors for unique iconic taxa
     if taxa.map( &:iconic_taxon_id ).size == taxa.map( &:iconic_taxon_id ).uniq.size
       return taxa.each_with_object( {} ) do | obj, memo |
-               memo[obj.id] = iconic_taxon_color_for( obj )
-             end
+        memo[obj.id] = iconic_taxon_color_for( obj )
+      end
     end
 
     # custom palette for more
     palette = iconic_taxon_colors.values.uniq + %w(#d62728 #e377c2 #bcbd22 #17becf)
-    palette += palette.map {| c | c.paint.darken.darken.to_hex }
+    palette += palette.map {| c | c.dup.paint.darken.darken.to_hex }
     colors = {}
     taxa.each_with_index do | taxon, i |
       colors[taxon.id] = palette[i % palette.size] || "#333333"
