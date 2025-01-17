@@ -75,7 +75,7 @@ class App extends React.Component {
     }
 
     const { observation } = this.props;
-    let url = `/observations?user_id=${observation.user.id}&place_id=any&verifiable=any&`;
+    let url = `/observations?user_id=${observation.user.login}&place_id=any&verifiable=any&`;
     url += $.param( _.pickBy( searchParameters, v => !_.isNil( v ) ) );
     // dates are formatted with the `momentjs.datetime_with_offset` pattern. Currently
     // all locales separate the date part of the string from the time and zone part of
@@ -128,17 +128,21 @@ class App extends React.Component {
       }
     }
 
+    const searchParameters = observedYear && observedMonth && observedDay ? {
+      on: `${observedYear}-${observedMonth}-${observedDay}`
+    } : {
+      year: observedYear,
+      month: observedMonth,
+      day: observedDay
+    };
     return (
       <span className="date" title={isoDateObserved}>
         { observation.observed_on
           && observation.obscured
           && !observation.private_geojson
           && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
-        { this.linkDateToObservationSearch( formattedDateObserved, {
-          year: observedYear,
-          month: observedMonth,
-          day: observedDay
-        } ) || I18n.t( "missing_date" ) }
+        { this.linkDateToObservationSearch( formattedDateObserved, searchParameters )
+          || I18n.t( "missing_date" ) }
       </span>
     );
   }
@@ -171,16 +175,19 @@ class App extends React.Component {
       addedDay = null;
     }
 
+    const searchParameters = addedYear && addedMonth && addedDay ? {
+      created_on: `${addedYear}-${addedMonth}-${addedDay}`
+    } : {
+      created_year: addedYear,
+      created_month: addedMonth,
+      created_day: addedDay
+    };
     return (
       <span className="date" title={isoDateAdded}>
         { observation.obscured
           && !observation.private_geojson
           && <i className="icon-icn-location-obscured" title={I18n.t( "date_obscured_notice" )} /> }
-        { this.linkDateToObservationSearch( formattedDateAdded, {
-          created_year: addedYear,
-          created_month: addedMonth,
-          created_day: addedDay
-        } ) }
+        { this.linkDateToObservationSearch( formattedDateAdded, searchParameters ) }
       </span>
     );
   }
