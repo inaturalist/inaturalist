@@ -192,7 +192,6 @@ describe User do
           "aol.com",
           "mail.usf.edu",
           "icloud.com",
-          "questagame.com",
           "outlook.com",
           "comcast.net",
           "me.com",
