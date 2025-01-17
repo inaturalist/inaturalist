@@ -108,9 +108,9 @@ class App extends React.Component {
     let formattedDateObserved;
 
     if ( observation.observed_on ) {
-      observedMonth = observedAt.format( "M" );
-      observedDay = observedAt.format( "D" );
-      observedYear = observedAt.format( "YYYY" );
+      observedYear = observation.observed_on_details.year;
+      observedMonth = observation.observed_on_details.month;
+      observedDay = observation.observed_on_details.day;
       if (
         observation.obscured
         && !observation.private_geojson
@@ -155,9 +155,9 @@ class App extends React.Component {
     }
     const createdAt = moment( observation.created_at );
     let isoDateAdded = createdAt.format( );
-    const addedYear = createdAt.format( "YYYY" );
-    const addedMonth = createdAt.format( "M" );
-    let addedDay = createdAt.format( "D" );
+    const addedYear = observation.created_at_details.year;
+    const addedMonth = observation.created_at_details.month;
+    let addedDay = observation.created_at_details.day;
     let formattedDateAdded = formattedDateTimeInTimeZone(
       moment.tz(
         observation.created_at,

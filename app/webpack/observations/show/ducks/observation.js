@@ -122,6 +122,7 @@ const FIELDS = {
   },
   community_taxon: TAXON_FIELDS,
   created_at: true,
+  created_at_details: "all",
   description: true,
   faves: {
     id: true,
@@ -169,6 +170,7 @@ const FIELDS = {
   },
   obscured: true,
   observed_on: true,
+  observed_on_details: "all",
   observed_time_zone: true,
   ofvs: {
     observation_field: {
