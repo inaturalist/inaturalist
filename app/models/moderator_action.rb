@@ -60,7 +60,7 @@ class ModeratorAction < ApplicationRecord
       id: id,
       created_at: created_at,
       created_at_details: ElasticModel.date_details( created_at ),
-      user: user.as_indexed_json( no_details: true ),
+      user: user&.as_indexed_json( no_details: true ),
       action: action,
       reason: reason
     }
