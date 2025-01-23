@@ -86,7 +86,7 @@ describe Annotation do
   it "validates against presence of another annotation of a blocking value" do
     obs = Observation.make!
     atr = make_controlled_term_with_label( nil, multivalued: true )
-    val = make_controlled_term_with_label( nil, is_value: false )
+    val = make_controlled_term_with_label( nil, is_value: true )
     atr.controlled_term_values.create( controlled_value: val )
     blocking_val = make_controlled_term_with_label( nil, is_value: true, blocking: true )
     atr.controlled_term_values.create( controlled_value: blocking_val )
@@ -103,6 +103,29 @@ describe Annotation do
         resource: obs
       )
     end.to raise_error( ActiveRecord::RecordInvalid, /blocked by another value/ )
+  end
+
+  it "presence of another annotation of a blocking value is OK if marked as mismatch" do
+    obs = Observation.make!
+    atr = make_controlled_term_with_label( nil, multivalued: true )
+    val = make_controlled_term_with_label( nil, is_value: true )
+    atr.controlled_term_values.create( controlled_value: val )
+    blocking_val = make_controlled_term_with_label( nil, is_value: true, blocking: true )
+    atr.controlled_term_values.create( controlled_value: blocking_val )
+    atr.reload
+    _blocking_annotation = Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: blocking_val,
+      resource: obs,
+      term_taxon_mismatch: true
+    )
+    expect do
+      Annotation.make!(
+        controlled_attribute: atr,
+        controlled_value: val,
+        resource: obs
+      )
+    end.not_to raise_error
   end
 
   it "validates against presence of another annotation if this is a blocking value" do
@@ -127,6 +150,31 @@ describe Annotation do
         resource: obs
       )
     end.to raise_error( ActiveRecord::RecordInvalid, /is blocking but another annotation already added/ )
+  end
+
+  it "presence of a mismatch annotation is OK if this is a blocking value" do
+    obs = Observation.make!
+    atr = make_controlled_term_with_label( nil, multivalued: true )
+    val = make_controlled_term_with_label( nil, is_value: true )
+    atr.controlled_term_values.create( controlled_value: val )
+    blocking_val = make_controlled_term_with_label( nil, is_value: true, blocking: true )
+    atr.controlled_term_values.create( controlled_value: blocking_val )
+    atr.reload
+    val.reload
+    blocking_val.reload
+    Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: val,
+      resource: obs,
+      term_taxon_mismatch: true
+    )
+    expect do
+      Annotation.make!(
+        controlled_attribute: atr,
+        controlled_value: blocking_val,
+        resource: obs
+      )
+    end.not_to raise_error
   end
 
   it "validates for multivalued term on update" do
@@ -183,6 +231,27 @@ describe Annotation do
         controlled_value: val2
       )
     end.to raise_error( ActiveRecord::RecordInvalid, /Controlled attribute cannot have multiple values/ )
+  end
+
+  it "allows multiple values when one is marked as term_taxon_mismatch" do
+    atr = make_controlled_term_with_label( nil, multivalued: false )
+    val1 = make_controlled_term_with_label( nil, is_value: true )
+    val2 = make_controlled_term_with_label( nil, is_value: true )
+    atr.controlled_term_values.create( controlled_value: val1 )
+    atr.controlled_term_values.create( controlled_value: val2 )
+    atr.reload
+    original = Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: val1,
+      term_taxon_mismatch: true
+    )
+    expect do
+      Annotation.make!(
+        resource: original.resource,
+        controlled_attribute: atr,
+        controlled_value: val2
+      )
+    end.not_to raise_error
   end
 
   it "does allow multiple values per attribute if specified" do
