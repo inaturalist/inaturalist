@@ -28,7 +28,7 @@ const HiddenContentMessage = ( {
     _.filter( item.moderator_actions, ma => ma.action === "hide" ),
     ma => ma.id * -1
   )[0];
-  const maUserLink = (
+  const maUserLink = moderatorAction.user ? (
     <a
       href={`/people/${moderatorAction.user.login}`}
       target="_blank"
@@ -36,7 +36,7 @@ const HiddenContentMessage = ( {
     >
       {`@${moderatorAction.user.login}`}
     </a>
-  );
+  ) : I18n.t( "deleted_user" );
   return (
     <OverlayTrigger
       key={`hidden-tooltip-${itemType}-${item[itemIDField]}`}

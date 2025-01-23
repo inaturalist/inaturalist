@@ -6,16 +6,14 @@ module HasModeratorActions
   end
 
   module ClassMethods
-    # rubocop:disable Naming/PredicateName
     def has_moderator_actions( accepted_actions = nil )
-      has_many :moderator_actions, as: :resource, dependent: :destroy
+      has_many :moderator_actions, as: :resource
       include HasModeratorActions::InstanceMethods
       return unless accepted_actions
 
       cattr_accessor :accepted_moderator_actions
       self.accepted_moderator_actions = accepted_actions
     end
-    # rubocop:enable Naming/PredicateName
   end
 
   module InstanceMethods
@@ -23,33 +21,36 @@ module HasModeratorActions
       moderator_actions.sort_by( &:id ).last.try( :action ) == ModeratorAction::HIDE
     end
 
-    def hideable_by?( u )
-      return false unless u
-      if self.is_a?( User )
-        return false if self === u
-      elsif self.user
-        return false if self.user === u
+    def hideable_by?( hiding_user )
+      return false unless hiding_user
+
+      if is_a?( User )
+        return false if self == hiding_user
+      elsif user
+        return false if user == hiding_user
       end
-      u.is_admin? || u.is_curator?
+      hiding_user.is_admin? || hiding_user.is_curator?
     end
 
-    def unhideable_by?( u )
-      return true if hideable_by?( u ) && u.is_admin?
+    def unhideable_by?( unhiding_user )
+      return true if hideable_by?( unhiding_user ) && unhiding_user.is_admin?
+
       false
     end
 
-    def hidden_content_viewable_by?( u )
-      return false unless u
-      return true if hideable_by?( u )
-      if self.is_a?( User )
-        return true if self == u
-      elsif self.user
-        return self.user === u
+    def hidden_content_viewable_by?( viewing_user )
+      return false unless viewing_user
+      return true if hideable_by?( viewing_user )
+
+      if is_a?( User )
+        return true if self == viewing_user
+      elsif user
+        return user == viewing_user
       end
+
       false
     end
   end
-
 end
 
 ActiveRecord::Base.include HasModeratorActions
