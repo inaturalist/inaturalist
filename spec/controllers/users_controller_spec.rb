@@ -370,7 +370,12 @@ describe UsersController, "moderation" do
     it "should work with a flag and ModeratorAction" do
       comment = create :comment, user: subject_user
       flag = create :flag, flaggable: comment
-      moderator_action = create :moderator_action, resource: comment, action: ModeratorAction::HIDE
+      moderator_action = create(
+        :moderator_action,
+        resource: comment,
+        action: ModeratorAction::HIDE,
+        user: make_curator
+      )
       get :moderation, params: { id: subject_user.login }
       expect( response.response_code ).to eq 200
       expect( assigns( :records ) ).to include flag
