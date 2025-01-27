@@ -32,7 +32,7 @@ const showModeratorActionForm = ( item, action ) => (
   }
 );
 
-const submitModeratorAction = ( item, action, reason ) => (
+const submitModeratorAction = ( item, action, reason, makePrivate = false ) => (
   function ( ) {
     const data = new FormData( );
     data.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
@@ -51,6 +51,9 @@ const submitModeratorAction = ( item, action, reason ) => (
     data.append( "moderator_action[resource_id]", item.id );
     data.append( "moderator_action[reason]", reason );
     data.append( "moderator_action[action]", action );
+    if ( makePrivate ) {
+      data.append( "moderator_action[private]", "true" );
+    }
     return fetch( "/moderator_actions.json", {
       method: "POST",
       body: data

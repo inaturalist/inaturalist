@@ -2578,7 +2578,8 @@ CREATE TABLE public.moderator_actions (
     action character varying,
     reason character varying,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    private boolean DEFAULT false
 );
 
 
@@ -11392,6 +11393,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240923134658'),
 ('20241127180606'),
 ('20241202092831'),
-('20241218164832');
+('20241218164832'),
+('20250124155306');
 
 

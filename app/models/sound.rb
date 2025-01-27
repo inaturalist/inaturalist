@@ -5,7 +5,10 @@ class Sound < ApplicationRecord
   has_many :observation_sounds, :dependent => :destroy
   has_many :observations, :through => :observation_sounds
 
-  has_moderator_actions %w(hide unhide)
+  has_moderator_actions [
+    ModeratorAction::HIDE,
+    ModeratorAction::UNHIDE
+  ]
 
   serialize :native_response
 

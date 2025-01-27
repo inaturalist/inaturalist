@@ -94,6 +94,27 @@ shared_examples_for "a PhotosController" do
       expect( json["errors"]["uuid"] ).to eq ["has already been taken"]
     end
   end
+
+  describe "hide" do
+    let( :photo ) { LocalPhoto.make! }
+    it "regular users cannot access the hide endpoint" do
+      sign_in User.make!
+      get :hide, params: { id: photo.id }
+      expect( response ).not_to be_successful
+    end
+
+    it "curators can access the hide endpoint" do
+      sign_in make_curator
+      get :hide, params: { id: photo.id }
+      expect( response ).to be_successful
+    end
+
+    it "admins can access the hide endpoint" do
+      sign_in make_admin
+      get :hide, params: { id: photo.id }
+      expect( response ).to be_successful
+    end
+  end
 end
 
 describe PhotosController, "oauth authentication" do

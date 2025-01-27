@@ -14,10 +14,15 @@ class ModeratorAction < ApplicationRecord
   MINIMUM_REASON_LENGTH = 10
   MAXIMUM_REASON_LENGTH = 2048
 
+  PRIVATE_MEDIA_RETENTION_TIME = 2.months
+
   belongs_to :user, inverse_of: :moderator_actions
   belongs_to :resource, polymorphic: true, inverse_of: :moderator_actions
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
+  validate :only_curators_and_staff_can_hide, on: :create
+  validate :only_staff_can_make_private
+  validate :only_hidden_content_can_be_private
   validate :only_staff_and_hiding_curator_can_unhide, on: :create
   validate :check_accepted_actions, on: :create
   validate :cannot_suspend_staff
@@ -26,16 +31,30 @@ class ModeratorAction < ApplicationRecord
   after_save :notify_resource
   after_destroy :notify_resource_on_destroy
 
-  def only_staff_and_hiding_curator_can_unhide
-    return unless user
-    return unless action == UNHIDE
-    return if user.is_admin?
+  def only_curators_and_staff_can_hide
+    return unless action == HIDE
+    return if user&.is_curator? || user&.is_admin?
 
-    most_recent_moderator_action_on_item = resource.moderator_actions.order( id: :desc ).first
-    # curators that were the most recent to hide the content can also unhide it
-    return if most_recent_moderator_action_on_item &&
-      most_recent_moderator_action_on_item.action == HIDE &&
-      most_recent_moderator_action_on_item.user_id == user.id
+    errors.add( :base, :only_staff_and_curators_can_hide )
+  end
+
+  def only_staff_can_make_private
+    return unless private?
+    return if user&.is_admin?
+
+    errors.add( :base, :only_staff_can_make_private )
+  end
+
+  def only_hidden_content_can_be_private
+    return unless private?
+    return if action == HIDE
+
+    errors.add( :base, :only_hidden_content_can_be_private )
+  end
+
+  def only_staff_and_hiding_curator_can_unhide
+    return unless action == UNHIDE
+    return if resource&.unhideable_by?( user )
 
     errors.add( :base, :only_staff_and_hiding_curators_can_unhide )
   end

@@ -156,14 +156,14 @@ class PhotoBrowser extends React.Component {
       } else if ( !photo.url ) {
         square = null;
       }
-      const latestModeratorAction = _.first(
+      const latestPhotoModeratorAction = _.first(
         _.orderBy( photo.moderator_actions || [], ["created_at", "desc"] )
       );
-      const currentUserIsHidingCurator = latestModeratorAction
-        && latestModeratorAction.action === "hide"
+      const currentUserIsPhotoHidingCurator = latestPhotoModeratorAction
+        && latestPhotoModeratorAction.action === "hide"
         && viewerIsCurator
-        && latestModeratorAction.user
-        && currentUser.id === latestModeratorAction.user.id;
+        && latestPhotoModeratorAction.user
+        && currentUser.id === latestPhotoModeratorAction.user.id;
       let description;
       if ( photo.id ) {
         description = (
@@ -184,11 +184,17 @@ class PhotoBrowser extends React.Component {
               </button>
               {
                 // observers never see the option to hide
-                // curators do if its unhidden or they were the one to hide the content
+                // curators do if its unhidden or they were the one to hide the content,
+                //   and the content is not set to private
                 // admins always see the option to hide
                 ( !this.viewerIsObserver && (
-                  ( !photo.hidden && viewerIsCurator )
-                  || ( photo.hidden && ( currentUserIsHidingCurator || viewerIsAdmin ) )
+                  viewerIsAdmin
+                  || ( !photo.hidden && viewerIsCurator )
+                  || (
+                    photo.hidden
+                    && currentUserIsPhotoHidingCurator
+                    && !latestPhotoModeratorAction?.private
+                  )
                 ) ) && (
                 <button
                   type="button"
@@ -229,7 +235,10 @@ class PhotoBrowser extends React.Component {
           description: (
             <div className="hidden-media">
               {overlay}
-              { ( viewerIsCurator || this.viewerIsObserver ) && (
+              { ( ( latestPhotoModeratorAction?.private && viewerIsAdmin )
+                || ( !latestPhotoModeratorAction?.private
+                  && ( viewerIsCurator || this.viewerIsObserver )
+                ) ) && (
                 <button
                   type="button"
                   className="btn btn-default btn-xs reveal-hidden"
@@ -263,6 +272,16 @@ class PhotoBrowser extends React.Component {
       }
       // extend sound to have a user property, but preserve its constructor type
       sound = new sound.constructor( { ...sound, user: observation.user } );
+
+      const latestSoundModeratorAction = _.first(
+        _.orderBy( sound.moderator_actions || [], ["created_at", "desc"] )
+      );
+      const currentUserIsSoundHidingCurator = latestSoundModeratorAction
+        && latestSoundModeratorAction.action === "hide"
+        && viewerIsCurator
+        && latestSoundModeratorAction.user
+        && currentUser.id === latestSoundModeratorAction.user.id;
+
       let player;
       let containerClass = "sound-container-local";
       let flagNotice;
@@ -288,14 +307,17 @@ class PhotoBrowser extends React.Component {
         player = (
           <div className="hidden-media">
             {overlay}
-            { ( viewerIsCurator || this.viewerIsObserver ) && (
-              <button
-                type="button"
-                className="btn btn-default btn-xs reveal-hidden"
-                onClick={( ) => revealHiddenContent( sound )}
-              >
-                { I18n.t( "show_hidden_content" ) }
-              </button>
+            { ( ( latestSoundModeratorAction?.private && viewerIsAdmin )
+                || ( !latestSoundModeratorAction?.private
+                  && ( viewerIsCurator || this.viewerIsObserver )
+                ) ) && (
+                <button
+                  type="button"
+                  className="btn btn-default btn-xs reveal-hidden"
+                  onClick={( ) => revealHiddenContent( sound )}
+                >
+                  { I18n.t( "show_hidden_content" ) }
+                </button>
             ) }
           </div>
         );
@@ -357,11 +379,20 @@ class PhotoBrowser extends React.Component {
                 >
                   <i className="fa fa-flag" />
                 </button>
-                { // observers never see hiding, curators do if its unhidden, admins always do
-                  ( !this.viewerIsObserver && (
-                    ( !sound.hidden && viewerIsCurator )
-                    || ( sound.hidden && viewerIsAdmin )
-                  ) ) && (
+                {
+                // observers never see the option to hide
+                // curators do if its unhidden or they were the one to hide the content,
+                //   and the content is not set to private
+                // admins always see the option to hide
+                ( !this.viewerIsObserver && (
+                  viewerIsAdmin
+                  || ( !sound.hidden && viewerIsCurator )
+                  || (
+                    sound.hidden
+                    && currentUserIsSoundHidingCurator
+                    && !latestSoundModeratorAction?.private
+                  )
+                ) ) && (
                   <button
                     type="button"
                     className="btn btn-nostyle"

@@ -9,30 +9,120 @@ describe ModeratorAction do
   it { is_expected.to validate_inclusion_of( :action ).in_array ModeratorAction::ACTIONS }
   it { is_expected.to validate_length_of( :reason ).is_at_least 10 }
 
+  let( :generic_reason ) { Faker::Lorem.sentence }
+
+  let( :admin ) { make_admin }
+  let( :curator ) { make_curator }
+
   describe "create" do
     describe "HIDE" do
       it "should be possible for a comment" do
         expect(
-          create( :moderator_action, action: ModeratorAction::HIDE, resource: create( :comment ) )
+          create( :moderator_action, action: ModeratorAction::HIDE,
+            resource: create( :comment ), user: admin )
         ).to be_persisted
       end
       it "should not be possible for a user" do
         expect(
-          build( :moderator_action, action: ModeratorAction::HIDE, resource: create( :user ) )
+          build( :moderator_action, action: ModeratorAction::HIDE,
+            resource: create( :user ), user: admin )
         ).not_to be_valid
+      end
+
+      shared_examples_for "hiding media" do
+        it "regular users cannot hide media" do
+          action = ModeratorAction.create(
+            action: ModeratorAction::HIDE,
+            resource: resource,
+            user: User.make!,
+            reason: generic_reason
+          )
+          expect( action ).not_to be_valid
+          expect( action.errors.any? do | e |
+            e.type == :only_staff_and_curators_can_hide
+          end ).to be true
+        end
+
+        it "curators and admins can hide media" do
+          action = ModeratorAction.create(
+            action: ModeratorAction::HIDE,
+            resource: resource,
+            user: curator,
+            reason: generic_reason
+          )
+          expect( action ).to be_valid
+          expect( resource.hidden? ).to eq true
+
+          action = ModeratorAction.create(
+            action: ModeratorAction::HIDE,
+            resource: resource,
+            user: admin,
+            reason: generic_reason
+          )
+          expect( action ).to be_valid
+          expect( resource.hidden? ).to eq true
+        end
+
+        it "admins can set media as private" do
+          action = ModeratorAction.create(
+            action: ModeratorAction::HIDE,
+            resource: resource,
+            user: admin,
+            reason: generic_reason,
+            private: true
+          )
+          expect( action ).to be_valid
+          expect( resource.moderated_as_private? ).to eq true
+        end
+
+        it "curators cannot set media as private" do
+          action = ModeratorAction.create(
+            action: ModeratorAction::HIDE,
+            resource: resource,
+            user: curator,
+            reason: generic_reason,
+            private: true
+          )
+          expect( action ).not_to be_valid
+          expect( action.errors.any? do | e |
+            e.type == :only_staff_can_make_private
+          end ).to be true
+        end
+
+        it "only hidden content can be set to private" do
+          action = ModeratorAction.create(
+            action: ModeratorAction::UNHIDE,
+            resource: resource,
+            user: admin,
+            reason: generic_reason,
+            private: true
+          )
+          expect( action ).not_to be_valid
+          expect( action.errors.any? do | e |
+            e.type == :only_hidden_content_can_be_private
+          end ).to be true
+        end
+      end
+
+      describe "Photos" do
+        let( :resource ) { Photo.make! }
+        it_behaves_like "hiding media"
+      end
+      describe "Sounds" do
+        let( :resource ) { Sound.make! }
+        it_behaves_like "hiding media"
       end
     end
 
     describe "UNHIDE" do
       it "admins can unhide" do
-        u = make_admin
         comment = Comment.make!
-        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
-          reason: "reason for hiding" )
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: admin,
+          reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be true
         unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
-          user: u, reason: "reson for unhiding" )
+          user: admin, reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be false
         expect( unhide_action.errors.any? do | e |
@@ -41,14 +131,13 @@ describe ModeratorAction do
       end
 
       it "normal users cannot unhide" do
-        u = make_admin
         comment = Comment.make!
-        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
-          reason: "reason for hiding" )
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: admin,
+          reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be true
         unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
-          user: User.make!, reason: "reson for unhiding" )
+          user: User.make!, reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be true
         expect( unhide_action.errors.any? do | e |
@@ -57,14 +146,13 @@ describe ModeratorAction do
       end
 
       it "curators who hid the content can unhide" do
-        u = make_curator
         comment = Comment.make!
-        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
-          reason: "reason for hiding" )
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: curator,
+          reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be true
         unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
-          user: u, reason: "reson for unhiding" )
+          user: curator, reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be false
         expect( unhide_action.errors.any? do | e |
@@ -73,14 +161,13 @@ describe ModeratorAction do
       end
 
       it "curators who didnt hide the content cannot unhide" do
-        u = make_curator
         comment = Comment.make!
-        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: u,
-          reason: "reason for hiding" )
+        ModeratorAction.create( action: ModeratorAction::HIDE, resource: comment, user: curator,
+          reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be true
         unhide_action = ModeratorAction.create( action: ModeratorAction::UNHIDE, resource: comment,
-          user: make_curator, reason: "reson for unhiding" )
+          user: make_curator, reason: generic_reason )
         comment.reload
         expect( comment.hidden? ).to be true
         expect( unhide_action.errors.any? do | e |
@@ -158,6 +245,47 @@ describe ModeratorAction do
         expect( u.spammer? ).to be false
         expect( u ).not_to be_suspended
       end
+    end
+  end
+
+  describe "persistence" do
+    shared_examples_for "media" do
+      let( :curator ) { make_curator }
+      let!( :action ) do
+        ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: resource,
+          user: curator,
+          reason: generic_reason
+        )
+      end
+      it "records persist after resources are destroyed" do
+        expect( resource.class.where( id: resource.id ).exists? ).to eq true
+        expect( ModeratorAction.where( resource: resource ).exists? ).to eq true
+        resource.destroy
+        expect( resource.class.where( id: resource.id ).exists? ).to eq false
+        expect( ModeratorAction.where( resource: resource ).exists? ).to eq true
+      end
+
+      it "records persist after moderating user is destroyed" do
+        expect( resource.class.where( id: resource.id ).exists? ).to eq true
+        expect( User.where( id: action.user_id ).exists? ).to eq true
+        expect( ModeratorAction.where( resource: resource ).exists? ).to eq true
+        action.user.destroy
+        expect( resource.class.where( id: resource.id ).exists? ).to eq true
+        expect( User.where( id: action.user_id ).exists? ).to eq false
+        expect( ModeratorAction.where( resource: resource ).exists? ).to eq true
+        expect( ModeratorAction.where( resource: resource ).first.user_id ).to eq action.user_id
+      end
+    end
+
+    describe "Photos" do
+      let( :resource ) { Photo.make! }
+      it_behaves_like "media"
+    end
+    describe "Sounds" do
+      let( :resource ) { Sound.make! }
+      it_behaves_like "media"
     end
   end
 end
