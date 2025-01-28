@@ -41,12 +41,8 @@ module HasModeratorActions
     end
 
     def unhideable_by?( unhiding_user )
-      return true if hideable_by?( unhiding_user ) && (
-        unhiding_user.is_admin? || (
-          most_recent_moderator_action&.action == ModeratorAction::HIDE &&
-          most_recent_moderator_action&.user_id == unhiding_user.id
-        )
-      )
+      return false unless hideable_by?( unhiding_user )
+      return true if ModeratorAction.unhideable_by?( self, unhiding_user )
 
       false
     end

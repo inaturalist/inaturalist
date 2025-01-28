@@ -49,6 +49,19 @@ class ModeratorAction < ApplicationRecord
     ModeratorAction.where( id: ids_of_active_moderated_private_resources, private: true )
   end
 
+  # Whether or not a resource can be unhidden by a given user
+  def self.unhideable_by?( resource, user )
+    return false unless user
+    return false unless resource
+    return true if user.is_admin?
+
+    most_recent_moderator_action_on_item = resource.most_recent_moderator_action
+    # curators that were the most recent to hide the content can also unhide it
+    most_recent_moderator_action_on_item &&
+      most_recent_moderator_action_on_item.action == HIDE &&
+      most_recent_moderator_action_on_item.user_id == user.id
+  end
+
   def only_curators_and_staff_can_hide
     return unless action == HIDE
     return if user&.is_curator? || user&.is_admin?
@@ -72,7 +85,7 @@ class ModeratorAction < ApplicationRecord
 
   def only_staff_and_hiding_curator_can_unhide
     return unless action == UNHIDE
-    return if resource&.unhideable_by?( user )
+    return if ModeratorAction.unhideable_by?( resource, user )
 
     errors.add( :base, :only_staff_and_hiding_curators_can_unhide )
   end
