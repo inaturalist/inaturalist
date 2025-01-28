@@ -26,16 +26,23 @@ class ModeratorAction < ApplicationRecord
   after_save :notify_resource
   after_destroy :notify_resource_on_destroy
 
-  def only_staff_and_hiding_curator_can_unhide
-    return unless user
-    return unless action == UNHIDE
-    return if user.is_admin?
+  # Whether or not a resource can be unhidden by a given user
+  def self.unhideable_by?( resource, user )
+    return false unless user
+    return false unless resource
+    return true if user.is_admin?
 
     most_recent_moderator_action_on_item = resource.moderator_actions.order( id: :desc ).first
     # curators that were the most recent to hide the content can also unhide it
-    return if most_recent_moderator_action_on_item &&
+    most_recent_moderator_action_on_item &&
       most_recent_moderator_action_on_item.action == HIDE &&
       most_recent_moderator_action_on_item.user_id == user.id
+  end
+
+  def only_staff_and_hiding_curator_can_unhide
+    return unless user
+    return unless action == UNHIDE
+    return if ModeratorAction.unhideable_by?( resource, user )
 
     errors.add( :base, :only_staff_and_hiding_curators_can_unhide )
   end

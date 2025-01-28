@@ -33,7 +33,8 @@ module HasModeratorActions
     end
 
     def unhideable_by?( unhiding_user )
-      return true if hideable_by?( unhiding_user ) && unhiding_user.is_admin?
+      return false unless hideable_by?( unhiding_user )
+      return true if ModeratorAction.unhideable_by?( self, unhiding_user )
 
       false
     end
