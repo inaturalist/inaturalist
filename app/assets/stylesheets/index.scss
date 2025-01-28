@@ -212,7 +212,6 @@ div.usericon {
   background-repeat: no-repeat;
   background-position: center;
 }
-.item_user .usericon { max-height: 42px; }
 img.mini.usericon {
   vertical-align: middle;
 }
@@ -2322,7 +2321,8 @@ $header-line-height: 34px;
           -ms-flex-align: start;
           align-items: flex-start;
           line-height: 1.4;
-          img {
+          img,
+          div.usericon {
             margin-right: 10px;
             max-width: 37px;
           }
