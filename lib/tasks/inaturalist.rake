@@ -89,18 +89,35 @@ namespace :inaturalist do
       where( "photos.id IS NULL" ).
       where( "(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago ).includes( :photo ).find_each do | dp |
+        6.months.ago, 1.month.ago ).includes( :photo ).find_each do | deleted_photo |
       begin
-        dp.remove_from_s3( s3_client: client )
+        deleted_photo.remove_from_s3( s3_client: client )
       rescue
         fails += 1
         break if fails >= 5
       end
     end
     # Delete user profile pics for users that were deleted over a month ago
-    DeletedUser.where( "created_at < ?", 1.month.ago ).each do | du |
+    DeletedUser.where( "created_at < ?", 1.month.ago ).each do | deleted_user |
       begin
-        User.remove_icon_from_s3( du.user_id )
+        User.remove_icon_from_s3( deleted_user.user_id )
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+    end
+
+    # Delete files associated with deleted private photos
+    ModeratorAction.current_private_actions.each do | moderator_action |
+      # the resource must have been deleted
+      next unless moderator_action.resource
+      next unless moderator_action.resource_type == "Photo"
+
+      deleted_photo = DeletedPhoto.where( photo_id: moderator_action.resource_id )
+      next unless deleted_photo.eligible_for_removal?
+
+      begin
+        deleted_photo.remove_from_s3( s3_client: client )
       rescue
         fails += 1
         break if fails >= 5
@@ -127,12 +144,7 @@ namespace :inaturalist do
 
   desc "Delete expired S3 sounds"
   task delete_expired_sounds: :environment do
-    S3_CONFIG = YAML.load_file( File.join( Rails.root, "config", "s3.yml" ) )
-    client = ::Aws::S3::Client.new(
-      access_key_id: S3_CONFIG["access_key_id"],
-      secret_access_key: S3_CONFIG["secret_access_key"],
-      region: CONFIG.s3_region
-    )
+    client = LocalPhoto.new.s3_client
 
     fails = 0
     DeletedSound.still_in_s3.
@@ -140,19 +152,32 @@ namespace :inaturalist do
       where( "sounds.id IS NULL" ).
       where( "(orphan=false AND deleted_sounds.created_at <= ?)
         OR (orphan=true AND deleted_sounds.created_at <= ?)",
-        6.months.ago, 1.month.ago ).select( :id, :sound_id ).find_each do | s |
-      next unless s.eligible_for_removal?
+        6.months.ago, 1.month.ago ).select( :id, :sound_id ).find_each do | deleted_sound |
+      begin
+        deleted_sound.remove_from_s3( s3_client: client )
+      rescue
+        fails += 1
+        break if fails >= 5
+      end
+    end
 
-      sounds = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{s.sound_id}." ).contents
-      if sounds.any?
-        pp sounds
-        begin
-          client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map {| s | { key: s.key } } } )
-          s.update( removed_from_s3: true )
-        rescue
-          fails += 1
-          break if fails >= 5
-        end
+    # Delete files associated with deleted private sounds
+    ModeratorAction.current_private_actions.each do | moderator_action |
+      # the resource must have been deleted
+      next unless moderator_action.resource
+      next unless moderator_action.resource_type == "Sound"
+
+      deleted_sound = DeletedSound.where( sound_id: moderator_action.resource_id )
+      next unless deleted_sound.eligible_for_removal?
+
+      sounds = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{deleted_sound.sound_id}." ).contents
+      next unless sounds.any?
+
+      begin
+        deleted_sound.remove_from_s3( s3_client: client )
+      rescue
+        fails += 1
+        break if fails >= 5
       end
     end
   end

@@ -28,4 +28,19 @@ class DeletedSound < ApplicationRecord
 
     true
   end
+
+  def remove_from_s3( options = {} )
+    return unless eligible_for_removal?
+
+    client = options[:s3_client] || LocalPhoto.new.s3_client
+    sounds = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{sound_id}." ).contents
+    if sounds.any?
+      puts "deleting sound #{sound_id} [#{sounds.size} files] from S3"
+      client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map {| s | { key: s.key } } } )
+      update( removed_from_s3: true )
+    else
+      update( removed_from_s3: true )
+      puts "#{sound_id} has no sounds in S3"
+    end
+  end
 end

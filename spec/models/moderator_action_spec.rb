@@ -246,6 +246,205 @@ describe ModeratorAction do
         expect( u ).not_to be_suspended
       end
     end
+
+    describe "set_resource_user_id" do
+      it "is set properly for Comments" do
+        comment = Comment.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: comment,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_user ).to eq comment.user
+      end
+
+      it "is set properly for Identifications" do
+        identification = Identification.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: identification,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_user ).to eq identification.user
+      end
+
+      it "is set properly for Photos" do
+        photo = LocalPhoto.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: photo,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_user ).to eq photo.user
+      end
+
+      it "is set properly for Sounds" do
+        sound = LocalSound.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: sound,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_user ).to eq sound.user
+      end
+
+      it "is set properly for Users" do
+        user = User.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::SUSPEND,
+          resource: user,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_user ).to eq user
+      end
+    end
+
+    describe "set_resource_content" do
+      it "is set properly for Comments" do
+        comment = Comment.make!( body: Faker::Lorem.paragraph )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: comment,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_content ).to eq comment.body
+      end
+
+      it "is set properly for Identifications" do
+        identification = Identification.make!( body: Faker::Lorem.paragraph )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: identification,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_content ).to eq identification.body
+      end
+
+      it "is set properly for Photos" do
+        photo = LocalPhoto.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: photo,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_content ).to be_nil
+      end
+
+      it "is set properly for Sounds" do
+        sound = LocalSound.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: sound,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_content ).to be_nil
+      end
+
+      it "is set properly for Users" do
+        user = User.make!( description: Faker::Lorem.paragraph )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::SUSPEND,
+          resource: user,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_content ).to eq user.description
+      end
+    end
+
+    describe "set_resource_parent" do
+      it "is set properly for Comments" do
+        observation = Observation.make!
+        comment = Comment.make!( parent: observation )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: comment,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to eq comment.parent
+      end
+
+      it "is set properly for Identifications" do
+        observation = Observation.make!
+        identification = Identification.make!( observation: observation )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: identification,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to eq identification.observation
+      end
+
+      it "is set properly for observation Photos" do
+        observation = Observation.make!
+        photo = LocalPhoto.make!( user: observation.user )
+        observation_photo = ObservationPhoto.make!( observation: observation, photo: photo )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: observation_photo.photo,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to eq observation_photo.observation
+      end
+
+      it "is set properly for taxon Photos" do
+        taxon_photo = TaxonPhoto.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: taxon_photo.photo,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to eq taxon_photo.taxon
+      end
+
+      it "is set properly for guide Photos" do
+        guide_photo = GuidePhoto.make!
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: guide_photo.photo,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to eq guide_photo.guide_taxon
+      end
+
+      it "is set properly for observation Sounds" do
+        observation = Observation.make!
+        sound = LocalSound.make!( user: observation.user )
+        observation_sound = ObservationSound.make!( observation: observation, sound: sound )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::HIDE,
+          resource: observation_sound.sound,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to eq observation_sound.observation
+      end
+
+      it "is set properly for Users" do
+        user = User.make!( description: Faker::Lorem.paragraph )
+        action = ModeratorAction.make!(
+          action: ModeratorAction::SUSPEND,
+          resource: user,
+          user: admin,
+          reason: generic_reason
+        )
+        expect( action.resource_parent ).to be_nil
+      end
+    end
   end
 
   describe "persistence" do

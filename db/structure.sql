@@ -2579,7 +2579,11 @@ CREATE TABLE public.moderator_actions (
     reason character varying,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    private boolean DEFAULT false
+    private boolean DEFAULT false,
+    resource_user_id integer,
+    resource_parent_id integer,
+    resource_parent_type character varying,
+    resource_content text
 );
 
 
@@ -11394,6 +11398,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241127180606'),
 ('20241202092831'),
 ('20241218164832'),
-('20250124155306');
+('20250124155306'),
+('20250127200519');
 
 

@@ -157,7 +157,7 @@ class PhotoBrowser extends React.Component {
         square = null;
       }
       const latestPhotoModeratorAction = _.first(
-        _.orderBy( photo.moderator_actions || [], ["created_at", "desc"] )
+        _.orderBy( photo.moderator_actions || [], "created_at", "desc" )
       );
       const currentUserIsPhotoHidingCurator = latestPhotoModeratorAction
         && latestPhotoModeratorAction.action === "hide"
@@ -179,6 +179,7 @@ class PhotoBrowser extends React.Component {
                   radioOptions: ["spam", "copyright infringement", "inappropriate"]
                 } )}
                 title={I18n.t( "flag_as_inappropriate" )}
+                label={I18n.t( "flag_as_inappropriate" )}
               >
                 <i className="fa fa-flag" />
               </button>
@@ -206,8 +207,30 @@ class PhotoBrowser extends React.Component {
                   title={photo.hidden
                     ? I18n.t( "unhide_content" )
                     : I18n.t( "hide_content" )}
+                  label={photo.hidden
+                    ? I18n.t( "unhide_content" )
+                    : I18n.t( "hide_content" )}
                 >
                   <i className={`fa ${photo.hidden ? "fa-eye" : "fa-eye-slash"}`} />
+                </button>
+                )
+              }
+              {
+                // admins see the option to hide content that is already
+                // hidden in case they need to mark it as private
+                ( !this.viewerIsObserver
+                  && viewerIsAdmin
+                  && photo.hidden
+                  && !latestPhotoModeratorAction?.private
+                ) && (
+                <button
+                  type="button"
+                  className="btn btn-nostyle"
+                  onClick={( ) => hideContent( photo )}
+                  title={I18n.t( "hide_content" )}
+                  label={I18n.t( "hide_content" )}
+                >
+                  <i className="fa fa-lock" />
                 </button>
                 )
               }
@@ -274,7 +297,7 @@ class PhotoBrowser extends React.Component {
       sound = new sound.constructor( { ...sound, user: observation.user } );
 
       const latestSoundModeratorAction = _.first(
-        _.orderBy( sound.moderator_actions || [], ["created_at", "desc"] )
+        _.orderBy( sound.moderator_actions || [], "created_at", "desc" )
       );
       const currentUserIsSoundHidingCurator = latestSoundModeratorAction
         && latestSoundModeratorAction.action === "hide"
@@ -376,6 +399,7 @@ class PhotoBrowser extends React.Component {
                     radioOptions: ["spam", "copyright infringement", "inappropriate"]
                   } )}
                   title={I18n.t( "flag_this_sound" )}
+                  label={I18n.t( "flag_this_sound" )}
                 >
                   <i className="fa fa-flag" />
                 </button>
@@ -403,8 +427,31 @@ class PhotoBrowser extends React.Component {
                     title={sound.hidden
                       ? I18n.t( "unhide_content" )
                       : I18n.t( "hide_content" )}
+                    label={sound.hidden
+                      ? I18n.t( "unhide_content" )
+                      : I18n.t( "hide_content" )}
                   >
                     <i className={`fa ${sound.hidden ? "fa-eye" : "fa-eye-slash"}`} />
+                  </button>
+                )
+                }
+                {
+                  // admins see the option to hide content that is already
+                  // hidden in case they need to mark it as private
+                  ( !this.viewerIsObserver
+                    && viewerIsAdmin
+                    && sound.hidden
+                    && !latestSoundModeratorAction?.private
+                  ) && (
+                  // eslint-disable-next-line jsx-a11y/control-has-associated-label
+                  <button
+                    type="button"
+                    className="btn btn-nostyle"
+                    onClick={( ) => hideContent( sound )}
+                    title={I18n.t( "hide_content" )}
+                    label={I18n.t( "hide_content" )}
+                  >
+                    <i className="fa fa-lock" />
                   </button>
                   )
                 }

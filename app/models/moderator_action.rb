@@ -18,6 +18,11 @@ class ModeratorAction < ApplicationRecord
 
   belongs_to :user, inverse_of: :moderator_actions
   belongs_to :resource, polymorphic: true, inverse_of: :moderator_actions
+  belongs_to :resource_parent, polymorphic: true
+  belongs_to :resource_user,
+    class_name: "User",
+    foreign_key: "resource_user_id",
+    inverse_of: :moderator_actions_as_resource_user
   validates :action, inclusion: ACTIONS
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
   validate :only_curators_and_staff_can_hide, on: :create
@@ -27,9 +32,22 @@ class ModeratorAction < ApplicationRecord
   validate :check_accepted_actions, on: :create
   validate :cannot_suspend_staff
 
+  before_create :set_resource_user_id
+  before_create :set_resource_content
+  before_create :set_resource_parent
+
   after_save :touch_resource
   after_save :notify_resource
   after_destroy :notify_resource_on_destroy
+
+  def self.current_private_actions
+    moderated_private_resource_ids = ModeratorAction.where( private: true ).pluck( :resource_id )
+    ids_of_active_moderated_private_resources = ModeratorAction.
+      select( "resource_id, MAX(id) as id" ).
+      where( resource_id: moderated_private_resource_ids ).
+      group( :resource_id ).select( &:id )
+    ModeratorAction.where( id: ids_of_active_moderated_private_resources, private: true )
+  end
 
   def only_curators_and_staff_can_hide
     return unless action == HIDE
@@ -100,5 +118,26 @@ class ModeratorAction < ApplicationRecord
     return unless resource.respond_to?( :moderated_with )
 
     resource.moderated_with( self, action: "destroyed" )
+  end
+
+  def set_resource_user_id
+    return unless resource
+
+    user = Flag.instance_user( resource )
+    return if user.blank?
+
+    self.resource_user_id = user.id
+  end
+
+  def set_resource_content
+    return unless resource
+
+    self.resource_content = Flag.instance_content( resource )
+  end
+
+  def set_resource_parent
+    return unless resource
+
+    self.resource_parent = Flag.instance_parent( resource )
   end
 end
