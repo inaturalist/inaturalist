@@ -5701,7 +5701,8 @@ CREATE TABLE public.users (
     data_transfer_consent_at timestamp without time zone,
     unconfirmed_email character varying,
     annotated_observations_count integer DEFAULT 0,
-    icon_path_version smallint DEFAULT 0 NOT NULL
+    icon_path_version smallint DEFAULT 0 NOT NULL,
+    canonical_email character varying(100)
 );
 
 
@@ -10604,6 +10605,13 @@ CREATE UNIQUE INDEX index_user_signups_on_user_id ON public.user_signups USING b
 
 
 --
+-- Name: index_users_on_canonical_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_canonical_email ON public.users USING btree (canonical_email);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11392,6 +11400,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240923134658'),
 ('20241127180606'),
 ('20241202092831'),
-('20241218164832');
+('20241218164832'),
+('20241217203007');
 
 

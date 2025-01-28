@@ -97,6 +97,17 @@ describe UserPrivilege do
         user.update( confirmed_at: nil )
         expect( UserPrivilege.earned_organizer?( user ) ).to be false
       end
+
+      it "organizer is earned after email is confirmed" do
+        user = User.make!( confirmed_at: nil )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be false
+        stub_verifiable_obs = double( "verifiable" )
+        expect( stub_verifiable_obs ).to receive( :limit ).and_return( ( 1..50 ).to_a )
+        expect( user.observations ).to receive( :verifiable ).and_return( stub_verifiable_obs )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be false
+        user.update( confirmed_at: Time.now )
+        expect( UserPrivilege.earned_organizer?( user ) ).to be true
+      end
     end
     describe "for identification" do
       it "should earn speech after 3 identifications for others" do
@@ -107,6 +118,25 @@ describe UserPrivilege do
         Delayed::Job.find_each( &:invoke_job )
         expect( user ).to be_privileged_with( :speech )
       end
+    end
+  end
+
+  describe "interaction" do
+    it "users do not have interaction privilege if email is not confirmed" do
+      expect( UserPrivilege.earned_interaction?( User.make!( confirmed_at: nil ) ) ).to be false
+    end
+
+    it "users have interaction privilege if email is confirmed" do
+      expect(
+        UserPrivilege.earned_interaction?( User.make!( confirmed_at: Time.now ) )
+      ).to be true
+    end
+
+    it "users earn interaction privilege when email is confirmed" do
+      user = User.make!( confirmed_at: nil )
+      expect( UserPrivilege.earned_interaction?( user ) ).to be false
+      user.update( confirmed_at: Time.now )
+      expect( UserPrivilege.earned_interaction?( user ) ).to be true
     end
   end
 
