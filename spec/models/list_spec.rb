@@ -74,4 +74,17 @@ describe List do
     end
   end
 
+  describe "legacy life list title" do
+    let(:list) { List.make!(title: "old_user_login's Life List") }
+    let(:localized_title) { I18n.t(:life_list, user: list.owner_name) }
+    it "should display the current list owner name in a legacy life list title" do
+      expect(list.title).to eq localized_title
+      list.title = "old_user_login's Life List of Animalia"
+      expect(list.title).to eq "#{localized_title} of Animalia"
+    end
+    it "should display an unaltered list title if the list is NOT a legacy life list" do
+      list.title = "this is a list title"
+      expect(list.title).to eq "this is a list title"
+    end
+  end
 end
