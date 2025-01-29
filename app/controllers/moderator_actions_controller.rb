@@ -4,7 +4,7 @@ class ModeratorActionsController < ApplicationController
   before_action :authenticate_user!
   before_action :curator_required, except: [:resource_url]
   before_action :load_record, only: [:resource_url]
-  before_action :curator_or_creator_required, only: [:resource_url]
+  before_action :resource_must_be_viewable_by_logged_in_user, only: [:resource_url]
 
   def create
     @moderator_action = ModeratorAction.new( approved_params )
@@ -86,14 +86,19 @@ class ModeratorActionsController < ApplicationController
       :reason,
       :action,
       :resource_type,
-      :resource_id
+      :resource_id,
+      :private
     )
   end
 
-  def curator_or_creator_required
+  def resource_must_be_viewable_by_logged_in_user
     return if @moderator_action.resource.hidden_content_viewable_by?( current_user )
 
-    msg = t( :only_curators_can_access_that_page )
+    msg = if @moderator_action.private?
+      t( :only_administrators_may_access_that_page )
+    else
+      t( :only_curators_can_access_that_page )
+    end
     respond_to do | format |
       format.html do
         flash[:error] = msg

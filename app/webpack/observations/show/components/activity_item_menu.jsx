@@ -37,7 +37,7 @@ const ActivityItemMenu = ( {
   const viewerIsAdmin = loggedInUser && loggedInUser.roles
     && loggedInUser.roles.indexOf( "admin" ) >= 0;
   const latestModeratorAction = _.first(
-    _.orderBy( item.moderator_actions || [], ["created_at", "desc"] )
+    _.orderBy( item.moderator_actions || [], "created_at", "desc" )
   );
   const currentUserIsHidingCurator = latestModeratorAction
     && latestModeratorAction.action === "hide"

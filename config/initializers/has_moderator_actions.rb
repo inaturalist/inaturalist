@@ -18,7 +18,15 @@ module HasModeratorActions
 
   module InstanceMethods
     def hidden?
-      moderator_actions.sort_by( &:id ).last.try( :action ) == ModeratorAction::HIDE
+      most_recent_moderator_action&.action == ModeratorAction::HIDE
+    end
+
+    def moderated_as_private?
+      hidden? && most_recent_moderator_action&.private?
+    end
+
+    def most_recent_moderator_action
+      moderator_actions.sort_by( &:id ).last
     end
 
     def hideable_by?( hiding_user )
@@ -41,6 +49,8 @@ module HasModeratorActions
 
     def hidden_content_viewable_by?( viewing_user )
       return false unless viewing_user
+      return false if most_recent_moderator_action&.private? &&
+        !viewing_user.is_admin?
       return true if hideable_by?( viewing_user )
 
       if is_a?( User )
