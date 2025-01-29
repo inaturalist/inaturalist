@@ -284,7 +284,7 @@
     .col-xs-3
       %p
         = link_to_user @display_user do
-          = user_image( @display_user, size: "large", class: "img-responsive center-block" )
+          = user_image( @display_user, size: "large", class: "img-responsive center-block", force_img: true )
       - if @display_user.active?
         = link_to "Suspend user", suspend_user_path(@display_user), class: "btn btn-block btn-warning"
       - else
