@@ -140,6 +140,19 @@ describe User do
       expect(u).to be_valid
     end
 
+    it "generates a canonical email" do
+      emails_with_shared_canonical = [
+        "test@gmail.com",
+        "T.e.sT@gmail.com",
+        "test+1@gmail.com",
+        "T.est+2@gmail.com",
+        "t..est+test2@gmail.com"
+      ]
+      emails_with_shared_canonical.each do | email |
+        expect( User.make!( email: email ).canonical_email ).to eq "test@gmail.com"
+      end
+    end
+
     it "should not allow time_zone to be a blank string" do
       expect( User.make!( time_zone: "" ).time_zone ).to be_nil
     end

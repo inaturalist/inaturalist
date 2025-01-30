@@ -275,6 +275,7 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_validation :set_canonical_email
   before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
@@ -293,6 +294,7 @@ class User < ApplicationRecord
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
+  after_update :check_privileges_if_confirmed
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -774,6 +776,12 @@ class User < ApplicationRecord
   def set_time_zone
     self.time_zone = nil if time_zone.blank?
     true
+  end
+
+  def set_canonical_email
+    return unless new_record? || email_changed?
+
+    self.canonical_email = EmailAddress.canonical( email )
   end
 
   def set_uri
@@ -1354,6 +1362,12 @@ class User < ApplicationRecord
     )
       Emailer.welcome( self ).deliver_now
     end
+  end
+
+  def check_privileges_if_confirmed
+    return unless saved_change_to_confirmed_at?
+
+    UserPrivilege.check( id, UserPrivilege::ORGANIZER )
   end
 
   def revoke_authorizations_after_password_change
