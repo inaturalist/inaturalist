@@ -19,9 +19,9 @@ zh-CN:
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span>个鉴定'
   #Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span>个鉴定者'
+    other: '<span class="count">%{count}</span>名鉴定者'
   x_ids_made_for_others_html:
     other: '为他人做出了<span class="count">%{count}</span>个鉴定'
   x_languages:
@@ -56,8 +56,8 @@ zh-CN:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
-  x_observers_html:
-    other: '<span class="count">%{count}</span>个观察者'
+  x_observers_caps_html:
+    other: '<span class="count">%{count}</span>名观察者'
   x_others:
     other: "%{count}个其他的"
   x_people:
@@ -1050,6 +1050,10 @@ zh-CN:
   content_and_display: 内容和显示
   content_author: 内容作者
   content_hidden: 内容已被隐藏
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    內容于 %{date} 隐藏，原因："%{reason}"
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     內容由 %{user} 于 %{date} 隐藏，原因："%{reason}"
   content_type: 内容类型
@@ -1753,10 +1757,16 @@ zh-CN:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 精密排名
   except: 除外
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: 排除
   exclude_places: 排除地点
   exclude_projects: 排除项目
   exclude_taxa: 排除的分类群
   exclude_users: 排除用户
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    other: 排除%{count}个分类单元
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
@@ -1976,6 +1986,9 @@ zh-CN:
   geoprivacy_is_private: 位置隐私为私有
   geoprivacy_is_private_desc: 观察者选择隐藏坐标。
   georeferenced: 有地理参考么？
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: 地理信息
   get_started: 开始
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: 入门
@@ -2067,6 +2080,9 @@ zh-CN:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隐藏“无批注”
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: 隐藏私密位置的观察
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隐藏运行总计
   hide_uncountable_species: 隐藏无法计数的物种
@@ -2183,12 +2199,22 @@ zh-CN:
   in_place_x: 在 %{place}
   #As in a reason to flag something
   inappropriate: 不适当的
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist 网络
   inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
   inbox: 收件箱
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: 包含
   include_places: 包含的地点
   include_projects: 包含的项目
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: 包括/排除祖先分类群
   include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
   include_suggestions_not_expected_nearby: 包括不在预料在附近范围内的建议
   include_taxa: 包含分类
@@ -2552,6 +2578,7 @@ zh-CN:
     lv: 拉脱维亚语
     mi: 毛利
     mk: 马其顿语
+    ml: 马拉雅拉姆语
     mr: 马拉地语
     nb: 挪威语(博克马尔语)
     nl: 荷兰语
@@ -2566,6 +2593,7 @@ zh-CN:
     sq: 阿尔巴尼亚语
     sr: 塞尔维亚
     sv: 瑞典语
+    ta: 泰米尔语
     th: 泰语
     tr: 土耳其语
     uk: 乌克兰语
@@ -3039,6 +3067,9 @@ zh-CN:
   not_confident: 我们没有足够的信心来提出建议。
   not_confident_top_suggestions: 我们没有足够的信心给出推荐鉴定，但这是我们的最佳建议
   not_covered_by_any_taxon_frameworks: 没有被任何分类单元所覆盖
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: 预料不在附近
   not_evaluated: 未评估
   not_findig_what_you_want: 找不到您想找的东西么？
   not_finding_place_you_want?: 找不到您想去的地点么？
@@ -4416,7 +4447,6 @@ zh-CN:
     must_be_verifiable: 必须可被验证
     must_be_wild: 必须是野生的
   running_total: 运行总计
-  said: 说
   satellite: 卫星
   save: 保存
   save_all: 保存全部
@@ -4606,6 +4636,8 @@ zh-CN:
     为了促进各自地区的研究和保护，网络成员可以得到iNaturalist所分享的数据。 它们有责任评估数据请求的有效性和适当性及其潜在后果； 也有责任以书面表态形式确保此种数据的安全性，不以任何方式公开。 或共享或超出原定目的地进行使用；他们会记录所有共享的实例以及相关的结果、结果或预期用途；并每年一次地向iNaturalist报告。
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}iNaturalist网络%{end_tag_network}是%{start_tag_global}全球iNaturalist社群%{end_tag_global}中的一系列本地化网站。
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    %{start_tag_network}iNaturalist网络%{end_tag_network}是为%{start_tag_global}全球iNaturalist社群%{end_tag_global}提供的一项本地化体验。
   sites_affiliation_overview_when_you_affiliate: |
     当您与 iNaturalist 网络成员关联时， 您的电子邮件地址和您已遮盖或设为私有的真实位置就会与网络成员共享。 这将让你的观察能更好地对对当地的保护工作产生价值。 如果您生活在或经常访问一个属于某网络成员的区域，鼓励您关联这一网络成员，以便于数据共享。
   sites_affiliation_overview_you_can_continue_html: |
@@ -4615,9 +4647,14 @@ zh-CN:
     为了支持用户使用 iNaturalist 平台，iNaturalist 已经与这些地区的组织达成了正式协议。
     <strong>如果您的组织有兴趣加入 iNaturalist 网络，您可以在%{start_tag_join}这里%{end_tag_join}了解更多细节。
     </strong>
+  sites_network_agreements2_html: |
+    为了支持用户使用 iNaturalist 平台，iNaturalist 已经与这些地区的组织达成了正式协议。至2024年，我们正在策划一项参与网络成员的简化版途径。<strong>如果您的组织有兴趣加入 iNaturalist 网络，您可以在%{start_tag_join}这里%{end_tag_join}了解更多细节。
+    </strong>
   sites_network_consists_of: "iNaturalist网络由以下几个组织组成："
   sites_network_inaturalist_network_collection: |
     iNaturalist 网络是与全球 iNaturalist 社区完全连接的本地化网站的集合。 网络站点由当地机构支持，促进当地使用并促进 iNaturist 数据的使用，以造福当地生物多样性。 他们可以获取其地理区域内的真实坐标，这些坐标会自动从公众视野中隐藏起来，以便更好地保护受威胁物种。
+  sites_network_inaturalist_network_collection2: |
+    iNaturalist 网络是与全球 iNaturalist 社区完全连接的一项本地化体验。 网络成员为当地机构，促进当地使用并促进 iNaturist 数据的使用，以造福当地生物多样性。 他们可以获取其地理区域内的真实坐标，这些坐标会自动从公众视野中隐藏起来，以便更好地保护受威胁物种。
   sites_network_your_username: |
     您的用户名和密码适用于所有iNaturalist Network的网站。 如果您选择加入一个网络站点， 支持每个站点的本地机构也可以访问您的电子邮件地址(仅与您进行有关站点活动的联系)和访问您在公开场合下选择隐藏或私有的真实坐标。
   some_agree: 部分同意
@@ -5445,6 +5482,7 @@ zh-CN:
   user_muted: 用户已禁言
   user_observed_on_on_date_in_place: |
     %{user}于%{date}在%{place}观察到一个
+  user_said_comment_html: <span class="meta">%{user}说，</span>“%{comment}”
   user_suggested_an_id: "%{user}提出了一个鉴定"
   user_trusts_this_project_for_none: 用户不信任该项目，因此不会向该项目展示隐藏坐标。
   user_trusts_this_project_for_any: |
@@ -5945,6 +5983,9 @@ zh-CN:
             <a href="%{url}">查阅社区指南</a>获得让iNaturalist持续成为一个友好并受欢迎的地方的提示。
           please_read_the_teachers_guide_html: |
             如果可以，请阅读我们的<a href="%{url}">教师指南</a>获得与学生使用%{site_name}的提示。
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            如果可以，请阅读我们的<a href="%{url}">教育者指南</a>以获得与学生使用%{site_name}的提示。
     donate:
       donate_short_desc: "立即捐款显示您的支持！"
       donate_desc_moore_html: |
@@ -6545,64 +6586,60 @@ zh-CN:
         data_quality_assessment_desc3_html: |
           出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确度、精度、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          数据质量评估是对于观察准确性的总结。所有观察均始于<strong>“非正式”</strong>等级，并在满足下列条件后可以达到<strong>“需鉴定”</strong>等级：
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: 观察<strong>包含日期</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: 观察<strong>是地理配准的</strong>（即具有纬度/经度坐标）
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: 观察 <strong>有照片或声音</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: 观察<strong>不是关于人类的</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: 在满足下列条件后，观察结果会变成 <strong>"研究等级"</strong>：
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name}<strong>社群同意鉴定到种或更低层级</strong>，即超过2/3的鉴定者同意的分类单元（如果社群投票决定社群分类单元不能被进一步改进了，那么可以回滚到亚科或更低层级）
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          如果上述条件未得到满足，或社群同意下列情况，则观察回滚到<strong>“非正式”</strong>等级：
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>日期、月份和/或年份看起来不准确</strong>（比如照片里有雪，但日期却是夏天；不考虑一天之内的时间）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>位置看起来不准确</strong>（例如大洋中的猴子，办公大楼中的河马，等）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>生物不是野生/归化的</strong> (例如被人类饲育或栽培的)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          观察<strong>没有呈现出关于有机体的证据</strong>，如拍摄不包括生物体的水体特征、岩石、地貌，等。
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          观察<strong>不呈现近期（约100年内）的生物体的证据</strong>（如化石；但足迹、粪便和枯叶是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          观察<strong>不是关于单一主体的证据</strong>（如关于四个无关生物体的四张照片；但有一张照片呈现观察主体的生境是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          观察不再需要鉴定<em>且</em>社群鉴定在科或更高层级
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          这一分类单元不是观察者鉴定的分类单元的祖先或子代，<em>且</em>该观察者已选择退出社群分类。
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          如果这还不够复杂，还会有系统自动进行表决的情况：
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          系统会投票认为一个观察并非野生/归化的，如果该物种所属的属或更低层级分类单元在当地最小的县/州/或国家地区范围内包括不少于10个其他的观察，且不少于80%的上述观察被标记为非野生/归化的。
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
         join_project_desc_html: |
           加入项目将使项目馆长能够查看项目中此观察或其他观察的隐藏坐标，并默认您同意该项目的<a href="%{url}" target="_blank">条款</a>。
-        quality_assessment_help3_html: |
-          <p>
-          数据质量评估是一项对观察的准确度的总结。所有的观察最初都被定为<strong>“非正式”</strong>级别，在满足以下条件时才会被定为<strong>“需要鉴定”</strong> 级别：
-          </p>
-
-          <ul>
-          <li>观察<strong>拥有日期</strong></li>
-          <li>观察<strong>存在地理参考性</strong>（即拥有经纬度坐标）</li>
-          <li>观察<strong>有图片或声音</strong></li>
-          <li>观察<strong>对象不是人类</strong></li>
-          </ul>
-          <p>
-          满足下列条件的观察会被定为<strong>“研究级别”</strong>：
-          </p>
-          <ul>
-          <li>
-          %{site_name} <strong>社群同意的物种或更低级别的鉴定</strong>，即当超过 2/3 的鉴定者同意某个分类单元时（如果社群投票认为社群分类单元无法再改进，则为亚科级鉴定或更低级别）
-          </li>
-          </ul>
-          <p>
-          如果上述条件不满足或社区同意下列情况，观察结果将恢复为<strong>“非正式”</strong>级别：
-          </p>
-          <ul>
-          <li>
-          <strong>地点似乎不准确</strong>（比如在大海正中央出现了猴子观察，在办公楼里出现河马观察等）
-          </li>
-          <li>
-          <strong>生物体不是野生/归化的</strong>（比如被人类所饲育或栽培的）
-          </li>
-          <li>
-          观察<strong>未呈现出生物体的存在证据</strong>，比如不包括生物体的关于水体、岩石、地形的图片等。
-          </li>
-          <li>
-          观察结果<strong>未提供该生物的近期（~100 年）证据</strong>（例如化石，但足迹、粪便和枯叶是可以的）
-          </li>
-          <li>
-          观察<strong>未呈现出对某一个特定对象的证据</strong>（如其包含四张涉及不同生物体的图片。有一张展现观察对象的生境的照片是允许的。）
-          </li>
-          <li>
-          观察不再需要鉴定，<em>且</em>社群鉴定处于科或科以上级别
-          </li>
-          <li>
-          观察者已选择退出社群鉴定，并且社群鉴定的分类单元不是与观察者鉴定相关联的分类单元的祖先或后代
-          </li>
-          </ul>
-          <p>
-          如果这还不够复杂的话，还有一些情况需要系统投票：
-          </p>
-          <ul>
-          <li>
-          如果在包含此观察结果的最小县、州或国家同等地点，有至少 10 个其他同属或更低属的观察结果，并且这些观察结果中有 80% 或更多被标记为非野生/非归化，则系统将投票判定该观察结果为非野生/非归化。
-          </li>
-          </ul>
         score_desc: "得分=累积计数/（累积计数+不一致计数+祖先意见分歧）"
         observation_flagged_notice_html: |
           此观察已被标记为垃圾邮件，不再公开显示。您可以看到它，因为您是创建者，或者您是站点馆长。如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。<a href="/observations/%{observation_id}/flags">管理标记</a>
@@ -6919,8 +6956,6 @@ zh-CN:
         data_visualizations: 数据可视化
         delete_project: 删除项目
         display_project_name: 显示项目名称
-        do_you_need_features_from_traditional: |
-          您是否需要传统项目中的功能，例如访问真实坐标，自定义观察字段或添加无法自动过滤的单个观察？
         do_you_need_features_from_traditional2: |
           您是否需要传统项目中的功能，如自定义观察字段或添加无法自动过滤的单个观察？
         duplicate_project: 复制项目
@@ -6982,10 +7017,11 @@ zh-CN:
         we_have_redesigned_projects: |
           我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞形项目，它们共享以下功能：
         welcome_to_projects: 欢迎来到项目！
-        you_can_learn_more_html: |
-          您可以在<a href="https://www.inaturalist.org/pages/managing-projects">这里</a>了解更多关于管理项目
-          或者在
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">我们的博客</a> 阅读项目的历史。
+        you_can_learn_more2_html: |
+          您可以在
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">这里</a>
+          了解更多关于管理项目的信息，或者在
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">我们的博客</a>阅读项目的历史。
         you_have_not_defined_any_observation_requirements: |
           您没有定义任何观察要求。确保选择一个或多个分类群（例如鸟、针叶树）、地点（例如巴西、黄石公园）、用户和/或日期以定义您希望包含在您的项目中的观察。
         errors:
@@ -7071,6 +7107,8 @@ zh-CN:
         avg_ttcid: 平均TTCID
         avg_ttid: 平均TTID
         identifiers_desc: 此日为其他人的观察添加了一个鉴定
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: 通过<a href="%{url}">iNatNext</a>创建
         iphone_desc_html: 通过<a href="%{url}">iNaturalist iPhone应用</a>创建
         med_ttcid: 中位数TTCID
         med_ttid: 中位数TTID
@@ -7091,6 +7129,8 @@ zh-CN:
         recent_w_0_obs_desc: 在此前7天内注册，并添加了0个观察
         recent_w_7_obs: 最近，不少于7个观察
         recent_w_7_obs_desc: 在此前7天内注册，并添加了不少于7个观察
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: 通过<a href="%{url}">Seek</a>创建
         time_to_id_desc: 鉴定所需的时间（小时，1周移动窗口）
         TTCID: 社群鉴定所需时间
         TTCID_desc: 从与社群分类单元匹配的其他人那里获得鉴定的时间。
@@ -7175,8 +7215,12 @@ zh-CN:
         translators_title: 翻译人员
         translators_desc: |
           你知不知道iNaturalist已经被翻译成了%{x_languages}，而这几乎完全是由%{x_people}翻译的，其中一些人甚至不使用iNat？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
+        translators_desc_2: |
+          你知不知道iNaturalist已经被翻译成了%{x_languages}，而这几乎完全是由%{x_people}翻译的，其中一些人甚至不使用iNat？这里是所有在今年做出了翻译贡献的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_desc_for_site: |
           你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
+        translators_desc_for_site_2: |
+          你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年添加了翻译的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_prompt: |
           如果您想要帮助翻译， %{link_tag}点此了解更多%{link_tag_end}。
         view_all_publications_count_caps2:
@@ -7731,13 +7775,13 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日 %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      compact: "%I:%M %p"
+      compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      observed_at: '%I:%M %p %Z'
+      observed_at: '%p %I:%M %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      hours: "%I:%M %p"
+      hours: "%p %l:%M"
     pm: 下午
   activerecord:
     models:
@@ -7785,6 +7829,8 @@ zh-CN:
       assessment_section:
         title: 标题
         body: 正文
+      blocked_ip:
+        ip: IP地址
       blocked_user:
         #The user who has been blocked
         blocked_user: 被屏蔽的用户
@@ -8092,6 +8138,10 @@ zh-CN:
             place_geometry:
               is_too_large_to_edit: 太大，无法编辑
               is_too_large_to_import: 太大了，不能导入
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: 太大或太复杂，不能在排定时间前处理
               contains_too_many_observations: 导入数据中包含了太多观察
               cannot_be_blank: 不能为空
               invalid_point: 有一个无效的点，例如：经度大于180°或纬度小于-90°
@@ -8180,6 +8230,10 @@ zh-CN:
             taxon:
               too_many_photos: |
                 不能有超过 %{max} 张照片
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                不能有未解决的标记
         taxon_range:
           attributes:
             iucn_relationship:

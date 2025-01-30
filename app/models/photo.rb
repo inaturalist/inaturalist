@@ -12,7 +12,10 @@ class Photo < ApplicationRecord
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
 
-  has_moderator_actions %w(hide unhide)
+  has_moderator_actions [
+    ModeratorAction::HIDE,
+    ModeratorAction::UNHIDE
+  ]
 
   attr_accessor :api_response, :orphan,
     :remote_original_url,
@@ -319,6 +322,9 @@ class Photo < ApplicationRecord
       o.update_mappable
       Observation.set_quality_grade( o.id )
       o.elastic_index!
+    end
+    if flags.any? {| f | !f.resolved? } && taxon_photos.any?
+      taxon_photos.each( &:destroy )
     end
     taxa.each( &:elastic_index! )
   end

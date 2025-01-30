@@ -1030,6 +1030,7 @@ time {
   .popover-data-quality-link {
     color: $bootstrap-link-color;
     cursor: pointer;
+    margin-inline-start: 5px;
     i {
       padding: 0px 2px;
     }

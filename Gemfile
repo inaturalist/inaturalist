@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby "~> 3.0.4"
 
-gem "rails", "6.1.7.8"
+gem "rails", "6.1.7.9"
 
 gem "actionpack-action_caching"
 gem "actionpack-page_caching"
@@ -47,6 +47,7 @@ gem "elasticsearch", "~> 8"
 gem "elasticsearch-api", "~> 8"
 gem "elasticsearch-model", "~> 8"
 gem "elasticsearch-rails", "8.0.0.pre"
+gem "email_address"
 gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem "exiftool_vendored" # Vendored version includes exiftool and exiftool gem
 gem "fastimage"

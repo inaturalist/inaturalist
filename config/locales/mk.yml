@@ -9,12 +9,6 @@ mk:
   x_identifications:
     one: '1 назнака'
     other: '%{count} назнаки'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> обележувач'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Препознавачи'
   x_languages:
     one: "%{count} јазик"
     other: "%{count} јазици"
@@ -50,9 +44,6 @@ mk:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> прегледано набљудување"
     other: "<span class='count'>%{count}</span> прегледани набљудувања"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Набљудувач'
-    other: '<span class="count">%{count}</span> Набљудувачи'
   x_others:
     one: "1 друг"
     other: "%{count} други"
@@ -1398,7 +1389,6 @@ mk:
   resolve: Реши
   rules_types:
     must_be_in: мора да биде во таксон
-  said: рече
   satellite: сателитска
   save: Зачувај
   save_all: Зачувај ги сите

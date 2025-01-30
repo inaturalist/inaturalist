@@ -43,7 +43,9 @@
     <% if !viewer_can_see_item -%>
       <span class="no-usericon" />
     <% elsif user && !no_thumb -%>
-      <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>
+      <%= link_to_user user do %>
+        <%= user_image user, size: "thumb" %>
+      <% end -%>
     <% end -%>
   </div>
   <div class="item_content last column">
@@ -72,8 +74,7 @@
               t(:deleted_user)
             end
           -%>
-          <span class="meta"><%= username %> <%= t :said %>,</span>
-          "<%= item.comment %>"
+          <%=t :user_said_comment_html, user: username, comment: item.comment %>
         <% end -%>
       </div>
     <% elsif item.is_a? ObservationFieldValue %>

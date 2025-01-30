@@ -31,6 +31,14 @@ class MapDetails extends React.Component {
     } );
   }
 
+  static sliceFloat( num ) {
+    if ( !num ) { return ""; }
+    const str = num.toString( );
+    const arr = str.split( "." );
+    if ( arr.length === 1 ) { return str; }
+    return `${arr[0]}.${arr[1].slice( 0, 5 )}`;
+  }
+
   constructor( ) {
     super( );
     this.state = {
@@ -166,8 +174,8 @@ class MapDetails extends React.Component {
             { " " }
             <span id="latlng" className="value">
               { hasCoords ? ( [
-                _.round( observation.latitude, 5 ),
-                _.round( observation.longitude, 5 )
+                MapDetails.sliceFloat( observation.latitude ),
+                MapDetails.sliceFloat( observation.longitude )
               ].join( ", " ) ) : ""}
             </span>
             { clipboardButton }

@@ -27,12 +27,6 @@ ca:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓ'
     other: '<span class="count">%{count}</span> IDENTIFICACIONS'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identificadors'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span>ID fetes per altri'
     other: '<span class="count">%{count}</span>IDs fetes per altri'
@@ -83,9 +77,6 @@ ca:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observació revisada"
     other: "<span class='count'>%{count}</span> observacions revisades"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadors'
   x_others:
     one: "1 altre"
     other: "%{count} més"
@@ -1086,6 +1077,7 @@ ca:
   content_and_display: Contingut i Presentació
   content_author: Autor del contingut
   content_hidden: Contingut amagat
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Contingut amagat per %{user} el %{date} per: %{reason}
   content_type: Tipus de contingut
@@ -4455,7 +4447,6 @@ ca:
     must_be_verifiable: ha de ser verificable
     must_be_wild: ha de ser silvestre
   running_total: Acumulat total
-  said: deia
   satellite: satèl·lit
   save: Desa
   save_all: Desa-ho tot
@@ -6443,58 +6434,6 @@ ca:
           Algunes d'aquestes fotos s'han marcat com a contingut inadequat o que infringeix copyrights. Per a més detalls, vegeu %{links}
         join_project_desc_html: |
           En unir-vos al projecte, els gestors poden veure les coordenades ocultes d'aquesta o altres observacions en el projecte, el que implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions del projecte</a>.
-        quality_assessment_help3_html: |
-          <p>
-          L'avaluació de la qualitat de les dades és un resum de la precisió d'una observació. Totes les observacions comencen com a nota <strong>"casual"</strong> i es converteixen en <strong>"necessita identificació"</strong> quan</p>
-
-          <ul>
-          <li>l'observació <strong>té data</strong></li>
-          <li>l'observació <strong>està georeferenciada</strong> (és a dir, té coordenades lat/lon)</li>
-          <li>l'observació <strong>té fotos o sons</strong></li>
-          <li>l'observació <strong>no és d'un ésser humà</strong></li>
-          </ul>
-          <p>
-          Les observacions es converteixen en <strong>"qualificació de recerca"</strong> quan
-          </p>
-          <ul>
-          <li>
-          la %{site_name} <strong>comunitat està d'acord amb un identificador a escala d'espècie o inferior</strong>, és a dir, quan més de 2/3 dels identificadors estan d'acord en un tàxon (si la comunitat ha votat que el tàxon comunitari ja no es pot millorar , això torna a l'identificador de nivell de subfamília o inferior)
-          </li>
-          </ul>
-          <p>
-          Les observacions tornaran a ser <strong>"casuals"</strong> si no es compleixen les condicions anteriors o la comunitat hi està d'acord
-          </p>
-          <ul>
-          <li>
-          la <strong>ubicació no sembla precisa</strong> (p. ex., micos al mig de l'oceà, hipopòtams a edificis d'oficines, etc.)
-          </li>
-          <li>
-          l'<strong>organisme no és salvatge/naturalitzat</strong> (per exemple, captiu o cultivat per humans)
-          </li>
-          <li>
-          l'observació <strong>no presenta proves d'un organisme</strong>, p. imatges d'elements d'aigua, roques, paisatges que no inclouen l'organisme, etc.
-          </li>
-          <li>
-          l'observació <strong>no presenta proves recents (~100 anys) de l'organisme</strong> (per exemple, fòssils, però les petjades, els excrements i les fulles mortes estan bé)
-          </li>
-          <li>
-          l'observació <strong>no presenta proves relacionades amb el mateix tema</strong> (p. ex., té quatre fotos d'organismes no relacionats. Una foto que mostri l'hàbitat del subjecte de l'observació està bé.)
-          </li>
-          <li>
-          l'observació ja no necessita un identificador <em>i</em> l'identificador de la comunitat és de la família o superior
-          </li>
-          <li>
-          l'observador ha desactivat l'identificador de comunitat i el tàxon d'identificació de comunitat no és un avantpassat o descendent del tàxon associat amb l'identificador de l'observador
-          </li>
-          </ul>
-          <p>
-          I per si això no fos prou complicat, també hi ha situacions en què el sistema obté un vot:
-          </p>
-          <ul>
-          <li>
-          El sistema votarà que l'observació no és salvatge/naturalitzada si hi ha almenys 10 observacions més d'un gènere o inferior al lloc més petit equivalent al comtat, estat o país que conté aquesta observació i el 80% o més d'aquestes observacions s'han marcat com a no salvatges/naturalitzades.
-          </li>
-          </ul>
         score_desc: "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
         observation_flagged_notice_html: |
           Aquesta observació ha estat marcada com a brossa 
@@ -6629,22 +6568,6 @@ ca:
           Hem inclòs enllaços que afecten les fotos següents.
       user_parent_confirmation:
         subject: El compte del vostre infant a iNaturalist s'ha activat
-        content_html: |
-          <p>
-          Gràcies per crear un compte a iNaturalist pel vostre infant! S'ha activat el compte. Aquests són els detalls que heu introduït que tenim en el nostre registre:
-          </p>
-          <ul>
-          <li><strong>Nom del Progenitor/a o Tutor/a Legal:</strong> %{parent_name}</li>
-          <li><strong>Correu electrònic del Progenitor/a o Tutor/a Legal:</strong> %{parent_email}</li>
-          <li><strong>Nom de l'infant:</strong> %{child_name}</li>
-          <li><strong>Dia de naixement de l'infant:</strong> %{child_birthday}</li>
-          <li><strong>Correu electrònic de l'infant:</strong> %{child_email}</li>
-          <li><strong>Nom d'usuari de l'infant:</strong> %{child_username}</li>
-          </ul>
-          <p>Si us plau accediu al compte del vostre infant, cerqueu l'App prement el botó d'iNaturalist en el menú i llavors "Entreu a iNaturalist" amb el botó a la pantalla.
-          </p>
-          <p>El vostre infant podrà incorporar observacions al seu compte d'iNaturalist utilitzant l'app de Cerca amb el que les podrà veure a iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           Heu estat inactiu a %{site_name} per molt de temps, així que hem suspès les vostres subscripcions. Per continuar rebent actualitzacions sobre l'activitat del lloc, si us plau
@@ -6819,8 +6742,6 @@ ca:
         data_visualizations: Visualitzacions de dades
         delete_project: Elimina Projecte
         display_project_name: Mostra nom del projecte
-        do_you_need_features_from_traditional: |
-          Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         do_you_need_features_from_traditional2: |
           Necessiteu característiques dels projectes tradicionals, com ara camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?
         duplicate_project: Duplica el projecte
@@ -6881,9 +6802,6 @@ ca:
         we_have_redesigned_projects: |
           Els projectes han estat redissenyats per incloure automàticament totes les observacions que coincideixen amb el lloc, tàxon, usuaris, qualitat i dates que definiu. Escolliu entre dos tipus principals: Projectes de Col·lecció i de Paraigua, que comparteixen les característiques següents:
         welcome_to_projects: benvinguts al Projects!
-        you_can_learn_more_html: |
-          Podeu aprendre més sobre la gestió de projectes <a href="https://www.inaturalist.org/pages/managing-projects">aquí</a> o llegir la història dels projectes al 
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nostre blog</a>.
         you_have_not_defined_any_observation_requirements: |
           No heu definit cap requeriment de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e. ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates per identificar les observacions que voleu incloure en el vostres projecte.
         errors:
@@ -7075,7 +6993,7 @@ ca:
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_desc_for_site: |
           Sabies que %{site_name} ha estat traduït gairebé en la seva totalitat per %{x_people}? Aquí tens tots els extraordinaris traductors que han afegit traduccions enguany, juntament amb el número de mots han traduït per al %{website_link_tag}lloc web%{link_tag_end}, les nostres Apps a %{iphone_link_tag}iPhone%{link_tag_end} i %{android_link_tag}Android%{link_tag_end}, i a %{seek_link_tag}Seek%{link_tag_end}. Pots veure
-          totes persones que han contribuït a les traduccions, incloent persones d'anys anteriors i companys de Translatewiki, als nostres repositoris de codi a la %{view_all_web_link_tag}web%{link_tag_end} i 
+          totes persones que han contribuït a les traduccions, incloent persones d'anys anteriors i companys de Translatewiki, als nostres repositoris de codi a la %{view_all_web_link_tag}web%{link_tag_end} i
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Si voleu ayudar a la traducció, %{link_tag}apreneu cóm fer-ho%{link_tag_end}.

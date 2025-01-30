@@ -27,12 +27,6 @@ eu:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFIKAZIOA'
     other: '<span class="count">%{count}</span> IDENTIFIKAZIOAK'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: 'Identifikatzaile <span class="count">%{count}</span>'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatzaile'
   x_languages:
     one: "hizkuntza %{count}"
     other: "%{count} hizkuntza"
@@ -971,6 +965,7 @@ eu:
   content_and_display: Edukia eta bistaratzea
   content_author: Edukiaren egilea
   content_hidden: Ezkutatutako edukia
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} erabiltzaileak %{date} datan arrazoi honengatik ezkutatu zuen edukia: "%{reason}"
   content_type: Eduki Mota
@@ -2295,7 +2290,6 @@ eu:
     must_be_on_list: zerrendan egon behar dute
     must_be_observed_in_place: toki honetako behaketak izan behar dute
     must_be_in: espezie edo taldearen barruan egon behar dute
-  said: zioen
   satellite: satelitea
   save: Gorde
   save_all: Guztia gorde
@@ -2891,8 +2885,6 @@ eu:
         collection_project_features: "Bilduma-proiektuen ezaugarriak:"
         custom_banner_icon_and_project_description: Banner pertsonalizatua, proiektuaren ikonoa eta deskribapena
         data_visualizations: Datuen bistaratzeak
-        do_you_need_features_from_traditional: |
-          Proiektu tradizionalen ezaugarriak behar ditu, adibidez, behaketa-eremu pertsonalizatuak, edo automatikoki iragazi ezin diren banakako oharrak gehitu?
         do_you_need_features_from_traditional2: |
           Proiektu tradizionalen ezaugarriak behar ditu, adibidez, behaketa-eremu pertsonalizatuak, edo automatikoki iragazi ezin diren banakako oharrak gehitu?
         leaderboards_among_individuals: <strong>Banakoen</strong> emaitza-taulak
@@ -2911,11 +2903,6 @@ eu:
         we_have_redesigned_projects: |
           Proiektuak zuk zehaztutako leku, taxon, erabiltzaile, kalitate eta datei dagozkien ohar guztiak automatikoki sartzeko diseinatuta daude. Aukeratu bi mota nagusiren artean: Bilduma-proiektuak eta Aterki-proiektuak, ezaugarri hauek dituztenak:
         welcome_to_projects: Ongi etorri proiektuetara!
-        you_can_learn_more_html: |
-          Proiektuak kudeatzeari buruz informazio gehiago jaso dezakezu
-          <a href="https://www.inaturalist.org/pages/managing-projects">hemen</a>
-          edo <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">gure blogean</a>
-          proiektuaren historiari buruz irakur dezakezu.
       project_user_curator_coordinate_access_labels:
         none: Ez.
     shared:

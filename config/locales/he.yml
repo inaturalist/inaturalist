@@ -45,16 +45,6 @@ he:
     two: '<span class="count">%{count}</span> זיהויים'
     many: '<span class="count">%{count}</span> זיהויים'
     other: '<span class="count">%{count}</span> זיהויים'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: 'מזהה <span class="count">%{count}</span>'
-    #Number of people who have added identifications
-    two: '<span class="count">%{count}</span> מזהות.ים'
-    #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> מזהות.ים'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> מזהות.ים'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> זיהוי נעשה עבור אחרים'
     two: '<span class="count">%{count}</span> זיהויים נעשו עבור אחרים'
@@ -137,11 +127,6 @@ he:
     two: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     many: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     other: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
-  x_observers_html:
-    one: 'מתצפת.ת <span class="count">%{count}</span>'
-    two: '<span class="count">%{count}</span> מתצפתות.ים'
-    many: '<span class="count">%{count}</span> מתצפתות.ים'
-    other: '<span class="count">%{count}</span> מתצפתות.ים'
   x_others:
     one: "אחר %{count}"
     two: "%{count} אחרים"
@@ -475,7 +460,7 @@ he:
   add_tags_to_selected_taxa: הוספת תגיות לטקסונים שנבחרו
   add_taxa: הוספת טקסונים
   add_taxon_batch_to: "הוספת טקסונים מרובים ל\"%{list}\""
-  add_taxon_range: הוספת מגוון טקסונים
+  add_taxon_range: הוספת תפוצת טקסון
   add_taxonomic_tags_to: "הוספת תגיות טקסונומיות לתמונות ה־Flickr שנבחרו &raquo;"
   add_to_a_scheme: הוספה לערכה
   add_to_a_project: הוספה לפרויקט
@@ -740,7 +725,7 @@ he:
   apply_fields: החלת שדות
   apply_geoprivacy: החלת פרטיות מיקום
   apply_darr: "החלה &darr;"
-  apply_establishment_means_to_descendant_places: "\"החלת אמצעים\" מתייחס למקומות צאצא"
+  apply_establishment_means_to_descendant_places: "להחיל דרכי התבססות על מקומות מקוננים"
   apply_these_settings_to_all: החלת ההגדרות האלה עבור כל התצפיות שלהלן.
   appropriate?: מתאים?
   arachnids: עכבישניים
@@ -795,7 +780,7 @@ he:
     האם את/ה בטוח/ה שברצונך למחוק טקסון זה? קיימות תצפיות עבורו.
   are_you_sure_want_delete_taxon_link: האם ברצונך למחוק את הקישור של הטקסון הזה?
   are_you_sure_want_delete_this_name: האם ברצונך למחוק את השם הזה?
-  are_you_sure_want_delete_this_range: האם ברצונך למחוק את המגוון הזה?
+  are_you_sure_want_delete_this_range: האם ברצונך למחוק את תפוצה זו?
   are_you_sure_you_want_to_commit_this_change: האם ברצונך לבצע את השינוי הזה? לא ניתן לבטל אותו.
   are_you_sure_you_want_to_delete_this: האם ברצונך למחוק את זה?
   are_you_sure_you_want_to_delete_this_assessment?: האם ברצונך למחוק את האומדן הזה?
@@ -1050,9 +1035,9 @@ he:
   check_list_for_individual_taxa_that: 'רשימות בדיקה של טקסונים ייחודים שחיים במקום הזה, למשל "עופות של %{place}".'
   check_list_for_taxon_html: "רשימת מינים של %{taxon}"
   check_lists_must_belong_to_a_place: |
-    רשימות בדיקה חייבות להיות שייכות למקום. כדי ליצור רשימת בדיקה חדשה, יש להיכנס לרשימת ברירת המחדל של המקום הרצוי ולאחר מכן ללחוץ על הקישור "יצירת רשימת בדיקה חדשה".
-  check_list_place: "רשימת בדיקה %{place}"
-  check_list_updated: רשימת הבדיקה עודכנה!
+    רשימות מינים חייבות להיות שייכות למקום. כדי ליצור רשימת מינים חדשה, יש להיכנס לרשימת ברירת המחדל של המקום הרצוי ולאחר מכן ללחוץ על הקישור "יצירת רשימת מינים חדשה".
+  check_list_place: "רשימת המינים של %{place}"
+  check_list_updated: רשימת המינים עודכנה!
   check_lists_for: "רשימות בדיקה אחרות של %{place}"
   check_out_the_inat_store: בקרו בחנות של iNaturalist
   check_out_what_the_observation: בִדקו כיצד נראית התצפית שאתם מנסים לזהות.
@@ -1115,18 +1100,18 @@ he:
   comments_on_my_observations: תגובות על התצפיות שלי
   commercial_solicitation: פרסומת מסחרית, קישורים לא תקינים, וכו'
   #Second person verb to commit a taxon change, i.e. the change has been executed
-  commit: אישור הגשה
+  commit: ביצוע
   #Adjective describing a taxon change that has been committed
   committed: בוצע
-  committed_by_user_on_date_html: אושר על ידי %{user} בתאריך %{date}
+  committed_by_user_on_date_html: בוצע על ידי %{user} בתאריך %{date}
   #Label for date the taxon change was committed
-  committed_on: הועלה ב %{date}
-  committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון מאושרים
+  committed_on: בוצע בתאריך %{date}
+  committed_taxon_changes_cannot_be_deleted: לא ניתן למחוק שינויי טקסון שבוצעו
   #Status message while a taxon change is being committed
   committing: מבצע...
   #disagreements are identifications that disagree with previous identifications on the same observation
   #committing refers to committing a taxon swap
-  committing_this_swap_may_result: אישור עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
+  committing_this_swap_may_result: ביצוע עלול להביא לחילוקי דעות לא מכוונים. נא לנתח אותם קודם, מה שיכול לקחת זמן מה.
   common_name: שם עממי
   community: קהילה
   community_curated: נאצר על ידי הקהילה
@@ -1215,6 +1200,7 @@ he:
   content_and_display: תוכן ותצוגה
   content_author: יוצרי התוכן
   content_hidden: תוכן מוסתר
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     תוכן הוסתר על ידי %{user} בתאריך %{date} בגלל: "%{reason}"
   content_type: סוג התוכן
@@ -1486,7 +1472,7 @@ he:
   #complete taxa; part of a list of things curators can do, so you might
   #imagine it is preceded with "Curators cannot..."
   curator_application_what_curators_cannot_do_commit_complete_html: |
-    לאשר שינויי טקסון עבור <a href="/pages/curator+guide#completetaxa"
+    לבצע שינויי טקסון עבור <a href="/pages/curator+guide#completetaxa"
     target="_blank">טקסונים שלמים</a>.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
@@ -1620,7 +1606,7 @@ he:
   delete_photo: מחיקת תמונה
   delete_project: מחיקת פרויקט
   #Label for a button to delete a taxon range
-  delete_range: למחוק תפוצה
+  delete_range: מחיקת תפוצה
   delete_selected: מחיקת בחירה
   delete_taxon_and_merge_most_data_html: |
     למחוק את <i>%{taxon}</i> ולאחד את רוב הנתונים שלו לתוך טקסון אחר. יש להשתמש בכלי זה עבור <strong>מחיקת טקסונים משוכפלים</strong>. אם ברצונך להוציא שם נרדף מיושן, נא ליצור החלפת טקסון. <strong>זהירות!</strong> מחיקת טקסונים יכולה להיות הרסנית ביותר. יש לעיין <a href="%{curator_url}">במדריך לאוצר.ת</a> למידע נוסף.
@@ -1645,7 +1631,7 @@ he:
   destination: יעד
   destroy: השמד
   details: פרטים
-  deviation: סטייה
+  deviation: חריגה
   devise:
     confirmations:
       confirmed: |
@@ -1766,8 +1752,8 @@ he:
   download_kml: הורד KML
   downstream_coverage_rank: 'דרגת כיסוי במורד העץ הטקסונומי:'
   downstream_coverage_colon_rank: "כיסוי במורד העץ הטקסונומי: דרגת %{rank}"
-  downstream_deviations: סטיות במורד העץ
-  downstream_deviations_for_taxon: "סטיות במורד העץ עבור %{taxon}"
+  downstream_deviations: חריגות במורד העץ
+  downstream_deviations_for_taxon: "חריגות במורד העץ עבור %{taxon}"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: טקסונים מסומנים במורד העץ הטקסונומי
@@ -1823,7 +1809,7 @@ he:
   edit_taxon: עריכת טקסון
   edit_taxon_framework: עריכת מסגרת טקסון
   edit_taxon_link: ערכית קישור לטקסון
-  edit_taxon_range: עריכת תחום תפוצה של טקסון
+  edit_taxon_range: עריכת תפוצת טקסון
   edit_the_observation: עריכת תצפית
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     יש לערוך טקסון זה לאחר יצירה כדי להוסיף סטטוסי שימור
@@ -2141,6 +2127,9 @@ he:
   geoprivacy_is_private: מיקום פרטי הוא פרטי
   geoprivacy_is_private_desc: הצופה בחר להסתיר מיקום.
   georeferenced: ממוקם במרחב?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: גאומרחבי
   get_started: להתחיל
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: הכנה להתחיל
@@ -2717,6 +2706,7 @@ he:
     lv: לטבית
     mi: מאורית
     mk: מקדונית
+    ml: מאלאיאלמית
     mr: מארטית
     nb: נורווגית - בוקמאל
     nl: הולנדית
@@ -2731,6 +2721,7 @@ he:
     sq: אלבנית
     sr: סרבית
     sv: שוודית
+    ta: טמילית
     th: תאילנדית
     tr: טורקית
     uk: אוקראינית
@@ -3206,6 +3197,9 @@ he:
   not_confident: אין לנו מספיק וודאות כדי לתת המלצה.
   not_confident_top_suggestions: אין לנו מספיק וודאות כדי לתת המלצה, אבל הנה ההצעות הנבחרות שלנו
   not_covered_by_any_taxon_frameworks: לא מכוסה על ידי אף מסגרת טקסון
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: לא צפוי בסביבה
   not_evaluated: טרם הוערך
   not_findig_what_you_want: לא מצאת את מה שחיפשת?
   not_finding_place_you_want?: לא מצאת את המקום שחיפשת?
@@ -4565,7 +4559,6 @@ he:
     must_be_verifiable: חייב להיות בר-אימות
     must_be_wild: חייב להיות בר
   running_total: סך הכל
-  said: נאמר
   satellite: לוויין
   save: שמירה
   save_all: לשמור הכול
@@ -5051,7 +5044,7 @@ he:
   taxon_assessments_are: |
     הערכות טקסון הן מסמכים המעריכים את הסטטוס הנוכחי של מין, לרוב סטטוס שימור. למשל, ארגון שמירת טבע מקומי עשוי להשתמש בהן לסידור מידע ולבקש פידבק אודות הסטטוסים של טקסונים מרובים בסיכון באזור.
   taxon_change_commit_may_still_be_processing: |
-    אישור שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
+    ביצוע שינוי הטקסון עשוי להיות עדיין בעיבוד, נא לשים לב שישנם רישומים שטרם עודכנו
   taxon_change_must_be_committed_to_update_records: שינוי טקסון חייב להיות מאושר כדי לעדכן רישומים
   taxon_change_title_taxon_drop: שחרור טקסונומי %{id}
   taxon_change_title_taxon_merge: איחוד טקסונומי %{id}
@@ -5081,7 +5074,7 @@ he:
   taxon_framework_notes: הערות על מסגרת הטקסון
   taxon_framework_relationship: יחס מסגרות טקסון
   taxon_framework_relationship_number: "יחס מסגרות טקסון %{number}"
-  taxon_framework_relationship_unknown_count_html: "מונה קשרים לא ידועים: %{count}"
+  taxon_framework_relationship_unknown_count_html: "ספירת קשרים לא ידועים: %{count}"
   taxon_framework_relationships: יחסי מסגרת טקסון
   taxon_framework_taxon: טקסון של מסגרת הטקסון
   taxon_history_notice: היסטוריה התווספה בפברואר 2022, לכן נתוני היסטוריה אינם זמינים לפני מועד זה.
@@ -5471,7 +5464,7 @@ he:
   unclassified: לא מסווג
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: להבין פרויקטים
-  ungrafted_taxa: טקסונים שלא הורכבו
+  ungrafted_taxa: טקסונים לא מורכבים
   unhide_content: ביטול הסתרת תוכן
   unhide_desc: |
     ביטול ההסתרה יגלה את תוכן זה בפני כולן.ם. אוצרות ואוצרים עדיין יוכלו לבחור להסתיר אותו שוב בעתיד.
@@ -5857,8 +5850,8 @@ he:
   where_were_you?: היכן היית?
   which_projects_can_add_your_observations?: אילו פרויקטים בסיסיים יכולים להוסיף את התצפיות שלך?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
-  why_are_you_making_this_change_optional: מדוע החלטת על שינוי זה? (אופציונאלי)
-  why_are_you_making_this_change_cite_source_required: מדוע את.ה מבצע.ת את השינוי הזה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
+  why_are_you_making_this_change_optional: למה החלטת לבצע שינוי זה? (אופציונאלי)
+  why_are_you_making_this_change_cite_source_required: למה החלטת לבצע שינוי זה? נא להסביר, תוך ציטוט מקור אם אפשר. (חובה)
   why_you_can_see_the_coordinates: למה את.ה יכול.ה לראות את הקואורדינטות
   who_can_add_observation_fields_to_my_obs: מי יכול.ה להוסיף שדות תצפית לתצפיות שלי?
   who_can_add_observations_to_this_project?: מי יכולים להוסיף תצפיות לפרוייקט?
@@ -6883,24 +6876,6 @@ he:
           כללנו קישורים לתמונות המושפעות למטה.
       user_parent_confirmation:
         subject: הופעל חשבון ה-iNaturalist של הילד.ה שלך
-        content_html: |
-          <p>
-          תודה שיצרת חשבון iNaturalist עבור הילד.ה שלך! החשבון הופעל. הנה הפרטים שהכנסת כפי שמופיעים אצלנו:
-          </p>
-          <ul>
-          <li><strong>שם הורה או אפוטרופוס:</strong> %{parent_name}</li>
-          <li><strong>דוא"ל הורה או אפוטרופוס:</strong> %{parent_email}</li>
-          <li><strong>שם הילד.ה:</strong> %{child_name}</li>
-          <li><strong>יום הולדת הילד.ה:</strong> %{child_birthday}</li>
-          <li><strong>דוא"ל הילד.ה:</strong> %{child_email}</li>
-          <li><strong>שם המשתמש של חשבון הילד.ה:</strong> %{child_username}</li>
-          </ul>
-          <p>
-          נא להיכנס לחשבון מאפליקציית Seek של הילד.ה שלך באמצעות לחיצה על כפתור "iNaturalist" בתפריט ואחר כך "התחברות באמצעות iNaturalist" בתחתית המסך.
-          </p>
-          <p>
-          זה יאפשר לילד.ה שלך להעלות תצפיות לחשבון iNaturalist באמצעות אפליקציית Seek כדי שייראו באתר iNaturalist.org.
-          </p>
       users_updates_suspended:
         message: |
           לא נרשמה פעילות שלך ב-%{site_name} מזה זמן רב, אז השהינו את המנויים שלך. על מנת לחזור לקבל עדכונים על פעילות האתר, נא <a href="%{login_url}">להיכנס אל החשבון שלך</a> שוב.
@@ -7072,8 +7047,6 @@ he:
         data_visualizations: החזיית מידע (ויזואליזציה של הנתונים)
         delete_project: מחיקת פרויקט
         display_project_name: מחיקת שם הפרויקט
-        do_you_need_features_from_traditional: |
-          האם את.ה צריכ.ה מאפיינים מפרויקטים בסיסיים כגון גישה לקואורדינטות אמיתיות, שדות תצפית מותאמים אישית, או הוספת תצפיות בודדות שלא ניתנות לסינון אוטומטי?
         do_you_need_features_from_traditional2: |
           האם את.ה צריכ.ה מאפיינים מפרויקטים בסיסיים כגון שדות תצפית מותאמים אישית, או הוספת תצפיות בודדות שלא ניתנות לסינון אוטומטי?
         duplicate_project: שכפול פרויקט
@@ -7133,9 +7106,6 @@ he:
         we_have_redesigned_projects: |
           פרויקטים בנויים להכיל באופן אוטומטי את כל התצפיות שמתאימות למקומות, טקסונים, שמות משתמשים.ות, איכות ותאריכים שהגדרת. ניתן לבחור בין שני סוגים עיקריים: פרויקט אוסף ופרויקט מטריה, שחולקים את המאפיינים הבאים:
         welcome_to_projects: ברוכות.ים הבאות.ים לפרויקטים!
-        you_can_learn_more_html: |
-          ניתן ללמוד עוד אודות ניהול פרויקטים <a href="https://www.inaturalist.org/pages/managing-projects">כאן</a>
-          או לקרוא על ההיסטוריה של פרויקטים ב<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">בלוג שלנו</a>.
         you_have_not_defined_any_observation_requirements: |
           לא הגדרת דרישות תצפיות. יש לוודא שסימנת טקסון אחד או יותר (למשל עופות, עצי מחט), מקומות (למשל ברזיל, ילוסטון), יוזרים, ו/או תאריכים כדי להגדיר את התצפיות שאת.ה שרוצה לכלול בפרויקט שלך.
         errors:

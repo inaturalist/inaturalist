@@ -24,12 +24,6 @@ fil:
   x_identifications_:
     one: '%{count} Pagtukoy'
     other: '%{count} (na) Pagtukoy'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Palatandaan'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> (na) Palatandaan'
   x_languages:
     one: "%{count} wika"
     other: "%{count} (na) wika"

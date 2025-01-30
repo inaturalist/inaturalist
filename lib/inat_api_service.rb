@@ -62,6 +62,7 @@ module INatAPIService
     "not_matching_project_rules_for",
     "not_user_id",
     "oauth_application_id",
+    "obscuration",
     "observation_accuracy_experiment_id",
     "on",
     "opacity",
@@ -113,6 +114,7 @@ module INatAPIService
     "without_field",
     "without_ident_user_id",
     "without_taxon_id",
+    "without_term_id",
     "without_term_value_id",
     "year"
   ].freeze

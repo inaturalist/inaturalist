@@ -1,0 +1,13 @@
+inherit_from: ../../.rubocop.yml
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/TernaryParentheses:
+  Enabled: false
+
+Style/NumericPredicate:
+  EnforcedStyle: comparison
+
+Style/DoubleNegation:
+  Enabled: false

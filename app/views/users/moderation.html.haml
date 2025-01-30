@@ -76,7 +76,12 @@
               = link_to t(:edit), edit_moderator_note_path( record ), class: "btn btn-sm btn-default"
               = link_to t(:delete), moderator_note_path( record ), method: :delete, data: { confirm: t(:are_you_sure?) }, class: "btn btn-sm btn-danger"
           - elsif record.is_a?( ModeratorAction )
-            = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
+            - if record.resource
+              = link_to t(:view), record.resource, class: "btn btn-sm btn-link"
+            - elsif record.resource_parent
+              = link_to t(:view), record.resource_parent, class: "btn btn-sm btn-link"
+            - else
+              = t :removed
           - else
             = link_to t(:view), record, class: "btn btn-sm btn-link"
 

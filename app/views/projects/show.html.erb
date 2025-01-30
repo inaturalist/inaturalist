@@ -246,10 +246,13 @@
       <div class="inner">
         <div class="stacked clear">
           <% for project_user in @project_users %>
-            <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-              project_show_contributor_path(@project, project_user.user.login),
-              :alt => h(project_user.user.login),
-              :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+            <%= link_to project_user.user do %>
+              <%= user_image project_user.user,
+                size: "thumb",
+                alt: h(project_user.user.login),
+                title: "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}"
+              %>
+            <% end -%>
           <% end %>
         </div>
         <%= link_to t(:view_all_members), project_members_path(@project), :class => "readmore" %>

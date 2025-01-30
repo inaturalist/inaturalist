@@ -6,102 +6,97 @@ class CohortLifecycle < ApplicationRecord
   validates :user_id, presence: true
 
   def self.process_cohort
-    current_day = Time.now.utc.end_of_day
-    window_start = current_day - 7.days
-    current_days_to_iterate = ( window_start.to_date..current_day.to_date ).map( &:to_s )
-    raw_cohort_data = CohortLifecycle.where( cohort: current_days_to_iterate )
+    generate_stats_for_date( Time.now.utc.to_date )
+  end
 
-    cohort_data = prepare_cohort_data( raw_cohort_data )
-    cohorts = cohort_data.keys.uniq
+  def self.generate_stats_for_date( end_date = Time.now.utc.to_date )
+    start_date = end_date - 7.days
+    # this ends up being a span of 8 days - the end date and the previous 7 days
+    days_to_iterate = ( start_date..end_date ).map( &:to_s )
+    # fetch all lifecycles from these dates
+    cohort_lifecycles = CohortLifecycle.where( cohort: days_to_iterate )
+    # group them by date and user
+    grouped_cohort_data = group_cohort_lifecycles_by_cohort_and_user_id( cohort_lifecycles )
 
-    process_days( cohorts, current_day, window_start, cohort_data )
+    process_days( end_date, start_date, grouped_cohort_data )
 
-    start_date = current_day - 1.day
-    active_users = SegmentationStatistic.
-      generate_segmentation_data_for_interval( start_date, current_day, use_database: true )
+    active_users = SegmentationStatistic.generate_segmentation_data_for_interval(
+      end_date - 1.day,
+      end_date,
+      use_database: true
+    )
 
-    process_current_day( active_users, current_day, cohort_data )
-    process_retention( active_users, cohort_data, current_day )
-    observation_array = process_interventions( current_day, cohort_data )
-    save_cohort_data( cohort_data )
+    process_observation_categories_for_date( end_date, grouped_cohort_data, active_users )
+    process_retention_for_date( end_date, grouped_cohort_data, active_users )
+    observation_array = process_interventions_for_date( end_date, grouped_cohort_data )
+    save_cohort_data( grouped_cohort_data )
     process_needs_id( observation_array )
   end
 
-  def self.prepare_cohort_data( raw_cohort_data )
-    raw_cohort_data.each_with_object( {} ) do | cohort, cohort_data |
-      cohort_time = cohort.cohort.to_s
-      user_id = cohort.user_id.to_s.to_sym
-      cohort_data[cohort_time] ||= {}
+  def self.group_cohort_lifecycles_by_cohort_and_user_id( cohort_lifecycles )
+    grouped_cohort_data = {}
+    cohort_lifecycles.each do | cohort_lifecycle |
+      cohort_date = cohort_lifecycle.cohort.to_s
+      user_id = cohort_lifecycle.user_id.to_s.to_sym
+      grouped_cohort_data[cohort_date] ||= {}
 
-      cohort_data[cohort_time][user_id] = {
-        day0: cohort.day0,
-        day1: cohort.day1,
-        day2: cohort.day2,
-        day3: cohort.day3,
-        day4: cohort.day4,
-        day5: cohort.day5,
-        day6: cohort.day6,
-        day7: cohort.day7,
-        retention: cohort.retention,
-        observer_appeal_intervention_group: cohort.observer_appeal_intervention_group,
-        first_observation_intervention_group: cohort.first_observation_intervention_group,
-        error_intervention_group: cohort.error_intervention_group,
-        captive_intervention_group: cohort.captive_intervention_group,
-        needs_id_intervention_group: cohort.needs_id_intervention_group
-      }
+      grouped_cohort_data[cohort_date][user_id] = cohort_lifecycle.attributes.reject do | k |
+        ["id", "cohort", "user_id", "created_at", "updated_at"].include?( k )
+      end.symbolize_keys
+    end
+    grouped_cohort_data
+  end
 
-      cohort_data
+  def self.process_days( end_date, start_date, grouped_cohort_data )
+    number_of_days = ( end_date - start_date ).to_i
+    number_of_days.times do | day_offset |
+      iteration_date = start_date + day_offset.days
+      iteration_cohort_date = iteration_date.to_s
+      next unless grouped_cohort_data.keys.include?( iteration_cohort_date )
+
+      cohort_day_offset = ( end_date - iteration_date ).to_i
+      puts [iteration_cohort_date, cohort_day_offset].join( " " )
+
+      user_ids = grouped_cohort_data[iteration_cohort_date].keys.map( &:to_s ).map( &:to_i )
+      obs_data = get_obs( iteration_date, end_date, user_ids )
+      categorized_data = categorize_obs_data( obs_data, iteration_date, end_date, user_ids )
+      apply_categorized_data_to_cohort(
+        grouped_cohort_data,
+        iteration_cohort_date,
+        categorized_data,
+        cohort_day_offset
+      )
     end
   end
 
-  def self.process_days( cohorts, current_day, window_start, cohort_data )
-    ( ( current_day - window_start ) / ( 60 * 60 * 24 ) ).to_i.times do | i |
-      current_day_to_iterate = window_start + i.days
-      cohorts.each do | cohort |
-        next unless cohort == current_day_to_iterate.to_date.to_s
-
-        cohort_day = ( ( current_day - current_day_to_iterate ) / ( 60 * 60 * 24 ) ).to_i
-        puts [cohort, cohort_day].join( " " )
-
-        user_ids = cohort_data[cohort].keys.map( &:to_s ).map( &:to_i )
-        obs_data = get_obs( current_day_to_iterate, current_day, user_ids )
-        timespan = [current_day_to_iterate, current_day]
-        categorized_data = categorize_obs_data( obs_data, timespan, user_ids )
-        apply_categorized_data_to_cohort( cohort_data, cohort, categorized_data, cohort_day )
-      end
-    end
-  end
-
-  def self.process_current_day( active_users, current_day, cohort_data )
+  def self.process_observation_categories_for_date( date, grouped_cohort_data, active_users )
     active_new_users = active_users.select {| _, v | v[:created_at].zero? }
-    obs_data = get_obs( current_day, current_day, active_new_users.keys )
-    timespan = [current_day, current_day]
-    categorized_data = categorize_obs_data( obs_data, timespan, active_new_users.keys )
+    obs_data = get_obs( date, date, active_new_users.keys )
+    categorized_data = categorize_obs_data( obs_data, date, date, active_new_users.keys )
 
-    cohort = current_day.to_date.to_s
-    cohort_data[cohort] ||= {}
-    apply_categorized_data_to_cohort( cohort_data, cohort, categorized_data, 0 )
+    cohort_date = date.to_s
+    grouped_cohort_data[cohort_date] ||= {}
+    apply_categorized_data_to_cohort( grouped_cohort_data, cohort_date, categorized_data, 0 )
   end
 
-  def self.process_retention( active_users, cohort_data, current_day )
+  def self.process_retention_for_date( date, grouped_cohort_data, active_users )
     ( 0..7 ).reverse_each do | d |
-      retention_cohort = ( current_day - d.days ).to_date.to_s
-      next unless cohort_data[retention_cohort]
+      retention_cohort_date = ( date - d.days ).to_date.to_s
+      next unless grouped_cohort_data[retention_cohort_date]
 
-      cohort_data[retention_cohort].each {| _, v | v["retention"] = nil }
-      retention_user_ids = cohort_data[retention_cohort].keys.map( &:to_s ).map( &:to_i )
-      retention_users = active_users.select {| k, _ | retention_user_ids.include?( k ) }
+      grouped_cohort_data[retention_cohort_date].each_value {| v | v["retention"] = nil }
+      retention_user_ids = grouped_cohort_data[retention_cohort_date].keys.map( &:to_s ).map( &:to_i )
+      retention_users = active_users.select {| k | retention_user_ids.include?( k ) }
       retention_users.each_key do | id |
         user_id = id.to_s.to_sym
-        cohort_data[retention_cohort][user_id]["retention"] = true
+        grouped_cohort_data[retention_cohort_date][user_id]["retention"] = true
       end
     end
   end
 
-  def self.process_interventions( current_day, cohort_data )
+  def self.process_interventions_for_date( date, grouped_cohort_data )
     # intervention 1: no_obs
-    cohort = current_day.to_date.to_s
-    subjects = cohort_data[cohort].select {| _, v | v[:day0] == "no_obs" }
+    subjects = grouped_cohort_data[date.to_s].select {| _, v | v[:day0] == "no_obs" }
     subjects.each do | key, value |
       next unless value[:observer_appeal_intervention_group].nil?
 
@@ -126,15 +121,15 @@ class CohortLifecycle < ApplicationRecord
 
     observation_array = []
     ( 0..6 ).each do | d |
-      cohort = ( current_day - ( d * 24 * 60 * 60 ) ).to_date.to_s
+      iteration_cohort_date = ( date - d.days ).to_s
       slot = "day#{d}".to_sym
       prev_slots = ( 0...d ).map {| q | "day#{q}".to_sym }
 
-      puts "#{cohort} #{slot}"
-      next unless cohort_data[cohort]
+      puts "#{iteration_cohort_date} #{slot}"
+      next unless grouped_cohort_data[iteration_cohort_date]
 
       # intervention 2: error
-      subjects = cohort_data[cohort].select do | _, v |
+      subjects = grouped_cohort_data[iteration_cohort_date].select do | _, v |
         v[slot] == "error" && prev_slots.all? do | prev_slot |
           ["no_obs"].include?( v[prev_slot] )
         end
@@ -201,7 +196,7 @@ class CohortLifecycle < ApplicationRecord
       end
 
       # intervention 3: captive
-      subjects = cohort_data[cohort].select do | _, v |
+      subjects = grouped_cohort_data[iteration_cohort_date].select do | _, v |
         v[slot] == "captives" && prev_slots.all? do | prev_slot |
           ["no_obs", "error", "needs_id"].include?( v[prev_slot] )
         end
@@ -236,7 +231,7 @@ class CohortLifecycle < ApplicationRecord
       end
 
       # intervention 4: needs_id
-      subjects = cohort_data[cohort].select do | _, v |
+      subjects = grouped_cohort_data[iteration_cohort_date].select do | _, v |
         v[slot] == "needs_id"
       end
 
@@ -260,7 +255,7 @@ class CohortLifecycle < ApplicationRecord
       end
 
       # intervention 5: research
-      subjects = cohort_data[cohort].select do | _, v |
+      subjects = grouped_cohort_data[iteration_cohort_date].select do | _, v |
         v[slot] == "research" && prev_slots.all? {| prev_slot | v[prev_slot] != "research" }
       end
 
@@ -290,8 +285,8 @@ class CohortLifecycle < ApplicationRecord
     observation_array
   end
 
-  def self.save_cohort_data( cohort_data )
-    cohort_data.each do | cohort_date, users |
+  def self.save_cohort_data( grouped_cohort_data )
+    grouped_cohort_data.each do | cohort_date, users |
       users.each do | user, data |
         user_id = user.to_s.to_i
         row = CohortLifecycle.where( cohort: cohort_date, user_id: user_id ).first_or_initialize
@@ -300,7 +295,7 @@ class CohortLifecycle < ApplicationRecord
     end
   end
 
-  def self.categorize_obs_data( obs_data, timespan, user_ids )
+  def self.categorize_obs_data( obs_data, start_date, end_date, user_ids )
     casual = obs_data.
       select do | _, v |
         ( v[:needs_id].nil? || v[:needs_id].zero? ) &&
@@ -314,22 +309,29 @@ class CohortLifecycle < ApplicationRecord
       end.keys
     research = obs_data.select {| _, v | v[:research]&.positive? }.keys
     no_obs = user_ids - casual - needs_id - research
-    captives = get_captives( timespan[0], timespan[1], casual )
+    captives = get_captives( start_date, end_date, casual )
     error = casual - captives
 
-    { casual: casual, needs_id: needs_id, research: research, no_obs: no_obs, captives: captives, error: error }
+    {
+      casual: casual,
+      needs_id: needs_id,
+      research: research,
+      no_obs: no_obs,
+      captives: captives,
+      error: error
+    }
   end
 
-  def self.apply_categorized_data_to_cohort( cohort_data, cohort, categorized_data, cohort_day )
+  def self.apply_categorized_data_to_cohort( grouped_cohort_data, cohort_date, categorized_data, cohort_day_offset )
     categorized_data.each do | category, user_ids |
       user_ids.each do | id |
         user_id_sym = id.to_s.to_sym
 
         # Ensure the cohort and user_id exist in the hash
-        cohort_data[cohort] ||= {}
-        cohort_data[cohort][user_id_sym] ||= {}
+        grouped_cohort_data[cohort_date] ||= {}
+        grouped_cohort_data[cohort_date][user_id_sym] ||= {}
 
-        cohort_data[cohort][user_id_sym]["day#{cohort_day}".to_sym] = category.to_s
+        grouped_cohort_data[cohort_date][user_id_sym]["day#{cohort_day_offset}".to_sym] = category.to_s
       end
     end
   end
@@ -337,7 +339,7 @@ class CohortLifecycle < ApplicationRecord
   def self.get_obs( start_date, end_date, users )
     return {} if users.empty?
 
-    filter = build_filter( start_date.beginning_of_day, end_date.end_of_day, users )
+    filter = build_filter( start_date, end_date, users )
     agg = build_agg( users )
     obs_data = fetch_obs_data( filter, agg )
     build_result_hash( obs_data )
@@ -346,15 +348,15 @@ class CohortLifecycle < ApplicationRecord
   def self.get_captives( start_date, end_date, users )
     return [] if users.empty?
 
-    filter = build_filter( start_date.beginning_of_day, end_date.end_of_day, users, captives: true )
+    filter = build_filter( start_date, end_date, users, captives: true )
     agg = build_agg( users )
     obs_data = fetch_obs_data( filter, agg )
     obs_data.map {| a | a["key"] }
   end
 
-  def self.build_filter( start_time, end_time, users, captives: false )
+  def self.build_filter( start_date, end_date, users, captives: false )
     filter = [
-      { range: { created_at: { gte: start_time, lte: end_time } } },
+      { range: { created_at: { gte: start_date.beginning_of_day, lte: end_date.end_of_day } } },
       { terms: { "user.id": users } }
     ]
     return filter unless captives

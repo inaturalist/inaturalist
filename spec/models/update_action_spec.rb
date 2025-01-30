@@ -174,4 +174,76 @@ describe UpdateAction do
       expect( action.user_ids_without_blocked_and_muted( user_ids ) ).not_to include( mute.user_id )
     end
   end
+
+  describe "user_viewed_updates" do
+    let( :observation ) { Observation.make! }
+    let( :comment ) { without_delay { Comment.make!( parent: observation ) } }
+    let( :update_action ) do
+      UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+    end
+
+    it "adds users to viewed_subscriber_ids" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+      UpdateAction.user_viewed_updates( [update_action], observation.user_id )
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
+    end
+
+    it "does not attempt to re-add users that have already viewed" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).to receive( :bulk ).and_call_original
+      UpdateAction.user_viewed_updates( [update_action], observation.user_id )
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      UpdateAction.user_viewed_updates( [update_action], observation.user_id )
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).to include( observation.user_id )
+    end
+
+    it "does not attempt to add users that are not subscribed" do
+      es_update_action = UpdateAction.elastic_get( update_action.id )
+      expect( es_update_action["_source"]["viewed_subscriber_ids"] ).not_to include( observation.user_id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      UpdateAction.user_viewed_updates( [update_action], 31_415 )
+    end
+  end
+
+  describe "append_subscribers" do
+    let( :observation ) { Observation.make! }
+    let( :comment ) { without_delay { Comment.make!( parent: observation ) } }
+    let( :update_action ) do
+      UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+    end
+
+    it "adds users to subscriber_ids" do
+      other_user = User.make!
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).not_to include( other_user.id )
+      update_action.append_subscribers( [other_user.id] )
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
+    end
+
+    it "does not attempt to re-add users that are already subscribed" do
+      other_user = User.make!
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).not_to include( other_user.id )
+
+      expect( UpdateAction.__elasticsearch__.client ).to receive( :bulk ).and_call_original
+      update_action.append_subscribers( [other_user.id] )
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
+
+      expect( UpdateAction.__elasticsearch__.client ).not_to receive( :bulk )
+      update_action.append_subscribers( [other_user.id] )
+      update_action = UpdateAction.first_with_attributes( resource: observation, notifier: comment )
+      expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
+    end
+  end
 end

@@ -2,7 +2,7 @@
 
 class Observation < ApplicationRecord
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ObservationSearch
   include ActsAsUUIDable
 
@@ -200,6 +200,7 @@ class Observation < ApplicationRecord
   ]
   BASIC_COLUMNS = [
     "id",
+    "uuid",
     "observed_on_string",
     "observed_on",
     "time_observed_at",
@@ -2336,6 +2337,7 @@ class Observation < ApplicationRecord
 
   def update_user_counter_caches
     return if bulk_delete
+
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 15.minutes.from_now
@@ -2357,46 +2359,45 @@ class Observation < ApplicationRecord
   end
 
   def delete_observations_places
-    ObservationsPlace.where(observation_id: self.id).delete_all
+    ObservationsPlace.where( observation_id: id ).delete_all
   end
 
   def update_quality_metrics
     return true if skip_quality_metrics
+
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+    elsif captive_flag.noish? && ( qm = quality_metrics.detect do | m |
+      m.user_id == user_id && m.metric == QualityMetric::WILD
+    end )
       qm.update( agree: true )
-    elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+    elsif force_quality_metrics && ( qm = quality_metrics.detect do | m |
+      m.user_id == user_id && m.metric == QualityMetric::WILD
+    end )
       qm.destroy
     end
-    system_captive_vote = quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
-    if probably_captive?
-      QualityMetric.vote( nil, self, QualityMetric::WILD, false ) unless system_captive_vote
-    elsif system_captive_vote
+    system_captive_vote = quality_metrics.detect do | m |
+      m.user_id.blank? && m.metric == QualityMetric::WILD
+    end
+    if probably_captive? && !system_captive_vote
+      QualityMetric.vote( nil, self, QualityMetric::WILD, false )
+      set_quality_grade
+    elsif system_captive_vote && !probably_captive?
       system_captive_vote.destroy
+      set_quality_grade
     end
     true
   end
-  
-  # def update(attributes)
-  #   # hack around a weird android bug
-  #   attributes.delete(:iconic_taxon_name)
-    
-  #   # MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
-  #   #   self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
-  #   #   self.send("#{a}=", attributes.delete(a)) if attributes.has_key?(a)
-  #   # end
-  #   super(attributes)
-  # end
-  
+
   def license_name
     return nil if license.blank?
+
     s = "Creative Commons "
-    s += LICENSES.detect{|row| row.first == license}.try(:[], 1).to_s
+    s += LICENSES.detect {| row | row.first == license }.try( :[], 1 ).to_s
     s
   end
-  
-  # I'm not psyched about having this stuff here, but it makes generating 
+
+  # I'm not psyched about having this stuff here, but it makes generating
   # more compact JSON a lot easier.
   include ObservationsHelper
   include ActionView::Helpers::SanitizeHelper
@@ -2808,39 +2809,12 @@ class Observation < ApplicationRecord
   def taxon_and_ancestors
     taxon ? taxon.self_and_ancestors.to_a : []
   end
-
+  
   def mobile?
     return false unless user_agent
-    MOBILE_APP_USER_AGENT_PATTERNS.each do |pattern|
-      return true if user_agent =~ pattern
-    end
-    false
+    is_mobile_app_user_agent?( user_agent )
   end
-  
-  def device_name
-    return "unknown" unless user_agent
-    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
-      "iNaturalist Android App"
-    elsif user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
-      "Fishtagger iPhone App"
-    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
-      "iNaturalist iPhone App"
-    else
-      "web browser"
-    end
-  end
-  
-  def device_url
-    return unless user_agent
-    if user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
-      "http://itunes.apple.com/us/app/fishtagger/id582724178?mt=8"
-    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
-      "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
-    elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
-      "https://market.android.com/details?id=org.inaturalist.android"
-    end
-  end
-  
+
   def owners_identification
     if identifications.loaded?
       # if idents are loaded, the most recent current identification might be a new record
@@ -3362,10 +3336,10 @@ class Observation < ApplicationRecord
 
   def application_id_to_index
     return oauth_application_id if oauth_application_id
-    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+    if is_iphone_app_user_agent?( user_agent )
       return OauthApplication.inaturalist_iphone_app.try(:id)
     end
-    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
+    if is_android_app_user_agent?( user_agent )
       return OauthApplication.inaturalist_android_app.try(:id)
     end
   end

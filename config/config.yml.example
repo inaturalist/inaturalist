@@ -106,6 +106,9 @@ base: &base
     # same code running at CONFIG.tile_servers.elasticsearch
     node_api_url: http://localhost:4000/v1
 
+    # An instance of https://github.com/inaturalist/inatVisionAPI
+    vision_api_url: http://localhost:8080
+
     # The secrets used to sign the JWT for authenticated requests to the
     # iNaturalistAPI. These need to be same as in the API's config.js.
     jwt_secret: secret
@@ -155,11 +158,12 @@ development:
 
 test:
     <<: *base
-    # We shouldn't assume a working instance of the node API is running in a
+    # We shouldn't assume working instances of APIs are running in a
     # test environment, so use different defaults to ensure we don't get fooled
-    # when a test passes in a development environment where the node API *is*
+    # when a test passes in a development environment where the APIs *are*
     # running
     node_api_url: http://localhost:5000/v1
+    vision_api_url: http://localhost:8081
 
 production:
     <<: *base

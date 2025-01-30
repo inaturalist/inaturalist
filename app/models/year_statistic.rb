@@ -507,8 +507,15 @@ class YearStatistic < ApplicationRecord
       unless o["photos"].blank?
         json_obs[:photos] = [o["photos"][0].select {| k, _v | %w(url original_dimensions).include?( k ) }]
       end
+      # I think we use the first 36 for "Most Comments and Faves" and the rest
+      # are used for photo mosaic at the top
       if i < 36
-        json_obs = json_obs.merge( o.select {| k, _v | %w(comments_count faves_count observed_on).include?( k ) } )
+        obs_attrs = %w(comments_count faves_count)
+        # Omit date for obscured records. Customizing this for those w/
+        # permission to view obscured info just seems more complicated than
+        # YIR is worth
+        obs_attrs << "observed_on" unless o["obscured"]
+        json_obs = json_obs.merge( o.select {| k, _v | obs_attrs.include?( k ) } )
         json_obs[:user] = o["user"].select {| k, _v | %(id login name icon_url).include?( k ) }
         if o["taxon"]
           json_obs[:taxon] = o["taxon"].select {| k, _v | %(id name rank preferred_common_name).include?( k ) }
@@ -1369,7 +1376,10 @@ class YearStatistic < ApplicationRecord
     data = { languages: {}, users: {} }
     CONFIG.crowdin.projects.each_pair do | project_name, project |
       project.name = project_name
-      details = crowdin_project_details( project )
+      unless ( details = crowdin_project_details( project ) )
+        next
+      end
+
       translated_locales = I18n.t( "locales" ).keys.map( &:to_s )
       details["data"]["targetLanguages"].each do | lang |
         next if data[:languages][lang[:name]]

@@ -39,16 +39,16 @@ module MakeHelpers
     make_annotation( options.merge( create: true ) )
   end
 
-  def make_curator(opts = {})
-    make_user_with_role(:curator, opts)
+  def make_curator( opts = {} )
+    make_user_with_role( :curator, opts )
   end
 
-  def make_admin
-    make_user_with_role(User::JEDI_MASTER_ROLE)
+  def make_admin( opts = {} )
+    make_user_with_role( User::JEDI_MASTER_ROLE, opts )
   end
 
-  def make_user_with_role(role_name, opts = {})
-    user = User.make!(opts)
+  def make_user_with_role( role_name, opts = {} )
+    user = User.make!( opts )
     role = Role.find_by_name( role_name ) || Role.make!( name: role_name.to_s )
     user.roles << role
     user
@@ -231,10 +231,10 @@ module MakeHelpers
   # `--- Plantae
   #      `--- Magnoliophyta
   #           `--- Magnoliopsida
-  def load_test_taxa
+  def load_test_taxa( options = {} )
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
     @Life = Taxon.find_by_name( "Life" ) || Taxon.make!( name: 'Life', rank: "state of matter" )
-    
+
     set_taxon_with_rank_and_parent( "Animalia", Taxon::KINGDOM, @Life, is_iconic: true )
     set_taxon_with_rank_and_parent( "Chordata", Taxon::PHYLUM, @Animalia )
     set_taxon_with_rank_and_parent( "Amphibia", Taxon::CLASS, @Chordata, is_iconic: true )
@@ -248,7 +248,7 @@ module MakeHelpers
     set_taxon_with_rank_and_parent( "Trochilidae", Taxon::FAMILY, @Apodiformes )
     set_taxon_with_rank_and_parent( "Calypte", Taxon::GENUS, @Trochilidae )
     set_taxon_with_rank_and_parent( "Calypte anna", Taxon::SPECIES, @Calypte, common_name: "Anna's Hummingbird" )
-    
+
     set_taxon_with_rank_and_parent( "Plantae", Taxon::KINGDOM, @Life, is_iconic: true )
     set_taxon_with_rank_and_parent( "Magnoliophyta", Taxon::PHYLUM, @Plantae )
     set_taxon_with_rank_and_parent( "Magnoliopsida", Taxon::CLASS, @Magnoliophyta )
@@ -256,6 +256,20 @@ module MakeHelpers
     set_taxon_with_rank_and_parent( "Onagraceae", Taxon::FAMILY, @Myrtales )
     set_taxon_with_rank_and_parent( "Clarkia", Taxon::GENUS, @Onagraceae )
     set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::SPECIES, @Clarkia )
+
+    # Create the remaining iconic taxa
+    if options[:iconic]
+      set_taxon_with_rank_and_parent( "Reptilia", Taxon::CLASS, @Chordata, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Mammalia", Taxon::CLASS, @Chordata, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Actinopterygii", Taxon::CLASS, @Chordata, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Mollusca", Taxon::PHYLUM, @Animalia, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Arthropoda", Taxon::PHYLUM, @Animalia )
+      set_taxon_with_rank_and_parent( "Arachnida", Taxon::CLASS, @Arthropoda, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Insecta", Taxon::CLASS, @Arthropoda, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Fungi", Taxon::KINGDOM, @Life, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Protozoa", Taxon::KINGDOM, @Life, is_iconic: true )
+      set_taxon_with_rank_and_parent( "Chromista", Taxon::KINGDOM, @Life, is_iconic: true )
+    end
 
     Taxon.reset_iconic_taxa_constants_for_tests
 

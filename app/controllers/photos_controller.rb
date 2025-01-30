@@ -8,6 +8,7 @@ class PhotosController < ApplicationController
   before_action :authenticate_user!, except: [:show],
     unless: -> { authenticated_with_oauth? }
   before_action :return_here, only: [:show, :invite, :inviter, :fix]
+  before_action :curator_required, only: [:hide]
 
   prepend_around_action :enable_replica, only: [:show]
 

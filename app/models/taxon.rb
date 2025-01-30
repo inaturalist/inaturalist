@@ -25,7 +25,7 @@ class Taxon < ApplicationRecord
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid
@@ -1070,6 +1070,7 @@ class Taxon < ApplicationRecord
         sort: "relevance",
         safe_search: "1"
       }
+      flickr = Flickr.new( Flickr.api_key, Flickr.shared_secret )
       r = FlickrCache.fetch( flickr, "photos", "search", search_params )
       r = [] if r.blank?
       flickr_chosen_photos = if r.respond_to?( :map )
@@ -1882,12 +1883,14 @@ class Taxon < ApplicationRecord
   end
 
   def default_photo
-    @default_photo ||= if taxon_photos.loaded?
-      taxon_photos.sort_by {| tp | tp.position || tp.id }.first.try( :photo )
+    candidates = if taxon_photos.loaded?
+      taxon_photos.sort_by {| tp | tp.position || tp.id }
     else
-      taxon_photos.includes( :photo ).first.try( :photo )
+      taxon_photos.includes( :photo ).order( position: :asc, id: :asc )
     end
-    @default_photo
+    @default_photo = candidates.reject do | tp |
+      tp.photo.blank? || tp.photo.flagged? || tp.photo.hidden?
+    end.first&.photo
   end
 
   def self.update_descendants_with_new_ancestry( taxon, _child_ancestry_was )

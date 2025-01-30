@@ -110,7 +110,8 @@ class Annotation < ApplicationRecord
 
     scope = Annotation.where(
       controlled_attribute: controlled_attribute,
-      resource: resource
+      resource: resource,
+      term_taxon_mismatch: false
     )
     unless new_record?
       scope = scope.where( "id != ?", id )
@@ -125,7 +126,11 @@ class Annotation < ApplicationRecord
     return true unless controlled_attribute.multivalued?
 
     scope = Annotation.
-      where( controlled_attribute: controlled_attribute, resource: resource ).
+      where(
+        controlled_attribute: controlled_attribute,
+        resource: resource,
+        term_taxon_mismatch: false
+      ).
       joins( :controlled_value ).
       where( "controlled_terms.blocking" )
     unless new_record?
@@ -143,7 +148,11 @@ class Annotation < ApplicationRecord
     return true unless controlled_value.blocking?
 
     scope = Annotation.
-      where( controlled_attribute: controlled_attribute, resource: resource )
+      where(
+        controlled_attribute: controlled_attribute,
+        resource: resource,
+        term_taxon_mismatch: false
+      )
     unless new_record?
       scope = scope.where( "id != ?", id )
     end

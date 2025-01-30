@@ -127,5 +127,8 @@ body > div > [role="dialog"] .modal-body {
       max-height: 300px;
       overflow: auto;
     }
+    input[name="private"] {
+      margin-right: 5px;
+    }
   }
 }

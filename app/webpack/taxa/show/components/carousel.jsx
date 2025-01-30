@@ -46,7 +46,7 @@ class Carousel extends React.Component {
     if ( this.props.url ) {
       link = (
         <a href={this.props.url} className="readmore">
-          { I18n.t( "view_all" ) }
+          { I18n.t( "view_all_caps" ) }
         </a>
       );
     }

@@ -115,14 +115,15 @@ class PhotoChooserModal extends React.Component {
       queryParams.q = query;
       queryParams.search_on = "taxon_page_obs_photos";
     }
-    if ( config.testingApiV2 ) {
-      queryParams.fields = {
-        photos: {
-          id: true,
-          url: true
+    queryParams.fields = {
+      photos: {
+        id: true,
+        url: true,
+        flags: {
+          resolved: true
         }
-      };
-    }
+      }
+    };
     inatjs.observations.search( queryParams ).then( response => {
       const isLastPage = ( response.page * response.per_page ) >= response.total_results;
       const obsPhotos = _.filter(
@@ -272,7 +273,11 @@ class PhotoChooserModal extends React.Component {
     }
     const photosToDisplay = _.filter(
       photos,
-      p => p.small_url && p.small_url.match( /\.(jpe?g|gif|png)/i )
+      p => (
+        p.small_url
+        && p.small_url.match( /\.(jpe?g|gif|png)/i )
+        && !_.some( p?.flags, flag => ( !flag.resolved ) )
+      )
     );
     const prevNextButtons = (
       <ButtonGroup className="pull-right">

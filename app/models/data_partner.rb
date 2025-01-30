@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class DataPartner < ApplicationRecord
   UNKNOWN = "unknown"
   DAILY = "daily"
   WEEKLY = "weekly"
   MONTHLY = "monthly"
-  FREQUENCIES = [UNKNOWN, DAILY, WEEKLY, MONTHLY]
+  FREQUENCIES = [UNKNOWN, DAILY, WEEKLY, MONTHLY].freeze
 
   if CONFIG.usingS3
     has_attached_file :logo,
@@ -21,7 +23,7 @@ class DataPartner < ApplicationRecord
       path: ":rails_root/public/attachments/data_partners/:id-logo.:extension",
       url: "/attachments/data_partners/:id-logo.:extension"
   end
-  validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+  validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/],
     message: "must be JPG, PNG, SVG, or GIF"
 
   validates :frequency, inclusion: { in: FREQUENCIES }, allow_blank: true
@@ -35,19 +37,21 @@ class DataPartner < ApplicationRecord
   end
 
   def dwca_frequency_allowed
-    if dwca_params && !dwca_params["freq"].blank? && !FREQUENCIES.include?( dwca_params["freq"] )
-      errors.add( :dwca_params, "freq must be one of #{FREQUENCIES.join( ", " )}")
-    end
+    return unless dwca_params
+    return if dwca_params["freq"].blank?
+    return if FREQUENCIES.include?( dwca_params["freq"] )
+
+    errors.add( :dwca_params, "freq must be one of #{FREQUENCIES.join( ', ' )}" )
   end
 
   def sync_observation_links( options = {} )
-    # TODO try to avoid reindexing obs when running each linker and instead
+    # TODO: try to avoid reindexing obs when running each linker and instead
     # maybe pluck all obs IDs from obs links updated in this run and reindex
     # them at the end
-    if linker = DataPartnerLinkers.linker_for( self, options )
-      linker.run
-      update!( last_sync_observation_links_at: Time.now )
-    end
+    return unless ( linker = DataPartnerLinkers.linker_for( self, options ) )
+
+    linker.run
+    update!( last_sync_observation_links_at: Time.now )
   end
 
   def generate_dwca( options = {} )
@@ -61,13 +65,14 @@ class DataPartner < ApplicationRecord
     logger = options[:logger] || Rails.logger
     start = Time.now
     logger.info "DataPartner.sync_observation_links START"
-    block = Proc.new do |dp|
-      logger.info "DataPartner.sync_observation_links  for #{dp}"
+    block = proc do | dp |
+      logger.info "DataPartner.sync_observation_links for #{dp} START"
       begin
         dp.sync_observation_links( options )
-      rescue RestClient::BadRequest => e
-        logger.error "Failed to sync observat links for #{dp}: #{e}"
+      rescue RestClient::RequestFailed => e
+        logger.error "Failed to sync observation links for #{dp}: #{e}"
       end
+      logger.info "DataPartner.sync_observation_links for #{dp} FINISHED"
     end
     logger.info "DataPartner.sync_observation_links for monthlies and unknown frequencies"
     DataPartner.where( frequency: [MONTHLY, UNKNOWN] ).
@@ -90,11 +95,11 @@ class DataPartner < ApplicationRecord
 
   def self.generate_dwcas( options = {} )
     logger = options[:logger] || Rails.logger
-    generator = Proc.new do |dp|
+    generator = proc do | dp |
       logger.info "DataPartner.generate_dwcas for #{dp}"
       begin
         dp.generate_dwca( options )
-      rescue => e
+      rescue StandardError => e
         logger.error "Failed to generate DwC-A for #{dp}: #{e}"
       end
     end
@@ -102,12 +107,12 @@ class DataPartner < ApplicationRecord
     logger.info "DataPartner.generate_dwcas START"
     logger.info "DataPartner.generate_dwcas for weeklies"
     DataPartner.where( "dwca_params->>'freq' = ?", WEEKLY ).
-        where( "dwca_last_export_at IS NULL OR dwca_last_export_at < ?", 1.week.ago ).
-        find_each( &generator )
+      where( "dwca_last_export_at IS NULL OR dwca_last_export_at < ?", 1.week.ago ).
+      find_each( &generator )
     logger.info "DataPartner.generate_dwcas for monthlies"
     DataPartner.where( "dwca_params->>'freq' = ?", MONTHLY ).
-        where( "dwca_last_export_at IS NULL OR dwca_last_export_at < ?", 1.month.ago ).
-        find_each( &generator )
+      where( "dwca_last_export_at IS NULL OR dwca_last_export_at < ?", 1.month.ago ).
+      find_each( &generator )
     logger.info "DataPartner.generate_dwcas FINISHED in #{Time.now - start}s"
   end
 

@@ -36,7 +36,7 @@ class CheckList < List
   end
   
   def owner_name
-    self.place.name
+    place&.name
   end
   
   # Is this the default check list of its place?

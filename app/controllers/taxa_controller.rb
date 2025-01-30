@@ -22,8 +22,8 @@ class TaxaController < ApplicationController
     } },
     if: Proc.new {|c| request.format.json? }
 
-  before_action :allow_external_iframes, only: [:map]
-  
+  allow_external_iframes( only: [:map] )
+
   include TaxaHelper
   include Shared::WikipediaModule
   
@@ -46,6 +46,10 @@ class TaxaController < ApplicationController
   before_action :ensure_flickr_write_permission, :only => [
     :flickr_photos_tagged, :tag_flickr_photos, 
     :tag_flickr_photos_from_observations]
+  before_action :cannot_have_content_creation_restrictions, only: [
+    :set_photos,
+    :update_photos
+  ]
   cache_sweeper :taxon_sweeper, :only => [:update, :destroy, :update_photos, :set_photos]
 
   prepend_around_action :enable_replica, only: [
@@ -1074,7 +1078,7 @@ class TaxaController < ApplicationController
             break unless @description.blank?
           end
         end
-        if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+        if @describers.detect {| d | d.is_a?( TaxonDescribers::Wikipedia ) } && @taxon.wikipedia_summary.blank?
           @taxon.wikipedia_summary( refresh_if_blank: true )
         end
       else

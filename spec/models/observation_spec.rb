@@ -1950,6 +1950,46 @@ describe Observation, "probably_captive?" do
         o.quality_metrics.detect {| m | m.user_id.blank? && m.metric == QualityMetric::WILD }
       ).to be_blank
     end
+
+    it "updates quality_grade in index after adding quality_metric" do
+      11.times { make_captive_obs }
+      # make an observation with a different location so it will not get an automatic metric yet
+      o = make_research_grade_candidate_observation(
+        taxon: taxon, latitude: 89, longitude: -89
+      )
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+
+      o.update( latitude: place.latitude, longitude: place.longitude )
+      expect( o ).to be_captive
+      expect(
+        o.quality_metrics.detect {| m | m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).not_to be_blank
+      expect(
+        Observation.elastic_get( o.id )["_source"]["quality_grade"]
+      ).to eq Observation::CASUAL
+    end
+
+    it "updates quality_grade in index after removing quality_metric" do
+      11.times { make_captive_obs }
+      o = make_research_grade_candidate_observation(
+        taxon: taxon, latitude: place.latitude, longitude: place.longitude
+      )
+      expect( o ).to be_captive
+      expect(
+        o.quality_metrics.detect {| m | m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).not_to be_blank
+      expect( o.quality_grade ).to eq Observation::CASUAL
+
+      # update the observation to different location so it is no longer probably_captive?
+      o.update( latitude: 89, longitude: -89 )
+      o.reload
+      expect(
+        o.quality_metrics.detect {| m | m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).to be_blank
+      expect(
+        Observation.elastic_get( o.id )["_source"]["quality_grade"]
+      ).to eq Observation::NEEDS_ID
+    end
   end
 end
 

@@ -196,15 +196,17 @@ const TaxonomyTab = ( {
                     </a>
                   </li>
                 ) : null }
-                <li className="list-group-item internal">
-                  <a
-                    href={`/taxa/${taxon.id}/taxon_names/new`}
-                    rel="nofollow"
-                  >
-                    <i className="fa fa-plus accessory-icon" />
-                    { I18n.t( "add_a_name" ) }
-                  </a>
-                </li>
+                { currentUser && currentUser.content_creation_restrictions ? null : (
+                  <li className="list-group-item internal">
+                    <a
+                      href={`/taxa/${taxon.id}/taxon_names/new`}
+                      rel="nofollow"
+                    >
+                      <i className="fa fa-plus accessory-icon" />
+                      { I18n.t( "add_a_name" ) }
+                    </a>
+                  </li>
+                ) }
               </ul>
               <h4>{ I18n.t( "about_names" ) }</h4>
               <UserText

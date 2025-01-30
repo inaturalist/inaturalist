@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Project < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model
 
   DEFAULT_ES_BATCH_SIZE = 500
 

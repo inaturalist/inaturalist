@@ -22,6 +22,7 @@
               Active Queries
           %li{ class: ("active" if %w(users user_detail).include?( action_name ) ) }
             = link_to t(:users), users_admin_path
+          %li= link_to t(:blocked_ips), admin_blocked_ips_path
           %li{ class: ("active" if action_name == "deleted_users") }
             = link_to t(:deleted_users), deleted_users_admin_path
           %li= link_to t(:curate_observations), curate_observations_path

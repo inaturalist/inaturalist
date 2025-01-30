@@ -44,6 +44,11 @@ Atlas.blueprint do
   is_active { true }
 end
 
+BlockedIp.blueprint do
+  ip { Faker::Internet.ip_v4_address }
+  user { User.make }
+end
+
 CheckList.blueprint do
   place { make_place_with_geom }
 end
@@ -94,6 +99,14 @@ DataPartner.blueprint do
   name { Faker::Lorem.sentence }
   description { Faker::Lorem.sentence }
   url { "https://#{Faker::Internet.domain_name}" }
+end
+
+DeletedPhoto.blueprint do
+  user { User.make! }
+end
+
+DeletedSound.blueprint do
+  user { User.make! }
 end
 
 ExplodedAtlasPlace.blueprint do

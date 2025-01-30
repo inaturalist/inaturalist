@@ -1043,11 +1043,10 @@ class ObservationAccuracyExperiment < ApplicationRecord
   end
 
   def self.user_eligible_for_needs_id_pilot?( user )
-    return false unless needs_id_pilot && user && user.prefers_needs_id_pilot != false
-    return true if user.is_admin?
-    return false unless top_identifiers.include?( user.id )
+    return false if !needs_id_pilot || user.nil? || user.prefers_needs_id_pilot == false
+    return true if user.prefers_needs_id_pilot == true || user.is_admin?
 
-    true
+    top_identifiers.include?( user.id )
   end
 
   def self.needs_id_pilot_params_for_user( user )

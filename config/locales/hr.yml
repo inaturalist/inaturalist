@@ -36,14 +36,6 @@ hr:
     one: '<span class="count">%{count}</span> IDENTIFIKACIJA'
     few: '<span class="count">%{count}</span> IDENTIFIKACIJE'
     other: '<span class="count">%{count}</span> IDENTIFIKACIJA'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifikator'
-    #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifikatora'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifikatora'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> identifikacija'
     few: '<span class="count">%{count}</span> identifikacije'
@@ -110,10 +102,6 @@ hr:
     one: "<span class='count'>%{count}</span> pregledano opažanje"
     few: "<span class='count'>%{count}</span> pregledanih opažanja"
     other: "<span class='count'>%{count}</span> pregledana opažanja"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Promatrač'
-    few: '<span class="count">%{count}</span> Promatrača'
-    other: '<span class="count">%{count}</span> Promatrača'
   x_others:
     one: "%{count} drugi"
     few: "%{count} drugih"
@@ -1188,6 +1176,7 @@ hr:
   content_and_display: Sadržaj i Prikaz
   content_author: Autor sadržaja
   content_hidden: Sadržaj Skriven
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Sadržaj je sakrio %{user} dana %{date} zbog: "%{reason}"
   content_type: Vrsta sadržaja
@@ -2153,6 +2142,9 @@ hr:
   geoprivacy_is_private: Geoprivacy je privatan
   geoprivacy_is_private_desc: Promatrač je odlučio sakriti koordinate.
   georeferenced: Georeferencirano?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoprostorni podaci
   get_started: Kreni
   #Label for a menu item linking to a help page about how to get started using iNaturalist
   getting_started: Početni vodič
@@ -2180,6 +2172,9 @@ hr:
   grid_tooltip: Prikaži mrežni prikaz
   group: Grupa
   grouping: Grupiranje
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Pogodi lokaciju iz drugih opažanja?
   guides: Vodiči
   guide_compiled_by: Vodič sastavio
   guide_deleted: Vodič obrisan
@@ -2247,6 +2242,9 @@ hr:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Sakrij "Bez bilješke"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Sakrij opažanja s privatnim lokacijama
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Sakrij trenutni zbroj
   hide_uncountable_species: Sakrij nebrojive vrste
@@ -3247,6 +3245,9 @@ hr:
   not_confident: Nismo dovoljno sigurni da bismo dali preporuku.
   not_confident_top_suggestions: Nismo sigurni što je ovaj organizam, ali evo naših najboljih prijedloga
   not_covered_by_any_taxon_frameworks: Nije pokriveno nijednim taksonomskim okvirima
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Ne očekuje se u blizini
   not_evaluated: nije procijenjeno
   not_findig_what_you_want: Ne pronalazite što želite?
   not_finding_place_you_want?: Ne pronalazite mjesto koje želite?
@@ -4698,7 +4699,6 @@ hr:
     must_be_verifiable: mora biti provjerljiva
     must_be_wild: mora biti divlja
   running_total: Trenutni zbroj
-  said: rekao
   satellite: satelit
   save: Spremi
   save_all: Spremi sve
@@ -5834,12 +5834,22 @@ hr:
   user_commented: "%{user} komentira"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} je izvršio pad taksona koji utječe na %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "korisnik %{user} je izvršio spajanje taksona za: %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "korisnik %{user} je izvršio podjelu taksona za: %{taxa}"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "korisnik %{user} je izvršio pripremu taksona za: %{taxon}"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "korisnik %{user} je izvršio zamjenu taksona za: %{taxa}"
   user_disagrees_this_is_taxon: "%{user} se ne slaže da je ovo %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} se ne slaže s prethodnim preciznijim identifikacijama"
   user_faved_an_observation_by_you: "%{user} je favorizirao tvoje opažanje"
   user_faved_this_observation: "%{user} je favorizirao ovo opažanje"
   user_flagged_as_a_non_spammer_html: "%{user} označen kao ne-spamer"
   user_flagged_as_a_spammer_html: "%{user} označen kao spamer"
+  user_has_been_removed_from_site: |
+    korisničko ime %{username} se obrisalo s %{site_name}a (moguće da potraje do sat vremena za brisanje svog povezanog sadržaja)
   user_has_opted_out_of_community_id: Korisnik je isključen iz zajedničkog taksona
   user_hasnt_joined_any_projects: "%{user} nije pridružio nijednom projektu"
   user_helped_x_people_with_y_ids_html: "%{user} je pomogao <strong>%{x} ljudima</strong> s <strong>%{y} identifikacija</strong>"
@@ -6929,6 +6939,10 @@ hr:
       mark_remaining_as_relevant: Označi ostalo kao relevantno
       #text for a button where a user can mark images as not relevant to their search term
       mark_remaining_as_not_relevant: Označi ostalo kao nerelevantno
+      #text with a few URLs to insitutions iNaturalist has worked with to prepare this tool
+      inaturalist_has_teamed: <a href="https://www.inaturalist.org/" target="_blank" rel="noopener noreferrer">iNaturalist</a> se udružio s istraživačima sa <a href="https://www.cics.umass.edu/people/van-horn-grant" target="_blank" rel="noopener noreferrer">Sveučilišta Massachusetts Amherst</a>, <a href="https://www.inf.ed.ac.uk/people/staff/Oisin_Mac_Aodha.html" target="_blank" rel="noopener noreferrer">Sveučilišta u Edinburghu</a>, <a href="https://www.ucl.ac.uk" target="_blank" rel="noopener noreferrer">UCL-a</a>, <a href="https://www.eecs.mit.edu/people/sara-beery/" target="_blank" rel="noopener noreferrer">MIT-a</a>, uz velikodušnu podršku laboratorija <a href="https://www.microsoft.com/en-us/research/group/ai-for-good-research-lab/overview/" target="_blank" rel="noopener noreferrer">Microsoft AI for Good Lab</a>, kako bi bolje razumjeli potencijal Modela vida za organiziranje, istraživanje i objašnjavanje iNaturalist opažanja. #need to be in English but the model should perform better with # English queries, so we want our example queries to (mostly) be in # English
+      this_demo_tool3: Ovaj demo alat omogućuje ti da uneseš pojam za pretraživanje (kao na primjer "<a href="%{url}">%{query_in_english}</a>") i uspoređuje ga s 10 milijuna iNaturalist fotografija. Rezultati su poredani od najrelevantnijih prema manje relevantnima. Ovaj demo možeš koristiti kao novi način za anotaciju zanimljivih iNaturalist opažanja ili dodavanja u projekte.
+      you_can_also_use_this_demo: Ovaj demo možeš koristiti i da nam pomogneš u procjeni Modela vida koji pokreće ovaj alat, tako da nam kažeš koje od prikazanih slika su bile relevantne za tvoj pojam za pretraživanje. Demo koristi <a href="https://huggingface.co/sentence-transformers/clip-ViT-B-32" target="_blank" rel="noopener noreferrer">Vision Language CLIP model</a> treće strane, koji nije treniran na iNaturalist podacima niti od strane iNaturalist tima. Ponekad alat može prikazati netočne, pristrane ili uvredljive rezultate. <a href="https://www.inaturalist.org/blog/95911" target="_blank" rel="noopener noreferrer">Pročitaj više na iNaturalist blogu</a>. #text displayed before a Donate button. Suggesting that if people want so support the work # of iNaturalist they might like to Donate
       if_youd_like_to_support_this_work: Ako želiš podržavati ovaj rad
       thank_you_for_your_submission!: Hvala na tvojem doprinosu!
     oauth:
@@ -7270,71 +7284,6 @@ hr:
           mogućnost da vide skrivene koordinate ovog ili bilo kojeg
           drugog opažanja u projektu i podrazumijeva da
           prihvaćaš <a href="%{url}" target="_blank">uvjete</a> projekta.
-        quality_assessment_help3_html: |
-          <p>
-          Procjena kvalitete podataka je sažetak točnosti opažanja. Sva
-          opažanja započinju kao <strong>"ležerna"</strong> ocjena i postaju
-          <strong>"potrebna ID"</strong> kada
-          </p>
-
-          <ul>
-          <li>opažanje <strong>ima datum</strong></li>
-          <li>opažanje <strong>je georeferencirano</strong> (tj. ima lat/lon koordinate)</li>
-          <li>opažanje <strong>ima fotografije ili zvukove</strong></li>
-          <li>opažanje <strong>nije ljudsko</strong></li>
-          </ul>
-          <p>
-          Opažanja postaju <strong>"istraživačka ocjena"</strong> kada
-          </p>
-          <ul>
-          <li>
-          zajednica %{site_name} <strong>se slaže na ID razini vrste ili niže</strong>, tj. kada se više od 2/3 identificiranih slaže na taksonu (ako je zajednica glasala da se takson zajednice više ne može poboljšati, to se vraća na razinu potporodice ili niže)
-          </li>
-          </ul>
-          <p>
-          Opažanja će se vratiti na <strong>"ležerna"</strong> ako gornji uvjeti nisu ispunjeni ili se zajednica slaže
-          </p>
-          <ul>
-          <li>
-          <strong>lokacija ne izgleda
-          točno</strong> (npr. majmuni usred oceana,
-          nilski konji u uredskim zgradama itd.)
-          </li>
-          <li>
-          <strong>organizam nije divlji/prirodiziran</strong> (npr. zarobljen ili uzgajan od strane ljudi)
-          </li>
-          <li>
-          opažanje <strong>ne predstavlja dokaz o
-          organizmu</strong>, npr. slike vodenih objekata,
-          kamenja, krajolika koji ne uključuju organizam itd.
-          </li>
-          <li>
-          opažanje <strong>ne predstavlja nedavni (~100 godina) dokaz o
-          organizmu</strong> (npr. fosili, ali tragovi, izmet i mrtvi listovi su u redu)
-          </li>
-          <li>
-          opažanje <strong>ne predstavlja dokaz vezan za jedan subjekt</strong>
-          (npr. ima četiri fotografije nepovezanih organizama. Fotografija koja prikazuje stanište subjekta opažanja je u redu.)
-          </li>
-          <li>
-          opažanje više ne treba ID <em>i</em> ID zajednice je na razini obitelji ili iznad
-          </li>
-          <li>
-          opažač je isključio ID zajednice, a takson ID zajednice nije predak ili potomak taksona povezanog s ID-om opažača
-          </li>
-          </ul>
-          <p>
-          I ako to nije bilo dovoljno komplicirano, postoje i situacije kada sustav dobiva glas:
-          </p>
-          <ul>
-          <li>
-          Sustav će glasovati da opažanje nije divlje/prirodizirano
-          ako postoji barem 10 drugih opažanja roda ili niže u
-          najmanjem okrugu, državi ili ekvivalentnom mjestu koje
-          sadrži ovo opažanje i 80% ili više tih opažanja
-          su označena kao ne divlja/prirodizirana.
-          </li>
-          </ul>
         score_desc: "rezultat = kumulativni broj / (kumulativni broj + broj neslaganja + neslaganja predaka)"
         observation_flagged_notice_html: |
           Ovo opažanje je označeno kao spam i više nije
@@ -7741,10 +7690,6 @@ hr:
         data_visualizations: Vizualizacije podataka
         delete_project: Izbriši projekt
         display_project_name: Prikaz naziva projekta
-        do_you_need_features_from_traditional: |
-          Trebate li značajke iz tradicionalnih projekata, kao što su pristup stvarnim koordinatama,
-          prilagođena polja opažanja ili dodavanje pojedinačnih opažanja koja se ne mogu automatski
-          filtrirati?
         do_you_need_features_from_traditional2: |
           Trebate li značajke iz tradicionalnih projekata, kao što su prilagođena polja opažanja,
           ili dodavanje pojedinačnih opažanja koja se ne mogu automatski filtrirati?
@@ -7812,11 +7757,6 @@ hr:
         we_have_redesigned_projects: |
           Projekti su dizajnirani da automatski uključuju sva opažanja koja odgovaraju mjestima, taksonima, korisnicima, kvaliteti i datumima koje definirate. Odaberite između dvije glavne vrste: projekti kolekcija i krovni projekti, koji dijele sljedeće značajke:
         welcome_to_projects: Dobrodošli u projekte!
-        you_can_learn_more_html: |
-          Možete saznati više o upravljanju projektima
-          <a href="https://www.inaturalist.org/pages/managing-projects">ovdje</a>
-          ili pročitati povijest projekata na
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">našem blogu</a>.
         you_have_not_defined_any_observation_requirements: |
           Niste definirali nijedan zahtjev za opažanje. Obavezno odaberite jedan ili više taksona (npr. ptice, četinari), mjesta (npr. Brazil, Yellowstone), korisnike i/ili datume kako biste definirali opažanja koja želite uključiti u svoj projekt.
         errors:
@@ -8326,6 +8266,28 @@ hr:
           Naziv taksona s razinom. Za infraspecifične razine, razina se umeće nakon binomijalnog naziva.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Pokušaj dodati nazive koji se već koriste negdje. Molimo te, nemoj izmišljati nove nazive.</p></li>
+          <li><p>Ne dodavaj duplikate, npr. nemoj imenovati brojne vrste sokola jednostavno kao "sokol".</p></li>
+          <li><p>Za više taksonomske razine, pokušaj koristiti nazive koji obuhvaćaju sve potomke, kao što su "čaplje i srodnici" ili "porodica vrijesova".</p></li>
+          <li>
+          <p>
+          Nemoj dodavati informacije koje nisu sam naziv, poput dodatnih objašnjenja u zagradama o tome kako bi se naziv trebao koristiti.
+          </p>
+          </li>
+          <li>
+          <p>
+          Novi leksikoni trebaju biti na engleskom jeziku. Molimo te da ne dodaješ prevedena imena jezika kao što su "francuski, français" jer bi to moglo otežati ili onemogućiti prikaz lokaliziranih naziva za korisnike koji koriste stranicu na različitim jezicima.
+          </p>
+          </li>
+          <li>
+          <p>
+          Zajednički nazivi povezani s prevedenim jezicima pojavit će se kao zadani zajednički naziv za taj jezik (ovisno o utjecaju postavki lokacije, redoslijedu naziva itd.). 
+          <a class="readmore" href="/pages/translate">Saznaj više o prevođenju</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Dodajte ime mjestu kako biste mu dali prioritet za stranice i korisnike iz tog mjesta. Ako postoji više imena po mjestu, možete ih prioritizirati <a href="%{url}">ovdje</a>. Molimo <strong>nemojte</strong> dodavati imena za SVAKO mjesto gdje se ime koristi, samo za mjesta koja su u sukobu s drugim mjestima.
       taxon:
@@ -9267,6 +9229,13 @@ hr:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: mora biti valjano za određeni položaj
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: mora biti valjano za ciljnu skupinu
         application:
           attributes:
             redirect_uri:
@@ -9345,6 +9314,10 @@ hr:
             place_geometry:
               is_too_large_to_edit: je preveliko za uređivanje
               is_too_large_to_import: je preveliko za uvoz
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: preveliko ili presloženo je za procesiranje prije isteka vremena
               contains_too_many_observations: sadrži previše opažanja za uvoz
               cannot_be_blank: ne može biti prazno
               invalid_point: ima nevažeću točku, npr. longitudu veću od 180 ili latitudu manju od -90

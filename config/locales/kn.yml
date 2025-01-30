@@ -21,12 +21,6 @@ kn:
   x_identifications_:
     one: '%{count} ಗುರುತಿಸುವಿಕೆ'
     other: '%{count} ಗುರುತಿಸುವಿಕೆಗಳು'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> ಪತ್ತೆದಾರರು'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> ಪತ್ತೆದಾರರು'
   x_languages:
     one: "%{count} ಭಾಷೆ"
     other: "%{count} ಭಾಷೆಗಳು"
@@ -71,9 +65,6 @@ kn:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆ ಪರಿಶೀಲನೆಯಾಗಿದೆ"
     other: "<span class='count'>%{count}</span> ವೀಕ್ಷಣೆಗಳು ಪರಿಶೀಲನೆಯಾಗಿವೆ"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> ವೀಕ್ಷಕರು'
-    other: '<span class="count">%{count}</span> ವೀಕ್ಷಕರುಗಳು'
   x_others:
     one: "%{count} ಇತರೆ"
     other: "%{count} ಇತರೆ"
@@ -215,6 +206,7 @@ kn:
   add_a_batch_of_taxa: ಜೀವಿವರ್ಗಗಳ ಬ್ಯಾಚ್ ಅನ್ನು ಸೇರಿಸಿ
   add_a_comment: ಅಭಿಪ್ರಾಯ ಸೇರಿಸಿ
   add_a_field: ಆವರಣವೊಂದನ್ನು ಸೇರಿಸಿ
+  add_a_flag: ಫ್ಲ್ಯಾಗ್ ಸೇರಿಸಿ
   #Tool tip for a button that adds a link to a text area
   add_a_link: ಕೊಂಡಿಯನ್ನು ಸೇರಿಸಿ
   add_a_name: ಹೆಸರು ಸೇರಿಸಿ
@@ -250,6 +242,7 @@ kn:
   add_comment: ಅಭಿಪ್ರಾಯ ಸೇರಿಸಿ
   add_conservation_status: ಸಂರಕ್ಷಣೆ ಸ್ಥಿತಿಯನ್ನು ಸೇರಿಸಿ
   add_custom_project_fields: ಒಗ್ಗಿಸಿದ ಪ್ರಾಯೋಜನೆ ಆವರಣಗಳನ್ನು ಸೇರಿಸಿ
+  add_edit_flags: ಸೇರಿಸಿ/ಸಂಪಾದಿಸಿ ಫ್ಲ್ಯಾಗ್ಗಳು
   add_editor: ಸಂಪಾದಕವನ್ನು ಸೇರಿಸಿ
   add_description: "%{description_name} ಸೇರಿಸಿ"
   add_from_your_observations: ನಿಮ್ಮ ವೀಕ್ಷಣೆಗಳಿಂದ ಸೇರಿಸಿ
@@ -860,6 +853,8 @@ kn:
     ಪ್ರಸ್ತುತವಿರುವ ಕಂಪ್ಯೂಟರ್ ವಿಷನ್ ಮಾಡೆಲ್‍ಗೆ ಈ ಜೀವಿವರ್ಗದ ಬಗ್ಗೆ ತಿಳಿದಿದೆ, ಆದ್ದರಿಂದ "ಸಮಾನ ಗೋಚರತೆ" ಲೇಬಲ್ ನ ಜೊತೆ ಸ್ವಯಂಚಾಲಿತ ಸಲಹೆಗಳಲ್ಲಿ ಇದು ಸೇರಿಕೊಳ್ಳಬಹುದಾಗಿದೆ.
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: ಬಾಕಿ ಇದೆ
+  computer_vision_model_pending_desc2: |
+    ತಿಳಿದಿಲ್ಲ, ಆದ್ದರಿಂದ ಇದು 'ಹತ್ತಿರ ನಿರೀಕ್ಷಿಸಲಾಗಿದೆ' ಲೇಬಲ್‍ನೊಂದಿಗೆ ಸ್ವಯಂಚಾಲಿತ ಸಲಹೆಗಳಲ್ಲಿ ಸೇರಿಕೊಳ್ಳಬಹುದಾದರೂ, 'ಸಮಾನ ಗೋಚರತೆ' ಲೇಬಲ್ ಹೊಂದುವುದಿಲ್ಲ. ಮಾಡೆಲ್ ಒಳಗೊಂಡಿರುವ ಅಗತ್ಯಗಳು ಪ್ರತಿ ಮಾಡೆಲ್‌ಗಾಗಿ ಬದಲಾಯಿಸುತ್ತವೆ, ಆದರೆ ಸಾಮಾನ್ಯವಾಗಿ ಒಳಗೊಂಡಿರುವುದು ವೀಕ್ಷಣೆಯ ಸಂಖ್ಯೆಯ ಮೇಲೆ ಆಧಾರಿತವಾಗಿದೆ, ಆದ್ದರಿಂದ ಈ ವರ್ಗೀಕರಣವನ್ನು ಮುಂದಿನ ಮಾಡೆಲ್ ತರಬೇತಿಯ ಸಮಯದಲ್ಲಿ ಸೇರಿಸಲು ಸಾಧ್ಯತೆಯನ್ನು ಹೆಚ್ಚಿಸಲು, ಈ ವರ್ಗೀಕರಣದ ಹೆಚ್ಚು ವೀಕ್ಷಣೆಗಳನ್ನು ಸೇರಿಸಿ ಅಥವಾ ಗುರುತಿಸಿ.
   concept_status: ಪರಿಕಲ್ಪನೆ ಸ್ಥಿತಿ
   confidential: ಗೋಪ್ಯ
   confirm: ಖಚಿತಪಡಿಸಿ
@@ -896,6 +891,7 @@ kn:
   content_and_display: ವಸ್ತುವಿಷಯ & ಪ್ರದರ್ಶನ
   content_author: ವಸ್ತುವಿಷಯದ ಲೇಖಕರು
   content_hidden: ಮರೆಮಾಡಿದ ವಿಷಯಗಳು
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{date} ರಂದು %{user} ಅವರಿಂದ ವಿಷಯ ಮರೆಮಾಡಲಾಗಿದೆ ಏಕೆಂದರೆ : "%{reason}"
   content_type: ವಿಷಯದ ವಿಧ
@@ -967,6 +963,8 @@ kn:
     #Skin or exoskeleton shed by a reptile or arthropod, not a particular
     #plumage in a bird or seasonal hair/fur in a mammal
     molt: ಪೊರೆ
+    #Evidence of hair no longer attached to the organism from which it originated
+    hair: ಕೂದಳು
   controlled_term_definitions:
     alive: ಜೀವಿಯು ಜೀವಂತವಾಗಿದೆ ಹಾಗೂ ಸಾವು ಸನ್ನಿಹಿತವಾಗಿರುವ ಲಕ್ಷಣಗಳನ್ನು ತೋರಿಸುತ್ತಿಲ್ಲ
     cannot_be_determined: ಒದಗಿರುವ ಕುರುಹುಗಳಿಂದ ನಿರ್ಣಯಿಸಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ
@@ -1521,6 +1519,8 @@ kn:
   flag_resolution: ಪರಿಹಾರ
   flag_saved_thanks_html: ಫ್ಲ್ಯಾಗ್ ಸೇವ್ಆಯಿತು. ವಂದನೆ! <a href="%{url}" class="readmore">ಫ್ಲ್ಯಾಗ್ ವೀಕ್ಷಿಸಿ</a>
   flag_this_observation: ಈ ವೀಕ್ಷಣೆಯನ್ನು ಫ್ಲ್ಯಾಗ್ ಮಡಿ
+  flags: ಫ್ಲ್ಯಾಗ್ಗಳು
+  flags_with_count: ಫ್ಲ್ಯಾಗ್ಗಳು (%{count})
   flickr_account_information: ನಿಮ್ಮ Flickr ಖಾತೆಯ ಮಾಹಿತಿ
   flickr_has_no_creative_commons: ಫ್ಲಿಕರ್ ಈ ಸ್ಥಳದಿಂದ ಕ್ರಿಯೇಟಿವ್ ಕಾಮನ್ಸ್ ಪರವಾನಿಗೆ ಹೊಂದಿರುವ ಚಿತ್ರಗಳನ್ನು ಹೊಂದಿಲ್ಲ.
   flickr_identity: ಫ್ಲಿಕರ್ ಗುರುತು
@@ -1991,6 +1991,7 @@ kn:
     es: ಸ್ಪಾನಿಶ್
     es-AR: ಸ್ಪಾನಿಶ್ (ಅರ್ಜೆಂಟಿನಾ)
     es-CO: ಸ್ಪಾನಿಶ್ (ಕೊಲಂಬಿಯಾ)
+    es-CR: ಸ್ಪಾನಿಶ್ (ಕೋಸ್ಟಾ ರಿಕಾ)
     es-MX: ಸ್ಪಾನಿಶ್ (ಮೆಕ್ಸಿಕೋ)
     et: ಎಸ್ಟೋನಿಯನ್
     eu: ಬಾಸ್ಕ್
@@ -2070,6 +2071,8 @@ kn:
   #Lowest taxonomic rank to filter by, where the "lowest" possible rank is
   #subspecies or variety
   lowest_rank: ಕೆಳಹಂತದ ದರ್ಜೆ
+  #Name of a website showing geologic maps around the world: https://macrostrat.org
+  Macrostrat: ಮ್ಯಾಕ್ರೋಸ್ಟ್ರಾಟ್
   make_admin: ನಿರ್ವಾಹಕರನ್ನಾಗಿ ಮಾಡಿ
   #Header for main content section of the project detail page when editing custom project data.
   main_content: ಮುಖ್ಯ ವಿಷಯ
@@ -2458,6 +2461,7 @@ kn:
   obscured_or_private: ಮಸುಕಾಗಿಸಲಾಗಿದೆ ಅಥವಾ ಖಾಸಗಿಯಾಗಿದೆ
   observation: ವೀಕ್ಷಣೆ
   observation_: ವೀಕ್ಷಣೆ
+  observation_accuracy_experiment_precision: "കൃത്യത"
   observation_added_to_the_project: "\"%{project}\" ಪ್ರಾಯೋಜನೆಗೆ ಸೇರಿಸಲಾದ ವೀಕ್ಷಣೆಗಳು"
   observation_aggregation: ವೀಕ್ಷಣೆಗಳ ಕ್ರೋಢೀಕರಣ
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -2610,7 +2614,7 @@ kn:
   old_observation_form: ಹಳೆಯ ವೀಕ್ಷಣಾ ಫಾರಂ (ಹಳತಾಗಿದೆ)
   ok: "ಓಕೆ"
   on_caps: "ಆನ್"
-  on_day: "ಆನ್"
+  on_day: "ರಂದು"
   onboarding:
     observe_panel_title: ಕೆಲವು ವೀಕ್ಷಣೆಗಳನ್ನು ಪೋಸ್ಟ್ ಮಾಡುವುದರ ಮೂಲಕ ಪ್ರಾರಂಭಿಸೋಣ
     observe_panel_body_p1_local: ಪ್ರೇರಣೆಯ ಅಗತ್ಯವಿದೆಯೇ? ಸಮೀಪದಲ್ಲಿ ನೆಡೆದ ಜೀವಿಗಳ ವೀಕ್ಷಣೆಗಳಲ್ಲಿ ಕೆಲವು ಇಲ್ಲಿವೆ...
@@ -3594,7 +3598,6 @@ kn:
     must_be_verifiable: ಪರಿಶೀಲಿಸಬಲ್ಲದಾಗಿರಬೇಕು
     must_be_wild: ವನ್ಯಜೀವಿಯಾಗಿರಲೇಬೇಕು
   running_total: ಕ್ರೋಢೀಕೃತ ಮೊತ್ತ
-  said: ಹೇಳಿದ್ದಾರೆ
   satellite: ಉಪಗ್ರಹ
   save: ಉಳಿಸಿ
   save_all: ಎಲ್ಲಾ ಉಳಿಸಿ
@@ -4790,6 +4793,14 @@ kn:
         become_a_monthly_supporter_of_inaturalist_caps: ಐನ್ಯಾಚುರಲಿಸ್ಟ್ ಗೆ ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿ
         thank_you_for_being_a_monthly_supporter: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
         thank_you_for_being_a_monthly_supporter_caps: ತಿಂಗಳ ಬೆಂಬಲಿಗರಾಗಿರುವುದಕ್ಕೆ ಧನ್ಯವಾದಗಳು
+    geo_model:
+      explain:
+        range_comparison:
+          #The average (harmonic mean) of Precision (fraction of the Expected
+          #Nearby Map that are True Presences) and Recall (fraction of the
+          #Taxon Range that are True Presences)
+          f1_colon: |
+            F1:
     guides:
       index:
         deprecated_banner: |
@@ -5183,8 +5194,6 @@ kn:
         we_have_redesigned_projects: |
           ನೀವು ವಿವರಿಸುವ ಸ್ಥಳಗಳು, ಜೀವಿವರ್ಗಗಳು, ಗುಣಮಟ್ಟ ಮತ್ತು ದಿನಾಂಕ ಗಳನ್ನು ಸರಿಹೊಂದಿಸುವ ನಿಮ್ಮ ಎಲ್ಲಾ ವೀಕ್ಷಣೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಸೇರಿಸುವುದಕ್ಕಾಗಿ ಪ್ರಾಯೋಜನೆಗಳನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ. ಈ ಕೆಳಗಿನ ಗುಣವೈಶಿಷ್ಟ್ಯಗಳನ್ನು ಹಂಚಿಕೊಂಡಿರುವ ಎರಡು ಪ್ರಮುಖ ಬಗೆಯ ಪ್ರಾಯೋಜನೆಗಳಾದ ಕಲೆಕ್ಷನ್ ಮತ್ತು ಅಂಬ್ರೆಲ್ಲಾ ಪ್ರಾಯೋಜನೆಗಳ ಮಧ್ಯೆ ಒಂದನ್ನು ಆಯ್ದುಕೊಳ್ಳಿ.
         welcome_to_projects: ಪ್ರಾಯೋಜನೆಗಳಿಗೆ ಸುಸ್ವಾಗತ!
-        you_can_learn_more_html: |
-          ನೀವು ಪ್ರಾಯೋಜನೆಗಳ ನಿರ್ವಹಣೆಯ ಬಗ್ಗೆ <a href="https://www.inaturalist.org/pages/managing-projects">ಇಲ್ಲಿ</a> ಹೆಚ್ಚು ತಿಳಿಯಬಹುದು ಅಥವಾ ಪ್ರಾಯೋಜನೆಗಳ ಇತಿಹಾಸವನ್ನು <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">ನಮ್ಮ ಬ್ಲಾಗ್</a> ನಲ್ಲಿ ಓದಬಹುದು.
         errors:
           name_is_required: ಪ್ರಾಯೋಜನೆ ಹೆಸರಿನ ಅಗತ್ಯವಿದೆ
           name_less_than_100_characters: ಪ್ರಾಯೋಜನೆ ಹೆಸರು 100 ಅಕ್ಷರಗಳಿಗಿಂತ ಕಡಿಮೆಯಿರಬೇಕು.
@@ -5434,6 +5443,8 @@ kn:
         prefers_no_tracking_label_desc_info_we_share_device_details: |
           ಮೊಬೈಲ್ ಫೋನಿನ ಮಾದರಿ ಮತ್ತು ಉತ್ಪಾದನೆ ಮುಂತಾದ ಸಾಧನದ ವಿವರಗಳು
         same_day_geoprivacy_protection: ಅದೇ-ದಿನದ ಭೂಗೌಪ್ಯತೆಯ ರಕ್ಷಣೆ
+        taxon_name_priorities:
+          common_name_lexicons_description: ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ, ಸಾಮಾನ್ಯ ಹೆಸರುಗಳು ನಿಮ್ಮ ಖಾತೆಯ ಭಾಷೆ/ಸ್ಥಳದಲ್ಲಿ ತೋರಿಸಲಾಗುತ್ತದೆ. ಇತರ ಶಬ್ದಕೋಶಗಳಲ್ಲಿ ಹೆಸರಿಗಳನ್ನು ನೋಡಲು ಅಥವಾ ನಿರ್ದಿಷ್ಟ ಸ್ಥಳಗಳಲ್ಲಿ ಬಳಸುವ ಹೆಸರಿಗಳಿಗೆ (ಉದಾಹರಣೆಗೆ, ಇಂಗ್ಲಿಷ್ (ಆಸ್ಟ್ರೇಲಿಯಾ) ಅಥವಾ ಸ್ಪ್ಯಾನಿಷ್ (ಕೋಸ್ಟಾ ರಿಕಾ)) ಆದ್ಯತೆ ನೀಡಲು, ಸಾಮಾನ್ಯ ಹೆಸರು ಶಬ್ದಕೋಶಗಳನ್ನು ಸೇರಿಸಿ. ಒಮ್ಮೆಗೆ 3 ಸಾಮಾನ್ಯ ಹೆಸರುಗಳನ್ನು ಮಾತ್ರ ತೋರಿಸಲಾಗುತ್ತದೆ. ನೀವು ಆಯ್ಕೆ ಮಾಡಿದ ಶಬ್ದಕೋಶಕ್ಕೆ ಯಾವುದೇ ಸಾಮಾನ್ಯ ಹೆಸರು ಲಭ್ಯವಿಲ್ಲವಾದರೆ, ಅದು ತೋರಣೆಯಿಂದ ಕೈದಾಕಲಾಗುತ್ತದೆ.
       recent:
         about_recent_users: ಕುರಿತು
       show:

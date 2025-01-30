@@ -14,7 +14,6 @@ const Account = ( {
   handleCustomDropdownSelect,
   handleInputChange,
   handlePlaceAutocomplete,
-  setModalState,
   sites
 } ) => {
   if ( !sites ) { return null; }
@@ -75,6 +74,66 @@ const Account = ( {
     );
   } );
 
+  const thirdPartyTrackingModalDescription = (
+    <div>
+      <p>
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use" )}
+        </strong>
+      </p>
+      <ul>
+        <li>
+          <strong>
+            <span
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_we_use_google_html" )
+              }}
+            />
+          </strong>
+        </li>
+        <li className="stacked">
+          <strong>
+            <a href="https://newrelic.com/">New Relic</a>
+          </strong>
+        </li>
+      </ul>
+      <p>
+        <strong>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share" )}
+        </strong>
+      </p>
+      <ul>
+        <li
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html:
+              I18n.t(
+                "views.users.edit.prefers_no_tracking_label_desc_info_we_share_ip_addresses_html"
+              )
+          }}
+        />
+        <li>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_browser_details" )}
+        </li>
+        <li>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_crash_details" )}
+        </li>
+        <li>
+          {I18n.t( "views.users.edit.prefers_no_tracking_label_desc_info_we_share_device_details" )}
+        </li>
+        <li
+          className="stacked"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.users.edit.prefers_no_tracking_label_desc_value_html" )
+          }}
+        />
+      </ul>
+      <p>{I18n.t( "views.users.edit.prefers_no_tracking_label_desc_limits" )}</p>
+    </div>
+  );
+
   return (
     <>
       <div className="row">
@@ -107,16 +166,9 @@ const Account = ( {
             <CheckboxRowContainer
               name="prefers_no_tracking"
               label={I18n.t( "views.users.edit.prefers_no_tracking_label" )}
-              description={(
-                <button
-                  type="button"
-                  className="btn btn-link btn-tracking btn-nostyle"
-                  onClick={( ) => setModalState( { show: true } )}
-                >
-                  <i className="fa fa-info-circle" />
-                  {` ${I18n.t( "learn_more" )}`}
-                </button>
-              )}
+              modalDescription={thirdPartyTrackingModalDescription}
+              modalDescriptionTitle={I18n.t( "third_party_tracking" )}
+              modalClassName="ThirdPartyTrackingModal"
             />
             <CheckboxRowContainer
               name="pi_consent"
@@ -192,7 +244,7 @@ Account.propTypes = {
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func,
-  setModalState: PropTypes.func,
+  showModalDescription: PropTypes.func,
   sites: PropTypes.array
 };
 

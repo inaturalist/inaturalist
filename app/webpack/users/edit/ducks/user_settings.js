@@ -27,10 +27,10 @@ export function setUserData( userData, savedStatus = "unsaved" ) {
 export function fetchUserSettings( savedStatus, relationshipsPage ) {
   return ( dispatch, getState ) => {
     const { profile, config } = getState( );
-    const params = { useAuth: true };
-    if ( config.testingApiV2 ) {
-      params.fields = "all";
-    }
+    const params = {
+      useAuth: true,
+      fields: "all"
+    };
     const initialLoad = _.isEmpty( profile );
     inatjs.users.me( params ).then( ( { results } ) => {
       // this is kind of unnecessary, but removing these since they're read-only keys
@@ -157,6 +157,7 @@ export function saveUserSettings( ) {
     delete params.user.site;
     delete params.user.unconfirmed_email;
     delete params.user.updated_at;
+    delete params.user.place_id;
 
     // fetching user settings here to get the source of truth
     // currently users.me returns different results than

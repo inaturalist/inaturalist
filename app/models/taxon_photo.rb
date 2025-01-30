@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 class TaxonPhoto < ApplicationRecord
+  acts_as_elastic_model lifecycle_callbacks: [:destroy]
+
   audited except: [:taxon_id], associated_with: :taxon
 
   belongs_to :taxon
@@ -15,6 +19,7 @@ class TaxonPhoto < ApplicationRecord
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
   validate :reasonable_number_of_photos, on: :create
+  validate :photo_cannot_have_unresolved_flags
 
   attr_accessor :skip_taxon_indexing
 
@@ -24,6 +29,12 @@ class TaxonPhoto < ApplicationRecord
     if taxon && taxon.taxon_photos.count >= MAX_TAXON_PHOTOS
       errors.add( :taxon, :too_many_photos, max: MAX_TAXON_PHOTOS )
     end
+  end
+
+  def photo_cannot_have_unresolved_flags
+    return unless photo&.flags&.any? {| f | !f.resolved? }
+
+    errors.add( :photo, :cannot_have_unresolved_flags )
   end
 
   def to_s
@@ -45,18 +56,6 @@ class TaxonPhoto < ApplicationRecord
     Rails.cache.delete(taxon.photos_cache_key)
     Rails.cache.delete(taxon.photos_with_external_cache_key)
     true
-  end
-
-  def as_indexed_json(options={})
-    {
-      taxon_id: taxon_id,
-      photo: photo.as_indexed_json(
-        sizes: [:square, :small, :medium, :large, :original],
-        native_page_url: true,
-        native_photo_id: true,
-        type: true
-      )
-    }
   end
 
   def index_taxon

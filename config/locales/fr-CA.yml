@@ -24,12 +24,6 @@ fr-CA:
   x_identifications_:
     one: '%{count} Identification'
     other: '%{count} Identifications'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificateur'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificateurs'
   x_languages:
     one: "%{count} langue"
     other: "%{count} langues"
@@ -74,9 +68,6 @@ fr-CA:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observation vérifiée"
     other: "<span class='count'>%{count}</span> observations vérifiées"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observateur'
-    other: '<span class="count">%{count}</span> Observateurs'
   x_others:
     one: "%{count} autre"
     other: "%{count} autres"
@@ -394,6 +385,12 @@ fr-CA:
   parental_consent:
     must_specify_email: Vous devez spécifier une adresse courriel
     invalid_email: Format de courriel invalide
+  people_added:
+    identification:
+      #Text shown on /people when the person has added an observation. Follows a header with the username, so the text looks like
+      #kueda
+      #added an ID to an observation by loarie
+      with_observation: a ajouté une <strong>identification</strong> à une %{observation_link} de %{user_link}
   project_x_was_delete: "%{project} a été supprimé (merci d'attendre quelques minutes pour qu'il soit supprimé du site Web)"
   search_by_name_or_email: Rechercher par nom ou par courriel
   #Option to show data series that show "No Annotation" data, i.e. records that
@@ -736,7 +733,7 @@ fr-CA:
           Veuillez vous connecter au compte à partir de l'application Seek de votre enfant en tapant sur le bouton « iNaturalist » du menu puis sur « Se connecter avec iNaturalist » en bas de l'écran.
           </p>
           <p>
-          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org. 
+          Votre enfant pourra ensuite poster les observations sur son compte iNaturalist en utilisant l'application Seek afin qu'elles soient visibles sur iNaturalist.org.
           </p>
       users_updates_suspended:
         message: |
@@ -774,11 +771,6 @@ fr-CA:
           Êtes-vous prêt·e à sortir de cette page pour dupliquer ce projet? Veuillez noter que l'icône du projet
           et sa bannière ne seront pas dupliqués, et devront être rechargés dans le projet
           dupliqué.
-        you_can_learn_more_html: |
-          Vous pouvez en savoir plus sur la gestion des projets
-          <a href="https://www.inaturalist.org/pages/managing-projects">ici</a>
-          ou lire l’historique des projets sur
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">notre blogue</a>.
       show:
         bioblitz_results_desc_html: |
           <p>

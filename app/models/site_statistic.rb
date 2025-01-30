@@ -44,8 +44,6 @@ class SiteStatistic < ApplicationRecord
     @@first_stat ||= SiteStatistic.order( "created_at asc" ).first
   end
 
-  private
-
   def self.observations_stats(at_time = Time.now)
     at_time = at_time.utc
     count = Observation.elastic_search(
@@ -695,8 +693,10 @@ class SiteStatistic < ApplicationRecord
   def self.platforms_stats(at_time = Time.now)
     at_time = at_time.utc
     date_filter = { range: { created_at: { gte: at_time - 1.day, lt: at_time } } }
-    iphone_app_id = OauthApplication.inaturalist_iphone_app.try(:id) || -1
-    android_app_id = OauthApplication.inaturalist_android_app.try(:id) || -1
+    iphone_app_id = OauthApplication.inaturalist_iphone_app.try( :id ) || -1
+    android_app_id = OauthApplication.inaturalist_android_app.try( :id ) || -1
+    seek_app_id = OauthApplication.seek_app.try( :id ) || -1
+    inat_next_app_id = OauthApplication.inat_next_app.try( :id ) || -1
     {
       web: Observation.elastic_search(
         filters: [
@@ -722,6 +722,22 @@ class SiteStatistic < ApplicationRecord
         size: 0,
         track_total_hits: true
       ).total_entries,
+      seek: Observation.elastic_search(
+        filters: [
+          date_filter,
+          { term: { "oauth_application_id.keyword": seek_app_id } }
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      inat_next: Observation.elastic_search(
+        filters: [
+          date_filter,
+          { term: { "oauth_application_id.keyword": inat_next_app_id } }
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
       other: Observation.elastic_search(
         filters: [
           date_filter,
@@ -730,7 +746,9 @@ class SiteStatistic < ApplicationRecord
               must: { exists: { field: "oauth_application_id" } },
               must_not: { terms: { "oauth_application_id.keyword": [
                 iphone_app_id,
-                android_app_id
+                android_app_id,
+                seek_app_id,
+                inat_next_app_id
               ] } }
             }
           }
@@ -741,11 +759,13 @@ class SiteStatistic < ApplicationRecord
     }
   end
 
-  def self.platforms_cumulative_stats(at_time = Time.now)
+  def self.platforms_cumulative_stats( at_time = Time.now )
     at_time = at_time.utc
     date_filter = { range: { created_at: { lte: at_time } } }
-    iphone_app_id = OauthApplication.inaturalist_iphone_app.try(:id) || -1
-    android_app_id = OauthApplication.inaturalist_android_app.try(:id) || -1
+    iphone_app_id = OauthApplication.inaturalist_iphone_app.try( :id ) || -1
+    android_app_id = OauthApplication.inaturalist_android_app.try( :id ) || -1
+    seek_app_id = OauthApplication.seek_app.try( :id ) || -1
+    inat_next_app_id = OauthApplication.inat_next_app.try( :id ) || -1
     {
       web: Observation.elastic_search(
         filters: [
@@ -771,6 +791,22 @@ class SiteStatistic < ApplicationRecord
         size: 0,
         track_total_hits: true
       ).total_entries,
+      seek: Observation.elastic_search(
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: seek_app_id } }
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
+      inat_next: Observation.elastic_search(
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: inat_next_app_id } }
+        ],
+        size: 0,
+        track_total_hits: true
+      ).total_entries,
       other: Observation.elastic_search(
         filters: [
           date_filter,
@@ -779,7 +815,9 @@ class SiteStatistic < ApplicationRecord
               must: { exists: { field: "oauth_application_id" } },
               must_not: { terms: { oauth_application_id: [
                 iphone_app_id,
-                android_app_id
+                android_app_id,
+                seek_app_id,
+                inat_next_app_id
               ] } }
             }
           }

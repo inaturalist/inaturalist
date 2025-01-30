@@ -1,6 +1,6 @@
 base: &base
 
-    default_site_name: <%= ENV.fetch("INAT_DEFAULT_SITE_NAME") { "iNaturalist" } %>
+    default_site_name: <%= ENV.fetch("INAT_DEFAULT_SITE_NAME") {} %>
 
     rest_auth:
         REST_AUTH_SITE_KEY: <%= ENV.fetch("INAT_SECRET_DEVISE_PEPPER") { "INAT_SECRET_DEVISE_PEPPER" } %>
@@ -106,6 +106,8 @@ base: &base
     admin_user_email: <%= ENV.fetch("INAT_ADMIN_USER_EMAIL") { "INAT_ADMIN_USER_EMAIL" } %>
 
     dangerous_taxa_list_id: <%= ENV.fetch("INAT_DANGEROUS_TAXA_LIST_ID") { "INAT_DANGEROUS_TAXA_LIST_ID" } %>
+
+    vpn_ips_url: <%= ENV.fetch("INAT_VPN_IPS_URL") {} %>
 
 development:
     <<: *base

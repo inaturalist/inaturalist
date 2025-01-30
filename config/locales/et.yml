@@ -27,12 +27,6 @@ et:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> MÄÄRATLUS'
     other: '<span class="count">%{count}</span> MÄÄRATLUST'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> määraja'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> määrajat'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> teistele tehtud määratlus'
     other: '<span class="count">%{count}</span> teistele tehtud määratlust'
@@ -83,9 +77,6 @@ et:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> kontrollitud vaatlus"
     other: "<span class='count'>%{count}</span> kontrollitud vaatlust"
-  x_observers_html:
-    one: '<span class="count">1</span> vaatleja'
-    other: '<span class="count">%{count}</span> vaatlejat'
   x_others:
     one: "1 muu"
     other: "%{count} muud"
@@ -1068,6 +1059,7 @@ et:
   content_and_display: Sisu ja kuvamine
   content_author: Sisu autor
   content_hidden: Sisu on peidetud
+  #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Kuupäeval %{date} on kasutaja %{user} peitnud antud sisu põhjusel: "%{reason}"
   content_type: Sisutüüp
@@ -3891,7 +3883,6 @@ et:
     must_be_in: peab olema taksonis
     must_be_coordinates_shareable_by_project_curators: vaatleja peab lubama projekti kuraatoritel koordinaate näha.
   running_total: Hetke koguarv
-  said: ütles
   satellite: satelliit
   save: Salvesta
   save_all: Salvesta kõik
@@ -5477,8 +5468,6 @@ et:
         data_visualizations: Admete visualiseerimine
         delete_project: Kustuta projekt
         display_project_name: Näita projekti nime
-        do_you_need_features_from_traditional: |
-          Kas sa vajad tavaprojektide võimalusi nagu ligipääsu tõelistele koordinaatidele, vaatluste spetsiaalväljasid või üksikute vaatluste lisamist, millega automaatfiltrid hakkama ei saa?
         include_annotated_observations: |
           Kaasa ainult vaatluseid, millel on olemas mingi spetsiifiline märge (nt "elujärk") või märke ja selle väärtuse paarik (nt "elujärk" = "täiskasvanu").
           Igal projekt saab kasutada vaid ühe märkuse filtrit.
