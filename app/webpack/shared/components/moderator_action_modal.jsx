@@ -22,6 +22,7 @@ const ModeratorActionModal = ( {
   if ( !item ) {
     return null;
   }
+  const viewerIsAdmin = config.currentUser?.roles?.indexOf( "admin" ) >= 0;
   let verb = I18n.t( "hide_content" );
   let placeholder = I18n.t( "please_explain_why_you_want_to_hide_this" );
   if ( action === "unhide" ) {
@@ -96,6 +97,17 @@ const ModeratorActionModal = ( {
   } else {
     throw new Error( "Can't moderate content of an unknown type" );
   }
+  let privateToggle;
+  if ( action === "hide" && viewerIsAdmin && (
+    item instanceof Photo || item instanceof Sound
+  ) ) {
+    privateToggle = (
+      <label>
+        <input type="checkbox" name="private" />
+        { I18n.t( "make_private" ) }
+      </label>
+    );
+  }
   return (
     <Modal
       show={visible}
@@ -107,7 +119,8 @@ const ModeratorActionModal = ( {
           e.preventDefault( );
           const formData = new FormData( e.target );
           const reason = formData.get( "reason" );
-          submit( item, action, reason );
+          const makePrivate = formData.get( "private" );
+          submit( item, action, reason, makePrivate );
           return false;
         }}
       >
@@ -118,7 +131,10 @@ const ModeratorActionModal = ( {
         </Modal.Header>
         <Modal.Body>
           {contentPreview}
-          <textarea name="reason" className="form-control" placeholder={placeholder} required />
+          <div className="form-group">
+            <textarea name="reason" className="form-control" placeholder={placeholder} required />
+          </div>
+          {privateToggle}
           <input type="hidden" name="action" value={action || ""} />
           <div className="text upstacked text-muted">
             <p>{ action === "unhide" ? I18n.t( "unhide_desc" ) : I18n.t( "hide_desc" ) }</p>

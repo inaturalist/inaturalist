@@ -19,7 +19,7 @@
   .row
     .col-md-6
       #life-list.dynamic_life_list.clear
-        = image_tag( @selected_user.icon.url( :medium ), class: "life-list-user-icon" )
+        = user_image @selected_user, size: "medium", class: "life-list-user-icon"
         = image_tag( "lists-life-list.svg", class: "list-icon" )
         = link_to t( :view_dynamic_lifelist_ ), by_login_lifelists_path( login: @selected_user.login ), class: "btn btn-primary btn-inat"
     - if @lists.empty?

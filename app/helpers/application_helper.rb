@@ -441,7 +441,7 @@ module ApplicationHelper
     if size_2x
       # the next size up from thumb is medium, which is not square cropped, so
       # we need to fudge that here
-      if size == "thumb"
+      if widths[size] >= widths["thumb"] && !options[:force_img]
         return content_tag :div,
           " ",
           class: css_class,
