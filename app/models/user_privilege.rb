@@ -8,13 +8,11 @@ class UserPrivilege < ApplicationRecord
   SPEECH = "speech"
   ORGANIZER = "organizer"
   COORDINATE_ACCESS = "coordinate_access"
-  INTERACTION = "interaction"
 
   PRIVILEGES = [
     SPEECH,
     ORGANIZER,
-    COORDINATE_ACCESS,
-    INTERACTION
+    COORDINATE_ACCESS
   ].freeze
 
   # The earned_#{privilege}? methods are intended to calculate whether the user
@@ -52,10 +50,6 @@ class UserPrivilege < ApplicationRecord
       ]
     ).total_entries
     improving_ids_count >= 1000
-  end
-
-  def self.earned_interaction?( user )
-    user.confirmed?
   end
 
   def self.check( user, privilege )

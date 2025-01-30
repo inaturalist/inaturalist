@@ -1365,7 +1365,6 @@ class User < ApplicationRecord
   def check_privileges_if_confirmed
     return unless saved_change_to_confirmed_at?
 
-    UserPrivilege.check( id, UserPrivilege::INTERACTION )
     UserPrivilege.check( id, UserPrivilege::ORGANIZER )
   end
 

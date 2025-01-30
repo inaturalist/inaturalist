@@ -121,25 +121,6 @@ describe UserPrivilege do
     end
   end
 
-  describe "interaction" do
-    it "users do not have interaction privilege if email is not confirmed" do
-      expect( UserPrivilege.earned_interaction?( User.make!( confirmed_at: nil ) ) ).to be false
-    end
-
-    it "users have interaction privilege if email is confirmed" do
-      expect(
-        UserPrivilege.earned_interaction?( User.make!( confirmed_at: Time.now ) )
-      ).to be true
-    end
-
-    it "users earn interaction privilege when email is confirmed" do
-      user = User.make!( confirmed_at: nil )
-      expect( UserPrivilege.earned_interaction?( user ) ).to be false
-      user.update( confirmed_at: Time.now )
-      expect( UserPrivilege.earned_interaction?( user ) ).to be true
-    end
-  end
-
   describe "requires_privilege" do
     # This might belong in the message spec
     # describe "for message" do
