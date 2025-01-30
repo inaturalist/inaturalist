@@ -87,5 +87,18 @@ describe Message do
       m.reload
       expect( m.to_user_copy ).to be_blank
     end
+    it "should set sent_at" do
+      m = create :message, user: sender
+      expect( m.sent_at ).to be_blank
+      m.send_message
+      expect( m.sent_at ).not_to be_blank
+    end
+    it "should not set sent_at if sender is suspended" do
+      m = create :message, user: sender
+      sender.suspend!
+      expect( m.sent_at ).to be_blank
+      m.send_message
+      expect( m.sent_at ).to be_blank
+    end
   end
 end

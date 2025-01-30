@@ -1316,7 +1316,11 @@ class User < ApplicationRecord
 
   def destroy_messages_by_suspended_user
     return true unless suspended?
-    Message.inbox.unread.where(:from_user_id => id).destroy_all
+
+    Message.inbox.unread.where( from_user_id: id ).find_each do | msg |
+      msg.from_user_copy.update( sent_at: nil )
+      msg.destroy
+    end
     true
   end
 
@@ -1326,7 +1330,7 @@ class User < ApplicationRecord
 
     Message.
       delay( priority: USER_INTEGRITY_PRIORITY ).
-      resend_for_user_since( self, suspended_at_before_last_save - 1.week )
+      resend_unsent_for_user( id )
     true
   end
 

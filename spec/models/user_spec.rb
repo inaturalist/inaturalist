@@ -913,25 +913,32 @@ describe User do
   end
 
   describe "suspension" do
-    it "deletes unread sent messages" do
-      fu = UserPrivilege.make!.user # User.make!
-      tu = UserPrivilege.make!.user # User.make!
-      m = make_message( user: fu, from_user: fu, to_user: tu )
+    let( :from_user ) { UserPrivilege.make!.user }
+    let( :to_user ) { UserPrivilege.make!.user }
+    let( :sent_message ) do
+      m = make_message( user: from_user, from_user: from_user, to_user: to_user )
       m.send_message
-      expect( m.to_user_copy ).not_to be_blank
-      fu.suspend!
-      m.reload
-      expect( m.to_user_copy ).to be_blank
+      m
+    end
+
+    it "deletes unread sent messages" do
+      expect( sent_message.to_user_copy ).not_to be_blank
+      from_user.suspend!
+      sent_message.reload
+      expect( sent_message.to_user_copy ).to be_blank
+    end
+
+    it "unsets sent_at on the sender's copy" do
+      expect( sent_message.sent_at ).not_to be_blank
+      from_user.suspend!
+      sent_message.reload
+      expect( sent_message.sent_at ).to be_blank
     end
 
     it "should not delete the suspended user's messages" do
-      fu = UserPrivilege.make!.user # User.make!
-      tu = UserPrivilege.make!.user # User.make!
-      m = make_message( user: fu, from_user: fu, to_user: tu )
-      m.send_message
-      expect( m.to_user_copy ).not_to be_blank
-      fu.suspend!
-      expect( Message.find_by_id( m.id ) ).not_to be_blank
+      expect( sent_message.to_user_copy ).not_to be_blank
+      from_user.suspend!
+      expect( Message.find_by_id( sent_message.id ) ).not_to be_blank
     end
   end
 

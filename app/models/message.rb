@@ -34,8 +34,20 @@ class Message < ApplicationRecord
 
   attr_accessor :html, :skip_email
 
-  def self.resend_for_user_since( user, date )
-    scope = user.messages.sent.where( "created_at >= ?", date )
+  # When we added sent_at, we could not populate it because it was impossible
+  # to distinguish between messages with no to_user_copy because the sender
+  # was suspended or because the receiver manually deleted their copy, so we
+  # need this crude date filter to prevent us from redelivering ancient
+  # messages that the recipient deleted.
+  RESEND_UNSENT_RELEASE_DATE = Date.parse( "2025-01-28" )
+
+  def self.resend_unsent_for_user( user )
+    user = User.find_by_id( user ) unless user.is_a?( User )
+    return unless user
+
+    scope = user.messages.sent.
+      where( "created_at > ?", RESEND_UNSENT_RELEASE_DATE ).
+      where( "sent_at IS NULL" )
     scope.find_each do | msg |
       next if msg.sent?
 
@@ -55,6 +67,7 @@ class Message < ApplicationRecord
     new_message.user = to_user
     new_message.read_at = nil
     new_message.save!
+    update( sent_at: Time.now )
   end
 
   def to_user_copy
