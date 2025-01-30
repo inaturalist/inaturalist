@@ -945,6 +945,42 @@ describe User do
       @user.unsuspend!
       expect( @user ).to be_active
     end
+
+    it "sends unsent messages only by unsuspend user" do
+      # Set up users who have the privilege to send messages
+      bad_user = make_user_with_privilege( UserPrivilege::SPEECH )
+      good_user = make_user_with_privilege( UserPrivilege::SPEECH )
+
+      # Create and send messages (sending usually happens in the controller)
+      bad_msg = create( :message, user: bad_user )
+      bad_msg.send_message
+      good_msg = create( :message, user: good_user )
+      good_msg.send_message
+      expect( bad_msg ).to be_sent
+      expect( good_msg ).to be_sent
+
+      # Suspend both users
+      bad_user.suspend!
+      good_user.suspend!
+
+      # When suspension happens, all the unread messages the user sent to
+      # others are destroyed, which should mean they are not sent
+      bad_msg.reload
+      good_msg.reload
+      expect( bad_msg ).not_to be_sent
+      expect( good_msg ).not_to be_sent
+
+      # Unsuspend the good user and work off delayed jobs
+      good_user.unsuspend!
+      Delayed::Worker.new.work_off
+
+      # The good user's message should have been resent, but not the bad
+      # user's
+      good_msg.reload
+      bad_msg.reload
+      expect( good_msg ).to be_sent
+      expect( bad_msg ).not_to be_sent
+    end
   end
 
   describe "licenses" do

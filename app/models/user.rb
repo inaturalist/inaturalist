@@ -289,6 +289,7 @@ class User < ApplicationRecord
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
+  after_save :send_messages_by_unsuspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
@@ -1316,6 +1317,16 @@ class User < ApplicationRecord
   def destroy_messages_by_suspended_user
     return true unless suspended?
     Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
+  end
+
+  def send_messages_by_unsuspended_user
+    return true if suspended?
+    return true unless saved_change_to_suspended_at?
+
+    Message.
+      delay( priority: USER_INTEGRITY_PRIORITY ).
+      resend_for_user_since( self, suspended_at_before_last_save - 1.week )
     true
   end
 

@@ -34,6 +34,15 @@ class Message < ApplicationRecord
 
   attr_accessor :html, :skip_email
 
+  def self.resend_for_user_since( user, date )
+    scope = user.messages.sent.where( "created_at >= ?", date )
+    scope.find_each do | msg |
+      next if msg.sent?
+
+      msg.send_message
+    end
+  end
+
   def to_s
     "<Message #{id} user:#{user_id} from:#{from_user_id} to:#{to_user_id} subject:#{subject.to_s[0..10]}>"
   end
@@ -58,6 +67,10 @@ class Message < ApplicationRecord
     return self if from_user_id == user_id
 
     from_user.messages.sent.where( thread_id: thread_id ).detect {| m | m.body == body }
+  end
+
+  def sent?
+    !to_user_copy.blank?
   end
 
   def set_read_at
