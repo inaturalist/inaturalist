@@ -1318,7 +1318,7 @@ class User < ApplicationRecord
     return true unless suspended?
 
     Message.inbox.unread.where( from_user_id: id ).find_each do | msg |
-      msg.from_user_copy.update( sent_at: nil )
+      msg.from_user_copy&.update( sent_at: nil )
       msg.destroy
     end
     true
