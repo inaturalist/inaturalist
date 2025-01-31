@@ -25,7 +25,7 @@ class Message < ApplicationRecord
   after_create :deliver_email
 
   scope :inbox, -> { where( "user_id = to_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
-  scope :sent, -> { where( "user_id = from_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
+  scope :outbox, -> { where( "user_id = from_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
   scope :unread, -> { where( "read_at IS NULL" ) }
 
   INBOX = "inbox"
@@ -45,7 +45,7 @@ class Message < ApplicationRecord
     user = User.find_by_id( user ) unless user.is_a?( User )
     return unless user
 
-    scope = user.messages.sent.
+    scope = user.messages.outbox.
       where( "created_at > ?", RESEND_UNSENT_RELEASE_DATE ).
       where( "sent_at IS NULL" )
     scope.find_each do | msg |
@@ -79,7 +79,7 @@ class Message < ApplicationRecord
   def from_user_copy
     return self if from_user_id == user_id
 
-    from_user.messages.sent.where( thread_id: thread_id ).detect {| m | m.body == body }
+    from_user.messages.outbox.where( thread_id: thread_id ).detect {| m | m.body == body }
   end
 
   def sent?

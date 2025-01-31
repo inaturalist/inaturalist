@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
   def index
     @messages = case @box
     when Message::SENT
-      current_user.messages.sent
+      current_user.messages.outbox
     when "any"
       current_user.messages
     else
@@ -99,7 +99,7 @@ class MessagesController < ApplicationController
   end
 
   def sent
-    @messages = current_user.messages.sent.page( params[:page] )
+    @messages = current_user.messages.outbox.page( params[:page] )
   end
 
   def show
