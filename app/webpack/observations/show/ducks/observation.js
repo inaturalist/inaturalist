@@ -10,7 +10,7 @@ import { resetControlledTerms, fetchControlledTerms } from "./controlled_terms";
 import {
   fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setEarlierUserObservations, setLaterUserObservations, setNearby,
-  setMoreFromClade
+  setMoreFromClade, resetOtherObservations
 } from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions, resetSubscriptions, setSubscriptions } from "./subscriptions";
@@ -391,8 +391,8 @@ export function resetStates( ) {
     dispatch( setQualityMetrics( [] ) );
     dispatch( setEarlierUserObservations( [] ) );
     dispatch( setLaterUserObservations( [] ) );
-    dispatch( setNearby( [] ) );
-    dispatch( setMoreFromClade( [] ) );
+    dispatch( setNearby( null ) );
+    dispatch( setMoreFromClade( null ) );
     dispatch( setSubscriptions( [] ) );
   };
 }
@@ -486,7 +486,7 @@ export function renderObservation( observation, options = { } ) {
     dispatch( setObservation( observation ) );
     if ( taxonUpdated ) {
       dispatch( setIdentifiers( null ) );
-      dispatch( setMoreFromClade( [] ) );
+      dispatch( setMoreFromClade( null ) );
       dispatch( fetchControlledTerms( { reload: true } ) );
     }
     if ( taxonUpdated || fetchAll ) {
@@ -507,12 +507,8 @@ export function renderObservation( observation, options = { } ) {
     // delay these requests for a short while, unless the taxon has changed
     // which is a user-initiated action that should have a quick re-render time
     setTimeout( ( ) => {
-      if ( fetchAll || options.fetchOtherObservations ) {
+      if ( fetchAll ) {
         dispatch( fetchMoreFromThisUser( ) );
-        dispatch( fetchNearby( ) );
-      }
-      if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
-        dispatch( fetchMoreFromClade( ) );
       }
       if ( ( fetchAll || taxonUpdated ) && !_.has( observation, "non_traditional_projects" ) ) {
         dispatch( fetchNewProjects( ) );

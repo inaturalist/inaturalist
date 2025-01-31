@@ -111,30 +111,6 @@ const App = ( { taxon, showNewTaxon, config } ) => (
     <TaxonPageTabsContainer />
     <PhotoModalContainer />
     <PhotoChooserModalContainer />
-    {
-      config
-      && config.currentUser
-      && config.currentUser.roles
-      && (
-        config.currentUser.roles.indexOf( "curator" ) >= 0
-        || config.currentUser.roles.indexOf( "admin" ) >= 0
-        || config.currentUser.sites_admined.length > 0
-      )
-      && (
-        <div className="container upstacked">
-          <div className="row">
-            <div className="cols-xs-12">
-              <TestGroupToggle
-                group="apiv2"
-                joinPrompt="Test API V2? You can also use the test=apiv2 URL param"
-                joinedStatus="Joined API V2 test"
-                user={config.currentUser}
-              />
-            </div>
-          </div>
-        </div>
-      )
-    }
     <RtlTestGroupToggle config={config} />
   </div>
 );

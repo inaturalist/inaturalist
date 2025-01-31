@@ -1874,7 +1874,6 @@ class ObservationsController < ApplicationController
     SQL
     ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
   end
-  public
 
   def viewed_updates
     user_viewed_updates
