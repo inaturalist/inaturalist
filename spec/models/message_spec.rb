@@ -20,16 +20,20 @@ describe Message do
   end
 
   describe "flagging" do
-    it "should suspend the from_user if their messages have been flagged 3 times" do
-      offender = UserPrivilege.make!.user
+    let( :serial_spammer ) do
+      user = UserPrivilege.make!.user
       3.times do
-        m = make_message( user: offender, from_user: offender )
+        m = make_message( user: user, from_user: user )
         m.send_message
         flag = Flag.make( flaggable: m, user: m.to_user, flag: Flag::SPAM )
         flag.save!
       end
-      offender.reload
-      expect( offender ).to be_suspended
+      user.reload
+      user
+    end
+
+    it "should suspend the from_user if their messages have been flagged 3 times" do
+      expect( serial_spammer ).to be_suspended
     end
 
     it "should not destroy the flagger's copies of the messages in this thread" do
@@ -51,6 +55,35 @@ describe Message do
       flag = Flag.make( flaggable: m, user: m.to_user, flag: Flag::SPAM )
       flag.save!
       expect( Message.find_by_id( m.id ) ).to_not be_blank
+    end
+
+    it "should resend unsent message when spam flag resolved" do
+      # Expect serial spammer's first message to be spam
+      msg = serial_spammer.messages.outbox.first
+      expect( msg ).to be_known_spam
+
+      # Unsuspend the spammer; their message should still be considered spam
+      serial_spammer.unsuspend!
+      Delayed::Worker.new.work_off
+      msg.reload
+      expect( msg ).to be_known_spam
+
+      # Resolve flags on all the spammer's messages
+      curator = make_curator
+      msg.flags.each do | flag |
+        flag.resolved = true
+        flag.resolver = curator
+        flag.resolved_at = Time.now
+        flag.save!
+      end
+      Delayed::Worker.new.work_off
+      msg.reload
+
+      # Flags should be resolved so the message is no longer considered spam
+      expect( msg ).not_to be_known_spam
+
+      # and the message should have been resent
+      expect( msg ).to be_sent
     end
   end
 

@@ -135,7 +135,12 @@ class Message < ApplicationRecord
     true
   end
 
-  def flagged_with( flag, _options = {} )
+  def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
+    return unless options[:action] == "resolved" && flag.flag == Flag::SPAM
+
+    Message.
+      delay( priority: USER_INTEGRITY_PRIORITY ).
+      resend_unsent_for_user( user_id )
   end
 end
