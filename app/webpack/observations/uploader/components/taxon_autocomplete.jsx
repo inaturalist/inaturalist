@@ -99,6 +99,10 @@ class TaxonAutocomplete extends React.Component {
       return TaxonAutocomplete.searchExternalTemplate( );
     }
     const photo = TaxonAutocomplete.itemPhoto( r ) || TaxonAutocomplete.itemIcon( r );
+    let taxonPageURL = `/taxa/${r.id}`;
+    if ( r.representative_photo && r.representative_photo.id !== r.default_photo?.id ) {
+      taxonPageURL += `?photo_id=${r.representative_photo.id}`;
+    }
     let className = "ac";
     let extraSubtitle;
     if ( r.isVisionResult ) {
@@ -125,7 +129,7 @@ class TaxonAutocomplete extends React.Component {
           </div>
         </div>
         { r.type !== "message" && (
-          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`} className="ac-view">
+          <a target="_blank" rel="noopener noreferrer" href={taxonPageURL} className="ac-view">
             { I18n.t( "view" ) }
           </a>
         ) }
