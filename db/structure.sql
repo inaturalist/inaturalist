@@ -2874,7 +2874,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer
+    validation_count integer DEFAULT 0
 );
 
 
@@ -5467,9 +5467,9 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id character varying(255),
+    installation_id character varying,
     oauth_application_id integer,
-    platform_id character varying(255),
+    platform_id character varying,
     user_id integer,
     created_at date,
     first_logged_in_at date
@@ -11411,8 +11411,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240828123245'),
 ('20240923134239'),
 ('20240923134658'),
+('20241016204033'),
 ('20241127180606'),
 ('20241202092831'),
+('20241217203007'),
 ('20241218164832'),
 ('20250124155306'),
 ('20250127200519'),
