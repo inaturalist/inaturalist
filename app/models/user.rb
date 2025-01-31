@@ -1325,13 +1325,12 @@ class User < ApplicationRecord
   end
 
   def send_messages_by_unsuspended_user
-    return true if suspended?
-    return true unless saved_change_to_suspended_at?
+    return if suspended?
+    return unless saved_change_to_suspended_at?
 
     Message.
       delay( priority: USER_INTEGRITY_PRIORITY ).
       resend_unsent_for_user( id )
-    true
   end
 
   def revoke_access_tokens_by_suspended_user
