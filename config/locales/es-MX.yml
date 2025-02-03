@@ -27,6 +27,9 @@ es-MX:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
     other: '<span class="count">%{count}</span> IDENTIFICACIONES'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID creado por otros'
+    other: '<span class="count">%{count}</span> IDs creados por otros'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
@@ -74,6 +77,9 @@ es-MX:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVADOR'
+    other: '<span class="count">%{count}</span>OBSERVADORES'
   x_others:
     one: "%{count} otros"
     other: "%{count} otros"
@@ -246,6 +252,8 @@ es-MX:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Agregar una lista con viñetas
   add_a_comment: Añade un comentario
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Añadir un estado de conservación
   add_a_field: Añade un campo
   add_a_flag: Añade una alerta
   #Tool tip for a button that adds a link to a text area
@@ -1107,6 +1115,9 @@ es-MX:
   content_and_display: Contenido y presentación
   content_author: Autor del contenido
   content_hidden: Contenido oculto
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    El contenido se oculto el %{date} porque: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     %{user} ocultó el contenido el %{date} porque: «%{reason}»
@@ -2046,6 +2057,9 @@ es-MX:
   geoprivacy_is_private: Geoprivacidad es privada
   geoprivacy_is_private_desc: El observador ha escogido ocultar las coordenadas.
   georeferenced: '¿Está georeferenciado?'
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoespacial
   get_started: Comienza
   getting_started_guide: Guía de inicio
   #Prompt to donate money on a montly basis
@@ -2139,6 +2153,9 @@ es-MX:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotación"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Ocultar observaciones con ubicaciones privadas
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
@@ -2218,6 +2235,7 @@ es-MX:
   identotron_for: Identotrón para
   identotron_help: Ayuda con el identotrón
   ids: "Identificaciones"
+  ids_made_for_others__title: IDs hecha por otros
   if_for_some_reason_a_user_doesnt_agree: |
     Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2260,6 +2278,8 @@ es-MX:
   in_place_x: en %{place}
   #As in a reason to flag something
   inappropriate: Inapropiado
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: Red de iNaturalist
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
@@ -2317,6 +2337,11 @@ es-MX:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: '¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?'
   is_this_offensive_html: '¿Es esto <a href="/help#inappropriate">inapropiado</a>, spam u ofensivo?'
   is_this_place_a_duplicate: '¿Está duplicado este lugar?'
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: '¿Se acepta actualmente este nombre científico?'
   it_can_now_be_used_for_research: Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: cursivas
@@ -3427,7 +3452,7 @@ es-MX:
     observe_panel_body_p1_global: Por si necesitas inspiración, aquí hay algunas especies que se observan a través de la sitio...
     observe_panel_body_p2: Ahora sal al campo y observa a alguna especie u organismo. Escoge algo silvestre y toma una foto clara que lo enfoque en su totalidad. Si ya tienes una foto de algo silvestre, puedes <a href="%{new_observation_path}">subirla</a>. También puedes utilizar las aplicaciones móviles de %{site_name} para compartir tus observaciones con la comunidad.
     observe_panel_body_p3: Aquí, se actualizará el contenido acerca de tus observaciones de la comunidad en forma de comentarios o identificaciones. ¡Podrías descrubir una nueva especie!
-    follow_panel_title_local: Sigue a algunos NaturaListas cera de ti
+    follow_panel_title_local: Sigue a algunos Naturalistas cerca de ti
     follow_panel_title_global: Sigue a algunos NaturaListas activos
     follow_panel_body: Si visitas estos perfiles y le das clic en seguir, se te informará cuando publiquen nuevas observaciones
     following_panel_title: Sigue la pista de personas, taxa y sitios
@@ -4645,6 +4670,8 @@ es-MX:
   show_no_annotation: Mostrar "Sin anotaciones"
   show_off_your_recent_observations: '¡Muestra tus observaciones recientes en tu propio blog o sitio web!'
   show_only: Muestra solo
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Mostrar OpenStreetMap
   show_relative_proportions_of_all_observations: Enseña proporciones relativas de todas las observaciones
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar total acumulado
@@ -5418,6 +5445,8 @@ es-MX:
   unable_to_save_comment: Lamentablemente, no hemos podido guardar el comentario.
   unblock: Desbloquear
   unclassified: Sin clasificar
+  #Label for a menu item linking to a help page describing how iNaturalist Projects work
+  understanding_projects: Entendiendo los Proyectos
   ungrafted_taxa: Especie o grupo sin injertar
   unhide_content: Mostrar contenido
   unhide_desc: |
@@ -6536,6 +6565,12 @@ es-MX:
       #image as a prompt
       vision_language_demo: Demo de Idioma de Visión
       what_do_you_want_to_search_for: '¿Qué deseas buscar?'
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: p. ej. %{query_in_english}
       try_one_of_these_example_searches_colon: "Prueba una de estas búsquedas de ejemplo:"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model). Try
@@ -6793,6 +6828,17 @@ es-MX:
         data_quality_assessment_desc3_html: |
           El grado de calidad resume la precisión de la ubicación, integridad, relevancia y idoneidad de una observación de iNaturalist como datos de biodiversidad. Algunos atributos se determinan automáticamente, mientras que otros están sujetos a un voto de usuarios de iNat. iNaturalist comparte observaciones con licencia "Grado de Investigación" con una serie de datos socios para su uso en ciencia y conservación.
         disagreement_count_desc: "nº de taxa identificados que no están entre los ancestros de un  taxón"
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: la observación <strong>tiene una fecha</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: la observación <strong>tiene fotos o sonidos</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: la observación <strong>no es de un humano</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Las observaciones se convierten en <strong>"grado de investigación"</strong> cuando
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          el organismo <strong>no es salvaje/naturalizado</strong> (por ejemplo, cautivo o cultivado por humanos)
         identification_count_desc: '# de identificaciones para un taxon individual'
         flagged_photos_desc_html: |
           Algunas de estas fotos se han marcado por su contenido inapropiado o porque violan derechos de autor. Para más detalles ver %{links}
@@ -8148,6 +8194,8 @@ es-MX:
       assessment_section:
         title: Título
         body: Contenido principal
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Usuario bloqueado
