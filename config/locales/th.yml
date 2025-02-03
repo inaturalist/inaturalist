@@ -18,6 +18,10 @@ th:
     other: '%{count} การจำแนก'
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> การจำแนก'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ผู้จำแนก'
   x_ids_made_for_others_html:
     other: '<span class="count">%{count}</span> การจำแนกให้ผู้อื่น'
   x_languages:
@@ -52,6 +56,8 @@ th:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตที่ตรวจสอบแล้ว"
+  x_observers_caps_html:
+    other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
   x_people:
@@ -343,7 +349,7 @@ th:
   #Message displayed after a project user changes role, e.g. they become a manager or a curator
   added_role: ได้รับการแต่งตั้ง
   added_to_favorites_html: |
-    เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
+    เพิ่มไปยัง<a href="%{url}">รายการโปรด</a>
   adding: "กำลังทำการเพิ่ม..."
   adjust_brightness: ปรับความสว่างหน้าจออัตโนมัติ
   admin: แอดมิน
@@ -1950,7 +1956,7 @@ th:
   occurrence_status: สถานะการปรากฏ
   occurrence_status_descriptions:
     absent: ไม่พบในพื้นที่
-    common: พบบ่อยครั้ง
+    common: พบบ่อย
     doubtful: สันนิษฐานว่าปรากฏอยู่ แต่ยังมีข้อสงสัยเกี่ยวกับหลักฐาน
     present: พบได้ในพื้นที่
     uncommon: พบได้ปกติแต่มีจำนวนน้อย ต้องสำรวจตามถิ่นอาศัยที่เหมาะสม
@@ -2101,6 +2107,7 @@ th:
     azerbaijan: อาเซอร์ไบจาน
     bangladesh: บังกลาเทศ
     bhutan: ภูฏาน
+    brazil: บราซิล
     british_indian_ocean_territory: บริติชอินเดียนโอเชียนเทร์ริทอรี
     british_virgin_islands: หมู่เกาะบริติชเวอร์จิน
     brunei: บรูไน
