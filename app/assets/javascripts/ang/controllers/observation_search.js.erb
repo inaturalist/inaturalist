@@ -490,7 +490,10 @@ var SearchController = function (
     if ( Array.isArray( $scope.params.place_id ) && $scope.params.place_id.length === 1 ) {
       $scope.params.place_id = $scope.params.place_id[0];
     }
-    if ( $scope.params.place_id && !Array.isArray( $scope.params.place_id ) ) {
+    if ( $scope.params.place_id
+      && !Array.isArray( $scope.params.place_id )
+      && $scope.params.place_id !== "any"
+    ) {
       // load place name and polygon from ID
       PlacesFactory.show( $scope.params.place_id ).then( function ( response ) {
         var places = PlacesFactory.responseToInstances( response );
