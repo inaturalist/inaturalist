@@ -401,7 +401,7 @@ class Observation < ApplicationRecord
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
-        comments: comments.map(&:as_indexed_json),
+        comments: comments.map( &:as_indexed_json ).compact,
         comments_count: comments.size,
         obscured: coordinates_obscured? || geoprivacy_obscured?,
         positional_accuracy: positional_accuracy,
