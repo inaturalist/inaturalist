@@ -39,7 +39,7 @@ class Message < ApplicationRecord
   # was suspended or because the receiver manually deleted their copy, so we
   # need this crude date filter to prevent us from redelivering ancient
   # messages that the recipient deleted.
-  RESEND_UNSENT_RELEASE_DATE = Date.parse( "2025-01-28" )
+  RESEND_UNSENT_RELEASE_DATE = Date.parse( "2025-02-03" )
 
   def self.resend_unsent_for_user( user )
     user = User.find_by_id( user ) unless user.is_a?( User )
