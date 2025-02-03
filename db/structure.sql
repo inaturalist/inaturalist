@@ -2511,7 +2511,8 @@ CREATE TABLE public.messages (
     body text,
     read_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sent_at timestamp without time zone
 );
 
 
@@ -11410,12 +11411,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240828123245'),
 ('20240923134239'),
 ('20240923134658'),
+('20241016204033'),
 ('20241127180606'),
 ('20241202092831'),
+('20241217203007'),
 ('20241218164832'),
 ('20250124155306'),
 ('20250127200519'),
-('20241217203007'),
-('20241016204033');
+('20250130003627');
 
 
