@@ -9,7 +9,7 @@
     <tr>
       <td valign="top" align="center" style="border-bottom:1px solid #ccc;padding: 10px 10px 10px 0;">
         <% if resource.is_a?(User) -%>
-          <%= update_image_for(updates.first, :width => 48, :height => 48) %>
+          <%= user_image(resource, size: "thumb", width: 48, height: 48, style: "border-radius: 48px; background-position: center; background-size: cover;") %>
         <% elsif resource.is_a?(Project) %>
           <%= image_tag("#{resource.icon.url(:thumb)}", :style => "max-width: 48px;") %>
         <% else %>

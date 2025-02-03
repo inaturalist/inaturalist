@@ -25,7 +25,7 @@ class Taxon < ApplicationRecord
   # set this when you want methods to respond with user-specific content
   attr_accessor :current_user
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   before_validation :set_uuid
   def set_uuid

@@ -47,7 +47,7 @@ module DataPartnerLinkers
       when "finished"
         false
       else
-        raise DataPartnerLinkerError.new( "Failed to retrieve ALA archive: #{status_string}" )
+        raise DataPartnerLinkerError, "Failed to retrieve ALA archive: #{status_string}"
       end
     end
 

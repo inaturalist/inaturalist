@@ -8,7 +8,7 @@ class ProjectList < List
   end
   
   def owner_name
-    project.title
+    project&.title
   end
   
   def listed_taxa_editable_by?(user)

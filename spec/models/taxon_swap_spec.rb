@@ -508,6 +508,19 @@ describe TaxonSwap, "commit_records" do
     expect(o.taxon).not_to eq(@output_taxon)
   end
 
+  it "should not update hidden identifications" do
+    o = Observation.make!( taxon: @input_taxon )
+    ModeratorAction.make!( resource: o.identifications.last, action: "hide" )
+    expect( o.identifications.last.taxon ).to eq( @input_taxon )
+    expect( o.identifications.count ).to eq 1
+    expect( o.identifications.last.hidden? ).to be true
+    @swap.commit_records
+    o.reload
+    expect( o.identifications.last.taxon ).to eq( @input_taxon )
+    expect( o.identifications.count ).to eq 1
+    expect( o.identifications.last.hidden? ).to be true
+  end
+
   it "should not generate more than one update per user" do
     u = User.make!(:prefers_automatic_taxonomic_changes => false)
     expect(u.prefers_automatic_taxonomic_changes?).not_to be true

@@ -1,6 +1,7 @@
-class Place < ApplicationRecord
+# frozen_string_literal: true
 
-  include ActsAsElasticModel
+class Place < ApplicationRecord
+  acts_as_elastic_model
 
   DEFAULT_ES_BATCH_SIZE = 100
 

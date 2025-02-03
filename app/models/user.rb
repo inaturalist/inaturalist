@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   include ActsAsSpammable::User
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   include HasJournal
 
@@ -211,6 +211,8 @@ class User < ApplicationRecord
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
   has_many :moderator_actions, inverse_of: :user
+  has_many :moderator_actions_as_resource_user, inverse_of: :resource_user,
+    class_name: "ModeratorAction", foreign_key: "resource_user_id"
   has_many :moderator_notes, inverse_of: :user
   has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
     foreign_key: "subject_user_id", inverse_of: :subject_user,
@@ -273,6 +275,7 @@ class User < ApplicationRecord
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login
   before_validation :set_time_zone
+  before_validation :set_canonical_email
   before_create :skip_confirmation_if_child
   before_save :allow_some_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
@@ -286,11 +289,13 @@ class User < ApplicationRecord
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
+  after_save :send_messages_by_unsuspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
   after_update :send_welcome_email
+  after_update :check_privileges_if_confirmed
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
@@ -772,6 +777,12 @@ class User < ApplicationRecord
   def set_time_zone
     self.time_zone = nil if time_zone.blank?
     true
+  end
+
+  def set_canonical_email
+    return unless new_record? || email_changed?
+
+    self.canonical_email = EmailAddress.canonical( email )
   end
 
   def set_uri
@@ -1305,8 +1316,21 @@ class User < ApplicationRecord
 
   def destroy_messages_by_suspended_user
     return true unless suspended?
-    Message.inbox.unread.where(:from_user_id => id).destroy_all
+
+    Message.inbox.unread.where( from_user_id: id ).find_each do | msg |
+      msg.from_user_copy&.update( sent_at: nil )
+      msg.destroy
+    end
     true
+  end
+
+  def send_messages_by_unsuspended_user
+    return if suspended?
+    return unless saved_change_to_suspended_at?
+
+    Message.
+      delay( priority: USER_INTEGRITY_PRIORITY ).
+      resend_unsent_for_user( id )
   end
 
   def revoke_access_tokens_by_suspended_user
@@ -1352,6 +1376,12 @@ class User < ApplicationRecord
     )
       Emailer.welcome( self ).deliver_now
     end
+  end
+
+  def check_privileges_if_confirmed
+    return unless saved_change_to_confirmed_at?
+
+    UserPrivilege.check( id, UserPrivilege::ORGANIZER )
   end
 
   def revoke_authorizations_after_password_change

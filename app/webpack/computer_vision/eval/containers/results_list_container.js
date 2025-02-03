@@ -4,8 +4,8 @@ import { setHoverResult } from "../ducks/computer_vision_eval";
 
 const mapStateToProps = state => ( {
   config: state.config,
-  commonAncestor: state.computerVisionEval.obsCard.visionResults.common_ancestor,
-  taxa: state.computerVisionEval.obsCard.visionResults.results,
+  commonAncestor: state.computerVisionEval.apiResponse.common_ancestor,
+  taxa: state.computerVisionEval.filteredResultLeaves,
   hoverResult: state.computerVisionEval.hoverResult
 } );
 

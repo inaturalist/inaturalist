@@ -203,8 +203,15 @@ form .field .description { margin-bottom: 0.5em;}
 #pageheader .projecticon:hover, #pageheader .usericon:hover {border-color:#ddd;}
 #pageheader .breadcrumbs {margin-bottom: 10px; }
 
-img.usericon { border-radius: 50%; vertical-align: middle; }
-.item_user .usericon { max-height: 42px; }
+// Generally for img tags
+.usericon { border-radius: 50%; vertical-align: middle; }
+// For user icons where we need to render the image as a background
+div.usericon {
+  display: inline-block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 img.mini.usericon {
   vertical-align: middle;
 }
@@ -2270,8 +2277,8 @@ $header-line-height: 34px;
     -ms-flex-item-align: end;
     align-self: flex-end;
     .usericon {
-      width: $header-line-height - 2;
-      height: $header-line-height - 2;
+      width: $header-line-height - 2 !important;
+      height: $header-line-height - 2 !important;
     }
     .hasupdates {
       color: $alert-red;
@@ -2314,7 +2321,8 @@ $header-line-height: 34px;
           -ms-flex-align: start;
           align-items: flex-start;
           line-height: 1.4;
-          img {
+          img,
+          div.usericon {
             margin-right: 10px;
             max-width: 37px;
           }

@@ -39,7 +39,8 @@
           - for friendship in @friendships
             %tr
               %td
-                = link_to( image_tag( friendship.friend.icon.url(:thumb), class: "usericon" ), person_path( friendship.friend ) )
+                = link_to_user friendship.friend do
+                  = link_to_user friendship.friend, size: "thumb"
               %td
                 = link_to_user friendship.friend
                 .meta= friendship.friend.name

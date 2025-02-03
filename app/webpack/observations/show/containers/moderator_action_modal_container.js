@@ -16,9 +16,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    submit: ( item, action, reason ) => {
+    submit: ( item, action, reason, makePrivate = false ) => {
       dispatch( setItemAPIStatus( item, "processing" ) );
-      dispatch( submitModeratorAction( item, action, reason ) )
+      dispatch( submitModeratorAction( item, action, reason, makePrivate ) )
         .then( ( ) => dispatch( afterAPICall( ) ) )
         .catch( e => dispatch( afterAPICall( { error: e } ) ) );
       dispatch( hideModeratorActionForm( ) );

@@ -6,8 +6,8 @@
       project_user = update.notifier
       user = project_user.user
     %tr
-      %td{:valign => "top"}
-        = user_image(user, :size => "thumb", :width => 32, :height => 32)
+      %td{ valign: "top" }
+        = user_image( user, size: "thumb", width: 32, height: 32, style: "border-radius: 32px; background-position: center; background-size: cover; margin-right: 10px;" )
       %td
         - if is_me?( user, current_user: viewing_user )
           - if project_user.user_id == project_user.project.user_id

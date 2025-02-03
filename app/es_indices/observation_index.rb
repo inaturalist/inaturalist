@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Observation < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model
 
   DEFAULT_ES_BATCH_SIZE = 100
   DEFAULT_ES_BATCH_SLEEP = 2
