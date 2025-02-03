@@ -27,6 +27,12 @@ hu:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> MEGHATÁROZÁS'
     other: '<span class="count">%{count}</span> MEGHATÁROZÁS'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> MEGHATÁROZÓ'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> MEGHATÁROZÓ'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> meghatározás mások számára'
     other: '<span class="count">%{count}</span> meghatározás mások számára'
@@ -77,6 +83,9 @@ hu:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> megfigyelés átnézve"
     other: "<span class='count'>%{count}</span> megfigyelés átnézve"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> MEGFIGYELŐ'
+    other: '<span class="count">%{count}</span> MEGFIGYELŐ'
   x_others:
     one: "%{count} további felhasználó"
     other: "%{count} további felhasználó"
