@@ -3,12 +3,18 @@ ta:
   x_changes:
     one: "%{count} மாற்றம்"
     other: "%{count} மாற்றங்கள்"
+  x_comments:
+    one: '%{count} கருத்து'
+    other: '%{count} கருத்துகள்'
   x_faves:
     one: '%{count} பிடித்தது'
     other: '%{count} பிடித்தவை'
   x_identifications:
     one: '%{count} அடையாளப்படுத்தல்'
     other: '%{count} அடையாளப்படுத்தல்'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> அடையாளம்'
+    other: '<span class="count">%{count}</span> அடையாளங்கள்'
   x_identifications_:
     one: '%{count} அடையாளப்படுத்தல்'
     other: '%{count} அடையாளப்படுத்தல்கள்'
@@ -64,9 +70,32 @@ ta:
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A முதல் Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: பற்றி
   about_charts: அட்டவணைகள் பற்றியது
+  about_community_taxa: சமூக இனங்கள்பற்றி
+  about_complete_taxa: முழு இனங்கள்பற்றி
   about_conservation_status: பாதுகாப்பு நிலை பற்றி
+  about_license_options: உரிமங்கள் அமைப்புகள்பற்றி
   about_licenses: உரிமங்கள் பற்றி
   #Header for a section describing taxon names
   about_names: பெயர்கள் பற்றி
@@ -75,12 +104,18 @@ ta:
   about_place: "%{place} பற்றி"
   about_places: இடங்களைப் பற்றி
   about_taxon_ranges: இனம் வரம்புகள் பற்றி
+  about_this_bioblitz: இந்த bioblitz பற்றி
+  about_this_map: இந்த வரைபடம்பற்றி
   account: கணக்கு
   account_settings: கணக்கு அமைப்புகள்
   accuracy: துல்லியம்
+  accuracy_meters: துல்லியம் (மீட்டர்)
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: செயல்
   actions: செயல்கள்
+  active: சுறுசுறுப்புள்ள
+  #Status of a complete set that is available for use
+  active_complete_set_status: சுறுசுறுப்புள்ள
   #Status of a taxon that is available for use on iNat
   active_taxon_status: சுறுசுறுப்புள்ள
   add: சேர்
@@ -99,15 +134,26 @@ ta:
     evidence_of_presence: '"இருப்பின் ஆதாரம்" க்கு விளக்கங்கள் சேர்க்கவும்'
   add_conservation_status: பாதுகாப்பு நிலை சேர்க்கவும்
   add_editor: பதிப்பாசிரியர் சேர்க்கவும்
+  add_id: ஒரு ID சேர்க்கவும்
+  add_new_lexicon: புதிய நிகண்டு
+  #Prompt to add a new journal post
+  add_one: ஒரு சேர்க்கவும்!
   #Prompt to add add a default photo to a taxon when one doesn't exist, so here
   #"one" refers to a photo
   add_one_now: இப்போது ஒன்று சேர்க்கவும்
+  add_place: ஒரு இடம் சேர்க்கவும்
+  add_alive_or_dead_alive_annotation: '"உயிருடன் அல்லது இறந்தவர்: உயிருடன்" க்கு விளக்கங்கள் சேர்க்கவும்'
+  add_alive_or_dead_cannot_be_determined_annotation: '"உயிருடன் அல்லது இறந்தவர்: தீர்க்க முடியாது" க்கு விளக்கங்கள் சேர்க்கவும்'
+  add_alive_or_dead_dead_annotation: '"உயிருடன் அல்லது இறந்தவர்: இறந்தவர்" க்கு விளக்கங்கள் சேர்க்கவும்'
   add_sex_female_annotation: '"பாலினம்: பெண்" விளக்கம் சேர்க்கவும்'
   add_sex_male_annotation: '"பாலினம்: ஆண்" விளக்கம் சேர்க்கவும்'
   add_sex_cannot_be_determined_annotation: '"பாலினம்: தீர்க்க முடியாது" விளக்கம் சேர்க்கவும்'
+  add_some_now: இப்போது சிலவற்றைச் சேர்க்கவும்
   add_taxa: இனங்கள் சேர்க்கவும்
   add_taxon_range: இனம் வரம்பு சேர்க்கவும்
+  add_to_calendar: நாள்காட்டியில் சேர்க்கவும்
   add_to_favorites: பிடித்தவைகளில் சேர்க்கவும்
+  add_to_project: திட்டத்தில் சேர்க்கவும்
   added: சேர்க்கப்பட்டது
   added!: சேர்க்கப்பட்டது!
   added_by: சேர்க்கப்பட்டது
@@ -148,20 +194,45 @@ ta:
     other_animals: வேறு விலங்குகள்
     plants: தாவரங்கள்
     life: வாழ்க்கை
+    x_aves:
+      one: "%{count} பறவை"
+      other: "%{count} பறவைகள்"
+    x_protozoa:
+      one: "%{count} முதலுயிரி"
+      other: "%{count} முதலுயிரிகள்"
   annotations: விளக்கங்கள்
   #Label for an option to show content from any date
   any_date: ஏதாவது
+  #Label for an option to show content from any project
+  any_project: ஏதேனும்
   back_to_your_observations: உங்கள் கவனிப்புக்கு திரும்புங்கள்
   be_the_first_to_fave_this_observation: இந்தக் கவனிப்பு முதலில் விரும்புபவராக இருங்கள்!
+  birthday: பிறந்தநாள்
   browse_observations: கவனிப்புகளை ஆராயுங்கள்
+  calendar: நாள்காட்டி
   captive_observations: சிறை உயிரினம் கவனிப்புகள்
   casual: சாதாரண
   casual_: சாதாரண
   casual_tooltip_html: '"சாதாரண" கவனிப்புகள் ஊடகம், இடம், அல்லது தேதி காணப்படவில்லை, அல்லது "ஆராய்ச்சி" அல்லது "ID தேவை" தரங்களுக்குப் பிற காரணங்களால் தேவைகளைப் பூர்த்தி செய்யவில்லை. <a href="https://www.inaturalist.org/pages/help#quality">தரங்கள்பற்றி மேலும் அறியவும்</a>'
+  categories: பகுப்புகள்
+  #Button to change the cover (or banner) image for a project
+  change_cover: அட்டை மாற்று
+  #Plural noun, as in changes to a taxon record over time
+  changes: மாற்றங்கள்
+  check_out_the_inat_store: iNaturalist Store பார்க்கவும்
   cid_d_to_genus: பேரினமாக CID'd
+  #Verb, generally a label on a button that allows the user to add a comment
+  comment_: கருத்து
+  community: சமூகம்
+  community_guidelines: சமூகம் வழிகாட்டுதல்கள்
+  #As in whether or not a check list is comprehensive, i.e. it contains all the
+  #species in the taxon and place it purports to
+  comprehensive?: விரிவானது?
   controlled_term_labels:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_flowers_and_fruits: ஏதாவது
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_alive_or_dead: ஏதேனும்
     sex: பாலினம்
     male: ஆண்
     female: பெண்
@@ -170,13 +241,24 @@ ta:
     flowering: பூக்கும்
     flower_buds: பூ மொட்டுகள்
     flowers: பூக்கள்
+    adult: முழுவளர்ச்சியடைந்த
+    teneral: உருகிய பிறகு
     no_evidence_of_flowering: மலர்வதற்கான சாட்சியமில்லை
     nymph: இளம்பூச்சி
     juvenile: இளவயது
+    alive_or_dead: உயிருடன் அல்லது இறந்தவர்
+    #Abnormal growth
+    gall: முடிச்சு
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: கட்டுமானம்
+  controlled_term_definitions:
+    gall: ஒட்டுண்ணி உயிரினங்களால் ஏற்படும் சிதைக்கப்பட்ட தாவர திசுக்களின் வளர்ச்சி
+  copied!: நகலெடுக்கப்பட்டது!
   copyright:
     attribution_noncommercial_sharealike_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற - அதே மாதிரிப் பகிர்தல் உரிமம்
     attribution_noncommercial_license: குறிப்பிடுதல் - வர்த்தக நோக்கமற்ற உரிமம்
     attribution_license: குறிப்பிடுதல் மட்டும் உரிமம்
+  dashboard: முகப்பலகம்
   date_: தேதி
   date_added: தேதி சேர்க்கப்பட்டது
   date_authorized: ஒப்புக்கொள்ளப்பட்ட தேதி
@@ -188,51 +270,81 @@ ta:
       june: ஜூன்
   date_joined: சேரும் தேதி
   disagree_: எதிர்மனப்படு
-  edit_project: கணிப்பு திருத்த
-  edit_taxa: இனங்கள் திருத்த
-  edit_taxon: இனம் திருத்த
-  edit_taxon_framework: இனங்கள் சட்ட திருத்த
-  edit_taxon_link: இனங்கள் லிங்க் திருத்த
-  edit_taxon_range: இனம் வரம்பு திருத்த
+  edit_project: திட்டம் திருத்தவும்
+  edit_taxa: இனங்கள் திருத்தவும்
+  edit_taxon: இனம் திருத்தவும்
+  edit_taxon_framework: இனம் சட்ட திருத்தவும்
+  edit_taxon_link: இனம் லிங்க் திருத்தவும்
+  edit_taxon_range: இனம் வரம்பு திருத்தவும்
   edit_your_default_settings: "உங்கள் டிஃபால்ட் அமைப்புகளைத் திருத்தவும்"
   editing_project: திருத்துவது %{project}
   editors: பதிப்பாசிரியர்கள்
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: துல்லியமானது ரேங்க்
   exclude_taxa: இனங்கள் விலக்கு
+  explore: ஆராயுங்கள்
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: பிடித்தவை
   favorite_taxa: பிடித்தது இனங்கள்
   favorites: "பிடித்தவை"
+  #Button to show fewer places
+  fewer__context_places: குறைவான
+  forum: மன்றம்
+  forum_categories:
+    bug_reports: இடும்பை அறிக்கைகள்
   Genus: பேரினம்
   got_it!: சரி!
+  grid: கட்டம்
   guides: வழிகாட்டுகிறது
   guide_taxon: வழிகாட்டி இனம்
   has_one_or_more_faves: ஒரு அல்லது மேற்பட்ட பிடித்தங்கள் உள்ளன
   header_your_favorites: உங்கள் பிடித்தவை
+  help_translate!: மொழிபெயர் உதவி செய்க!
   include_places: இடங்களைச் சேர்க்கவும்
   'joined!': சேர்ந்தார்!
   joined_projects: சேர்ந்தது கணிப்புகள்
   joined_with_date: "சேர்ந்தார்: %{date}"
+  journal: இதழ்
+  journal_posts: இதழ் இடுகைகள்
+  labels: சிட்டைகள்
+  learn: அறிக
+  learn_more: மேலும் அறிக
+  leave_a_comment: கருத்து தெரிவிக்கவும்
+  lexicon: நிகண்டு
   lexicons:
+    bengali: பெங்காலி
+    czech: செக்
+    fijian: பிஜியன்
     french: பிரெஞ்சு
     hebrew: ஹீப்ரு
     japanese: ஜாப்பனீஸ்
+    scientific_names: அறிவியல் பெயர்கள்
     tamil: தமிழ்
   license: உரிமம்
+  list: பட்டியல்
+  lists: பட்டியல்கள்
   locales:
     fr: பிரெஞ்சு
     fr-CA: பிரஞ்சு (கனடா)
     he: ஹீப்ரு
     ja: ஜாப்பனீஸ்
+    ta: தமிழ்
   location: இடம்
+  log_in: புகுபதிகை
   log_out: வெளியேறு செய்யவும்
   log_out_caps: வெளியேறு செய்யவும்
   #Name of a website showing geologic maps around the world: https://macrostrat.org
   Macrostrat: மாக்ரோஸ்ட்ராட்
+  #Header for main content section of the project detail page when editing custom project data.
+  main_content: முக்கிய உள்ளடக்கம்
+  #Stub text for the main content section when editing custom project data
+  main_content_description: முக்கிய உள்ளடக்கம் இங்கே செல்கிறது
+  map: வரைபடம்
   #Used to join media types required by a project, e.g. photos *and* sounds.
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: மற்றும்
+  meet: சந்திக்கவும்
+  more: மேலும்
   #Button to show more places
   more__context_places: இன்னும்
   most_comments_and_faves: நிறைய கருத்துகளும் பாராட்டுகளும்
@@ -241,6 +353,7 @@ ta:
   #project detail page when editing custom project data
   nav: வழிசெலுத்தல்
   new_guide: புதிய வழிகாட்டி
+  no_comments_yet: இதுவரை கருத்துகள் இல்லை.
   no_favorites_added:
     current_user: நீங்கள் இன்னும் பிடித்தவைகளைச் சேர்க்கவில்லை.
     user: "%{user} அவர்கள் இன்னும் பிடித்தவைகளைச் சேர்க்கவில்லை."
@@ -263,15 +376,54 @@ ta:
   #%{month} will be filled in the name of the month
   observation_brief_taxon_from_place_in_month_year_by_user: "%{place}யிலிருந்து %{taxon} %{month} %{year}ல் %{user} மூலம்"
   onboarding:
-    observe_panel_body_p2: வெளியே சென்று பல்லுயிர்களின் ஒவ்வொரு பகுதியையும் பாருங்கள். வனவிலங்குகள் போன்றவற்றில் ஏதேனும் ஒன்றைத் தேர்ந்தெடுத்து அதன் முழு பிரேம் படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே வனவிலங்கு வகை படம் இருந்தால் <a href="%{new_observation_path}">இப்போதே சேர்க்கவும்</a>. பார்வைகளைப் பதிவுசெய்ய %{site_name} மொபைல் பயன்பாடுகளையும் நீங்கள் பயன்படுத்தலாம்.
+    observe_panel_body_p2: வெளியே சென்று ஒரு தனிப்பட்ட உயிரினத்தைக் கவனியுங்கள். காட்டுத்தனமான ஒன்றைத் தேர்ந்தெடுத்து தெளிவான, முழு பிரேம் புகைப்படத்தை எடுக்கவும். உங்களிடம் ஏற்கனவே காட்டுத்தனமான ஒன்றின் புகைப்படம் இருந்தால்.<a href="%{new_observation_path}">அதை இப்போது சேர்க்கவும்</a>. கவனிப்புகளை பதிவு செய்ய %{site_name} செயலிகளைப் பயன்படுத்தலாம்.
+  or: அல்லது
+  people: மக்கள்
+  pi_consent_label: |
+    நான் என் கணக்கை நிர்வகிக்க iNaturalist எனது சில வகையான தனிப்பட்ட தகவல்களைச் சேமித்து செயல்படுத்த அனுமதிக்கிறேன்
+  pi_consent_child_label: |
+    நான் என் குழந்தையின் கணக்கை நிர்வகிக்க iNaturalist எனது குழந்தையின் சில வகையான தனிப்பட்ட தகவல்களைச் சேமித்து செயல்படுத்த அனுமதிக்கிறேன்
+  data_transfer_consent_label: |
+    எனது தனிப்பட்ட தகவலை United States of America க்கு மாற்றுவதற்கு நான் அங்கீகரிக்கிறேன்
+  data_transfer_consent_child_label: |
+    எனது குழந்தையின் தனிப்பட்ட தகவல்களை க்கு மாற்ற அனுமதிக்கிறேன் United States of America
+  places: இடங்கள்
   places_name:
+    dominica: டொமினிக்கா
+    egypt: எகிப்து
+    estonia: எஸ்டோனியா
+    france: பிரான்சு
     french_guiana: பிரெஞ்சு கயானா
     french_polynesia: பிரெஞ்ச் பாலிநீசியா
+    guyana: கயானா
+    hungary: ஹங்கேரி
+    iceland: ஐஸ்லாந்து
     india: இந்தியா
+    indonesia: இந்தோனேசியா
+    iran: ஈரான்
+    iraq: ஈராக்
+    ireland: அயர்லாந்து
     israel: இஸ்ரேல்
     japan: ஜப்பான்
+    lebanon: லெபனான்
+    lesotho: லெசாத்தோ
+    liberia: லைபீரியா
+    malaysia: மலேசியா
+    maldives: மால்டீவ்ஸ்
+    malta: மால்டா
+    mozambique: மொசாம்பிக்
+    myanmar: மியான்மார்
+    new_zealand: நியுசிலாந்து
+    nicaragua: நிகரகுவா
     north_america: நோர்த் அமெரிக்கா
+  #Title to a section warning a user to exercise caution
+  please_be_careful!: தயவுசெய்து கவனமாக இருங்கள்!
+  privacy: தனியுரிமை
+  profile: தனியமைப்பு
   projects: கணிப்புகள்
+  #When a scientific name is displayed with its rank, e.g. Family Noctuidae or
+  #Genus Noctua (but generally not Species Noctua pronuba)
+  rank_sciname: "%{rank} %{name}"
   ranks:
     genus: பேரினம்
     x_genera:
@@ -293,7 +445,10 @@ ta:
   ranks_lowercase_genushybrid: பேரினம்கலப்புப்பிறப்பு
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the hybrid X"
   ranks_lowercase_hybrid: கலப்புப்பிறப்பு
+  satellite: செயற்கைக்கோள்
   save_settings_caps: அமைப்புகளைச் சேமிக்கவும்.
+  #E.g. "Homo sapiens" instead of "human"
+  scientific_name: அறிவியல் பெயர்
   search: தேடு
   set_a_place_if_this_link_only_applies_to: இந்த லிங்க் குறிப்பிட்ட இடத்திலிருந்து வரும் இனங்கள் மட்டுமே பொருந்தினால், இடத்தை அமைக்கவும். உலகமெங்கும் வரும் இனங்களுக்கு பொருந்தினால், வெறுமையாக விலக்கவும்.
   set_license: உரிமம் அமைக்கவும்
@@ -301,9 +456,17 @@ ta:
   sign_out: வெளியேறு
   sign_up: பதிவு செய்யுங்கள்
   species_from_around_the_world: உலகம் முழுவதும் உள்ள இனங்கள்
+  #As in a place to purchase things. We use it as a link to a place where you
+  #can buy merchandise. Please try to keep translations as short as possible
+  store: கடை
+  store_caps: கடை
+  suitable_for_the_global_biodiversity_information_facility: Global Biodiversity Information Facilityக்கு ஏற்றது
   taxonomy_settings: உயிரியல் வகைப்பாடு அமைப்புகள்
   teachers_guide: ஆசிரியர் வழிகாட்டி
   tell_the_world_a_little_about_yourself: உங்களைப் பற்றி எங்களிடம் கூறுங்கள்
+  terrain: நிலப்பரப்பு
+  thanks!: நன்றி!
+  thanks_from_all_of_us_here_at: இல் இருந்து உங்கள் அனைவருக்கும் நன்றி
   the_world: நம்ம உலகம்
   the_world_is_full_of_interesting_places: |
     உலகம் அதிகமான சுவாரஸ்யமான இடங்களில் நிறைந்துள்ளது, ஒவ்வொன்றும் விசித்திரமான மற்றும் அற்புதமான உயிரினங்கள் நிறைந்துள்ளன. சில உலகத்தின் மறுபக்கம் உள்ளன, மற்றவை அடியோரத்தில் இருக்கின்றன! %{site_name} இடங்கள் உங்களுக்கு உலகம் முழுவதும் உள்ள உயிரினங்களைப் பார்வையிட அனுமதிக்கிறது. ஆராயத் தொடங்குங்கள்!
@@ -316,6 +479,7 @@ ta:
   user_faved_an_observation_by_you: "%{user} உங்கள் கணிப்பைப் பிடித்தது"
   user_faved_this_observation: "%{user} இந்த கவனிப்பில் பிடித்தமாகக் கொண்டார்"
   view_license: உரிமம் காண்க
+  view_post: இடுகை பார்க்க
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: இதுவே பேரினத்தில் இருக்க வாய்ப்பு
   #Label for the most probable taxon in the automated suggestions when that taxon is a family
@@ -324,28 +488,61 @@ ta:
   were_pretty_sure_this_is_in_the_order: இதுவே வரிசையில் இருக்க வாய்ப்பு
   #Label for the most probable taxon in the automated suggestions when that taxon is a subfamily
   were_pretty_sure_this_is_in_the_subfamily: இதுவே துணைக்குடும்பத்தில் இருக்க வாய்ப்பு
+  year_in_review: "மதிப்பாய்வில் ஆண்டு %{year}"
+  year_in_review2: "மதிப்பாய்வில் ஆண்டு %{year}"
+  year_in_review_caps: "மதிப்பாய்வில் ஆண்டு %{year}"
   'yes': "ஆம்"
   yes_license_my_observations_so_scientists_can_use: ஆம், விஞ்ஞானிகள் தரவைப் பயன்படுத்துவதற்காக எனது படங்கள், பதிவுகள் மற்றும் அவதானிப்புகளுக்கு உரிமம் வழங்குகிறேன் (பரிந்துரைக்கப்பட்டது).
+  yir_donate_banner_reaching_millions: லட்சங்களை எட்டுகிறது. பல்லுயிர்களை ஒளிரச் செய்யும். உலகளாவிய ஒத்துழைப்பு.
+  yir_email_because_of_you: |
+    உங்களால், கடந்த ஆண்டைவிட இந்த ஆண்டு பல்லுயிர் பெருக்கம் பற்றிய தகவல்கள் அதிகம்
+    ஆண்டு. நீங்கள் வைத்திருக்கும் அனைத்திற்கும் மதிப்பாய்வில் ஆண்டு எங்கள் பரிசு iNaturalist மூலம் பல்லுயிர் பெருக்கத்திற்காகச் செய்யப்பட்டது.
+  #Feel free to adjust this if %{year} or "Your" don't translate well
+  yir_email_subject: |
+    உங்கள் %{year} iNaturalist மதிப்பாய்வில் ஆண்டு — பல்லுயிர் பெருக்கத்துடன் உங்கள் ஆண்டைக் கொண்டாடுங்கள்
   you_faved_this: நீங்கள் இதைப் பிடித்தமாகக்!
   your_favorites: உங்கள் பிடித்தவை
+  your_observations: உங்கள் கவனிப்புகள்
+  your_recent_projects: உங்கள் சமீபத்திய திட்டங்கள்
   views:
+    donate:
+      post_donate_social_media_text: நான் iNaturalist ஐ ஆதரிக்கிறேன் ஏனெனில்...
     guides:
       pdf_layouts:
         book: புத்தகம்
         journal: சஞ்சிகை
+    emailer:
+      photos_missing:
+        subject: சில புகைப்படங்கள் பழுதுபார்க்க வேண்டும்
+        we_have_been_housekeeping: |
+          நாங்கள் சில வீட்டு பராமரிப்புகளை செய்து வருகிறோம், உங்கள் கவனிப்புகளுடன் இணைக்கப்பட்ட புகைப்படங்களை அவற்றின் அசல் மூலத்திலிருந்து அணுக முடியாது. புகைப்படங்கள் தொகுத்து வழங்கப்படுகின்றன
+          %{providers} மூலம்.
     projects:
+      edit:
+        rules:
+          has_a_photo: ஒரு புகைப்படம் இருக்க
+        submission_models:
+          any: யாரேனும்
       project_user_curator_coordinate_access_labels:
         none: இல்லை.
+    shared:
+      not_found:
+        sorry_that_doesnt_exist: மன்னிக்கவும், அது இல்லை!
     stats:
       year:
         #Adjective to describe a donor who gives once, as opposed to giving on a recurring basis
         one_time: ஒருமுறை
+        store_prompt: |
+          நீங்கள் எங்கே போனாலும் உங்கள் iNat பெருமையைக் காட்ட விரும்புகிறீர்களா? iNat Store பார்க்கவும்!
     taxa:
       show:
         frequency:
+          "Alive or Dead=Alive": உயிருடன்
+          "Alive or Dead=Dead": இறந்தவர்
           "Plant Phenology=Flowering": பூக்கும்
           "Life Stage=Juvenile": இளவயது
           "Life Stage=Nymph": இளம்பூச்சி
+          "Life Stage=Teneral": உருகிய பிறகு
           "Sex=Female": பெண்
           "Sex=Male": ஆண்
     users:
@@ -354,7 +551,54 @@ ta:
           நீங்கள் நினைப்பு மாறினால், நீங்கள் எப்போது வேண்டுமானாலும் <a href='/users/edit'>உங்கள் அமைப்புகளைத் திருத்தலாம்</a>.
         place_preference_changed_notice_html: |
           இடத்தின் முன்னுரிமை மாற்றப்பட்டது. நீங்கள் நினைப்பு மாறினால், நீங்கள் எப்போது வேண்டுமானாலும் <a href='/users/edit'>உங்கள் அமைப்புகளைத் திருத்தலாம்</a>.
+        project_addition_preferences:
+          any: ஏதேனும்
+        taxon_name_priorities:
+          #A common name lexicon is a categorization of the vocabulary used. For example the
+          #lexicon could be a language, or a regional use of language (locale), or a lexicon
+          #could be a set of codes (bird codes, plant codes, etc) used to represent taxa
+          add_a_common_name_lexicon: ஒரு பொதுவான பெயர் லெக்சிகன் சேர்க்கவும்.
+          #optionally add a place configuration for a common name lexicon setting
+          add_a_place_optional: ஒரு இடம் சேர்க்கவும் (விரும்பினால்)
+          common_name_lexicon_display_order: பொதுவான பெயர் லெக்சிகன் காட்சி வரிசை
+          common_name_lexicons: பொதுவான பெயர் லெக்சிகன்கள்
+    user_parents:
+      new:
+        step2_title: கிரெடிட் கார்டு மூலம் உங்கள் அடையாளத்தை உறுதிப்படுத்தவும்
+    welcome:
+      index:
+        how_it_works: எப்படி வேலை செய்கிறது
+        record_your_observations: உங்கள் கவனிப்புகளை பதிவு செய்யுங்கள்
+        discuss_your_findings: உங்கள் கண்டுபிடிப்புகளைப் பற்றி விவாதிக்கவும்
+        contribute_to_science: அறிவியலுக்குப் பங்களிப்பு செய்யுங்கள்
+        science_desc_html: |
+          ஒவ்வொரு கவனிப்பும் பல்லுயிர் அறிவியலுக்கு பங்களிக்க முடியும், மிக அரிதான பட்டாம்பூச்சியிலிருந்து மிக பொதுவான கொல்லைப்புறம் களைகள் வரை. உங்கள் கண்டுபிடிப்புகளை, அறிவியலாளர்களுக்கு உங்கள் தரவுகளை கண்டுபிடித்து பயன்படுத்த உதவ, <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a> போன்ற அறிவியல் தரவு சேமிப்பகங்களுடன் பகிர்ந்துகொள்கிறோம். நீங்கள் செய்ய வேண்டியது ஒன்றே, கவனிப்பு செய்வது.
+        nature_at_your_fingertips: உங்கள் விரல் நுனியில் இயற்கை
+        record_your_encounters: |
+          மற்ற உயிரினங்களுடனான உங்கள் சந்திப்புகளைப் பதிவுசெய்து, வாழ்க்கைப் பட்டியலைப் பராமரிக்கவும்,
+          அனைத்தும் மேகத்தில்.
+        create_useful_data: பயனுள்ள தரவை உருவாக்கவும்
+        learn_about_nature: இயற்கையைப் பற்றி அறிக
+        works_on_all_your_devices: உங்கள் எல்லா சாதனங்களிலும் வேலை செய்கிறது
+        who_uses_site_name: "%{site_name} ஐ யார் பயன்படுத்துகிறார்கள்?"
+        what_are_you_waiting_for: நீங்கள் எதற்காகக் காத்திருக்கிறீர்கள்?
+        join_today: இன்று சேரவும்
   date:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%Y-%m-%d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %-d'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%b %e"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%b %-d, %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_year: '%B %Y'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      month_day_year: '%B %-d, %Y'
     month_names:
       - 
       - 
@@ -369,14 +613,73 @@ ta:
       - 
       - 
       - 
+  datetime:
+    distance_in_words:
+      x_days:
+        one: "%{count} நாள்"
+        other: '%{count} நாட்கள்'
+      x_minutes:
+        one: "%{count} நிமிடம்"
+        other: '%{count} நிமிடங்கள்'
+      x_months:
+        one: "%{count} மாதம்"
+        other: '%{count} மாதங்கள்'
+      x_seconds:
+        one: "%{count} நொடி"
+        other: '%{count} நொடிகள்'
   number:
     format:
       significant: false
       strip_insignificant_zeros: false
+      si:
+        #10³, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        kilo: "%{number}k"
+        #10⁶, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        mega: "%{number}M"
+        #10⁹, see https://en.wikipedia.org/wiki/Metric_prefix#List_of_SI_prefixes
+        giga: "%{number}G"
     human:
+      decimal_units:
+        format: '%n %u'
       format:
         significant: true
         strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      default: '%b. %-d, %Y %H:%M:%S %z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      long: '%B %-d, %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      compact: "%I:%M %p"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      observed_at: '%I:%M %p %Z'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      day_month_year: "%B %-d, %Y"
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      hours: "%l:%M %p"
+  activerecord:
+    models:
+      Photo: புகைப்படம்
+    attributes:
+      post:
+        title: தலைப்பு
+      taxon:
+        auto_photos: தானியங்கு புகைப்படங்கள்
+        #Boolean attribute determining whether users can add, remove, or
+        #re-order photos of this taxon
+        photos_locked: புகைப்படங்கள் பூட்டப்பட்டதா?
+    errors:
+      format: '%{attribute} %{message}'
+      models:
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: திருத்துவதற்கு மிகப் பெரியது
   i18n:
     inflections:
       "@vow_or_con":
@@ -387,8 +690,17 @@ ta:
         f: பெண்
         "n": நடுநிலையான
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        check_list: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genus: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         genushybrid: "@n"
         #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        listed_taxon: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
+        post: "@n"
+        #Gender of this key translated in this locale (@m for masculine, @f for feminine, @n for neuter)
         subgenus: "@n"
+        #Default gender for nouns that aren't listed here
+        default: "@n"
+  zoom_photo: படத்தை பெரிதாக்கவும்

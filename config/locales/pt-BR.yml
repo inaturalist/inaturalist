@@ -27,6 +27,12 @@ pt-BR:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
     other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICADOR'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICADORES'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID feito para outros'
     other: '<span class="count">%{count}</span> IDs feitos para outros'
@@ -77,6 +83,9 @@ pt-BR:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observações revisadas"
     other: "<span class='count'>%{count}</span> observações revisadas"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVADOR'
+    other: '<span class="count">%{count}</span> OBSERVADORES'
   x_others:
     one: "1 outra"
     other: "%{count} outras"
@@ -5767,6 +5776,7 @@ pt-BR:
   user_muted: Usuário silenciado
   user_observed_on_on_date_in_place: |
     %{user} observado um em %{date} no %{place}
+  user_said_comment_html: <span class="meta">%{user} disse,</span> "%{comment}"
   user_suggested_an_id: "%{user} sugeriu uma identificação"
   user_trusts_this_project_for_none: O usuário não confia neste projeto com coordenadas ocultas.
   user_trusts_this_project_for_any: |
@@ -6978,6 +6988,10 @@ pt-BR:
           As observações serão revertidas para <strong>"casual"</strong> se as condições acima
           não forem cumpridas ou se a comunidade concordar que
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          O <strong>dia, mês e ano não parecem ser corretos</strong> (por exemplo, neve
+          aparece na foto, mas a data é de verão; o horário está inconsistente)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           a localização <strong>não parece correta</strong> (por exemplo, macacos
           no meio do oceano, hipopótamos em prédios de escritório, etc.)
@@ -6998,6 +7012,15 @@ pt-BR:
           a observação <strong>não apresenta evidências relacionadas a um
           assunto</strong> (por exemplo, tem quatro fotos de organismos não relacionados entre sí; porém uma foto
           mostrando o habitat do assunto da observação é OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          a observação não mais precisa de uma identificação <em>e</em> a ID da comunidade
+          está na família ou acima
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          o táxon não é um ancestral ou descendente do táxon associado
+          com o ID do observador <em>e</em> o observador optou por não usar
+          o Táxon da Comunidade
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           E se isso não foi complicado o suficiente, há também situações

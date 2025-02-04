@@ -963,7 +963,7 @@ fr:
     Cochez cette case si vous voulez appliquer une
     <a
     href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>licence Creative Commons d’attribution non commerciale</a> au contenu téléversé. Cela veut dire que quiconque peut copier et réutiliser vos photos ou vos observations sans demander la permission, du moment qu’ils vous en donnent le crédit et n’utilisent pas les œuvres commercialement. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
+    target='_blank'>licence Creative Commons d’attribution non commerciale</a> au contenu publié. Cela veut dire que quiconque peut copier et réutiliser vos photos ou vos observations sans demander la permission, du moment qu’ils vous en donnent le crédit et n’utilisent pas les œuvres commercialement. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
   checklist: Check-list
   choose_a_field: Choisir un champ
   choose_a_list_above: Choisisser une liste ci-dessus.
@@ -1401,7 +1401,7 @@ fr:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Modifier des lieux organisés par la communauté et téléverser des fichiers KML de plus de 1 Mo (mais
+    Modifier des lieux organisés par la communauté et importer des fichiers KML de plus de 1 Mo (mais
     de moins de 5 Mo)
   #Header
   curator_application_what_curators_cannot_do: Ce que les curateurs ne peuvent pas faire
@@ -1694,8 +1694,7 @@ fr:
   download: Télécharger
   download_caps: TÉLÉCHARGER
   download_bulk_import_template_html: |
-    <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans le
-    <a href="/observations/import?project_id=%{project_id}#csv_import">chargeur par lot</a>
+    <a href="%{url}">Télécharger le modèle</a> pour l’utiliser dans l'<a href="/observations/import?project_id=%{project_id}#csv_import">importateur par lot</a>
   download_csv: Télécharger le format CSV
   download_csv_template: Télécharger le modèle "CSV"
   download_kml: Téléchargez le format KML
@@ -1997,7 +1996,7 @@ fr:
   flag_reason: "&ldquo;Je signale ce %{record} parce que"
   flag_resolution: Résolution
   flag_saved: Marque enregistrée
-  flag_saved_thanks_html: Drapeau enregistré. Merci ! <a href="%{url}" class="readmore">Afficher le drapeau</a>
+  flag_saved_thanks_html: Signalement enregistré. Merci ! <a href="%{url}" class="readmore">Afficher le signalement</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
   flag_this_place: Signaler ce lieu
@@ -3611,7 +3610,7 @@ fr:
   password_confirmation: 'Confirmation du mot de passe'
   password_change_description: Changer votre mot de passe vous déconnectera de toutes les sessions iNaturalist actives sur vos appareils.
   password_change_logout_warning: Quand vous aurez changé votre mot de passe, votre session prendra fin et vous devrez vous reconnecter avec votre nouveau mot de passe.
-  password_change_observations_warning: Votre session sur les applications mobiles iNaturalist et toutes les autres applications ou sites Web qui publient sur iNaturalist en votre nom sera fermée. Assurez-vous donc d'avoir téléchargé toutes les observations en attente avant de faire cela. Toutes les observations qui ne sont pas téléchargées seront perdues.
+  password_change_observations_warning: Votre session sur les applications mobiles iNaturalist et toutes les autres applications ou sites Web qui publient sur iNaturalist en votre nom sera fermée. Assurez-vous donc d'avoir publié toutes les observations en attente avant de faire cela. Toutes les observations qui ne sont pas publiées seront perdues.
   paste: Coller
   paste_in_a_bunch_of_names: Collez dans un groupe de noms, 1 par ligne, et appuyez sur le bouton !
   people: Personnes
@@ -5255,7 +5254,7 @@ fr:
     Voici les taxons que %{site} ne peut pas ajouter de façon automatique à notre arbre taxinomique pour une raison donnée. Vous pouvez les ajouter à l’arbre en modifiant le taxon et en choisissant un enregistrement parent. Par exemple, le parent de ''Homo sapiens'' serait le genre ''Homo''. Vous pouvez aussi vouloir vérifier s’il y a des taxons synonymes et les fusionner.
   these_folks_kindly_volunteer_to: Ces utilisateurs ont eu la gentillesse de se porter volontaires pour maintenir notre taxinomie et gérer les problèmes courants.
   these_observations_have_not_been_uploaded_yet: |
-    Ces observations n’ont pas encore été téléversées.
+    Ces observations n’ont pas encore été publiées.
   third_party_tracking: Suivi par des partis tiers
   #This is a fallback translation for posessive phrases. It could be used on
   #pages that show a user's content where the title might be "kueda's
@@ -5546,34 +5545,34 @@ fr:
   updated_by_user_on_date_html: Mis à jour par %{user} le %{date}
   updated_daily: Mis à jour quotidiennement
   updated_photo: Photo mise à jour
-  upload: Téléverser
+  upload: Publier
   upload_a_csv_file: Téléverser le fichier CSV
   upload_a_csv_file_with_observation: |
     Téléverser les données d’observation dans un fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base de données, c’est la meilleure méthode à adopter.
-  upload_new_photo: Téléverser une nouvelle photo
-  upload_photo: Téléverser des photos
-  upload_range: Téléverser l'aire de répartition
+  upload_new_photo: Importer une nouvelle photo
+  upload_photo: Importer des photos
+  upload_range: Importer l'aire de répartition
   #Label that notes who uploaded some content, not in a sentence
-  uploaded_by: Téléversé par
+  uploaded_by: Importé par
   uploader:
     errors:
       file_too_big: Le fichier ne doit pas dépasser %{megabytes} Mo
       unsupported_file_type: 'Type de fichier non pris en charge. Sont acceptés : JPG, PNG, GIF, WAV, AAC, MP3, et MP4 (seulement audio)'
     resize_tip: |
-      Les fichiers de photos sont trop grands, essayez de les réduire à un maximum de 2048 by 2048 pixels. Cela concerne toutes les photos du serveur, et fera un téléversement plus rapide.
+      Les fichiers de photos sont trop grands, essayez de les réduire à un maximum de 2048 by 2048 pixels. Cela sera appliqué à toutes les photos du serveur et l'importation sera plus rapide.
     tooltips:
       add: Ajouter les observations
       combine: Combiner les observations sélectionnées
       duplicate: Dupliquer les observations sélectionnées
-      photo_failed: Échec du téléversement de la photo
+      photo_failed: Échec de l’import de la photo
       remove: Supprimer les observations sélectionnées
       remove_observation: Supprimer l’observation
       remove_photo: Supprimer la photo
       select_all: Sélectionner toutes les observations
-      upload_failed: Échec du téléversement
+      upload_failed: Échec de l’import
   uploading_num_of_count_photos:
     one: Téléversement d’une photo…
-    other: Téléversement de %{num} sur %{count} photos…
+    other: Import de %{num} sur %{count} photos…
   url_for_your_app_outside_of_inaturalist: URL de votre application en dehors d'iNaturalist
   url_identifier_of_a_project_derived_from: "URL/identifiant d'un projet dérivé d’une ressource externe"
   url_of_this_taxon_on_the_source_website: URL de ce taxon sur le site Web de la source
@@ -5586,7 +5585,7 @@ fr:
   #Taxon link [GENUS] / [SPECIES] variable instructions
   use_this_if_the_url_needs_genus_species_separated: |
     Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une façon particulière. Si le taxon n’est pas une espèce ou un taxon infraspécifique, tout ce qui se trouve entre [GENRE] et [ESPÈCE] sera remplacé par le nom du taxon. Utilisez-donc cette action avec modération.
-  use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques pour les téléversements séparés
+  use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques pour les imports séparés
   use_well_formed_csv: |
     Utilisez un format CSV bien formé, ce qui signifie que le texte avec des virgules doit être inclus dans des guillemets anglais. La plupart des applications de tableur exportent le CSV dans ce format.
   used_x_times:
@@ -6434,7 +6433,7 @@ fr:
           (par ex. vue « carte », pages de taxon, etc.)
         import_tags_from_csv_help_html: |
           <p>
-          Téléversez un fichier CSV contenant des champs pour les taxons de ce guide. Votre fichier CSV doit ressembler à ceci :
+          Importez un fichier CSV contenant des champs pour les taxons de ce guide. Votre fichier CSV doit ressembler à ceci :
           </p>
           <table class="table">
           <tbody>
@@ -6459,7 +6458,7 @@ fr:
           </tbody>
           </table>
           <p>
-          La première ligne commence par « Nom », suivi par l’étiquette des prédicats de catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette)  <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
+          La première ligne commence par « Nom », suivi par l’étiquette des prédicats/catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat en en-tête de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette) <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
         licensing_explanation: |
           En mettant votre contenu sous licence, vous accordez aux autres le droit de le copier et
           de le modifier sans demander votre permission. Cette mesure facilite l’échange
@@ -6850,7 +6849,7 @@ fr:
         license: Licence que l’observateur a choisie pour cette observation
         url: URL de l’observation
         image_url: URL de l’image par défaut
-        sound_url: URL pour le son par défaut. Notez que cela ne fonctionnera que pour les téléchargements directs, non pour les sons hébergés sur des services tiers
+        sound_url: URL pour le son par défaut. Notez que cela ne fonctionnera que pour les imports directs, non pour les sons hébergés sur des services tiers
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau pays
         place_admin2_name: Nom de l’endroit administratif deux rangs en dessous du niveau pays
@@ -6882,7 +6881,7 @@ fr:
           d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
           toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
           a aussi supprimé la recherche textuelle et la pagination numérique. De plus,
-          ils demandent que tous les comptes connectés aient un droit en plus,
+          ils demandent que tous les comptes connectés nécessitent à une autorisation supplémentaire,
           et avant qu’un tiers puisse demander ce droit pour les utilisateurs, le
           tiers doit être vérifié. Nous attendons la vérification, mais
           avant que cela n'arrive, vous ne pourrez pas importer de photos de Google.
@@ -6890,7 +6889,7 @@ fr:
           n’incluront aucune information de localisation ni de licence que vous pourriez 
           voir sur Google Photos. Vous pouvez lire d'avantage là-dessus à
           <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Télécharger des fichiers d’origine et les ajouter en utilisant
+          Importer des fichiers d’origine et les ajouter en utilisant
           <a href="/observations/upload">Uploader</a> est la meilleure façon de contourner le problème.
         project_csv_template_notice_html: |
           Il y a un fichier modèle pour ce projet qui peut vous aider avec la structure du fichier CSV. 
@@ -6899,8 +6898,8 @@ fr:
           En 2018, Soundcloud a modifié son API et nous a empêché de
           faire de nouveaux liens avec votre compte Soundcloud. Si Soundcloud réactive
           cette fonctionnalité, nous pourrons rétablir le lien avec les comptes Soundcloud. En
-          attendant, vous pouvez uploader les fichiers audio directement en utilisant
-          <a href="/observations/upload">Uploader</a>.
+          attendant, vous pouvez importer les fichiers audio directement en utilisant
+          <a href="/observations/upload">Publier</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Permettre aux responsables de projet de voir les coordonnées masquées de cette observation.
@@ -7255,7 +7254,7 @@ fr:
           d’équivalents aux É.-U., 0 = pays, 10 = état, 20 = comté, 30 = ville
       new:
         check_list_note: "Remarque : les check-list seront désactivées automatiquement pour les lieux très vastes."
-        coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé les limites géographiques ou uploadé un KML.
+        coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé les limites géographiques ou importé un fichier KML.
         map_instruction: Utilisez l’outil polygone pour tracer la limite géographique du lieu.
     posts:
       formatting_none_help: "Aucun HTML inséré, utilise uniquement les balises que vous saisissez."
@@ -8575,7 +8574,7 @@ fr:
         #The person who resolved the flag
         resolver_id: Résolveur
         #The kind of flag that was made
-        flag: Drapeau
+        flag: Signalement
       guide:
         source_url: URL source
         published_at: Publication
