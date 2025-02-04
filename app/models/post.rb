@@ -78,6 +78,7 @@ class Post < ApplicationRecord
     div
     dl
     dt
+    dt
     em
     embed
     h1
@@ -110,7 +111,6 @@ class Post < ApplicationRecord
     th
     thead
     tr
-    tt
     ul
   ).freeze
 

@@ -121,9 +121,9 @@
         <% else %>
           <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
             <%- if context_around && context = text.context_of_pattern(context_around) %>
-              <%= formatted_user_text(context) %>
+              <%= formatted_user_text( context ) %>
             <% else -%>
-              <%= formatted_user_text(text) %>
+              <%= formatted_user_text( text ) %>
             <% end -%>
           </div>
         <% end %>
