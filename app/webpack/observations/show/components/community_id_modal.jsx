@@ -13,12 +13,19 @@ class CommunityIDModal extends Component {
     this.state = { hoverTaxon: null };
   }
 
+  getUsableIdentifications( ) {
+    const { observation } = this.props;
+    if ( !observation ) return [];
+    return observation.identifications.filter( i => !i.hidden );
+  }
+
   close( ) {
     this.props.setCommunityIDModalState( { show: false } );
   }
 
   renderTaxonomy( currentTaxon, depth = 0 ) {
     const { observation, config } = this.props;
+    const usableIdentifications = this.getUsableIdentifications( );
     const { hoverTaxon } = this.state;
     let rows = [];
     const isLife = !currentTaxon;
@@ -36,7 +43,7 @@ class CommunityIDModal extends Component {
         this.idTaxonAncestorCounts[taxon.id] || 0 );
       const disag = ( taxon.id === LIFE_TAXON.id )
         ? 0
-        : _.filter( observation.identifications, i => (
+        : _.filter( usableIdentifications, i => (
           i.current && i.taxon.id !== taxon.id
           && !_.includes( i.taxon.ancestor_ids, taxon.id )
           && !_.includes( taxon.ancestor_ids, i.taxon.id )
@@ -108,9 +115,10 @@ class CommunityIDModal extends Component {
   render( ) {
     const { observation, show } = this.props;
     if ( !observation ) { return ( <div /> ); }
+    const usableIdentifications = this.getUsableIdentifications( );
     let algorithmSummary;
     const taxa = {};
-    _.each( observation.identifications, i => {
+    _.each( usableIdentifications, i => {
       taxa[i.taxon.id] = taxa[i.taxon.id] || i.taxon;
       _.each( i.taxon.ancestors, a => {
         taxa[a.id] = taxa[a.id] || a;
@@ -124,7 +132,7 @@ class CommunityIDModal extends Component {
       this.idTaxonAncestorCounts = { };
       this.ancestorDisagreements = { };
       const ancestorsUsed = { };
-      _.each( observation.identifications, i => {
+      _.each( usableIdentifications, i => {
         if ( !i.current || !i.taxon || !i.taxon.is_active ) { return; }
         this.currentIDs.push( i );
         this.idTaxonCounts[i.taxon.id] = this.idTaxonCounts[i.taxon.id] || 0;
@@ -154,7 +162,7 @@ class CommunityIDModal extends Component {
         } else if ( i.disagreement == null ) {
           _.each( taxa, t => {
             const firstIdentOfTaxon = _.filter(
-              _.sortBy( observation.identifications, oi => oi.id ),
+              _.sortBy( usableIdentifications, oi => oi.id ),
               oi => ( oi.taxon.id === t.id )
             )[0];
             if (
