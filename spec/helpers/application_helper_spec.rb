@@ -236,6 +236,20 @@ describe ApplicationHelper do
       HTML
       expect( formatted_user_text( text ) ).to eq expected_html.strip
     end
+
+    it "should insert linebreaks for newlines" do
+      text = <<~MKDN
+        this
+        is my
+        poem
+      MKDN
+      expected = <<~HTML
+        <p>this<br>
+        is my<br>
+        poem</p>
+      HTML
+      expect( formatted_user_text( text ) ).to eq expected.strip
+    end
   end
 
   describe "#image_url" do
