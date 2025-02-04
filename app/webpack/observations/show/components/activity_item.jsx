@@ -239,8 +239,12 @@ class ActivityItem extends React.Component {
               className="btn btn-default btn-sm"
               onClick={e => {
                 if ( onClickCompare ) {
-                  return onClickCompare( e, taxon, observation,
-                    { currentUser: config.currentUser } );
+                  return onClickCompare(
+                    e,
+                    taxon,
+                    observation,
+                    { currentUser: config.currentUser }
+                  );
                 }
                 return true;
               }}
