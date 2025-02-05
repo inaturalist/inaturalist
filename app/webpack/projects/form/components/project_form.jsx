@@ -39,6 +39,7 @@ class ProjectForm extends React.Component {
     const coordinatesAccessible = project.prefers_user_trust
       && project.observation_requirements_updated_at
       && moment( project.observation_requirements_updated_at ) < moment( ).subtract( 1, "week" );
+    const usingDelegation = !!project.delegated_project_id;
     const isDelegatedUmbrella = project.is_delegated_umbrella;
     return (
       <div className="Form">
@@ -65,7 +66,7 @@ class ProjectForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12} className={`members-only${isDelegatedUmbrella ? " disabled" : ""}`}>
+            <Col xs={12} className={`members-only${isDelegatedUmbrella || usingDelegation ? " disabled" : ""}`}>
               <h2>{ I18n.t( "members" ) }</h2>
               <label className="section-label">
                 { I18n.t( "trust" ) }
