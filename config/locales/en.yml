@@ -10044,6 +10044,14 @@ en:
                 must be observed after %{time}
               must_be_observed_before: |
                 must be observed before %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              # The ruler (instance against which rules are being applied), must
+              # be an instance of a project
+              must_be_a_project: must be a project
+              # Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: only allows project rules
         quality_metric:
           attributes:
             base:
