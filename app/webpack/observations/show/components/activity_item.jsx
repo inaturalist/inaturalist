@@ -118,6 +118,35 @@ class ActivityItem extends React.Component {
     this.setState( { editing: !editing } );
   }
 
+  // Is this an activity item for an identification that disagrees with a
+  // taxon in a hidden identification? If so, it's not particularly important
+  // to show that since that hidden ident isn't counting toward the Community
+  // Taxon, and it might be important to hide the taxon if it was added to
+  // cause harm
+  isDisagreementWithHiddenIdent( ) {
+    if ( !this.isID ) return false;
+    const { item, observation } = this.props;
+    if (
+      !observation
+      || !observation.identifications
+      || observation.identifications.length === 0
+    ) return false;
+    if ( !item || !item.previous_observation_taxon_id || !item.disagreement ) return false;
+    const hiddenIdents = observation.identifications.filter( i => i.hidden );
+    const publicIdents = observation.identifications.filter( i => !i.hidden );
+    if ( hiddenIdents.length === 0 ) return false;
+    const selfAndAncestors = i => [i.taxon.id, i.taxon.ancestor_ids];
+    const hiddenIdentTaxonIds = hiddenIdents.map( selfAndAncestors ).flat( Infinity );
+    const publicIdentTaxonIds = publicIdents.map( selfAndAncestors ).flat( Infinity );
+    // Basic logic here is that if this ident disagrees with a taxon from a
+    // hidden identification that isn't among the remaining, non-hidden
+    // idents, we should probably hide it
+    return (
+      hiddenIdentTaxonIds.includes( item.previous_observation_taxon_id )
+      && !publicIdentTaxonIds.includes( item.previous_observation_taxon_id )
+    );
+  }
+
   render( ) {
     const {
       observation,
@@ -260,7 +289,7 @@ class ActivityItem extends React.Component {
       );
       const taxonImageTag = util.taxonImage( taxon );
       header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
-      if ( item.disagreement ) {
+      if ( item.disagreement && !this.isDisagreementWithHiddenIdent( ) ) {
         header += "*";
       }
       if ( !item.current ) {
@@ -451,7 +480,7 @@ class ActivityItem extends React.Component {
     const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
     let footer;
 
-    if ( item.disagreement && !hideDisagreement ) {
+    if ( item.disagreement && !hideDisagreement && !this.isDisagreementWithHiddenIdent( ) ) {
       const previousTaxonLink = (
         <SplitTaxon
           taxon={item.previous_observation_taxon}
