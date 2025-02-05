@@ -9969,6 +9969,10 @@ en:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "coordinates cannot be 0,0"
+              # Message that might be displayed if an observation fails to
+              # save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                cannot be saved for unknown reason, please take a screenshot and report to staff
             observed_on:
               cannot_be_greater_than_date_created: |
                 cannot be greater than the date the observation was added
