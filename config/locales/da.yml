@@ -2806,6 +2806,9 @@ da:
   make_a_taxon_swap_instead?: Lav et Taksonskift i stedet?
   make_curator: Gør til kurator
   make_manager: Gør til leder
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Gør fortroligt
   make_sure_the_default_photo_looks_good: Sørg for, at standard billedet ser godt ud i stor størrelse.
   make_this_your_default_license: "Gør dette til din standard %{type} licens"
   make_this_the_primary_listing: "Gør dette til den primære liste"
@@ -9069,7 +9072,12 @@ da:
             action:
               not_supported_for_this_kind_of_content: ikke understøttet for denne indholdstype
             base:
-              only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Kun skjult indhold kan være fortroligt #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Kun personale og kuratorer kan skjule indhold
+              only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen #Error saying that only admin users (staff) can set resources as private
+              only_staff_can_make_private: Kun personale kan indstille indhold som fortroligt
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
               must_be_a_curator: skal være kurator
@@ -9154,6 +9162,14 @@ da:
                 skal være observeret efter %{time}
               must_be_observed_before: |
                 skal være observeret før %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: skal være et projekt
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: tillader kun projektregler
         quality_metric:
           attributes:
             base:
