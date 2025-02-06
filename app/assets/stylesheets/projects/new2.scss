@@ -175,6 +175,13 @@ body>div>.popover[role="tooltip"].popover-error {
       }
     }
   }
+  div.disabled {
+    opacity: 0.4;
+    cursor: not-allowed !important;
+    * {
+      pointer-events: none;
+    }
+  }
   .row {
     padding-bottom: 43px;
     &.text, &.separator-row {

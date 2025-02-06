@@ -23,6 +23,8 @@ class ProjectObservationRule < Rule
   after_create :notify_trusting_members
   after_destroy :notify_trusting_members
   validate :operand_present
+  validate :ruler_must_be_a_project
+  validate :umbrella_projects_only_allow_project_rules
   validates_uniqueness_of :operator, scope: [:ruler_type, :ruler_id, :operand_id]
 
   def operand_present
@@ -36,6 +38,22 @@ class ProjectObservationRule < Rule
       for that rule.
     MSG
     errors.add( :base, msg )
+  end
+
+  def ruler_must_be_a_project
+    return if ruler.is_a?( Project )
+
+    errors.add( :ruler_id, :must_be_a_project )
+  end
+
+  def umbrella_projects_only_allow_project_rules
+    return unless ruler.is_a?( Project )
+    return unless ruler.project_type == "umbrella"
+    # delegated umbrella projects are allowed to have all project rules
+    return if ruler.prefers_delegation
+    return if operator == "in_project?"
+
+    errors.add( :ruler_id, :umbrella_projects_only_allow_project_rules )
   end
 
   def clear_operand

@@ -42,12 +42,16 @@ class RegularForm extends React.Component {
     }
     const chosenTerm = project.rule_term_id
       ? allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
+    const usingDelegation = !!project.delegated_project_id;
+    const isDelegatedUmbrella = project.is_delegated_umbrella;
     return (
       <div id="RegularForm" className="Form">
         <Grid>
           <Row className="text">
             <Col xs={12}>
-              <h2>{ I18n.t( "observation_requirements" ) }</h2>
+              {!isDelegatedUmbrella && (
+                <h2>{ I18n.t( "observation_requirements" ) }</h2>
+              ) }
               <div className="help-text">
                 <p>
                   { I18n.t( "views.projects.new.specify_project_filters" ) }
@@ -63,13 +67,13 @@ class RegularForm extends React.Component {
           <Row>
             <Col xs={12} className="autocompletes">
               <Row>
-                <Col xs={4}>
+                <Col xs={4} className={usingDelegation ? "disabled" : null}>
                   <TaxonSelector {...this.props} />
                 </Col>
-                <Col xs={4}>
+                <Col xs={4} className={isDelegatedUmbrella ? "disabled" : null}>
                   <PlaceSelector {...this.props} />
                 </Col>
-                <Col xs={4}>
+                <Col xs={4} className={usingDelegation || isDelegatedUmbrella ? "disabled" : null}>
                   <UserSelector {...this.props} />
                 </Col>
               </Row>
@@ -94,13 +98,13 @@ class RegularForm extends React.Component {
               >
                 <Panel.Collapse>
                   <Row>
-                    <Col xs={4}>
+                    <Col xs={4} className={usingDelegation ? "disabled" : null}>
                       <TaxonSelector {...this.props} inverse />
                     </Col>
-                    <Col xs={4}>
+                    <Col xs={4} className={isDelegatedUmbrella ? "disabled" : null}>
                       <PlaceSelector {...this.props} inverse />
                     </Col>
-                    <Col xs={4}>
+                    <Col xs={4} className={usingDelegation || isDelegatedUmbrella ? "disabled" : null}>
                       <UserSelector {...this.props} inverse />
                     </Col>
                   </Row>
@@ -109,7 +113,12 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12} className="members-only">
+            <Col
+              xs={12}
+              className={
+              `members-only${usingDelegation || isDelegatedUmbrella ? " disabled" : ""}`
+              }
+            >
               <label className="sectionlabel">
                 { I18n.t( "project_members_only" ) }
               </label>
@@ -130,7 +139,12 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12}>
+            <Col
+              xs={12}
+              className={
+                `members-only${usingDelegation || isDelegatedUmbrella ? " disabled" : ""}`
+              }
+            >
               <div className="form-group annotations-form-group">
                 <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
                 <div className="help-text">
@@ -187,7 +201,7 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={4}>
+            <Col xs={4} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <label>{ I18n.t( "data_quality" ) }</label>
               <div
                 className="help-text"
@@ -232,7 +246,7 @@ class RegularForm extends React.Component {
                 { I18n.t( "casual_" ) }
               </label>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <label>{ I18n.t( "media_type" ) }</label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.optionally_filter_media" ) }
@@ -290,7 +304,7 @@ class RegularForm extends React.Component {
                 { I18n.t( "has_photo_and_sound" ) }
               </label>
             </Col>
-            <Col xs={4}>
+            <Col xs={4} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <label>{ I18n.t( "establishment_means" ) }</label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.select_native_to_include" ) }
@@ -361,7 +375,7 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row className="date-row">
-            <Col xs={12}>
+            <Col xs={12} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <label>{ I18n.t( "date_observed_" ) }</label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.use_this_for_a_time_limited_event" ) }
@@ -401,7 +415,7 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row className="date-row">
-            <Col xs={12} className="date-range-col">
+            <Col xs={12} className="date-range-col" className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <input
                 type="radio"
                 id="project-date-type-range"
@@ -443,7 +457,7 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row className="date-row">
-            <Col xs={12}>
+            <Col xs={12} className={`members-only${usingDelegation ? " disabled" : ""}`}>
               <input
                 type="radio"
                 id="project-date-type-months"

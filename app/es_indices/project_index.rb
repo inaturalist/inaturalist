@@ -83,6 +83,10 @@ class Project < ApplicationRecord
         indexes :operand_type, type: "keyword"
       end
       indexes :project_type, type: "keyword"
+      indexes :delegated_project_id, type: "integer" do
+        indexes :keyword, type: "keyword"
+      end
+      indexes :is_delegated_umbrella, type: "boolean"
       indexes :rule_place_ids, type: "integer"
       indexes :rule_preferences, type: :nested do
         indexes :field, type: "keyword"
@@ -158,7 +162,7 @@ class Project < ApplicationRecord
     # This will effect search rankings, so first we try to get a count of obs by
     # people who have joined the project. Otherwise you could get a high-ranking
     # project just by using an expansive set of obs requirements.
-    obs_count = begin
+    obs_count = Rails.env.test? ? 0 : begin
       r = INatAPIService.observations(
         project_id: id,
         user_id: project_user_ids.join( "," ),
@@ -191,6 +195,8 @@ class Project < ApplicationRecord
       slug: slug,
       slug_keyword: slug,
       project_type: project_type,
+      delegated_project_id: preferred_delegated_project_id,
+      is_delegated_umbrella: prefers_delegation,
       banner_color: preferred_banner_color,
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
       place_ids: place ? place.self_and_ancestor_ids : nil,
