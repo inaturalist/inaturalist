@@ -8,7 +8,7 @@
   <% for taxon_scheme in @taxon_schemes %>
     <div class="stacked">
       <h3><%= link_to taxon_scheme.title, taxon_scheme %></h3>
-      <div class="description"><%= auto_link taxon_scheme.description %></div>
+      <div class="description"><%= Rinku.auto_link( taxon_scheme.description ) %></div>
       <%= link_to "View details", taxon_scheme, :class => "readmore" %>
     </div>
   <% end %>

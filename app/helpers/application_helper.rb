@@ -321,7 +321,7 @@ module ApplicationHelper
     end
     text = sanitize( text, options )
     text = compact( text, all_tags: true ) if options[:compact]
-    text = auto_link( text.html_safe, sanitize: false ).html_safe
+    text = Rinku.auto_link( text.html_safe ).html_safe
     # scrub to fix any encoding issues
     text = text.scrub
     unless options[:skip_simple_format]
