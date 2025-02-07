@@ -2816,6 +2816,9 @@ sv:
   make_a_taxon_swap_instead?: Gör ett taxonbyte istället?
   make_curator: Ge förvaltarbehörighet
   make_manager: Ge ägarbehörighet
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Gör privat
   make_sure_the_default_photo_looks_good: Se till att standardbilden ser bra ut i stor storlek.
   make_this_your_default_license: "Gör detta till din standard %{type}-licens"
   make_this_the_primary_listing: "Gör detta till den primära listan"
@@ -8787,7 +8790,12 @@ sv:
             action:
               not_supported_for_this_kind_of_content: stöds inte för denna typ av innehåll
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Endast dolt innehåll kan vara privat #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Endast personal och förvaltare kan dölja innehåll
               only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen #Error saying that only admin users (staff) can set resources as private
+              only_staff_can_make_private: Endast personal kan ange innehåll privat
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
@@ -8869,6 +8877,14 @@ sv:
                 måste ha observerats efter %{time}
               must_be_observed_before: |
                 måste ha observerats innan %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: måste vara ett projekt
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: tillåter bara projektregler
         quality_metric:
           attributes:
             base:
