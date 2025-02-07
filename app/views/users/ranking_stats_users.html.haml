@@ -1,5 +1,5 @@
 - content_for(:title) do
-  = @title = "Rare"
+  = @title = "Ranking Stats"
 .container
   .row
     .col-xs-12
@@ -13,8 +13,8 @@
 
 - content_for :extrajs do
   :javascript
-    var RARE_STATS_DATA = #{ @rare_stats_data.to_json.html_safe }
+    var RANKING_STATS_DATA = #{ @ranking_stats_data.to_json.html_safe }
   = javascript_include_tag "webpack/react-dnd-webpack"
   = javascript_include_tag "webpack/react-dropzone-webpack"
-  = javascript_include_tag "webpack/users-rare-stats-webpack"
+  = javascript_include_tag "webpack/users-ranking-stats-webpack"
 

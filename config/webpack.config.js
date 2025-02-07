@@ -52,8 +52,8 @@ const config = {
       import: "./observations/uploader/webpack-entry",
       dependOn: ["react-main", "react-dnd", "react-dropzone"]
     },
-    "users-rare-stats": {
-      import: "./users/rare_stats/webpack-entry",
+    "users-ranking-stats": {
+      import: "./users/ranking_stats/webpack-entry",
       dependOn: ["react-main"]
     },
     "projects-form": {

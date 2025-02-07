@@ -348,15 +348,15 @@ class UsersController < ApplicationController
     @friendships = current_user.friendships.page( params[:page] )
   end
 
-  def rare_stats
+  def ranking_stats
     @user = current_user
-    @rare_stats_data = compute_rare_stats.values
+    @ranking_stats_data = compute_ranking_stats.values
     respond_to do | format |
-      format.html { render :rare_stats_users, layout: "bootstrap" }
+      format.html { render :ranking_stats_users, layout: "bootstrap" }
     end
   end
 
-  def compute_rare_stats
+  def compute_ranking_stats
     taxon_data = {}
     # Extract species from reseach grade observations of the user
     # and first date the user added an observation of this species

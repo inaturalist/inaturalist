@@ -4,8 +4,8 @@ import { render } from "react-dom";
 import React from "react";
 import SpeciesTableApp from "./components/app";
 
-/* global RARE_STATS_DATA */
-let stats_data = RARE_STATS_DATA;
+/* global RANKING_STATS_DATA */
+let stats_data = RANKING_STATS_DATA;
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension
