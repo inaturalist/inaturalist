@@ -364,12 +364,14 @@ class UsersController < ApplicationController
       created_at = observation.created_at
       country = observation.place_country
       next unless taxon.rank == "species" || taxon.rank == "subspecies"
+      next if country.nil?
+      next if created_at.nil?
 
       taxon_id = taxon.id
       taxon_name = taxon.name
       taxon_id = taxon.parent.id if taxon.rank == "subspecies"
       taxon_name = taxon.parent.name if taxon.rank == "subspecies"
-      taxon_photo = taxon.default_photo.best_url
+      taxon_photo = taxon.default_photo.best_url(:square)
       #puts "taxon = #{taxon_name} in #{country.name} at #{created_at}"
       key = "#{taxon_id}-#{country.id}"
       if taxon_data.key?( key )
