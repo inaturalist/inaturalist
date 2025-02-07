@@ -349,7 +349,6 @@ class UsersController < ApplicationController
   end
 
   def ranking_stats
-    @user = current_user
     @ranking_stats_data = compute_ranking_stats.values
     respond_to do | format |
       format.html { render :ranking_stats_users, layout: "bootstrap" }
@@ -370,6 +369,7 @@ class UsersController < ApplicationController
       taxon_name = taxon.name
       taxon_id = taxon.parent.id if taxon.rank == "subspecies"
       taxon_name = taxon.parent.name if taxon.rank == "subspecies"
+      taxon_photo = taxon.default_photo.best_url
       #puts "taxon = #{taxon_name} in #{country.name} at #{created_at}"
       key = "#{taxon_id}-#{country.id}"
       if taxon_data.key?( key )
@@ -380,7 +380,8 @@ class UsersController < ApplicationController
           country_id: country.id,
           country: country.name,
           taxon: taxon_name,
-          first_added: created_at
+          first_added: created_at,
+          taxon_photo: taxon_photo
         }
       end
     end

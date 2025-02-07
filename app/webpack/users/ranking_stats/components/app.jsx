@@ -52,7 +52,7 @@ class SpeciesTableApp extends Component {
               </th>
               <th>
                 <Button variant="link" onClick={() => this.handleSort("country")}>
-                  Country {this.renderSortIndicator("taxon")}
+                  Country {this.renderSortIndicator("country")}
                 </Button>
               </th>
               <th>
@@ -76,7 +76,10 @@ class SpeciesTableApp extends Component {
                     <a
                       href={`/taxa/${item.taxon_id}`}
                     >
-                      {util.taxonImage( item.taxon )}
+                      <img
+                        src={ item.taxon_photo }
+                        className="taxon-image"
+                      />
                     </a>
                   </div>
                   <div className="name">
