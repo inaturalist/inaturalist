@@ -52,6 +52,10 @@ const config = {
       import: "./observations/uploader/webpack-entry",
       dependOn: ["react-main", "react-dnd", "react-dropzone"]
     },
+    "users-rare-stats": {
+      import: "./users/rare_stats/webpack-entry",
+      dependOn: ["react-main"]
+    },
     "projects-form": {
       import: "./projects/form/webpack-entry",
       dependOn: ["react-main", "react-dropzone"]

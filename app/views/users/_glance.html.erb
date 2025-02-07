@@ -40,6 +40,11 @@
         <span class="glyphicon glyphicon-user"></span>
         <%= t(:followers) %>
       <% end %>
+      <%= link_to rare_stats_by_login_path(user.login), :class => 'list-group-item' do %>
+        <span class="badge">10</span>
+        <span class="glyphicon glyphicon-user"></span>
+        <%= t(:rare_stats) %>
+      <% end %>
       <%= extra %>
     </div>
   </div>

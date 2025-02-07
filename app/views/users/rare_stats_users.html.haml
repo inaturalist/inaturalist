@@ -1,0 +1,20 @@
+- content_for(:title) do
+  = @title = "Rare"
+.container
+  .row
+    .col-xs-12
+      #pageheader
+        .breadcrumbs
+          = link_to is_me?(@user) ? t(:back_to_your_profile) : t(:back_to_possessive_user_profile, possuser: @user.login), person_path(@user), class: "back crumb"
+        %h2= @title
+  .row
+    .col-xs-12
+      #app
+
+- content_for :extrajs do
+  :javascript
+    var RARE_STATS_DATA = #{ @rare_stats_data.to_json.html_safe }
+  = javascript_include_tag "webpack/react-dnd-webpack"
+  = javascript_include_tag "webpack/react-dropzone-webpack"
+  = javascript_include_tag "webpack/users-rare-stats-webpack"
+

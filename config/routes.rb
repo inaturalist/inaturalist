@@ -393,6 +393,8 @@ Rails.application.routes.draw do
     constraints: { login: simplified_login_regex }
   get "people/:login/following" => "users#following", as: :following_by_login,
     constraints: { login: simplified_login_regex }
+  get "people/:login/rare_stats" => "users#rare_stats", as: :rare_stats_by_login,
+    constraints: { login: simplified_login_regex }
   resources :lists, constraints: { id: id_param_pattern } do
     resources :flags
     get "batch_edit"

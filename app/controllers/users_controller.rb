@@ -343,11 +343,71 @@ class UsersController < ApplicationController
       format.html { render :friendship_users, layout: "bootstrap" }
     end
   end
-  
+
   def relationships
     @friendships = current_user.friendships.page( params[:page] )
   end
-  
+
+  def rare_stats
+    @user = current_user
+    @rare_stats_data = compute_rare_stats.values
+    respond_to do | format |
+      format.html { render :rare_stats_users, layout: "bootstrap" }
+    end
+  end
+
+  def compute_rare_stats
+    taxon_data = {}
+    # Extract species from reseach grade observations of the user
+    # and first date the user added an observation of this species
+    @user.observations.where( quality_grade: "research" ).each do | observation |
+      taxon = observation.taxon
+      created_at = observation.created_at
+      puts "taxon = #{taxon} at #{created_at}"
+      if taxon_data.key?( taxon.id )
+        taxon_data[taxon.id][:first_added] = [created_at, taxon_data[taxon.id][:first_added]].min
+      else
+        taxon_data[taxon.id] = { taxon_id: taxon.id, taxon: taxon.name, first_added: created_at }
+      end
+    end
+    # Add global species count for species observed by the user
+    taxon_data.each do | _, data |
+      taxon_id = data[:taxon_id]
+      first_added = data[:first_added]
+      puts "taxon #{taxon_id} at #{first_added}"
+      data[:species_count] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            term: {
+              "taxon.id" => taxon_id
+            }
+          }
+        ]
+      ).total_entries
+      data[:species_count_at_creation] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            range: {
+              created_at: {
+                lt: first_added
+              }
+            }
+          },
+          {
+            term: {
+              "taxon.id" => taxon_id
+            }
+          }
+        ]
+      ).total_entries
+      puts "=> #{data[:species_count]} / #{data[:species_count_at_creation]}"      
+    end
+  end
+
   def get_nearby_taxa_obs_counts search_params
     elastic_params =  Observation.params_to_elastic_query(search_params)
     species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: { species: { "taxon.id": 4 } })).response.aggregations
