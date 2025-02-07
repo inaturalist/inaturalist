@@ -364,16 +364,22 @@ class UsersController < ApplicationController
       taxon = observation.taxon
       created_at = observation.created_at
       country = observation.place_country
-      #puts "taxon = #{taxon.name} in #{country.name} at #{created_at}"
-      key = "#{taxon.id}-#{country.id}"
+      next unless taxon.rank == "species" || taxon.rank == "subspecies"
+
+      taxon_id = taxon.id
+      taxon_name = taxon.name
+      taxon_id = taxon.parent.id if taxon.rank == "subspecies"
+      taxon_name = taxon.parent.name if taxon.rank == "subspecies"
+      #puts "taxon = #{taxon_name} in #{country.name} at #{created_at}"
+      key = "#{taxon_id}-#{country.id}"
       if taxon_data.key?( key )
         taxon_data[key][:first_added] = [created_at, taxon_data[key][:first_added]].min
       else
         taxon_data[key] = {
-          taxon_id: taxon.id,
+          taxon_id: taxon_id,
           country_id: country.id,
           country: country.name,
-          taxon: taxon.name,
+          taxon: taxon_name,
           first_added: created_at
         }
       end
@@ -390,7 +396,7 @@ class UsersController < ApplicationController
         filters: [
           {
             term: {
-              "taxon.id": taxon_id
+              "taxon.ancestor_ids.keyword": taxon_id
             }
           }
         ]
@@ -408,7 +414,7 @@ class UsersController < ApplicationController
           },
           {
             term: {
-              "taxon.id": taxon_id
+              "taxon.ancestor_ids.keyword": taxon_id
             }
           }
         ]
@@ -419,7 +425,7 @@ class UsersController < ApplicationController
         filters: [
           {
             term: {
-              "taxon.id": taxon_id
+              "taxon.ancestor_ids.keyword": taxon_id
             }
           },
           {
@@ -442,7 +448,7 @@ class UsersController < ApplicationController
           },
           {
             term: {
-              "taxon.id": taxon_id
+              "taxon.ancestor_ids.keyword": taxon_id
             }
           },
           {
