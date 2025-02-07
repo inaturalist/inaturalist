@@ -402,7 +402,7 @@ class UsersController < ApplicationController
           {
             range: {
               created_at: {
-                lt: first_added
+                lte: first_added
               }
             }
           },
@@ -436,7 +436,7 @@ class UsersController < ApplicationController
           {
             range: {
               created_at: {
-                lt: first_added
+                lte: first_added
               }
             }
           },
