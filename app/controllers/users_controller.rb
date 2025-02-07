@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     :except => [ :index, :show, :new, :create, :activate, :relationships,
       :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
-    :show, :update, :followers, :following, :relationships, :add_role,
+    :show, :update, :followers, :following, :relationships, :ranking_stats, :add_role,
     :remove_role, :set_spammer, :merge, :trust, :untrust, :mute, :unmute,
     :block, :unblock, :moderation
   ]
@@ -178,7 +178,7 @@ class UsersController < ApplicationController
         end
         format.json do
           render json: { error: msg }, status: :unprocessable_entity
-        end
+      end
       end
       return
     end
