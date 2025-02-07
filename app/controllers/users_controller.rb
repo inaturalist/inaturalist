@@ -390,7 +390,7 @@ class UsersController < ApplicationController
         filters: [
           {
             term: {
-              "taxon.id" => taxon_id
+              "taxon.id": taxon_id
             }
           }
         ]
@@ -408,7 +408,7 @@ class UsersController < ApplicationController
           },
           {
             term: {
-              "taxon.id" => taxon_id
+              "taxon.id": taxon_id
             }
           }
         ]
@@ -419,7 +419,7 @@ class UsersController < ApplicationController
         filters: [
           {
             term: {
-              "taxon.id" => taxon_id
+              "taxon.id": taxon_id
             }
           },
           {
@@ -442,7 +442,7 @@ class UsersController < ApplicationController
           },
           {
             term: {
-              "taxon.id" => taxon_id
+              "taxon.id": taxon_id
             }
           },
           {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Button } from "react-bootstrap"; // ✅ Using React-Bootstrap
+import { Table, Button } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import util from "../../../observations/show/util";
 
@@ -44,7 +44,7 @@ class SpeciesTableApp extends Component {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>#</th> {/* ✅ Rank column */}
+              <th>#</th>
               <th>
                 <Button variant="link" onClick={() => this.handleSort("taxon")}>
                   Taxon {this.renderSortIndicator("taxon")}
@@ -70,7 +70,7 @@ class SpeciesTableApp extends Component {
           <tbody>
             {this.state.data.map((item, index) => (
               <tr key={index}>
-                <td>{index + 1}</td> {/* ✅ Rank column (always 1 to X) */}
+                <td>{index + 1}</td>
                 <td>
                   <div className="photo">
                     <a
