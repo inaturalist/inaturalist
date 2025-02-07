@@ -51,13 +51,18 @@ class SpeciesTableApp extends Component {
                 </Button>
               </th>
               <th>
-                <Button variant="link" onClick={() => this.handleSort("species_count")}>
-                  Species Count {this.renderSortIndicator("species_count")}
+                <Button variant="link" onClick={() => this.handleSort("country")}>
+                  Country {this.renderSortIndicator("taxon")}
                 </Button>
               </th>
               <th>
-                <Button variant="link" onClick={() => this.handleSort("species_count_at_creation")}>
-                  Species Count at Creation {this.renderSortIndicator("species_count_at_creation")}
+                <Button variant="link" onClick={() => this.handleSort("obs_count_at_creation")}>
+                  Observation Rank {this.renderSortIndicator("obs_count_at_creation")}
+                </Button>
+              </th>
+              <th>
+                <Button variant="link" onClick={() => this.handleSort("obs_country_count_at_creation")}>
+                  Observation Rank in Country {this.renderSortIndicator("obs_country_count_at_creation")}
                 </Button>
               </th>
             </tr>
@@ -82,8 +87,9 @@ class SpeciesTableApp extends Component {
                     </a>
                   </div>
                 </td>
-                <td>{item.species_count}</td>
-                <td>{item.species_count_at_creation}</td>
+                <td>{item.country}</td>
+                <td>{item.obs_count_at_creation} / {item.obs_count}</td>
+                <td>{item.obs_country_count_at_creation} / {item.obs_country_count}</td>
               </tr>
             ))}
           </tbody>

@@ -363,19 +363,28 @@ class UsersController < ApplicationController
     @user.observations.where( quality_grade: "research" ).each do | observation |
       taxon = observation.taxon
       created_at = observation.created_at
-      puts "taxon = #{taxon} at #{created_at}"
-      if taxon_data.key?( taxon.id )
-        taxon_data[taxon.id][:first_added] = [created_at, taxon_data[taxon.id][:first_added]].min
+      country = observation.place_country
+      #puts "taxon = #{taxon.name} in #{country.name} at #{created_at}"
+      key = "#{taxon.id}-#{country.id}"
+      if taxon_data.key?( key )
+        taxon_data[key][:first_added] = [created_at, taxon_data[key][:first_added]].min
       else
-        taxon_data[taxon.id] = { taxon_id: taxon.id, taxon: taxon.name, first_added: created_at }
+        taxon_data[key] = {
+          taxon_id: taxon.id,
+          country_id: country.id,
+          country: country.name,
+          taxon: taxon.name,
+          first_added: created_at
+        }
       end
     end
-    # Add global species count for species observed by the user
+    # Add observations count for species observed by the user
     taxon_data.each do | _, data |
       taxon_id = data[:taxon_id]
       first_added = data[:first_added]
-      puts "taxon #{taxon_id} at #{first_added}"
-      data[:species_count] = Observation.elastic_search(
+      country_id = data[:country_id]
+      #puts "taxon #{taxon_id} in #{country_id} at #{first_added}"
+      data[:obs_count] = Observation.elastic_search(
         size: 0,
         track_total_hits: true,
         filters: [
@@ -386,7 +395,7 @@ class UsersController < ApplicationController
           }
         ]
       ).total_entries
-      data[:species_count_at_creation] = Observation.elastic_search(
+      data[:obs_count_at_creation] = Observation.elastic_search(
         size: 0,
         track_total_hits: true,
         filters: [
@@ -404,7 +413,46 @@ class UsersController < ApplicationController
           }
         ]
       ).total_entries
-      puts "=> #{data[:species_count]} / #{data[:species_count_at_creation]}"      
+      data[:obs_country_count] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            term: {
+              "taxon.id" => taxon_id
+            }
+          },
+          {
+            term: {
+              "place_ids.keyword": country_id
+            }
+          }
+        ]
+      ).total_entries
+      data[:obs_country_count_at_creation] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            range: {
+              created_at: {
+                lt: first_added
+              }
+            }
+          },
+          {
+            term: {
+              "taxon.id" => taxon_id
+            }
+          },
+          {
+            term: {
+              "place_ids.keyword": country_id
+            }
+          }
+        ]
+      ).total_entries
+      #puts "=> #{data[:obs_count]} / #{data[:obs_count_at_creation]} / #{data[:obs_country_count]} / #{data[:obs_country_count_at_creation]}"
     end
   end
 
