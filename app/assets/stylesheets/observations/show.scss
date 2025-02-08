@@ -970,6 +970,14 @@ time {
       position: relative;
       z-index: 1;
     }
+    .ActivityItem.observation_mention {
+      .panel,
+      .panel-heading {
+        border-color: transparent;
+        background-color: transparent;
+      }
+      font-style: italic;
+    }
     .ActivityItem:last-child .panel {
       margin-bottom: 0;
     }

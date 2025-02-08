@@ -146,8 +146,11 @@ class Activity extends React.Component {
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
-    let activity = _.compact( ( observation.identifications || [] )
-      .concat( observation.comments ) );
+    let activity = _.compact(
+      ( observation.identifications || [] )
+        .concat( observation.comments )
+        .concat( observation.observation_mentions )
+    );
     activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
     // attempting to match the logic in the computervision/score_observation endpoint
     // so we don't attempt to fetch vision results for obs which will have no results

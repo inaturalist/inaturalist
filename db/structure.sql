@@ -3036,6 +3036,40 @@ ALTER SEQUENCE public.observation_links_id_seq OWNED BY public.observation_links
 
 
 --
+-- Name: observation_mentions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.observation_mentions (
+    id bigint NOT NULL,
+    observation_id integer,
+    sender_type character varying,
+    sender_id integer,
+    user_id integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: observation_mentions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.observation_mentions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: observation_mentions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.observation_mentions_id_seq OWNED BY public.observation_mentions.id;
+
+
+--
 -- Name: observation_photos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6468,6 +6502,13 @@ ALTER TABLE ONLY public.observation_links ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: observation_mentions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_mentions ALTER COLUMN id SET DEFAULT nextval('public.observation_mentions_id_seq'::regclass);
+
+
+--
 -- Name: observation_photos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7555,6 +7596,14 @@ ALTER TABLE ONLY public.observation_geo_scores
 
 ALTER TABLE ONLY public.observation_links
     ADD CONSTRAINT observation_links_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: observation_mentions observation_mentions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.observation_mentions
+    ADD CONSTRAINT observation_mentions_pkey PRIMARY KEY (id);
 
 
 --
@@ -9285,6 +9334,20 @@ CREATE UNIQUE INDEX index_observation_geo_scores_on_observation_id ON public.obs
 --
 
 CREATE INDEX index_observation_links_on_observation_id_and_href ON public.observation_links USING btree (observation_id, href);
+
+
+--
+-- Name: index_observation_mentions_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_mentions_on_observation_id ON public.observation_mentions USING btree (observation_id);
+
+
+--
+-- Name: index_observation_mentions_on_sender_type_and_sender_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_mentions_on_sender_type_and_sender_id ON public.observation_mentions USING btree (sender_type, sender_id);
 
 
 --
@@ -11418,6 +11481,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241218164832'),
 ('20250124155306'),
 ('20250127200519'),
-('20250130003627');
+('20250130003627'),
+('20250207213911');
 
 

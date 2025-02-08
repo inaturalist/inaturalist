@@ -7,6 +7,7 @@ class Identification < ApplicationRecord
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions %w(hide unhide)
+  sends_observation_mentions_in :body
   belongs_to_with_uuid :observation
   belongs_to :user
   belongs_to_with_uuid :taxon

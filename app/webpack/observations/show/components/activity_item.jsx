@@ -205,6 +205,7 @@ class ActivityItem extends React.Component {
         {item.user.login}
       </a>
     );
+
     if ( this.isID ) {
       className = "identification";
       const buttons = [];
@@ -316,6 +317,9 @@ class ActivityItem extends React.Component {
           { idBody }
         </div>
       );
+    } else if ( item.sender_type ) {
+      className = "observation_mention";
+      header = `${item.user.login} linked to this observation in a <a class="linky" href="/${_.snakeCase( item.sender_type )}s/${item.sender_id}">${_.lowerCase( item.sender_type )}</a>`;
     } else if ( !item.hidden || canSeeHidden ) {
       header = I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } );
       contents = editing ? this.editItemForm( ) : ( <UserText text={item.body} /> );
@@ -575,16 +579,20 @@ class ActivityItem extends React.Component {
               <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
               { headerItems }
               { time }
-              { menu }
+              { item.sender_type ? null : menu }
             </Panel.Title>
           </Panel.Heading>
-          <Panel.Body>
-            {taxonChange}
-            <div className="contents">
-              {contents}
-            </div>
-          </Panel.Body>
-          {footer ? <Panel.Footer>{footer}</Panel.Footer> : null}
+          { !item.sender_type && (
+            <>
+              <Panel.Body>
+                {taxonChange}
+                <div className="contents">
+                  {contents}
+                </div>
+              </Panel.Body>
+              {footer ? <Panel.Footer>{footer}</Panel.Footer> : null}
+            </>
+          ) }
         </Panel>
       </div>
     );

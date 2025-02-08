@@ -34,6 +34,7 @@ class Comment < ApplicationRecord
     if: lambda {|u| u.prefers_receive_mentions? }
   auto_subscribes :user, to: :parent
   blockable_by lambda {|comment| comment.parent.try(:user_id) }
+  sends_observation_mentions_in :body
 
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
   scope :for_observer, lambda {|user| 
