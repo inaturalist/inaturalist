@@ -27,7 +27,7 @@ module SendsObservationMentionsIn
       removed_ids = old_ids - cur_ids
       new_ids = cur_ids - old_ids
 
-      ObservationMention.where( observation_id: removed_ids ).destroy_all
+      ObservationMention.where( observation_id: removed_ids, sender: self ).destroy_all
       new_ids.each do | observation_id |
         m = ObservationMention.new( observation_id: observation_id, sender: self )
         unless m.save
