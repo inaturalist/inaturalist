@@ -2791,6 +2791,9 @@ nl:
   make_a_taxon_swap_instead?: Maak in plaats daarvan een Taxonwissel?
   make_curator: Beheerder maken
   make_manager: Maak beheerder
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Privé maken
   make_sure_the_default_photo_looks_good: Zorg ervoor dat de standaardfoto er goed uit ziet in groot formaat.
   make_this_your_default_license: "Maak dit je standaard %{type} licentie"
   make_this_the_primary_listing: "Maak dit je hoofdlijst"
@@ -8696,7 +8699,12 @@ nl:
             action:
               not_supported_for_this_kind_of_content: wordt niet ondersteund voor dit soort inhoud
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Alleen verborgen inhoud kan privé zijn #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Alleen medewerkers en curatoren kunnen inhoud verbergen
               only_staff_and_hiding_curators_can_unhide: Alleen medewerkers en curatoren die inhoud verbergen kunnen deze weer zichtbaar maken #Error saying that only admin users (staff) can set resources as private
+              only_staff_can_make_private: Alleen medewerkers kunnen inhoud instellen als privé
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
               must_be_a_curator: moet een curator zijn
@@ -8782,6 +8790,14 @@ nl:
                 moet waargenomen worden na %{time}
               must_be_observed_before: |
                 moet waargenomen worden voor %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: moet een project zijn
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: alleen projectregels toestaan
         quality_metric:
           attributes:
             base:
