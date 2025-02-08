@@ -16,6 +16,22 @@ class ObservationMention < ApplicationRecord
     text.scan( %r{/observations/(\d+)} ).map( &:last )
   end
 
+  def self.create_for( record )
+    text = record.try_methods( :body, :description )
+    return if text.blank?
+
+    ids = extract_observation_ids( text )
+    return if ids.blank?
+
+    ids.each do | observation_id |
+      m = ObservationMention.new( observation_id: observation_id, sender: record )
+      m.created_at = record.created_at
+      unless m.save
+        Rails.logger.error "failed to save ObservationMention in #{self}: #{m.errors.full_messages.to_sentence}"
+      end
+    end
+  end
+
   def sender_from_other_resource
     other_resource = sender.try( :observation ) || sender.try( :parent )
     return unless other_resource
