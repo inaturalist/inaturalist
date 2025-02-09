@@ -7105,6 +7105,24 @@ es-MX:
           Hemos incluido enlaces a las fotos afectadas abajo.
       user_parent_confirmation:
         subject: La cuenta de iNaturalist de su hijo ha sido activada
+        content_html: |
+          <p>
+          ¡Gracias por crear una cuenta de iNaturalist para tu hijo(a)! La cuenta ha sido activada. Aquí estan los detalles que nos compartiste y que tenemos en registro:
+          </p>
+          <ul>
+          <li><strong>Nombre del padre, madre o guardian legal:</strong> %{parent_name}</li>
+          <li><strong>Correo electrónico del padre, madre o guardian legal:</strong> %{parent_email}</li>
+          <li><strong>Nombre del menor:</strong> %{child_name}</li>
+          <li><strong>Cumpleanos del menor:</strong> %{child_birthday}</li>
+          <li><strong>Correo electrónico del menor:</strong> %{child_email}</li>
+          <li><strong>Nombre de usuario de la cuenta del menor:</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Por favor inicia seción en la cuenta de Seek del menor haciendo "tap" en el botón de iNaturalist en el menú y despues "Inicar sesión con inaturalist" en la parte inferior de la pantalla.
+          </p>
+          <p>
+          Tu hijo o hija podrá compartir observaciones en su cuenta de inaturalist usando la app de Seek y se podran ver en iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
           Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido tus suscripciones. Para reanudar la obtención de actualizaciones sobre la actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu cuenta</a> de nuevo.
@@ -7796,6 +7814,34 @@ es-MX:
           El nombre del taxón con el rango. Para rangos infraespecificos, rango se  inserta después del binomio.
     taxon_names:
       form:
+        new_name_guidelines_html: |
+          <ul>
+          <li><p>Intenta añadir nombres que hayan sido usados en otros lugares. Por favor, no inventes nuevos nombres.</p></li>
+          <li><p>No añadas nombres duplicados, p. ej. no nombres varias especies con solamente "halcón"</p></li>
+          <li><p>Para taxones de mayor nivel, intentar usar nombres que incluyan todos los descendientes, como "garzas y aliados" o "Familia del girasol"</p></li>
+          <li>
+          <p>
+          No agregue información que no sea el nombre, p. ej. informacion 
+          sobre como crees que deben ser usados los nombres.
+          </p>
+          </li>
+          <li>
+          <p>
+          Idiomas nuevos deben estar en español. Por favor, no añadas nombres de idiomas traducidos
+          como "Francés, Franceais" porque eso solo hará que 
+          sea difícil o imposible para nosotros mostrar nombres localizados para las personas
+          que utilizan el sitio en diferentes idiomas.
+          </p>
+          </li>
+          <li>
+          <p>
+          Nombres comunes asociados con idiomas traducidos aparecerán
+          como nombre común predeterminado para ese idioma (eliminando el efecto
+          de las preferencias de lugar, orden de nombres, etc. .
+          <a class="readmore" href="/pages/translate">Aprende más sobre la traducción</a>
+          </p>
+          </li>
+          </ul>
         places_help_html: |
           Añade un nombre para un lugar para darle prioridad para los sitios y los usuarios de ese lugar. Si hay varios nombres por lugar se puede dar prioridad a ellos <a href="%{url}">aquí</a>. Por favor,
           <strong>no agregues nombres de todos los lugares donde se utiliza el nombre</strong>, sólo para los lugares que entran en conflicto con otros lugares.
