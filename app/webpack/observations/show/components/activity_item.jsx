@@ -18,6 +18,7 @@ import util from "../util";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import TextEditor from "../../../shared/components/text_editor";
 import HiddenContentMessageContainer from "../../../shared/containers/hidden_content_message_container";
+import HiddenActivityItem from "./hidden_activity_item";
 
 class ActivityItem extends React.Component {
   constructor( props ) {
@@ -117,6 +118,35 @@ class ActivityItem extends React.Component {
     this.setState( { editing: !editing } );
   }
 
+  // Is this an activity item for an identification that disagrees with a
+  // taxon in a hidden identification? If so, it's not particularly important
+  // to show that since that hidden ident isn't counting toward the Community
+  // Taxon, and it might be important to hide the taxon if it was added to
+  // cause harm
+  isDisagreementWithHiddenIdent( ) {
+    if ( !this.isID ) return false;
+    const { item, observation } = this.props;
+    if (
+      !observation
+      || !observation.identifications
+      || observation.identifications.length === 0
+    ) return false;
+    if ( !item || !item.previous_observation_taxon_id || !item.disagreement ) return false;
+    const hiddenIdents = observation.identifications.filter( i => i.hidden );
+    const publicIdents = observation.identifications.filter( i => !i.hidden );
+    if ( hiddenIdents.length === 0 ) return false;
+    const selfAndAncestors = i => [i.taxon.id, i.taxon.ancestor_ids];
+    const hiddenIdentTaxonIds = hiddenIdents.map( selfAndAncestors ).flat( Infinity );
+    const publicIdentTaxonIds = publicIdents.map( selfAndAncestors ).flat( Infinity );
+    // Basic logic here is that if this ident disagrees with a taxon from a
+    // hidden identification that isn't among the remaining, non-hidden
+    // idents, we should probably hide it
+    return (
+      hiddenIdentTaxonIds.includes( item.previous_observation_taxon_id )
+      && !publicIdentTaxonIds.includes( item.previous_observation_taxon_id )
+    );
+  }
+
   render( ) {
     const {
       observation,
@@ -161,38 +191,14 @@ class ActivityItem extends React.Component {
     let className = "comment";
     if ( item.hidden && ( !canSeeHidden || !config.showHidden ) ) {
       return (
-        <div className="ActivityItem">
-          { hideUserIcon ? null : (
-            <div className="icon">
-              <UserImage user={viewerIsActor ? item.user : null} />
-            </div>
-          ) }
-          <Panel className="moderator-hidden">
-            <Panel.Heading>
-              <Panel.Title>
-                <span className="title_text text-muted">
-                  <i>
-                    <HiddenContentMessageContainer
-                      key={`hidden-tooltip-${item.uuid}`}
-                      item={item}
-                      itemType={this.isID ? "identifications" : "comments"}
-                    />
-                  </i>
-                </span>
-                {canSeeHidden && (
-                  <button
-                    href="#"
-                    type="button"
-                    className="btn btn-default btn-xs"
-                    onClick={() => showHidden()}
-                  >
-                    {I18n.t( "show_hidden_content" )}
-                  </button>
-                )}
-              </Panel.Title>
-            </Panel.Heading>
-          </Panel>
-        </div>
+        <HiddenActivityItem
+          canSeeHidden={canSeeHidden}
+          hideUserIcon={hideUserIcon}
+          isID={this.isID}
+          item={item}
+          showHidden={showHidden}
+          viewerIsActor={viewerIsActor}
+        />
       );
     }
     const userLink = (
@@ -239,8 +245,12 @@ class ActivityItem extends React.Component {
               className="btn btn-default btn-sm"
               onClick={e => {
                 if ( onClickCompare ) {
-                  return onClickCompare( e, taxon, observation,
-                    { currentUser: config.currentUser } );
+                  return onClickCompare(
+                    e,
+                    taxon,
+                    observation,
+                    { currentUser: config.currentUser }
+                  );
                 }
                 return true;
               }}
@@ -279,7 +289,7 @@ class ActivityItem extends React.Component {
       );
       const taxonImageTag = util.taxonImage( taxon );
       header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
-      if ( item.disagreement ) {
+      if ( item.disagreement && !this.isDisagreementWithHiddenIdent( ) ) {
         header += "*";
       }
       if ( !item.current ) {
@@ -469,7 +479,8 @@ class ActivityItem extends React.Component {
     }
     const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
     let footer;
-    if ( item.disagreement && !hideDisagreement ) {
+
+    if ( item.disagreement && !hideDisagreement && !this.isDisagreementWithHiddenIdent( ) ) {
       const previousTaxonLink = (
         <SplitTaxon
           taxon={item.previous_observation_taxon}
@@ -592,33 +603,33 @@ class ActivityItem extends React.Component {
 }
 
 ActivityItem.propTypes = {
-  inlineEditing: PropTypes.bool,
-  item: PropTypes.object,
-  config: PropTypes.object,
-  currentUserID: PropTypes.object,
-  observation: PropTypes.object,
   addID: PropTypes.func,
+  config: PropTypes.object,
+  confirmDeleteID: PropTypes.func,
+  currentUserID: PropTypes.object,
   deleteComment: PropTypes.func,
   editComment: PropTypes.func,
-  confirmDeleteID: PropTypes.func,
-  withdrawID: PropTypes.func,
   editID: PropTypes.func,
+  hideAgree: PropTypes.bool,
+  hideCategory: PropTypes.bool,
+  hideCompare: PropTypes.bool,
+  hideContent: PropTypes.func,
+  hideDisagreement: PropTypes.bool,
+  hideMenu: PropTypes.bool,
+  hideUserIcon: PropTypes.bool,
+  inlineEditing: PropTypes.bool,
+  item: PropTypes.object,
+  linkTarget: PropTypes.string,
+  noTaxonLink: PropTypes.bool,
+  observation: PropTypes.object,
+  onClickCompare: PropTypes.func,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
-  linkTarget: PropTypes.string,
-  hideUserIcon: PropTypes.bool,
-  hideAgree: PropTypes.bool,
-  hideCompare: PropTypes.bool,
-  hideDisagreement: PropTypes.bool,
-  hideCategory: PropTypes.bool,
-  hideMenu: PropTypes.bool,
-  noTaxonLink: PropTypes.bool,
-  onClickCompare: PropTypes.func,
-  trustUser: PropTypes.func,
-  untrustUser: PropTypes.func,
   showHidden: PropTypes.func,
-  hideContent: PropTypes.func,
-  unhideContent: PropTypes.func
+  trustUser: PropTypes.func,
+  unhideContent: PropTypes.func,
+  untrustUser: PropTypes.func,
+  withdrawID: PropTypes.func
 };
 
 export default ActivityItem;
