@@ -1753,7 +1753,8 @@ class User < ApplicationRecord
     count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
   end
 
-  def self.compute_ranking_stats( user_id )
+  def self.compute_ranking_stats( user_id, ranking_stats_key )
+    puts "#### compute_ranking_stats = #{user_id}"
     user = User.find_by_id( user_id )
     internal_taxon_data = {}
     # Extract species from reseach grade observations of the user
@@ -1871,6 +1872,7 @@ class User < ApplicationRecord
     taxon_data.each do |taxon|
       taxon[:taxon_photo] = Taxon.find_by_id(taxon[:taxon_id]).default_photo.best_url(:square)
     end
-    Rails.cache.write( ranking_stats_key, taxon_data, expires_in: 5.days )
+    puts "#### compute_ranking_stats DONE = #{user_id}"
+    Rails.cache.write( ranking_stats_key, taxon_data, expires_in: 1.days )
   end
 end

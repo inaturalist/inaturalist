@@ -351,24 +351,27 @@ class UsersController < ApplicationController
   def ranking_stats
     ranking_stats_key = "ranking_stats_for_#{@user.id}"
     unless ( @ranking_stats_data = Rails.cache.read( ranking_stats_key ) )
-      key = "compute_ranking_stats_for_#{@user.id}"
-      delayed_progress( key ) do
-        @job = User.delay.compute_ranking_stats( @user.id )
+      fork do
+        User.compute_ranking_stats( @user.id, ranking_stats_key )
       end
-      respond_to do | format |
-        format.json do
-          case @status
-          when "done"
-            flash[:notice] = "Ranking stats computed"
-            render json: { message: "Ranking stats computed" }
-          when "error"
-            flash[:error] = @error_msg
-            render status: :unprocessable_entity, json: { error: @error_msg }
-          else
-            render status: :accepted, json: { message: "In progress..." }
-          end
-        end
-      end
+      # key = "compute_ranking_stats_for_#{@user.id}"
+      # delayed_progress( key ) do
+      #   @job = User.delay.compute_ranking_stats( @user.id )
+      # end
+      # respond_to do | format |
+      #   format.json do
+      #     case @status
+      #     when "done"
+      #       flash[:notice] = "Ranking stats computed"
+      #       render json: { message: "Ranking stats computed" }
+      #     when "error"
+      #       flash[:error] = @error_msg
+      #       render status: :unprocessable_entity, json: { error: @error_msg }
+      #     else
+      #       render status: :accepted, json: { message: "In progress..." }
+      #     end
+      #   end
+      # end
     end
     respond_to do | format |
       format.html { render :ranking_stats_users, layout: "bootstrap" }
