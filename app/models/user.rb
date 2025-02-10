@@ -1752,4 +1752,125 @@ class User < ApplicationRecord
 
     count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
   end
+
+  def self.compute_ranking_stats( user_id )
+    user = User.find_by_id( user_id )
+    internal_taxon_data = {}
+    # Extract species from reseach grade observations of the user
+    # and first date the user added an observation of this species
+    user.observations.where( quality_grade: "research" ).each do | observation |
+      taxon = observation.taxon
+      created_at = observation.created_at
+      country = observation.place_country
+      next unless taxon.rank == "species" || taxon.rank == "subspecies"
+      next if country.nil?
+      next if created_at.nil?
+
+      taxon_id = taxon.id
+      taxon_name = taxon.name
+      taxon_id = taxon.parent.id if taxon.rank == "subspecies"
+      taxon_name = taxon.parent.name if taxon.rank == "subspecies"
+      #puts "taxon = #{taxon_name} in #{country.name} at #{created_at}"
+      key = "#{taxon_id}-#{country.id}"
+      if internal_taxon_data.key?( key )
+        internal_taxon_data[key][:first_added] = [created_at, internal_taxon_data[key][:first_added]].min
+      else
+        internal_taxon_data[key] = {
+          taxon_id: taxon_id,
+          country_id: country.id,
+          country: country.name,
+          taxon: taxon_name,
+          first_added: created_at
+        }
+      end
+    end
+    # Add observations count for species observed by the user
+    internal_taxon_data.each do | _, data |
+      taxon_id = data[:taxon_id]
+      first_added = data[:first_added]
+      country_id = data[:country_id]
+      #puts "taxon #{taxon_id} in #{country_id} at #{first_added}"
+      data[:obs_count] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            term: {
+              "taxon.ancestor_ids.keyword": taxon_id
+            }
+          }
+        ]
+      ).total_entries
+      data[:obs_count_at_creation] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            range: {
+              created_at: {
+                lte: first_added
+              }
+            }
+          },
+          {
+            term: {
+              "taxon.ancestor_ids.keyword": taxon_id
+            }
+          }
+        ]
+      ).total_entries
+      data[:obs_country_count] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            term: {
+              "taxon.ancestor_ids.keyword": taxon_id
+            }
+          },
+          {
+            term: {
+              "place_ids.keyword": country_id
+            }
+          }
+        ]
+      ).total_entries
+      data[:obs_country_count_at_creation] = Observation.elastic_search(
+        size: 0,
+        track_total_hits: true,
+        filters: [
+          {
+            range: {
+              created_at: {
+                lte: first_added
+              }
+            }
+          },
+          {
+            term: {
+              "taxon.ancestor_ids.keyword": taxon_id
+            }
+          },
+          {
+            term: {
+              "place_ids.keyword": country_id
+            }
+          }
+        ]
+      ).total_entries
+      #puts "=> #{data[:obs_count]} / #{data[:obs_count_at_creation]} / #{data[:obs_country_count]} / #{data[:obs_country_count_at_creation]}"
+    end
+    # Sort by obs_count_at_creation and take the first 50
+    lowest_obs_count = internal_taxon_data.values.sort_by { |taxon| taxon[:obs_count_at_creation] }.first(50)
+    # Sort by obs_country_count_at_creation and take the first 50
+    lowest_obs_country_count = internal_taxon_data.values.sort_by { |taxon| taxon[:obs_country_count_at_creation] }.first(50)
+    # Combine both arrays and ensure we have unique results
+    taxon_data = (lowest_obs_count + lowest_obs_country_count).uniq.first(100)
+    # Add photos
+    # Add category based on selection criteria
+    taxon_data.each do |taxon|
+      taxon[:taxon_photo] = Taxon.find_by_id(taxon[:taxon_id]).default_photo.best_url(:square)
+    end
+    Rails.cache.write( ranking_stats_key, taxon_data, expires_in: 5.days )
+  end
 end
