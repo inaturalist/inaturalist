@@ -317,8 +317,7 @@ module ApplicationHelper
 
     text = sanitize( text, { tags: Post::ALLOWED_TAGS }.merge( options ) )
     text = compact( text, all_tags: true ) if options[:compact]
-    text = auto_link( text.html_safe, sanitize: false ).html_safe
-
+    text = Rinku.auto_link( text.html_safe ).html_safe
     # scrub to fix any encoding issues
     text = text.scrub
 
@@ -414,7 +413,7 @@ module ApplicationHelper
     if size_2x
       # the next size up from thumb is medium, which is not square cropped, so
       # we need to fudge that here
-      if size == "thumb"
+      if widths[size] >= widths["thumb"] && !options[:force_img]
         return content_tag :div,
           " ",
           class: css_class,

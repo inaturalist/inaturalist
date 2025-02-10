@@ -447,7 +447,7 @@ he:
   add_evidence_of_presence_construction_annotation: 'הוספת תווית "עדות לנוכחות: מבנה"'
   add_established_not_established: 'הוספת תווית: "מבוסס: לא מבוסס"'
   #As in a Taxon Framework Relationship
-  add_relationship: 'הוספת מערכת היחסים'
+  add_relationship: 'הוספת יחס'
   #As in a Guide Section
   add_section: הוסף בחירה
   add_several_observations_at_once: הוספת מספר תצפיות בפעולה אחת.
@@ -3182,7 +3182,7 @@ he:
   no_taxa: אין טקסונים
   no_taxa_listed: אין טקסונים ברשימה
   no_taxa_selected: אף טקסה לא נבחרה!
-  no_taxa_with_unknown_relationships: אין טקסונים עם מערכות יחסים לא ידועות
+  no_taxa_with_unknown_relationships: אין טקסונים עם יחסים לא ידועים
   no_taxon_framework_relationships: אין יחס מסגרות טקסון
   no_taxonomic_changes_match_those_criteria: אין שינויים טקסונומיים המתאימים לקריטריונים ההם
   no_users_found_with_those_filters: לא נמצאו יוזרים במסננים ההם
@@ -4432,8 +4432,8 @@ he:
   register_for_this_event_at_x_html: "הרשמה לאירוע ב%{x}"
   reject?: לדחות?
   relative_observations: תצפיות יחסיות
-  relationship: "מערכת יחסים"
-  relationship_x: "מערכת יחסים: %{relationship}"
+  relationship: "יחס"
+  relationship_x: "יחס: %{relationship}"
   relationships:
     match: התאמה
     one_to_one: אחד לאחד
@@ -4950,7 +4950,7 @@ he:
   taxa: טקסונים
   taxa_show_obs_photo_search_tip: |
     טיפ: להכניס את הזיהוי של תצפית בשדה החיפוש אם ברצונך לבחור תמונות מתצפית ספציפית.
-  taxa_with_unknown_relationships: טקסונים עם מערכות יחסים לא ידועות
+  taxa_with_unknown_relationships: טקסונים עם יחסים לא ידועים
   taxa_info: מידע על טקסונים
   taxa_needing_curation: טקסונים לאוצרות
   taxa_observed: טקסונים שנצפו
@@ -5074,7 +5074,7 @@ he:
   taxon_framework_notes: הערות על מסגרת הטקסון
   taxon_framework_relationship: יחס מסגרות טקסון
   taxon_framework_relationship_number: "יחס מסגרות טקסון %{number}"
-  taxon_framework_relationship_unknown_count_html: "ספירת קשרים לא ידועים: %{count}"
+  taxon_framework_relationship_unknown_count_html: "ספירת יחסים לא ידועים: %{count}"
   taxon_framework_relationships: יחסי מסגרת טקסון
   taxon_framework_taxon: טקסון של מסגרת הטקסון
   taxon_history_notice: היסטוריה התווספה בפברואר 2022, לכן נתוני היסטוריה אינם זמינים לפני מועד זה.
@@ -5219,7 +5219,7 @@ he:
   there_were_some_problems_saving_those_colors: "קיימות בעיות בשמירת צבעים אלו: %{error}"
   there_were_some_problems_with_fields: "קיימות בעיות עם שדות אלו:"
   there_were_some_problems_with_these_files: "קיימות בעיות עם קבצים אלו:"
-  theres_something_wrong_with_taxon_framework_relationship: משהו לא מסתדר כאן - אנו לא מצליחות לקבוע את מערכת היחסים בין אף טקסונים פנימיים וחיצוניים
+  theres_something_wrong_with_taxon_framework_relationship: משהו לא מסתדר כאן - אנו לא מצליחות לקבוע את היחס בין אף טקסונים פנימיים וחיצוניים
   therefore_committing_additional_taxon_changes: לכן, אין צורך לאשר שינויי טקסון נוספים לאחר אישור החלפת טקסון זו
   therefore_committing_taxon_changes: לכן, לא נדרש אישור שינויי טקסון אחרי שינוי היוחסין הזה.
   these_are_items_people_on: |

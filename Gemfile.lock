@@ -229,6 +229,7 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
+    base64 (0.2.0)
     bcrypt (3.1.16)
     bcrypt_pbkdf (1.1.0)
     better_errors (2.9.1)
@@ -327,6 +328,9 @@ GEM
       elasticsearch (~> 8)
       hashie
     elasticsearch-rails (8.0.0.pre)
+    email_address (0.2.5)
+      base64
+      simpleidn
     erubi (1.13.0)
     execjs (2.8.1)
     exifr (1.3.9)
@@ -546,8 +550,10 @@ GEM
       railties (>= 6.0.0, < 7)
     rails-observers (0.1.5)
       activemodel (>= 4.0)
-    rails_autolink (1.1.6)
-      rails (> 3.1)
+    rails_autolink (1.1.8)
+      actionview (> 3.1)
+      activesupport (> 3.1)
+      railties (> 3.1)
     railties (6.1.7.9)
       actionpack (= 6.1.7.9)
       activesupport (= 6.1.7.9)
@@ -582,6 +588,7 @@ GEM
     rgeo-shapefile (3.0.0)
       dbf (~> 4.0)
       rgeo (>= 1.0)
+    rinku (2.0.6)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -653,6 +660,7 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.3)
+    simpleidn (0.2.3)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -766,6 +774,7 @@ DEPENDENCIES
   elasticsearch-api (~> 8)
   elasticsearch-model (~> 8)
   elasticsearch-rails (= 8.0.0.pre)
+  email_address
   exifr
   exiftool_vendored
   factory_bot_rails
@@ -822,6 +831,7 @@ DEPENDENCIES
   rgeo-geojson
   rgeo-proj4 (~> 2.0.1)
   rgeo-shapefile
+  rinku (~> 2.0)
   riparian!
   rspec
   rspec-html-matchers

@@ -1798,84 +1798,6 @@ class ObservationsController < ApplicationController
     render layout: "bootstrap"
   end
 
-  private
-
-  def observation_params(options = {})
-    p = options.blank? ? params : options
-    p.permit(
-      :captive_flag,
-      :coordinate_system,
-      :description,
-      :force_quality_metrics,
-      :geo_x,
-      :geo_y,
-      :geoprivacy,
-      :iconic_taxon_id,
-      :latitude,
-      :license,
-      :license_code,
-      :location_is_exact,
-      :longitude,
-      :make_license_default,
-      :make_licenses_same,
-      :map_scale,
-      :oauth_application_id,
-      :observed_on_string,
-      :place_guess,
-      :positional_accuracy,
-      :positioning_device,
-      :positioning_method,
-      :prefers_community_taxon,
-      :quality_grade,
-      :species_guess,
-      :tag_list,
-      :taxon_id,
-      :taxon_name,
-      :time_zone,
-      :uuid,
-      :zic_time_zone,
-      :site_id,
-      :owners_identification_from_vision,
-      :owners_identification_from_vision_requested,
-      observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
-    )
-  end
-
-  def user_obs_counts(scope, limit = 500)
-    user_counts_sql = <<-SQL
-      SELECT
-        o.user_id,
-        count(*) AS count_all
-      FROM
-        (#{scope.to_sql}) AS o
-      GROUP BY
-        o.user_id
-      ORDER BY count_all desc
-      LIMIT #{limit}
-    SQL
-    ActiveRecord::Base.connection.execute(user_counts_sql)
-  end
-
-  def user_taxon_counts(scope, limit = 500)
-    unique_taxon_users_scope = scope.
-      select("DISTINCT observations.taxon_id, observations.user_id").
-      joins(:taxon).
-      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
-    user_taxon_counts_sql = <<-SQL
-      SELECT
-        o.user_id,
-        count(*) AS count_all
-      FROM
-        (#{unique_taxon_users_scope.to_sql}) AS o
-      GROUP BY
-        o.user_id
-      ORDER BY count_all desc
-      LIMIT #{limit}
-    SQL
-    ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
-  end
-  public
-
   def viewed_updates
     user_viewed_updates
     respond_to do |format|
@@ -1970,6 +1892,81 @@ class ObservationsController < ApplicationController
 
 ## Protected / private actions ###############################################
   private
+
+  def observation_params(options = {})
+    p = options.blank? ? params : options
+    p.permit(
+      :captive_flag,
+      :coordinate_system,
+      :description,
+      :force_quality_metrics,
+      :geo_x,
+      :geo_y,
+      :geoprivacy,
+      :iconic_taxon_id,
+      :latitude,
+      :license,
+      :license_code,
+      :location_is_exact,
+      :longitude,
+      :make_license_default,
+      :make_licenses_same,
+      :map_scale,
+      :oauth_application_id,
+      :observed_on_string,
+      :place_guess,
+      :positional_accuracy,
+      :positioning_device,
+      :positioning_method,
+      :prefers_community_taxon,
+      :quality_grade,
+      :species_guess,
+      :tag_list,
+      :taxon_id,
+      :taxon_name,
+      :time_zone,
+      :uuid,
+      :zic_time_zone,
+      :site_id,
+      :owners_identification_from_vision,
+      :owners_identification_from_vision_requested,
+      observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
+    )
+  end
+
+  def user_obs_counts(scope, limit = 500)
+    user_counts_sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (#{scope.to_sql}) AS o
+      GROUP BY
+        o.user_id
+      ORDER BY count_all desc
+      LIMIT #{limit}
+    SQL
+    ActiveRecord::Base.connection.execute(user_counts_sql)
+  end
+
+  def user_taxon_counts(scope, limit = 500)
+    unique_taxon_users_scope = scope.
+      select("DISTINCT observations.taxon_id, observations.user_id").
+      joins(:taxon).
+      where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
+    user_taxon_counts_sql = <<-SQL
+      SELECT
+        o.user_id,
+        count(*) AS count_all
+      FROM
+        (#{unique_taxon_users_scope.to_sql}) AS o
+      GROUP BY
+        o.user_id
+      ORDER BY count_all desc
+      LIMIT #{limit}
+    SQL
+    ActiveRecord::Base.connection.execute(user_taxon_counts_sql)
+  end
 
   def user_viewed_updates(options={})
     return unless logged_in?

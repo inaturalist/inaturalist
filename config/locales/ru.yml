@@ -45,6 +45,16 @@ ru:
     few: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИИ'
     many: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
     other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЙ'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span>ЭКСПЕРТ'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> ЭКСПЕРТОВ'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> ЭКСПЕРТОВ'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> ЭКСПЕРТОВ'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> Идентификация,сделанная для других'
     few: '<span class="count">%{count}</span> идентификаций, сделанных для других'
@@ -127,6 +137,11 @@ ru:
     few: "<span class='count'>%{count}</span> наблюдения просмотрено"
     many: "<span class='count'>%{count}</span> наблюдений просмотрено"
     other: "<span class='count'>%{count}</span> наблюдений просмотрено"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> НАБЛЮДАТЕЛЬ'
+    few: '<span class="count">%{count}</span> НАБЛЮДАТЕЛЯ'
+    many: '<span class="count">%{count}</span> НАБЛЮДАТЕЛЕЙ'
+    other: '<span class="count">%{count}</span> НАБЛЮДАТЕЛЕЙ'
   x_others:
     one: "%{count} другой"
     few: "%{count} других"
@@ -3095,7 +3110,7 @@ ru:
   nav_description: Отсюда начинается навигация проекта.
   ne_lat: СВ шир.
   ne_lon: СВ долг.
-  near_threatened: Близок к исчезновению
+  near_threatened: Близок к угрожаемому
   nearby_observations_: Наблюдения рядом
   needs_id: требуется идентификация
   needs_id_: Требуется идентификация
@@ -5794,6 +5809,7 @@ ru:
   user_muted: Пользователь игнорируется
   user_observed_on_on_date_in_place: |
     %{user} наблюдал это %{date} в %{place}
+  user_said_comment_html: <span class="meta">%{user} добавил </span> "%{comment}"
   user_suggested_an_id: "%{user} предложил идентификацию"
   user_trusts_this_project_for_none: Пользователь не доверяет этому проекту скрытые координаты.
   user_trusts_this_project_for_any: |
@@ -7003,6 +7019,9 @@ ru:
         dqa_help_casual_lead_html: |
           Наблюдения возвращаются к уровню <strong>«обыкновенный»</strong>, если вышеуказанные условия не будут выполнены или сообщество согласится
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong> число, месяц, и/или год не выглядят точными</strong> (например, на фото виден снег, но дата указана летняя, время суток не берётся во внимание)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           <strong>местоположение выглядит неточным</strong> (например, обезьяны оказываются посреди океана, бегемоты в офисных зданиях и т. д.)
         #One of a list of reasons for an observation to revert to Casual
@@ -7020,6 +7039,12 @@ ru:
         dqa_help_casual_not_one_subject_html: |
           наблюдение <strong>не представляет доказательств, относящихся к одному и тому же 
           субъекту</strong> (например, оно имеет четыре фотографии неродственных организмов; фотография, показывающая среду обитания субъекта наблюдения, допустима)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          наблюдению больше не требуется идентификация <em>и</em> таксон сообщества установлен на уровне Семейство или выше
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          таксон не является предком или потомком таксона, связанного с идентификатором наблюдателя, <em>и</em> наблюдатель отказался от таксона сообщества
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           И если это не достаточно сложно, есть также ситуации, когда система получает голос:

@@ -10,7 +10,6 @@
     TILESERVER = "#{ CONFIG.tile_servers.elasticsearch }";
 #app
 - content_for :delayed_js do
-  = javascript_include_tag 'i18n/translations'
   = javascript_include_tag "ang/models/taxon"
   = javascript_include_tag "jquery/jquery-1.11.3.min.js"
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"

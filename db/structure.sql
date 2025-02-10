@@ -2511,7 +2511,8 @@ CREATE TABLE public.messages (
     body text,
     read_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sent_at timestamp without time zone
 );
 
 
@@ -2578,7 +2579,12 @@ CREATE TABLE public.moderator_actions (
     action character varying,
     reason character varying,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    private boolean DEFAULT false,
+    resource_user_id integer,
+    resource_parent_id integer,
+    resource_parent_type character varying,
+    resource_content text
 );
 
 
@@ -2868,7 +2874,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer
+    validation_count integer DEFAULT 0
 );
 
 
@@ -5461,9 +5467,9 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id character varying(255),
+    installation_id character varying,
     oauth_application_id integer,
-    platform_id character varying(255),
+    platform_id character varying,
     user_id integer,
     created_at date,
     first_logged_in_at date
@@ -5701,7 +5707,8 @@ CREATE TABLE public.users (
     data_transfer_consent_at timestamp without time zone,
     unconfirmed_email character varying,
     annotated_observations_count integer DEFAULT 0,
-    icon_path_version smallint DEFAULT 0 NOT NULL
+    icon_path_version smallint DEFAULT 0 NOT NULL,
+    canonical_email character varying(100)
 );
 
 
@@ -8560,6 +8567,13 @@ CREATE INDEX index_deleted_photos_on_created_at ON public.deleted_photos USING b
 
 
 --
+-- Name: index_deleted_photos_on_photo_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deleted_photos_on_photo_id ON public.deleted_photos USING btree (photo_id);
+
+
+--
 -- Name: index_deleted_sounds_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -10604,6 +10618,13 @@ CREATE UNIQUE INDEX index_user_signups_on_user_id ON public.user_signups USING b
 
 
 --
+-- Name: index_users_on_canonical_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_canonical_email ON public.users USING btree (canonical_email);
+
+
+--
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11390,8 +11411,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240828123245'),
 ('20240923134239'),
 ('20240923134658'),
+('20241016204033'),
 ('20241127180606'),
 ('20241202092831'),
-('20241218164832');
+('20241217203007'),
+('20241218164832'),
+('20250124155306'),
+('20250127200519'),
+('20250130003627');
 
 

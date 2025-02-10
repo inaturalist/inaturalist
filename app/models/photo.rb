@@ -12,7 +12,10 @@ class Photo < ApplicationRecord
   has_many :observations, :through => :observation_photos
   has_many :taxa, :through => :taxon_photos
 
-  has_moderator_actions %w(hide unhide)
+  has_moderator_actions [
+    ModeratorAction::HIDE,
+    ModeratorAction::UNHIDE
+  ]
 
   attr_accessor :api_response, :orphan,
     :remote_original_url,

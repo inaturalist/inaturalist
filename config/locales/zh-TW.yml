@@ -22,6 +22,8 @@ zh-TW:
   x_identifiers_caps_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span>位鑑定者'
+  x_ids_made_for_others_html:
+    other: '為其他人做出了<span class="count">%{count}</span>次鑑定'
   x_languages:
     other: "%{count} 種語言"
   #Count of number of taxa that represent the first addition to a life list
@@ -151,6 +153,21 @@ zh-TW:
   about_this_bioblitz: 有關此 bioblitz
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
+  about_trips2_html: |
+    <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料
+    </h4>
+    <p>
+    <strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的 iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p>
+    <p>
+     一筆「行程」<strong>如何</strong>透過紀錄以下的項目來新增說明內容到您的觀察紀錄中：
+    </p> 
+    <ul>
+    <li> 您找到<strong>什麼</strong>物種 (目標名錄)</li>
+    <li> 您在<strong>何地</strong> 找到的 (搜尋區域)</li>
+    <li> 您<strong>何時</strong>找到的 (搜尋區間)</li>
+    </ul>
+    <p> 您能在搜尋區域和時間區間內於您的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a href='%{url}'>查看更多細節</a>
+    </p>
   about_trusting_projects: 關於信任專案
   about_trusting_projects_options_any: 在此專案中您所有的觀察記錄
   about_trusting_projects_options_any_desc: |-
@@ -1018,6 +1035,9 @@ zh-TW:
   content_and_display: 內容 & 顯示
   content_author: 內容作者
   content_hidden: 內容隱藏
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    因為 "%{reason}" 於 %{date} 隱藏內容
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     內容由 %{user} 於 %{date} 做出隱藏，原因："%{reason}"
@@ -1319,6 +1339,8 @@ zh-TW:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     您能在 iNaturalist 上樹立適當的行為模式，並遵循社群守則。伴隨著賦予策展人的權力，您能夠作為 iNaturalist 上使用者的楷模。
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: 策展者指南
   curators_changed_for_x_html: "%{x} 的策展人已更改"
   curators: 策展人
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
@@ -1655,6 +1677,8 @@ zh-TW:
   editing_this: 正編輯 %{elem}
   editing_x_in_y: "正編輯 %{x} 於 %{y}"
   editors: 編輯者
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: 教師指南
   either_that_user_doesnt_exist_or: "不存在該用戶，或著是您已有在關注。"
   eligible_for_research_grade: 符合研究等級
   email: 電子郵件
@@ -1714,10 +1738,16 @@ zh-TW:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 精確級別
   except: 除外
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: 排除
   exclude_places: 排除的地點
   exclude_projects: 排除的專案
   exclude_taxa: 排除的分類群
   exclude_users: 排除的使用者
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    other: 排除 %{count} 筆分類群資料
   exclusion_filters: 排除的篩選
   existing_flags: 精確標記
   exit_full_screen: "結束全螢幕"
@@ -1926,6 +1956,9 @@ zh-TW:
   generate_your_year_in_review_caps: 產製您的%{year}年年度回顧
   generating_mobile_archive: "產生移動歸檔"
   Genus: 屬
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: 地理模型分數
   geomodel_expected_nearby_label_is_derived: |
     「附近可見」的標籤是來自於地理模型<a href="%{url}">了解更多地理模型</a>
   geoprivacy: 位置隱私
@@ -1934,7 +1967,12 @@ zh-TW:
   geoprivacy_is_private: 位置隱私為私有
   geoprivacy_is_private_desc: 觀察者選擇隱藏座標。
   georeferenced: 地理參考？
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: 地理空間資訊
   get_started: 開始建立
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: 開始使用
   getting_started_guide: 入門指南
   #Prompt to donate money on a montly basis
   give_monthly_caps: 每月捐款
@@ -2029,6 +2067,9 @@ zh-TW:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: 隱藏「沒有註記」
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: 隱藏私有位置的觀察紀錄
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
@@ -2104,6 +2145,7 @@ zh-TW:
   identotron_for: Identotron 用於
   identotron_help: Identotron 說明
   ids: "鑑定"
+  ids_made_for_others__title: 為其他人的鑑定
   if_for_some_reason_a_user_doesnt_agree: |
     若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生涯名錄、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2144,12 +2186,22 @@ zh-TW:
   in_place_x: 於%{place}
   #As in a reason to flag something
   inappropriate: 不適當的
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist 國際網路
   inaturalist_network_affiliation: iNaturalist 國際網路所屬單位
   #Label for messages you've received
   inbox: 收件匣
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: 包含
   include_places: 包含的地點
   include_projects: 包含的專案
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: 包含/排除祖先分類群
   include_suggestions_not_seen_nearby: 包含附近沒見過的鑑定建議
   include_suggestions_not_expected_nearby: 包含附近沒見過的鑑定建議
   include_taxa: 包含的分類群
@@ -4580,6 +4632,7 @@ zh-TW:
   synonyms: 同種異名
   table: 表格
   table_of_contents: 目錄
+  tabulate_presence_absence_data_from_trips: 從行程中以表格顯示出現/不出現資料
   #Noun, as in "add a tag to this observation"
   tag: 標籤
   tagging: '標記中...'

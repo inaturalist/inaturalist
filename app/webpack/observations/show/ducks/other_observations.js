@@ -8,12 +8,13 @@ const SET_EARLIER_USER_OBSERVATIONS_BY_OBSERVED = "obs-show/other_observations/S
 const SET_LATER_USER_OBSERVATIONS_BY_OBSERVED = "obs-show/other_observations/SET_LATER_USER_OBSERVATIONS_BY_OBSERVED";
 const SET_NEARBY = "obs-show/other_observations/SET_NEARBY";
 const SET_MORE_FROM_CLADE = "obs-show/other_observations/SET_MORE_FROM_CLADE";
+const RESET_OTHER_OBSERVATIONS = "obs-show/other_observations/RESET_OTHER_OBSERVATIONS";
 
 const OTHER_OBSERVATIONS_DEFAULT_STATE = {
   earlierUserObservations: [],
   laterUserObservations: [],
-  nearby: { },
-  moreFromClade: { }
+  nearby: null,
+  moreFromClade: null
 };
 
 const OTHER_OBSERVATION_FIELDS = {
@@ -55,37 +56,53 @@ export default function reducer( state = OTHER_OBSERVATIONS_DEFAULT_STATE, actio
   );
   switch ( action.type ) {
     case SET_EARLIER_USER_OBSERVATIONS:
-      return Object.assign( { }, state, {
+      return {
+        ...state,
         earlierUserObservations: _.filter( action.observations, otherObsFilter )
-      } );
+      };
     case SET_LATER_USER_OBSERVATIONS:
-      return Object.assign( { }, state, {
+      return {
+        ...state,
         laterUserObservations: _.filter( action.observations, otherObsFilter )
-      } );
+      };
     case SET_EARLIER_USER_OBSERVATIONS_BY_OBSERVED:
-      return Object.assign( { }, state, {
+      return {
+        ...state,
         earlierUserObservationsByObserved: action.observations
-      } );
+      };
     case SET_LATER_USER_OBSERVATIONS_BY_OBSERVED:
-      return Object.assign( { }, state, {
+      return {
+        ...state,
         laterUserObservationsByObserved: action.observations
-      } );
+      };
     case SET_NEARBY:
-      return Object.assign( { }, state, {
-        nearby: Object.assign( {}, action.data, {
+      return {
+        ...state,
+        nearby: _.isNull( action.data ) ? null : {
+          ...action.data,
           observations: _.filter( action.data.observations, otherObsFilter )
-        } )
-      } );
+        }
+      };
     case SET_MORE_FROM_CLADE:
-      return Object.assign( { }, state, {
-        moreFromClade: Object.assign( {}, action.data, {
+      return {
+        ...state,
+        moreFromClade: _.isNull( action.data ) ? null : {
+          ...action.data,
           observations: _.filter( action.data.observations, otherObsFilter )
-        } )
-      } );
+        }
+      };
+    case RESET_OTHER_OBSERVATIONS:
+      return OTHER_OBSERVATIONS_DEFAULT_STATE;
     default:
       // nothing to see here
   }
   return state;
+}
+
+export function resetOtherObservations( ) {
+  return {
+    type: RESET_OTHER_OBSERVATIONS
+  };
 }
 
 export function setEarlierUserObservations( observations ) {
@@ -132,45 +149,60 @@ export function setMoreFromClade( data ) {
 
 export function fetchNearby( ) {
   return ( dispatch, getState ) => {
-    const s = getState( );
-    const { testingApiV2 } = s.config;
-    const { observation } = s;
+    const { observation, config, otherObservations } = getState( );
     if ( !observation || !observation.geojson ) { return null; }
+    if ( !_.isNull( otherObservations.nearby ) ) {
+      return null;
+    }
     const baseParams = {
-      lat: observation.geojson.coordinates[1],
-      lng: observation.geojson.coordinates[0],
+      lat: _.round( observation.geojson.coordinates[1], 1 ),
+      lng: _.round( observation.geojson.coordinates[0], 1 ),
       verifiable: true,
       radius: 50,
       order_by: "observed_on",
-      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      preferred_place_id: config.preferredPlace ? config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
     };
-    if ( testingApiV2 ) {
+    if ( config.testingApiV2 ) {
       baseParams.fields = OTHER_OBSERVATION_FIELDS;
     }
     const fetchParams = Object.assign( { }, baseParams, {
       photos: true,
-      not_id: observation.uuid,
-      per_page: 6,
+      per_page: 7,
       no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
-      dispatch( setNearby( { params: baseParams, observations: response.results } ) );
+      const nearbyObservations = _.filter(
+        response.results,
+        result => ( result.id !== observation.id )
+      ).slice( 0, 6 );
+      dispatch( setNearby( {
+        params: {
+          ...baseParams,
+          lat: observation.geojson.coordinates[1],
+          lng: observation.geojson.coordinates[0],
+          not_id: observation.uuid
+        },
+        observations: nearbyObservations
+      } ) );
     } ).catch( ( ) => { } );
   };
 }
 
 export function fetchMoreFromClade( ) {
   return ( dispatch, getState ) => {
-    const { observation, config } = getState( );
+    const { observation, config, otherObservations } = getState( );
     const { testingApiV2 } = config;
     if (
       !observation
       || !observation.geojson
       || !observation.taxon
     ) { return null; }
+    if ( !_.isNull( otherObservations.moreFromClade ) ) {
+      return null;
+    }
     let searchTaxon = observation.taxon.id;
     if ( observation.taxon.rank_level <= 10 ) {
       searchTaxon = _.find( observation.taxon.ancestors, a => a.rank === "genus" ) || observation.taxon.id;
@@ -187,13 +219,22 @@ export function fetchMoreFromClade( ) {
     }
     const fetchParams = Object.assign( { }, baseParams, {
       photos: true,
-      not_id: observation.uuid,
-      per_page: 6,
+      per_page: 7,
       no_total_hits: true,
       details: "all"
     } );
     return inatjs.observations.search( fetchParams ).then( response => {
-      dispatch( setMoreFromClade( { params: baseParams, observations: response.results } ) );
+      const cladeObservations = _.filter(
+        response.results,
+        result => ( result.id !== observation.id )
+      ).slice( 0, 6 );
+      dispatch( setMoreFromClade( {
+        params: {
+          ...baseParams,
+          not_id: observation.uuid
+        },
+        observations: cladeObservations
+      } ) );
     } ).catch( ( ) => { } );
   };
 }

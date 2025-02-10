@@ -332,10 +332,6 @@ class StatsController < ApplicationController
     end
   end
 
-  def wed_bioblitz
-    render layout: "basic"
-  end
-
   def user_segments
     segmentation_record = SegmentationStatistic.order( "created_at asc" ).last
     redirect_to "/" and return unless segmentation_record

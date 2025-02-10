@@ -15,7 +15,7 @@ if ( typeof( google ) == "undefined" || typeof(google.maps) == "undefined") {
 }
 
 var deselectText = function() {
-  if (window.getSelection) {
+  if ( window.getSelection ) {
     if (window.getSelection().empty) {  // Chrome
       window.getSelection().empty();
     } else if (window.getSelection().removeAllRanges) {  // Firefox

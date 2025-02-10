@@ -370,7 +370,12 @@ describe UsersController, "moderation" do
     it "should work with a flag and ModeratorAction" do
       comment = create :comment, user: subject_user
       flag = create :flag, flaggable: comment
-      moderator_action = create :moderator_action, resource: comment, action: ModeratorAction::HIDE
+      moderator_action = create(
+        :moderator_action,
+        resource: comment,
+        action: ModeratorAction::HIDE,
+        user: make_curator
+      )
       get :moderation, params: { id: subject_user.login }
       expect( response.response_code ).to eq 200
       expect( assigns( :records ) ).to include flag
@@ -381,6 +386,24 @@ describe UsersController, "moderation" do
       get :moderation, params: { id: subject_user.login }
       expect( response.response_code ).to eq 200
       expect( assigns( :records ) ).to include moderator_note
+    end
+    it "displays ModeratorActions even if the moderated resource has since been deleted" do
+      observation = Observation.make!
+      identification = Identification.make!( observation: observation, user: observation.user )
+      action = ModeratorAction.create(
+        resource: identification,
+        action: ModeratorAction::HIDE,
+        user: make_admin,
+        reason: Faker::Lorem.sentence
+      )
+      identification.destroy
+      get :moderation, params: { id: observation.user_id }
+      expect( response.response_code ).to eq 200
+      expect( assigns( :records ) ).to include action
+      expect( assigns( :records ).first.resource ).to be_nil
+      expect( response.body ).to have_tag(
+        "td", text: /Moderator Action.*Identification.*Removed/m
+      )
     end
   end
 end

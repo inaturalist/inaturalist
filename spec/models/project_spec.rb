@@ -746,7 +746,136 @@ describe Project do
       p.reload
       expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")
     end
-
   end
 
+  describe "sync_delegated_projects" do
+    let( :umbrella ) do
+      umbrella = Project.make!( project_type: "umbrella" )
+      umbrella.update( prefers_delegation: true )
+      umbrella
+    end
+
+    let( :collection ) do
+      collection = Project.make!( project_type: "collection" )
+      collection.update( preferred_delegated_project_id: umbrella.id )
+      collection
+    end
+
+    before do
+      ProjectObservationRule.create( ruler: umbrella, operator: "in_project?", operand: collection )
+      umbrella.reload
+    end
+
+    it "applies rule preferences to delegating subprojects" do
+      # "research,needs_id" is the default value for prefers_rule_quality_grade
+      expect( collection.prefers_rule_quality_grade ).to eq "research,needs_id"
+      expect( collection.prefers_rule_photos ).to be_nil
+      expect( collection.prefers_rule_d1 ).to be_nil
+      umbrella.update(
+        prefers_rule_quality_grade: "research",
+        prefers_rule_photos: true,
+        prefers_rule_d1: "2025-01-01"
+      )
+      collection.reload
+      expect( collection.prefers_rule_quality_grade ).to eq "research"
+      expect( collection.prefers_rule_photos ).to be true
+      expect( collection.prefers_rule_d1 ).to eq "2025-01-01"
+    end
+
+    it "overrides existing rule preferences on delegating subprojects" do
+      collection.update(
+        prefers_rule_quality_grade: "casual",
+        prefers_rule_photos: false,
+        prefers_rule_d1: "2024-01-01"
+      )
+      expect( collection.prefers_rule_quality_grade ).to eq "casual"
+      expect( collection.prefers_rule_photos ).to eq false
+      expect( collection.prefers_rule_d1 ).to eq "2024-01-01"
+      umbrella.update(
+        prefers_rule_quality_grade: "research",
+        prefers_rule_photos: true,
+        prefers_rule_d1: "2025-01-01"
+      )
+      collection.reload
+      expect( collection.prefers_rule_quality_grade ).to eq "research"
+      expect( collection.prefers_rule_photos ).to be true
+      expect( collection.prefers_rule_d1 ).to eq "2025-01-01"
+    end
+
+    it "applies taxon observation rules to delegating subprojects" do
+      taxon = Taxon.make!
+      expect( collection.project_observation_rules.where( operator: "in_taxon?" ) ).to be_empty
+      ProjectObservationRule.create( ruler: umbrella, operator: "in_taxon?", operand: taxon )
+      umbrella.sync_delegated_projects
+      collection.reload
+      collection_taxon_rules = collection.project_observation_rules.where( operator: "in_taxon?" )
+      expect( collection_taxon_rules.length ).to eq 1
+      expect( collection_taxon_rules.first.operand_id ).to eq taxon.id
+    end
+
+    it "overrides taxon observation rules on delegating subprojects" do
+      taxon = Taxon.make!
+      ProjectObservationRule.create( ruler: collection, operator: "in_taxon?", operand: Taxon.make! )
+      ProjectObservationRule.create( ruler: collection, operator: "in_taxon?", operand: Taxon.make! )
+      ProjectObservationRule.create( ruler: collection, operator: "in_taxon?", operand: Taxon.make! )
+      ProjectObservationRule.create( ruler: collection, operator: "in_taxon?", operand: taxon )
+      collection.reload
+      expect( collection.project_observation_rules.where( operator: "in_taxon?" ).length ).to eq 4
+
+      ProjectObservationRule.create( ruler: umbrella, operator: "in_taxon?", operand: taxon )
+      umbrella.sync_delegated_projects
+      collection.reload
+      collection_taxon_rules = collection.project_observation_rules.where( operator: "in_taxon?" )
+      expect( collection_taxon_rules.length ).to eq 1
+      expect( collection_taxon_rules.first.operand_id ).to eq taxon.id
+    end
+
+    it "does not override place observation rules on delegating subprojects" do
+      ProjectObservationRule.create(
+        ruler: collection, operator: "observed_in_place?", operand: make_place_with_geom
+      )
+      ProjectObservationRule.create(
+        ruler: collection, operator: "observed_in_place?", operand: make_place_with_geom
+      )
+      ProjectObservationRule.create(
+        ruler: collection, operator: "not_observed_in_place?", operand: make_place_with_geom
+      )
+      ProjectObservationRule.create(
+        ruler: collection, operator: "not_observed_in_place?", operand: make_place_with_geom
+      )
+      collection.reload
+      expect( collection.project_observation_rules.where( operator: "observed_in_place?" ).length ).to eq 2
+      expect( collection.project_observation_rules.where( operator: "not_observed_in_place?" ).length ).to eq 2
+      expect( collection.project_observation_rules.where( operator: "in_taxon?" ) ).to be_empty
+
+      taxon = Taxon.make!
+      ProjectObservationRule.create( ruler: umbrella, operator: "in_taxon?", operand: taxon )
+      umbrella.sync_delegated_projects
+      collection.reload
+      collection_taxon_rules = collection.project_observation_rules.where( operator: "in_taxon?" )
+      expect( collection_taxon_rules.length ).to eq 1
+      expect( collection_taxon_rules.first.operand_id ).to eq taxon.id
+      expect( collection.project_observation_rules.where( operator: "observed_in_place?" ).length ).to eq 2
+      expect( collection.project_observation_rules.where( operator: "not_observed_in_place?" ).length ).to eq 2
+    end
+
+    it "removes non-taxon, non-place rules from delegating subprojects" do
+      ProjectObservationRule.create( ruler: collection, operator: "observed_by_user?", operand: User.make! )
+      ProjectObservationRule.create( ruler: collection, operator: "not_observed_by_user?", operand: User.make! )
+      collection.reload
+      expect( collection.project_observation_rules.where( operator: "observed_by_user?" ).length ).to eq 1
+      expect( collection.project_observation_rules.where( operator: "not_observed_by_user?" ).length ).to eq 1
+
+      taxon = Taxon.make!
+      ProjectObservationRule.create( ruler: umbrella, operator: "in_taxon?", operand: taxon )
+      umbrella.sync_delegated_projects
+      collection.reload
+      collection_taxon_rules = collection.project_observation_rules.where( operator: "in_taxon?" )
+      expect( collection_taxon_rules.length ).to eq 1
+      expect( collection_taxon_rules.first.operand_id ).to eq taxon.id
+      expect( collection.project_observation_rules.length ).to eq 1
+      expect( collection.project_observation_rules.where( operator: "observed_by_user?" ).length ).to eq 0
+      expect( collection.project_observation_rules.where( operator: "not_observed_by_user?" ).length ).to eq 0
+    end
+  end
 end

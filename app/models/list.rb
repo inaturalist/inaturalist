@@ -49,7 +49,11 @@ class List < ApplicationRecord
     return nil if new_record?
     CGI.escape("#{id}-#{title.gsub(/[\'\"]/, '').gsub(/\W/, '-')}")
   end
-  
+
+  def title
+    self[:title]&.sub(/^.+'s Life List/, I18n.t(:life_list, user: owner_name))
+  end
+
   #
   # Adds a taxon to this list and returns the listed_taxon (valid or not). 
   # Note that subclasses like CheckList may override this.

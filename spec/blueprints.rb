@@ -101,6 +101,14 @@ DataPartner.blueprint do
   url { "https://#{Faker::Internet.domain_name}" }
 end
 
+DeletedPhoto.blueprint do
+  user { User.make! }
+end
+
+DeletedSound.blueprint do
+  user { User.make! }
+end
+
 ExplodedAtlasPlace.blueprint do
   atlas { Atlas.make! }
   place { make_place_with_geom }

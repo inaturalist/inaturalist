@@ -58,7 +58,8 @@ class Place < ApplicationRecord
 
   def as_indexed_json(options={})
     preload_for_elastic_index
-    universal_search_rank = if obs_result = INatAPIService.observations( per_page: 0, verifiable: true, place_id: id )
+    obs_result = Rails.env.test? ? nil : INatAPIService.observations( per_page: 0, verifiable: true, place_id: id )
+    universal_search_rank = if obs_result
       if admin_level.nil?
         obs_result.total_results / 2
       else
