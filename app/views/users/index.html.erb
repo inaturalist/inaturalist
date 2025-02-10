@@ -43,8 +43,7 @@
       <% @updates.compact.each_with_index do |update,i| %>
         <div class="usercol column span-6 <%= 'last' if i % 4 == 3 %>">
           <% if update.user -%>
-            <%= link_to user_image(update.user, :size => "medium", :class => "userimage"), update.user, 
-              :class => :userimagelink %>
+            <%= link_to user_image( update.user, size: "medium" ), update.user, class: "userimagelink" %>
           <% else %>
             <%= link_to image_tag("/attachment_defaults/users/icons/defaults/medium.png", :class => "userimage"), update, :class => "userimagelink" %>
           <% end -%>

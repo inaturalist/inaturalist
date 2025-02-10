@@ -216,6 +216,13 @@ img.mini.usericon {
   vertical-align: middle;
 }
 
+.user_image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
 #subnav {
   list-style: none;
   padding: 0;
