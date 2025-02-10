@@ -9,11 +9,17 @@
         %h2= @title
   .row
     .col-xs-12
+      - if @ranking_stats_data && @ranking_stats_data[:in_progress]
+        %p= @ranking_stats_data[:message]
+      - elsif !@ranking_stats_data
+        %p Computation in progress...
+  .row
+    .col-xs-12
       #app
 
 - content_for :extrajs do
   :javascript
-    var RANKING_STATS_DATA = #{ @ranking_stats_data.to_json.html_safe }
+    var RANKING_STATS_DATA = #{ (@ranking_stats_data&.dig(:data) || {}).to_json.html_safe };
   = javascript_include_tag "webpack/react-dnd-webpack"
   = javascript_include_tag "webpack/react-dropzone-webpack"
   = javascript_include_tag "webpack/users-ranking-stats-webpack"

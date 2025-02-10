@@ -1754,7 +1754,7 @@ class User < ApplicationRecord
   end
 
   def self.compute_ranking_stats( user_id, ranking_stats_key )
-    puts "#### compute_ranking_stats = #{user_id}"
+    Rails.cache.write( ranking_stats_key, { in_progress: true, message: "fetch observations", data: {} }, expires_in: 1.days )
     user = User.find_by_id( user_id )
     internal_taxon_data = {}
     # Extract species from reseach grade observations of the user
@@ -1785,6 +1785,7 @@ class User < ApplicationRecord
         }
       end
     end
+    Rails.cache.write( ranking_stats_key, { in_progress: true, message: "compute counts", data: {} }, expires_in: 1.days )
     # Add observations count for species observed by the user
     internal_taxon_data.each do | _, data |
       taxon_id = data[:taxon_id]
@@ -1861,6 +1862,7 @@ class User < ApplicationRecord
       ).total_entries
       #puts "=> #{data[:obs_count]} / #{data[:obs_count_at_creation]} / #{data[:obs_country_count]} / #{data[:obs_country_count_at_creation]}"
     end
+    Rails.cache.write( ranking_stats_key, { in_progress: true, message: "finalize data", data: {} }, expires_in: 1.days )
     # Sort by obs_count_at_creation and take the first 50
     lowest_obs_count = internal_taxon_data.values.sort_by { |taxon| taxon[:obs_count_at_creation] }.first(50)
     # Sort by obs_country_count_at_creation and take the first 50
@@ -1872,7 +1874,6 @@ class User < ApplicationRecord
     taxon_data.each do |taxon|
       taxon[:taxon_photo] = Taxon.find_by_id(taxon[:taxon_id]).default_photo.best_url(:square)
     end
-    puts "#### compute_ranking_stats DONE = #{user_id}"
-    Rails.cache.write( ranking_stats_key, taxon_data, expires_in: 1.days )
+    Rails.cache.write( ranking_stats_key, { in_progress: false, message: "", data: taxon_data }, expires_in: 1.days )
   end
 end
