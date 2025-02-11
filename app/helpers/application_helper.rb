@@ -1466,7 +1466,6 @@ module ApplicationHelper
     #     loadMap3( );
     #     *** the code that creates and uses maps ***
     #   } )
-
     raw <<-HTML
       <script type="text/javascript">
         (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",
@@ -1480,7 +1479,9 @@ module ApplicationHelper
           d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)
           &&u().then(()=>d[l](f,...n))})({
           key: "#{CONFIG.google.browser_api_key}",
-          v: "weekly"
+          v: "weekly",
+          language: "#{I18n.locale}",
+          region: "#{cctld_from_locale( I18n.locale )}"
         });
       </script>
     HTML

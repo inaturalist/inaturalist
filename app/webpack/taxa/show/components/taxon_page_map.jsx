@@ -55,7 +55,7 @@ const TaxonPageMap = ( {
           gestureHandling="auto"
           currentUser={config.currentUser}
           updateCurrentUser={updateCurrentUser}
-          reloadKey={`taxa-show-map-${taxon.id}`}
+          reloadKey={`taxa-show-map-${taxon.id}${bounds ? "-bounds" : ""}`}
           showLegend
         />
       </ErrorBoundary>
