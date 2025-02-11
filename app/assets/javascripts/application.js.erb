@@ -1471,12 +1471,10 @@ $.fn.textcompleteUsers = function( ) {
             if ( user.name ) {
               label = user.name + " (" + label + ")";
             }
-            return `
-              <div class="chooseritem">
-                <div class="user_image usericon" style="background-image: url(${icon})" aria-hidden />
-                ${label}
-              </div>
-            `;
+            return $( '<div class="chooseritem">' ).append(
+              $( '<div class="user_image usericon">' ).css( { backgroundImage: "url(" + icon + ")" } ),
+              label
+            ).prop( "outerHTML" );
           }));
         }
       );
