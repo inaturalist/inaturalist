@@ -1851,6 +1851,8 @@ p.spam {
 
   .usericon {
     margin-right: 5px;
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -1869,7 +1871,7 @@ p.spam {
 
 .textcomplete-dropdown>li>a {
   display: block;
-  padding: 3px 20px;
+  padding: 3px 10px;
   clear: both;
   font-weight: 400;
   line-height: 1.42857143;
