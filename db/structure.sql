@@ -2874,7 +2874,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer DEFAULT 0
+    validation_count integer
 );
 
 
@@ -5467,9 +5467,9 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id character varying,
+    installation_id character varying(255),
     oauth_application_id integer,
-    platform_id character varying,
+    platform_id character varying(255),
     user_id integer,
     created_at date,
     first_logged_in_at date

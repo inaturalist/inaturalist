@@ -445,3 +445,61 @@ describe UsersController, "oauth authentication with the account_delete scope" d
     end
   end
 end
+
+describe UsersController, "email_available" do
+  describe "with valid application token" do
+    before do
+      request.env["HTTP_AUTHORIZATION"] = JsonWebToken.applicationToken
+    end
+
+    def expect_email_available_to_eq( email, value )
+      get :email_available, format: :json, params: { email: email }
+      expect( response ).to be_successful
+      json = JSON.parse( response.body )
+      expect( json["valid"] ).to eq value
+    end
+
+    it "should respond in the affirmative if email is available" do
+      email = Faker::Internet.email
+      expect( User.find_by_email( email ) ).to be_blank
+      expect_email_available_to_eq( email, true )
+    end
+
+    it "should respond in the affirmative if email is available but otherwise invalid" do
+      email = "not an email"
+      expect( User.find_by_email( email ) ).to be_blank
+      expect_email_available_to_eq( email, true )
+    end
+
+    it "should respond in the negative if email is not available" do
+      user = create( :user )
+      expect( user ).to be_persisted
+      expect_email_available_to_eq( user.email, false )
+    end
+  end
+
+  describe "without valid application token" do
+    it "should respond with unauthorized" do
+      get :email_available, format: :json, params: { email: Faker::Internet.email }
+      expect( response ).to be_unauthorized
+    end
+
+    it "should respond with forbidden with a non-application token" do
+      user = create :user
+      request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode( user_id: user.id )
+      get :email_available, format: :json, params: { email: Faker::Internet.email }
+      expect( response ).to be_forbidden
+    end
+  end
+
+  describe "with a bad application token" do
+    before do
+      request.env["HTTP_AUTHORIZATION"] = "#{JsonWebToken.applicationToken}bad"
+    end
+
+    it "should respond with unauthorized" do
+      get :email_available, format: :json, params: { email: Faker::Internet.email }
+      expect( response ).to be_unauthorized
+    end
+  end
+end

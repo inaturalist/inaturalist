@@ -202,6 +202,7 @@ Rails.application.routes.draw do
       get :delete
       post :parental_consent
       post :resend_confirmation
+      get :email_available
     end
     member do
       put :join_test
