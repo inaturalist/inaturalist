@@ -1507,8 +1507,8 @@ module ApplicationHelper
   # Mostly for Google API regions
   def cctld_from_locale( locale )
     # return "il" if locale.to_s == "he"
-    if locale.to_s.split( "-" ).size < 2
-      locale = region_from_browser
+    if locale.nil? || locale.to_s.split( "-" ).size < 2
+      locale = region_from_browser || ""
     end
 
     region = locale.to_s.split( "-" ).last
