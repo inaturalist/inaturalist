@@ -1500,10 +1500,16 @@ module ApplicationHelper
     }.to_query
   end
 
+  def region_from_browser
+    request.env["HTTP_ACCEPT_LANGUAGE"]&.scan( /[a-z]{2}-[A-Z]{2}/ )&.first&.downcase
+  end
+
   # Mostly for Google API regions
   def cctld_from_locale( locale )
     # return "il" if locale.to_s == "he"
-    return if locale.to_s.split( "-" ).size < 2
+    if locale.to_s.split( "-" ).size < 2
+      locale = region_from_browser
+    end
 
     region = locale.to_s.split( "-" ).last
     case region
