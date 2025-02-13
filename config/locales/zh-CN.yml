@@ -8118,6 +8118,10 @@ zh-CN:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "坐标不能为 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                因未知原因无法保存，请截图并向员工报告
             observed_on:
               cannot_be_greater_than_date_created: |
                 不能大于观察被添加的日期
