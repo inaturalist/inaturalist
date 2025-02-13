@@ -8807,6 +8807,10 @@ sv:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinaterna kan inte vara 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                kan inte sparas av okänd anledning, ta en skärmdump och rapportera till personalen
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan inte vara större än det datum som fyndet lades till
