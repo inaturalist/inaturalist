@@ -456,7 +456,7 @@ describe UsersController, "email_available" do
       get :email_available, format: :json, params: { email: email }
       expect( response ).to be_successful
       json = JSON.parse( response.body )
-      expect( json["valid"] ).to eq value
+      expect( json["available"] ).to eq value
     end
 
     it "should respond in the affirmative if email is available" do
