@@ -8355,6 +8355,10 @@ de:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "die Koordinaten können nicht 0,0 sein"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                kann aus unbekannten Gründen nicht gespeichert werden. Bitte einen Screenshot erstellen und es den Administratoren melden
             observed_on:
               cannot_be_greater_than_date_created: |
                 kann nicht größer als das Datum sein, an dem die Beobachtung hinzugefügt wurde
