@@ -1500,7 +1500,7 @@ module ApplicationHelper
     }.to_query
   end
 
-  def region_from_browser
+  def locale_from_request
     request.env["HTTP_ACCEPT_LANGUAGE"]&.scan( /[a-z]{2}-[A-Z]{2}/ )&.first&.downcase
   end
 
@@ -1508,7 +1508,7 @@ module ApplicationHelper
   def cctld_from_locale( locale )
     # return "il" if locale.to_s == "he"
     if locale.nil? || locale.to_s.split( "-" ).size < 2
-      locale = region_from_browser || ""
+      locale = locale_from_request || ""
     end
 
     region = locale.to_s.split( "-" ).last
