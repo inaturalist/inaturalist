@@ -1500,10 +1500,20 @@ module ApplicationHelper
     }.to_query
   end
 
-  # Mostly for Google API regions
+  def locale_from_request
+    request.env["HTTP_ACCEPT_LANGUAGE"]&.scan( /[a-z]{2}-[A-Z]{2}/ )&.first&.downcase
+  end
+
+  # Specifies the region parameter for the Google API
+  # Defaults to US if not set
+  # Available regions: https://developers.google.com/maps/coverage
   def cctld_from_locale( locale )
     # return "il" if locale.to_s == "he"
-    return if locale.to_s.split( "-" ).size < 2
+    if locale.nil? || locale.to_s.split( "-" ).size < 2
+      # Most user language preferences do not include a region
+      # Therefore, we attempt to infer the region from the request
+      locale = locale_from_request || ""
+    end
 
     region = locale.to_s.split( "-" ).last
     case region
