@@ -1041,6 +1041,14 @@ class UsersController < ApplicationController
       end
       return
     end
+    if params[:email].blank?
+      respond_to do | format |
+        format.json do
+          render json: { errors: ["email cannot be blank"] }, status: :unprocessable_entity
+        end
+      end
+      return
+    end
     available = !User.where( email: params[:email] ).exists?
     respond_to do | format |
       format.json do

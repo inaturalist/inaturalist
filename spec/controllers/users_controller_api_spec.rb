@@ -476,6 +476,11 @@ describe UsersController, "email_available" do
       expect( user ).to be_persisted
       expect_email_available_to_eq( user.email, false )
     end
+
+    it "should respond with unprocessable entity if email param is blank" do
+      get :email_available, format: :json
+      expect( response.status ).to eq 422
+    end
   end
 
   describe "without valid application token" do
