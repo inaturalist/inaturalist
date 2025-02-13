@@ -1031,6 +1031,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def email_available
+    # This is only for anonymous application tokens
+    unless current_user.anonymous?
+      respond_to do | format |
+        format.json do
+          render status: :forbidden, json: nil
+        end
+      end
+      return
+    end
+    if params[:email].blank?
+      respond_to do | format |
+        format.json do
+          render json: { errors: ["email cannot be blank"] }, status: :unprocessable_entity
+        end
+      end
+      return
+    end
+    available = !User.where( email: params[:email] ).exists?
+    respond_to do | format |
+      format.json do
+        render json: { available: available }
+      end
+    end
+  end
+
 protected
 
   def add_friend
