@@ -102,6 +102,7 @@ gem "rgeo-shapefile"
 gem "rinku", "~> 2.0"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git", ref: "rails6"
 gem "rubyzip", "~> 2.3.0"
+gem "sassc", "~> 2.1.0"
 gem "sass-rails"
 gem "savon" # allow to consume soap services with WSDL
 gem "soundcloud"
