@@ -658,13 +658,19 @@ class ObservationsController < ApplicationController
 
     # check for errors
     errors = false
-    if params[:uploader]
-      @observations.compact.each { |obs|
-        obs.errors.delete(:project_observations)
-        errors = true if obs.errors.any?
-      }
-    else
-      @observations.compact.each { |obs| errors = true unless obs.valid? }
+    @observations.compact.each do | obs |
+      if params[:uploader]
+        obs.errors.delete( :project_observations )
+      end
+      if obs.errors.any?
+        errors = true
+      elsif !obs.persisted?
+        # If for some reason an observation has no errors but still isn't
+        # persisted, something is still wrong and we should not fail
+        # silently
+        errors = true
+        obs.errors.add( :base, :cannot_be_saved_for_unknown_reason )
+      end
     end
     Observation.elastic_index!(
       ids: @observations.compact.map( &:id ),

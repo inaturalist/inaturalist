@@ -2325,6 +2325,17 @@ describe Observation, "interpolate_coordinates" do
   end
 end
 
+describe Observation, "tags" do
+  it "should allow reuse of a Turkic tag" do
+    turkish_tag = "İç Anadolu"
+    o1 = create( :observation, tag_list: [turkish_tag] )
+    expect( o1 ).to be_persisted
+    o2 = create( :observation, tag_list: [turkish_tag] )
+    expect( o2 ).to be_persisted
+    expect( o2.tags.detect {| t | t.name == turkish_tag } ).not_to be_blank
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf

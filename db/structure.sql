@@ -4675,7 +4675,7 @@ ALTER SEQUENCE public.taggings_id_seq OWNED BY public.taggings.id;
 
 CREATE TABLE public.tags (
     id integer NOT NULL,
-    name character varying(255),
+    name character varying(255) COLLATE pg_catalog."und-x-icu",
     taggings_count integer DEFAULT 0
 );
 
@@ -11418,6 +11418,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20241218164832'),
 ('20250124155306'),
 ('20250127200519'),
-('20250130003627');
+('20250130003627'),
+('20250204222646');
 
 
