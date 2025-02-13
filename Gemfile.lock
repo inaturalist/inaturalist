@@ -445,6 +445,7 @@ GEM
     netrc (0.11.0)
     newrelic_rpm (8.3.0)
     nio4r (2.7.3)
+    nkf (0.2.0)
     nokogiri (1.16.8)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -798,6 +799,7 @@ DEPENDENCIES
   multi_json (~> 1.15.0)
   mutex_m
   newrelic_rpm
+  nkf
   nokogiri
   non-stupid-digest-assets
   objectify-xml!
