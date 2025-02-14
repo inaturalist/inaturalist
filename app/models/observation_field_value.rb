@@ -315,6 +315,7 @@ class ObservationFieldValue < ApplicationRecord
       name_ci: observation_field.name,
       value: self.value,
       value_ci: self.value,
+      updater_id: updater_id,
       user_id: user_id
     }
     # make sure taxon_id is an integer
