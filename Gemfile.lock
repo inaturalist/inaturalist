@@ -498,7 +498,7 @@ GEM
     parser (3.0.2.0)
       ast (~> 2.4.1)
     patron (0.13.3)
-    pg (1.2.3)
+    pg (1.5.9)
     public_suffix (4.0.6)
     puma (5.6.9)
       nio4r (~> 2.0)
@@ -817,7 +817,7 @@ DEPENDENCIES
   optimist
   parallel
   patron
-  pg
+  pg (~> 1.5.9)
   puma
   rack-cors
   rack-mobile-detect
