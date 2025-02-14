@@ -7238,9 +7238,7 @@ fr:
         <a href="/users/edit">paramètres</a> pour nous accorder plus de droits.
       show:
         view_original_html: |
-          Vous pouvez voir l’original sur <a href="%{url}">%{url}</a>. Veuillez
-          laisser les drapeaux de violation du droit d’auteur comme étant non résolues si cette photo
-          viole les droits d’auteur.
+          Vous pouvez voir l’original sur <a href="%{url}">%{url}</a>. Veuillez laisser les signalements de violation du droit d’auteur comme étant non résolus si cette photo viole les droits d’auteur.
     places:
       kml_field_desc3: |
         Fichier KML des limites géographiques du lieu. Vous pouvez le créer en utilisant Google Maps, Google Earth ou la plupart des applications SIG. Il doit contenir au moins un polygone, peser moins de 1 Mo (5 Mo pour les responsables de l’organisation du site), et représenter une surface inférieure à 700.000 km² environ (soit à peu près la surface de la Somalie ou bien du Texas aux États-Unis).
@@ -8847,6 +8845,10 @@ fr:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "les coordonnées ne peuvent pas être 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                ne peut pas être enregistrée pour une raison inconnue. Veuillez prendre une capture d'écran et le signaler à l'équipe
             observed_on:
               cannot_be_greater_than_date_created: |
                 ne peut pas être postérieure à la date à laquelle l’observation a été ajoutée
