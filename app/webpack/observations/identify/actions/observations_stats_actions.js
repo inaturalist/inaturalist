@@ -21,6 +21,9 @@ function resetObservationsStats( ) {
 function fetchObservationsStats( force = false ) {
   return function ( dispatch, getState ) {
     const s = getState();
+    if ( !s.observationsStats ) {
+      return;
+    }
     if ( !force && (
       s.observationsStats.status === "loading" || s.observationsStats.status === "loaded"
     ) ) {

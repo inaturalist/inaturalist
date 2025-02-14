@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import TextEditor from "../../../shared/components/text_editor";
+import { isDisagreement } from "../../../shared/util";
 
 class IdentificationForm extends React.Component {
   shouldComponentUpdate( nextProps ) {
@@ -42,35 +43,19 @@ class IdentificationForm extends React.Component {
           if ( !idTaxon ) {
             return;
           }
-          const isDisagreement = ( ) => {
-            if ( !o || !( o.community_taxon || o.taxon ) ) {
-              return false;
-            }
-            let observationTaxon = o.taxon;
-            if (
-              o.preferences.prefers_community_taxon === false
-              || (o.user.preferences.prefers_community_taxa === false 
-              && o.preferences.prefers_community_taxon === null)
-            ) {
-              observationTaxon = o.community_taxon || o.taxon;
-            }
-            return observationTaxon
-              && idTaxon.id !== observationTaxon.id
-              && _.includes( observationTaxon.ancestor_ids, idTaxon.id );
-          };
           const params = {
             observation_id: config.testingApiV2 ? o.uuid : o.id,
             taxon_id: idTaxon.id,
             body: content,
             blind
           };
-          if ( blind && isDisagreement( ) && e.target.elements.disagreement ) {
+          if ( blind && isDisagreement( o, idTaxon ) && e.target.elements.disagreement ) {
             params.disagreement = e.target.elements.disagreement.value === "1";
           }
           onSubmitIdentification( params, {
             observation: o,
             taxon: idTaxon,
-            potentialDisagreement: !blind && isDisagreement( )
+            potentialDisagreement: !blind && isDisagreement( o, idTaxon )
           } );
           // this doesn't feel right... somehow submitting an ID should alter
           // the app state and this stuff should flow three here as props
