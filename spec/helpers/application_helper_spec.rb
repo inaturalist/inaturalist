@@ -76,6 +76,180 @@ describe ApplicationHelper do
         expect( formatted_user_text( "<p>@#{user.login}</p>" ) ).to include( ">@#{user.login}</a>" )
       end
     end
+    it "should not break with nested lists" do
+      expect(
+        formatted_user_text( "<ul><li><ul><li>foo</li></ul></li></ul>" )
+      ).to eq "<ul><li><ul><li>foo</li></ul></li></ul>"
+    end
+    it "should format text between lists" do
+      txt = <<~TESTTEXT
+        List 1
+        1. point 1a
+        2. point 2a
+
+        In between Paragraph 1
+
+        In between Paragraph 2
+
+        List 2
+        1. point 2a
+        1. point 2b
+
+        Extra paragraph 1
+
+        Extra paragraph 2
+      TESTTEXT
+      expected_output_txt = <<~TESTTEXT
+        <p>List 1</p>
+
+        <ol>
+        <li>point 1a</li>
+        <li>point 2a</li>
+        </ol>
+
+        <p>In between Paragraph 1</p>
+
+        <p>In between Paragraph 2</p>
+
+        <p>List 2</p>
+
+        <ol>
+        <li>point 2a</li>
+        <li>point 2b</li>
+        </ol>
+
+        <p>Extra paragraph 1</p>
+
+        <p>Extra paragraph 2</p>
+      TESTTEXT
+      expect( formatted_user_text( txt ) ).to eq expected_output_txt.strip
+    end
+    it "should not add extranous tags to HTML" do
+      html = <<~HTML
+        <table>
+          <tr>
+            <th>Sambucus nigra (sensu stricto)</th>
+            <th>Sambucus canadensis</th>
+          </tr>
+          <tr>
+            <td>Larger, can be a small tree up to 10 m tall</td>
+            <td>Smaller, shrub up to 2.5 m tall</td>
+          </tr>
+          <tr>
+            <td>Branchlets with abundant lenticels</td>
+            <td>Branchlets with sparse lenticels</td>
+          </tr>
+          <tr>
+            <td>etc</td>
+            <td>etc</td>
+          </tr>
+        </table>
+      HTML
+      formatted_html = <<~HTML
+        <table class="table">
+          <tr>
+            <th>Sambucus nigra (sensu stricto)</th>
+            <th>Sambucus canadensis</th>
+          </tr>
+          <tr>
+            <td>Larger, can be a small tree up to 10 m tall</td>
+            <td>Smaller, shrub up to 2.5 m tall</td>
+          </tr>
+          <tr>
+            <td>Branchlets with abundant lenticels</td>
+            <td>Branchlets with sparse lenticels</td>
+          </tr>
+          <tr>
+            <td>etc</td>
+            <td>etc</td>
+          </tr>
+        </table>
+      HTML
+      expect( formatted_user_text( html ) ).to eq formatted_html.strip
+      expect( formatted_user_text( html, skip_simple_formatting: true ) ).to eq formatted_html.strip
+    end
+    it "should add the table class to tables" do
+      expect(
+        formatted_user_text( "<table><tr><td>foo</td></tr></table>" )
+      ).to eq( '<table class="table"><tr><td>foo</td></tr></table>' )
+    end
+    it "should return valid HTML from poorly-indented markdown" do
+      bad_markdown = <<~MKDN
+        - foo
+        bar
+         - baz
+      MKDN
+      formatted = formatted_user_text( bad_markdown )
+      expected_html = <<~HTML
+        <ul>
+        <li>foo
+        bar
+
+        <ul>
+        <li>baz</li>
+        </ul>
+        </li>
+        </ul>
+      HTML
+      expect( formatted ).to eq expected_html.strip
+    end
+    it "should handle nested lists in html" do
+      text = <<~HTML
+        <ul>
+           <li>Foo</li>
+           <li>Bar
+             <ul>
+               <li>Baz</li>
+            </ul>
+           </li>
+        </ul>
+      HTML
+      expected_html = <<~HTML
+        <ul>
+           <li>Foo</li>
+           <li>Bar
+             <ul>
+               <li>Baz</li>
+            </ul>
+           </li>
+        </ul>
+      HTML
+      expect( formatted_user_text( text ) ).to eq expected_html.strip
+    end
+
+    it "should handle nested lists in markdown" do
+      text = <<~MKDN
+        - Foo
+        - Bar
+          - Baz
+      MKDN
+      expected_html = <<~HTML
+        <ul>
+        <li>Foo</li>
+        <li>Bar
+
+        <ul>
+        <li>Baz</li>
+        </ul>
+        </li>
+        </ul>
+      HTML
+      expect( formatted_user_text( text ) ).to eq expected_html.strip
+    end
+
+    it "should insert linebreaks for newlines" do
+      text = <<~MKDN
+        this
+        is my
+        poem
+      MKDN
+      expected = <<~HTML
+        <p>this<br>
+        is my<br>
+        poem</p>
+      HTML
+      expect( formatted_user_text( text ) ).to eq expected.strip
+    end
   end
 
   describe "#image_url" do

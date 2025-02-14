@@ -315,28 +315,28 @@ module ApplicationHelper
       text = text.gsub( mentions_with_escaped_underscores_regex, "\\1_" )
     end
 
-    unless options[:skip_simple_format]
-      # Make sure P's don't get nested in P's
-      text = text.gsub( /<\\?p>/, "\n\n" )
-    end
-    text = sanitize( text, options )
+    text = sanitize( text, { tags: Post::ALLOWED_TAGS }.merge( options ) )
     text = compact( text, all_tags: true ) if options[:compact]
     text = Rinku.auto_link( text.html_safe ).html_safe
     # scrub to fix any encoding issues
     text = text.scrub
-    unless options[:skip_simple_format]
-      text = simple_format_with_structure( text, sanitize: false )
-    end
+
     # Ensure all tags are closed
     parsed_text = Nokogiri::HTML::DocumentFragment.parse( text )
     # Ensure all links have nofollow
     parsed_text.css( "a" ).each do | node |
       node[:rel] = "#{node[:rel]} nofollow noopener".strip
     end
+    # Ensure all tables have the table class
+    parsed_text.css( "table" ).each do | node |
+      node["class"] = "#{node['class']} table".strip
+    end
     text = parsed_text.to_s
+
     # Remove empty paragraphs
     text = text.gsub( "<p></p>", "" )
-    text.html_safe
+
+    text.strip.html_safe
   end
 
   def formatted_error_sentence_for( record, attribute )
@@ -352,40 +352,12 @@ module ApplicationHelper
     end.to_sentence.capitalize
   end
 
-  def simple_format_with_structure( text, options )
-    new_text = ""
-    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>|<pre.*?pre>)/m )
-    chunks.each do | chunk |
-      case chunk
-      when /<(table|ul|ol)>/
-        html = Nokogiri::HTML::DocumentFragment.parse( chunk )
-        if ( table = html.at_css( "table" ) )
-          table["class"] = "#{html.at_css( 'table' )['class']} table".strip
-        end
-        html.css( "td, th, li" ).each do | node |
-          next unless node.content.strip =~ /\n/
-
-          new_content = Nokogiri::HTML::DocumentFragment.
-            parse( simple_format_with_structure( node.children.to_s, options ).html_safe )
-          node.content = nil
-          node << new_content
-        end
-        new_text += html.to_s.html_safe
-      when /<pre>/
-        new_text += chunk.html_safe
-      else
-        new_text += simple_format( chunk, {}, options ).html_safe
-      end
-    end
-    new_text.html_safe
-  end
-
   def title_by_user( text )
     h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
 
   def markdown( text )
-    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML,
+    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML.new( hard_wrap: true ),
       tables: true,
       disable_indented_code_blocks: true,
       lax_spacing: true,
