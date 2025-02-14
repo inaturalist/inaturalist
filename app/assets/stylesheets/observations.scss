@@ -823,3 +823,26 @@
     color: #888;
     line-height: 1.1;
 }
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 3px;
+    }
+
+    .meta-text {
+      white-space: nowrap;
+    }
+  }
+  
+  .meta-item-right {
+    margin-left: auto;
+  }
+}

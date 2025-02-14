@@ -28,14 +28,20 @@
             %span{:class => "quality_grade {{ o.quality_grade }}"}
               {{ o.qualityGrade( ) }}
             %span.identifications{"ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
-              %i.icon-identification
-              {{ o.identifications_count }}
+              %span.meta-item
+                %i.icon-identification
+                %span.meta-text
+                  {{ o.identifications_count }}
             %span.comments{"ng-show" => "o.comments_count > 0", title: "{{ shared.t('x_comments', {count: o.comments_count}) }}"}
-              %i.icon-chatbubble
-              {{ o.comments_count }}
+              %span.meta-item
+                %i.icon-chatbubble
+                %span.meta-text
+                  {{ o.comments_count }}
             %span.favorites{"ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}"}
-              %i.fa.fa-star
-              {{ o.faves_count }}
+              %span.meta-item
+                %i.fa.fa-star
+                %span.meta-text
+                  {{ o.faves_count }}
         %td.user
           %a.user.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
