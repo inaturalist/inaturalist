@@ -498,9 +498,6 @@ GEM
       ast (~> 2.4.1)
     patron (0.13.3)
     pg (1.2.3)
-    psych (5.2.3)
-      date
-      stringio
     public_suffix (4.0.6)
     puma (5.6.9)
       nio4r (~> 2.0)
@@ -680,7 +677,6 @@ GEM
     sshkit (1.21.2)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stringio (3.1.2)
     temple (0.8.2)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
@@ -821,7 +817,6 @@ DEPENDENCIES
   parallel
   patron
   pg
-  psych
   puma
   rack-cors
   rack-mobile-detect
