@@ -6,13 +6,17 @@ import {
   fetchCurrentObservation,
   fetchObservation,
   addIdentification,
-  updateCurrentObservation
+  updateCurrentObservation,
+  hideCurrentObservation
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showAlert } from "../../../shared/ducks/alert_modal";
+import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 import { updateSession } from "../../show/ducks/users";
 import { setConfig } from "../../../shared/ducks/config";
+import { updateEditorContent } from "../../shared/ducks/text_editors";
+import { isDisagreement } from "../../../shared/util";
 
 const POST_IDENTIFICATION = "post_identification";
 const AGREEING_WITH_OBSERVATION = "agreeing_with_observation";
@@ -141,21 +145,6 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
   };
 }
 
-const chooseSuggestedTaxon = ( taxon, options = { } ) => (
-  ( dispatch, getState ) => {
-    const s = getState( );
-    const ident = {
-      observation_id: s.config.testingApiV2 ? options.observation.uuid : options.observation.id,
-      taxon_id: taxon.id,
-      vision: options.vision
-    };
-    dispatch( updateCurrentObservation( { tab: "info" } ) );
-    dispatch( submitIdentificationWithConfirmation( ident, {
-      confirmationText: options.confirmationText
-    } ) );
-  }
-);
-
 const addID = ( taxon, observation, options = { } ) => (
   ( dispatch, getState ) => {
     const s = getState( );
@@ -209,6 +198,85 @@ const setMapZoomLevelLocked = locked => (
   }
 );
 
+const onSubmitIdentification = ( observation, identification, options = {} ) => (
+  dispatch => {
+    const ident = {
+      ...identification,
+      observation
+    };
+    dispatch( loadingDiscussionItem( ident ) );
+    const boundPostIdentification = disagreement => {
+      const params = { ...ident };
+      if ( _.isNil( ident.disagreement ) ) {
+        params.disagreement = disagreement || false;
+      }
+      dispatch( postIdentification( params ) )
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( ident ) );
+        } )
+        .then( ( ) => {
+          dispatch( updateCurrentObservation( { tab: "info" } ) );
+          dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
+          dispatch( fetchCurrentObservation( observation ) ).then( ( ) => {
+            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          } );
+          dispatch( fetchObservationsStats( ) );
+        } );
+    };
+    if ( options.confirmationText ) {
+      dispatch( showAlert( options.confirmationText, {
+        title: I18n.t( "heads_up" ),
+        onConfirm: boundPostIdentification,
+        onCancel: ( ) => {
+          dispatch( stopLoadingDiscussionItem( ident ) );
+          dispatch( addIdentification( ) );
+        }
+      } ) );
+    } else if ( options.potentialDisagreement ) {
+      const o = options.observation;
+      let observationTaxon = o.taxon;
+      if (
+        o.preferences.prefers_community_taxon === false
+        || o.user.preferences.prefers_community_taxa === false
+      ) {
+        observationTaxon = o.community_taxon || o.taxon;
+      }
+      dispatch( showDisagreementAlert( {
+        onDisagree: ( ) => {
+          boundPostIdentification( true );
+        },
+        onBestGuess: boundPostIdentification,
+        onCancel: ( ) => {
+          dispatch( stopLoadingDiscussionItem( ident ) );
+          dispatch( addIdentification( ) );
+        },
+        oldTaxon: observationTaxon,
+        newTaxon: options.taxon
+      } ) );
+    } else {
+      boundPostIdentification( );
+    }
+  }
+);
+
+const chooseSuggestedTaxon = ( taxon, options = { } ) => (
+  ( dispatch, getState ) => {
+    const s = getState( );
+    console.log( [taxon, options] );
+    const { observation } = options;
+    const params = {
+      observation_id: s.config.testingApiV2 ? observation.uuid : observation.id,
+      taxon_id: taxon.id,
+      vision: options.vision
+    };
+    dispatch( onSubmitIdentification( observation, params, {
+      observation,
+      taxon,
+      potentialDisagreement: isDisagreement( observation, taxon )
+    } ) );
+  }
+);
+
 export {
   POST_IDENTIFICATION,
   AGREEING_WITH_OBSERVATION,
@@ -223,5 +291,6 @@ export {
   addID,
   chooseSuggestedTaxon,
   setMapZoomLevel,
-  setMapZoomLevelLocked
+  setMapZoomLevelLocked,
+  onSubmitIdentification
 };
