@@ -1,11 +1,14 @@
 import _ from "lodash";
 
 const SET_CONFIRM_MODAL_STATE = "obs-show/confirm_modal/SET_CONFIRM_MODAL_STATE";
+const UPDATE_CONFIRM_MODAL_STATE = "obs-show/confirm_modal/UPDATE_CONFIRM_MODAL_STATE";
 
 export default function reducer( state = { show: false }, action ) {
   switch ( action.type ) {
     case SET_CONFIRM_MODAL_STATE:
       return { ...action.newState };
+    case UPDATE_CONFIRM_MODAL_STATE:
+      return { ...state, ...action.updatedState };
     default:
       // nothing to see here
   }
@@ -16,6 +19,13 @@ export function setConfirmModalState( newState ) {
   return {
     type: SET_CONFIRM_MODAL_STATE,
     newState
+  };
+}
+
+export function updateConfirmModalState( updatedState ) {
+  return {
+    type: UPDATE_CONFIRM_MODAL_STATE,
+    updatedState
   };
 }
 

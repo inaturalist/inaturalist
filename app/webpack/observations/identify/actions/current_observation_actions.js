@@ -21,7 +21,7 @@ import {
   resetSubscriptions,
   setSubscriptions
 } from "../../show/ducks/subscriptions";
-import { setConfirmModalState } from "../../show/ducks/confirm_modal";
+import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
 import {
   addToProject as sharedAddToProject,
   removeFromProject as sharedRemoveFromProject,

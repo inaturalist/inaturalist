@@ -12,7 +12,7 @@ import projectReducer, {
   fetchCurrentProjectUser
 } from "./ducks/project";
 import photoModalReducer from "../../taxa/shared/ducks/photo_modal";
-import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import confirmModalReducer from "../../shared/ducks/confirm_modal";
 import flaggingModalReducer from "../../observations/show/ducks/flagging_modal";
 import sharedStore from "../../shared/shared_store";
 /* global PROJECT_DATA */

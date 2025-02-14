@@ -10,7 +10,7 @@ import AppContainer from "./containers/app_container";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import { setConfig, setCurrentUser } from "../../shared/ducks/config";
-import confirmModalReducer from "./ducks/confirm_modal";
+import confirmModalReducer from "../../shared/ducks/confirm_modal";
 import controlledTermsReducer from "./ducks/controlled_terms";
 import flaggingModalReducer from "./ducks/flagging_modal";
 import identificationsReducer from "./ducks/identifications";

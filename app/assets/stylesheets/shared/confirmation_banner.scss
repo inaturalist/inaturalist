@@ -2,10 +2,12 @@
   text-align: center;
   background: #74ac00;
   color: white;
-  padding: 10px;
   font-size: 14px;
   line-height: 18px;
   display: block;
+  & > div > div {
+    padding: 10px;
+  }
   .email {
     font-weight: 700;
   }
@@ -22,5 +24,25 @@
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
+  }
+}
+
+.ConfirmModal.EmailConfirmation {
+  .modal-dialog {
+    width: 500px;
+    margin-top: 100px;
+  }
+  .text {
+    margin-left: 10px;
+    & > p:first-child {
+      font-size: 18px;
+    }
+  }
+  .buttons {
+    text-align: center;
+    button {
+      min-width: 100px;
+      margin: 0px 10px;
+    }
   }
 }

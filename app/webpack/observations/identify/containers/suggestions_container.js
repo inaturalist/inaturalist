@@ -8,6 +8,7 @@ import {
   fetchSuggestions,
   fetchDetailTaxon
 } from "../ducks/suggestions";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   let nextTaxon;
@@ -40,7 +41,10 @@ function mapDispatchToProps( dispatch ) {
       dispatch( updateQuery( query, options ) );
       dispatch( fetchSuggestions( ) );
     },
-    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

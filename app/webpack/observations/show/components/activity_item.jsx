@@ -213,8 +213,7 @@ class ActivityItem extends React.Component {
       let canAgree = false;
       let userAgreedToThis;
       if (
-        userCanInteract
-        && item.current
+        item.current
         && item.firstDisplay
         && item.user.id !== config.currentUser.id
         && ( item.taxon && item.taxon.is_active )
@@ -241,8 +240,12 @@ class ActivityItem extends React.Component {
               className="btn btn-default btn-sm"
               onClick={e => {
                 if ( onClickCompare ) {
-                  return onClickCompare( e, taxon, observation,
-                    { currentUser: config.currentUser } );
+                  return onClickCompare(
+                    e,
+                    taxon,
+                    observation,
+                    { currentUser: config.currentUser }
+                  );
                 }
                 return true;
               }}
@@ -261,7 +264,9 @@ class ActivityItem extends React.Component {
             key={`id-agree-${item.uuid}`}
             className="btn btn-default btn-sm"
             onClick={() => {
-              addID( taxon, { agreedTo: item } );
+              performOrOpenConfirmationModal( ( ) => {
+                addID( taxon, { agreedTo: item } );
+              } );
             }}
             disabled={userAgreedToThis}
           >

@@ -40,7 +40,7 @@ import subscriptions from "../../show/ducks/subscriptions";
 import disagreementAlert from "../../shared/ducks/disagreement_alert";
 import moderatorActions from "../../../shared/ducks/moderator_actions";
 import brightnesses from "../ducks/brightnesses";
-import confirmModal from "../../show/ducks/confirm_modal";
+import confirmModal from "../../../shared/ducks/confirm_modal";
 import projectFieldsModal from "../../show/ducks/project_fields_modal";
 
 export default {

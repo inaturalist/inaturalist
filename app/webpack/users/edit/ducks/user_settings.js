@@ -1,7 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { fetchRelationships, updateBlockedAndMutedUsers } from "./relationships";
-import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
+import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
 import { fetchNetworkSites } from "./network_sites";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
@@ -316,6 +316,7 @@ export function confirmResendConfirmation( ) {
       message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
         email: state.profile.email || ""
       } ),
+      type: "EmailConfirmation",
       confirmText: I18n.t( "send_confirmation_email" ),
       // If we want to go back to signing people out, this is the text we should use
       // confirmText: I18n.t( "send_and_sign_out", {

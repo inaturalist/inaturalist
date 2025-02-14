@@ -15,7 +15,7 @@ import RevokeAccessModalContainer from "../containers/revoke_access_modal_contai
 import CreativeCommonsLicensingModalContainer from "../containers/cc_licensing_modal_container";
 import DropdownMenuMobile from "./dropdown_menu_mobile";
 import DeleteRelationshipModalContainer from "../containers/delete_relationship_modal_container";
-import ConfirmModalContainer from "../containers/confirm_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 
 class App extends Component {
   constructor( ) {

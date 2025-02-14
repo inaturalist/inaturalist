@@ -13,7 +13,7 @@ import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from "./ducks/authorized_applications";
 import relationshipsReducer from "./ducks/relationships";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
-import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import confirmModalReducer from "../../shared/ducks/confirm_modal";
 import AppContainer from "./containers/app_container";
 import sharedStore from "../../shared/shared_store";
 

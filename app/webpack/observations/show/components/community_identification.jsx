@@ -387,7 +387,7 @@ class CommunityIdentification extends React.Component {
 
   render( ) {
     const {
-      observation, config, addID, onClickCompare
+      observation, config, addID, onClickCompare, performOrOpenConfirmationModal
     } = this.props;
     const { open } = this.state;
     const { test } = $.deparam.querystring( );
@@ -436,7 +436,11 @@ class CommunityIdentification extends React.Component {
           type="button"
           className="btn btn-default"
           disabled={!canAgree}
-          onClick={( ) => { addID( communityTaxon, { agreedTo: "communityID" } ); }}
+          onClick={( ) => {
+            performOrOpenConfirmationModal( ( ) => {
+              addID( communityTaxon, { agreedTo: "communityID" } );
+            } );
+          }}
         >
           { userAgreedToThis
             ? <div className="loading_spinner" />
@@ -687,7 +691,8 @@ CommunityIdentification.propTypes = {
   setCommunityIDModalState: PropTypes.func,
   updateObservation: PropTypes.func,
   updateSession: PropTypes.func,
-  onClickCompare: PropTypes.func
+  onClickCompare: PropTypes.func,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 CommunityIdentification.defaultProps = {

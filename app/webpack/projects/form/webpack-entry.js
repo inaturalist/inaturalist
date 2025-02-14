@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import AppContainer from "./containers/app_container";
 import { setCurrentUser } from "../../shared/ducks/config";
 import formReducer, { setProject, setCopyProject } from "./form_reducer";
-import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import confirmModalReducer from "../../shared/ducks/confirm_modal";
 import controlledTermsReducer, { fetchAllControlledTerms }
   from "../../observations/show/ducks/controlled_terms";
 import sharedStore from "../../shared/shared_store";

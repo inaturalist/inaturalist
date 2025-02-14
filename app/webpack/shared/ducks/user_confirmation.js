@@ -1,5 +1,5 @@
 import inatjs from "inaturalistjs";
-import { setConfirmModalState } from "../../observations/show/ducks/confirm_modal";
+import { setConfirmModalState } from "./confirm_modal";
 
 const SET_CONFIRMATION_EMAIL_SENT = "users-confirmation-banner/SET_CONFIRMATION_EMAIL_SENT";
 
@@ -31,6 +31,7 @@ export function confirmResendConfirmation( options = { } ) {
       message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
         email: state.config.currentUser.email || ""
       } ),
+      type: "EmailConfirmation",
       confirmText: I18n.t( "send_confirmation_email" ),
       onConfirm: async ( ) => {
         inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {

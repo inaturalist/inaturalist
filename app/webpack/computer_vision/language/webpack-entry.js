@@ -10,7 +10,7 @@ import languageDemoReducer, {
   loadFromURL
 } from "./reducers/language_demo_reducer";
 import LanguageDemoContainer from "./containers/language_demo_container";
-import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import confirmModalReducer from "../../shared/ducks/confirm_modal";
 import { setConfig } from "../../shared/ducks/config";
 import sharedStore from "../../shared/shared_store";
 
