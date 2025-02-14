@@ -9089,6 +9089,10 @@ da:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinater kan ikke være 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                kan ikke gemmes af ukendt grund. Tag venligst et skærmfoto og anmeld til personalet
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan ikke være større end datoen observationen blev tilføjet
