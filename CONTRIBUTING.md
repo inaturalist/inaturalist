@@ -12,11 +12,11 @@ We will probably close pull requests that don't address open issues. Again, if y
 
 The development environment for iNaturalist is set up to run containerized services in Docker. Furthermore this configuration allows running the [API](https://github.com/inaturalist/iNaturalistAPI) alongside the services. 
 
-1. Install [Docker](https://www.docker.com/)
+1. Install and launch [Docker](https://www.docker.com/). Make sure your current user has access to the docker daemon with `docker run hello-world`.
 1. Copy `docker-compose.override.yml.example` to `docker-compose.override.yml` and customize credentials
 1. Run `make services` to start Elasticsearch, memcached, redis, and PostgeSQL. Run `make services-api` to include the API and run in the foreground (see note above; you'll also need to add working versions of `docker-compose.override.yml` and `config.js` to that directory to get the API to run).
 
-   **Note**: If iNaturalistAPI is not in a sibling directory to this repository specify the path as such: `make services-api API_PATH=path/to/api`.
+   **Note**: If iNaturalistAPI is not in a sibling directory to this repository, specify the path as such: `make services-api API_PATH=path/to/api`.
 
 1. Run `ruby bin/setup` to set up gems, config files, and database
 1. Start the server: `rails server -b 127.0.0.1`
