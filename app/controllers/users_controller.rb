@@ -1049,7 +1049,7 @@ class UsersController < ApplicationController
       end
       return
     end
-    available = !User.where( email: params[:email] ).exists?
+    available = !User.where( email: params[:email].to_s.downcase ).exists?
     respond_to do | format |
       format.json do
         render json: { available: available }

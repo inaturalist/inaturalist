@@ -477,6 +477,13 @@ describe UsersController, "email_available" do
       expect_email_available_to_eq( user.email, false )
     end
 
+    it "should ignore case" do
+      email = Faker::Internet.email.capitalize
+      expect( email ).not_to eq email.downcase
+      create( :user, email: email )
+      expect_email_available_to_eq( email, false )
+    end
+
     it "should respond with unprocessable entity if email param is blank" do
       get :email_available, format: :json
       expect( response.status ).to eq 422
