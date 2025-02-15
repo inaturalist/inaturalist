@@ -287,9 +287,24 @@ class Observation < ApplicationRecord
     br
     cite
     code
+    del
+    div
+    dl
+    dt
     em
+    h1
+    h2
+    h3
+    h4
+    h5
+    h6
+    hr
     i
     img
+    ins
+    li
+    ol
+    p
     pre
     s
     small
@@ -297,6 +312,15 @@ class Observation < ApplicationRecord
     strong
     sub
     sup
+    t
+    table
+    tbody
+    td
+    th
+    thead
+    tr
+    tt
+    ul
   )
 
   preference :community_taxon, :boolean, :default => nil

@@ -39,10 +39,10 @@ const ALLOWED_TAGS = ( `
   strong
   sub
   sup
+  t
   table
   tbody
   td
-  t
   th
   thead
   tr
