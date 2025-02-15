@@ -827,14 +827,22 @@
 .meta {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 5px;
+
+  .meta-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    flex-grow: 1;
+  }
 
   .meta-item {
     display: flex;
     align-items: center;
 
     i {
-      margin-right: 3px;
+      margin-inline-end: 3px;
     }
 
     .meta-text {
@@ -843,6 +851,6 @@
   }
   
   .meta-item-right {
-    margin-left: auto;
+    margin-inline-start: auto;
   }
 }
