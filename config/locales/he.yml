@@ -45,6 +45,16 @@ he:
     two: '<span class="count">%{count}</span> זיהויים'
     many: '<span class="count">%{count}</span> זיהויים'
     other: '<span class="count">%{count}</span> זיהויים'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> מזהה'
+    #Number of people who have added identifications
+    two: '<span class="count">%{count}</span> מזהים.ות'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> מזהים.ות'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> מזהים.ות'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> זיהוי נעשה עבור אחרים'
     two: '<span class="count">%{count}</span> זיהויים נעשו עבור אחרים'
@@ -127,6 +137,11 @@ he:
     two: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     many: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
     other: "<span class='count'>%{count}</span> תצפיות עברו בדיקה"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> מתצפת.ת'
+    two: '<span class="count">%{count}</span> מתצפתים.ות'
+    many: '<span class="count">%{count}</span> מתצפתים.ות'
+    other: '<span class="count">%{count}</span> מתצפתים.ות'
   x_others:
     one: "אחר %{count}"
     two: "%{count} אחרים"
@@ -1200,6 +1215,9 @@ he:
   content_and_display: תוכן ותצוגה
   content_author: יוצרי התוכן
   content_hidden: תוכן מוסתר
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    תוכן הוסתר בתאריך %{date} בגלל: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     תוכן הוסתר על ידי %{user} בתאריך %{date} בגלל: "%{reason}"
@@ -4759,6 +4777,8 @@ he:
   sites_network_consists_of: "רשת iNaturalist מורכבת ממספר ארגונים:"
   sites_network_inaturalist_network_collection: |
     רשת iNaturalist היא אוסף של אתרים מקומיים המחוברים במלואם לאתר קהילת iNaturalist העולמית. אתרי הרשת נתמכים על-ידי מוסדות מקומיים שמקדמים שימוש בנתוני iNaturalist ברמה המקומית לטובת שמירת טבע. הם בעלי גישה לקואורדינטות אמיתיות באזורם הגיאוגרפי שמוסתרות מהציבור באופן אוטומטי כדי להגן על מינים רגישים (בסיכון).
+  sites_network_inaturalist_network_collection2: |
+    רשת iNaturalist מספקת חוויה מקומית המחוברת במלואה לקהילת iNaturalist העולמית. חברי הרשת הם מוסדות מקומיים המעודדים שימוש מקומי בפלטפורמה ומסייעים בהנגשת הנתונים לטובת שמירת המגוון הביולוגי. לחברים ברשת יש גישה לקואורדינטות המדויקות של תצפיות בתחומם הגיאוגרפי, אשר מוסתרות אוטומטית מהציבור כדי להגן על מינים רגישים.
   sites_network_your_username: |
     שם המשתמש והסיסמה שלך עובדים בכל האתרים שהם חלק מרשת iNaturalist. אם בחרת להשתייך לאתר ברשת, המוסדות המקומיים שתומכים בכל אתר גם יקבלו גישה לכתובת הדוא"ל שלך (רק כדי לתקשר איתך על פעילות באתר) וגישה לקואורדינטות האמיתיות של תצפיות אותן בחרת להפוך למוסתרות מהציבור או לפרטיות.
   some_agree: חלק מסכימות.ים
