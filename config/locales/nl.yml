@@ -8703,7 +8703,7 @@ nl:
               #if the moderated resource is also marked as hidden
               only_hidden_content_can_be_private: Alleen verborgen inhoud kan privé zijn #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Alleen medewerkers en curatoren kunnen inhoud verbergen
-              only_staff_and_hiding_curators_can_unhide: Alleen medewerkers en curatoren die inhoud verbergen kunnen deze weer zichtbaar maken #Error saying that only admin users (staff) can set resources as private
+              only_staff_and_hiding_curators_can_unhide: Alleen medewerkers en curatoren die inhoud verbergen kunnen deze weer zichtbaar maken #Error saying that only staff can set resources as private
               only_staff_can_make_private: Alleen medewerkers kunnen inhoud instellen als privé
               staff_cannot_be_suspended: Staf kan niet worden geschorst
             user_id:
