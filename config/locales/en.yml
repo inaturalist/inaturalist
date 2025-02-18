@@ -9947,17 +9947,13 @@ en:
             base:
               # Error saying that the private attribute of a ModeratorAction can only be applied
               # if the moderated resource is also marked as hidden
-              only_hidden_content_can_be_private:
-                Only hidden content can be private
+              only_hidden_content_can_be_private: Only hidden content can be private
               # Error saying that only curator and admin users are allowed to create
               # a ModeratorAction with action Hide
-              only_staff_and_curators_can_hide:
-                Only staff and curators can hide content
-              only_staff_and_hiding_curators_can_unhide:
-                Only staff and curators who hide content can unhide it
+              only_staff_and_curators_can_hide: Only staff and curators can hide content
+              only_staff_and_hiding_curators_can_unhide: Only staff and curators who hide content can unhide it
               # Error saying that only staff can set resources as private
-              only_staff_can_make_private:
-                Only staff can set content as private
+              only_staff_can_make_private: Only staff can set content as private
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
