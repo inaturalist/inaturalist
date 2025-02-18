@@ -8913,7 +8913,7 @@ cs:
             action:
               not_supported_for_this_kind_of_content: není podporováno pro tento druh obsahu
             base:
-              only_staff_and_hiding_curators_can_unhide: Pouze zaměstnanci a kurátoři, kteří skryjí obsah, jej mohou znovu odkrýt #Error saying that only admin users (staff) can set resources as private
+              only_staff_and_hiding_curators_can_unhide: Pouze zaměstnanci a kurátoři, kteří skryjí obsah, jej mohou znovu odkrýt #Error saying that only staff can set resources as private
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
             user_id:
               must_be_a_curator: musí být kurátor
