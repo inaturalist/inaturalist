@@ -9074,9 +9074,12 @@ da:
             base:
               #Error saying that the private attribute of a ModeratorAction can only be applied
               #if the moderated resource is also marked as hidden
-              only_hidden_content_can_be_private: Kun skjult indhold kan være fortroligt #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
+              only_hidden_content_can_be_private: Kun skjult indhold kan være fortroligt
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Kun personale og kuratorer kan skjule indhold
-              only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen #Error saying that only staff can set resources as private
+              only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen
+              #Error saying that only staff can set resources as private
               only_staff_can_make_private: Kun personale kan indstille indhold som fortroligt
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
             user_id:
