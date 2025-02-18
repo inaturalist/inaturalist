@@ -8792,9 +8792,12 @@ sv:
             base:
               #Error saying that the private attribute of a ModeratorAction can only be applied
               #if the moderated resource is also marked as hidden
-              only_hidden_content_can_be_private: Endast dolt innehåll kan vara privat #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
+              only_hidden_content_can_be_private: Endast dolt innehåll kan vara privat
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Endast personal och förvaltare kan dölja innehåll
-              only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen #Error saying that only staff can set resources as private
+              only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen
+              #Error saying that only staff can set resources as private
               only_staff_can_make_private: Endast personal kan ange innehåll privat
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
