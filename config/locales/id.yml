@@ -8282,9 +8282,12 @@ id:
             base:
               #Error saying that the private attribute of a ModeratorAction can only be applied
               #if the moderated resource is also marked as hidden
-              only_hidden_content_can_be_private: Hanya konten tersembunyi yang bisa dijadikan pribadi #Error saying that only curator and admin users are allowed to create # a ModeratorAction with action Hide
+              only_hidden_content_can_be_private: Hanya konten tersembunyi yang bisa dijadikan pribadi
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Hanya staf dan kurator yang bisa menyembunyikan konten
-              only_staff_and_hiding_curators_can_unhide: Hanya staf dan kurator yang menyembunyikan konten bisa menampilkannya lagi #Error saying that only staff can set resources as private
+              only_staff_and_hiding_curators_can_unhide: Hanya staf dan kurator yang menyembunyikan konten bisa menampilkannya lagi
+              #Error saying that only staff can set resources as private
               only_staff_can_make_private: Hanya staf yang bisa mengatur konten menjadi privat
               staff_cannot_be_suspended: Staf tidak bisa ditangguhkan
             user_id:
