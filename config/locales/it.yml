@@ -27,6 +27,12 @@ it:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICAZIONE'
     other: '<span class="count">%{count}</span> IDENTIFICAZIONI'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICATORE'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICATORI'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID fatta per altri'
     other: '<span class="count">%{count}</span> ID fatte per altri'
@@ -77,6 +83,9 @@ it:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> osservazione controllata"
     other: "<span class='count'>%{count}</span> osservazioni controllate"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OSSERVATORE'
+    other: '<span class="count">%{count}</span> OSSERVATORI'
   x_others:
     one: "un altro"
     other: "%{count} altri"
@@ -2721,6 +2730,9 @@ it:
   make_a_taxon_swap_instead?: Preferisci invece fare uno Scambio Taxon?
   make_curator: Rendi curatore
   make_manager: Rendi gestore
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Rendi privata
   make_sure_the_default_photo_looks_good: Assicurati che la foto predefinita renda bene a grandi dimensioni.
   make_this_your_default_license: "Rendi questa la tua licenza %{type} predefinita"
   make_this_the_primary_listing: "Rendi questa la lista principale"
@@ -5608,6 +5620,7 @@ it:
   user_muted: Utente silenziato
   user_observed_on_on_date_in_place: |
     %{user} ne ha osservata una il %{date} in %{place}
+  user_said_comment_html: <span class="meta">%{user} ha detto,</span> "%{comment}"
   user_suggested_an_id: "%{user} ha suggerito una ID"
   user_trusts_this_project_for_none: L'utente non si fida di questo progetto con coordinate nascoste.
   user_trusts_this_project_for_any: |
@@ -6813,6 +6826,11 @@ it:
           Le osservazioni torneranno a <strong>"casuale"</strong> se le condizioni
           di cui sopra non sono soddisfatte o la comunità accetta
         #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          il <strong>giorno e/o l'anno non sembrano accurati</strong> (ad es. la neve
+          appare nella foto ma la data è durante l'estate; non prendere in considerazione l'ora
+          del giorno)
+        #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_location_not_accurate_html: |
           la community concorda che la <strong>posizione non sembra accurata</strong> (ad esempio: scimmie in mezzo all'oceano, ippopotami in ufficio, ecc.)
         #One of a list of reasons for an observation to revert to Casual
@@ -6833,6 +6851,15 @@ it:
           l'osservazione <strong>non presenta prove relative a un soggetto
           </strong> (es. ha quattro foto di organismi non correlati; una foto
           che mostra l’habitat del soggetto dell’osservazione è OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          l'osservazione non ha più bisogno di una ID <em>e</em> il Taxon della comunità
+          è a livello di famiglia o superiore
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          il taxon non è un antenato o un discendente del taxon associato
+          con l'ID dell'osservatore <em>e</em> l'osservatore ha optato per
+          il Taxon della Comunità
         #Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           E se questo non è abbastanza complicato, ci sono anche situazioni
@@ -8407,7 +8434,15 @@ it:
             action:
               not_supported_for_this_kind_of_content: non è supportato per questo tipo di contenuto
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Solo i contenuti nascosti possono essere privati
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Solo il personale e i curatori possono nascondere i contenuti
               only_staff_and_hiding_curators_can_unhide: Solo lo staff e i curatori che nascondono i contenuti possono rivelarli
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Solo il personale può impostare il contenuto come privato
               staff_cannot_be_suspended: Lo Staff non può essere sospeso
             user_id:
               must_be_a_curator: deve essere un curatore
@@ -8419,6 +8454,10 @@ it:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "le coordinate non possono essere 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                non può essere salvata per motivi sconosciuti, si prega di eseguire uno screenshot e segnalare al personale
             observed_on:
               cannot_be_greater_than_date_created: |
                 non può essere successiva alla data in cui l'osservazione è stata aggiunta
@@ -8491,6 +8530,14 @@ it:
                 deve essere verificato dopo al %{time}
               must_be_observed_before: |
                 deve essere rispettato prima del %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: deve essere un progetto
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: consente solo le regole del progetto
         quality_metric:
           attributes:
             base:
