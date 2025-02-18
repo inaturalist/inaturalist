@@ -6618,6 +6618,10 @@ hu:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "a koordináták nem lehetnek 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                nem lehet menteni ismeretlen ok miatt, készíts képernyőmentést és jelentsd a hibát
             observed_on:
               cannot_be_greater_than_date_created: |
                 nem lehet nagyobb, mint a dátum amikor hozzáadták a megfigyelést

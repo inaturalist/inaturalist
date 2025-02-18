@@ -2663,6 +2663,9 @@ de:
   make_a_taxon_swap_instead?: Stattdessen einen TaxonSwap durchführen?
   make_curator: Zum Kurator machen
   make_manager: Zum Manager machen
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Auf privat stellen
   make_sure_the_default_photo_looks_good: Vergewissere dich, dass das Standardfoto in großer Größe gut aussieht.
   make_this_your_default_license: "Zu deiner Standard-%{type}-Lizenz machen"
   make_this_the_primary_listing: "Dies zur primären Auflistung machen"
@@ -8335,7 +8338,15 @@ de:
             action:
               not_supported_for_this_kind_of_content: wird für diese Art von Inhalten nicht unterstützt
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Nur versteckte Inhalte können privat sein
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Nur Admins und Kuratoren können Inhalte ausblenden
               only_staff_and_hiding_curators_can_unhide: Nur Administratoren und Kuratoren, die den Inhalt ausblendeten, können ihn wieder sichtbar machen
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Nur Admins können Inhalte als privat festlegen
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
             user_id:
               must_be_a_curator: muss ein Kurator sein
@@ -8347,6 +8358,10 @@ de:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "die Koordinaten können nicht 0,0 sein"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                kann aus unbekannten Gründen nicht gespeichert werden. Bitte einen Screenshot erstellen und es den Administratoren melden
             observed_on:
               cannot_be_greater_than_date_created: |
                 kann nicht größer als das Datum sein, an dem die Beobachtung hinzugefügt wurde
@@ -8415,6 +8430,14 @@ de:
                 muss nach %{time} beobachtet worden sein
               must_be_observed_before: |
                 muss vor %{time} beobachtet worden sein
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: muss ein Projekt sein
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: nur Projekt-Regeln sind erlaubt
         quality_metric:
           attributes:
             base:
