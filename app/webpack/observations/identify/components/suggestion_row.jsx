@@ -19,9 +19,14 @@ const SuggestionRow = ( {
   config,
   updateCurrentUser
 } ) => {
-  const taxonPhotos = _
+  let taxonPhotos = _
     .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
     .slice( 0, 2 );
+  if ( taxon.representativePhoto ) {
+    taxonPhotos = _.filter( taxonPhotos, tp => tp.photo.id !== taxon.representativePhoto.id );
+    taxonPhotos.unshift( { taxon, photo: taxon.representativePhoto } );
+    taxonPhotos = taxonPhotos.slice( 0, 2 );
+  }
   let backgroundSize = "cover";
   if (
     taxonPhotos.length === 1
