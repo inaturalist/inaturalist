@@ -317,7 +317,8 @@ export function fetchSuggestions( query ) {
         taxon: Object.assign( {}, TAXON_FIELDS, {
           taxon_photos: {
             photo: PHOTO_FIELDS
-          }
+          },
+          representative_photo: PHOTO_FIELDS
         } )
       };
     }
@@ -328,6 +329,7 @@ export function fetchSuggestions( query ) {
         return null;
       }
       payload.image_url = photo.photoUrl( "medium" );
+      payload.include_representative_photos = true;
       if (
         s.suggestions.observation.geojson
       ) {

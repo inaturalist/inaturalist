@@ -12,7 +12,10 @@ let searchInProgress;
 const TAXON_FIELDS = {
   ancestor_ids: true,
   default_photo: {
-    square_url: true
+    url: true
+  },
+  representative_photo: {
+    url: true
   },
   iconic_taxon_id: true,
   iconic_taxon_name: true,
@@ -461,11 +464,9 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
+      baseParams.include_representative_photos = true;
       const viewerIsAdmin = config.currentUser && config.currentUser.roles
         && config.currentUser.roles.indexOf( "admin" ) >= 0;
-      if ( viewerIsAdmin ) {
-        baseParams.include_representative_photos = true;
-      }
       if ( viewerIsAdmin && config.testFeature ) {
         baseParams.test_feature = config.testFeature;
       }
