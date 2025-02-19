@@ -177,6 +177,7 @@ class Observation < ApplicationRecord
         indexes :user_id, type: "integer"
         indexes :uuid, type: "keyword"
         indexes :value, type: "keyword"
+        indexes :updater_id, type: "integer"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
       # TODO Remove out_of_range from the index
