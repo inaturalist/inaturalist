@@ -98,6 +98,15 @@ describe ProviderOauthController do
         expect( response_json["error_description"] ).not_to be_blank
       end
 
+      it "should default to CC BY-NC licensing" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, format: :json, params: assertion_params
+        u = User.find_by_email( google_response[:email] )
+        expect( u.preferred_observation_license ).to eq Observation::CC_BY_NC
+        expect( u.preferred_photo_license ).to eq Observation::CC_BY_NC
+        expect( u.preferred_sound_license ).to eq Observation::CC_BY_NC
+      end
+
       describe "with a bad assertion_type" do
         let( :assertion_params ) do
           {
