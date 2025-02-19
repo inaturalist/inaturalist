@@ -1,6 +1,6 @@
 #result-grid.grid.container.container-fixed{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'grid') || pagination.searching || pagination.stopped", "infinite-scroll-distance": 1 }
   .row.grid.d-flex.flex-wrap
-    .observation-grid-cell.d-flex{ "ng-repeat": "o in observations" }
+    .observation.observation-grid-cell.d-flex{ "ng-repeat": "o in observations" }
       .thumbnail.borderless.d-flex.flex-column
         %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.hasMedia( ) ? '' : 'iconic' }} {{ o.hasSound( ) ? 'sound' : '' }}  {{ o.photo( ) ? 'has-photo' : '' }}" }
           %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }

@@ -15,7 +15,7 @@
         %th{ :class => "added sortable {{ params.order_by == 'id' ? (params.order == 'asc' ? 'sorting sorting-asc' : 'sorting sorting-desc') : ''}}", "ng-click" => "orderBy( 'id' )" }
           {{ shared.t('added') | capitalize }}
     %tbody{ "infinite-scroll": "showMoreObservations( )", "infinite-scroll-disabled": "!viewing('observations', 'table') || pagination.searching || pagination.stopped", "infinite-scroll-distance": 1 }
-      %tr{ "ng-repeat": "o in observations" }
+      %tr.observation{ "ng-repeat": "o in observations" }
         %td
           %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "img {{ o.hasMedia( ) ? '' : 'iconic'}} {{ o.hasSound( ) ? 'sound' : '' }}" }
             %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }
