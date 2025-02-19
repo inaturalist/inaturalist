@@ -106,6 +106,8 @@ class ProviderAuthorizationsController < ApplicationController
   end
 
   def get_session_omniauth_scope
+    return unless request.env["omniauth.strategy"]
+
     session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]
   end
 
