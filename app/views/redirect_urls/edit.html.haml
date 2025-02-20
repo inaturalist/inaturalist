@@ -1,0 +1,12 @@
+%h1 Editing Redirect Url
+
+.row
+  .col-md-6
+    = render 'form', redirect_url: @redirect_url
+  .col-md-6
+    %h2 URL
+    %p= link_to redirect_url_url( @redirect_url ), redirect_url_url( @redirect_url )
+    %h2 QR Code
+    %p TODO
+
+= link_to t( :back ), :back, class: "btn btn-default"

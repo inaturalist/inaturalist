@@ -1,0 +1,12 @@
+= form_with( model: redirect_url, builder: BootstrapFormBuilder ) do |form|
+  - if redirect_url.errors.any?
+    #error_explanation
+      %h2= pluralize(redirect_url.errors.count, "error") + " prohibited this redirect_url from being saved:"
+      %ul
+        - redirect_url.errors.each do |error|
+          %li= error.full_message
+  = form.text_field :title
+  = form.text_area :description
+  = form.text_field :app_store_url
+  = form.text_field :play_store_url
+  = form.submit t( :save ), class: "btn btn-primary"

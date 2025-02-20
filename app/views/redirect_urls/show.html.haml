@@ -1,0 +1,26 @@
+- content_for :title, @redirect_url.title
+- content_for :extracss do
+  :css
+    #redirect-url {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .links {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+#redirect-url
+  %h1= @redirect_url.title
+  %p.lead= @redirect_url.description
+
+  .links
+    = link_to url_for( force: "android" ), class: "btn btn-primary" do
+      %i.fa.fa-android
+      Play Store
+    = link_to url_for( force: "ios" ), class: "btn btn-primary" do
+      %i.fa.fa-apple
+      App Store
