@@ -33,7 +33,9 @@ class RedirectUrlsController < ApplicationController
   end
 
   # GET /redirect_urls/1/edit
-  def edit; end
+  def edit
+    @qr_code = RQRCode::QRCode.new( redirect_url_url( @redirect_url ) )
+  end
 
   # POST /redirect_urls
   def create
