@@ -915,7 +915,7 @@ describe Observation do
   describe "coordinate transformation", focus: true do
     let( :proj4_nztm ) do
       "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 " \
-        "+towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+        "+towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs"
     end
     subject { Observation.make }
 
