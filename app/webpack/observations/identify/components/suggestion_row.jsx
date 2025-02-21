@@ -40,11 +40,13 @@ const SuggestionRow = ( {
   }
   const currentUserPrefersMedialessObs = config.currentUser
     && config.currentUser.prefers_medialess_obs_maps;
+  const isAdmin = config.currentUser?.roles?.indexOf( "admin" ) >= 0;
   const taxonLayer = {
     taxon,
     gbif: { disabled: true, legendColor: "#F7005A" },
     places: true,
-    ranges: true
+    ranges: true,
+    geomodel_thresholded: isAdmin
   };
   if ( source === "rg_observations" ) {
     taxonLayer.observationLayers = [
