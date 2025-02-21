@@ -35,11 +35,11 @@ class CloudfrontLogParser
       bucket: LOG_BUCKET_NAME,
       key: log_object.key
     }, target: zipped_path ) rescue nil
-    if fetched_object && fetched_object.body && File.exists?( zipped_path )
+    if fetched_object && fetched_object.body && File.exist?( zipped_path )
       system( "gunzip #{zipped_path}" )
-      if File.exists?( unzipped_path )
+      if File.exist?( unzipped_path )
         convert_cloudfront_log( unzipped_path, converted_path )
-        if File.exists?( converted_path )
+        if File.exist?( converted_path )
           s3_client.delete_object( bucket: LOG_BUCKET_NAME, key: log_object.key )
         end
       end

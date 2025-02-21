@@ -18,7 +18,7 @@ jobs:
   build-and-push-dev-docker-image:
     name: Build/Push Dev Docker Image
     needs: pre-build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:    
     - uses: actions/checkout@v4
 
@@ -63,7 +63,7 @@ jobs:
   refresh-dev-staging-deployment:
     name: Refresh Dev Staging Deployment
     needs: build-and-push-dev-docker-image
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - name: Refresh Dev inaturalist
       uses: actions/github-script@v6

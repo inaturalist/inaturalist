@@ -72,7 +72,7 @@ end
 
 def stop
   return if fail_unless_binaries_exists
-  if File.exists?(pid_path)
+  if File.exist?(pid_path)
     `kill \`cat #{ pid_path }\``
   end
 end
@@ -96,7 +96,7 @@ def binary_path
 end
 
 def binaries_exist
-  File.exists?(binary_path)
+  File.exist?(binary_path)
 end
 
 def fail_unless_binaries_exists

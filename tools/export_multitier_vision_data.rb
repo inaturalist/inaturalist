@@ -37,13 +37,13 @@ else
 end
 
 puts "\n\n"
-unless Dir.exists?( OPTS[:root_dir] )
+unless Dir.exist?( OPTS[:root_dir] )
   puts "Root directory `#{OPTS[:root_dir]}` does not exist. Exiting.\n\n"
   exit( 0 )
 end
 
 export_dir_fullpath = File.join( OPTS[:root_dir], OPTS[:dir] )
-if Dir.exists?( export_dir_fullpath )
+if Dir.exist?( export_dir_fullpath )
   puts "Export directory `#{export_dir_fullpath}` already exists. Exiting.\n\n"
   exit( 0 )
 end

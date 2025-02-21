@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "~> 3.0.4"
+ruby "~> 3.3.7"
 
 gem "rails", "6.1.7.9"
 
@@ -83,7 +83,7 @@ gem "optimist"
 gem "kt-paperclip"
 gem "parallel"
 gem "patron"
-gem "pg"
+gem "pg", "~> 1.5.9"
 gem "rack-cors"
 gem "rack-mobile-detect"
 gem "rack-tracker"

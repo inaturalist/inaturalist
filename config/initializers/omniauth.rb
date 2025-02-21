@@ -48,7 +48,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   if CONFIG.soundcloud
     opts = { scope: "non-expiring" }
-    if File.exists?( "/etc/ssl/certs" )
+    if File.exist?( "/etc/ssl/certs" )
       opts[:client_options] = { ssl: { ca_path: "/etc/ssl/certs" } }
     end
     provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, opts

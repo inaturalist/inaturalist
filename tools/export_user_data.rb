@@ -50,7 +50,7 @@ end
 
 @emails_to_exclude = []
 if OPTS.exclude
-  unless File.exists?( OPTS.exclude )
+  unless File.exist?( OPTS.exclude )
     Optimist::die "Couldn't find file of emails to exclude at '#{OPTS.exclude}'"
   end
   @emails_to_exclude = File.readlines( OPTS.exclude ).map(&:chomp).sort

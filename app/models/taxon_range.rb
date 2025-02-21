@@ -97,7 +97,7 @@ class TaxonRange < ApplicationRecord
   end
   
   def create_geom_from_kml_attachment
-    return unless File.exists?(self.range.path)
+    return unless File.exist?(self.range.path)
     tmp_path = File.join(Dir::tmpdir, "#{self.id}_#{Time::now.seconds_since_midnight.round}.geojson")
     cmd = "ogr2ogr -f GeoJSON #{tmp_path} #{self.range.path}"
     system cmd

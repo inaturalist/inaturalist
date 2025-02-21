@@ -55,7 +55,7 @@ taxon_split.taxon_change_taxa.each do |end_taxon_change_taxon| #Loop through the
   end
   
   #convert the kml to a geom
-  if File.exists?(new_range.range.path)
+  if File.exist?(new_range.range.path)
     tmp_path = File.join(Dir::tmpdir, "#{new_range.id}_#{Time::now.seconds_since_midnight.round}.geojson")
     cmd = "ogr2ogr -f GeoJSON #{tmp_path} #{new_range.range.path}"
     puts "\tRunning #{cmd}"

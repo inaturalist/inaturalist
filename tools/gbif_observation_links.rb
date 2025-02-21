@@ -97,7 +97,7 @@ def download
   archive_path = "#{@tmp_path}/#{filename}"
   work_path = @tmp_path
   FileUtils.mkdir_p @tmp_path, :mode => 0755
-  unless File.exists?("#{@tmp_path}/#{filename}")
+  unless File.exist?("#{@tmp_path}/#{filename}")
     system_call "curl -L -o #{@tmp_path}/#{filename} #{url}"
   end
   system_call "unzip -d #{@tmp_path} #{@tmp_path}/#{filename}"
