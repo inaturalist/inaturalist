@@ -60,6 +60,7 @@
         places: {
           disabled: true
         },
+        geomodel_thresholded: true,
         taxon: // taxon-like object, though common_name and to_styled_s attributes are supported
       }
     ],

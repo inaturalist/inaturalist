@@ -164,6 +164,7 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
     prefers_gbif_layer_maps: false,
     prefers_medialess_obs_maps: false
   };
+  const isAdmin = currentUser?.roles?.indexOf( "admin" ) >= 0;
   return {
     taxon,
     observationLayers: [
@@ -208,7 +209,8 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
       } ) )
     },
     places: true,
-    ranges: true
+    ranges: true,
+    geomodel_thresholded: isAdmin
   };
 };
 
