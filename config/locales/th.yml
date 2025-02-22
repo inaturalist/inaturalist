@@ -1681,6 +1681,7 @@ th:
     ส่วนหนึ่งของ<a href="%{url}">เครือข่าย iNaturalist</a>
   #As in members of a project
   members: สมาชิก
+  membership_model: เงื่อนไขการเป็นสมาชิก
   mentioned_you_in_noun_html: "%{user} พูดถึงคุณใน%{noun}"
   mentioned_you_in_noun_by_html: "%{user} พูดถึงคุณใน%{noun}โดย %{by}"
   mentioned_you_in_noun_by_user_html: "%{user} พูดถึงคุณใน%{noun}โดย %{by}"
@@ -1769,6 +1770,10 @@ th:
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: ต้องอยู่ในโครงการ %{project}
+  must_be_in_taxon: ต้องอยู่ใน %{taxon}
+  must_be_not_in_taxon: ต้องไม่อยู่ใน %{taxon}
+  must_be_not_observed_in_place: ต้องไม่พบใน %{place}
+  must_be_observed_in_place: ต้องพบใน %{place}
   must_have_sounds: ต้องมีเสียง
   n_ago: "%{n} ที่แล้ว"
   n_people_disagrees: "มี %{amount} คนไม่เห็นด้วย"
@@ -2480,6 +2485,8 @@ th:
   rotate_right: หมุนขวา
   rules_types:
     must_be_georeferenced: ต้องอ้างอิงพิกัด
+    must_be_observed_in_place: ต้องพบในสถานที่
+    must_be_in: ต้องพบในหน่วยอนุกรมวิธาน
     must_be_verifiable: ต้องพิสูจน์ได้
     must_be_wild: ต้องพบตามธรรมชาติ
   running_total: ผลรวมสะสม
@@ -2665,6 +2672,8 @@ th:
   store: ร้านค้า
   store_caps: ร้านค้า
   studies_that_used_inaturalist_data_in_year: การศึกษาที่ใช้ข้อมูลจาก iNaturalist ในปี %{year}
+  submission_model: เงื่อนไขการเพิ่มการสังเกต
+  submission_model_description: ใครเพิ่มการสังเกตเข้าโครงการของคุณได้บ้าง?
   submit_observations:
     other: ส่ง %{count} การสังเกต
   submitted: ส่งเมื่อ
@@ -3337,6 +3346,9 @@ th:
           has_media: มีสื่อ (รูปหรือเสียง)
           verifiable: ตรวจสอบได้
           wild: พบตามธรรมชาติ
+        submission_models:
+          any: ทุกคน
+          curators: ผู้ดูแลโครงการ
         trust_allow_members_to_trust: |-
           ให้สมาชิกไว้วางใจผู้ดูแลโครงการนี้เข้าถึงพิกัดที่ถูกซ่อนได้
         trust_help_desc: |-
