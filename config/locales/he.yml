@@ -1922,10 +1922,19 @@ he:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: דירוג מדויק
   except: למעט
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: לא לכלול
   exclude_places: הוצאת מקומות
   exclude_projects: למעט פרויקטים
   exclude_taxa: הוצאת טקסונים
   exclude_users: למעט הא.נשים
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: לא כולל %{count} טקסון
+    two: לא כולל %{count} טקסונים
+    many: לא כולל %{count} טקסונים
+    other: לא כולל %{count} טקסונים
   exclusion_filters: סינון החוצה
   existing_flags: סימונים קיימים
   exit_full_screen: "יציאה ממסך מלא"
@@ -2139,6 +2148,9 @@ he:
   generate_your_year_in_review_caps: ליצירת סיכום השנה שלך ל-%{year}
   generating_mobile_archive: "מייצר ארכיון נייד"
   Genus: סוג
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: ציון גיאוגרפי
   geomodel_expected_nearby_label_is_derived: |
     התווית "צפוי בסביבה" נגזרת מהגיאו-מודל. <a href="%{url}">למדו עוד על הגיאו-מודל כאן</a>.
   geoprivacy: מיקום פרטי
@@ -2177,6 +2189,9 @@ he:
   grid_tooltip: הצגה בתצוגת גלריה
   group: קבוצה
   grouping: קיבוץ
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: לנחש מיקום לפי תצפיות אחרות?
   guides: מגדירים
   guide_compiled_by: המגדיר נערך על ידי
   guide_deleted: המגדיר נמחק
@@ -2241,6 +2256,9 @@ he:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: הסתרת "ללא תוויות"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: הסתרת תצפיות עם מיקומים פרטיים
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: הסתרת סכום מצטבר
   hide_uncountable_species: הסתרת מינים שאינם ניתנים לספירה
@@ -2317,6 +2335,7 @@ he:
   identotron_for: Identotron עבור
   identotron_help: סיוע Identotron
   ids: "זיהויים"
+  ids_made_for_others__title: זיהויים בשביל א.נשים אחרים
   if_for_some_reason_a_user_doesnt_agree: |
     אם מסיבה כלשהי אינך מסכימ.ה עם הטקסון הקהילתי, ניתן לדחות אותו, כלומר שהזיהוי שלך ישמש לקישורים עם תצפיות אחרות, לעדכון רשימות חיים, וכו'. זה גם אומר שהתצפית שלך תוכל להשיג דרגת מחקר רק כאשר הקהילה תסכים עמך.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2357,12 +2376,22 @@ he:
   in_place_x: ב%{place}
   #As in a reason to flag something
   inappropriate: בלתי-הולם
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: רשת iNaturalist
   inaturalist_network_affiliation: השתייכות לרשת ב-iNaturalist
   #Label for messages you've received
   inbox: דואר נכנס
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: לכלול
   include_places: כולל מקומות
   include_projects: כולל פרויקטים
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: לכלול / להשמיט טקסונים הורים
   include_suggestions_not_seen_nearby: כולל הצעות שלא נראו בקרבת מקום
   include_suggestions_not_expected_nearby: לכלול הצעות שאינן צפויות בסביבה
   include_taxa: כולל טקסונים
@@ -2799,6 +2828,9 @@ he:
   make_a_taxon_swap_instead?: לעשות החלפת טקסון במקום?
   make_curator: להפוך לאוצר.ת
   make_manager: להפוך למנהל.ת
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: להפוך לפרטי
   make_sure_the_default_photo_looks_good: לוודא שתמונת ברירת המחדל נראית איכותית בהצגה גדולה
   make_this_your_default_license: "הגדר %{type}כרשיון ברירת המחדל"
   make_this_the_primary_listing: "זוהי הרשומה העיקרית"
@@ -3252,14 +3284,20 @@ he:
   observation_: תצפית
   observation_accuracy_experiment_the_sample_for: "הדגימה עבור ניסוי זה עוד לא יוצרה"
   observation_accuracy_experiment_our_accuracy_estimate: "הערכת הדיוק שלנו כתוצאה מניסוי זה הינה נכונה ב-%{percent}."
+  observation_accuracy_experiment_our_goak: "המטרה שלנו לדיוק המוערך (נכון) והנכונות של תת-הקבוצה בדרגת מחקר היא מעל ל-95% (קו מקווקו)."
   observation_accuracy_experiment_precision_results: "מקבץ התוצאות לפי תת-סדרה"
+  observation_accuracy_experiment_taxon_rank_level: "רמת דרגת הטקסון"
   observation_accuracy_experiment_taxon_observations_count: "ספירת תצפיות של הטקסון"
   observation_accuracy_experiment_iconic_taxon_name: "שם טקסון אייקוני"
   observation_accuracy_experiment_continent: "יבשת"
   observation_accuracy_experiment_year: "שנה"
   observation_accuracy_experiment_quality_grade: "רמת איכות"
   observation_accuracy_experiment_show_frequency: "הצגת תדירות"
+  observation_accuracy_experiment_click_on_bars: "לחצו על העמודות כדי לחקור את תתי-המדגמים."
+  observation_accuracy_experiment_bars_will: "העמודות יהיו לחיצות לאחר שעבר המועד האחרון לתקיפות המדגמים."
   observation_accuracy_experiment_accuracy_results: "דיוק התוצאות לפי תת-סדרה"
+  observation_accuracy_experiment_as_observations: "עם תיקוף התצפיות ממדגם זה, אחוז הלא וודאים ירד ואחוזי הנכונים והשגויים יעלו."
+  observation_accuracy_experiment_experiment_still: "הניסוי עדיין בתהליך. הסטטיסטיקות יתעדכנו מדי יום עד למועד תיקוף המדגמים ב-%{date}."
   observation_accuracy_experiment_observation_accuracy_experiment: "ניסוי דיוק התצפית"
   observation_accuracy_experiment_validators: "מתקפים"
   observation_accuracy_experiment_show_additional_validators: "(הצגת מתקפים נוספים)"
@@ -3276,10 +3314,17 @@ he:
   observation_accuracy_experiment_sample_size: "גודל מדגם: %{number}"
   observation_accuracy_experiment_target_validator: "יתירות מתקפים מיועדים: %{number}"
   observation_accuracy_experiment_number_of: "מספר המתקפים המועמדים: %{number}"
+  observation_accuracy_experiment_mean_subsample: "גודל תת-מדגם ממוצע לכל מתקף מועמד: %{number}"
+  observation_accuracy_experiment_mean_number: "ממוצע מספר המתקפים לכל תצפית דגימה: %{number}"
+  observation_accuracy_experiment_validator_candidate: "קריטריונים למתקף מועמד"
   observation_accuracy_experiment_if_an_identifier: "אם מזהה ביצע.ה לפחות 3 זיהויים משפרים על טקסון, אנחנו מחשיבים אותו או אותה מוסמכ.ת לתקף את אותו הטקסון. זיהויים משפרים הם ההצעות הראשונות של טקסון שהקהילה מסכימה איתן בדיעבד."
   observation_accuracy_experiment_if_an_identifier_continent: "אם מזהה ביצע.ה לפחות 3 זיהויים משפרים על טקסון ביבשת כלשהי, אנחנו מחשיבים אותו או אותה מוסמכ.ת לתקף את אותו הטקסון באותה היבשת. זיהויים משפרים הם ההצעות הראשונות של טקסון שהקהילה מסכימה איתן בדיעבד."
   observation_accuracy_experiment_for_example: "למשל, מזהה 1 מוסיפ.ה זיהוי של A לתצפית. אם מזהה 2 מוסיפ.ה זיהוי מוביל של B בהמשך, הזיהוי של מזהה 1 על A הופך לזיהוי משפר. אם מזהה 3 מוסיפ.ה זיהוי תומך ל-B מאוחר יותר, הזיהוי של מזהה 2 על B הופך לזיהוי משפר."
   observation_accuracy_experiment_step_2: "שלב 2: תיקוף מדגמים"
+  observation_accuracy_experiment_we_contacted: "יצרנו קשר עם מתקפים מועמדים וביקשנו מהם להוסיף זיהויים לתת-המדגמים שלהם. הגרף מימין מקבץ תצפיות מדגם לפי מספר המתקפים."
+  observation_accuracy_experiment_number_percent_of: "מספר המתקפים והמתקפות המשתתפים: %{number} (%{percentage})"
+  observation_accuracy_experiment_percent_of: "אחוז המדגם שתוקף: %{percent}"
+  observation_accuracy_experiment_step_3: "שלב 3: ניקוד תצפיות מדגם מתיקופים"
   observation_accuracy_experiment_we_scored: "סיווגנו את התצפיות בדגימה כ\"נכונות\", \"לא ודאי\", או \"שגוי\" על ידי השוואת זיהוי המאמתים עם הטקסון של כל תצפית בדגימה. זיהויים שמתאימים או מדויקים יותר מהטקסון של התצפית בדגימה סווגו כ\"נכונים\". זיהויים שאינם מתנגשים אך פחות מדויקים סווגו כ\"לא ודאי\", כמו גם מקרים שבהם מספר מאמתים לא הסכימו. זיהויים מתנגשים פחות מדויקים או כאלו על ענפים שונים סווגו כ\"שגוי\"."
   observation_accuracy_experiment_correct: "נכון"
   observation_accuracy_experiment_uncertain: "לא ודאי"
@@ -3289,6 +3334,9 @@ he:
   observation_accuracy_experiment_we_calculated: "חישבנו את הדיוק כאחוז התצפיות הנכונות עבור הדגימה כולה וכן עבור תתי-קבוצות כגון תת-הקבוצה של Research Grade. בנוסף, חישבנו את אחוז התצפיות הלא-ברורות ואת אחוז התצפיות השגויות. בדוגמת הדמות לצידה, האחוז הנכון היה 83%, האחוז הלא-ברור היה 6% והאחוז השגוי היה 11%."
   observation_accuracy_experiment_precision: "מקבץ"
   observation_accuracy_experiment_if_every_sample: "אם כל תצפית דגימה סווגה לטקסון גס כגון ממלכה, ייתכן שהנכונות של מאגר הנתונים של iNaturalist תהיה גבוהה מאוד, אך הדיוק עשוי להיות נמוך מדי כדי להפוך את המאגרים לשימושיים. להערכת הדיוק, ספרנו את מספר הצאצאים העלים בטקסונומיה של iNaturalist עבור כל טקסון הקשור לכל תצפית דגימה. חישבנו את הדיוק כ-1 מחולק במספר הצאצאים העלים. אם הטקסון היה טקסון עלים, הדיוק הוא 100%. התעלמנו מדרגות שמתחת למין בחישוב הדיוק."
+  observation_accuracy_experiment_in_the_example: "בדוגמה שבצד ימין, הנכונות הממוצעת של שלוש תצפיות מדגם תהיה 51%."
+  observation_accuracy_experiment_read_more_html: |
+    לקריאה נוספת על אופן הארגון של ניסוי זה, ראו את <a href="%{url}">הפוסט בבלוג</a> המצורף.
   observation_accuracy_validator_email_subject2: "האם תעזרו לנו בניסוי %{version} להעריך את הדיוק של תצפיות iNaturalist?"
   observation_accuracy_validator_email_will_you_help_us2_html: |
     האם תעזרו לנו <a href="%{url}">בניסוי (גרסה %{version})</a> להעריך את הדיוק של תצפיות iNaturalist?
@@ -3310,10 +3358,18 @@ he:
     נחשב את הדיוק באמצעות השוואת הזיהוי שלך לטקסון התצפית. באפשרותך לדלג על תצפיות אשר כבר הוספת עליהן זיהוי, במידה והזיהוי ההוא עוד רלוונטי. למידע נוסף על אופן ספירת ההסכמות וחילוקי הדעות, המשיכו לקרוא.
   observation_accuracy_validator_email_ids_equal_to: |
     זיהויים השווים ל-(A) או מדויקים יותר מ-(B) טקסון התצפית ייספרו כהסכמות.
+  observation_accuracy_validator_email_ids_sibling_to: |
+    זיהויים שהם בענפים שונים (C) או שהם גסים יותר מטקסון התצפית איפה שאת.ה בוחר.ת "לא, אבל…" לדיאלוג "חילוקי דעות פוטנציאליים" (D) ייספרו כחילוקי דעות.
+  observation_accuracy_validator_email_ids_coarser_than: |
+    זיהויים גסים יותר מטקסון התצפית בהם בחרת "אני לא יודע.ת אבל…" לדיאלוג "חילוקי דעות פוטנציאלי" (E) ייספרו כלא וודאיים.
+  observation_accuracy_validator_email_we_are_so_grateful2_html: |
+    אנחנו אסירי תודה על עזרתך כמזהה ב-iNaturalist, ומודים לך מאוד על השתתפותך במחקר זה. כדאי לקרוא את <a href="%{url}">שיטות המחקר</a> כדי ללמוד עוד על עיצוב הניסוי.
   observation_accuracy_validator_email_with_gratitude: בהוקרה,
   observation_accuracy_validator_email_the_inaturalist_team: צוות iNaturalist
   observation_accuracy_validator_email_please_do_not_reply_html: |
     <b>נא לא להשיב להודעה זו. אם יש לך שאלות או משוב, אנא השאירו תגובה ב<a href="%{url}">פוסט הבלוג הזה</a> או שלחו מייל ל-<a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
+  observation_accuracy_validator_email_please_do_not_reply_no_post_html: |
+    <b>נא לא להשיב להודעה זו. אם יש לך שאלות או משוב, נא לשלוח דוא"ל אל <a href="mailto:help+accuracy_experiment@inaturalist.org">help@inaturalist.org</a></b>
   observation_added_to_the_project: "תצפית הוספה לפרויקט %{project}"
   observation_aggregation: צבירת תצפית
   #Attributes an observation to a user. %{user} can be a username or a full
@@ -4705,6 +4761,8 @@ he:
   share_colon: "שיתוף:"
   short_code_for_this_place: קיצור עבור מקום זה, למשל ארה"ב עבור ארצות הברית
   short_or_abbreviated_title_for_display: כותרת קצרה או מקוצרת להצגה באזורים עם מגבלת מיקום. מקסימום 10 תווים.
+  #Form field label for setting a common name as the default common name in a language for a taxon
+  should_this_common_name_be_shown_by_default: האם השם הנפוץ הזה צריך להופיע כברירת מחדל עבור הטקסון הזה?
   show: הצגה
   show_active_and_inactive_taxa: הצגת טקסונים פעילים ולא פעילים
   show_hidden_content: הצגת תוכן מוסתר
@@ -4792,6 +4850,8 @@ he:
     חברות וחברי הרשת יכולים לשתף דאטא מ-iNaturalist על מנת לקדם מחקר ושמירת טבע, כל אחת בתחום שלה. יש להן אחריות להעריך באיזו מידה בקשת הדאטא שלהן והשלכותיה הפוטנציאליות תקינות והולמות; להבהיר בכתב את האחריות גם לוודא את אבטחת המידע ולא לחשוף אותו בגלוי באף צורה, או לשתף אותו מעבר למטרה המקורית לשמה הוא נועד; לתעד כל מקרים של שיתוף יחד עם התוצאות הנלוות או שימושים מתוכננים; ולדווח מדי שנה בשנה ל-iNaturalist.
   sites_affiliation_overview_the_inaturalist_network_is_a_collection_html: |
     %{start_tag_network}רשת iNaturalist%{end_tag_network} היא אוסף של אתרים מותאמים לפי מיקום %{start_tag_global}ברשת iNaturalist העולמית%{end_tag_global}.
+  sites_affiliation_overview_the_inaturalist_network_offers_a_localized_html: |
+    %{start_tag_network}רשת iNaturalist%{end_tag_network} מציעה חוויה מקומית בתוך %{start_tag_global}קהילת iNaturalist הגלובלית%{end_tag_global}.
   sites_affiliation_overview_when_you_affiliate: |
     בחברות לאתר של מדינה ברשת iNaturalist, כתובת הדוא"ל שלך והמיקומים האמיתיים של המיקומים המוסתרים והפרטיים שלך משותפים עם מנהלי האתר. זה מאפשר לתצפיות שלך להיות שימושיות יותר עבור מאמצי שימור טבע מקומיים. אם את.ה גר.ה או מבקר.ת תכופות במדינה החברה ברשת, מומלץ להשתייך אליה כדי לסייע בשיתוף הנתונים.
   sites_affiliation_overview_you_can_continue_html: |
@@ -4985,6 +5045,7 @@ he:
   synonyms: שמות נרדפים
   table: טבלה
   table_of_contents: תוכן עניינים
+  tabulate_presence_absence_data_from_trips: ארגון נתוני נוכחות-היעדרות מטיולים בצורת טבלה
   #Noun, as in "add a tag to this observation"
   tag: תגית
   tagging: 'מתייג...'
@@ -5694,6 +5755,7 @@ he:
   user_muted: המשתמש.ת מושתק.ת
   user_observed_on_on_date_in_place: |
     תוצפת על ידי %{user} ב%{date} ב%{place}
+  user_said_comment_html: <span class="meta">%{user} אמר.ה,</span> "%{comment}"
   user_suggested_an_id: "%{user} הציע.ה זיהוי"
   user_trusts_this_project_for_none: יוזר אינו בוטח בפרויקט זה עם קואורדינטות מוסתרות.
   user_trusts_this_project_for_any: |
@@ -6212,6 +6274,9 @@ he:
             <a href="%{url}">יש לעיין בהנחיות הקהילה</a> ללמוד איך לשמור על iNaturalist מקום ידידותי ומזמין להיות בו.
           please_read_the_teachers_guide_html: |
             במידה וכן, נא לקרוא את <a href="%{url}">מדריך המורות והמורים</a> שלנו לטיפים על השימוש ב%{site_name} עם תלמידות.ים.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            במידה וכן, נא לקרוא את <a href="%{url}">המדריך לאנשי ונשות חינוך</a> שלנו לטיפים על השימוש ב%{site_name} עם תלמידות.ים.
     donate:
       donate_short_desc: "תרומה להבעת תמיכתך!"
       donate_desc_moore_html: |
@@ -6288,6 +6353,7 @@ he:
       please_add_an_email_and_password: נא להוסיף דוא"ל וסיסמה על מנת שלא תאבד.י גישה לחשבון שלך
       please_click_the_link_sent_to_email_to_confirm_html: נא ללחוץ על הקישור שנשלח אל <span class="email">%{email}</span> לאישור כתובת הדוא"ל שלך.
       please_confirm_that_email_is_the_best_contact_html: נא לאשר כי <span class="email">%{email}</span> היא הדרך הטובה ביותר ליצור עמך קשר.
+      your_site_account_has_no_email: לחשבון ה-%{site_name} שלך אין כתובת דוא"ל מקושרת.
     flags:
       show:
         #Heading for display of content that has been flagged. This could
@@ -6338,6 +6404,7 @@ he:
           #Areas where both the Expected Nearby Map and Taxon Range predict that the taxon exists
           true_presences_colon: |
             נוכחות אמיתית:
+          true_presences_definition2: אזורים בהם יש חיזוי לקיום הטקסון הן לפי מפת "צפוי סביבה" והן לפי תפוצת הטקסון
           #Areas where only the Expected Nearby Map predicts the taxon exists
           false_presences_colon: |
             נוכחות שקרית:
@@ -6569,6 +6636,11 @@ he:
         privacy_notice_html: |
           אמנם הודעות הן פרטיות בינך לבין הנמענ.ת, אך גם צוות iNaturalist יכול לצפות בהודעות אלו, ויעשה זאת כאשר הודעות מסומנות לתיווך. אם יש לך צורך בתקשורת פרטית באמת, נא לבדוק אמצעי תקשורת אחרים התומכים בהצפנה חזקה.
     nls_demo:
+      #Vision Language models are machine-learning models that can work with
+      #both text and images. They can for example search images with a text
+      #prompt, search text with an image prompt, or search images given another
+      #image as a prompt
+      vision_language_demo: דמו ראיית שפה
       what_do_you_want_to_search_for: מה את.ה רוצה לחפש?
       #Provides an example of a query to use with the Vision Language Demo.
       #query_in_english will be something like "a bird eating fruit".
@@ -6576,6 +6648,7 @@ he:
       #better with English queries, so we want our example queries to
       #(mostly) be in English
       for_example_query: למשל %{query_in_english}
+      try_one_of_these_example_searches_colon: "נסו אחד מהחיפושי המדגם האלו:"
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
@@ -6837,9 +6910,52 @@ he:
         data_quality_assessment_desc3_html: |
           ציון האיכות מסכם את הדיוק, השלמות, הרלוונטיות וההתאמה של תצפית iNaturalist בתור נתוני מגוון ביולוגי. חלק מהמאפיינים נקבעים באופן אוטומטי, ואחרים ניתנים להצבעה על ידי משתמשי iNaturalist. iNaturalist משתפת תצפיות "בדרגת מחקר" מורשות עם מספר שותפי נתונים לשימוש במדע ובשמירה טבע.
         disagreement_count_desc: "מספר הטקסונים המזוהים שאינם חולקים הורה משותף"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          הערכת איכות הנתונים היא סיכום של דיוק התצפית. כל התצפיות מתחילות בדרגת <strong>"חסר"</strong> והופכות ל<strong>"צריך זיהוי"</strong> כאשר:
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: לתצפית <strong>יש תאריך</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: התצפית <strong>מכילה תיוג גיאוגרפי</strong> (למשל, יש לה קואורדינטות של רוחב/אורך)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: התצפית <strong>מכילה תמונות או קולות</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: התצפית <strong>אינה של בן אדם</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: תצפיות הופכות ל<strong>"דרגת מחקר"</strong> כאשר
         #One of a list of requirements an observation must meet to be in the Research Grade category
         dqa_help_research_grade_community_species_html: |
           קהילת %{site_name} <strong>מסכימה על זיהוי ברמת מין או נמוך יותר</strong>, כלומר כאשר יותר מ-2/3 מהמזהים מסכימים על טקסון (אם הקהילה הצביעה שהטקסון הקהילתי לא ניתן לשיפור נוסף, אז זה חוזר לזיהוי ברמת תת-משפחות או נמוך יותר).
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          תצפיות יחזרו לדרגת <strong>"חסר"</strong> אם התנאים הנ"ל לא התקיימו או אם הקהילה מסכימה.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          ה<strong>יום, חודש ו/או שנה אינם נראים מדויקים</strong> (למשל, מופיע שלג בתמונה אך התאריך הוא בקיץ; אין להתחשב בשעת היום).
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>המיקום לא נראה מדויק</strong> (למשל, קופים באמצע האוקיינוס, היפופוטמים בבנייני משרדים וכו').
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>האורגניזם אינו בר/פולש</strong> (למשל, בשבי או מגודל על ידי בני אדם)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          התצפית <strong>אינה מכילה ראיות לאורגניזם</strong>, למשל, תמונות של תכונות מים, סלעים, נופים שאין בהם את האורגניזם, וכו'.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          התצפית <strong>אינה מציגה עדות טרייה (100~ שנים) לאורגניזם</strong> (למשל מאובנים, אבל עקבות, גללים ועלים מתים הם תקינים)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          התצפית <strong>אינה מציגה ראיות הקשורות לנושא אחד</strong> (לדוגמה, היא כוללת ארבע תמונות של אורגניזמים בלתי קשורים; תמונה המציגה את בית הגידול של נושא התצפית היא תקינה).
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          התצפית כבר לא צריכה זיהוי <em>וגם</em> הטקסון הקהילתי נמצא ברמת משפחה או גבוה יותר
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          הטקסון אינו הורה או צאצא של הטקסון המשויך לזיהוי של המתצפת.ת <em>וגם</em> המתצפת.ת בחר.ה להימנע מטקסון קהילתי
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          ואם זה לא היה מסובך דיו, יש גם מצבים שבהם המערכת נותנת הצבעה:
         #One of a list of wasy iNat itself can vote in the DQA
         dqa_help_system_captive_vote: |
           המערכת תכריע שהתצפית אינה בר/פולש אם קיימות לפחות 10 תצפיות נוספות ברמת סוג או נמוכה יותר באותו מקום קטן ביותר שמכיל את התצפית (כגון מחוז, מדינה או מדינה מקבילה), ו-80% או יותר מהתצפיות הללו סומנו כלא בר/פולש.
@@ -7315,6 +7431,8 @@ he:
         avg_ttcid: לזמן ממוצע לזיהוי קהילתי
         avg_ttid: לזמן ממוצע לזיהוי
         identifiers_desc: הוסיפו זיהוי לתצפית של משתמש.ת אחר.ת ביום זה
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: נוצר באמצעות <a href="%{url}">iNatNext</a>
         iphone_desc_html: נוצר באמצעות <a href="%{url}">אפליקציית האייפון של iNaturalist</a>
         med_ttcid: זמן חציון לזיהוי קהילתי
         med_ttid: זמן חציון לזיהוי
@@ -7335,6 +7453,8 @@ he:
         recent_w_0_obs_desc: הצטרפו ב-7 הימים האחרונים והוסיפו 0 תצפיות
         recent_w_7_obs: יוזר חדש עם 7 תצפיות או יותר
         recent_w_7_obs_desc: הצטרפו ב-7 הימים האחרונים והוסיפו 7 תצפיות או יותר
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: נוצר באמצעות <a href="%{url}">Seek</a>
         time_to_id_desc: זמן לזיהוי (בשעות, ממוצע נע בטווח של שבוע)
         TTCID: זמן לזיהוי קהילה
         TTCID_desc: זמן לקבלת זיהוי מיוזר אחר שתואם את הטקסון הקהילתי.
@@ -7417,6 +7537,8 @@ he:
         translators_title: מתרגמות ומתרגמים
         translators_desc: |
           הידעת ש-iNaturalist תורגם ל-%{x_languages} שפות, כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
+        translators_desc_2: |
+          האם ידעת ש-iNaturalist תורגם ל-%{x_languages} שפות, כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמים המדהימים.ים שהוסיפו תרגומים השנה, יחד עם מספר המילים שתרגמו עבור %{website_link_tag}האתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}.
         translators_desc_for_site: |
           הידעת ש-%{site_name} תורגם כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
         translators_desc_for_site_2: |
@@ -7841,7 +7963,7 @@ he:
       - ו'
       - שבת
     abbr_month_names:
-      - 
+      -
       - ינו'
       - פבר'
       - מרץ
@@ -7886,7 +8008,7 @@ he:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%B %-d, %Y'
     month_names:
-      - 
+      -
       - ינואר
       - פברואר
       - מרץ
@@ -8417,7 +8539,15 @@ he:
             action:
               not_supported_for_this_kind_of_content: לא קיימת תמיכה עבור תוכן זה
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: רק תוכן מוסתר יכול להיות פרטי
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: רק אנשי צוות ואוצרים יכולים להסתיר תוכן
               only_staff_and_hiding_curators_can_unhide: רק צוות ואוצרים שמסתירים תוכן יכולים לבטל את הסתרתו
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: רק אנשי צוות יכולים להגדיר תוכן כפרטי
               staff_cannot_be_suspended: לא ניתן להשהות צוות
             user_id:
               must_be_a_curator: חייב.ת להיות אוצר.ת
@@ -8429,6 +8559,10 @@ he:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "הקואורדינטות לא יכולות להיות 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                לא ניתן לשמור מסיבה לא ידועה, נא לצלם צילום מסך ולדווח לצוות.
             observed_on:
               cannot_be_greater_than_date_created: |
                 לא יכול להיות מאוחר יותר מאשר התאריך שבו התצפית הועלתה
@@ -8457,6 +8591,10 @@ he:
             place_geometry:
               is_too_large_to_edit: גדול מדי בכדי לערוך
               is_too_large_to_import: קובץ גדול מדי לייבוא
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: גדולה או מורכבת מדי לעיבוד לעיבוד לפני שהיא פגה
               contains_too_many_observations: יותר מדי תצפיות מכדי לייבא
               cannot_be_blank: לא יכול להיות ריק
               invalid_point: מכילה נקודה לא תקינה, למשל רו אורך גבוה מ-180 או קו רחוב נמוך מ-90-
@@ -8501,6 +8639,8 @@ he:
               #The ruler (instance against which rules are being applied), must
               #be an instance of a project
               must_be_a_project: חייב להיות פרויקט
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: מאפשר רק את כללי הפרויקט
         quality_metric:
           attributes:
             base:
@@ -8551,6 +8691,10 @@ he:
             taxon:
               too_many_photos: |
                 לא יכולה להכיל מעל %{max} תמונות
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                לא יכול להכיל סימונים לא פתורים
         taxon_range:
           attributes:
             iucn_relationship:
