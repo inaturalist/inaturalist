@@ -29,7 +29,7 @@
           .form-group
             %label=t "views.messages.to"
             .user-field
-              = image_tag User.new.icon.url(:thumb), class: "user_image usericon", data: { original_src: User.new.icon.url(:thumb) }
+              = image_tag User.new.icon.url(:thumb), class: "usericon", data: { original_src: User.new.icon.url(:thumb) }
               %input.user_name.form-control{ type: "text", placeholder: t(:start_typing_someones_name) }
             = f.hidden_field :to_user_id
         = f.text_field :subject
