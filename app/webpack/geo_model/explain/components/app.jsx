@@ -12,6 +12,8 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 /* global WEIGHTING_FIGURE_URL */
 /* global RANGE_COMPARISON_FIGURE_URL */
 
+/* eslint react/no-danger: 0 */
+
 const urlParams = new URLSearchParams( window.location.search );
 
 const NEARBY_COLOR = urlParams.get( "nearby_color" ) || "#007DFF";
@@ -110,6 +112,8 @@ class App extends React.Component {
   render( ) {
     const { taxon, config } = this.props;
     const buttons = [];
+    const isAdmin = config.currentUser?.roles?.indexOf( "admin" ) >= 0;
+
     buttons.push( (
       <button
         className={`btn btn-default${this.state.layer === "expectedNearbyLayer" ? " active" : ""}`}
@@ -361,6 +365,17 @@ class App extends React.Component {
             <div id="controls" className="btn-group">
               { buttons }
             </div>
+            { isAdmin && this.state.layer === "expectedNearbyLayer" && (
+              <div className="nearby-geojson">
+                <a
+                  href={`https://inaturalist-open-data.s3.us-east-1.amazonaws.com/geomodel/geojsons/latest/${taxon.id}.geojson`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {I18n.t( "views.geo_model.explain.nearby_map.download_expected_nearby_map_as_geojson" )}
+                </a>
+              </div>
+            ) }
           </div>
         </div>
         <div className="tab-description">

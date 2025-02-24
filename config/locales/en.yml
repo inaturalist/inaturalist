@@ -6927,6 +6927,9 @@ en:
             You can think of the Expected Nearby Map as an estimate of whether the species
             is present somewhere inside the grid cell or entirely absent.
           figure_alt_text: The Geomodel applies the Expected Nearby label
+          # text for a link to a GeoJSON-formatted representation of the taxon's
+          # Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download Expected Nearby Map as GeoJSON
         unthresholded_map:
           unthresholded_map: Unthresholded Map
           we_use_the_unthresholded_map: |
