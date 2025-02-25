@@ -6515,6 +6515,9 @@ da:
             Man kan tænke på Forventet i nærheden-kortet som et skøn over, hvorvidt arten
             er til stede et eller andet sted i gittercellen, eller er helt fraværende.
           figure_alt_text: Geomodellen tilføjer etiketten Forventet i nærheden
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download Forventede nærliggende kort som GeoJSON
         unthresholded_map:
           unthresholded_map: Uafgrænset-kort
           we_use_the_unthresholded_map: |
