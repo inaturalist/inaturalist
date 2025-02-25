@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
-import bb, { areaSpline, spline } from "billboard.js";
+import bb, { areaSpline, spline, zoom } from "billboard.js";
 import { schemeCategory10 } from "d3";
-import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
 
@@ -298,6 +297,7 @@ class Charts extends React.Component {
     } = this.props;
     // const dates = this.props.historyKeys;
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
+    const formattedYears = years.map((y) => `${y}-06-15`);
     const chunks = _.chunk( years, 2 );
     const that = this;
     const regions = chunks.map( pair => (
@@ -327,15 +327,13 @@ class Charts extends React.Component {
           type: "timeseries",
           tick: {
             culling: true,
-            values: years.map( y => `${y}-06-15` ),
+            values: formattedYears,
             format: "%Y"
           },
-          extent: [moment( ).subtract( 10, "years" ).toDate( ), new Date( )]
         }
       },
       zoom: {
-        enabled: true,
-        rescale: true
+        enabled: zoom(),
       },
       tooltip: {
         contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
@@ -349,6 +347,7 @@ class Charts extends React.Component {
     } );
     const mountNode = $( ".HistoryChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.historyChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
+    this.historyChart.zoom([formattedYears[formattedYears.length - 11], formattedYears[formattedYears.length - 1]]);
   }
 
   render( ) {
