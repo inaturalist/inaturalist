@@ -6174,6 +6174,9 @@ de:
             Die Karte zur erwarteten Verbreitung kann als Einschätzung betrachtet werden, ob die Art
             irgendwo innerhalb der Rasterzelle vorkommt oder komplett fehlt.
           figure_alt_text: Das Geomodell verwendet die 'in der Umgebung zu erwarten'-Kennzeichnung
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download der 'In der Nähe zu erwarten' Karte als GeoJSON
         unthresholded_map:
           figure_alt_text: Das Geomodell gewichtet die Ergebnisse der Computer-Vision
         range_comparison:
