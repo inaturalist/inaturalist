@@ -93,6 +93,8 @@ class ModelTaxonomyUpdater
       taxon_id
       rank_level
       name
+      iconic_taxon_id
+      rank
     )
     output_file.write( "#{columns.join( ',' )}\n" )
 
@@ -106,7 +108,9 @@ class ModelTaxonomyUpdater
             parent_taxon_id: synonym.parent_id,
             taxon_id: synonym.id,
             rank_level: synonym.rank_level,
-            name: synonym.name.tr( ",", "" )
+            name: synonym.name.tr( ",", "" ),
+            iconic_taxon_id: synonym.iconic_taxon_id,
+            rank: synonym.rank
           }
           output_file.write( "#{row.values.join( ',' )}\n" )
         end
@@ -137,11 +141,13 @@ class ModelTaxonomyUpdater
     all_taxon_and_ancestor_ids.keys.in_groups_of( 1000, false ) do | group_ids |
       Taxon.where( id: group_ids ).
         order( observations_count: :desc ).
-        pluck( :id, :ancestry, :rank_level, :name ).each do | row |
-        id, ancestry, rank_level, name = row
+        pluck( :id, :ancestry, :rank_level, :name, :iconic_taxon_id, :rank ).each do | row |
+        id, ancestry, rank_level, name, iconic_taxon_id, rank = row
         @taxon_metadata_from_db[id] ||= {}
         @taxon_metadata_from_db[id][:rank_level] = rank_level
         @taxon_metadata_from_db[id][:name] = name
+        @taxon_metadata_from_db[id][:iconic_taxon_id] = iconic_taxon_id
+        @taxon_metadata_from_db[id][:rank] = rank
         last_ancestor_id = 0
         ancestors = ancestry.blank? ? [] : ancestry.split( "/" ).map( &:to_i )
         ancestors << id
@@ -176,6 +182,8 @@ class ModelTaxonomyUpdater
       iconic_class_id
       spatial_class_id
       name
+      iconic_taxon_id
+      rank
     )
     @output_taxonomy_file.write( "#{columns.join( ',' )}\n" )
     write_all_taxa
@@ -199,7 +207,9 @@ class ModelTaxonomyUpdater
         leaf_class_id: ( model_taxon && model_taxon["leaf_class_id"] ) || "",
         iconic_class_id: ( model_taxon && model_taxon["iconic_class_id"] ) || "",
         spatial_class_id: ( model_taxon && model_taxon["spatial_class_id"] ) || "",
-        name: taxon[:name]
+        name: taxon[:name],
+        iconic_taxon_id: taxon[:iconic_taxon_id],
+        rank: taxon[:rank]
       }
       @output_taxonomy_file.write( "#{row.values.join( ',' )}\n" )
       if @taxon_children[child_id]
