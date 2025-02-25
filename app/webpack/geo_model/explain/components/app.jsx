@@ -112,7 +112,6 @@ class App extends React.Component {
   render( ) {
     const { taxon, config } = this.props;
     const buttons = [];
-    const isAdmin = config.currentUser?.roles?.indexOf( "admin" ) >= 0;
 
     buttons.push( (
       <button
@@ -365,7 +364,7 @@ class App extends React.Component {
             <div id="controls" className="btn-group">
               { buttons }
             </div>
-            { isAdmin && this.state.layer === "expectedNearbyLayer" && (
+            { this.state.layer === "expectedNearbyLayer" && (
               <div className="nearby-geojson">
                 <a
                   href={`https://inaturalist-open-data.s3.us-east-1.amazonaws.com/geomodel/geojsons/latest/${taxon.id}.geojson`}
