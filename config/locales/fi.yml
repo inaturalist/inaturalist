@@ -5499,6 +5499,9 @@ fi:
             Esimerkiksi Yhdysvaltojen keskiosissa tehdyn liskohavainnon kohdalla saattaa olla "Odotettavissa lähistöllä" -merkki ehdotuksen <i>Sceloporus consobrinus</i> osalta, mutta ei <i>Sceloporus occidentalis</i> osalta perustuen lajien "Odotettavissa lähistöllä"-karttoihin.
           you_can_think: |
             Voit ajatella "Odotettavissa lähistöllä" -kartan arvioksi siitä, esiintyykö laji jossakin ruudukon solussa vai ei.
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Lataa Odotettevissa lähistöllä -kartta GeoJSON-muodossa.
         range_comparison:
           false_presences_definition: Alueet, joilla vain "Odotettavissa lähistöllä" -kartta ennustaa taksonin esiintyvän
           false_absences_definition: Alueet, joilla vain levinneisyysalue ennustaa taksonin esiintyvän
