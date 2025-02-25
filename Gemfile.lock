@@ -741,6 +741,7 @@ DEPENDENCIES
   aws-sdk-cloudfront
   aws-sdk-s3
   aws-sdk-waf
+  base64 (~> 0.2.0)
   bcrypt_pbkdf
   better_errors
   binding_of_caller
