@@ -20,12 +20,6 @@ es-CO:
   x_identifications_:
     one: '%{count} Identificación'
     other: '%{count} identificaciones'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
   x_languages:
     one: "%{count} idioma"
     other: "%{count} idiomas"
@@ -70,9 +64,6 @@ es-CO:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
   x_others:
     one: "%{count} otro"
     other: "%{count} otros"
@@ -3623,13 +3614,24 @@ es-CO:
     must_be_verifiable: debe ser verificable
     must_be_wild: debe ser silvestre
   running_total: Total acumulado
-  said: dijo
   satellite: satélite
   save: Guardar
   save_all: Guardar todo
   save_and_add_another: Guardar y agregar otra
   save_and_continue: "Guardar &amp; continuar..."
   save_and_add_taxa: "Guardar y comenzar a agregar las especies"
+  views:
+    stats:
+      year:
+        translators_desc: |
+          ¿Sabías que iNaturalist ha sido traducido a %{x_languages},
+          casi por completo por %{x_people}, algunos de los cuales ni siquiera usan iNat? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
+        translators_desc_for_site: |
+          ¿Sabías que %{site_name} ha sido traducido casi por completo por %{x_people}? Aquí están todos los increíbles traductores que han aportado traducciones este año, junto con el número de palabras que han traducido para el %{website_link_tag}sitio web%{link_tag_end}, nuestras aplicaciones para %{iphone_link_tag}iPhone%{link_tag_end} y %{android_link_tag}Android%{link_tag_end} y %{seek_link_tag} Seek%{link_tag_end}. Puedes ver todas las personas que han contribuido con las traducciones, incluidas las de los años anteriores y personas de Translatewiki, en nuestros repositorios de código para
+          %{view_all_web_link_tag}web%{link_tag_end} y
+          %{view_all_mobile_link_tag}para móviles%{link_tag_end}.
   number:
     format:
       significant: false

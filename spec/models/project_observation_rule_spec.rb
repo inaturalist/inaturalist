@@ -111,4 +111,48 @@ describe ProjectObservationRule do
     end
   end
 
+  it "ruler must be a project" do
+    expect( ProjectObservationRule.make( ruler: User.make! ) ).not_to be_valid
+    expect( ProjectObservationRule.make( ruler: Project.make! ) ).to be_valid
+  end
+
+  describe "umbrella_projects_only_allow_project_rules" do
+    it "non-umbrellas allow any rules" do
+      project = Project.make!
+      expect( ProjectObservationRule.make(
+        ruler: project, operator: "in_taxon?", operand: Taxon.make!
+      ) ).to be_valid
+      expect( ProjectObservationRule.make(
+        ruler: project, operator: "not_in_taxon?", operand: Taxon.make!
+      ) ).to be_valid
+    end
+
+    it "delegated umbrellas allow any rules" do
+      umbrella = Project.make!( project_type: "umbrella" )
+      umbrella.update( prefers_delegation: true )
+      expect( ProjectObservationRule.make(
+        ruler: umbrella, operator: "in_taxon?", operand: Taxon.make!
+      ) ).to be_valid
+      expect( ProjectObservationRule.make(
+        ruler: umbrella, operator: "not_in_taxon?", operand: Taxon.make!
+      ) ).to be_valid
+    end
+
+    it "umbrellas allow project rules" do
+      umbrella = Project.make!( project_type: "umbrella" )
+      expect( ProjectObservationRule.make(
+        ruler: umbrella, operator: "in_project?", operand: Project.make!
+      ) ).to be_valid
+    end
+
+    it "umbrellas do not allow non-project rules" do
+      umbrella = Project.make!( project_type: "umbrella" )
+      expect( ProjectObservationRule.make(
+        ruler: umbrella, operator: "in_taxon?", operand: Taxon.make!
+      ) ).not_to be_valid
+      expect( ProjectObservationRule.make(
+        ruler: umbrella, operator: "not_in_taxon?", operand: Taxon.make!
+      ) ).not_to be_valid
+    end
+  end
 end

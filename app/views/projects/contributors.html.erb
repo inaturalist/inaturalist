@@ -48,10 +48,11 @@
     <% for project_user in @contributors %>
       <tr>
         <td width="33%">
-          <%= link_to image_tag(project_user.user.icon.url(:thumb), :class => 'usericon'),
-            observations_path( user_id: project_user.user.login ),
-            :alt => h(project_user.user.login),
-            :title => "#{h(project_user.user.login)}, joined #{project_user.created_at.to_date.to_s(:long)}" %>
+          <%= link_to observations_path( user_id: project_user.user.login ),
+            alt: project_user.user.login,
+            title: "#{project_user.user.login}, joined #{project_user.created_at.to_date.to_s(:long)}" do %>
+            <%= user_image project_user.user, size: "thumb" %>
+          <% end -%>
           <%= link_to truncate(h(project_user.user.login), :length => 20), project_show_contributor_path(@project, project_user.user.login) %>
         </td>
         <td width="33%">

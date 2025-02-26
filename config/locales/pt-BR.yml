@@ -28,11 +28,11 @@ pt-BR:
     one: '<span class="count">%{count}</span> IDENTIFICAÇÃO'
     other: '<span class="count">%{count}</span> IDENTIFICAÇÕES'
   #Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identificador'
+    one: '<span class="count">%{count}</span> IDENTIFICADOR'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identificadores'
+    other: '<span class="count">%{count}</span> IDENTIFICADORES'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID feito para outros'
     other: '<span class="count">%{count}</span> IDs feitos para outros'
@@ -83,9 +83,9 @@ pt-BR:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observações revisadas"
     other: "<span class='count'>%{count}</span> observações revisadas"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadores'
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVADOR'
+    other: '<span class="count">%{count}</span> OBSERVADORES'
   x_others:
     one: "1 outra"
     other: "%{count} outras"
@@ -1883,6 +1883,9 @@ pt-BR:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Classificação exata
   except: exceto
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Excluir
   exclude_places: Excluir Locais
   exclude_projects: Excluir Projetos
   exclude_taxa: Excluir Táxons
@@ -2351,8 +2354,16 @@ pt-BR:
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   #Label for messages you've received
   inbox: Caixa de entrada
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Incluir
   include_places: Incluir lugares
   include_projects: Incluir Projetos
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Incluir / Excluir táxons ancestrais
   include_suggestions_not_seen_nearby: Incluir sugestões não vistas nas proximidades
   include_suggestions_not_expected_nearby: Incluir sugestões não esperadas nas proximidades
   include_taxa: Incluir Táxons
@@ -4651,7 +4662,6 @@ pt-BR:
     must_be_verifiable: Deve ser verificável
     must_be_wild: deve ser selvagem
   running_total: Total acumulado
-  said: disse
   satellite: satélite
   save: Salvar
   save_all: Salvar tudo
@@ -5766,6 +5776,7 @@ pt-BR:
   user_muted: Usuário silenciado
   user_observed_on_on_date_in_place: |
     %{user} observado um em %{date} no %{place}
+  user_said_comment_html: <span class="meta">%{user} disse,</span> "%{comment}"
   user_suggested_an_id: "%{user} sugeriu uma identificação"
   user_trusts_this_project_for_none: O usuário não confia neste projeto com coordenadas ocultas.
   user_trusts_this_project_for_any: |
@@ -6956,6 +6967,67 @@ pt-BR:
           compartilha observações do "Nível de Pesquisa" com uma série de parceiros de dados
           para uso em ciência e conservação.
         disagreement_count_desc: "# de táxons identificados que não estão entre os ancestrais de um grupo ou espécie"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          A avaliação da qualidade dos dados é um resumo da acurácia das observações, Todas observações são incialmente classificadas como <strong>"casual"</strong>, e posteriormente podem receber a classificação de <strong>"pesquisa"</strong> quando
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: a observação <strong>recebe uma data</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: 'a observação <strong>é geo-referenciada</strong> (ex: tem coordenadas de latitude e longitude)'
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: a observação <strong>tem fotos ou sons</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: a observação <strong>não é de um humano</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Observações se tornam <strong>"grau de pesquisa"</strong> quando
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          a %{site_name} <strong>comunidade concorda em uma identificação no nível de espécie ou mais baixo</strong>, isto é, quando mais de 2/3 dos identificadores concordam em um táxon (se a comunidade considerar que que o Taxon da Comunidade não pode ser melhorado, esse nivel pode subir para nível de subfamilia ou mais baixo).
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          As observações serão revertidas para <strong>"casual"</strong> se as condições acima
+          não forem cumpridas ou se a comunidade concordar que
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          O <strong>dia, mês e ano não parecem ser corretos</strong> (por exemplo, neve
+          aparece na foto, mas a data é de verão; o horário está inconsistente)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          a localização <strong>não parece correta</strong> (por exemplo, macacos
+          no meio do oceano, hipopótamos em prédios de escritório, etc.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          o organismo <strong>não é selvagem/natural</strong> (por exemplo, em cativeiro
+          ou cultivado por humanos)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          a observação <strong>não apresenta evidência de um organismo
+          </strong>, por ex. imagens de corpos de água, rochas, paisagens
+          que não incluem o organismo, etc.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          a observação <strong>não apresenta evidência recente (cerca de 100 anos) do organismo</strong> (por ex. fósseis; mas pegadas, fezes e folhas mortas são ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          a observação <strong>não apresenta evidências relacionadas a um
+          assunto</strong> (por exemplo, tem quatro fotos de organismos não relacionados entre sí; porém uma foto
+          mostrando o habitat do assunto da observação é OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          a observação não mais precisa de uma identificação <em>e</em> a ID da comunidade
+          está na família ou acima
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          o táxon não é um ancestral ou descendente do táxon associado
+          com o ID do observador <em>e</em> o observador optou por não usar
+          o Táxon da Comunidade
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          E se isso não foi complicado o suficiente, há também situações
+          em que o sistema participa da votação:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          O sistema vai considerar que a observação não é selvagem/natural se houver pelo menos 10 outras observações do mesmo gênero ou inferior na menor unidade geográfica (pais, estado ou municipio) desta observação e 80% ou mais dessas observações foram marcadas como não selvagem/naturais.
         identification_count_desc: '# de identificações para um único táxon'
         flagged_photos_desc_html: |
           Algumas dessas fotos foram sinalizadas como conteúdo inapropriado ou infrações de direitos autorais. Para detalhes, veja %{links}
@@ -7303,7 +7375,7 @@ pt-BR:
         display_project_name: Exibir nome do projeto
         do_you_need_features_from_traditional2: |
           Você precisa de características de projetos tradicionais, tais como campos personalizados para observações ou adicionar observações individuais que não podem ser filtradas automaticamente?
-        duplicate_project: Projeto duplicado
+        duplicate_project: Duplicar o Projeto
         include_annotated_observations: |
           Inclua apenas observações anotadas com um atributo em particular (por exemplo, fase de vida), ou um atributo e valor específicos (por exemplo, estágio de vida = adulto).
           Existe um limite de um filtro de anotação por projeto.
@@ -7368,10 +7440,10 @@ pt-BR:
         we_have_redesigned_projects: |
           Os projetos são projetados para incluir automaticamente todas as observações que se encaixam lugares, táxons, usuários, qualidade e datas que você define. Escolha entre dois tipos principais: Projetos de coleção e projetos de guarda-chuva, que compartilham os seguintes recursos:
         welcome_to_projects: Bem-vindo ao projeto!
-        you_can_learn_more_html: |
-          Você pode aprender mais sobre como gerenciar projetos
-          <a href="https://www.inaturalist.org/pages/managing-projects">aqui</a>
-          ou leia a história dos projetos no
+        you_can_learn_more2_html: |
+          Você pode aprender mais sobre como gerenciar projetos 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">aqui</a>
+          ou ler a história dos projetos no
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nosso blog</a>.
         you_have_not_defined_any_observation_requirements: |
           Você não definiu nenhum requisito para observações. Certifique-se de selecionar um ou mais taxa (por exemplo, pássaros, coníferas), sites (por exemplo, Brasil, Yellowstone), usuários e/ou datas para definir as observações que você deseja incluir em seu projeto.
@@ -7603,8 +7675,28 @@ pt-BR:
           todas as pessoas que contribuíram com traduções, incluindo pessoas dos últimos anos e pessoas da Translatewiki, em nossos repositórios de códigos de
           %{view_all_web_link_tag}web%{link_tag_end} e
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_2: |
+          Você sabia que o iNaturalist foi traduzido em %{x_languages},
+          quase inteiramente por %{x_people}, algumas dessas que nem mesmo usam o iNat? Aqui
+          estão todos os incríveis tradutores que ajudaram a adicionar traduções este ano,
+          juntamente com o número de palavras que eles traduziram para o
+          %{website_link_tag}website%{link_tag_end}, nosso aplicativo para 
+          %{iphone_link_tag}iPhone%{link_tag_end} e
+          %{android_link_tag}Android%{link_tag_end},
+          %{seek_link_tag}Seek%{link_tag_end}, e
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Você sabia que o %{site_name} foi traduzido quase inteiramente por %{x_people}? Aqui estão todos os tradutores incríveis que adicionaram traduções este ano, junto ao número de palavras que eles traduziram para o %{website_link_tag}site%{link_tag_end}, o aplicativo iNaturalist para %{iphone_link_tag}iPhone%{link_tag_end} e %{android_link_tag}Android%{link_tag_end}, bem como o %{seek_link_tag}Seek%{link_tag_end}.Você pode ver todas as pessoas que contribuíram para traduções em todos os idiomas incluindo pessoas de anos passados e o pessoal da Translatewiki, em nosso repositório de códigos da%{view_all_web_link_tag}web%{link_tag_end} e %{view_all_mobile_link_tag}mobile%{link_tag_end}.
+        translators_desc_for_site_2: |
+          Você sabia que %{site_name} foi traduzido quase inteiramente por
+          %{x_people}? Aqui estão todos os incríveis tradutores que
+          adicionaram traduções este ano, junto com o número de palavras
+          que eles traduziram para o site
+          %{website_link_tag}%{link_tag_end}, eos apps iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end} e
+          %{android_link_tag}Android%{link_tag_end},
+          %{seek_link_tag}Seek%{link_tag_end}, e
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Se você quiser ajudar a traduzir, %{link_tag}aprenda como%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -8341,6 +8433,8 @@ pt-BR:
       assessment_section:
         title: Título
         body: Corpo
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Usuário bloqueado
@@ -8758,6 +8852,10 @@ pt-BR:
             taxon:
               too_many_photos: |
                 não pode ter mais de %{max} fotos
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                não pode ter sinalizações não resolvidas
         taxon_range:
           attributes:
             iucn_relationship:

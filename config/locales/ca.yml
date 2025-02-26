@@ -27,12 +27,6 @@ ca:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓ'
     other: '<span class="count">%{count}</span> IDENTIFICACIONS'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> identificador'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> identificadors'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span>ID fetes per altri'
     other: '<span class="count">%{count}</span>IDs fetes per altri'
@@ -83,9 +77,6 @@ ca:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observació revisada"
     other: "<span class='count'>%{count}</span> observacions revisades"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observador'
-    other: '<span class="count">%{count}</span> Observadors'
   x_others:
     one: "1 altre"
     other: "%{count} més"
@@ -4456,7 +4447,6 @@ ca:
     must_be_verifiable: ha de ser verificable
     must_be_wild: ha de ser silvestre
   running_total: Acumulat total
-  said: deia
   satellite: satèl·lit
   save: Desa
   save_all: Desa-ho tot
@@ -6812,9 +6802,6 @@ ca:
         we_have_redesigned_projects: |
           Els projectes han estat redissenyats per incloure automàticament totes les observacions que coincideixen amb el lloc, tàxon, usuaris, qualitat i dates que definiu. Escolliu entre dos tipus principals: Projectes de Col·lecció i de Paraigua, que comparteixen les característiques següents:
         welcome_to_projects: benvinguts al Projects!
-        you_can_learn_more_html: |
-          Podeu aprendre més sobre la gestió de projectes <a href="https://www.inaturalist.org/pages/managing-projects">aquí</a> o llegir la història dels projectes al 
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nostre blog</a>.
         you_have_not_defined_any_observation_requirements: |
           No heu definit cap requeriment de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e. ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates per identificar les observacions que voleu incloure en el vostres projecte.
         errors:
@@ -7006,7 +6993,7 @@ ca:
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_desc_for_site: |
           Sabies que %{site_name} ha estat traduït gairebé en la seva totalitat per %{x_people}? Aquí tens tots els extraordinaris traductors que han afegit traduccions enguany, juntament amb el número de mots han traduït per al %{website_link_tag}lloc web%{link_tag_end}, les nostres Apps a %{iphone_link_tag}iPhone%{link_tag_end} i %{android_link_tag}Android%{link_tag_end}, i a %{seek_link_tag}Seek%{link_tag_end}. Pots veure
-          totes persones que han contribuït a les traduccions, incloent persones d'anys anteriors i companys de Translatewiki, als nostres repositoris de codi a la %{view_all_web_link_tag}web%{link_tag_end} i 
+          totes persones que han contribuït a les traduccions, incloent persones d'anys anteriors i companys de Translatewiki, als nostres repositoris de codi a la %{view_all_web_link_tag}web%{link_tag_end} i
           %{view_all_mobile_link_tag}mobile%{link_tag_end}.
         translators_prompt: |
           Si voleu ayudar a la traducció, %{link_tag}apreneu cóm fer-ho%{link_tag_end}.

@@ -1,4 +1,3 @@
-version: "2"
 services:
   redis:
     container_name: redis
@@ -10,7 +9,7 @@ services:
 
   es:
     container_name: es
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.15.3
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false

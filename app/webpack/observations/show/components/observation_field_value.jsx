@@ -134,12 +134,26 @@ class ObservationFieldValue extends React.Component {
     if ( ofv.user ) {
       addedBy = (
         <div className="added-by">
-          <div className="view">
-            { I18n.t( "label_colon", { label: I18n.t( "added_by" ) } ) }
+          { ofv.user && (
+          <div>
+            <div className="view">
+              { I18n.t( "label_colon", { label: I18n.t( "added_by" ) } ) }
+            </div>
+            <a href={`/people/${ofv.user.login}`}>
+              { ofv.user.login }
+            </a>
           </div>
-          <a href={`/people/${ofv.user.login}`}>
-            { ofv.user.login }
-          </a>
+          ) }
+          { ofv.updater && (
+          <div>
+            <div className="view">
+              { I18n.t( "label_colon", { label: I18n.t( "last_edited_by" ) } ) }
+            </div>
+            <a href={`/people/${ofv.updater.login}`}>
+              { ofv.updater.login }
+            </a>
+          </div>
+          ) }
         </div>
       );
     }

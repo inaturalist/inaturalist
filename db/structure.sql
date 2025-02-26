@@ -2511,7 +2511,8 @@ CREATE TABLE public.messages (
     body text,
     read_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sent_at timestamp without time zone
 );
 
 
@@ -2578,7 +2579,12 @@ CREATE TABLE public.moderator_actions (
     action character varying,
     reason character varying,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    private boolean DEFAULT false,
+    resource_user_id integer,
+    resource_parent_id integer,
+    resource_parent_type character varying,
+    resource_content text
 );
 
 
@@ -4669,7 +4675,7 @@ ALTER SEQUENCE public.taggings_id_seq OWNED BY public.taggings.id;
 
 CREATE TABLE public.tags (
     id integer NOT NULL,
-    name character varying(255),
+    name character varying(255) COLLATE pg_catalog."und-x-icu",
     taggings_count integer DEFAULT 0
 );
 
@@ -5608,7 +5614,8 @@ CREATE TABLE public.user_signups (
     root_user_id_by_ip integer,
     root_user_id_by_browser_id integer,
     created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
+    updated_at timestamp(6) without time zone NOT NULL,
+    mobile boolean DEFAULT false
 );
 
 
@@ -8560,6 +8567,13 @@ CREATE INDEX index_deleted_photos_on_created_at ON public.deleted_photos USING b
 
 
 --
+-- Name: index_deleted_photos_on_photo_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deleted_photos_on_photo_id ON public.deleted_photos USING btree (photo_id);
+
+
+--
 -- Name: index_deleted_sounds_on_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11397,8 +11411,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20240828123245'),
 ('20240923134239'),
 ('20240923134658'),
+('20241016204033'),
 ('20241127180606'),
 ('20241202092831'),
-('20241217203007');
+('20241217203007'),
+('20241218164832'),
+('20250124155306'),
+('20250127200519'),
+('20250130003627'),
+('20250204222646');
 
 

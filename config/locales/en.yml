@@ -43,17 +43,17 @@ en:
     many: '<span class="count">%{count}</span> IDENTIFICATIONS'
     other: '<span class="count">%{count}</span> IDENTIFICATIONS'
   # Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     # Number of people who have added identifications
-    zero: '<span class="count">%{count}</span> Identifiers'
+    zero: '<span class="count">%{count}</span> IDENTIFIERS'
     # Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identifier'
+    one: '<span class="count">%{count}</span> IDENTIFIER'
     # Number of people who have added identifications
-    few: '<span class="count">%{count}</span> Identifiers'
+    few: '<span class="count">%{count}</span> IDENTIFIERS'
     # Number of people who have added identifications
-    many: '<span class="count">%{count}</span> Identifiers'
+    many: '<span class="count">%{count}</span> IDENTIFIERS'
     # Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identifiers'
+    other: '<span class="count">%{count}</span> IDENTIFIERS'
   x_ids_made_for_others_html:
     zero: '<span class="count">%{count}</span> IDs made for others'
     one: '<span class="count">%{count}</span> ID made for others'
@@ -128,12 +128,12 @@ en:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> observation reviewed"
     other: "<span class='count'>%{count}</span> observations reviewed"
-  x_observers_html:
-    zero: '<span class="count">%{count}</span> Observers'
-    one: '<span class="count">%{count}</span> Observer'
-    few: '<span class="count">%{count}</span> Observers'
-    many: '<span class="count">%{count}</span> Observers'
-    other: '<span class="count">%{count}</span> Observers'
+  x_observers_caps_html:
+    zero: '<span class="count">%{count}</span> OBSERVERS'
+    one: '<span class="count">%{count}</span> OBSERVER'
+    few: '<span class="count">%{count}</span> OBSERVERS'
+    many: '<span class="count">%{count}</span> OBSERVERS'
+    other: '<span class="count">%{count}</span> OBSERVERS'
   x_others:
     one: "%{count} other"
     other: "%{count} others"
@@ -2068,10 +2068,20 @@ en:
   # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exact Rank
   except: except
+  # Label for a button that filters an observation search so it does not
+  # include observations of a specific taxon
+  exclude__taxon: Exclude
   exclude_places: Exclude Places
   exclude_projects: Exclude Projects
   exclude_taxa: Exclude Taxa
   exclude_users: Exclude Users
+  # Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    zero: Excluding %{count} taxa
+    one: Excluding %{count} taxon
+    few: Excluding %{count} taxa
+    many: Excluding %{count} taxa
+    other: Excluding %{count} taxa
   exclusion_filters: Exclusion Filters
   existing_flags: Existing Flags
   exit_full_screen: "Exit Full Screen"
@@ -2562,8 +2572,16 @@ en:
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   # Label for messages you've received
   inbox: Inbox
+  # Label for a button that filters an observation search so it only includes
+  # observations of a specific taxon
+  include__taxon: Include
   include_places: Include Places
   include_projects: Include Projects
+  # Title for an array of options that allows the user to include or exclude
+  # the taxa that contain another taxon from an observation search, e.g. if
+  # the search results include Homo sapiens, the user could choose to refine
+  # the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Include / Exclude Ancestor Taxa
   include_suggestions_not_seen_nearby: Include suggestions not seen nearby
   include_suggestions_not_expected_nearby: Include suggestions not expected nearby
   include_taxa: Include Taxa
@@ -2675,6 +2693,8 @@ en:
   large: large
   last_active_with_date: "Last Active: %{date}"
   last_confirmed_observation: Last confirmed observation
+  # label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Last edited by
   last_observation: Last observation
   last_observation_caps: LAST OBSERVATION
   last_seen: Last seen
@@ -3008,6 +3028,9 @@ en:
   make_a_taxon_swap_instead?: Make a TaxonSwap instead?
   make_curator: Make curator
   make_manager: Make manager
+  # Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  # content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Make private
   make_sure_the_default_photo_looks_good: Make sure the default photo looks good in large size.
   make_this_your_default_license: "Make this your default %{type} license"
   make_this_the_primary_listing: "Make this the primary listing"
@@ -4944,7 +4967,6 @@ en:
     must_be_verifiable: must be verifiable
     must_be_wild: must be wild
   running_total: Running Total
-  said: said
   satellite: satellite
   save: Save
   save_all: Save All
@@ -6153,6 +6175,7 @@ en:
   user_muted: User muted
   user_observed_on_on_date_in_place: |
     %{user} observed one on %{date} in %{place}
+  user_said_comment_html: <span class="meta">%{user} said,</span> "%{comment}"
   user_suggested_an_id: "%{user} suggested an ID"
   user_trusts_this_project_for_none: User does not trust this project with hidden coordinates.
   user_trusts_this_project_for_any: |
@@ -6917,6 +6940,9 @@ en:
             You can think of the Expected Nearby Map as an estimate of whether the species
             is present somewhere inside the grid cell or entirely absent.
           figure_alt_text: The Geomodel applies the Expected Nearby label
+          # text for a link to a GeoJSON-formatted representation of the taxon's
+          # Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download Expected Nearby Map as GeoJSON
         unthresholded_map:
           unthresholded_map: Unthresholded Map
           we_use_the_unthresholded_map: |
@@ -7718,8 +7744,8 @@ en:
           Observations will revert to <strong>"casual"</strong> if the above
           conditions aren't met or the community agrees
         # One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_day_year_not_accurate_html: |
-          the <strong>day and year do not look accurate</strong> (e.g. snow
+        dqa_help_casual_day_year_not_accurate2_html: |
+          the <strong>day, month, and/or year do not look accurate</strong> (e.g. snow
           appears in the photo but the date is during summer; do not take
           time of day into account)
         # One of a list of reasons for an observation to revert to Casual
@@ -7747,13 +7773,13 @@ en:
           photo showing habitat of the observation’s subject is OK)
         # One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_voted_out_html: |
-          the observation no longer needs an ID <em>and</em> the community ID
-          is at family or above
+          the observation no longer needs an ID <em>and</em> the Community
+          Taxon is at family or above
         # One of a list of reasons for an observation to revert to Casual
-        dqa_help_casual_opted_out_maverick: |
-          the observer has opted out of the community ID and the community ID
-          taxon is not an ancestor or descendant of the taxon associated with
-          the observer's ID
+        dqa_help_casual_opted_out_maverick_html: |
+          the taxon is not an ancestor or a descendant of the taxon associated
+          with the observer's ID <em>and</em> the observer has opted out of
+          the Community Taxon
         # Leads a list of ways that iNat itself can vote in the DQA
         dqa_help_system_lead: |
           And if that wasn't complicated enough, there are also situations
@@ -8657,6 +8683,16 @@ en:
           including people from past years and folks from Translatewiki, in our
           %{view_all_web_link_tag}web%{link_tag_end} and
           %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories.
+        translators_desc_2: |
+          Did you know iNaturalist has been translated into %{x_languages},
+          almost entirely by %{x_people}, some of whom don't even use iNat? Here
+          are all the amazing translators who have added translations this year,
+          along with the number of words they've translated for the
+          %{website_link_tag}website%{link_tag_end}, our
+          %{iphone_link_tag}iPhone%{link_tag_end} and
+          %{android_link_tag}Android%{link_tag_end} apps,
+          %{seek_link_tag}Seek%{link_tag_end}, and
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           Did you know %{site_name} has been translated almost entirely by
           %{x_people}? Here are all the amazing translators who
@@ -8670,6 +8706,16 @@ en:
           including people from past years and folks from Translatewiki, in our
           %{view_all_web_link_tag}web%{link_tag_end} and
           %{view_all_mobile_link_tag}mobile%{link_tag_end} code repositories.
+        translators_desc_for_site_2: |
+          Did you know %{site_name} has been translated almost entirely by
+          %{x_people}? Here are all the amazing translators who
+          have added translations this year, along with the number of words
+          they've translated for the
+          %{website_link_tag}website%{link_tag_end}, the iNaturalist
+          %{iphone_link_tag}iPhone%{link_tag_end} and
+          %{android_link_tag}Android%{link_tag_end} apps,
+          %{seek_link_tag}Seek%{link_tag_end}, and
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           If you want to help translate, %{link_tag}learn how%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -9929,8 +9975,15 @@ en:
             action:
               not_supported_for_this_kind_of_content: is not supported for this kind of content
             base:
-              only_staff_and_hiding_curators_can_unhide:
-                Only staff and curators who hide content can unhide it
+              # Error saying that the private attribute of a ModeratorAction can only be applied
+              # if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Only hidden content can be private
+              # Error saying that only curator and admin users are allowed to create
+              # a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Only staff and curators can hide content
+              only_staff_and_hiding_curators_can_unhide: Only staff and curators who hide content can unhide it
+              # Error saying that only staff can set resources as private
+              only_staff_can_make_private: Only staff can set content as private
               staff_cannot_be_suspended: Staff cannot be suspended
             user_id:
               must_be_a_curator: must be a curator
@@ -9942,6 +9995,10 @@ en:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "coordinates cannot be 0,0"
+              # Message that might be displayed if an observation fails to
+              # save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                cannot be saved for unknown reason, please take a screenshot and report to staff
             observed_on:
               cannot_be_greater_than_date_created: |
                 cannot be greater than the date the observation was added
@@ -10017,6 +10074,14 @@ en:
                 must be observed after %{time}
               must_be_observed_before: |
                 must be observed before %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              # The ruler (instance against which rules are being applied), must
+              # be an instance of a project
+              must_be_a_project: must be a project
+              # Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: only allows project rules
         quality_metric:
           attributes:
             base:

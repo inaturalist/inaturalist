@@ -19,7 +19,7 @@ th:
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span> การจำแนก'
   #Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> ผู้จำแนก'
   x_ids_made_for_others_html:
@@ -56,7 +56,7 @@ th:
     other: "<a href='%{url}'>%{count} การสังเกต</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> การสังเกตที่ตรวจสอบแล้ว"
-  x_observers_html:
+  x_observers_caps_html:
     other: '<span class="count">%{count}</span> ผู้สังเกต'
   x_others:
     other: "%{count} อื่น ๆ"
@@ -349,7 +349,7 @@ th:
   #Message displayed after a project user changes role, e.g. they become a manager or a curator
   added_role: ได้รับการแต่งตั้ง
   added_to_favorites_html: |
-    เพิ่มไปยัง <a href="%{url}">ที่ชื่นชอบ</a>
+    เพิ่มไปยัง<a href="%{url}">รายการโปรด</a>
   adding: "กำลังทำการเพิ่ม..."
   adjust_brightness: ปรับความสว่างหน้าจออัตโนมัติ
   admin: แอดมิน
@@ -511,10 +511,10 @@ th:
   #Apps or services the user has authorized to access their iNat account, e.g.
   #the iNaturalist Android app or Flickr
   applications: แอปพลิเคชัน
-  apply_app_owner: นำไปใช้
+  apply_app_owner: สมัคร
   #Button label and section header when submitting a form to request to be a
   #curator
-  apply_curator: นำไปใช้
+  apply_curator: สมัคร
   apply_to_selected: นำไปใช้กับไฟล์ที่เลือก
   apply_captive_cultivated: "นำไปใช้กับการเพาะเลี้ยง/เพาะปลูก"
   apply_fields: นำไปใช้กับงานสนาม
@@ -694,7 +694,7 @@ th:
   change_descriptions:
     split: แยกหน่วยอนุกรมวิธานเก่าเป็นหลายหน่วยฯ ใหม่
     merge: หลายหน่วยอนุกรมวิธานเก่ารวมเป็นหนึ่งหน่วยฯ ใหม่
-  change_geoprivacy: 'เปลี่ยนการเปิดเผยพิกัดพิกัด'
+  change_geoprivacy: 'เปลี่ยนการเปิดเผยพิกัด'
   change_group: เปลี่ยนกลุ่ม
   change_icon: เปลี่ยนไอคอน
   change_password: เปลี่ยนรหัสผ่าน
@@ -1370,6 +1370,7 @@ th:
   identifications: การจำแนก
   inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
+  identifiers: ผู้จำแนก
   ids: "การจำแนก"
   ids_made_for_others__title: การจำแนกให้ผู้อื่น
   if_this_is_a_scientific_name: ถ้านี่เป็นชื่อวิทยาศาสตร์ ขณะนี้ได้รับการยอมรับหรือยัง?
@@ -1955,7 +1956,7 @@ th:
   occurrence_status: สถานะการปรากฏ
   occurrence_status_descriptions:
     absent: ไม่พบในพื้นที่
-    common: พบบ่อยครั้ง
+    common: พบบ่อย
     doubtful: สันนิษฐานว่าปรากฏอยู่ แต่ยังมีข้อสงสัยเกี่ยวกับหลักฐาน
     present: พบได้ในพื้นที่
     uncommon: พบได้ปกติแต่มีจำนวนน้อย ต้องสำรวจตามถิ่นอาศัยที่เหมาะสม
@@ -2106,6 +2107,7 @@ th:
     azerbaijan: อาเซอร์ไบจาน
     bangladesh: บังกลาเทศ
     bhutan: ภูฏาน
+    brazil: บราซิล
     british_indian_ocean_territory: บริติชอินเดียนโอเชียนเทร์ริทอรี
     british_virgin_islands: หมู่เกาะบริติชเวอร์จิน
     brunei: บรูไน
@@ -2551,6 +2553,7 @@ th:
   sending: กำลังส่ง...
   #Label for messages you've sent
   sent: ส่งแล้ว
+  separate_values_with_a_pipe: แยกแต่ละค่าด้วยขีดตั้ง เช่น "1-5|6-10|a lot" หรือ "yes|no|maybe"
   set_license: ตั้งค่าสัญญาอนุญาต
   settings: การตั้งค่า
   share: แชร์
@@ -2579,6 +2582,7 @@ th:
   showing_x_of_y: แสดง %{x} จาก %{y}
   showing_x_of_y_listings: "แสดง %{x} จาก %{y} รายการ"
   sign_out: ออกจากระบบ
+  sign_up: ลงทะเบียน
   similar_species: ชนิดที่คล้ายกัน
   similar_taxa: หน่วยอนุกรมวิธานที่คล้าย
   single_observation: การสังเกตเดียว
@@ -2922,7 +2926,7 @@ th:
   trends: แนวโน้ม
   #Noun
   trust: ความไว้วางใจ
-  trust_this_person_with_your_private_coordinates: ไว้วางใจคนนี้ในการเปิดเผยพิกัดที่ซ่อนไว้
+  trust_this_person_with_your_private_coordinates: ไว้วางใจคนนี้และเปิดเผยพิกัดให้เขาทราบ
   trust_this_project_with_your_private_coordinates?: เปิดเผยพิกัดที่ซ่อนไว้ต่อโครงการนี้หรือไม่?
   try_adding_species_form: ลองเพิ่มบางชนิดโดยใช้รูปแบบในหน้านี้
   twitter: ทวิตเตอร์
@@ -3149,6 +3153,12 @@ th:
   year_in_review_caps: "ภาพรวมปี %{year}"
   year_month: ปี/เดือน
   'yes': "ใช่"
+  #Used when trusting a project and the user is agreeing to trust the project
+  #with access to their hidden coordinates but only for observations of
+  #threatened taxa
+  yes_but_only_for_threatened: |-
+    เฉพาะการสังเกตที่เป็นชนิดพันธุ์ที่ถูกคุกคาม ยกเว้นการสังเกตที่ฉันตั้งค่าซ่อนพิกัดเอง
+  yes_find_them!: "ใช่ ค้นหาเลย!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
   yes_for_any_of_my_observations: "ใช่ เปิดเผยพิกัดทุกการสังเกต"
@@ -3389,8 +3399,6 @@ th:
         we_have_redesigned_projects: |
           โครงการจะช่วยรวบรวมทุกการสังเกตตามเงื่อนไขที่คุณกำหนด ได้แก่ สถานที่ หน่วยอนุกรมวิธาน ผู้ใช้งาน คุณภาพข้อมูล และวันที่ โดยสามารถเลือกสร้างโครงการ 2 ประเภทหลัก ได้แก่ โครงการสะสมชนิด และโครงการครอบคลุม ซึ่งมีลักษณะการใช้งานดังนี้:
         welcome_to_projects: ยินดีต้อนรับเข้าสู่โครงการ!
-        you_can_learn_more_html: |
-          เรียนรู้เพิ่มเติมเกี่ยวกับการจัดการโครงการได้<a href="https://www.inaturalist.org/pages/managing-projects">ที่นี่</a> หรืออ่านประวัติการเปลี่ยนแปลงโครงการได้ที่<a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">บล็อกของเรา</a>
         you_have_not_defined_any_observation_requirements: |
           คุณยังไม่ได้กำหนดเกณฑ์การสังเกต ตรวจสอบว่าได้เลือกอย่างน้อย 1 หน่วยอนุกรมวิธาน (เช่น นก สนเขา) สถานที่ (เช่น Brazil, Yellowstone) ผู้ใช้งาน และ/หรือวันที่สังเกต เพื่อรวมการสังเกตตามเกณฑ์เหล่านี้เข้าโครงการของคุณ
         errors:
@@ -3409,10 +3417,12 @@ th:
         this_has_been_flagged_as_spam: การสังเกตนี้ถูกรายงานว่าเป็นสแปม
     stats:
       index:
+        new_users_desc: ลงทะเบียนวันนี้
         #Short for "observations community-identified to genus"
         obs_cid_d_to_genus: การสังเกตที่จำแนกถึงระดับสกุล
         obs_id_d_desc: สร้างขึ้นภายใน 7 วันก่อนหน้าและมีการจำแนก (อาจเป็นการจำแนกโดยผู้สังเกตเอง)
         observers_desc: เพิ่มการสังเกตในวันนี้
+        recent_desc: ลงทะเบียนเมื่อ 7 วันก่อน
       year:
         #label used for a chart component that shows the count of users that
         #added both identifications and observations

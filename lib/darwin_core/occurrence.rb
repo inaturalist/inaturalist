@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# rubocop:disable Naming/MethodName
+
 module DarwinCore
   class Occurrence
     # Terms are tuples of (
@@ -16,7 +18,9 @@ module DarwinCore
     ANNOTATION_TERMS = [
       ["sex", "http://rs.tdwg.org/dwc/terms/sex", nil, "gbif_sex", "http://rs.gbif.org/vocabulary/gbif/sex"],
       ["lifeStage", "http://rs.tdwg.org/dwc/terms/lifeStage", nil, "gbif_lifeStage", "http://rs.gbif.org/vocabulary/gbif/life_stage"],
-      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil]
+      ["reproductiveCondition", "http://rs.tdwg.org/dwc/terms/reproductiveCondition", nil],
+      ["vitality", "http://rs.tdwg.org/dwc/terms/vitality", nil],
+      ["dynamicProperties", "http://rs.tdwg.org/dwc/terms/dynamicProperties", nil]
     ].freeze
     TERMS = [
       %w(id id),
@@ -60,7 +64,8 @@ module DarwinCore
       ["license", "http://purl.org/dc/terms/license", nil, "dwc_license"],
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
       %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick),
-      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry)
+      %w(publishingCountry http://rs.gbif.org/terms/1.0/publishingCountry),
+      %w(projectId http://rs.gbif.org/terms/1.0/projectId)
     ] + ANNOTATION_TERMS
     cattr_accessor :annotation_controlled_attributes do
       {}
@@ -142,8 +147,14 @@ module DarwinCore
     ANNOTATION_CONTROLLED_TERM_MAPPING = {
       sex: "Sex",
       lifeStage: "Life Stage",
-      reproductiveCondition: "Plant Phenology"
-    }
+      reproductiveCondition: "Flowers and Fruits",
+      vitality: "Alive or Dead"
+    }.freeze
+
+    ANNOTATION_ATTRIBUTES_FOR_DYNAMIC_PROPERTIES = [
+      "Evidence of Presence",
+      "Leaves"
+    ].freeze
 
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
@@ -179,7 +190,6 @@ module DarwinCore
         @dwc_use_community_taxon = true
       end
 
-      # rubocop:disable Naming/MethodName
       def occurrenceID
         uri
       end
@@ -475,7 +485,35 @@ module DarwinCore
         end.join( "|" )
         v == "cannot be determined" ? nil : v
       end
-      # rubocop:enable Naming/MethodName
+
+      # dynamicProperties can be used to list additional measurements, facts, etc in a format
+      # such as JSON. Currently the values for selected annotation categories, those in
+      # ANNOTATION_ATTRIBUTES_FOR_DYNAMIC_PROPERTIES, are included as a JSON string
+      def dynamicProperties
+        dynamic_properties = {}
+        ANNOTATION_ATTRIBUTES_FOR_DYNAMIC_PROPERTIES.each do | label |
+          values = winning_annotations_for_term( label ).map do | annotation |
+            annotation.controlled_value.label.downcase
+          end
+          next if values.empty?
+
+          dynamic_property_label = label.downcase.tr( " ", "_" ).camelize( :lower )
+          dynamic_properties[dynamic_property_label] = values.size == 1 ? values.first : values.sort
+        end
+        return nil if dynamic_properties.blank?
+
+        dynamic_properties.to_json
+      end
+
+      def vitality
+        winning_value = winning_annotation_value_for_term( "vitality" )
+        case winning_value
+        when "cannot be determined"
+          "undetermined"
+        else
+          winning_value
+        end
+      end
 
       def otherCatalogueNumbers
         uuid
@@ -512,6 +550,11 @@ module DarwinCore
 
         site.place.code.upcase
       end
+
+      def projectId
+        projects.map {| project | FakeView.project_url( project ) }.join( "|" )
+      end
     end
   end
 end
+# rubocop:enable Naming/MethodName

@@ -1376,7 +1376,10 @@ class YearStatistic < ApplicationRecord
     data = { languages: {}, users: {} }
     CONFIG.crowdin.projects.each_pair do | project_name, project |
       project.name = project_name
-      details = crowdin_project_details( project )
+      unless ( details = crowdin_project_details( project ) )
+        next
+      end
+
       translated_locales = I18n.t( "locales" ).keys.map( &:to_s )
       details["data"]["targetLanguages"].each do | lang |
         next if data[:languages][lang[:name]]

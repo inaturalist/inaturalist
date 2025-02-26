@@ -341,10 +341,14 @@ a.stat.total .remainder .label {
   }
 
   .life-list-user-icon {
-   border-radius: 50%;
-   margin: 15px 0px 15px 15px;
-   width: 103.57px;
-   vertical-align: middle;
+    background-position: center;
+    background-size: contain;
+    border-radius: 50%;
+    display: inline-block;
+    height: 103.57px !important;
+    margin: 15px 0px 15px 15px;
+    vertical-align: middle;
+    width: 103.57px !important;
   }
 
   .btn-inat,

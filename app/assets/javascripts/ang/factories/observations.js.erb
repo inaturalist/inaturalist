@@ -58,6 +58,9 @@ iNatAPI.constant( "V2_TAXON_FIELDS", {
     iconic_taxon_name: true,
     is_active: true,
     preferred_common_name: true,
+    preferred_common_names: {
+      name: true
+    },
     rank: true,
     rank_level: true
   },
@@ -116,7 +119,10 @@ iNatAPI.factory( "ObservationsFactory", [
     var speciesCounts = function ( params ) {
       var url = "/observations/species_counts";
       return shared.basicGet( url, _.extend( { }, params, {
-        fields: { taxon: V2_TAXON_FIELDS }
+        include_ancestors: true,
+        fields: {
+          taxon: V2_TAXON_FIELDS
+        }
       } ) );
     };
     var identifiers = function ( params ) {
@@ -140,7 +146,9 @@ iNatAPI.factory( "ObservationsFactory", [
     var processParamsForAPI = function ( p, possibleFields ) {
       var params = _.extend( { }, this.processParams( p, possibleFields ) );
       if ( p.per_page ) { params.per_page = p.per_page; }
-      return params;
+      return _.omitBy( params, function ( value ) {
+        return value === "any" || _.isNull( value ) || _.isUndefined( value );
+      } );
     };
     // Normalizes an object literal of observation query parameters into
     // something almost suitable for display to the user or submission to the

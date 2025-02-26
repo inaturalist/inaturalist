@@ -122,7 +122,7 @@ class Assessment extends React.Component {
                     <ul>
                       <li
                         dangerouslySetInnerHTML={{
-                          __html: I18n.t( "views.observations.show.dqa_help_casual_day_year_not_accurate_html" )
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_day_year_not_accurate2_html" )
                         }}
                       />
                       <li
@@ -155,7 +155,11 @@ class Assessment extends React.Component {
                           __html: I18n.t( "views.observations.show.dqa_help_casual_voted_out_html" )
                         }}
                       />
-                      <li>{ I18n.t( "views.observations.show.dqa_help_casual_opted_out_maverick" ) }</li>
+                      <li
+                        dangerouslySetInnerHTML={{
+                          __html: I18n.t( "views.observations.show.dqa_help_casual_opted_out_maverick_html" )
+                        }}
+                      />
                     </ul>
                     <p>{ I18n.t( "views.observations.show.dqa_help_system_lead" ) }</p>
                     <ul>

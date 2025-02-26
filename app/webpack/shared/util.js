@@ -265,6 +265,25 @@ function controlledTermDefinition( termLabel ) {
   return I18n.t( `controlled_term_definitions.${_.snakeCase( translationLabel )}`, defaults );
 }
 
+function isDisagreement( observation, compareTaxon ) {
+  if ( !observation || !( observation.community_taxon || observation.taxon ) ) {
+    return false;
+  }
+  let observationTaxon = observation.taxon;
+  if (
+    observation.preferences.prefers_community_taxon === false
+    || (
+      observation.user.preferences.prefers_community_taxa === false
+      && observation.preferences.prefers_community_taxon === null
+    )
+  ) {
+    observationTaxon = observation.community_taxon || observation.taxon;
+  }
+  return observationTaxon
+    && compareTaxon.id !== observationTaxon.id
+    && _.includes( observationTaxon.ancestor_ids, compareTaxon.id );
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -324,5 +343,6 @@ export {
   shortFormattedNumber,
   stripTags,
   translateWithConsistentCase,
-  updateSession
+  updateSession,
+  isDisagreement
 };

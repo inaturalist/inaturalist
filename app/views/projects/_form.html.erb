@@ -321,7 +321,9 @@
           <%- for pu in @project_curators %>
             <li class="inline smallbuttons buttonrow">
               <span class="inter">
-                <%= link_to image_tag( pu.user.icon.url(:mini), class: "usericon" ), pu.user %>
+                <%= link_to_user pu.user do %>
+                  <%= user_image pu.user, size: "mini" %>
+                <% end -%>
                 <%= link_to_user pu.user %>
               </span>
               <%= link_to t(:make_admin), change_admin_project_path( @project, pu.user ),

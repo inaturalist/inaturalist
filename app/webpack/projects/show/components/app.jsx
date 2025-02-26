@@ -28,7 +28,10 @@ const App = ( {
 } ) => {
   let view;
   let tab = config.selectedTab;
-  const showingCountdown = ( project.startDate && !project.started && tab !== "about"
+  const showingCountdown = ( project.startDate
+    && !project.started
+    && tab !== "about"
+    && !project.is_delegated_umbrella
     && !( project.recent_observations && !_.isEmpty( project.recent_observations.results ) ) );
   if ( showingCountdown ) {
     tab = "before_event";
@@ -158,7 +161,9 @@ const App = ( {
       </div>
     </div>
   );
-  const inProgress = ( project.startDate && !showingCountdown ) && !project.ended;
+  const inProgress = ( project.startDate && !showingCountdown )
+    && !project.ended
+    && !project.is_delegated_umbrella;
   const headerInProgress = inProgress ? (
     <div className="header-in-progress">
       { I18n.t( "event_in_progress" ) }

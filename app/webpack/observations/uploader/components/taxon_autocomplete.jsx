@@ -12,7 +12,10 @@ let searchInProgress;
 const TAXON_FIELDS = {
   ancestor_ids: true,
   default_photo: {
-    square_url: true
+    url: true
+  },
+  representative_photo: {
+    url: true
   },
   iconic_taxon_id: true,
   iconic_taxon_name: true,
@@ -43,8 +46,9 @@ class TaxonAutocomplete extends React.Component {
   }
 
   static itemPhoto( r ) {
-    if ( r.default_photo ) {
-      return ( <img alt="thumbnail" src={r.default_photo.square_url} /> );
+    const photo = r.representative_photo || r.default_photo;
+    if ( photo ) {
+      return ( <img alt="thumbnail" src={photo.url} /> );
     }
     return null;
   }
@@ -98,6 +102,10 @@ class TaxonAutocomplete extends React.Component {
       return TaxonAutocomplete.searchExternalTemplate( );
     }
     const photo = TaxonAutocomplete.itemPhoto( r ) || TaxonAutocomplete.itemIcon( r );
+    let taxonPageURL = `/taxa/${r.id}`;
+    if ( r.representative_photo && r.representative_photo.id !== r.default_photo?.id ) {
+      taxonPageURL += `?photo_id=${r.representative_photo.id}`;
+    }
     let className = "ac";
     let extraSubtitle;
     if ( r.isVisionResult ) {
@@ -124,7 +132,7 @@ class TaxonAutocomplete extends React.Component {
           </div>
         </div>
         { r.type !== "message" && (
-          <a target="_blank" rel="noopener noreferrer" href={`/taxa/${r.id}`} className="ac-view">
+          <a target="_blank" rel="noopener noreferrer" href={taxonPageURL} className="ac-view">
             { I18n.t( "view" ) }
           </a>
         ) }
@@ -423,9 +431,10 @@ class TaxonAutocomplete extends React.Component {
     this.idElement( ).val( item.id );
     // set the selection's thumbnail image
     if ( !noThumbnail ) {
-      if ( item.default_photo ) {
+      const photo = item.representative_photo || item.default_photo;
+      if ( photo ) {
         this.thumbnailElement( ).css( {
-          "background-image": `url('${item.default_photo.square_url}')`,
+          "background-image": `url('${photo.square_url}')`,
           "background-repeat": "no-repeat",
           "background-size": "cover",
           "background-position": "center"
@@ -456,6 +465,7 @@ class TaxonAutocomplete extends React.Component {
           }
         }
         : {};
+      baseParams.include_representative_photos = true;
       const viewerIsAdmin = config.currentUser && config.currentUser.roles
         && config.currentUser.roles.indexOf( "admin" ) >= 0;
       if ( viewerIsAdmin && config.testFeature ) {

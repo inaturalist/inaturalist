@@ -28,11 +28,11 @@ sv:
     one: '<span class="count">%{count}</span> ARTBESTÄMNING'
     other: '<span class="count">%{count}</span> ARTBESTÄMNINGAR'
   #Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Determinatör'
+    one: '<span class="count">%{count}</span> BESTÄMMARE'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Determinatörer'
+    other: '<span class="count">%{count}</span> BESTÄMMARE'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> Bestämning för andra'
     other: '<span class="count">%{count}</span> Bestämningar för andra'
@@ -83,9 +83,9 @@ sv:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> fynd granskat"
     other: "<span class='count'>%{count}</span> fynd granskade"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> observatör'
-    other: '<span class="count">%{count}</span> observatörer'
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVATÖR'
+    other: '<span class="count">%{count}</span> OBSERVATÖRER'
   x_others:
     one: "%{count} annan"
     other: "%{count} andra"
@@ -1886,10 +1886,17 @@ sv:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Exakt rang
   except: förutom
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Exkludera
   exclude_places: Uteslut fyndplatser
   exclude_projects: Uteslut projekt
   exclude_taxa: Uteslut taxa
   exclude_users: Uteslut användare
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Exkluderar %{count} taxon
+    other: Exkluderar %{count} taxa
   exclusion_filters: Exkluderingsfilter
   existing_flags: Befintliga flaggor
   exit_full_screen: "Avsluta helskärmsläge"
@@ -2361,8 +2368,16 @@ sv:
   inaturalist_network_affiliation: iNaturalist-nätverksanknytning
   #Label for messages you've received
   inbox: Inkorg
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inkludera
   include_places: Inkludera fyndplatser
   include_projects: Inkludera projekt
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inkludera / Exkludera överliggande taxa
   include_suggestions_not_seen_nearby: Visa förslag som inte setts i närheten
   include_suggestions_not_expected_nearby: Inkludera förslag som inte förväntas i närheten
   include_taxa: Inkludera taxa
@@ -2801,6 +2816,9 @@ sv:
   make_a_taxon_swap_instead?: Gör ett taxonbyte istället?
   make_curator: Ge förvaltarbehörighet
   make_manager: Ge ägarbehörighet
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Gör privat
   make_sure_the_default_photo_looks_good: Se till att standardbilden ser bra ut i stor storlek.
   make_this_your_default_license: "Gör detta till din standard %{type}-licens"
   make_this_the_primary_listing: "Gör detta till den primära listan"
@@ -4667,7 +4685,6 @@ sv:
     must_be_verifiable: måste gå att verifiera
     must_be_wild: måste vara vild
   running_total: Ackumulerat
-  said: sade
   satellite: satellit
   save: Spara
   save_all: Spara alla
@@ -5772,6 +5789,7 @@ sv:
   user_muted: Användare tystad
   user_observed_on_on_date_in_place: |
     %{user} observerade en den %{date} i %{place}
+  user_said_comment_html: <span class="meta">%{user} sade:</span> "%{comment}"
   user_suggested_an_id: "%{user} föreslog en bestämning"
   user_trusts_this_project_for_none: Användaren litar inte tillräckligt på detta projekt för att dela dolda koordinater.
   user_trusts_this_project_for_any: |
@@ -7032,6 +7050,78 @@ sv:
           delar fynd av "Forskningsklass" med ett antal datapartners
           för användning inom vetenskap och naturvård.
         disagreement_count_desc: "Antal bestämda taxa som inte hör till ett taxons föräldrar"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Bedömningen av datakvaliteten är en sammanfattning av fyndets
+          korrekthet. Alla fynd börjar som <strong>"grund"</strong>klass, och
+          blir <strong>"behöver ID"</strong> när
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: fyndet <strong>har ett datum</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: fyndet <strong>är georefererat</strong> (dvs har lat/long-koordinater)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: fyndet <strong>har bilder eller ljud</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: fyndet <strong>inte är av en människa</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Fynd får <strong>"forskningsklass"</strong> när
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name} <strong>-communityn är överens om artbestämning eller
+          lägre</strong>, dvs när mer än 2/3 av bestämmarna kommer överens om ett
+          taxon (om communityn har röstat om att communityns taxon inte längre
+          kan förbättras, återgår detta till underfamiljsbestämning eller lägre)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Fynd kommer att återgå till <strong>"grundklass"</strong> om ovanstående
+          villkor inte är uppfyllda eller om communityn är överens
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>dag, månad och/eller år ser inte korrekta ut</strong> (t.ex. snö
+          visas i bilden men datumet är på sommaren; ta inte hänsyn till 
+          tid på dagen)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>platsen ser inte riktig ut</strong> (t.ex. apor i
+          mitten av havet, flodhästar i kontorsbyggnader, etc.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismen är inte vild/naturaliserad</strong> (t.ex. i fångenskap
+          eller odlad av människor)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          fyndet <strong>ger inte stöd för en organism</strong>,
+          t.ex. bilder på våtmarker, klippor, landskap som inte
+          inkluderar organismen, etc.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          fyndet <strong>ger inte recent (~100 år) stöd för organismen
+          </strong> (t.ex. fossil, medan spår, avföring och döda löv är ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          fyndet <strong>ger inte stöd för endast en sak</strong> (t.ex. fyra
+          bilder på orelaterade organismer; en bild som visar på organismens
+          livsmiljö är OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          fyndet behöver inte längre bestämmas <em>och</em> communityns
+          bestämning är till familj eller högre
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          detta taxon är inte en över- eller underliggande det taxon kopplat
+          till observatörens bestämning <em>och</em> observatören har valt bort
+          communitytaxon
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Och som om det inte var komplicerat nog, finns det också situationer
+          där systemet får en röst:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Systemet kommer att rösta på att fyndet inte är vilt/naturaliserat
+          om det finns minst 10 andra fynd av ett släkte eller lägre i den
+          minsta plats motsvarande län, stat-, eller land som innehåller
+          detta fynd och 80% eller fler av dessa fynd har markerats som
+          inte vilda/naturaliserade.
         identification_count_desc: 'Antal bestämningar för ett enskilt taxon'
         flagged_photos_desc_html: |
           Några av dessa bilder har flaggats för olämpligt innehåll eller upphovsrättsintrång. För detaljer se %{links}
@@ -7448,10 +7538,10 @@ sv:
         we_have_redesigned_projects: |
           Projekt är utformade för att automatiskt inkludera alla fynd som matchar de fyndplatser, taxa, användare, kvalitet och datum som du definierar. Välj mellan två huvudtyper: Samlingsprojekt och Paraplyprojekt, som delar följande funktionalitet:
         welcome_to_projects: Välkommen till projekt!
-        you_can_learn_more_html: |
-          Du kan lära dig mer om att hantera projekt
-          <a href="https://www.inaturalist.org/pages/managing-projects">här</a>
-          eller läsa om bakgrunden för projekt på
+        you_can_learn_more2_html: |
+          Lär dig mer om att hantera projekt
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">här</a>
+          eller läsa projekts historik på
           <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vår blogg</a>.
         you_have_not_defined_any_observation_requirements: |
           Du har inte definierat några fyndkrav. Se till att välja ett eller flera taxa (t.ex. fåglar, barrträd), fyndplatser (t.ex. Brasilien, Yellowstone), användare och/eller
@@ -7680,10 +7770,39 @@ sv:
           %{seek_link_tag}Seek%{link_tag_end}. Du kan se
           alla personer som har bidragit med översättningar,
           inklusive personer från tidigare år och folk från Translatewiki, på vår %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+        translators_desc_2: |
+          Visste du att iNaturalist har översatts till %{x_languages},
+          nästan uteslutande av %{x_people}, av vilka några inte ens använder iNat?
+          Här är alla fantastiska översättare som har lagt till översättningar i år,
+          tillsammans med antalet ord de har översatt för
+          %{website_link_tag}webbplatsen%{link_tag_end}, våra
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}appar,
+          %{seek_link_tag}Seek%{link_tag_end}, och
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
-          Visste du att %{site_name} har översatts nästan uteslutande av %{x_people}? Här är alla fantastiska översättare som har lagt till översättningar i år, tillsammans med antalet ord de har översatt för %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} och %{android_link_tag}Android%{link_tag_end} appar och %{seek_link_tag}Seek%{link_tag_end}. Du kan se
-          alla personer som har bidragit med översättningar på alla språk, inklusive personer från tidigare år och folk från Translatewiki, i vår 
-          %{view_all_web_link_tag}webbs%{link_tag_end} och vår %{view_all_mobile_link_tag}mobila%{link_tag_end} datakatalog.
+          Visste du att %{site_name} har översatts nästan helt av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}apparna, och
+          %{seek_link_tag}Seek%{link_tag_end}. Du kan se
+          alla personer som har bidragit med översättningar på alla språk,
+          inklusive personer från tidigare år och folk från Translatewiki, i våra
+          %{view_all_web_link_tag}webb-%{link_tag_end} och
+          %{view_all_mobile_link_tag}mobila%{link_tag_end} kodbibliotek.
+        translators_desc_for_site_2: |
+          Visste du att %{site_name} har översatts nästan uteslutande av
+          %{x_people}? Här är alla fantastiska översättare som
+          har lagt till översättningar i år, tillsammans med antalet ord
+          som de har översatt till
+          %{website_link_tag}webbplatsen%{link_tag_end}, iNaturalists
+          %{iphone_link_tag}iPhone-%{link_tag_end} och
+          %{android_link_tag}Android-%{link_tag_end}appar,
+          %{seek_link_tag}Seek%{link_tag_end}, och
+          %{help_link_tag}iNatHelp%{link_tag_end}.
         translators_prompt: |
           Om du vill hjälpa till med översättningar, %{link_tag}läs mer här%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -8391,6 +8510,8 @@ sv:
       assessment_section:
         title: Titel
         body: Innehåll
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Blockerad användare
@@ -8669,7 +8790,15 @@ sv:
             action:
               not_supported_for_this_kind_of_content: stöds inte för denna typ av innehåll
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Endast dolt innehåll kan vara privat
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Endast personal och förvaltare kan dölja innehåll
               only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Endast personal kan ange innehåll privat
               staff_cannot_be_suspended: Personalen kan inte stängas av
             user_id:
               must_be_a_curator: måste vara förvaltare
@@ -8681,6 +8810,10 @@ sv:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinaterna kan inte vara 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                kan inte sparas av okänd anledning, ta en skärmdump och rapportera till personalen
             observed_on:
               cannot_be_greater_than_date_created: |
                 kan inte vara större än det datum som fyndet lades till
@@ -8751,6 +8884,14 @@ sv:
                 måste ha observerats efter %{time}
               must_be_observed_before: |
                 måste ha observerats innan %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: måste vara ett projekt
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: tillåter bara projektregler
         quality_metric:
           attributes:
             base:
@@ -8802,6 +8943,10 @@ sv:
             taxon:
               too_many_photos: |
                 kan inte ha fler än %{max} bilder
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                kan inte ha olösta flaggor
         taxon_range:
           attributes:
             iucn_relationship:

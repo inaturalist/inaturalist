@@ -261,13 +261,30 @@ inat-taxon.split-taxon .icon {display: none;}
 .bootstrap .userimage:active {opacity: 1; color: #eee;}
 #result-grid .meta {color: #a3a3a3; font-size: 12px; overflow: hidden;}
 #result-grid .meta .comments i,
-#result-grid .meta .identifications i {font-size: 110%;}
+#result-grid .meta .identifications i,
+#result-grid .meta .favorites i {font-size: 110%;}
 #result-grid .meta .pull-right {
   position: relative;
   top: 2px;
 }
-#result-grid .favorites { margin-inline-start: 5px;}
-#result-grid .comments {margin-inline-start: 5px;}
+#result-grid .favorites {
+  margin-inline-start: 5px;
+  .meta-text {
+    position: relative;
+    top: 1px;
+  }
+}
+#result-grid .comments {
+  margin-inline-start: 5px;
+  i {
+    position: relative;
+    top: -1px;
+  }
+}
+#result-grid .meta .identifications i {
+  position: relative;
+  top: -1px;
+}
 
 .form {
   background: #fff;
@@ -389,6 +406,29 @@ inat-taxon.split-taxon .icon {display: none;}
 #filter-container,
 #filters .primary-filters {
   margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 5px;
+  margin-inline-end: 5px;
+
+  > button {
+    margin: 0;
+    color: #fff;
+    background: $btn-orange;
+  }
+
+  .without-taxa {
+    z-index: 2;
+    position: relative;
+    li {
+      display: flex;
+      align-items: center;
+      button {
+        position: relative;
+        top: 1px;
+      }
+    }
+  }
 }
 #filters .form-control {
   display: inline-block;
@@ -481,7 +521,6 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #stats-container .stat-title {
   font-weight: 400;
-  text-transform: uppercase;
   padding-bottom: 5px;
   letter-spacing: 0.12em;
   color: #eee;
@@ -842,10 +881,6 @@ inat-taxon.split-taxon .icon {display: none;}
 #subview-controls .btn-default, .btn.places {
   padding: 6px 12px 6px;
 }
-#view-controls.open .btn-default.places {
-  color: #fff;
-  background: $btn-orange;
-}
 #place-name-input {margin-inline-start: 0;}
 #place-name-input button {
   background-color: $btn-orange;
@@ -863,6 +898,7 @@ inat-taxon.split-taxon .icon {display: none;}
   line-height: 16px !important;
   z-index: 1;
   margin-inline-end: 20px;
+  white-space: nowrap;
 }
 .quality_grade:after {
   content: "";
@@ -907,19 +943,27 @@ inat-taxon.split-taxon .icon {display: none;}
   border-inline-end-color: transparent;
 }
 
+#result-table table {
+  // This is a weird trick that allows table cells to set height to 100% when
+  // display: flex
+  height: 100%;
+}
 #result-table th.media {
  width: 5%;
 }
 #result-table td {
   padding: 10px;
   position: relative;
+  height: 100%;
 }
 #result-table td.taxon {
-  padding: 10px 10px 35px 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 #result-table {
   .meta {
-    position: absolute;
     bottom: 10px;
     .icon-chatbubble {
       position: relative;
@@ -1115,6 +1159,86 @@ $photo-count-line-width: 1px;
 #taxa-grid .corner.conservation-status.EN,
 #taxa-grid .corner.conservation-status.CR {
   background-color:#D12F19;
+}
+
+.explore-details-popover {
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+  .btn-xs {
+    position: relative;
+    top: -1px;
+  }
+  .menu {
+    position: absolute;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, .25);
+    background-color: white;
+    border: 0 transparent;
+    color: black;
+    text-align: start;
+    padding: 5px;
+    ul {
+      list-style: none;
+      padding-inline-start: 0px;
+      margin-bottom: 0;
+      li {
+        padding: 3px;
+
+        .split-taxon .display-name,
+        .split-taxon .secondary-name {
+          display: inline;
+        }
+      }
+    }
+  }
+}
+
+#taxa-grid {
+  .corner {
+    // We want z-index so the details appears over subsequent elements, but
+    // only when it's open
+    &.context-menu:has(details[open]) {
+      z-index: 1;
+    }
+    &.context-menu {
+      left: 0;
+      right: auto;
+      background-color: transparent;
+      details:hover {
+        summary {
+          color: white;
+        }
+      }
+      summary {
+        list-style: none;
+        width: 25px;
+        height: 25px;
+        text-shadow: 0 1px 5px rgba(0, 0, 0, .25);
+
+        &::-webkit-details-marker {
+          display: none;
+        }
+      }
+      .ancestor {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+      }
+    }
+  }
+}
+@-moz-document url-prefix() {
+  #taxa-grid {
+    .corner {
+      .ancestor {
+        i.fa {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
 }
 
 #taxa-grid .photometa {

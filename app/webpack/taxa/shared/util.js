@@ -208,7 +208,8 @@ const taxonLayerForTaxon = ( taxon, options = {} ) => {
       } ) )
     },
     places: true,
-    ranges: true
+    ranges: true,
+    geomodel_thresholded: true
   };
 };
 

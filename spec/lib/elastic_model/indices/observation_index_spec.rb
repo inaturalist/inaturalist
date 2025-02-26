@@ -184,6 +184,24 @@ describe "Observation Index" do
     expect( o.faves_count ).to eq 1
   end
 
+  it "indexes comments with moderator actions when their users have been deleted" do
+    observation = Observation.make!
+    comment = Comment.make!( parent: observation )
+    moderator_action = ModeratorAction.make!(
+      action: ModeratorAction::HIDE,
+      resource: comment
+    )
+    moderator_action.user.destroy
+    observation.reload
+    indexed_json = observation.as_indexed_json
+    expect( indexed_json[:comments].length ).to eq 1
+    expect( indexed_json[:comments].first[:id] ).to eq comment.id
+    moderator_actions = indexed_json[:comments].first[:moderator_actions]
+    expect( moderator_actions.length ).to eq 1
+    expect( moderator_actions.first[:id] ).to eq moderator_action.id
+    expect( moderator_actions.first[:user] ).to be_nil
+  end
+
   describe "photos_count" do
     it "should not count photos with copyright infringement flags" do
       o = Observation.make!

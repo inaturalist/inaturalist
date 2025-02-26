@@ -823,3 +823,36 @@
     color: #888;
     line-height: 1.1;
 }
+
+.observation {
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 5px;
+
+    .meta-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      flex-grow: 1;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+
+      i {
+        margin-inline-end: 3px;
+      }
+
+      .meta-text {
+        white-space: nowrap;
+      }
+    }
+
+    .meta-item-right {
+      margin-inline-start: auto;
+    }
+  }
+}

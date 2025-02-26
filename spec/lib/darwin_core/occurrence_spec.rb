@@ -151,21 +151,21 @@ describe DarwinCore::Occurrence do
     describe "reproductiveCondition" do
       before( :all ) do
         @controlled_attribute = make_controlled_term_with_label(
-          "Plant Phenology",
+          "Flowers and Fruits",
           active: true,
           is_value: false,
           multivalued: true
         )
       end
-      it "should add flowering for Plant Phenology=Flowering" do
+      it "should add flowering for Flowers and Fruits=Flowers" do
         annotation = Annotation.make!(
           resource: Observation.make!,
           controlled_attribute: @controlled_attribute,
-          controlled_value: make_controlled_value_with_label( "Flowering", @controlled_attribute )
+          controlled_value: make_controlled_value_with_label( "Flowers", @controlled_attribute )
         )
-        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to eq "flowering"
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).reproductiveCondition ).to eq "flowers"
       end
-      it "should be blank for Plant Phenology=Cannot Be Determined" do
+      it "should be blank for Flowers and Fruits=Cannot Be Determined" do
         annotation = Annotation.make!(
           resource: Observation.make!,
           controlled_attribute: @controlled_attribute,
@@ -178,14 +178,117 @@ describe DarwinCore::Occurrence do
         Annotation.make!(
           resource: obs,
           controlled_attribute: @controlled_attribute,
-          controlled_value: make_controlled_value_with_label( "Flowering", @controlled_attribute )
+          controlled_value: make_controlled_value_with_label( "Flowers", @controlled_attribute )
         )
         Annotation.make!(
           resource: obs,
           controlled_attribute: @controlled_attribute,
-          controlled_value: make_controlled_value_with_label( "Fruiting", @controlled_attribute )
+          controlled_value: make_controlled_value_with_label( "Fruits or Seeds", @controlled_attribute )
         )
-        expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowering|fruiting"
+        expect( DarwinCore::Occurrence.adapt( obs ).reproductiveCondition ).to eq "flowers|fruits or seeds"
+      end
+    end
+
+    describe "vitality" do
+      before( :all ) do
+        @controlled_attribute = make_controlled_term_with_label(
+          "Alive or Dead",
+          active: true,
+          is_value: false,
+          multivalued: false
+        )
+      end
+      it "should add vitality alive for alive annotations" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Alive", @controlled_attribute )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).vitality ).to eq "alive"
+      end
+      it "should add vitality alive for alive annotations" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Dead", @controlled_attribute )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).vitality ).to eq "dead"
+      end
+      it "should add vitality undetermined for cannot be determined annotations" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @controlled_attribute,
+          controlled_value: make_controlled_value_with_label( "Cannot Be Determined", @controlled_attribute )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).vitality ).to eq "undetermined"
+      end
+      it "should not vitality when there are no annotations" do
+        expect( DarwinCore::Occurrence.adapt( Observation.make! ).vitality ).to be_blank
+      end
+    end
+    describe "dynamicProperties" do
+      before( :all ) do
+        @evidence = make_controlled_term_with_label(
+          "Evidence of Presence",
+          active: true,
+          is_value: false,
+          multivalued: true
+        )
+        @leaves = make_controlled_term_with_label(
+          "Leaves",
+          active: true,
+          is_value: false,
+          multivalued: true
+        )
+      end
+      it "includes single annotations as strings" do
+        annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Feather", @evidence )
+        )
+        expect( DarwinCore::Occurrence.adapt( annotation.resource ).dynamicProperties ).to eq( {
+          evidenceOfPresence: "feather"
+        }.to_json )
+      end
+      it "includes multiple annotations as arrays" do
+        first_annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Feather", @evidence )
+        )
+        Annotation.make!(
+          resource: first_annotation.resource,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Bone", @evidence )
+        )
+        expect( DarwinCore::Occurrence.adapt( first_annotation.resource ).dynamicProperties ).to eq( {
+          evidenceOfPresence: ["bone", "feather"]
+        }.to_json )
+      end
+      it "includes both evidence and leaves annotations" do
+        first_annotation = Annotation.make!(
+          resource: Observation.make!,
+          controlled_attribute: @evidence,
+          controlled_value: make_controlled_value_with_label( "Feather", @evidence )
+        )
+        Annotation.make!(
+          resource: first_annotation.resource,
+          controlled_attribute: @leaves,
+          controlled_value: make_controlled_value_with_label( "Breaking Leaf Buds", @leaves )
+        )
+        Annotation.make!(
+          resource: first_annotation.resource,
+          controlled_attribute: @leaves,
+          controlled_value: make_controlled_value_with_label( "Green Leaves", @leaves )
+        )
+        expect( DarwinCore::Occurrence.adapt( first_annotation.resource ).dynamicProperties ).to eq( {
+          evidenceOfPresence: "feather",
+          leaves: ["breaking leaf buds", "green leaves"]
+        }.to_json )
+      end
+      it "is emtpy for observations without annotations" do
+        expect( DarwinCore::Occurrence.adapt( Observation.make! ).dynamicProperties ).to be_blank
       end
     end
   end

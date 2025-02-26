@@ -327,28 +327,6 @@ inatTaxonMap.addTaxonLayer = function ( map, layer, options, taxonData ) {
     return;
   }
   map.taxonLayerSignatures[sig] = true;
-  if ( layer.geomodel && layer.taxon ) {
-    map.addTaxonGeomodelLayer( {
-      taxon: layer.taxon,
-      title: options.taxonGeomodelLayerLabel,
-      controlPosition: options.controlPosition
-    } );
-  }
-  if ( layer.geomodel_thresholded && layer.taxon ) {
-    map.addTaxonGeomodelLayer( {
-      taxon: layer.taxon,
-      title: options.taxonGeomodelThresholdedLayerLabel,
-      controlPosition: options.controlPosition,
-      thresholded: true
-    } );
-  }
-  if ( layer.geomodel_comparison && layer.taxon ) {
-    map.addTaxonGeomodelComparisonLayer( {
-      taxon: layer.taxon,
-      title: options.taxonGeomodelComparisonLayerLabel,
-      controlPosition: options.controlPosition
-    } );
-  }
   var layerOptions;
   if ( layer.places && layer.taxon && taxonData.listed_places ) {
     layerOptions = _.isObject( layer.places )
@@ -372,6 +350,19 @@ inatTaxonMap.addTaxonLayer = function ( map, layer, options, taxonData ) {
       controlPosition: options.controlPosition,
       disabled: options.disabled === "disabled",
       link: "/taxa/" + layer.taxon.id + "/range.html"
+    } ) );
+  }
+  if ( layer.geomodel_thresholded && taxonData.geomodel ) {
+    layerOptions = _.isObject( layer.geomodel_thresholded )
+      ? layer.geomodel_thresholded : { };
+    map.addTaxonGeomodelLayer( _.defaults( layerOptions, {
+      taxon: layer.taxon,
+      title: options.taxonGeomodelThresholdedLayerLabel,
+      controlPosition: options.controlPosition,
+      disabled: true,
+      color: "rgba(0, 125, 255, 0.6)",
+      thresholded: true,
+      link: "/geo_model/" + layer.taxon.id + "/explain"
     } ) );
   }
   if ( layer.observations ) {

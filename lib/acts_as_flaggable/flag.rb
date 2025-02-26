@@ -161,6 +161,49 @@ class Flag < ApplicationRecord
     flaggable_str.constantize.find( flaggable_id )
   end
 
+  def self.instance_parent( instance )
+    return unless instance
+
+    instance_type = instance.class.polymorphic_name
+    case instance_type
+    when "Comment", "Post" then instance.parent
+    when "Identification" then instance.observation
+    when "Photo"
+      if instance.observations.exists?
+        instance.observations.first
+      elsif instance.taxa.exists?
+        instance.taxa.first
+      elsif instance.guide_photos.exists?
+        instance.guide_photos.first.guide_taxon
+      end
+    when "Sound"
+      if instance.observations.exists?
+        instance.observations.first
+      end
+    end
+  end
+
+  def self.instance_user( instance )
+    return unless instance
+
+    instance_type = instance.class.polymorphic_name
+    case instance_type
+    when "User" then instance
+    when "Message" then instance.from_user
+    else
+      k, reflection = instance.class.reflections.detect do | r |
+        r[1].class_name == "User" && r[1].macro == :belongs_to
+      end
+      if reflection
+        instance.send( k )
+      end
+    end
+  end
+
+  def self.instance_content( instance )
+    instance.try_methods( :body, :description )
+  end
+
   def flagged_object
     return unless ( klass = Object.const_get( flaggable_type ) )
 
@@ -178,51 +221,25 @@ class Flag < ApplicationRecord
     true
   end
 
-  def get_flaggable_user
-    case flaggable_type
-    when "User" then flaggable
-    when "Message" then flaggable.from_user
-    else
-      k, reflection = flaggable.class.reflections.detect do | r |
-        r[1].class_name == "User" && r[1].macro == :belongs_to
-      end
-      if reflection
-        flaggable.send( k )
-      end
-    end
-  end
-
   def set_flaggable_user_id
-    return true unless flaggable
+    return unless flaggable
 
-    if ( u = get_flaggable_user )
-      self.flaggable_user_id = u.id
-    end
-    true
+    user = Flag.instance_user( flaggable )
+    return if user.blank?
+
+    self.flaggable_user_id = user.id
   end
 
   def set_flaggable_content
-    return true unless flaggable
+    return unless flaggable
 
-    self.flaggable_content = flaggable.try_methods( :body, :description )
-    true
+    self.flaggable_content = Flag.instance_content( flaggable )
   end
 
   def set_flaggable_parent
-    return true unless flaggable
+    return unless flaggable
 
-    self.flaggable_parent = case flaggable_type
-    when "Comment", "Post" then flaggable.parent
-    when "Identification" then flaggable.observation
-    when "Photo"
-      if flaggable.observations.exists?
-        flaggable.observations.first
-      elsif flaggable.taxa.exists?
-        flaggable.taxa.first
-      elsif flaggable.guide_photos.exists?
-        flaggable.guide_photos.first.guide_taxon
-      end
-    end
+    self.flaggable_parent = Flag.instance_parent( flaggable )
   end
 
   def viewable_by?( user )

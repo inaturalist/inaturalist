@@ -118,6 +118,7 @@ const App = ( {
                   <Translators
                     data={data.translators}
                     siteName={site && site.id !== DEFAULT_SITE_ID ? site.name : null}
+                    year={year}
                   />
                 )
               }

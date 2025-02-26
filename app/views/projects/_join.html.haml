@@ -9,8 +9,8 @@
 .clear
   - @project_curators.each do |project_curator|
     .stacked.column.span-5
-      = link_to(image_tag(project_curator.user.icon.url(:thumb), :class => 'left usericon'),
-        person_by_login_path(project_curator.user.login))
+      = link_to_user project_curator.user do
+        = user_image project_curator.user, size: "thumb", class: "left"
       .column.span-3
         = link_to project_curator.user.login, person_by_login_path(project_curator.user.login), :class => "readable nobr"
         %br/

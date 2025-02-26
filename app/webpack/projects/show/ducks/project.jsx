@@ -123,7 +123,6 @@ export function fetchMembers( ) {
       id: project.id,
       per_page: 100,
       order_by: "login",
-      skip_counts: true,
       fields: { user: USER_FIELDS }
     };
     if ( config.currentUser ) {
@@ -515,8 +514,10 @@ export function fetchIdentificationCategories( ) {
 export function fetchOverviewData( ) {
   return async ( dispatch, getState ) => {
     const { project, config } = getState( );
-    if ( project.hasInsufficientRequirements( )
-      || ( project.startDate && !project.started && project.durationToEvent.asDays( ) > 1 ) ) {
+    if ( !project.is_delegated_umbrella && (
+      project.hasInsufficientRequirements( )
+      || ( project.startDate && !project.started && project.durationToEvent.asDays( ) > 1 )
+    ) ) {
       dispatch( fetchMembers( ) );
       dispatch( fetchPosts( ) );
       return;

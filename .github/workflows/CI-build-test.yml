@@ -52,7 +52,7 @@ jobs:
     - name: Runs Elasticsearch
       uses: miyataka/elastic-github-actions/elasticsearch@feature/plugin_support
       with:
-        stack-version: 8.9.0
+        stack-version: 8.15.3
         plugins: analysis-kuromoji
 
     - name: Ensure elasticsearch is reachable

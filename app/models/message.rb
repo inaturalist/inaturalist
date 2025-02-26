@@ -4,8 +4,8 @@ class Message < ApplicationRecord
   acts_as_spammable fields: [:subject, :body],
     user: :from_user
 
-  blockable_by lambda {| message | message.to_user_id },
-    blockable_user_id: lambda{| message | message.from_user_id }
+  blockable_by ->( message ) { message.to_user_id },
+    blockable_user_id: ->( message ) { message.from_user_id }
 
   requires_privilege :speech, if: proc {| message |
     message.from_user_id == message.user_id && (
@@ -32,7 +32,7 @@ class Message < ApplicationRecord
   after_create :deliver_email
 
   scope :inbox, -> { where( "user_id = to_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
-  scope :sent, -> { where( "user_id = from_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
+  scope :outbox, -> { where( "user_id = from_user_id" ) } # .select("DISTINCT ON (thread_id) messages.*")
   scope :unread, -> { where( "read_at IS NULL" ) }
 
   INBOX = "inbox"
@@ -40,6 +40,27 @@ class Message < ApplicationRecord
   BOXES = [INBOX, SENT].freeze
 
   attr_accessor :html, :skip_email
+
+  # When we added sent_at, we could not populate it because it was impossible
+  # to distinguish between messages with no to_user_copy because the sender
+  # was suspended or because the receiver manually deleted their copy, so we
+  # need this crude date filter to prevent us from redelivering ancient
+  # messages that the recipient deleted.
+  RESEND_UNSENT_RELEASE_DATE = Date.parse( "2025-02-03" )
+
+  def self.resend_unsent_for_user( user )
+    user = User.find_by_id( user ) unless user.is_a?( User )
+    return unless user
+
+    scope = user.messages.outbox.
+      where( "created_at > ?", RESEND_UNSENT_RELEASE_DATE ).
+      where( "sent_at IS NULL" )
+    scope.find_each do | msg |
+      next if msg.sent?
+
+      msg.send_message
+    end
+  end
 
   def to_s
     "<Message #{id} user:#{user_id} from:#{from_user_id} to:#{to_user_id} subject:#{subject.to_s[0..10]}>"
@@ -53,6 +74,7 @@ class Message < ApplicationRecord
     new_message.user = to_user
     new_message.read_at = nil
     new_message.save!
+    update( sent_at: Time.now )
   end
 
   def to_user_copy
@@ -64,7 +86,11 @@ class Message < ApplicationRecord
   def from_user_copy
     return self if from_user_id == user_id
 
-    from_user.messages.sent.where( thread_id: thread_id ).detect {| m | m.body == body }
+    from_user.messages.outbox.where( thread_id: thread_id ).detect {| m | m.body == body }
+  end
+
+  def sent?
+    !to_user_copy.blank?
   end
 
   def set_read_at
@@ -116,7 +142,12 @@ class Message < ApplicationRecord
     true
   end
 
-  def flagged_with( flag, _options = {} )
+  def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
+    return unless options[:action] == "resolved" && flag.flag == Flag::SPAM
+
+    Message.
+      delay( priority: USER_INTEGRITY_PRIORITY ).
+      resend_unsent_for_user( user_id )
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Observation < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model
 
   DEFAULT_ES_BATCH_SIZE = 100
   DEFAULT_ES_BATCH_SLEEP = 2
@@ -177,6 +177,7 @@ class Observation < ApplicationRecord
         indexes :user_id, type: "integer"
         indexes :uuid, type: "keyword"
         indexes :value, type: "keyword"
+        indexes :updater_id, type: "integer"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
       end
       # TODO Remove out_of_range from the index
@@ -401,7 +402,7 @@ class Observation < ApplicationRecord
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
-        comments: comments.map(&:as_indexed_json),
+        comments: comments.map( &:as_indexed_json ).compact,
         comments_count: comments.size,
         obscured: coordinates_obscured? || geoprivacy_obscured?,
         positional_accuracy: positional_accuracy,

@@ -1,6 +1,7 @@
-class Project < ApplicationRecord
+# frozen_string_literal: true
 
-  include ActsAsElasticModel
+class Project < ApplicationRecord
+  acts_as_elastic_model
   include HasJournal
 
   belongs_to :user
@@ -15,13 +16,14 @@ class Project < ApplicationRecord
   has_many :taxa, through: :listed_taxa
   has_many :project_assets, dependent: :delete_all
   has_one :custom_project, dependent: :delete
-  has_many :project_observation_fields, -> { order("position") }, dependent: :destroy, inverse_of: :project
+  has_many :project_observation_fields, -> { order( "position" ) },
+    dependent: :destroy, inverse_of: :project
   has_many :observation_fields, through: :project_observation_fields
   has_many :posts, as: :parent, dependent: :destroy
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
-  
+
   before_save :strip_title
   before_save :reset_last_aggregated_at
   before_save :remove_times_from_non_bioblitzes
@@ -31,6 +33,7 @@ class Project < ApplicationRecord
   after_save :notify_trusting_members_about_changes_if_rules_changed
   before_update :set_updated_at_if_preferences_changed
   around_save :add_admins
+  after_save :sync_delegated_projects
 
   after_destroy :destroy_project_rules
 
@@ -57,15 +60,15 @@ class Project < ApplicationRecord
     "render_spam_notice", "set_spam_flash_error", "browse",
     "set_akismet_params_on_record", "change_role", "logged_in?", "set_locale",
     "ping"
-  ]
+  ].freeze
 
   requires_privilege :organizer, on: :create,
-    if: Proc.new {|project|
+    if: Proc.new {| project |
       !project.is_new_project? && !project.user.is_curator? && !project.user.is_admin?
     }
 
   extend FriendlyId
-  friendly_id :title, use: [ :slugged, :history, :finders ],
+  friendly_id :title, use: [:slugged, :history, :finders],
     reserved_words: PROJECTS_CONTROLLER_ACTION_METHODS
 
   def normalize_friendly_id( string )
@@ -74,17 +77,16 @@ class Project < ApplicationRecord
     candidate = super_candidate if candidate.blank? || candidate == super_candidate
     if candidate =~ /^\d+$/
       candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
-    
       if candidate =~ /^\d+$/
         candidate = ["project", id, candidate].compact.join( "-" )
       end
     end
     candidate
   end
-  
+
   preference :count_from_list, :boolean, default: false
   preference :place_boundary_visible, :boolean, default: false
-  preference :count_by, :string, default: 'species'
+  preference :count_by, :string, default: "species"
   preference :display_checklist, :boolean, default: false
   preference :range_by_date, :boolean, default: false
   preference :aggregation, :boolean, default: false
@@ -104,21 +106,23 @@ class Project < ApplicationRecord
   preference :rule_native, :boolean
   preference :rule_introduced, :boolean
   preference :rule_members_only, :boolean
+  preference :delegation, :boolean, default: false
+  preference :delegated_project_id, :integer
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
     "rule_term_id", "rule_term_value_id", "rule_native",
     "rule_introduced", "rule_members_only"
-  ]
-  
-  SUBMISSION_BY_ANYONE = 'any'
-  SUBMISSION_BY_CURATORS = 'curators'
-  SUBMISSION_MODELS = [SUBMISSION_BY_ANYONE, SUBMISSION_BY_CURATORS]
+  ].freeze
+
+  SUBMISSION_BY_ANYONE = "any"
+  SUBMISSION_BY_CURATORS = "curators"
+  SUBMISSION_MODELS = [SUBMISSION_BY_ANYONE, SUBMISSION_BY_CURATORS].freeze
   preference :submission_model, :string, default: SUBMISSION_BY_ANYONE
 
-  MEMBERSHIP_OPEN = 'open'
-  MEMBERSHIP_INVITE_ONLY = 'inviteonly'
-  MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
+  MEMBERSHIP_OPEN = "open"
+  MEMBERSHIP_INVITE_ONLY = "inviteonly"
+  MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY].freeze
   preference :membership_model, :string, default: MEMBERSHIP_OPEN
 
   preference :user_trust, :boolean, default: false
@@ -263,7 +267,7 @@ class Project < ApplicationRecord
   end
 
   def is_new_project?
-    project_type === "umbrella" || project_type === "collection"
+    project_type == "umbrella" || project_type == "collection"
   end
 
   def preferred_start_date_or_time
@@ -1136,15 +1140,112 @@ class Project < ApplicationRecord
   end
 
   def aggregation_preference_allowed?
-    return if is_new_project?
+    return false if is_new_project?
     return true unless prefers_aggregation?
     return true if aggregation_allowed?
-    errors.add(:base, I18n.t(:project_aggregator_filter_error))
+
+    errors.add( :base, I18n.t( :project_aggregator_filter_error ) )
     true
   end
 
   def within_umbrella_ids
-    return project_observation_rules_as_operand.map( &:ruler_id )
+    project_observation_rules_as_operand.map( &:ruler_id )
+  end
+
+  def sync_delegated_projects
+    return unless project_type == "umbrella"
+    return unless prefers_delegation
+
+    subproject_ids = []
+    project_observation_rules.each do | rule |
+      subproject_ids << rule.operand_id if rule.operator == "in_project?"
+    end
+    subprojects = Project.where( id: subproject_ids.compact.uniq ).includes(
+      :project_observation_rules, :stored_preferences
+    ).select do | subproject |
+      subproject.preferred_delegated_project_id == id
+    end
+
+    Project.preload_associations( self, :stored_preferences )
+    allowed_taxon_ids = project_observation_rules.
+      where( operator: "in_taxon?" ).map( &:operand_id )
+    disallowed_taxon_ids = project_observation_rules.
+      where( operator: "not_in_taxon?" ).map( &:operand_id )
+    subprojects.each do | subproject |
+      subproject.skip_indexing = true
+
+      # sync rule-based preferences
+      rule_preference_updates = {}
+      RULE_PREFERENCES.each do | rule |
+        umbrella_rule_value = send( "prefers_#{rule}" )
+        next if subproject.send( "prefers_#{rule}" ) == umbrella_rule_value
+
+        rule_preference_updates["prefers_#{rule}"] = umbrella_rule_value
+      end
+      unless rule_preference_updates.empty?
+        subproject.update( rule_preference_updates )
+      end
+
+      # sync ProjectObservationRules. Subproject inherit in_taxon? and not_in_taxon? rules,
+      # and all other non-place rules are removed as they are not allowed when collections
+      # delegate rule handling to an umbrella
+      subproject_allowed_taxon_ids = []
+      subproject_disallowed_taxon_ids = []
+      subproject.project_observation_rules.each do | rule |
+        if rule.operator == "in_taxon?"
+          subproject_allowed_taxon_ids << rule.operand_id
+        elsif rule.operator == "not_in_taxon?"
+          subproject_disallowed_taxon_ids << rule.operand_id
+        elsif rule.operator != "observed_in_place?" && rule.operator != "not_observed_in_place?"
+          # any existing non-taxon, non-place rules are destroyed
+          rule.destroy
+        end
+      end
+
+      # destroy in_taxon? rules not applied to the umbrella
+      allowed_taxa_unique_to_subproject = ( subproject_allowed_taxon_ids - allowed_taxon_ids )
+      if allowed_taxa_unique_to_subproject.any?
+        subproject.project_observation_rules.where(
+          operator: "in_taxon?", operand_id: allowed_taxa_unique_to_subproject
+        ).destroy_all
+      end
+
+      # destroy not_in_taxon? rules not applied to the umbrella
+      disallowed_taxa_unique_to_subproject = ( subproject_disallowed_taxon_ids - disallowed_taxon_ids )
+      if disallowed_taxa_unique_to_subproject.any?
+        subproject.project_observation_rules.where(
+          operator: "not_in_taxon?", operand_id: disallowed_taxa_unique_to_subproject
+        ).destroy_all
+      end
+
+      # create in_taxon? rules not applied to the subproject
+      allowed_taxa_unique_to_umbrella = ( allowed_taxon_ids - subproject_allowed_taxon_ids )
+      allowed_taxa_unique_to_umbrella.each do | taxon_id |
+        ProjectObservationRule.create(
+          ruler: subproject,
+          operator: "in_taxon?",
+          operand_type: "Taxon",
+          operand_id: taxon_id
+        )
+      end
+
+      # create not_in_taxon? rules not applied to the subproject
+      disallowed_taxa_unique_to_umbrella = ( disallowed_taxon_ids - subproject_disallowed_taxon_ids )
+      disallowed_taxa_unique_to_umbrella.each do | taxon_id |
+        ProjectObservationRule.create(
+          ruler: subproject,
+          operator: "not_in_taxon?",
+          operand_type: "Taxon",
+          operand_id: taxon_id
+        )
+      end
+    end
+    # delay the indexing of subprojects as there may be many of them, and indexing projects requires
+    # API querues. Use a high priority so the indexing is done as soon as possible
+    Project.delay(
+      priority: USER_PRIORITY,
+      unique_hash: { "Project::elastic_index": subprojects.map( &:id ) }
+    ).elastic_index!( ids: subprojects.map( &:id ) )
   end
 
   def notify_trusting_members_about_changes_unique_hash

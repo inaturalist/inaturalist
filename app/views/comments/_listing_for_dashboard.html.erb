@@ -12,7 +12,9 @@
     <%- when "Post" -%>
       <%- case parent.parent_type -%>
       <%- when "User" -%>
-        <%= link_to image_tag(parent.user.icon.url(:thumb), :options => {:class => "usericon"}, :style => "max-width:48px;"), parent %>
+        <%= link_to_user parent.user do %>
+          <%= user_image parent.user, size: "thumb", style: "max-width:48px;" %>
+        <% end -%>
       <%- when "Project" -%>
         <%= link_to image_tag(parent.parent.icon.url(:thumb), :options => {:class => "projecticon"}, :style => "max-width:48px;"), parent %>
       <%- else %>

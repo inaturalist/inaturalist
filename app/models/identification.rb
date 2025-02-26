@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Identification < ApplicationRecord
-  include ActsAsElasticModel
+  acts_as_elastic_model
   acts_as_spammable fields: [:body],
     comment_type: "comment",
     automated: false

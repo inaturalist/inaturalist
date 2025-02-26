@@ -15,21 +15,26 @@ const util = class util {
   }
 
   static taxonImage( taxon, options = { } ) {
-    if ( taxon && taxon.defaultPhoto ) {
+    const stubImage = ( <i className="taxon-image icon icon-iconic-unknown" /> );
+    if ( !taxon ) {
+      return stubImage;
+    }
+    const photo = taxon?.representativePhoto || taxon?.defaultPhoto;
+    if ( photo ) {
       return (
         <img
           alt={taxon.name}
-          src={taxon.defaultPhoto.photoUrl( options.size )}
+          src={photo.photoUrl( options.size )}
           className="taxon-image"
         />
       );
     }
-    if ( taxon && taxon.iconic_taxon_name ) {
+    if ( taxon.iconic_taxon_name ) {
       return (
         <i className={`taxon-image icon icon-iconic-${taxon.iconic_taxon_name.toLowerCase( )}`} />
       );
     }
-    return ( <i className="taxon-image icon icon-iconic-unknown" /> );
+    return stubImage;
   }
 
   static observationMissingProjectFields( observation, project ) {

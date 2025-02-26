@@ -5,6 +5,7 @@ import { setConfirmModalState } from "../../shared/ducks/confirm_modal";
 
 const SET_ATTRIBUTES = "projects-form/project/SET_ATTRIBUTES";
 const UMBRELLA_SUBPROJECT_LIMIT = 500;
+const DELEGATED_UMBRELLA_SUBPROJECT_LIMIT = 1000;
 
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
@@ -170,9 +171,15 @@ export function validateSubprojects( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( ).form;
     if ( !project ) { return void null; }
-    const subprojectLimit = (
-      project.initialSubprojectCount && project.initialSubprojectCount > UMBRELLA_SUBPROJECT_LIMIT
-    ) ? project.initialSubprojectCount : UMBRELLA_SUBPROJECT_LIMIT;
+    let subprojectLimit = UMBRELLA_SUBPROJECT_LIMIT;
+    if ( project.is_delegated_umbrella ) {
+      subprojectLimit = DELEGATED_UMBRELLA_SUBPROJECT_LIMIT;
+    }
+    if ( project.initialSubprojectCount
+      && project.initialSubprojectCount > subprojectLimit
+    ) {
+      subprojectLimit = project.initialSubprojectCount;
+    }
     const countActiveSubprojects = _.filter(
       project.project_observation_rules,
       rule => rule.operand_type === "Project" && !rule._destroy
@@ -422,6 +429,10 @@ export function submitProject( ) {
     _.each( project.project_observation_rules, rule => {
       if (
         ( project.project_type === "umbrella" && rule.operand_type === "Project" )
+        || (
+          project.project_type === "umbrella"
+          && project.is_delegated_umbrella
+          && rule.operand_type === "Taxon" )
         || (
           project.project_type !== "umbrella"
           && (

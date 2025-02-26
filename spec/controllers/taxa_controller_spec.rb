@@ -431,4 +431,27 @@ describe TaxaController do
       expect( fi_desc.body ).to include "Ihminen"
     end
   end
+
+  describe "map" do
+    render_views
+    before { load_test_taxa( iconic: true ) }
+    it "should render for two taxa with the same iconic taxon" do
+      clarkia = Taxon.find_by_name( "Clarkia" )
+      clarkia_amoena = Taxon.find_by_name( "Clarkia amoena" )
+      get :map, params: { taxa: [clarkia.id, clarkia_amoena.id] }
+      expect( response ).to be_successful
+    end
+
+    it "should render for two taxa with different iconic taxa" do
+      clarkia = Taxon.find_by_name( "Clarkia" )
+      pseudacris = Taxon.find_by_name( "Pseudacris" )
+      get :map, params: { taxa: [clarkia.id, pseudacris.id] }
+      expect( response ).to be_successful
+    end
+
+    it "should render for fgive taxa" do
+      get :map, params: { taxa: Taxon.order( "rank_level ASC" ).limit( 5 ).pluck( :id ) }
+      expect( response ).to be_successful
+    end
+  end
 end

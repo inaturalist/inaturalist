@@ -190,7 +190,8 @@ const Project = class Project extends inatjs.Project {
           r => r.operand_id
         ).join( "," );
       }
-    } else {
+    }
+    if ( !this.is_umbrella || this.is_delegated_umbrella ) {
       this.previewSearchParamsObject = _.fromPairs(
         _.map( _.filter( this.rule_preferences, p => p.value !== null ), p => [p.field, p.value] )
       );

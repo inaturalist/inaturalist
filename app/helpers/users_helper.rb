@@ -24,24 +24,29 @@ module UsersHelper
   #   # => <span class="vcard"><a href="/users/3" title="barmy" class="fn n">Cyril Fotheringay-Phipps</a>: <span class="email">barmy@blandings.com</span></span>
   #
   #   link_to_user @user, :content_text => 'Your user page'
-  #   # => <a href="/users/3" title="barmy" class="nickname">Your user page</a>
+  #   # => <a href="/users/3" title="barmy">Your user page</a>
   #
-  def link_to_user(user, options = { missing: t(:deleted_user) }, &block)
+  def link_to_user( user, options = { missing: t( :deleted_user ) }, &block )
     return options[:missing] unless user
-    url = options.delete(:url) || person_url(user.login)
-    options.reverse_merge! :content_method => :login, :title_method => :login, :class => :nickname
+
+    url = options.delete( :url ) || person_url( user.login )
+    options.reverse_merge! content_method: :login, title_method: :login
     if block_given?
-      content_text = capture(&block)
+      content_text = capture( &block )
     else
-      content_text = options.delete(:content_text)
-      content_text ||= user.send(options.delete(:content_method))
+      content_text = options.delete( :content_text )
+      content_text ||= user.send( options.delete( :content_method ) )
     end
-    options[:title] ||= user.send(options.delete(:title_method))
+    options[:title] ||= user.send( options.delete( :title_method ) )
+    options.delete( :content_method )
+    options.delete( :login )
+    options.delete( :missing )
+    options.delete( :title_method )
     link_to content_text, url, options
   end
 
   # Below here, added for iNaturalist
-  
+
   def friend_link(user, potential_friend)
     case !user.friends.include?(potential_friend)
     when true

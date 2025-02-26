@@ -210,8 +210,13 @@ class Suggestions extends React.Component {
     }
     if (
       observation
-      && observation.observation_photos
-      && observation.observation_photos.length > 0
+      && ( (
+        observation.observation_photos
+          && observation.observation_photos.length > 0
+      ) || (
+        observation.photos
+          && observation.photos.length > 0
+      ) )
     ) {
       sources.push( "visual" );
     }

@@ -27,12 +27,6 @@ kk:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
     other: '<span class="count">%{count}</span> ИДЕНТИФИКАЦИЯ'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> сарапшы'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> сарапшы'
   x_languages:
     one: "%{count} тіл"
     other: "%{count} тіл"
@@ -80,9 +74,6 @@ kk:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> бақылау қарастырылды"
     other: "<span class='count'>%{count}</span> бақылау қарастырылды"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> бақылаушы'
-    other: '<span class="count">%{count}</span> бақылаушы'
   x_others:
     one: "%{count} басқа"
     other: "%{count} басқа"
@@ -2796,7 +2787,6 @@ kk:
     must_be_coordinates_shareable_by_project_curators: бақылаушы жоба кураторларына координаттарды көруге рұқсат беруі керек.
     must_be_verifiable: тексерілетін болуы керек
     must_be_wild: жабайы болуы керек
-  said: деді
   satellite: жер серігі
   save: Сақтау
   save_all: Барлығын сақтау

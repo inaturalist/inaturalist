@@ -22,7 +22,7 @@ describe "Project Index" do
     expect( project ).to be_known_spam
     expect( project.as_indexed_json[:spam] ).to be true
   end
-  
+
   it "should index as spam if project owned by a spammer" do
     expect( project.as_indexed_json[:spam] ).to be false
     Flag.make!( flag: Flag::SPAM, flaggable: project.user )
@@ -30,6 +30,20 @@ describe "Project Index" do
     expect( project.user ).to be_known_spam
     expect( project ).to be_owned_by_spammer
     expect( project.as_indexed_json[:spam] ).to be true
+  end
+
+  it "indexes is_delegated_umbrella" do
+    umbrella = Project.make!( project_type: "umbrella" )
+    umbrella.update( prefers_delegation: true )
+    expect( umbrella.as_indexed_json[:is_delegated_umbrella] ).to be true
+  end
+
+  it "indexes delegated_project_id" do
+    umbrella = Project.make!( project_type: "umbrella" )
+    umbrella.update( prefers_delegation: true )
+    collection = Project.make!( project_type: "collection" )
+    collection.update( preferred_delegated_project_id: umbrella.id )
+    expect( collection.as_indexed_json[:delegated_project_id] ).to eq umbrella.id
   end
 
   describe "associated_place_ids" do

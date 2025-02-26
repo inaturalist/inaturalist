@@ -20,7 +20,6 @@ class Taxonomy extends Component {
     this.toggleSettings = this.toggleSettings.bind( this );
     this.state = {
       openTaxa: [],
-      openTaxonCombinedThreshold: 0.1,
       showSettings: false
     };
     this.target = React.createRef( );
@@ -37,34 +36,27 @@ class Taxonomy extends Component {
   }
 
   setInitialOpenTaxa( ) {
-    this.setState( prevState => ( {
-      openTaxa: _.map(
-        _.filter(
-          this.props.taxa,
-          t => t.normalized_combined_score > prevState.openTaxonCombinedThreshold
-        ),
-        "parent_id"
-      )
+    this.setState( ( ) => ( {
+      openTaxa: _.map( this.props.taxa, "parent_id" )
     } ) );
   }
 
   setOpenTaxonCombinedthreshold( threshold ) {
-    this.setState( {
-      openTaxonCombinedThreshold: threshold
-    } );
-    this.setInitialOpenTaxa( );
+    this.props.updateUserSetting( "openTaxonCombinedThreshold", threshold );
   }
 
   settingsButton( ) {
     const popover = (
       <div className="settings">
-        Open Threshold:
-        <input
-          type="text"
-          name="threshold"
-          value={this.state.openTaxonCombinedThreshold}
-          onChange={e => this.setOpenTaxonCombinedthreshold( e.target.value )}
-        />
+        <div>
+          Min Combined Score Threshold:
+          <input
+            type="text"
+            name="threshold"
+            value={this.props.toggleableSettings.openTaxonCombinedThreshold}
+            onChange={e => this.setOpenTaxonCombinedthreshold( e.target.value )}
+          />
+        </div>
       </div>
     );
 
@@ -180,7 +172,7 @@ class Taxonomy extends Component {
           onMouseOver={() => setHoverResult( result )}
         >
           <div
-            className="name"
+            className={`name${isLeaf ? " leaf" : " nonleaf"}`}
             onClick={( ) => this.toggleTaxon( result )}
           >
             { isRoot ? (
@@ -229,16 +221,16 @@ class Taxonomy extends Component {
           </div>
           <div className="scores">
             <div className="score">
-              { isRoot ? "Vision" : _.round( result.vision_score, 6 ) }
+              { isRoot ? "Vision" : _.round( result.vision_score, 3 ) }
             </div>
             <div className="score">
-              { isRoot ? "Combined" : _.round( result.normalized_combined_score, 6 ) }
+              { isRoot ? "Combined" : _.round( result.normalized_combined_score, 3 ) }
             </div>
             <div className="score">
-              { isRoot ? "Geo" : _.round( result.geo_score, 6 ) }
+              { isRoot ? "Geo" : _.round( result.geo_score, 3 ) }
             </div>
             <div className="score">
-              { isRoot ? "Threshold" : _.round( result.geo_threshold, 6 ) }
+              { isRoot ? "Threshold" : _.round( result.geo_threshold, 3 ) }
             </div>
           </div>
         </div>
@@ -252,11 +244,9 @@ class Taxonomy extends Component {
   }
 
   render( ) {
-    const { taxa } = this.props;
-    if ( _.isEmpty( taxa ) ) { return ( <span /> ); }
-
     return (
       <div id="Taxonomy">
+        { this.settingsButton( ) }
         <ul className="tree">
           { this.showNodeList( ) }
         </ul>
@@ -269,7 +259,9 @@ Taxonomy.propTypes = {
   taxa: PropTypes.array,
   config: PropTypes.object,
   setHoverResult: PropTypes.func,
-  hoverResult: PropTypes.object
+  hoverResult: PropTypes.object,
+  updateUserSetting: PropTypes.func,
+  toggleableSettings: PropTypes.object
 };
 
 export default Taxonomy;

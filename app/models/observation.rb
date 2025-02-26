@@ -2,7 +2,7 @@
 
 class Observation < ApplicationRecord
 
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ObservationSearch
   include ActsAsUUIDable
 
@@ -287,9 +287,24 @@ class Observation < ApplicationRecord
     br
     cite
     code
+    del
+    div
+    dl
+    dt
     em
+    h1
+    h2
+    h3
+    h4
+    h5
+    h6
+    hr
     i
     img
+    ins
+    li
+    ol
+    p
     pre
     s
     small
@@ -297,6 +312,15 @@ class Observation < ApplicationRecord
     strong
     sub
     sup
+    t
+    table
+    tbody
+    td
+    th
+    thead
+    tr
+    tt
+    ul
   )
 
   preference :community_taxon, :boolean, :default => nil
@@ -2809,39 +2833,12 @@ class Observation < ApplicationRecord
   def taxon_and_ancestors
     taxon ? taxon.self_and_ancestors.to_a : []
   end
-
+  
   def mobile?
     return false unless user_agent
-    MOBILE_APP_USER_AGENT_PATTERNS.each do |pattern|
-      return true if user_agent =~ pattern
-    end
-    false
+    is_mobile_app_user_agent?( user_agent )
   end
-  
-  def device_name
-    return "unknown" unless user_agent
-    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
-      "iNaturalist Android App"
-    elsif user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
-      "Fishtagger iPhone App"
-    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
-      "iNaturalist iPhone App"
-    else
-      "web browser"
-    end
-  end
-  
-  def device_url
-    return unless user_agent
-    if user_agent =~ FISHTAGGER_APP_USER_AGENT_PATTERN
-      "http://itunes.apple.com/us/app/fishtagger/id582724178?mt=8"
-    elsif user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
-      "http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8"
-    elsif user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
-      "https://market.android.com/details?id=org.inaturalist.android"
-    end
-  end
-  
+
   def owners_identification
     if identifications.loaded?
       # if idents are loaded, the most recent current identification might be a new record
@@ -3363,10 +3360,10 @@ class Observation < ApplicationRecord
 
   def application_id_to_index
     return oauth_application_id if oauth_application_id
-    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+    if is_iphone_app_user_agent?( user_agent )
       return OauthApplication.inaturalist_iphone_app.try(:id)
     end
-    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
+    if is_android_app_user_agent?( user_agent )
       return OauthApplication.inaturalist_android_app.try(:id)
     end
   end

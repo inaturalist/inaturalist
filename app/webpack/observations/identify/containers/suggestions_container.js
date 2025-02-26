@@ -9,6 +9,9 @@ import {
   fetchDetailTaxon
 } from "../ducks/suggestions";
 import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
+import {
+  onSubmitIdentification
+} from "../actions";
 
 function mapStateToProps( state ) {
   let nextTaxon;
@@ -31,8 +34,11 @@ function mapStateToProps( state ) {
   } );
 }
 
-function mapDispatchToProps( dispatch ) {
+function mapDispatchToProps( dispatch, ownProps ) {
   return {
+    onSubmitIdentification: ( identification, options = {} ) => {
+      dispatch( onSubmitIdentification( ownProps.observation, identification, options ) );
+    },
     setDetailTaxon: ( taxon, options = {} ) => {
       dispatch( setDetailTaxon( taxon, options ) );
       dispatch( fetchDetailTaxon( ) );

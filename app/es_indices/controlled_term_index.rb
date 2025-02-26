@@ -1,6 +1,7 @@
-class ControlledTerm < ApplicationRecord
+# frozen_string_literal: true
 
-  include ActsAsElasticModel
+class ControlledTerm < ApplicationRecord
+  acts_as_elastic_model
 
   scope :load_for_index, -> { includes({ values: [ :values, :labels, :controlled_term_taxa ] }, :labels, :controlled_term_taxa, :attrs) }
 

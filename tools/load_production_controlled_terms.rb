@@ -29,7 +29,12 @@ def create_controlled_term_from_json( ct_json )
   end
   unless controlled_term.labels.where( label: ct_json[:label] ).exists?
     controlled_term.labels << ControlledTermLabel.new( label: ct_json[:label] )
+    controlled_term.save!
   end
+  unless controlled_term.persisted?
+    raise "Failed to create controlled term for #{ct_json[:label]}: #{controlled_term.errors.full_messages.to_sentence}"
+  end
+
   combined_taxon_ids = [ct_json[:taxon_ids], ct_json[:excepted_taxon_ids]].flatten.compact.uniq
   remote_taxa = JSON.parse(
     RestClient.get(

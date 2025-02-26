@@ -19,9 +19,9 @@ zh-CN:
   x_identifications_caps_html:
     other: '<span class="count">%{count}</span>个鉴定'
   #Number of people who have added identifications
-  x_identifiers_html:
+  x_identifiers_caps_html:
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span>个鉴定者'
+    other: '<span class="count">%{count}</span>名鉴定者'
   x_ids_made_for_others_html:
     other: '为他人做出了<span class="count">%{count}</span>个鉴定'
   x_languages:
@@ -56,8 +56,8 @@ zh-CN:
     other: "<a href='%{url}'>%{count} 次观察</a>"
   x_observations_reviewed_html:
     other: "<span class='count'>%{count}</span> 次观察已复核"
-  x_observers_html:
-    other: '<span class="count">%{count}</span>个观察者'
+  x_observers_caps_html:
+    other: '<span class="count">%{count}</span>名观察者'
   x_others:
     other: "%{count}个其他的"
   x_people:
@@ -1757,10 +1757,16 @@ zh-CN:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: 精密排名
   except: 除外
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: 排除
   exclude_places: 排除地点
   exclude_projects: 排除项目
   exclude_taxa: 排除的分类群
   exclude_users: 排除用户
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    other: 排除%{count}个分类单元
   exclusion_filters: 排除过滤器
   existing_flags: 现有标记
   exit_full_screen: "退出全屏"
@@ -2199,8 +2205,16 @@ zh-CN:
   inaturalist_network_affiliation: iNaturalist网络关系
   #Label for messages you've received
   inbox: 收件箱
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: 包含
   include_places: 包含的地点
   include_projects: 包含的项目
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: 包括/排除祖先分类群
   include_suggestions_not_seen_nearby: 包括未在附近看到过的建议
   include_suggestions_not_expected_nearby: 包括不在预料在附近范围内的建议
   include_taxa: 包含分类
@@ -2637,6 +2651,9 @@ zh-CN:
   make_a_taxon_swap_instead?: 改用TaxonSwap吗？
   make_curator: 设为馆长
   make_manager: 设为管理员
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: 设为私有
   make_sure_the_default_photo_looks_good: 确保默认照片在大尺寸上看起来不错。
   make_this_your_default_license: "将其作为您的默认 %{type} 许可协议"
   make_this_the_primary_listing: "将其作为主要列表"
@@ -4433,7 +4450,6 @@ zh-CN:
     must_be_verifiable: 必须可被验证
     must_be_wild: 必须是野生的
   running_total: 运行总计
-  said: 说
   satellite: 卫星
   save: 保存
   save_all: 保存全部
@@ -5469,6 +5485,7 @@ zh-CN:
   user_muted: 用户已禁言
   user_observed_on_on_date_in_place: |
     %{user}于%{date}在%{place}观察到一个
+  user_said_comment_html: <span class="meta">%{user}说，</span>“%{comment}”
   user_suggested_an_id: "%{user}提出了一个鉴定"
   user_trusts_this_project_for_none: 用户不信任该项目，因此不会向该项目展示隐藏坐标。
   user_trusts_this_project_for_any: |
@@ -6572,6 +6589,55 @@ zh-CN:
         data_quality_assessment_desc3_html: |
           出于将 iNaturalist 观察作为生物多样性数据的考量，质量等级包含该观察的准确度、精度、完整性、相关性和适当性。 其中的一些属性是自动生成的，而另一些由 iNat 用户投票生成。 iNaturalist 会与一些数据合作伙伴分享“研究等级”的观察，用于科学研究和物种保护。
         disagreement_count_desc: "不属于同一分类单元祖先的已确定的分类群数量"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          数据质量评估是对于观察准确性的总结。所有观察均始于<strong>“非正式”</strong>等级，并在满足下列条件后可以达到<strong>“需鉴定”</strong>等级：
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: 观察<strong>包含日期</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: 观察<strong>是地理配准的</strong>（即具有纬度/经度坐标）
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: 观察 <strong>有照片或声音</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: 观察<strong>不是关于人类的</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: 在满足下列条件后，观察结果会变成 <strong>"研究等级"</strong>：
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name}<strong>社群同意鉴定到种或更低层级</strong>，即超过2/3的鉴定者同意的分类单元（如果社群投票决定社群分类单元不能被进一步改进了，那么可以回滚到亚科或更低层级）
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          如果上述条件未得到满足，或社群同意下列情况，则观察回滚到<strong>“非正式”</strong>等级：
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>日期、月份和/或年份看起来不准确</strong>（比如照片里有雪，但日期却是夏天；不考虑一天之内的时间）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>位置看起来不准确</strong>（例如大洋中的猴子，办公大楼中的河马，等）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>生物不是野生/归化的</strong> (例如被人类饲育或栽培的)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          观察<strong>没有呈现出关于有机体的证据</strong>，如拍摄不包括生物体的水体特征、岩石、地貌，等。
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          观察<strong>不呈现近期（约100年内）的生物体的证据</strong>（如化石；但足迹、粪便和枯叶是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          观察<strong>不是关于单一主体的证据</strong>（如关于四个无关生物体的四张照片；但有一张照片呈现观察主体的生境是可以的）
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          观察不再需要鉴定<em>且</em>社群鉴定在科或更高层级
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          这一分类单元不是观察者鉴定的分类单元的祖先或子代，<em>且</em>该观察者已选择退出社群分类。
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          如果这还不够复杂，还会有系统自动进行表决的情况：
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          系统会投票认为一个观察并非野生/归化的，如果该物种所属的属或更低层级分类单元在当地最小的县/州/或国家地区范围内包括不少于10个其他的观察，且不少于80%的上述观察被标记为非野生/归化的。
         identification_count_desc: '单个分类单元的标识数量'
         flagged_photos_desc_html: |
           其中一些照片被已标记为不当内容或侵犯版权。有关详细信息，请参阅%{links}
@@ -6954,10 +7020,11 @@ zh-CN:
         we_have_redesigned_projects: |
           我们重新设计了项目，以自动包含适合您定义的地点，分类，用户，质量和日期的所有观察。选择两种类型：收藏项目和伞形项目，它们共享以下功能：
         welcome_to_projects: 欢迎来到项目！
-        you_can_learn_more_html: |
-          您可以在<a href="https://www.inaturalist.org/pages/managing-projects">这里</a>了解更多关于管理项目
-          或者在
-          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">我们的博客</a> 阅读项目的历史。
+        you_can_learn_more2_html: |
+          您可以在
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">这里</a>
+          了解更多关于管理项目的信息，或者在
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">我们的博客</a>阅读项目的历史。
         you_have_not_defined_any_observation_requirements: |
           您没有定义任何观察要求。确保选择一个或多个分类群（例如鸟、针叶树）、地点（例如巴西、黄石公园）、用户和/或日期以定义您希望包含在您的项目中的观察。
         errors:
@@ -7151,8 +7218,12 @@ zh-CN:
         translators_title: 翻译人员
         translators_desc: |
           你知不知道iNaturalist已经被翻译成了%{x_languages}，而这几乎完全是由%{x_people}翻译的，其中一些人甚至不使用iNat？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
+        translators_desc_2: |
+          你知不知道iNaturalist已经被翻译成了%{x_languages}，而这几乎完全是由%{x_people}翻译的，其中一些人甚至不使用iNat？这里是所有在今年做出了翻译贡献的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_desc_for_site: |
           你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年做出了翻译贡献的个人名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，以及%{seek_link_tag}Seek%{link_tag_end}所翻译的词条数量。你可以看到在全部语言中做出了贡献的所有个人，包括在我们的%{view_all_web_link_tag}网页版%{link_tag_end}和%{view_all_mobile_link_tag}移动端%{link_tag_end}代码编写过程中于此前几年参与翻译的个人，以及来自Translatewiki,的伙伴。
+        translators_desc_for_site_2: |
+          你知不知道%{site_name}几乎完全是由%{x_people}翻译的？这里是所有在今年添加了翻译的个人的名单，以及其为%{website_link_tag}网站%{link_tag_end}、iNaturalist%{iphone_link_tag}iPhone客户端%{link_tag_end}和%{android_link_tag}安卓应用%{link_tag_end}，%{seek_link_tag}Seek%{link_tag_end}，以及%{help_link_tag}iNatHelp%{link_tag_end}所翻译的词条数量。
         translators_prompt: |
           如果您想要帮助翻译， %{link_tag}点此了解更多%{link_tag_end}。
         view_all_publications_count_caps2:
@@ -7707,13 +7778,13 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%b%d日 %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      compact: "%I:%M %p"
+      compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      observed_at: '%I:%M %p %Z'
+      observed_at: '%p %I:%M %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y年%B%d日"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      hours: "%I:%M %p"
+      hours: "%p %l:%M"
     pm: 下午
   activerecord:
     models:
@@ -7761,6 +7832,8 @@ zh-CN:
       assessment_section:
         title: 标题
         body: 正文
+      blocked_ip:
+        ip: IP地址
       blocked_user:
         #The user who has been blocked
         blocked_user: 被屏蔽的用户
@@ -8028,7 +8101,15 @@ zh-CN:
             action:
               not_supported_for_this_kind_of_content: 不支持此类内容
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: 仅有隐藏的内容可以被私有
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: 仅有员工和馆长可以隐藏内容
               only_staff_and_hiding_curators_can_unhide: 只有员工和隐藏内容的馆长才能取消隐藏
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: 仅有员工可以将内容设置为私有
               staff_cannot_be_suspended: 员工不能被停用
             user_id:
               must_be_a_curator: 必须是管理员
@@ -8040,6 +8121,10 @@ zh-CN:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "坐标不能为 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                因未知原因无法保存，请截图并向员工报告
             observed_on:
               cannot_be_greater_than_date_created: |
                 不能大于观察被添加的日期
@@ -8110,6 +8195,14 @@ zh-CN:
                 必须在 %{time} 之后被观察
               must_be_observed_before: |
                 必须在 %{time} 之前被观察
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: 必须是一个项目
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: 仅允许项目规则
         quality_metric:
           attributes:
             base:
@@ -8160,6 +8253,10 @@ zh-CN:
             taxon:
               too_many_photos: |
                 不能有超过 %{max} 张照片
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                不能有未解决的标记
         taxon_range:
           attributes:
             iucn_relationship:

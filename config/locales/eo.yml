@@ -14,12 +14,6 @@ eo:
   x_identifications_:
     one: '1 Identigado'
     other: '%{count} Identigadoj'
-  #Number of people who have added identifications
-  x_identifiers_html:
-    #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> Identigisto'
-    #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> Identigistoj'
   x_languages:
     one: "%{count} lingvo"
     other: "%{count} lingvoj"
@@ -47,9 +41,6 @@ eo:
   x_observations_link_html:
     one: "<a href='%{url}'>%{count} observo</a>"
     other: "<a href='%{url}'>%{count} observoj</a>"
-  x_observers_html:
-    one: '<span class="count">%{count}</span> Observanto'
-    other: '<span class="count">%{count}</span> Observantoj'
   x_others:
     one: "1 alio"
     other: "%{count} alioj"
@@ -1504,7 +1495,6 @@ eo:
   rules_types:
     must_be_on_list: devas esti en listo
     must_be_in: devas esti en taksono
-  said: diris
   satellite: satelito
   save: Konservi
   save_all: Konservi Ĉion

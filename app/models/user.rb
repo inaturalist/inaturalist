@@ -2,7 +2,7 @@
 
 class User < ApplicationRecord
   include ActsAsSpammable::User
-  include ActsAsElasticModel
+  acts_as_elastic_model
   include ActsAsUUIDable
   include HasJournal
 
@@ -211,6 +211,8 @@ class User < ApplicationRecord
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
   has_many :moderator_actions, inverse_of: :user
+  has_many :moderator_actions_as_resource_user, inverse_of: :resource_user,
+    class_name: "ModeratorAction", foreign_key: "resource_user_id"
   has_many :moderator_notes, inverse_of: :user
   has_many :moderator_notes_as_subject, class_name: "ModeratorNote",
     foreign_key: "subject_user_id", inverse_of: :subject_user,
@@ -287,6 +289,7 @@ class User < ApplicationRecord
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
+  after_save :send_messages_by_unsuspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
@@ -1332,8 +1335,21 @@ class User < ApplicationRecord
 
   def destroy_messages_by_suspended_user
     return true unless suspended?
-    Message.inbox.unread.where(:from_user_id => id).destroy_all
+
+    Message.inbox.unread.where( from_user_id: id ).find_each do | msg |
+      msg.from_user_copy&.update( sent_at: nil )
+      msg.destroy
+    end
     true
+  end
+
+  def send_messages_by_unsuspended_user
+    return if suspended?
+    return unless saved_change_to_suspended_at?
+
+    Message.
+      delay( priority: USER_INTEGRITY_PRIORITY ).
+      resend_unsent_for_user( id )
   end
 
   def revoke_access_tokens_by_suspended_user

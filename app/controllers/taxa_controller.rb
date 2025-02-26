@@ -880,7 +880,8 @@ class TaxaController < ApplicationController
       id: @taxon.id,
       ranges: @taxon.taxon_range.present?,
       gbif_id: @taxon.get_gbif_id,
-      listed_places: @taxon.listed_taxa.joins(place: :place_geometry).exists?
+      listed_places: @taxon.listed_taxa.joins( place: :place_geometry ).exists?,
+      geomodel: GeoModelTaxon.where( taxon_id: @taxon ).exists?
     }
   end
 

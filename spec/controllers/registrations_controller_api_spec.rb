@@ -205,6 +205,7 @@ describe Users::RegistrationsController, "create" do
     expect( signup ).not_to be_nil
     expect( signup.browser_id ).to eq( "browser123" )
     expect( signup.ip ).to eq( u.last_ip )
+    expect( signup.mobile ).to be false
   end
 
   it "should create UserSignup with incognito mode true" do
@@ -221,5 +222,32 @@ describe Users::RegistrationsController, "create" do
     signup = UserSignup.find_by_user_id( u.id )
     expect( signup ).not_to be_nil
     expect( signup.incognito ).to be false
+  end
+
+  it "should not create UserSignup if no installation ID in mobile mode" do
+    allow( Ambidextrous ).to receive( :is_mobile_app ).and_return( true )
+    u = register_user_with_params
+    expect( u ).not_to be_nil
+    signup = UserSignup.find_by_user_id( u.id )
+    expect( signup ).to be_nil
+  end
+
+  it "should create UserSignup with installation ID in mobile mode" do
+    allow( controller ).to receive( :is_mobile_app? ).and_return( true )
+    request.headers["HTTP_X_INSTALLATION_ID"] = "installation123"
+    u = User.make
+    post :create, format: "json", params: { user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
+    } }
+    u_created = User.find_by_login( u.login )
+    expect( u_created ).not_to be_nil
+    signup = UserSignup.find_by_user_id( u_created.id )
+    expect( signup ).not_to be_nil
+    expect( signup.browser_id ).to eq( "installation123" )
+    expect( signup.ip ).to eq( u_created.last_ip )
+    expect( signup.mobile ).to be true
   end
 end

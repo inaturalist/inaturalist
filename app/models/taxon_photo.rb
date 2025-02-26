@@ -1,4 +1,8 @@
+# frozen_string_literal: true
+
 class TaxonPhoto < ApplicationRecord
+  acts_as_elastic_model lifecycle_callbacks: [:destroy]
+
   audited except: [:taxon_id], associated_with: :taxon
 
   belongs_to :taxon
@@ -52,18 +56,6 @@ class TaxonPhoto < ApplicationRecord
     Rails.cache.delete(taxon.photos_cache_key)
     Rails.cache.delete(taxon.photos_with_external_cache_key)
     true
-  end
-
-  def as_indexed_json(options={})
-    {
-      taxon_id: taxon_id,
-      photo: photo.as_indexed_json(
-        sizes: [:square, :small, :medium, :large, :original],
-        native_page_url: true,
-        native_photo_id: true,
-        type: true
-      )
-    }
   end
 
   def index_taxon

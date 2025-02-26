@@ -1465,14 +1465,16 @@ $.fn.textcompleteUsers = function( ) {
       $.getJSON( "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete", { q: term } ).
         done(function( data ) {
           callback( $.map( data.results, function( user ) {
-            var icon = user.icon || "/attachment_defaults/users/icons/defaults/mini.png";
-            icon = icon.replace( "/thumb.", "/mini." );
+            var icon = user.icon || "/attachment_defaults/users/icons/defaults/thumb.png";
+            icon = icon.replace( "thumb.", "medium." );
             var label = user.login;
             if ( user.name ) {
               label = user.name + " (" + label + ")";
             }
-            return '<div class="chooseritem"><img alt="' + user.login + '" title="' + user.login
-              + '" class="user_image  usericon" src="' + icon + '" />' + label + '</div>';
+            return $( '<div class="chooseritem">' ).append(
+              $( '<div class="user_image usericon">' ).css( { backgroundImage: "url(" + icon + ")" } ),
+              label
+            ).prop( "outerHTML" );
           }));
         }
       );

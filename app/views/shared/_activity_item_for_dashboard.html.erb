@@ -27,7 +27,9 @@
 <li class="<%= ("id_refined" unless item.current?) if item.is_a? Identification  %> <%= "last" if last  %>">
   <div class="timeline-badge">
     <% if user && !no_thumb -%>
-        <%= link_to image_tag(user.icon.url(:thumb), :class => 'img-circle padding'), person_path(user) %>
+      <%= link_to_user user do %>
+        <%= user_image user, size: "thumb", class: "padding" %>
+      <% end -%>
     <% end -%>
   </div>
   <div class="timeline-panel">
@@ -89,8 +91,7 @@
                 t(:deleted_user)
               end
             -%>
-            <span class="meta"><%= username %> <%= t :said %>,</span>
-            "<%= item.comment %>"
+            <%=t :user_said_comment_html, user: username, comment: item.comment %>
           <% end -%>
         </div>
       <% elsif item.is_a? ObservationFieldValue %>
@@ -120,9 +121,9 @@
         <% else %>
           <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
             <%- if context_around && context = text.context_of_pattern(context_around) %>
-              <%= formatted_user_text(context) %>
+              <%= formatted_user_text( context ) %>
             <% else -%>
-              <%= formatted_user_text(text) %>
+              <%= formatted_user_text( text ) %>
             <% end -%>
           </div>
         <% end %>

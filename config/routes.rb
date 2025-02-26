@@ -29,10 +29,9 @@ Rails.application.routes.draw do
   get "/privacy", to: redirect( "/pages/privacy" ), as: :privacy_policy
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"
+  get "/donate/fundraiseup", to: "donate#fundraiseup"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
-
   get "/donate-seek", to: redirect( "https://donorbox.org/support-seek-by-inaturalist", status: 302 )
-
   get "/independence",
     to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
@@ -203,6 +202,7 @@ Rails.application.routes.draw do
       get :delete
       post :parental_consent
       post :resend_confirmation
+      get :email_available
     end
     member do
       put :join_test
