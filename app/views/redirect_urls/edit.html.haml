@@ -1,12 +1,17 @@
-%h1 Editing Redirect Url
+- content_for :title do
+  = @title = "Editing Redirect URL #{@redirect_url.id}"
+
+%h1= @title
 
 .row
   .col-md-8
-    = render 'form', redirect_url: @redirect_url
+    = render "form", redirect_url: @redirect_url
   .col-md-4
     %h2 URL
     %p= link_to redirect_url_url( @redirect_url ), redirect_url_url( @redirect_url )
+    = link_to t( :test ), redirect_url_url( @redirect_url, test: true ), class: "btn btn-default"
     %h2 QR Code
     %img.img-responsive{ src: @qr_code.as_png( size: 500, border_modules: 0 ).to_data_url }
 
-= link_to t( :back ), :back, class: "btn btn-default"
+.upstacked
+  = link_to t( :back ), :back, class: "btn btn-default"

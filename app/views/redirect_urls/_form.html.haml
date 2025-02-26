@@ -5,8 +5,10 @@
       %ul
         - redirect_url.errors.each do |error|
           %li= error.full_message
-  = form.text_field :title
+  = form.text_field :title, required: true
   = form.text_area :description
-  = form.text_field :app_store_url
-  = form.text_field :play_store_url
+  = form.text_field :app_store_url, required: true
+  = form.text_field :play_store_url, required: true
   = form.submit t( :save ), class: "btn btn-primary"
+  - if redirect_url.persisted?
+    = link_to t( :delete ), @redirect_url, method: :delete, data: { confirm: t( :are_you_sure? ) }, class: "btn btn-danger pull-right"

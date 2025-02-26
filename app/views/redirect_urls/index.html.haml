@@ -12,19 +12,18 @@
       %th Description
       %th URL
       %th View count
-      %th{ colspan: 3 }
+      %th{ colspan: 2 }
 
   %tbody
     - @redirect_urls.each do |redirect_url|
       %tr
         %td= link_to_user redirect_url.user
-        %td= redirect_url.title
+        %td= link_to redirect_url.title, edit_redirect_url_path( redirect_url )
         %td= redirect_url.description
         %td= link_to redirect_url_url( redirect_url ), redirect_url_url( redirect_url )
         %td= redirect_url.view_count
         %td= link_to t( :test ), redirect_url_url( redirect_url, test: true ), class: "btn btn-link btn-sm"
-        %td= link_to t( :edit ), edit_redirect_url_path(redirect_url), class: "btn btn-default btn-sm"
-        %td= link_to t( :delete ), redirect_url, method: :delete, data: { confirm: t( :are_you_sure? ) }, class: "btn btn-sm btn-danger"
+        %td= link_to t( :edit ), edit_redirect_url_path( redirect_url ), class: "btn btn-default btn-sm"
 
 .text-center
   = will_paginate @redirect_urls

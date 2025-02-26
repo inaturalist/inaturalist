@@ -1,5 +1,9 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe RedirectUrl, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+require "spec_helper"
+
+describe RedirectUrl, type: :model do
+  it { is_expected.to validate_presence_of :user }
+  it { is_expected.to validate_presence_of :play_store_url }
+  it { is_expected.to validate_presence_of :app_store_url }
 end

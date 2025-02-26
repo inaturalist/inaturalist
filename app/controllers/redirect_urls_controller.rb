@@ -9,7 +9,7 @@ class RedirectUrlsController < ApplicationController
 
   # GET /redirect_urls
   def index
-    @redirect_urls = RedirectUrl.page( params[:page] ).per_page( 100 )
+    @redirect_urls = RedirectUrl.order( "id desc" ).page( params[:page] ).per_page( 100 )
   end
 
   # GET /redirect_urls/1
@@ -21,10 +21,16 @@ class RedirectUrlsController < ApplicationController
     elsif %w(iPhone iPad).include?( mobile_os ) || params[:force] == "ios"
       @redirect_url.app_store_url
     end
-    if redirect_target
-      redirect_to redirect_target
-      return
+    if mobile_os
+      @responsive = true
+      @footless = true
+      @no_footer_gap = true
     end
+    # If we don't know where to send the user, show them the default choice
+    # page
+    return unless redirect_target
+
+    redirect_to redirect_target
   end
 
   # GET /redirect_urls/new

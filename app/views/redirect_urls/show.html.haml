@@ -12,15 +12,16 @@
       flex-direction: row;
       gap: 10px;
     }
+    .links img {
+      height: 50px;
+    }
 
 #redirect-url
   %h1= @redirect_url.title
   %p.lead= @redirect_url.description
 
   .links
-    = link_to url_for( force: "android" ), class: "btn btn-primary" do
-      %i.fa.fa-android
-      Play Store
-    = link_to url_for( force: "ios" ), class: "btn btn-primary" do
-      %i.fa.fa-apple
-      App Store
+    = link_to url_for( force: "android" ) do
+      = image_tag "https://static.inaturalist.org/wiki_page_attachments/412-original.png", alt: "Google Play Store"
+    = link_to url_for( force: "ios" ) do
+      = image_tag "https://static.inaturalist.org/wiki_page_attachments/414-original.png", alt: "Apple App Store"
