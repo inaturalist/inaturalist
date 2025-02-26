@@ -302,6 +302,7 @@ class Charts extends React.Component {
     } = this.props;
     // const dates = this.props.historyKeys;
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
+    const shouldZoomToDecade = years.length >= 10;
     const formattedYears = years.map( y => `${y}-06-15` );
     const chunks = _.chunk( years, 2 );
     const that = this;
@@ -331,7 +332,7 @@ class Charts extends React.Component {
         x: {
           type: "timeseries",
           tick: {
-            culling: false,
+            culling: !shouldZoomToDecade,
             values: formattedYears,
             format: "%Y"
           }
@@ -355,10 +356,13 @@ class Charts extends React.Component {
     } );
     const mountNode = $( ".HistoryChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.historyChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
-    this.historyChart.zoom( [
-      formattedYears[formattedYears.length - 11],
-      formattedYears[formattedYears.length - 1]
-    ] );
+    if ( !shouldZoomToDecade ) return;
+
+    const newZooms = [
+      `${years[years.length - 11]}-01-01`,
+      `${years[years.length - 1]}-01-01`
+    ];
+    this.historyChart.zoom( newZooms );
   }
 
   render( ) {
