@@ -903,7 +903,10 @@ class User < ApplicationRecord
       :name => auth_info["info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw,
-      :icon_url => icon_url
+      :icon_url => icon_url,
+      preferred_observation_license: Observation::CC_BY_NC,
+      preferred_photo_license: Observation::CC_BY_NC,
+      preferred_sound_license: Observation::CC_BY_NC
     )
     if oauth_application.try( :trusted? )
       u.oauth_application_id = oauth_application.id
