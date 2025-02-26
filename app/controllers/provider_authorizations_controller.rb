@@ -81,7 +81,7 @@ class ProviderAuthorizationsController < ApplicationController
       end
     else
       create_provider_authorization( auth_info )
-      sign_in( @provider_authorization.user )
+      sign_in( @provider_authorization.user ) if @provider_authorization
     end
 
     if @provider_authorization&.valid? && ( scope = get_session_omniauth_scope )
