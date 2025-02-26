@@ -1,7 +1,7 @@
-- content_for :title, @redirect_url.title
+- content_for :title, @redirect_link.title
 - content_for :extracss do
   :css
-    #redirect-url {
+    #redirect-link {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -16,9 +16,9 @@
       height: 50px;
     }
 
-#redirect-url
-  %h1= @redirect_url.title
-  %p.lead= @redirect_url.description
+#redirect-link
+  %h1= @redirect_link.title
+  %p.lead= @redirect_link.description
 
   .links
     = link_to url_for( force: "android" ) do

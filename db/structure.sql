@@ -4103,10 +4103,10 @@ ALTER SEQUENCE public.quality_metrics_id_seq OWNED BY public.quality_metrics.id;
 
 
 --
--- Name: redirect_urls; Type: TABLE; Schema: public; Owner: -
+-- Name: redirect_links; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE public.redirect_urls (
+CREATE TABLE public.redirect_links (
     id bigint NOT NULL,
     user_id integer,
     title character varying,
@@ -4120,10 +4120,10 @@ CREATE TABLE public.redirect_urls (
 
 
 --
--- Name: redirect_urls_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: redirect_links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE public.redirect_urls_id_seq
+CREATE SEQUENCE public.redirect_links_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -4132,10 +4132,10 @@ CREATE SEQUENCE public.redirect_urls_id_seq
 
 
 --
--- Name: redirect_urls_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: redirect_links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE public.redirect_urls_id_seq OWNED BY public.redirect_urls.id;
+ALTER SEQUENCE public.redirect_links_id_seq OWNED BY public.redirect_links.id;
 
 
 --
@@ -6651,10 +6651,10 @@ ALTER TABLE ONLY public.quality_metrics ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
--- Name: redirect_urls id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: redirect_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.redirect_urls ALTER COLUMN id SET DEFAULT nextval('public.redirect_urls_id_seq'::regclass);
+ALTER TABLE ONLY public.redirect_links ALTER COLUMN id SET DEFAULT nextval('public.redirect_links_id_seq'::regclass);
 
 
 --
@@ -7769,11 +7769,11 @@ ALTER TABLE ONLY public.quality_metrics
 
 
 --
--- Name: redirect_urls redirect_urls_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: redirect_links redirect_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY public.redirect_urls
-    ADD CONSTRAINT redirect_urls_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY public.redirect_links
+    ADD CONSTRAINT redirect_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -10053,10 +10053,10 @@ CREATE INDEX index_quality_metrics_on_user_id ON public.quality_metrics USING bt
 
 
 --
--- Name: index_redirect_urls_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_redirect_links_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_redirect_urls_on_user_id ON public.redirect_urls USING btree (user_id);
+CREATE INDEX index_redirect_links_on_user_id ON public.redirect_links USING btree (user_id);
 
 
 --

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateRedirectUrls < ActiveRecord::Migration[6.1]
+class CreateRedirectLinks < ActiveRecord::Migration[6.1]
   def change
-    create_table :redirect_urls do | t |
+    create_table :redirect_links do | t |
       t.integer :user_id, index: true
       t.string :title
       t.text :description
