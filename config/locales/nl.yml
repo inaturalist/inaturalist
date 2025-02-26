@@ -2460,6 +2460,8 @@ nl:
   large: groot
   last_active_with_date: "Laatst actief %{date}"
   last_confirmed_observation: Laatste bevestigde waarneming
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Laatst bewerkt door
   last_observation: Laatste waarneming
   last_observation_caps: LAATSTE WAARNEMING
   last_seen: Laatst gezien
@@ -6436,6 +6438,9 @@ nl:
             Je kunt de "In de buurt verwacht"-kaart zien als een verwachting of de soort
             ergens in de rastercel aanwezig is of helemaal niet.
           figure_alt_text: Het Geomodel past het 'In de buurt verwacht'-label toe
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download 'In de buurt verwacht'-kaart als GeoJSON
         unthresholded_map:
           unthresholded_map: Drempelloze kaart
           we_use_the_unthresholded_map: |
