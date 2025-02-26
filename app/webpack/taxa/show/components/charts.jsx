@@ -331,7 +331,7 @@ class Charts extends React.Component {
         x: {
           type: "timeseries",
           tick: {
-            culling: true,
+            culling: false,
             values: formattedYears,
             format: "%Y"
           }
