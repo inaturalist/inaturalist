@@ -2485,6 +2485,8 @@ sv:
   large: stor
   last_active_with_date: "Senast aktiv: %{date}"
   last_confirmed_observation: Senast bekräftade fynd
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Senast redigerad av
   last_observation: Senaste fynd
   last_observation_caps: SENASTE FYND
   last_seen: Senast sedd
@@ -6500,6 +6502,9 @@ sv:
             Du kan se på Förväntad i närheten-kartan som en bedömning av om arten
             förekommer någonstans i en rutcell eller är helt frånvarande.
           figure_alt_text: Geomodellen tillämpar Förväntad i närheten-etiketten
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Ladda ner Förväntat i närheten-karta som GeoJSON
         unthresholded_map:
           unthresholded_map: Karta utan tröskelvärden
           we_use_the_unthresholded_map: |
