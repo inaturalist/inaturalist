@@ -162,6 +162,8 @@ class Charts extends React.Component {
     };
   }
 
+  // This is used below, just not in a way that eslint can figure out
+  // eslint-disable-next-line react/no-unused-class-component-methods
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
     const {
       seasonalityColumns
@@ -235,7 +237,10 @@ class Charts extends React.Component {
       },
       tooltip: {
         contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
-          d, defaultTitleFormat, defaultValueFormat, color,
+          d,
+          defaultTitleFormat,
+          defaultValueFormat,
+          color,
           `${tipTitle}: ${I18n.t( "date.month_names" )[d[0].index + 1]}`
         )
       }
@@ -297,7 +302,8 @@ class Charts extends React.Component {
     } = this.props;
     // const dates = this.props.historyKeys;
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
-    const formattedYears = years.map((y) => `${y}-06-15`);
+    const shouldZoomToDecade = years.length >= 10;
+    const formattedYears = years.map( y => `${y}-06-15` );
     const chunks = _.chunk( years, 2 );
     const that = this;
     const regions = chunks.map( pair => (
@@ -326,18 +332,21 @@ class Charts extends React.Component {
         x: {
           type: "timeseries",
           tick: {
-            culling: true,
+            culling: !shouldZoomToDecade,
             values: formattedYears,
             format: "%Y"
-          },
+          }
         }
       },
       zoom: {
-        enabled: zoom(),
+        enabled: zoom()
       },
       tooltip: {
         contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
-          d, defaultTitleFormat, defaultValueFormat, color,
+          d,
+          defaultTitleFormat,
+          defaultValueFormat,
+          color,
           `${tipTitle}:
           ${I18n.t( "date.abbr_month_names" )[d[0].x.getMonth( ) + 1]}
           ${d[0].x.getFullYear( )}`
@@ -347,7 +356,13 @@ class Charts extends React.Component {
     } );
     const mountNode = $( ".HistoryChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.historyChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
-    this.historyChart.zoom([formattedYears[formattedYears.length - 11], formattedYears[formattedYears.length - 1]]);
+    if ( !shouldZoomToDecade ) return;
+
+    const newZooms = [
+      `${years[years.length - 11]}-01-01`,
+      `${years[years.length - 1]}-01-01`
+    ];
+    this.historyChart.zoom( newZooms );
   }
 
   render( ) {
@@ -380,8 +395,10 @@ class Charts extends React.Component {
               role="tab"
               data-toggle="tab"
             >
-              { I18n.t( `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
-                { defaultValue: values[0].controlled_attribute.label } ) }
+              { I18n.t(
+                `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
+                { defaultValue: values[0].controlled_attribute.label }
+              ) }
             </a>
           </li>
         ) );
@@ -423,6 +440,7 @@ class Charts extends React.Component {
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            alt={I18n.t( "Settings" )}
           >
             <i className="fa fa-gear" />
           </button>
@@ -471,8 +489,7 @@ class Charts extends React.Component {
               >
                 { noAnnotationHidden
                   ? I18n.t( "show_no_annotation" )
-                  : I18n.t( "hide_no_annotation" )
-                }
+                  : I18n.t( "hide_no_annotation" )}
               </a>
             </li>
             { chartedFieldValues && config && config.currentUser && config.currentUser.id ? (
@@ -502,6 +519,7 @@ class Charts extends React.Component {
           type="button"
           className="btn btn-link help-btn"
           onClick={( ) => this.showHelpModal( )}
+          alt={I18n.t( "Help" )}
         >
           <i className="fa fa-question-circle" />
         </button>
