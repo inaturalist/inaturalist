@@ -219,6 +219,7 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :taxon_name_priorities, dependent: :destroy
   has_many :user_donations, dependent: :delete_all
+  has_many :redirect_links, dependent: :nullify
 
   file_options = {
     processors: [:deanimator],
