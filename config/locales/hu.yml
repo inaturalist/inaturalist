@@ -5251,6 +5251,9 @@ hu:
           you_can_think: |
             A Valószínűsíthető előfordulási térkép azt illusztrálja, hogy a faj nagy valószínűséggel előfordul-e a térképrácson belül, vagy nem.
           figure_alt_text: A Geomodell hozza létre "A közelben előfordulhat" megjelöléseket.
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: A Valószínűsíthető előfordulási térkép letöltése GeoJSON formátumban
         unthresholded_map:
           unthresholded_map: Küszöb nélküli térkép
           we_use_the_unthresholded_map: |

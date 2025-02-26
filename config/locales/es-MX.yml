@@ -6326,6 +6326,9 @@ es-MX:
             Puedes pensar en el mapa esperado de cercanías como una estimación de si la especie
             está presente en algún lugar dentro de la célula de cuadrícula o está completamente ausente.
           figure_alt_text: El Geomodelo aplica la etiqueta Esperada en las Cercanías
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Descargar el mapa cercano esperado como GeoJSON
         unthresholded_map:
           unthresholded_map: Mapa sin umbral
           we_use_the_unthresholded_map: |

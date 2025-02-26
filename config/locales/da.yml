@@ -2475,6 +2475,8 @@ da:
   large: stor
   last_active_with_date: "Senest aktiv: %{date}"
   last_confirmed_observation: Sidste bekræftede observation
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Senest redigeret af
   last_observation: Sidste observation
   last_observation_caps: SENESTE OBSERVATION
   last_seen: Sidst set
@@ -6515,6 +6517,9 @@ da:
             Man kan tænke på Forventet i nærheden-kortet som et skøn over, hvorvidt arten
             er til stede et eller andet sted i gittercellen, eller er helt fraværende.
           figure_alt_text: Geomodellen tilføjer etiketten Forventet i nærheden
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download Forventede nærliggende kort som GeoJSON
         unthresholded_map:
           unthresholded_map: Uafgrænset-kort
           we_use_the_unthresholded_map: |
