@@ -8,4 +8,4 @@
       %td=define_term.call term
     %tr
       %th URI
-      %td= link_to term_uri_url( term: term ), term_uri_url( term: term )
+      %td= link_to term_uri_url( term: term, host: Site.default.url ), term_uri_url( term: term, host: Site.default.url )
