@@ -9,21 +9,13 @@
 
 %h1= @title
 
-%p.lead
-  iNaturalist employs a variety of unique terms to describe various aspects of the service. Here we've tried to collect some of them and their definitions for reference.
+%p.lead=t "views.terms.index.inaturalist_employs_a_variety_of_terms"
 
 %h2=t :export_observations
 
 = render "terms/terms", terms: @export_terms, define_term: lambda { | term | auto_link t( "views.observations.field_descriptions.#{term}", raise: true ) }
 
-%p
-  Exports can also contain columns with Observation Field values. To find definitions for those, either search for them at
-  = link_to observation_fields_url, observation_fields_url
-  or append the column name (with the colon) to
-  %code= terms_url
-  (e.g.
-  = link_to term_url( term: "field:count" ), term_url( term: "field:count" )
-  )
+%p=t "views.terms.index.exports_can_also_contain_observation_field_values_html", observation_fields_url: observation_fields_url, terms_url: terms_url, term_url: term_url( term: "field:count" )
 
 %h2=t :other__terms
 

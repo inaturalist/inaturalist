@@ -1725,6 +1725,8 @@ en:
     This is the default time zone. The final time zone will be assigned based
     on the observation's location when it is saved.
   defaults_to_your_name_or_username: Defaults to your name or username
+  # As in the definition of a word
+  definition: Definition
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Defines a Taxon Framework for %{taxon} sourced to %{source}
   definitions: Definitions
@@ -2729,8 +2731,8 @@ en:
   lexicon: Lexicon
   # Definition of what a lexicon is on iNat
   lexicon__definition: |
-    A collection of words or terms containing a taxon name, e.g. a language, a
-    set of abbreviations, or a standard set of terms
+    A collection of words or terms containing a taxon name, e.g. a language or a
+    set of abbreviations
   lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -9035,6 +9037,18 @@ en:
           the list. You can also specify default names in different places by
           editing the name and adding a place, but please only do this when
           different places have conflicting names.
+    terms:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          Exports can also contain columns with Observation Field values. To
+          find definitions for those, either search for them at
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          or append the column name (with the colon) to
+          <code>%{terms_url}</code> (e.g. <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist employs a variety of unique terms to describe various
+          aspects of the service. Here we've tried to collect some of them
+          and their definitions for reference.
     users:
       dashboard:
         taxon_change_desc: |
