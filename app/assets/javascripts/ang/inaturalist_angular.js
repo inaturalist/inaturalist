@@ -268,6 +268,9 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
       };
       // eslint-disable-next-line no-param-reassign
       scope.titleText = function ( ) {
+        if ( scope.obscured ) {
+          return null;
+        }
         if ( scope.title ) {
           return scope.title;
         }
@@ -276,9 +279,6 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
         }
         var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
         var momentTime = moment.tz( scope.time, timezone );
-        if ( scope.obscured ) {
-          return momentTime.format( I18n.t( "momentjs.month_year" ) );
-        }
         return momentTime.format( );
       };
     },
