@@ -3,7 +3,9 @@
 class RemoveSiteTwitterSignIn < ActiveRecord::Migration[6.1]
   def up
     # Remove site preference for twitter sign in
-    execute "DELETE FROM preferences WHERE owner_type = 'Site' AND name = 'twitter_sign_in'"
+    Site.all.each do | site |
+      site.stored_preferences.where( name: "twitter_sign_in" ).destroy_all
+    end
 
     # Remove potentially private data from twitter
     execute <<-SQL
