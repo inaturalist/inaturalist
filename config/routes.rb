@@ -773,6 +773,9 @@ Rails.application.routes.draw do
   resources :email_suppressions, only: [:index, :destroy]
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
+  get "schema/terms" => "terms#index", as: :terms
+  get "schema/terms/:term" => "terms#show", as: :term
+  get "terms/:term" => "terms#show", as: :term_uri
 
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
