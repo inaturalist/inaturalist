@@ -9,7 +9,7 @@ class TermsController < ApplicationController
   layout "bootstrap-container"
 
   def index
-    @export_terms = Observation::ALL_EXPORT_COLUMNS
+    @export_terms = Observation::ALL_EXPORT_COLUMNS.sort
     @other_terms = OTHER_TERMS
   end
 

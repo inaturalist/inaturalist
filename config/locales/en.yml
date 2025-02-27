@@ -7547,7 +7547,10 @@ en:
           </ul>
       field_descriptions:
         id: Unique, sequential identifier for the observation
-        species_guess: "Name the observer entered for the observed taxon"
+        species_guess: |
+          Plain text name of the observed taxon; can be set by the observer
+          during observation creation, but can get replaced with canonical,
+          localized names when the taxon changes
         scientific_name: "Scientific name of the observed taxon according to this site"
         common_name: "Common or vernacular name of the observed taxon according to this site"
         iconic_taxon_name: Higher-level taxonomic category for the observed taxon
@@ -7622,7 +7625,7 @@ en:
         taxon_class_name: |
           Name of the taxonomic class containing the observed taxon
         taxon_family_name: |
-          Name of the taxonomic family class containing the observed taxon
+          Name of the taxonomic family containing the observed taxon
         taxon_form_name: |
           Name of the taxonomic form containing the observed taxon
         taxon_genus_name: |

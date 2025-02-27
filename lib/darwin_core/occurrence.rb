@@ -38,7 +38,7 @@ module DarwinCore
       %w(recordedByID http://rs.tdwg.org/dwc/terms/recordedByID),
       %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
       %w(identifiedByID http://rs.tdwg.org/dwc/terms/identifiedByID),
-      %w(captive https://www.inaturalist.org/schema/terms/captive_cultivated),
+      %w(captive https://www.inaturalist.org/terms/captive_cultivated),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
       %w(verbatimEventDate http://rs.tdwg.org/dwc/terms/verbatimEventDate),

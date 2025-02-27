@@ -1,0 +1,11 @@
+- terms.each do | term |
+  %h3
+    %a{ name: term, href: "##{term}" }
+      %code= term
+  %table.table.term-table
+    %tr
+      %th Definition
+      %td=define_term.call term
+    %tr
+      %th URI
+      %td= link_to term_uri_url( term: term ), term_uri_url( term: term )
