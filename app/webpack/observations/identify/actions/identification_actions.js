@@ -210,12 +210,12 @@ const onSubmitIdentification = ( observation, identification, options = {} ) => 
       if ( _.isNil( ident.disagreement ) ) {
         params.disagreement = disagreement || false;
       }
+      dispatch( updateCurrentObservation( { tab: "info" } ) );
       dispatch( postIdentification( params ) )
         .catch( ( ) => {
           dispatch( stopLoadingDiscussionItem( ident ) );
         } )
         .then( ( ) => {
-          dispatch( updateCurrentObservation( { tab: "info" } ) );
           dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
           dispatch( fetchCurrentObservation( observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
