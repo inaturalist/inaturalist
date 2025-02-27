@@ -31,7 +31,8 @@
                   %span.meta-text
                     {{ o.faves_count }}
               %span.meta-item.meta-item-right
-                %i.fa.fa-clock-o
+                %i.fa.fa-clock-o{ "ng-show" => "!o.obscured" }
+                %span{ "ng-bind-html": "o.placeIcon() | sanitize", "ng-show" => "o.obscured" }
                 %span.meta-text
                   %inat-calendar-date{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", obscured: "o.obscured && !o.private_geojson", short: "true", time: "o.time_observed_at", "show-time-ago": "true" }
     .spinner.ng-cloak{ "ng-show": "pagination.searching" }
