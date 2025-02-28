@@ -163,7 +163,7 @@ species guess,Date,Description,Location,Latitude / y coord / northing,Longitude 
 
   describe "with coordinate system" do
     let(:proj4_nzmg) {
-      "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+      "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs +type=crs"
     }
     before do
       @work_path = File.join(Dir::tmpdir, "import_file_test-#{Time.now.to_i}.csv")

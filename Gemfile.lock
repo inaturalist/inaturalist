@@ -577,13 +577,13 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.3.9)
-    rgeo (2.3.0)
+    rgeo (2.4.0)
     rgeo-activerecord (7.0.1)
       activerecord (>= 5.0)
       rgeo (>= 1.0.0)
     rgeo-geojson (2.1.1)
       rgeo (>= 1.0.0)
-    rgeo-proj4 (2.0.1)
+    rgeo-proj4 (3.1.1)
       rgeo (~> 2.0)
     rgeo-shapefile (3.0.0)
       dbf (~> 4.0)
@@ -829,7 +829,7 @@ DEPENDENCIES
   rest-client
   rgeo
   rgeo-geojson
-  rgeo-proj4 (~> 2.0.1)
+  rgeo-proj4 (~> 3.1.1)
   rgeo-shapefile
   rinku (~> 2.0)
   riparian!

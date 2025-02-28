@@ -7,7 +7,7 @@ class CompressedYAMLColumn < Hash
 
     def load( compressed_yaml )
       return if compressed_yaml.blank?
-      return YAML.load( Zlib::Inflate.inflate( compressed_yaml ) )
+      return YAML.unsafe_load( Zlib::Inflate.inflate( compressed_yaml ) )
     end
   end
 end
