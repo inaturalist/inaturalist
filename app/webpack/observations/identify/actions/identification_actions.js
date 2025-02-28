@@ -1,13 +1,12 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import {
-  loadingDiscussionItem,
-  stopLoadingDiscussionItem,
+  addIdentification,
   fetchCurrentObservation,
   fetchObservation,
-  addIdentification,
-  updateCurrentObservation,
-  hideCurrentObservation
+  loadingDiscussionItem,
+  stopLoadingDiscussionItem,
+  updateCurrentObservation
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
@@ -262,7 +261,6 @@ const onSubmitIdentification = ( observation, identification, options = {} ) => 
 const chooseSuggestedTaxon = ( taxon, options = { } ) => (
   ( dispatch, getState ) => {
     const s = getState( );
-    console.log( [taxon, options] );
     const { observation } = options;
     const params = {
       observation_id: s.config.testingApiV2 ? observation.uuid : observation.id,

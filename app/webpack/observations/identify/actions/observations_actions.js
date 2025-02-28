@@ -5,12 +5,14 @@ import { setConfig } from "../../../shared/ducks/config";
 import { showAlert, hideAlert } from "../../../shared/ducks/alert_modal";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
-const RECEIVE_OBSERVATIONS = "receive_observations";
-const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
-const UPDATE_ALL_LOCAL = "update_all_local";
-const SET_REVIEWING = "identify/observations/set-reviewing";
-const SET_PLACES_BY_ID = "identify/observations/set-places-by-id";
-const SET_LAST_REQUEST_AT = "identify/observations/set-last-request-at";
+import {
+  RECEIVE_OBSERVATIONS,
+  UPDATE_OBSERVATION_IN_COLLECTION,
+  UPDATE_ALL_LOCAL,
+  SET_REVIEWING,
+  SET_PLACES_BY_ID,
+  SET_LAST_REQUEST_AT
+} from "./observations_actions_names";
 
 const OBSERVATION_FIELDS = {
   id: true,
