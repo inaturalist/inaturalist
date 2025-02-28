@@ -8,9 +8,11 @@ function mapStateToProps( state ) {
   return {
     observation: state.currentObservation.observation,
     config: state.config,
-    qualityMetrics: Object.assign( { },
+    qualityMetrics: Object.assign(
+      { },
       _.groupBy( state.qualityMetrics, "metric" ),
-      _.groupBy( state.currentObservation.observation.votes, "vote_scope" ) ),
+      _.groupBy( state.currentObservation.observation.votes, "vote_scope" )
+    ),
     tableOnly: true
   };
 }

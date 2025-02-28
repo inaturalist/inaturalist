@@ -658,6 +658,9 @@ h3, h4 {
     }
     &.collapsible {
       cursor: pointer;
+      .btn-nostyle {
+        text-align: start;
+      }
     }
   }
 }

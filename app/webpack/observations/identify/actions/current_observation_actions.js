@@ -32,17 +32,19 @@ import {
 } from "../../shared/ducks/observation";
 import { updateSession } from "../../show/ducks/users";
 
-const SHOW_CURRENT_OBSERVATION = "show_current_observation";
-const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
-const FETCH_CURRENT_OBSERVATION = "fetch_current_observation";
-const RECEIVE_CURRENT_OBSERVATION = "receive_current_observation";
-const UPDATE_CURRENT_OBSERVATION = "update_current_observation";
-const SHOW_NEXT_OBSERVATION = "show_next_observation";
-const SHOW_PREV_OBSERVATION = "show_prev_observation";
-const ADD_IDENTIFICATION = "add_identification";
-const ADD_COMMENT = "add_comment";
-const LOADING_DISCUSSION_ITEM = "loading_discussion_item";
-const STOP_LOADING_DISCUSSION_ITEM = "stop_loading_discussion_item";
+import {
+  SHOW_CURRENT_OBSERVATION,
+  HIDE_CURRENT_OBSERVATION,
+  FETCH_CURRENT_OBSERVATION,
+  RECEIVE_CURRENT_OBSERVATION,
+  UPDATE_CURRENT_OBSERVATION,
+  SHOW_NEXT_OBSERVATION,
+  SHOW_PREV_OBSERVATION,
+  ADD_IDENTIFICATION,
+  ADD_COMMENT,
+  LOADING_DISCUSSION_ITEM,
+  STOP_LOADING_DISCUSSION_ITEM
+} from "./current_observation_actions_names";
 
 // order matters...
 const TABS = ["info", "suggestions", "annotations", "data-quality"];
