@@ -660,6 +660,9 @@ h3, h4 {
       cursor: pointer;
       .btn-nostyle {
         text-align: start;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        line-height: inherit;
       }
     }
   }
