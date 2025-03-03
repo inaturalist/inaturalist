@@ -1890,6 +1890,10 @@ pt-BR:
   exclude_projects: Excluir Projetos
   exclude_taxa: Excluir Táxons
   exclude_users: Excluir Usuários
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Excluindo %{count} táxon
+    other: Excluindo %{count} táxons
   exclusion_filters: Filtros de Exclusão
   existing_flags: Sinalizações Existentes
   exit_full_screen: "Sair do modo tela inteira"
@@ -2471,6 +2475,8 @@ pt-BR:
   large: grande
   last_active_with_date: "Última vez ativo: %{date}"
   last_confirmed_observation: Última observação confirmada
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Última edição por
   last_observation: Última observação
   last_observation_caps: ÚLTIMA OBSERVAÇÃO
   last_seen: Última visualização
@@ -2801,6 +2807,9 @@ pt-BR:
   make_a_taxon_swap_instead?: Deseja fazer uma troca de táxons?
   make_curator: Torne coordenador
   make_manager: Tornar moderador
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Tornar privada
   make_sure_the_default_photo_looks_good: Tenha certeza que a foto padrão tem boa definição em tamanho grande.
   make_this_your_default_license: "Torne esta %{type} sua licença padrão"
   make_this_the_primary_listing: "Torne esta sua lista principal"
@@ -6432,6 +6441,9 @@ pt-BR:
           you_can_think: |
             O Mapa de Esperado nas Proximidades pode ser pensado como uma estimativa da presença ou ausência das espécies em algum lugar da célula de Localização
           figure_alt_text: O Geomodel aplica o rótulo de Esperado nas Proximidades
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Baixar Mapa Esperado nas Proximidades como GeoJSON
         unthresholded_map:
           unthresholded_map: Mapa não limitado
           we_use_the_unthresholded_map: |
@@ -8714,7 +8726,15 @@ pt-BR:
             action:
               not_supported_for_this_kind_of_content: não é suportado para este tipo de conteúdo
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Somente conteúdo oculto pode ser privado
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Somente a equipe e coordenadores podem ocultar conteúdo
               only_staff_and_hiding_curators_can_unhide: Apenas membros da equipe e coordenadores que ocultam conteúdo podem mostrá-lo
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Apenas membros da equipe podem definir conteúdo como privado
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
             user_id:
               must_be_a_curator: deve ser um curador
@@ -8726,6 +8746,10 @@ pt-BR:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "coordenadas não podem ser 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                não pode ser salvo por um motivo desconhecido, favor fazer uma captura da tela e enviar para a equipe
             observed_on:
               cannot_be_greater_than_date_created: |
                 não pode ser maior que a data em que a observação foi adicionada
@@ -8798,6 +8822,14 @@ pt-BR:
                 deve ser observado depois %{time}
               must_be_observed_before: |
                 deve ser observado antes %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: deve ser um projeto
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: só permite regras de projeto
         quality_metric:
           attributes:
             base:
