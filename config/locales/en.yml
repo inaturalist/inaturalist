@@ -1233,12 +1233,6 @@ en:
   confirmed_on_date: Confirmed on %{date}
   confirming_ids: Confirming ID's
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
-  confirm_your_email_to_comment:
-    <a href="%{user_settings_url}" class="emailConfirmationModalTrigger">Confirm your
-    email address</a> to add comments to content by other users.
-  confirm_your_email_to_add_ids:
-    <a href="%{user_settings_url}" class="emailConfirmationModalTrigger">Confirm your
-    email address</a> to add identifications to observations by other users.
   # Label for a button to connect your iNat account to another account, e.g.
   # connecting to Flickr
   connect: Connect
@@ -6891,14 +6885,20 @@ en:
         systems. Please check back soon.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Click here to resend a confirmation email
+      # message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Confirmation email sent
       please_add_an_email_and_password:
         Please add an email and password so you don't lose access to your account
       please_click_the_link_sent_to_email_to_confirm_html:
         Please click the link sent to <span class="email">%{email}</span> to confirm your email address.
       please_confirm_that_email_is_the_best_contact_html:
         Please confirm that <span class="email">%{email}</span> is the best way to contact you.
-      please_confirm_that_email_is_the_best_contact2_html:
-        Please confirm your email address <span class="email">%{email}</span> so you can interact with other iNaturalist users.
+      # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html:
+        Please confirm your email address <span class="email">%{email}</span>.
+      # statement used in areas that might contain a form allowing users to add comments, etc. This
+      # informs users they must confirm their email address if they want to be able to interact
+      you_need_to_confirm_to_interact: You need to confirm your email address to interact with other users' content
       your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:

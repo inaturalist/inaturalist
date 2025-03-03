@@ -13,9 +13,10 @@ class Comment < ApplicationRecord
   #   c.parent.respond_to?(:user) && c.parent.user.id != user.id
   # }
 
-  requires_privilege :interaction, unless: proc {| comment |
-    comment.parent.respond_to?( :user ) && comment.parent.user.id == comment.user_id
-  }
+  # TODO: uncomment to strictly enforce email confirmation for interaction
+  # requires_privilege :interaction, unless: proc {| comment |
+  #   comment.parent.respond_to?( :user ) && comment.parent.user.id == comment.user_id
+  # }
 
   belongs_to_with_uuid :parent, polymorphic: true
   belongs_to :user

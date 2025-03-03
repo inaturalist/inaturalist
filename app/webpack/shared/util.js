@@ -130,7 +130,6 @@ const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
   return d.format( format );
 };
 
-
 const inatreact = {
   // Interpolate a translated string with React components as interpolation
   // variables. I18n-js accepts interpolations but will only return a string, so
@@ -284,6 +283,39 @@ function isDisagreement( observation, compareTaxon ) {
     && _.includes( observationTaxon.ancestor_ids, compareTaxon.id );
 }
 
+const makeLogRequest = ( context, options = {} ) => {
+  if ( !context ) {
+    return;
+  }
+
+  try {
+    const apiURL = $( "meta[name='config:inaturalist_api_url']" )
+      .attr( "content" )
+      .replace( "/v1", "/v2" );
+    const jwt = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+    if ( _.isEmpty( jwt ) ) {
+      return;
+    }
+
+    const body = {
+      context
+    };
+    if ( _.isObject( options.extra ) ) {
+      body.extra = options.extra;
+    }
+    fetch( `${apiURL}/log`, {
+      method: "POST",
+      headers: {
+        Authorization: jwt,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify( body )
+    } );
+  } catch {
+    // do nothing
+  }
+};
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -344,5 +376,6 @@ export {
   stripTags,
   translateWithConsistentCase,
   updateSession,
-  isDisagreement
+  isDisagreement,
+  makeLogRequest
 };

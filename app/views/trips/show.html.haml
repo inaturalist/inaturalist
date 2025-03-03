@@ -7,8 +7,8 @@
     $('.observationcontrols').observationControls()
     $("#comment_body").textcompleteUsers( );
     $( ".emailConfirmationModalTrigger, #flag_this, a.flaglink" ).click( function( e ) {
-      if ( $( "#emailConfirmationModalButton" ).length === 1 ) {
-        $( "#emailConfirmationModalButton" ).click( );
+      if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
+        $( "#emailConfirmationModalButton.lacking-interaction" ).click( );
         e.preventDefault( );
         e.stopPropagation( );
       }

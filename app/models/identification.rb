@@ -6,9 +6,10 @@ class Identification < ApplicationRecord
     comment_type: "comment",
     automated: false
 
-  requires_privilege :interaction, unless: proc {| identification |
-    identification&.observation&.user_id == identification.user_id
-  }
+  # TODO: uncomment to strictly enforce email confirmation for interaction
+  # requires_privilege :interaction, unless: proc {| identification |
+  #   identification&.observation&.user_id == identification.user_id
+  # }
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
   has_moderator_actions %w(hide unhide)

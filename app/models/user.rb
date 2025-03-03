@@ -339,7 +339,7 @@ class User < ApplicationRecord
   validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
-  validate :validate_canonical_email_is_unique
+  validate :validate_canonical_email_not_shared_with_suspended_account
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -402,7 +402,7 @@ class User < ApplicationRecord
     true
   end
 
-  def validate_canonical_email_is_unique
+  def validate_canonical_email_not_shared_with_suspended_account
     return unless new_record? || email_changed?
     return if email.blank?
     return if errors[:email].any?

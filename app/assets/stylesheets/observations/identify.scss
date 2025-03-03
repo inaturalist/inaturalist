@@ -150,6 +150,10 @@ li.rc-pagination-item-active a {
 
 .SearchBar {
   margin-bottom: 20px;
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
 }
 
 .StatsControl {
@@ -325,6 +329,13 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
       }
     }
   }
+}
+
+.confirm-to-interact {
+  margin: 0px auto;
+  margin-top: 20px;
+  padding: 30px;
+  background: white;
 }
 
 body>[role="dialog"] .modal-backdrop {

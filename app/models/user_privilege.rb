@@ -55,6 +55,17 @@ class UserPrivilege < ApplicationRecord
   end
 
   def self.earned_interaction?( user )
+    # there _should_ be a configured activation date. If there is and it is not active yet,
+    # all users gain INTERACTION. After activation, users must have a confirmed email. If
+    # for whatever reason the active date is not defined, default to requiring users must
+    # have a confirmed email
+    if CONFIG.email_confirmation_for_interaction_active_date
+      if Time.now >= Date.parse( CONFIG.email_confirmation_for_interaction_active_date )
+        return user.confirmed?
+      end
+
+      return true
+    end
     user.confirmed?
   end
 

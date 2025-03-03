@@ -10,10 +10,40 @@ const ObservationsGrid = ( {
   onAgree,
   grid,
   currentUser,
-  imageSize
+  imageSize,
+  confirmResendConfirmation,
+  confirmationEmailSent,
+  config
 } ) => {
+  let confirmationNotice;
   let noObservationsNotice;
-  if ( observations.length === 0 ) {
+  const userLacksInteraction = !config?.currentUser?.privilegedWith( "interaction" );
+  if ( userLacksInteraction ) {
+    confirmationNotice = (
+      <div className="confirm-to-interact">
+        <div className="confirm-message">
+          { I18n.t( "views.email_confirmation.you_need_to_confirm_to_interact" ) }
+        </div>
+        <div className="confirm-button">
+          <a
+            href="/users/edit"
+            onClick={e => {
+              confirmResendConfirmation( );
+              e.preventDefault( );
+              e.stopPropagation( );
+            }}
+          >
+            <button type="button" className="btn btn-primary emailConfirmationModalTrigger">
+              { confirmationEmailSent
+                ? I18n.t( "views.email_confirmation.confirmation_email_sent" )
+                : I18n.t( "send_confirmation_email" )
+              }
+            </button>
+          </a>
+        </div>
+      </div>
+    );
+  } else if ( observations.length === 0 ) {
     noObservationsNotice = (
       <div className="text-center text-muted">
         { I18n.t( "no_matching_observations" ) }
@@ -23,6 +53,7 @@ const ObservationsGrid = ( {
   return (
     <Row className={`ObservationsGrid ${grid ? "gridded" : "flowed"} ${imageSize === "large" && "image-size-large"}`}>
       <Col xs={12}>
+        { confirmationNotice }
         { noObservationsNotice }
         { observations.map( observation => (
           <ObservationsGridItemForIdentify
@@ -53,7 +84,10 @@ ObservationsGrid.propTypes = {
   toggleReviewed: PropTypes.func,
   grid: PropTypes.bool,
   currentUser: PropTypes.object,
-  imageSize: PropTypes.string
+  imageSize: PropTypes.string,
+  confirmResendConfirmation: PropTypes.func,
+  confirmationEmailSent: PropTypes.bool,
+  config: PropTypes.object
 };
 
 export default ObservationsGrid;

@@ -87,22 +87,25 @@ class ActivityCreatePanel extends React.Component {
       );
     }
     return (
-      // eslint-disable-next-line jsx-a11y/control-has-associated-label
-      <span
-        type="button"
-        className="log-in"
-        onClick={e => {
-          confirmResendConfirmation( );
-          e.preventDefault( );
-          e.stopPropagation( );
-        }}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: I18n.t( "confirm_your_email_to_comment", {
-            user_settings_url: `/users/${config.currentUser.id}/edit`
-          } )
-        }}
-      />
+      <div className="confirm-to-interact">
+        <div className="confirm-message">
+          { I18n.t( "views.email_confirmation.you_need_to_confirm_to_interact" ) }
+        </div>
+        <div className="confirm-button">
+          <a
+            href="/users/edit"
+            onClick={e => {
+              confirmResendConfirmation( );
+              e.preventDefault( );
+              e.stopPropagation( );
+            }}
+          >
+            <button type="button" className="btn btn-primary emailConfirmationModalTrigger">
+              { I18n.t( "send_confirmation_email" ) }
+            </button>
+          </a>
+        </div>
+      </div>
     );
   }
 
@@ -173,21 +176,25 @@ class ActivityCreatePanel extends React.Component {
     }
     return (
       // eslint-disable-next-line jsx-a11y/control-has-associated-label
-      <span
-        type="button"
-        className="log-in"
-        onClick={e => {
-          confirmResendConfirmation( );
-          e.preventDefault( );
-          e.stopPropagation( );
-        }}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{
-          __html: I18n.t( "confirm_your_email_to_add_ids", {
-            user_settings_url: `/users/${config.currentUser.id}/edit`
-          } )
-        }}
-      />
+      <div className="confirm-to-interact">
+        <div className="confirm-message">
+          { I18n.t( "views.email_confirmation.you_need_to_confirm_to_interact" ) }
+        </div>
+        <div className="confirm-button">
+          <a
+            href="/users/edit"
+            onClick={e => {
+              confirmResendConfirmation( );
+              e.preventDefault( );
+              e.stopPropagation( );
+            }}
+          >
+            <button type="button" className="btn btn-primary emailConfirmationModalTrigger">
+              { I18n.t( "send_confirmation_email" ) }
+            </button>
+          </a>
+        </div>
+      </div>
     );
   }
 

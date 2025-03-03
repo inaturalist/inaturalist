@@ -13,7 +13,8 @@ class Friendship < ApplicationRecord
 
   auto_subscribes :user, to: :friend, if: proc {| friendship, _friend | friendship.following? }
 
-  requires_privilege :interaction
+  # TODO: uncomment to strictly enforce email confirmation for interaction
+  # requires_privilege :interaction
 
   blockable_by ->( friendship ) { friendship.user_id }
   blockable_by ->( friendship ) { friendship.friend_id }

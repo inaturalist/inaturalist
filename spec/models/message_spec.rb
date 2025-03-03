@@ -159,7 +159,9 @@ describe Message do
       expect( m.errors.any? {| e | e.type == :requires_privilege_speech } ).to be true
     end
 
+    # TODO: uncomment to strictly enforce email confirmation for interaction
     it "disallows creation without interaction" do
+      pending( "fully enabled email confirmation for interaction" )
       UserPrivilege.make!( user: user, privilege: UserPrivilege::SPEECH )
       m = Message.make( user: user, from_user: user )
       expect( m ).not_to be_valid

@@ -66,8 +66,8 @@ $( function ( ) {
   } );
 
   $( "a.friend_link" ).click( function ( e ) {
-    if ( $( "#emailConfirmationModalButton" ).length === 1 ) {
-      $( "#emailConfirmationModalButton" ).click( );
+    if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
+      $( "#emailConfirmationModalButton.lacking-interaction" ).click( );
       e.preventDefault( );
       e.stopPropagation( );
     }

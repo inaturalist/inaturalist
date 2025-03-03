@@ -3,9 +3,9 @@
 class Annotation < ApplicationRecord
   acts_as_votable
 
-  requires_privilege :interaction, unless: proc {| annotation |
-    annotation.resource.respond_to?( :user ) && annotation.resource.user.id == annotation.user_id
-  }
+  # requires_privilege :interaction, unless: proc {| annotation |
+  #   annotation.resource.respond_to?( :user ) && annotation.resource.user.id == annotation.user_id
+  # }
 
   blockable_by ->( annotation ) { annotation.resource.try( :user_id ) }
 

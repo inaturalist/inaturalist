@@ -52,6 +52,28 @@ describe UserPrivilege do
     end
   end
 
+  describe "interaction" do
+    it "users with confirmed emails earn interaction" do
+      expect( UserPrivilege.earned_interaction?( User.make!( confirmed_at: Time.now ) ) ).to be true
+    end
+
+    it "users without confirmed emails do not earn interaction" do
+      expect( UserPrivilege.earned_interaction?( User.make!( confirmed_at: nil ) ) ).to be false
+    end
+
+    it "users without confirmed emails created before active date earn interaction" do
+      expect( CONFIG ).to receive( :email_confirmation_for_interaction_active_date ).
+        at_least( :once ).and_return( Date.tomorrow.to_s )
+      expect( UserPrivilege.earned_interaction?( User.make!( confirmed_at: nil ) ) ).to be true
+    end
+
+    it "users without confirmed emails created after active date do not earn interaction" do
+      expect( CONFIG ).to receive( :email_confirmation_for_interaction_active_date ).
+        at_least( :once ).and_return( Date.yesterday.to_s )
+      expect( UserPrivilege.earned_interaction?( User.make!( confirmed_at: nil ) ) ).to be false
+    end
+  end
+
   describe "earns_privilege" do
     describe "for observation" do
       it "should earn speech after 3 verifiable observations" do

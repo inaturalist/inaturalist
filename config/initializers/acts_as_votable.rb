@@ -2,9 +2,9 @@ module ActsAsVotable
 
   class Vote
     include HasSubscribers
-    requires_privilege :interaction, unless: proc {| vote |
-      vote.votable.respond_to?( :user ) && vote.votable.user.id == vote.user_id
-    }
+    # requires_privilege :interaction, unless: proc {| vote |
+    #   vote.votable.respond_to?( :user ) && vote.votable.user.id == vote.user_id
+    # }
 
     blockable_by lambda {|vote| vote.votable.try(:user) }
 

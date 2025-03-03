@@ -13,8 +13,7 @@ import {
   setConfig,
   setCurrentUser,
   updateSearchParamsWithoutHistory,
-  updateDefaultParams,
-  showConfirmationModalIfUnconfirmed
+  updateDefaultParams
 } from "./actions";
 import { fetchAllControlledTerms } from "../show/ducks/controlled_terms";
 import AppContainer from "./containers/app_container";
@@ -80,8 +79,6 @@ window.onpopstate = e => {
   sharedStore.dispatch( updateSearchParamsWithoutHistory( e.state ) );
   sharedStore.dispatch( fetchObservationsStats() );
 };
-
-sharedStore.dispatch( showConfirmationModalIfUnconfirmed( ) );
 
 // Set state from initial url search and listen for changes
 // Order is important, this needs to happen before any other actions are dispatched.

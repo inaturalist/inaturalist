@@ -10,10 +10,18 @@
     <%=t :or %> <%= link_to t(:sign_up), signup_path %>
     <%=t :to_add_comments %>
   <% elsif !current_user.can_interact_with?( comment.parent ) -%>
-    <%= raw t(
-      :confirm_your_email_to_comment,
-      user_settings_url: edit_person_path( current_user ),
-      class: "emailConfirmationModalTrigger" ) %>
+    <div class="confirm-to-interact">
+      <div class="confirm-message">
+        <%= t( "views.email_confirmation.you_need_to_confirm_to_interact" ) %>
+      </div>
+      <div class="confirm-button">
+        <a href="<%= edit_person_path( current_user ) %>">
+          <button class="btn btn-primary emailConfirmationModalTrigger">
+            <%= t( "send_confirmation_email" ) %>
+          </button>
+        </a>
+      </div>
+    </div>
   <% else -%>
     <% if remote -%>
       <div id="<%= unique_id %>-loading" class="loading status" style="display:none"><%= t :saving %></div>

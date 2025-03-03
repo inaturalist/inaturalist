@@ -111,6 +111,10 @@ function fetchObservations( ) {
     dispatch( setConfig( { allReviewed: false } ) );
     const s = getState();
     const currentUser = s.config.currentUser ? s.config.currentUser : null;
+    if ( !currentUser?.privilegedWith( "interaction" ) ) {
+      return;
+    }
+
     const preferredPlace = s.config.preferredPlace ? s.config.preferredPlace : null;
     const apiParams = {
       viewer_id: currentUser.id,

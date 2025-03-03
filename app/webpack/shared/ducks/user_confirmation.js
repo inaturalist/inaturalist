@@ -1,5 +1,6 @@
 import inatjs from "inaturalistjs";
-import { setConfirmModalState } from "./confirm_modal";
+import { setConfirmEmailModalState } from "./confirm_email_modal";
+import { makeLogRequest } from "../util";
 
 const SET_CONFIRMATION_EMAIL_SENT = "users-confirmation-banner/SET_CONFIRMATION_EMAIL_SENT";
 
@@ -24,7 +25,8 @@ export function setConfirmationEmailSent( ) {
 export function confirmResendConfirmation( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    dispatch( setConfirmModalState( {
+    makeLogRequest( "emailConfirmation", { extra: { action: "modalOpen" } } );
+    dispatch( setConfirmEmailModalState( {
       show: true,
       hideCancel: ( options.cancellable === false ),
       preventClose: ( options.cancellable === false ),
@@ -34,6 +36,7 @@ export function confirmResendConfirmation( options = { } ) {
       type: "EmailConfirmation",
       confirmText: I18n.t( "send_confirmation_email" ),
       onConfirm: async ( ) => {
+        makeLogRequest( "emailConfirmation", { extra: { action: "confirmationSent" } } );
         inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
           if ( options.cancellable === false ) {
             return;
