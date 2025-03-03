@@ -81,7 +81,7 @@ class ProviderAuthorizationsController < ApplicationController
       end
     else
       create_provider_authorization( auth_info )
-      return redirect_back_or_default @landing_path || home_url
+      sign_in( @provider_authorization.user ) if @provider_authorization
     end
 
     if @provider_authorization&.valid? && ( scope = get_session_omniauth_scope )
@@ -93,17 +93,6 @@ class ProviderAuthorizationsController < ApplicationController
       @landing_path ||= session[:return_to]
     end
 
-    # registering via an invite link in a flickr comment. see /flickr/invite
-    if session[:invite_params]
-      invite_params = session[:invite_params]
-      session[:invite_params] = nil
-      if @provider_authorization&.valid? && @provider_authorization.created_at > 15.minutes.ago
-        flash[:notice] = "Welcome to #{@site.name}! If these options look good, " \
-          "click \"Save observation\" below and you'll be good to go!"
-        invite_params.merge!( welcome: true )
-      end
-      @landing_path = new_observation_url( invite_params )
-    end
     redirect_to @landing_path || home_url
   end
 
@@ -117,6 +106,8 @@ class ProviderAuthorizationsController < ApplicationController
   end
 
   def get_session_omniauth_scope
+    return unless request.env["omniauth.strategy"]
+
     session["omniauth_#{request.env['omniauth.strategy'].name}_scope"]
   end
 
@@ -174,12 +165,9 @@ class ProviderAuthorizationsController < ApplicationController
       end
       @provider_authorization = user.provider_authorizations.last
       user.update( site: @site ) if @site
-      if session[:invite_params].nil?
-        flash[:allow_edit_after_auth] = true
-        @landing_path = edit_after_auth_url
-        return @provider_authorization
-      end
-      @landing_path = root_path
+      flash[:allow_edit_after_auth] = true
+      @landing_path = edit_after_auth_url
+      return @provider_authorization
     end
 
     @landing_path ||= edit_user_path( current_user )

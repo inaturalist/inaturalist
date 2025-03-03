@@ -4,7 +4,7 @@ import { updateSession } from "../../show/ducks/users";
 
 import {
   UPDATE_CURRENT_OBSERVATION
-} from "../actions/current_observation_actions";
+} from "../actions/current_observation_actions_names";
 
 /* global LIFE_TAXON */
 

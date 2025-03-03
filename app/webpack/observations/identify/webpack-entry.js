@@ -124,6 +124,7 @@ observeStore( sharedStore, s => s.searchParams.params, ( ) => {
 } );
 
 render(
+  // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={sharedStore}>
     <AppContainer />
   </Provider>,

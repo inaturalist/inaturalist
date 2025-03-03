@@ -2429,6 +2429,8 @@ fr:
   large: grand
   last_active_with_date: "Dernière activité : %{date}"
   last_confirmed_observation: Dernière observation confirmée
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Dernière modification par
   last_observation: Dernière observation
   last_observation_caps: DERNIÈRE OBSERVATION
   last_seen: Vu la dernière fois
@@ -6326,6 +6328,9 @@ fr:
           you_can_think: |
             Vous pouvez considérer la carte de présence attendue à proximité comme une estimation de la présence ou de l'absence complète de l'espèce à l'intérieur de chaque cellule de la grille.
           figure_alt_text: Le modèle géographique applique l'étiquette « Présence attendue à proximité »
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Télécharger la carte de proximité attendue en tant que GeoJSON
         unthresholded_map:
           unthresholded_map: Carte non seuillée
           we_use_the_unthresholded_map: |

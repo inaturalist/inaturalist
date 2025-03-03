@@ -218,7 +218,9 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
       timezone: "=",
       obscured: "=",
       short: "=",
-      viewersTimezone: "="
+      viewersTimezone: "=",
+      showTimeAgo: "=",
+      title: "="
     },
     // eslint-disable-next-line no-unused-vars
     link: function ( scope, elt, attr ) {
@@ -238,12 +240,14 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
         var date = moment.tz( scope.time || scope.date, timezone );
         var now = moment( new Date( ) );
         var dateString;
-        if ( date.isSame( now, "day" ) ) {
+        if ( scope.showTimeAgo && date.isAfter( moment( ).subtract( 1, "month" ) ) ) {
+          dateString = date.fromNow();
+        } else if ( date.isSame( now, "day" ) ) {
           dateString = I18n.t( "today" );
         } else if ( date.isSame( now.subtract( 1, "day" ), "day" ) ) {
           dateString = I18n.t( "yesterday" );
         } else {
-          dateString = date.format( "ll" );
+          dateString = date.format( scope.short ? I18n.t( "momentjs.month_year_short" ) : "ll" );
         }
         return dateString;
       };
@@ -251,6 +255,7 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
       scope.timeString = function ( ) {
         if ( !scope.time ) return "";
         if ( scope.obscured ) return "";
+        if ( scope.short ) return "";
         var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
         var d = moment.tz( scope.time, timezone );
         // For some time zones, moment cannot output something nice like PDT and
@@ -263,19 +268,24 @@ iNatAPI.directive( "inatCalendarDate", ["shared", function ( shared ) {
       };
       // eslint-disable-next-line no-param-reassign
       scope.titleText = function ( ) {
+        if ( scope.obscured ) {
+          return null;
+        }
+        if ( scope.title ) {
+          return scope.title;
+        }
         if ( !scope.time ) {
           return null;
         }
         var timezone = displayTimezone( scope.viewersTimezone, scope.timezone );
         var momentTime = moment.tz( scope.time, timezone );
-        if ( scope.obscured ) {
-          return momentTime.format( I18n.t( "momentjs.month_year" ) );
-        }
         return momentTime.format( );
       };
     },
-    template: "<span class=\"date\">{{ dateString() }}</span>"
-     + "<span class=\"time\" title=\"{{ titleText() }}\">{{ timeString() }}</span>"
+    template: "<div title=\"{{ titleText() }}\">"
+     + "<span class=\"date\">{{ dateString() }}</span>"
+     + "<span class=\"time\">{{ timeString() }}</span>"
+     + "</div>"
   };
 }] );
 

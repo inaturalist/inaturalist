@@ -1,11 +1,11 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import {
-  loadingDiscussionItem,
-  stopLoadingDiscussionItem,
+  addIdentification,
   fetchCurrentObservation,
   fetchObservation,
-  addIdentification,
+  loadingDiscussionItem,
+  stopLoadingDiscussionItem,
   updateCurrentObservation
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
@@ -217,12 +217,12 @@ const onSubmitIdentification = ( observation, identification, options = {} ) => 
       if ( _.isNil( ident.disagreement ) ) {
         params.disagreement = disagreement || false;
       }
+      dispatch( updateCurrentObservation( { tab: "info" } ) );
       dispatch( postIdentification( params ) )
         .catch( ( ) => {
           dispatch( stopLoadingDiscussionItem( ident ) );
         } )
         .then( ( ) => {
-          dispatch( updateCurrentObservation( { tab: "info" } ) );
           dispatch( updateEditorContent( "obsIdentifyIdComment", "" ) );
           dispatch( fetchCurrentObservation( observation ) ).then( ( ) => {
             $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
@@ -269,7 +269,6 @@ const onSubmitIdentification = ( observation, identification, options = {} ) => 
 const chooseSuggestedTaxon = ( taxon, options = { } ) => (
   ( dispatch, getState ) => {
     const s = getState( );
-    console.log( [taxon, options] );
     const { observation } = options;
     const params = {
       observation_id: s.config.testingApiV2 ? observation.uuid : observation.id,

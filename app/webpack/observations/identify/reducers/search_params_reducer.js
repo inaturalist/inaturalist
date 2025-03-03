@@ -1,11 +1,11 @@
 import _ from "lodash";
+import { RECEIVE_OBSERVATIONS } from "../actions/observations_actions_names";
 import {
   UPDATE_SEARCH_PARAMS,
-  RECEIVE_OBSERVATIONS,
   UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY,
   UPDATE_DEFAULT_PARAMS,
   REPLACE_SEARCH_PARAMS
-} from "../actions";
+} from "../actions/search_params_actions";
 
 const DEFAULT_PARAMS = {
   reviewed: false,

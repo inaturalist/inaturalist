@@ -1268,7 +1268,7 @@ de:
   couldnt_change_your_password: "Konnte das Passwort nicht ändern: %{e}"
   couldnt_find_a_user_matching_x_param: "Konnte keinen passenden Benutzer finden: %{id}"
   couldnt_find_that_taxon: Konnte das Taxon nicht finden.
-  create: Erstellen
+  create: Erstellung
   create_a_guide: Erzeuge einen Guide
   create_a_new_field: Ein neues Feld erstellen
   create_a_new_place: Ein neues Gebiet erstellen
@@ -2332,6 +2332,8 @@ de:
   large: groß
   last_active_with_date: "Zuletzt aktiv: %{date}"
   last_confirmed_observation: Letzte bestätigte Beobachtung
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Zuletzt bearbeitet von
   last_observation: Letzte Beobachtung
   last_observation_caps: LETZTE BEOBACHTUNG
   last_seen: Zuletzt gesehen
@@ -2897,9 +2899,9 @@ de:
   muting_description: Jemanden stummschalten bedeutet, über keinerlei Aktivitäten benachrichtigt zu werden, einschließlich "@"-Erwähnungen, Nachrichten oder Kommentare, sowie Bestimmungen zu deinen Beobachtungen.
   n_ago: "vor %{n}"
   n_people_agrees: "%{amount} der Personen stimmen zu"
-  n_people_disagrees: "%{amount} Bestimmer sind anderer Meinung"
+  n_people_disagrees: "%{amount} Personen widersprechen"
   n_person_agrees: "%{amount} Personen stimmen zu"
-  n_person_disagrees: "%{amount} Personen stimmen nicht zu"
+  n_person_disagrees: "%{amount} Person widerspricht"
   name: Name
   name_entered: Name eingegeben
   name_or_slug: "Name o. URL-Slug, z.B. mein-Projekt"
@@ -4351,7 +4353,7 @@ de:
   recently_observed: Kürzlich beobachtet
   recently_resolved: Kürzlich geklärt
   #Record as a noun, as in "According to our records, you love whales"
-  record_noun: Aufnahmen
+  record_noun: Eintrag
   redo_search_in_map: Suche in der Karte wiederholen
   redo_search_in_map_area: Suche im Kartenbereich wiederholen
   refresh: Aktualisieren
@@ -5404,7 +5406,7 @@ de:
   unsuspend_user_reason_instructions: |
     Bitte begründe, warum die Sperre dieses Benutzers aufgehoben werden soll.
   upcoming_bioblitzes: Bevorstehende bioblitze
-  update: Aktualisieren
+  update: Aktualisierung
   update_existing_observations_with_new_license: Bestehende Beobachtungen mit der neuen Lizenzauswahl aktualisieren
   update_existing_photos_with_new_license: Bestehende Bilder mit der neuen Lizenzauswahl aktualisieren
   update_existing_sounds_with_new_license: Bestehende Sounds mit der neuen Lizenzauswahl aktualisieren
@@ -6174,6 +6176,9 @@ de:
             Die Karte zur erwarteten Verbreitung kann als Einschätzung betrachtet werden, ob die Art
             irgendwo innerhalb der Rasterzelle vorkommt oder komplett fehlt.
           figure_alt_text: Das Geomodell verwendet die 'in der Umgebung zu erwarten'-Kennzeichnung
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Download der 'In der Nähe zu erwarten' Karte als GeoJSON
         unthresholded_map:
           figure_alt_text: Das Geomodell gewichtet die Ergebnisse der Computer-Vision
         range_comparison:
@@ -6480,11 +6485,11 @@ de:
       community_id:
         agreement: Zustimmung
         algorithm_summary: Algorithmus Zusammenfassung
-        ancestor_disagreements: Unstimmigkeiten über die Vorfahren
+        ancestor_disagreements: Widersprüche innerhalb der Abstammungslinie
         below_cutoff: unter Obergrenze
         cumulative_count: Gesamtanzahl
-        disagreement: Widersprüchlichkeit
-        disagreement_count: Anzahl Widersprüchlichkeiten
+        disagreement: Widersprüche
+        disagreement_count: Anzahl Widersprüche
         identification_count: Anzahl an Bestimmungen
         score: Punktzahl
         explanation: |
@@ -6650,6 +6655,8 @@ de:
       show:
         allow_curator_coordinate_access_desc_html: |
           Den Projekt-Kuratoren erlauben, die versteckten Koordinaten für diese Beobachtung einzusehen.
+        ancestor_disagreements_desc2: |
+          Anzahl der identifizierten Taxa, die zu den Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen (d. h. "Ich denke, es ist in der gleichen Gattung, aber ich bin nicht der Meinung, dass es diese Art ist")
         community_taxon_desc_html: |
           <p class="ui">
            Das Community-Taxon (oder die Gemeinschafts-Identifikation) gibt an, welches Taxon nach Meinung der %{site_name}-Community einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie wir das Community-Taxon bestimmen, siehe die Hinweise zum Algorithmus unten, aber generell versuchen wir, <strong>ein Taxon zu wählen, mit dem mehr als 2/3 der Bestimmer zustimmen </strong>. Manchmal bedeutet das, dass eines übergeordnetes Taxon ausgewählt wird, wenn es Unstimmigkeiten über die Taxa gibt (z.B. du denkst, dass es sich um eine Blaumeise handelt und ich, dass es eine Kohlmeise ist. Also wählt iNat die Familie <em>Paridae</em>, die alle Meisen enthält). 
@@ -6670,7 +6677,7 @@ de:
           musst du sie aus dem Projekt entfernen.
         data_quality_assessment_desc3_html: |
           Qualitätsstufen bewerten die Genauigkeit, Präzision, Vollständigkeit, Relevanz und Eignung einer iNat-Beobachtung im Hinblick auf Biodiversitätsdaten. Einige Attribute werden automatisch bestimmt, während andere von iNat-Benutzern bewertet werden können. iNaturalist teilt lizenzierte 'Forschungsqualität'-Beobachtungen mit einer Anzahl von Partnerorganisationen, damit sie für Wissenschaft und Naturschutz verwendet werden können.
-        disagreement_count_desc: "Anzahl der identifizierten Taxa, die nicht zu den Vorfahren eines Taxons gehören"
+        disagreement_count_desc: "Anzahl der identifizierten Taxa, die nicht zur Abstammungslinie eines Taxons gehören"
         #Leads a list of requirements for an observation to be Needs ID
         dqa_help_needs_id_lead_html: |
           Die Bewertung der Datenqualität ist eine Zusammenfassung der Genauigkeit einer Beobachtung. Alle Beobachtungen starten als <strong>"Hobbyqualität"</strong> und erhalten den Status <strong>ID benötigt</strong>, wenn
@@ -6733,7 +6740,7 @@ de:
           die Möglichkeit, die versteckten Koordinaten dieser oder jeder anderen
           Beobachtung im Projekt zu sehen und impliziert, dass du
           den <a href="%{url}" target="_blank">Bedingungen</a> des Projekts zuzustimmst.
-        score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüchlichkeiten + abweichende Vorfahren)"
+        score_desc: "Punktzahl = kumulative Zählung / (kumulative Zählung + Anzahl Widersprüche + Widersprüche innerhalb der Abstammungslinie)"
         observation_flagged_notice_html: |
           Diese Beobachtung ist als Spam gemeldet worden und ist nicht mehr
           öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte <a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
@@ -8198,7 +8205,7 @@ de:
         url: URL
         citation: Zitierung
       taxon:
-        ancestry: Vorfahren
+        ancestry: Ancestry
         auto_description: Automatische Beschreibung
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Schutzstatus

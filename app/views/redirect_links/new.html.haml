@@ -1,0 +1,9 @@
+- content_for :title do
+  = @title = "New Redirect Link"
+
+%h1= @title
+
+= render "form", redirect_link: @redirect_link
+
+.upstacked
+  = link_to t( :back ), redirect_links_path, class: "btn btn-default"
