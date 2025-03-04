@@ -9,8 +9,7 @@ class RemoveSiteTwitterSignIn < ActiveRecord::Migration[6.1]
 
     # Remove potentially private data from twitter
     execute <<-SQL
-      UPDATE provider_authorizations
-      SET token = null, secret = null, refresh_token = null
+      DELETE FROM provider_authorizations
       WHERE provider_name = 'twitter'
     SQL
 
