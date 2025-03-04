@@ -2731,8 +2731,8 @@ en:
   lexicon: Lexicon
   # Definition of what a lexicon is on iNat
   lexicon__definition: |
-    A collection of words or terms containing a taxon name, e.g. a language or a
-    set of abbreviations
+    Name of a collection of words or terms containing a taxon name, e.g. the
+    name of a language or a set of abbreviations
   lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -7553,8 +7553,8 @@ en:
           Plain text name of the observed taxon; can be set by the observer
           during observation creation, but can get replaced with canonical,
           localized names when the taxon changes
-        scientific_name: "Scientific name of the observed taxon according to this site"
-        common_name: "Common or vernacular name of the observed taxon according to this site"
+        scientific_name: "Scientific name of the observed taxon according to iNaturalist"
+        common_name: "Common or vernacular name of the observed taxon according to iNaturalist"
         iconic_taxon_name: Higher-level taxonomic category for the observed taxon
         taxon_id: Unique, sequential identifier for the observed taxon
         id_please: Whether or not the observer requested ID help
