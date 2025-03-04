@@ -89,7 +89,7 @@ class ActivityCreatePanel extends React.Component {
     return (
       <div className="confirm-to-interact">
         <div className="confirm-message">
-          { I18n.t( "views.email_confirmation.you_need_to_confirm_to_interact" ) }
+          { I18n.t( "views.email_confirmation.please_confirm_to_interact" ) }
         </div>
         <div className="confirm-button">
           <a
@@ -178,7 +178,7 @@ class ActivityCreatePanel extends React.Component {
       // eslint-disable-next-line jsx-a11y/control-has-associated-label
       <div className="confirm-to-interact">
         <div className="confirm-message">
-          { I18n.t( "views.email_confirmation.you_need_to_confirm_to_interact" ) }
+          { I18n.t( "views.email_confirmation.please_confirm_to_interact" ) }
         </div>
         <div className="confirm-button">
           <a

@@ -22,7 +22,7 @@ const ObservationsGrid = ( {
     confirmationNotice = (
       <div className="confirm-to-interact">
         <div className="confirm-message">
-          { I18n.t( "views.email_confirmation.you_need_to_confirm_to_interact" ) }
+          { I18n.t( "views.email_confirmation.please_confirm_to_use_this_page" ) }
         </div>
         <div className="confirm-button">
           <a

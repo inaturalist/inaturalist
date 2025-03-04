@@ -336,6 +336,10 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   margin-top: 20px;
   padding: 30px;
   background: white;
+  min-width: 500px;
+  .confirm-button {
+    padding-top: 20px;
+  }
 }
 
 body>[role="dialog"] .modal-backdrop {

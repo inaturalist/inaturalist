@@ -30,9 +30,7 @@ export function confirmResendConfirmation( options = { } ) {
       show: true,
       hideCancel: ( options.cancellable === false ),
       preventClose: ( options.cancellable === false ),
-      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
-        email: state.config.currentUser.email || ""
-      } ),
+      message: state.config.currentUser.email,
       type: "EmailConfirmation",
       confirmText: I18n.t( "send_confirmation_email" ),
       onConfirm: async ( ) => {

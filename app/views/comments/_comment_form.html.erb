@@ -12,7 +12,7 @@
   <% elsif !current_user.can_interact_with?( comment.parent ) -%>
     <div class="confirm-to-interact">
       <div class="confirm-message">
-        <%= t( "views.email_confirmation.you_need_to_confirm_to_interact" ) %>
+        <%= t( "views.email_confirmation.please_confirm_to_interact" ) %>
       </div>
       <div class="confirm-button">
         <a href="<%= edit_person_path( current_user ) %>">

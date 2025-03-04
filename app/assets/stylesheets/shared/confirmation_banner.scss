@@ -34,7 +34,7 @@
   }
   .text {
     margin-left: 10px;
-    & > p:first-child {
+    & > div > p:first-child {
       font-size: 18px;
     }
   }

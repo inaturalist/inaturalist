@@ -83,6 +83,27 @@ class ConfirmModal extends Component {
         </span>
       );
     }
+    if ( type === "EmailConfirmation" ) {
+      const userEmail = message;
+      messageElt = (
+        <div>
+          <p>{I18n.t( "views.email_confirmation.please_confirm_to_interact_and_access" )}</p>
+          <p>{I18n.t( "views.email_confirmation.here_is_the_email_colon" )}</p>
+          <pre className="text-center text-large">{userEmail}</pre>
+          <p>
+            {I18n.t( "views.email_confirmation.if_you_do_not_receive_the_email_here_are_tips_colon" )}
+          </p>
+          <ul>
+            <li><p>{I18n.t( "views.email_confirmation.tips_check_your_spam_folder" )}</p></li>
+            <li><p>{I18n.t( "views.email_confirmation.tips_check_email_filters" )}</p></li>
+          </ul>
+          <p dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.email_confirmation.if_you_are_still_not_receiving_email_contact_us_html" )
+          }}
+          />
+        </div>
+      );
+    }
     const confirmMessage = messageElt || message;
     return (
       <Modal

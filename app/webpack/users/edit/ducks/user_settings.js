@@ -1,7 +1,7 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { fetchRelationships, updateBlockedAndMutedUsers } from "./relationships";
-import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
+import { setConfirmEmailModalState } from "../../../shared/ducks/confirm_email_modal";
 import { fetchNetworkSites } from "./network_sites";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
@@ -311,11 +311,9 @@ export function resendConfirmation( ) {
 export function confirmResendConfirmation( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    dispatch( setConfirmModalState( {
+    dispatch( setConfirmEmailModalState( {
       show: true,
-      message: I18n.t( "users_edit_send_confirmation_prompt_with_grace2_html", {
-        email: state.profile.email || ""
-      } ),
+      message: state.profile.email,
       type: "EmailConfirmation",
       confirmText: I18n.t( "send_confirmation_email" ),
       // If we want to go back to signing people out, this is the text we should use
