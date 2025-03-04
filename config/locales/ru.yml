@@ -2534,6 +2534,8 @@ ru:
   large: большой
   last_active_with_date: "Последняя активность: %{date}"
   last_confirmed_observation: Последнее подтвержденное наблюдение
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Последние изменения внесены
   last_observation: Последнее наблюдение
   last_observation_caps: ПОСЛЕДНЕЕ НАБЛЮДЕНИЕ
   last_seen: Последнее наблюдение
@@ -2865,6 +2867,9 @@ ru:
   make_a_taxon_swap_instead?: Произвести вместо этого замену таксона?
   make_curator: Сделать куратором
   make_manager: Сделать менеджером
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Сделать приватным
   make_sure_the_default_photo_looks_good: Убедитесь, что фото по умолчанию хорошо смотрится в большом размере.
   make_this_your_default_license: "Сделать это вашей лицензией по умолчанию %{type}"
   make_this_the_primary_listing: "Создать этот первичный список"
@@ -6456,6 +6461,9 @@ ru:
             Вы можете рассматривать карту "Встречается поблизости" как оценку того, будут ли виды
             присутствовать где-то внутри ячейки сетки или полностью отсутствовать.
           figure_alt_text: Геомодель применяет метку «Встречается поблизости».
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Загрузить ожидаемые близлежащие карты в формате GeoJSON
         unthresholded_map:
           unthresholded_map: Карта без границ
           we_use_the_unthresholded_map: |
@@ -8689,7 +8697,15 @@ ru:
             action:
               not_supported_for_this_kind_of_content: не поддерживается для контента данного типа
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Только скрытый контент может быть приватным
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Только сотрудники и кураторы могут скрывать контент
               only_staff_and_hiding_curators_can_unhide: Только сотрудники и кураторы, которые блокируют контент, могут его разблокировать
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Только сотрудники могут устанавливать контент как приватный
               staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
             user_id:
               must_be_a_curator: должен быть куратором
@@ -8701,6 +8717,10 @@ ru:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "координаты не могут иметь значение 0,0"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                не может быть сохранено по непонятной причине, пожалуйста, сделайте скриншот и перешлите персоналу
             observed_on:
               cannot_be_greater_than_date_created: |
                 не может быть больше даты добавления наблюдения
@@ -8771,6 +8791,14 @@ ru:
                 должен наблюдаться после %{time}
               must_be_observed_before: |
                 должен наблюдаться перед %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: должен быть проектом
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: должен следовать правилам проекта
         quality_metric:
           attributes:
             base:
