@@ -331,7 +331,7 @@ body > [role="dialog"] .DisagreementAlert .modal-dialog {
   }
 }
 
-.confirm-to-interact {
+body .confirm-to-interact, body .confirm-to-interact.bootstrap {
   margin: 0px auto;
   margin-top: 20px;
   padding: 30px;

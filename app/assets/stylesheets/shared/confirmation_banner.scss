@@ -27,13 +27,14 @@
   }
 }
 
-.ConfirmModal.EmailConfirmation {
+body div[role="dialog"] .ConfirmModal.EmailConfirmation {
   .modal-dialog {
     width: 500px;
     margin-top: 100px;
   }
   .text {
     margin-left: 10px;
+    font-size: 14px;
     & > div > p:first-child {
       font-size: 18px;
     }
@@ -47,8 +48,8 @@
   }
 }
 
-.confirm-to-interact {
-  background: #f5f5f5;
+body .confirm-to-interact, body .confirm-to-interact.bootstrap {
+  background-color: #f5f5f5;
   border-radius: 5px;
   padding: 15px;
   text-align: center;

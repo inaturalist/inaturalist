@@ -1,6 +1,5 @@
-- bootstrap ||= false
 - if current_user && !current_user.confirmed?
-  #ConfirmationBanner{ class: ( bootstrap && !current_user.email.blank? ) ? "dynamic" : nil }
+  #ConfirmationBanner{ class: current_user.email.blank? ? nil : "dynamic" }
     %div
       %div
         - if current_user.email.blank?

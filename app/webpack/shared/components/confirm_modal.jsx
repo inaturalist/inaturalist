@@ -109,6 +109,7 @@ class ConfirmModal extends Component {
       <Modal
         show={show}
         className={`ConfirmModal confirm ${type}`}
+        backdropClassName="bootstrap-modal"
         onHide={this.cancel}
       >
         <Modal.Body>

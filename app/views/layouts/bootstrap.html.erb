@@ -61,7 +61,7 @@
   </head>
   <body>
     <div id="bodywrapper" class="<%=raw 'no-footer-gap' if @no_footer_gap %> <%=raw 'noh1' if params[:noh1] %>">
-      <%= render partial: "shared/confirmation_banner", locals: { bootstrap: true } %>
+      <%= render partial: "shared/confirmation_banner" %>
       <% unless @headless -%>
         <%= render :partial => 'shared/header' %>
       <% end -%>
