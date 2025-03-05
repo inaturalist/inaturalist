@@ -505,7 +505,6 @@ class User < ApplicationRecord
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth( provider )
     provider = provider.downcase
@@ -608,11 +607,6 @@ class User < ApplicationRecord
 
   def picasa_identity
     @picasa_identity ||= has_provider_auth('google_oauth2')
-  end
-
-  # returns nil or the twitter ProviderAuthorization
-  def twitter_identity
-    @twitter_identity ||= has_provider_auth('twitter')
   end
 
   def api_token

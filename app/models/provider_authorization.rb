@@ -14,7 +14,7 @@ class ProviderAuthorization < ApplicationRecord
   # this record is created
   attr_accessor :auth_info
 
-  PROVIDERS = %w(facebook twitter flickr google_oauth2 yahoo soundcloud orcid apple).freeze
+  PROVIDERS = %w(facebook flickr google_oauth2 yahoo soundcloud orcid apple).freeze
   PROVIDER_NAMES = PROVIDERS.each_with_object( {} ) do | provider, memo |
     memo[provider] = case provider
     when "google_oauth2"

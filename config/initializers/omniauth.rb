@@ -42,10 +42,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     end
   end
 
-  if CONFIG.twitter
-    provider :twitter, CONFIG.twitter.key, CONFIG.twitter.secret
-  end
-
   if CONFIG.soundcloud
     opts = { scope: "non-expiring" }
     if File.exists?( "/etc/ssl/certs" )
