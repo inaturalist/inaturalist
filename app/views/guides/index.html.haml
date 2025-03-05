@@ -8,6 +8,13 @@
       collectionUrl: '/places/autocomplete.json',
       resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
     })
+    $( ".guides-create" ).click( function( e ) {
+      if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
+        $( "#emailConfirmationModalButton.lacking-interaction" ).click( );
+        e.preventDefault( );
+        e.stopPropagation( );
+      }
+    } );
 .container
   .notice.box=t "views.guides.index.deprecated_banner"
   #guidesheader.jumbotron.clear{:class => logged_in? ? 'logged_in' : nil}
@@ -23,7 +30,7 @@
         %nobr
           %span.or
             =t :or
-          = link_to t(:create_a_guide), new_guide_path, :class => "btn btn-default"
+          = link_to t(:create_a_guide), new_guide_path, :class => "btn btn-default guides-create"
     - if logged_in?
       %ul.nav.nav-tabs.pull-right
         %li{role: 'presentation', :class => params[:by] == "you" ? "inactive" : "active"}= link_to t(:by_everyone), url_for_params(:without => [:by, :page])

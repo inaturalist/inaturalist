@@ -256,6 +256,32 @@ shared_examples_for "a MessagesController" do
       expect( json["count"] ).to eq 0
     end
   end
+
+  describe "new" do
+    it "loads for users with interaction and speech privilege" do
+      user = make_user_with_privilege( UserPrivilege::SPEECH )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      sign_in user
+      get :new
+      expect( response ).to be_successful
+    end
+    it "redirects users without interaction privilege" do
+      user = make_user_with_privilege( UserPrivilege::SPEECH )
+      sign_in user
+      get :new
+      expect( response ).to be_redirect
+      expect( flash.notice ).to eq "must have a confirmed email address to do that"
+    end
+    it "redirects users without speech privilege" do
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
+      sign_in user
+      get :new
+      expect( response ).to be_redirect
+      expect( flash.notice ).to match(
+        /must have three verifiable observations or three identifications/
+      )
+    end
+  end
 end
 
 describe MessagesController, "oauth authentication" do
