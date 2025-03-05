@@ -322,6 +322,11 @@ class Site < ApplicationRecord
   preference :google_recaptcha_key, :string
   preference :google_recaptcha_secret, :string
 
+  # Vestigial unused preference. If removed, please do not deploy outside of
+  # downtime to prevent a caching issue with the preferences gem reading
+  # Site instances cached with preferences that are no longer defined
+  preference :twitter_sign_in, :boolean, default: false
+
   # fathom analytics, https://usefathom.com/
   preference :fathom_analytics_tracker_id, :string
 
