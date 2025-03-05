@@ -1725,6 +1725,8 @@ en:
     This is the default time zone. The final time zone will be assigned based
     on the observation's location when it is saved.
   defaults_to_your_name_or_username: Defaults to your name or username
+  # As in the definition of a word
+  definition: Definition
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Defines a Taxon Framework for %{taxon} sourced to %{source}
   definitions: Definitions
@@ -2731,6 +2733,10 @@ en:
     Please remember to <a href="%{url}">change your password</a> for the new version.
   let_us_walk_you_through: Let us walk you through the main features of this site.
   lexicon: Lexicon
+  # Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Name of a collection of words or terms containing a taxon name, e.g. the
+    name of a language or a set of abbreviations
   lexicon_cannot_contain_words: "cannot contain the following words: %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -3868,6 +3874,8 @@ en:
   original_url_for_this_map: Original URL for this map
   organism_appears_captive_cultivated: Organism Appears Captive / Cultivated
   other: Other
+  # Title for section listing terms that don't fit into established categories
+  other__terms: Other
   other_animals: other animals
   other_lexicons: Other Lexicons
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
@@ -5637,7 +5645,11 @@ en:
   teachers_guide: Teacher's Guide
   tell_the_world_a_little_about_yourself: Tell us about yourself
   tell_us_why: Tell us why...
+  # As in Terms of Service, an explicit description of what iNat the extent
+  # and limitations of the service provided to users
   terms: Terms
+  # As in a list of distinct words
+  terminology: Terminology
   terms_and_rules_html: "Terms &amp; Rules"
   terms_new_users: "If you add terms, new users must agree to them before joining this project."
   terms_service: Terms of Use
@@ -7583,22 +7595,25 @@ en:
             </li>
           </ul>
       field_descriptions:
-        id: "Unique identifier for the observation"
-        species_guess: "Name the observer entered for the observed taxon"
-        scientific_name: "Scientific name of the observed taxon according to this site"
-        common_name: "Common or vernacular name of the observed taxon according to this site"
+        id: Unique, sequential identifier for the observation
+        species_guess: |
+          Plain text name of the observed taxon; can be set by the observer
+          during observation creation, but can get replaced with canonical,
+          localized names when the taxon changes
+        scientific_name: "Scientific name of the observed taxon according to iNaturalist"
+        common_name: "Common or vernacular name of the observed taxon according to iNaturalist"
         iconic_taxon_name: Higher-level taxonomic category for the observed taxon
-        taxon_id: Unique identifier for the observed taxon
+        taxon_id: Unique, sequential identifier for the observed taxon
         id_please: Whether or not the observer requested ID help
-        num_identification_agreements: Number of identifications in concurrence with the observer's identification
-        num_identification_disagreements: Number of identifications conflicting with the observer's identification
+        num_identification_agreements: Number of identifications associated with taxa that match or are contained by the taxon from the observer's identification
+        num_identification_disagreements: Number of identifications associated with taxa that do not match and are not contained by the taxon from the observer's identification
         observed_on_string: Date/time as entered by the observer
         observed_on: Normalized date of observation
         time_observed_at: Normalized datetime of observation
         time_zone: Time zone of observation
         place_guess: Locality description as entered by the observer
-        latitude: Publicly visible latitude
-        longitude: Publicly visible longitude
+        latitude: Publicly visible latitude from the observation location
+        longitude: Publicly visible longitude from the observation location
         positional_accuracy: "Coordinate precision (yeah, yeah, accuracy != precision, poor choice of names)"
         private_latitude: "Private latitude, set if observation private or obscured"
         private_longitude: "Private longitude, set if observation private or obscured"
@@ -7606,23 +7621,103 @@ en:
         taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
         out_of_range: Whether or not this observation lies outside the taxon's known range
-        user_id: Unique identifier for the observer
-        user_login: Username of the observer
+        user_id: Unique, sequential identifier for the observer
+        user_login: Handle / username of the observer, i.e. a short, unique, alphanumeric identifier for a user
         user_name: |
           Name of the observer, generally used for attribution on the site.
-          This is an optional field and may be a pseudonym.
+          This is an optional field and may be a pseudonym
         created_at: Datetime observation was created
         updated_at: Datetime observation was last updated
         quality_grade: Quality grade of this observation. See Help section for details on what this means
-        license: License the observer has chosen for this observation
+        license: Identifier for the license or waiver the observer has chosen for this observation. All rights reserved if blank
         url: URL for the observation
-        image_url: URL for the default image
-        sound_url: URL for the default sound. Note this will only work for direct uploads, not sounds hosted on 3rd-party services
+        image_url: URL for the first photo associated with the observation
+        sound_url: |
+          URL for the first sound associated with the observation. Note this
+          will only be present for direct uploads, not sounds hosted on 3rd-party
+          services
         tag_list: Comma-separated list of tags
         place_admin1_name: Name of the administrative place one rank below the country level
         place_admin2_name: Name of the administrative place two ranks below the country level
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
+        captive_cultivated: |
+          Observation is of an organism that exists in the time and place it
+          was observed because humans intended it to be then and there. For
+          more, see
+          https://help.inaturalist.org/en/support/solutions/articles/151000169932-what-does-captive-cultivated-mean
+        description: |
+          Text written by the observer describing the observation or recording
+          any other notes that seem relevant
+        oauth_application_id: |
+          Sequential identifier for the application that created the
+          observation. For more information about the application, append
+          this number to https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          The name of the third-level administrative area that contains this
+          observation's coordinates (e.g. a county in most parts of the
+          United States)
+        place_country_name: |
+          The name of the country that contains this observation's coordinates
+        place_state_name: |
+          The name of the second-level administrative area that contains this
+          observation's coordinates (e.g. a state in most parts of the
+          United States)
+        place_town_name: |
+          The name of the town or city that contains this observation's
+          coordinates, if known
+        private_place_guess: |
+          Observation location as written by the observer if location obscured
+        public_positional_accuracy:
+          Maximum horizontal positional uncertainty in meters; includes
+          uncertainty added by coordinate obscuration
+        taxon_class_name: |
+          Name of the taxonomic class containing the observed taxon
+        taxon_family_name: |
+          Name of the taxonomic family containing the observed taxon
+        taxon_form_name: |
+          Name of the taxonomic form containing the observed taxon
+        taxon_genus_name: |
+          Name of the taxonomic genus containing the observed taxon
+        taxon_genushybrid_name: |
+          Name of the taxonomic hybrid genus containing the observed taxon
+        taxon_hybrid_name: |
+          Name of the taxonomic hybrid containing the observed taxon
+        taxon_kingdom_name: |
+          Name of the taxonomic kingdom containing the observed taxon
+        taxon_order_name: |
+          Name of the taxonomic order containing the observed taxon
+        taxon_phylum_name: |
+          Name of the taxonomic phylum containing the observed taxon
+        taxon_species_name: |
+          Name of the taxonomic species containing the observed taxon
+        taxon_subclass_name: |
+          Name of the taxonomic subclass containing the observed taxon
+        taxon_subfamily_name: |
+          Name of the taxonomic subfamily containing the observed taxon
+        taxon_suborder_name: |
+          Name of the taxonomic suborder containing the observed taxon
+        taxon_subphylum_name: |
+          Name of the taxonomic subphylum containing the observed taxon
+        taxon_subspecies_name: |
+          Name of the taxonomic subspecies containing the observed taxon
+        taxon_subtribe_name: |
+          Name of the taxonomic subtribe containing the observed taxon
+        taxon_superclass_name: |
+          Name of the taxonomic superclass containing the observed taxon
+        taxon_superfamily_name: |
+          Name of the taxonomic superfamily containing the observed taxon
+        taxon_superorder_name: |
+          Name of the taxonomic superorder containing the observed taxon
+        taxon_supertribe_name: |
+          Name of the taxonomic supertribe containing the observed taxon
+        taxon_tribe_name: |
+          Name of the taxonomic tribe containing the observed taxon
+        taxon_variety_name: |
+          Name of the taxonomic variety containing the observed taxon
+        uuid: |
+          Universally unique identifier for the observation. See
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Mark all observations on the page as reviewed"
         you_reviewed_message: "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
@@ -8989,6 +9084,18 @@ en:
           the list. You can also specify default names in different places by
           editing the name and adding a place, but please only do this when
           different places have conflicting names.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          Exports can also contain columns with Observation Field values. To
+          find definitions for those, either search for them at
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          or append the column name (with the colon) to
+          <code>%{terminology_url}</code> (e.g. <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist employs a variety of unique terms to describe various
+          aspects of the service. Here we've tried to collect some of them
+          and their definitions for reference.
     users:
       dashboard:
         taxon_change_desc: |
