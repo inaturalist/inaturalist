@@ -360,11 +360,17 @@ class Site < ApplicationRecord
     if options[:refresh]
       Rails.cache.delete( "sites_default" )
     end
+    if ( cached = Rails.cache.read( "sites_default" ) )
+      return cached
+    end
 
     unless site = Site.includes( :stored_preferences ).first
       site = Site.create!( name: "iNaturalist", url: "http://localhost:3000" )
     end
-    site
+
+    Rails.cache.fetch( "sites_default" ) do
+      site
+    end
   end
 
   def to_s
