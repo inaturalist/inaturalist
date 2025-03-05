@@ -1826,6 +1826,10 @@ en:
     If you did not sign up for @vow_or_con{vow:an|a} %{site_name} account, please ignore this email.
   devise_confirmation_instructions_please_click: |
     Please click the link below to confirm your email address:
+  # message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Please click the link below to confirm your email address. If you do not confirm your email
+    address, you will not be able to interact with other users’ content.
   devise_confirmation_instructions_resend_instructions: |
     You must have a working email address to use iNaturalist. When you signed
     up for an account, you should have received a confirmation email with a
@@ -6882,12 +6886,42 @@ en:
         systems. Please check back soon.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Click here to resend a confirmation email
+      # message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Confirmation email sent
+      # text displayed before showing a user the email address that we will
+      # resend a confirmation email to
+      here_is_the_email_colon: |
+        Here is the email address we will send the confirmation to:
+      # statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        If you do not receive the email, here are some tips:
+      # statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html:
+        If you are still not receiving the confirmation email, please contact us at
+        <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
+        so we can assist you.
       please_add_an_email_and_password:
         Please add an email and password so you don't lose access to your account
       please_click_the_link_sent_to_email_to_confirm_html:
         Please click the link sent to <span class="email">%{email}</span> to confirm your email address.
       please_confirm_that_email_is_the_best_contact_html:
         Please confirm that <span class="email">%{email}</span> is the best way to contact you.
+      # message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access:
+        Please confirm your email address to interact with other users' content and access certain pages.
+      # message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html:
+        Please confirm your email address <span class="email">%{email}</span>.
+      # statement used in areas that might contain a form allowing users to add comments, etc. This
+      # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Please confirm your email address to interact with other users' content
+      # statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Please confirm your email address to use this page
+      # tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters:
+        Check for any filters you made that might remove our emails from your inbox
+      # tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Check your spam folder
       your_site_account_has_no_email: Your %{site_name} account has no email address associated with it.
     flags:
       show:
@@ -7245,10 +7279,23 @@ en:
       index:
         show_messages_from_user: Show messages from %{user}
         show_messages_to_user: Show messages to %{user}
+        # Users cannot create messages if they lack the criteria for
+        # earning speech privilege
         speech_privilege_notice: |
           You'll be able to send new messages after you've added three
           verifiable observations or three identifications for others. For now
           you can read and reply to message other people send you.
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction privilege
+        interaction_privilege_notice: |
+          You'll be able to send new messages after you've confirmed your email
+          address. For now you can read and reply to message other people send you.
+        # Users cannot create messages if they lack the criteria for
+        # earning interaction or speech privilege
+        privilege_notice: |
+          You'll be able to send new messages after you've confirmed your email
+          address, and added three verifiable observations or three identifications
+          for others. For now you can read and reply to message other people send you.
       show:
         flag_notice_html: |
           You flagged this conversation on %{date}. The flag will persist even
@@ -9881,6 +9928,7 @@ en:
           must have three verifiable observations or three identifications
           for others to do that
         requires_privilege_organizer: must have 50 verifiable observations to do that
+        requires_privilege_interaction: must have a confirmed email address to do that
         taken: has already been taken
         too_long:
           one: is too long (maximum is %{count} character)
