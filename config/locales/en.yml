@@ -5645,7 +5645,7 @@ en:
   # and limitations of the service provided to users
   terms: Terms
   # As in a list of distinct words
-  terms__terminology: Terms
+  terminology: Terminology
   terms_and_rules_html: "Terms &amp; Rules"
   terms_new_users: "If you add terms, new users must agree to them before joining this project."
   terms_service: Terms of Use
@@ -9037,14 +9037,14 @@ en:
           the list. You can also specify default names in different places by
           editing the name and adding a place, but please only do this when
           different places have conflicting names.
-    terms:
+    terminology:
       index:
         exports_can_also_contain_observation_field_values_html: |
           Exports can also contain columns with Observation Field values. To
           find definitions for those, either search for them at
           <a href="%{observation_fields_url}">%{observation_fields_url}</a>
           or append the column name (with the colon) to
-          <code>%{terms_url}</code> (e.g. <a href="%{term_url}">%{term_url}</a>).
+          <code>%{terminology_url}</code> (e.g. <a href="%{term_url}">%{term_url}</a>).
         inaturalist_employs_a_variety_of_terms: |
           iNaturalist employs a variety of unique terms to describe various
           aspects of the service. Here we've tried to collect some of them

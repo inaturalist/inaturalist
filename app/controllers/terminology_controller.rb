@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TermsController < ApplicationController
+class TerminologyController < ApplicationController
   OTHER_TERMS = %w(
     lexicon
   ).sort.freeze
@@ -25,6 +25,6 @@ class TermsController < ApplicationController
     return render_404 unless @term
 
     # Redirect to main list
-    redirect_to terms_path( anchor: @term )
+    redirect_to terminology_path( anchor: @term )
   end
 end

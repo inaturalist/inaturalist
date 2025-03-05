@@ -1,0 +1,22 @@
+- content_for :title do
+  = @title = t( :terminology )
+
+- content_for :extracss do
+  :css
+    .term-table td {
+      width: 100%;
+    }
+
+%h1= @title
+
+%p.lead=t "views.terminology.index.inaturalist_employs_a_variety_of_terms"
+
+%h2=t :export_observations
+
+= render "terminology/terms", terms: @export_terms, define_term: lambda { | term | auto_link t( "views.observations.field_descriptions.#{term}", raise: true ) }
+
+%p=t "views.terminology.index.exports_can_also_contain_observation_field_values_html", observation_fields_url: observation_fields_url, terminology_url: terminology_url, term_url: terminology_term_url( term: "field:count" )
+
+%h2=t :other__terms
+
+= render "terminology/terms", terms: @other_terms, define_term: lambda { | term | auto_link t( "#{term}__definition", raise: true ) }
