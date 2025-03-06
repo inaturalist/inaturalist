@@ -3050,6 +3050,8 @@ ar:
   teachers_guide: دليل المعلم
   tell_the_world_a_little_about_yourself: أخبرنا عن نفسك
   tell_us_why: أخبرنا لماذا...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: الشروط
   terms_and_rules_html: "الشروط &amp; القواعد"
   terms_new_users: "إذا أضفت شروطا، يجب على المستخدمين الجدد الموافقة عليها قبل الانضمام إلى هذا المشروع."
@@ -3861,6 +3863,8 @@ ar:
       index:
         show_messages_from_user: إظهار الرسائل من %{user}
         show_messages_to_user: إظهار الرسائل إلى %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           ستتمكن من إرسال رسائل جديدة بعد إضافة ثلاث 
           ملاحظات يمكن التحقق منها أو ثلاث تعريفات للآخرين، في الوقت الحالي، 
@@ -3934,22 +3938,13 @@ ar:
         date_range_help: "تم تسجيل الحد الأقصى والتاريخ الأدنى بتنسيق يي-شش-سسسس، على سبيل المثال 2015-01-17"
         created_on_help: "تم إنشاء ملاحظات التاريخ، لم تُلاحَظ، على سبيل المثال 2015-01-17، 2015-01-2015، 2015"
       field_descriptions:
-        id: "معرف فريد للملاحظة"
-        species_guess: "اسم الملاحظ دخل إلى الأصنوفة الملاحظة"
-        scientific_name: "الاسم العلمي للأصنوفة الملحوظة وفقا لهذا الموقع"
-        common_name: "الاسم العام أو العامي للأصنوفة الملحوظة وفقا لهذا الموقع"
         iconic_taxon_name: فئة التصنيف العالي للأصنوفة الملاحظة
-        taxon_id: معرف فريد للأضنوفة الملاحظة
         id_please: ما إذا كان المراقب طلب مساعدة معرف
-        num_identification_agreements: عدد الهويات التي تتوافق مع هوية الملاحظ
-        num_identification_disagreements: عدد الهويات التي تتعارض مع هوية الملاحظ
         observed_on_string: التاريخ/الوقت الذي أدخله الملاحظ
         observed_on: تاريخ الملاحظة المعتاد
         time_observed_at: تاريخ ووقت تطبيع الملاحظة
         time_zone: المنطقة الزمنية للملاحظة
         place_guess: وصف المنطقة كما تم إدخاله من قبل الملاحظ
-        latitude: خط عرض مرئي بشكل عام
-        longitude: خط الطول المرئي بشكل عام
         positional_accuracy: "تنسيق الدقة (نعم، نعم، دقة != الدقة، ضعف اختيار الأسماء)"
         private_latitude: "خط العرض خاص، عين إذا كانت الملاحظة خاصة أو محجوبة"
         private_longitude: "خط الطول خاص، عين إذا كانت الملاحظة خاصة أو محجوبة"
@@ -3957,15 +3952,10 @@ ar:
         taxon_geoprivacy: "تُطبَّق معظم الجيوبرتريا المحافظة بسبب حالات حفظ الأصناف في التعريف الحالي."
         coordinates_obscured: "سواء كانت الإحداثيات محجوبة بسبب الخصوصية الجغرافية أو بسبب الأصنوفة المهددة"
         out_of_range: ما إذا كانت هذه الملاحظة تقع خارج نطاق مجموعة الأصناف المعروفة
-        user_id: معرف فريد للملاحظ
-        user_login: اسم المستخدم للملاحظ
         created_at: تم إنشاء ملاحظة التاريخ والوقت
         updated_at: تم تحديث أخير لملاحظة التاريخ والوقت
         quality_grade: درجة جودة هذه الملاحظة، راجع قسم المساعدة للحصول على تفاصيل حول ما يعنيه هذا
-        license: الترخيص الذي اختاره الملاحظ لهذه الملاحظة
         url: مسار للملاحظة
-        image_url: مسار للصورة الافتراضية
-        sound_url: مسار للصوت الافتراضي، لاحظ أنه سيعمل فقط للمرفوعات المباشرة، وليس الأصوات المستضافة في خدمات الجهات الخارجية
         tag_list: قائمة مفصولة بفواصل بالعلامات
         place_admin1_name: اسم المكان الإداري مرتبة واحدة تحت مستوى البلد
         place_admin2_name: اسم المكان الإداري رتبان تحت مستوى البلد
