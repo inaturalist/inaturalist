@@ -5005,6 +5005,8 @@ es-AR:
   teachers_guide: Guia de maestro
   tell_the_world_a_little_about_yourself: Cuéntanos acerca de ti
   tell_us_why: Dinos por qué...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Términos
   terms_and_rules_html: "Términos &amp; Reglas"
   terms_new_users: "Si añade Términos, los nuevos usuarios deberán aceptarlos antes de unirse a este proyecto."
@@ -6180,6 +6182,8 @@ es-AR:
       index:
         show_messages_from_user: Mostrar mensajes de %{user}
         show_messages_to_user: Mostrar mensajes a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Vas a poder enviar nuevos mensajes después de haber agregado tres
           observaciones verificables o tres identificaciones para otros usuarios. Por ahora podés leer y responder mensajes que otras personas te envíen.
@@ -6313,22 +6317,13 @@ es-AR:
         date_range_help: "Fechas máxima y mínima de la observación en formato YYYY-MM-DD, p.e. 2015-01-17"
         created_on_help: "Fecha en la que las observaciones se crearon, no observadas, p.e. 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "Identificador único para la observación"
-        species_guess: "Nombra al observador que incluyó el taxón observado"
-        scientific_name: "Nombre científico del taxón observado de acuerdo a este sitio"
-        common_name: "Nombre común o vernáculo del taxón observado de acuerdo a este sitio"
         iconic_taxon_name: Categoría taxonómica de nivel superior para el taxón observado
-        taxon_id: Identificador único para el taxón observado
         id_please: Haya solicitado ayuda o no para la identificación el observador
-        num_identification_agreements: Número de identificaciones que coinciden con la identificación del observador
-        num_identification_disagreements: Número de identificaciones en conflicto con la de identificación del observador
         observed_on_string: Fecha/hora registrada por el observador
         observed_on: Fecha normalizada de observación
         time_observed_at: Fecha normalizada de observación
         time_zone: Huso horario de la observación
         place_guess: Descripción de la localidad registrada por el observador
-        latitude: Latitud visible públicamente
-        longitude: Longitud visible públicamente
         positional_accuracy: "Precisión de las coordenadas"
         private_latitude: "Latitud privada, selecciona si la observación es privada o está oscurecida"
         private_longitude: "Longitud privada, selecciona si la observación es privada o está oscurecida"
@@ -6336,18 +6331,10 @@ es-AR:
         taxon_geoprivacy: "Se aplicó una geoprivacidad limitada debido al estado de conservación del taxa en la identificación actual."
         coordinates_obscured: "Si las coordenadas se han ocultado, o no, por una condición de geoprivacidad o por tratarse de un taxón vulnerable"
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
-        user_id: Identificador único para la observación
-        user_login: Nombre de usuario del observador
-        user_name: |
-          Nombre del observador, generalmente utilizado para la atribución en el sitio.
-          Este es un campo opcional y puede ser un pseudónimo.
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
         quality_grade: Grado de calidad para esta observación. Ver la sección de Ayuda para los detalles sobre este significado
-        license: Licencia que el observador ha seleccionado para esta observación
         url: URL de la observación
-        image_url: URL de la imagen predeterminada
-        sound_url: URL para el sonido predeterminado. Esto sólo funciona  para cargas directas, no para sonidos hospedados en servicios de terceros.
         tag_list: Lista de etiquetas separadas por comas
         place_admin1_name: Nombre del sitio administrativo un rango debajo del nivel de país
         place_admin2_name: Nombre del sitio administrativo dos rangos debajo del nivel de país
