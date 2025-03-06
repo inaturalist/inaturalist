@@ -2089,6 +2089,8 @@ en:
   export: Export
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
+  # Notice about when a batch of observations was exported
+  exported_at_datetime: Exported at %{datetime}
   exporting: "Exporting..."
   # A third-party app or service the user has authorized to access their iNat
   # account, e.g. Flickr
@@ -2261,6 +2263,9 @@ en:
     one: 'Following 1 Person'
     other: 'Following %{count} People'
   for_a_taxon: for a taxon
+  # Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    For more information about column headers, see %{url}
   formatting: Formatting
   forgot_your_password: Forgot your password?
   forum: Forum
@@ -7617,7 +7622,7 @@ en:
         positional_accuracy: "Coordinate precision (yeah, yeah, accuracy != precision, poor choice of names)"
         private_latitude: "Private latitude, set if observation private or obscured"
         private_longitude: "Private longitude, set if observation private or obscured"
-        geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
+        geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates. See https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
         out_of_range: Whether or not this observation lies outside the taxon's known range
@@ -7628,7 +7633,7 @@ en:
           This is an optional field and may be a pseudonym
         created_at: Datetime observation was created
         updated_at: Datetime observation was last updated
-        quality_grade: Quality grade of this observation. See Help section for details on what this means
+        quality_grade: Quality grade of this observation. See Help section for details on what this means. See https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Identifier for the license or waiver the observer has chosen for this observation. All rights reserved if blank
         url: URL for the observation
         image_url: URL for the first photo associated with the observation
@@ -7645,7 +7650,7 @@ en:
           Observation is of an organism that exists in the time and place it
           was observed because humans intended it to be then and there. For
           more, see
-          https://help.inaturalist.org/en/support/solutions/articles/151000169932-what-does-captive-cultivated-mean
+          https://help.inaturalist.org/support/solutions/articles/151000169932
         description: |
           Text written by the observer describing the observation or recording
           any other notes that seem relevant
