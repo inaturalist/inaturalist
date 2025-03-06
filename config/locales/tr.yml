@@ -4922,6 +4922,8 @@ tr:
   teachers_guide: Öğretmen Rehberi
   tell_the_world_a_little_about_yourself: Bize kendinden bahset
   tell_us_why: Bize nedenini söyleyin...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Koşullar
   terms_and_rules_html: "Şartlar &amp; Kurallar"
   terms_new_users: "Koşul eklerseniz, yeni kullanıcılar bu projeye katılmadan önce bunları kabul etmelidir."
@@ -5970,7 +5972,7 @@ tr:
       click_here_to_resend_a_confirmation_email: Doğrulama e-postasını tekrar göndermek için buraya tıkla.
       please_add_an_email_and_password: Hesabına erişimini kaybetmemek için lütfen bir e-posta ve şifre ekle
       please_click_the_link_sent_to_email_to_confirm_html: E-posta adresini doğrulamak için lütfen <span class="email">%{email}</span> adresine gönderilen bağlantıya tıkla.
-      please_confirm_that_email_is_the_best_contact_html: Lütfen <span class="email">%{email}</span> adresinin iletişim kurmak için en iyi yol olduğundan emin ol.
+      please_confirm_that_email_is_the_best_contact_html: Lütfen <span class="email">%{email}</span> adresinin iletişim kurmak için en iyi yol olduğundan emin ol. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: '%{site_name} hesabın, bir e-posta adresine sahip değil.'
     flags:
       show:
@@ -6236,6 +6238,8 @@ tr:
       index:
         show_messages_from_user: '%{user} kullanıcısından mesajları göster'
         show_messages_to_user: Mesajları %{user} kullanıcısına göster
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Doğrulanabilir üç gözlem ya da başkaları için üç tanımlama bilgisi ekledikten sonra yeni iletiler gönderebileceksin. Şimdilik başkalarının sana gönderdiği iletileri okuyabilir ve yanıtlayabilirsin.
       show:
@@ -6389,22 +6393,13 @@ tr:
           </li>
           </ul>
       field_descriptions:
-        id: "Gözlem için benzersiz tanımlayıcı"
-        species_guess: "Gözlemcinin gözlemlenen sınıf için yazdığı ad"
-        scientific_name: "Bu siteye göre gözlemlenen sınıfın bilimsel adı"
-        common_name: "Bu siteye göre gözlenen sınıf yaygın ya da yerel adı"
         iconic_taxon_name: Gözlenen sınıflar için üst düzey sınıflandırmasal kategori
-        taxon_id: Gözlenen sınıf için benzersiz tanımlayıcı
         id_please: Gözlemcinin tanımlama yardımı talep edip etmediği
-        num_identification_agreements: Gözlemcinin tanımlamasıyla uyumlu tanımlama sayısı
-        num_identification_disagreements: Gözlemcinin tanımlamasıyla çelişen tanımlama sayısı
         observed_on_string: Gözlemci tarafından girilen tarih/saat
         observed_on: Standartlaştırılmış gözlem tarihi
         time_observed_at: Normalleştirilmiş gözlem tarih saati
         time_zone: Gözlem zaman dilimi
         place_guess: Gözlemci tarafından girilen bölge açıklaması
-        latitude: Açıkça görünür enlem
-        longitude: Açıkça görünür boylam
         positional_accuracy: "Koordinat hassasiyeti (evet, evet, doğruluk! = hassasiyet, isimlerin kötü seçimi)"
         private_latitude: "Özel enlem, gözlem özel veya gizlenmişse ayarlanır"
         private_longitude: "Özel boylam, gözlem özel veya gizlenmişse ayarlanır"
@@ -6412,18 +6407,10 @@ tr:
         taxon_geoprivacy: "Çoğu koruyucu coğrafi gizlilik, mevcut tanımlamada sınıfların koruma durumları nedeniyle uygulanmaktadır."
         coordinates_obscured: "Coğrafi gizlilik nedeniyle veya tehdit altında olan bir sınıf nedeniyle, koordinatların gizlenmiş olup olmadığı"
         out_of_range: Bu gözlemin sınıfının bilinen yayılım alanının dışında olup olmadığı
-        user_id: Gözlemci için benzersiz tanımlayıcı
-        user_login: Gözlemcinin kullanıcı ismi
-        user_name: |
-          Gözlemcinin adı, sitede genelde atıfta bulunmak için kullanılır.
-          Bu isteğe bağlı bir alandır ve takma ad kullanılabilir.
         created_at: Tarih saat gözlemi oluşturuldu
         updated_at: Tarih saat gözlemi en son güncellendi
         quality_grade: Bu gözlemin kalite derecesi. Bunun ne anlama geldiğiyle ilgili ayrıntılar için Yardım bölümüne bakın
-        license: Bu gözlem için gözlemcinin seçtiği lisans
         url: Gözlem için URL
-        image_url: Varsayılan resim için URL
-        sound_url: Varsayılan ses için URL. Bunun yalnızca doğrudan yüklemelerde işe yaradığını, 3.taraf hizmetlerinde barındırılan seslerde işe yaramadığını unutma
         tag_list: Virgülle ayrılmış etiket listesi
         place_admin1_name: Ülke seviyesinin bir altındaki idari yerin ismi
         place_admin2_name: Ülke seviyesinin iki altındaki idari yerin ismi
