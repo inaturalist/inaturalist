@@ -5005,6 +5005,8 @@ zh-CN:
   teachers_guide: 教师指南
   tell_the_world_a_little_about_yourself: 告诉我们有关您自己
   tell_us_why: 告诉我们为什么...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: 条款
   terms_and_rules_html: "条款和规则"
   terms_new_users: "如果您添加条款，新用户必须在加入该项目前同意这些条款。"
@@ -6064,7 +6066,7 @@ zh-CN:
       click_here_to_resend_a_confirmation_email: 点击这里重新发送验证邮件
       please_add_an_email_and_password: 请添加电子邮件和密码以便您不会失去对您帐户的访问权限
       please_click_the_link_sent_to_email_to_confirm_html: 请点击链接以发送<span class="email">%{email}</span>，从而确认您的电子邮箱地址。
-      please_confirm_that_email_is_the_best_contact_html: 请确认<span class="email">%{email}</span>是联系您的最好方式。
+      please_confirm_that_email_is_the_best_contact_html: 请确认<span class="email">%{email}</span>是联系您的最好方式。 #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: 你的%{site_name}账户没有绑定邮箱地址。
     flags:
       show:
@@ -6337,6 +6339,8 @@ zh-CN:
       index:
         show_messages_from_user: 显示来自 %{user} 的信息
         show_messages_to_user: 向 %{user}发送信息
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           在给出3次可靠的鉴定结果之后您才具有发送新消息的权限。在此之前，您仅可以阅读和回复其他人发给您的消息。
       show:
@@ -6511,22 +6515,13 @@ zh-CN:
           </li>
           </ul>
       field_descriptions:
-        id: "用于观察的唯一标识符"
-        species_guess: "观察者输入的被观察分类单元的名字"
-        scientific_name: "被观察的分类单位在本网站的科学名称"
-        common_name: "被察到的分类单元在本网站的的通用名称或俗名"
         iconic_taxon_name: 被观察到的分类单元的高级分类学类别
-        taxon_id: 用于观察到的分类的唯一标识符
         id_please: 观察者是否请求ID帮助
-        num_identification_agreements: 与观察者身份一致的身份证明数量
-        num_identification_disagreements: 与观察者身份相冲突的身份证明数量
         observed_on_string: 观察者输入的日期/时间
         observed_on: 规范化的观察日期
         time_observed_at: 规范化的观察日期与时间
         time_zone: 观察的时区
         place_guess: 由观察者输入的所在地描述
-        latitude: 公开可见纬度
-        longitude: 公开可见经度
         positional_accuracy: "坐标精度（对，对，准确性 != 精度，名称选择不当）"
         private_latitude: "私人纬度，如果观察是私密或模糊的，则设置此项"
         private_longitude: "私人经度，如果观察是私密或模糊的，则设置此项"
@@ -6534,18 +6529,10 @@ zh-CN:
         taxon_geoprivacy: "基于当前鉴定的分类群的保护状态而适用的最保守的位置隐私。"
         coordinates_obscured: "坐标是否被隐藏，无论这是由于地理位置隐私保护或是由于该分类单元的生存受到威胁，"
         out_of_range: 此观察是否在分类单元的已知范围之外
-        user_id: 用于观察者的唯一标识符
-        user_login: 观察者的用户名
-        user_name: |
-          观察者名称，通常用于在本站内的传播。
-          是一个可选字段，可以是一个化名。
         created_at: 日期时间观察已创建
         updated_at: 日期时间观察最近已更新
         quality_grade: 此观察的质量等级。有关此含义的详细信息，请参阅“帮助”部分
-        license: 观察者为此观察所选择的许可
         url: 此观察的URL
-        image_url: 用于默认图片的URL
-        sound_url: 默认音频的URL。注意这只对直接上传的音频有效，对托管在第三方服务上的音频无效
         tag_list: 逗号分隔的标签列表
         place_admin1_name: 比国家低一级的行政单位名称
         place_admin2_name: 比国家低两级的行政单位名称
