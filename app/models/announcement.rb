@@ -8,6 +8,10 @@ class Announcement < ApplicationRecord
     mobile/home
   ).freeze
 
+  PLACEMENTS.each do | placement |
+    const_set placement.parameterize.underscore.upcase, placement
+  end
+
   CLIENTS = {
     "mobile/home" => %w(
       inat-ios
@@ -164,14 +168,15 @@ class Announcement < ApplicationRecord
     end
   end
 
-  def self.active_in_placement( placement, site )
+  def self.active_in_placement( placement, site = nil )
     scope = Announcement.
+      where( placement: placement ).
+      where( '? BETWEEN "start" AND "end"', Time.now.utc ).
       joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
       joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
-      where( 'placement = ? AND ? BETWEEN "start" AND "end"', placement, Time.now.utc ).
       limit( 50 )
     base_scope = scope
-    scope = scope.where( "sites.id = ?", site.id )
+    scope = scope.where( "sites.id = ?", site.id ) if site
     @announcements = scope.in_specific_locale( I18n.locale )
     @announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if @announcements.blank?
     @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
@@ -186,7 +191,7 @@ class Announcement < ApplicationRecord
     end
     @announcements = @announcements.sort_by do | a |
       [
-        a.site_ids.include?( @site.try( :id ) ) ? 0 : 1,
+        a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
         a.locales.include?( I18n.locale ) ? 0 : 1,
         a.id * -1
       ]

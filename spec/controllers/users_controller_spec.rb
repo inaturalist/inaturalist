@@ -12,16 +12,29 @@ describe UsersController, "dashboard" do
   end
 
   describe "announcements" do
-    it "should target sites" do
-      site = Site.make!
-      a = Announcement.make!
-      site_a = Announcement.make!
-      site_a.sites << site
-      u = User.make!( site: site )
-      sign_in u
+    it "should target a site" do
+      site = create :site
+      annc = create :announcement
+      annc.sites << site
+      user = create :user, site: site
+      sign_in user
       get :dashboard, params: { inat_site_id: site.id }
-      expect( assigns( :announcements ) ).to include site_a
-      expect( assigns( :announcements ) ).not_to include a
+      expect( assigns( :announcements ) ).to include annc
+    end
+
+    # The intent is to allow the creation of a siteless announcement that can
+    # be *overridden* for a site, e.g. an announcement to all iNat users that
+    # iNatMX chooses to translate into Spanish
+    it "should not include an anouncement without a site if one with a site exists" do
+      annc = create :announcement
+      site = create :site
+      site_annc = create :announcement
+      site_annc.sites << site
+      user = create :user, site: site
+      sign_in user
+      get :dashboard, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include site_annc
+      expect( assigns( :announcements ) ).not_to include annc
     end
 
     it "should target locales" do

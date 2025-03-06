@@ -45,4 +45,37 @@ describe WelcomeController do
       expect( assigns[:page] ).to eq @home_fr
     end
   end
+
+  describe "announcements" do
+    it "should target a site" do
+      site = create :site
+      annc = create :announcement, placement: Announcement::WELCOME_INDEX
+      annc.sites << site
+      get :index, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include annc
+    end
+
+    # The intent is to allow the creation of a siteless announcement that can
+    # be *overridden* for a site, e.g. an announcement to all iNat users that
+    # iNatMX chooses to translate into Spanish
+    it "should not include an anouncement without a site if one with a site exists" do
+      annc = create :announcement, placement: Announcement::WELCOME_INDEX
+      site = create :site
+      site_annc = create :announcement, placement: Announcement::WELCOME_INDEX
+      site_annc.sites << site
+      get :index, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include site_annc
+      expect( assigns( :announcements ) ).not_to include annc
+    end
+
+    it "should target locales" do
+      a = create :announcement, placement: Announcement::WELCOME_INDEX
+      locale_a = create :announcement, placement: Announcement::WELCOME_INDEX, locales: ["es"]
+      u = User.make!( locale: "es" )
+      sign_in u
+      get :index, params: { locale: "es" }
+      expect( assigns( :announcements ) ).to include locale_a
+      expect( assigns( :announcements ) ).not_to include a
+    end
+  end
 end
