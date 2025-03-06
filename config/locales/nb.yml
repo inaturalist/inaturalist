@@ -4748,6 +4748,8 @@ nb:
   teachers_guide: Guide for lærere
   tell_the_world_a_little_about_yourself: Fortell oss om deg selv
   tell_us_why: Fortell oss hvorfor...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Vilkår
   terms_and_rules_html: "Vilkår &amp; regler"
   terms_new_users: "Hvis du legger til vilkår, må nye brukere akseptere de før de blir med i dette prosjektet."
@@ -5923,6 +5925,8 @@ nb:
       index:
         show_messages_from_user: Vis beskjeder fra %{user}
         show_messages_to_user: Vis beskjeder til %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du vil kunne sende nye beskjeder etter at du har lagt til tre verifiserbare obserbasjoner eller tre identifikasjoner for andre. For øyeblikket kan du lese og svare på beskjeder andre har sendt til deg.
       show:
@@ -6090,22 +6094,13 @@ nb:
           </li>
           </ul>
       field_descriptions:
-        id: "Unik identifikator for denne observasjonen"
-        species_guess: "Skriv navnet til observatøren lagt inn for det observerte taksonet"
-        scientific_name: "Vitenskapelig navn for det observerte taksonet ifølge denne siden"
-        common_name: "Populærnavn for det observerte taksonet ifølge denne siden"
         iconic_taxon_name: Taksonomisk kategori på høyere nivå for det observerte taksonet
-        taxon_id: Unik identifikator for det observerte taksonet
         id_please: Om observatøren har bedt om ID-hjelp eller ikke
-        num_identification_agreements: Antall identifikasjoner i overenstemmelse med observatørens identifikasjon
-        num_identification_disagreements: Antall identifikasjoner i konflikt med observatørens identifikasjon
         observed_on_string: Dato/tid som lagt inn av observatøren
         observed_on: Normalisert dato for observasjon
         time_observed_at: Normalisert dato og klokkeslett for observasjon
         time_zone: Tidssone av observasjon
         place_guess: Bekrivelse av lokaliteten som lagt inn av observatøren
-        latitude: Offentlig synlig breddegrad
-        longitude: Offentlig synlig lengdegrad
         positional_accuracy: "Nøyaktighet koordinater"
         private_latitude: "Privat breddegrad, satt hvis observasjon privat eller tilslørt"
         private_longitude: "Privat lengdegrad, satt hvis observasjon privat eller tilslørt"
@@ -6113,15 +6108,10 @@ nb:
         taxon_geoprivacy: "Den mest restriktive geosperringen brukes på grunn av bevaringsstatusen av taksa i den gjeldende identifikasjonen."
         coordinates_obscured: "Om koordinatene har blitt tilslørt eller ikke, enten på grunn av geosperring eller et truet takson"
         out_of_range: Om denne observasjonen er utenfor taksonets kjente utbredelse eller ikke
-        user_id: Unik identifikator for observatøren
-        user_login: Brukernavnet til observatøren
         created_at: Dato og tid observasjonen ble opprettet
         updated_at: Dato og tid observasjonen ble oppdatert sist
         quality_grade: Kvaliteten av observasjonen. Se hjelp-seksjonen for detaljer om hva dette betyr
-        license: Lisens observatøren har valgt for denne observasjonen
         url: URL for observasjonen
-        image_url: URL for standardbildet
-        sound_url: URL for standardlyden. Merk at dette kun fungerer for direkte opplastinger, ikke lyder lagret på tredjeparters servere
         tag_list: Kommaseparert liste over etiketter
         place_admin1_name: Navnet til det administrative stedet ett nivå under landsnivået
         place_admin2_name: Navnet til det administrative stedet to nivå under landsnivået
