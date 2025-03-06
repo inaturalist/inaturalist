@@ -2085,6 +2085,8 @@ en:
   export: Export
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
+  # Notice about when a batch of observations was exported
+  exported_at_datetime: Exported at %{datetime}
   exporting: "Exporting..."
   # A third-party app or service the user has authorized to access their iNat
   # account, e.g. Flickr
@@ -2257,6 +2259,9 @@ en:
     one: 'Following 1 Person'
     other: 'Following %{count} People'
   for_a_taxon: for a taxon
+  # Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    For more information about column headers, see %{url}
   formatting: Formatting
   forgot_your_password: Forgot your password?
   forum: Forum
