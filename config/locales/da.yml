@@ -5315,6 +5315,8 @@ da:
   teachers_guide: Lærervejledning
   tell_the_world_a_little_about_yourself: Fortæl os om dig selv
   tell_us_why: Fortæl os hvorfor...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Vilkår
   terms_and_rules_html: "Vilkår &amp; Regler"
   terms_new_users: "Hvis du tilføjer vilkår, skal nye brugere acceptere dem, inden de tilmelder sig dette projekt."
@@ -6475,7 +6477,7 @@ da:
       click_here_to_resend_a_confirmation_email: Klik hér for at sende en bekræftelsesmail igen.
       please_add_an_email_and_password: Tilføj en e-mail og adgangskode, så kontoadgangen ikke ikke mistes
       please_click_the_link_sent_to_email_to_confirm_html: Klik på linket sendt til <span class="email">%{email}</span> for at bekræfte din e-mailadresse.
-      please_confirm_that_email_is_the_best_contact_html: Bekræft venligst, at <span class="email">%{email}</span> er den bedste måde at kontakte dig på.
+      please_confirm_that_email_is_the_best_contact_html: Bekræft venligst, at <span class="email">%{email}</span> er den bedste måde at kontakte dig på. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Din %{site_name}-konto har ingen tilknyttet e-mailadresse.
     flags:
       show:
@@ -6820,6 +6822,8 @@ da:
       index:
         show_messages_from_user: Vis beskeder fra %{user}
         show_messages_to_user: Vis beskeder til %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du kan sende nye beskeder, når du har tilføjet tre
           verificerbare observationer eller tre identifikationer for andre. I øjeblikket kan du læse og svare på beskeder, andre personer sender dig.
@@ -7017,22 +7021,13 @@ da:
           </li>
           </ul>
       field_descriptions:
-        id: "Unik identifikator til observation"
-        species_guess: "Navngiv observatøren, der er indtastet for den observerede takson"
-        scientific_name: "Videnskabeligt navn på den observerede takson ifølge dette websted"
-        common_name: "Almindeligt eller modersmåls navn på den observerede takson ifølge dette websted"
         iconic_taxon_name: Højere niveau taksonomisk kategori  for den observerede takson
-        taxon_id: Unik identifikator for den observerede takson
         id_please: Uanset om observatøren har anmodet om ID-hjælp eller ej
-        num_identification_agreements: Antal identifikationer i overensstemmelse med observatørens identifikation
-        num_identification_disagreements: Antal identifikationer, der er i konflikt med observatørens identifikation
         observed_on_string: Dato/klokkeslæt som angivet af observatøren
         observed_on: Normaliseret observations dato
         time_observed_at: Normaliseret observationstidspunkt
         time_zone: Observationens tidszone
         place_guess: Lokalitets beskrivelse som angivet af observatøren
-        latitude: Offentlig synlig breddegrad
-        longitude: Offentlig synlig længdegrad
         positional_accuracy: "Koordinat præcision (ja, ja, nøjagtighed! = Præcision, dårligt valg af navne)"
         private_latitude: "Fortrolig breddegrad. Angiv, hvis observation er fortrolig eller skjult"
         private_longitude: "Fortrolig længdegrad. Angiv, hvis observation er fortrolig eller skjult"
@@ -7040,18 +7035,10 @@ da:
         taxon_geoprivacy: "Den mest konservative geofortrolighed på grund af bevaringsstatus for taksa i den nuværende identifikation."
         coordinates_obscured: "Hvorvidt koordinaterne er blevet sløret enten grundet geofortrolighed eller grundet et truet takson"
         out_of_range: Hvorvidt eller ej denne observation ligger uden for taksonets kendte område
-        user_id: Unik identifikator for observatøren
-        user_login: Observatørens brugernavn
-        user_name: |
-          Navn på observatøren, normalt brugt til tilskrivning på webstedet.
-          Ikke-obligatorisk felt, hvis indhold kan være et pseudonym.
         created_at: Tidspunkt for observationens oprettelse
         updated_at: Tidspunkt for sidste opdatering af observationen
         quality_grade: Observationens kvalitetsklasse. Se hjælpesektionen for detaljer om hvad dette betyder
-        license: Licens, som observatøren har valgt til denne observation
         url: URL for observationen
-        image_url: URL til standardbilledet
-        sound_url: URL for standard lyden. Bemærk at det kun virker ved direkte uploads og ikke lyde, som er hosted på tredjeparts services
         tag_list: Kommasepareret liste over tags
         place_admin1_name: Navn på det administrative sted en rang under landeniveau
         place_admin2_name: Navn på det administrative sted to rang under landeniveau
