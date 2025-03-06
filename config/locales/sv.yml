@@ -5293,6 +5293,8 @@ sv:
   teachers_guide: Lärarguide
   tell_the_world_a_little_about_yourself: Berätta om dig själv
   tell_us_why: Berätta varför...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Villkor
   terms_and_rules_html: "Villkor &amp; regler"
   terms_new_users: "Om du lägger till villkor måste nya användare godkänna dem innan de går med i projektet."
@@ -6464,7 +6466,7 @@ sv:
       click_here_to_resend_a_confirmation_email: Klicka här för att skicka ett bekräftelsemejl igen.
       please_add_an_email_and_password: Lägg till e-post och lösenord så att du inte förlorar åtkomst till ditt konto
       please_click_the_link_sent_to_email_to_confirm_html: Klicka på länken som skickades till <span class="email">%{email}</span> för att bekräfta din e-postadress.
-      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig.
+      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Ditt %{site_name}-konto har ingen e-postadress kopplad till det.
     flags:
       show:
@@ -6769,6 +6771,8 @@ sv:
       index:
         show_messages_from_user: Visa meddelanden från %{user}
         show_messages_to_user: Visa meddelanden till %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du kommer att kunna skicka nya meddelanden när du har lagt till tre verifierbara fynd eller gjort tre bestämningar för andra. Tills dess kan du läsa och svara på meddelanden som andra personer skickar till dig.
       show:
@@ -6957,22 +6961,13 @@ sv:
           </li>
           </ul>
       field_descriptions:
-        id: "Unik identifierare för fyndet"
-        species_guess: "Namnet observatören angav för observerat taxon"
-        scientific_name: "Vetenskapligt namn på observerat taxon enligt denna webbplats"
-        common_name: "Vardagligt eller folkligt namn på observerat taxon enligt denna webbplats"
         iconic_taxon_name: Taxonomisk kategori på högre nivå för observerat taxon
-        taxon_id: Unik identifierare för observerat taxon
         id_please: Om observatören begärde bestämningshjälp eller inte
-        num_identification_agreements: Antal bestämningar som överensstämmer med observatörens bestämning
-        num_identification_disagreements: Antal bestämningar som strider mot observatörens bestämning
         observed_on_string: Datum/tid såsom angivet av observatören
         observed_on: Normaliserat fynddatum
         time_observed_at: Normaliserat datum & tid för fyndet
         time_zone: Fyndets tidszon
         place_guess: Fyndplatsbeskrivning såsom angiven av observatören
-        latitude: Publikt synlig latitud
-        longitude: Publikt synlig longitud
         positional_accuracy: "Koordinatprecision (ja, ja, noggrannhet != precision, dåligt val av namn)"
         private_latitude: "Privat latitud, anges om fyndet är privat eller diffuserat"
         private_longitude: "Privat longitud, anges om fyndet är privat eller diffuserat"
@@ -6980,18 +6975,10 @@ sv:
         taxon_geoprivacy: "Mest konservativ koordinatsekretess använd p.g.a. bevarandestatus för taxa i aktuell bestämning."
         coordinates_obscured: "Huruvida koordinaterna har diffuserats eller inte, antingen på grund av koordinatsekretess eller hotat taxon"
         out_of_range: Huruvida fyndet ligger utanför taxonets kända utbredningsområde eller inte
-        user_id: Unik identifierare för observatören
-        user_login: Observatörens användarnamn
-        user_name: |
-          Namn på observatören, används oftast för erkännande på webbplatsen.
-          Detta är ett valfritt fält och kan vara en pseudonym.
         created_at: Datum och tid då fyndet skapades
         updated_at: Datum och tid då fyndet senast uppdaterades
         quality_grade: Kvalitetsklass för detta fynd. Se Hjälpavsnittet för detaljer om vad detta innebär
-        license: Licens som observatören valt för detta fynd
         url: URL för fyndet
-        image_url: URL för standardbilden
-        sound_url: URL för standardljudet. Observera att detta bara fungerar för direktuppladdningar, inte ljud från tredjepartstjänster
         tag_list: Kommaseparerad lista med taggningar
         place_admin1_name: Namn på den administrativa fyndplatsen en rang under landsnivå
         place_admin2_name: Namn på den administrativa fyndplatsen två ranger under landsnivå
