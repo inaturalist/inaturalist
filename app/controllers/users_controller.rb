@@ -515,8 +515,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         @announcements = [
-          Announcement.active_in_placement( "users/dashboard", @site),
-          Announcement.active_in_placement( "users/dashboard#sidebar", @site )
+          Announcement.active_in_placement( Announcement::USERS_DASHBOARD, @site ),
+          Announcement.active_in_placement( Announcement::USERS_DASHBOARD_SIDEBAR, @site )
         ].flatten.compact
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
