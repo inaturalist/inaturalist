@@ -4326,6 +4326,8 @@ et:
   teachers_guide: Õpetaja juhend
   tell_the_world_a_little_about_yourself: Räägi meile endast
   tell_us_why: Põhjenda...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Tingimused
   terms_and_rules_html: "Tingimused &amp; reeglid"
   terms_new_users: "Kui lisad tingimused, peavad uued kasutajad nendega enne projektiga liitumist nõustuma."
@@ -5213,39 +5215,23 @@ et:
         date_range_help: "Vaatluse maksimaalne ja minimaalne kuupäev AAAA-KK-PP formaadis, nt 2015-01-17"
         created_on_help: "Vaatluse loomise (mitte vaatlemise) kuupäev, nt 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "Vaatluse unikaalne tunnus"
-        species_guess: "Vaatleja siestatud taksoni nimetus"
-        scientific_name: "Vaatluse teaduslik nimetus vastavalt meie lehele"
-        common_name: "Vaadeldud taksoni rahvapärane nimi vastavalt sellele lehele"
         iconic_taxon_name: Vaadeldud taksoni kõrgema taseme taksonoomiline kategooria
-        taxon_id: Vaadeldud taksoni unikaalne tunnus
         id_please: Kas vaatleja soovis abi määratlemisel
-        num_identification_agreements: Vaatleja määratlusega nõustuvate määratluste arv
-        num_identification_disagreements: Vaatleja määratlusega mittenõustuvate määratluste arv
         observed_on_string: Vaatleja sisestatud kuupäev/kellaaeg
         observed_on: Kohandatud vaatluskuupäev
         time_observed_at: Kohandatud vaatluskuupäev ja -kellaaeg
         time_zone: Vaatluse ajavöönd
         place_guess: Vaatleja sisestatud asukoha kirjeldus
-        latitude: Avalikult nähtav laiuskraad
-        longitude: Avalikult nähtav pikkuskraad
         positional_accuracy: "Koordinaatide täpsus"
         private_latitude: "Privaatne pikkuskraad, kui vaatlus on privaatne või varjatud"
         private_longitude: "Privaatne laiuskraad, kui vaatlus on privaatne või varjatud"
         geoprivacy: "Kas vaatleja on soovinud koordinaate varjata"
         coordinates_obscured: "Kas koordinaadid on varjatud geoprivaatsusest või taksoni ohustatusest tulenevalt"
         out_of_range: Kas vaatlus asub väljaspool taksoni teadaolevaid piirkondi
-        user_id: Vaatluse unikaalne tunnus
-        user_login: Vaatleja kasutajatunnus
-        user_name: |
-          Vaatleja nimi, mida enamasti kasutatakse leheküljel vaatluste kellelegi omistamiseks. See on valikuline väli ja võib sisalda pseudonüümi.
         created_at: Vaatluse loomise kuupäev ja kellaaeg
         updated_at: Vaatluse viimase uuendamise kuupäev ja kellaaeg
         quality_grade: Vaatuse kvaliteedihinnang. Vaata abi sektsioonist selle täpsemat seletust
-        license: Vaatleja poolt sellele vaatlusele valitud litsents
         url: Selle vaatluse URL
-        image_url: Vaikimisi pildi URL
-        sound_url: 'Vaikimisi heli URL. NB: see töötab ainult otse üles laetud failide, mitte kusagil mujal majutatud helide puhul.'
         tag_list: Komaga eraldatud märksõnad
         place_admin1_name: Riigist üks aste allpool oleva administratiivse üksuse nimi
         place_admin2_name: Riigist kaks astet allpool oleva administratiivse üksuse nimi
