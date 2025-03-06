@@ -207,15 +207,17 @@ class ObservationsExportFlowTask < FlowTask
 
   def make_readme
     fpath = File.join( work_path, "README.txt" )
-    readme_txt = <<~README
-      #{I18n.t :exported_at_datetime, datetime: Time.now.utc.iso8601}
+    readme_txt = I18n.with_locale( user&.locale ) do
+      <<~README
+        #{I18n.t :exported_at_datetime, datetime: Time.now.utc.iso8601}
 
-      #{I18n.t :query}: #{query}
+        #{I18n.t :query}: #{query}
 
-      #{I18n.t :columns}: #{export_columns.join( ', ' )}
+        #{I18n.t :columns}: #{export_columns.join( ', ' )}
 
-      #{I18n.t :for_more_information_about_column_headers, url: FakeView.terminology_url}
-    README
+        #{I18n.t :for_more_information_about_column_headers, url: FakeView.terminology_url}
+      README
+    end
     File.write( fpath, readme_txt )
   end
 
