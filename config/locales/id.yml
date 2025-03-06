@@ -5051,6 +5051,8 @@ id:
   teachers_guide: Panduan Guru
   tell_the_world_a_little_about_yourself: Ceritakan tentang diri Anda kepada kami
   tell_us_why: Ceritakan mengapa...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Ketentuan
   terms_and_rules_html: "Ketentuan &amp; Aturan"
   terms_new_users: "Jika Anda menambahkan ketentuan, pengguna baru harus menyetujuinya sebelum bergabung pada proyek ini."
@@ -6166,7 +6168,7 @@ id:
       click_here_to_resend_a_confirmation_email: Klik di sini untuk mengirim ulang email konfirmasi
       please_add_an_email_and_password: Silakan masukkan email dan kata sandi supaya Anda tidak kehilangan akses ke akun Anda
       please_click_the_link_sent_to_email_to_confirm_html: 'Silahkan klik tautan yang dikirim ke <span class="email">%{email}</span> untuk mengonfirmasi alamat email Anda:'
-      please_confirm_that_email_is_the_best_contact_html: Harap mengonfirmasi bahwa <span class="email">%{email}</span> adalah cara terbaik untuk menghubungi Anda.
+      please_confirm_that_email_is_the_best_contact_html: Harap mengonfirmasi bahwa <span class="email">%{email}</span> adalah cara terbaik untuk menghubungi Anda. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Akun %{site_name} kamu tidak memiliki alamat email yang terhubung dengan akunnya.
     flags:
       show:
@@ -6459,6 +6461,8 @@ id:
       index:
         show_messages_from_user: Tunjukkan pesan dari %{user}
         show_messages_to_user: Tunjukkan pesan kepada %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Anda dapat mengirim pesan baru setelah Anda menambahkan tiga pengamatan yang dapat diverifikasi atau tiga identifikasi lain untuk orang lain. Untuk sekarang, Anda bisa membaca dan membalas pesan yang orang kirimkan kepada Anda.
       show:
@@ -6635,22 +6639,13 @@ id:
           </li>
           </ul>
       field_descriptions:
-        id: "Tanda pengenal unik untuk pengamatan"
-        species_guess: "Nama yang pengamat masukkan untuk takson yang diamati"
-        scientific_name: "Nama ilmiah takson yang diamati menurut situs ini"
-        common_name: "Nama umum atau nama lokal dari takson yang diamati menurut situs ini"
         iconic_taxon_name: Kategori taksonomi dengan tingkatan yang lebih tinggi untuk takson yang diamati
-        taxon_id: Tanda pengenal unik untuk takson yang diamati
         id_please: Apakah pengamat meminta bantuan ID
-        num_identification_agreements: Jumlah identifikasi yang sejalan dengan identifikasi pengamat
-        num_identification_disagreements: Jumlah identifikasi yang bertentangan dengan identifikasi pengamat
         observed_on_string: Tanggal/waktu sesuai yang dimasukkan oleh pengamat
         observed_on: Tanggal yang sudah dinormalisasi dari pengamatan
         time_observed_at: Tanggal dan waktu yang sudah dinormalisasi dari pengamatan
         time_zone: Zona waktu pengamatan
         place_guess: Deskripsi lokalitas sesuai yang dimasukkan pengamat
-        latitude: Lintang yang dapat dilihat publik
-        longitude: Bujur yang dapat dilihat publik
         positional_accuracy: "Keakuratan koordinat"
         private_latitude: "Lintang pribadi, diatur jika pengamatan pribadi atau dikaburkan"
         private_longitude: "Bujur pribadi, diatur jika pengamatan pribadi atau dikaburkan"
@@ -6658,18 +6653,10 @@ id:
         taxon_geoprivacy: "Geoprivasi yang paling konservatif diterapkan dikarenakan status konservasi taksa dalam identifikasi ini."
         coordinates_obscured: "Apakah koordinat dikaburkan, karena geoprivasi atau takson yang terancam"
         out_of_range: Apakah pengamatan ini terletak di luar jangkauan yang diketahui dari takson ini
-        user_id: Tanda pengenal unik untuk pengamat
-        user_login: Nama pengguna dari pengamat
-        user_name: |
-          Nama pengamat, biasanya digunakan untuk atribusi pada situs.
-          Ini adalah kolom opsional dan boleh berupa nama samaran.
         created_at: Tanggal dan waktu pengamatan telah dibuat
         updated_at: Tanggal dan waktu pengamatan terakhir diperbarui
         quality_grade: Tingkat kualitas pengamatan ini. Lihat bagian Bantuan untuk penjelasan tentang artinya
-        license: Lisensi yang pengamat telah pilih untuk pengamatan ini
         url: URL untuk pengamatan ini
-        image_url: URL untuk gambar standar ini
-        sound_url: URL untuk suara standar. Ingat ini hanya bekerja untuk unggahan langsung, bukan untuk suara yang dihost pada layanan pihak ketiga
         tag_list: Daftar label yang dipisahkan koma
         place_admin1_name: Nama tempat administratif satu tingkat di bawah tingkat negara
         place_admin2_name: Nama tempat administratif dua tingkat di bawah tingkat negara
