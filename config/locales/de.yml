@@ -5057,6 +5057,8 @@ de:
   teachers_guide: Anleitung für Lehrpersonen
   tell_the_world_a_little_about_yourself: Erzähl uns etwas über dich
   tell_us_why: Sag uns warum...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Bedingungen
   terms_and_rules_html: "Bedingungen &amp; Regeln"
   terms_new_users: "Wenn du Bedingungen hinzufügst, müssen neue Benutzer ihnen zustimmen, bevor sie diesem Projekt beitreten."
@@ -6144,7 +6146,7 @@ de:
       click_here_to_resend_a_confirmation_email: Klicke hier, um erneut eine Bestätigungs-E-Mail zu senden.
       please_add_an_email_and_password: Bitte füge eine E-Mail und ein Passwort hinzu, damit du den Zugriff auf dein Konto nicht verlierst
       please_click_the_link_sent_to_email_to_confirm_html: Bitte klicke auf den Link, der an <span class="email">%{email}</span> gesendet wurde, um deine E-Mail-Adresse zu verifizieren.
-      please_confirm_that_email_is_the_best_contact_html: Bitte bestätige, dass <span class="email">%{email}</span> die beste Möglichkeit ist, dich zu kontaktieren.
+      please_confirm_that_email_is_the_best_contact_html: Bitte bestätige, dass <span class="email">%{email}</span> die beste Möglichkeit ist, dich zu kontaktieren. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Dein %{site_name}-Konto ist mit keiner E-Mail-Adresse verknüpft.
     flags:
       show:
@@ -6431,6 +6433,8 @@ de:
       index:
         show_messages_from_user: Nachrichten von %{user} anzeigen
         show_messages_to_user: Zeige Nachrichten an %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du kannst neue Nachrichten senden, nachdem Du drei überprüfbare Beobachtungen oder drei Bestimmungen für andere hinzugefügt hast. Im Moment kannst Du die Nachrichten lesen und beantworten, die andere Benutzer Dir schicken.
       show:
@@ -6590,38 +6594,21 @@ de:
         date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJ-MM-TT Format, z.B. 2015-01-17"
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "Eindeutige Kennung für diese Beobachtung"
-        species_guess: "Name, den der Melder für das beobachtete Taxon eingegeben hat"
-        scientific_name: "Wissenschaftlicher Name des beobachteten Taxons entsprechend dieser Seite"
-        common_name: "Trivial- oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
         iconic_taxon_name: Höheres taxonomisches Level für das beobachtete Taxon
-        taxon_id: Eindeutige Kennung für das beobachtete Taxon
         id_please: Ob der Beobachter die ID-Hilfe angefordert hat oder nicht
-        num_identification_agreements: Anzahl der Identifikationen, die mit der Identifikation des Beobachters übereinstimmen
-        num_identification_disagreements: Anzahl der Bestimmungen, die mit der Bestimmung des Beobachters nicht übereinstimmen
         observed_on_string: Datum/Zeit wie vom Beobachter eingegeben
         observed_on: Normalisiertes Beobachtungsdatum
         time_observed_at: Normalisierte Zeit der Beobachtung
         time_zone: Zeitzone der Beobachtung
         place_guess: Gebietsbeschreibung, wie vom Beobachter eingegeben
-        latitude: Öffentlich sichtbarer Breitengrad
-        longitude: Öffentlich sichtbarer Längengrad
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
         geoprivacy: "Ob der Beobachter die Koordinaten verdeckt oder unsichtbar gemacht hat"
         coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, sei es wegen Geoprivatsphäre oder wegen eines Gefährdungsstatus"
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
-        user_id: Eindeutige Kennung für diesen Beobachter
-        user_login: Benutzername des Beobachters
-        user_name: |
-          Name des Beobachters, der in der Regel für die Zuordnung auf der Webseite verwendet wird.
-          Dies ist ein optionales Feld und der Name kann auch ein Pseudonym sein.
         created_at: Datetime des Erstellen der Beobachtung
         updated_at: Datetime der Aktualisierung der Beobachtung
         quality_grade: Qualitätsbewertung dieser Beobachtung. Siehe im Hilfe-Abschnitt für Details, was das genau bedeutet
-        license: Lizenz die der Beobachter für seine Beobachtung gewählt hat
         url: URL der Beobachtung
-        image_url: URL für das Standardbild
-        sound_url: URL für den voreingestellten Sound. Beachte, dass dies nur für direkte Uploads funktioniert, nicht für Töne von Drittanbieter-Diensten
         tag_list: Komma-getrennte Liste der Stichwörter.
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
         place_admin2_name: Name des administrativen Ortes zwei Ränge unterhalb der Landesebene
