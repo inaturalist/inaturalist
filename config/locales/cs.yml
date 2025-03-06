@@ -5395,6 +5395,8 @@ cs:
   teachers_guide: Příručka pro učitele
   tell_the_world_a_little_about_yourself: Povězte nám něco o sobě
   tell_us_why: Řekněte nám, proč...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Podmínky
   terms_and_rules_html: "Podmínky &amp; Pravidla"
   terms_new_users: "Pokud přidáte podmínky, musí je noví uživatelé odsouhlasit, než se připojí k tomuto projektu."
@@ -6547,7 +6549,7 @@ cs:
       click_here_to_resend_a_confirmation_email: Klikněte zde pro opětovné odeslání potvrzovacího e-mailu
       please_add_an_email_and_password: Prosím, přidejte e-mail a heslo, abyste neztratili přístup ke svému účtu
       please_click_the_link_sent_to_email_to_confirm_html: Kliknutím na odkaz odeslaný na adresu <span class="email">%{email}</span> potvrďte svou e-mailovou adresu.
-      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je nejlepší způsob, jak vás kontaktovat.
+      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je nejlepší způsob, jak vás kontaktovat. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Váš %{site_name} účet nemá přiřazenou e-mailovou adresu.
     flags:
       show:
@@ -6849,6 +6851,8 @@ cs:
       index:
         show_messages_from_user: Zobrazit zprávy od %{user}
         show_messages_to_user: Zobrazit zprávy pro %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Po přidání tří
           ověřitelných pozorování nebo tří identifikací pro ostatní budete moci poslat nové zprávy. Zatím
@@ -7068,22 +7072,13 @@ cs:
           </li>
           </ul>
       field_descriptions:
-        id: "Jedinečný identifikátor pozorování"
-        species_guess: "Název, který pozorovatel zadal pro pozorovaný taxon"
-        scientific_name: "Vědecký název pozorovaného taxonu podle této stránky"
-        common_name: "Obecný nebo místní název pozorovaného taxonu podle této stránky"
         iconic_taxon_name: Vyšší taxonomická kategorie pro pozorovaný taxon
-        taxon_id: Jedinečný identifikátor pro pozorovaný taxon
         id_please: Zda pozorovatel požadoval pomoc s identifikací
-        num_identification_agreements: Počet identifikací odpovídajících identifikaci pozorovatele
-        num_identification_disagreements: Počet identifikací neodpovídajících identifikaci pozorovatele
         observed_on_string: Datum/čas zadaný pozorovatelem
         observed_on: Normalizované datum pozorování
         time_observed_at: Normalizované datum a čas pozorování
         time_zone: Časové pásmo pozorování
         place_guess: Popis lokality zadaný pozorovatelem
-        latitude: Veřejně zobrazená zeměpisná šířka
-        longitude: Veřejně zobrazená zeměpisná délka
         positional_accuracy: "Přesnost souřadnic(jo, jo, přesnost != přesnost, špatná volba názvů)"
         private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo přibližné"
         private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo přibližné"
@@ -7091,18 +7086,10 @@ cs:
         taxon_geoprivacy: "Použito nejkonzervativnější soukromí zeměpisné polohy z důvodu stavu zachování taxonů v současné identifikaci."
         coordinates_obscured: "Zda byly souřadnice přibližné, buď kvůli zachování soukromí zeměpisné polohy nebo kvůli ohroženému taxonu"
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
-        user_id: Jedinečný identifikátor pro pozorovatele
-        user_login: Uživatelské jméno pozorovatele
-        user_name: |
-          Jméno pozorovatele, obvykle používané pro přiřazení na místě.
-          Toto je nepovinné pole a může být vyplněno pseudonymem.
         created_at: Datum a čas, kdy bylo pozorování vytvořeno
         updated_at: Datum a čas, kdy bylo pozorování naposledy aktualizováno
         quality_grade: Stupeň kvality tohoto pozorování. Podívejte se do sekce Nápověda, kde najdete podrobnosti o tom, co to znamená
-        license: Licence, kterou si pozorovatel zvolil pro toto pozorování
         url: URL pozorování
-        image_url: URL základního obrázku
-        sound_url: URL výchozího zvuku. Všimněte si, že to bude fungovat pouze pro přímé stahování, nikoli pro zvuky služeb třetích stran
         tag_list: Seznam tagů oddělených čárkami
         place_admin1_name: Název správního místa v rámci země
         place_admin2_name: Název správního místa se řadí pod úroveň země
