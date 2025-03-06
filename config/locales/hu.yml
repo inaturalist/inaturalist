@@ -4416,6 +4416,8 @@ hu:
   teachers_guide: Útmutató tanároknak
   tell_the_world_a_little_about_yourself: Mesélj magadról
   tell_us_why: Miért gondolod?
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Feltételek
   terms_and_rules_html: "Szabályzat"
   terms_new_users: "Ha feltételeket adsz hozzá, az új felhasználók egyet kell értsenek ezekkel mielőtt csatlakoznának."
@@ -5229,7 +5231,7 @@ hu:
       click_here_to_resend_a_confirmation_email: A hitelesítő email újraküldéséhez kattints ide
       please_add_an_email_and_password: Kérjük, hogy a hozzáférésed megőrzéséhez add meg az email címed és egy jelszót
       please_click_the_link_sent_to_email_to_confirm_html: Az emailcím megerősítéséhez kattints a(z) <span class="email">%{email}</span> címre küldött linkre.
-      please_confirm_that_email_is_the_best_contact_html: Kérjük erősítsd meg, hogy <span class="email">%{email}</span> emailcímen keresztül a legjobb veled kapcsolatba lépni.
+      please_confirm_that_email_is_the_best_contact_html: Kérjük erősítsd meg, hogy <span class="email">%{email}</span> emailcímen keresztül a legjobb veled kapcsolatba lépni. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: '%{site_name} fiókodhoz nincs emailcím hozzárendelve.'
     flags:
       show:
@@ -5383,6 +5385,8 @@ hu:
       index:
         show_messages_from_user: Mutasd az üzeneteket %{user} felhasználótól
         show_messages_to_user: Mutasd az üzeneteket %{user} felhasználóhoz
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Akkor küldhetsz új üzeneteket, miután van három hiteles megfigyelésed vagy három meghatározásod más számára. Egyelőre elolvashatod és válaszolhatsz azokra az üzenetekre amiket másoktól kaptál.
     nls_demo:
@@ -5538,28 +5542,15 @@ hu:
           </li>
           </ul>
       field_descriptions:
-        id: "A meghatározás egyedi azonosítója"
-        scientific_name: "A megfigyelt taxon tudományos neve e honlap szerint"
-        taxon_id: A megfigyelt taxon egyedi azonosítója
-        num_identification_agreements: A megfigyelő meghatározásával egyetértő meghatározások száma
-        num_identification_disagreements: A megfigyelő meghatározásának ellentmondó meghatározások száma.
         observed_on_string: A megfigyelés dátuma és ideje, ahogy a megfigyelő megadta
         observed_on: A megfigyelés normalizált dátuma
         time_observed_at: A megfigyelés normalizált dátuma és ideje
         time_zone: A megfigyelés időzónája
-        latitude: Nyilvánosan látható szélességi kör
-        longitude: Nyilvánosan látható hosszúsági kör
         geoprivacy: "Ha a megfigyelő úgy döntött kitakarja vagy elrejtse a koordinátákat"
-        user_id: A megfigyelő egyedi azonosítója
-        user_login: A megfigyelő felhasználói neve
-        user_name: |
-          A megfigyelő neve, amit az oldalon való társításhoz tüntetünk fel. Opcionális mező, és álnév is lehet.
         created_at: A megfigyelés létrehozásának dátuma és időpontja
         updated_at: A megfigyelés legutóbbi módosításának dátuma és ideje
         quality_grade: A megfigyelés minőségi szintje. Lásd a Súgót a részletekkel kapcsolatban
         url: A megfigyelés URL-címe
-        image_url: Az alapértelmezett kép URL-je
-        sound_url: Az alapértelmezett hang URL-je. Ez csak közvetlenül feltöltött hangokhoz érhető el, a külső szolgáltatókon tárolt hangokhoz nem.
         tag_list: Címkék listája, vesszővel elválasztva
         place_admin1_name: A közigazgatási terület neve az országénál egy szinttel lentebb
         place_admin2_name: A közigazgatási terület neve az országénál két szinttel lentebb
