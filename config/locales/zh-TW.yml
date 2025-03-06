@@ -4784,6 +4784,8 @@ zh-TW:
   teachers_guide: 導師指南
   tell_the_world_a_little_about_yourself: 向我們介紹您自己
   tell_us_why: 告訴我們為什麼...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: 條款
   terms_and_rules_html: "條款&amp;規範"
   terms_new_users: "若您添加條款，新用戶必須再加入專案前同意該項目。"
@@ -5885,6 +5887,8 @@ zh-TW:
       index:
         show_messages_from_user: 顯示來自%{user}的訊息
         show_messages_to_user: 顯示給%{user}的訊息
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
       show:
@@ -6065,22 +6069,13 @@ zh-TW:
           </li>
           </ul>
       field_descriptions:
-        id: "觀察的唯一鑑定"
-        species_guess: "觀察者用於觀察物種分類上所輸入的名稱"
-        scientific_name: "所觀察物種分類相應此網站的學名"
-        common_name: "所觀察物種分類在相應此網站的通用名稱或俗名。"
         iconic_taxon_name: 用於所觀察物種分類的高階歸類類別
-        taxon_id: 觀察物種分類的唯一鑑定
         id_please: 無論觀察者是否需要鑑定協助
-        num_identification_agreements: 鑑定號碼與觀察者的鑑定一致
-        num_identification_disagreements: 鑑定號碼與觀察者的鑑定相衝
         observed_on_string: 由觀察者輸入的日期/時間
         observed_on: 觀察的標準日期
         time_observed_at: 觀察的標準日期時間
         time_zone: 觀察的時區
         place_guess: 由觀察者輸入的在地描述
-        latitude: 公開可見緯度
-        longitude: 公開可見經度
         positional_accuracy: "座標精準度（沒錯沒錯，準確性「accuracy」不等於精準度「precision」，但在名稱上能選擇的實在不多）"
         private_latitude: "若觀察為私有或遮蔽，設定私有緯度"
         private_longitude: "若觀察為私有或隱蔽，設定私有經度"
@@ -6088,15 +6083,10 @@ zh-TW:
         taxon_geoprivacy: "出於在目前鑑定的物種分類保育狀態，多數保育位置隱私都適用。"
         coordinates_obscured: "無論座標是否被遮蔽，皆因位置隱私或受威脅的物種分類的緣故"
         out_of_range: 無論如何此觀察已在物種分類範圍之外
-        user_id: 觀察者的唯一識別
-        user_login: 觀察者的用戶名
         created_at: 觀察日期時間已創建
         updated_at: 觀察日期時間最近已更新
         quality_grade: 此觀察的品質等級。查看幫助章節來獲得此含意的詳細內容
-        license: 觀察者挑選此許可協議用於觀察
         url: 用於觀察的 URL
-        image_url: 用於預設圖片的 URL
-        sound_url: 預設聲音內容的 URL。請選用直接上傳到此站台；而非在第三方服務上託管聲音內容的網址
         tag_list: 逗號分隔的標籤清單
         place_admin1_name: 在國家層級下一個級別的行政地點名稱
         place_admin2_name: 在國家層級下兩個級別的行政地點名稱
