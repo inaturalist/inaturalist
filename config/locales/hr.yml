@@ -5360,6 +5360,8 @@ hr:
   teachers_guide: Vodič za učitelje
   tell_the_world_a_little_about_yourself: Reci nam nešto o sebi
   tell_us_why: Reci nam zašto...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Uvjeti
   terms_and_rules_html: "Uvjeti &amp; Pravila"
   terms_new_users: "Ako dodate uvjete, novi korisnici moraju ih prihvatiti prije nego se pridruže ovom projektu."
@@ -6551,7 +6553,7 @@ hr:
       click_here_to_resend_a_confirmation_email: Klikni ovdje za ponovno slanje emaila za potvrdu
       please_add_an_email_and_password: Molimo dodaj email i lozinku kako ne bi izgubio pristup svom računu
       please_click_the_link_sent_to_email_to_confirm_html: Molimo klikni na link poslan na <span class="email">%{email}</span> kako bi potvrdio svoju email adresu.
-      please_confirm_that_email_is_the_best_contact_html: Molimo potvrdi da je <span class="email">%{email}</span> najbolji način za kontaktiranje tebe.
+      please_confirm_that_email_is_the_best_contact_html: Molimo potvrdi da je <span class="email">%{email}</span> najbolji način za kontaktiranje tebe. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Tvoj %{site_name} račun nema pridruženu email adresu.
     flags:
       show:
@@ -6903,6 +6905,8 @@ hr:
       index:
         show_messages_from_user: Prikaži poruke od korisnika %{user}
         show_messages_to_user: Prikaži poruke poslane korisniku %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Moći ćete slati nove poruke nakon što dodate tri
           provjerljive opažanja ili tri identifikacije za druge. Za sada
@@ -7133,22 +7137,13 @@ hr:
           </li>
           </ul>
       field_descriptions:
-        id: "Jedinstveni identifikator za opažanje"
-        species_guess: "Ime koje je promatrač unio za promatrani takson"
-        scientific_name: "Znanstveno ime promatranog taksona prema ovoj stranici"
-        common_name: "Uobičajeno ili narodno ime promatranog taksona prema ovoj stranici"
         iconic_taxon_name: Viša taksonomska kategorija za promatrani takson
-        taxon_id: Jedinstveni identifikator za promatrani takson
         id_please: Da li je promatrač zatražio pomoć pri identifikaciji ili ne
-        num_identification_agreements: Broj identifikacija koje se slažu s promatračevom identifikacijom
-        num_identification_disagreements: Broj identifikacija koje se ne slažu s promatračevom identifikacijom
         observed_on_string: Datum/vrijeme kako ga je unio promatrač
         observed_on: Normalizirani datum opažanja
         time_observed_at: Normalizirano datum i vrijeme opažanja
         time_zone: Vremenska zona opažanja
         place_guess: Opis lokacije kako ga je unio promatrač
-        latitude: Javno vidljiva širina
-        longitude: Javno vidljiva dužina
         positional_accuracy: "Preciznost koordinata (da, da, točnost != preciznost, loš izbor imena)"
         private_latitude: "Privatna širina, postavljena ako je opažanje privatno ili skriveno"
         private_longitude: "Privatna dužina, postavljena ako je opažanje privatno ili skriveno"
@@ -7156,17 +7151,10 @@ hr:
         taxon_geoprivacy: "Najkonzervativnija geoprivatnost primijenjena zbog statusa zaštite taksona u trenutnoj identifikaciji."
         coordinates_obscured: "Jesu li koordinate zamagljene, bilo zbog geoprivatnosti ili zbog ugroženog taksona"
         out_of_range: Da li se ovo opažanje nalazi izvan poznatog raspona taksona
-        user_id: Jedinstveni identifikator za promatrača
-        user_login: Korisničko ime promatrača
-        user_name: |
-          Ime promatrača, obično se koristi za atribuciju na stranici. Ovo je opcionalno polje i može biti pseudonim.
         created_at: Datum i vrijeme kada je opažanje kreirano
         updated_at: Datum i vrijeme kada je opažanje zadnji put ažurirano
         quality_grade: Ocjena kvalitete ovog opažanja. Pogledajte odjeljak Pomoć za detalje o tome što to znači
-        license: Licenca koju je promatrač odabrao za ovo opažanje
         url: URL za opažanje
-        image_url: URL za zadanu sliku
-        sound_url: URL za zadani zvuk. Imajte na umu da će ovo raditi samo za izravna učitavanja, ne za zvukove smještene na uslugama trećih strana
         tag_list: Popis oznaka odvojenih zarezom
         place_admin1_name: Ime administrativnog mjesta jedan rang ispod razine države
         place_admin2_name: Ime administrativnog mjesta dva ranga ispod razine države
