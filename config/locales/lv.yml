@@ -4583,6 +4583,8 @@ lv:
   teachers_guide: Padomi skolotājiem
   tell_the_world_a_little_about_yourself: Pastāsti par sevi
   tell_us_why: Paskaidro savu izvēli
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Noteikumi
   terms_and_rules_html: "Noteikumi &amp; Nosacījumi"
   terms_new_users: "Ja pievienosi nosacījumus, jauniem lietotājiem, kas pievienosies projektam, tiem būs jāpiekrīt."
@@ -5650,6 +5652,8 @@ lv:
       index:
         show_messages_from_user: Rādīt ziņas no %{user}
         show_messages_to_user: Rādīt ziņas lietotājam %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Kad būsi pievienojis vismaz trīs pierādāmus novērojumus vai identificējis vismaz trīs citu lietotāju novērojumus, iegūsi iespēju nosūtīt citiem ziņas. Pagaidām ir iespējams tikai izlasīt un atbildēt uz citu lietotāju ziņām.
       show:
@@ -5809,22 +5813,13 @@ lv:
           </li>
           </ul>
       field_descriptions:
-        id: "Vienīgais novērojuma identificētājs"
-        species_guess: "Norādi taksona novērotāja vārdu"
-        scientific_name: "Novērotā taksona zinātniskais nosaukums, vadoties pēc mūsu tīmekļa vietnes datubāzēm"
-        common_name: "Novērotā taksona tautā pieņemtie nosaukumi, vadoties pēc mūsu tīmekļa vietnes datubāzēm"
         iconic_taxon_name: Novērotā taksona augstāka taksonomiskā pakāpe
-        taxon_id: Vienīgais novērotā taksona identificētājs
         id_please: Vai novērotājs lūdza palīdzību, lai identificētu novērojumu?
-        num_identification_agreements: Novērotāja identifikācijai atbilstošo identifikāciju skaits
-        num_identification_disagreements: Novērotāja identifikācijai neatbilstošo identifikāciju skaits
         observed_on_string: Novērotāja norādītais datums un laiks
         observed_on: Normalizēts novērojuma datums
         time_observed_at: Normalizēts novērojuma datums un laiks
         time_zone: Novērojuma laika josla
         place_guess: Novērotāja norādītais vietas apraksts
-        latitude: Publiski pieejams platums
-        longitude: Publiski pieejams garums
         positional_accuracy: "Koordinātu precizitāte"
         private_latitude: "Privāts platums, izvēlies šo, ja novērojums ir privāts vai noslēpts"
         private_longitude: "Privāts garums, izvēlies šo, ja novērojums ir privāts vai noslēpts"
@@ -5832,15 +5827,10 @@ lv:
         taxon_geoprivacy: "Tiek lietoti konservatīvākie ģeoprivātuma iestatījumi, jo ņemts vērā taksonu aizsardzības statuss."
         coordinates_obscured: "Vai koordinātas ir apslēptas ģeoprivātuma vai apdraudēta taksona dēļ?"
         out_of_range: Vai šis novērojums atrodas ārpus taksona zināmā izplatības apgabala?
-        user_id: Vienīgais novērotāja identificētājs
-        user_login: Novērotāja lietotājvārds
         created_at: Novērojuma izveidošanas datums un laiks
         updated_at: Laiks un datums, kad novērojums pēdējo reizi labots
         quality_grade: Novērojuma kvalitātes līmenis. Vairāk informācijas sadaļā "Palīdzība".
-        license: Novērotāja izvēlētā licence šim novērojumam.
         url: Novērojuma URL
-        image_url: Noklusējuma attēla URL
-        sound_url: Noklusējuma audiofaila URL. Uzmanību! Funkcija darbosies tikai ar tiešām augšupielādēm, nevis ar trešo pušu pakalpojumu sniedzēju uzglabātiem failiem.
         tag_list: Saraksts ar tagiem, kas atdalīti ar komatu
         place_admin1_name: Administratīvais vietas nosaukums, kas ir vienu pakāpi konkrētāks par "valsti"
         place_admin2_name: Administratīvais vietas nosaukums, kas ir divas pakāpes konkrētāks par "valsti"
