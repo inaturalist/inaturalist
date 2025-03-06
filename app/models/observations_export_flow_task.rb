@@ -208,12 +208,21 @@ class ObservationsExportFlowTask < FlowTask
   def make_readme
     fpath = File.join( work_path, "README.txt" )
     readme_txt = I18n.with_locale( user&.locale ) do
+      column_defs = export_columns.map do | c |
+        column_def = if c =~ /^field:/
+          FakeView.terminology_term_url( term: c )
+        else
+          I18n.t( "views.observations.field_descriptions.#{c}" )
+        end
+        "#{c}: #{column_def.gsub( /\s+/m, ' ' ).strip}"
+      end.join( "\n" )
       <<~README
         #{I18n.t :exported_at_datetime, datetime: Time.now.utc.iso8601}
 
         #{I18n.t :query}: #{query}
 
-        #{I18n.t :columns}: #{export_columns.join( ', ' )}
+        #{I18n.t :columns}:
+        #{column_defs}
 
         #{I18n.t :for_more_information_about_column_headers, url: FakeView.terminology_url}
       README
