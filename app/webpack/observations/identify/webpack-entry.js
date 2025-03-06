@@ -135,6 +135,7 @@ observeStore( store, s => s.searchParams.params, ( ) => {
 } );
 
 render(
+  // eslint-disable-next-line react/jsx-filename-extension
   <Provider store={store}>
     <AppContainer />
   </Provider>,

@@ -2404,6 +2404,9 @@ hu:
   #Stub text for the main content section when editing custom project data
   main_content_description: Ide kerül a fő téma
   make_a_new_place: Készíts egy új területet
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Legyen privát
   make_sure_the_default_photo_looks_good: Bizonyosodj meg arról, hogy az alapértelmezett fotó jól néz ki nagy méretben.
   make_this_your_default_license: "Tedd ezt a te alapértelmezett %{type} lincenceddé"
   mammals: emlősök
@@ -6610,6 +6613,14 @@ hu:
         moderator_action:
           attributes:
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Csak rejtett tartalom lehet privát
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Csak a személyzet és a kurátorok rejthetnek el tartalmat
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Csak a személyzet rejthet el tartalmat
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
             user_id:
               must_be_a_curator: kurátor kell legyen
@@ -6624,7 +6635,7 @@ hu:
               #Message that might be displayed if an observation fails to
               #save for an unknown reason, generally indicates a bug
               cannot_be_saved_for_unknown_reason: |
-                nem lehet menteni ismeretlen ok miatt, készíts képernyőmentést és jelentsd a hibát
+                - nem lehet menteni ismeretlen ok miatt, készíts képernyőmentést és jelentsd a hibát
             observed_on:
               cannot_be_greater_than_date_created: |
                 nem lehet nagyobb, mint a dátum amikor hozzáadták a megfigyelést
@@ -6687,6 +6698,14 @@ hu:
                 %{time} után kell legyen megfigyelve
               must_be_observed_before: |
                 %{time} előtt kell legyen megfigyelve
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: projekt kell legyen
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: csak projekt szabályokat enged
         taxon:
           attributes:
             rank:
@@ -6748,6 +6767,9 @@ hu:
               belongs_to_an_existing_user: |
                 egy létező felhasználóhoz tartozik; ha már van fiókod, kérjük lépj be mielőtt folytatnád vagy használj egy másik email címet
   doorkeeper:
+    scopes:
+      login: |
+        Információ hozzáférését engedélyezi ahhoz, hogy bejelentkezz egy harmadik fél szolgáltatásához, mint például a fiókod email címét, felhasználó nevét és felhasználó ikonját.
     errors:
       messages:
         #Common error messages
