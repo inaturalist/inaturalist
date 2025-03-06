@@ -5207,6 +5207,8 @@ sl:
       index:
         show_messages_from_user: Prikaži sporočila uporabnika %{user}
         show_messages_to_user: Prikaži sporočila uporabniku %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Nova sporočila boste lahko pošiljal, ko boste dodali 3 preverljiva 
           opazovanja ali 3 določitve za druge. Za zdaj lahko berete in odgovarjate
@@ -5310,7 +5312,6 @@ sl:
           </li>
           </ul>
       field_descriptions:
-        species_guess: "Ime, ki ga je vnesel opazovalec za opazovani takson"
         observed_on: Normaliziran datum opazovanja
         time_observed_at: Normaliziran datum in čas opazovanja
         time_zone: Časovni pas opazovanja
