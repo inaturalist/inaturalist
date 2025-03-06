@@ -5255,6 +5255,8 @@ he:
   teachers_guide: מדריך למורה
   tell_the_world_a_little_about_yourself: ספרו לנו על עצמכם
   tell_us_why: ספרו לנו למה...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: מונחים
   terms_and_rules_html: "תנאים &amp; כללים"
   terms_new_users: "אם את.ה מוסיפ.ה תנאים, יוזרים חדשים חייבים להסכים להם טרם ההצטרפות לפרויקט זה."
@@ -6352,7 +6354,7 @@ he:
       click_here_to_resend_a_confirmation_email: יש ללחוץ כאן כדי לשלוח שוב דוא"ל אימות
       please_add_an_email_and_password: נא להוסיף דוא"ל וסיסמה על מנת שלא תאבד.י גישה לחשבון שלך
       please_click_the_link_sent_to_email_to_confirm_html: נא ללחוץ על הקישור שנשלח אל <span class="email">%{email}</span> לאישור כתובת הדוא"ל שלך.
-      please_confirm_that_email_is_the_best_contact_html: נא לאשר כי <span class="email">%{email}</span> היא הדרך הטובה ביותר ליצור עמך קשר.
+      please_confirm_that_email_is_the_best_contact_html: נא לאשר כי <span class="email">%{email}</span> היא הדרך הטובה ביותר ליצור עמך קשר. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: לחשבון ה-%{site_name} שלך אין כתובת דוא"ל מקושרת.
     flags:
       show:
@@ -6628,6 +6630,8 @@ he:
       index:
         show_messages_from_user: הצגת הודעות של %{user}
         show_messages_to_user: הצגת הודעות ל%{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           תוכל.י לשלוח הודעות חדשות אחרי שהוספת שלוש תצפיות בנות-אימות או שלושה זיהויים עבור אחרים. נכון לעכשיו באפשרותך לקרוא הודעות מאחרים ולהשיב.
       show:
@@ -6826,22 +6830,13 @@ he:
           </li>
           </ul>
       field_descriptions:
-        id: "מזהה ייחודי.ת עבור התצפית"
-        species_guess: "נא לציין את שם המתצפת.ת שהוכנס.ה עבור הטקסון הנצפה"
-        scientific_name: "השם המדעי של הטקסון הנצפה לפי אתר זה"
-        common_name: "השם העממי או הנפוץ של הטקסון הנצפה לפי אתר זה"
         iconic_taxon_name: קטגוריה טקסונומית בדרגה גבוהה יותר עבור הטקסון הנצפה
-        taxon_id: מזהה ייחודי.ת עבור הטקסון הנצפה
         id_please: האם המתצפת.ת ביקש.ה עזרה בזיהוי
-        num_identification_agreements: מספר הזיהויים הנמצאים בהסכמה עם זיהויי המתצפת.ת
-        num_identification_disagreements: מספר הזיהויים הנמצאים בסתירה עם זיהויי המתצפת.ת
         observed_on_string: תאריך/שעה כפי שהוזן על ידי המתצפת
         observed_on: תאריך תצפית מנורמל
         time_observed_at: תאריך ושעה מנורמלים של התצפית
         time_zone: אזור הזמן של התצפית
         place_guess: תיאור המקום כפי שהוקלד על ידי המתצפת.ת
-        latitude: קו רוחב גלוי לציבור
-        longitude: קו רוחב גלוי לציבור
         positional_accuracy: "רמת דיוק הקואורדינטה"
         private_latitude: "קו רוחב פרטי, יש לקבוע אם התצפית היא פרטית או מוסתרת"
         private_longitude: "קו אורך פרטי, יש לקבוע אם התצפית היא פרטית או מוסתרת"
@@ -6849,18 +6844,10 @@ he:
         taxon_geoprivacy: "פרטיות המיקום המחמירה ביותר נבחרה בגלל סטטוס השימור של הטקסונים בזיהוי הנוכחי."
         coordinates_obscured: "האם הקואורדינטות הוסתרו או לא, עקב פרטיות המיקום או בגלל טקסון בסיכון"
         out_of_range: האם תצפית זו נמצאת מחוץ לתפוצה הידועה של הטקסון
-        user_id: מזהה ייחודי.ת עבור המתצפת.ת
-        user_login: שם משתמש של המתצפת.ת
-        user_name: |
-          שם המתצפת.ת, לרוב משמש לייחוס באתר.
-          זהו שדה אופציונאלי ויכול להיות כינוי.
         created_at: נוצרה תצפית תאריך ושעה
         updated_at: תאריך ושעת התצפית עודכנו לאחרונה
         quality_grade: דרגת האיכות של תצפית זו. לפרטים על מושג זה, יש לעיין באזור העזרה.
-        license: הרישיון הנבחר על ידי המתצפת.ת עבור תצפית זו
         url: URL של התצפית
-        image_url: קישור לתמונת ברירת מחדל
-        sound_url: קישור עבור קול ברירת המחדל. יש לשים לב שזה יעבוד רק להעלאות ישירות, לא קולות המתארחים בשירותי צד שלישי
         tag_list: רשימת תגיות מופרדת פסיקים
         place_admin1_name: נא לתת את השם של מקום אדמיניסטרטיבי רמה אחת מתחת לרמת המדינה
         place_admin2_name: שם המקום האדמיניסטרטיבי שתי רמות מתחת לרמת המדינה
