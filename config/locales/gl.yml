@@ -4231,6 +4231,8 @@ gl:
   teachers_guide: Guía do Mestre
   tell_the_world_a_little_about_yourself: Fálanos un pouco sobre ti
   tell_us_why: Dinos porqué...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termos
   terms_and_rules_html: "Termos & Regras"
   terms_new_users: "Os novos usuarios deben aceptar estes termos antes de unirse ao proxecto."
@@ -5108,6 +5110,8 @@ gl:
       index:
         show_messages_from_user: Mostrar mensaxes de %{user}
         show_messages_to_user: Mostrar mensaxes a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Serás quen de enviar novas mensaxes logo de engadir tres observacións verificables ou tres identificacións para outros. Polo de agora podes ler e responder a mensaxes que outra xente te enviou.
       show:
@@ -5263,22 +5267,13 @@ gl:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificador único da observación"
-        species_guess: "Nomea ó observador que introducíu o taxon observado"
-        scientific_name: "Nome científico do taxon observado de acordo con este sitio"
-        common_name: "Nome común ou vernáculo do taxon observado de acordo con este sitio"
         iconic_taxon_name: Categoría taxonómica superior para o taxon observado
-        taxon_id: Identificador único do taxon observado
         id_please: Se o observador requiríu axuda para a identificación
-        num_identification_agreements: Número de identificacións en concurrencia cá identificación do observador
-        num_identification_disagreements: Número de identificacións en conflito cá identificación do observador
         observed_on_string: Data/hora como foi introducida polo observador
         observed_on: Data normalizada da observación
         time_observed_at: Data e hora da observación normalizadas
         time_zone: Zona horaria da observación
         place_guess: Descrición da localidade como foi introducida polo observador
-        latitude: Latitude visible publicamente
-        longitude: Lonxitude visible publicamente
         positional_accuracy: "Precisión das coordenadas (si, si, exactitude != precisión, mala escolla de nomes)"
         private_latitude: "Latitude privada, pór se a observación é privada ou está escurecida"
         private_longitude: "Lonxitude privada, pór se a observación é privada ou está escurecida"
@@ -5286,15 +5281,10 @@ gl:
         taxon_geoprivacy: "A xeoprivacidade máis conservadora aplicada debido ó estado de conservación de taxons que están a seren identificados."
         coordinates_obscured: "Se as coordenadas foron escurecidas, ben pola xeoprivacidade ou porque é un taxon ameazado"
         out_of_range: Se esta observación cae fóra do rango coñecido do taxon
-        user_id: Identificador único do observador
-        user_login: Nome de usuario do observador
         created_at: Data e hora na que a observación foi creada
         updated_at: Data e hora na que a observación foi actualizada por última vez
         quality_grade: Grao de calidade desta observación. Ver a sección Axuda para obter detalles do que isto significa
-        license: Licenza que o observador escolleu para esta observación
         url: URL da observación
-        image_url: URL da imaxe predeterminada
-        sound_url: URL do son predeterminado. Repara que só funcionará para cargas directas, non para sons albergados en servicios de terceiros
         tag_list: Listaxe de etiquetas separada por comas
         place_admin1_name: Nome da ubicación administrativa un rango por baixo do nivel de país
         place_admin2_name: Nome da ubicación administrativa dous niveis por baixo do nivel de país
