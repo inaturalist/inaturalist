@@ -168,7 +168,9 @@ class Announcement < ApplicationRecord
     end
   end
 
-  def self.active_in_placement( placement, site = nil )
+  def self.active_in_placement( placement, options = {} )
+    site = options[:site]
+    user = options[:user]
     scope = Announcement.
       where( placement: placement ).
       where( '? BETWEEN "start" AND "end"', Time.now.utc ).
@@ -177,19 +179,24 @@ class Announcement < ApplicationRecord
       limit( 50 )
     base_scope = scope
     scope = scope.where( "sites.id = ?", site.id ) if site
-    @announcements = scope.in_specific_locale( I18n.locale )
-    @announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if @announcements.blank?
-    @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
-    @announcements = scope.in_locale( I18n.locale.to_s.split( "-" ).first ) if @announcements.blank?
-    if @announcements.blank?
-      @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
-      @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
-      @announcements = @announcements.to_a.flatten
+    announcements = scope.in_specific_locale( I18n.locale )
+    announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
+    announcements = scope.in_locale( I18n.locale ) if announcements.blank?
+    announcements = scope.in_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
+    if announcements.blank?
+      announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
+      announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if announcements.blank?
+      announcements = announcements.to_a.flatten
     end
-    if @announcements.blank?
-      @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
+    if announcements.blank?
+      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
     end
-    @announcements = @announcements.sort_by do | a |
+    if user
+      announcements = announcements.select do | a |
+        a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+      end
+    end
+    announcements.sort_by do | a |
       [
         a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
         a.locales.include?( I18n.locale ) ? 0 : 1,

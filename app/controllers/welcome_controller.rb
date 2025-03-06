@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
   def index
     respond_to do | format |
       format.html do
-        @announcements = Announcement.active_in_placement( Announcement::WELCOME_INDEX, @site )
+        @announcements = Announcement.active_in_placement( Announcement::WELCOME_INDEX, { site: @site } )
         @google_webmaster_verification = @site.google_webmaster_verification if @site
         if logged_in? && !@site.draft?
           redirect_to home_path
