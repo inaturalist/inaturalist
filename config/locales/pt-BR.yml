@@ -5294,6 +5294,8 @@ pt-BR:
   teachers_guide: Guia do professor
   tell_the_world_a_little_about_yourself: Conte-nos sobre você
   tell_us_why: Oras, nos diga por que...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termos
   terms_and_rules_html: "Termos &amp; Regras"
   terms_new_users: "Caso você adicione termos, todos os novos usuários deveram concordas antes de ingressar neste projeto."
@@ -6410,7 +6412,7 @@ pt-BR:
       click_here_to_resend_a_confirmation_email: Clique aqui para solicitar o reenvio de e-mail de confirmação
       please_add_an_email_and_password: Por favor, adicione um e-mail e senha para que você não perca o acesso à sua conta
       please_click_the_link_sent_to_email_to_confirm_html: Por favor, clique no link enviado para <span class="email">%{email}</span> e confirme o seu endereço de e-mail.
-      please_confirm_that_email_is_the_best_contact_html: Por favor, confirme que <span class="email">%{email}</span> é a melhor maneira de entrar em contato com você.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirme que <span class="email">%{email}</span> é a melhor maneira de entrar em contato com você. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Sua conta %{site_name} não tem um endereço de e-mail associado a ela.
     flags:
       show:
@@ -6696,6 +6698,8 @@ pt-BR:
       index:
         show_messages_from_user: Mostrar mensagens de %{user}
         show_messages_to_user: Mostrar mensagens de %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Você poderá enviar novas mensagens depois de adicionar três observações verificáveis ou três identificações para os outros. Para agora você pode ler e responder a mensagem que outras pessoas lhe enviam.
       show:
@@ -6879,22 +6883,13 @@ pt-BR:
           </li>
           </ul>
       field_descriptions:
-        id: "Um único identificador para a observação"
-        species_guess: "Nomeie o observador que incluiu o táxon observado"
-        scientific_name: "Nome científico do táxon observado de acordo com este site"
-        common_name: "Nome comum ou vernacular do táxon observado de acordo com este site"
         iconic_taxon_name: Categoria taxonômica de nível superior para o taxón observado
-        taxon_id: Identificador único para o táxon observado
         id_please: Precisando ou não o observador solicitou ajuda com a identificação
-        num_identification_agreements: Número de identificações em concorrência com as identificações do observador
-        num_identification_disagreements: Número de identificações conflitando com a identificação do observador
         observed_on_string: Data/Hora conforme registrado pelo observador
         observed_on: Data normalizada de observação
         time_observed_at: Dia e Horário normalizados de observação
         time_zone: Fuso horário da observação
         place_guess: Descrição de localidade conforme registrado pelo observador
-        latitude: Latitude visível publicamente
-        longitude: Longitude visível publicamente
         positional_accuracy: "Precisão das coordenadas"
         private_latitude: "Latitude particular, selecione se a observação é particular ou oculta"
         private_longitude: "Longitude particular, selecione se a observação é particular ou oculta"
@@ -6902,18 +6897,10 @@ pt-BR:
         taxon_geoprivacy: "A geofracia mais conservadora aplicada devido aos status de conservação dos táxons na identificação atual."
         coordinates_obscured: "De qualquer forma, as coordenadas foram ocultadas, seja pela configuração de geoprivacidade ou pelo grau de ameaça do táxon"
         out_of_range: Esteja a observação localizada ou não dentro da área de distribuição deste táxon
-        user_id: Identificador único para o observador
-        user_login: Nome de usuário do observador
-        user_name: |
-          Nome do observador, geralmente usado para atribuição no site.
-          Este campo é opcional e pode ser um pseudônimo.
         created_at: Dia e hora que a observação foi criada
         updated_at: Dia e hora que a observação foi atualizada pela última vez
         quality_grade: Nível de qualidade desta observação. Veja a secção de AJUDA  para detalhes do que isto significa
-        license: Licença que o observador escolheu para esta observação
         url: URL para a observação
-        image_url: URL para a imagem padrão
-        sound_url: URL para o som padrão. Observe que isso só funcionará para carregamentos diretos, não para sons hospedados em serviços de terceiros
         tag_list: Lista de Marcações separadas por vírgulas
         place_admin1_name: Nome do lugar administrativo uma classificação abaixo do nível do país
         place_admin2_name: Nome do lugar administrativo duas fileiras abaixo do nível do país
