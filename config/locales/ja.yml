@@ -4690,6 +4690,8 @@ ja:
   teachers_guide: 先生方へのご案内
   tell_the_world_a_little_about_yourself: 自己紹介しましょう
   tell_us_why: 理由を教えてください...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: 規約
   terms_and_rules_html: "規約及び規則"
   terms_new_users: "新規項目の追加をするには、新規ユーザーはプロジェクトに参加する前提条件として、規約に同意しなければならなりません。"
@@ -5824,6 +5826,8 @@ ja:
       index:
         show_messages_from_user: '%{user} からのメッセージを表示'
         show_messages_to_user: '%{user}に宛てたメッセージを表示'
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           有効な観察記録を3つ、または他の人の観察記録に同定をを3つ追加すると、新しいDMを送信できるようになりま
           現在の状態では、他の人が送ってきたメッセージを読んだり、返信したりする機能のみが利用できます。
@@ -5909,32 +5913,18 @@ ja:
         taking_a_while: "しばらく時間がかかります。以下のオプションのいずれかを試してください。"
         created_on_help: "作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "観察記録の唯一の同定者"
-        scientific_name: "このサイトにより観察された分類群の学名"
         iconic_taxon_name: 観察された分類群の上位分類群
-        taxon_id: 観察された分類群の一意の識子
         id_please: 投稿者が同定依頼をしたか
-        num_identification_agreements: 投稿者の同定と一致する同定
-        num_identification_disagreements: 投稿者の同定と一致しない同定
         observed_on_string: 投稿者が入力した日時
         time_zone: 観察記録のタイムゾーン
         place_guess: 投稿者によって入力された場所の説明
-        latitude: 公開緯度
-        longitude: 公開経度
         private_latitude: "非公開緯度（観察記録が非公開または不明瞭な場合）"
         private_longitude: "非公開緯度（観察記録が非公開または不明瞭な場合）"
         taxon_geoprivacy: "現在設定されている複数の位置情報公開状況の中から、もっとも保守的な位置情報公開状況が適用されました。"
-        user_id: 観察者の一意の識子
-        user_login: 投稿者のユーザネーム
-        user_name: |
-          投稿者の氏名（主にサイト内での投稿物の著作権表記に使用される）
-          これは任意の項目であり、また仮名である場合があります。
         created_at: 観察記録の作成日時
         updated_at: 観察記録の最新更新日時
         quality_grade: この観察記録のデータ品質レベル。詳しくはヘルプをご覧ください。
-        license: 観察記録のユーザー指定ライセンス
         url: 観測記録のURL
-        image_url: デフォルト画像のURL
         tag_list: カンマ区切りのタグリスト
         positioning_method: 座標測定方法
         positioning_device: 座標測定機器
