@@ -4001,6 +4001,8 @@ sr:
   teachers_guide: Vodič za nastavnike
   tell_the_world_a_little_about_yourself: Reci nam nešto o sebi
   tell_us_why: Reci nam zašto...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Uslovi
   terms_and_rules_html: "Uslovi &amp; pravila"
   terms_service: Uslovi korišćenja
@@ -4939,18 +4941,11 @@ sr:
         receive_an_email_with_your_data: Primi imejl sa tvojim podacima
         well_email_you: "Ok, poslaćemo ti imejl kada bude spremno"
       field_descriptions:
-        id: "Jedinstveni identifikator opservacije"
-        taxon_id: Jedinstveni identifikator zabeleženog taksona
         observed_on_string: Datum/Vreme uneto od strane posmatrača
         time_zone: Vremenska zona opservacije
         place_guess: Posmatračev opis lokacije
-        latitude: Javno vidljiva geografska širina
-        longitude: Javno vidljiva geografska dužina
-        user_id: Jedinstveni identifikator posmatrača
-        user_login: Korisničko ime posmatrača
         quality_grade: Kvalitet podataka ove opservacije. Vidi sekciju Pomoć za više informacija
         url: URL opservacije
-        image_url: URL podrazumevane slike
         positioning_method: Kako su koordinate određene
         positioning_device: Uređaj korišćen za određivanje koordinata
       identify:
