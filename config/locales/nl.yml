@@ -5265,6 +5265,8 @@ nl:
   teachers_guide: Docentenhandleiding
   tell_the_world_a_little_about_yourself: Vertel ons over jezelf
   tell_us_why: Vertel ons waarom ...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Voorwaarden
   terms_and_rules_html: "Voorwaarden en regels"
   terms_new_users: "Als je voorwaarden toevoegd moeten nieuwe gebruikers daar mee akkoord gaan voordat ze deel kunnen nemen aan het dit project."
@@ -6402,7 +6404,7 @@ nl:
       click_here_to_resend_a_confirmation_email: Klik hier om de bevestigingsmail opnieuw te verzenden.
       please_add_an_email_and_password: Voeg een e-mailadres en wachtwoord toe zodat jij je toegang tot je account niet verliest
       please_click_the_link_sent_to_email_to_confirm_html: Klik op de link die is verzonden naar <span class="email">%{email}</span> om jouw e-mailadres te bevestigen.
-      please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen.
+      please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Jouw %{site_name} account heeft geen gekoppeld e-mailadres.
     flags:
       show:
@@ -6715,6 +6717,8 @@ nl:
       index:
         show_messages_from_user: Toon berichten van %{user}
         show_messages_to_user: Toon berichten aan %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Je kunt nieuwe berichten verzenden nadat je drie verifieerbare waarnemingen hebt toegevoegd of drie determinaties voor anderen hebt gedaan. Voorlopig kun je alleen berichten lezen en antwoorden op wat andere mensen je sturen.
       show:
@@ -6912,22 +6916,13 @@ nl:
           </li>
           </ul>
       field_descriptions:
-        id: "Unieke identifier voor de waarneming"
-        species_guess: "Naam door de waarnemer ingegeven voor het waargenomen taxon"
-        scientific_name: "Wetenschappelijke naam van het waargenomen taxon volgens deze site"
-        common_name: "Lokale of vernacular name van het waargenomen taxon volgens deze site"
         iconic_taxon_name: Hogere taxonomische categorie voor het waargenomen taxon
-        taxon_id: Unieke identifier voor het waargenomen taxon
         id_please: Of de waarnemer determinatie-hulp heeft gevraagd of niet
-        num_identification_agreements: Aantal determinaties in overeenstemming met de determinatie door de waarnemer
-        num_identification_disagreements: Aantal determinaties in strijd met de determinatie door de waarnemer
         observed_on_string: Datum/tijd zoals door de waarnemer ingegeven
         observed_on: Genormaliseerde datum van de waarneming
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
-        latitude: Openbaar zichtbaar latitude
-        longitude: Openbaar zichtbaar longitude
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
@@ -6935,18 +6930,10 @@ nl:
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
-        user_id: Unieke identifier voor de waarnemer
-        user_login: Gebruikersnaam van de waarnemer
-        user_name: |
-          Naam van de waarnemer, meestal gebruikt voor naamsvermelding op de site.
-          Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
         quality_grade: Kwaliteitsklasse van deze waarneming. Zie het Help-gedeelte voor details over betekenis
-        license: Licentie die de waarnemer voor deze waarneming heeft gekozen
         url: URL voor de waarneming
-        image_url: URL van de standaardafbeelding
-        sound_url: URL voor het standaardgeluid. Merk op dat dit alleen werkt voor directe uploads, niet voor geluiden die worden gehost door services van derden
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
         place_admin2_name: Naam van de administratieve plaats twee rangen onder het landniveau
