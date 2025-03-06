@@ -5008,6 +5008,8 @@ ca:
   teachers_guide: Guia del Mestre
   tell_the_world_a_little_about_yourself: Parleu-nos una mica de vosaltres
   tell_us_why: Dieu-nos per què...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termes
   terms_and_rules_html: "Condicions i normes"
   terms_new_users: "Si incorporeu condicions, els nous usuaris han d'acceptar-les abans d'unir-se al projecte."
@@ -6193,6 +6195,8 @@ ca:
       index:
         show_messages_from_user: Mostreu missatges de %{user}
         show_messages_to_user: Mostreu missatges a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Podreu enviar nous missatges després d'afegir tres observacions verificables o identificar tres observacions d'altres. Per ara podeu llegir i respondre als missatges que altres persones us envien.
       show:
@@ -6347,22 +6351,13 @@ ca:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificador únic de l'observació"
-        species_guess: "Nom que va introduir l'observador pel tàxon observat"
-        scientific_name: "Nom científic del tàxon observat, segons aquest lloc."
-        common_name: "Nom vulgar o en la llengua vernacle del tàxon observat segons aquest lloc"
         iconic_taxon_name: Categoria taxonòmica de nivell superior del tàxon observat
-        taxon_id: Identificador únic del tàxon observat
         id_please: Tant si l'observador ha demanat ajuda per a la IDentificació o  no
-        num_identification_agreements: Nombre d'identificacions coincidents amb la identificació de l'observador
-        num_identification_disagreements: Nombre d'identificacions en conflicte amb la identificació de l'observador
         observed_on_string: Data i hora, com va ser introduïda per l'observador
         observed_on: Data normalitzada de l'observació
         time_observed_at: Data i hora normalitzada de l'observació
         time_zone: Fus horari de l’observació
         place_guess: Descripció de la localització, tal com va ser introduïda per l'observador
-        latitude: Latitud visible públicament
-        longitude: Longitud visible públicament
         positional_accuracy: "Precisió de les coordenades (sí, si, acurada no és el mateix que precisa, una mala elecció de les paraules)"
         private_latitude: "Latitud privada, marcar si l'observació és privada o enfosquida"
         private_longitude: "Longitud privada, marcar si l'observació és privada o enfosquida"
@@ -6370,18 +6365,10 @@ ca:
         taxon_geoprivacy: "La geoprivacitat més conservadora ha estat aplicada a causa de l'estat de conservació del tàxon identificat en aquest moment."
         coordinates_obscured: "Si les coordenades han estat enfosquides, o no, a causa d'una condició de geoprivacitat o per tractar-se d'un tàxon vulnerable"
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució coneguda d'aquest tàxon, o no
-        user_id: Identificador únic per a l'observador
-        user_login: Nom de l'observador
-        user_name: |
-          Nom de l'observador, normalment emprat per l'atribució en el lloc.
-          Aquest és un camp opcional i pot ser un pseudònim,
         created_at: Moment en que es va crear l'observació
         updated_at: Moment en que l'observació es va actualitzar per última vegada
         quality_grade: Grau de qualitat d'aquesta observació. Vegeu la secció d'Ajuda per obtenir informació sobre el que significa això
-        license: Llicència que l'observador ha escollit per a aquesta observació
         url: URL de l'observació
-        image_url: URL de la imatge per defecte
-        sound_url: URL del só per defecte. Noteu que únicament funciona per pujades directes, no per a sons allotjats a altres serveis
         tag_list: Llista d'etiquetes separada per comes
         place_admin1_name: Nom del lloc administratiu situat per sota del nivell de país
         place_admin2_name: Nom del lloc administratiu situar dues posicions per sota el nivell de país
