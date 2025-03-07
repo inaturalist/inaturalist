@@ -54,6 +54,9 @@
         = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
         = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
         = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+      .row
+        .col-xs-6= f.text_field :min_identifications, type: "number"
+        .col-xs-6= f.text_field :max_identifications, type: "number"
       - donors_start_year = 2018
       - donors_end_year = Time.now.year + 1
       = f.date_select :include_donor_start_date, use_month_names: month_names,
