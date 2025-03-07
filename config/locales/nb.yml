@@ -6104,13 +6104,11 @@ nb:
         positional_accuracy: "Nøyaktighet koordinater"
         private_latitude: "Privat breddegrad, satt hvis observasjon privat eller tilslørt"
         private_longitude: "Privat lengdegrad, satt hvis observasjon privat eller tilslørt"
-        geoprivacy: "Om observatøren har valgt å tilsløre eller skjule koordinatene eller ikke"
         taxon_geoprivacy: "Den mest restriktive geosperringen brukes på grunn av bevaringsstatusen av taksa i den gjeldende identifikasjonen."
         coordinates_obscured: "Om koordinatene har blitt tilslørt eller ikke, enten på grunn av geosperring eller et truet takson"
         out_of_range: Om denne observasjonen er utenfor taksonets kjente utbredelse eller ikke
         created_at: Dato og tid observasjonen ble opprettet
         updated_at: Dato og tid observasjonen ble oppdatert sist
-        quality_grade: Kvaliteten av observasjonen. Se hjelp-seksjonen for detaljer om hva dette betyr
         url: URL for observasjonen
         tag_list: Kommaseparert liste over etiketter
         place_admin1_name: Navnet til det administrative stedet ett nivå under landsnivået
