@@ -1,3 +1,8 @@
+:ruby
+  month_names = I18n.t( "date.month_names" )
+  if month_names.is_a?( Hash )
+    month_names = [nil, I18n.t( "date.month_names" ).values].flatten
+  end
 - content_for :extracss do
   :css
     #new_announcement textarea,
@@ -5,52 +10,63 @@
       width: 100%;
       min-height: 300px;
     }
+    .bootstrap select.form-control {
+      max-width: inherit;
+    }
+    #announcement_site_ids, #announcement_locales { height: 150px; }
 - content_for :extrajs do
   :javascript
     var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
     var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe }
   = javascript_include_tag "announcements/form"
-= form_for @announcement, :builder => DefaultFormBuilder do |f|
-  = f.error_messages
-  = f.select :placement, Announcement::PLACEMENTS
-  - clients = Announcement::CLIENTS[@announcement.placement] || []
-  = f.select :clients, clients, { include_blank: t( :all ) }, {      |
-    multiple: true,                                                  |
-    description: t( "views.announcements.clients_desc" ),            |
-    size: [clients.length + 1, 5].min }                              |
-  = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
-  - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
-  = f.select :target_group_partition, target_group_partitions,              |
-    { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
-    { disabled: target_group_partitions.empty? }                            |
-  :ruby
-    month_names = I18n.t( "date.month_names" )
-    if month_names.is_a?( Hash )
-      month_names = [nil, I18n.t( "date.month_names" ).values].flatten
-    end
-  = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
-  = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
-  - if current_user.is_admin?
-    = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
-  - else
-    = f.hidden_field :site_ids
-  = f.check_box :dismissible, label_after: true
-  = f.check_box :prefers_target_staff, label_after: true
-  = f.check_box :prefers_target_unconfirmed_users, label_after: true
-  = f.check_box :prefers_exclude_monthly_supporters, label_after: true
-  - donors_start_year = 2018
-  - donors_end_year = Time.now.year + 1
-  = f.date_select :include_donor_start_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-  = f.date_select :include_donor_end_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-  = f.date_select :exclude_donor_start_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-  = f.date_select :exclude_donor_end_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-
-  = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ) }
-  = f.text_area :body
+= form_for @announcement, :builder => BootstrapFormBuilder do |f|
+  .row
+    .col-xs-12
+      = f.error_messages
+  .row
+    .col-xs-4
+      = f.select :placement, Announcement::PLACEMENTS
+      - clients = Announcement::CLIENTS[@announcement.placement] || []
+      = f.select :clients, clients, { include_blank: t( :all ) }, {      |
+        multiple: true,                                                  |
+        description: t( "views.announcements.clients_desc" ),            |
+        description_after: true,                                         |
+        size: [clients.length + 1, 5].min }                              |
+      = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
+      = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
+      = f.check_box :dismissible, label_after: true
+    .col-xs-4
+      - if current_user.is_admin?
+        = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
+      - else
+        = f.hidden_field :site_ids
+      = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_after: true }
+    .col-xs-4
+      = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
+      - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
+      = f.select :target_group_partition, target_group_partitions,              |
+        { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
+        { disabled: target_group_partitions.empty? }                            |
+      = f.check_box :prefers_target_staff, label_after: true
+      = f.check_box :prefers_target_unconfirmed_users, label_after: true
+      = f.check_box :prefers_exclude_monthly_supporters, label_after: true
+      = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
+        = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
+        = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
+        = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+      - donors_start_year = 2018
+      - donors_end_year = Time.now.year + 1
+      = f.date_select :include_donor_start_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+      = f.date_select :include_donor_end_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+      = f.date_select :exclude_donor_start_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+      = f.date_select :exclude_donor_end_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+  .row
+    .col-xs-12
+      = f.text_area :body
   .actions.buttons
     = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"
     = link_to t(:cancel), announcements_path, :class => "button"

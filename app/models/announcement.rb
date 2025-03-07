@@ -36,10 +36,16 @@ class Announcement < ApplicationRecord
     )
   }.freeze
 
+  YES = "yes"
+  NO = "no"
+  ANY = nil
+  YES_NO_ANY = [YES, NO, ANY].freeze
+
   has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
+  validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_presence_of :target_group_partition, if: :target_group_type?
   validate :valid_target_group_partition, if: :target_group_type?
 
@@ -104,6 +110,8 @@ class Announcement < ApplicationRecord
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
     return false if user&.monthly_donor? && prefers_exclude_monthly_supporters
     return false if target_group_type && user.blank?
+    return false if target_logged_in == YES && user.blank?
+    return false if target_logged_in == NO && user
 
     case target_group_type
     when "user_id_parity"

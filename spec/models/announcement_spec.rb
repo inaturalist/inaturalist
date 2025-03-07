@@ -151,6 +151,25 @@ describe Announcement do
       expect( a.targeted_to_user?( User.make! ) ).to be true
       expect( a.targeted_to_user?( nil ) ).to be true
     end
+
+    it "defaults to targeting all logged in states" do
+      annc = create :announcement
+      expect( annc.target_logged_in ).to be_blank
+      expect( annc.targeted_to_user?( nil ) ).to be true
+      expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+    end
+
+    it "can target logged in" do
+      annc = create :announcement, target_logged_in: Announcement::YES
+      expect( annc.targeted_to_user?( nil ) ).to be false
+      expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+    end
+
+    it "can target logged out" do
+      annc = create :announcement, target_logged_in: Announcement::NO
+      expect( annc.targeted_to_user?( nil ) ).to be true
+      expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+    end
   end
 
   describe "dismissals" do
