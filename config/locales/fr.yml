@@ -6838,13 +6838,11 @@ fr:
         positional_accuracy: "Exactitude des coordonnées (oui, oui, exactitude ≠ précision, mauvais choix de noms)"
         private_latitude: "Latitude privée, établie si l’observation est privée ou masquée"
         private_longitude: "Longitude privée, établie si l’observation est privée ou masquée"
-        geoprivacy: "Si l’observateur a choisi ou non de dissimuler ou masquer les coordonnées"
         taxon_geoprivacy: "La géoconfidentialité la plus conservatrice est appliquée en raison du statut de conservation des taxons selon l’identification actuelle."
         coordinates_obscured: "Si les coordonnées ont été masquées, c'est soit à cause de la géoconfidentialité, soit à cause d’un taxon menacé"
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
         created_at: Horodatage de la création de l’observation
         updated_at: Horodatage de la dernière mise à jour de l’observation
-        quality_grade: Niveau de qualité de cette observation. Consultez la section Aide pour obtenir plus de détails sur ce que ça signifie
         url: URL de l’observation
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau pays
