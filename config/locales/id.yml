@@ -933,7 +933,7 @@ id:
   comma_separated_list_of_tracking_codes: |
     Daftar kode pelacakan yang dipisahkan koma. Tambahkan ini kepada tautanmu jika kamu ingin menambahkan kode pelacakan saat membawa orang lain kepada formulir pengamatan yang baru, contohnya %{root_url}observations/new?project_id=%{project_id}&tracking_code=kodemu123.
     Kamu bisa menggunakan ini untuk melacak partisipasi dari sumber-sumber yang berbeda. Kamu dapat mengakses kode-kode ini saat mengunduh pengamatan proyekmu dalam bentuk CSV.
-  comma_separated_please: Tolong dipisahkan dengan koma
+  comma_separated_please: Harap pisahkan dengan tanda koma
   #Noun, used to label a comment or a comment field in a form
   comment: Komentar
   #Verb, generally a label on a button that allows the user to add a comment
@@ -1466,6 +1466,8 @@ id:
   default_time_zone_desc: |
     Ini adalah zona waktu bawaan. Zona waktu final akan diterapkan berdasarkan lokasi pengamatan ketika pengamatan tersebut disimpan.
   defaults_to_your_name_or_username: Standar untuk nama Anda atau nama pengguna
+  #As in the definition of a word
+  definition: Pengertian
   defines_a_taxon_framework_for: Mendefinisikan sebuah Framework Takson untuk %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Mendefinisikan sebuah Framework Takson untuk %{taxon} yang bersumber dari %{source}
   definitions: Definisi
@@ -1558,6 +1560,9 @@ id:
     Jika Anda tidak mendaftar untuk akun %{site_name}, abaikan email ini.
   devise_confirmation_instructions_please_click: |
     Silahkan klik tautan di bawah ini untuk mengonfirmasi alamat email Anda:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Klik tautan di bawah untuk mengonfirmasi alamat email Anda. Jika Anda belum mengonfirmasi alamat email Anda, Anda tidak akan bisa berinteraksi dengan konten pengguna lain.
   devise_confirmation_instructions_resend_instructions: |
     Anda harus memiliki alamat email yang bekerja untuk menggunakan iNaturalist. Saat Anda membuat sebuah akun, Anda seharusnya sudah menerima email konfirmasi dengan sebuah tautan untuk diklik untuk mengonfirmasi bahwa alamat email Anda bekerja, tetapi jika tidak, Anda bisa mengirimkan email konfirmasi lain kepada diri Anda di sini.
   devise_confirmation_instructions_send_confirmation_email: Kirim email konfirmasi
@@ -1794,6 +1799,8 @@ id:
   export: Ekspor
   export_observations: Ekspor Pengamatan
   export_with_private_coordinates: Ekspor dengan Koordinat Tersembunyi
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Diekspor pada %{datetime}
   exporting: "Mengekspor..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2174,7 +2181,7 @@ id:
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
-  identifiers: yang mengidentifikasi
+  identifiers: Pengidentifikasi
   identotron: Identotron
   identotron_for: Identotron untuk
   identotron_help: Bantuan untuk identotron
@@ -2344,6 +2351,8 @@ id:
   large: besar
   last_active_with_date: "Terakhir Aktif: %{date}"
   last_confirmed_observation: Pengamatan terakhir yang dikonfirmasi
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Terakhir diedit oleh
   last_observation: Pengamatan terakhir
   last_observation_caps: PENGAMATAN TERAKHIR
   last_seen: Terakhir dilihat
@@ -2385,6 +2394,9 @@ id:
     Harap <a href="%{url}">mengubah password Anda</a> untuk versi yang baru.
   let_us_walk_you_through: Persilakan kami untuk memandu Anda mengenai fitur-fitur utama situs ini.
   lexicon: Kamus
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Nama kumpulan kata atau istilah yang mengandung nama takson, seperti nama bahasa atau kumpulan singkatan
   lexicon_cannot_contain_words: "tidak boleh mengandung kata-kata berikut: %{words}"
   lexicons:
     afrikaans: Afrika
@@ -3476,6 +3488,8 @@ id:
   original_url_for_this_map: URL asli untuk peta ini
   organism_appears_captive_cultivated: Organisme Sepertinya Peliharaan / Dibudidayakan
   other: Lainnya
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Lainnya
   other_animals: binatang lain
   other_lexicons: Kosa Kata Lain
   other_listings_of_this_taxon_for_this_place: Daftar lain dari takson ini untuk tempat ini
@@ -5054,6 +5068,8 @@ id:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Ketentuan
+  #As in a list of distinct words
+  terminology: Istilah
   terms_and_rules_html: "Ketentuan &amp; Aturan"
   terms_new_users: "Jika Anda menambahkan ketentuan, pengguna baru harus menyetujuinya sebelum bergabung pada proyek ini."
   terms_service: Syarat dan Ketentuan Penggunaan
@@ -5451,7 +5467,7 @@ id:
   uploading_num_of_count_photos:
     other: Mengunggah %{num} dari %{count} foto...
   url_for_your_app_outside_of_inaturalist: URL untuk aplikasi Anda di luar iNaturalist
-  url_identifier_of_a_project_derived_from: "URL / pengidentikasi dari sebuah proyek yang berasal dari beberapa sumber eksternal"
+  url_identifier_of_a_project_derived_from: "URL / pengenal dari sebuah proyek yang berasal dari beberapa sumber eksternal"
   url_of_this_taxon_on_the_source_website: URL takson ini pada situs sumber
   usage_stats: Statistik penggunaan
   use_name_as_a_placeholder: |
@@ -5745,8 +5761,8 @@ id:
   when_did_you_see_it?: Kapan Anda melihatnya?
   when_did_you_see_them?: <em>Kapan</em> Anda melihatnya?
   where: Di mana
-  where_were_they?: Di manakah mereka?
-  where_were_you?: Di manakah Anda?
+  where_were_they?: Di manakah mereka berada?
+  where_were_you?: Di manakah Anda berada?
   which_projects_can_add_your_observations?: Proyek tradisional manakah yang dapat menambahkan pengamatan Anda?
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: Mengapa Anda membuat perubahan ini? (opsional)
@@ -6012,7 +6028,7 @@ id:
   your_favorites: Favorit Anda
   your_flickr_account: akun Flickr Anda
   your_flickr_photos_have_been_tagged: Foto Flickr Anda telah diberi tag!
-  your_hard_drive: cakram keras anda
+  your_hard_drive: cakram keras Anda
   your_home: Beranda
   your_id: ID Anda
   your_identification: Identifikasi Anda
@@ -6166,9 +6182,28 @@ id:
         Terima kasih atas ketertarikan Anda dalam mendukung iNaturalist! Sumbangan ke iNaturalist sedang tidak tersedia selagi kami memperbarui sistem sumbangan kami. Kembali lagi nanti ya.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik di sini untuk mengirim ulang email konfirmasi
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Email konfirmasi terkirim
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Ini alamat email yang akan mendapatkan konfirmasinya:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Jika Anda tidak mendapatkan email-nya, berikut beberapa tips yang dapat dilakukan:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Jika Anda masih belum mendapatkan email konfirmasi, harap menghubungi kami di <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> supaya kami bisa membantu Anda.
       please_add_an_email_and_password: Silakan masukkan email dan kata sandi supaya Anda tidak kehilangan akses ke akun Anda
       please_click_the_link_sent_to_email_to_confirm_html: 'Silahkan klik tautan yang dikirim ke <span class="email">%{email}</span> untuk mengonfirmasi alamat email Anda:'
       please_confirm_that_email_is_the_best_contact_html: Harap mengonfirmasi bahwa <span class="email">%{email}</span> adalah cara terbaik untuk menghubungi Anda. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Harap konfirmasi alamat email Anda untuk berinteraksi dengan konten pengguna lain dan mengakses halaman tertentu. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Harap konfirmasi alamat email <span class="email">%{email}</span> Anda. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Harap konfirmasi alamat email Anda untuk berinteraksi dengan konten pengguna lain
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Harap konfirmasi alamat email Anda untuk menggunakan halaman ini
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Periksa saringan buatan Anda yang mungkin menghapus email kami dari kotak masuk Anda #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Periksa folder spam Anda
       your_site_account_has_no_email: Akun %{site_name} kamu tidak memiliki alamat email yang terhubung dengan akunnya.
     flags:
       show:
@@ -6465,6 +6500,14 @@ id:
         #earning speech privilege
         speech_privilege_notice: |
           Anda dapat mengirim pesan baru setelah Anda menambahkan tiga pengamatan yang dapat diverifikasi atau tiga identifikasi lain untuk orang lain. Untuk sekarang, Anda bisa membaca dan membalas pesan yang orang kirimkan kepada Anda.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Anda dapat mengirimkan pesan baru setelah Anda mengonfirmasi alamat email Anda. Untuk sekarang, Anda bisa membaca dan membalas pesan yang orang lain kirimkan untuk Anda.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Anda dapat mengirim pesan baru setelah Anda mengonfirmasi alamat email Anda, menambahkan tiga pengamatan yang dapat diverifikasi atau tiga identifikasi untuk orang lain. Untuk sekarang, Anda bisa membaca dan membalas pesan yang orang lain kirimkan untuk Anda.
       show:
         flag_notice_html: |
           Anda menandai percakapan ini pada %{date}. Tanda ini akan tetap ada meskipun Anda menghapus salinan dari percakapan ini, jadi hal ini aman untuk dilakukan jika Anda tidak mau melihat ini lagi.
@@ -6639,29 +6682,107 @@ id:
           </li>
           </ul>
       field_descriptions:
+        id: Tanda pengenal yang unik dan berurutan untuk pengamatannya
+        species_guess: |
+          Nama biasa dari takson yang diamati; dapat diatur oleh pengamat saat membuat pengamatan, tetapi bisa diganti dengan nama resmi atau lokal saat perubahan takson
+        scientific_name: "Nama ilmiah takson yang diamati menurut iNaturalist"
+        common_name: "Nama umum atau nama lokal dari takson yang diamati menurut iNaturalist"
         iconic_taxon_name: Kategori taksonomi dengan tingkatan yang lebih tinggi untuk takson yang diamati
+        taxon_id: Tanda pengenal yang unik dan berurutan untuk takson yang diamati
         id_please: Apakah pengamat meminta bantuan ID
+        num_identification_agreements: Jumlah identifikasi yang terkait dengan takson yang sesuai atau berada di dalam taksonnya dari identifikasi pengamat
+        num_identification_disagreements: Jumlah identifikasi yang terkait dengan takson yang tidak sesuai atau tidak berada di dalam taksonnya dari identifikasi pengamat
         observed_on_string: Tanggal/waktu sesuai yang dimasukkan oleh pengamat
         observed_on: Tanggal yang sudah dinormalisasi dari pengamatan
         time_observed_at: Tanggal dan waktu yang sudah dinormalisasi dari pengamatan
         time_zone: Zona waktu pengamatan
         place_guess: Deskripsi lokalitas sesuai yang dimasukkan pengamat
+        latitude: Garis lintang yang dapat dilihat secara publik dari lokasi pengamatan
+        longitude: Garis bujur yang dapat dilihat secara publik dari lokasi pengamatan
         positional_accuracy: "Keakuratan koordinat"
         private_latitude: "Lintang pribadi, diatur jika pengamatan pribadi atau dikaburkan"
         private_longitude: "Bujur pribadi, diatur jika pengamatan pribadi atau dikaburkan"
-        geoprivacy: "Apakah pengamat memilih untuk mengaburkan atau menyembunyikan koordinat"
         taxon_geoprivacy: "Geoprivasi yang paling konservatif diterapkan dikarenakan status konservasi taksa dalam identifikasi ini."
         coordinates_obscured: "Apakah koordinat dikaburkan, karena geoprivasi atau takson yang terancam"
         out_of_range: Apakah pengamatan ini terletak di luar jangkauan yang diketahui dari takson ini
+        user_id: Tanda pengenal yang unik dan berurutan untuk pengamat
+        user_login: Nama pengguna pengamat, yaitu pengenal yang pendek, unik, dan alfanumerik untuk pengguna
+        user_name: |
+          Nama pengamat, biasanya digunakan untuk atribusi pada situs.
+          Ini adalah kolom opsional dan boleh berupa nama samaran.
         created_at: Tanggal dan waktu pengamatan telah dibuat
         updated_at: Tanggal dan waktu pengamatan terakhir diperbarui
-        quality_grade: Tingkat kualitas pengamatan ini. Lihat bagian Bantuan untuk penjelasan tentang artinya
+        license: Tanda pengenal untuk lisensi atau penafian yang pengamat pilih untuk pengamatan ini. Hak cipta dilindungi undang-undang jika kosong
         url: URL untuk pengamatan ini
+        image_url: URL untuk gambar pertama terkait pengamatan ini
+        sound_url: |
+          URL untuk suara pertama terkait pengamatan ini. Harap diperhatikan bahwa ia hanya akan muncul untuk pengunggahan langsung, bukan suara yang disimpan pada layanan pihak ketiga
         tag_list: Daftar label yang dipisahkan koma
         place_admin1_name: Nama tempat administratif satu tingkat di bawah tingkat negara
         place_admin2_name: Nama tempat administratif dua tingkat di bawah tingkat negara
         positioning_method: Bagaimana koordinat ditentukan
         positioning_device: Perangkat yang digunakan untuk menentukan koordinat
+        description: |
+          Teks yang ditulis oleh pengamat yang menjelaskan pengamatan atau mencatat catatan apa pun yang relevan
+        oauth_application_id: |
+          Pengenal berurutan untuk aplikasi yang membuat pengamatan. Untuk informasi lebih lanjut terkait aplikasinya, tambahkan angka ini ke https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          Nama area administratif tingkat ketiga tempat koordinat pengamatan ini berada (contohnya kota/kabupaten di sebagian besar daerah di Indonesia)
+        place_country_name: |
+          Nama negara tempat koordinat pengamatan ini berada
+        place_state_name: |
+          Nama area administratif tingkat kedua tempat koordinat pengamatan ini berada (contohnya provinsi di sebagian besar daerah di Indonesia)
+        place_town_name: |
+          Nama kota atau kabupaten tempat koordinat pengamatan ini berada, jika diketahui
+        private_place_guess: |
+          Lokasi pengamatan seperti yang ditulis pengamat jika lokasinya dikaburkan
+        public_positional_accuracy: Ketidakpastian posisi horizontal maksimal dalam meter; termasuk ketidakpastian yang ditambahkan oleh pengaburan koordinat
+        taxon_class_name: |
+          Nama kelas taksonomi yang mengandung takson yang diamati
+        taxon_family_name: |
+          Nama famili taksonomi yang mengandung takson yang diamati
+        taxon_form_name: |
+          Nama bentuk taksonomi yang mengandung takson yang diamati
+        taxon_genus_name: |
+          Nama genus taksonomi yang mengandung takson yang diamati
+        taxon_genushybrid_name: |
+          Nama genus hibrida taksonomi yang mengandung takson yang diamati
+        taxon_hybrid_name: |
+          Nama hibrida taksonomi yang mengandung takson yang diamati
+        taxon_kingdom_name: |
+          Nama kerajaan taksonomi yang mengandung takson yang diamati
+        taxon_order_name: |
+          Nama ordo taksonomi yang mengandung takson yang diamati
+        taxon_phylum_name: |
+          Nama filum taksonomi yang mengandung takson yang diamati
+        taxon_species_name: |
+          Nama spesies taksonomi yang mengandung takson yang diamati
+        taxon_subclass_name: |
+          Nama subkelas taksonomi yang mengandung takson yang diamati
+        taxon_subfamily_name: |
+          Nama subfamili taksonomi yang mengandung takson yang diamati
+        taxon_suborder_name: |
+          Nama subordo taksonomi yang mengandung takson yang diamati
+        taxon_subphylum_name: |
+          Nama subfilum taksonomi yang mengandung takson yang diamati
+        taxon_subspecies_name: |
+          Nama subspesies taksonomi yang mengandung takson yang diamati
+        taxon_subtribe_name: |
+          Nama subsuku taksonomi yang mengandung takson yang diamati
+        taxon_superclass_name: |
+          Nama superkelas taksonomi yang mengandung takson yang diamati
+        taxon_superfamily_name: |
+          Nama superfamili taksonomi yang mengandung takson yang diamati
+        taxon_superorder_name: |
+          Nama superordo taksonomi yang mengandung takson yang diamati
+        taxon_supertribe_name: |
+          Nama supersuku taksonomi yang mengandung takson yang diamati
+        taxon_tribe_name: |
+          Nama suku taksonomi yang mengandung takson yang diamati
+        taxon_variety_name: |
+          Nama varietas taksonomi yang mengandung takson yang diamati
+        uuid: |
+          Pengenal unik universal untuk pengamatannya. Lihat https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Tandai semua pengamatan pada halaman sudah ditinjau"
         you_reviewed_message: "Anda telah meninjau %{reviewed} dari %{pageTotal} pengamatan pada halaman ini dari %{total} pengamatan yang cocok."
@@ -7514,6 +7635,15 @@ id:
       taxon:
         about_html: |
           Taksa dapat memiliki banyak nama-nama umum. Kami mendukung satu nama umum standar secara global, yang dapat diubah di sini dengan menyeret nama ke atas daftar. Anda juga dapat menentukan nama standar pada tempat yang berbeda dengan mengedit nama dan menambahkan tempat, tapi harap dilakukan hanya saat tempat yang berbeda memiliki nama yang saling bertentangan.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          Ekspor juga bisa mengandung kolom dengan nilai Bidang Pengamatannya. Untuk mencari definisinya, cari di 
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          atau tambahkan nama kolomnya (dengan titik duanya) di
+          <code>%{terminology_url}</code> (contohnya <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist menggunakan bermacam-macam istilah unik untuk menjelaskan berbagai macam aspek layanannya. Di sini, kami mencoba untuk mengumpulkan beberapa istilah beserta pengertiannya sebagai referensi.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8137,7 +8267,7 @@ id:
         rank: Peringkat
         rank_level: Tingkat kategori
         source_id: ID sumber
-        source_identifier: Pengidentifikasi sumber
+        source_identifier: ID sumber
         source_url: URL Sumber
         #Identifier of the taxon framework relationship record associated
         #with this taxon
@@ -8151,7 +8281,7 @@ id:
         name_provider: Nama penyedia
         position: Posisi
         source_url: URL Sumber
-        source_identifier: Pengidentifikasi sumber
+        source_identifier: ID sumber
         audit_comment: Catatan
       taxon_link:
         url: URL
@@ -8207,6 +8337,7 @@ id:
         requires_privilege_speech: |
           harus sudah memiliki tiga pengamatan yang dapat diverifikasi atau tiga identifikasi terhadap pengguna lain untuk dapat melakukan hal tersebut
         requires_privilege_organizer: harus memiliki 50 pengamatan yang dapat diverifikasi untuk melakukan hal tersebut
+        requires_privilege_interaction: harus memiliki alamat email yang terkonfirmasi untuk melakukannya
         taken: telah diambil
         too_long:
           other: terlalu panjang (maksimal %{count} karakter)
