@@ -37,11 +37,9 @@ describe ModeratorAction do
         end
         ua = UpdateAction.where( notifier: comment ).first
         expect( ua ).not_to be_blank
-        puts "creating moderator action"
         after_delayed_job_finishes( ignore_run_at: true ) do
           create( :moderator_action, action: ModeratorAction::HIDE, resource: comment, user: admin )
         end
-        puts "finished creating moderator action"
         ua = UpdateAction.where( notifier: comment ).first
         expect( ua ).to be_blank
         disable_has_subscribers
