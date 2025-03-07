@@ -6926,13 +6926,11 @@ nl:
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
-        geoprivacy: "Of de waarnemer ervoor heeft gekozen de coördinaten te vervagen of te verbergen"
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
-        quality_grade: Kwaliteitsklasse van deze waarneming. Zie het Help-gedeelte voor details over betekenis
         url: URL voor de waarneming
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
