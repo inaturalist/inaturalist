@@ -6361,13 +6361,11 @@ ca:
         positional_accuracy: "Precisió de les coordenades (sí, si, acurada no és el mateix que precisa, una mala elecció de les paraules)"
         private_latitude: "Latitud privada, marcar si l'observació és privada o enfosquida"
         private_longitude: "Longitud privada, marcar si l'observació és privada o enfosquida"
-        geoprivacy: "Si l'observador ha escollit, o no, enfosquir o amagar les coordenades"
         taxon_geoprivacy: "La geoprivacitat més conservadora ha estat aplicada a causa de l'estat de conservació del tàxon identificat en aquest moment."
         coordinates_obscured: "Si les coordenades han estat enfosquides, o no, a causa d'una condició de geoprivacitat o per tractar-se d'un tàxon vulnerable"
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució coneguda d'aquest tàxon, o no
         created_at: Moment en que es va crear l'observació
         updated_at: Moment en que l'observació es va actualitzar per última vegada
-        quality_grade: Grau de qualitat d'aquesta observació. Vegeu la secció d'Ajuda per obtenir informació sobre el que significa això
         url: URL de l'observació
         tag_list: Llista d'etiquetes separada per comes
         place_admin1_name: Nom del lloc administratiu situat per sota del nivell de país
