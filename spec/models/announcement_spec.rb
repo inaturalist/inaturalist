@@ -9,6 +9,10 @@ describe Announcement do
   it { is_expected.to validate_presence_of :start }
   it { is_expected.to validate_presence_of :end }
   it { is_expected.to validate_presence_of :body }
+  it { is_expected.to validate_numericality_of( :min_identifications ).allow_nil.is_greater_than_or_equal_to 0 }
+  it { is_expected.to validate_numericality_of( :max_identifications ).allow_nil.is_greater_than_or_equal_to 0 }
+  it { is_expected.to validate_numericality_of( :min_observations ).allow_nil.is_greater_than_or_equal_to 0 }
+  it { is_expected.to validate_numericality_of( :max_observations ).allow_nil.is_greater_than_or_equal_to 0 }
 
   it "validates placement clients" do
     expect do
@@ -155,7 +159,7 @@ describe Announcement do
     describe "target_logged_in" do
       it "defaults to targeting all" do
         annc = create :announcement
-        expect( annc.target_logged_in ).to be_blank
+        expect( annc.target_logged_in ).to eq Announcement::ANY
         expect( annc.targeted_to_user?( nil ) ).to be true
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
       end
@@ -176,7 +180,6 @@ describe Announcement do
     describe "min_identifications" do
       it "defaults to targeting all" do
         annc = create :announcement
-        expect( annc.target_logged_in ).to be_blank
         expect( annc.targeted_to_user?( nil ) ).to be true
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         expect( annc.targeted_to_user?( create( :identification ).user ) ).to be true
@@ -195,7 +198,6 @@ describe Announcement do
     describe "max_identifications" do
       it "defaults to targeting all" do
         annc = create :announcement
-        expect( annc.target_logged_in ).to be_blank
         expect( annc.targeted_to_user?( nil ) ).to be true
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         expect( annc.targeted_to_user?( create( :identification ).user ) ).to be true
@@ -216,6 +218,34 @@ describe Announcement do
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         identifier = create :user, identifications_count: 10
         expect( identifier.identifications_count ).to eq 10
+        expect( annc.targeted_to_user?( identifier ) ).to be false
+      end
+    end
+
+    describe "max_observations" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_logged_in ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :observation ).user ) ).to be true
+      end
+
+      it "includes users with less than value" do
+        annc = create :announcement, max_observations: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, observations_count: 1
+        expect( identifier.observations_count ).to eq 1
+        expect( annc.targeted_to_user?( identifier ) ).to be true
+      end
+
+      it "exclude users with more than value" do
+        annc = create :announcement, max_observations: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, observations_count: 10
+        expect( identifier.observations_count ).to eq 10
         expect( annc.targeted_to_user?( identifier ) ).to be false
       end
     end

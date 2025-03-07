@@ -399,7 +399,9 @@ CREATE TABLE public.announcements (
     exclude_donor_end_date date,
     target_logged_in character varying DEFAULT 'any'::character varying,
     min_identifications integer,
-    max_identifications integer
+    max_identifications integer,
+    min_observations integer,
+    max_observations integer
 );
 
 
@@ -11485,5 +11487,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250226225252');
 ('20250306224627');
 ('20250307000624');
+('20250307004743');
 
 
