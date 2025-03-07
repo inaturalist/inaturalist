@@ -72,12 +72,23 @@ class BootstrapFormBuilder < DefaultFormBuilder
 
   def check_radio_field( field, field_content = nil, options = {}, wrapper_options = {}, description = nil )
     wrapper_options[:class] = wrapper_options[:class].gsub( "form-group", field == "check_box" ? "checkbox" : "radio" )
-    label_content = ( options[:label] == false ? nil : options[:label] || field ).to_s.html_safe
+    label_content = if options[:label] == false
+      nil
+    else
+      options[:label] || I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: nil ) || field #.to_s.humanize
+    end.to_s.html_safe
     if options[:required]
       label_content += content_tag( :span, " *", class: "required" )
     end
-    content = @template.content_tag( :label, [field_content, label_content].join( " " ).html_safe )
+    label_class = if options[:inline]
+      field == "check_box" ? "checkbox-inline" : "radio-inline"
+    end
+    content = @template.content_tag( :label, [field_content, label_content].join( " " ).html_safe, class: label_class )
     content += @template.content_tag( :div, description.html_safe ) unless description.blank?
+    if options[:inline]
+      return content
+    end
+
     @template.content_tag( :div, wrapper_options ) do
       content
     end
