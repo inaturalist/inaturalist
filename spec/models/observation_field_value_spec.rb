@@ -1,4 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe ObservationFieldValue do
   it { is_expected.to belong_to(:observation).inverse_of :observation_field_values }
@@ -19,6 +21,25 @@ describe ObservationFieldValue do
       ofv = ObservationFieldValue.make!(:observation => o)
       o.reload
       expect(o.updated_at).to be > o.created_at
+    end
+
+    it "allows users to create observation fields on other users observations" do
+      observation = Observation.make!
+      ofv_creator = User.make!
+      ofv = ObservationFieldValue.make!( observation: observation, user: ofv_creator )
+      expect( ofv ).to be_valid
+      expect( ofv.user ).to eq ofv_creator
+      expect( ofv.observation.user ).to eq observation.user
+      expect( observation.user ).not_to eq ofv.user
+    end
+
+    it "does not allow blocked users to create observation fields on observations by the blocker" do
+      observation = Observation.make!
+      ofv_creator = User.make!
+      UserBlock.make!( user: observation.user, blocked_user: ofv_creator )
+      expect do
+        ObservationFieldValue.make!( observation: observation, user: ofv_creator )
+      end.to raise_error( ActiveRecord::RecordInvalid, /You don't have permission to do that/ )
     end
 
     describe "for subscribers" do
@@ -49,12 +70,64 @@ describe ObservationFieldValue do
   end
 
   describe "update" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
     it "should touch the observation" do
       ofv = ObservationFieldValue.make!
       o = ofv.observation
       ofv.update( value: "this is a new value" )
       o.reload
       expect( o.updated_at ).to be >= ofv.updated_at
+    end
+
+    it "generates updates from users that are not the observer" do
+      ofv = ObservationFieldValue.make!
+      observation = ofv.observation
+      observer = ofv.observation.user
+      updater = User.make!
+      expect( UpdateAction.unviewed_by_user_from_query( observer, resource: observation ) ).to eq false
+      without_delay { ofv.update( value: "this is a new value", updater: updater ) }
+      expect( UpdateAction.unviewed_by_user_from_query( observer, resource: observation ) ).to eq true
+    end
+
+    it "does not generate updates from users muted by the observer" do
+      ofv = ObservationFieldValue.make!
+      observation = ofv.observation
+      observer = ofv.observation.user
+      updater = User.make!
+      UserMute.make!( user: observer, muted_user: updater )
+      expect( UpdateAction.unviewed_by_user_from_query( observer, resource: observation ) ).to eq false
+      without_delay { ofv.update( value: "this is a new value", updater: updater ) }
+      expect( UpdateAction.unviewed_by_user_from_query( observer, resource: observation ) ).to eq false
+    end
+
+    it "allows updates from users other than the creator" do
+      ofv = ObservationFieldValue.make!
+      updater = User.make!
+      ofv.update( value: "this is a new value", updater: updater )
+      expect( ofv ).to be_valid
+      expect( ofv.updater ).to eq updater
+    end
+
+    it "does not allow updates from users blocked by the observer" do
+      ofv = ObservationFieldValue.make!
+      observer = ofv.observation.user
+      updater = User.make!
+      UserBlock.make!( user: observer, blocked_user: updater )
+      ofv.update( value: "this is a new value", updater: updater )
+      expect( ofv ).not_to be_valid
+      expect( ofv.errors.any? {| e | e.message == "You don't have permission to do that." } ).to be true
+    end
+
+    it "does not allow updates from users blocked by the creator" do
+      observation = Observation.make!
+      ofv_creator = User.make!
+      ofv = ObservationFieldValue.make!( observation: observation, user: ofv_creator )
+      updater = User.make!
+      UserBlock.make!( user: ofv_creator, blocked_user: updater )
+      ofv.update( value: "this is a new value", updater: updater )
+      expect( ofv ).not_to be_valid
+      expect( ofv.errors.any? {| e | e.message == "You don't have permission to do that." } ).to be true
     end
   end
 
