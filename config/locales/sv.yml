@@ -6971,13 +6971,11 @@ sv:
         positional_accuracy: "Koordinatprecision (ja, ja, noggrannhet != precision, dåligt val av namn)"
         private_latitude: "Privat latitud, anges om fyndet är privat eller diffuserat"
         private_longitude: "Privat longitud, anges om fyndet är privat eller diffuserat"
-        geoprivacy: "Huruvida observatören har valt att diffusera eller dölja koordinaterna"
         taxon_geoprivacy: "Mest konservativ koordinatsekretess använd p.g.a. bevarandestatus för taxa i aktuell bestämning."
         coordinates_obscured: "Huruvida koordinaterna har diffuserats eller inte, antingen på grund av koordinatsekretess eller hotat taxon"
         out_of_range: Huruvida fyndet ligger utanför taxonets kända utbredningsområde eller inte
         created_at: Datum och tid då fyndet skapades
         updated_at: Datum och tid då fyndet senast uppdaterades
-        quality_grade: Kvalitetsklass för detta fynd. Se Hjälpavsnittet för detaljer om vad detta innebär
         url: URL för fyndet
         tag_list: Kommaseparerad lista med taggningar
         place_admin1_name: Namn på den administrativa fyndplatsen en rang under landsnivå
