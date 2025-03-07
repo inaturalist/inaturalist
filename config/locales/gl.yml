@@ -5277,13 +5277,11 @@ gl:
         positional_accuracy: "Precisión das coordenadas (si, si, exactitude != precisión, mala escolla de nomes)"
         private_latitude: "Latitude privada, pór se a observación é privada ou está escurecida"
         private_longitude: "Lonxitude privada, pór se a observación é privada ou está escurecida"
-        geoprivacy: "Se o observador escolleu escurecer ou ocultar as coordenadas"
         taxon_geoprivacy: "A xeoprivacidade máis conservadora aplicada debido ó estado de conservación de taxons que están a seren identificados."
         coordinates_obscured: "Se as coordenadas foron escurecidas, ben pola xeoprivacidade ou porque é un taxon ameazado"
         out_of_range: Se esta observación cae fóra do rango coñecido do taxon
         created_at: Data e hora na que a observación foi creada
         updated_at: Data e hora na que a observación foi actualizada por última vez
-        quality_grade: Grao de calidade desta observación. Ver a sección Axuda para obter detalles do que isto significa
         url: URL da observación
         tag_list: Listaxe de etiquetas separada por comas
         place_admin1_name: Nome da ubicación administrativa un rango por baixo do nivel de país
