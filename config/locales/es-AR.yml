@@ -6327,13 +6327,11 @@ es-AR:
         positional_accuracy: "Precisión de las coordenadas"
         private_latitude: "Latitud privada, selecciona si la observación es privada o está oscurecida"
         private_longitude: "Longitud privada, selecciona si la observación es privada o está oscurecida"
-        geoprivacy: "Si el observador ha escogido, o no, oscurecer o esconder las coordenadas"
         taxon_geoprivacy: "Se aplicó una geoprivacidad limitada debido al estado de conservación del taxa en la identificación actual."
         coordinates_obscured: "Si las coordenadas se han ocultado, o no, por una condición de geoprivacidad o por tratarse de un taxón vulnerable"
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
-        quality_grade: Grado de calidad para esta observación. Ver la sección de Ayuda para los detalles sobre este significado
         url: URL de la observación
         tag_list: Lista de etiquetas separadas por comas
         place_admin1_name: Nombre del sitio administrativo un rango debajo del nivel de país
