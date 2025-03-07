@@ -7082,13 +7082,11 @@ cs:
         positional_accuracy: "Přesnost souřadnic(jo, jo, přesnost != přesnost, špatná volba názvů)"
         private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo přibližné"
         private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo přibližné"
-        geoprivacy: "Zda si pozorovatel zvolil možnost skrýt souřadnice"
         taxon_geoprivacy: "Použito nejkonzervativnější soukromí zeměpisné polohy z důvodu stavu zachování taxonů v současné identifikaci."
         coordinates_obscured: "Zda byly souřadnice přibližné, buď kvůli zachování soukromí zeměpisné polohy nebo kvůli ohroženému taxonu"
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
         created_at: Datum a čas, kdy bylo pozorování vytvořeno
         updated_at: Datum a čas, kdy bylo pozorování naposledy aktualizováno
-        quality_grade: Stupeň kvality tohoto pozorování. Podívejte se do sekce Nápověda, kde najdete podrobnosti o tom, co to znamená
         url: URL pozorování
         tag_list: Seznam tagů oddělených čárkami
         place_admin1_name: Název správního místa v rámci země
