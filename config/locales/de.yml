@@ -6602,12 +6602,10 @@ de:
         time_zone: Zeitzone der Beobachtung
         place_guess: Gebietsbeschreibung, wie vom Beobachter eingegeben
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
-        geoprivacy: "Ob der Beobachter die Koordinaten verdeckt oder unsichtbar gemacht hat"
         coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, sei es wegen Geoprivatsphäre oder wegen eines Gefährdungsstatus"
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
         created_at: Datetime des Erstellen der Beobachtung
         updated_at: Datetime der Aktualisierung der Beobachtung
-        quality_grade: Qualitätsbewertung dieser Beobachtung. Siehe im Hilfe-Abschnitt für Details, was das genau bedeutet
         url: URL der Beobachtung
         tag_list: Komma-getrennte Liste der Stichwörter.
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
