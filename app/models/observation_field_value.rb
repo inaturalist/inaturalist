@@ -26,6 +26,7 @@ class ObservationFieldValue < ApplicationRecord
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
   validate :observer_prefers_fields_by_user
+  validate :not_blocked_by_creator
 
   after_save :update_observation_field_counts, :index_observation
 
@@ -179,6 +180,14 @@ class ObservationFieldValue < ApplicationRecord
       end
     end
     true
+  end
+
+  def not_blocked_by_creator
+    return unless updater_id && updater_id != user_id
+
+    return unless UserBlock.where( user_id: user_id, blocked_user_id: updater_id ).any?
+
+    errors.add( :base, I18n.t( :you_dont_have_permission_to_do_that ) )
   end
 
   def update_observation_field_counts

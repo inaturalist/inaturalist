@@ -27,13 +27,16 @@ class UpdateAction < ApplicationRecord
 
   def user_ids_without_blocked_and_muted( user_ids )
     notifier_user = notifier if notifier.is_a?( User )
-    notifier_user ||= notifier.try(:user)
+    if !notifier_user && notifier.respond_to?( :updater ) && notifier.updater.is_a?( User )
+      notifier_user = notifier.updater
+    end
+    notifier_user ||= notifier.try( :user )
     if notifier_user
       excepted_user_ids = UserBlock.
         where( "user_id = ?", notifier_user.id ).pluck( :blocked_user_id )
       excepted_user_ids += UserBlock.
         where( "blocked_user_id = ?", notifier_user.id ).pluck( :user_id )
-      excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
+      excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck( :user_id )
       return user_ids -= excepted_user_ids.uniq
     end
     user_ids
