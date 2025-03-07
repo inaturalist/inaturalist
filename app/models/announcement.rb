@@ -38,7 +38,7 @@ class Announcement < ApplicationRecord
 
   YES = "yes"
   NO = "no"
-  ANY = nil
+  ANY = "any"
   YES_NO_ANY = [YES, NO, ANY].freeze
 
   has_and_belongs_to_many :sites
@@ -112,6 +112,14 @@ class Announcement < ApplicationRecord
     return false if target_group_type && user.blank?
     return false if target_logged_in == YES && user.blank?
     return false if target_logged_in == NO && user
+
+    if min_identifications && ( !user || user.identifications_count < min_identifications )
+      return false
+    end
+
+    if max_identifications && ( user&.identifications_count || 0 ) > max_identifications
+      return false
+    end
 
     case target_group_type
     when "user_id_parity"

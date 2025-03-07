@@ -152,23 +152,72 @@ describe Announcement do
       expect( a.targeted_to_user?( nil ) ).to be true
     end
 
-    it "defaults to targeting all logged in states" do
-      annc = create :announcement
-      expect( annc.target_logged_in ).to be_blank
-      expect( annc.targeted_to_user?( nil ) ).to be true
-      expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+    describe "target_logged_in" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_logged_in ).to be_blank
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target logged in" do
+        annc = create :announcement, target_logged_in: Announcement::YES
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target logged out" do
+        annc = create :announcement, target_logged_in: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+      end
     end
 
-    it "can target logged in" do
-      annc = create :announcement, target_logged_in: Announcement::YES
-      expect( annc.targeted_to_user?( nil ) ).to be false
-      expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+    describe "min_identifications" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_logged_in ).to be_blank
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :identification ).user ) ).to be true
+      end
+
+      it "includes users with more than value" do
+        annc = create :announcement, min_identifications: 1
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+        identifier = create :user, identifications_count: 2
+        expect( identifier.identifications_count ).to eq 2
+        expect( annc.targeted_to_user?( identifier ) ).to be true
+      end
     end
 
-    it "can target logged out" do
-      annc = create :announcement, target_logged_in: Announcement::NO
-      expect( annc.targeted_to_user?( nil ) ).to be true
-      expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+    describe "max_identifications" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_logged_in ).to be_blank
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :identification ).user ) ).to be true
+      end
+
+      it "includes users with less than value" do
+        annc = create :announcement, max_identifications: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, identifications_count: 1
+        expect( identifier.identifications_count ).to eq 1
+        expect( annc.targeted_to_user?( identifier ) ).to be true
+      end
+
+      it "exclude users with more than value" do
+        annc = create :announcement, max_identifications: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, identifications_count: 10
+        expect( identifier.identifications_count ).to eq 10
+        expect( annc.targeted_to_user?( identifier ) ).to be false
+      end
     end
   end
 
