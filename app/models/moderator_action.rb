@@ -38,6 +38,7 @@ class ModeratorAction < ApplicationRecord
 
   after_save :touch_resource
   after_save :notify_resource
+  after_save :delete_resource_update_actions, if: ->( moderator_action ) { moderator_action.action == HIDE }
   after_destroy :notify_resource_on_destroy
 
   def self.current_private_actions
@@ -131,6 +132,11 @@ class ModeratorAction < ApplicationRecord
     return unless resource.respond_to?( :moderated_with )
 
     resource.moderated_with( self, action: "destroyed" )
+  end
+
+  def delete_resource_update_actions
+    UpdateAction.where( resource: resource ).destroy_all
+    UpdateAction.where( notifier: resource ).destroy_all
   end
 
   def set_resource_user_id
