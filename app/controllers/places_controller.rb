@@ -473,14 +473,10 @@ class PlacesController < ApplicationController
 
   def guide
     place_id = params[:id] || params[:place_id] || params[:place]
-    @place ||= if place_id.to_i.zero?
-      begin
-        Place.find( place_id )
-      rescue ActiveRecord::RecordNotFound
-        Place.elastic_paginate( filters: [{ match: { display_name: place_id } }], per_page: 1 ).first
-      end
-    else
-      Place.find_by_id( place_id.to_i )
+    @place ||= begin
+      Place.find( place_id )
+    rescue ActiveRecord::RecordNotFound
+      Place.elastic_paginate( filters: [{ match: { display_name: place_id } }], per_page: 1 ).first
     end
     return render_404 unless @place
 
