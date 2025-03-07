@@ -6525,13 +6525,11 @@ zh-CN:
         positional_accuracy: "坐标精度（对，对，准确性 != 精度，名称选择不当）"
         private_latitude: "私人纬度，如果观察是私密或模糊的，则设置此项"
         private_longitude: "私人经度，如果观察是私密或模糊的，则设置此项"
-        geoprivacy: "观察者是否选择匿名或隐藏坐标"
         taxon_geoprivacy: "基于当前鉴定的分类群的保护状态而适用的最保守的位置隐私。"
         coordinates_obscured: "坐标是否被隐藏，无论这是由于地理位置隐私保护或是由于该分类单元的生存受到威胁，"
         out_of_range: 此观察是否在分类单元的已知范围之外
         created_at: 日期时间观察已创建
         updated_at: 日期时间观察最近已更新
-        quality_grade: 此观察的质量等级。有关此含义的详细信息，请参阅“帮助”部分
         url: 此观察的URL
         tag_list: 逗号分隔的标签列表
         place_admin1_name: 比国家低一级的行政单位名称
