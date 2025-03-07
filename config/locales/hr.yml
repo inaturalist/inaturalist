@@ -7147,13 +7147,11 @@ hr:
         positional_accuracy: "Preciznost koordinata (da, da, točnost != preciznost, loš izbor imena)"
         private_latitude: "Privatna širina, postavljena ako je opažanje privatno ili skriveno"
         private_longitude: "Privatna dužina, postavljena ako je opažanje privatno ili skriveno"
-        geoprivacy: "Da li je promatrač odlučio zamagliti ili sakriti koordinate"
         taxon_geoprivacy: "Najkonzervativnija geoprivatnost primijenjena zbog statusa zaštite taksona u trenutnoj identifikaciji."
         coordinates_obscured: "Jesu li koordinate zamagljene, bilo zbog geoprivatnosti ili zbog ugroženog taksona"
         out_of_range: Da li se ovo opažanje nalazi izvan poznatog raspona taksona
         created_at: Datum i vrijeme kada je opažanje kreirano
         updated_at: Datum i vrijeme kada je opažanje zadnji put ažurirano
-        quality_grade: Ocjena kvalitete ovog opažanja. Pogledajte odjeljak Pomoć za detalje o tome što to znači
         url: URL za opažanje
         tag_list: Popis oznaka odvojenih zarezom
         place_admin1_name: Ime administrativnog mjesta jedan rang ispod razine države
