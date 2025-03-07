@@ -48,6 +48,18 @@ class Announcement < ApplicationRecord
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_presence_of :target_group_partition, if: :target_group_type?
   validate :valid_target_group_partition, if: :target_group_type?
+  validates :min_identifications,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_identifications,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :min_observations,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_observations,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
@@ -118,6 +130,14 @@ class Announcement < ApplicationRecord
     end
 
     if max_identifications && ( user&.identifications_count || 0 ) > max_identifications
+      return false
+    end
+
+    if min_observations && ( !user || user.observations_count < min_observations )
+      return false
+    end
+
+    if max_observations && ( user&.observations_count || 0 ) > max_observations
       return false
     end
 
