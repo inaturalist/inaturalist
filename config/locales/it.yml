@@ -6715,13 +6715,11 @@ it:
         positional_accuracy: "Precisione delle coordinate (sì, sì, accuratezza = precisione: infelice scelta dei nomi)"
         private_latitude: "Latitudine privata, se l'osservazione è oscurata o privata"
         private_longitude: "Longitudine privata, se l'osservazione è oscurata o privata"
-        geoprivacy: "Se l'osservatore ha scelto di oscurare o nascondere le coordinate oppure no"
         taxon_geoprivacy: "Applicata la Geoprivacy più sicura a causa dello stato di conservazione dei taxa nell'identificazione corrente."
         coordinates_obscured: "Se le coordinate sono state oscurate oppure no, sia che il taxon sia minacciato sia che dipenda dalla geoprivacy"
         out_of_range: Se l'osservazione cade o no all'esterno dell'areale conosciuto per il taxon
         created_at: Data e ora della creazione dell'osservazione
         updated_at: Data e ora in cui l’osservazione è stata modificata l’ultima volta
-        quality_grade: Livello di qualità dell'osservazione. Controlla nella sezione Aiuto per maggiori dettagli
         url: URL dell'osservazione
         tag_list: Elenco separato da virgola delle etichette
         place_admin1_name: Nome dell'unità amministrativa di un rango inferiore al livello di stato
