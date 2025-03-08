@@ -4629,6 +4629,8 @@ fi:
   teachers_guide: Opettajan opas
   tell_the_world_a_little_about_yourself: Kerro meille itsestäsi
   tell_us_why: Kerro meille miksi...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Ehdot
   terms_and_rules_html: "Ehdot &amp; säännöt"
   terms_new_users: "Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän projektiin liittymistä."
@@ -5475,7 +5477,7 @@ fi:
       click_here_to_resend_a_confirmation_email: Klikkaa tästä lähettääksesi vahvistussähköpostin uudelleen
       please_add_an_email_and_password: Lisää sähköposti ja salasana, jotta et menetä pääsyä tiliisi
       please_click_the_link_sent_to_email_to_confirm_html: Ole hyvä ja klikkaa osoitteeseen <span class="email">%{email}</span> lähetettyä linkkiä vahvistaaksesi sähköpostiosoitteesi
-      please_confirm_that_email_is_the_best_contact_html: Vahvista, että osoite <span class="email">%{email}</span> on paras tapa sinun tavoittamiseksi
+      please_confirm_that_email_is_the_best_contact_html: Vahvista, että osoite <span class="email">%{email}</span> on paras tapa sinun tavoittamiseksi #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: '%{site_name} tiliisi ei ole liitetty sähköpostiosoitetta.'
     flags:
       show:
@@ -5761,25 +5763,14 @@ fi:
           rel="nofollow noreferrer noopener"
           href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge at FGVC 2017:</a> Linkit 675 000 lisensoituun valokuvaan 5089 lajista konenäkösovelluksen kouluttamiseen käytettäväksi. Luotu kesäkuussa 2017, ei päivitetä enää.</p></li></ul>
       field_descriptions:
-        id: "Havainnon yksilöllinen tunniste"
-        common_name: "Havaitun taksonin yleis- tai kansankielinen nimi tämän sivuston mukaan"
-        taxon_id: Havaitun taksonin yksilöllinen tunniste
-        num_identification_agreements: Tunnistusten lukumäärä jotka ovat yksimielisiä havainnoijan tunnistuksen kanssa
-        num_identification_disagreements: Tunnistusten lukumäärä jotka ovat ristiriidassa havainnoijan tunnistuksen kanssa
         observed_on_string: Havainnoijan syöttämä päivämäärä
         observed_on: Normalisoitu havainnon päivämäärä
         time_observed_at: Normalisoitu havainnon päivämäärä
         time_zone: Havainnon aikavyöhyke
         place_guess: Havainnoijan syöttämä paikan kuvaus
-        latitude: Julkisesti näkyvä leveysaste
-        longitude: Julkisesti näkyvä pituusaste
         private_latitude: "Yksityinen leveysaste, asetettu jos on havainto yksityinen tai karkeistettu"
         private_longitude: "Yksityinen pituusaste, asetettu jos havainto yksityinen tai piilotettu"
-        user_login: Havainnoijan käyttäjänimi
-        license: Lisenssi jonka havainnoija on valinnut tälle havainnolle
         url: URL-osoite havainnolle
-        image_url: URL-osoite oletuskuvalle
-        sound_url: URL oletusäänitteelle. Huomaa että tämä toimii vain tähän palveluun lisäytyille äänitteille, mutta ei äänitteille kolmansien osapuolten palveluissa
         tag_list: Pilkulla erotettu luettelo tunnisteista
       import:
         coordinate_systems_help: |

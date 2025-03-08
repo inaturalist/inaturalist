@@ -2797,6 +2797,8 @@ lb:
       from: Vum
       to: Fir
       index:
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Dir kennt nei Messagë sende wann dir dräi iwwerpréifbar Observatiounen oder dräi Bestëmmunge fir anerer geneet hutt. Bis dohinner kenn dir Messagë vun aneren un Iech liesen a beäntwerten.
       show:
@@ -2835,9 +2837,7 @@ lb:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: "Ok, mir schécken Iech eng E-Mail wann et prett ass."
       field_descriptions:
-        user_login: Benotzernumm vum Beobachter
         url: URL vun der Beobachtung
-        image_url: URL vum Standardbild
       import:
         date_column_format: JJJJ-MM-DD HH:MM
         decimal_degrees_format: dd.dddd

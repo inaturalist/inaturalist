@@ -5181,6 +5181,8 @@ es-MX:
   teachers_guide: Guia para maestros
   tell_the_world_a_little_about_yourself: Platícale al mundo un poco sobre tí
   tell_us_why: Dinos por qué...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Condiciones
   terms_and_rules_html: "Términos &amp; reglas"
   terms_new_users: "Condiciones a las que nuevos usuarios deben estar de acuerdo antes de unirse a este proyecto."
@@ -6290,7 +6292,7 @@ es-MX:
       click_here_to_resend_a_confirmation_email: Click aquí para recibir un nuevo correo electrónico de confirmación
       please_add_an_email_and_password: Por favor, añade un correo electrónico y una contraseña para no perder el acceso a tu cuenta.
       please_click_the_link_sent_to_email_to_confirm_html: Por favor, haz clic en el enlace enviado a <span class="email">%{email}</span> para confirmar tu dirección de correo electrónico.
-      please_confirm_that_email_is_the_best_contact_html: Por favor, confirma que <span class="email">%{email}</span> es la mejor forma de contactarte.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirma que <span class="email">%{email}</span> es la mejor forma de contactarte. #message requesting users confirm their email address to be able to engage with other users
       your_site_account_has_no_email: Tu cuenta en %{site_name} no tiene una dirección de correo electrónico asociada.
     flags:
       show:
@@ -6627,6 +6629,8 @@ es-MX:
       index:
         show_messages_from_user: Mostrar mensajes de %{user}
         show_messages_to_user: Mostrar mensajes a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Podrás enviar nuevos mensajes después de haber agregado tres
           observaciones verificables o tres identificaciones para otros. Por ahora puede leer y responder mensajes que otras personas le envían.
@@ -6820,41 +6824,22 @@ es-MX:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificador único para la observación"
-        species_guess: "Nombra al observador que incluyó el taxón observado"
-        scientific_name: "Nombre científico del taxón observado de acuerdo a este sitio"
-        common_name: "Nombre común del taxón observado de acuerdo a este sitio"
         iconic_taxon_name: Categoría taxonómica de nivel superior para el taxón observado
-        taxon_id: Identificador único para la observación
         id_please: Haya o no el observador solicitado ayuda para la identificación
-        num_identification_agreements: Número de identificaciones que coinciden con la identificación del observador
-        num_identification_disagreements: Número de identificaciones que coinciden con la identificación del observador
         observed_on_string: Fecha/hora registrada por el observador
         observed_on: Fecha normalizada de observación
         time_observed_at: Fecha normalizada de observación
         time_zone: Huso horario de la observación
         place_guess: Descripción de la localidad registrada por el observador
-        latitude: Latitud visible públicamente
-        longitude: Longitud visible públicamente
         positional_accuracy: "Precisión de las coordenadas"
         private_latitude: "Latitud privada, selecciona si la observación es privada o está oscurecida"
         private_longitude: "Longitud privada, selecciona si la observación es privada o está oscurecida"
-        geoprivacy: "Si el observador ha escogido, o no, esconder las coordenadas"
         taxon_geoprivacy: "Se aplicaron políticas de geoprivacidad más conservadoras debido al estado de conservación del taxón identificado actualmente."
         coordinates_obscured: "Si las coordenadas se han ocultado, o no, por una condición de geoprivacidad o por tratarse de un taxón vulnerable"
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
-        user_id: Identificador único para la observación
-        user_login: Nombre de usuario del observador
-        user_name: |
-          Nombre del observador, generalmente utilizado para la atribución en el sitio.
-          Este es un campo opcional y puede ser un pseudónimo.
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
-        quality_grade: Grado de calidad para esta observación. Ver la sección de Ayuda para los detalles sobre este significado
-        license: Licencia que el observador ha seleccionado para esta observación
         url: URL de la observación
-        image_url: URL de la imagen predeterminada
-        sound_url: URL para el sonido predeterminado. Esto sólo funciona  para cargas directas, no para sonidos hospedados en servicios de terceros.
         tag_list: Lista de etiquetas separadas por comas
         place_admin1_name: Nombre del sitio administrativo un rango debajo del nivel de país
         place_admin2_name: Nombre del sitio administrativo dos rangos debajo del nivel de país

@@ -4463,6 +4463,8 @@ pl:
       to: Do
       subject_body: Temat / Treść
       index:
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Będziesz mógł wysyłać nowe wiadomości po dodaniu trzech weryfikowalnych obserwacji lub trzech oznaczeń. Póki co możesz odbierać i odpowiadać na wiadomości, które ktoś ci wysłał.
     oauth:
@@ -4481,15 +4483,10 @@ pl:
         date_range_help: "Minimalna i maksymalna data obserwacji w formacie RRRR-MM-DD, np. 2015-01-17"
         created_on_help: "Data utworzenia obserwacji, nie samej obserwacji, np. 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "Unikalny identyfikator obserwacji"
         observed_on: Znormalizowana data obserwacji
         time_observed_at: Znormalizowany czas obserwacji
         time_zone: Strefa czasowa obserwacji
-        latitude: Publicznie widoczna szerokość geograficzna
-        longitude: Długość geograficzna widoczna publicznie
-        user_login: Nazwa użytkownika obserwatora
         url: Adres URL obserwacji
-        image_url: Adres URL domyślnego zdjęcia
         tag_list: Lista tagów oddzielonych przecinkami
         positioning_device: Urządzenie użyte do określenia współrzędnych
       identify:
