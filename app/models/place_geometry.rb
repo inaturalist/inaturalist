@@ -8,7 +8,7 @@ class PlaceGeometry < ApplicationRecord
   belongs_to :source
   scope :without_geom, -> { select( ( column_names - ["geom"] ).join( ", " ) ) }
 
-  after_save :refresh_place_check_list,
+  after_save :refresh_place_check_list_later,
     :process_geometry_if_changed,
     :update_observations_places_later,
     :notify_trusting_project_members
@@ -75,7 +75,7 @@ class PlaceGeometry < ApplicationRecord
     end
   end
 
-  def refresh_place_check_list
+  def refresh_place_check_list_later
     if place.check_list
       priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
       unless new_record?
@@ -219,5 +219,6 @@ class PlaceGeometry < ApplicationRecord
     return unless ( place_geom = PlaceGeometry.where( id: place_geometry_id ).first )
 
     Place.update_observations_places( place_geom.place_id )
+    place_geom.refresh_place_check_list_later
   end
 end
