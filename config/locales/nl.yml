@@ -6402,9 +6402,12 @@ nl:
         systemen bijwerken. Kom alsjeblieft snel terug.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik hier om de bevestigingsmail opnieuw te verzenden.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bevestigingsmail verzonden
       please_add_an_email_and_password: Voeg een e-mailadres en wachtwoord toe zodat jij je toegang tot je account niet verliest
       please_click_the_link_sent_to_email_to_confirm_html: Klik op de link die is verzonden naar <span class="email">%{email}</span> om jouw e-mailadres te bevestigen.
       please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen. #message requesting users confirm their email address to be able to engage with other users
+      tips_check_your_spam_folder: Controleer je spambox
       your_site_account_has_no_email: Jouw %{site_name} account heeft geen gekoppeld e-mailadres.
     flags:
       show:
