@@ -76,20 +76,29 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def refresh_place_check_list_later
-    if place.check_list
-      priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
-      unless new_record?
-        place.check_list.delay(
-          unique_hash: { "CheckList::refresh": place.check_list.id },
-          queue: "slow", priority: priority
-        ).refresh
-      end
-      place.check_list.delay(
-        unique_hash: { "CheckList::add_observed_taxa": place.check_list.id },
-        queue: "slow", priority: priority
-      ).add_observed_taxa
-    end
+    PlaceGeometry.refresh_place_check_list_later( place, skip_existing: new_record? )
     true
+  end
+
+  def self.refresh_place_check_list_later( place_id, options = {} )
+    place = if place_id.is_a?( Place )
+      place_id
+    else
+      Place.find_by_id( place_id )
+    end
+    return unless place&.check_list
+
+    priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
+    unless options[:skip_existing]
+      place.check_list.delay(
+        unique_hash: { "CheckList::refresh": place.check_list.id },
+        queue: "slow", priority: priority
+      ).refresh
+    end
+    place.check_list.delay(
+      unique_hash: { "CheckList::add_observed_taxa": place.check_list.id },
+      queue: "slow", priority: priority
+    ).add_observed_taxa
   end
 
   def process_geometry_if_changed
@@ -149,8 +158,8 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def update_observations_places_later
-    Place.delay(
-      unique_hash: { "Place::update_observations_places": place_id },
+    PlaceGeometry.delay(
+      unique_hash: { "PlaceGeometry::update_observations_places": place_id },
       run_at: 5.minutes.from_now,
       queue: "throttled"
     ).update_observations_places( place_id )
@@ -215,10 +224,10 @@ class PlaceGeometry < ApplicationRecord
     end
   end
 
-  def self.update_observations_places( place_geometry_id )
-    return unless ( place_geom = PlaceGeometry.where( id: place_geometry_id ).first )
+  def self.update_observations_places( place_id )
+    # return unless ( place_geom = PlaceGeometry.where( id: place_geometry_id ).first )
 
-    Place.update_observations_places( place_geom.place_id )
-    place_geom.refresh_place_check_list_later
+    Place.update_observations_places( place_id )
+    PlaceGeometry.refresh_place_check_list_later( place_id )
   end
 end
