@@ -1,129 +1,134 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+# frozen_string_literal: true
+
+require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
 
 describe Place do
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to :source }
-  it { is_expected.to belong_to(:check_list).dependent :destroy }
+  it { is_expected.to belong_to( :check_list ).dependent :destroy }
   it { is_expected.to have_many :listed_taxa }
-  it { is_expected.to have_many(:taxa).through :listed_taxa }
-  it { is_expected.to have_many(:check_lists).dependent :destroy }
-  it { is_expected.to have_many(:taxon_links).dependent :delete_all }
-  it { is_expected.to have_many(:guides).dependent :nullify }
-  it { is_expected.to have_many(:projects).dependent(:nullify).inverse_of :place }
-  it { is_expected.to have_many(:trips).dependent(:nullify).inverse_of :place }
-  it { is_expected.to have_many(:sites).dependent(:nullify).inverse_of :place }
-  it { is_expected.to have_many(:place_taxon_names).dependent(:delete_all).inverse_of :place }
-  it { is_expected.to have_many(:taxon_names).through :place_taxon_names }
-  it { is_expected.to have_many(:users).inverse_of(:place).dependent :nullify }
-  it { is_expected.to have_many(:search_users).inverse_of(:search_place).dependent(:nullify).class_name "User" }
+  it { is_expected.to have_many( :taxa ).through :listed_taxa }
+  it { is_expected.to have_many( :check_lists ).dependent :destroy }
+  it { is_expected.to have_many( :taxon_links ).dependent :delete_all }
+  it { is_expected.to have_many( :guides ).dependent :nullify }
+  it { is_expected.to have_many( :projects ).dependent( :nullify ).inverse_of :place }
+  it { is_expected.to have_many( :trips ).dependent( :nullify ).inverse_of :place }
+  it { is_expected.to have_many( :sites ).dependent( :nullify ).inverse_of :place }
+  it { is_expected.to have_many( :place_taxon_names ).dependent( :delete_all ).inverse_of :place }
+  it { is_expected.to have_many( :taxon_names ).through :place_taxon_names }
+  it { is_expected.to have_many( :users ).inverse_of( :place ).dependent :nullify }
+  it { is_expected.to have_many( :search_users ).inverse_of( :search_place ).dependent( :nullify ).class_name "User" }
   it { is_expected.to have_many :observations_places }
-  it { is_expected.to have_one(:place_geometry).dependent(:destroy).inverse_of :place }
-  it { is_expected.to have_one(:place_geometry_without_geom).class_name 'PlaceGeometry' }
-  it { is_expected.to have_many(:places_sites).dependent :destroy }
+  it { is_expected.to have_one( :place_geometry ).dependent( :destroy ).inverse_of :place }
+  it { is_expected.to have_one( :place_geometry_without_geom ).class_name "PlaceGeometry" }
+  it { is_expected.to have_many( :places_sites ).dependent :destroy }
 
-  it { is_expected.to validate_presence_of(:place_geometry).on :create }
+  it { is_expected.to validate_presence_of( :place_geometry ).on :create }
   it { is_expected.to validate_presence_of :latitude }
   it { is_expected.to validate_presence_of :longitude }
+
   context "not updating bbox" do
     subject { Place.new updating_bbox: false }
     it do
-      is_expected.to validate_numericality_of(:latitude).allow_nil.is_less_than_or_equal_to(90)
-                                                                  .is_greater_than_or_equal_to(-90)
+      is_expected.to validate_numericality_of( :latitude ).allow_nil.is_less_than_or_equal_to( 90 ).
+        is_greater_than_or_equal_to( -90 )
     end
     it do
-      is_expected.to validate_numericality_of(:longitude).allow_nil.is_less_than_or_equal_to(180)
-                                                                   .is_greater_than_or_equal_to(-180)
+      is_expected.to validate_numericality_of( :longitude ).allow_nil.is_less_than_or_equal_to( 180 ).
+        is_greater_than_or_equal_to( -180 )
     end
   end
+
   it do
-    is_expected.to validate_length_of(:name).is_at_least(2).is_at_most(500)
-                                            .with_message "must be between 2 and 500 characters"
+    is_expected.to validate_length_of( :name ).is_at_least( 2 ).is_at_most( 500 ).
+      with_message "must be between 2 and 500 characters"
   end
+
   context "ancestry not blank" do
     subject { Place.new ancestry: "1/2/3", name: "Test" }
-    it { is_expected.to validate_uniqueness_of(:name).scoped_to :ancestry }
+    it { is_expected.to validate_uniqueness_of( :name ).scoped_to :ancestry }
   end
 
   it "should have taxa" do
     place = make_place_with_geom
     taxon = Taxon.make!
-    place.check_list.add_taxon(taxon)
-    expect(taxon.places).to_not be_empty
+    place.check_list.add_taxon( taxon )
+    expect( taxon.places ).to_not be_empty
   end
 
   it "bbox_contains_lat_lng_acc" do
-    place = make_place_with_geom(swlat: 1, swlng: 1, nelat: 1, nelng: 180)
-    expect {
-      place.bbox_contains_lat_lng_acc?(1,1)
-    }.not_to raise_error
+    place = make_place_with_geom( swlat: 1, swlng: 1, nelat: 1, nelng: 180 )
+    expect do
+      place.bbox_contains_lat_lng_acc?( 1, 1 )
+    end.not_to raise_error
   end
 end
 
 describe Place, "bbox_contains_lat_lng_acc?" do
   it "should not complain about irrational place boundaries" do
-    place = make_place_with_geom(swlat: 1, swlng: 1, nelat: 1, nelng: 180)
-    expect {
-      place.bbox_contains_lat_lng_acc?(1,1)
-    }.not_to raise_error
+    place = make_place_with_geom( swlat: 1, swlng: 1, nelat: 1, nelng: 180 )
+    expect do
+      place.bbox_contains_lat_lng_acc?( 1, 1 )
+    end.not_to raise_error
   end
 
   it "should be false if acc is so large the point cannot be buffered" do
     place = make_place_with_geom
-    expect( place.bbox_contains_lat_lng_acc?( place.latitude, place.longitude, 99999999 ) ).to be false
+    expect( place.bbox_contains_lat_lng_acc?( place.latitude, place.longitude, 99_999_999 ) ).to be false
   end
 
   it "should return false for places without bounds" do
     place = Place.new
-    expect {
+    expect do
       expect( place.bbox_contains_lat_lng_acc?( 1, 1 ) ).to be false
-    }.not_to raise_error
+    end.not_to raise_error
   end
 end
 
 describe Place, "creation" do
   elastic_models( Observation, Place )
-  before(:each) do
+  before( :each ) do
     @place = make_place_with_geom
   end
-  
+
   it "should create a default check_list" do
-    expect(@place.check_list).to_not be_nil
+    expect( @place.check_list ).to_not be_nil
   end
 
   it "should not create a default check list if not preferred" do
-    p = make_place_with_geom(:prefers_check_lists => false)
-    expect(p.check_list).to be_blank
+    p = make_place_with_geom( prefers_check_lists: false )
+    expect( p.check_list ).to be_blank
   end
-  
+
   it "should have no default type" do
-    expect(@place.place_type_name).to be_blank
+    expect( @place.place_type_name ).to be_blank
   end
 
   it "should add observed taxa to the checklist if geom set" do
-    t = Taxon.make!(rank: Taxon::SPECIES)
-    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    make_research_grade_observation( taxon: t, latitude: 0.5, longitude: 0.5 )
     p = after_delayed_job_finishes( ignore_run_at: true ) do
-      make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+      make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" )
     end
     p.reload
-    expect(p.check_list.taxa).to include t
+    expect( p.check_list.taxa ).to include t
   end
 
   it "should create listed taxa with stats set" do
-    t = Taxon.make!(rank: Taxon::SPECIES)
-    o = make_research_grade_observation(:taxon => t, :latitude => 0.5, :longitude => 0.5)
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    make_research_grade_observation( taxon: t, latitude: 0.5, longitude: 0.5 )
     p = after_delayed_job_finishes( ignore_run_at: true ) do
-      make_place_with_geom(:wkt => "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
+      make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" )
     end
     p.reload
-    lt = p.check_list.listed_taxa.where(taxon_id: t.id).first
+    lt = p.check_list.listed_taxa.where( taxon_id: t.id ).first
     expect( lt.last_observation_id ).not_to be_blank
   end
 
   it "should not allow titles that start with numbers" do
-    p = Place.make(:name => "14")
-    expect(p).to_not be_valid
-    expect(p.errors[:name]).to_not be_blank
+    p = Place.make( name: "14" )
+    expect( p ).to_not be_valid
+    expect( p.errors[:name] ).to_not be_blank
   end
 
   it "should not set the slug to a number when the name is just unicode and a number" do
@@ -147,14 +152,14 @@ describe Place, "creation" do
 end
 
 describe Place, "updating" do
-  before(:each) do
+  before( :each ) do
     @place = make_place_with_geom
   end
-  
+
   it "should not have itself as a parent" do
     @place.parent = @place
-    expect(@place).to_not be_valid
-    expect(@place.errors[:parent_id]).to_not be_blank
+    expect( @place ).to_not be_valid
+    expect( @place.errors[:parent_id] ).to_not be_blank
   end
 
   it "should update the projects index for projects associated with descendant places when ancestry changes" do
@@ -164,79 +169,115 @@ describe Place, "updating" do
     place = make_place_with_geom( parent: old_parent )
     project = Project.make!( :collection, place: place )
     expect(
-      Project.elastic_paginate( where: { place_ids: [ old_parent.id ] } )
+      Project.elastic_paginate( where: { place_ids: [old_parent.id] } )
     ).to include project
     place.update( parent: new_parent )
     Delayed::Worker.new.work_off
     expect(
-      Project.elastic_paginate( where: { place_ids: [ new_parent.id ] } )
+      Project.elastic_paginate( where: { place_ids: [new_parent.id] } )
     ).to include project
   end
 end
 
-# These pass individually but fail as a group, probably due to some 
+# These pass individually but fail as a group, probably due to some
 # transaction weirdness.
 describe Place, "merging" do
   elastic_models( Observation, Place )
-  before(:each) do
-    @place = make_place_with_geom(:name => "Berkeley")
-    @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
+  before( :each ) do
+    @place = make_place_with_geom( name: "Berkeley" )
+    berkeley_wkt = <<~WKT
+      MULTIPOLYGON(
+        (
+          (
+            -122.247619628906 37.8547693305679,
+            -122.284870147705 37.8490764953623,
+            -122.299289703369 37.8909492165781,
+            -122.250881195068 37.8970452004104,
+            -122.239551544189 37.8719807055375,
+            -122.247619628906 37.8547693305679
+          )
+        )
+      )
+    WKT
+    @place.save_geom( GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
+      berkeley_wkt.strip.gsub( /\s+/, " " )
+    ) )
     3.times do
       @place.check_list.taxa << Taxon.make!
     end
     @old_place_listed_taxa = @place.listed_taxa.all
     @place_geom = @place.place_geometry.geom
-    @reject = make_place_with_geom(:name => "Oakland")
-    @reject.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.332077026367 37.8081564815264,-122.251739501953 37.7864534344207,-122.215347290039 37.757687076897,-122.264785766602 37.7424852382661,-122.21809387207 37.6990342079442,-122.14531 37.71152,-122.126083374023 37.7826547456574,-122.225646972656 37.8618440983709,-122.259635925293 37.8561518095069,-122.332077026367 37.8081564815264)))"))
+    @reject = make_place_with_geom( name: "Oakland" )
+    oakland_wkt = <<~WKT
+      MULTIPOLYGON(
+        (
+          (
+            -122.332077026367 37.8081564815264,
+            -122.251739501953 37.7864534344207,
+            -122.215347290039 37.757687076897,
+            -122.264785766602 37.7424852382661,
+            -122.21809387207 37.6990342079442,
+            -122.14531 37.71152,
+            -122.126083374023 37.7826547456574,
+            -122.225646972656 37.8618440983709,
+            -122.259635925293 37.8561518095069,
+            -122.332077026367 37.8081564815264
+          )
+        )
+      )
+    WKT
+    @reject.save_geom( GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
+      oakland_wkt.strip.gsub( /\s+/, " " )
+    ) )
     2.times do
       @reject.check_list.taxa << Taxon.make!
     end
     @reject.check_list.taxa << @place.check_list.taxa.first
     @reject_listed_taxa = @reject.listed_taxa.all.to_a
     @reject_geom = @reject.place_geometry.geom
-    @merged_place = @place.merge(@reject)
+    @merged_place = @place.merge( @reject )
   end
 
   it "should return a valid place if the merge was successful" do
-    expect(@merged_place).to be_valid
+    expect( @merged_place ).to be_valid
   end
-  
+
   it "should destroy the reject" do
-    expect {
+    expect do
       @reject.reload
-    }.to raise_error ActiveRecord::RecordNotFound
+    end.to raise_error ActiveRecord::RecordNotFound
   end
-  
+
   it "should default to preserving all the primary's attributes" do
     @merged_place.reload
-    Place.column_names.each do |column_name|
-      expect(@place.send(column_name)).to eq @merged_place.send(column_name)
+    Place.column_names.each do | column_name |
+      expect( @place.send( column_name ) ).to eq @merged_place.send( column_name )
     end
   end
-  
+
   it "should accept an array of attributes to take from the reject" do
-    narnia_name = 'Narnia'
+    narnia_name = "Narnia"
     narnia = make_place_with_geom( name: narnia_name )
-    mearth = make_place_with_geom( name: 'Middle Earth' )
-    merged_place = narnia.merge(mearth, :keep => [:latitude, :longitude])
-    expect(merged_place.latitude).to eq mearth.latitude
-    expect(merged_place.longitude).to eq mearth.longitude
-    expect(merged_place.name).to eq narnia_name
+    mearth = make_place_with_geom( name: "Middle Earth" )
+    merged_place = narnia.merge( mearth, keep: [:latitude, :longitude] )
+    expect( merged_place.latitude ).to eq mearth.latitude
+    expect( merged_place.longitude ).to eq mearth.longitude
+    expect( merged_place.name ).to eq narnia_name
   end
-  
+
   it "should not have errors if keeping the name of the deleted place" do
-    narnia = make_place_with_geom( name: 'Narnia' )
-    mearth = make_place_with_geom( name: 'Middle Earth' )
-    merged_place = narnia.merge(mearth, :keep => [:name])
-    puts "Errors on merged_place: #{merged_place.errors.full_messages.join(', ')}" unless merged_place.valid?
-    expect(merged_place).to be_valid
+    narnia = make_place_with_geom( name: "Narnia" )
+    mearth = make_place_with_geom( name: "Middle Earth" )
+    merged_place = narnia.merge( mearth, keep: [:name] )
+    puts "Errors on merged_place: #{merged_place.errors.full_messages.join( ', ' )}" unless merged_place.valid?
+    expect( merged_place ).to be_valid
   end
-  
+
   it "should move the reject's non-default lists to the keeper" do
     keeper = make_place_with_geom
     reject = make_place_with_geom
     reject_list = CheckList.make!( place: reject )
-    reject_listed_taxon = reject_list.add_taxon( Taxon.make! )
+    reject_list.add_taxon( Taxon.make! )
     keeper.merge( reject )
     reject_list.reload
     expect( reject_list.place ).to eq keeper
@@ -259,69 +300,69 @@ describe Place, "merging" do
     expect( reject_listed_taxon.place ).to eq keeper
     expect( reject_listed_taxon.list ).to eq keeper.check_list
   end
-  
+
   it "should result in valid listed taxa (i.e. no duplicates)" do
-    @place.listed_taxa.each do |listed_taxon|
-      expect(listed_taxon).to be_valid
+    @place.listed_taxa.each do | listed_taxon |
+      expect( listed_taxon ).to be_valid
     end
   end
 
   it "should move the rejects children over to the keeper" do
     keeper = make_place_with_geom
     reject = make_place_with_geom
-    child = make_place_with_geom(parent: reject)
-    grandchild = make_place_with_geom(parent: child)
-    keeper.merge(reject)
+    child = make_place_with_geom( parent: reject )
+    grandchild = make_place_with_geom( parent: child )
+    keeper.merge( reject )
     child.reload
     grandchild.reload
-    expect(child.parent).to eq keeper
-    expect(grandchild.parent).to eq child
+    expect( child.parent ).to eq keeper
+    expect( grandchild.parent ).to eq child
   end
 
   it "should orphan children that are synonymous with existing children of the keeper" do
     keeper = make_place_with_geom
     reject = make_place_with_geom
-    keeper_child = make_place_with_geom(parent: keeper)
-    reject_child = make_place_with_geom(parent: reject, name: keeper_child.name)
-    keeper.merge(reject)
+    keeper_child = make_place_with_geom( parent: keeper )
+    reject_child = make_place_with_geom( parent: reject, name: keeper_child.name )
+    keeper.merge( reject )
     reject_child.reload
     expect( reject_child.parent ).to be_blank
   end
 
   it "should update observations_places" do
-    keeper = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
-    reject = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))")
-    o = Observation.make!(latitude: reject.latitude, longitude: reject.longitude)
-    op = o.observations_places.where(place_id: keeper)
-    expect( o.observations_places.where(place_id: keeper).count ).to eq 0
-    keeper.merge(reject)
-    expect( o.observations_places.where(place_id: keeper).count ).to eq 1
+    keeper = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" )
+    reject = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))" )
+    o = Observation.make!( latitude: reject.latitude, longitude: reject.longitude )
+    o.observations_places.where( place_id: keeper )
+    expect( o.observations_places.where( place_id: keeper ).count ).to eq 0
+    keeper.merge( reject )
+    expect( o.observations_places.where( place_id: keeper ).count ).to eq 1
   end
 
   it "should not create duplicate observations_places" do
     wkt = "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))"
-    keeper = make_place_with_geom(wkt: wkt)
-    reject = make_place_with_geom(wkt: wkt)
-    o = Observation.make!(latitude: reject.latitude, longitude: reject.longitude)
+    keeper = make_place_with_geom( wkt: wkt )
+    reject = make_place_with_geom( wkt: wkt )
+    o = Observation.make!( latitude: reject.latitude, longitude: reject.longitude )
     expect( o.observations_places.count ).to eq 2
-    op = o.observations_places.where(place_id: reject.id).first
+    op = o.observations_places.where( place_id: reject.id ).first
     expect( op.place_id ).to eq reject.id
-    expect {
-      keeper.merge(reject)
-    }.not_to raise_error
-    expect( keeper.observations_places.where(observation_id: o) ).not_to be_blank
+    expect do
+      keeper.merge( reject )
+    end.not_to raise_error
+    expect( keeper.observations_places.where( observation_id: o ) ).not_to be_blank
   end
 
   it "should not result in multiple primary listed taxa for the same taxon" do
     keeper = make_place_with_geom
     reject = make_place_with_geom
     t = Taxon.make!
-    klt = keeper.check_list.add_taxon(t, user: User.make!)
-    rl = reject.check_lists.create(title: "foo")
-    rlt = rl.add_taxon(t, user: User.make!)
+    klt = keeper.check_list.add_taxon( t, user: User.make! )
+    rl = reject.check_lists.create( title: "foo" )
+    rlt = rl.add_taxon( t, user: User.make! )
     expect( klt ).to be_primary_listing
     expect( rlt ).to be_primary_listing
-    without_delay { keeper.merge(reject) }
+    without_delay { keeper.merge( reject ) }
     klt.reload
     rlt.reload
     expect( klt.primary_listing? || rlt.primary_listing? ).to eq true
@@ -331,12 +372,12 @@ describe Place, "merging" do
   it "should not result in single listed taxa for a given taxon that are not primary" do
     keeper = make_place_with_geom
     reject = make_place_with_geom
-    klt = keeper.check_list.add_taxon(Taxon.make!, user: User.make!)
-    rl = reject.check_lists.create(title: "foo")
-    rlt = rl.add_taxon(Taxon.make!, user: User.make!)
+    klt = keeper.check_list.add_taxon( Taxon.make!, user: User.make! )
+    rl = reject.check_lists.create( title: "foo" )
+    rlt = rl.add_taxon( Taxon.make!, user: User.make! )
     expect( klt ).to be_primary_listing
     expect( rlt ).to be_primary_listing
-    without_delay { keeper.merge(reject) }
+    without_delay { keeper.merge( reject ) }
     klt.reload
     rlt.reload
     expect( klt ).to be_primary_listing
@@ -346,22 +387,20 @@ end
 
 describe Place, "bbox_contains_lat_lng?" do
   it "should work" do
-    # place = make_place_with_geom(:latitude => 0, :longitude => 0, :swlat => -1, :swlng => -1, :nelat => 1, :nelng => 1)
     place = make_place_with_geom( wkt: "MULTIPOLYGON(((-1 -1,-1 1,1 1,1 -1,-1 -1)))" )
-    expect(place.bbox_contains_lat_lng?(0, 0)).to be true
-    expect(place.bbox_contains_lat_lng?(0.5, 0.5)).to be true
-    expect(place.bbox_contains_lat_lng?(2, 2)).to be false
-    expect(place.bbox_contains_lat_lng?(2, nil)).to be false
-    expect(place.bbox_contains_lat_lng?(nil, nil)).to be false
-    expect(place.bbox_contains_lat_lng?('', '')).to be false
+    expect( place.bbox_contains_lat_lng?( 0, 0 ) ).to be true
+    expect( place.bbox_contains_lat_lng?( 0.5, 0.5 ) ).to be true
+    expect( place.bbox_contains_lat_lng?( 2, 2 ) ).to be false
+    expect( place.bbox_contains_lat_lng?( 2, nil ) ).to be false
+    expect( place.bbox_contains_lat_lng?( nil, nil ) ).to be false
+    expect( place.bbox_contains_lat_lng?( "", "" ) ).to be false
   end
-  
+
   it "should work across the date line" do
-    # place = make_place_with_geom(:latitude => 0, :longitude => 180, :swlat => -1, :swlng => 179, :nelat => 1, :nelng => -179)
     place = make_place_with_geom( wkt: "MULTIPOLYGON(((179 -1, 179 1, -179 1, -179 -1, 179 -1)))" )
-    expect(place.bbox_contains_lat_lng?(0, 180)).to be true
-    expect(place.bbox_contains_lat_lng?(0.5, -179.5)).to be true
-    expect(place.bbox_contains_lat_lng?(0, 0)).to be false
+    expect( place.bbox_contains_lat_lng?( 0, 180 ) ).to be true
+    expect( place.bbox_contains_lat_lng?( 0.5, -179.5 ) ).to be true
+    expect( place.bbox_contains_lat_lng?( 0, 0 ) ).to be false
   end
 end
 
@@ -369,12 +408,12 @@ describe Place do
   it "should be editable by curators" do
     p = make_place_with_geom
     u = make_curator
-    expect(p).to be_editable_by(u)
+    expect( p ).to be_editable_by( u )
   end
   it "should be editable by the creator" do
     u = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
-    p = make_place_with_geom(:user => u)
-    expect(p).to be_editable_by(u)
+    p = make_place_with_geom( user: u )
+    expect( p ).to be_editable_by( u )
   end
   it "should not be editable by non-curators who aren't the creator" do
     u = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
@@ -385,34 +424,34 @@ end
 
 describe Place, "display_name" do
   it "should be in correct order" do
-    country = make_place_with_geom(code: "cn", place_type: Place::PLACE_TYPE_CODES['country'],
-      admin_level: Place::COUNTRY_LEVEL)
-    state = make_place_with_geom(code: "st", place_type: Place::PLACE_TYPE_CODES['state'],
-      parent: country, admin_level: Place::STATE_LEVEL)
-    place = make_place_with_geom(:parent => state)
-    expect(place.parent).to eq(state)
-    expect(place.display_name(:reload => true)).to be =~ /, #{state.code}, #{country.code}$/
+    country = make_place_with_geom( code: "cn", place_type: Place::PLACE_TYPE_CODES["country"],
+      admin_level: Place::COUNTRY_LEVEL )
+    state = make_place_with_geom( code: "st", place_type: Place::PLACE_TYPE_CODES["state"],
+      parent: country, admin_level: Place::STATE_LEVEL )
+    place = make_place_with_geom( parent: state )
+    expect( place.parent ).to eq( state )
+    expect( place.display_name( reload: true ) ).to be =~ /, #{state.code}, #{country.code}$/
   end
 end
 
 describe Place, "append_geom" do
-  let(:place) { make_place_with_geom }
+  let( :place ) { make_place_with_geom }
   it "should result in a multipolygon with multiple polygons" do
-    geom = RGeo::Geos.factory(:srid => 4326).parse_wkt("MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))")
+    geom = RGeo::Geos.factory( srid: 4326 ).parse_wkt( "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))" )
     expect( place.place_geometry.geom.size ).to eq 1
-    place.append_geom(geom)
+    place.append_geom( geom )
     expect( place.place_geometry.geom.geometry_type ).to eq ::RGeo::Feature::MultiPolygon
     expect( place.place_geometry.geom.size ).to eq 2
   end
 
   it "should dissolve overlapping polygons" do
     old_geom = place.place_geometry.geom
-    geom = RGeo::Geos.factory(:srid => 4326).parse_wkt("MULTIPOLYGON(
+    geom = RGeo::Geos.factory( srid: 4326 ).parse_wkt( "MULTIPOLYGON(
       ((0.5 0.5,0.5 1.5,1.5 1.5,1.5 0.5,0.5 0.5)),
       ((2 2,2 3,3 3,3 2,2 2))
-    )")
+    )" )
     expect( place.place_geometry.geom.size ).to eq 1
-    place.append_geom(geom)
+    place.append_geom( geom )
     place.reload
     expect( place.place_geometry.geom.size ).to eq 2
     expect( old_geom ).not_to eq place.place_geometry.geom
@@ -422,52 +461,52 @@ end
 describe Place, "save_geom" do
   elastic_models( Observation, Place )
   describe "if there was no geom before" do
-    let(:p) { make_place_with_geom }
-    let(:geom) { RGeo::Geos.factory(:srid => -1).parse_wkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")}
+    let( :p ) { make_place_with_geom }
+    let( :geom ) { RGeo::Geos.factory( srid: -1 ).parse_wkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) }
     it "should add observed taxa to the checklist" do
       expect( p.check_list.taxon_ids ).to be_empty
-      o = make_research_grade_observation(latitude: 0.5, longitude: 0.5)
-      without_delay { p.save_geom(geom) }
+      o = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
+      without_delay { p.save_geom( geom ) }
       p.reload
       expect( p.check_list.taxon_ids ).to include o.taxon_id
     end
     it "should not add taxa observed outside the place to the checklist" do
       expect( p.check_list.taxon_ids ).to be_empty
-      o = make_research_grade_observation(latitude: 5, longitude: 5)
-      without_delay { p.save_geom(geom) }
+      o = make_research_grade_observation( latitude: 5, longitude: 5 )
+      without_delay { p.save_geom( geom ) }
       p.reload
       expect( p.check_list.taxon_ids ).not_to include o.taxon_id
     end
     it "should not remove existing user-added listed taxa to the checklist" do
       t = Taxon.make!
       u = User.make!
-      lt = p.check_list.add_taxon(t, user: u)
+      lt = p.check_list.add_taxon( t, user: u )
       expect( lt ).not_to be_auto_removable_from_check_list
-      without_delay { p.save_geom(geom) }
+      without_delay { p.save_geom( geom ) }
       p.reload
       expect( p.check_list.taxon_ids ).to include t.id
     end
     it "should not change primary_listing of existing user-added listed taxa" do
       t = Taxon.make!
       u = User.make!
-      lt = p.check_list.add_taxon(t, user: u)
+      lt = p.check_list.add_taxon( t, user: u )
       expect( lt ).to be_primary_listing
-      without_delay { p.save_geom(geom) }
+      without_delay { p.save_geom( geom ) }
       lt.reload
       expect( lt ).to be_primary_listing
     end
   end
   it "should not raise an ES error for a self-intersection" do
     p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,1 1,0 1,1 0,0 0)))" )
-    expect {
+    expect do
       p.elastic_index!
-    }.not_to raise_error
+    end.not_to raise_error
   end
 end
 
 describe Place, "destruction" do
   it "should delete associated project rules" do
-    collection_project = Project.make!(project_type: "collection")
+    collection_project = Project.make!( project_type: "collection" )
     place = make_place_with_geom
     rule = collection_project.project_observation_rules.build( operator: "observed_in_place?", operand: place )
     rule.save!
