@@ -45,43 +45,43 @@ describe PlaceGeometry do
       expect( pg ).not_to be_valid
       expect( pg.errors.size ).to eq 1
     end
+  end
 
-    describe "observations_places" do
-      elastic_models( Observation, Place )
+  describe "observations_places" do
+    elastic_models( Observation, Place )
 
-      it "should generate observations_places after save" do
-        p = make_place_with_geom
-        o = Observation.make!
-        expect( p.observations_places.length ).to eq 0
-        expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be false
-        o.update_columns( private_geom: "POINT(#{p.longitude} #{p.latitude})" )
-        p.place_geometry.save
-        p.reload
-        # observations_places are updated in a delayed job, so the count
-        # will still be 0 until the DJ queue is processes
-        expect( p.observations_places.length ).to eq 0
-        Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
-        p.reload
-        expect( p.observations_places.length ).to be >= 1
-        expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
-      end
+    it "should generate after save" do
+      p = make_place_with_geom
+      o = Observation.make!
+      expect( p.observations_places.length ).to eq 0
+      expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be false
+      o.update_columns( private_geom: "POINT(#{p.longitude} #{p.latitude})" )
+      p.place_geometry.save
+      p.reload
+      # observations_places are updated in a delayed job, so the count
+      # will still be 0 until the DJ queue is processes
+      expect( p.observations_places.length ).to eq 0
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      p.reload
+      expect( p.observations_places.length ).to be >= 1
+      expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
+    end
 
-      it "doesn't delete its observations_places on destroy" do
-        p = make_place_with_geom
-        o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
-        expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
-        p.place_geometry.destroy
-        expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
-      end
+    it "aren't deleted on destroy" do
+      p = make_place_with_geom
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
+      p.place_geometry.destroy
+      expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
+    end
 
-      it "should remove observations_places inside old boundary but outside a new boundary" do
-        p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" )
-        o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
-        expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
-        p.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))" ) )
-        Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
-        expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be false
-      end
+    it "should be removed when inside old boundary but outside a new boundary" do
+      p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" )
+      o = Observation.make!( latitude: p.latitude, longitude: p.longitude )
+      expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be true
+      p.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))" ) )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
+      expect( ObservationsPlace.exists?( observation_id: o.id, place_id: p.id ) ).to be false
     end
   end
 end
