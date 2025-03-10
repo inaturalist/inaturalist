@@ -3,6 +3,8 @@
   if month_names.is_a?( Hash )
     month_names = [nil, I18n.t( "date.month_names" ).values].flatten
   end
+  sorted_locales = I18n.t( "locales", locale: :en ).keys.sort_by { I18n.t( "locales.#{_1}", default: t( "locales.#{_1}" ) ).downcase }
+  locale_options = sorted_locales.map { | locale | [t( "locales.#{locale}", default: t( "locales.#{locale}" ) ), locale] }
 - content_for :extracss do
   :css
     #new_announcement textarea,
@@ -30,17 +32,19 @@
       = f.select :clients, clients, { include_blank: t( :all ) }, {      |
         multiple: true,                                                  |
         description: t( "views.announcements.clients_desc" ),            |
-        description_after: true,                                         |
+        description_tip: true,                                           |
         size: [clients.length + 1, 5].min }                              |
       = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
       = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
       = f.check_box :dismissible, label_after: true
-    .col-xs-4
-      - if current_user.is_admin?
-        = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
-      - else
-        = f.hidden_field :site_ids
-      = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_after: true }
+      .row
+        .col-xs-6
+          - if current_user.is_admin?
+            = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
+          - else
+            = f.hidden_field :site_ids
+        .col-xs-6
+          = f.select :locales, locale_options, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
     .col-xs-4
       = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
       - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
@@ -60,6 +64,7 @@
       .row
         .col-xs-6= f.text_field :min_observations, type: "number", min: 0
         .col-xs-6= f.text_field :max_observations, type: "number", min: 0
+    .col-xs-4
       - donors_start_year = 2018
       - donors_end_year = Time.now.year + 1
       = f.date_select :include_donor_start_date, use_month_names: month_names,

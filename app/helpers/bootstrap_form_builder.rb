@@ -28,9 +28,26 @@ class BootstrapFormBuilder < DefaultFormBuilder
 
     if options[:label] != false
       label_field = field
+      label_inside = (
+        options[:label] ||
+        I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: field.to_s.humanize )
+      ).to_s.html_safe
+      if options[:description_tip]
+        label_inside += content_tag(
+          :button,
+          content_tag( :i, "", class: "fa fa-info-circle" ),
+          class: "btn btn-nostyle",
+          data: {
+            toggle: "popover",
+            content: description,
+            placement: "bottom"
+          },
+          onclick: "return false;"
+        )
+      end
       label_tag = label(
         label_field,
-        options[:label].to_s.html_safe,
+        label_inside,
         class: options[:label_class],
         for: options[:id]
       )
@@ -44,6 +61,8 @@ class BootstrapFormBuilder < DefaultFormBuilder
       "#{content} #{datalist} #{label_content} #{description}"
     elsif description_after
       "#{label_content} #{content} #{datalist} #{description}"
+    elsif options[:description_tip]
+      "#{label_content} #{content} #{datalist}"
     else
       "#{label_content} #{description} #{content} #{datalist}"
     end
