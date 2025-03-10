@@ -85,7 +85,7 @@ class Annotations extends React.Component {
         votersAgainst.push( v.user );
         if ( v.api_status ) { voteAgainstLoading = true; }
       }
-      if ( this.loggedIn && v.user.id === config.currentUser.id ) {
+      if ( this.loggedIn && v.user?.id === config.currentUser.id ) {
         userVotedFor = ( v.vote_flag === true );
         userVotedAgainst = ( v.vote_flag === false );
       }

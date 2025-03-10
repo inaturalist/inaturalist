@@ -433,10 +433,11 @@ class LocalPhoto < Photo
     tags.uniq
   end
 
-  def to_taxa(options = {})
+  def to_taxa( options = {} )
     tags = to_tags( with_title: true, with_file_name: true )
     return [] if tags.blank?
-    Taxon.tags_to_taxa(tags, options).compact
+
+    Taxon.tags_to_taxa( tags, options ).compact
   end
 
   def rotate!(degrees = 90)

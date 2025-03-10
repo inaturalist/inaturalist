@@ -160,6 +160,35 @@ describe Photo do
       allow( photo ).to receive( :to_taxa ).and_return( taxa )
       expect( photo.to_taxon ).to eq genus
     end
-  end
 
+    it "chooses active taxa by scientific name" do
+      taxon = Taxon.make!( rank: Taxon::GENUS, name: "Pomatomus" )
+      photo = LocalPhoto.make!
+      allow( photo ).to receive( :to_tags ).and_return( [taxon.name.downcase] )
+      expect( photo.to_taxon ).to eq taxon
+    end
+
+    it "does not choose inactive taxa by scientific name" do
+      taxon = Taxon.make!( rank: Taxon::GENUS, name: "Pomatomus", is_active: false )
+      photo = Photo.make!
+      allow( photo ).to receive( :to_tags ).and_return( [taxon.name.downcase] )
+      expect( photo.to_taxon ).to be_blank
+    end
+
+    it "chooses active taxa by common name" do
+      taxon = Taxon.make!( rank: Taxon::GENUS, name: "Pomatomus" )
+      common_name = TaxonName.make!( taxon: taxon, name: "Bluefishes", lexicon: TaxonName::LEXICONS[:ENGLISH] )
+      photo = LocalPhoto.make!
+      allow( photo ).to receive( :to_tags ).and_return( [common_name.name.downcase] )
+      expect( photo.to_taxon ).to eq taxon
+    end
+
+    it "does not choose inactive taxa by common name" do
+      taxon = Taxon.make!( rank: Taxon::GENUS, name: "Pomatomus", is_active: false )
+      common_name = TaxonName.make!( taxon: taxon, name: "Bluefishes", lexicon: TaxonName::LEXICONS[:ENGLISH] )
+      photo = Photo.make!
+      allow( photo ).to receive( :to_tags ).and_return( [common_name.name.downcase] )
+      expect( photo.to_taxon ).to be_blank
+    end
+  end
 end
