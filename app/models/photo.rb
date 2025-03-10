@@ -144,31 +144,33 @@ class Photo < ApplicationRecord
     end
     true
   end
-  
-  # Try to choose a single taxon for this photo.  Only works if class has 
+
+  # Try to choose a single taxon for this photo.  Only works if class has
   # implemented to_taxa
   def to_taxon
-    return unless respond_to?(:to_taxa)
-    photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES, :valid => true, :active => true)
+    return unless respond_to?( :to_taxa )
+
+    photo_taxa = to_taxa( lexicon: TaxonName::SCIENTIFIC_NAMES, valid: true, active: true )
     if photo_taxa.blank?
-      photo_taxa = to_taxa(:lexicon => TaxonName::SCIENTIFIC_NAMES)
+      photo_taxa = to_taxa( lexicon: TaxonName::SCIENTIFIC_NAMES, active: true )
     end
     if photo_taxa.blank?
       photo_taxa = if user && !user.locale.blank? && ( lexicon = TaxonName.language_for_locale( user.locale ) )
-        to_taxa( lexicon: lexicon )
+        to_taxa( lexicon: lexicon, active: true )
       else
-        to_taxa
+        to_taxa( active: true )
       end
     end
     return if photo_taxa.blank?
+
     # If there are synonyms on the same branch, only keep the coarsest one
     # (e.g. if a genus and subgenus have the same name, throw out the
     # subgenus)
-    photo_taxa = photo_taxa.group_by(&:name).map do | name, name_taxa |
+    photo_taxa = photo_taxa.group_by( &:name ).map do | _name, name_taxa |
       if name_taxa.size > 1
-        sorted_taxa = name_taxa.sort_by{|t| t.rank_level.to_i }
+        sorted_taxa = name_taxa.sort_by {| t | t.rank_level.to_i }
         keepers = []
-        while sorted_taxa.size > 0
+        while sorted_taxa.size.positive?
           t = sorted_taxa.shift
           unless sorted_taxa.detect {| st | t.ancestor_ids.include?( st.id ) }
             keepers << t
@@ -179,18 +181,24 @@ class Photo < ApplicationRecord
         name_taxa
       end
     end.flatten
-    photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
-    candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
+    photo_taxa = photo_taxa.sort_by {| t | t.rank_level || ( Taxon::ROOT_LEVEL + 1 ) }
+    candidate = photo_taxa.detect( &:species_or_lower? ) || photo_taxa.first
     # if there are synonyms, don't decide
-    synonym = photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
-    synonym ||= photo_taxa.detect do |t|
-      t_common_names = t.taxon_names.select{ |tn|
-        tn.is_valid? && tn.lexicon != TaxonName::SCIENTIFIC_NAMES}.map{|tn| tn.name.downcase
-      }
-      c_common_names = candidate.taxon_names.select{ |tn|
-        tn.is_valid? && tn.lexicon != TaxonName::SCIENTIFIC_NAMES}.map{|tn| tn.name.downcase
-      }
-      t.id != candidate.id && ( t_common_names & c_common_names ).size > 0
+    synonym = photo_taxa.detect {| t | t.name == candidate.name && t.id != candidate.id }
+    synonym ||= photo_taxa.detect do | t |
+      t_common_names = t.taxon_names.select do | tn |
+        tn.is_valid? && tn.lexicon != TaxonName::SCIENTIFIC_NAMES
+      end
+      t_common_names.map! do | tn |
+        tn.name.downcase
+      end
+      c_common_names = candidate.taxon_names.select do | tn |
+        tn.is_valid? && tn.lexicon != TaxonName::SCIENTIFIC_NAMES
+      end
+      c_common_names.map! do | tn |
+        tn.name.downcase
+      end
+      t.id != candidate.id && ( t_common_names & c_common_names ).size.positive?
     end
     if synonym
       nil
@@ -198,12 +206,12 @@ class Photo < ApplicationRecord
       candidate
     end
   end
-  
+
   # Sync photo object with its native source.  Implemented by descendents
   def sync
     nil
   end
-  
+
   def update(attributes)
     MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
       self.send("#{a}=", attributes.delete(a.to_s)) if attributes.has_key?(a.to_s)
