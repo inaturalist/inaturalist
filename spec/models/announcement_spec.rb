@@ -249,6 +249,44 @@ describe Announcement do
         expect( annc.targeted_to_user?( identifier ) ).to be false
       end
     end
+
+    describe "user_created_start_date" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.user_created_start_date ).to be_nil
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "includes users created after value" do
+        annc = create :announcement, user_created_start_date: 2.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be true
+      end
+
+      it "excludes users created before value" do
+        annc = create :announcement, user_created_start_date: 2.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 3.day.ago ) ) ).to be false
+      end
+    end
+
+    describe "user_created_end_date" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.user_created_end_date ).to be_nil
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "includes users created before value" do
+        annc = create :announcement, user_created_end_date: 1.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 2.day.ago ) ) ).to be true
+      end
+
+      it "excludes users created after value" do
+        annc = create :announcement, user_created_end_date: 2.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be false
+      end
+    end
   end
 
   describe "dismissals" do

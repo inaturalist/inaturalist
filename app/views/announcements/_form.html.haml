@@ -75,6 +75,12 @@
         order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
       = f.date_select :exclude_donor_end_date, use_month_names: month_names,
         order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
+      - users_start_year = 2008
+      - users_end_year = Time.now.year + 10
+      = f.date_select :user_created_start_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
+      = f.date_select :user_created_end_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
   .row
     .col-xs-12
       = f.text_area :body

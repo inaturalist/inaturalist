@@ -401,7 +401,9 @@ CREATE TABLE public.announcements (
     min_identifications integer,
     max_identifications integer,
     min_observations integer,
-    max_observations integer
+    max_observations integer,
+    user_created_start_date date,
+    user_created_end_date date
 );
 
 
@@ -11487,6 +11489,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250226225252'),
 ('20250306224627'),
 ('20250307000624'),
-('20250307004743');
+('20250307004743'),
+('20250311191217');
 
 
