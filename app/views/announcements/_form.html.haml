@@ -81,6 +81,10 @@
         order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
       = f.date_select :user_created_end_date, use_month_names: month_names,
         order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
+      = f.date_select :last_observation_start_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
+      = f.date_select :last_observation_end_date, use_month_names: month_names,
+        order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
   .row
     .col-xs-12
       = f.text_area :body

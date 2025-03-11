@@ -183,6 +183,13 @@ class Announcement < ApplicationRecord
       return user && !user.confirmed?
     end
 
+    if user && ( last_observation_start_date || last_observation_end_date )
+      last_observation = user.observations.order( "created_at DESC" ).first
+      return false if last_observation.nil?
+      return false if last_observation_start_date && last_observation.created_at < last_observation_start_date
+      return false if last_observation_end_date && last_observation.created_at > last_observation_end_date
+    end
+
     true
   end
 

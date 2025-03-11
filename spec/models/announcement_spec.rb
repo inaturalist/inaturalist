@@ -287,6 +287,34 @@ describe Announcement do
         expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be false
       end
     end
+
+    describe "last_observation_start_date" do
+      it "includes users with last observation after value" do
+        annc = create :announcement, last_observation_start_date: 2.days.ago
+        obs = create :observation, created_at: 1.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be true
+      end
+
+      it "excludes users with last observation before value" do
+        annc = create :announcement, last_observation_start_date: 2.days.ago
+        obs = create :observation, created_at: 3.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be false
+      end
+    end
+
+    describe "last_observation_end_date" do
+      it "includes users with last observation before value" do
+        annc = create :announcement, last_observation_end_date: 1.days.ago
+        obs = create :observation, created_at: 2.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be true
+      end
+
+      it "excludes users with last observation after value" do
+        annc = create :announcement, last_observation_end_date: 2.days.ago
+        obs = create :observation, created_at: 1.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be false
+      end
+    end
   end
 
   describe "dismissals" do
