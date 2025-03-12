@@ -1118,6 +1118,10 @@ bg:
     Ако не сте опитвали да създадете акаунт на %{site_name}, моля игнорирайте този имейл.
   devise_confirmation_instructions_please_click: |
     Моля, щракнете препратката по-долу за да потвърдите имейл адреса си:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Моля, щракнете върху връзката по-долу, за да потвърдите имейл адреса си. Ако не потвърдите имейла си
+    адрес, няма да можете да взаимодействате със съдържанието на други потребители.
   devise_confirmation_instructions_resend_instructions: |
     Трябва да имате работещ имейл адрес за да използвате iNaturalist. Когато сте създали акаунт, трябва да сте получили писмо за потвърждение с препратка, която да щракнете, за да потвърдите, че имате работещ имейл. Ако не сте получили такова, можете да изпратите ново потвърдително писмо от тук.
   devise_confirmation_instructions_send_confirmation_email: Изпращане на писмо за потвърждение
@@ -4312,6 +4316,31 @@ bg:
         become_a_monthly_supporter_of_inaturalist_caps: СТАНЕТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК НА INATURALIST
         thank_you_for_being_a_monthly_supporter: Благодарим Ви, че сте ежемесечен поддръжник!
         thank_you_for_being_a_monthly_supporter_caps: БЛАГОДАРИМ ВИ, ЧЕ СТЕ ЕЖЕМЕСЕЧЕН ПОДДРЪЖНИК!
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Кликнете тук, за да изпратите отново имейл за потвърждение
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Изпратен имейл за потвърждение
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Ето имейл адреса, на който ще изпратим потвърждението:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ако не получите имейла, ето няколко съвета:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ако все още не получавате имейла за потвърждение, моля, свържете се с нас на <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> за да можем да ви помогнем.
+      please_add_an_email_and_password: Моля, добавете имейл и парола, за да не загубите достъп до акаунта си
+      please_click_the_link_sent_to_email_to_confirm_html: Моля, кликнете върху връзката, изпратена до <span class="email">%{email}</span> , за да потвърдите имейл адреса си.
+      please_confirm_that_email_is_the_best_contact_html: Моля, потвърдете, че <span class="email">%{email}</span> е най-добрият начин да се свържем с вас. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Моля, потвърдете имейл адреса си, за да взаимодействате със съдържанието на други потребители и да получите достъп до определени страници. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Моля, потвърдете имейл адреса си <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Моля, потвърдете имейл адреса си, за да взаимодействате със съдържанието на други потребители
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Моля, потвърдете имейл адреса си, за да използвате тази страница
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Проверете за филтри, които сте направили, които може да премахнат имейлите ни от входящата ви поща #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Проверка на папката за спам
+      your_site_account_has_no_email: Твой %{site_name} акаунтът няма имейл адрес, свързан с него.
     guides:
       index:
         funding_html: |
@@ -4377,6 +4406,17 @@ bg:
         #earning speech privilege
         speech_privilege_notice: |
           Ще можете да изпращате нови съобщения след като добавите поне три проверими наблюдения или направите три разпознавания за други. Засега можете да четете и отговаряте на съобщения, които сте получили.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Ще можете да изпращате нови съобщения, след като потвърдите имейла си
+          адрес. Засега можете да четете и да отговаряте на съобщения, които други хора ви изпращат.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Ще можете да изпращате нови съобщения, след като потвърдите имейла си
+          и добави три проверими наблюдения или три идентификации
+          за други. Засега можете да четете и да отговаряте на съобщения, които други хора ви изпращат.
       show:
         privacy_notice_html: |
           Макар и съобщенията да са поверителни между Вас и получателя, персоналът на iNaturalist също може да ги вижда и ще ги прегледа, когато съобщенията са маркирани за модериране. Ако имате нужда от абсолютна поверителност, моля потърсете други средства за комуникация предлагащи надеждно криптиране.
@@ -5260,6 +5300,7 @@ bg:
         new_project_owner_must_be_a_manager: Новият собственик на проекта трябва да бъде администратор
         not_an_integer: трябва да е цяло число
         odd: трябва да е нечетно
+        requires_privilege_interaction: трябва да имате потвърден имейл адрес, за да направите това
       models:
         application:
           attributes:
