@@ -62,7 +62,7 @@ class Delayed::Backend::ActiveRecord::Job
   end
 
   def handler_yaml
-    @handler_yaml ||= (YAML.load(handler) rescue nil)
+    @handler_yaml ||= (YAML.unsafe_load(handler) rescue nil)
   end
 
   def acts_on_object

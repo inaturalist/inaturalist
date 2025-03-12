@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby "~> 3.0.4"
+ruby "~> 3.3.7"
 
 gem "rails", "6.1.7.9"
 
@@ -30,6 +30,7 @@ gem "chroma"
 gem "chronic", git: "https://github.com/stanhu/chronic.git", ref: "7ea371f"
 gem "cocoon" # JY: Added to support nested attributes for assessment_sections on assessments
 # gem "coffee-rails"
+gem "concurrent-ruby", "1.3.4"
 gem "daemons"
 gem "dalli"
 gem "dbf" # Needed for georuby shapefile support
@@ -80,10 +81,10 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem "omniauth-twitter"
 gem "optimist"
-gem "kt-paperclip"
+gem "kt-paperclip", git: "https://github.com/kreeti/kt-paperclip.git", ref: "f35ca58fad8ae4681b26240adc4eb43d2b0d767f"
 gem "parallel"
 gem "patron"
-gem "pg"
+gem "pg", "~> 1.5.9"
 gem "rqrcode", "~> 2.0"
 gem "rack-cors"
 gem "rack-mobile-detect"
@@ -98,7 +99,7 @@ gem "redcarpet"
 gem "rest-client", require: "rest_client"
 gem "rgeo"
 gem "rgeo-geojson"
-gem "rgeo-proj4", "~> 2.0.1"
+gem "rgeo-proj4", "~> 3.1.1"
 gem "rgeo-shapefile"
 gem "rinku", "~> 2.0"
 gem "riparian", git: "https://github.com/inaturalist/riparian.git", ref: "rails6"

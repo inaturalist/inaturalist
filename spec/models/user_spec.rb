@@ -261,7 +261,6 @@ describe User do
           "yahoo.com",
           "hotmail.com",
           "aol.com",
-          "mail.usf.edu",
           "icloud.com",
           "outlook.com",
           "comcast.net",

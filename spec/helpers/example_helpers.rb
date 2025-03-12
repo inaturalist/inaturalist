@@ -24,7 +24,7 @@ class String
   end
 
   def private_page_cached?
-    File.exists? private_page_cache_path(self)
+    File.exist? private_page_cache_path(self)
   end
 end
  

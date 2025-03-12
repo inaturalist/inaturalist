@@ -1,4 +1,4 @@
-FROM ruby:3.0
+FROM ruby:3.3-bullseye
 
 ENV RAILS_ENV=development
 
@@ -39,8 +39,8 @@ COPY --chown=inaturalist:inaturalist config/smtp.docker.yml /code/config/smtp.ym
 
 RUN npm run webpack
 
-RUN mkdir /code/public/assets
-RUN mkdir /code/public/attachments
+RUN mkdir -p /code/public/assets
+RUN mkdir -p /code/public/attachments
 RUN chown inaturalist:inaturalist /code/public/assets
 RUN chown inaturalist:inaturalist /code/public/attachments
 

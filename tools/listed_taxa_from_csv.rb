@@ -21,7 +21,7 @@ end
 
 input_path = File.expand_path(input_path)
 
-unless File.exists?(input_path)
+unless File.exist?(input_path)
   puts "#{input_path} doesn't exist"
   exit(0)
 end

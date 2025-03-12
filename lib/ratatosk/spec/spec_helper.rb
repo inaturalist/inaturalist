@@ -21,7 +21,7 @@ class CatalogueOfLife
     fname = "search_" + options.keys.sort_by(&:to_s).map{|k| "#{k}_#{options[k].to_s.gsub(/\W/, '_')}"}.flatten.join('_')
     fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/catalogue_of_life/#{fname}.xml")
     # puts "[DEBUG] fixture_path: #{fixture_path}"
-    if File.exists?(fixture_path)
+    if File.exist?(fixture_path)
       Nokogiri::XML( File.open( fixture_path ) )
     else
       puts "[DEBUG] Couldn't find CoL response fixture, you should probably do this:\n wget -O #{fixture_path} \"#{CatalogueOfLife.url_for_request('search', options)}\""

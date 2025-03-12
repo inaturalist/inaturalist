@@ -381,7 +381,7 @@ def test_place_kml(size = :default)
     [[0,0], [0,1]]
   end
   path = File.join(Dir::tmpdir, "test-place-kml-#{size}.kml")
-  if File.exists?( path )
+  if File.exist?( path )
     Rack::Test::UploadedFile.new( path, "application/vnd.google-earth.kml+xml", false )
   end
   kml = <<-XML

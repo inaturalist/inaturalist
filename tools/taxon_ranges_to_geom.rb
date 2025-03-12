@@ -3,7 +3,7 @@ saved = destroyed = errors = 0
 TaxonRange.find_each do |tr|
   puts "#{tr.id} (taxon #{tr.taxon_id})"
   
-  unless File.exists?(tr.range.path)
+  unless File.exist?(tr.range.path)
     puts "\t #{tr.range.path} doesn't exist, destroying and skipping"
     destroyed += 1
     tr.destroy

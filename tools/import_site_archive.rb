@@ -25,7 +25,7 @@ end
 
 start_time = Time.now
 @archive_path = ARGV[0]
-unless File.exists? @archive_path
+unless File.exist? @archive_path
   Optimist::die "Archive does not exist"
 end
 
