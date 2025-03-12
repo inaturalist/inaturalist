@@ -13,8 +13,7 @@
   end
 - content_for :extracss do
   :css
-    #new_announcement textarea,
-    .edit_announcement textarea {
+    form.announcement textarea {
       width: 100%;
       min-height: 300px;
     }
@@ -22,12 +21,16 @@
       max-width: inherit;
     }
     #announcement_site_ids, #announcement_locales { height: 150px; }
+    #announcement_locales,
+    .for-non-admin #announcement_ip_countries {
+      height: 286px;
+    }
 - content_for :extrajs do
   :javascript
     var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
     var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe }
   = javascript_include_tag "announcements/form"
-= form_for @announcement, :builder => BootstrapFormBuilder do |f|
+= form_for @announcement, :builder => BootstrapFormBuilder, html: { class: current_user.is_admin? ? "announcement for-admin" : "announcement for-non-admin" } do |f|
   .row
     .col-xs-12
       = f.error_messages
@@ -43,62 +46,66 @@
       = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
       = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
       = f.check_box :dismissible, label_after: true
-      .row
-        .col-xs-6
-          - if current_user.is_admin?
-            = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
-          - else
-            = f.hidden_field :site_ids
-        .col-xs-6
-          = f.select :locales, locale_options, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
     .col-xs-4
       = f.select :ip_countries, country_options, { include_blank: t( :any_place ) }, multiple: true
-      = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
-      - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
-      = f.select :target_group_partition, target_group_partitions,              |
-        { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
-        { disabled: target_group_partitions.empty? }                            |
-      %h4
-        %i.fa.fa-user
-        =t :users
-      .row
-        .col-xs-6= f.text_field :user_created_start_date, type: "date"
-        .col-xs-6= f.text_field :user_created_end_date, type: "date"
-      = f.check_box :prefers_target_staff, label_after: true
-      = f.check_box :prefers_target_unconfirmed_users, label_after: true
-      = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
-        = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
-        = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
-        = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+      - if current_user.is_admin?
+        .admin
+          = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
+      - else
+        = f.hidden_field :site_ids
     .col-xs-4
-      %h4
-        %i.icon-identification
-        =t :identifications
-      .row
-        .col-xs-6= f.text_field :min_identifications, type: "number", min: 0
-        .col-xs-6= f.text_field :max_identifications, type: "number", min: 0
-      %h4
-        %i.fa.fa-binoculars
-        =t :observations
-      .row
-        .col-xs-6= f.text_field :min_observations, type: "number", min: 0
-        .col-xs-6= f.text_field :max_observations, type: "number", min: 0
-      .row
-        .col-xs-6= f.text_field :last_observation_start_date, type: "date"
-        .col-xs-6= f.text_field :last_observation_end_date, type: "date"
-      %h4
-        %i.fa.fa-heart
-        =t :donations
-      .row
-        .col-xs-6= f.text_field :include_donor_start_date, type: "date"
-        .col-xs-6= f.text_field :include_donor_end_date, type: "date"
-      .row
-        .col-xs-6= f.text_field :exclude_donor_start_date, type: "date"
-        .col-xs-6= f.text_field :exclude_donor_end_date, type: "date"
-      = f.check_box :prefers_exclude_monthly_supporters, label_after: true
+      = f.select :locales, locale_options, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
   .row
     .col-xs-12
       = f.text_area :body
+  .row.stacked.upstacked
+    .col-xs-12
+      %details.panel.panel-default
+        %summary.panel-heading=t :more_options
+        .panel-body
+          %h4
+            %i.fa.fa-heart
+            =t :donations
+          .row
+            .col-xs-2= f.text_field :include_donor_start_date, type: "date"
+            .col-xs-2= f.text_field :include_donor_end_date, type: "date"
+            .col-xs-2= f.text_field :exclude_donor_start_date, type: "date"
+            .col-xs-2= f.text_field :exclude_donor_end_date, type: "date"
+            .col-xs-4
+              = f.check_box :prefers_exclude_monthly_supporters, label_after: true
+          %h4
+            %i.fa.fa-binoculars
+            =t :observations
+          .row
+            .col-xs-2= f.text_field :min_observations, type: "number", min: 0
+            .col-xs-2= f.text_field :max_observations, type: "number", min: 0
+            .col-xs-2= f.text_field :last_observation_start_date, type: "date"
+            .col-xs-2= f.text_field :last_observation_end_date, type: "date"
+          %h4
+            %i.icon-identification
+            =t :identifications
+          .row
+            .col-xs-2= f.text_field :min_identifications, type: "number", min: 0
+            .col-xs-2= f.text_field :max_identifications, type: "number", min: 0
+          %h4
+            %i.fa.fa-user
+            =t :users
+          .row
+            .col-xs-2= f.text_field :user_created_start_date, type: "date"
+            .col-xs-2= f.text_field :user_created_end_date, type: "date"
+            .col-xs-4
+              = f.check_box :prefers_target_staff, label_after: true
+              = f.check_box :prefers_target_unconfirmed_users, label_after: true
+              = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
+                = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
+                = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
+                = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+            .col-xs-4
+              = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
+              - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
+              = f.select :target_group_partition, target_group_partitions,              |
+                { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
+                { disabled: target_group_partitions.empty? }                            |
   .actions.buttons
     = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"
     = link_to t(:cancel), announcements_path, :class => "button"

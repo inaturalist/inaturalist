@@ -424,3 +424,7 @@ input[type="color"]:focus,
 label .fa-info-circle {
   margin-inline-start: 5px;
 }
+
+summary.panel-heading {
+  cursor: pointer;
+}

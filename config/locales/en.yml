@@ -1983,7 +1983,8 @@ en:
   edited_by_name_some_rights_reserved_html: |
     Edited by %{name}, some rights reserved (%{license})
   editing: Editing
-  editing_announcement: Editing announcement
+  # Title for a page to edit an announcement
+  editing_announcement_x: Editing announcement %{id}
   editing_custom_project_fields_for: Editing custom project fields for
   editing_observation_field: Editing observation field
   editing_observation_id: "Editing Observation %{obs_id}"
@@ -3231,6 +3232,8 @@ en:
   more_info_title: More Info
   more_journal_posts: More Journal Posts
   more_observations: More Observations
+  # Label for a button or section that shows additional options
+  more_options: More Options
   more_photos: More Photos
   more_than_a_week_ago: More than a week ago
   most_agree: most agree
@@ -9823,9 +9826,9 @@ en:
         prefers_exclude_monthly_supporters: Exclude monthly supporters
         clients: Clients
         # Start of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_start_date: Include donor start date
+        exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_end_date: Include donor end date
+        exclude_donor_end_date: Exclude donor end date
         # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Include donor start date
         # End of a date range that the viewer must have donated in to see the announcement

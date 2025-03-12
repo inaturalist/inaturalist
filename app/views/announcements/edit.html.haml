@@ -1,10 +1,9 @@
 - content_for(:title) do
-  = t(:edit)
-  = @announcement.id
+  = @title = t( :editing_announcement_x, id: @announcement.id )
 .container
   .row
     .col-xs-12
       %span.breadcrumbs
         = link_to t(:back), @announcement, class: "back crumb"
-      %h1= t :editing_announcement
+      %h1= @title
       = render :partial => 'form'
