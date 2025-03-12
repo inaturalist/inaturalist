@@ -1485,6 +1485,10 @@ lv:
         subject: Apstiprināšanas norādījumi
       reset_password_instructions:
         subject: 'Norādījumi paroles atjaunošanai'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Lūdzu, noklikšķiniet uz saites zemāk, lai apstiprinātu savu e-pasta adresi. Ja neapstiprināt savu e-pastu
+    adrese, jūs nevarēsiet mijiedarboties ar citu lietotāju saturu.
   devise_reset_password_instructions_hello_email: Sveiki! %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ja tas nebiji tu, lūdzu, neņem vērā šo e-pasta ziņu.
@@ -5463,6 +5467,31 @@ lv:
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Kļūsti par ikmēneša iNaturalist atbalstītāju
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Noklikšķiniet šeit, lai atkārtoti nosūtītu apstiprinājuma e-pastu
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Nosūtīts apstiprinājuma e-pasts
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Šeit ir e-pasta adrese, uz kuru mēs nosūtīsim apstiprinājumu:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ja nesaņemat e-pasta ziņojumu, tālāk ir sniegti daži padomi.
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ja joprojām nesaņemat apstiprinājuma e-pastu, lūdzu, sazinieties ar mums pa tālruni <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> tāpēc mēs varam jums palīdzēt.
+      please_add_an_email_and_password: Lūdzu, pievienojiet e-pasta adresi un paroli, lai nezaudētu piekļuvi savam kontam
+      please_click_the_link_sent_to_email_to_confirm_html: Lūdzu, noklikšķiniet uz saites, kas nosūtīta uz <span class="email">%{email}</span> lai apstiprinātu savu e-pasta adresi.
+      please_confirm_that_email_is_the_best_contact_html: Lūdzu, apstipriniet, ka <span class="email">%{email}</span> ir labākais veids, kā ar jums sazināties. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Lūdzu, apstipriniet savu e-pasta adresi, lai mijiedarbotos ar citu lietotāju saturu un piekļūtu noteiktām lapām. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Lūdzu, apstipriniet savu e-pasta adresi <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Lūdzu, apstipriniet savu e-pasta adresi, lai mijiedarbotos ar citu lietotāju saturu
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Lūdzu, apstipriniet savu e-pasta adresi, lai izmantotu šo lapu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Pārbaudiet, vai nav jūsu veikto filtru, kas varētu noņemt mūsu e-pasta ziņojumus no jūsu iesūtnes #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Pārbaudiet surogātpasta mapi
+      your_site_account_has_no_email: Tavs %{site_name} Kontam nav ar to saistītas e-pasta adreses.
     flags:
       show:
         flaggable_content_desc: |
@@ -5656,6 +5685,17 @@ lv:
         #earning speech privilege
         speech_privilege_notice: |
           Kad būsi pievienojis vismaz trīs pierādāmus novērojumus vai identificējis vismaz trīs citu lietotāju novērojumus, iegūsi iespēju nosūtīt citiem ziņas. Pagaidām ir iespējams tikai izlasīt un atbildēt uz citu lietotāju ziņām.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Pēc e-pasta apstiprināšanas varēsit nosūtīt jaunus ziņojumus
+          adrese. Pagaidām jūs varat lasīt un atbildēt uz ziņojumiem, ko jums sūta citas personas.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Pēc e-pasta apstiprināšanas varēsit nosūtīt jaunus ziņojumus
+          adresi un pievienoja trīs pārbaudāmus novērojumus vai trīs identifikācijas
+          citiem. Pagaidām jūs varat lasīt un atbildēt uz ziņojumiem, ko jums sūta citas personas.
       show:
         flag_notice_html: |
           %{date} tu pievienoji šai sarunai karodziņu. Karodziņš tiks salgabāts pat tad, ja tu izdzēsīsi savu sarunas kopiju, tāpēc, ja vairs nevēlies uz to skatīties, vari to izdzēst.
@@ -7144,6 +7184,7 @@ lv:
         requires_privilege_speech: |
           lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
         requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
+        requires_privilege_interaction: lai to izdarītu, ir jābūt apstiprinātai e-pasta adresei
         taken: jau ir aizņemts
         too_long:
           zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)
