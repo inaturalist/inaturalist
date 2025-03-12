@@ -1107,6 +1107,10 @@ kk:
         subject: Электрондық поштаны өзгерту сұралды
       reset_password_instructions:
         subject: 'Құпия сөзді қалпына келтіру нұсқаулары'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Электрондық пошта мекенжайын растау үшін төмендегі сілтемені басыңыз. Егер электрондық поштаны растамасаңыз
+    адрес, басқа пайдаланушылардың мазмұнымен өзара әрекеттесе алмайсыз.
   devise_confirmation_instructions_send_confirmation_email: Растау электрондық хатын жіберу
   devise_email_changed_you_requested: Сіз %{old_email} орнына %{new_email} өзгертуді сұрадыңыз.
   devise_email_changed_you_will_receive: |
@@ -3412,6 +3416,31 @@ kk:
   views:
     donate:
       post_donate_social_media_text: Мен iNaturalist-ті қолдаймын, себебі...
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Растау электрондық поштасын қайта жіберу үшін осы жерді басыңыз
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Жіберілген растау электрондық поштасы
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Мұнда растауды жіберетін электрондық пошта мекенжайы берілген:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Егер электрондық поштаны алмасаңыз, мына жерде кейбір кеңестер берілген:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Егер растау электрондық поштасын әлі алмаған болсаңыз, бізге хабарласыңыз <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> сондықтан біз сіздерге көмектесе аламыз.
+      please_add_an_email_and_password: Тіркелгіңізге қатынасу мүмкіндігін жоғалтпау үшін электрондық пошта мен құпия сөзді қосуыңызды сұраймыз
+      please_click_the_link_sent_to_email_to_confirm_html: Жіберілген сілтемені басыңыз <span class="email">%{email}</span> электрондық пошта мекенжайын растау үшін.
+      please_confirm_that_email_is_the_best_contact_html: Осыны растауыңызды сұраймын <span class="email">%{email}</span> сізбен байланысудың ең жақсы жолы. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Басқа пайдаланушылардың мазмұнымен өзара әрекеттесу және белгілі бір беттерге қатынасу үшін электрондық пошта мекенжайыңызды растауыңызды сұраймыз. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Электрондық пошта мекенжайыңызды растауыңызды сұраймын <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Басқа пайдаланушылардың мазмұнымен өзара әрекеттесу үшін электрондық пошта мекенжайын растауыңызды сұраймыз
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Осы бетті пайдалану үшін электрондық пошта мекенжайын растауыңызды сұраймын
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Кіріс жәшігінен электрондық хаттарымызды жоюға болатын кез келген сүзгілерді тексеріңіз #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Спам қалтасын тексеру
+      your_site_account_has_no_email: Сіздің %{site_name} тіркелгіде онымен байланысты электрондық пошта мекенжайы жоқ.
     geo_model:
       explain:
         unthresholded_map:
@@ -3439,6 +3468,19 @@ kk:
         name: Атауы
         show: Көрсету
         full_taxonomy: Толық таксономия
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Электрондық поштаны растағаннан кейін жаңа хабарлар жібере аласыз
+          мекен-жайын көрсетiңiз. Қазір басқа адамдар сізге жіберетін хабарды оқып, жауап беруге болады.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Электрондық поштаны растағаннан кейін жаңа хабарлар жібере аласыз
+          мекен-жайы және үш тексерілген бақылау немесе үш сәйкестендіру қосылған
+          басқалары үшін. Қазір басқа адамдар сізге жіберетін хабарды оқып, жауап беруге болады.
     observations:
       community_id:
         agreement: Келісім
@@ -4183,6 +4225,7 @@ kk:
         requires_privilege_speech: |
           үш анықталатын бақылау немесе басқалар үшін үш идентификация болуы керек
         requires_privilege_organizer: мұны істеу үшін 50 анықталатын бақылау болуы керек
+        requires_privilege_interaction: бұл үшін расталған электрондық пошта мекенжайы болуы тиіс
         too_long:
           one: тым ұзын (ең көбі %{count} таңба)
           other: тым ұзын (ең көбі %{count} таңба)
