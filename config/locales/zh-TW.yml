@@ -1522,6 +1522,10 @@ zh-TW:
     如果您沒有註冊 %{site_name} 帳號，請忽略此電子郵件。
   devise_confirmation_instructions_please_click: |
     請按此鏈結確認您的電子郵件地址：
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    請點擊下面的連結以確認您的電子郵件位址。如果您不確認您的電子郵件
+    位址，您將無法與其他使用者的內容互動。
   devise_confirmation_instructions_resend_instructions: |
     您必須有一個有效的的電子信箱來使用愛自然。當您註冊了一個帳號，您應會收到一封內含連結的驗證信，並點選連結以驗證您的電子信箱是有效的，但如果您未收到，您可以在此寄送另一封驗證信。
   devise_confirmation_instructions_send_confirmation_email: 傳送確認電子郵件
@@ -5682,6 +5686,31 @@ zh-TW:
         thank_you_for_being_a_monthly_supporter: 感謝您成為每月贊助者！
       temporarily_unavailable: |
         感謝您對 iNaturalist 的支持！在我們更新捐款系統期間，暫時無法向 iNaturalist 捐款。請等一下再回來看看。
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: 按兩下此處重新發送確認電子郵件
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: 已發送確認電子郵件
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        以下是我們將發送確認的電子郵件地址：
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        如果您沒有收到電子郵件，以下是一些提示：
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: 如果您仍然沒有收到確認電子郵件，請通過以下方式與我們聯繫 <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 因此，我們可以為您提供説明。
+      please_add_an_email_and_password: 請添加電子郵件和密碼，以免失去對帳戶的訪問許可權
+      please_click_the_link_sent_to_email_to_confirm_html: 請點擊連結發送至 <span class="email">%{email}</span> 以確認您的電子郵件位址。
+      please_confirm_that_email_is_the_best_contact_html: 請確認 <span class="email">%{email}</span> 是與您聯繫的最佳方式。 #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: 請確認您的電子郵件位址，以便與其他使用者的內容互動並訪問某些頁面。 #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: 請確認您的電子郵件位址 <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: 請確認您的電子郵件位址以與其他使用者的內容互動
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: 請確認您的電子郵件位址以使用此頁面
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: 檢查您所做的任何過濾器，這些過濾器可能會從您的收件匣中刪除我們的電子郵件 #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: 檢查您的垃圾郵件資料夾
+      your_site_account_has_no_email: 你 %{site_name} account 沒有與之關聯的電子郵件位址。
     flags:
       show:
         flaggable_content_desc: |
@@ -5891,6 +5920,17 @@ zh-TW:
         #earning speech privilege
         speech_privilege_notice: |
           在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          確認電子郵件後，您將能夠發送新消息
+          位址。現在，您可以閱讀和回復其他人發送給您的消息。
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          確認電子郵件後，您將能夠發送新消息
+          位址，並添加了 3 個可驗證的觀察結果或 3 個標識
+          對於其他人來說。現在，您可以閱讀和回復其他人發送給您的消息。
       show:
         flag_notice_html: |
           在 %{date} 時您標記了此對話。這個標記即便您刪除此對話的副本後，還會存在，所以如果您不想再看到這個的話，刪除它是沒問題的。
@@ -7381,6 +7421,7 @@ zh-TW:
         requires_privilege_speech: |
           必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
         requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
+        requires_privilege_interaction: 必須有一個經過驗證的電子郵件位址才能執行此作
         taken: 已被使用
         too_long:
           other: 太長（最多 %{count} 個字元）
