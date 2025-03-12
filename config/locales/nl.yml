@@ -1460,7 +1460,7 @@ nl:
   curator_application_you_should_apply_if_you_can_behave: |
     Je toont het juiste gedrag op iNaturalist en je houd je aan de Gemeenschapsrichtlijnen. Als je de curatoriale rechten hebt wordt verwacht dat je een voorbeeldige gebruiker van iNaturalist zult zijn.
   #Label for a menu item linking to a help page aimed at curators
-  curator_guide: Curator gids
+  curator_guide: Curatorgids
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
   curators: Curatoren
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
@@ -6404,6 +6404,9 @@ nl:
       click_here_to_resend_a_confirmation_email: Klik hier om de bevestigingsmail opnieuw te verzenden.
       #message displayed after users trigger sending a email to confirm their email address
       confirmation_email_sent: Bevestigingsmail verzonden
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Als je de e-mail niet ontvangt, zijn hier enkele tips:
       please_add_an_email_and_password: Voeg een e-mailadres en wachtwoord toe zodat jij je toegang tot je account niet verliest
       please_click_the_link_sent_to_email_to_confirm_html: Klik op de link die is verzonden naar <span class="email">%{email}</span> om jouw e-mailadres te bevestigen.
       please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen. #message requesting users confirm their email address to be able to engage with other users
