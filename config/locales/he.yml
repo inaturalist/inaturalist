@@ -1704,6 +1704,10 @@ he:
     אם לא נרשמת לחשבון @vow_or_con{vow:an|a} %{site_name}, נא להתעלם ממייל זה.
   devise_confirmation_instructions_please_click: |
     נא ללחוץ על הקישור להלן לאישור כתובת הדוא"ל שלך:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    אנא לחץ על הקישור למטה כדי לאשר את כתובת הדוא"ל שלך. אם לא תאשר את הדוא"ל שלך
+    כתובת, לא תוכל לקיים אינטראקציה עם תוכן של משתמשים אחרים.
   devise_confirmation_instructions_resend_instructions: |
     דרושה כתובת דוא"ל תקינה בשביל להשתמש ב-iNaturalist. כאשר נרשמת לחשבון, היית צריכ.ה לקבל מייל אישור עם קישור לאשר שכתובת הדוא"ל שלך עובדת, אבל אם לא קיבלת אפשר לשלוח לעצמך מייל אישור נוסף כאן.
   devise_confirmation_instructions_send_confirmation_email: שליחת דוא"ל לאישור
@@ -6352,9 +6356,28 @@ he:
         תודה על התעניינותך בתמיכה ב-iNaturalist! תרומות ל-iNaturalist אינן זמינות באופן בזמני בזמן שאנחנו מעדכנים את מערכת התרומות שלנו. נא לבדוק שוב בקרוב.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: יש ללחוץ כאן כדי לשלוח שוב דוא"ל אימות
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: דוא"ל אישור נשלח
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        הנה כתובת הדוא"ל שאליה נשלח את האישור:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        אם אינך מקבל את הדוא"ל, הנה כמה טיפים:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: אם עדיין אינך מקבל את דוא"ל האישור, אנא צור איתנו קשר בכתובת <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> כדי שנוכל לסייע לך.
       please_add_an_email_and_password: נא להוסיף דוא"ל וסיסמה על מנת שלא תאבד.י גישה לחשבון שלך
       please_click_the_link_sent_to_email_to_confirm_html: נא ללחוץ על הקישור שנשלח אל <span class="email">%{email}</span> לאישור כתובת הדוא"ל שלך.
       please_confirm_that_email_is_the_best_contact_html: נא לאשר כי <span class="email">%{email}</span> היא הדרך הטובה ביותר ליצור עמך קשר. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: אנא אשר את כתובת הדוא"ל שלך כדי לקיים אינטראקציה עם תוכן של משתמשים אחרים ולגשת לדפים מסוימים. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: אנא אשר את כתובת הדוא"ל שלך <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: אנא אשר את כתובת הדוא"ל שלך כדי לקיים אינטראקציה עם תוכן של משתמשים אחרים
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: אנא אשר את כתובת הדוא"ל שלך כדי להשתמש בדף זה
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: בדוק אם יש מסננים שיצרת שעשויים להסיר את הודעות הדוא"ל שלנו מתיבת הדואר הנכנס שלך #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: בדוק את תיקיית דואר הזבל שלך
       your_site_account_has_no_email: לחשבון ה-%{site_name} שלך אין כתובת דוא"ל מקושרת.
     flags:
       show:
@@ -6634,6 +6657,17 @@ he:
         #earning speech privilege
         speech_privilege_notice: |
           תוכל.י לשלוח הודעות חדשות אחרי שהוספת שלוש תצפיות בנות-אימות או שלושה זיהויים עבור אחרים. נכון לעכשיו באפשרותך לקרוא הודעות מאחרים ולהשיב.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          תוכל לשלוח הודעות חדשות לאחר שתאשר את הדואר האלקטרוני שלך
+          כתובת. לעת עתה, באפשרותך לקרוא ולהשיב להודעות שאנשים אחרים שולחים לך.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          תוכל לשלוח הודעות חדשות לאחר שתאשר את הדואר האלקטרוני שלך
+          כתובת, והוסיף שלוש תצפיות מאומתות או שלושה זיהויים
+          לאחרים. לעת עתה, באפשרותך לקרוא ולהשיב להודעות שאנשים אחרים שולחים לך.
       show:
         flag_notice_html: |
           סימנת תכתובת זו ב-%{date}. הסימון יישאר אפילו אם תמחק.י את העותק שלך של התכתובת, לכן זה בטיחותי לעשות זאת אם ברצונך לא לראות את זה יותר.
@@ -8447,6 +8481,7 @@ he:
         requires_privilege_speech: |
           צריכ.ה לפחות שלוש תצפיות בנות-אימות או שלושה זיהויים על תצפיות של אחרים כדי לעשות את זה
         requires_privilege_organizer: צריכ.ה לפחות 50 תצפיות בנות-אימות כדי לעשות זאת
+        requires_privilege_interaction: דרושה כתובת דוא"ל מאושרת לשם כך
         taken: כבר תפוס
         too_long:
           one: ארוך מדי (המקסימום הוא תו אחד)
