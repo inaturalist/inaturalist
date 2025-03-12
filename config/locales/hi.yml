@@ -15,9 +15,52 @@ hi:
   x_flags_resolved_html:
     one: "<span class='count'>%{count}</span> शिकायत समाधान"
     other: "<span class='count'>%{count}</span> शिकायत समाधान"
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    कृपया अपने ईमेल पते की पुष्टि करने के लिए नीचे दिए गए लिंक पर क्लिक करें। यदि आप अपने ईमेल की पुष्टि नहीं करते हैं
+    पता, आप अन्य उपयोगकर्ताओं की सामग्री के साथ बातचीत करने में सक्षम नहीं होंगे।
   lexicons:
     malayalam: मलयाळम
     tamil: तमिऴ्
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: पुष्टिकरण ईमेल पुनः भेजने के लिए यहां क्लिक करें
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: पुष्टिकरण ईमेल भेजा गया
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        यहां वह ईमेल पता है जिसे हम पुष्टिकरण भेजेंगे:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        यदि आपको ईमेल प्राप्त नहीं होता है, तो यहां कुछ युक्तियां दी गई हैं:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: यदि आपको अभी भी पुष्टिकरण ईमेल प्राप्त नहीं हो रहा है, तो कृपया हमसे संपर्क करें <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> तो हम आपकी सहायता कर सकते हैं।
+      please_add_an_email_and_password: कृपया एक ईमेल और पासवर्ड जोड़ें ताकि आप अपने खाते तक पहुंच न खोएं
+      please_click_the_link_sent_to_email_to_confirm_html: कृपया भेजे गए लिंक पर क्लिक करें <span class="email">%{email}</span> अपने ईमेल पते की पुष्टि करने के लिए।
+      please_confirm_that_email_is_the_best_contact_html: कृपया पुष्टि करें कि <span class="email">%{email}</span> आपसे संपर्क करने का सबसे अच्छा तरीका है। #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: कृपया अन्य उपयोगकर्ताओं की सामग्री के साथ बातचीत करने और कुछ पृष्ठों तक पहुंचने के लिए अपने ईमेल पते की पुष्टि करें। #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: कृपया अपने ईमेल पते की पुष्टि करें <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: अन्य उपयोगकर्ताओं की सामग्री के साथ बातचीत करने के लिए कृपया अपने ईमेल पते की पुष्टि करें
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: कृपया इस पृष्ठ का उपयोग करने के लिए अपने ईमेल पते की पुष्टि करें
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: आपके द्वारा किए गए किसी भी फ़िल्टर की जाँच करें जो आपके इनबॉक्स से हमारे ईमेल निकाल सकता है #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: अपना स्पैम फ़ोल्डर जांचें
+      your_site_account_has_no_email: तुम्हारा %{site_name} खाते के साथ कोई ईमेल पता संबद्ध नहीं है।
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          अपना ईमेल कन्फ़र्म करने के बाद आप नए संदेश भेज पाएँगे
+          पता। अभी के लिए, आप अन्य लोगों द्वारा आपको भेजे गए संदेश को पढ़ सकते हैं और उनका उत्तर दे सकते हैं.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          अपना ईमेल कन्फ़र्म करने के बाद आप नए संदेश भेज पाएँगे
+          पता, और तीन सत्यापन योग्य टिप्पणियों या तीन पहचानों को जोड़ा
+          दूसरों के लिए। अभी के लिए, आप अन्य लोगों द्वारा आपको भेजे गए संदेश को पढ़ सकते हैं और उनका उत्तर दे सकते हैं.
   number:
     format:
       significant: false
@@ -26,3 +69,7 @@ hi:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: ऐसा करने के लिए एक कन्फर्म ईमेल पता होना चाहिए
