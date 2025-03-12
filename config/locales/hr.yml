@@ -1689,6 +1689,10 @@ hr:
     Ako se niste registrirali za %{site_name} račun, molimo ignorirajte ovaj email.
   devise_confirmation_instructions_please_click: |
     Molimo kliknite na poveznicu ispod kako biste potvrdili svoju email adresu:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kliknite na donju poveznicu kako biste potvrdili svoju adresu e-pošte. Ako ne potvrdite svoju e-poštu
+    nećete moći komunicirati sa sadržajem drugih korisnika.
   devise_confirmation_instructions_resend_instructions: |
     Morate imati ispravnu email adresu za korištenje iNaturalist. Kada ste se registrirali za račun, trebali ste primiti potvrdu putem emaila s poveznicom za potvrdu ispravnosti vaše email adrese, ali ako niste, možete si poslati još jedan potvrđujući email ovdje.
   devise_confirmation_instructions_send_confirmation_email: Pošalji potvrđujući email
@@ -6551,9 +6555,28 @@ hr:
         iNaturalist je privremeno nedostupno dok ažuriramo naše sustave za donacije. Molimo te da se uskoro vratiš.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klikni ovdje za ponovno slanje emaila za potvrdu
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Poslana e-pošta s potvrdom
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Evo adrese e-pošte na koju ćemo poslati potvrdu:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ako ne primite e-poštu, evo nekoliko savjeta:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ako i dalje ne primate e-poruku s potvrdom, obratite nam se na <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> tako da vam možemo pomoći.
       please_add_an_email_and_password: Molimo dodaj email i lozinku kako ne bi izgubio pristup svom računu
       please_click_the_link_sent_to_email_to_confirm_html: Molimo klikni na link poslan na <span class="email">%{email}</span> kako bi potvrdio svoju email adresu.
       please_confirm_that_email_is_the_best_contact_html: Molimo potvrdi da je <span class="email">%{email}</span> najbolji način za kontaktiranje tebe. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Potvrdite svoju adresu e-pošte za interakciju sa sadržajem drugih korisnika i pristup određenim stranicama. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Potvrdite svoju adresu e-pošte <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Potvrdite svoju adresu e-pošte za interakciju sa sadržajem drugih korisnika
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Potvrdite svoju adresu e-pošte da biste koristili ovu stranicu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Provjerite postoje li filtri koje ste napravili i koji bi mogli ukloniti naše e-poruke iz vaše pristigle pošte #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Provjera mape neželjene pošte
       your_site_account_has_no_email: Tvoj %{site_name} račun nema pridruženu email adresu.
     flags:
       show:
@@ -6911,6 +6934,17 @@ hr:
           Moći ćete slati nove poruke nakon što dodate tri
           provjerljive opažanja ili tri identifikacije za druge. Za sada
           možete čitati i odgovarati na poruke koje vam drugi šalju.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Moći ćete slati nove poruke nakon što potvrdite svoju e-poštu
+          adresa. Za sada možete čitati i odgovarati na poruke koje vam drugi ljudi šalju.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Moći ćete slati nove poruke nakon što potvrdite svoju e-poštu
+          adrese i dodala tri provjerljiva zapažanja ili tri identifikacije
+          za druge. Za sada možete čitati i odgovarati na poruke koje vam drugi ljudi šalju.
       show:
         flag_notice_html: |
           Označili ste ovaj razgovor na %{date}. Oznaka će ostati čak
@@ -9185,6 +9219,7 @@ hr:
           mora imati tri provjerljive opažanja ili tri identifikacije
           da bi drugi mogli to učiniti
         requires_privilege_organizer: mora imati 50 provjerljivih opažanja da bi to učinio
+        requires_privilege_interaction: Za to morate imati potvrđenu adresu e-pošte
         taken: je već zauzeto
         too_long:
           one: je predugo (maksimalno je %{count} znak)
