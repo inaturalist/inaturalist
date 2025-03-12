@@ -184,15 +184,12 @@ class Announcement < ApplicationRecord
     end
 
     if user && ( last_observation_start_date || last_observation_end_date )
-      last_observation = Observation.elastic_query(
-        user_id: user.id,
-        order: "desc",
-        order_by: "created_at",
-        per_page: 1
-      ).first
-      return false if last_observation.nil?
-      return false if last_observation_start_date && last_observation.created_at < last_observation_start_date
-      return false if last_observation_end_date && last_observation.created_at > last_observation_end_date
+      last_observation_created_at = user.last_observation_created_at
+      # if the user has never created an observation, don't show the announcement
+      return false unless last_observation_created_at
+      # if the user has created an observation, but it's outside the date range, don't show
+      return false if last_observation_start_date && last_observation_created_at < last_observation_start_date
+      return false if last_observation_end_date && last_observation_created_at > last_observation_end_date
     end
 
     true
