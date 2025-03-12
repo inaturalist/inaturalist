@@ -5,6 +5,12 @@
   end
   sorted_locales = I18n.t( "locales", locale: :en ).keys.sort_by { I18n.t( "locales.#{_1}", default: t( "locales.#{_1}" ) ).downcase }
   locale_options = sorted_locales.map { | locale | [t( "locales.#{locale}", default: t( "locales.#{locale}" ) ), locale] }
+  country_options = Place::COUNTRIES_BY_NAME.values.select { | c | !c[:code].blank? }.map do | c |
+    [
+      Place.localized_name( c[:name], { admin_level: Place::COUNTRY_LEVEL } ),
+      c[:code]
+    ]
+  end
 - content_for :extracss do
   :css
     #new_announcement textarea,
@@ -85,7 +91,7 @@
         order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
       = f.date_select :last_observation_end_date, use_month_names: month_names,
         order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
-      = f.select :ip_countries, Place::COUNTRIES_BY_NAME.values.select { | c | !c[:code].blank? }.map { |c| [t( c[:name], scope: "places_name", default: c[:name] ), c[:code]] }, { include_blank: t( :all ) }, multiple: true
+      = f.select :ip_countries, country_options, { include_blank: t( :any_place ) }, multiple: true
   .row
     .col-xs-12
       = f.text_area :body

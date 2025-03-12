@@ -364,14 +364,21 @@ class Place < ApplicationRecord
   # side-effect of the name not converting to an underscored version properly.
   # If that fails and we try to return I18n.t( "places_name." ), we'll actually
   # return a rather large hash instead of a string
-  def translated_name( locale = I18n.locale, options = {} )
-    default = options.delete( :default ) || name
-    name_key = name.parameterize.underscore
-    name_key = name.strip.gsub( /\s+/, "_" ) if name_key.blank?
+  def self.translated_name( place_name, options = {} )
+    locale = options[:locale] || I18n.locale
+    default = options.delete( :default ) || place_name
+    name_key = place_name.parameterize.underscore
+    name_key = place_name.strip.gsub( /\s+/, "_" ) if name_key.blank?
     t_name = I18n.t( "places_name.#{name_key}", locale: locale, default: nil )
     return default if t_name.blank? || !t_name.is_a?( String )
 
     t_name
+  end
+
+  def translated_name( locale = I18n.locale, options = {} )
+    Place.translated_name( name, options.merge(
+      locale: locale
+    ) )
   end
 
   # Calculate and cache the bbox area for place area size queries
@@ -1010,12 +1017,16 @@ class Place < ApplicationRecord
     end
   end
 
-  def localized_name
-    if admin_level == COUNTRY_LEVEL
-      translated_name
+  def self.localized_name( place_name, options = {} )
+    if options[:admin_level] == COUNTRY_LEVEL
+      translated_name( place_name, options )
     else
-      display_name
+      options[:display_name] || place_name
     end
+  end
+
+  def localized_name
+    Place.localized_name( name, { admin_leve: admin_leve, display_name: display_name } )
   end
 
   def area_km2
