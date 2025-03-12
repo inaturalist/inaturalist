@@ -73,9 +73,8 @@ class Announcement < ApplicationRecord
     where( "? = ANY (locales)", locale )
   }
 
-  before_save :compact_locales
   before_save :clean_target_group
-  before_validation :compact_clients
+  before_validation :compact_array_attributes
 
   after_save :sync_announcement_dismissals
 
@@ -97,12 +96,10 @@ class Announcement < ApplicationRecord
     "user-seen-ann-#{id}"
   end
 
-  def compact_locales
-    self.locales = ( locales || [] ).reject( &:blank? ).compact
-  end
-
-  def compact_clients
+  def compact_array_attributes
     self.clients = ( clients || [] ).reject( &:blank? ).compact
+    self.locales = ( locales || [] ).reject( &:blank? ).compact
+    self.ip_countries = ( ip_countries || [] ).reject( &:blank? ).compact
   end
 
   def clean_target_group

@@ -50,6 +50,13 @@ describe Announcement do
     end.not_to raise_error
   end
 
+  describe "saving" do
+    it "removes blank values from ip_countries" do
+      a = create( :announcement, ip_countries: ["US", ""] )
+      expect( a.ip_countries ).to eq ["US"]
+    end
+  end
+
   describe "targeted_to_user" do
     it "targets admins with prefers_target_staff" do
       a = Announcement.make!( prefers_target_staff: true )

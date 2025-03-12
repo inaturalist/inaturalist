@@ -109,3 +109,7 @@
   .actions.buttons
     = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"
     = link_to t(:cancel), announcements_path, :class => "button"
+    - if f.object&.persisted?
+      = link_to f.object, :data => {:confirm => t(:are_you_sure?)}, :method => :delete, class: "btn btn-danger btn-sm pull-right" do
+        %i.fa.fa-trash
+        = t(:destroy)
