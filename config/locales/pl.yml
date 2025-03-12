@@ -45,6 +45,21 @@ pl:
     few: '<span class="count">%{count}</span> OZNACZENIA'
     many: '<span class="count">%{count}</span> OZNACZEŃ'
     other: '<span class="count">%{count}</span> OZNACZENIA'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTYFIKATOR'
+    #Number of people who have added identifications
+    few: '<span class="count">%{count}</span> IDENTYFIKATORY'
+    #Number of people who have added identifications
+    many: '<span class="count">%{count}</span> IDENTYFIKATORÓW'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTYFIKATORÓW'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID stworzone dla innych'
+    few: '<span class="count">%{count}</span> ID stworzonych dla innych'
+    many: '<span class="count">%{count}</span> ID stworzonych dla innych'
+    other: '<span class="count">%{count}</span> ID stworzonych dla innych'
   x_languages:
     one: "%{count} język"
     few: "%{count} języki"
@@ -122,6 +137,11 @@ pl:
     few: "<span class='count'>%{count}</span> przejrzane obserwacje"
     many: "<span class='count'>%{count}</span> przejrzanych obserwacji"
     other: "<span class='count'>%{count}</span> przejrzanej obserwacji"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERWATOR'
+    few: '<span class="count">%{count}</span> OBSERWATORÓW'
+    many: '<span class="count">%{count}</span> OBSERWATORÓW'
+    other: '<span class="count">%{count}</span> OBSERWATORÓW'
   x_others:
     one: "1 inna osoba"
     few: "%{count} inne osoby"
@@ -132,6 +152,11 @@ pl:
     few: "%{count} osoby"
     many: "%{count} osób"
     other: "%{count} osoby"
+  x_people_html:
+    one: '<span class="count">%{count}</span> osoba'
+    few: '<span class="count">%{count}</span> osoby'
+    many: '<span class="count">%{count}</span> osób'
+    other: '<span class="count">%{count}</span> osób'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} osób</strong> pomogło %{user} z <strong>%{y} oznaczeniami</strong>"
   x_photos:
     one: "%{count} zdjęcie"
@@ -270,6 +295,12 @@ pl:
   about_this_bioblitz: O tym bioblitzu
   about_this_map: O tej mapie
   about_this_project: O tym projekcie
+  about_trips2_html: |
+    <h4>
+    Wycieczki pozwalają na zbieranie danych o występujących i niewystępujących gatunkach poprzez dodanie szerszego kontekstu do obserwacji
+    </h4>
+    <p>
+    <strong>Dlaczego</strong>Dane występowania/niewystępowania zawierają informacje przydatne do naukowych analiz, na przykład modelowania zasięgu gatunków (zwykłe obserwacje dostępne na iNaturalist są danymi dowodzącymi wyłącznie obecności danego gatunku).</p> <p><strong>Jak</strong> Wycieczka dodaje szerszy kontekst do twoich obserwacji poprzez odnotowywanie:</p> <ul> <li><strong>Czego</strong> szukałeś (twoja lista)</li> <li><strong>Gdzie</strong> szukałeś (obszar poszukiwań)</li> <li><strong>Kiedy</strong> szukałeś (czas poszukiwań)</li> </ul> <p>Gatunki z twojej listy, które udało ci się zaobserwować na określonym obszarze i w określonym czasie poszukiwań są oznaczone jako obecne. Gatunki, których nie udało ci się znaleźć, są oznaczone jako niewystępujące. Kliknij 'Generuj tabelę z występującymi i niewystępującymi podczas wycieczek', aby utworzyć tabelę występujących-niewystępujących gatunków z wycieczek i powiązanych obserwacji.<a href='%{url}'>Dowiedz się więcej</a></p>
   about_trusting_projects: O ufaniu projektom
   about_trusting_projects_options_any: Wszystkich swoich obserwacji w tym projekcie
   about_trusting_projects_options_any_desc: |-
@@ -322,6 +353,7 @@ pl:
   active_taxon_status: Aktywny
   active_users: Aktywni użytkownicy
   activity: Aktywność
+  activity_on_a_flag_for_x: Aktywność na zgłoszeniu dla %{x}
   adapted_by_name_from_a_work_by_original: "Zaadaptowany przez %{name} na podstawie pracy autorstwa %{original}"
   add: Dodaj
   add_a_batch_of_observations: Dodaj serię obserwacji
@@ -329,6 +361,8 @@ pl:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Dodaj listę punktowaną
   add_a_comment: Dodaj komentarz
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Dodaj status ochronny
   add_a_field: Dodaj pole
   add_a_flag: Dodaj zgłoszenie
   #Tool tip for a button that adds a link to a text area
@@ -388,6 +422,7 @@ pl:
   add_notes_about_this_taxon: Dodaj informacje o tym taksonie w tej lokalizacji, np. gdzie i kiedy występuje.
   add_obs_from_a_link: "Dodaj obserwacje z listy: %{link}"
   add_obs_from_a_list: Dodaj obserwacje z listy
+  add_observation_fields: Dodaj pola obserwacji
   add_observations: Dodaj obserwacje
   add_observations_by_checking_off: Dodaj obserwacje poprzez odhaczenie gatunków z listy.
   add_observations_project: Dodaj obserwacje do tego projektu
@@ -434,6 +469,8 @@ pl:
   add_evidence_of_presence_leafmine_annotation: 'Dodaj adnotację „Ślad obecności: miny na liściach”'
   add_evidence_of_presence_hair_annotation: 'Dodaj adnotację „Ślad obecności: sierść”'
   add_evidence_of_presence_egg_annotation: 'Dodaj adnotację „Ślad obecności: jajo”'
+  add_evidence_of_presence_construction_annotation: 'Dodaj adnotację "Dowód obecności: konstrukcja"'
+  add_established_not_established: 'Dodaj adnotację "Ustalono: nie ustalono"'
   #As in a Taxon Framework Relationship
   add_relationship: 'Dodaj powiązanie'
   #As in a Guide Section
@@ -479,6 +516,8 @@ pl:
   added_by: Dodane przez
   added_by_user_on_date_html: "Dodane %{date} przez %{user}"
   added_on_datetime: "Dodano %{datetime}"
+  #Message displayed after a project user changes role, e.g. they become a manager or a curator
+  added_role: Dodana rola
   added_to_favorites_html: |
     Dodane do <a href="%{url}">ulubionych</a>
   adding: "Dodawanie..."
@@ -793,6 +832,7 @@ pl:
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Czy na pewno chcesz usunąć tę obserwację z projektu %{project}?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Czy na pewno chcesz usunąć ten takson z checklisty %{place}?"
+  are_you_sure_you_want_to_flag_as_spammer: Czy na pewno chcesz oznaczyć tego użytkownika jako spamera?
   associated_observations: Powiązane obserwacje
   associated_taxa: Powiązane taksony
   attention: Uwaga
@@ -832,6 +872,14 @@ pl:
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
   authorize_with_pkce: Autoryzuj z PKCE
+  #Explanation for how to use the PKCE authorization link. All variables are
+  #code that must match the content of the link and thus cannot be
+  #translated.
+  authorize_with_pkce_desc_html: |
+    (Użyj <code>%{code_challenge}</code> jako
+    <code>%{code_verifier_param}</code>) Uwaga: jest to podstawowy przykład. W kodzie produkcji,
+    MUSISZ używać <code>%{code_challenge_method}</code> i poprawnie haszować
+     <code>%{code_challenge_param}</code>
   authorize_permissions_from_provider: "Autoryzuj uprawnienia od %{provider}"
   automatic_short: Automatyczny
   automatically_add_observations_to_this_project: Automatycznie dodawaj obserwacje do tego projektu
@@ -856,6 +904,7 @@ pl:
   back_to_suggestions: Wróć do sugestii
   back_to_taxon: "Wróć do %{defaulttaxon}"
   back_to_taxon_changes: "Wróć do zmian w taksonie"
+  back_to_taxon_framework_for_x: "Powrót do ramy taksonu dla %{taxon_name}"
   back_to_users_calendar: "Wróć do kalendarza użytkownika %{user}"
   back_to_users_lists: "Wróć do list użytkownika %{user}"
   back_to_viewing: "Wróć do przeglądania <i>%{taxon}</i>"
@@ -871,6 +920,17 @@ pl:
   back_to_your_observations: Wróć do swoich obserwacji
   back_to_your_profile: Wróć do swojego profilu
   badges: Odznaki
+  base_map_copyright_openstreetmap_html: Mapa zasadnicza © %{startTag}OpenStreetMap (Mapa ulic)%{endTag}
+  #disagreements are identifications that disagree with other identifications on the same observation
+  based_on_a_sample_of_percent_of_these_ids_html:
+    one: |
+      Na podstawie próbki %{percent}% tych ID, szacujemy, że będzie to skutkować <strong>%{count} niezamierzoną różnicą zdań</strong> z ID %{child}.
+    few: |
+      Na podstawie próbki %{percent}% tych ID, szacujemy, że będzie to skutkować <strong>%{count} niezamierzonymi różnicami zdań</strong> z ID %{child}.
+    many: |
+      Na podstawie próbki %{percent}% tych ID, szacujemy, że będzie to skutkować <strong>%{count} niezamierzonych różnic zdań</strong> z ID %{child}.
+    other: |
+      Na podstawie próbki %{percent}% tych ID, szacujemy, że będzie to skutkować <strong>%{count} niezamierzonych różnic zdań</strong> z ID %{child}.
   based_on_the_evidence_can_id_be_improved: |
     Czy na podstawie dostępnych danych takson społeczności może wciąż zostać sprawdzony lub ulepszony?
   batch: Seria
@@ -879,6 +939,13 @@ pl:
   batch_edit_taxa_for_x_html: "Seryjna edycja taksonów dla %{x}"
   batch_operations: Operacje seryjne
   be_the_first_to_fave_this_observation: Polub tę obserwację jako pierwszy!
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_act_html: |
+    Ponieważ szacujemy, że ta zmiana skutkować będzie więcej niż 10 niezamierzonych różnic zdań, <strong>zalecamy, by zmienić również takson zawierający
+    %{old_parent}, na przykład oddzielić %{new_parent} od %{old_parent}</strong>.
+  #disagreements are identifications that disagree with other identifications on the same observation
+  because_we_estimate_this_change_dont_act_html: |
+    Ponieważ szacujemy, że ta zmiana będzie skutkować mniej niż 10 niezamierzonymi różnicami zdań, <strong>zapewne nie trzeba zmieniać taksonu zawierającego %{old_parent}</strong>.
   become_a_donor_caps: ZOSTAŃ OFIARODAWCĄ
   become_a_donor_today_caps: ZOSTAŃ OFIARODAWCĄ JUŻ DZISIAJ
   before_importing_photos: przed zaimportowaniem zdjęć
@@ -889,6 +956,7 @@ pl:
   birds: ptaki
   birthday: Urodziny
   block: Blokuj
+  blocking_description: Blokowanie uniemożliwia jakąkolwiek komunikację między Tobą a innym użytkownikiem. Dotyczy to sytuacji, w których inny użytkownik może zagrozić Twojemu bezpieczeństwu, takich jak prześladowanie lub inne obraźliwe zachowanie.
   block_removed: Blokada została zdjęta
   blocked_users: Zablokowani użytkownicy
   blog_widget: Widżet bloga
@@ -899,6 +967,11 @@ pl:
   #Text inserted into a textarea when the bold button is clicked but no text was selected
   bold_text: Pogrubiony tekst
   breadcrumbs: Okruszki chleba
+  #This is a description of the "head" property of Custom Project Fields, i.e.
+  #the customizable content that will replace top section of the project detail
+  #page where the project title and a button to add an observation are usually
+  #shown
+  breadcrumbs_description: "Zastąpi to h1 i domyślne wezwania do działania, więc pamiętaj, aby je uwzględnić, jeśli są ważne dla tego projektu, i pamiętaj, że maksymalna dozwolona szerokość to 950px"
   brief_caption: Krótki podpis
   browse: Przeglądaj
   browse_all_projects: Przeglądaj wszystkie projekty
@@ -907,6 +980,7 @@ pl:
   browse_people: Przeglądaj ludzi
   browse_projects: Przeglądaj projekty
   browse_species_that_occur_near_this_observation: Przeglądaj gatunki występujące w pobliżu tej obserwacji.
+  built_with_site_guides_html: "Stworzony z <a href='%{url}'>%{site_name} przewodników</a>"
   bulk_import_of_filename_is_complete: "Zbiorczy import %{filename} zakończony"
   by_everyone: Przez wszystkich
   by_user: "Użytkownika %{user}"
