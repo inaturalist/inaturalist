@@ -87,7 +87,7 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should assign a user to a site using inat_site_id param" do
-    site1 = Site.make!( url: "http://test.host" )
+    Site.make!( url: "http://test.host" )
     site2 = Site.make!
     u = User.make
     post :create, params: { inat_site_id: site2.id, user: {
@@ -106,7 +106,7 @@ describe Users::RegistrationsController, "create" do
   end
 
   it "should give the user the locale of the site specified by inat_site_id" do
-    site1 = Site.make!( url: "http://test.host" )
+    Site.make!( url: "http://test.host" )
     site2 = Site.make!( preferred_locale: "es-MX" )
     u = User.make
     post :create, params: { inat_site_id: site2.id, user: {
@@ -168,7 +168,8 @@ describe Users::RegistrationsController, "create" do
   it "should set the oauth_application_id based on the Seek User-Agent" do
     a = OauthApplication.make!( name: "iNaturalist Android App" )
     request.env["HTTP_USER_AGENT"] =
-      "iNaturalist/1.23.4 (Build 493; Android 4.14.190-20973144-abA715WVLU2CUB5 A715WVLU2CUB5; SDK 30; a71 SM-A715W a71cs; OS Version 11)"
+      "iNaturalist/1.23.4 (Build 493; Android 4.14.190-20973144-abA715WVLU2CUB5 A715WVLU2CUB5; SDK 30; " \
+        "a71 SM-A715W a71cs; OS Version 11)"
     u = register_user_with_params
     expect( u.oauth_application_id ).to eq a.id
   end

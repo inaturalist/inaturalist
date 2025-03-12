@@ -6203,6 +6203,9 @@ id:
             Anda dapat menganggap Peta Terdekat yang Diharapkan sebagai perkiraan apakah spesies
             ada di suatu tempat di dalam sel kisi atau sama sekali tidak ada.
           figure_alt_text: Geomodel menerapkan label Ekspektasi Terdekat
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Unduh Peta Terlihat Di Sekitar dalam format GeoJSON
         unthresholded_map:
           unthresholded_map: Peta Tanpa Ambang
           we_use_the_unthresholded_map: |

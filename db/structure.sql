@@ -2874,7 +2874,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer
+    validation_count integer DEFAULT 0
 );
 
 
@@ -4100,6 +4100,42 @@ CREATE SEQUENCE public.quality_metrics_id_seq
 --
 
 ALTER SEQUENCE public.quality_metrics_id_seq OWNED BY public.quality_metrics.id;
+
+
+--
+-- Name: redirect_links; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.redirect_links (
+    id bigint NOT NULL,
+    user_id integer,
+    title character varying,
+    description text,
+    app_store_url character varying,
+    play_store_url character varying,
+    view_count integer DEFAULT 0,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: redirect_links_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.redirect_links_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: redirect_links_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.redirect_links_id_seq OWNED BY public.redirect_links.id;
 
 
 --
@@ -5467,9 +5503,9 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id character varying(255),
+    installation_id character varying,
     oauth_application_id integer,
-    platform_id character varying(255),
+    platform_id character varying,
     user_id integer,
     created_at date,
     first_logged_in_at date
@@ -6615,6 +6651,13 @@ ALTER TABLE ONLY public.quality_metrics ALTER COLUMN id SET DEFAULT nextval('pub
 
 
 --
+-- Name: redirect_links id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.redirect_links ALTER COLUMN id SET DEFAULT nextval('public.redirect_links_id_seq'::regclass);
+
+
+--
 -- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7723,6 +7766,14 @@ ALTER TABLE ONLY public.provider_authorizations
 
 ALTER TABLE ONLY public.quality_metrics
     ADD CONSTRAINT quality_metrics_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: redirect_links redirect_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.redirect_links
+    ADD CONSTRAINT redirect_links_pkey PRIMARY KEY (id);
 
 
 --
@@ -10002,6 +10053,13 @@ CREATE INDEX index_quality_metrics_on_user_id ON public.quality_metrics USING bt
 
 
 --
+-- Name: index_redirect_links_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_redirect_links_on_user_id ON public.redirect_links USING btree (user_id);
+
+
+--
 -- Name: index_roles_users_on_role_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11419,6 +11477,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250124155306'),
 ('20250127200519'),
 ('20250130003627'),
-('20250204222646');
+('20250204222646'),
+('20250219234716'),
+('20250226225252');
 
 

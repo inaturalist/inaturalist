@@ -1,4 +1,51 @@
-require File.dirname(__FILE__) + '/../spec_helper'
+# frozen_string_literal: true
+
+require "spec_helper"
+
+shared_examples_for "loading a place from the ID parameter" do | route |
+  describe "place loading" do
+    it "loads a place from its ID" do
+      place = make_place_with_geom( id: 999 )
+      get route, params: { id: place.id }
+      expect( assigns( :place ) ).to eq place
+    end
+
+    it "loads a place from its string slug" do
+      place = make_place_with_geom
+      place.update( slug: "test-slug" )
+      get route, params: { id: place.slug }
+      expect( assigns( :place ) ).to eq place
+    end
+
+    it "loads a place from its numeric slug" do
+      place = make_place_with_geom
+      place.update( slug: 999 )
+      get route, params: { id: place.slug }
+      expect( assigns( :place ) ).to eq place
+    end
+
+    it "loads a place from its mixed slug" do
+      place = make_place_with_geom
+      place.update( slug: "999-slug" )
+      get route, params: { id: place.slug }
+      expect( assigns( :place ) ).to eq place
+    end
+
+    it "prioritizes loading a place from its slug" do
+      make_place_with_geom( id: 999 )
+      place_by_slug = make_place_with_geom
+      place_by_slug.update( slug: 999 )
+      get route, params: { id: 999 }
+      expect( assigns( :place ) ).to eq place_by_slug
+    end
+
+    it "renders a 404 for unknown place IDs" do
+      make_place_with_geom( id: 1 )
+      get route, params: { id: 999 }
+      expect( response.status ).to eq 404
+    end
+  end
+end
 
 describe PlacesController do
   let(:user) { UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user }
@@ -89,6 +136,8 @@ describe PlacesController do
   end
 
   describe "show" do
+    it_behaves_like "loading a place from the ID parameter", :show
+
     render_views
     let(:place) { make_place_with_geom( user: user ) }
     it "renders a self-referential canonical tag" do
@@ -296,6 +345,10 @@ describe PlacesController do
         get :edit, params: { id: p.id }
       end.not_to raise_error
     end
+  end
+
+  describe "guide" do
+    it_behaves_like "loading a place from the ID parameter", :guide
   end
 end
 

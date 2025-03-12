@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 # Stores the geometries of places.  We COULD have had a geometry column in the
 # places table, but geometries can get rather large, and loading them into
 # memory every time you want to work with a place is expensive.
 class PlaceGeometry < ApplicationRecord
   belongs_to :place, inverse_of: :place_geometry
   belongs_to :source
-  scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
+  scope :without_geom, -> { select( ( column_names - ["geom"] ).join( ", " ) ) }
 
-  after_save :refresh_place_check_list,
-             :process_geometry_if_changed,
-             :update_observations_places_later,
-             :notify_trusting_project_members
+  after_save :refresh_place_check_list_later,
+    :process_geometry_if_changed,
+    :update_observations_places_later,
+    :notify_trusting_project_members
 
   after_destroy :update_observations_places_later
 
@@ -41,18 +43,20 @@ class PlaceGeometry < ApplicationRecord
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?
-      errors.add(:geom, :cannot_be_blank)
+      errors.add( :geom, :cannot_be_blank )
       return
     end
     if geom.num_points < 4
-      errors.add(:geom, :must_have_more_than_three_points)
+      errors.add( :geom, :must_have_more_than_three_points )
     end
-    if geom.detect{|g| g.num_points < 4}
-      errors.add(:geom, :polygon_with_less_than_four_points)
+    if geom.detect {| g | g.num_points < 4 }
+      errors.add( :geom, :polygon_with_less_than_four_points )
     end
-    if geom.detect{|g| g.points.detect{|pt| pt.x < -180 || pt.x > 180 || pt.y < -90 || pt.y > 90}}
-      errors.add(:geom, :invalid_point)
+    unless geom.detect {| g | g.points.detect {| pt | pt.x < -180 || pt.x > 180 || pt.y < -90 || pt.y > 90 } }
+      return
     end
+
+    errors.add( :geom, :invalid_point )
   end
 
   # During the Rails 5 upgrade, invalid WKT assigned to geom raised this error
@@ -65,24 +69,36 @@ class PlaceGeometry < ApplicationRecord
       super
     rescue NoMethodError => e
       raise e unless e.message =~ /undefined method.*factory/
-      errors.add(:geom, "could not be parsed")
+
+      errors.add( :geom, "could not be parsed" )
       nil
     end
   end
 
-  def refresh_place_check_list
-    if place.check_list
-      priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
-      unless new_record?
-        self.place.check_list.delay(
-          unique_hash: { "CheckList::refresh": self.place.check_list.id },
-          queue: "slow", priority: priority).refresh
-      end
-      self.place.check_list.delay(
-        unique_hash: { "CheckList::add_observed_taxa": self.place.check_list.id },
-        queue: "slow", priority: priority).add_observed_taxa
-    end
+  def refresh_place_check_list_later
+    PlaceGeometry.refresh_place_check_list_later( place, skip_existing: new_record? )
     true
+  end
+
+  def self.refresh_place_check_list_later( place_id, options = {} )
+    place = if place_id.is_a?( Place )
+      place_id
+    else
+      Place.find_by_id( place_id )
+    end
+    return unless place&.check_list
+
+    priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
+    unless options[:skip_existing]
+      place.check_list.delay(
+        unique_hash: { "CheckList::refresh": place.check_list.id },
+        queue: "slow", priority: priority
+      ).refresh
+    end
+    place.check_list.delay(
+      unique_hash: { "CheckList::add_observed_taxa": place.check_list.id },
+      queue: "slow", priority: priority
+    ).add_observed_taxa
   end
 
   def process_geometry_if_changed
@@ -105,6 +121,7 @@ class PlaceGeometry < ApplicationRecord
     SQL
   rescue StandardError => e
     raise unless e.message =~ /conversion failed/
+
     begin
       Rails.logger.error "[ERROR #{Time.now}] Failed to dissolve for PlaceGeometry #{id}, attempting to simplify: #{e}"
       connection.execute <<-SQL
@@ -121,6 +138,7 @@ class PlaceGeometry < ApplicationRecord
       SQL
     rescue StandardError => e
       raise unless e.message =~ /conversion failed/
+
       # sucks to lose data, but we really don't want invalid geometries
       Rails.logger.error "[ERROR #{Time.now}] Failed to dissolve for PlaceGeometry #{id}, filtering invalid geoms: #{e}"
       connection.execute <<-SQL
@@ -140,8 +158,8 @@ class PlaceGeometry < ApplicationRecord
   end
 
   def update_observations_places_later
-    Place.delay(
-      unique_hash: { "Place::update_observations_places": place_id },
+    PlaceGeometry.delay(
+      unique_hash: { "PlaceGeometry::update_observations_places": place_id },
       run_at: 5.minutes.from_now,
       queue: "throttled"
     ).update_observations_places( place_id )
@@ -149,31 +167,34 @@ class PlaceGeometry < ApplicationRecord
 
   def notify_trusting_project_members
     return true unless saved_change_to_geom?
+
     Project.
-        joins(:project_observation_rules).
-        where( "rules.operator = 'observed_in_place?'" ).
-        where( "rules.operand_type = 'Place'" ).
-        where( "rules.operand_id = ?", place_id ).
-        where( project_type: %w(collection umbrella) ).
-        find_each do |proj|
-      proj.notify_trusting_members_about_changes_later
-    end
+      joins( :project_observation_rules ).
+      where( "rules.operator = 'observed_in_place?'" ).
+      where( "rules.operand_type = 'Place'" ).
+      where( "rules.operand_id = ?", place_id ).
+      where( project_type: %w(collection umbrella) ).
+      find_each( &:notify_trusting_members_about_changes_later )
     true
   end
 
   def simplified_geom
     # if the geom does not exist, or RGeo thinks the geometry is invalid, return nil
     begin
-      return if !geom
-    rescue RGeo::Error::InvalidGeometry => e
+      return unless geom
+    rescue RGeo::Error::InvalidGeometry
       return
     end
     if !place.bbox_area || place.bbox_area < 0.1
       # this method is currently only used for indexing places in Elasticsearch.
       # Running the cleangeometry method here helps fix geom validation errors
       # which psql is comfortable with but might cause ES to throw errors
-      return PlaceGeometry.where(id: id).
-        select("id, cleangeometry(geom) as simpl").first.try(:simpl) rescue nil
+      begin
+        return PlaceGeometry.where( id: id ).
+            select( "id, cleangeometry(geom) as simpl" ).first.try( :simpl )
+      rescue StandardError
+        nil
+      end
     end
     tolerance =
       if place.bbox_area < 1
@@ -187,18 +208,26 @@ class PlaceGeometry < ApplicationRecord
       else
         0.075
       end
-    if s = PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl rescue nil
-      return s
+    simple_geom = begin
+      PlaceGeometry.where( id: id ).
+        select( "id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{tolerance})) as simpl" ).first.simpl
+    rescue StandardError
+      nil
     end
-    PlaceGeometry.where(id: id).
-      select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl rescue nil
+    return simple_geom if simple_geom
+
+    begin
+      PlaceGeometry.where( id: id ).
+        select( "id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{tolerance}),0)) as simpl" ).first.simpl
+    rescue StandardError
+      nil
+    end
   end
 
-  def self.update_observations_places(place_geometry_id)
-    if pg = PlaceGeometry.where(id: place_geometry_id).first
-      Place.update_observations_places(pg.place_id)
-    end
-  end
+  def self.update_observations_places( place_id )
+    # return unless ( place_geom = PlaceGeometry.where( id: place_geometry_id ).first )
 
+    Place.update_observations_places( place_id )
+    PlaceGeometry.refresh_place_check_list_later( place_id )
+  end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :redirect_links
   resources :moderator_notes
   resources :data_partners
   resources :saved_locations
@@ -772,6 +773,12 @@ Rails.application.routes.draw do
   resources :email_suppressions, only: [:index, :destroy]
 
   get "apple-app-site-association" => "apple_app_site_association#index", as: :apple_app_site_association
+  get "terminology" => "terminology#index", as: :terminology
+  get "terminology/:term" => "terminology#show", as: :terminology_term
+  get "/schema/terms/captive", to: redirect( "/terminology/captive_cultivated", status: 301 )
+  get "/terms/numIdentificationAgreements", to: redirect( "/terminology/num_identification_agreements", status: 301 )
+  get "/terms/numIdentificationDisagreements",
+    to: redirect( "/terminology/num_identification_disagreements", status: 301 )
 
   # Hack to enable mail previews. You could also remove get
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You

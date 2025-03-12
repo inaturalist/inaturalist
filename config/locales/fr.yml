@@ -2429,6 +2429,8 @@ fr:
   large: grand
   last_active_with_date: "Dernière activité : %{date}"
   last_confirmed_observation: Dernière observation confirmée
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Dernière modification par
   last_observation: Dernière observation
   last_observation_caps: DERNIÈRE OBSERVATION
   last_seen: Vu la dernière fois
@@ -2760,6 +2762,9 @@ fr:
   make_a_taxon_swap_instead?: Voulez-vous plutôt faire un échange de taxons ?
   make_curator: Créer un responsable de l’organisation
   make_manager: Créer un gestionnaire
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Rendre privé
   make_sure_the_default_photo_looks_good: Assurez-vous que la photo s’affiche bien en grande taille.
   make_this_your_default_license: "Faites-en votre licence %{type} par défaut"
   make_this_the_primary_listing: "Faites-en votre liste principale"
@@ -3963,7 +3968,7 @@ fr:
     honduras: Honduras
     hong_kong: Hong-Kong
     hungary: Hongrie
-    iceland: Icelande
+    iceland: Islande
     india: Inde
     indonesia: Indonésie
     iran: Iran
@@ -6326,6 +6331,9 @@ fr:
           you_can_think: |
             Vous pouvez considérer la carte de présence attendue à proximité comme une estimation de la présence ou de l'absence complète de l'espèce à l'intérieur de chaque cellule de la grille.
           figure_alt_text: Le modèle géographique applique l'étiquette « Présence attendue à proximité »
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: Télécharger la carte de proximité attendue en tant que GeoJSON
         unthresholded_map:
           unthresholded_map: Carte non seuillée
           we_use_the_unthresholded_map: |
@@ -8833,7 +8841,15 @@ fr:
             action:
               not_supported_for_this_kind_of_content: n'est pas pris en charge pour ce type de contenu
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Seul le contenu caché peut être privé
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: Seuls l'équipe iNaturalist et les curateurs peuvent masquer le contenu
               only_staff_and_hiding_curators_can_unhide: Seuls le personnel et les superviseurs qui masquent du contenu peuvent l'afficher à nouveau
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: Seul le personnel peut définir le contenu comme privé
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
             user_id:
               must_be_a_curator: doit être un·e responsable
@@ -8925,6 +8941,14 @@ fr:
                 doit être observé après %{time}
               must_be_observed_before: |
                 doit être observé avant %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: doit être un projet
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: n'autorise que des règles des sous-projets
         quality_metric:
           attributes:
             base:

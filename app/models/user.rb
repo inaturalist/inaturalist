@@ -219,6 +219,7 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :taxon_name_priorities, dependent: :destroy
   has_many :user_donations, dependent: :delete_all
+  has_many :redirect_links, dependent: :nullify
 
   file_options = {
     processors: [:deanimator],
@@ -339,6 +340,7 @@ class User < ApplicationRecord
   validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
+  validate :validate_canonical_email_not_shared_with_suspended_account
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -347,6 +349,7 @@ class User < ApplicationRecord
   scope :curators, -> { joins(:roles).where("roles.name IN ('curator', 'admin')") }
   scope :admins, -> { joins(:roles).where("roles.name = 'admin'") }
   scope :active, -> { where("suspended_at IS NULL") }
+  scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
 
   def validate_email_pattern
     return unless new_record? || email_changed?
@@ -399,7 +402,24 @@ class User < ApplicationRecord
     end
     true
   end
-  
+
+  def validate_canonical_email_not_shared_with_suspended_account
+    return unless new_record? || email_changed?
+    return if email.blank?
+    return if errors[:email].any?
+
+    canonical_email = EmailAddress.canonical( email )
+    return if canonical_email.blank?
+
+    uniqueness_scope = User.suspended.where( canonical_email: canonical_email )
+    unless new_record?
+      uniqueness_scope = uniqueness_scope.where( "id != ?", id )
+    end
+    return unless uniqueness_scope.any?
+
+    errors.add( :email, :taken )
+  end
+
   def icon_url_provided?
     !self.icon.present? && !self.icon_url.blank?
   end
@@ -504,7 +524,6 @@ class User < ApplicationRecord
   end
 
   # test to see if this user has authorized with the given provider
-  # argument is one of: twitter', 'google', 'yahoo'
   # returns either nil or the appropriate ProviderAuthorization
   def has_provider_auth( provider )
     provider = provider.downcase
@@ -607,11 +626,6 @@ class User < ApplicationRecord
 
   def picasa_identity
     @picasa_identity ||= has_provider_auth('google_oauth2')
-  end
-
-  # returns nil or the twitter ProviderAuthorization
-  def twitter_identity
-    @twitter_identity ||= has_provider_auth('twitter')
   end
 
   def api_token
@@ -903,7 +917,10 @@ class User < ApplicationRecord
       :name => auth_info["info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw,
-      :icon_url => icon_url
+      :icon_url => icon_url,
+      preferred_observation_license: Observation::CC_BY_NC,
+      preferred_photo_license: Observation::CC_BY_NC,
+      preferred_sound_license: Observation::CC_BY_NC
     )
     if oauth_application.try( :trusted? )
       u.oauth_application_id = oauth_application.id
@@ -1381,6 +1398,7 @@ class User < ApplicationRecord
   def check_privileges_if_confirmed
     return unless saved_change_to_confirmed_at?
 
+    UserPrivilege.check( id, UserPrivilege::INTERACTION )
     UserPrivilege.check( id, UserPrivilege::ORGANIZER )
   end
 

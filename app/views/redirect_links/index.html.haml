@@ -1,0 +1,31 @@
+- content_for :title, "Redirect Links"
+
+%p#notice= notice
+
+%h1 Redirect Links
+
+%table.table
+  %thead
+    %tr
+      %th User
+      %th Title
+      %th Description
+      %th URL
+      %th View count
+      %th{ colspan: 2 }
+
+  %tbody
+    - @redirect_links.each do | redirect_link |
+      %tr
+        %td= link_to_user redirect_link.user
+        %td= link_to redirect_link.title, edit_redirect_link_path( redirect_link )
+        %td= redirect_link.description
+        %td= link_to redirect_link_url( redirect_link ), redirect_link_url( redirect_link )
+        %td= redirect_link.view_count
+        %td= link_to t( :test ), redirect_link_url( redirect_link, test: true ), class: "btn btn-link btn-sm"
+        %td= link_to t( :edit ), edit_redirect_link_path( redirect_link ), class: "btn btn-default btn-sm"
+
+.text-center
+  = will_paginate @redirect_links
+
+= link_to "New Redirect Link", new_redirect_link_path, class: "btn btn-primary"

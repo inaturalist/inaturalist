@@ -85,6 +85,7 @@ gem "kt-paperclip", git: "https://github.com/kreeti/kt-paperclip.git", ref: "f35
 gem "parallel"
 gem "patron"
 gem "pg", "~> 1.5.9"
+gem "rqrcode", "~> 2.0"
 gem "rack-cors"
 gem "rack-mobile-detect"
 gem "rack-tracker"

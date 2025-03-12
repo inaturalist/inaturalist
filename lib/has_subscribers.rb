@@ -211,9 +211,19 @@ module HasSubscribers
         options[:before_notify].call( notifier )
       end
 
+      # Do not notify subscribers about comments or IDs that have been hidden
+      return if notifier&.try( :hidden? )
+
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
         next unless subscribable.respond_to?(:update_subscriptions)
+
+        # Do not notify subscribers about resources that have been hidden. As
+        # of this writing I don't think this ever happens, but one can
+        # imagine a situation where an entire observation or journal post
+        # needs to be hidden
+        next if subscribable&.try( :hidden? )
+
         notify_owner = if options[:include_owner].is_a?(Proc)
           options[:include_owner].call(notifier, subscribable)
         elsif options[:include_owner]

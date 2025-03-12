@@ -8,7 +8,7 @@
     <tr>
       <td width="75" align="center" valign="top" style="<%= 'padding-right: 10px;' %> padding-bottom: 10px; max-width:75px;">
         <% if post.user -%>
-          <%= link_to( user_image(post.user, size: "thumb", style: "border-radius: 32px; background-position: center; background-size: cover;"), the_post_url )
+          <%= link_to( user_image(post.user, size: "thumb", style: "border-radius: 32px; background-position: center; background-size: cover;"), the_post_url ) %>
         <% else %>
           <%= link_to image_tag("#{@site.url}/attachment_defaults/users/icons/defaults/thumb.png", :class => "userimage"), the_post_url %>
         <% end -%>

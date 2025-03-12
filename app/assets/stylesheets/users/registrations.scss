@@ -199,10 +199,6 @@
       background-color: $google-red;
       border-color: $google-red;
     }
-    &.twitter {
-      background-color: $twitter-blue;
-      border-color: $twitter-blue;
-    }
     &.flickr {
       background-color: black;
       border-color: black;
@@ -261,17 +257,14 @@
       font-size: 21px;
       line-height: 0;
     }
-    &.twitter {
-      i {
-        font-size: 26px;
-        position: relative;
-        inset-inline-start: -1px;
-      }
-    }
     &.yahoo {
       i {
         font-size: 18px;
       }
     }
   }
+}
+
+#license-fields {
+  visibility: hidden;
 }

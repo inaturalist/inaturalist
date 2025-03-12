@@ -119,6 +119,7 @@ class PhotoChooserModal extends React.Component {
       photos: {
         id: true,
         url: true,
+        hidden: true,
         flags: {
           resolved: true
         }
@@ -275,7 +276,7 @@ class PhotoChooserModal extends React.Component {
       photos,
       p => (
         p.small_url
-        && p.small_url.match( /\.(jpe?g|gif|png)/i )
+        && !p.hidden
         && !_.some( p?.flags, flag => ( !flag.resolved ) )
       )
     );
