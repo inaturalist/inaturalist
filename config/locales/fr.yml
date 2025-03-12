@@ -1539,6 +1539,8 @@ fr:
   default_time_zone_desc: |
     Il s'agit du fuseau horaire par défaut. Le fuseau horaire définitif sera attribué lors de l'enregistrement en fonction du lieu de l'observation.
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
+  #As in the definition of a word
+  definition: Définition
   defines_a_taxon_framework_for: 'Définit un cadre taxinomique pour : %{taxon_name}'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Définit un cadre taxinomique pour %{taxon} provenant de %{source}
   definitions: Définitions
@@ -1632,6 +1634,9 @@ fr:
     Si vous n'avez pas créé de compte sur %{site_name}, veuillez ignorer cet e-mail.
   devise_confirmation_instructions_please_click: |
     Veuillez cliquer sur le lien ci-dessous pour confirmer votre adresse e-mail.
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Veuillez cliquer sur le lien ci-dessous pour confirmer votre adresse e-mail. Si vous ne confirmez pas votre adresse e-mail, vous ne pourrez pas interagir avec le contenu des autres utilisateurs.
   devise_confirmation_instructions_resend_instructions: |
     Vous devez avoir une adresse e-mail fonctionnelle pour utiliser iNaturalist. Après avoir créé un compte, vous devriez avoir reçu un e-mail contenant un lien pour confirmer que votre adresse e-mail fonctionne. Cependant, si vous ne l'avez pas reçu, vous pouvez vous envoyer un autre e-mail de confirmation.
   devise_confirmation_instructions_send_confirmation_email: Envoyer un e-mail de confirmation
@@ -3576,6 +3581,8 @@ fr:
   original_url_for_this_map: Lien d'origine de cette carte
   organism_appears_captive_cultivated: Organisme présent en captivité ou cultivé
   other: Autre
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Autre
   other_animals: autres animaux
   other_lexicons: Autres lexicons
   other_listings_of_this_taxon_for_this_place: Autres listes de ce taxon pour ce lieu
@@ -6303,9 +6310,28 @@ fr:
         Merci pour votre soutien à iNaturalist ! Nous mettons à jour notre système de collecte de dons et faire un don à iNaturalist est temporairement impossible. Veuillez réessayer plus tard.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Cliquez ici pour envoyer un nouvel e-mail de confirmation
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Courriel de confirmation envoyé
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Voici l’adresse e-mail à laquelle nous enverrons la confirmation :
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Si vous ne recevez pas le courriel, voici quelques conseils :
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Si vous ne recevez toujours pas le courriel de confirmation, veuillez nous contacter à <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> afin que nous puissions vous aider.
       please_add_an_email_and_password: Veuillez ajouter un e-mail et un mot de passe pour ne pas perdre l'accès à votre compte
       please_click_the_link_sent_to_email_to_confirm_html: Veuillez cliquer sur le lien envoyé à <span class="email">%{email}</span> pour confirmer votre adresse e-mail.
       please_confirm_that_email_is_the_best_contact_html: Veuillez confirmer que <span class="email">%{email}</span> est le meilleur moyen de vous contacter. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Veuillez confirmer votre adresse e-mail pour interagir avec le contenu d'autres utilisateurs et accéder à certaines pages. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Veuillez confirmer votre adresse e-mail <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Veuillez confirmer votre adresse e-mail pour interagir avec le contenu d'autres utilisateurs
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Veuillez confirmer votre adresse e-mail pour utiliser cette page
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Vérifiez les filtres que vous avez mis en place et qui pourraient supprimer nos courriels de votre boîte de réception #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Vérifiez votre dossier de courriers indésirables (spam)
       your_site_account_has_no_email: Votre compte %{site_name} n'est associé à aucune adresse e-mail.
     flags:
       show:
@@ -6626,6 +6652,14 @@ fr:
           Vous pourrez envoyer de nouveaux messages après avoir ajouté trois
           observations vérifiables ou trois identifications pour d’autres. Pour le moment,
           vous pouvez lire et répondre aux messages que d’autres vous ont envoyé.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Vous serez en mesure d'envoyer de nouveaux messages après avoir confirmé votre adresse e-mail. Pour l'instant, vous pouvez lire et répondre aux messages que d'autres personnes vous envoient.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Vous pourrez envoyer de nouveaux messages une fois que vous aurez confirmé votre adresse e-mail, et ajouté trois observations vérifiables ou trois identifications pour d'autres utilisateurs. Pour l'instant, vous pouvez lire et répondre aux messages que d'autres personnes vous envoient.
       show:
         flag_notice_html: |
           Vous avez signalé cette conversation le %{date}. Le drapeau sera maintenu même
@@ -6841,17 +6875,24 @@ fr:
         positional_accuracy: "Exactitude des coordonnées (oui, oui, exactitude ≠ précision, mauvais choix de noms)"
         private_latitude: "Latitude privée, établie si l’observation est privée ou masquée"
         private_longitude: "Longitude privée, établie si l’observation est privée ou masquée"
+        geoprivacy: "Si l'observateur a choisi ou non de masquer les coordonnées. Voir https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "La géoconfidentialité la plus conservatrice est appliquée en raison du statut de conservation des taxons selon l’identification actuelle."
         coordinates_obscured: "Si les coordonnées ont été masquées, c'est soit à cause de la géoconfidentialité, soit à cause d’un taxon menacé"
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
         created_at: Horodatage de la création de l’observation
         updated_at: Horodatage de la dernière mise à jour de l’observation
+        quality_grade: Niveau de qualité de cette observation. Consultez la section Aide pour plus de détails sur ce que cela signifie. Voir https://help.inaturalist.org/support/solutions/articles/151000169936
         url: URL de l’observation
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau pays
         place_admin2_name: Nom de l’endroit administratif deux rangs en dessous du niveau pays
         positioning_method: Façon dont les coordonnées ont été déterminées
         positioning_device: Appareil utilisé pour déterminer les coordonnées
+        captive_cultivated: |
+          Il s'agit de l'observation d'un organisme à ce moment et à cet endroit,
+          parce que l'homme l'a volontairement placé là. Pour
+          plus d'information, voir
+          https://help.inaturalist.org/support/solutions/articles/151000169932
       identify:
         review_all_tooltip: "Marquer toutes les observations de la page comme vérifiées"
         you_reviewed_message: "Vous avez vérifié %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
@@ -7951,6 +7992,10 @@ fr:
           haut de la liste. Vous pouvez aussi spécifier des noms par défaut dans différents
           lieux en modifiant le nom et en ajoutant un lieu, mais faites-le seulement lorsque
           différents noms de lieux sont en conflit.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist utilise une variété de termes uniques pour décrire divers aspects du service. Ici, nous avons essayé d’en lister quelques-uns avec leurs définitions.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8762,6 +8807,7 @@ fr:
           doit avoir trois observations vérifiables ou trois identifications
           pour que les autres puissent faire cela
         requires_privilege_organizer: doit avoir cinquante observations vérifiables pour faire cela
+        requires_privilege_interaction: doit avoir une adresse email confirmée pour faire cela
         taken: a déjà été pris
         too_long:
           one: est trop long (maximum 1 caractère)
