@@ -1,4 +1,47 @@
 hy:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Խնդրում ենք սեղմել ներքեւի հղումը հաստատելու համար Ձեր էլփոստի հասցեն: Եթե չհաստատեք ձեր էլփոստը
+    հասցեն, դուք չեք կարողանա շփվել այլ օգտագործողների բովանդակության հետ:
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Սեղմեք այստեղ՝ հաստատման էլեկտրոնային փոստը վերստուագրելու համար
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Հաստատման նամակը ուղարկվել է
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Ահա այն էլփոստի հասցեն, որին մենք կուղարկենք հաստատումը.
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Եթե դուք չեք ստանում էլեկտրոնային փոստը, ահա մի քանի խորհուրդներ.
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: 'Եթե դուք դեռեւս չեք ստանում հաստատման էլփոստը, խնդրում ենք կապ հաստատել մեզ հետ <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> որպեսզի մենք կարողանանք օգնել Ձեզ:'
+      please_add_an_email_and_password: Խնդրում ենք ավելացնել էլփոստ եւ գաղտնաբառ, որպեսզի չկորցնեք ձեր հաշվի հասանելիությունը
+      please_click_the_link_sent_to_email_to_confirm_html: 'Խնդրում ենք սեղմել ուղարկված հղումը <span class="email">%{email}</span> հաստատել Ձեր էլփոստի հասցեն:'
+      please_confirm_that_email_is_the_best_contact_html: 'Խնդրում ենք հաստատել, որ <span class="email">%{email}</span> ձեզ հետ կապ հաստատելու լավագույն միջոցն է:' #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: 'Խնդրում ենք հաստատել Ձեր էլփոստի հասցեն այլ օգտատերերի բովանդակության հետ շփվելու եւ որոշակի էջերից օգտվելու համար:' #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Խնդրում ենք հաստատել Ձեր էլփոստի հասցեն <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Խնդրում ենք հաստատել Ձեր էլփոստի հասցեն այլ օգտատերերի բովանդակության հետ շփվելու համար
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Խնդրում ենք հաստատել Ձեր էլփոստի հասցեն այս էջից օգտվելու համար
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Ստուգեք ձեր պատրաստած ցանկացած ֆիլտր, որը կարող է հեռացնել մեր էլփոստը ձեր ներարկիչից #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Ստուգեք ձեր սպամ թղթապանակը
+      your_site_account_has_no_email: 'Քոնը %{site_name} հաշիվը չունի իր հետ կապված էլփոստի հասցե:'
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Դուք կկարողանաք նոր հաղորդագրություններ ուղարկել ձեր էլփոստը հաստատելուց հետո
+          հասցեն: Այժմ դուք կարող եք կարդալ եւ պատասխանել ձեզ ուղարկող այլ մարդկանց հաղորդագրություններին:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Դուք կկարողանաք նոր հաղորդագրություններ ուղարկել ձեր էլփոստը հաստատելուց հետո
+          հասցեն, եւ ավելացվել են երեք ստուգողական դիտարկումներ կամ երեք նույնականացում
+          ուրիշների համար: Այժմ դուք կարող եք կարդալ եւ պատասխանել ձեզ ուղարկող այլ մարդկանց հաղորդագրություններին:
   number:
     format:
       significant: false
@@ -7,3 +50,7 @@ hy:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: պետք է ունենա հաստատված էլփոստի հասցեն, որպեսզի
