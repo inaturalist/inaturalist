@@ -1,5 +1,21 @@
 sk:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} zmena"
+    few: "%{count} zmeny"
+    many: "%{count} zmien"
+    other: "%{count} zmeny"
+  x_comments:
+    one: '%{count} komentár'
+    few: '%{count} komentáre'
+    many: '%{count} komentárov'
+    other: '%{count} komentáre'
   x_people_helped_user_with_y_ids_html: "<strong>%{x} ľudí</strong> pomohlo %{user} s <strong>%{y} identifikáciou</strong>"
+  x_sounds:
+    one: "%{count} zvuk"
+    few: "%{count} zvuky"
+    many: "%{count} zvukov"
+    other: "%{count} zvuky"
   _100_day_trends: 100-dňové trendy
   _percent_ID_d: "% identifikované"
   a_community_for_naturalist: Komunita pre Naturalistov
@@ -738,6 +754,10 @@ sk:
     failure:
       user:
         suspended: Váš účet bol pozastavený
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kliknutím na odkaz nižšie potvrďte svoju e-mailovú adresu. Ak nepotvrdíte svoj e-mail
+    nebudete môcť interagovať s obsahom iných používateľov.
   discoveries: Objavy
   did_you_mean: 'Mali ste na mysli'
   did_you_photos_flickr?: Nahrali ste nejaké fotografie na Flickr?
@@ -2943,6 +2963,44 @@ sk:
           community_guidelines_html: |
             <a href="%{url}">Pozrite si Pokyny pre komunitu</a> pre tipy
             ako udržať iNaturalist priateľským a príjemným miestom.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Kliknite sem pre opätovné odoslanie potvrdzovacieho e-mailu
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Odoslaný potvrdzovací e-mail
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Tu je e-mailová adresa, na ktorú pošleme potvrdenie:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ak e-mail nedostanete, tu je niekoľko tipov:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ak stále nedostávate potvrdzovací e-mail, kontaktujte nás na adrese <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> aby sme vám mohli pomôcť.
+      please_add_an_email_and_password: Pridajte e-mail a heslo, aby ste nestratili prístup k svojmu účtu
+      please_click_the_link_sent_to_email_to_confirm_html: Kliknite na odkaz zaslaný na adresu <span class="email">%{email}</span> a potvrďte svoju e-mailovú adresu.
+      please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je najlepší spôsob, ako vás kontaktovať. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Potvrďte svoju e-mailovú adresu, aby ste mohli interagovať s obsahom iných používateľov a pristupovať na určité stránky. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Potvrďte svoju e-mailovú adresu <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Potvrďte svoju e-mailovú adresu, aby ste mohli interagovať s obsahom iných používateľov
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Ak chcete používať túto stránku, potvrďte svoju e-mailovú adresu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Skontrolujte všetky filtre, ktoré by mohli odstrániť naše e-maily z vašej doručenej pošty #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Skontrolujte priečinok so spamom
+      your_site_account_has_no_email: Tvoj %{site_name} k účtu nie je priradená žiadna e-mailová adresa.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Po potvrdení e-mailu budete môcť posielať nové správy
+          adresa. Zatiaľ si môžete prečítať a odpovedať na správy, ktoré vám pošlú iní ľudia.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Po potvrdení e-mailu budete môcť posielať nové správy
+          a pridali tri overiteľné pripomienky alebo tri identifikácie
+          pre ostatných. Zatiaľ si môžete prečítať a odpovedať na správy, ktoré vám pošlú iní ľudia.
     oauth:
       authorizations:
         new:
@@ -3104,6 +3162,8 @@ sk:
       user:
         login: Používateľské meno
     errors:
+      messages:
+        requires_privilege_interaction: na to musíte mať potvrdenú e-mailovú adresu
       models:
         project_observation:
           attributes:
