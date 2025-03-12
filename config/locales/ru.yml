@@ -1646,6 +1646,8 @@ ru:
   default_time_zone_desc: |
     Это часовой пояс по умолчанию. Окончательный часовой пояс будет назначен на основе местоположения наблюдения при его сохранении.
   defaults_to_your_name_or_username: Значения по умолчанию для вашего имени или логина
+  #As in the definition of a word
+  definition: Определение
   defines_a_taxon_framework_for: Задаёт основу таксона для %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Задаёт основу таксона для %{taxon}, взятого из %{source}
   definitions: Определения
@@ -1736,6 +1738,10 @@ ru:
     Если вы не регистрировали учетную запись %{site_name}, пожалуйста, проигнорируйте это письмо.
   devise_confirmation_instructions_please_click: |
     Пожалуйста, перейдите по ссылке ниже, чтобы подтвердить свой адрес электронной почты:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Пожалуйста, перейдите по ссылке ниже, чтобы подтвердить свой адрес электронной почты. Если вы не подтвердите свой адрес электронной
+    почты, вы не сможете взаимодействовать с контентом других пользователей.
   devise_confirmation_instructions_resend_instructions: |
     У вас должен быть работающий адрес электронной почты, чтобы использовать iNaturalist. Когда вы регистрировали учетную запись, вы должны были получить электронное письмо для подтверждения адреса электронной почты и ссылкой, по которой нужно перейти для подтверждения, что ваш адрес электронной почты работает, но если вы этого не сделали, вы можете отправить себе другое электронное письмо с подтверждением здесь.
   devise_confirmation_instructions_send_confirmation_email: Отправить письмо с подтверждением
@@ -1973,6 +1979,8 @@ ru:
   export: Экспорт
   export_observations: Экспорт наблюдений
   export_with_private_coordinates: Экспорт со скрытыми координатами
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Экспортировано в %{datetime}
   exporting: "Экспортируется..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2140,6 +2148,9 @@ ru:
     many: 'Подписан на %{count} человек'
     other: 'Подписан на %{count} человек'
   for_a_taxon: для таксона
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Дополнительную информацию о заголовках столбцов см. в %{url}
   formatting: Форматирование
   forgot_your_password: Забыли пароль?
   forum: Форум
@@ -2577,6 +2588,10 @@ ru:
     Не забудьте <a href="%{url}"> изменить свой пароль </a> для новой версии.
   let_us_walk_you_through: Давайте рассмотрим основные функции этого сайта.
   lexicon: Язык
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Название коллекции слов или терминов, содержащих название таксона, например, 
+    название языка или набор сокращений
   lexicon_cannot_contain_words: "не может содержать следующие слова: %{words}"
   lexicons:
     afrikaans: Африкаанс
@@ -3662,6 +3677,8 @@ ru:
   original_url_for_this_map: Оригинальная ссылка для этой карты
   organism_appears_captive_cultivated: Организм выглядит как находящийся в неволе / Культивируемый
   other: Другое
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Другое
   other_animals: другие животные
   other_lexicons: Другие языки
   other_listings_of_this_taxon_for_this_place: Другие списки этого таксона для этого места
@@ -5315,6 +5332,8 @@ ru:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Обозначения
+  #As in a list of distinct words
+  terminology: Терминология
   terms_and_rules_html: "Условия и правила"
   terms_new_users: "Если вы зададите условия, новые пользователи должны согласиться с ними, прежде чем присоединиться к этому проекту."
   terms_service: Условия использования
@@ -6429,9 +6448,28 @@ ru:
         iNaturalist временно недоступно, пока мы обновляем наши системы пожертвования. Пожалуйста, зайдите позже.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Нажмите здесь, чтобы отправить письмо активации еще раз.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Письмо с подтверждением электронной почты отправлено
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Вот адрес электронной почты, на который мы отправим подтверждение:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Если вы не получили электронное письмо, вот несколько советов:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Если вы все еще не получили электронное письмо с подтверждением, пожалуйста, свяжитесь с нами по адресу <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> чтобы мы могли вам помочь.
       please_add_an_email_and_password: Пожалуйста, укажите адрес электронной почты и пароль, чтобы не потерять доступ к своей учетной записи
       please_click_the_link_sent_to_email_to_confirm_html: Пожалуйста, перейдите по ссылке, отправленной на адрес <span class="email">%{email}</span>, чтобы подтвердить свой адрес электронной почты.
       please_confirm_that_email_is_the_best_contact_html: Пожалуйста, подтвердите, что <span class="email">%%{email}</span> - это лучший способ связаться с вами. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Пожалуйста, подтвердите свой адрес электронной почты, чтобы взаимодействовать с контентом других пользователей и получать доступ к определенным страницам. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Пожалуйста, подтвердите свой адрес электронной почты <span class="email">%%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Пожалуйста, подтвердите свой адрес электронной почты, чтобы взаимодействовать с контентом других пользователей
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Пожалуйста, подтвердите свой адрес электронной почты, чтобы пользоваться этой страницей
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Проверьте, нет ли каких-либо установленных вами фильтров, которые могут удалить наши электронные письма из вашего почтового ящика #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Проверьте свою папку со спамом
       your_site_account_has_no_email: Отсутствует адрес электронной почты, связанный с вашей учетной записью %{site_name}.
     flags:
       show:
@@ -6724,6 +6762,14 @@ ru:
         #earning speech privilege
         speech_privilege_notice: |
           Вы сможете отправлять новые сообщения после добавления трёх проверяемых наблюдений или трёх идентификаций наблюдений других людей. До тех пор вы можете читать и отвечать на сообщения, которые вам отправляют другие люди.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Вы сможете отправлять новые сообщения после того, как подтвердите свой адрес электронной почты. На данный момент вы можете читать сообщения других пользователей и отвечать на них.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Вы сможете отправлять новые сообщения после того, как подтвердите свой адрес электронной почты. На данный момент вы можете читать сообщения других пользователей и отвечать на них.
       show:
         flag_notice_html: |
           Вы отметили этот разговор %{date}. Флаг будет сохраняться даже в том случае, если вы удалите копию этого разговора, так что можно это сделать без опасений, если вы больше не хотите его видеть.
@@ -6924,27 +6970,112 @@ ru:
           </li>
           </ul>
       field_descriptions:
+        id: Уникальный последовательный идентификатор для наблюдения
+        species_guess: |
+          Простое текстовое название таксона, может быть предложено наблюдателем во время создания наблюдения, но может быть заменено каноническим, локализованным наименованием в процессе редактирования таксона
+        scientific_name: "Научное наименование таксона в соответствии с iNaturalist"
+        common_name: "Народное или местное название наблюдаемого таксона согласно iNaturalist"
         iconic_taxon_name: Высшая таксономическая категория для наблюдаемого таксона
+        taxon_id: Уникальный последовательный идентификатор наблюдаемого таксона
         id_please: Независимо от того, запрашивал ли наблюдатель помощь при идентификации
+        num_identification_agreements: Количество идентификаций, связанных с таксонами, которые совпадают или содержатся в таксоне из числа всех идентификаций наблюдателя
+        num_identification_disagreements: Количество идентификаций, связанных с таксоном, которые не совпадают и не содержат таксона из идентификаций наблюдателей
         observed_on_string: Дата/время, введенные наблюдателем
         observed_on: Нормализованная дата наблюдения
         time_observed_at: Нормализованные дата/время наблюдения
         time_zone: Часовой пояс наблюдения
         place_guess: Описание локалитета, введенное наблюдателем
+        latitude: Публично видимая широта места наблюдения
+        longitude: Публично видимая долгота места наблюдения
         positional_accuracy: "Точность координат (да, да, точность != Точность, плохой выбор имён)"
         private_latitude: "Широта становится конфиденциальной, если наблюдение является конфиденциальным или скрытым"
         private_longitude: "Долгота становится конфиденциальной, если наблюдение является конфиденциальным или скрытым"
+        geoprivacy: "В зависимости от того, выбрал ли наблюдатель скрыть нет, смотрите https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Наиболее консервативная приватность местоположения применяется в связи с природоохранными статусами таксонов при текущей идентификации."
         coordinates_obscured: "Были или не были скрыты координаты, зависит либо от геоконфиденциальности, либо от того, что таксон находится под угрозой исчезновения."
         out_of_range: Независимо от того, находится ли это наблюдение за пределами известного ареала таксонов
+        user_id: Уникальный последовательный идентификатор наблюдателя
+        user_login: Имя пользователя/имя наблюдателя, т.е. короткий, уникальный, буквенно-цифровой идентификатор пользователя.
+        user_name: |
+          Имя наблюдателя, обычно используемое для атрибуции на сайте. Это необязательное поле, может быть псевдонимом
         created_at: Дата/время, когда наблюдение было создано
         updated_at: Дата/время, когда наблюдение были последний раз обновлено
+        quality_grade: 'Оценка качества этого наблюдения. Подробности смотрите в разделе справка: https://help.inaturalist.org/support/solutions/articles/151000169936'
+        license: Идентификатор лицензии или отказа от лицензии, который наблюдатель выбрал для этого наблюдения. Все права защищены, если пусто
         url: URL наблюдения
+        image_url: URL первого фото, связанного с наблюдением
+        sound_url: |
+          URL первого аудио, связанного с наблюдением. Обратите внимание, что этот URL будет иметь место только для прямых загрузок, а не для аудио, размещенных на сторонних
+          сервисах
         tag_list: Список тегов, разделенных запятыми
         place_admin1_name: Название административного места на один ранг ниже уровня региона
         place_admin2_name: Название административного места на два ранга ниже уровня региона
         positioning_method: Как были определены координаты
         positioning_device: Устройство, используемое для определения координат
+        captive_cultivated: |
+          Наблюдение организма, который существует в то время и в том месте, где он наблюдался, потому что люди хотели, чтобы он был там и тогда. Подробнее см. https://help.inaturalist.org/en/support/solutions/articles/151000169932-what-does-captive-cultivated-mean
+        description: |
+          Текст, записанный наблюдателем, описывающий наблюдение или любые другие заметки, которые кажутся уместными
+        oauth_application_id: |
+          Последовательный идентификатор приложения, создавшего
+          наблюдение. Для получения дополнительной информации о приложении добавьте этот номер к https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          Название административной области третьего уровня, которая содержит координаты этого наблюдения (например, округ в большинстве частей США)
+        place_country_name: |
+          Название страны, в которой находятся координаты этого наблюдения
+        place_state_name: |
+          Название административной области второго уровня, которая содержит координаты этого наблюдения (например, штат в большинстве мест США)
+        place_town_name: |
+          Название города, в котором находятся координаты этого наблюдения, если они известны
+        private_place_guess: |
+          Место наблюдения, записанное наблюдателем, если место наблюдения скрыто
+        public_positional_accuracy: Максимальная горизонтальная позиционная неопределенность в метрах; включает неопределенность, добавленную сокрытием координат
+        taxon_class_name: |
+          Название таксономического класса, содержащего наблюдаемый таксон
+        taxon_family_name: |
+          Название таксономического семейства, содержащего наблюдаемый таксон
+        taxon_form_name: |
+          Название таксономической формы, содержащей наблюдаемый таксон
+        taxon_genus_name: |
+          Название таксономического рода, содержащего наблюдаемый таксон
+        taxon_genushybrid_name: |
+          Название таксономического гибридного рода, содержащего наблюдаемый таксон
+        taxon_hybrid_name: |
+          Название таксономического гибрида, содержащего наблюдаемый таксон
+        taxon_kingdom_name: |
+          Название таксономического царства, содержащего наблюдаемый таксон
+        taxon_order_name: |
+          Название таксономического порядка, содержащего наблюдаемый таксон
+        taxon_phylum_name: |
+          Название таксономического типа, содержащего наблюдаемый таксон
+        taxon_species_name: |
+          Название таксономического вида, содержащего наблюдаемый таксон
+        taxon_subclass_name: |
+          Название таксономического подкласса, содержащего наблюдаемый таксон
+        taxon_subfamily_name: |
+          Название таксономического подсемейства, содержащего наблюдаемый таксон
+        taxon_suborder_name: |
+          Название таксономического подотряда, содержащего наблюдаемый таксон
+        taxon_subphylum_name: |
+          Название таксономического подтипа, содержащего наблюдаемый таксон
+        taxon_subspecies_name: |
+          Название таксономического подвида, содержащего наблюдаемый таксон
+        taxon_subtribe_name: |
+          Название таксономической подтрибы, содержащей наблюдаемый таксон
+        taxon_superclass_name: |
+          Название таксономического суперкласса, содержащего наблюдаемый таксон
+        taxon_superfamily_name: |
+          Название таксономического надсемейства, содержащего наблюдаемый таксон
+        taxon_superorder_name: |
+          Название таксономического надотряда, содержащего наблюдаемый таксон
+        taxon_supertribe_name: |
+          Название таксономической надтрибы, содержащей наблюдаемый таксон
+        taxon_tribe_name: |
+          Название таксономической трибы, содержащей наблюдаемый таксон
+        taxon_variety_name: |
+          Название таксономической разновидности, содержащей наблюдаемый таксон
+        uuid: |
+          Универсальный уникальный идентификатор наблюдения. См. https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Отметить все наблюдения на этой странице как проверенные"
         you_reviewed_message: "Вы проверили %{reviewed} из %{pageTotal} наблюдений на этой странице из общего числа %{total} наблюдений."
@@ -7828,6 +7959,15 @@ ru:
       taxon:
         about_html: |
           Таксоны могут иметь много народных названий. Мы поддерживаем одно народное название по умолчанию по всему миру, которое можно изменить здесь, перетащив имя в начало списка. Вы также можете указывать имена по умолчанию для различных мест, редактируя имя и добавляя место, но, пожалуйста, делайте это только в тех случаях, когда разные места имеют конфликтующие имена.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          Экспорт также может содержать столбцы со значениями полей наблюдения. Чтобы найти их определения, выполните поиск по адресу
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          или добавьте имя столбца (с двоеточием) к
+          <code>%{terminology_url}</code> (например, <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist использует множество уникальных терминов для описания различных аспектов сервиса. Здесь мы попытались собрать некоторые из них и их определения для справки.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8607,6 +8747,7 @@ ru:
         requires_privilege_speech: |
           для этого нужно иметь три проверяемых наблюдения или три идентификации наблюдений других людей
         requires_privilege_organizer: для этого необходимо иметь 50 проверяемых наблюдений
+        requires_privilege_interaction: для этого у вас должен быть подтвержденный адрес электронной почты
         taken: уже было принято
         too_long:
           one: слишком длинное (максимум %{count} символ)
