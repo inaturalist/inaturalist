@@ -1052,6 +1052,10 @@ th:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: ยืนยันอีเมลของคุณ
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    โปรดคลิกลิงก์ด้านล่างเพื่อยืนยันที่อยู่อีเมลของคุณ หากคุณไม่ยืนยันอีเมลของคุณ
+    คุณจะไม่สามารถโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นได้
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
@@ -3237,6 +3241,31 @@ th:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: มาเป็นผู้สนับสนุน iNaturalist รายเดือน
         become_a_monthly_supporter_of_inaturalist_caps: มาเป็นผู้สนับสนุน iNaturalist รายเดือน
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: คลิกที่นี่เพื่อส่งอีเมลยืนยันอีกครั้ง
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: ส่งอีเมลยืนยัน
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        นี่คือที่อยู่อีเมลที่เราจะส่งการยืนยันไปที่:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        หากคุณไม่ได้รับอีเมล ต่อไปนี้เป็นเคล็ดลับบางประการ:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: หากคุณยังไม่ได้รับอีเมลยืนยัน โปรดติดต่อเราที่ <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ดังนั้นเราจึงสามารถช่วยเหลือคุณได้
+      please_add_an_email_and_password: โปรดเพิ่มอีเมลและรหัสผ่านเพื่อไม่ให้สูญเสียการเข้าถึงบัญชีของคุณ
+      please_click_the_link_sent_to_email_to_confirm_html: กรุณาคลิกลิงก์ที่ส่งมาที่ <span class="email">%{email}</span> เพื่อยืนยันที่อยู่อีเมลของคุณ
+      please_confirm_that_email_is_the_best_contact_html: โปรดยืนยันว่า <span class="email">%{email}</span> เป็นวิธีที่ดีที่สุดในการติดต่อคุณ #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อโต้ตอบกับเนื้อหาของผู้ใช้รายอื่นและเข้าถึงบางหน้า #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: โปรดยืนยันที่อยู่อีเมลของคุณ <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อโต้ตอบกับเนื้อหาของผู้ใช้รายอื่น
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: โปรดยืนยันที่อยู่อีเมลของคุณเพื่อใช้หน้านี้
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: ตรวจสอบตัวกรองใดๆ ที่คุณทําซึ่งอาจนําอีเมลของเราออกจากกล่องจดหมายของคุณ #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: ตรวจสอบโฟลเดอร์สแปม
+      your_site_account_has_no_email: ของคุณ %{site_name} บัญชีไม่มีที่อยู่อีเมลที่เชื่อมโยง
     guides:
       index:
         funding_html: |
@@ -3287,6 +3316,18 @@ th:
         lifelist_titles_cannot_be_changed: เปลี่ยนชื่อรายการสิ่งมีชีวิตไม่ได้
     messages:
       from: จาก
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          คุณจะสามารถส่งข้อความใหม่ได้หลังจากยืนยันอีเมลแล้ว
+          ที่อยู่  สําหรับตอนนี้คุณสามารถอ่านและตอบกลับข้อความที่คนอื่นส่งถึงคุณได้
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          คุณจะสามารถส่งข้อความใหม่ได้หลังจากยืนยันอีเมลแล้ว
+          ที่อยู่และเพิ่มข้อสังเกตที่ตรวจสอบได้สามข้อหรือการระบุตัวตนสามรายการ
+          สําหรับคนอื่น ๆ สําหรับตอนนี้คุณสามารถอ่านและตอบกลับข้อความที่คนอื่นส่งถึงคุณได้
     observations:
       community_id:
         cumulative_count: จำนวนการจำแนกสะสม
@@ -3778,6 +3819,7 @@ th:
     errors:
       messages:
         new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
+        requires_privilege_interaction: ต้องมีที่อยู่อีเมลที่ได้รับการยืนยันเพื่อทําเช่นนั้น
       models:
         guide:
           attributes:
