@@ -1668,6 +1668,8 @@ cs:
     Toto je výchozí časové pásmo. Skutečné časové pásmo bude přiřazeno na základě
     polohy pozorování, pokud bude uložena.
   defaults_to_your_name_or_username: Odpovídá vašemu jménu nebo uživatelskému jménu
+  #As in the definition of a word
+  definition: Definice
   defines_a_taxon_framework_for: Definuje rámec taxonu pro %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definuje rámec taxonu pro %{taxon} zdrojový pro %{source}
   definitions: Definice
@@ -1759,6 +1761,9 @@ cs:
     Pokud jste se nezaregistrovali k účtu na %{site_name}, prosím ignorujte tento e-mail.
   devise_confirmation_instructions_please_click: |
     Klikněte prosím na odkaz níže pro potvrzení vaší e-mailové adresy:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kliknutím na níže uvedený odkaz potvrďte svou e-mailovou adresu. Pokud svou e-mailovou adresu nepotvrdíte, nebudete moci komunikovat s obsahem ostatních uživatelů.
   devise_confirmation_instructions_resend_instructions: |
     Abyste mohli iNaturalist používat, musíte mít funkční e-mailovou adresu. Při registraci účtu jste měli obdržet potvrzovací e-mail s odkazem, na který je třeba kliknout a potvrdit, že vaše e-mailová adresa funguje, ale pokud jste tak neučinili, můžete si poslat další potvrzovací e-mail zde.
   devise_confirmation_instructions_send_confirmation_email: Odeslat ověřovací e-mail
@@ -2164,6 +2169,9 @@ cs:
     many: 'Sleduje %{count} osob'
     other: 'Sleduje %{count} osob'
   for_a_taxon: pro taxon
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Další informace o záhlavích sloupců naleznete v %{url}
   formatting: Formátování
   forgot_your_password: Zapomněli jste heslo?
   forum: Fórum
@@ -2606,6 +2614,9 @@ cs:
     Zdá se, že používáte heslo ze starší verze této webové stránky. Nezapomeňte si prosím pro novou verzi <a href="%{url}">heslo změnit</a>.
   let_us_walk_you_through: Pojďme si nyní projít hlavní funkce této stránky
   lexicon: Slovník
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Název souboru slov nebo termínů obsahujících název taxonu, např. název jazyka nebo soubor zkratek.
   lexicon_cannot_contain_words: "nemůže obsahovat následující slova: %{words}"
   lexicons:
     afrikaans: Afrikánština
@@ -3711,6 +3722,8 @@ cs:
   original_url_for_this_map: Původní URL pro tuto mapu
   organism_appears_captive_cultivated: Organismus žije v zajetí / pěstuje se
   other: Ostatní
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Ostatní
   other_animals: ostatní zvířata
   other_lexicons: Další slovníček
   other_listings_of_this_taxon_for_this_place: Jiné záznamy o tomto taxonu z tohoto místa
@@ -5398,6 +5411,8 @@ cs:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Podmínky
+  #As in a list of distinct words
+  terminology: Terminologie
   terms_and_rules_html: "Podmínky &amp; Pravidla"
   terms_new_users: "Pokud přidáte podmínky, musí je noví uživatelé odsouhlasit, než se připojí k tomuto projektu."
   terms_service: Podmínky použití
@@ -6547,9 +6562,28 @@ cs:
         Prosíme, zkuste to brzy znovu.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klikněte zde pro opětovné odeslání potvrzovacího e-mailu
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Potvrzující e-mail odeslán
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Zde je e-mailová adresa, na kterou bude zasláno potvrzení:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Pokud neobdržíte e-mail, zde jsou nějaké tipy:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Pokud potvrzovací e-mail stále neobdržíte, kontaktujte nás prosím na <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>, abychom vám mohli pomoci.
       please_add_an_email_and_password: Prosím, přidejte e-mail a heslo, abyste neztratili přístup ke svému účtu
       please_click_the_link_sent_to_email_to_confirm_html: Kliknutím na odkaz odeslaný na adresu <span class="email">%{email}</span> potvrďte svou e-mailovou adresu.
       please_confirm_that_email_is_the_best_contact_html: Potvrďte, že <span class="email">%{email}</span> je nejlepší způsob, jak vás kontaktovat. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Pro interakci s obsahem ostatních uživatelů a přístup k některým stránkám potvrďte svou e-mailovou adresu. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Potvrďte svou e-mailovou adresu <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Potvrďte svou e-mailovou adresu, abyste mohli komunikovat s obsahem ostatních uživatelů
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Pro použití této stránky potvrďte svou e-mailovou adresu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Zkontrolujte, zda jste nezavedli filtry, které by mohly odstranit naše e-maily z vaší schránky. #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Zkontrolujte složku nevyžádané pošty
       your_site_account_has_no_email: Váš %{site_name} účet nemá přiřazenou e-mailovou adresu.
     flags:
       show:
@@ -6857,6 +6891,14 @@ cs:
           Po přidání tří
           ověřitelných pozorování nebo tří identifikací pro ostatní budete moci poslat nové zprávy. Zatím
           si můžete přečíst a odpovědět na zprávu ostatním lidem.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Po potvrzení e-mailové adresy budete moci odesílat nové zprávy. Prozatím můžete číst zprávy, které vám posílají ostatní, a odpovídat na ně.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Nové zprávy budete moci odesílat poté, co potvrdíte svou e-mailovou adresu a přidáte tři ověřitelné poznámky nebo tři identifikace pro ostatní. Prozatím můžete číst zprávy, které vám posílají ostatní, a odpovídat na ně.
       show:
         flag_notice_html: |
           Označili jste tuto konverzaci na %{date}. Vlajka bude přetrvávat i
@@ -7072,27 +7114,111 @@ cs:
           </li>
           </ul>
       field_descriptions:
+        id: Jedinečný sekvenční identifikátor pozorování
+        species_guess: |
+          Textový název sledovaného taxonu; může být nastaven pozorovatelem při vytváření pozorování, ale může být nahrazen kanonickými, lokalizovanými názvy, když se taxon změní.
+        scientific_name: "Vědecký název sledovaného taxonu podle iNaturalist"
+        common_name: "Obecný nebo místní název sledovaného taxonu podle iNaturalist"
         iconic_taxon_name: Vyšší taxonomická kategorie pro pozorovaný taxon
+        taxon_id: Jedinečný sekvenční identifikátor sledovaného taxonu
         id_please: Zda pozorovatel požadoval pomoc s identifikací
+        num_identification_agreements: Počet identifikací spojených s taxony, které se shodují s taxonem z identifikace pozorovatele nebo jsou jím obsaženy.
+        num_identification_disagreements: Počet identifikací spojených s taxony, které se neshodují a nejsou obsaženy v taxonu z identifikace pozorovatele.
         observed_on_string: Datum/čas zadaný pozorovatelem
         observed_on: Normalizované datum pozorování
         time_observed_at: Normalizované datum a čas pozorování
         time_zone: Časové pásmo pozorování
         place_guess: Popis lokality zadaný pozorovatelem
+        latitude: Veřejně viditelná zeměpisná šířka z místa pozorování
+        longitude: Veřejně viditelná zeměpisná délka z místa pozorování
         positional_accuracy: "Přesnost souřadnic(jo, jo, přesnost != přesnost, špatná volba názvů)"
         private_latitude: "Soukromá zeměpisná šířka, nastavená, pokud je pozorování soukromé nebo přibližné"
         private_longitude: "Soukromá zeměpisná délka, nastavená, pokud je pozorování soukromé nebo přibližné"
+        geoprivacy: "Zda se pozorovatel rozhodl souřadnice zakrýt nebo skrýt. Viz https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Použito nejkonzervativnější soukromí zeměpisné polohy z důvodu stavu zachování taxonů v současné identifikaci."
         coordinates_obscured: "Zda byly souřadnice přibližné, buď kvůli zachování soukromí zeměpisné polohy nebo kvůli ohroženému taxonu"
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
+        user_id: Jedinečný sekvenční identifikátor pozorovatele
+        user_login: Handle / uživatelské jméno pozorovatele, tj. krátký, jedinečný alfanumerický identifikátor uživatele.
+        user_name: |
+          Toto pole je nepovinné a může se jednat o pseudonym.
         created_at: Datum a čas, kdy bylo pozorování vytvořeno
         updated_at: Datum a čas, kdy bylo pozorování naposledy aktualizováno
+        quality_grade: Stupeň kvality tohoto pozorování. Podrobnosti o tom, co to znamená, najdete v části Nápověda. Viz https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identifikátor licence nebo výjimky, kterou pozorovatel zvolil pro toto pozorování. Všechna práva vyhrazena, pokud je pole prázdné
         url: URL pozorování
+        image_url: URL adresa první fotografie související s pozorováním
+        sound_url: |
+          URL pro první zvuk spojený s pozorováním. Všimněte si, že toto bude k dispozici pouze pro přímé nahrávání, nikoli pro zvuky hostované ve službách třetích stran.
         tag_list: Seznam tagů oddělených čárkami
         place_admin1_name: Název správního místa v rámci země
         place_admin2_name: Název správního místa se řadí pod úroveň země
         positioning_method: Jak byly určeny souřadnice
         positioning_device: Zařízení použité k určení souřadnic
+        captive_cultivated: |
+          Pozorování se týká organismu, který existuje v čase a na místě, kde byl pozorován, protože to lidé tehdy a tehdy zamýšleli. Více viz https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Text napsaný pozorovatelem, který popisuje pozorování nebo zaznamenává jakékoli další poznámky, které se zdají být relevantní.
+        oauth_application_id: |
+          Sekvenční identifikátor aplikace, která vytvořila pozorování. Chcete-li získat další informace o aplikaci, připojte toto číslo k https://www.inaturalist.org/oauth/applications/.
+        place_county_name: |
+          Název správní oblasti třetí úrovně, která obsahuje souřadnice tohoto pozorování (např. okrsek ve většině částí Spojených států).
+        place_country_name: |
+          Název země, která obsahuje souřadnice tohoto pozorování.
+        place_state_name: |
+          Název správní oblasti druhé úrovně, která obsahuje souřadnice tohoto pozorování (např. stát ve většině částí Spojených států).
+        place_town_name: |
+          Název města, ve kterém se nacházejí souřadnice tohoto pozorování, pokud je znám.
+        private_place_guess: |
+          Místo pozorování zapsané pozorovatelem, pokud je místo pozorování zastřené
+        public_positional_accuracy: Maximální horizontální polohová nejistota v metrech; zahrnuje nejistotu přidanou zastíněním souřadnic.
+        taxon_class_name: |
+          Název taxonomické třídy obsahující pozorovaný taxon
+        taxon_family_name: |
+          Název taxonomické čeledi obsahující pozorovaný taxon
+        taxon_form_name: |
+          Název taxonomické formy obsahující pozorovaný taxon
+        taxon_genus_name: |
+          Název taxonomického rodu obsahujícího pozorovaný taxon
+        taxon_genushybrid_name: |
+          Název taxonomického hybridního rodu obsahujícího pozorovaný taxon
+        taxon_hybrid_name: |
+          Název taxonomického hybridu obsahujícího pozorovaný taxon
+        taxon_kingdom_name: |
+          Název taxonomické říše obsahující pozorovaný taxon
+        taxon_order_name: |
+          Název taxonomického řádu obsahujícího pozorovaný taxon
+        taxon_phylum_name: |
+          Název taxonomického kmene obsahujícího pozorovaný taxon
+        taxon_species_name: |
+          Název taxonomického druhu obsahujícího pozorovaný taxon
+        taxon_subclass_name: |
+          Název taxonomické podtřídy obsahující pozorovaný taxon
+        taxon_subfamily_name: |
+          Název taxonomické podčeledi obsahující pozorovaný taxon
+        taxon_suborder_name: |
+          Název taxonomického podřádu obsahujícího pozorovaný taxon
+        taxon_subphylum_name: |
+          Název taxonomického podkmene obsahujícího pozorovaný taxon
+        taxon_subspecies_name: |
+          Název taxonomického poddruhu obsahujícího pozorovaný taxon
+        taxon_subtribe_name: |
+          Název taxonomického podkmene obsahujícího pozorovaný taxon
+        taxon_superclass_name: |
+          Název taxonomické supertřídy obsahující pozorovaný taxon
+        taxon_superfamily_name: |
+          Název taxonomické nadčeledi obsahující sledovaný taxon
+        taxon_superorder_name: |
+          Název taxonomického nadřádu obsahujícího sledovaný taxon
+        taxon_supertribe_name: |
+          Název taxonomického nadkmene obsahujícího sledovaný taxon
+        taxon_tribe_name: |
+          Název taxonomického kmene obsahujícího sledovaný taxon
+        taxon_variety_name: |
+          Název taxonomické variety obsahující sledovaný taxon
+        uuid: |
+          Univerzálně jedinečný identifikátor pozorování. Viz
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Označit všechna pozorování na této stránce za zkontrolovaná"
         you_reviewed_message: "Zkontrolovali jste %{reviewed} z %{pageTotal} pozorování na této stránce z %{total} odpovídajících pozorování."
@@ -7198,6 +7324,9 @@ cs:
           pozorování <strong>nepředkládá důkazy týkající se jednoho
           subjektu</strong> (např. má čtyři fotografie nespřízněných organismů;
           fotografie ukazující stanoviště předmětu pozorování je OK)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          pozorování již nepotřebuje ID <em>a</em> komunitní taxon je v čeledi nebo vyšší
         #One of a list of reasons for an observation to revert to Casual
         dqa_help_casual_opted_out_maverick_html: |
           taxon není předchůdcem ani potomkem taxonu přidruženého k
@@ -8023,6 +8152,10 @@ cs:
       taxon:
         about_html: |
           Taxony mohou mít mnoho obecných názvů. Podporujeme jeden základní globální obecný název, který může být změněn tady přetažením názvu na začátek seznamu. Také můžete specifikovat základní názvy na různých místech upravením názvu a přidáním místa, to ale prosím dělejte jen tehdy, pokud mají různá místa názvy, které si vzájemně odporují.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist používá řadu jedinečných termínů pro popis různých aspektů služby. Zde jsme se pokusili shromáždit některé z nich a jejich definice pro informaci.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8853,6 +8986,7 @@ cs:
         requires_privilege_speech: |
           musí mít tři ověřitelná pozorování nebo tři identifikátory, aby tak mohli učinit ostatní
         requires_privilege_organizer: k tomu musí mít 50 ověřitelných pozorování
+        requires_privilege_interaction: k tomu musí mít potvrzenou e-mailovou adresu
         taken: už je obsazené
         too_long:
           one: je příliš dlouhý (maximum je %{count} znak)
