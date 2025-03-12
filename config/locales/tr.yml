@@ -1521,6 +1521,10 @@ tr:
     %{site_name} hesabı açmadıysan, lütfen bu e-postayı dikkate alma.
   devise_confirmation_instructions_please_click: |
     E-posta adresini doğrulamak için lütfen aşağıdaki bağlantıya tıkla:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    E-posta adresinizi onaylamak için lütfen aşağıdaki bağlantıya tıklayın. E-postanızı onaylamazsanız
+    adresine gönderdiyseniz, diğer kullanıcıların içeriğiyle etkileşime giremeyeceksiniz.
   devise_confirmation_instructions_resend_instructions: |
     iNaturalist'i kullanmak için çalışan bir e-posta adresin olmalıdır. Kaydolduğunda, e-posta adresinin çalıştığını doğrulamak için tıklaman gereken bağlantı içeren bir onay e-postası almış olmalısın ancak almadıysan buradan kendine başka bir doğrulama e-postası gönderebilirsin.
   devise_confirmation_instructions_send_confirmation_email: Doğrulama e-postası gönder
@@ -5970,9 +5974,28 @@ tr:
         iNaturalist'i desteklemeye gösterdiğin ilgi için teşekkür ederiz! Bağış sistemlerimizi güncellerken iNaturalist'e bağış yapmak geçici olarak mümkün değildir. Lütfen yakında tekrar kontrol edin.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Doğrulama e-postasını tekrar göndermek için buraya tıkla.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Onay e-postası gönderildi
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Onayı göndereceğimiz e-posta adresi şu şekildedir:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        E-postayı almazsanız, işte bazı ipuçları:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: 'Hala onay e-postasını almıyorsanız, lütfen bizimle şu adresten iletişime geçin: <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Böylece size yardımcı olabiliriz.'
       please_add_an_email_and_password: Hesabına erişimini kaybetmemek için lütfen bir e-posta ve şifre ekle
       please_click_the_link_sent_to_email_to_confirm_html: E-posta adresini doğrulamak için lütfen <span class="email">%{email}</span> adresine gönderilen bağlantıya tıkla.
       please_confirm_that_email_is_the_best_contact_html: Lütfen <span class="email">%{email}</span> adresinin iletişim kurmak için en iyi yol olduğundan emin ol. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Diğer kullanıcıların içeriğiyle etkileşim kurmak ve belirli sayfalara erişmek için lütfen e-posta adresinizi onaylayın. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Lütfen e-posta adresinizi onaylayın <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Diğer kullanıcıların içeriğiyle etkileşim kurmak için lütfen e-posta adresinizi onaylayın
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Bu sayfayı kullanmak için lütfen e-posta adresinizi onaylayın
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: E-postalarımızı gelen kutunuzdan kaldırabilecek herhangi bir filtre oluşturup oluşturmadığınızı kontrol edin #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Spam klasörünüzü kontrol edin
       your_site_account_has_no_email: '%{site_name} hesabın, bir e-posta adresine sahip değil.'
     flags:
       show:
@@ -6242,6 +6265,17 @@ tr:
         #earning speech privilege
         speech_privilege_notice: |
           Doğrulanabilir üç gözlem ya da başkaları için üç tanımlama bilgisi ekledikten sonra yeni iletiler gönderebileceksin. Şimdilik başkalarının sana gönderdiği iletileri okuyabilir ve yanıtlayabilirsin.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          E-postanızı onayladıktan sonra yeni mesajlar gönderebileceksiniz
+          adres. Şimdilik, başkalarının size gönderdiği mesajları okuyabilir ve yanıtlayabilirsiniz.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          E-postanızı onayladıktan sonra yeni mesajlar gönderebileceksiniz
+          adres ekledi ve üç doğrulanabilir gözlem veya üç kimlik ekledi
+          diğerleri için. Şimdilik, başkalarının size gönderdiği mesajları okuyabilir ve yanıtlayabilirsiniz.
       show:
         flag_notice_html: |
           Bu konuşmayı %{date} tarihinde işaretledin. Bu konuşmanın kopyasını silsen bile işaret kalıcı olacaktır, bu nedenle artık bunu görmek istemiyorsan bunu yapman güvenlidir.
@@ -7940,6 +7974,7 @@ tr:
         requires_privilege_speech: |
           başkalarının bunu yapması için üç doğrulanabilir gözleme veya üç tanımlamaya sahip olmalı
         requires_privilege_organizer: bunu yapmak için 50 doğrulanabilir gözleme sahip olmalı
+        requires_privilege_interaction: Bunu yapmak için onaylanmış bir e-posta adresine sahip olmalısınız
         taken: zaten alınmış
         too_long:
           one: çok uzun (en çok %{count} karakter)
