@@ -1508,6 +1508,10 @@ ja:
     もしあなたが@%{site_name} として登録した覚えがない場合は、このメールを無視してください。
   devise_confirmation_instructions_please_click: |
     下にあるリンクをクリックして、メールアドレスの認証を行ってください。
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    以下のリンクをクリックして、メールアドレスを確認してください。メールを確認しない場合
+    アドレスに触れると、他のユーザーのコンテンツと対話できなくなります。
   devise_confirmation_instructions_resend_instructions: |
     iNaturalistをご利用いただくにはメールアドレスが必要です。
     アカウント登録時に入力されたメールアドレス宛に、本人確認のためのリンクが送信されていますので、本リンクをクリックし、認証を完了してください。
@@ -5657,6 +5661,31 @@ ja:
         iNaturalistのサポートにご関心をお寄せいただきありがとうございます！
         iNaturalistへの寄付は、寄付システムの更新中のため、一時的にご利用いただけません。
         お手数をおかけしますが、すこし時間を置いたのち、再度アクセスをお願いいたします。
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: 確認メールを再送信するには、ここをクリックしてください
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: 確認メールが送信されました
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        確認を送信するメールアドレスは次のとおりです。
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        メールが届かない場合は、次のヒントをご覧ください。
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: それでも確認メールが届かない場合は、お手数ですがお問い合わせください。 <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> だから私たちはあなたを助けることができます。
+      please_add_an_email_and_password: アカウントへのアクセスを失わないように、メールアドレスとパスワードを追加してください
+      please_click_the_link_sent_to_email_to_confirm_html: に送信されたリンクをクリックしてください <span class="email">%{email}</span> メールアドレスを確認します。
+      please_confirm_that_email_is_the_best_contact_html: 以下の点をご確認ください。 <span class="email">%{email}</span> あなたに連絡する最良の方法です。 #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: 他のユーザーのコンテンツと対話したり、特定のページにアクセスしたりするには、メールアドレスを確認してください。 #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: メールアドレスをご確認ください <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: 他のユーザーのコンテンツと対話するために、メールアドレスを確認してください
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: このページをご利用いただくには、メールアドレスをご確認ください
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: 受信トレイからメールを削除する可能性のあるフィルターがないか確認してください #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: スパムフォルダを確認する
+      your_site_account_has_no_email: あなたの %{site_name} アカウントにはメールアドレスが関連付けられていません。
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5831,6 +5860,17 @@ ja:
         speech_privilege_notice: |
           有効な観察記録を3つ、または他の人の観察記録に同定をを3つ追加すると、新しいDMを送信できるようになりま
           現在の状態では、他の人が送ってきたメッセージを読んだり、返信したりする機能のみが利用できます。
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          メールを確認した後、新しいメッセージを送信できるようになります
+          住所。今のところ、他の人から送られてきたメッセージを読んだり、返信したりすることができます。
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          メールを確認した後、新しいメッセージを送信できるようになります
+          アドレス、および3つの検証可能な観察または3つの識別を追加しました
+          他の人にとっては。今のところ、他の人から送られてきたメッセージを読んだり、返信したりすることができます。
     nls_demo:
       #Vision Language models are machine-learning models that can work with
       #both text and images. They can for example search images with a text
@@ -6903,6 +6943,7 @@ ja:
           3つの確認可能な観察記録、もしくは3つの同定
           が必要です
         requires_privilege_organizer: そのためには、50の検証可能な観察記録が必要です
+        requires_privilege_interaction: そのためには、確認済みのメールアドレスが必要です
         taken: 既に取得されています
         too_long:
           other: 長すぎます（最大は%{count}文字）
