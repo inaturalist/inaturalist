@@ -87,14 +87,16 @@ class BootstrapFormBuilder < DefaultFormBuilder
     super( method, choices, options, html_options, &block )
   end
 
-  # rubocop:disable Metrics/ParameterLists
-
   def check_radio_field( field, field_content = nil, options = {}, wrapper_options = {}, description = nil )
     wrapper_options[:class] = wrapper_options[:class].gsub( "form-group", field == "check_box" ? "checkbox" : "radio" )
     label_content = if options[:label] == false
       nil
     else
-      options[:label] || I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: nil ) || field #.to_s.humanize
+      (
+        options[:label] ||
+        I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: nil ) ||
+        field
+      )
     end.to_s.html_safe
     if options[:required]
       label_content += content_tag( :span, " *", class: "required" )
@@ -112,6 +114,4 @@ class BootstrapFormBuilder < DefaultFormBuilder
       content
     end
   end
-
-  # rubocop:enable Metrics/ParameterLists
 end

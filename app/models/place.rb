@@ -202,9 +202,8 @@ class Place < ApplicationRecord
 
   IMPORT_TIMEOUT_SECONDS = 100
 
-  COUNTRIES_BY_NAME = Place.where( admin_level: COUNTRY_LEVEL ).sort_by( &:name ).inject( {} ) do | memo, place |
+  COUNTRIES_BY_NAME = Place.where( admin_level: COUNTRY_LEVEL ).sort_by( &:name ).each_with_object( {} ) do | place, memo |
     memo[place.name] = { name: place.name, id: place.id, code: place.code }
-    memo
   end
 
   scope :dbsearch, ->( q ) { where( "name LIKE ?", "%#{q}%" ) }
