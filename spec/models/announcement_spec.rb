@@ -342,4 +342,35 @@ describe Announcement do
       ).count ).to eq 1
     end
   end
+
+  describe "active_in_placement" do
+    describe "ip_country" do
+      it "includes announcements with ip_countries matching IP country" do
+        annc = create :announcement, ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: { country: annc.ip_countries.first } )
+        end
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).to include annc
+      end
+
+      it "excludes announcements with ip_countries not matching IP country" do
+        annc = create :announcement, ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: { country: "PL" } )
+        end
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
+      end
+
+      it "excludes announcements with ip_countries when IP has no country" do
+        annc = create :announcement, ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: nil )
+        end
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
+      end
+    end
+  end
 end

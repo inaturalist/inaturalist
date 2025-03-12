@@ -247,6 +247,10 @@ class Announcement < ApplicationRecord
         a.targeted_to_user?( user ) && !a.dismissed_by?( user )
       end
     end
+    if options[:ip]
+      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
+      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country )}
+    end
     announcements.sort_by do | a |
       [
         a.site_ids.include?( site.try( :id ) ) ? 0 : 1,

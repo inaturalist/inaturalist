@@ -405,7 +405,8 @@ CREATE TABLE public.announcements (
     user_created_start_date date,
     user_created_end_date date,
     last_observation_start_date date,
-    last_observation_end_date date
+    last_observation_end_date date,
+    ip_countries text[] DEFAULT '{}'::text[]
 );
 
 
@@ -11493,6 +11494,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250307000624'),
 ('20250307004743'),
 ('20250311191217'),
-('20250311212144');
+('20250311212144'),
+('20250311225953');
 
 

@@ -85,6 +85,7 @@
         order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
       = f.date_select :last_observation_end_date, use_month_names: month_names,
         order: [:year, :month, :day], include_blank: true, start_year: users_start_year, end_year: users_end_year
+      = f.select :ip_countries, Place::COUNTRIES_BY_NAME.values.select { | c | !c[:code].blank? }.map { |c| [t( c[:name], scope: "places_name", default: c[:name] ), c[:code]] }, { include_blank: t( :all ) }, multiple: true
   .row
     .col-xs-12
       = f.text_area :body

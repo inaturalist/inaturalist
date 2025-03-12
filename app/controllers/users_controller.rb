@@ -512,25 +512,26 @@ class UsersController < ApplicationController
         nil
       end
     end
+    request_ip = Logstasher.ip_from_request_env( request.env )
+    annc_opts = { site: @site, user: current_user, ip: request_ip }
+    @announcements = [
+      Announcement.active_in_placement( Announcement::USERS_DASHBOARD, annc_opts ),
+      Announcement.active_in_placement( Announcement::USERS_DASHBOARD_SIDEBAR, annc_opts )
+    ].flatten.compact
+    @subscriptions = current_user.subscriptions.includes(:resource).
+      where("resource_type in ('Place', 'Taxon')").
+      limit(5)
+    if current_user.is_curator? || current_user.is_admin?
+      @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
+        includes(:user, :resolver, :comments).limit(5)
+
+      # overfetching and limiting in Ruby to avoid an inefficient
+      # query plan when sorting by ID descending in PostgreSQL
+      @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
+        sort{ |t| t.id }[0...5]
+    end
     respond_to do |format|
       format.html do
-        annc_opts = { site: @site, user: current_user }
-        @announcements = [
-          Announcement.active_in_placement( Announcement::USERS_DASHBOARD, annc_opts ),
-          Announcement.active_in_placement( Announcement::USERS_DASHBOARD_SIDEBAR, annc_opts )
-        ].flatten.compact
-        @subscriptions = current_user.subscriptions.includes(:resource).
-          where("resource_type in ('Place', 'Taxon')").
-          limit(5)
-        if current_user.is_curator? || current_user.is_admin?
-          @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
-            includes(:user, :resolver, :comments).limit(5)
-
-          # overfetching and limiting in Ruby to avoid an inefficient
-          # query plan when sorting by ID descending in PostgreSQL
-          @ungrafted_taxa = Taxon.where( "ancestry IS NULL" ).active.limit( 50 ).
-            sort{ |t| t.id }[0...5]
-        end
         render layout: "bootstrap"
       end
     end
