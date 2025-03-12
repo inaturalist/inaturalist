@@ -407,7 +407,15 @@ body > [role="dialog"] .ObservationModal {
     opacity: 1;
     cursor: zoom-out;
   }
+  
+  .image-gallery-content .easyzoom-flyout.short img {
+    width: 100%;
+  }
 
+  .image-gallery-content .easyzoom-flyout.narrow img {
+    width: 100%;
+  }
+  
   .easyzoom-zoomed img {
     visibility: hidden;
   }
