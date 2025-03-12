@@ -1026,7 +1026,7 @@ class Place < ApplicationRecord
   end
 
   def localized_name
-    Place.localized_name( name, { admin_leve: admin_leve, display_name: display_name } )
+    Place.localized_name( name, { admin_level: admin_level, display_name: display_name } )
   end
 
   def area_km2
