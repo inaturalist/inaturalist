@@ -6,12 +6,15 @@ import {
   toggleReviewed,
   agreeWithObservaiton
 } from "../actions";
+import { confirmResendConfirmation } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   return {
+    config: state.config,
     observations: state.observations.results || [],
     currentUser: state.config.currentUser,
-    imageSize: state.config.imageSize
+    imageSize: state.config.imageSize,
+    confirmationEmailSent: state.confirmation.confirmationEmailSent
   };
 }
 
@@ -26,7 +29,8 @@ function mapDispatchToProps( dispatch ) {
     },
     onAgree: observation => {
       dispatch( agreeWithObservaiton( observation ) );
-    }
+    },
+    confirmResendConfirmation: method => dispatch( confirmResendConfirmation( method ) )
   };
 }
 

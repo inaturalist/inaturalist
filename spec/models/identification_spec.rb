@@ -111,7 +111,7 @@ describe Identification, "creation" do
         :taxon => taxon
       )
       obs.reload
-      user = User.make!
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
       identification = Identification.make!(
         :user => user,
         :observation => obs,
@@ -404,7 +404,7 @@ describe Identification, "creation" do
         it "should incremement for an ident on someone else's observation, with delay" do
           taxon = Taxon.make!
           obs = Observation.make!(taxon: taxon)
-          user = User.make!
+          user = make_user_with_privilege( UserPrivilege::INTERACTION )
           Delayed::Job.destroy_all
           expect( Delayed::Job.count ).to eq 0
           expect( user.identifications_count ).to eq 0
@@ -904,7 +904,7 @@ describe Identification, "category" do
     before do
       load_test_taxa
       u1 = o.user
-      u2 = User.make!
+      u2 = make_user_with_privilege( UserPrivilege::INTERACTION )
       @sequence = [
         Identification.make!( observation: o, taxon: @Calypte_anna, user: u1 ),
         Identification.make!( observation: o, taxon: @Calypte, user: u1 ),
@@ -947,7 +947,7 @@ describe Identification, "category" do
   describe "single user redundant identifications" do
     before do
       load_test_taxa
-      user = User.make!
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
       @sequence = [
         Identification.make!( observation: o, user: user, taxon: @Calypte ),
         Identification.make!( observation: o, user: user, taxon: @Calypte )
@@ -979,7 +979,7 @@ describe Identification, "category" do
   describe "disagreement with revision" do
     before do
       load_test_taxa
-      user = User.make!
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
       @sequence = []
       @sequence << Identification.make!( observation: o, taxon: @Calypte, user: user )
       @sequence << Identification.make!( observation: o, taxon: @Calypte_anna, user: user )

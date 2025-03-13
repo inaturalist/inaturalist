@@ -7,9 +7,17 @@ class Message < ApplicationRecord
   blockable_by ->( message ) { message.to_user_id },
     blockable_user_id: ->( message ) { message.from_user_id }
 
-  requires_privilege :speech, if: proc {| m |
-    from_user_id == user_id && ( m.thread_id.blank? || m.thread_id == m.id )
+  requires_privilege :speech, if: proc {| message |
+    message.from_user_id == message.user_id && (
+      message.thread_id.blank? || message.thread_id == message.id
+    )
   }
+  # TODO: uncomment to strictly enforce email confirmation for interaction
+  # requires_privilege :interaction, if: proc {| message |
+  #   message.from_user_id == message.user_id && (
+  #     message.thread_id.blank? || message.thread_id == message.id
+  #   )
+  # }
 
   belongs_to :user
   belongs_to :from_user, class_name: "User"

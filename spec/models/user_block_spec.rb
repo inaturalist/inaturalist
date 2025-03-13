@@ -1,13 +1,15 @@
-# -*- coding: utf-8 -*-
-require File.dirname(__FILE__) + "/../spec_helper"
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe UserBlock do
   it { is_expected.to belong_to :user }
   it { is_expected.to belong_to(:blocked_user).class_name "User" }
   it { is_expected.to belong_to(:override_user).class_name "User" }
 
-  let( :user ) { User.make! }
-  let( :blocked_user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+  let( :blocked_user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+
   describe "validation" do
     it "should pass if there are less than 3 other blocks for this user" do
       2.times { UserBlock.make!( user: user ) }

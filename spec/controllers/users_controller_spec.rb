@@ -104,6 +104,7 @@ describe UsersController, "set_spammer" do
   describe "curators" do
     before( :each ) do
       @curator = make_curator
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: @curator )
       sign_in( @curator )
       request.env["HTTP_REFERER"] = "/"
     end
@@ -340,7 +341,11 @@ describe UsersController, "show" do
 end
 
 describe UsersController, "moderation" do
-  let( :subject_user ) { User.make! }
+  let( :subject_user ) do
+    user = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
   let( :curator ) { make_curator }
   it "should be viewable by curators" do
     sign_in make_curator

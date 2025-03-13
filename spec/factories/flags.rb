@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :flag do
-    user
+    user { association( :user_privilege, privilege: UserPrivilege::INTERACTION ).user }
     flaggable_user { }
     flaggable { build :taxon }
     flag { Faker::Name.name }

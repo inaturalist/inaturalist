@@ -93,7 +93,8 @@ class Suggestions extends React.Component {
       nextTaxon,
       config,
       updateCurrentUser,
-      updateSuggestionSession
+      updateSuggestionSession,
+      performOrOpenConfirmationModal
     } = this.props;
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
@@ -353,6 +354,7 @@ class Suggestions extends React.Component {
                     this.scrollToTop( );
                     setDetailTaxon( taxon, options );
                   }}
+                  performOrOpenConfirmationModal={performOrOpenConfirmationModal}
                 />
               ) ) }
             </div>
@@ -459,10 +461,14 @@ class Suggestions extends React.Component {
             </Button>
             <Button
               bsStyle="primary"
-              onClick={( ) => chooseTaxon( detailTaxon, {
-                observation,
-                vision: query.source === "visual"
-              } )}
+              onClick={( ) => {
+                performOrOpenConfirmationModal( ( ) => {
+                  chooseTaxon( detailTaxon, {
+                    observation,
+                    vision: query.source === "visual"
+                  } );
+                } );
+              }}
             >
               { I18n.t( "select_this_taxon" ) }
             </Button>
@@ -487,7 +493,8 @@ Suggestions.propTypes = {
   nextTaxon: PropTypes.object,
   config: PropTypes.object,
   updateCurrentUser: PropTypes.func,
-  updateSuggestionSession: PropTypes.bool
+  updateSuggestionSession: PropTypes.bool,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 Suggestions.defaultProps = {

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :observation do
-    user
+    user { association( :user_privilege, privilege: UserPrivilege::INTERACTION ).user }
     taxon
     license { Observation::CC_BY }
     description { Faker::Lorem.sentence }

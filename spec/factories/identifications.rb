@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :identification do
-    user
+    user { association( :user_privilege, privilege: UserPrivilege::INTERACTION ).user }
     observation
     taxon
   end

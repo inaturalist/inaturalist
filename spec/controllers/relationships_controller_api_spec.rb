@@ -58,7 +58,7 @@ shared_examples_for "a RelationshipsController" do
 end
 
 describe RelationshipsController, "jwt authentication" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   before do
     request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode( user_id: user.id )
   end

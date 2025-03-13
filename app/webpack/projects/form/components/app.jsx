@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import ProjectFormContainer from "../containers/project_form_container";
 
-const App = ( { config, form, createNewProject } ) => {
+const App = ( { config, form, createNewProject, performOrOpenConfirmationModal } ) => {
   if ( form.project ) {
     return ( <ProjectFormContainer /> );
   }
@@ -113,7 +113,11 @@ const App = ( { config, form, createNewProject } ) => {
               <button
                 type="button"
                 className="btn-green"
-                onClick={( ) => createNewProject( "collection" )}
+                onClick={( ) => (
+                  performOrOpenConfirmationModal( ( ) => (
+                    createNewProject( "collection" )
+                  ) )
+                )}
               >
                 { I18n.t( "get_started" ) }
               </button>
@@ -130,7 +134,11 @@ const App = ( { config, form, createNewProject } ) => {
               <button
                 type="button"
                 className="btn-green"
-                onClick={( ) => createNewProject( "umbrella" )}
+                onClick={( ) => (
+                  performOrOpenConfirmationModal( ( ) => (
+                    createNewProject( "umbrella" )
+                  ) )
+                )}
               >
                 { I18n.t( "get_started" ) }
               </button>
@@ -172,7 +180,8 @@ const App = ( { config, form, createNewProject } ) => {
 App.propTypes = {
   form: PropTypes.object,
   createNewProject: PropTypes.func,
-  config: PropTypes.object
+  config: PropTypes.object,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 export default App;

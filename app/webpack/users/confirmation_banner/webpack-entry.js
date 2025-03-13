@@ -1,41 +1,22 @@
-import _ from "lodash";
-import "core-js/stable";
-import "regenerator-runtime/runtime";
-import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import {
-  createStore, compose, applyMiddleware, combineReducers
-} from "redux";
 import BannerContainer from "./containers/banner_container";
-import ConfirmationBannerReducer from "./reducers/reducer";
-import configReducer, { setConfig } from "../../shared/ducks/config";
-import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import ConfirmationBannerReducer from "../../shared/ducks/user_confirmation";
+import confirmEmailModalReducer from "../../shared/ducks/confirm_email_modal";
+import sharedStore from "../../shared/shared_store";
 
-const rootReducer = combineReducers( {
-  config: configReducer,
+const reducers = {
   confirmation: ConfirmationBannerReducer,
-  confirmModal: confirmModalReducer
-} );
+  confirmEmailModal: confirmEmailModalReducer
+};
 
-const store = createStore(
-  rootReducer,
-  compose(
-    applyMiddleware( thunkMiddleware )
-  )
-);
-
-if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
-}
+sharedStore.injectReducers( reducers );
 
 const element = document.querySelector( "#ConfirmationBanner.dynamic" );
 if ( element ) {
   render(
-    <Provider store={store}>
+    <Provider store={sharedStore}>
       <BannerContainer />
     </Provider>,
     element

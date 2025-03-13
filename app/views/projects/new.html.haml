@@ -9,6 +9,7 @@
     :ruby
       js_current_user = { id: current_user.id,
         login: current_user.login,
+        email: current_user.email,
         icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
         roles: current_user.roles.map(&:name),
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,

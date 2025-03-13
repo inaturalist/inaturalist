@@ -17,7 +17,7 @@ describe Emailer, "updates_notification" do
   after { disable_has_subscribers }
 
   it "should include a fave" do
-    without_delay { @observation.vote_by voter: create( :user ) }
+    without_delay { @observation.vote_by voter: make_user_with_privilege( UserPrivilege::INTERACTION ) }
     mail = Emailer.updates_notification( @user, @user.recent_notifications )
     expect( mail.body ).to match( /faved/ )
   end
@@ -131,6 +131,7 @@ describe Emailer, "new_message" do
 
   it "should not deliver flagged messages" do
     from_user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( user: from_user, privilege: UserPrivilege::INTERACTION )
     to_user = User.make!
     m = make_message( from_user: from_user, to_user: to_user, user: from_user )
     m.send_message

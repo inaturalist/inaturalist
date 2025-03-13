@@ -10,6 +10,7 @@ import {
 import {
   showCurrentObservation as showObservationModal
 } from "../../identify/actions/current_observation_actions";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   return {
@@ -33,7 +34,10 @@ function mapDispatchToProps( dispatch ) {
       dispatch( showObservationModal( observation ) );
       e.preventDefault( );
       return false;
-    }
+    },
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

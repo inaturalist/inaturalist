@@ -4,7 +4,7 @@ import React from "react";
 import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
 import Project from "../../shared/models/project";
-import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
+import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
 import { setFlaggingModalState } from "../../../observations/show/ducks/flagging_modal";
 
 const SET_PROJECT = "projects-show/project/SET_PROJECT";

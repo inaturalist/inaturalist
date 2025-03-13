@@ -61,7 +61,7 @@
   </head>
   <body>
     <div id="bodywrapper" class="<%=raw 'no-footer-gap' if @no_footer_gap %> <%=raw 'noh1' if params[:noh1] %>">
-      <%= render partial: "shared/confirmation_banner", locals: { bootstrap: true } %>
+      <%= render partial: "shared/confirmation_banner" %>
       <% unless @headless -%>
         <%= render :partial => 'shared/header' %>
       <% end -%>
@@ -177,8 +177,12 @@
           sites_admined: [<%= current_user.site_admins.pluck(:site_id).join( "," ) %>],
           testGroups: <%= current_user.test_groups_array.to_json.html_safe %>,
           donor: <%= current_user.donor? %>,
-          monthlyDonor: <%= current_user.monthly_donor? %>
+          monthlyDonor: <%= current_user.monthly_donor? %>,
+          privileges: []
         };
+        <% if current_user&.privileged_with?( UserPrivilege::INTERACTION ) -%>
+          CURRENT_USER.privileges = [<%= UserPrivilege::INTERACTION.inspect.html_safe %>];
+        <% end -%>
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";

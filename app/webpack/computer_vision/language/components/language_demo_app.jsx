@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ReactDOMServer from "react-dom/server";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import ObservationContainer from "../containers/observation_container";
-import ConfirmModalContainer from "../../../observations/show/containers/confirm_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 
 /* global inaturalist, SITE_ICONS */
 /* eslint react/no-danger: 0 */

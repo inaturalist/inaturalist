@@ -21,7 +21,9 @@ class GuidesController < ApplicationController
   layout "bootstrap"
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}
-  
+
+  requires_privilege :interaction, only: [:new]
+
   # GET /guides
   # GET /guides.json
   def index

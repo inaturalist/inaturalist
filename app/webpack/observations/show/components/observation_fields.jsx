@@ -52,14 +52,18 @@ class ObservationFields extends React.Component {
       open
     } = this.state;
     const loggedIn = config && config.currentUser;
-    if ( !observation || !observation.user || ( _.isEmpty( observation.ofvs ) && !loggedIn ) ) {
+    const userCanInteract = config?.currentUserCanInteractWithResource( observation );
+    if ( !observation
+      || !observation.user
+      || ( _.isEmpty( observation.ofvs ) && !userCanInteract )
+    ) {
       return ( <span /> );
     }
     const sortedFieldValues = _.sortBy( observation.ofvs, ofv => (
       `${ofv.value ? "a" : "z"}:${ofv.name}:${ofv.value}`
     ) );
     let addValueInput;
-    if ( loggedIn ) {
+    if ( userCanInteract ) {
       let disabled = false;
       let placeholder;
       const viewerIsObserver = observation.user && config.currentUser.id === observation.user.id;

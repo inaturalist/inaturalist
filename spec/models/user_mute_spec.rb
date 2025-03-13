@@ -13,8 +13,8 @@ describe UserMute do
   before { enable_has_subscribers }
   after { disable_has_subscribers }
 
-  let( :user ) { User.make! }
-  let( :muted_user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+  let( :muted_user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
   it "marks messages from the muted user as read" do
     UserMute.create!( user: user, muted_user: muted_user )

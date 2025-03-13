@@ -42,8 +42,9 @@ class SearchBar extends React.Component {
       allControlledTerms,
       config
     } = this.props;
+    const userLacksInteraction = !config?.currentUser?.privilegedWith( "interaction" );
     return (
-      <form className="SearchBar form-inline">
+      <form className={`SearchBar form-inline${userLacksInteraction ? " disabled" : ""}`}>
         <div className="pull-right">
           <ImageSizeControlButtonContainer />
           <MarkAllAsReviewedButtonContainer />

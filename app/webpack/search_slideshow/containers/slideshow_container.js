@@ -2,17 +2,15 @@ import { connect } from "react-redux";
 import Slideshow from "../components/slideshow";
 import actions from "../actions/actions";
 
-const mapStateToProps = ( state ) => state;
+const mapStateToProps = state => state.slideshow;
 
-const mapDispatchToProps = ( dispatch ) => ( {
-
-  setState: ( attrs ) => {
+const mapDispatchToProps = dispatch => ( {
+  setState: attrs => {
     dispatch( actions.setState( attrs ) );
   },
-  updateState: ( attrs ) => {
+  updateState: attrs => {
     dispatch( actions.updateState( attrs ) );
   }
-
 } );
 
 const SlideshowContainer = connect(

@@ -1,6 +1,6 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
-import { handleAPIError } from "../../show/ducks/confirm_modal";
+import { handleAPIError } from "../../../shared/ducks/confirm_modal";
 import util from "../../show/util";
 import { setProjectFieldsModalState } from "../../show/ducks/project_fields_modal";
 

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import App from "../components/app";
 import { createNewProject } from "../form_reducer";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +12,12 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    createNewProject: type => { dispatch( createNewProject( type ) ); }
+    createNewProject: type => {
+      dispatch( createNewProject( type ) );
+    },
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

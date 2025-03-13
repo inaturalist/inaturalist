@@ -142,3 +142,8 @@ body .bootstrap {
   }
   @import 'bootstrap-inat';
 }
+
+div[role="dialog"]:has(div.bootstrap-modal) {
+  @import "bootstrap";
+  @import "bootstrap-inat";
+}

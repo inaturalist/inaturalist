@@ -19,11 +19,13 @@ class ObservationFieldValue extends React.Component {
     const viewerIsCurator = currentUser && currentUser.roles && (
       currentUser.roles.indexOf( "curator" ) >= 0
     );
+    const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     // You can edit an existing field if you are the observer, if you are a
     // curator and the observer allows fields from curators, or if the user
     // allows fields from anyone
     const editAllowed = (
       currentUser
+      && userCanInteract
       && observation.user
       && (
         currentUser.id === observation.user.id

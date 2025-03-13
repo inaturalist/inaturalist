@@ -500,7 +500,7 @@ shared_examples_for "an ObservationsController" do
 
     describe "faves" do
       let( :o ) { Observation.make! }
-      let( :voter ) { User.make! }
+      let( :voter ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
       before do
         o.vote_by voter: voter, vote: true
       end
@@ -1420,7 +1420,7 @@ shared_examples_for "an ObservationsController" do
 
     it "should include faves_count" do
       o = Observation.make!
-      o.liked_by User.make!
+      o.liked_by make_user_with_privilege( UserPrivilege::INTERACTION )
       get :index, format: :json
       obs = JSON.parse( response.body ).detect {| r | r["id"] == o.id }
       expect( obs["faves_count"] ).to eq 1
@@ -1646,7 +1646,11 @@ shared_examples_for "an ObservationsController" do
     describe "filtration by pcid" do
       let( :po1 ) { ProjectObservation.make! }
       let( :p ) { po1.project }
-      let( :pu ) { ProjectUser.make!( project: p, role: ProjectUser::CURATOR ) }
+      let( :pu ) do
+        project_user = ProjectUser.make!( project: p, role: ProjectUser::CURATOR )
+        UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: project_user.user )
+        project_user
+      end
       let( :o1 ) { po1.observation }
       let( :i ) { Identification.make!( observation: o1, user: pu.user ) }
       let( :po2 ) { ProjectObservation.make!( project: p ) }
@@ -1677,7 +1681,7 @@ shared_examples_for "an ObservationsController" do
     it "should sort by votes asc" do
       obs_with_votes = Observation.make!
       obs_without_votes = Observation.make!
-      obs_with_votes.like_by User.make!
+      obs_with_votes.like_by make_user_with_privilege( UserPrivilege::INTERACTION )
       expect( obs_with_votes.cached_votes_total ).to eq 1
       expect( obs_without_votes.cached_votes_total ).to eq 0
       get :index, format: :json, params: { order_by: "votes", order: "asc" }
@@ -1689,7 +1693,7 @@ shared_examples_for "an ObservationsController" do
     it "should sort by votes asc" do
       obs_with_votes = Observation.make!
       obs_without_votes = Observation.make!
-      obs_with_votes.like_by User.make!
+      obs_with_votes.like_by make_user_with_privilege( UserPrivilege::INTERACTION )
       get :index, format: :json, params: { order_by: "votes", order: "desc" }
       ids = JSON.parse( response.body ).map {| r | r["id"].to_i }
       expect( ids.last ).to eq obs_without_votes.id
@@ -2195,7 +2199,7 @@ shared_examples_for "an ObservationsController for a remembered user" do
 end
 
 describe ObservationsController, "oauth authentication" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   before do
     token = Doorkeeper::AccessToken.create(
       application: OauthApplication.make!,

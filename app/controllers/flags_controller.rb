@@ -6,6 +6,8 @@ class FlagsController < ApplicationController
   before_action :load_flag, only: [:show, :destroy, :update]
   before_action :check_update_permissions, only: [:update]
 
+  requires_privilege :interaction, only: [:new]
+
   PARTIALS = %w(dialog)
 
   def index

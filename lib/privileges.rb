@@ -10,23 +10,23 @@ module Privileges
       callback_types = options[:on] || [:create]
       if callback_types.is_a?( Hash )
         callback_types.each do | callback_type, attrs |
-          validate on: callback_type, if: options[:if] do | record |
+          validate on: callback_type, if: options[:if], unless: options[:unless] do | record |
             unless [attrs].flatten.blank?
               attrs.each do | attr |
                 return false unless send( "#{attr}_changed?" )
               end
             end
             unless record.user.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
+              errors.add( :user_id, :"requires_privilege_#{privilege}" )
             end
           end
         end
       else
         callback_types = [callback_types].flatten
         callback_types.each do | callback_type |
-          validate on: callback_type, if: options[:if] do | record |
+          validate on: callback_type, if: options[:if], unless: options[:unless] do | record |
             unless record.user&.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
+              errors.add( :user_id, :"requires_privilege_#{privilege}" )
             end
           end
         end

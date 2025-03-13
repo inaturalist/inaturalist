@@ -17,7 +17,8 @@ const SuggestionRow = ( {
   setDetailTaxon,
   source,
   config,
-  updateCurrentUser
+  updateCurrentUser,
+  performOrOpenConfirmationModal
 } ) => {
   let taxonPhotos = _
     .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
@@ -116,9 +117,11 @@ const SuggestionRow = ( {
             bsSize="xs"
             bsStyle="primary"
             onClick={( ) => {
-              chooseTaxon( taxon, {
-                observation,
-                vision: source === "visual"
+              performOrOpenConfirmationModal( ( ) => {
+                chooseTaxon( taxon, {
+                  observation,
+                  vision: source === "visual"
+                } );
               } );
             }}
           >
@@ -182,7 +185,8 @@ SuggestionRow.propTypes = {
   setDetailTaxon: PropTypes.func.isRequired,
   source: PropTypes.string,
   config: PropTypes.object,
-  updateCurrentUser: PropTypes.func
+  updateCurrentUser: PropTypes.func,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 SuggestionRow.defaultProps = {

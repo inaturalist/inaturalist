@@ -3,7 +3,7 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a PostsController" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
   describe "routes" do
     it "should accept GET requests" do

@@ -120,7 +120,8 @@ class PhotoBrowser extends React.Component {
       hideContent,
       unhideContent,
       revealHiddenContent,
-      setMediaViewerState
+      setMediaViewerState,
+      performOrOpenConfirmationModal
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
     const currentUser = config && config.currentUser;
@@ -173,11 +174,17 @@ class PhotoBrowser extends React.Component {
               <button
                 type="button"
                 className="btn btn-nostyle"
-                onClick={( ) => setFlaggingModalState( {
-                  item: photo,
-                  show: true,
-                  radioOptions: ["spam", "copyright infringement", "inappropriate"]
-                } )}
+                onClick={( ) => {
+                  performOrOpenConfirmationModal( ( ) => {
+                    setFlaggingModalState( {
+                      item: photo,
+                      show: true,
+                      radioOptions: ["spam", "copyright infringement", "inappropriate"]
+                    } );
+                  }, {
+                    permitOwnerOf: observation
+                  } );
+                }}
                 title={I18n.t( "flag_as_inappropriate" )}
                 label={I18n.t( "flag_as_inappropriate" )}
               >
@@ -393,11 +400,17 @@ class PhotoBrowser extends React.Component {
                 <button
                   type="button"
                   className="btn btn-nostyle"
-                  onClick={( ) => setFlaggingModalState( {
-                    item: sound,
-                    show: true,
-                    radioOptions: ["spam", "copyright infringement", "inappropriate"]
-                  } )}
+                  onClick={( ) => {
+                    performOrOpenConfirmationModal( ( ) => {
+                      setFlaggingModalState( {
+                        item: sound,
+                        show: true,
+                        radioOptions: ["spam", "copyright infringement", "inappropriate"]
+                      } );
+                    }, {
+                      permitOwnerOf: observation
+                    } );
+                  } }
                   title={I18n.t( "flag_this_sound" )}
                   label={I18n.t( "flag_this_sound" )}
                 >
@@ -632,7 +645,8 @@ PhotoBrowser.propTypes = {
   setFlaggingModalState: PropTypes.func,
   hideContent: PropTypes.func,
   unhideContent: PropTypes.func,
-  revealHiddenContent: PropTypes.func
+  revealHiddenContent: PropTypes.func,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 export default PhotoBrowser;

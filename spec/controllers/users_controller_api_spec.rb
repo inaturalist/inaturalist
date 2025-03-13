@@ -275,7 +275,7 @@ shared_examples_for "a signed in UsersController" do
 end
 
 describe UsersController, "oauth authentication" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   let( :token ) do
     Doorkeeper::AccessToken.create!(
       application: OauthApplication.make!,

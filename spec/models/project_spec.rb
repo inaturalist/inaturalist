@@ -238,53 +238,65 @@ describe Project do
   end
 
   describe "update_curator_idents_on_make_curator" do
-    before(:each) do
+    before( :each ) do
       @project_user = ProjectUser.make!
       @project = @project_user.project
-      @observation = Observation.make!(:user => @project_user.user)
+      @observation = Observation.make!( user: @project_user.user )
     end
-  
+
     it "should set curator_identification_id on existing project observations" do
-      po = ProjectObservation.make!(:project => @project, :observation => @observation)
-      c = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
-      expect(po.curator_identification_id).to be_blank
-      ident = Identification.make!(:user => c.user, :observation => po.observation)
-      Project.update_curator_idents_on_make_curator(@project.id, c.id)
+      po = ProjectObservation.make!( project: @project, observation: @observation )
+      c = ProjectUser.make!(
+        project: @project,
+        role: ProjectUser::CURATOR,
+        user: make_user_with_privilege( UserPrivilege::INTERACTION )
+      )
+      expect( po.curator_identification_id ).to be_blank
+      ident = Identification.make!( user: c.user, observation: po.observation )
+      Project.update_curator_idents_on_make_curator( @project.id, c.id )
       po.reload
-      expect(po.curator_identification_id).to eq ident.id
+      expect( po.curator_identification_id ).to eq ident.id
     end
   end
 
   describe "update_curator_idents_on_remove_curator" do
-    before(:each) do
+    before( :each ) do
       @project = Project.make!
-      @project_user = ProjectUser.make!(:project => @project)
-      @observation = Observation.make!(:user => @project_user.user)
-      @project_observation = ProjectObservation.make!(:project => @project, :observation => @observation)
-      @project_user_curator = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
-      Identification.make!(:user => @project_user_curator.user, :observation => @project_observation.observation)
-      Project.update_curator_idents_on_make_curator(@project.id, @project_user_curator.id)
+      @project_user = ProjectUser.make!( project: @project )
+      @observation = Observation.make!( user: @project_user.user )
+      @project_observation = ProjectObservation.make!( project: @project, observation: @observation )
+      @project_user_curator = ProjectUser.make!(
+        project: @project,
+        role: ProjectUser::CURATOR,
+        user: make_user_with_privilege( UserPrivilege::INTERACTION )
+      )
+      Identification.make!( user: @project_user_curator.user, observation: @project_observation.observation )
+      Project.update_curator_idents_on_make_curator( @project.id, @project_user_curator.id )
       @project_observation.reload
     end
-  
+
     it "should remove curator_identification_id on existing project observations if no other curator idents" do
-      @project_user_curator.update(:role => nil)
-      Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
+      @project_user_curator.update( role: nil )
+      Project.update_curator_idents_on_remove_curator( @project.id, @project_user_curator.user_id )
       @project_observation.reload
-      expect(@project_observation.curator_identification_id).to be_blank
+      expect( @project_observation.curator_identification_id ).to be_blank
     end
-  
+
     it "should reset curator_identification_id on existing project observations if other curator idents" do
-      pu = ProjectUser.make!(:project => @project, :role => ProjectUser::CURATOR)
-      ident = Identification.make!(:observation => @project_observation.observation, :user => pu.user)
-    
-      @project_user_curator.update(:role => nil)
-      Project.update_curator_idents_on_remove_curator(@project.id, @project_user_curator.user_id)
-    
+      pu = ProjectUser.make!(
+        project: @project,
+        role: ProjectUser::CURATOR,
+        user: make_user_with_privilege( UserPrivilege::INTERACTION )
+      )
+      ident = Identification.make!( observation: @project_observation.observation, user: pu.user )
+
+      @project_user_curator.update( role: nil )
+      Project.update_curator_idents_on_remove_curator( @project.id, @project_user_curator.user_id )
+
       @project_observation.reload
-      expect(@project_observation.curator_identification_id).to eq ident.id
+      expect( @project_observation.curator_identification_id ).to eq ident.id
     end
-  
+
     it "should work for deleted users" do
       user_id = @project_user_curator.user_id
       @project_user_curator.user.destroy

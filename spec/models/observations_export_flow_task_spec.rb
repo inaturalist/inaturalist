@@ -316,7 +316,7 @@ describe ObservationsExportFlowTask do
         # When you specify a project, the export will use the API, so we're
         # stubbing the API response here
         # This stubs the first request
-        stub_request( :get, /\/v1\/observations\?.*id_above=1[^\d]/ ).
+        stub_request( :get, /\/v1\/observations\?.*id_above=0[^\d]/ ).
           to_return(
             status: 200,
             body: {
@@ -329,7 +329,7 @@ describe ObservationsExportFlowTask do
             headers: { "Content-Type" => "application/json" }
           )
         # This stubs second and subsequent requests
-        stub_request( :get, /\/v1\/observations\?.*id_above=[2-9]/ ).
+        stub_request( :get, /\/v1\/observations\?.*id_above=[1-9]/ ).
           to_return(
             status: 200,
             body: {

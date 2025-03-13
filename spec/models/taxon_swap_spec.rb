@@ -454,7 +454,10 @@ describe TaxonSwap, "commit" do
       i2 = Identification.make!(
         taxon: @input_taxon,
         observation: o,
-        user: User.make!( prefers_automatic_taxonomic_changes: false )
+        user: make_user_with_privilege(
+          UserPrivilege::INTERACTION,
+          prefers_automatic_taxonomic_changes: false
+        )
       )
       expect( o.taxon ).to eq @input_taxon
       @swap.commit

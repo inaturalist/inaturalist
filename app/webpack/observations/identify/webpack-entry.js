@@ -1,25 +1,25 @@
-import "core-js/stable";
-import "regenerator-runtime/runtime";
 import moment from "moment";
 import inatjs from "inaturalistjs";
-import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware } from "redux";
 import _ from "lodash";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
-import rootReducer from "./reducers";
+import reducers from "./reducers";
 import { normalizeParams } from "./reducers/search_params_reducer";
 import {
   fetchObservations,
   fetchObservationsStats,
   setConfig,
+  setCurrentUser,
   updateSearchParamsWithoutHistory,
   updateDefaultParams
 } from "./actions";
 import { fetchAllControlledTerms } from "../show/ducks/controlled_terms";
 import AppContainer from "./containers/app_container";
+import sharedStore from "../../shared/shared_store";
+
+sharedStore.injectReducers( reducers );
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -30,41 +30,30 @@ const relativeTime = {
 moment.locale( I18n.locale );
 moment.updateLocale( moment.locale(), { relativeTime } );
 
-const store = createStore(
-  rootReducer,
-  compose( ..._.compact( [
-    applyMiddleware( thunkMiddleware ),
-    // enable Redux DevTools if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  ] ) )
-);
-
 const testingApiV2 = ( CURRENT_USER.testGroups && CURRENT_USER.testGroups.includes( "apiv2" ) )
   || window.location.search.match( /test=apiv2/ );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
+  sharedStore.dispatch( setCurrentUser( CURRENT_USER ) );
 }
 
 if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   // we use this for requesting localized taxon names
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
 }
 
 if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
   // this is the default place for all obs API requests
-  store.dispatch( updateDefaultParams( {
+  sharedStore.dispatch( updateDefaultParams( {
     place_id: testingApiV2 ? PREFERRED_SEARCH_PLACE.uuid : PREFERRED_SEARCH_PLACE.id
   } ) );
 }
 
 if ( OFFICIAL_APP_IDS !== undefined && OFFICIAL_APP_IDS !== null ) {
   // set apps that will display icons in the observation modal
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     officialAppIds: OFFICIAL_APP_IDS
   } ) );
 }
@@ -73,7 +62,7 @@ if ( testingApiV2 ) {
   const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
   const defaultApiUrl = element && element.getAttribute( "content" );
   if ( defaultApiUrl ) {
-    store.dispatch( setConfig( {
+    sharedStore.dispatch( setConfig( {
       testingApiV2: true
     } ) );
     // For some reason this seems to set it everywhere...
@@ -84,11 +73,11 @@ if ( testingApiV2 ) {
   }
 }
 
-setupKeyboardShortcuts( store.dispatch );
+setupKeyboardShortcuts( sharedStore.dispatch );
 
 window.onpopstate = e => {
-  store.dispatch( updateSearchParamsWithoutHistory( e.state ) );
-  store.dispatch( fetchObservationsStats() );
+  sharedStore.dispatch( updateSearchParamsWithoutHistory( e.state ) );
+  sharedStore.dispatch( fetchObservationsStats() );
 };
 
 // Set state from initial url search and listen for changes
@@ -96,13 +85,13 @@ window.onpopstate = e => {
 const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
 const newParams = normalizeParams( urlParams );
 if ( urlParams.hasOwnProperty( "blind" ) ) {
-  store.dispatch( setConfig( { blind: true, sideBarHidden: false } ) );
+  sharedStore.dispatch( setConfig( { blind: true, sideBarHidden: false } ) );
 } else {
-  store.dispatch( setConfig( { sideBarHidden: !CURRENT_USER.prefers_identify_side_bar } ) );
+  sharedStore.dispatch( setConfig( { sideBarHidden: !CURRENT_USER.prefers_identify_side_bar } ) );
 }
-store.dispatch( setConfig( { imageSize: CURRENT_USER.preferred_identify_image_size } ) );
-store.dispatch( updateSearchParamsWithoutHistory( newParams ) );
-store.dispatch( fetchAllControlledTerms( ) );
+sharedStore.dispatch( setConfig( { imageSize: CURRENT_USER.preferred_identify_image_size } ) );
+sharedStore.dispatch( updateSearchParamsWithoutHistory( newParams ) );
+sharedStore.dispatch( fetchAllControlledTerms( ) );
 
 // Somewhat magic, so be advised: binding a a couple actions to changes in
 // particular parts of the state. Might belong elsewhere, but this is where we
@@ -123,20 +112,20 @@ function observeStore( storeToObserve, select, onChange ) {
 // Fetch observations when the params change, with a small delay so only
 // one search is performed if parameters change quickly
 let lastSearchTime;
-observeStore( store, s => s.searchParams.params, ( ) => {
+observeStore( sharedStore, s => s.searchParams.params, ( ) => {
   const thisSearchTime = Date.now( );
   lastSearchTime = thisSearchTime;
   setTimeout( ( ) => {
     if ( thisSearchTime !== lastSearchTime ) {
       return;
     }
-    store.dispatch( fetchObservations( ) );
+    sharedStore.dispatch( fetchObservations( ) );
   }, 1000 );
 } );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension
-  <Provider store={store}>
+  <Provider store={sharedStore}>
     <AppContainer />
   </Provider>,
   document.getElementById( "app" )

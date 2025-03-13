@@ -73,13 +73,16 @@ class QualityMetricsController < ApplicationController
         end
       end
     else
-      msg = "Couldn't add that metric: #{qm.errors.full_messages.to_sentence}"
       respond_to do | format |
         format.html do
-          flash[:error] = msg
+          flash[:error] = qm.errors.full_messages.to_sentence
           redirect_back_or_default( @observation )
         end
-        format.json { render status: :unprocessable_entity, json: { error: msg, object: qm } }
+        format.json do
+          render status: :unprocessable_entity, json: {
+            error: qm.errors.full_messages.to_sentence, object: qm
+          }
+        end
       end
     end
   end

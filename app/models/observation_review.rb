@@ -1,5 +1,10 @@
 class ObservationReview < ApplicationRecord
 
+  # TODO: uncomment to strictly enforce email confirmation for interaction
+  # requires_privilege :interaction, unless: proc {| review |
+  #   review&.observation&.user_id == review.user_id
+  # }
+
   belongs_to :observation
   belongs_to :user
 

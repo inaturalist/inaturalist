@@ -15,7 +15,7 @@ import StatsHeaderContainer from "../containers/stats_header_container";
 import AboutContainer from "../containers/about_container";
 import BeforeEventTabContainer from "../containers/before_event_tab_container";
 import InsufficientRequirementsContainer from "../containers/insufficient_requirements_container";
-import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";

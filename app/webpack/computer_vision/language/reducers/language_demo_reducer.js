@@ -1,7 +1,7 @@
 import _ from "lodash";
 import update from "immutability-helper";
 import inaturalistjs from "inaturalistjs";
-import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
+import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
 
 const RESET_STATE = "language_demo/RESET_STATE";
 const SET_ATTRIBUTES = "language_demo/SET_ATTRIBUTES";

@@ -1,4 +1,6 @@
-require File.expand_path("../../spec_helper", __FILE__)
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe Comment do
   elastic_models( Observation )
@@ -75,7 +77,7 @@ describe Comment do
 
   describe "flagging" do
     it "should suspend the commenter if their comments have been flagged 3 times" do
-      offender = User.make!
+      offender = make_user_with_privilege( UserPrivilege::INTERACTION )
       3.times do
         c = Comment.make!(:user => offender)
         flag = Flag.make(:flaggable => c, :flag => Flag::SPAM)

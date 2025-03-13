@@ -1,7 +1,7 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import Project from "../shared/models/project";
-import { setConfirmModalState } from "../../observations/show/ducks/confirm_modal";
+import { setConfirmModalState } from "../../shared/ducks/confirm_modal";
 
 const SET_ATTRIBUTES = "projects-form/project/SET_ATTRIBUTES";
 const UMBRELLA_SUBPROJECT_LIMIT = 500;
