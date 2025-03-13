@@ -5069,6 +5069,8 @@ de:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Bedingungen
+  #As in a list of distinct words
+  terminology: Begriffserklärung
   terms_and_rules_html: "Bedingungen &amp; Regeln"
   terms_new_users: "Wenn du Bedingungen hinzufügst, müssen neue Benutzer ihnen zustimmen, bevor sie diesem Projekt beitreten."
   terms_service: Nutzungsbedingungen
@@ -6633,7 +6635,7 @@ de:
         date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJ-MM-TT Format, z.B. 2015-01-17"
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        iconic_taxon_name: Höheres taxonomisches Level für das beobachtete Taxon
+        iconic_taxon_name: Höhere taxonomische Kategorie für das beobachtete Taxon
         id_please: Ob der Beobachter die ID-Hilfe angefordert hat oder nicht
         observed_on_string: Datum/Zeit wie vom Beobachter eingegeben
         observed_on: Normalisiertes Beobachtungsdatum
@@ -6641,10 +6643,11 @@ de:
         time_zone: Zeitzone der Beobachtung
         place_guess: Gebietsbeschreibung, wie vom Beobachter eingegeben
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
+        private_latitude: "Privater Breitengrad, falls Beobachtung privat oder verschleiert"
         geoprivacy: "Ob der Beobachter die Koordinaten verschleiert oder versteckt hat. Siehe https://help.inaturalist.org/support/solutions/articles/151000169938"
-        coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, sei es wegen Geoprivatsphäre oder wegen eines Gefährdungsstatus"
+        coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, entweder aufgrund von Geo-Privatsphäre oder eines Gefährdungsstatus"
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
-        created_at: Datetime des Erstellen der Beobachtung
+        created_at: Zeitpunkt an dem die Beobachtung erstellt wurde
         updated_at: Datetime der Aktualisierung der Beobachtung
         quality_grade: Qualitätsbewertung dieser Beobachtung. Weitere Informationen hierzu sind unter https://help.inaturalist.org/support/solutions/articles/151000169936 zu finden
         url: URL der Beobachtung
@@ -6652,9 +6655,21 @@ de:
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
         place_admin2_name: Name des administrativen Ortes zwei Ränge unterhalb der Landesebene
         positioning_method: Wie die Koordinaten bestimmt wurden
-        positioning_device: Beim bestimmen der Koordinaten benutze Gerät
+        positioning_device: Gerät zur Bestimmung der Koordinaten
         captive_cultivated: |
           Beobachtung eines Lebewesens, das an diesem Ort und zu diesem Zeitpunkt dort war, weil es vom Menschen so beabsichtigt wurde. Mehr darüber hier: https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Vom Beobachter verfasster Text, der die Beobachtung beschreibt oder andere Hinweise, die relevant erscheinen
+        place_country_name: |
+          Der Name des Landes, das die Koordinaten dieser Beobachtung enthält
+        place_state_name: |
+          Der Name des Verwaltungsbereichs der zweiten Ebene, der die Koordinaten dieser
+          Beobachtung enthält (z.B. ein Staat in den meisten Teilen der USA)
+        place_town_name: |
+          Der Name der Stadt, die die Koordinaten enthält, falls bekannt
+        private_place_guess: |
+          Beobachtungsort, wie er vom Beobachter geschrieben wurde, wenn der Standort verdeckt ist
+        public_positional_accuracy: Maximale horizontale Positionsunsicherheit in Metern; beinhaltet Unsicherheit durch Verschleierung der Koordinaten
       identify:
         review_all_tooltip: "Alle Beobachtungen auf der Seite als \"begutachtet\" markieren"
         you_reviewed_message: "Du hast %{reviewed} von %{pageTotal} Beobachtungen auf dieser Seite von insgesamt %{total} passenden Beobachtungen begutachtet."
@@ -7591,6 +7606,12 @@ de:
       taxon:
         about_html: |
           Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen, allgemeingebräuchlichen Namen, der hier festgelegt werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch unterschieldiche Standardnamen für bestimmte Orte angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte uneindeutige Namen haben.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist verwendet eine Vielzahl spezifischer Begriffe, um verschiedene
+          Aspekte der Plattform zu beschreiben. Hier haben wir versucht, einige von ihnen
+          und ihre Definitionen zu sammeln.
     users:
       dashboard:
         taxon_change_desc: |
