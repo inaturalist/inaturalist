@@ -322,8 +322,9 @@ class Site < ApplicationRecord
   preference :google_recaptcha_key, :string
   preference :google_recaptcha_secret, :string
 
-  # We have a limited number of callback URLs we're allowed on twitter, and
-  # we've used them all
+  # Vestigial unused preference. If removed, please do not deploy outside of
+  # downtime to prevent a caching issue with the preferences gem reading
+  # Site instances cached with preferences that are no longer defined
   preference :twitter_sign_in, :boolean, default: false
 
   # fathom analytics, https://usefathom.com/
@@ -353,8 +354,7 @@ class Site < ApplicationRecord
 
   STAFF_ONLY_PREFERENCES = [
     :google_webmaster_dns_verification,
-    :google_webmaster_dns_verified,
-    :twitter_sign_in
+    :google_webmaster_dns_verified
   ].freeze
 
   after_save :refresh_default_site

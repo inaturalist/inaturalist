@@ -2729,7 +2729,7 @@ class ObservationsController < ApplicationController
       job = Delayed::Job.find_by_id(job_id)
       if job
         # Still working
-      elsif File.exists? path_for_csv
+      elsif File.exist? path_for_csv
         render :file => path_for_csv, :formats => [:csv]
         return
       else

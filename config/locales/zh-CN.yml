@@ -2321,6 +2321,8 @@ zh-CN:
   large: 大
   last_active_with_date: "上次活跃：%{date}"
   last_confirmed_observation: 最近确认的观察
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: 最后编辑者
   last_observation: 最近观察
   last_observation_caps: 最近一笔观察记录
   last_seen: 上次看见
@@ -6092,6 +6094,9 @@ zh-CN:
           you_can_think: |
             你可以将预料在附近地图理解为对一个物种在网格坐标内的某个地方存在还是完全不存在的估计。
           figure_alt_text: 位置模型适用于预料在附近标签
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: 以 GeoJSON 格式下载预料在附近地图
         unthresholded_map:
           unthresholded_map: 无阈值地图
           we_use_the_unthresholded_map: |

@@ -70,7 +70,7 @@ describe ObservationsController do
 
     it "should work with a custom coordinate system" do
       nztm_proj4 = "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 " \
-        "+y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+        "+y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs"
       post :create, params: { observation: {
         geo_x: 1_889_191,
         geo_y: 5_635_569,
@@ -684,11 +684,11 @@ describe ObservationsController, "new_bulk_csv" do
     Site.default.update( coordinate_systems_json: '{
       "nztm2000": {
         "label": "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
-        "proj4": "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+        "proj4": "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs +type=crs"
       },
       "nzmg": {
         "label": "NZMG (New Zealand Map Grid), EPSG:27200",
-        "proj4": "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+        "proj4": "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs +type=crs"
       }
     }' )
     # rubocop:enable Layout/LineLength

@@ -38,7 +38,7 @@ module DarwinCore
       %w(recordedByID http://rs.tdwg.org/dwc/terms/recordedByID),
       %w(identifiedBy http://rs.tdwg.org/dwc/terms/identifiedBy),
       %w(identifiedByID http://rs.tdwg.org/dwc/terms/identifiedByID),
-      %w(captive https://www.inaturalist.org/schema/terms/captive),
+      %w(captive https://www.inaturalist.org/terminology/captive_cultivated),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
       %w(verbatimEventDate http://rs.tdwg.org/dwc/terms/verbatimEventDate),
@@ -74,10 +74,10 @@ module DarwinCore
 
     ALA_EXTRA_TERMS = [
       %w(identificationVerificationStatus http://rs.tdwg.org/dwc/terms/identificationVerificationStatus),
-      %w(numIdentificationAgreements https://www.inaturalist.org/terms/numIdentificationAgreements),
-      %w(numIdentificationDisagreements https://www.inaturalist.org/terms/numIdentificationDisagreements),
-      %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
-      %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
+      %w(numIdentificationAgreements https://www.inaturalist.org/terminology/num_identification_agreements),
+      %w(numIdentificationDisagreements https://www.inaturalist.org/terminology/num_identification_disagreements),
+      %w(positioningDevice https://www.inaturalist.org/terminology/positioning_device),
+      %w(positioningMethod https://www.inaturalist.org/terminology/positioning_method)
     ].freeze
 
     OTHER_CATALOGUE_NUMBERS_TERM = %w(

@@ -4,7 +4,7 @@ stop = ARGV[1] || Place.count
 Place.find_each(:batch_size => 50, :conditions => ["id BETWEEN ? AND ?", start, stop]) do |place|
   print "#{place.display_name} (#{place.id}): "
   path = "place_wkts/#{place.id}.wkt"
-  unless File.exists?(path)
+  unless File.exist?(path)
     puts "#{path} doesn't exist, skipping..."
     next
   end

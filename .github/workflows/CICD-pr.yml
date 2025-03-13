@@ -4,5 +4,7 @@ on:
   pull_request:
 
 jobs:
+  pre-build:
+    uses: ./.github/workflows/CI-pre-build.yml
   build-and-test:
     uses: ./.github/workflows/CI-build-test.yml

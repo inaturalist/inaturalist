@@ -48,6 +48,13 @@ class UmbrellaMap extends Component {
       ) )
     ) ) ) );
     const placeIDs = _.map( subprojectPlaceRules, "operand_id" );
+    // when there are too many places to render, it can create a URL for map tiles that is too
+    // long for browsers to fetch. Split them into multiple layers that will make separate
+    // requests for each chunk of IDs for each map tile
+    const placeLayers = _.map( _.chunk( placeIDs, 1000 ), chunk => ( {
+      place: { id: chunk },
+      name: "Places"
+    } ) );
     const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
     return (
       <Grid>
@@ -70,7 +77,7 @@ class UmbrellaMap extends Component {
               zoomControlOptions={{
                 position: typeof ( google ) !== "undefined" && google.maps.ControlPosition.TOP_LEFT
               }}
-              placeLayers={[{ place: { id: placeIDs.join( "," ), name: "Places" } }]}
+              placeLayers={placeLayers}
               minZoom={2}
               maxX={totalBounds && totalBounds.nelng}
               maxY={totalBounds && totalBounds.nelat}

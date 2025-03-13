@@ -1316,7 +1316,6 @@ button.button.providerlink {
 }
 ul a.providerlink, ul a.button.providerlink { width: 190px; }
 ul input.providerlink, ul input.button.providerlink { width: 230px; }
-.providerlink.twitter { background-image: image-url('external/twitter_favicon.png'); }
 .providerlink.google { background-image: image-url('external/google_favicon.png'); }
 .providerlink.yahoo { background-image: image-url('external/yahoo_favicon.png'); }
 .providerlink.flickr { background-image: image-url('external/flickr_favicon.png'); }
@@ -2175,8 +2174,14 @@ $header-line-height: 34px;
   ul.navtabs {
     padding: 0;
     li.navtab {
-      padding: 10px 10px;
       margin: 0;
+      display: flex;
+      align-items: stretch;
+      > * {
+        display: flex;
+        align-items: center;
+        padding-inline: 10px;
+      }
     }
   }
   > ul {
@@ -2260,14 +2265,23 @@ $header-line-height: 34px;
     -moz-box-flex: 2;
     -ms-flex-positive: 2;
     flex-grow: 2;
-    .navtab.active {
-      border-bottom: 2px solid $inat-green;
+    .navtab {
+      border-bottom: 2px solid transparent;
+      &.active {
+        border-bottom: 2px solid $inat-green;
+      }
     }
   }
   #mainnav,
   .navtab.user {
     .dropdown-menu {
-      margin-top: 0;
+      margin-top: -10px;
+      &.dropdown-menu-left {
+        margin-inline-start: 10px;
+      }
+      &.dropdown-menu-right {
+        margin-inline-end: 10px;
+      }
     }
     .dropdown-toggle {
       i {
@@ -2282,9 +2296,6 @@ $header-line-height: 34px;
     display: -ms-flexbox;
     display: flex;
     margin-right: 0;
-    -webkit-align-self: flex-end;
-    -ms-flex-item-align: end;
-    align-self: flex-end;
     .usericon {
       width: $header-line-height - 2 !important;
       height: $header-line-height - 2 !important;
@@ -2297,6 +2308,9 @@ $header-line-height: 34px;
         margin-right: 2px;
       }
     }
+    .signedout > span {
+      padding: 0;
+    }
   }
   .dropdown-toggle {
     cursor: pointer;
@@ -2308,6 +2322,7 @@ $header-line-height: 34px;
 
   #messagessubnav,
   #updatessubnav {
+    margin-top: -10px;
     padding: 10px 20px;
     ul {
       list-style: none;

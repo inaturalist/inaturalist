@@ -22,11 +22,27 @@ describe ModeratorAction do
             resource: create( :comment ), user: admin )
         ).to be_persisted
       end
+
       it "should not be possible for a user" do
         expect(
           build( :moderator_action, action: ModeratorAction::HIDE,
             resource: create( :user ), user: admin )
         ).not_to be_valid
+      end
+
+      it "should delete update actions for a comment" do
+        enable_has_subscribers
+        comment = after_delayed_job_finishes( ignore_run_at: true ) do
+          create( :comment )
+        end
+        ua = UpdateAction.where( notifier: comment ).first
+        expect( ua ).not_to be_blank
+        after_delayed_job_finishes( ignore_run_at: true ) do
+          create( :moderator_action, action: ModeratorAction::HIDE, resource: comment, user: admin )
+        end
+        ua = UpdateAction.where( notifier: comment ).first
+        expect( ua ).to be_blank
+        disable_has_subscribers
       end
 
       shared_examples_for "hiding media" do

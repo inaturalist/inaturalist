@@ -88,7 +88,7 @@
     - unless logged_in?
       %li.navtab.signedout
         = link_to t(:log_in), login_path, class: "signin_link"
-        = t :or
+        %span= t :or
         = link_to t(:sign_up), signup_url, class: "signup_link"
     - else
       %li#messagesnav.navtab.messages

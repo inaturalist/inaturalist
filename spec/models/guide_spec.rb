@@ -67,20 +67,20 @@ describe Guide do
       @guide_section = GuideSection.make!(:guide_taxon => @guide_taxon)
       @zip_path = @guide.to_ngz
       @unzipped_path = File.join File.dirname(@zip_path), @guide.to_param
-      FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exists?(@unzipped_path)
+      FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exist?(@unzipped_path)
       system "unzip -qd #{@unzipped_path} #{@zip_path}"
     end
 
     after(:all) do
-      FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exists?(@unzipped_path)
+      FileUtils.rm_rf("#{@unzipped_path}/") if Dir.exist?(@unzipped_path)
     end
 
     it "should generate a .ngz file in the tmp directory" do
-      expect(File.exists?("#{@guide.ngz_work_path}.ngz")).to be true
+      expect(File.exist?("#{@guide.ngz_work_path}.ngz")).to be true
     end
 
     it "should clean up its working directory" do
-      expect(Dir.exists?(@guide.ngz_work_path)).to be false
+      expect(Dir.exist?(@guide.ngz_work_path)).to be false
     end
 
     it "should contain an xml file" do
@@ -105,12 +105,12 @@ describe Guide do
     it "should delete the temp file after saving the record" do
       # create a temp file so we can confirm it exists
       temp_ngz_path = @guide.to_ngz
-      expect(File.exists?(temp_ngz_path)).to be true
+      expect(File.exist?(temp_ngz_path)).to be true
       expect(@guide.ngz.path).to be_nil
       # now generate_ngz, which will create the temp file again
       # but then delete it after saving the record
       @guide.generate_ngz
-      expect(File.exists?(temp_ngz_path)).to be false
+      expect(File.exist?(temp_ngz_path)).to be false
       expect(@guide.ngz.path).to_not be_nil
     end
   end

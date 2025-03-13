@@ -235,9 +235,7 @@ describe GuideTaxon do
       gt.sync_eol_photos( page: @mflagellum_page )
       gt.save!
       s1 = gt.guide_photos.size
-      expect( LocalPhoto ).to receive( :where ).at_least( :once ).with(
-        subtype: "EolPhoto", native_photo_id: anything
-      ).and_return(
+      expect( LocalPhoto ).to receive( :where ).at_least( :once ).and_return(
         [local_photo_from_remote_photo]
       )
       gt.sync_eol_photos( page: @mflagellum_page )

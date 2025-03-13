@@ -277,7 +277,7 @@ class Observation < ApplicationRecord
   ALL_EXPORT_COLUMNS = (
     CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS
   ).uniq
-  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+  WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +type=crs"
   ALLOWED_DESCRIPTION_TAGS = %w(
     a
     abbr
