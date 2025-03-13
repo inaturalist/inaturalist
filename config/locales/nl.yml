@@ -1460,7 +1460,7 @@ nl:
   curator_application_you_should_apply_if_you_can_behave: |
     Je toont het juiste gedrag op iNaturalist en je houd je aan de Gemeenschapsrichtlijnen. Als je de curatoriale rechten hebt wordt verwacht dat je een voorbeeldige gebruiker van iNaturalist zult zijn.
   #Label for a menu item linking to a help page aimed at curators
-  curator_guide: Curator gids
+  curator_guide: Curatorgids
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
   curators: Curatoren
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
@@ -1643,6 +1643,10 @@ nl:
     Als je je niet hebt ingeschreven voor @vow_or_con{vow:een|een} %{site_name} account, negeer dan deze e-mail.
   devise_confirmation_instructions_please_click: |
     Klik op de onderstaande link om jouw e-mailadres te bevestigen:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Klik op de onderstaande link om uw e-mailadres te bevestigen. Als u uw e-mailadres niet bevestigt
+    adres, kunt u geen interactie hebben met de inhoud van andere gebruikers.
   devise_confirmation_instructions_resend_instructions: |
     Je moet een werkend e-mailadres hebben om iNaturalist te kunnen gebruiken. Toen jij je aanmeldde
     voor een account had je een bevestigingsmail moeten ontvangen met een
@@ -5265,6 +5269,8 @@ nl:
   teachers_guide: Docentenhandleiding
   tell_the_world_a_little_about_yourself: Vertel ons over jezelf
   tell_us_why: Vertel ons waarom ...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Voorwaarden
   terms_and_rules_html: "Voorwaarden en regels"
   terms_new_users: "Als je voorwaarden toevoegd moeten nieuwe gebruikers daar mee akkoord gaan voordat ze deel kunnen nemen aan het dit project."
@@ -6400,9 +6406,28 @@ nl:
         systemen bijwerken. Kom alsjeblieft snel terug.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik hier om de bevestigingsmail opnieuw te verzenden.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bevestigingsmail verzonden
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Hier is het e-mailadres waar we de bevestiging naar sturen:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Als je de e-mail niet ontvangt, zijn hier enkele tips:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Als je nog steeds geen bevestigingsmail ontvangt, neem dan contact met ons op via <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> zodat we je kunnen helpen.
       please_add_an_email_and_password: Voeg een e-mailadres en wachtwoord toe zodat jij je toegang tot je account niet verliest
       please_click_the_link_sent_to_email_to_confirm_html: Klik op de link die is verzonden naar <span class="email">%{email}</span> om jouw e-mailadres te bevestigen.
-      please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen.
+      please_confirm_that_email_is_the_best_contact_html: Bevestig dat <span class="email">%{email}</span> de beste manier is om contact met je op te nemen. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Bevestig uw e-mailadres om te communiceren met de inhoud van andere gebruikers en toegang te krijgen tot bepaalde pagina's. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Bevestig uw e-mailadres <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Bevestig uw e-mailadres om te communiceren met de inhoud van andere gebruikers
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Bevestig uw e-mailadres om deze pagina te gebruiken
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Controleer of er filters zijn die je hebt gemaakt waardoor onze e-mails uit je inbox kunnen worden verwijderd #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Controleer je spambox
       your_site_account_has_no_email: Jouw %{site_name} account heeft geen gekoppeld e-mailadres.
     flags:
       show:
@@ -6715,8 +6740,21 @@ nl:
       index:
         show_messages_from_user: Toon berichten van %{user}
         show_messages_to_user: Toon berichten aan %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Je kunt nieuwe berichten verzenden nadat je drie verifieerbare waarnemingen hebt toegevoegd of drie determinaties voor anderen hebt gedaan. Voorlopig kun je alleen berichten lezen en antwoorden op wat andere mensen je sturen.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Je kunt nieuwe chatberichten sturen nadat je je e-mailadres hebt bevestigd
+          adres. Voorlopig kun je berichten lezen en beantwoorden die andere mensen je sturen.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Je kunt nieuwe chatberichten sturen nadat je je e-mailadres hebt bevestigd
+          adres, en voegde drie verifieerbare waarnemingen of drie identificaties toe
+          voor anderen. Voorlopig kun je berichten lezen en beantwoorden die andere mensen je sturen.
       show:
         flag_notice_html: |
           Je hebt dit gesprek gemeld op %{date}. De melding blijft bestaan, zelfs als je jouw kopie van dit gesprek verwijdert, dus het is veilig om dat te doen als je dit niet meer wilt zien.
@@ -6912,46 +6950,32 @@ nl:
           </li>
           </ul>
       field_descriptions:
-        id: "Unieke identifier voor de waarneming"
-        species_guess: "Naam door de waarnemer ingegeven voor het waargenomen taxon"
-        scientific_name: "Wetenschappelijke naam van het waargenomen taxon volgens deze site"
-        common_name: "Lokale of vernacular name van het waargenomen taxon volgens deze site"
         iconic_taxon_name: Hogere taxonomische categorie voor het waargenomen taxon
-        taxon_id: Unieke identifier voor het waargenomen taxon
         id_please: Of de waarnemer determinatie-hulp heeft gevraagd of niet
-        num_identification_agreements: Aantal determinaties in overeenstemming met de determinatie door de waarnemer
-        num_identification_disagreements: Aantal determinaties in strijd met de determinatie door de waarnemer
         observed_on_string: Datum/tijd zoals door de waarnemer ingegeven
         observed_on: Genormaliseerde datum van de waarneming
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
-        latitude: Openbaar zichtbaar latitude
-        longitude: Openbaar zichtbaar longitude
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
-        geoprivacy: "Of de waarnemer ervoor heeft gekozen de coördinaten te vervagen of te verbergen"
         taxon_geoprivacy: "Meest conservatieve geoprivacy toegepast als gevolg van de behoudsstatus van taxa in de huidige determinatie."
         coordinates_obscured: "Of de coördinaten al dan niet zijn vervaagd, hetzij vanwege geoprivacy of vanwege een bedreigd taxon"
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
-        user_id: Unieke identifier voor de waarnemer
-        user_login: Gebruikersnaam van de waarnemer
-        user_name: |
-          Naam van de waarnemer, meestal gebruikt voor naamsvermelding op de site.
-          Dit is een optioneel veld en kan een pseudoniem zijn.
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
-        quality_grade: Kwaliteitsklasse van deze waarneming. Zie het Help-gedeelte voor details over betekenis
-        license: Licentie die de waarnemer voor deze waarneming heeft gekozen
         url: URL voor de waarneming
-        image_url: URL van de standaardafbeelding
-        sound_url: URL voor het standaardgeluid. Merk op dat dit alleen werkt voor directe uploads, niet voor geluiden die worden gehost door services van derden
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
         place_admin2_name: Naam van de administratieve plaats twee rangen onder het landniveau
         positioning_method: Manier waarop de coördinaten bepaald werden
         positioning_device: Toestel gebruikt om coördinaten te bepalen
+        place_town_name: |
+          De naam van de stad of plaats die de waarneming
+          coördinaten omvat, indien bekend
+        private_place_guess: |
+          Waarnemingslocatie zoals opgeschreven door de waarnemer als de locatie verborgen is
       identify:
         review_all_tooltip: "Markeer alle waarnemingen op de pagina als nagekeken"
         you_reviewed_message: "Je hebt %{reviewed} van de %{pageTotal} waarnemingen op deze pagina nagekeken van de %{total} overeenkomende waarnemingen."
@@ -8637,6 +8661,7 @@ nl:
         requires_privilege_speech: |
           je moet drie verifieerbare waarnemingen hebben of drie determinaties doen voor anderen om dat te kunnen doen
         requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om dat te kunnen doen
+        requires_privilege_interaction: moet daarvoor een bevestigd e-mailadres hebben
         taken: bestaat al
         too_long:
           one: is te lang (maximum is %{count} teken)

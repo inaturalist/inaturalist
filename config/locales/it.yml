@@ -1610,6 +1610,10 @@ it:
     Se non ti sei iscritto all'account %{site_name} , ignora questa email.
   devise_confirmation_instructions_please_click: |
     Clicca sul link sottostante per confermare il tuo indirizzo email:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Fai clic sul link sottostante per confermare il tuo indirizzo e-mail. Se non confermi la tua email
+    indirizzo, non sarai in grado di interagire con i contenuti di altri utenti.
   devise_confirmation_instructions_resend_instructions: |
     Devi avere un indirizzo email funzionante per utilizzare iNaturalist. Quando ti sei registrato per un account, dovresti aver ricevuto un'email di conferma con un link da seguire per confermare che il tuo indirizzo email funziona, ma se non ha funzionato puoi inviarti un'altra email di conferma da qui.
   devise_confirmation_instructions_send_confirmation_email: Invia email di conferma
@@ -5130,6 +5134,8 @@ it:
   teachers_guide: Guida per l'insegnante
   tell_the_world_a_little_about_yourself: Parlaci di te
   tell_us_why: Dicci perché...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termini
   terms_and_rules_html: "Termini &amp; Regole"
   terms_new_users: "Se aggiungi termini, i nuovi utenti devono accettarli prima di unirsi al progetto."
@@ -6239,9 +6245,28 @@ it:
         Grazie per il tuo interesse nel supportare iNaturalist! Le donazioni a iNaturalist non sono temporaneamente disponibili, mentre aggiorniamo il nostro sistema di donazioni. Ti preghiamo di ricontrollare presto.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Clicca qui per richiedere nuovamente un'email di conferma
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: E-mail di conferma inviata
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Ecco l'indirizzo email a cui invieremo la conferma:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Se non ricevi l'e-mail, ecco alcuni suggerimenti:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Se ancora non ricevi l'e-mail di conferma, ti preghiamo di contattarci all'indirizzo <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> così possiamo aiutarti.
       please_add_an_email_and_password: Si prega di aggiungere una e-mail e una password in modo da non perdere l'accesso al tuo account
       please_click_the_link_sent_to_email_to_confirm_html: Sei pregato di cliccare il link mandato a <span class="email">%{email}</span> per confermare il tuo indirizzo email.
-      please_confirm_that_email_is_the_best_contact_html: Conferma che <span class="email">%{email}</span> è il modo migliore per contattarti.
+      please_confirm_that_email_is_the_best_contact_html: Conferma che <span class="email">%{email}</span> è il modo migliore per contattarti. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Conferma il tuo indirizzo e-mail per interagire con i contenuti di altri utenti e accedere a determinate pagine. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Conferma il tuo indirizzo e-mail <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Conferma il tuo indirizzo e-mail per interagire con i contenuti degli altri utenti
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Conferma il tuo indirizzo e-mail per utilizzare questa pagina
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Controlla eventuali filtri che hai creato che potrebbero rimuovere le nostre email dalla tua casella di posta #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Controlla la cartella spam
       your_site_account_has_no_email: Il tuo account %{site_name} non ha un indirizzo email ad esso associato.
     flags:
       show:
@@ -6518,8 +6543,21 @@ it:
       index:
         show_messages_from_user: Mostra messaggi da %{user}
         show_messages_to_user: Mostra messaggi a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Sarai in grado di mandare nuovi messaggi dopo che avrai aggiunto tre osservazioni verificabili o tre identificazioni per altri. Per ora puoi leggere e rispondere ai messaggi che ti mandano altre persone.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Potrai inviare nuovi messaggi dopo aver confermato la tua email
+          indirizzo. Per ora puoi leggere e rispondere ai messaggi che altre persone ti inviano.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Potrai inviare nuovi messaggi dopo aver confermato la tua email
+          e ha aggiunto tre osservazioni verificabili o tre identificazioni
+          per altri. Per ora puoi leggere e rispondere ai messaggi che altre persone ti inviano.
       show:
         flag_notice_html: |
           Hai contrassegnato questa conversazione il %{date}. Il contrassegno persisterà anche se cancelli la tua copia di questa conversazione, quindi puoi farlo tranquillamente se non vuoi più vederlo.
@@ -6701,41 +6739,22 @@ it:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificatore univoco per l'osservazione"
-        species_guess: "Il nome che ha inserito l'osservatore per il taxon osservato"
-        scientific_name: "Il nome scientifico del taxon osservato secondo la nomenclatura del sito"
-        common_name: "Nome comune del taxon osservato secondo la nomenclatura del sito"
         iconic_taxon_name: Livello tassonomico superiore del taxon osservato
-        taxon_id: Identificatore univoco per il taxon osservato
         id_please: Se non l'osservatore ha richiesto aiuto nell'identificazione oppure no
-        num_identification_agreements: Numero di identificazioni che concordano con l'identificazione dell'osservatore
-        num_identification_disagreements: Numero di identificazioni che non concordano con l'identificazione dell'osservatore
         observed_on_string: Data/ora nel formato inserito dall'osservatore
         observed_on: Data dell'osservazione normalizzata
         time_observed_at: Ora dell'osservazione normalizzata
         time_zone: Fuso orario dell'osservazione
         place_guess: Descrizione della località inserita dall'osservatore
-        latitude: Latitudine visibile al pubblico
-        longitude: Longitudine visibile al pubblico
         positional_accuracy: "Precisione delle coordinate (sì, sì, accuratezza = precisione: infelice scelta dei nomi)"
         private_latitude: "Latitudine privata, se l'osservazione è oscurata o privata"
         private_longitude: "Longitudine privata, se l'osservazione è oscurata o privata"
-        geoprivacy: "Se l'osservatore ha scelto di oscurare o nascondere le coordinate oppure no"
         taxon_geoprivacy: "Applicata la Geoprivacy più sicura a causa dello stato di conservazione dei taxa nell'identificazione corrente."
         coordinates_obscured: "Se le coordinate sono state oscurate oppure no, sia che il taxon sia minacciato sia che dipenda dalla geoprivacy"
         out_of_range: Se l'osservazione cade o no all'esterno dell'areale conosciuto per il taxon
-        user_id: Identificatore univoco dell'osservatore
-        user_login: Nome utente dell'osservatore
-        user_name: |
-          Nome dell'osservatore, generalmente usato per attribuzione sul sito.
-          Questo è un campo facoltativo e può essere uno pseudonimo.
         created_at: Data e ora della creazione dell'osservazione
         updated_at: Data e ora in cui l’osservazione è stata modificata l’ultima volta
-        quality_grade: Livello di qualità dell'osservazione. Controlla nella sezione Aiuto per maggiori dettagli
-        license: La licenza che l'osservatore ha scelto per tale osservazione
         url: URL dell'osservazione
-        image_url: URL dell'immagine predefinita
-        sound_url: URL per il suono predefinito. Ricorda che ciò funzionerà per i caricamenti diretti e non per i suoni ospitati su servizi di terzi
         tag_list: Elenco separato da virgola delle etichette
         place_admin1_name: Nome dell'unità amministrativa di un rango inferiore al livello di stato
         place_admin2_name: Nome dell'unità amministrativa di due ranghi inferiore al livello di stato
@@ -8367,6 +8386,7 @@ it:
         requires_privilege_speech: |
           devi avere tre osservazioni verificabili o tre identificazioni fatte per altri per fare questo
         requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare questo
+        requires_privilege_interaction: deve avere un indirizzo e-mail confermato per farlo
         taken: è già stato preso
         too_long:
           one: è troppo lungo (massimo 1 carattere)

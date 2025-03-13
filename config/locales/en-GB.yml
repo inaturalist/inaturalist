@@ -1,12 +1,180 @@
 en-GB:
+  #Plural form of the noun, as in "3 changes occurred since 23 May 2020"
+  x_changes:
+    one: "%{count} change"
+    other: "%{count} changes"
   x_comments:
     one: '%{count} comment'
     other: '%{count} comments'
+  x_comments_html:
+    one: '<span class="count">%{count}</span> comment'
+    other: '<span class="count">%{count}</span> comments'
+  x_faves:
+    one: '%{count} fave'
+    other: '%{count} faves'
+  x_flags_resolved_html:
+    one: "<span class='count'>%{count}</span> flag resolved"
+    other: "<span class='count'>%{count}</span> flags resolved"
+  x_identifications:
+    one: '%{count} identification'
+    other: '%{count} identification'
+  x_identifications_html:
+    one: '<span class="count">%{count}</span> identification'
+    other: '<span class="count">%{count}</span> identification'
+  x_identifications_:
+    one: '%{count} Identification'
+    other: '%{count} Identification'
+  x_identifications_caps_html:
+    one: '<span class="count">%{count}</span> IDENTIFICATION'
+    other: '<span class="count">%{count}</span> IDENTIFICATIONS'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFIER'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFIERS'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID made for others'
+    other: '<span class="count">%{count}</span> IDs made for others'
+  x_languages:
+    one: "%{count} language"
+    other: "%{count} languages"
+  #Count of number of taxa that represent the first addition to a life list
+  x_life_list_firsts:
+    #Count of number of taxa that represent the first addition to a life list
+    one: "%{count} life list first"
+    #Count of number of taxa that represent the first addition to a life list
+    other: "%{count} life list first"
+  x_journal_posts_html:
+    one: '<span class="count">%{count}</span> journal post'
+    other: '<span class="count">%{count}</span> journal posts'
+  x_matching_taxa:
+    one: '%{count} matching taxon'
+    other: '%{count} matching taxa'
+  x_matching_taxa_html:
+    one: '<span class="count">%{count}</span> matching taxon'
+    other: '<span class="count">%{count}</span> matching taxa'
+  x_misidentifications_of_this_species:
+    one: "%{count} misidentification of this species"
+    other: "%{count} misidentifications of this species"
+  x_misidentifications_of_species_in_this_genus:
+    one: "%{count} misidentification of species in this genus"
+    other: "%{count} misidentifications of species in this genus"
+  #This is a fallback. Most of the time we'll use
+  #x_misidentifications_of_species_in_this_genus
+  x_misidentifications_of_species_in_this_rank:
+    one: "%{count} misidentification of species in this %{rank}"
+    other: "%{count} misidentifications of species in this %{rank}"
+  x_observations:
+    one: "%{count} observation"
+    other: "%{count} observation"
+  x_observations_:
+    one: "%{count} Observation"
+    other: "%{count} Observation"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> observation"
+    other: "<span class='count'>%{count}</span> observation"
+  x_observations_caps_html:
+    one: "<span class='count'>%{count}</span> OBSERVATION"
+    other: "<span class='count'>%{count}</span> OBSERVATIONS"
+  x_observations_link_html:
+    one: "<a href='%{url}'>%{count} observation</a>"
+    other: "<a href='%{url}'>%{count} observation</a>"
+  x_observations_reviewed_html:
+    one: "<span class='count'>%{count}</span> observation reviewed"
+    other: "<span class='count'>%{count}</span> observations reviewed"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVER'
+    other: '<span class="count">%{count}</span> OBSERVERS'
+  x_others:
+    one: "%{count} other"
+    other: "%{count} others"
+  x_people:
+    one: "%{count} person"
+    other: "%{count} people"
+  x_people_html:
+    one: '<span class="count">%{count}</span> person'
+    other: '<span class="count">%{count}</span> people'
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
+  x_photos:
+    one: "%{count}photo"
+    other: "%{count}photos"
+  x_new_species:
+    one: "%{count} New Species"
+    other: "%{count} New Species"
+  x_new_users:
+    one: '%{count} New User'
+    other: '%{count} New Users'
+  x_species:
+    one: '%{count} Species'
+    other: '%{count} Species'
+  x_species_caps_html:
+    one: "<span class='count'>%{count}</span> SPECIES"
+    other: "<span class='count'>%{count}</span> SPECIES"
+  x_species_html:
+    one: "<span class='count'>%{count}</span> species"
+    other: "<span class='count'>%{count}</span> species"
+  x_species_link_html:
+    one: "<a href='%{url}'>%{count}species</a>"
+    other: "<a href='%{url}'>%{count}species</a>"
+  x_suggestions_filtered_by_colon:
+    one: "%{count} Suggestion Filtered By:"
+    other: "%{count} Suggestions Filtered By:"
+  x_taxa:
+    one: "%{count} taxon"
+    other: "%{count} taxa"
+  x_taxa_observed_html:
+    one: "<span class='count'>%{count}</span> taxon observed"
+    other: "<span class='count'>%{count}</span> taxa observed"
+  x_research_grade_observations_html:
+    one: "<span class='count'>%{count}</span> research-grade observation"
+    other: "<span class='count'>%{count}</span> research-grade observations"
+  x_research_grade_observations_to_species_html:
+    one: "<span class='count'>%{count}</span> research-grade observation ID'd to species or lower"
+    other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower"
+  x_sounds:
+    one: "%{count} sound"
+    other: "%{count} sounds"
+  x_taxa_curated_html:
+    one: "<span class='count'>%{count}</span> taxon curated"
+    other: "<span class='count'>%{count}</span> taxa curated"
+  x_taxa_matching_current_filters:
+    one: "%{count} taxon matching current filters"
+    other: "%{count} taxa matching current filters"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>%{count}</span> taxon change added"
+    other: "<span class='count'>%{count}</span> taxon changes added"
   _100_day_trends: 100 Day Trends
+  _percent_ID_d: "% ID'd"
+  a_community_for_naturalist: A Community for Naturalists
+  a_default_taxon_name_will_automatically_created: |
+    A default taxon name will automatically be created from the scientific name attribute of this taxon.
+    When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A to Z"
+  #Used as a noun phrase in sentences like "kueda added a comment to *an
+  #observation*". %{resource} could be any of the following:
+  #* assessment_section
+  #* atlas
+  #* listed_taxon
+  #* observation
+  #* observation_field
+  #* post
+  #* taxon_change
+  #* taxon_drop
+  #* taxon_link
+  #* taxon_merge
+  #* taxon_split
+  #* taxon_stage
+  #* taxon_swap
+  #Note that you can also control for gender like @gender{m:un|f:une|n:un(e)}
+  #to add masculine, feminine, and neuter forms of articles. I realize this is
+  #an awkward way to translate something, but fixing it will have to wait for
+  #an overhaul of our notification system.
+  activity_snipped_resource_with_indefinite_article: "@vow_or_con{vow:an|a} %{resource}"
   about: About
+  about_charts: About Charts
   add_id: Add ID
   add_place: Add Place
   add_to_favorites: Add to Favourites

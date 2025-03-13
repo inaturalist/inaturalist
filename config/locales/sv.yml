@@ -1559,6 +1559,8 @@ sv:
     Detta är standardtidszonen. Den slutliga tidszonen kommer att bestämmas
     baserat på fyndets plats när det sparas.
   defaults_to_your_name_or_username: Standardvärdet är ditt namn eller användarnamn
+  #As in the definition of a word
+  definition: Definition
   defines_a_taxon_framework_for: Definierar en taxonkontext för %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definierar en taxonkontext för %{taxon} som kommer från %{source}
   definitions: Definitioner
@@ -1656,6 +1658,10 @@ sv:
     Om du inte har registrerat dig för @vow_or_con{vow:ett|ett} %{site_name}-konto, vänligen ignorera detta mejl.
   devise_confirmation_instructions_please_click: |
     Klicka på länken nedan för att bekräfta din e-postadress:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Klicka på länken nedan för att bekräfta din e-postadress. Om du inte bekräftar din e-postadress
+    kommer du inte att kunna interagera med andra användares innehåll.
   devise_confirmation_instructions_resend_instructions: |
     Du måste ha en fungerande e-postadress för att använda iNaturalist. När du registrerade
     dig för ett konto borde du ha fått ett bekräftelsemejl med en
@@ -1907,6 +1913,8 @@ sv:
   export: Exportera
   export_observations: Exportera fynd
   export_with_private_coordinates: Exportera med dolda koordinater
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Exporterad %{datetime}
   exporting: "Exporterar..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2074,6 +2082,9 @@ sv:
     one: 'Följer 1 person'
     other: 'Följer %{count} personer'
   for_a_taxon: för ett taxon
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    För mer information om kolumnrubriker, se %{url}
   formatting: Formatering
   forgot_your_password: Glömt ditt lösenord?
   forum: Forum
@@ -2528,6 +2539,10 @@ sv:
     Kom ihåg att <a href="%{url}">ändra ditt lösenord</a> för den nya versionen.
   let_us_walk_you_through: Låt oss gå igenom de viktigaste funktionerna på denna webbplats.
   lexicon: Lexikon
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Namn på en samling ord eller termer som innehåller ett taxonnamn, t.ex. namnet
+    på ett språk eller en uppsättning förkortningar
   lexicon_cannot_contain_words: "kan inte innehålla följande ord: %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -3630,6 +3645,8 @@ sv:
   original_url_for_this_map: Ursprungs-URL för denna karta
   organism_appears_captive_cultivated: Organism verkar vara i fångenskap/ odlad
   other: Annat
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Annat
   other_animals: andra djur
   other_lexicons: Andra lexikon
   other_listings_of_this_taxon_for_this_place: Andra listningar av detta taxon för denna fyndplats
@@ -5293,7 +5310,11 @@ sv:
   teachers_guide: Lärarguide
   tell_the_world_a_little_about_yourself: Berätta om dig själv
   tell_us_why: Berätta varför...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Villkor
+  #As in a list of distinct words
+  terminology: Terminologi
   terms_and_rules_html: "Villkor &amp; regler"
   terms_new_users: "Om du lägger till villkor måste nya användare godkänna dem innan de går med i projektet."
   terms_service: Användarvillkor
@@ -6462,9 +6483,28 @@ sv:
         donationssystem. Vänligen kolla snart igen.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klicka här för att skicka ett bekräftelsemejl igen.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bekräftelsemejl skickat
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Här är e-postadressen vi skickar bekräftelsen till:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Om du inte får e-postmeddelandet finns här några tips:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Om du fortfarande inte fått bekräftelsemeddelandet, vänligen kontakta oss på <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> så att vi kan hjälpa dig.
       please_add_an_email_and_password: Lägg till e-post och lösenord så att du inte förlorar åtkomst till ditt konto
       please_click_the_link_sent_to_email_to_confirm_html: Klicka på länken som skickades till <span class="email">%{email}</span> för att bekräfta din e-postadress.
-      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig.
+      please_confirm_that_email_is_the_best_contact_html: Vänligen bekräfta att <span class="email">%{email}</span> är det bästa sättet att kontakta dig. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Bekräfta din e-postadress för att kunna interagera med andra användares innehåll och få tillgång till vissa sidor. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Bekräfta din e-postadress <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Bekräfta din e-postadress för att kunna interagera med andra användares innehåll
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Bekräfta din e-postadress för att kunna använda denna sida
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Kolla alla filter du gjort som skulle kunna ta bort våra mejl från din inkorg #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Titta i din skräppostmapp
       your_site_account_has_no_email: Ditt %{site_name}-konto har ingen e-postadress kopplad till det.
     flags:
       show:
@@ -6769,8 +6809,21 @@ sv:
       index:
         show_messages_from_user: Visa meddelanden från %{user}
         show_messages_to_user: Visa meddelanden till %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du kommer att kunna skicka nya meddelanden när du har lagt till tre verifierbara fynd eller gjort tre bestämningar för andra. Tills dess kan du läsa och svara på meddelanden som andra personer skickar till dig.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Du kommer att kunna skicka nya meddelanden när du har bekräftat din e-postadress
+          adress. Tills dess kan du läsa och svara på meddelanden som andra personer skickar till dig.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Du kommer att kunna skicka nya meddelanden efter att du har bekräftat
+          din e-postadress och lagt till tre verifierbara fynd eller tre bestämningar
+          för andra. Tills dess kan du läsa och svara på meddelanden som andra personer skickar till dig.
       show:
         flag_notice_html: |
           Du flaggade den här konversationen den %{date}. Flaggan kommer att bestå även om du tar bort din kopia av denna konversation, så det är säkert att göra det om du inte längre vill se detta.
@@ -6957,46 +7010,126 @@ sv:
           </li>
           </ul>
       field_descriptions:
-        id: "Unik identifierare för fyndet"
-        species_guess: "Namnet observatören angav för observerat taxon"
-        scientific_name: "Vetenskapligt namn på observerat taxon enligt denna webbplats"
-        common_name: "Vardagligt eller folkligt namn på observerat taxon enligt denna webbplats"
+        id: Unik, sekventiell identifierare för fynd
+        species_guess: |
+          Enkelt namn på observerat taxon; kan ställas in av observatören
+          när observationen skapas, men kan ersättas av kanoniska,
+          lokaliserade namn när detta taxon ändras
+        scientific_name: "Vetenskapligt namn på observerat taxon enligt iNaturalist"
+        common_name: "Vardagligt eller trivialnamn på observerat taxon enligt iNaturalist"
         iconic_taxon_name: Taxonomisk kategori på högre nivå för observerat taxon
-        taxon_id: Unik identifierare för observerat taxon
+        taxon_id: Unik, sekventiell identifierare för observerat taxon
         id_please: Om observatören begärde bestämningshjälp eller inte
-        num_identification_agreements: Antal bestämningar som överensstämmer med observatörens bestämning
-        num_identification_disagreements: Antal bestämningar som strider mot observatörens bestämning
+        num_identification_agreements: Antal bestämningar kopplade till taxa som matchar eller omfattas av taxonet från observatörens bestämning
+        num_identification_disagreements: Antal bestämningar kopplade till taxa som inte matchar och inte omfattas av taxonet från observatörens bestämning
         observed_on_string: Datum/tid såsom angivet av observatören
         observed_on: Normaliserat fynddatum
         time_observed_at: Normaliserat datum & tid för fyndet
         time_zone: Fyndets tidszon
         place_guess: Fyndplatsbeskrivning såsom angiven av observatören
-        latitude: Publikt synlig latitud
-        longitude: Publikt synlig longitud
+        latitude: Publikt synlig latitud från fyndplatsen
+        longitude: Publikt synlig longitud från fyndplatsen
         positional_accuracy: "Koordinatprecision (ja, ja, noggrannhet != precision, dåligt val av namn)"
         private_latitude: "Privat latitud, anges om fyndet är privat eller diffuserat"
         private_longitude: "Privat longitud, anges om fyndet är privat eller diffuserat"
-        geoprivacy: "Huruvida observatören har valt att diffusera eller dölja koordinaterna"
+        geoprivacy: "Huruvida observatören har valt att diffusera eller dölja koordinaterna. Se https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Mest konservativ koordinatsekretess använd p.g.a. bevarandestatus för taxa i aktuell bestämning."
         coordinates_obscured: "Huruvida koordinaterna har diffuserats eller inte, antingen på grund av koordinatsekretess eller hotat taxon"
         out_of_range: Huruvida fyndet ligger utanför taxonets kända utbredningsområde eller inte
-        user_id: Unik identifierare för observatören
-        user_login: Observatörens användarnamn
+        user_id: Unik, sekventiell identifierare för observeratören
+        user_login: Observatörens användarnamn, dvs en kort, unik, alfanumerisk identifierare för en användare
         user_name: |
           Namn på observatören, används oftast för erkännande på webbplatsen.
           Detta är ett valfritt fält och kan vara en pseudonym.
         created_at: Datum och tid då fyndet skapades
         updated_at: Datum och tid då fyndet senast uppdaterades
-        quality_grade: Kvalitetsklass för detta fynd. Se Hjälpavsnittet för detaljer om vad detta innebär
-        license: Licens som observatören valt för detta fynd
+        quality_grade: Kvalitetsklass för detta fynd. Se Hjälpsektionen för detaljer om vad detta betyder. Se https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identifierare för licensen eller avstående som observatören har gjort för detta fynd. Alla rättigheter förbehållna om tomt
         url: URL för fyndet
-        image_url: URL för standardbilden
-        sound_url: URL för standardljudet. Observera att detta bara fungerar för direktuppladdningar, inte ljud från tredjepartstjänster
+        image_url: URL för den första bilden kopplad till fyndet
+        sound_url: |
+          URL för det första ljudet kopplat till fyndet. Notera att detta endast fungerar
+          för direkta uppladdningar, inte ljud som hostas av tredjepartstjänster
         tag_list: Kommaseparerad lista med taggningar
         place_admin1_name: Namn på den administrativa fyndplatsen en rang under landsnivå
         place_admin2_name: Namn på den administrativa fyndplatsen två ranger under landsnivå
         positioning_method: Hur koordinaterna bestämdes
         positioning_device: Enhet som användes för att bestämma koordinater
+        captive_cultivated: |
+          Fyndet är av en organism som existerar vid den tid och plats den
+          observerades eftersom människor avsåg att den skulle vara där då. För
+          mer, se
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Text skriven av observatören som beskriver fyndet eller dokumenterar
+          andra anteckningar som verkar relevanta
+        oauth_application_id: |
+          Sekventiell identifierare för applikationen som skapade
+          fyndet. För mer information om applikationen, komplettera
+          https://www.inaturalist.org/oauth/applications/ med detta nummer
+        place_county_name: |
+          Namnet på det förvaltningsområde på nivå tre som omfattar
+          fyndets koordinater (t.ex. ett county i de flesta delarna av
+          USA)
+        place_country_name: |
+          Namnet på det land som omfattar detta fynds koordinater
+        place_state_name: |
+          Namnet på det förvaltningsområde på nivå två som omfattar
+          fyndets koordinater (t.ex. en stat i de flesta delarna av
+          USA)
+        place_town_name: |
+          Namnet på den stad eller kommun som omfattar fyndets
+          koordinater, om känt
+        private_place_guess: |
+          Fyndplats som angiven av observatören om platsen diffuserats
+        public_positional_accuracy: Maximal horisontell positionsosäkerhet i meter; inkluderar osäkerhet som adderats pga diffusering
+        taxon_class_name: |
+          Namn på den taxonomiska klass som omfattar observerat taxon
+        taxon_family_name: |
+          Namn på den taxonomiska familj som omfattar observerat taxon
+        taxon_form_name: |
+          Namn på den taxonomiska form som omfattar observerat taxon
+        taxon_genus_name: |
+          Namn på det taxonomiska släkte som omfattar observerat taxon
+        taxon_genushybrid_name: |
+          Namn på det taxonomiska hybridsläkte som omfattar observerat taxon
+        taxon_hybrid_name: |
+          Namn på den taxonomiska hybrid som omfattar observerat taxon
+        taxon_kingdom_name: |
+          Namn på det taxonomiska rike som omfattar observerat taxon
+        taxon_order_name: |
+          Namn på den taxonomiska ordning som omfattar observerat taxon
+        taxon_phylum_name: |
+          Namn på det taxonomiska fylum som omfattar observerat taxon
+        taxon_species_name: |
+          Namn på den taxonomiska art som omfattar observerat taxon
+        taxon_subclass_name: |
+          Namn på den taxonomiska underklass som omfattar observerat taxon
+        taxon_subfamily_name: |
+          Namn på den taxonomiska underfamilj som omfattar observerat taxon
+        taxon_suborder_name: |
+          Namn på den taxonomiska underordning som omfattar observerat taxon
+        taxon_subphylum_name: |
+          Namn på det taxonomiska underfylum som omfattar observerat taxon
+        taxon_subspecies_name: |
+          Namn på den taxonomiska underart som omfattar observerat taxon
+        taxon_subtribe_name: |
+          Namn på den taxonomiska undertribus som omfattar observerat taxon
+        taxon_superclass_name: |
+          Namn på den taxonomiska överklass som omfattar observerat taxon
+        taxon_superfamily_name: |
+          Namn på den taxonomiska överfamilj som omfattar observerat taxon
+        taxon_superorder_name: |
+          Namn på den taxonomiska överordning som omfattar observerat taxon
+        taxon_supertribe_name: |
+          Namn på den taxonomiska övertribus som omfattar observerat taxon
+        taxon_tribe_name: |
+          Namn på den taxonomiska tribus som omfattar observerat taxon
+        taxon_variety_name: |
+          Namn på den taxonomiska varietet som omfattar observerat taxon
+        uuid: |
+          Universellt unik identifierare för fyndet. Se
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Markera alla fynd på denna sida som granskade"
         you_reviewed_message: "Du granskade %{reviewed} av %{pageTotal} fynd på denna sida av %{total} matchande fynd."
@@ -7985,6 +8118,18 @@ sv:
       taxon:
         about_html: |
           Taxa kan ha många vardagliga namn. Vi stöder ett vardagligt standardnamn globalt, som kan ändras här genom att dra ett namn längst upp i listan. Du kan också ange standardnamn för olika fyndplatser genom att redigera namnet och lägga till en fyndplats, men gör bara detta när olika fyndplatser har motstridiga namn.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          Exporter kan också innehålla kolumner med Fyndfältsvärden. För att
+          hitta definitioner för dem, antingen sök efter dem på
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          eller lägg till kolumnnamnet (med kolon) till
+          <code>%{terminology_url}</code> (t.ex. <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist använder en mängd unika termer för att beskriva olika
+          aspekter av tjänsten. Här har vi försökt samla några av dem
+          och deras definitioner som en referens.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8726,6 +8871,7 @@ sv:
         requires_privilege_speech: |
           måste ha tre verifierbara fynd eller tre bestämningar för andra för att kunna göra det
         requires_privilege_organizer: måste ha 50 verifierbara fynd för att göra det
+        requires_privilege_interaction: måste ha en bekräftad e-postadress för att göra det
         taken: är redan taget
         too_long:
           one: är för långt (maximalt %{count} tecken)

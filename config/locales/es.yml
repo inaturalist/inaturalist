@@ -1524,6 +1524,8 @@ es:
     Esta es la zona horaria por defecto. La zona horaria final se asignará basándose en
     la ubicación de la observación cuando se guarde.
   defaults_to_your_name_or_username: Por predeterminación tu nombre o nombre de usuario
+  #As in the definition of a word
+  definition: Definición
   defines_a_taxon_framework_for: Define un marco de taxon para %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Define un Marco de Taxones para %{taxon} cuya fuente es %{source}
   definitions: Definiciones
@@ -1614,6 +1616,9 @@ es:
     Si no te registraste para tener una cuenta en %{site_name} , ignora este correo electrónico.
   devise_confirmation_instructions_please_click: |
     Por favor, haga clic en el enlace siguiente para verificar su dirección de email:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Por favor, haz clic en el enlace de abajo para confirmar tu dirección de correo electrónico. Si no la confirmas, no podrás interactuar con el contenido de otros usuarios.
   devise_confirmation_instructions_resend_instructions: |
     Deberías tener una dirección de correo electrónico activa para usar iNaturalist. Cuando registraste tu cuenta, deberías haber recibido un mensaje de correo electrónico de confirmación, con un enlace para hacer clic y confirmar que tu dirección de correo funciona, pero si no fue así, puedes enviarte un nuevo mensaje de confirmación aquí.
   devise_confirmation_instructions_send_confirmation_email: Enviar correo electrónico de confirmación
@@ -1831,6 +1836,9 @@ es:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Rango exacto
   except: excepto
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Excluir
   exclude_places: Excluye Lugares
   exclude_projects: Excluye Proyectos
   exclude_taxa: Excluye Taxones
@@ -2163,6 +2171,9 @@ es:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ocultar "Sin anotaciones"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Ocultar observaciones con ubicaciones privadas
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
@@ -2286,6 +2297,9 @@ es:
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   #Label for messages you've received
   inbox: Buzón de entrada
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Incluir
   include_places: Incluye Lugares
   include_projects: Incluye Proyectos
   include_suggestions_not_seen_nearby: Incluir sugerencias que no han sido vistas cerca de aquí
@@ -5096,6 +5110,8 @@ es:
   teachers_guide: Guia de maestro
   tell_the_world_a_little_about_yourself: Cuéntanos acerca de ti
   tell_us_why: Dinos por qué...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Términos
   terms_and_rules_html: "Términos &amp; Reglas"
   terms_new_users: "Si añade Términos, los nuevos usuarios deberán aceptarlos antes de unirse a este proyecto."
@@ -6167,9 +6183,28 @@ es:
         ¡Gracias por su interés en apoyar a iNaturalist! Donar a iNaturalist no está disponible mientras actualizamos nuestros sistemas de donación. Por favor, vuelve más tarde.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Clique aquí para recibir un nuevo correo electrónico de confirmación
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Correo electrónico de confirmación enviado
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Esta es la dirección de correo electrónico a la que enviaremos la confirmación:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Si no recibes el correo electrónico, aquí tienes algunos consejos:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Si sigues sin recibir el correo electrónico de confirmación, ponte en contacto con nosotros en <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para que podamos ayudarte.
       please_add_an_email_and_password: Por favor, añade un correo electrónico y una contraseña para no perder el acceso a tu cuenta.
       please_click_the_link_sent_to_email_to_confirm_html: Por favor, haz clic en el enlace enviado a <span class="email">%{email}</span> para confirmar tu dirección de correo electrónico.
-      please_confirm_that_email_is_the_best_contact_html: Por favor, confirma que <span class="email">%{email}</span> es la mejor forma de contactarte.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirma que <span class="email">%{email}</span> es la mejor forma de contactarte. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Confirme su dirección de correo electrónico para interactuar con el contenido de otros usuarios y acceder a ciertas páginas. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Por favor, confirme su dirección de correo electrónico <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Confirme su dirección de correo electrónico para interactuar con el contenido de otros usuarios
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Por favor, confirme su dirección de correo electrónico para utilizar esta página
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Comprueba si hay algún filtro que haya hecho que pueda eliminar nuestros correos electrónicos de tu bandeja de entrada #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Revisa tu carpeta de correo no deseado
       your_site_account_has_no_email: Tu cuenta en %{site_name} no tiene una dirección de correo electrónico asociada.
     flags:
       show:
@@ -6472,9 +6507,22 @@ es:
       index:
         show_messages_from_user: Mostrar mensajes de %{user}
         show_messages_to_user: Mostrar mensajes a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Podrás enviar nuevos mensajes después de haber agregado tres
           observaciones verificables o tres identificaciones para otros. Por ahora puede leer y responder mensajes que otras personas le envían.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Podrás enviar nuevos mensajes una vez que hayas confirmado tu correo electrónico
+          dirección. Por ahora, puede leer y responder a los mensajes que otras personas le envían.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Podrás enviar nuevos mensajes una vez que hayas confirmado tu correo electrónico
+          dirección, y agregó tres observaciones verificables o tres identificaciones
+          para otros. Por ahora, puede leer y responder a los mensajes que otras personas le envían.
       show:
         flag_notice_html: |
           Has marcado esta conversación el %{date}. La marca persistirá incluso
@@ -6657,41 +6705,22 @@ es:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificador único para la observación"
-        species_guess: "Nombra al observador que incluyó el taxón observado"
-        scientific_name: "Nombre científico del taxón observado de acuerdo a este sitio"
-        common_name: "Nombre común o vernáculo del taxón observado de acuerdo a este sitio"
         iconic_taxon_name: Categoría taxonómica de nivel superior para el taxón observado
-        taxon_id: Identificador único para el taxón observado
         id_please: Haya solicitado ayuda o no para la identificación el observador
-        num_identification_agreements: Número de identificaciones que coinciden con la identificación del observador
-        num_identification_disagreements: Número de identificaciones en conflicto con la de identificación del observador
         observed_on_string: Fecha/hora registrada por el observador
         observed_on: Fecha normalizada de observación
         time_observed_at: Fecha normalizada de observación
         time_zone: Huso horario de la observación
         place_guess: Descripción de la localidad registrada por el observador
-        latitude: Latitud visible públicamente
-        longitude: Longitud visible públicamente
         positional_accuracy: "Precisión de las coordenadas"
         private_latitude: "Latitud privada, selecciona si la observación es privada o está oscurecida"
         private_longitude: "Longitud privada, selecciona si la observación es privada o está oscurecida"
-        geoprivacy: "Si el observador ha escogido, o no, oscurecer o esconder las coordenadas"
         taxon_geoprivacy: "Se aplicó una geoprivacidad limitada debido al estado de conservación del taxa en la identificación actual."
         coordinates_obscured: "Si las coordenadas se han ocultado, o no, por una condición de geoprivacidad o por tratarse de un taxón vulnerable"
         out_of_range: Si la observación entra o no dentro del área geográfica conocida del taxón
-        user_id: Identificador único para la observación
-        user_login: Nombre de usuario del observador
-        user_name: |
-          Nombre del observador, generalmente utilizado para la atribución en el sitio.
-          Este es un campo opcional y puede ser un pseudónimo.
         created_at: Fecha de creación de la observación
         updated_at: Última fecha de actualización de la observación
-        quality_grade: Grado de calidad para esta observación. Ver la sección de Ayuda para los detalles sobre este significado
-        license: Licencia que el observador ha seleccionado para esta observación
         url: URL de la observación
-        image_url: URL de la imagen predeterminada
-        sound_url: URL para el sonido predeterminado. Esto sólo funciona  para cargas directas, no para sonidos hospedados en servicios de terceros.
         tag_list: Lista de etiquetas separadas por comas
         place_admin1_name: Nombre del sitio administrativo un rango debajo del nivel de país
         place_admin2_name: Nombre del sitio administrativo dos rangos debajo del nivel de país
@@ -8239,6 +8268,7 @@ es:
           Debe tener tres observaciones verificables o tres identificaciones
           para que otros hagan eso
         requires_privilege_organizer: Debe tener 50 observaciones verificables para hacer eso
+        requires_privilege_interaction: debe tener una dirección de correo electrónico confirmada para hacerlo
         taken: ya está en uso
         too_long:
           one: es demasiado largo (el máximo es 1 carácter)

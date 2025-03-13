@@ -1,8 +1,51 @@
 ka:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    გთხოვთ, დააწკაპუნოთ ქვემოთ მოცემულ ბმულზე, რომ დაადასტუროთ თქვენი ელ.ფოსტის მისამართი. თუ არ დაადასტურებთ თქვენს ელ.ფოსტას
+    მისამართი, თქვენ ვერ შეძლებთ სხვა მომხმარებლების შინაარსთან ურთიერთობას.
   search: ძებნა
   sign_out: გამოსვლა
   sign_up: რეგისტრაცია
   username: მომხმარებელი
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: დააკლიკე აქ, რომ ხელახლა გააგზავნოთ დადასტურების ელ.ფოსტა
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: გაგზავნილია ელ.ფოსტა
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        აქ არის ელ.ფოსტის მისამართი, რომელსაც ჩვენ გავაგზავნით დადასტურებას:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        თუ არ მიიღებთ ელ.წერილს, აქ მოცემულია რამდენიმე რჩევა:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: თუ თქვენ ჯერ კიდევ არ იღებთ დამადასტურებელ ელფოსტას, გთხოვთ დაგვიკავშირდეთ <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ასე რომ, ჩვენ შეგვიძლია დაგეხმაროთ.
+      please_add_an_email_and_password: გთხოვთ, დაამატოთ ელ.ფოსტა და პაროლი, რათა არ დაკარგოთ წვდომა თქვენს ანგარიშზე
+      please_click_the_link_sent_to_email_to_confirm_html: გთხოვთ, დააწკაპუნოთ ბმულზე <span class="email">%{email}</span> თქვენი ელ.ფოსტის მისამართის დასადასტურებლად.
+      please_confirm_that_email_is_the_best_contact_html: გთხოვთ დაადასტუროთ, რომ <span class="email">%{email}</span> არის საუკეთესო გზა თქვენთან დასაკავშირებლად. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: გთხოვთ, დაადასტუროთ თქვენი ელ.ფოსტის მისამართი სხვა მომხმარებლების შინაარსთან ურთიერთობისა და გარკვეულ გვერდებზე წვდომისთვის. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: გთხოვთ, დაადასტუროთ თქვენი ელ.ფოსტის მისამართი <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: გთხოვთ, დაადასტუროთ თქვენი ელ.ფოსტის მისამართი სხვა მომხმარებლების შინაარსთან ურთიერთობისთვის
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: გთხოვთ, დაადასტუროთ თქვენი ელ.ფოსტის მისამართი ამ გვერდის გამოსაყენებლად
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: შეამოწმეთ ნებისმიერი ფილტრი, რომელმაც შეიძლება წაშალოს ჩვენი ელ.ფოსტა თქვენი შემოსულებიდან #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: შეამოწმეთ სპამის საქაღალდე
+      your_site_account_has_no_email: შენი %{site_name} ანგარიშს არ აქვს მასთან დაკავშირებული ელ.ფოსტის მისამართი.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          ელ.ფოსტის დადასტურების შემდეგ თქვენ შეძლებთ გაგზავნოთ ახალი შეტყობინებები
+          მისამართი. ახლა თქვენ შეგიძლიათ წაიკითხოთ და უპასუხოთ შეტყობინებას, რომელსაც სხვა ადამიანები გიგზავნიან.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          ელ.ფოსტის დადასტურების შემდეგ თქვენ შეძლებთ გაგზავნოთ ახალი შეტყობინებები
+          მისამართი და დაემატა სამი გადამოწმებული დაკვირვება ან სამი იდენტიფიკაცია
+          სხვებისთვის. ახლა თქვენ შეგიძლიათ წაიკითხოთ და უპასუხოთ შეტყობინებას, რომელსაც სხვა ადამიანები გიგზავნიან.
   number:
     format:
       significant: false
@@ -11,3 +54,7 @@ ka:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: უნდა ჰქონდეს დადასტურებული ელ.ფოსტის მისამართი ამისათვის

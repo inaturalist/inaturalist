@@ -1,4 +1,47 @@
 ms:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Sila klik pautan di bawah untuk mengesahkan alamat e-mel anda. Jika anda tidak mengesahkan e-mel anda
+    alamat, anda tidak akan dapat berinteraksi dengan kandungan pengguna lain.
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik di sini untuk menghantar semula e-mel pengesahan
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: E-mel pengesahan dihantar
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Berikut ialah alamat e-mel yang akan kami hantar pengesahan kepada:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Jika anda tidak menerima e-mel, berikut ialah beberapa petua:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Jika anda masih tidak menerima e-mel pengesahan, sila hubungi kami di <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Jadi kami boleh membantu anda.
+      please_add_an_email_and_password: Sila tambah e-mel dan kata laluan supaya anda tidak kehilangan akses kepada akaun anda
+      please_click_the_link_sent_to_email_to_confirm_html: Sila klik pautan yang dihantar ke <span class="email">%{email}</span> untuk mengesahkan alamat e-mel anda.
+      please_confirm_that_email_is_the_best_contact_html: Sila sahkan bahawa <span class="email">%{email}</span> ialah cara terbaik untuk menghubungi anda. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Sila sahkan alamat e-mel anda untuk berinteraksi dengan kandungan pengguna lain dan mengakses halaman tertentu. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Sila sahkan alamat e-mel anda <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Sila sahkan alamat e-mel anda untuk berinteraksi dengan kandungan pengguna lain
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Sila sahkan alamat e-mel anda untuk menggunakan halaman ini
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Semak sebarang penapis yang anda buat yang mungkin mengalih keluar e-mel kami daripada peti masuk anda #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Semak folder spam anda
+      your_site_account_has_no_email: Anda %{site_name} akaun tidak mempunyai alamat e-mel yang dikaitkan dengannya.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Anda akan dapat menghantar mesej baharu selepas anda mengesahkan e-mel anda
+          Alamat. Buat masa ini anda boleh membaca dan membalas mesej yang dihantar oleh orang lain kepada anda.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Anda akan dapat menghantar mesej baharu selepas anda mengesahkan e-mel anda
+          alamat, dan menambah tiga pemerhatian yang boleh disahkan atau tiga pengenalan
+          untuk yang lain. Buat masa ini anda boleh membaca dan membalas mesej yang dihantar oleh orang lain kepada anda.
   number:
     format:
       significant: false
@@ -7,3 +50,7 @@ ms:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: mesti mempunyai alamat e-mel yang disahkan untuk berbuat demikian

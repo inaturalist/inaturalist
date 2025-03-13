@@ -1402,6 +1402,10 @@ hu:
     Ha nem regisztáltál az @vow_or_con{vow:an|a} %{site_name}-ra, kérjük, hogy hagyd figyelmen kívül ezt az emailt.
   devise_confirmation_instructions_please_click: |
     Kérjük, hogy az emailcím megerősítéséhez kattints az alábbi linkre:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kérjük, kattintson az alábbi linkre az e-mail cím megerősítéséhez. Ha nem erősíti meg az e-mail-címet
+    címet, nem fog tudni interakcióba lépni más felhasználók tartalmával.
   devise_confirmation_instructions_send_confirmation_email: Megerősítő e-mail küldése
   devise_email_changed_you_requested: Email cím változtatását kérted %{old_email} címről %{new_email} címre.
   devise_email_changed_you_will_receive: |
@@ -4416,6 +4420,8 @@ hu:
   teachers_guide: Útmutató tanároknak
   tell_the_world_a_little_about_yourself: Mesélj magadról
   tell_us_why: Miért gondolod?
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Feltételek
   terms_and_rules_html: "Szabályzat"
   terms_new_users: "Ha feltételeket adsz hozzá, az új felhasználók egyet kell értsenek ezekkel mielőtt csatlakoznának."
@@ -5227,9 +5233,28 @@ hu:
         Köszönjük, hogy támogatni szeretnéd az iNaturalistot! A rendszerünk frissítése alatt az adományozást pillanatnyilag felfüggesztettük. Kérünk látogass vissza hamarosan.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: A hitelesítő email újraküldéséhez kattints ide
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Visszaigazoló e-mail elküldve
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Itt van az e-mail cím, amelyre elküldjük a visszaigazolást:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ha nem kapja meg az e-mailt, íme néhány tipp:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: 'Ha továbbra sem kapja meg a visszaigazoló e-mailt, kérjük, vegye fel velünk a kapcsolatot a következő címen: <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> így segíthetünk Önnek.'
       please_add_an_email_and_password: Kérjük, hogy a hozzáférésed megőrzéséhez add meg az email címed és egy jelszót
       please_click_the_link_sent_to_email_to_confirm_html: Az emailcím megerősítéséhez kattints a(z) <span class="email">%{email}</span> címre küldött linkre.
-      please_confirm_that_email_is_the_best_contact_html: Kérjük erősítsd meg, hogy <span class="email">%{email}</span> emailcímen keresztül a legjobb veled kapcsolatba lépni.
+      please_confirm_that_email_is_the_best_contact_html: Kérjük erősítsd meg, hogy <span class="email">%{email}</span> emailcímen keresztül a legjobb veled kapcsolatba lépni. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Kérjük, erősítse meg e-mail címét, hogy kapcsolatba léphessen más felhasználók tartalmával és hozzáférhessen bizonyos oldalakhoz. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Kérjük, erősítse meg e-mail címét <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Kérjük, erősítse meg e-mail címét, hogy kapcsolatba léphessen más felhasználók tartalmával
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Kérjük, erősítse meg e-mail címét az oldal használatához
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Ellenőrizze, hogy vannak-e olyan szűrők, amelyek eltávolíthatják e-mailjeinket a postaládájából #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Ellenőrizze a spam mappát
       your_site_account_has_no_email: '%{site_name} fiókodhoz nincs emailcím hozzárendelve.'
     flags:
       show:
@@ -5383,8 +5408,21 @@ hu:
       index:
         show_messages_from_user: Mutasd az üzeneteket %{user} felhasználótól
         show_messages_to_user: Mutasd az üzeneteket %{user} felhasználóhoz
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Akkor küldhetsz új üzeneteket, miután van három hiteles megfigyelésed vagy három meghatározásod más számára. Egyelőre elolvashatod és válaszolhatsz azokra az üzenetekre amiket másoktól kaptál.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Az e-mail-cím megerősítése után új üzeneteket küldhet
+          cím. Egyelőre elolvashatja és válaszolhat mások által küldött üzenetekre.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Az e-mail-cím megerősítése után új üzeneteket küldhet
+          címet, és három ellenőrizhető megfigyelést vagy három azonosítást adott hozzá
+          másoknak. Egyelőre elolvashatja és válaszolhat mások által küldött üzenetekre.
     nls_demo:
       #Vision Language models are machine-learning models that can work with
       #both text and images. They can for example search images with a text
@@ -5538,28 +5576,13 @@ hu:
           </li>
           </ul>
       field_descriptions:
-        id: "A meghatározás egyedi azonosítója"
-        scientific_name: "A megfigyelt taxon tudományos neve e honlap szerint"
-        taxon_id: A megfigyelt taxon egyedi azonosítója
-        num_identification_agreements: A megfigyelő meghatározásával egyetértő meghatározások száma
-        num_identification_disagreements: A megfigyelő meghatározásának ellentmondó meghatározások száma.
         observed_on_string: A megfigyelés dátuma és ideje, ahogy a megfigyelő megadta
         observed_on: A megfigyelés normalizált dátuma
         time_observed_at: A megfigyelés normalizált dátuma és ideje
         time_zone: A megfigyelés időzónája
-        latitude: Nyilvánosan látható szélességi kör
-        longitude: Nyilvánosan látható hosszúsági kör
-        geoprivacy: "Ha a megfigyelő úgy döntött kitakarja vagy elrejtse a koordinátákat"
-        user_id: A megfigyelő egyedi azonosítója
-        user_login: A megfigyelő felhasználói neve
-        user_name: |
-          A megfigyelő neve, amit az oldalon való társításhoz tüntetünk fel. Opcionális mező, és álnév is lehet.
         created_at: A megfigyelés létrehozásának dátuma és időpontja
         updated_at: A megfigyelés legutóbbi módosításának dátuma és ideje
-        quality_grade: A megfigyelés minőségi szintje. Lásd a Súgót a részletekkel kapcsolatban
         url: A megfigyelés URL-címe
-        image_url: Az alapértelmezett kép URL-je
-        sound_url: Az alapértelmezett hang URL-je. Ez csak közvetlenül feltöltött hangokhoz érhető el, a külső szolgáltatókon tárolt hangokhoz nem.
         tag_list: Címkék listája, vesszővel elválasztva
         place_admin1_name: A közigazgatási terület neve az országénál egy szinttel lentebb
         place_admin2_name: A közigazgatási terület neve az országénál két szinttel lentebb
@@ -6560,6 +6583,7 @@ hu:
         requires_privilege_speech: |
           ehhez legalább három megerősíthető megfigyeléssel vagy más számára három meghatározással kell rendelkezned
         requires_privilege_organizer: ehhez 50 megerősíthető megfigyelésed kell legyen
+        requires_privilege_interaction: ehhez megerősített e-mail címmel kell rendelkeznie
         taken: már foglalt
       template:
         body: 'Problémák merültek fel az alábbi adatmezőkkel:'

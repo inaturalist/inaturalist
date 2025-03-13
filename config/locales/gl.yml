@@ -1368,6 +1368,10 @@ gl:
         subject: Instruccións para a confirmación
       reset_password_instructions:
         subject: 'Instruccións para restablecer o contrasinal.'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Preme na seguinte ligazón para confirmar o seu enderezo de correo electrónico. Se non confirmas o teu correo electrónico
+    Enderezo, non poderás interactuar co contido doutros usuarios.
   devise_reset_password_instructions_hello_email: Ola %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Se ti non o solicitaches, por favor, ingora este correo electrónico.
@@ -4231,6 +4235,8 @@ gl:
   teachers_guide: Guía do Mestre
   tell_the_world_a_little_about_yourself: Fálanos un pouco sobre ti
   tell_us_why: Dinos porqué...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termos
   terms_and_rules_html: "Termos & Regras"
   terms_new_users: "Os novos usuarios deben aceptar estes termos antes de unirse ao proxecto."
@@ -4926,6 +4932,31 @@ gl:
       post_donate_social_media_text: Eu apoio iNaturalist porque...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Faite Patrocinador Mensual de iNaturalist
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Preme aquí para reenviar un correo electrónico de confirmación
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Correo electrónico de confirmación enviado
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Aquí está o enderezo de correo electrónico que enviaremos a confirmación a:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Se non recibes o correo electrónico, aquí tes algúns consellos:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Se aínda non está a recibir o correo electrónico de confirmación, póñase en contacto connosco <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Así que podemos axudarche.
+      please_add_an_email_and_password: Engade un correo electrónico e un contrasinal para que non perdas o acceso á túa conta
+      please_click_the_link_sent_to_email_to_confirm_html: Preme na ligazón enviada a <span class="email">%{email}</span> para confirmar o seu enderezo de correo electrónico.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirma que <span class="email">%{email}</span> É a mellor forma de contactar contigo. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Por favor, confirme o seu enderezo de correo electrónico para interactuar co contido doutros usuarios e acceder a determinadas páxinas. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Confirma o teu enderezo de correo electrónico <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Por favor, confirma o seu enderezo de correo electrónico para interactuar co contido doutros usuarios
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Por favor, confirme o seu enderezo de correo electrónico para usar esta páxina
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Comproba os filtros que fixeches que poidan eliminar os nosos correos electrónicos da túa caixa de entrada #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Comproba o cartafol spam
+      your_site_account_has_no_email: O teu %{site_name} A conta non ten ningún enderezo de correo electrónico asociado a el.
     flags:
       show:
         flaggable_content_desc: |
@@ -5108,8 +5139,21 @@ gl:
       index:
         show_messages_from_user: Mostrar mensaxes de %{user}
         show_messages_to_user: Mostrar mensaxes a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Serás quen de enviar novas mensaxes logo de engadir tres observacións verificables ou tres identificacións para outros. Polo de agora podes ler e responder a mensaxes que outra xente te enviou.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Poderás enviar novas mensaxes despois de confirmar o teu correo electrónico
+          Enderezo. Por agora podes ler e responder mensaxes que outras persoas che envían.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Poderás enviar novas mensaxes despois de confirmar o teu correo electrónico
+          Enderezo, e engadiu tres observacións verificables ou tres identificacións
+          Para outros. Por agora podes ler e responder mensaxes que outras persoas che envían.
       show:
         flag_notice_html: |
           Marcaches esta conversación no %{date}. A marca persistirá aínda que borres a túa copia desta conversa, así que é seguro borrala se xa non queres vela.
@@ -5263,38 +5307,22 @@ gl:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificador único da observación"
-        species_guess: "Nomea ó observador que introducíu o taxon observado"
-        scientific_name: "Nome científico do taxon observado de acordo con este sitio"
-        common_name: "Nome común ou vernáculo do taxon observado de acordo con este sitio"
         iconic_taxon_name: Categoría taxonómica superior para o taxon observado
-        taxon_id: Identificador único do taxon observado
         id_please: Se o observador requiríu axuda para a identificación
-        num_identification_agreements: Número de identificacións en concurrencia cá identificación do observador
-        num_identification_disagreements: Número de identificacións en conflito cá identificación do observador
         observed_on_string: Data/hora como foi introducida polo observador
         observed_on: Data normalizada da observación
         time_observed_at: Data e hora da observación normalizadas
         time_zone: Zona horaria da observación
         place_guess: Descrición da localidade como foi introducida polo observador
-        latitude: Latitude visible publicamente
-        longitude: Lonxitude visible publicamente
         positional_accuracy: "Precisión das coordenadas (si, si, exactitude != precisión, mala escolla de nomes)"
         private_latitude: "Latitude privada, pór se a observación é privada ou está escurecida"
         private_longitude: "Lonxitude privada, pór se a observación é privada ou está escurecida"
-        geoprivacy: "Se o observador escolleu escurecer ou ocultar as coordenadas"
         taxon_geoprivacy: "A xeoprivacidade máis conservadora aplicada debido ó estado de conservación de taxons que están a seren identificados."
         coordinates_obscured: "Se as coordenadas foron escurecidas, ben pola xeoprivacidade ou porque é un taxon ameazado"
         out_of_range: Se esta observación cae fóra do rango coñecido do taxon
-        user_id: Identificador único do observador
-        user_login: Nome de usuario do observador
         created_at: Data e hora na que a observación foi creada
         updated_at: Data e hora na que a observación foi actualizada por última vez
-        quality_grade: Grao de calidade desta observación. Ver a sección Axuda para obter detalles do que isto significa
-        license: Licenza que o observador escolleu para esta observación
         url: URL da observación
-        image_url: URL da imaxe predeterminada
-        sound_url: URL do son predeterminado. Repara que só funcionará para cargas directas, non para sons albergados en servicios de terceiros
         tag_list: Listaxe de etiquetas separada por comas
         place_admin1_name: Nome da ubicación administrativa un rango por baixo do nivel de país
         place_admin2_name: Nome da ubicación administrativa dous niveis por baixo do nivel de país
@@ -6512,6 +6540,7 @@ gl:
         requires_privilege_speech: |
           debe ter tres observacións verificables ou tres identificacións para outros para facer iso
         requires_privilege_organizer: debe ter 50 observacións verificables para facer iso
+        requires_privilege_interaction: Debe ter un enderezo de correo electrónico confirmado para facelo
         taken: xa está en uso
         too_long:
           one: é demasiado longo (o máximo é %{count} caracter)

@@ -323,6 +323,10 @@ fr-CA:
         subject: Instructions de confirmation
       reset_password_instructions:
         subject: 'Instructions de réinitialisation de mot de passe'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Veuillez cliquer sur le lien ci-dessous pour confirmer votre adresse courriel. Si vous ne confirmez pas votre courriel
+    adresse, vous ne pourrez pas interagir avec le contenu des autres utilisateurs.
   devise_reset_password_instructions_hello_email: Bonjour %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Si vous n'avez pas fait cette demande, veuillez ignorer ce courriel.
@@ -499,6 +503,31 @@ fr-CA:
             <a href="%{url}">Regardez les lignes directrices de la communauté</a> pour des conseils sur la manière de garder iNaturalist comme un endroit amical et convivial.
           please_read_the_teachers_guide_html: |
             Si c’est le cas, veuillez lire notre <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation de %{site_name} avec des étudiants.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Cliquez ici pour renvoyer un courriel de confirmation
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Courriel de confirmation envoyé
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Voici l’adresse courriel à laquelle nous enverrons la confirmation :
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Si vous ne recevez pas le courriel, voici quelques conseils :
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: 'Si vous ne recevez toujours pas le courriel de confirmation, veuillez communiquer avec nous à l’adresse suivante : <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> afin que nous puissions vous aider.'
+      please_add_an_email_and_password: Veuillez ajouter un courriel et un mot de passe pour ne pas perdre l’accès à votre compte
+      please_click_the_link_sent_to_email_to_confirm_html: Veuillez cliquer sur le lien envoyé à <span class="email">%{email}</span> pour confirmer votre adresse courriel.
+      please_confirm_that_email_is_the_best_contact_html: Veuillez confirmer que <span class="email">%{email}</span> est la meilleure façon de vous contacter. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Veuillez confirmer votre adresse courriel pour interagir avec le contenu d’autres utilisateurs et accéder à certaines pages. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Veuillez confirmer votre adresse courriel <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Veuillez confirmer votre adresse courriel pour interagir avec le contenu des autres utilisateurs
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Veuillez confirmer votre adresse courriel pour utiliser cette page
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Vérifiez les filtres que vous avez créés et qui pourraient supprimer nos courriels de votre boîte de réception #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Vérifiez votre dossier de pourriels
+      your_site_account_has_no_email: Votre %{site_name} n’a pas d’adresse courriel associée.
     guides:
       edit:
         import_tags_from_csv_help_html: |
@@ -530,6 +559,18 @@ fr-CA:
           <p>
           La première ligne commence par « Nom », suivi par l’étiquette des prédicats de catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette) <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
     messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Vous pourrez envoyer de nouveaux messages après avoir confirmé votre courriel
+          adresse. Pour l’instant, vous pouvez lire et répondre aux messages que d’autres personnes vous envoient.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Vous pourrez envoyer de nouveaux messages après avoir confirmé votre courriel
+          et a ajouté trois observations vérifiables ou trois identifications
+          pour d’autres. Pour l’instant, vous pouvez lire et répondre aux messages que d’autres personnes vous envoient.
       show:
         privacy_notice_html: |
           Alors que les messages sont privés entre vous et le destinataire, l'équipe d'iNaturalist
@@ -544,8 +585,6 @@ fr-CA:
         receive_an_email_with_your_data: Recevoir un courriel avec vos données
         receive_an_email_with_your_data_help: Vous recevrez un courriel avec votre exportation en pièce jointe.
         well_email_you: "D'accord, nous vous enverrons un courriel quand ce sera prêt."
-      field_descriptions:
-        sound_url: URL pour le son par défaut. Notez que cela ne fonctionnera que pour les téléversements directs, non pour les sons hébergés sur des services tiers
       import:
         google_photos_notice_html: |
           En février 2019, Google a modifié son API, nous empêchant
@@ -968,6 +1007,8 @@ fr-CA:
       user:
         email: Courriel
     errors:
+      messages:
+        requires_privilege_interaction: doit avoir une adresse courriel confirmée pour le faire
       models:
         taxon_name:
           attributes:

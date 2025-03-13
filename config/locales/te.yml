@@ -38,6 +38,10 @@ te:
       november: నవంబర్
       december: డిసెంబర్
   delete_user: వినియోగదారుని తొలగించండి
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి దయచేసి దిగువ లింక్ క్లిక్ చేయండి. మీరు మీ ఇమెయిల్ ని ధృవీకరించకపోతే
+    చిరునామా, మీరు ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ కాలేరు.
   hi_user: "నమస్తే %{user}"
   identify: గుర్తించండి
   identify_observations: "వీక్షణలను గుర్తించండి"
@@ -67,6 +71,45 @@ te:
   the_world: మన ప్రపంచం
   view_more_observations_from_this_place: ఈ ప్రాంతం నుండి మరిన్ని వీక్షణలను చూడండి
   view_more_observations_of_x_project: "<nobr>%{site_name} &raquo;</nobr> వద్ద %{project} నుండి మరిన్ని వీక్షణలను చూడండి"
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: ధృవీకరణ ఇమెయిల్ ని తిరిగి పంపడానికి ఇక్కడ క్లిక్ చేయండి
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: ధృవీకరణ ఇమెయిల్ పంపబడింది
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        ధృవీకరణను మేము పంపే ఇమెయిల్ చిరునామా ఇక్కడ ఉంది:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        మీరు ఇమెయిల్ అందుకోకపోతే, ఇక్కడ కొన్ని చిట్కాలు ఉన్నాయి:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: ఒకవేళ మీరు ఇంకా ధృవీకరణ ఇమెయిల్ ని అందుకోనట్లయితే, దయచేసి మమ్మల్ని సంప్రదించండి <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> కాబట్టి మేము మీకు సహాయపడగలము.
+      please_add_an_email_and_password: దయచేసి ఇమెయిల్ మరియు పాస్ వర్డ్ జోడించండి, తద్వారా మీరు మీ ఖాతాకు ప్రాప్యతను కోల్పోరు
+      please_click_the_link_sent_to_email_to_confirm_html: పంపిన లింక్ పై క్లిక్ చేయండి <span class="email">%{email}</span> మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి.
+      please_confirm_that_email_is_the_best_contact_html: దయచేసి దీనిని ధృవీకరించండి <span class="email">%{email}</span> మిమ్మల్ని సంప్రదించడానికి ఉత్తమ మార్గం. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ అవ్వడానికి మరియు నిర్ధిష్ట పేజీలను యాక్సెస్ చేయడానికి దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ అవ్వడం కొరకు దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: ఈ పేజీని ఉపయోగించడం కొరకు దయచేసి మీ ఇమెయిల్ చిరునామాను ధృవీకరించండి
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: మీ ఇన్ బాక్స్ నుండి మా ఇమెయిల్ లను తొలగించే ఏవైనా ఫిల్టర్ లను మీరు తయారు చేశారా అని తనిఖీ చేయండి #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: మీ స్పామ్ ఫోల్డర్ ను తనిఖీ చేయండి
+      your_site_account_has_no_email: నీ %{site_name} ఖాతాకు ఎటువంటి ఇమెయిల్ చిరునామా అసోసియేట్ చేయబడలేదు.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          మీరు మీ ఇమెయిల్ ను ధృవీకరించిన తరువాత మీరు కొత్త సందేశాలను పంపగలుగుతారు
+          చిరునామా. ప్రస్తుతానికి ఇతరులు మీకు పంపే సందేశాన్ని మీరు చదవవచ్చు మరియు ప్రతిస్పందించవచ్చు.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          మీరు మీ ఇమెయిల్ ను ధృవీకరించిన తరువాత మీరు కొత్త సందేశాలను పంపగలుగుతారు
+          చిరునామా, మరియు మూడు ధృవీకరించదగిన పరిశీలనలు లేదా మూడు గుర్తింపులను జోడించింది
+          ఇతరుల కోసం.. ప్రస్తుతానికి ఇతరులు మీకు పంపే సందేశాన్ని మీరు చదవవచ్చు మరియు ప్రతిస్పందించవచ్చు.
   number:
     format:
       significant: false
@@ -75,3 +118,7 @@ te:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: అలా చేయడానికి ధృవీకరించబడిన ఇమెయిల్ చిరునామాను కలిగి ఉండాలి

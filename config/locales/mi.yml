@@ -411,6 +411,10 @@ mi:
       confirmation_instructions:
         #Subject of an email sent to confirm your account
         subject: Whakamanahia tāku wāhitau īmēra
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Pāwhiritia koa te hono o raro nei hei whakaū i tō wāhitau īmēra. Ki te kore koe e whakaū i tō īmēra
+    wāhitau, kāore e taea e koe te tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi.
   devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
   disagree_: Whakahē
@@ -1304,6 +1308,8 @@ mi:
   teachers_guide: Aratohu o kaiako
   tell_the_world_a_little_about_yourself: Kōrero mai i a koe
   tell_us_why: Kōrero mai he ai
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Kuputaka
   terms_service: Tikanga whakamahi
   terrain: takoto
@@ -1480,6 +1486,31 @@ mi:
   views:
     donate:
       post_donate_social_media_text: Kei te tautoko ahau i iNaturalist nō te mea ...
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Pāwhiri ki konei hei tuku anō i tētahi īmēra whakaū
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Kua tukua te īmēra whakaū
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Anei te wāhitau īmēra ka tukua e mātou te whakaūnga ki:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ki te kore koe e whiwhi i te īmēra, anei ētahi aki:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Mēnā kāore tonu koe i te whiwhi i te īmēra whakaū, whakapā mai koa ki a mātou i <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> kia taea ai e mātau te āwhina i a koe.
+      please_add_an_email_and_password: Tāpiri koa i tētahi īmēra me te kupuhipa kia kore ai koe e ngaro te āheitanga ki tō pūkete
+      please_click_the_link_sent_to_email_to_confirm_html: Pāwhiritia koa te hono i tukua ki <span class="email">%{email}</span> hei whakaū i tō wāhitau īmēra.
+      please_confirm_that_email_is_the_best_contact_html: Whakaū koa i tēnā <span class="email">%{email}</span> ko te huarahi pai rawa atu ki te whakapā atu ki a koe. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Whakaū koa i tō wāhitau īmēra kia tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi me te uru ki ētahi whārangi. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Whakaū koa i tō wāhitau īmēra <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Whakaū koa i tō wāhitau īmēra kia tauwhiti ki ngā ihirangi o ētahi atu kaiwhakamahi
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Whakaū koa i tō wāhitau īmēra hei whakamahi i tēnei whārangi
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Takina ngā tātari i mahia e koe ka tango pea i ā mātou īmēra mai i tō pouakauru #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Takina tō kōpaki spam
+      your_site_account_has_no_email: Tō %{site_name} Kāore he wāhitau īmēra o te pūkete e pā ana ki taua pūkete.
     guides:
       pdf_layouts:
         grid: tukutuku
@@ -1504,6 +1535,18 @@ mi:
     messages:
       from: Mai i
       to: Ki
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Ka taea e koe te tuku karere hōu i muri i tō whakaūnga i tō īmēra
+          Whaikōrero. Mō tēnei wā ka taea e koe te pānui me te whakautu ki te karere ka tukuna koe e ētahi atu tāngata.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Ka taea e koe te tuku karere hōu i muri i tō whakaūnga i tō īmēra
+          wāhitau, ā, e toru ngā kitenga ka taea te tāpiri, kia toru rānei ngā tāutunga
+          mo ētahi atu. Mō tēnei wā ka taea e koe te pānui me te whakautu ki te karere ka tukuna koe e ētahi atu tāngata.
     observations:
       community_id:
         agreement: Whakaae
@@ -1524,7 +1567,6 @@ mi:
         vertical: Poutū
       field_descriptions:
         time_zone: Rohe wā o te mauhanga
-        user_login: Ingoa rorohiko o te kaimātaki
     emailer:
       parental_consent:
         subject: Kei te hiahia tāu tamaiti i whakamahi iNaturalist
@@ -1744,6 +1786,7 @@ mi:
     errors:
       messages:
         confirmation: Kāore i te ōrite te kupuhipa
+        requires_privilege_interaction: me whai wāhitau īmēra kua whakaūngia hei mahi i tēnā
   i18n:
     inflections:
       "@vow_or_con":

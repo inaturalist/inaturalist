@@ -1532,6 +1532,10 @@ fi:
     Jos et ole rekisteröitynyt @vow_or_con{vow:an|a} %{site_name} tilille, jätä tämä sähköposti huomiotta.
   devise_confirmation_instructions_please_click: |
     Ole hyvä ja klikkaa alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Napsauta alla olevaa linkkiä vahvistaaksesi sähköpostiosoitteesi. Jos et vahvista sähköpostiosoitettasi
+    osoitetta, et voi olla vuorovaikutuksessa muiden käyttäjien sisällön kanssa.
   devise_confirmation_instructions_resend_instructions: |
     Sinulla on oltava toimiva sähköpostiosoite iNaturalistia varten. Kun olet rekisteröitynyt
     tilille, sinun olisi pitänyt saada vahvistussähköposti, jonka linkkiä klikkaamalla vahvistat, että sähköpostiosoitteesi toimii, mutta jos et saanut viestiä, voit lähettää itsellesi toisen vahvistusviestin tästä.
@@ -4629,6 +4633,8 @@ fi:
   teachers_guide: Opettajan opas
   tell_the_world_a_little_about_yourself: Kerro meille itsestäsi
   tell_us_why: Kerro meille miksi...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Ehdot
   terms_and_rules_html: "Ehdot &amp; säännöt"
   terms_new_users: "Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän projektiin liittymistä."
@@ -5473,9 +5479,28 @@ fi:
         thank_you_for_being_a_monthly_supporter_caps: KIITOS, ETTÄ OLET KUUKAUSILAHJOITTAJA!
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klikkaa tästä lähettääksesi vahvistussähköpostin uudelleen
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Vahvistussähköposti lähetetty
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Tässä on sähköpostiosoite, johon lähetämme vahvistuksen:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Jos et saa sähköpostia, tässä on muutamia vinkkejä:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Jos et vieläkään saa vahvistussähköpostia, ota meihin yhteyttä osoitteessa <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> jotta voimme auttaa sinua.
       please_add_an_email_and_password: Lisää sähköposti ja salasana, jotta et menetä pääsyä tiliisi
       please_click_the_link_sent_to_email_to_confirm_html: Ole hyvä ja klikkaa osoitteeseen <span class="email">%{email}</span> lähetettyä linkkiä vahvistaaksesi sähköpostiosoitteesi
-      please_confirm_that_email_is_the_best_contact_html: Vahvista, että osoite <span class="email">%{email}</span> on paras tapa sinun tavoittamiseksi
+      please_confirm_that_email_is_the_best_contact_html: Vahvista, että osoite <span class="email">%{email}</span> on paras tapa sinun tavoittamiseksi #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Vahvista sähköpostiosoitteesi, jotta voit olla vuorovaikutuksessa muiden käyttäjien sisällön kanssa ja käyttää tiettyjä sivuja. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Vahvista sähköpostiosoitteesi <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Vahvista sähköpostiosoitteesi, jotta voit olla vuorovaikutuksessa muiden käyttäjien sisällön kanssa
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Vahvista sähköpostiosoitteesi käyttääksesi tätä sivua
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Tarkista tekemäsi suodattimet, jotka saattavat poistaa sähköpostimme postilaatikostasi #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Tarkista roskapostikansiosi
       your_site_account_has_no_email: '%{site_name} tiliisi ei ole liitetty sähköpostiosoitetta.'
     flags:
       show:
@@ -5632,6 +5657,18 @@ fi:
       from: Lähettäjä
       to: Johonkin/jollekin/määränpää
       subject_body: Aihe / Sisältö
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Voit lähettää uusia viestejä, kun olet vahvistanut sähköpostiosoitteesi
+          osoite. Toistaiseksi voit lukea muiden lähettämiä viestejä ja vastata niihin.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Voit lähettää uusia viestejä, kun olet vahvistanut sähköpostiosoitteesi
+          osoite ja lisäsi kolme todennettavissa olevaa havaintoa tai kolme tunnistetta
+          muille. Toistaiseksi voit lukea muiden lähettämiä viestejä ja vastata niihin.
       show:
         flag_notice_html: |
           Olet tehnyt huomautuksen (liputtanut) tähän keskusteluun päivämäärällä %{date}. Huomautus (lippu) säilyy järjestelmässä vaikka poistaisin oman kopion tästä keskustelusta, joten voit turvallisesti poistaa sen omasta näkymästäsi, jos haluat.
@@ -5761,25 +5798,14 @@ fi:
           rel="nofollow noreferrer noopener"
           href="https://www.kaggle.com/c/inaturalist-challenge-at-fgvc-2017">iNaturalist Challenge at FGVC 2017:</a> Linkit 675 000 lisensoituun valokuvaan 5089 lajista konenäkösovelluksen kouluttamiseen käytettäväksi. Luotu kesäkuussa 2017, ei päivitetä enää.</p></li></ul>
       field_descriptions:
-        id: "Havainnon yksilöllinen tunniste"
-        common_name: "Havaitun taksonin yleis- tai kansankielinen nimi tämän sivuston mukaan"
-        taxon_id: Havaitun taksonin yksilöllinen tunniste
-        num_identification_agreements: Tunnistusten lukumäärä jotka ovat yksimielisiä havainnoijan tunnistuksen kanssa
-        num_identification_disagreements: Tunnistusten lukumäärä jotka ovat ristiriidassa havainnoijan tunnistuksen kanssa
         observed_on_string: Havainnoijan syöttämä päivämäärä
         observed_on: Normalisoitu havainnon päivämäärä
         time_observed_at: Normalisoitu havainnon päivämäärä
         time_zone: Havainnon aikavyöhyke
         place_guess: Havainnoijan syöttämä paikan kuvaus
-        latitude: Julkisesti näkyvä leveysaste
-        longitude: Julkisesti näkyvä pituusaste
         private_latitude: "Yksityinen leveysaste, asetettu jos on havainto yksityinen tai karkeistettu"
         private_longitude: "Yksityinen pituusaste, asetettu jos havainto yksityinen tai piilotettu"
-        user_login: Havainnoijan käyttäjänimi
-        license: Lisenssi jonka havainnoija on valinnut tälle havainnolle
         url: URL-osoite havainnolle
-        image_url: URL-osoite oletuskuvalle
-        sound_url: URL oletusäänitteelle. Huomaa että tämä toimii vain tähän palveluun lisäytyille äänitteille, mutta ei äänitteille kolmansien osapuolten palveluissa
         tag_list: Pilkulla erotettu luettelo tunnisteista
       import:
         coordinate_systems_help: |
@@ -6997,6 +7023,7 @@ fi:
         requires_privilege_speech: |
           sinulla täytyy olla vähintään kolme dokumentoitua havaintoa tai kolme tunnistusta, jotta voisit tehdä tämän
         requires_privilege_organizer: tulee olla 50 varmistettavissa olevaa havaintoa tämän tekemiseksi
+        requires_privilege_interaction: Sinulla on oltava vahvistettu sähköpostiosoite tehdäksesi sen
         taken: on jo varattu
         too_long:
           one: on liian pitkä (enintään %{count} merkki)

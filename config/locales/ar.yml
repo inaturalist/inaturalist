@@ -776,6 +776,10 @@ ar:
     failure:
       user:
         suspended: تم تعليق حسابك
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    يرجى النقر فوق الرابط أدناه لتأكيد عنوان بريدك الإلكتروني. إذا لم تؤكد بريدك الإلكتروني
+    ، لن تتمكن من التفاعل مع محتوى المستخدمين الآخرين.
   discoveries: اكتشافات
   did_you_mean: 'هل تقصد'
   did_you_photos_flickr?: هل وضعت أي صور على فليكر؟
@@ -3050,6 +3054,8 @@ ar:
   teachers_guide: دليل المعلم
   tell_the_world_a_little_about_yourself: أخبرنا عن نفسك
   tell_us_why: أخبرنا لماذا...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: الشروط
   terms_and_rules_html: "الشروط &amp; القواعد"
   terms_new_users: "إذا أضفت شروطا، يجب على المستخدمين الجدد الموافقة عليها قبل الانضمام إلى هذا المشروع."
@@ -3676,6 +3682,31 @@ ar:
       post_donate_social_media_text: أنا أدعم إيناتوراليست لأن.
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: كن داعما شهريا لإيناتوراليست
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: انقر هنا لإعادة إرسال رسالة تأكيد بالبريد الإلكتروني
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: تم إرسال التأكيد باللبريد الإلكتروني
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        إليك عنوان البريد الإلكتروني الذي سنرسل إليه التأكيد إلى:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        إذا لم تتلق البريد الإلكتروني ، فإليك بعض النصائح:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: إذا كنت لا تزال لا تتلقى رسالة التأكيد الإلكترونية ، فيرجى الاتصال بنا على <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> حتى نتمكن من مساعدتك.
+      please_add_an_email_and_password: الرجاء إضافة بريد إلكتروني وكلمة مرور حتى لا تفقد الوصول إلى حسابك
+      please_click_the_link_sent_to_email_to_confirm_html: الرجاء النقر على الرابط المرسل إلى <span class="email">%{email}</span> لتأكيد عنوان بريدك الإلكتروني.
+      please_confirm_that_email_is_the_best_contact_html: الرجاء تأكيد أن <span class="email">%{email}</span> هو أفضل طريقة للاتصال بك. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: الرجاء تأكيد عنوان البريد الإلكتروني الخاص بك للتفاعل مع محتوى المستخدمين الآخرين والوصول إلى بعض الصفحات. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: يرجى تأكيد عنوان بريدك الإلكتروني <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: يرجى تأكيد عنوان بريدك الإلكتروني للتفاعل مع محتوى المستخدمين الآخرين
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: يرجى تأكيد عنوان بريدك الإلكتروني لاستخدام هذه الصفحة
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: تحقق من وجود أي فلاتر قمت بإنشائها قد تزيل رسائل البريد الإلكتروني الخاصة بنا من صندوق الوارد الخاص بك #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: راجع مجلد الرسائل غير المرغوب فيها
+      your_site_account_has_no_email: الخاص بك %{site_name} لا يوجد للحساب عنوان بريد إلكتروني مرتبط به.
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -3861,10 +3892,23 @@ ar:
       index:
         show_messages_from_user: إظهار الرسائل من %{user}
         show_messages_to_user: إظهار الرسائل إلى %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           ستتمكن من إرسال رسائل جديدة بعد إضافة ثلاث 
           ملاحظات يمكن التحقق منها أو ثلاث تعريفات للآخرين، في الوقت الحالي، 
           يمكنك قراءة الرسائل التي يرسلها لك الآخرون والرد عليها.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          ستتمكن من إرسال رسائل جديدة بعد تأكيد بريدك الإلكتروني
+          عنوان. في الوقت الحالي ، يمكنك قراءة الرسائل التي يرسلها إليك الأشخاص الآخرون والرد عليها.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          ستتمكن من إرسال رسائل جديدة بعد تأكيد بريدك الإلكتروني
+          العنوان ، وإضافة ثلاث ملاحظات يمكن التحقق منها أو ثلاث تعريفات
+          للآخرين. في الوقت الحالي ، يمكنك قراءة الرسائل التي يرسلها إليك الأشخاص الآخرون والرد عليها.
     oauth:
       authorizations:
         new:
@@ -3934,38 +3978,22 @@ ar:
         date_range_help: "تم تسجيل الحد الأقصى والتاريخ الأدنى بتنسيق يي-شش-سسسس، على سبيل المثال 2015-01-17"
         created_on_help: "تم إنشاء ملاحظات التاريخ، لم تُلاحَظ، على سبيل المثال 2015-01-17، 2015-01-2015، 2015"
       field_descriptions:
-        id: "معرف فريد للملاحظة"
-        species_guess: "اسم الملاحظ دخل إلى الأصنوفة الملاحظة"
-        scientific_name: "الاسم العلمي للأصنوفة الملحوظة وفقا لهذا الموقع"
-        common_name: "الاسم العام أو العامي للأصنوفة الملحوظة وفقا لهذا الموقع"
         iconic_taxon_name: فئة التصنيف العالي للأصنوفة الملاحظة
-        taxon_id: معرف فريد للأضنوفة الملاحظة
         id_please: ما إذا كان المراقب طلب مساعدة معرف
-        num_identification_agreements: عدد الهويات التي تتوافق مع هوية الملاحظ
-        num_identification_disagreements: عدد الهويات التي تتعارض مع هوية الملاحظ
         observed_on_string: التاريخ/الوقت الذي أدخله الملاحظ
         observed_on: تاريخ الملاحظة المعتاد
         time_observed_at: تاريخ ووقت تطبيع الملاحظة
         time_zone: المنطقة الزمنية للملاحظة
         place_guess: وصف المنطقة كما تم إدخاله من قبل الملاحظ
-        latitude: خط عرض مرئي بشكل عام
-        longitude: خط الطول المرئي بشكل عام
         positional_accuracy: "تنسيق الدقة (نعم، نعم، دقة != الدقة، ضعف اختيار الأسماء)"
         private_latitude: "خط العرض خاص، عين إذا كانت الملاحظة خاصة أو محجوبة"
         private_longitude: "خط الطول خاص، عين إذا كانت الملاحظة خاصة أو محجوبة"
-        geoprivacy: "سواء اختار الملاحظ عدم إخفاء الإحداثيات أو إخفاؤها"
         taxon_geoprivacy: "تُطبَّق معظم الجيوبرتريا المحافظة بسبب حالات حفظ الأصناف في التعريف الحالي."
         coordinates_obscured: "سواء كانت الإحداثيات محجوبة بسبب الخصوصية الجغرافية أو بسبب الأصنوفة المهددة"
         out_of_range: ما إذا كانت هذه الملاحظة تقع خارج نطاق مجموعة الأصناف المعروفة
-        user_id: معرف فريد للملاحظ
-        user_login: اسم المستخدم للملاحظ
         created_at: تم إنشاء ملاحظة التاريخ والوقت
         updated_at: تم تحديث أخير لملاحظة التاريخ والوقت
-        quality_grade: درجة جودة هذه الملاحظة، راجع قسم المساعدة للحصول على تفاصيل حول ما يعنيه هذا
-        license: الترخيص الذي اختاره الملاحظ لهذه الملاحظة
         url: مسار للملاحظة
-        image_url: مسار للصورة الافتراضية
-        sound_url: مسار للصوت الافتراضي، لاحظ أنه سيعمل فقط للمرفوعات المباشرة، وليس الأصوات المستضافة في خدمات الجهات الخارجية
         tag_list: قائمة مفصولة بفواصل بالعلامات
         place_admin1_name: اسم المكان الإداري مرتبة واحدة تحت مستوى البلد
         place_admin2_name: اسم المكان الإداري رتبان تحت مستوى البلد
@@ -5316,6 +5344,7 @@ ar:
           يجب أن تكون لديك ثلاث ملاحظات يمكن التحقق منها أو ثلاثة تعريفات
           للآخرين للقيام بذلك
         requires_privilege_organizer: يجب أن تكون هناك 50 ملاحظة قابلة للتحقق للقيام بذلك
+        requires_privilege_interaction: يجب أن يكون لديك عنوان بريد إلكتروني مؤكد للقيام بذلك
         taken: قد تم أخذه بالفعل
       template:
         body: 'هناك مشاكل بالحقول التالية:'

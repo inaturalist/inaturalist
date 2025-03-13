@@ -1339,6 +1339,10 @@ lt:
         subject: Patvirtinimo instrukcijos
       reset_password_instructions:
         subject: 'Atstatyti slaptažodžio instrukcijas'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Spustelėkite toliau pateiktą nuorodą, kad patvirtintumėte savo el. pašto adresą. Jei nepatvirtinsite savo el. pašto
+    adresą, negalėsite sąveikauti su kitų naudotojų turiniu.
   devise_reset_password_instructions_hello_email: Sveiki, %{email},
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Jei jūs to neprašėte, prašome ignoruoti šį el. laišką.
@@ -3811,6 +3815,8 @@ lt:
   teachers_guide: Mokytojo vadovas
   tell_the_world_a_little_about_yourself: Papasakokite apie save
   tell_us_why: Kodėl taip manote...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Sąlygos
   terms_and_rules_html: "Sąlygos &amp; taisykles"
   terms_new_users: "Jeigu pridedate sąlygas, nauji vartotojai turi su jomis sutikti, kad galėtų prisijungti prie projekto."
@@ -4337,6 +4343,31 @@ lt:
       post_donate_social_media_text: Aš remiu iNaturalist nes...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Tapkite mėnesiniu iNaturalist remėju
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Spustelėkite čia, kad iš naujo išsiųstumėte patvirtinimo el. laišką
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Išsiųstas patvirtinimo el. laiškas
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Štai el. pašto adresas, kuriuo išsiųsime patvirtinimą:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Jei negaunate el. laiško, pateikiame keletą patarimų:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Jei vis tiek negaunate patvirtinimo el. laiško, susisiekite su mumis adresu <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> kad galėtume jums padėti.
+      please_add_an_email_and_password: Pridėkite el. pašto adresą ir slaptažodį, kad neprarastumėte prieigos prie savo paskyros
+      please_click_the_link_sent_to_email_to_confirm_html: Spustelėkite nuorodą, išsiųstą <span class="email">%{email}</span> , kad patvirtintumėte savo el. pašto adresą.
+      please_confirm_that_email_is_the_best_contact_html: Patvirtinkite, kad <span class="email">%{email}</span> yra geriausias būdas su jumis susisiekti. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Patvirtinkite savo el. pašto adresą, kad galėtumėte sąveikauti su kitų naudotojų turiniu ir pasiekti tam tikrus puslapius. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Patvirtinkite savo el. pašto adresą <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Patvirtinkite savo el. pašto adresą, kad galėtumėte sąveikauti su kitų naudotojų turiniu
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Norėdami naudotis šiuo puslapiu, patvirtinkite savo el. pašto adresą
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Patikrinkite, ar nėra jūsų sukurtų filtrų, kurie galėtų pašalinti mūsų el. laiškus iš gautųjų #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Patikrinkite šlamšto aplanką
+      your_site_account_has_no_email: Jūsų %{site_name} paskyroje nėra su ja susieto el. pašto adreso.
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -4400,6 +4431,17 @@ lt:
       index:
         show_messages_from_user: Rodyti žinutes nuo %{user}
         show_messages_to_user: Rodyti žinutes vartotojui %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Galėsite siųsti naujus pranešimus, kai patvirtinsite el. paštą
+          adresas. Kol kas galite skaityti ir atsakyti į žinutes, kurias jums siunčia kiti žmonės.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Galėsite siųsti naujus pranešimus, kai patvirtinsite el. paštą
+          adresą ir pridėjo tris patikrinamus pastebėjimus arba tris identifikacijas
+          kitiems. Kol kas galite skaityti ir atsakyti į žinutes, kurias jums siunčia kiti žmonės.
     oauth:
       authorizations:
         new:
@@ -4429,10 +4471,7 @@ lt:
         well_email_you: "Gerai, mes atsiųsime jums el. laiška, kai bus paruošta."
         taking_a_while: "Tai trunka per ilgai. Prašome pasirinkti vieną iš žemiau pateiktų variantų."
       field_descriptions:
-        latitude: Viešai matoma platuma
-        longitude: Viešai matoma ilguma
         out_of_range: Ar šis stebėjimas yra žinomose taksono arealo ribose
-        user_login: Stebėtojo vartotojo vardas
         tag_list: Kableliais atskirtų žymių sąrašas
         positioning_method: Kaip buvo nustatytos koordinatės
         positioning_device: Įrenginys, su kuriuo nustatytos koordinatės
@@ -5033,6 +5072,7 @@ lt:
         odd: turi būti nelyginis
         only_project_owner_can_change_project_owner: Tik projekto savininkas gali pakeisti projekto savininką
         record_invalid: 'Patvirtinimas nepavyko: %{errors}'
+        requires_privilege_interaction: Norėdami tai padaryti, turite turėti patvirtintą el. pašto adresą
         taken: jau užimtas
       models:
         application:

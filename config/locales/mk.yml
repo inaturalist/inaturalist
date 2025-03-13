@@ -568,6 +568,10 @@ mk:
   desription: Опис
   destroy: Уништи
   details: Подробно
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Моля, кликнете на линкот подолу за да ја потврдите вашата е-маил адреса. Ако не го потврдите својот е-маил
+    адреса, нема да можете да комуницирате со содржината на другите корисници.
   did_you_mean: 'Дали мислевте на'
   disconnect_provider: "Отстрани ја врската со %{provider}"
   documentation_for_developers_html: Документација за <a href="/pages/developers">разработувачи</a>
@@ -1543,6 +1547,8 @@ mk:
     data_url: Податочен URL
     overlays: Облоги
   taxonomic_groups: Таксономски групи
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Услови
   terms_and_rules_html: "Услови и правила"
   terms_service: Услови на употреба
@@ -1706,6 +1712,31 @@ mk:
           Бидете вминателни: додавањето на Javascript и CSS во вашата проектна страница може во голема мера да го општети изгледот на страницата и потенцијално да овозможи злонамерни програми кои ќе им се наметнат на посетителите на страницата. Ако не знаете за што точно служи некој коден текст, тогаш не го ставајте.
     donate:
       donate_short_desc: "Дарувајте сега и искажете ја вашата поддршка!"
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Кликнете овде за повторно да испратите е-маил за потврда
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Е-маил за потврда испратен
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Еве ја е-маил адресата на која ќе ја испратиме потврдата:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ако не го добиете е-маилот, еве неколку совети:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ако сè уште не го добивате е-маил за потврда, молиме контактирајте ни на <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> така што ние можеме да ви помогнеме.
+      please_add_an_email_and_password: Молиме додайте е-маил и лозинка за да не изгубите пристап до вашата сметка
+      please_click_the_link_sent_to_email_to_confirm_html: Молиме кликнете на линкот испратен до <span class="email">%{email}</span> за да ја потврдите вашата е-маил адреса.
+      please_confirm_that_email_is_the_best_contact_html: Ве молиме потврдете дека <span class="email">%{email}</span> е најдобриот начин да ви контактирам. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Молиме потврдете ја вашата е-маил адреса за да комуницирате со содржината на другите корисници и да пристапите до одредени страници. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Молиме потврдете ја вашата е-маил адреса <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Молиме потврдете ја вашата е-маил адреса за да комуницирате со содржината на другите корисници
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Молиме потврдете ја вашата е-маил адреса за да ја користите оваа страница
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Проверете дали има филтри што ги направивте, кои би можеле да ги избришат нашите пораки од вашето сандаче #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Проверете ја папката за спам
+      your_site_account_has_no_email: Вашиот %{site_name} Сметката нема е-маил адреса поврзана со него.
     guides:
       index:
         funding_html: |
@@ -1718,6 +1749,19 @@ mk:
       pdf_layout_notes:
         grid: |
           Решетка од поединечни слики, без описи
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Ќе можете да испраќате нови пораки откако ќе го потврдите својот е-маил
+          адреса. Засега можете да читате и да одговарате на пораките кои другите луѓе ви ги праќаат.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Ќе можете да испраќате нови пораки откако ќе го потврдите својот е-маил
+          адреса, и додадени три потврдливи набљудувања или три идентификации
+          за други. Засега можете да читате и да одговарате на пораките кои другите луѓе ви ги праќаат.
     projects:
       edit:
         start_time_desc: "Почетно време на вашиот биоблиц"
@@ -1981,6 +2025,8 @@ mk:
         email: Е-пошта
         login: Корисничко име
     errors:
+      messages:
+        requires_privilege_interaction: мора да има потврдена е-маил адреса за да го стори тоа
       models:
         guide:
           attributes:

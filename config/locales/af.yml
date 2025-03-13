@@ -343,6 +343,10 @@ af:
   definitions: Definisies
   description: Beskrywing
   desription: Beskrywing
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
+    adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
   email: E-pos
   email_notifications: E-poskennisgewings
@@ -644,6 +648,31 @@ af:
   yesterday: Gister
   verifiable: Verifieerbaar
   views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik hier om 'n bevestigings-e-pos weer te stuur
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bevestigings-e-pos gestuur
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Hier is die e-posadres waarheen ons die bevestiging sal stuur:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        As jy nie die e-pos ontvang nie, is hier 'n paar wenke:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: As jy steeds nie die bevestigings-e-pos ontvang nie, kontak ons asseblief by <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> sodat ons jou kan bystaan.
+      please_add_an_email_and_password: Voeg asseblief 'n e-posadres en wagwoord by sodat jy nie toegang tot jou rekening verloor nie
+      please_click_the_link_sent_to_email_to_confirm_html: Klik asseblief op die skakel wat gestuur is na <span class="email">%{email}</span> om jou e-posadres te bevestig.
+      please_confirm_that_email_is_the_best_contact_html: Bevestig asseblief dat <span class="email">%{email}</span> is die beste manier om jou te kontak. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Bevestig asseblief jou e-posadres om met ander gebruikers se inhoud te kommunikeer en toegang tot sekere bladsye te kry. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Bevestig asseblief jou e-posadres <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Bevestig asseblief jou e-posadres om met ander gebruikers se inhoud te kommunikeer
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Bevestig asseblief jou e-posadres om hierdie bladsy te gebruik
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Kyk vir enige filters wat jy gemaak het wat ons e-posse uit jou inkassie kan verwyder #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Gaan jou strooiposgids na
+      your_site_account_has_no_email: Jou %{site_name} rekening het geen e-posadres daaraan geassosieer nie.
     guides:
       pdf_layouts:
         book: boek
@@ -652,6 +681,18 @@ af:
       all_observations: Alle waarnemings
     messages:
       from: Vanaf
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Jy sal nuwe boodskappe kan stuur nadat jy jou e-pos bevestig het
+          Adres. Vir eers kan jy boodskappe lees en beantwoord wat ander mense vir jou stuur.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Jy sal nuwe boodskappe kan stuur nadat jy jou e-pos bevestig het
+          adres, en het drie verifieerbare waarnemings of drie identifikasies bygevoeg
+          vir ander. Vir eers kan jy boodskappe lees en beantwoord wat ander mense vir jou stuur.
     observations:
       community_id:
         score: Telling
@@ -757,6 +798,9 @@ af:
         email: E-pos
         time_zone: Tydsone
         place_id: Plek
+    errors:
+      messages:
+        requires_privilege_interaction: moet 'n bevestigde e-posadres hê om dit te doen
   i18n:
     inflections:
       "@gender":

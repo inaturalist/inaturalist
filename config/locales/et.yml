@@ -1515,6 +1515,10 @@ et:
     Kui sina ei loonud endale lehe %{site_name} kasutajat, siis palun ära reageeri sellele kirjale.
   devise_confirmation_instructions_please_click: |
     Palun vajuta allolevale lingile, et oma e-posti aadressit kinnitada:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Palun klõpsake alloleval lingil, et kinnitada oma e-posti aadress. Kui te ei kinnita oma e-posti aadressi
+    aadressiga, ei saa te suhelda teiste kasutajate sisuga.
   devise_confirmation_instructions_resend_instructions: |
     iNaturalisti sisselogimiseks peaks sul olema toimiv e-posti aadress. Kui oma konto tegid, oleksid sa pidanud saama e-kirja lingiga, mis kinnitaks, et su aadress toimib. Kui seda ei saanud, saad siit endale uue e-kirja saata.
   devise_confirmation_instructions_send_confirmation_email: Saada kinnituskiri
@@ -4326,6 +4330,8 @@ et:
   teachers_guide: Õpetaja juhend
   tell_the_world_a_little_about_yourself: Räägi meile endast
   tell_us_why: Põhjenda...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Tingimused
   terms_and_rules_html: "Tingimused &amp; reeglid"
   terms_new_users: "Kui lisad tingimused, peavad uued kasutajad nendega enne projektiga liitumist nõustuma."
@@ -5015,6 +5021,31 @@ et:
         thank_you_for_being_a_monthly_supporter_caps: AITÄH, ET OLED IGAKUINE TOETAJA!
       temporarily_unavailable: |
         Aitäh, et tunned huvi iNaturalisti toetamise vastu! Ajutiselt ei saa iNaturalistile annetada, sest uuendame oma annetussüsteeme. Palun tule proovi varsti uuesti.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Kinnitusmeili uuesti saatmiseks klõpsake siin
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Saadetud kinnituskiri
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Siin on e-posti aadress, millele saadame kinnituse:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Kui te meili ei saa, on siin mõned näpunäited:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Kui te ikka ei saa kinnitusmeili, võtke meiega ühendust aadressil <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> et saaksime teid aidata.
+      please_add_an_email_and_password: Lisage e-posti aadress ja parool, et te ei kaotaks juurdepääsu oma kontole
+      please_click_the_link_sent_to_email_to_confirm_html: Palun klõpsake lingil, mis on saadetud aadressile <span class="email">%{email}</span> e-posti aadressi kinnitamiseks.
+      please_confirm_that_email_is_the_best_contact_html: Palun kinnitage, et <span class="email">%{email}</span> on parim viis teiega ühendust võtta. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Palun kinnitage oma e-posti aadress, et suhelda teiste kasutajate sisuga ja pääseda juurde teatud lehtedele. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Palun kinnitage oma e-posti aadress <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Palun kinnitage oma e-posti aadress, et suhelda teiste kasutajate sisuga
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Selle lehe kasutamiseks kinnitage oma e-posti aadress
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Kontrollige, kas olete teinud filtreid, mis võivad meie e-kirjad teie postkastist eemaldada #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Rämpsposti kausta kontrollimine
+      your_site_account_has_no_email: Sinu %{site_name} kontoga pole seotud e-posti aadressi.
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -5151,6 +5182,18 @@ et:
     messages:
       from: Kellelt
       to: Kellele
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Pärast e-posti aadressi kinnitamist saate uusi sõnumeid saata
+          aadress. Praegu saate lugeda sõnumeid, mida teised inimesed teile saadavad, ja neile vastata.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Pärast e-posti aadressi kinnitamist saate uusi sõnumeid saata
+          aadressi ja lisas kolm kontrollitavat tähelepanekut või kolm identifitseerimist
+          teiste jaoks. Praegu saate lugeda sõnumeid, mida teised inimesed teile saadavad, ja neile vastata.
     nls_demo:
       #Provides an example of a query to use with the Vision Language Demo.
       #query_in_english will be something like "a bird eating fruit".
@@ -5213,39 +5256,21 @@ et:
         date_range_help: "Vaatluse maksimaalne ja minimaalne kuupäev AAAA-KK-PP formaadis, nt 2015-01-17"
         created_on_help: "Vaatluse loomise (mitte vaatlemise) kuupäev, nt 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "Vaatluse unikaalne tunnus"
-        species_guess: "Vaatleja siestatud taksoni nimetus"
-        scientific_name: "Vaatluse teaduslik nimetus vastavalt meie lehele"
-        common_name: "Vaadeldud taksoni rahvapärane nimi vastavalt sellele lehele"
         iconic_taxon_name: Vaadeldud taksoni kõrgema taseme taksonoomiline kategooria
-        taxon_id: Vaadeldud taksoni unikaalne tunnus
         id_please: Kas vaatleja soovis abi määratlemisel
-        num_identification_agreements: Vaatleja määratlusega nõustuvate määratluste arv
-        num_identification_disagreements: Vaatleja määratlusega mittenõustuvate määratluste arv
         observed_on_string: Vaatleja sisestatud kuupäev/kellaaeg
         observed_on: Kohandatud vaatluskuupäev
         time_observed_at: Kohandatud vaatluskuupäev ja -kellaaeg
         time_zone: Vaatluse ajavöönd
         place_guess: Vaatleja sisestatud asukoha kirjeldus
-        latitude: Avalikult nähtav laiuskraad
-        longitude: Avalikult nähtav pikkuskraad
         positional_accuracy: "Koordinaatide täpsus"
         private_latitude: "Privaatne pikkuskraad, kui vaatlus on privaatne või varjatud"
         private_longitude: "Privaatne laiuskraad, kui vaatlus on privaatne või varjatud"
-        geoprivacy: "Kas vaatleja on soovinud koordinaate varjata"
         coordinates_obscured: "Kas koordinaadid on varjatud geoprivaatsusest või taksoni ohustatusest tulenevalt"
         out_of_range: Kas vaatlus asub väljaspool taksoni teadaolevaid piirkondi
-        user_id: Vaatluse unikaalne tunnus
-        user_login: Vaatleja kasutajatunnus
-        user_name: |
-          Vaatleja nimi, mida enamasti kasutatakse leheküljel vaatluste kellelegi omistamiseks. See on valikuline väli ja võib sisalda pseudonüümi.
         created_at: Vaatluse loomise kuupäev ja kellaaeg
         updated_at: Vaatluse viimase uuendamise kuupäev ja kellaaeg
-        quality_grade: Vaatuse kvaliteedihinnang. Vaata abi sektsioonist selle täpsemat seletust
-        license: Vaatleja poolt sellele vaatlusele valitud litsents
         url: Selle vaatluse URL
-        image_url: Vaikimisi pildi URL
-        sound_url: 'Vaikimisi heli URL. NB: see töötab ainult otse üles laetud failide, mitte kusagil mujal majutatud helide puhul.'
         tag_list: Komaga eraldatud märksõnad
         place_admin1_name: Riigist üks aste allpool oleva administratiivse üksuse nimi
         place_admin2_name: Riigist kaks astet allpool oleva administratiivse üksuse nimi
@@ -6172,6 +6197,7 @@ et:
         not_an_integer: peab olema täisarv
         odd: peab olema paaritu
         record_invalid: 'Valideerimine ebaõnnestus: %{errors}'
+        requires_privilege_interaction: selleks peab olema kinnitatud e-posti aadress
       template:
         header:
           one: "%{count} viga ei lubanud salvestada: %{model}"
