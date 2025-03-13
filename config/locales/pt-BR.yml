@@ -1567,6 +1567,8 @@ pt-BR:
     Este é o fuso horário padrão. O fuso horário final será atribuído com base
     no local da observação quando ele é salvo.
   defaults_to_your_name_or_username: Padrão para seu nome e nome de usuário
+  #As in the definition of a word
+  definition: Definição
   defines_a_taxon_framework_for: Definir um quadro de táxon para %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Define uma estrutura de táxon para %{taxon} originado de %{source}
   definitions: Definições
@@ -1658,6 +1660,9 @@ pt-BR:
     Se você não se inscreveu na conta %{site_name}, por favor ignore esta mensagem.
   devise_confirmation_instructions_please_click: |
     Por favor, clique no link abaixo para verificar o seu endereço de correio eletrônico.
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Por favor, clique no link abaixo para confirmar o seu endereço de e-mail. Se você não confirmar o seu endereço de email, você não poderá interagir com o conteúdo de outros usuários.
   devise_confirmation_instructions_resend_instructions: |
     Você deve possuir um correio eletrônico ativo para usar o iNaturalist. Quando você criou uma conta, deve ter recebido uma mensagem de confirmação com um link para clicar e confirmar que o seu endereço eletrônico funciona. Se você não o fez,
     você pode solicitar outro correio eletrônico de confirmação aqui.
@@ -1904,6 +1909,8 @@ pt-BR:
   export: Exportar
   export_observations: Exportar observações
   export_with_private_coordinates: Exportar com coordenadas ocultadas
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Exportado em %{datetime}
   exporting: "Exportando..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2070,6 +2077,9 @@ pt-BR:
     one: 'Seguindo 1 pessoa'
     other: 'Seguindo %{count} pessoas'
   for_a_taxon: para um táxon
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Para obter mais informações sobre os cabeçalhos de colunas, ver %{url}
   formatting: Formatação
   forgot_your_password: Esqueceu sua senha?
   forum: Fórum
@@ -2517,6 +2527,10 @@ pt-BR:
     Parece que você está utilizando uma senha da versão antiga deste site. Por favor lembre-se de <a href="%{url}">mudar sua senha</a> para a nova versão.
   let_us_walk_you_through: Deixe-nos lhe apresentar as funções principais deste site.
   lexicon: Léxico
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Nome de uma coleção de palavras ou termos que contêm um nome de táxon, por exemplo, o nome
+    de um idioma ou um conjunto de abreviações
   lexicon_cannot_contain_words: "não pode conter as seguintes palavras: %{words}"
   lexicons:
     afrikaans: Africâner
@@ -3611,6 +3625,8 @@ pt-BR:
   original_url_for_this_map: URL original para este mapa
   organism_appears_captive_cultivated: Aparentemente o organismo é doméstico / cultivado
   other: Outro
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Outros
   other_animals: outros animais
   other_lexicons: Outros Léxicos
   other_listings_of_this_taxon_for_this_place: Outros registros deste táxon para este local
@@ -5294,7 +5310,11 @@ pt-BR:
   teachers_guide: Guia do professor
   tell_the_world_a_little_about_yourself: Conte-nos sobre você
   tell_us_why: Oras, nos diga por que...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termos
+  #As in a list of distinct words
+  terminology: Terminologia
   terms_and_rules_html: "Termos &amp; Regras"
   terms_new_users: "Caso você adicione termos, todos os novos usuários deveram concordas antes de ingressar neste projeto."
   terms_service: Termos de Utilização
@@ -6408,9 +6428,28 @@ pt-BR:
         iNaturalist estão temporariamente suspensas enquanto atualizamos a nosso sistema de doações. Por favor, volte mais tarde.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Clique aqui para solicitar o reenvio de e-mail de confirmação
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Email de confirmação enviado
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Aqui está o endereço de email para o qual enviaremos a confirmação:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Se você não receber o e-mail, aqui estão algumas dicas:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Se ainda assim não recebeu o e-mail de confirmação, entre em contato conosco pelo email <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para que possamos ajudá-lo.
       please_add_an_email_and_password: Por favor, adicione um e-mail e senha para que você não perca o acesso à sua conta
       please_click_the_link_sent_to_email_to_confirm_html: Por favor, clique no link enviado para <span class="email">%{email}</span> e confirme o seu endereço de e-mail.
-      please_confirm_that_email_is_the_best_contact_html: Por favor, confirme que <span class="email">%{email}</span> é a melhor maneira de entrar em contato com você.
+      please_confirm_that_email_is_the_best_contact_html: Por favor, confirme que <span class="email">%{email}</span> é a melhor maneira de entrar em contato com você. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Por favor, confirme o seu endereço de e-mail para poder interagir com o conteúdo de outros usuários e acessar certas páginas. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Por favor, confirme o seu endereço de e-mail <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Por favor, confirme o seu endereço de e-mail para poder interagir com o conteúdo de outros usuários
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Por favor, confirme o seu endereço de e-mail para usar esta página
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Verifique se você utiliza filtros que podem remover nossos emails da sua caixa de entrada #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Verifique a sua pasta de spam
       your_site_account_has_no_email: Sua conta %{site_name} não tem um endereço de e-mail associado a ela.
     flags:
       show:
@@ -6696,8 +6735,19 @@ pt-BR:
       index:
         show_messages_from_user: Mostrar mensagens de %{user}
         show_messages_to_user: Mostrar mensagens de %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Você poderá enviar novas mensagens depois de adicionar três observações verificáveis ou três identificações para os outros. Para agora você pode ler e responder a mensagem que outras pessoas lhe enviam.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Você poderá enviar novas mensagens após confirmar o seu endereço
+          de e-mail. Por enquanto, você pode ler e responder às mensagens que outras pessoas lhe enviam.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Você poderá enviar novas mensagens após adicionar três observações verificáveis ou três identificações para os outros. Por agora você pode ler e responder mensagens que outras pessoas lhe enviam.
       show:
         flag_notice_html: |
           Você sinalizou esta conversa em %{date}. O aviso persistirá até se você excluir sua cópia desta conversa, então é seguro fazê-lo se você não quiser mais ver isto.
@@ -6879,46 +6929,120 @@ pt-BR:
           </li>
           </ul>
       field_descriptions:
-        id: "Um único identificador para a observação"
-        species_guess: "Nomeie o observador que incluiu o táxon observado"
-        scientific_name: "Nome científico do táxon observado de acordo com este site"
-        common_name: "Nome comum ou vernacular do táxon observado de acordo com este site"
+        id: Identificador sequencial único para a observação
+        species_guess: |
+          Texto sem formatação para o táxon observado; pode ser definido pelo observador
+          durante a criação de observações, mas pode ser substituído por nomes canônicos locais
+          quando o táxon for alterado
+        scientific_name: "Nome científico do táxon observado de acordo com iNaturalist"
+        common_name: "Nome comum ou vernacular do táxon observado de acordo com iNaturalist"
         iconic_taxon_name: Categoria taxonômica de nível superior para o taxón observado
-        taxon_id: Identificador único para o táxon observado
+        taxon_id: Identificador sequencial único para o táxon observado
         id_please: Precisando ou não o observador solicitou ajuda com a identificação
-        num_identification_agreements: Número de identificações em concorrência com as identificações do observador
-        num_identification_disagreements: Número de identificações conflitando com a identificação do observador
+        num_identification_agreements: Número de identificações associadas aos táxons correspondentes ou que estão contidos pelo táxon da identificação do observador
+        num_identification_disagreements: Número de identificações associadas aos táxons não correspondentes ou que não estão contidos pelo táxon da identificação do observador
         observed_on_string: Data/Hora conforme registrado pelo observador
         observed_on: Data normalizada de observação
         time_observed_at: Dia e Horário normalizados de observação
         time_zone: Fuso horário da observação
         place_guess: Descrição de localidade conforme registrado pelo observador
-        latitude: Latitude visível publicamente
-        longitude: Longitude visível publicamente
+        latitude: Latitude visível publicamente do local de observação
+        longitude: Longitude visível publicamente do local de observação
         positional_accuracy: "Precisão das coordenadas"
         private_latitude: "Latitude particular, selecione se a observação é particular ou oculta"
         private_longitude: "Longitude particular, selecione se a observação é particular ou oculta"
-        geoprivacy: "De qualquer forma, o observador optou por ocultar ou, esconder, as coordenadas"
+        geoprivacy: "Se o observador optouou não por obscurecer ou ocultar as coordenadas. Veja https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "A geofracia mais conservadora aplicada devido aos status de conservação dos táxons na identificação atual."
         coordinates_obscured: "De qualquer forma, as coordenadas foram ocultadas, seja pela configuração de geoprivacidade ou pelo grau de ameaça do táxon"
         out_of_range: Esteja a observação localizada ou não dentro da área de distribuição deste táxon
-        user_id: Identificador único para o observador
-        user_login: Nome de usuário do observador
+        user_id: Identificador sequencial único para o observador
+        user_login: Nome de usuário do observador, ou seja, um identificador curto, único e alfanumérico para um usuário
         user_name: |
           Nome do observador, geralmente usado para atribuição no site.
           Este campo é opcional e pode ser um pseudônimo.
         created_at: Dia e hora que a observação foi criada
         updated_at: Dia e hora que a observação foi atualizada pela última vez
-        quality_grade: Nível de qualidade desta observação. Veja a secção de AJUDA  para detalhes do que isto significa
-        license: Licença que o observador escolheu para esta observação
+        quality_grade: Grau de qualidade desta observação. Veja a seção de Ajuda para detalhes do que isso significa. Veja https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identificador para a licença ou renúncia que o observador escolheu para esta observação. Todos os direitos reservados se em branco
         url: URL para a observação
-        image_url: URL para a imagem padrão
-        sound_url: URL para o som padrão. Observe que isso só funcionará para carregamentos diretos, não para sons hospedados em serviços de terceiros
+        image_url: URL para a primeira foto associada à observação
+        sound_url: |
+          URL para o primeiro som associado à observação. Observe que este
+          estará presente apenas para uploads diretos, não para sons hospedados em serviços de terceiros
         tag_list: Lista de Marcações separadas por vírgulas
         place_admin1_name: Nome do lugar administrativo uma classificação abaixo do nível do país
         place_admin2_name: Nome do lugar administrativo duas fileiras abaixo do nível do país
         positioning_method: Como as coordenadas foram determinadas
         positioning_device: Equipamento utilizado para determinar coordenadas
+        captive_cultivated: |
+          A observação é de um organismo que está no local da observação naquele momento por decisão de humanos. Para
+          mais, consulte
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Texto escrito pelo observador descrevendo a observação ou gravação ou
+          quaisquer outras notas que pareçam relevantes
+        oauth_application_id: |
+          Identificador sequencial para o aplicativo que criou a observação. Para mais informações sobre o aplicativo, acrescente
+          este número a https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          O nome da área administrativa do terceiro nível que contém as coordenadas desta
+          observação (por exemplo, um condado na maior parte do
+          Estados Unidos)
+        place_country_name: |
+          O nome do país que contém as coordenadas desta observação
+        place_state_name: |
+          O nome da área administrativa de segundo nível que contém as coordenadas desta
+          observação (por exemplo, um estado na maior parte dos
+          Estados Unidos)
+        place_town_name: |
+          O nome da cidade ou distrito que contém as coordenadas
+          desta observação, se conhecido
+        private_place_guess: |
+          Local de observação descrito pelo observador se a localização for obscurecida
+        public_positional_accuracy: Máximo de incerteza posicional horizontal em metros; inclui incerteza adicionada pelo obscurecimento das coordenadas
+        taxon_class_name: |
+          Nome da classe taxonômica que contém o táxon observado
+        taxon_family_name: |
+          Nome da família taxonômica que contém o táxon observado
+        taxon_genus_name: |
+          Nome do gênero taxonômico que contém o táxon observado
+        taxon_genushybrid_name: |
+          Nome do gênero híbrido taxonômico contendo o táxon observado
+        taxon_hybrid_name: |
+          Nome do híbrido taxonômico contendo o táxon observado
+        taxon_kingdom_name: |
+          Nome do reino taxonômico que contém o táxon observado
+        taxon_order_name: |
+          Nome da ordem taxonômica que contém o táxon observado
+        taxon_phylum_name: |
+          Nome do filo taxonômico que contém o táxon observado
+        taxon_species_name: |
+          Nome da espécie taxonômica que contém o táxon observado
+        taxon_subclass_name: |
+          Nome da subclasse taxonômica que contém o táxon observado
+        taxon_subfamily_name: |
+          Nome da subfamília taxonômica que contém o táxon observado
+        taxon_suborder_name: |
+          Nome da subordem taxonômica que contém o táxon observado
+        taxon_subphylum_name: |
+          Nome do subfilo taxonômico que contém o táxon observado
+        taxon_subspecies_name: |
+          Nome da subespécie taxonômica que contém o táxon observado
+        taxon_subtribe_name: |
+          Nome da subtribo taxonômica que contém o táxon observado
+        taxon_superclass_name: |
+          Nome da superclasse taxonômica que contém o táxon observado
+        taxon_superfamily_name: |
+          Nome da superfamília taxonômica que contém o táxon observado
+        taxon_superorder_name: |
+          Nome da superordem taxonômica que contém o táxon observado
+        taxon_supertribe_name: |
+          Nome da supertribo taxonômica que contém o táxon observado
+        taxon_tribe_name: |
+          Nome da tribo taxonômica que contém o táxon observado
+        uuid: |
+          Identificador universal único para a observação. Veja
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Marcar todas as observações desta página como revisadas"
         you_reviewed_message: "Você revisou %{reviewed} de %{pageTotal} observações nesta página de %{total} observações correspondentes."
@@ -8657,6 +8781,7 @@ pt-BR:
           deve ter três observações verificáveis ou três identificações
           para os outros fazerem isso
         requires_privilege_organizer: deve ter 50 observações verificáveis para fazer isso
+        requires_privilege_interaction: para fazer isso, deve ter um endereço de e-mail confirmado 
         taken: já está sendo utilizado
         too_long:
           one: é muito longo (máximo de 1 caractere)

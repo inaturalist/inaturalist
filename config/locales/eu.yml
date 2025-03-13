@@ -1229,6 +1229,10 @@ eu:
   destroy: Desegin
   details: Xehetasunak
   deviation: Desbideraketa
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Klik egin hurrengo estekan zure helbide elektronikoa baieztatzeko. Zure posta elektronikoa baieztatzen ez baduzu
+    helbidea, ezingo du beste erabiltzaile batzuen edukiarekin interaktuatu.
   devise_reset_password_instructions_hello_email: Kaixo, %{email}
   did_you_mean: 'Honi buruz ari zara?'
   did_you_photos_flickr?: Argazkiak jarri dituzu Flickr-en?
@@ -2518,6 +2522,8 @@ eu:
   taxonomy_settings: Taxonomia hobespenak
   tell_the_world_a_little_about_yourself: Hitz egin iezaguzu zuri buruz
   tell_us_why: Esaguzu zergatia...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Baldintzak
   terms_and_rules_html: "Baldintzak & Arauak"
   terms_new_users: "Erabiltzaile berriek baldintza hauek onartu behar dituzte proiektuarekin bat egin aurretik."
@@ -2832,11 +2838,49 @@ eu:
       edit:
         custom_project_fields_warning: |
           Mesedez, arretaz ibili: Zure proiektuko orrialdeari Javascript eta CSS gehitzen badizkiozu, orrialdearen diseinuari kalte larriak egin diezazkiokezu eta agian software gaiztoak orrialdea ikusten dutenei eragin diezaieke. Kode zatia zer den zehatz-mehatz ez badakizu, mesedez, ez gehitu.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klik egin hemen, berriro ere baieztatzeko mezu elektroniko bat bidaltzeko
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bidalitako baieztapen posta elektronikoa
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Hauxe da baieztapena bidaliko diogun helbide elektronikoa:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Posta elektronikoa jasotzen ez baduzu, hemen dituzu aholku batzuk:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Baieztapen-posta elektronikorik jaso gabe jarraitzen baduzu, jar zaitez gurekin harremanetan <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> lagundu ahal izateko.
+      please_add_an_email_and_password: Gaineratu posta elektroniko bat eta pasahitz bat, zure konturako sarbidea ez galtzeko
+      please_click_the_link_sent_to_email_to_confirm_html: Mesedez, klik egin bidalitako estekan <span class="email">%{email}</span> helbide elektronikoa baieztatzeko.
+      please_confirm_that_email_is_the_best_contact_html: Mesedez, baieztatu <span class="email">%{email}</span> hori da harremanetan jartzeko modurik onena. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Zure helbide elektronikoa konfirmatzea, beste erabiltzaile batzuen edukiarekin elkar eragokitzeko eta zenbait orritara sartzeko. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Mesedez, baieztatu zure helbide elektronikoa <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Zure helbide elektronikoa konfirmatzea, beste erabiltzaile batzuen edukiarekin elkar eragokitzeko
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Mesedez, konfirma ezazu zure helbide elektronikoa orri hau erabiltzeko
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Egiazta ezazu zure sarrerako erretilutik gure mezu elektronikoak ezabatu ditzakeen iragazkirik ba ote dagoen #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Aztertu nahi ez duzun posta-karpeta
+      your_site_account_has_no_email: Zu %{site_name} Kontuak ez du helbide elektronikorik.
     guides:
       edit:
         licensing_explanation: |
           Zure edukiaren lizentzia emateak baimena eskatu gabe kopiatzeko eta aldatzeko eskubidea ematen die beste pertsona batzuei. Hori dela eta, askoz errazagoa da zure lana partekatzea, eta beste iturri batzuetako hirugarren pertsonen edukiak sartzen badira, Creative Commons BerdinPartekatu lizentziak (Wikipedia, adibidez) erabiltzen dituztenak, legez antzeko lizentzia bat erabiltzera behartuta zaude. 
           Creative Commonsen lizentzia guztiak eta haien esanahia:
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Mezu berriak bidali ahal izango dituzu zure posta elektronikoa baieztatu ondoren
+          helbidea. Oraingoz, beste pertsona batzuek bidaltzen dizkioten mezuak irakurri eta erantzun ditzakezu.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Mezu berriak bidali ahal izango dituzu zure posta elektronikoa baieztatu ondoren
+          helbidea, eta hiru ohar egiaztagarri edo hiru identifikazio erantsi zituen.
+          beste batzuentzat. Oraingoz, beste pertsona batzuek bidaltzen dizkioten mezuak irakurri eta erantzun ditzakezu.
     observations:
       community_id:
         algorithm_summary: Algoritmoaren laburpena
@@ -3161,6 +3205,9 @@ eu:
         email: Posta
         name: Izena
         time_zone: Ordu-zona
+    errors:
+      messages:
+        requires_privilege_interaction: helbide elektroniko bat izan behar du, hori egiteko
   will_paginate:
     previous_label: "&#8592; Aurrekoa"
     next_label: "Hurrengoa &#8594;"

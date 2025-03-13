@@ -1485,6 +1485,10 @@ lv:
         subject: Apstiprināšanas norādījumi
       reset_password_instructions:
         subject: 'Norādījumi paroles atjaunošanai'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Lūdzu, noklikšķiniet uz saites zemāk, lai apstiprinātu savu e-pasta adresi. Ja neapstiprināt savu e-pastu
+    adrese, jūs nevarēsiet mijiedarboties ar citu lietotāju saturu.
   devise_reset_password_instructions_hello_email: Sveiki! %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Ja tas nebiji tu, lūdzu, neņem vērā šo e-pasta ziņu.
@@ -4583,6 +4587,8 @@ lv:
   teachers_guide: Padomi skolotājiem
   tell_the_world_a_little_about_yourself: Pastāsti par sevi
   tell_us_why: Paskaidro savu izvēli
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Noteikumi
   terms_and_rules_html: "Noteikumi &amp; Nosacījumi"
   terms_new_users: "Ja pievienosi nosacījumus, jauniem lietotājiem, kas pievienosies projektam, tiem būs jāpiekrīt."
@@ -5461,6 +5467,31 @@ lv:
       post_donate_social_media_text: Es atbalstu iNaturalist, jo...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Kļūsti par ikmēneša iNaturalist atbalstītāju
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Noklikšķiniet šeit, lai atkārtoti nosūtītu apstiprinājuma e-pastu
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Nosūtīts apstiprinājuma e-pasts
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Šeit ir e-pasta adrese, uz kuru mēs nosūtīsim apstiprinājumu:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ja nesaņemat e-pasta ziņojumu, tālāk ir sniegti daži padomi.
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ja joprojām nesaņemat apstiprinājuma e-pastu, lūdzu, sazinieties ar mums pa tālruni <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> tāpēc mēs varam jums palīdzēt.
+      please_add_an_email_and_password: Lūdzu, pievienojiet e-pasta adresi un paroli, lai nezaudētu piekļuvi savam kontam
+      please_click_the_link_sent_to_email_to_confirm_html: Lūdzu, noklikšķiniet uz saites, kas nosūtīta uz <span class="email">%{email}</span> lai apstiprinātu savu e-pasta adresi.
+      please_confirm_that_email_is_the_best_contact_html: Lūdzu, apstipriniet, ka <span class="email">%{email}</span> ir labākais veids, kā ar jums sazināties. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Lūdzu, apstipriniet savu e-pasta adresi, lai mijiedarbotos ar citu lietotāju saturu un piekļūtu noteiktām lapām. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Lūdzu, apstipriniet savu e-pasta adresi <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Lūdzu, apstipriniet savu e-pasta adresi, lai mijiedarbotos ar citu lietotāju saturu
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Lūdzu, apstipriniet savu e-pasta adresi, lai izmantotu šo lapu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Pārbaudiet, vai nav jūsu veikto filtru, kas varētu noņemt mūsu e-pasta ziņojumus no jūsu iesūtnes #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Pārbaudiet surogātpasta mapi
+      your_site_account_has_no_email: Tavs %{site_name} Kontam nav ar to saistītas e-pasta adreses.
     flags:
       show:
         flaggable_content_desc: |
@@ -5650,8 +5681,21 @@ lv:
       index:
         show_messages_from_user: Rādīt ziņas no %{user}
         show_messages_to_user: Rādīt ziņas lietotājam %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Kad būsi pievienojis vismaz trīs pierādāmus novērojumus vai identificējis vismaz trīs citu lietotāju novērojumus, iegūsi iespēju nosūtīt citiem ziņas. Pagaidām ir iespējams tikai izlasīt un atbildēt uz citu lietotāju ziņām.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Pēc e-pasta apstiprināšanas varēsit nosūtīt jaunus ziņojumus
+          adrese. Pagaidām jūs varat lasīt un atbildēt uz ziņojumiem, ko jums sūta citas personas.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Pēc e-pasta apstiprināšanas varēsit nosūtīt jaunus ziņojumus
+          adresi un pievienoja trīs pārbaudāmus novērojumus vai trīs identifikācijas
+          citiem. Pagaidām jūs varat lasīt un atbildēt uz ziņojumiem, ko jums sūta citas personas.
       show:
         flag_notice_html: |
           %{date} tu pievienoji šai sarunai karodziņu. Karodziņš tiks salgabāts pat tad, ja tu izdzēsīsi savu sarunas kopiju, tāpēc, ja vairs nevēlies uz to skatīties, vari to izdzēst.
@@ -5809,38 +5853,22 @@ lv:
           </li>
           </ul>
       field_descriptions:
-        id: "Vienīgais novērojuma identificētājs"
-        species_guess: "Norādi taksona novērotāja vārdu"
-        scientific_name: "Novērotā taksona zinātniskais nosaukums, vadoties pēc mūsu tīmekļa vietnes datubāzēm"
-        common_name: "Novērotā taksona tautā pieņemtie nosaukumi, vadoties pēc mūsu tīmekļa vietnes datubāzēm"
         iconic_taxon_name: Novērotā taksona augstāka taksonomiskā pakāpe
-        taxon_id: Vienīgais novērotā taksona identificētājs
         id_please: Vai novērotājs lūdza palīdzību, lai identificētu novērojumu?
-        num_identification_agreements: Novērotāja identifikācijai atbilstošo identifikāciju skaits
-        num_identification_disagreements: Novērotāja identifikācijai neatbilstošo identifikāciju skaits
         observed_on_string: Novērotāja norādītais datums un laiks
         observed_on: Normalizēts novērojuma datums
         time_observed_at: Normalizēts novērojuma datums un laiks
         time_zone: Novērojuma laika josla
         place_guess: Novērotāja norādītais vietas apraksts
-        latitude: Publiski pieejams platums
-        longitude: Publiski pieejams garums
         positional_accuracy: "Koordinātu precizitāte"
         private_latitude: "Privāts platums, izvēlies šo, ja novērojums ir privāts vai noslēpts"
         private_longitude: "Privāts garums, izvēlies šo, ja novērojums ir privāts vai noslēpts"
-        geoprivacy: "Vai novērotājs ir noslēpis koordinātas?"
         taxon_geoprivacy: "Tiek lietoti konservatīvākie ģeoprivātuma iestatījumi, jo ņemts vērā taksonu aizsardzības statuss."
         coordinates_obscured: "Vai koordinātas ir apslēptas ģeoprivātuma vai apdraudēta taksona dēļ?"
         out_of_range: Vai šis novērojums atrodas ārpus taksona zināmā izplatības apgabala?
-        user_id: Vienīgais novērotāja identificētājs
-        user_login: Novērotāja lietotājvārds
         created_at: Novērojuma izveidošanas datums un laiks
         updated_at: Laiks un datums, kad novērojums pēdējo reizi labots
-        quality_grade: Novērojuma kvalitātes līmenis. Vairāk informācijas sadaļā "Palīdzība".
-        license: Novērotāja izvēlētā licence šim novērojumam.
         url: Novērojuma URL
-        image_url: Noklusējuma attēla URL
-        sound_url: Noklusējuma audiofaila URL. Uzmanību! Funkcija darbosies tikai ar tiešām augšupielādēm, nevis ar trešo pušu pakalpojumu sniedzēju uzglabātiem failiem.
         tag_list: Saraksts ar tagiem, kas atdalīti ar komatu
         place_admin1_name: Administratīvais vietas nosaukums, kas ir vienu pakāpi konkrētāks par "valsti"
         place_admin2_name: Administratīvais vietas nosaukums, kas ir divas pakāpes konkrētāks par "valsti"
@@ -7156,6 +7184,7 @@ lv:
         requires_privilege_speech: |
           lai to izdarītu, tev jabūt trīs pierādāmiem novērojumiem vai trīs citu lietotāju novērojumu identifikācijām
         requires_privilege_organizer: lai to izdarītu, tev jabūt 50 pierādāmiem novērojumiem
+        requires_privilege_interaction: lai to izdarītu, ir jābūt apstiprinātai e-pasta adresei
         taken: jau ir aizņemts
         too_long:
           zero: pārsniedz garumu (ne vairāk par %{count} rakstzīmēm)

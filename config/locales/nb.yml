@@ -1080,6 +1080,10 @@ nb:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Alle
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Alle
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Alle
@@ -1136,6 +1140,10 @@ nb:
     molt: Ham
     #Evidence of hair no longer attached to the organism from which it originated
     hair: Hår
+    #Does the observation belong to a non-established population or not
+    established: Etablert
+    #Organism is not a member of an established population
+    not_established: Ikke etablert
   controlled_term_definitions:
     alive: Organisme lever og viser ikke tegn på en snarlig død
     bone: |
@@ -1147,6 +1155,13 @@ nb:
     flower_budding: Blomsterknopper er synlige men ikke åpne
     flowering: Blomster synlige, åpne, og fortsatt knyttet til planten
     fruiting: Frukt synlig og fortsatt knyttet til planten
+    flowers: Minst én åpen blomst
+    flower_buds: Minst én lukket blomsterknopp
+    fruits_or_seeds: Minst én frukt eller ett frø
+    breaking_leaf_buds: Minst én knopp med sitt første nye blad eller nål som ikke er helt åpnet
+    green_leaves: Minst ett grønt blad eller nål (eller rødlig hvis dette er den normale friske fargen)
+    colored_leaves: Minst ett blad eller nål har sensesongsfarge eller tørkefarge
+    no_live_leaves: Ingen brytende bladknopper eller grønne eller fargede blader eller nåler er synlige
     gall: Unormal tilvekst på plantemateriale på grunn av parasittisk organisme
     male: Bevis indikerer at organismen kan produsere sperm for bruk ved seksuell reproduksjon
     molt: Avsatt hud eller eksoskjelett
@@ -1339,6 +1354,8 @@ nb:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     Du kan utøve passende oppførsel på iNaturalist og følge Felleskapets retningslinjer. Med kuratorprivileger kommer forventningen om at du vil være en eksemplarisk bruker av iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Kuratorguide
   curators_changed_for_x_html: "Kuratorer endret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observasjoner fra prosjektet og deres observasjoner vises ved siden ab observasjoner på prosjektspesifikke visninger. Kuratorer kan også se de nøyaktige koordinatene til private og skjermede bidrag til dette prosjektet.
@@ -1430,6 +1447,8 @@ nb:
   default_time_zone_desc: |
     Dette er standardtidssonen. Den endelige tidssonen vil bli bestemt basert på observasjonens plassering når den ble lagret.
   defaults_to_your_name_or_username: Standardverdi er ditt navn eller brukernavn
+  #As in the definition of a word
+  definition: Definisjon
   defines_a_taxon_framework_for: Definerer et taksonrammeverk for %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definerer et taksonrammeverk for %{taxon} med %{source} som kilde
   definitions: Definisjoner
@@ -1520,6 +1539,9 @@ nb:
     Hvis du ikke registrerte deg for @vow_or_con{vow:an|a} %{site_name}-konto, vennligst ignorer denne e-posten.
   devise_confirmation_instructions_please_click: |
     Vennligst klikk på lenken nedenfor for å bekrefte din e-postadresse:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Vennligst klikk på lenken nedenfor for å bekrefte e-postadressen din. Hvis du ikke bekrefter e-postadressen din vil du ikke kunne samhandle med andre brukeres innhold.
   devise_confirmation_instructions_resend_instructions: |
     Du må ha en fungerende e-postadresse for å bruke iNaturalist. Når du registrerte din konto, skal du ha fått en bekreftelses-epost med en lenke du kan klikke for å bekrefte at din e-postadresse fungerer, men hvis du ikke mottok denne kan du sende deg selv en ny bekreftelses-epost her.
   devise_confirmation_instructions_send_confirmation_email: Send bekreftelses-epost
@@ -1675,6 +1697,8 @@ nb:
   editing_this: Redigerer %{elem}
   editing_x_in_y: "Redigerer %{x} i %{y}"
   editors: Redaktører
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Veiledning for Lærere
   either_that_user_doesnt_exist_or: "Enten så finnes ikke den brukeren eller så følger du vedkommende allerede."
   eligible_for_research_grade: Kvalifisert for forskningskvalitet
   email: E-post
@@ -1734,10 +1758,17 @@ nb:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Nøyaktig rang
   except: unntatt
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Utelukk
   exclude_places: Ekskluder steder
   exclude_projects: Ekskluder prosjekter
   exclude_taxa: Ekskluder taksa
   exclude_users: Ekskluder brukere
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Utelukker %{count} takson
+    other: Utelukker %{count} taksa
   exclusion_filters: Ekskluderingsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: "Avslutt fullskjermmodus"
@@ -1759,6 +1790,7 @@ nb:
   extinct_in_the_wild: Utdødd i vill tilstand
   extra_properties: Ekstra egenskaper
   evidence_of_organism: Bevis for organisme
+  evidence_related_to_single_subject: Bevis knyttet til ett enkelt subjekt
   facebook: Facebook
   failed_to_find_your_location: Kunne ikke finne din posisjon.
   failed_to_repair_photo: "Kunne ikke reparere bilde: %{errors}"
@@ -1797,6 +1829,7 @@ nb:
   filter: Filter
   filter_by_curator_identification: Filtrer på kuratoridentifikation
   filter_by_place: Filtrer etter sted
+  filter_by_species: Filtrer etter art
   filter_by_taxon: '﻿Filtrer etter takson'
   filter_by_place_taxon_and_color: Filtrer på sted, takson, og farge ved hjelp av styringselementene.
   filter_list_by_this_taxon: '﻿Filtrer liste etter dette taksonet'
@@ -1956,6 +1989,8 @@ nb:
   geoprivacy_is_private_desc: Observatøren har valgt å skjule koordinatene.
   georeferenced: Georeferert?
   get_started: Kom i gang
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Kom i gang
   getting_started_guide: Kom i gang-guide
   #Prompt to donate money on a montly basis
   give_monthly_caps: GI MÅNEDLIG
@@ -2029,6 +2064,9 @@ nb:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Skjul "Ingen merknad"
+  #Label for a checkbox to remove observations from search results where the
+  #observation locations are private due to geoprivacy
+  hide_observations_with_private_locations: Skjul observasjoner med private plasseringer
   #Label for a button to hide the running total of an accumulation chart
   hide_running_total: Skjul løpende total
   hide_uncountable_species: Skjul arter som ikke kan telles
@@ -2104,6 +2142,7 @@ nb:
   identotron_for: Identotron for
   identotron_help: Identotron hjelp
   ids: "ID-er"
+  ids_made_for_others__title: ID-er gjort for andre
   if_for_some_reason_a_user_doesnt_agree: |
     Hvis du for en eller annen grunn ikke er enig i taksonet til fellesskapet, kan du avvise det, som betyr at din identifikasjon er den som brukes for lenking til andre observasjoner, oppdatere livslister, osv. Det innebærer også at din observasjon kun kan bli av forskningskvalitet hvis fellesskapet er enig med deg.
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -2144,12 +2183,22 @@ nb:
   in_place_x: i %{place}
   #As in a reason to flag something
   inappropriate: Upassende
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist-nettverket
   inaturalist_network_affiliation: iNaturalist nettverkstilknytning
   #Label for messages you've received
   inbox: Innboks
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Inkluder
   include_places: Inkluder steder
   include_projects: Inkluder prosjekter
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Inkluder / utelukk fordedre
   include_suggestions_not_seen_nearby: Vis forslag som ikke er sett i nærheten
   include_suggestions_not_expected_nearby: Inkluder forslag som ikke forventes i nærheten
   include_taxa: Inkluder taksa
@@ -2201,6 +2250,11 @@ nb:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Er bevismaterialet nok for å bekrefte at dette er %{taxon}?
   is_this_offensive_html: 'Er dette <a href="/help#inappropriate">upassende</a>, spam, eller støtende?'
   is_this_place_a_duplicate: Er dette stedet et duplikat?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Er dette vitenskapelige navnet akseptert nå?
   it_can_now_be_used_for_research: Det kan nå brukes i forskning og vises på andre nettsider
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: kursiv tekst
@@ -2250,6 +2304,8 @@ nb:
   large: stor
   last_active_with_date: "Sist aktiv: %{date}"
   last_confirmed_observation: Siste bekreftede observasjon
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Sist endret av
   last_observation: Siste observasjon
   last_observation_caps: SISTE OBSERVASJON
   last_seen: Sist sett
@@ -2398,6 +2454,7 @@ nb:
     u_s_d_a_symbol: U.S.D.A.-symbol
     ukrainian: Ukrainsk
     uyghur: Uigurisk
+    venda: Venda
     vermont_flora_codes: Vermont florakoder
     vietnamese: Vietnamesisk
     waray_waray: Waray-Waray
@@ -2499,6 +2556,7 @@ nb:
     lv: Latvisk
     mi: Maori
     mk: Makedonsk
+    ml: Malayalam
     mr: Marathi
     nb: Norsk Bokmål
     nl: Nederlandsk
@@ -2513,6 +2571,7 @@ nb:
     sq: Albansk
     sr: Serbisk
     sv: Svensk
+    ta: Tamil
     th: Thai
     tr: Tyrkisk
     uk: Ukrainsk
@@ -2570,6 +2629,9 @@ nb:
   make_a_taxon_swap_instead?: Lag et taksonbytte istedenfor?
   make_curator: Gjør til kurator
   make_manager: Gjør til manager
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: Gjør privat
   make_sure_the_default_photo_looks_good: Sørg for at standardbildet ser bra ut i stort format.
   make_this_your_default_license: "Gjør til din standard %{type}-lisens"
   make_this_the_primary_listing: "Gjør dette til hovedlista"
@@ -2986,6 +3048,9 @@ nb:
   not_confident: Vi er ikke sikre nok til å komme med en anbefaling.
   not_confident_top_suggestions: Vi er ikke sikker nok til å komme med en anbefaling, men her er våre beste forslag
   not_covered_by_any_taxon_frameworks: Ikke dekt av noen taksonrammeverk
+  #label for a checkbox to limit search results to observations where iNaturalist
+  #Geo Model does not expect the observation taxon to be nearby the observation location
+  not_expected_nearby: Ikke forventet i nærheten
   not_evaluated: ikke vurdert
   not_findig_what_you_want: Finner du ikke hva du ønsker?
   not_finding_place_you_want?: Finner du ikke stedet du ønsker?
@@ -3036,6 +3101,7 @@ nb:
   observation_accuracy_experiment_methods: "Metoder"
   observation_accuracy_experiment_correct: "Korrekt"
   observation_accuracy_experiment_uncertain: "Usikker"
+  observation_accuracy_experiment_incorrect2: "Feil"
   observation_accuracy_experiment_step_4: "Trinn 4: Nøyaktighet og presisjonsberegning"
   observation_accuracy_experiment_accuracy: "Nøyaktighet"
   observation_accuracy_experiment_we_calculated: "Vi beregna Nøyaktighet som prosent korrekt for hele utvalget i tillegg til undergruppene som Forskningsgrad-undergruppa. Vi beregna også prosent Usikker og prosent Feil. I eksempelfiguren til høyre, ville korrekt-prosenten være 83, usikker-prosenten vil være 6, og feil-prosenten vil være 11."
@@ -4074,6 +4140,10 @@ nb:
   ranks_lowercase_suborder: underorden
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infraorden
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
+  ranks_lowercase_zoosection: zooseksjon
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
+  ranks_lowercase_zoosubsection: zoounderseksjon
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
   ranks_lowercase_superfamily: superfamilie
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the epifamily X"
@@ -4082,6 +4152,8 @@ nb:
   ranks_lowercase_family: familie
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subfamily X"
   ranks_lowercase_subfamily: underfamilie
+  #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the supertribe X"
+  ranks_lowercase_supertribe: superstamme
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the tribe X"
   ranks_lowercase_tribe: tribus
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subtribe X"
@@ -4139,6 +4211,8 @@ nb:
   recently_finished: Nylig avsluttet
   recently_observed: Nylig observert
   recently_resolved: Nylig løst
+  #Record as a noun, as in "According to our records, you love whales"
+  record_noun: Arkiv
   redo_search_in_map: Gjenta søk på kart
   redo_search_in_map_area: Gjenta søk på kartområde
   refresh: Last inn på nytt
@@ -4372,6 +4446,7 @@ nb:
   show_hidden_content: Vis skjult innhold
   show_history_by_this_user: Vis historikk fra denne brukeren
   show_history_for_this_kind_of_action: Vis historikk for denne typen handling
+  show_history_for_this_record: Vis historikk for dette elementet
   show_keyboard_shortcuts: Vis hurtigtaster
   show_less: Vis mindre
   show_more: Vis mer
@@ -4382,6 +4457,8 @@ nb:
   show_no_annotation: Vis "Uten merknad"
   show_off_your_recent_observations: Vis frem dine nylige observasjoner på din egen blogg eller nettside!
   show_only: Vis kun
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Vis OpenStreetMap
   show_relative_proportions_of_all_observations: Vis relative andel av alle observasjoner
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Vis løpende total
@@ -4409,6 +4486,8 @@ nb:
   #Journal post formatting option
   simple: Enkel
   single_observation: Enkel observasjon
+  #@vow_or_con should work with %{site}
+  site_year_in_review: "%{site}s %{year} årsoversikt"
   sizes: Størrelser
   skip_to_next_page: "Hopp til neste side"
   small: liten
@@ -4748,6 +4827,8 @@ nb:
   teachers_guide: Guide for lærere
   tell_the_world_a_little_about_yourself: Fortell oss om deg selv
   tell_us_why: Fortell oss hvorfor...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Vilkår
   terms_and_rules_html: "Vilkår &amp; regler"
   terms_new_users: "Hvis du legger til vilkår, må nye brukere akseptere de før de blir med i dette prosjektet."
@@ -4893,6 +4974,8 @@ nb:
   time_zone_america_chicago: Sentraltid (USA og Canada)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_chihuahua: Stillehavstid (Mexico)
+  #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone_america_denver: Mountain Time (USA og Canada)
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_america_guatemala: Guatemalatid
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -5462,6 +5545,8 @@ nb:
   x_wrote_y_new_posts_html: "%{x} har skrevet %{y} nye innlegg"
   year: År
   year_in_review: "Årsoversikt %{year}"
+  year_in_review2: "Årsoversikt %{year}"
+  year_in_review_caps: "ÅRSOVERSIKT %{year}"
   year_month: år/måned
   year_on_site: "Året %{year} på %{site}"
   'yes': "Ja"
@@ -5682,6 +5767,31 @@ nb:
         thank_you_for_being_a_monthly_supporter_caps: TAKK FOR AT DU STØTTER INATURALIST MÅNEDLIG!
       temporarily_unavailable: |
         Takk for din interesse for å støtte iNaturalist! Donasjoner til iNaturalist er midlertidig utilgjengelig mens vi oppdaterer vårt donasjonssystem. Vennligst sjekk igjen snart.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Klikk her for å sende en bekreftelses-e-post på nytt
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bekreftelsese-post sendt
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Her er e-postadressen vi sender bekreftelsen til:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Hvis du ikke mottar e-posten, her er noen tips:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Hvis du fortsatt ikke mottar bekreftelses-e-posten, vennligst kontakt oss på <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> slik at vi kan hjelpe deg.
+      please_add_an_email_and_password: Legg til en e-postadresse og et passord slik at du ikke mister tilgangen til kontoen din
+      please_click_the_link_sent_to_email_to_confirm_html: Vennligst klikk på lenken sendt til <span class="email">%{email}</span> for å bekrefte e-postadressen din.
+      please_confirm_that_email_is_the_best_contact_html: Vennligst bekreft at <span class="email">%{email}</span> er den beste måten å kontakte deg på. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Bekreft e-postadressen din for å samhandle med andre brukeres innhold og få tilgang til bestemte sider. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Vennligst bekreft e-postadressen din <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Bekreft e-postadressen din for å samhandle med andre brukeres innhold
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Bekreft e-postadressen din for å bruke denne siden
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Se etter filtre du har laget som kan fjerne e-postene våre fra innboksen din #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Sjekk søppelpostmappen din
+      your_site_account_has_no_email: Din %{site_name} kontoen har ingen e-postadresse tilknyttet.
     flags:
       show:
         flaggable_content_desc: |
@@ -5923,8 +6033,21 @@ nb:
       index:
         show_messages_from_user: Vis beskjeder fra %{user}
         show_messages_to_user: Vis beskjeder til %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du vil kunne sende nye beskjeder etter at du har lagt til tre verifiserbare obserbasjoner eller tre identifikasjoner for andre. For øyeblikket kan du lese og svare på beskjeder andre har sendt til deg.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Du kan sende nye e-poster etter at du har bekreftet e-posten din
+          adresse. Foreløpig kan du lese og svare på meldinger andre sender deg.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Du kan sende nye e-poster etter at du har bekreftet e-posten din
+          adresse, og la til tre verifiserbare observasjoner eller tre identifikasjoner
+          for andre. Foreløpig kan du lese og svare på meldinger andre sender deg.
       show:
         flag_notice_html: |
           Du har markert denne samtalen på %{date}. Markeringen vil være der selv hvis du sletter din kopi av denne samtalen, så det er trygt å gjøre det hvis du ikke ønsker å se dette mere.
@@ -6090,43 +6213,44 @@ nb:
           </li>
           </ul>
       field_descriptions:
-        id: "Unik identifikator for denne observasjonen"
-        species_guess: "Skriv navnet til observatøren lagt inn for det observerte taksonet"
-        scientific_name: "Vitenskapelig navn for det observerte taksonet ifølge denne siden"
-        common_name: "Populærnavn for det observerte taksonet ifølge denne siden"
         iconic_taxon_name: Taksonomisk kategori på høyere nivå for det observerte taksonet
-        taxon_id: Unik identifikator for det observerte taksonet
         id_please: Om observatøren har bedt om ID-hjelp eller ikke
-        num_identification_agreements: Antall identifikasjoner i overenstemmelse med observatørens identifikasjon
-        num_identification_disagreements: Antall identifikasjoner i konflikt med observatørens identifikasjon
         observed_on_string: Dato/tid som lagt inn av observatøren
         observed_on: Normalisert dato for observasjon
         time_observed_at: Normalisert dato og klokkeslett for observasjon
         time_zone: Tidssone av observasjon
         place_guess: Bekrivelse av lokaliteten som lagt inn av observatøren
-        latitude: Offentlig synlig breddegrad
-        longitude: Offentlig synlig lengdegrad
         positional_accuracy: "Nøyaktighet koordinater"
         private_latitude: "Privat breddegrad, satt hvis observasjon privat eller tilslørt"
         private_longitude: "Privat lengdegrad, satt hvis observasjon privat eller tilslørt"
-        geoprivacy: "Om observatøren har valgt å tilsløre eller skjule koordinatene eller ikke"
         taxon_geoprivacy: "Den mest restriktive geosperringen brukes på grunn av bevaringsstatusen av taksa i den gjeldende identifikasjonen."
         coordinates_obscured: "Om koordinatene har blitt tilslørt eller ikke, enten på grunn av geosperring eller et truet takson"
         out_of_range: Om denne observasjonen er utenfor taksonets kjente utbredelse eller ikke
-        user_id: Unik identifikator for observatøren
-        user_login: Brukernavnet til observatøren
+        user_name: |
+          Navn på observatøren, brukes generelt for kreditering på nettsiden.
+          Dette er et valgfritt felt og kan være et pseudonym.
         created_at: Dato og tid observasjonen ble opprettet
         updated_at: Dato og tid observasjonen ble oppdatert sist
-        quality_grade: Kvaliteten av observasjonen. Se hjelp-seksjonen for detaljer om hva dette betyr
-        license: Lisens observatøren har valgt for denne observasjonen
         url: URL for observasjonen
-        image_url: URL for standardbildet
-        sound_url: URL for standardlyden. Merk at dette kun fungerer for direkte opplastinger, ikke lyder lagret på tredjeparters servere
         tag_list: Kommaseparert liste over etiketter
         place_admin1_name: Navnet til det administrative stedet ett nivå under landsnivået
         place_admin2_name: Navnet til det administrative stedet to nivå under landsnivået
         positioning_method: Hvordan koordinatene ble bestemt
         positioning_device: Enhet brukt for å bestemme koordinater
+        place_state_name: |
+          Navnet på andrenivå-administrasjonsområdet som inneholder denne observasjonens koordinater (f.eks. en delstat i USA)
+        place_town_name: |
+          Navnet på byen eller tettstedet som inneholder denne observasjonens koordianter, dersom det er kjent
+        private_place_guess: |
+          Observasjonssted som skrevet av observatøren hvis plasseringen er tilslørt
+        taxon_class_name: |
+          Navn på den taskonomiske klassen som inneholder det observerte taksonet
+        taxon_family_name: |
+          Navn på den taksonomiske familien som inneholder det observerte taksonet
+        taxon_genus_name: |
+          Navn på den taksonomiske slekta som inneholder det observerte taksonet
+        taxon_kingdom_name: |
+          Navn på det taksonomiske riket som inneholder det observerte taksonet
       identify:
         review_all_tooltip: "Marker alle observasjoner på siden som revidert"
         you_reviewed_message: "Du har revidert %{reviewed} av %{pageTotal} observasjoner på denne siden av %{total} matchende observasjoner."
@@ -6178,6 +6302,55 @@ nb:
         curator_coordinate_access_disabled_desc_html: |
           Dette prosjektet aksepterer ikke observasjoner med koordinater som prosjektkuratorene ikke kan se. Hvis du ikke vil dele koordinatene til denne observasjonen med kuratorene til dette prosjektet, må du fjerne observasjonen fra dette prosjektet.
         disagreement_count_desc: "antall identifiserte taksa som ikke er blant taksonets aner"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Datakvalitetsvurderingen er en oppsummering av observasjonens nøyaktighet. Alle observasjoner starter med graden <strong>"uformell"</strong>, og kan få grad <strong>"trenger ID"</strong> når
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: observasjonen <strong>har en dato</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: observasjonen <strong>er georeferert</strong> (dvs. den har bredde- og lengdegradskoordinater)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: observasjonen <strong>har bilder eller lyder</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: observasjonen <strong>er ikke av et menneske</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: Obersvasjoner blir av <strong>"forskningskvalitet"</strong> når
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name} <strong>samfunnet er enige om en ID på artsnivå eller lavere</strong>, dvs. når 2/3 av involverte sier seg enige i et takson (hvis samfunnet har stemt for at felleskapets takson ikke lenger kan forbedres, går dette tilbake til ID av underfamilienivå eller lavere)
+        #Leads a list of ways an observation to revert to Casual status
+        dqa_help_casual_lead_html: |
+          Observasjoner går til bake til <strong>"uformell"</strong> hvis de overnevnte betingelsene ikke er oppfylt eller hvis samfunnet godtar det
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_day_year_not_accurate2_html: |
+          <strong>dagen, måneden, og/eller året ser ikke korrekt ut</strong> (f.eks. det er synlig snø på bildet men datoen er satt om sommeren; ikke ta tid på dagen med i betraktning)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_location_not_accurate_html: |
+          <strong>plasseringen ser ikke riktig ut</strong> (f.eks. apekatter midt i havet, flodhester inne i kontorbygg, osv.)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_wild_html: |
+          <strong>organismen er ikke vill/naturalisert</strong> (f.eks. i fangenskap eller avlet frem av mennesker)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_organism_html: |
+          observasjonen <strong>viser ikke bevis på en organisme</strong>, f.eks. bilder av vann, steiner og landskap som ikke inneholder organismer, osv.
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_recent_html: |
+          observasjonen <strong>fremstiller ikke nylige bevis (~100 år) for organismen</strong> (f.eks. fossiler, fotspor, avføring og døde blader or ok)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_not_one_subject_html: |
+          observasjonen <strong>fremstiller ikke bevis knyttet til ett subjekt</strong> (f.eks. har den fire bilder av ulike organismer; et bilde som viser habitatet til observasjonens subjekt er greit)
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_voted_out_html: |
+          observasjonen behøver ikke lenger en ID <em>og</em> fellesskapets takson er av familie eller høyere
+        #One of a list of reasons for an observation to revert to Casual
+        dqa_help_casual_opted_out_maverick_html: |
+          taksonet er ikke en forfeder eller etterkommer av taksonet knyttet til observatørens ID <em>og</em> observatøren har sagt seg i mot fellesskapets takson
+        #Leads a list of ways that iNat itself can vote in the DQA
+        dqa_help_system_lead: |
+          Og om det ikke var komplisert nok, er det også situasjoner der systemet får en stemme:
+        #One of a list of wasy iNat itself can vote in the DQA
+        dqa_help_system_captive_vote: |
+          Systemet stemmer at observasjonen ikke er vill/naturalisert hvis det er minst 10 andre observasjoner på slektsnivå eller lavere fra det minste kommune-, delstats-, eller land-tilsvarende sted som inneholder denne observasjonen og 80% eller mer av de observasjonene har blitt markert som ikke vill/naturalisert.
         identification_count_desc: 'Antall identifikasjoner for et individuelt takson'
         flagged_photos_desc_html: |
           Noen av disse bilder har blitt markert for upassende innhold eller krenkelse av opphavsrett. For detaljer se %{links}
@@ -7497,6 +7670,7 @@ nb:
         requires_privilege_speech: |
           må ha tre verifiserbare observasjoner eller tre identifikasjoner for andre for å kunne gjøre det
         requires_privilege_organizer: må ha 50 verifiserbare observasjoner for å kunne gjøre det
+        requires_privilege_interaction: må ha en bekreftet e-postadresse for å gjøre det
         taken: er allerede opptatt
         too_long:
           one: er for lang (maks antall tegn er %{count})
@@ -7597,6 +7771,9 @@ nb:
               is_too_large_to_edit: er for stor til å redigere
               is_too_large_to_import: er for stor til å importere
               contains_too_many_observations: inneholder for mange observasjoner til import
+              cannot_be_blank: kan ikke være tom
+              invalid_point: har et ugyldig punkt, f.eks. lengdegrad større enn 180 eller breddegrad under -90
+              must_have_more_than_three_points: må ha mer enn 3 punkter
         place_geometry:
           attributes:
             geom:

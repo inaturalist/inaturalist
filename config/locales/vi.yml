@@ -13,6 +13,10 @@ vi:
   account: Tài khoản
   account_creation: Tạo tài khoản
   account_settings: Cài đặt tài khoản
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Vui lòng nhấp vào liên kết bên dưới để xác nhận địa chỉ email của bạn. Nếu bạn không xác nhận email của mình
+    địa chỉ, bạn sẽ không thể tương tác với nội dung của người dùng khác.
   language_slash_locale: Ngôn ngữ/Địa phương
   language_slash_locale_description: Điều này đặt tùy chọn định dạng ngôn ngữ và ngày của bạn trên iNaturalist dựa trên ngôn ngữ của bạn. Các thay đổi sẽ có hiệu lực sau khi trang được làm mới.
   language_slash_type: Ngôn ngữ / Loại
@@ -25,6 +29,45 @@ vi:
      vv, nên được xử lý bằng một nhận xét lịch sự. Người tái phạm phải được
      đã báo cáo cho quản trị viên trang web hoặc %{email}
   translated_languages: Ngôn ngữ đã dịch
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Nhấp vào đây để gửi lại email xác nhận
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Email xác nhận đã gửi
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Đây là địa chỉ email chúng tôi sẽ gửi xác nhận đến:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Nếu bạn không nhận được email, đây là một số mẹo:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Nếu bạn vẫn không nhận được email xác nhận, vui lòng liên hệ với chúng tôi theo địa chỉ <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Vì vậy, chúng tôi có thể hỗ trợ bạn.
+      please_add_an_email_and_password: Vui lòng thêm email và mật khẩu để bạn không bị mất quyền truy cập vào tài khoản của mình
+      please_click_the_link_sent_to_email_to_confirm_html: Vui lòng nhấp vào liên kết được gửi đến <span class="email">%{email}</span> để xác nhận địa chỉ email của bạn.
+      please_confirm_that_email_is_the_best_contact_html: Vui lòng xác nhận rằng <span class="email">%{email}</span> là cách tốt nhất để liên hệ với bạn. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Vui lòng xác nhận địa chỉ email của bạn để tương tác với nội dung của người dùng khác và truy cập một số trang nhất định. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Vui lòng xác nhận địa chỉ email của bạn <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Vui lòng xác nhận địa chỉ email của bạn để tương tác với nội dung của người dùng khác
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Vui lòng xác nhận địa chỉ email của bạn để sử dụng trang này
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Kiểm tra bất kỳ bộ lọc nào bạn đã thực hiện có thể xóa email của chúng tôi khỏi hộp thư đến của bạn #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Kiểm tra thư mục thư rác của bạn
+      your_site_account_has_no_email: Của bạn %{site_name} không có địa chỉ email nào được liên kết với nó.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Bạn sẽ có thể gửi thư mới sau khi xác nhận email của mình
+          địa chỉ. Hiện tại, bạn có thể đọc và trả lời tin nhắn mà người khác gửi cho bạn.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Bạn sẽ có thể gửi thư mới sau khi xác nhận email của mình
+          địa chỉ và thêm ba quan sát có thể kiểm chứng hoặc ba nhận dạng
+          cho những người khác. Hiện tại, bạn có thể đọc và trả lời tin nhắn mà người khác gửi cho bạn.
   number:
     format:
       significant: false
@@ -33,3 +76,7 @@ vi:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: phải có địa chỉ email đã được xác nhận để làm điều đó

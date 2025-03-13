@@ -1556,6 +1556,9 @@ ca:
     Si no us heu inscrit amb un compte a %{site_name}, ignoreu aquest correu electrònic.
   devise_confirmation_instructions_please_click: |
     Feu clic a l'enllaç següent per confirmar la vostra adreça de correu electrònic:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Feu clic a l'enllaç següent per confirmar la vostra adreça de correu electrònic. Si no confirmes el teu correu electrònic, no podràs interactuar amb el contingut d'altres usuaris.
   devise_confirmation_instructions_resend_instructions: |
     Heu de tenir una adreça de correu electrònic activa per utilitzar l'iNaturalist. En sol·licitar un compte, hauríeu d'haver rebut un correu electrònic de confirmació amb un enllaç per fer clic i confirmar que la vostra adreça de correu electrònic funciona, però si no ho heu fet, podeu enviar-vos un altre correu electrònic de confirmació aquí.
   devise_confirmation_instructions_send_confirmation_email: Envia un correu electrònic de confirmació
@@ -5008,6 +5011,8 @@ ca:
   teachers_guide: Guia del Mestre
   tell_the_world_a_little_about_yourself: Parleu-nos una mica de vosaltres
   tell_us_why: Dieu-nos per què...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Termes
   terms_and_rules_html: "Condicions i normes"
   terms_new_users: "Si incorporeu condicions, els nous usuaris han d'acceptar-les abans d'unir-se al projecte."
@@ -5981,6 +5986,29 @@ ca:
         thank_you_for_being_a_monthly_supporter_caps: GRÀCIES PER SER UN PATROCINADOR MENSUAL!
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Feu clic per tornar a enviar un correu electrònic de confirmació
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Enviament del correu electrònic de confirmació
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Aquí teniu l'adreça de correu electrònic a la qual enviarem la confirmació:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Si no reps el correu electrònic, aquí tens alguns consells:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Si encara no rebeu el correu electrònic de confirmació, poseu-vos en contacte amb nosaltres a <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> perquè puguem atendre't.
+      please_add_an_email_and_password: Afegeix un correu electrònic i una contrasenya per no perdre l'accés al teu compte
+      please_click_the_link_sent_to_email_to_confirm_html: Si us plau, feu clic a l'enllaç enviat a <span class="email">%{email}</span> per confirmar la vostra adreça electrònica.
+      please_confirm_that_email_is_the_best_contact_html: Si us plau, confirmeu-ho <span class="email">%{email}</span> és la millor manera de contactar amb tu. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Confirma la teva adreça de correu electrònic per interactuar amb el contingut d'altres usuaris i accedir a determinades pàgines. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Si us plau, confirma la teva adreça de correu electrònic <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Confirma la teva adreça de correu electrònic per interactuar amb el contingut d'altres usuaris
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Confirmeu la vostra adreça de correu electrònic per utilitzar aquesta pàgina
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Comproveu si hi ha filtres que hàgiu creat que puguin suprimir els correus electrònics de la safata d'entrada #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Comprovar la carpeta de correu brossa
+      your_site_account_has_no_email: Teu %{site_name} no té cap adreça electrònica associada.
     flags:
       show:
         #Heading for display of content that has been flagged. This could
@@ -6193,8 +6221,21 @@ ca:
       index:
         show_messages_from_user: Mostreu missatges de %{user}
         show_messages_to_user: Mostreu missatges a %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Podreu enviar nous missatges després d'afegir tres observacions verificables o identificar tres observacions d'altres. Per ara podeu llegir i respondre als missatges que altres persones us envien.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Podràs enviar missatges nous després d'haver confirmat el correu electrònic
+          adreça. De moment, podeu llegir i respondre als missatges que us envien altres persones.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Podràs enviar missatges nous després d'haver confirmat el correu electrònic
+          i va afegir tres observacions verificables o tres identificacions
+          per a altres. De moment, podeu llegir i respondre als missatges que us envien altres persones.
       show:
         flag_notice_html: |
           Vau marcar aquesta conversació el %{date}. La marca persistirà fins i tot si esborreu la vostra còpia d'aquesta conversa, per tant, fer-ho és segur si no voleu seguir veient-lo.
@@ -6347,41 +6388,22 @@ ca:
           </li>
           </ul>
       field_descriptions:
-        id: "Identificador únic de l'observació"
-        species_guess: "Nom que va introduir l'observador pel tàxon observat"
-        scientific_name: "Nom científic del tàxon observat, segons aquest lloc."
-        common_name: "Nom vulgar o en la llengua vernacle del tàxon observat segons aquest lloc"
         iconic_taxon_name: Categoria taxonòmica de nivell superior del tàxon observat
-        taxon_id: Identificador únic del tàxon observat
         id_please: Tant si l'observador ha demanat ajuda per a la IDentificació o  no
-        num_identification_agreements: Nombre d'identificacions coincidents amb la identificació de l'observador
-        num_identification_disagreements: Nombre d'identificacions en conflicte amb la identificació de l'observador
         observed_on_string: Data i hora, com va ser introduïda per l'observador
         observed_on: Data normalitzada de l'observació
         time_observed_at: Data i hora normalitzada de l'observació
         time_zone: Fus horari de l’observació
         place_guess: Descripció de la localització, tal com va ser introduïda per l'observador
-        latitude: Latitud visible públicament
-        longitude: Longitud visible públicament
         positional_accuracy: "Precisió de les coordenades (sí, si, acurada no és el mateix que precisa, una mala elecció de les paraules)"
         private_latitude: "Latitud privada, marcar si l'observació és privada o enfosquida"
         private_longitude: "Longitud privada, marcar si l'observació és privada o enfosquida"
-        geoprivacy: "Si l'observador ha escollit, o no, enfosquir o amagar les coordenades"
         taxon_geoprivacy: "La geoprivacitat més conservadora ha estat aplicada a causa de l'estat de conservació del tàxon identificat en aquest moment."
         coordinates_obscured: "Si les coordenades han estat enfosquides, o no, a causa d'una condició de geoprivacitat o per tractar-se d'un tàxon vulnerable"
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució coneguda d'aquest tàxon, o no
-        user_id: Identificador únic per a l'observador
-        user_login: Nom de l'observador
-        user_name: |
-          Nom de l'observador, normalment emprat per l'atribució en el lloc.
-          Aquest és un camp opcional i pot ser un pseudònim,
         created_at: Moment en que es va crear l'observació
         updated_at: Moment en que l'observació es va actualitzar per última vegada
-        quality_grade: Grau de qualitat d'aquesta observació. Vegeu la secció d'Ajuda per obtenir informació sobre el que significa això
-        license: Llicència que l'observador ha escollit per a aquesta observació
         url: URL de l'observació
-        image_url: URL de la imatge per defecte
-        sound_url: URL del só per defecte. Noteu que únicament funciona per pujades directes, no per a sons allotjats a altres serveis
         tag_list: Llista d'etiquetes separada per comes
         place_admin1_name: Nom del lloc administratiu situat per sota del nivell de país
         place_admin2_name: Nom del lloc administratiu situar dues posicions per sota el nivell de país
@@ -7756,6 +7778,7 @@ ca:
         requires_privilege_speech: |
           heu de tenir tres observacions verificable o tres identificacions d'altres per fer això
         requires_privilege_organizer: heu de tenir 50 observacions verificables per fer això
+        requires_privilege_interaction: Ha de tenir una adreça de correu electrònic confirmada per fer-ho
         taken: ja està en ús
         too_long:
           one: és massa llarg (el màxim és 1 caràcter)

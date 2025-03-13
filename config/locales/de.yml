@@ -1595,6 +1595,10 @@ de:
     Wenn du dich nicht für einen @vow_or_con{vow:an|a} %{site_name}-Account angemeldet hast, ignoriere bitte diese E-Mail.
   devise_confirmation_instructions_please_click: |
     Bitte klicke auf nachfolgenden Link, um deine E-Mail-Adresse zu verifizieren.
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Bitte klicken Sie auf den untenstehenden Link, um Ihre E-Mail-Adresse zu bestätigen. Wenn Sie Ihre E-Mail-Adresse nicht bestätigen
+    nicht in der Lage sein, mit den Inhalten anderer Benutzer zu interagieren.
   devise_confirmation_instructions_resend_instructions: |
     Du musst eine funktionierende E-Mail-Adresse haben, um iNaturalist nutzen zu können. Wenn du
     dich für einen Zugang angemeldet hast, solltest du eine Bestätigungs-E-Mail mit einem
@@ -1818,6 +1822,8 @@ de:
   export: Exportieren
   export_observations: Beobachtungen exportieren
   export_with_private_coordinates: Mit versteckten Koordinaten exportieren
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Exportiert am %{datetime}
   exporting: "Exportiere..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -1985,6 +1991,9 @@ de:
     one: 'Folgt einer Person'
     other: 'Folgt %{count} Personen'
   for_a_taxon: für ein Taxon
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Weitere Informationen über Spaltenüberschriften sind unter %{url} zu finden
   formatting: Formatierung
   forgot_your_password: Passwort vergessen?
   forum: Forum
@@ -5057,7 +5066,11 @@ de:
   teachers_guide: Anleitung für Lehrpersonen
   tell_the_world_a_little_about_yourself: Erzähl uns etwas über dich
   tell_us_why: Sag uns warum...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Bedingungen
+  #As in a list of distinct words
+  terminology: Begriffserklärung
   terms_and_rules_html: "Bedingungen &amp; Regeln"
   terms_new_users: "Wenn du Bedingungen hinzufügst, müssen neue Benutzer ihnen zustimmen, bevor sie diesem Projekt beitreten."
   terms_service: Nutzungsbedingungen
@@ -6142,9 +6155,28 @@ de:
         ist vorübergehend nicht verfügbar, während wir unsere Systeme aktualisieren. Bitte demnächst wieder versuchen.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klicke hier, um erneut eine Bestätigungs-E-Mail zu senden.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Bestätigungs-E-Mail gesendet
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Hier ist die E-Mail-Adresse, an die wir die Bestätigung senden:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Wenn Sie die E-Mail nicht erhalten, finden Sie hier einige Tipps:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Wenn Sie die Bestätigungs-E-Mail immer noch nicht erhalten, kontaktieren Sie uns bitte unter <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> damit wir Ihnen helfen können.
       please_add_an_email_and_password: Bitte füge eine E-Mail und ein Passwort hinzu, damit du den Zugriff auf dein Konto nicht verlierst
       please_click_the_link_sent_to_email_to_confirm_html: Bitte klicke auf den Link, der an <span class="email">%{email}</span> gesendet wurde, um deine E-Mail-Adresse zu verifizieren.
-      please_confirm_that_email_is_the_best_contact_html: Bitte bestätige, dass <span class="email">%{email}</span> die beste Möglichkeit ist, dich zu kontaktieren.
+      please_confirm_that_email_is_the_best_contact_html: Bitte bestätige, dass <span class="email">%{email}</span> die beste Möglichkeit ist, dich zu kontaktieren. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Bitte bestätigen Sie Ihre E-Mail-Adresse, um mit den Inhalten anderer Benutzer zu interagieren und auf bestimmte Seiten zuzugreifen. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Bitte bestätigen Sie Ihre E-Mail-Adresse <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Bitte bestätigen Sie Ihre E-Mail-Adresse, um mit den Inhalten anderer Benutzer interagieren zu können
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Bitte bestätigen Sie Ihre E-Mail-Adresse, um diese Seite zu nutzen
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Suchen Sie nach Filtern, die Sie erstellt haben und die unsere E-Mails aus Ihrem Posteingang entfernen könnten #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Überprüfen Sie Ihren Spam-Ordner
       your_site_account_has_no_email: Dein %{site_name}-Konto ist mit keiner E-Mail-Adresse verknüpft.
     flags:
       show:
@@ -6431,8 +6463,21 @@ de:
       index:
         show_messages_from_user: Nachrichten von %{user} anzeigen
         show_messages_to_user: Zeige Nachrichten an %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Du kannst neue Nachrichten senden, nachdem Du drei überprüfbare Beobachtungen oder drei Bestimmungen für andere hinzugefügt hast. Im Moment kannst Du die Nachrichten lesen und beantworten, die andere Benutzer Dir schicken.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Sie können neue Nachrichten senden, nachdem Sie Ihre E-Mail-Adresse bestätigt haben
+          Adresse. Im Moment können Sie Nachrichten lesen und beantworten, die andere Personen Ihnen senden.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Sie können neue Nachrichten senden, nachdem Sie Ihre E-Mail-Adresse bestätigt haben
+          Adresse und fügte drei überprüfbare Beobachtungen oder drei Identifikationen hinzu
+          für andere. Im Moment können Sie Nachrichten lesen und beantworten, die andere Personen Ihnen senden.
       show:
         flag_notice_html: |
           Du hast die Konversation am %{date} gemeldet. Falls du diese Konversation nicht mehr sehen möchtest, kannst du sie auch löschen - die Meldung bleibt weiterhin aufrecht und kann von den Kuratoren eingesehen werden.
@@ -6590,43 +6635,41 @@ de:
         date_range_help: "Frühestes und spätestes Beobachtungsdatum in JJJJ-MM-TT Format, z.B. 2015-01-17"
         created_on_help: "Datum an dem die Beobachtung erstellt wurde, nicht der Beobachtung, z.B. 2015-01-17, 2015-01, 2015"
       field_descriptions:
-        id: "Eindeutige Kennung für diese Beobachtung"
-        species_guess: "Name, den der Melder für das beobachtete Taxon eingegeben hat"
-        scientific_name: "Wissenschaftlicher Name des beobachteten Taxons entsprechend dieser Seite"
-        common_name: "Trivial- oder umgangssprachlicher Name des beobachteten Taxons gemäß dieser Seite"
-        iconic_taxon_name: Höheres taxonomisches Level für das beobachtete Taxon
-        taxon_id: Eindeutige Kennung für das beobachtete Taxon
+        iconic_taxon_name: Höhere taxonomische Kategorie für das beobachtete Taxon
         id_please: Ob der Beobachter die ID-Hilfe angefordert hat oder nicht
-        num_identification_agreements: Anzahl der Identifikationen, die mit der Identifikation des Beobachters übereinstimmen
-        num_identification_disagreements: Anzahl der Bestimmungen, die mit der Bestimmung des Beobachters nicht übereinstimmen
         observed_on_string: Datum/Zeit wie vom Beobachter eingegeben
         observed_on: Normalisiertes Beobachtungsdatum
         time_observed_at: Normalisierte Zeit der Beobachtung
         time_zone: Zeitzone der Beobachtung
         place_guess: Gebietsbeschreibung, wie vom Beobachter eingegeben
-        latitude: Öffentlich sichtbarer Breitengrad
-        longitude: Öffentlich sichtbarer Längengrad
         positional_accuracy: "Genauigkeit der Koordinaten (ja, ja, ja, Genauigkeit! = Präzision -- schlechte Terminologie)"
-        geoprivacy: "Ob der Beobachter die Koordinaten verdeckt oder unsichtbar gemacht hat"
-        coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, sei es wegen Geoprivatsphäre oder wegen eines Gefährdungsstatus"
+        private_latitude: "Privater Breitengrad, falls Beobachtung privat oder verschleiert"
+        geoprivacy: "Ob der Beobachter die Koordinaten verschleiert oder versteckt hat. Siehe https://help.inaturalist.org/support/solutions/articles/151000169938"
+        coordinates_obscured: "Ob die Koordinaten verdeckt wurden oder nicht, entweder aufgrund von Geo-Privatsphäre oder eines Gefährdungsstatus"
         out_of_range: Ob diese Beobachtung außerhalb der bekannten Verbreitung des Taxons liegt oder nicht
-        user_id: Eindeutige Kennung für diesen Beobachter
-        user_login: Benutzername des Beobachters
-        user_name: |
-          Name des Beobachters, der in der Regel für die Zuordnung auf der Webseite verwendet wird.
-          Dies ist ein optionales Feld und der Name kann auch ein Pseudonym sein.
-        created_at: Datetime des Erstellen der Beobachtung
+        created_at: Zeitpunkt an dem die Beobachtung erstellt wurde
         updated_at: Datetime der Aktualisierung der Beobachtung
-        quality_grade: Qualitätsbewertung dieser Beobachtung. Siehe im Hilfe-Abschnitt für Details, was das genau bedeutet
-        license: Lizenz die der Beobachter für seine Beobachtung gewählt hat
+        quality_grade: Qualitätsbewertung dieser Beobachtung. Weitere Informationen hierzu sind unter https://help.inaturalist.org/support/solutions/articles/151000169936 zu finden
         url: URL der Beobachtung
-        image_url: URL für das Standardbild
-        sound_url: URL für den voreingestellten Sound. Beachte, dass dies nur für direkte Uploads funktioniert, nicht für Töne von Drittanbieter-Diensten
         tag_list: Komma-getrennte Liste der Stichwörter.
         place_admin1_name: Name des administrativen Ortes ein Rang unterhalb der Landesebene
         place_admin2_name: Name des administrativen Ortes zwei Ränge unterhalb der Landesebene
         positioning_method: Wie die Koordinaten bestimmt wurden
-        positioning_device: Beim bestimmen der Koordinaten benutze Gerät
+        positioning_device: Gerät zur Bestimmung der Koordinaten
+        captive_cultivated: |
+          Beobachtung eines Lebewesens, das an diesem Ort und zu diesem Zeitpunkt dort war, weil es vom Menschen so beabsichtigt wurde. Mehr darüber hier: https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Vom Beobachter verfasster Text, der die Beobachtung beschreibt oder andere Hinweise, die relevant erscheinen
+        place_country_name: |
+          Der Name des Landes, das die Koordinaten dieser Beobachtung enthält
+        place_state_name: |
+          Der Name des Verwaltungsbereichs der zweiten Ebene, der die Koordinaten dieser
+          Beobachtung enthält (z.B. ein Staat in den meisten Teilen der USA)
+        place_town_name: |
+          Der Name der Stadt, die die Koordinaten enthält, falls bekannt
+        private_place_guess: |
+          Beobachtungsort, wie er vom Beobachter geschrieben wurde, wenn der Standort verdeckt ist
+        public_positional_accuracy: Maximale horizontale Positionsunsicherheit in Metern; beinhaltet Unsicherheit durch Verschleierung der Koordinaten
       identify:
         review_all_tooltip: "Alle Beobachtungen auf der Seite als \"begutachtet\" markieren"
         you_reviewed_message: "Du hast %{reviewed} von %{pageTotal} Beobachtungen auf dieser Seite von insgesamt %{total} passenden Beobachtungen begutachtet."
@@ -7563,6 +7606,12 @@ de:
       taxon:
         about_html: |
           Taxa können viele umgangssprachliche Namen haben. Wir unterstützen einen standardmäßigen, allgemeingebräuchlichen Namen, der hier festgelegt werden kann, indem ein Name an den Anfang der Liste gezogen wird. Du kannst auch unterschieldiche Standardnamen für bestimmte Orte angeben, indem du den Namen editierst und einen Ort hinzufügst, aber bitte nur, wenn verschiedene Orte uneindeutige Namen haben.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist verwendet eine Vielzahl spezifischer Begriffe, um verschiedene
+          Aspekte der Plattform zu beschreiben. Hier haben wir versucht, einige von ihnen
+          und ihre Definitionen zu sammeln.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8295,6 +8344,7 @@ de:
         requires_privilege_speech: |
           muss über drei überprüfbare Beobachtungen oder drei Identifikationen verfügen, damit andere dies tun können
         requires_privilege_organizer: muss 50 überprüfbare Beobachtungen haben, um dies zu tun
+        requires_privilege_interaction: Dazu muss eine bestätigte E-Mail-Adresse vorliegen
         taken: ist bereits vergeben
         too_long:
           one: ist zu lang (maximal %{count} Zeichen)

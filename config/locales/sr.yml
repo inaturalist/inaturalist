@@ -1331,6 +1331,10 @@ sr:
         subject: 'Uputstva za resetovanje lozinke'
   devise_confirmation_instructions_please_click: |
     Klikni na link ispod da potvrdiš tvoju imejl adresu:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kliknite na link ispod da biste potvrdili svoju adresu e-pošte. Ako ne potvrdite svoju e-poštu
+    adresa, nećete moći da komunicirate sa sadržajem drugih korisnika.
   devise_confirmation_instructions_resend_instructions: |
     Moraš imati imejl adresu u funkciji da bi koristio/la iNaturalist. Kada napraviš nalog, tada dobijaš imejl sa linkom za potvrdu i na taj način proveravamo da li ti je imejl adresa funkcionalna. Ako nisi dobio/la link, možeš izabrati da se on ponovo pošalje ovde.
   devise_confirmation_instructions_send_confirmation_email: Pošalji imejl za potvrdu
@@ -4001,6 +4005,8 @@ sr:
   teachers_guide: Vodič za nastavnike
   tell_the_world_a_little_about_yourself: Reci nam nešto o sebi
   tell_us_why: Reci nam zašto...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Uslovi
   terms_and_rules_html: "Uslovi &amp; pravila"
   terms_service: Uslovi korišćenja
@@ -4749,6 +4755,29 @@ sr:
           </p>
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klikni ovde kako bi imejl za potvrdu opet bio poslat
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: E-mail za potvrdu poslata
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Evo adrese e-pošte na koju ćemo poslati potvrdu:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ako ne primite e-poštu, evo nekoliko saveta:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ako i dalje ne primate e-poštu za potvrdu, kontaktirajte nas na <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> tako da možemo da vam pomognemo.
+      please_add_an_email_and_password: Molimo Vas da dodate e-poštu i lozinku kako ne biste izgubili pristup svom nalogu
+      please_click_the_link_sent_to_email_to_confirm_html: Kliknite na link koji je poslat na <span class="email">%{email}</span> da potvrdite svoju adresu e-pošte.
+      please_confirm_that_email_is_the_best_contact_html: Molimo Vas da potvrdite <span class="email">%{email}</span> je najbolji način da vas kontaktiram. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Molimo Vas da potvrdite svoju adresu e-pošte za interakciju sa sadržajem drugih korisnika i pristup određenim stranicama. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Molimo Vas da potvrdite svoju adresu e-pošte <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Molimo Vas da potvrdite svoju adresu e-pošte za interakciju sa sadržajem drugih korisnika
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Molimo Vas da potvrdite svoju adresu e-pošte da biste koristili ovu stranicu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Proverite da li postoje filteri koje ste napravili i koji bi mogli da uklone naše e-poruke iz vašeg prijemnog sandučeta #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Proverite folder sa neželjenom poštom
+      your_site_account_has_no_email: Vaš %{site_name} račun nema adresu e-pošte u vezi sa njim.
     geo_model:
       explain:
         geomodel_predictions_of_taxon: |
@@ -4857,6 +4886,17 @@ sr:
       index:
         show_messages_from_user: Prikaži poruke primljene od %{user}
         show_messages_to_user: Prikaži poruke poslate %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Moći ćete da šaljete nove poruke nakon što potvrdite svoju e-poštu
+          Adresa. Za sada možete čitati i odgovarati na poruke koje vam drugi ljudi šalju.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Moći ćete da šaljete nove poruke nakon što potvrdite svoju e-poštu
+          adresa, i dodao tri proverljiva zapažanja ili tri identifikacije
+          za druge. Za sada možete čitati i odgovarati na poruke koje vam drugi ljudi šalju.
       show:
         flag_notice_html: |
           Prijavio/la si ovu konverzaciju %{date}. Prijava će biti sačuvana i ako izbrišeš tvoju stranu konverzacije tako da je možeš izbrisati ako to želiš.
@@ -4939,18 +4979,10 @@ sr:
         receive_an_email_with_your_data: Primi imejl sa tvojim podacima
         well_email_you: "Ok, poslaćemo ti imejl kada bude spremno"
       field_descriptions:
-        id: "Jedinstveni identifikator opservacije"
-        taxon_id: Jedinstveni identifikator zabeleženog taksona
         observed_on_string: Datum/Vreme uneto od strane posmatrača
         time_zone: Vremenska zona opservacije
         place_guess: Posmatračev opis lokacije
-        latitude: Javno vidljiva geografska širina
-        longitude: Javno vidljiva geografska dužina
-        user_id: Jedinstveni identifikator posmatrača
-        user_login: Korisničko ime posmatrača
-        quality_grade: Kvalitet podataka ove opservacije. Vidi sekciju Pomoć za više informacija
         url: URL opservacije
-        image_url: URL podrazumevane slike
         positioning_method: Kako su koordinate određene
         positioning_device: Uređaj korišćen za određivanje koordinata
       identify:
@@ -5984,6 +6016,7 @@ sr:
         requires_privilege_speech: |
           mora imati 3 argumentovane opservacije ili 3 identifikacije za druge da bi to mogao/la uraditi
         requires_privilege_organizer: mora imati 50 argumentovanih opservacija da bi to uradio/la
+        requires_privilege_interaction: Za to morate imati potvrđenu adresu e-pošte
         taken: već postoji
         too_long:
           one: je predugačko (maksimalno %{count} karakter)

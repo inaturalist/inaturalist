@@ -269,6 +269,10 @@ ta:
     month:
       june: ஜூன்
   date_joined: சேரும் தேதி
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த கீழேயுள்ள இணைப்பைக் கிளிக் செய்யவும். உங்கள் மின்னஞ்சலை உறுதிப்படுத்தவில்லை என்றால்
+    முகவரி, பிற பயனர்களின் உள்ளடக்கத்துடன் நீங்கள் தொடர்பு கொள்ள முடியாது.
   disagree_: எதிர்மனப்படு
   edit_project: திட்டம் திருத்தவும்
   edit_taxa: இனங்கள் திருத்தவும்
@@ -507,10 +511,48 @@ ta:
   views:
     donate:
       post_donate_social_media_text: நான் iNaturalist ஐ ஆதரிக்கிறேன் ஏனெனில்...
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: உறுதிப்படுத்தல் மின்னஞ்சலை மீண்டும் அனுப்ப இங்கே கிளிக் செய்யவும்
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: உறுதிப்படுத்தல் மின்னஞ்சல் அனுப்பப்பட்டது
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        உறுதிப்படுத்தலை நாங்கள் அனுப்பும் மின்னஞ்சல் முகவரி இதோ:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        நீங்கள் மின்னஞ்சலைப் பெறவில்லை என்றால், இங்கே சில குறிப்புகள் உள்ளன:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: நீங்கள் இன்னும் உறுதிப்படுத்தல் மின்னஞ்சலைப் பெறவில்லை என்றால், எங்களைப் பின்வரும் எண்ணில் தொடர்பு கொள்ளவும் <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> எனவே நாங்கள் உங்களுக்கு உதவ முடியும்.
+      please_add_an_email_and_password: மின்னஞ்சல் மற்றும் கடவுச்சொல்லைச் சேர்க்கவும், இதனால் உங்கள் கணக்கிற்கான அணுகலை இழக்க மாட்டீர்கள்
+      please_click_the_link_sent_to_email_to_confirm_html: இதற்கு அனுப்பப்பட்ட இணைப்பை கிளிக் செய்யவும் <span class="email">%{email}</span> உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்த.
+      please_confirm_that_email_is_the_best_contact_html: தயவு செய்து உறுதிப்படுத்தவும் <span class="email">%{email}</span> உங்களை தொடர்பு கொள்ள சிறந்த வழி. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: பிற பயனர்களின் உள்ளடக்கத்துடன் ஊடாடவும் குறிப்பிட்ட பக்கங்களை அணுகவும் உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்தவும். #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்துங்கள் <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: பிற பயனர்களின் உள்ளடக்கத்துடன் தொடர்புகொள்வதற்கு உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்தவும்
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: இந்தப் பக்கத்தைப் பயன்படுத்த உங்கள் மின்னஞ்சல் முகவரியை உறுதிப்படுத்துங்கள்
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: உங்கள் இன்பாக்ஸிலிருந்து எங்கள் மின்னஞ்சல்களை அகற்றக்கூடிய எந்த வடிப்பான்களையும் சரிபார்க்கவும் #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: உங்கள் ஸ்பேம் கோப்புறையை சரிபார்க்கவும்
+      your_site_account_has_no_email: உங்களுடைய %{site_name} கணக்கிற்கு அதனுடன் தொடர்புடைய மின்னஞ்சல் முகவரி எதுவும் இல்லை.
     guides:
       pdf_layouts:
         book: புத்தகம்
         journal: சஞ்சிகை
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          உங்கள் மின்னஞ்சலை உறுதிப்படுத்திய பிறகு நீங்கள் புதிய செய்திகளை அனுப்ப முடியும்
+          முகவரி. இப்போதைக்கு நீங்கள் மற்றவர்கள் உங்களுக்கு அனுப்பும் செய்தியைப் படித்து பதிலளிக்கலாம்.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          உங்கள் மின்னஞ்சலை உறுதிப்படுத்திய பிறகு நீங்கள் புதிய செய்திகளை அனுப்ப முடியும்
+          மூன்று சரிபார்க்கக்கூடிய அவதானிப்புகள் அல்லது மூன்று அடையாளங்களைச் சேர்த்தார்
+          மற்றவர்களுக்கு. இப்போதைக்கு நீங்கள் மற்றவர்கள் உங்களுக்கு அனுப்பும் செய்தியைப் படித்து பதிலளிக்கலாம்.
     emailer:
       photos_missing:
         subject: சில புகைப்படங்கள் பழுதுபார்க்க வேண்டும்
@@ -675,6 +717,8 @@ ta:
         photos_locked: புகைப்படங்கள் பூட்டப்பட்டதா?
     errors:
       format: '%{attribute} %{message}'
+      messages:
+        requires_privilege_interaction: அதைச் செய்ய உறுதிப்படுத்தப்பட்ட மின்னஞ்சல் முகவரி இருக்க வேண்டும்
       models:
         place:
           attributes:

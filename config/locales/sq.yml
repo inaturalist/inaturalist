@@ -763,6 +763,10 @@ sq:
     failure:
       user:
         suspended: Llogaria juaj është pezulluar
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Ju lutemi kliko linkun më poshtë për të konfirmuar adresën tuaj të emailit. Nëse nuk e konfirmoni emailin tuaj
+    Adresa, ju nuk do të jeni në gjendje të ndërveproni me përmbajtjen e përdoruesve të tjerë.
   discoveries: Zbulimet
   did_you_mean: 'Kishit në mendje'
   did_you_photos_flickr?: A keni hedhur ndonjë fotografi në Flickr?
@@ -2515,6 +2519,44 @@ sq:
   your_content: Përmbajtja Juaj
   your_observations: Vëzhgimet tuaja
   views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Kliko këtu për të ridërguar një email konfirmimi
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Emaili i konfirmimit të dërguar
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Këtu është adresa e emailit që do të dërgojmë konfirmimin në:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Nëse nuk e merrni emailin, ja disa këshilla:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Nëse ende nuk po e merrni emailin e konfirmimit, ju lutemi na kontaktoni në <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Kështu që ne mund t'ju ndihmojmë.
+      please_add_an_email_and_password: Ju lutemi shtoni një email dhe fjalëkalim që të mos humbni aksesin në llogarinë tuaj
+      please_click_the_link_sent_to_email_to_confirm_html: Ju lutemi kliko linkun e dërguar tek <span class="email">%{email}</span> Për të konfirmuar adresën tuaj të emailit.
+      please_confirm_that_email_is_the_best_contact_html: Ju lutem konfirmoni se <span class="email">%{email}</span> Është mënyra më e mirë për t'ju kontaktuar. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Ju lutemi konfirmoni adresën tuaj të emailit për të bashkëvepruar me përmbajtjen e përdoruesve të tjerë dhe për të hyrë në disa faqe. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Ju lutemi konfirmoni adresën tuaj të emailit <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Ju lutemi konfirmoni adresën tuaj të emailit për të bashkëvepruar me përmbajtjen e përdoruesve të tjerë
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Ju lutemi konfirmoni adresën tuaj të emailit për të përdorur këtë faqe
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Kontrolloni për çdo filtër që keni bërë që mund të heqë email-et tona nga inbox-i juaj #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Kontrolloni dosjen tuaj spam
+      your_site_account_has_no_email: E jotja %{site_name} Llogaria nuk ka adresë emaili të lidhur me të.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Ju do të jeni në gjendje të dërgoni mesazhe të reja pasi të keni konfirmuar emailin tuaj
+          Adresa. Tani për tani ju mund të lexoni dhe t'i përgjigjeni mesazhit që të tjerët ju dërgojnë.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Ju do të jeni në gjendje të dërgoni mesazhe të reja pasi të keni konfirmuar emailin tuaj
+          adresa, dhe shtoi tre vëzhgime të verifikueshme ose tre identifikime
+          Për të tjerët. Tani për tani ju mund të lexoni dhe t'i përgjigjeni mesazhit që të tjerët ju dërgojnë.
     projects:
       new:
         welcome_to_projects: Mirë se vini te Projektet!
@@ -2651,6 +2693,8 @@ sq:
         place_id: Vend
         preferred_observation_fields_by: Lejo fusha vëzhgimi nga
     errors:
+      messages:
+        requires_privilege_interaction: Duhet të ketë një adresë emaili të konfirmuar për ta bërë këtë
       models:
         guide:
           attributes:

@@ -199,6 +199,10 @@ ml:
         നിങ്ങളുടെ ഇമെയിൽ വിലാസം ഞങ്ങളുടെ ഡാറ്റാബേസിൽ ഉള്ളതായാൽ, ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുന്നതിന് നിർദ്ദേശങ്ങളോടുകൂടിയ ഒരു ഇമെയിൽ നിങ്ങൾക്ക് കുറച്ച് മിനിറ്റുകൾക്കുള്ളിൽ ലഭിക്കും.
     failure:
       invalid: 'അസാധുവായ ഇമെയിൽ, ഉപയോക്തൃനാമം, അല്ലെങ്കിൽ രഹസ്യപദം.'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കാൻ ചുവടെയുള്ള ലിങ്കിൽ ക്ലിക്കുചെയ്യുക. നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിക്കുന്നില്ലെങ്കിൽ
+    വിലാസം, നിങ്ങൾക്ക് മറ്റ് ഉപയോക്താക്കളുടെ ഉള്ളടക്കവുമായി സംവദിക്കാൻ കഴിയില്ല.
   doh_something_went_wrong: അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്.
   doh_something_went_wrong_error: "അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്: %{error}"
   donate_again_today_caps: ഇന്ന് വീണ്ടും ദാനം നൽകുക
@@ -523,13 +527,48 @@ ml:
   you_sure_delete_comment?: ഈ അഭിപ്രായം നീക്കം ചെയ്യാൻ നിങ്ങൾ ഉറപ്പാണ്?
   your_comment_was_saved: നിങ്ങളുടെ ഉള്ളടക്കം സംരക്ഷിച്ചിരിക്കുന്നു
   views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: ഒരു സ്ഥിരീകരണ ഇമെയിൽ വീണ്ടും അയയ്ക്കാൻ ഇവിടെ ക്ലിക്കുചെയ്യുക
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: സ്ഥിരീകരണ ഇമെയിൽ അയച്ചു
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        ഞങ്ങൾ സ്ഥിരീകരണം അയയ്ക്കുന്ന ഇമെയിൽ വിലാസം ഇതാ:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        നിങ്ങൾക്ക് ഇമെയിൽ ലഭിച്ചില്ലെങ്കിൽ, ഇതാ ചില നുറുങ്ങുകൾ:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: നിങ്ങൾക്ക് ഇപ്പോഴും സ്ഥിരീകരണ ഇമെയിൽ ലഭിക്കുന്നില്ലെങ്കിൽ, ദയവായി ഞങ്ങളെ ബന്ധപ്പെടുക <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> അതിനാൽ ഞങ്ങൾക്ക് നിങ്ങളെ സഹായിക്കാൻ കഴിയും.
+      please_add_an_email_and_password: നിങ്ങളുടെ അക്കൗണ്ടിലേക്കുള്ള ആക്സസ് നഷ്ടപ്പെടാതിരിക്കാൻ ദയവായി ഒരു ഇമെയിലും പാസ് വേഡും ചേർക്കുക
+      please_click_the_link_sent_to_email_to_confirm_html: ഇതിലേക്ക് അയച്ച ലിങ്കിൽ ക്ലിക്കുചെയ്യുക <span class="email">%{email}</span> നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കാൻ.
+      please_confirm_that_email_is_the_best_contact_html: ദയവായി അത് സ്ഥിരീകരിക്കുക <span class="email">%{email}</span> നിങ്ങളെ ബന്ധപ്പെടാനുള്ള ഏറ്റവും നല്ല മാർഗം. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: മറ്റ് ഉപയോക്താക്കളുടെ ഉള്ളടക്കവുമായി സംവദിക്കുന്നതിനും ചില പേജുകൾ ആക്സസ് ചെയ്യുന്നതിനും നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: മറ്റ് ഉപയോക്താക്കളുടെ ഉള്ളടക്കവുമായി ഇടപഴകുന്നതിന് നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: ഈ പേജ് ഉപയോഗിക്കുന്നതിന് നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കുക
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: നിങ്ങളുടെ ഇൻബോക്സിൽ നിന്ന് ഞങ്ങളുടെ ഇമെയിലുകൾ നീക്കം ചെയ്തേക്കാവുന്ന ഏതെങ്കിലും ഫിൽട്ടറുകൾ പരിശോധിക്കുക #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: നിങ്ങളുടെ സ്പാം ഫോൾഡർ പരിശോധിക്കുക
+      your_site_account_has_no_email: നിന്റെ %{site_name} അക്കൗണ്ടുമായി ബന്ധപ്പെട്ട ഇമെയിൽ വിലാസം ഇല്ല.
     geo_model:
       explain:
         range_comparison:
           expected_nearby_vs_taxon_range: സമീപത്ത് പ്രതീക്ഷിക്കുന്നു വ്യത്യാസം ടാക്സോൺ പരിധി
-    observations:
-      field_descriptions:
-        user_login: നിരീക്ഷണത്തിനായുള്ള ഉപയോക്തൃനാമം
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിച്ചതിന് ശേഷം നിങ്ങൾക്ക് പുതിയ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയും
+          വിലാസം. ഇപ്പോൾ നിങ്ങൾക്ക് മറ്റുള്ളവർ അയയ്ക്കുന്ന സന്ദേശം വായിക്കാനും മറുപടി നൽകാനും കഴിയും.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിച്ചതിന് ശേഷം നിങ്ങൾക്ക് പുതിയ സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയും
+          വിലാസം, പരിശോധിച്ചുറപ്പിക്കാവുന്ന മൂന്ന് നിരീക്ഷണങ്ങൾ അല്ലെങ്കിൽ മൂന്ന് തിരിച്ചറിയലുകൾ ചേർത്തു
+          മറ്റുള്ളവർക്കായി. ഇപ്പോൾ നിങ്ങൾക്ക് മറ്റുള്ളവർ അയയ്ക്കുന്ന സന്ദേശം വായിക്കാനും മറുപടി നൽകാനും കഴിയും.
     places:
       kml_field_desc3: |
         സ്ഥലത്തിന്റെ അതിരുകൾക്കുള്ള KML. നിങ്ങൾക്ക് ഇത് Google Maps, Google Earth, അല്ലെങ്കിൽ ഭൂരിപക്ഷം GIS ആപ്ലിക്കേഷനുകൾ ഉപയോഗിച്ച് സൃഷ്‌ടിക്കാം. കുറഞ്ഞത് ഒരു പോളിഗൺ ഉണ്ടായിരിക്കണം, 1 MB-ൽ താഴെ (സൈറ്റ് മേൽനോട്ടക്കാരൻമാർക്കായി 5 MB) ഉണ്ടായിരിക്കണം, ~700,000 ചതുരകിലോമീറ്റർ (സോമാലിയയുടെ അല്ലെങ്കിൽ അമേരിക്കയിലെ ടെക്സാസിന്റെ ചുരുങ്ങിയ അളവ്) കാഴ്ചപ്പാടിന് താഴെ ഉള്ള ഒരു വിസ്തീർണ്ണം ഉണ്ടാകണം
@@ -600,6 +639,8 @@ ml:
       user:
         login: ഉപയോക്തൃനാമം
     errors:
+      messages:
+        requires_privilege_interaction: അത് ചെയ്യുന്നതിന് സ്ഥിരീകരിച്ച ഇമെയിൽ വിലാസം ഉണ്ടായിരിക്കണം
       models:
         comment:
           attributes:

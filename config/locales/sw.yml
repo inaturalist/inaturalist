@@ -1,4 +1,47 @@
 sw:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Tafadhali bonyeza kiungo hapa chini ili kuthibitisha anwani yako ya barua pepe. Kama huna email yako
+    Anwani, hautaweza kuingiliana na maudhui ya watumiaji wengine.
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Bonyeza hapa kutuma tena barua pepe ya uthibitisho
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Barua pepe ya uthibitisho imetumwa
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Hapa kuna anwani ya barua pepe ambayo tutatuma uthibitisho kwa:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Ikiwa haupati barua pepe, hapa kuna vidokezo kadhaa:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Ikiwa bado haujapokea barua pepe ya uthibitisho, tafadhali wasiliana nasi kwa <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Kwa hiyo, tunaweza kukusaidia.
+      please_add_an_email_and_password: Tafadhali ongeza barua pepe na nenosiri ili usipoteze ufikiaji wa akaunti yako
+      please_click_the_link_sent_to_email_to_confirm_html: Tafadhali bofya kiungo kilichotumwa kwa <span class="email">%{email}</span> Thibitisha anwani yako ya barua pepe.
+      please_confirm_that_email_is_the_best_contact_html: Tafadhali thibitisha kuwa <span class="email">%{email}</span> Ni njia bora ya kuwasiliana nawe. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Tafadhali thibitisha anwani yako ya barua pepe ili kuingiliana na maudhui ya watumiaji wengine na kufikia kurasa fulani. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Tafadhali thibitisha anwani yako ya barua pepe <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Tafadhali thibitisha anwani yako ya barua pepe ili kuingiliana na maudhui ya watumiaji wengine
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Tafadhali thibitisha anwani yako ya barua pepe kutumia ukurasa huu
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Angalia vichungi vyovyote ulivyotengeneza ambavyo vinaweza kuondoa barua pepe zetu kutoka kwa kikasha chako #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Angalia folda yako ya barua taka
+      your_site_account_has_no_email: Yako %{site_name} Akaunti haina anwani ya barua pepe inayohusishwa nayo.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Utaweza kutuma ujumbe mpya baada ya kuthibitisha barua pepe yako
+          Anwani. Kwa sasa unaweza kusoma na kujibu ujumbe ambao watu wengine wanakutumia.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Utaweza kutuma ujumbe mpya baada ya kuthibitisha barua pepe yako
+          anwani, na kuongeza uchunguzi wa kuthibitishwa tatu au vitambulisho vitatu
+          kwa wengine. Kwa sasa unaweza kusoma na kujibu ujumbe ambao watu wengine wanakutumia.
   number:
     format:
       significant: false
@@ -7,3 +50,7 @@ sw:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: Lazima uwe na anwani ya barua pepe iliyothibitishwa kufanya hivyo

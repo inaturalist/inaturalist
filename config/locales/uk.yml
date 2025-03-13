@@ -1478,6 +1478,10 @@ uk:
         subject: Інструкції щодо підтвердження
       reset_password_instructions:
         subject: 'Інструкції з відновлення пароля'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Будь ласка, натисніть на посилання нижче, щоб підтвердити свою адресу електронної пошти. Якщо ви не підтвердите свою електронну пошту
+    адреса, ви не зможете взаємодіяти з контентом інших користувачів.
   devise_reset_password_instructions_hello_email: Вітаємо, %{email}
   devise_reset_password_instructions_if_you_didnt_request_this: |
     Якщо Ви не робили запит на це, ви можете проігнорувати цей лист.
@@ -4458,6 +4462,8 @@ uk:
   teachers_guide: Посібник вчителя
   tell_the_world_a_little_about_yourself: Розкажіть нам про себе
   tell_us_why: Розкажіть нам, чому...
+  #As in Terms of Service, an explicit description of what iNat the extent
+  #and limitations of the service provided to users
   terms: Умови
   terms_and_rules_html: "Умови &amp; Правила"
   terms_new_users: "Якщо ви додаєте умови, нові користувачі повинні погодитись з ними перед долученням до цього проєкту."
@@ -5189,6 +5195,31 @@ uk:
       post_donate_social_media_text: Я підтримую iNaturalist, оскільки...
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Станьте щомісячним підтримувачем iNaturalist
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Натисніть тут, щоб повторно надіслати електронний лист із підтвердженням
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Електронний лист із підтвердженням надіслано
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Ось електронна адреса, на яку ми надішлемо підтвердження:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Якщо ви не отримали електронного листа, ось кілька порад:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Якщо ви все ще не отримуєте електронний лист із підтвердженням, зв'яжіться з нами за адресою <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Тому ми можемо вам допомогти.
+      please_add_an_email_and_password: Будь ласка, додайте адресу електронної пошти та пароль, щоб не втратити доступ до свого облікового запису
+      please_click_the_link_sent_to_email_to_confirm_html: Будь ласка, перейдіть за посиланням, надісланим на <span class="email">%{email}</span> , щоб підтвердити свою адресу електронної пошти.
+      please_confirm_that_email_is_the_best_contact_html: Будь ласка, підтвердьте, що <span class="email">%{email}</span> це найкращий спосіб зв'язатися з вами. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Будь ласка, підтвердьте свою адресу електронної пошти, щоб взаємодіяти з контентом інших користувачів і отримувати доступ до певних сторінок. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Будь ласка, підтвердьте свою адресу електронної пошти <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Будь ласка, підтвердьте свою адресу електронної пошти, щоб взаємодіяти з контентом інших користувачів
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Будь ласка, підтвердьте свою адресу електронної пошти, щоб використовувати цю сторінку
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Перевірте наявність фільтрів, які можуть видалити наші електронні листи з вашої поштової скриньки #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Перевірте папку зі спамом
+      your_site_account_has_no_email: Твій %{site_name} Обліковий запис не має пов'язаної з ним адреси електронної пошти.
     flags:
       show:
         flaggable_content_desc: |
@@ -5407,8 +5438,21 @@ uk:
       index:
         show_messages_from_user: Показати повідомлення від користувача %{user}
         show_messages_to_user: Показати повідомлення користувачеві %{user}
+        #Users cannot create messages if they lack the criteria for
+        #earning speech privilege
         speech_privilege_notice: |
           Ви зможете надсилати нові повідомлення після додавання трьох перевірюваних спостережень або трьох визначень для інших. Наразі ви можете читати і відповідати на повідомлення, які інші люди надіслали вам.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Ви зможете надсилати нові повідомлення після підтвердження електронної пошти
+          адреса. Тепер ви можете читати повідомлення та відповідати на повідомлення, які вам надсилають інші люди.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Ви зможете надсилати нові повідомлення після підтвердження електронної пошти
+          адресу, і додав три перевірені спостереження або три ідентифікації
+          для інших. Тепер ви можете читати повідомлення та відповідати на повідомлення, які вам надсилають інші люди.
       show:
         flag_notice_html: |
           Ви позначили цю розмову %{date}. Прапорець буде збережений навіть якщо ви видалите свою копію цієї розмови, тож це можна безпечно зробити, якщо ви більше не хочете це бачити.
@@ -5578,38 +5622,22 @@ uk:
           </li>
           </ul>
       field_descriptions:
-        id: "Унікальний ідентифікатор спостереження"
-        species_guess: "Назва, яку спостерігач ввів для спостереженого таксону"
-        scientific_name: "Наукова назва спостереженого таксону відповідно до цього сайту"
-        common_name: "Побутова або народна назва спостереженого таксону відповідно до цього сайту"
         iconic_taxon_name: Таксономічна категорія вищого рівня для спостереженого таксону
-        taxon_id: Унікальний ідентифікатор спостереженого таксону
         id_please: Запитував спостерігач допомоги у визначенні чи ні
-        num_identification_agreements: Кількість визначень, які співпадають з визначенням спостерігача
-        num_identification_disagreements: Кількість визначень, які конфліктують з визначенням спостерігача
         observed_on_string: Дата/час, введені спостерігачем
         observed_on: Нормалізована дата спостереження
         time_observed_at: Нормалізовані дата та час спостереження
         time_zone: Часовий пояс спостереження
         place_guess: Опис місцезнаходження, введений спостерігачем
-        latitude: Публічно видима широта
-        longitude: Публічно видима довгота
         positional_accuracy: "Прецизійність координат (саме так, точність(accuracy) != прецизійність(precision), погано обрані терміни)"
         private_latitude: "Приватна широта, оберіть якщо спостереження приватне або розмите"
         private_longitude: "Приватна довгота, оберіть якщо спостереження приватне або розмите"
-        geoprivacy: "Чи вирішив спостерігач приховати або розмити координати, чи ні"
         taxon_geoprivacy: "Найконсервативніший рівень конфіденційності геоданих, що застосовується через охоронні статуси таксонів у поточному визначенні."
         coordinates_obscured: "Чи були розмиті координати (через налаштування конфіденційності геоданих або ймовірну загрозу для таксонів)"
         out_of_range: Чи знаходиться спостереження за межами знаної області поширення таксону
-        user_id: Унікальний ідентифікатор спостерігача
-        user_login: Користувацьке ім'я спостерігача
         created_at: Дата і час, у який спостереження було створено
         updated_at: Дата і час, у який спостереження було останнього разу оновлено
-        quality_grade: Рівень якості цього спостереження. Деталі того, що це означає, дивіться у розділі Допомога
-        license: Ліцензія, яку спостерігач обрав для цього спостереження
         url: URL спостереження
-        image_url: URL-адреса зображення за промовчанням
-        sound_url: URL для звуку за промовчання. Зауважте, що це працюватиме тільки для прямих завантажень, але не для звуків, розміщених на сторонніх ресурсах
         tag_list: Список позначок, розділених комами
         place_admin1_name: Назва адміністративної одиниці на один ступінь нижче рівня країни
         place_admin2_name: Назва адміністративної одиниці на два ступеня нижче рівня країни
@@ -7006,6 +7034,7 @@ uk:
         requires_privilege_speech: |
           потрібно мати три перевірювані спостереження або три визначення чужих спостережень для цього.
         requires_privilege_organizer: потрібно мати 50 перевірюваних спостережень для цього
+        requires_privilege_interaction: Для цього потрібно мати підтверджену адресу електронної пошти
         taken: вже зайнятий
         too_long:
           one: занадто довгий (максимум %{count} знак)

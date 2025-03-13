@@ -1,4 +1,47 @@
 gu:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    તમારા ઇમેઇલ એડ્રેસની ખાત્રી કરવા માટે કૃપા કરીને નીચેની લિંક પર ક્લિક કરો. જો તમે તમારા ઇમેઇલની પુષ્ટિ ન કરો તો
+    સરનામું, તમે અન્ય વપરાશકર્તાઓની સામગ્રી સાથે ક્રિયાપ્રતિક્રિયા કરવા માટે સમર્થ હશો નહીં.
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: પુષ્ટિ ઇમેઇલને ફરી મોકલવા માટે અંહિ ક્લિક કરો
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: ખાતરી ઇમેઇલ મોકલાયો
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        અહીં ઇમેઇલ એડ્રેસ છે જેની પર અમે પુષ્ટિ મોકલીશું:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        જો તમને ઇમેઇલ પ્રાપ્ત ન થતો હોય, તો અહીં કેટલીક ટિપ્સ આપી છે:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: જો તમને હજી પણ પુષ્ટિ ઇમેઇલ પ્રાપ્ત થતો ન હોય, તો કૃપા કરીને અમારો સંપર્ક કરો <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> જેથી અમે તમને મદદ કરી શકીએ.
+      please_add_an_email_and_password: કૃપા કરીને ઇમેઇલ અને પાસવર્ડ ઉમેરો જેથી તમે તમારા ખાતાની ઍક્સેસ ગુમાવો નહીં
+      please_click_the_link_sent_to_email_to_confirm_html: કૃપા કરીને પર મોકલવામાં આવેલી લિંક પર ક્લિક કરો <span class="email">%{email}</span> તમારા ઇમેઇલ એડ્રેસની પુષ્ટિ કરવા માટે.
+      please_confirm_that_email_is_the_best_contact_html: કૃપા કરીને પુષ્ટિ કરો કે <span class="email">%{email}</span> તમારો સંપર્ક કરવાનો શ્રેષ્ઠ માર્ગ છે. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: અન્ય વપરાશકર્તાઓની સામગ્રી સાથે ક્રિયાપ્રતિક્રિયા કરવા અને અમુક પૃષ્ઠોને ઍક્સેસ કરવા માટે કૃપા કરીને તમારા ઇમેઇલ એડ્રેસની પુષ્ટિ કરો. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: કૃપા કરીને તમારા ઇમેઇલ એડ્રેસની પુષ્ટિ કરો <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: અન્ય વપરાશકર્તાઓની સામગ્રી સાથે ક્રિયાપ્રતિક્રિયા કરવા માટે કૃપા કરીને તમારા ઇમેઇલ એડ્રેસની પુષ્ટિ કરો
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: આ પૃષ્ઠનો ઉપયોગ કરવા માટે કૃપા કરીને તમારા ઇમેઇલ એડ્રેસની પુષ્ટિ કરો
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: તમારા ઇનબોક્સમાંથી અમારા ઇમેઇલ્સ દૂર કરી શકે તેવા તમે બનાવેલા કોઇ પણ ફિલ્ટર્સ માટે તપાસ કરો #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: તમારા સ્પામ ફોલ્ડરને ચકાસો
+      your_site_account_has_no_email: તમારું %{site_name} એકાઉન્ટ પાસે તેની સાથે સંકળાયેલ કોઈ ઇમેઇલ સરનામું નથી.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          તમે તમારા ઇમેઇલની પુષ્ટિ કર્યા પછી તમે નવા સંદેશા મોકલી શકશો
+          સરનામું. હમણાં માટે તમે વાંચી શકો છો અને અન્ય લોકો તમને મોકલેલા સંદેશનો જવાબ આપી શકો છો.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          તમે તમારા ઇમેઇલની પુષ્ટિ કર્યા પછી તમે નવા સંદેશા મોકલી શકશો
+          સરનામું, અને ત્રણ ચકાસી શકાય તેવા અવલોકનો અથવા ત્રણ ઓળખો ઉમેરી
+          બીજાઓ માટે. હમણાં માટે તમે વાંચી શકો છો અને અન્ય લોકો તમને મોકલેલા સંદેશનો જવાબ આપી શકો છો.
   number:
     format:
       significant: false
@@ -7,3 +50,7 @@ gu:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: તે કરવા માટે પુષ્ટિ થયેલ ઇમેઇલ એડ્રેસ હોવું આવશ્યક છે

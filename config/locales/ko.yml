@@ -868,6 +868,10 @@ ko:
     failure:
       user:
         suspended: 당신의 계정은 일시 중지되었습니다.
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    아래 링크를 클릭하여 이메일 주소를 확인하십시오. 이메일을 확인하지 않은 경우
+    주소가 없으면 다른 사용자의 콘텐츠와 상호 작용할 수 없습니다.
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disable: 비활성화
@@ -2505,6 +2509,31 @@ ko:
           are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
     donate:
       donate_short_desc: "지금 기부해서 iNaturalist를 지원해주세요!"
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: 확인 이메일을 다시 보내려면 여기를 클릭하십시오.
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: 확인 이메일이 전송되었습니다.
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        확인 메일을 보낼 이메일 주소는 다음과 같습니다.
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        이메일을 받지 못한 경우 다음 몇 가지 팁이 있습니다.
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: 그래도 확인 이메일을 받지 못한 경우 다음 연락처로 문의해 주세요. <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> 그래서 우리는 당신을 도울 수 있습니다.
+      please_add_an_email_and_password: 계정에 대한 액세스 권한을 잃지 않도록 이메일과 비밀번호를 추가하세요.
+      please_click_the_link_sent_to_email_to_confirm_html: 로 전송된 링크를 클릭하십시오. <span class="email">%{email}</span> 을 클릭하여 이메일 주소를 확인합니다.
+      please_confirm_that_email_is_the_best_contact_html: 다음 사항을 확인하십시오. <span class="email">%{email}</span> 귀하에게 연락하는 가장 좋은 방법입니다. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: 다른 사용자의 콘텐츠와 상호 작용하고 특정 페이지에 액세스하려면 이메일 주소를 확인하십시오. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: 이메일 주소를 확인하십시오. <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: 다른 사용자의 콘텐츠와 상호 작용하려면 이메일 주소를 확인하십시오.
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: 이 페이지를 사용하려면 이메일 주소를 확인하십시오.
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: 받은 편지함에서 이메일을 제거할 수 있는 필터가 있는지 확인하세요. #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: 스팸 폴더 확인
+      your_site_account_has_no_email: 당신의 %{site_name} 계정에 연결된 이메일 주소가 없습니다.
     guides:
       edit:
         add_rank_tags_help_html: |
@@ -2536,6 +2565,17 @@ ko:
       subject_body: 제목 / 본문
       index:
         show_messages_from_user: '%{user}님으로부터 온 메시지 보기'
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          이메일을 확인한 후 새 메시지를 보낼 수 있습니다
+          주소. 지금은 다른 사람들이 보낸 메시지를 읽고 답장을 보낼 수 있습니다.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          이메일을 확인한 후 새 메시지를 보낼 수 있습니다
+          주소를 지정하고 3개의 검증 가능한 관찰 또는 3개의 식별을 추가했습니다.
+          다른 사람들을 위해. 지금은 다른 사람들이 보낸 메시지를 읽고 답장을 보낼 수 있습니다.
     oauth:
       authorizations:
         new:
@@ -2819,6 +2859,7 @@ ko:
         not_a_number: 숫자가 아닙니다
         not_an_integer: 정수여야 합니다
         odd: 홀수여야 합니다
+        requires_privilege_interaction: 이렇게 하려면 확인된 이메일 주소가 있어야 합니다
       template:
         body: '다음 필드에 문제가 있었습니다:'
       models:

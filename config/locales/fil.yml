@@ -42,6 +42,49 @@ fil:
   x_matching_taxa_html:
     one: '<span class="count">%{count}</span> tumugmang taxon'
     other: '<span class="count">%{count}</span> (na) tumugmang taxon'
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Mangyaring i click ang link sa ibaba upang kumpirmahin ang iyong email address. Kung hindi mo kumpirmahin ang iyong email
+    address, hindi ka magagawang upang makihalubilo sa iba pang mga gumagamit 'nilalaman.
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Mag click dito upang muling magpadala ng isang email ng kumpirmasyon
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Ipinadala ang email ng kumpirmasyon
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Narito ang email address na ipapadala namin ang kumpirmasyon:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Kung hindi mo matanggap ang email, narito ang ilang mga tip:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Kung hindi mo pa rin natatanggap ang email ng kumpirmasyon, mangyaring makipag ugnay sa amin sa <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para ma assist ka namin.
+      please_add_an_email_and_password: Mangyaring magdagdag ng isang email at password upang hindi ka mawalan ng access sa iyong account
+      please_click_the_link_sent_to_email_to_confirm_html: Paki click ang link na ipinadala sa <span class="email">%{email}</span> para ma confirm ang email address mo.
+      please_confirm_that_email_is_the_best_contact_html: Paki confirm na po <span class="email">%{email}</span> ay ang pinakamahusay na paraan upang makipag ugnay sa iyo. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Mangyaring kumpirmahin ang iyong email address upang makipag ugnayan sa nilalaman ng iba pang mga gumagamit at ma access ang ilang mga pahina. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Mangyaring kumpirmahin ang iyong email address <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Mangyaring kumpirmahin ang iyong email address upang makipag ugnayan sa nilalaman ng iba pang mga gumagamit
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Mangyaring kumpirmahin ang iyong email address upang magamit ang pahinang ito
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Suriin para sa anumang mga filter na ginawa mo na maaaring alisin ang aming mga email mula sa iyong inbox #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Suriin ang iyong spam folder
+      your_site_account_has_no_email: Ang iyong %{site_name} account ay walang email address na nauugnay dito.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Makakapagpadala ka ng mga bagong mensahe pagkatapos mong kumpirmahin ang iyong email
+          address. Sa ngayon ay maaari mong basahin at tumugon sa mensahe na ipinapadala sa iyo ng ibang tao.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Makakapagpadala ka ng mga bagong mensahe pagkatapos mong kumpirmahin ang iyong email
+          address, at nagdagdag ng tatlong mapapatunayang obserbasyon o tatlong pagkakakilanlan
+          para sa iba. Sa ngayon ay maaari mong basahin at tumugon sa mensahe na ipinapadala sa iyo ng ibang tao.
   number:
     format:
       significant: false
@@ -50,3 +93,7 @@ fil:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: dapat may confirmed email address para magawa yan
