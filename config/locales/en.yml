@@ -9835,10 +9835,10 @@ en:
         include_donor_end_date: Include donor end date
         # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP Countries
-        # Earliest date of the viewer most recently added an observation
-        last_observation_start_date: Earliest obs date added
-        # Latest date of the viewer most recently added an observation
-        last_observation_end_date: Latest obs date added
+        # Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Latest obs start date
+        # end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Latest obs end date
         # Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Max identifications
         # Minimum number of identifications the viewer must have added for others to see the announcement
