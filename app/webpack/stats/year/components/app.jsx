@@ -70,7 +70,7 @@ const App = ( {
             <Col xs={12}>
               <center>
                 <a href="#sharing" className="btn btn-default btn-share btn-bordered">
-                  { I18n.t( "share_caps", { defaultValue: I18n.t( "share" ) } ) }
+                  { I18n.t( "share_caps", { defaultValuePreFallback: I18n.t( "share" ) } ) }
                   { " " }
                   <i className="fa fa-share-square-o" />
                 </a>
@@ -220,7 +220,7 @@ const App = ( {
                       rel="noopener noreferrer"
                     >
                       <i className="fa fa-download" />
-                      { I18n.t( "download_caps", { defaultValue: I18n.t( "download" ) } ) }
+                      { I18n.t( "download_caps", { defaultValuePreFallback: I18n.t( "download" ) } ) }
                     </a>
                   ) }
                 </center>
@@ -339,7 +339,7 @@ const App = ( {
               <p>
                 { I18n.t( "year_in_review2", {
                   year,
-                  defaultValue: I18n.t( "year_in_review", { year } )
+                  defaultValuePreFallback: I18n.t( "year_in_review", { year } )
                 } ) }
               </p>
             </h1>
@@ -361,7 +361,7 @@ const App = ( {
                     { " " }
                     { I18n.t( "view_your_personal_year_in_review_caps", {
                       year,
-                      defaultValue: I18n.t( "view_your_personal_year_in_review", { year } )
+                      defaultValuePreFallback: I18n.t( "view_your_personal_year_in_review", { year } )
                     } ) }
                   </a>
                   { site && defaultSite && site.id !== defaultSite.id && (

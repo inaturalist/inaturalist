@@ -3,7 +3,7 @@
 //= require i18n/translations/en
 //= require i18n/pluralizations
 //= require i18n/inflections
-//= require i18n/default_value
+//= require i18n/default_value_pre_fallback
 //= require i18n/to_time
 //= require jquery/plugins/jquery.qtip2.min
 //= require jquery/plugins/jquery.multiselect

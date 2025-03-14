@@ -1,7 +1,20 @@
 /* global I18n */
 
-// Override default behavior so that defaultValue gets returned even if there
-// is a fallback value (i.e. how it works in the Rails gem)
+// Add defaultValuePreFallback that gets used if there is no translation in
+// the current locale *before* looking for translations in fallback locales.
+// This might be used in situations when updating strings and the old string
+// is a reasonable alternative before the new string is translated, but we
+// don't want to show an English fallbackm, e.g.
+// ```
+// I18n.t( "new_string", { defaultValue: I18n.t( "old_string" ) } )
+// ```
+// would show the English translation of "new_string" if the current locale is
+// Spanish, because English is the fallback locale of all other locales. If
+// we really want to show "old_string" in situations where "new_string" is
+// not translated into Spanish yet, we can do
+// ```
+// I18n.t( "new_string", { defaultValuePreFallback: I18n.t( "old_string" ) } )
+// ```
 ( function ( ) {
   var originalImplementation = I18n.t;
   I18n.t = function ( key, params ) {
@@ -32,12 +45,12 @@
     }
     if (
       // Needs to be a default value to return on
-      opts.defaultValue
+      opts.defaultValuePreFallback
       // If a locale was explicitly requested, don't bother with this
       && !opts.locale
       && !translation
     ) {
-      return opts.defaultValue;
+      return opts.defaultValuePreFallback;
     }
     return originalImplementation( key, opts );
   };

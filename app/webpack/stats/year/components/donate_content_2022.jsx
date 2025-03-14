@@ -70,7 +70,7 @@ const DonateContent2022 = ( {
                       I18n.t(
                         "views.donate.monthly_supporters.thank_you_for_being_a_monthly_supporter_caps",
                         {
-                          defaultValue: I18n.t(
+                          defaultValuePreFallback: I18n.t(
                             "views.donate.monthly_supporters.thank_you_for_being_a_monthly_supporter"
                           )
                         }
@@ -87,7 +87,7 @@ const DonateContent2022 = ( {
                       I18n.t(
                         "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist_caps",
                         {
-                          defaultValue: I18n.t(
+                          defaultValuePreFallback: I18n.t(
                             "views.donate.monthly_supporters.become_a_monthly_supporter_of_inaturalist"
                           )
                         }

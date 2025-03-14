@@ -94,7 +94,7 @@ const Publications = ( { data, year } ) => {
             <a href={data.url} className="btn btn-default btn-bordered inlineblock">
               { I18n.t( "views.stats.year.view_all_publications_count_caps2", {
                 count: data.count,
-                defaultValue: I18n.t( "view_all_caps", { defaultValue: I18n.t( "view_all" ) } )
+                defaultValuePreFallback: I18n.t( "view_all_caps", { defaultValuePreFallback: I18n.t( "view_all" ) } )
               } ) }
             </a>
           </center>

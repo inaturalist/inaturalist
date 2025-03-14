@@ -23,7 +23,7 @@ const StoreContent = ( { isTouchDevice } ) => (
             className="btn btn-default btn-donate btn-bordered"
           >
             <i className="fa fa-shopping-cart" />
-            { I18n.t( "store_caps", { defaultValue: I18n.t( "store" ) } ) }
+            { I18n.t( "store_caps", { defaultValuePreFallback: I18n.t( "store" ) } ) }
           </a>
         </div>
       </Col>
