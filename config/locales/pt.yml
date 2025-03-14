@@ -1376,6 +1376,10 @@ pt:
     failure:
       user:
         suspended: A sua conta foi suspensa
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Por favor, clique no link abaixo para confirmar o seu endereço de e-mail. Se não confirmar o seu e-mail
+    endereço, você não será capaz de interagir com o conteúdo de outros usuários.
   devise_unlock_instructions_your_account_has_been_locked: |
     A sua conta foi bloqueada devido a uma quantidade excessiva de tentativas de início de sessão mal sucedidas.
   devise_unlock_instructions_click_the_link: |
@@ -3555,6 +3559,31 @@ pt:
     donate:
       temporarily_unavailable: |
         Obrigado pelo seu interesse em apoiar ao iNaturalist! A doação ao iNaturalist está temporariamente indisponível enquanto actualizamos os nossos sistemas de doação. Por favor, volte brevemente.
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Clique aqui para reenviar um e-mail de confirmação
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: E-mail de confirmação enviado
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Aqui está o endereço de e-mail para o qual enviaremos a confirmação:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Se você não receber o e-mail, aqui estão algumas dicas:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Se você ainda não está recebendo o e-mail de confirmação, entre em contato conosco em <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para que possamos ajudá-lo.
+      please_add_an_email_and_password: Por favor, adicione um e-mail e senha para não perder o acesso à sua conta
+      please_click_the_link_sent_to_email_to_confirm_html: Por favor, clique no link enviado para <span class="email">%{email}</span> para confirmar o seu endereço de e-mail.
+      please_confirm_that_email_is_the_best_contact_html: Confirme que <span class="email">%{email}</span> é a melhor forma de o contactar. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Confirme o seu endereço de e-mail para interagir com o conteúdo de outros utilizadores e aceder a determinadas páginas. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Por favor, confirme o seu endereço de e-mail <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Confirme o seu endereço de e-mail para interagir com o conteúdo de outros utilizadores
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Por favor, confirme o seu endereço de e-mail para usar esta página
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Verifique se há filtros que você fez que possam remover nossos e-mails da sua caixa de entrada #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Verifique a sua pasta de spam
+      your_site_account_has_no_email: O seu %{site_name} A conta não tem nenhum endereço de e-mail associado a ela.
     lifelists:
       list_view: Ver em lista
       observed_rank: Observado %{rank}
@@ -3563,6 +3592,19 @@ pt:
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Títulos da Lista de Vida não podem ser alterados
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Poderá enviar novas mensagens depois de confirmar o seu e-mail
+          endereço. Por enquanto você pode ler e responder a mensagens que outras pessoas lhe enviam.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Poderá enviar novas mensagens depois de confirmar o seu e-mail
+          endereço e acrescentou três observações verificáveis ou três identificações
+          para outros. Por enquanto você pode ler e responder a mensagens que outras pessoas lhe enviam.
     observations:
       community_id:
         explanation: |
@@ -3951,6 +3993,8 @@ pt:
         search_place_id: Procurar lugar
         place_id: Lugar
     errors:
+      messages:
+        requires_privilege_interaction: deve ter um endereço de e-mail confirmado para fazer isso
       models:
         guide_taxon:
           attributes:
