@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import _ from "lodash";
 import moment from "moment";
 import DateHistogram from "../../../shared/components/date_histogram";
+import ErrorBoundary from "../../../shared/components/error_boundary";
 import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
 import ObservationsGrid from "./observations_grid";
@@ -170,31 +171,40 @@ const Observations = ( {
           window.open( url, "_blank", "noopener,noreferrer" );
         }}
       />
-      { user ? (
-        <TorqueMap
-          params={{ user_id: user.id, year }}
-          interval={user ? "weekly" : "monthly"}
-          basemap="dark_nolabels"
-          color="#74ac00"
-        /> )
-        : ( <GlobalMap year={year} site={site} /> )
-      }
+      <ErrorBoundary>
+        {
+          user
+            ? (
+              <TorqueMap
+                params={{ user_id: user.id, year }}
+                interval={user ? "weekly" : "monthly"}
+                basemap="dark_nolabels"
+                color="#74ac00"
+              />
+            )
+            : <GlobalMap year={year} site={site} />
+        }
+      </ErrorBoundary>
       { popular && (
-        <div>
-          <h3>
-            <a name="popular" href="#popular">
-              <span>{ I18n.t( "most_comments_and_faves" ) }</span>
-            </a>
-          </h3>
-          { popular }
-        </div>
+        <ErrorBoundary>
+          <div>
+            <h3>
+              <a name="popular" href="#popular">
+                <span>{ I18n.t( "most_comments_and_faves" ) }</span>
+              </a>
+            </h3>
+            { popular }
+          </div>
+        </ErrorBoundary>
       ) }
       { data.streaks && data.streaks.length > 0 && (
-        <Streaks
-          year={year}
-          data={data.streaks.slice( 0, 20 )}
-          hideUsers={!!user}
-        />
+        <ErrorBoundary>
+          <Streaks
+            year={year}
+            data={data.streaks.slice( 0, 20 )}
+            hideUsers={!!user}
+          />
+        </ErrorBoundary>
       ) }
     </div>
   );
