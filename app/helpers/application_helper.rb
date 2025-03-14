@@ -357,12 +357,22 @@ module ApplicationHelper
   end
 
   def markdown( text )
-    @markdown ||= Redcarpet::Markdown.new( Redcarpet::Render::HTML.new( hard_wrap: true ),
+    @markdown ||= Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML.new( hard_wrap: true ),
       tables: true,
       disable_indented_code_blocks: true,
       lax_spacing: true,
-      no_intra_emphasis: true )
-    @markdown.render( text )
+      no_intra_emphasis: true
+    )
+    # Redcarpet will insert <br> tags inside of HTML tags (like inside of <
+    # and >, inside of <> and </>) if they have newlines, so this removes
+    # them
+    new_text = text.clone
+    text.scan( /<[^>]*?\n[^>]+?>/m ).each do | old_tag |
+      new_tag = old_tag.gsub( /\n+/m, " " )
+      new_text.sub!( old_tag, new_tag )
+    end
+    @markdown.render( new_text )
   end
 
   def render_in_format( format, *args )

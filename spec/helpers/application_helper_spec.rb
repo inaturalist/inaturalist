@@ -250,6 +250,15 @@ describe ApplicationHelper do
       HTML
       expect( formatted_user_text( text ) ).to eq expected.strip
     end
+
+    it "should not insert linebreaks inside of img tags" do
+      text = <<~MKDN
+        <img
+        src="https://some.where/nice.jpg"
+        width="500">
+      MKDN
+      expect( formatted_user_text( text ) ).not_to match( /<br/ )
+    end
   end
 
   describe "#image_url" do
