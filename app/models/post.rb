@@ -54,7 +54,7 @@ class Post < ApplicationRecord
 
   scope :published, -> { where( "published_at IS NOT NULL" ) }
   scope :unpublished, -> { where( "published_at IS NULL" ) }
-  scope :dbsearch, lambda {| parent:, q: |
+  scope :dbsearch, lambda {| parent, q |
     where( parent: parent ).where( "posts.title ILIKE ? OR posts.body ILIKE ?", "%#{q}%", "%#{q}%" )
   }
 
