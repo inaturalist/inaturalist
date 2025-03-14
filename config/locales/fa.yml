@@ -80,6 +80,49 @@ fa:
   add_a_note: افزودن يادداشت
   app_owner_application_explanation_required: |
     شما باید توضیح دقیق تری از آنچه می خواهید بسازید ارائه دهید.
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    لطفا برای تأیید آدرس ایمیل خود روی لینک زیر کلیک کنید. اگر ایمیل خود را تأیید نکنید
+    آدرس، شما نمی توانید با محتوای سایر کاربران تعامل داشته باشید.
+  views:
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: برای ارسال مجدد ایمیل تأیید اینجا را کلیک کنید
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: ایمیل تایید ارسال شد
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        در اینجا آدرس ایمیلی است که تأیید را به آن ارسال خواهیم کرد:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        اگر ایمیل را دریافت نکردید، در اینجا چند نکته وجود دارد:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: اگر هنوز ایمیل تأیید را دریافت نمی کنید، لطفا با ما تماس بگیرید <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> بنابراین ما می توانیم به شما کمک کنیم.
+      please_add_an_email_and_password: لطفا یک ایمیل و رمز عبور اضافه کنید تا دسترسی به حساب خود را از دست ندهید
+      please_click_the_link_sent_to_email_to_confirm_html: لطفا روی لینک ارسال شده به <span class="email">%{email}</span> برای تأیید آدرس ایمیل خود.
+      please_confirm_that_email_is_the_best_contact_html: لطفا تأیید کنید که <span class="email">%{email}</span> بهترین راه برای تماس با شما است. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: لطفا آدرس ایمیل خود را برای تعامل با محتوای سایر کاربران و دسترسی به صفحات خاص تأیید کنید. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: لطفا آدرس ایمیل خود را تأیید کنید <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: لطفا آدرس ایمیل خود را برای تعامل با محتوای سایر کاربران تأیید کنید
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: لطفا آدرس ایمیل خود را برای استفاده از این صفحه تأیید کنید
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: فیلترهایی را که ایجاد کرده اید بررسی کنید که ممکن است ایمیل های ما را از صندوق ورودی شما حذف کند #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: پوشه هرزنامه خود را بررسی کنید
+      your_site_account_has_no_email: شما %{site_name} حساب هیچ آدرس ایمیلی مرتبط با آن ندارد.
+    messages:
+      index:
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          پس از تأیید ایمیل، می توانید پیام های جدیدی ارسال کنید
+          آدرس. در حال حاضر می توانید پیامی را که دیگران برای شما ارسال می کنند بخوانید و به آنها پاسخ دهید.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          پس از تأیید ایمیل، می توانید پیام های جدیدی ارسال کنید
+          آدرس، و سه مشاهدات قابل تأیید یا سه شناسایی اضافه کرد
+          برای دیگران. در حال حاضر می توانید پیامی را که دیگران برای شما ارسال می کنند بخوانید و به آنها پاسخ دهید.
   number:
     format:
       significant: false
@@ -88,3 +131,7 @@ fa:
       format:
         significant: true
         strip_insignificant_zeros: true
+  activerecord:
+    errors:
+      messages:
+        requires_privilege_interaction: برای انجام این کار باید یک آدرس ایمیل تایید شده داشته باشد

@@ -1541,6 +1541,10 @@ pl:
     Jeśli nie rejestrowałeś konta na %{site_name}, zignoruj ten e-mail.
   devise_confirmation_instructions_please_click: |
     Kliknij poniższy link, aby potwierdzić swój adres e-mail:
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kliknij poniższy link, aby potwierdzić swój adres e-mail. Jeśli nie potwierdzisz swojego adresu e-mail
+    adres, nie będziesz mógł wchodzić w interakcje z treściami innych użytkowników.
   devise_confirmation_instructions_send_confirmation_email: Wyślij e-mail z potwierdzeniem
   devise_email_changed_you_requested: Poprosiłeś o zmianę z %{old_email} na %{new_email}.
   devise_reset_password_instructions_hello_email: Witaj %{email}
@@ -4488,6 +4492,31 @@ pl:
         become_a_monthly_supporter_of_inaturalist_caps: ZOSTAŃ COMIESIĘCZNYM OFIARODAWCĄ INATURALIST
         thank_you_for_being_a_monthly_supporter: Dziękujemy za bycie comiesięcznym ofiarodawcą!
         thank_you_for_being_a_monthly_supporter_caps: DZIĘKUJEMY ZA BYCIE COMIESIĘCZNYM OFIARODAWCĄ!
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Kliknij tutaj, aby ponownie wysłać wiadomość e-mail z potwierdzeniem
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Wysłano wiadomość e-mail z potwierdzeniem
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Oto adres e-mail, na który wyślemy potwierdzenie:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Jeśli nie otrzymasz wiadomości e-mail, oto kilka wskazówek:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Jeśli nadal nie otrzymujesz wiadomości e-mail z potwierdzeniem, skontaktuj się z nami pod adresem <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> abyśmy mogli Ci pomóc.
+      please_add_an_email_and_password: Dodaj adres e-mail i hasło, aby nie stracić dostępu do swojego konta
+      please_click_the_link_sent_to_email_to_confirm_html: Kliknij w link wysłany na adres <span class="email">%{email}</span> , aby potwierdzić swój adres e-mail.
+      please_confirm_that_email_is_the_best_contact_html: Proszę potwierdzić, że <span class="email">%{email}</span> to najlepszy sposób, aby się z Tobą skontaktować. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Potwierdź swój adres e-mail, aby wchodzić w interakcje z treściami innych użytkowników i uzyskiwać dostęp do niektórych stron. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Potwierdź swój adres e-mail <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Potwierdź swój adres e-mail, aby wchodzić w interakcje z treściami innych użytkowników
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Potwierdź swój adres e-mail, aby korzystać z tej strony
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Sprawdź, czy nie ma wprowadzonych filtrów, które mogą usunąć nasze e-maile z Twojej skrzynki odbiorczej #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Sprawdź folder ze spamem
+      your_site_account_has_no_email: Twój %{site_name} Z kontem nie jest powiązany żaden adres e-mail.
     geo_model:
       explain:
         nearby_map:
@@ -4541,6 +4570,17 @@ pl:
         #earning speech privilege
         speech_privilege_notice: |
           Będziesz mógł wysyłać nowe wiadomości po dodaniu trzech weryfikowalnych obserwacji lub trzech oznaczeń. Póki co możesz odbierać i odpowiadać na wiadomości, które ktoś ci wysłał.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Będziesz mógł wysyłać nowe wiadomości po potwierdzeniu adresu e-mail
+          adres. Na razie możesz czytać i odpowiadać na wiadomości, które wysyłają do Ciebie inne osoby.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Będziesz mógł wysyłać nowe wiadomości po potwierdzeniu adresu e-mail
+          adres, a następnie dodał trzy możliwe do zweryfikowania spostrzeżenia lub trzy dane identyfikacyjne
+          dla innych. Na razie możesz czytać i odpowiadać na wiadomości, które wysyłają do Ciebie inne osoby.
     oauth:
       authorizations:
         new:
@@ -5257,6 +5297,7 @@ pl:
         odd: musi być liczbą nieparzystą
         only_project_owner_can_change_project_owner: Tylko właściciel projektu może zmienić właściciela projektu
         record_invalid: 'Sprawdzanie poprawności się nie powiodło: %{errors}'
+        requires_privilege_interaction: Aby to zrobić, musisz mieć potwierdzony adres e-mail
         too_short:
           one: jest za krótkie (minimum to %{count} znak)
           few: jest za krótkie (minimum to %{count} znaki)
