@@ -30,7 +30,7 @@ class ErrorBoundary extends React.Component {
         return renderError( error );
       }
       return (
-        <div className="nocontent">
+        <div className="nocontent alert alert-danger">
           { I18n.t( "doh_something_went_wrong_error", { error } ) }
         </div>
       );
