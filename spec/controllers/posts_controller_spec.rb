@@ -251,3 +251,31 @@ describe PostsController, "edit" do
     expect( response.response_code ).to be >= 300
   end
 end
+
+describe PostsController, "search" do
+  let!( :site_post ) { Post.make!( body: "this is the post body", parent: Site.default ) }
+  let( :user ) { User.make! }
+  let!( :user_post ) { Post.make!( body: "this is the post body", parent: user ) }
+
+  it "returns matching site posts" do
+    get :search, params: { q: "post body" }
+    expect( assigns( :posts ).size ).to eq 1
+    expect( assigns( :posts ) ).to include( site_post )
+  end
+
+  it "returns nothing on non-matching posts" do
+    get :search, params: { q: "nonsense" }
+    expect( assigns( :posts ) ).to eq []
+  end
+
+  it "returns matching user posts" do
+    get :search, params: { q: "post body", post: { parent_type: "User", parent_id: user.id } }
+    expect( assigns( :posts ).size ).to eq 1
+    expect( assigns( :posts ) ).to include( user_post )
+  end
+
+  it "returns nothing on non-matching user posts" do
+    get :search, params: { q: "nonsense", post: { parent_type: "User", parent_id: user.id } }
+    expect( assigns( :posts ) ).to eq []
+  end
+end
