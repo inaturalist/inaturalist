@@ -32,7 +32,8 @@ const CORE_TAXON_FIELDS = {
   preferred_common_name: true,
   is_active: true,
   extinct: true,
-  ancestor_ids: true
+  ancestor_ids: true,
+  vision: true
 };
 
 export default function reducer( state = { counts: {} }, action ) {
