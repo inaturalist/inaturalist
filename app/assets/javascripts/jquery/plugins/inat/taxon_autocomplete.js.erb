@@ -189,6 +189,7 @@ $.fn.taxonAutocomplete = function( options ) {
     options.user = CURRENT_USER;
   }
   var source = function( request, response ) {
+    var isIdNumber = !isNaN(request.term);
     var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
     var headers = {};
     if ( apiToken) {
@@ -197,9 +198,10 @@ $.fn.taxonAutocomplete = function( options ) {
     var params = {
       q: request.term,
       per_page: options.perPage || 10,
-      locale: I18n.locale,
-      preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+      locale: I18n.locale, 
+      ...(PREFERRED_PLACE && PREFERRED_PLACE.id ? { preferred_place_id: PREFERRED_PLACE.id } : {})
     }
+    
     if ( options.notIDs) {
       params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
     }
@@ -209,32 +211,33 @@ $.fn.taxonAutocomplete = function( options ) {
       headers["X-HTTP-Method-Override"] = "GET";
       params.fields = TAXON_AUTOCOMPLETE_FIELDS;
     }
+    var apiURL = isIdNumber ? apiBaseURL + "/taxa/" + request.term : apiBaseURL + "/taxa/autocomplete"
     $.ajax({
-      url: apiBaseURL + "/taxa/autocomplete",
-      cache: true,
-      headers: headers,
-      data: options.useAPIv2 ? JSON.stringify( params ) : params,
-      method: options.useAPIv2 ? "POST" : "GET",
-      success: function( data ) {
-        var results = data.results || [ ];
-        // show as the last item an option to search external name providers
-        if( options.searchExternal !== false && !( CONFIG && CONFIG.content_freeze_enabled ) ) {
-          results.push({
-            type: "search_external",
-            title: I18n.t("search_external_name_providers")
-          });
+        url: apiURL,
+        cache: true,
+        headers: headers,
+        ...isIdNumber ? {} :{ data: params },
+        method: options.useAPIv2 ? "POST" : "GET",
+        success: function( data ) {
+            var results = data.results || [ ];
+            // show as the last item an option to search external name providers
+            if( options.searchExternal !== false && !( CONFIG && CONFIG.content_freeze_enabled ) ) {
+                results.push({
+                    type: "search_external",
+                    title: I18n.t("search_external_name_providers")
+                });
+            }
+            if( options.showPlaceholder && !options.idEl.val( ) && field.val( ) ) {
+                results.unshift({
+                    type: "placeholder",
+                    title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) }),
+                    placeholderTitle: field.val( )
+                });
+            }
+            response( _.map( results, function( r ) {
+                return new iNatModels.Taxon( r );
+            }));
         }
-        if( options.showPlaceholder && !options.idEl.val( ) && field.val( ) ) {
-          results.unshift({
-            type: "placeholder",
-            title: I18n.t("use_name_as_a_placeholder", { name: field.val( ) }),
-            placeholderTitle: field.val( )
-          });
-        }
-        response( _.map( results, function( r ) {
-          return new iNatModels.Taxon( r );
-        }));
-      }
     });
   };
   var select = function( e, ui ) {
