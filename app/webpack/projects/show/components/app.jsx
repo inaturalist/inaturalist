@@ -246,11 +246,13 @@ const App = ( {
               }}
             >
               <div className="header-about-content">
-                <div className="header-about-title">
-                  { I18n.t( "about" ) }
-                </div>
-                <div className="header-about-button">
-                  { headerButton }
+                <div className="header-about-content-head">
+                  <div className="header-about-title">
+                    { I18n.t( "about" ) }
+                  </div>
+                  <div className="header-about-button">
+                    { headerButton }
+                  </div>
                 </div>
                 <div className="header-about-text">
                   <UserText
@@ -259,7 +261,7 @@ const App = ( {
                     moreToggle={false}
                   />
                 </div>
-                <div>
+                <div className="header-about-more">
                   <button
                     type="button"
                     className="header-about-read-more header-link-btn btn btn-nostyle"
@@ -272,7 +274,7 @@ const App = ( {
                     <ProjectMembershipButtonContainer />
                   </div>
                 </div>
-                <div>
+                <div className="header-about-actions">
                   { userCanEdit && (
                     <div className="header-about-edit">
                       <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
