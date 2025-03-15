@@ -9,6 +9,10 @@ describe Announcement do
   it { is_expected.to validate_presence_of :start }
   it { is_expected.to validate_presence_of :end }
   it { is_expected.to validate_presence_of :body }
+  it { is_expected.to validate_numericality_of( :min_identifications ).allow_nil.is_greater_than_or_equal_to 0 }
+  it { is_expected.to validate_numericality_of( :max_identifications ).allow_nil.is_greater_than_or_equal_to 0 }
+  it { is_expected.to validate_numericality_of( :min_observations ).allow_nil.is_greater_than_or_equal_to 0 }
+  it { is_expected.to validate_numericality_of( :max_observations ).allow_nil.is_greater_than_or_equal_to 0 }
 
   it "validates placement clients" do
     expect do
@@ -44,6 +48,13 @@ describe Announcement do
     expect do
       Announcement.make!( target_group_type: nil, target_group_partition: nil )
     end.not_to raise_error
+  end
+
+  describe "saving" do
+    it "removes blank values from ip_countries" do
+      a = create( :announcement, ip_countries: ["US", ""] )
+      expect( a.ip_countries ).to eq ["US"]
+    end
   end
 
   describe "targeted_to_user" do
@@ -151,6 +162,166 @@ describe Announcement do
       expect( a.targeted_to_user?( User.make! ) ).to be true
       expect( a.targeted_to_user?( nil ) ).to be true
     end
+
+    describe "target_logged_in" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_logged_in ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target logged in" do
+        annc = create :announcement, target_logged_in: Announcement::YES
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target logged out" do
+        annc = create :announcement, target_logged_in: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+      end
+    end
+
+    describe "min_identifications" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :identification ).user ) ).to be true
+      end
+
+      it "includes users with more than value" do
+        annc = create :announcement, min_identifications: 1
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+        identifier = create :user, identifications_count: 2
+        expect( identifier.identifications_count ).to eq 2
+        expect( annc.targeted_to_user?( identifier ) ).to be true
+      end
+    end
+
+    describe "max_identifications" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :identification ).user ) ).to be true
+      end
+
+      it "includes users with less than value" do
+        annc = create :announcement, max_identifications: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, identifications_count: 1
+        expect( identifier.identifications_count ).to eq 1
+        expect( annc.targeted_to_user?( identifier ) ).to be true
+      end
+
+      it "exclude users with more than value" do
+        annc = create :announcement, max_identifications: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, identifications_count: 10
+        expect( identifier.identifications_count ).to eq 10
+        expect( annc.targeted_to_user?( identifier ) ).to be false
+      end
+    end
+
+    describe "max_observations" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_logged_in ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :observation ).user ) ).to be true
+      end
+
+      it "includes users with less than value" do
+        annc = create :announcement, max_observations: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, observations_count: 1
+        expect( identifier.observations_count ).to eq 1
+        expect( annc.targeted_to_user?( identifier ) ).to be true
+      end
+
+      it "exclude users with more than value" do
+        annc = create :announcement, max_observations: 2
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+        identifier = create :user, observations_count: 10
+        expect( identifier.observations_count ).to eq 10
+        expect( annc.targeted_to_user?( identifier ) ).to be false
+      end
+    end
+
+    describe "user_created_start_date" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.user_created_start_date ).to be_nil
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "includes users created after value" do
+        annc = create :announcement, user_created_start_date: 2.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be true
+      end
+
+      it "excludes users created before value" do
+        annc = create :announcement, user_created_start_date: 2.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 3.day.ago ) ) ).to be false
+      end
+    end
+
+    describe "user_created_end_date" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.user_created_end_date ).to be_nil
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "includes users created before value" do
+        annc = create :announcement, user_created_end_date: 1.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 2.day.ago ) ) ).to be true
+      end
+
+      it "excludes users created after value" do
+        annc = create :announcement, user_created_end_date: 2.days.ago
+        expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be false
+      end
+    end
+
+    describe "last_observation_start_date" do
+      it "includes users with last observation after value" do
+        annc = create :announcement, last_observation_start_date: 2.days.ago
+        obs = create :observation, created_at: 1.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be true
+      end
+
+      it "excludes users with last observation before value" do
+        annc = create :announcement, last_observation_start_date: 2.days.ago
+        obs = create :observation, created_at: 3.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be false
+      end
+    end
+
+    describe "last_observation_end_date" do
+      it "includes users with last observation before value" do
+        annc = create :announcement, last_observation_end_date: 1.days.ago
+        obs = create :observation, created_at: 2.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be true
+      end
+
+      it "excludes users with last observation after value" do
+        annc = create :announcement, last_observation_end_date: 2.days.ago
+        obs = create :observation, created_at: 1.day.ago
+        expect( annc.targeted_to_user?( obs.user ) ).to be false
+      end
+    end
   end
 
   describe "dismissals" do
@@ -176,6 +347,37 @@ describe Announcement do
       expect( AnnouncementDismissal.where(
         announcement: announcement, user_id: user_ids_to_dismiss.first
       ).count ).to eq 1
+    end
+  end
+
+  describe "active_in_placement" do
+    describe "ip_country" do
+      it "includes announcements with ip_countries matching IP country" do
+        annc = create :announcement, ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: { country: annc.ip_countries.first } )
+        end
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).to include annc
+      end
+
+      it "excludes announcements with ip_countries not matching IP country" do
+        annc = create :announcement, ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: { country: "PL" } )
+        end
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
+      end
+
+      it "excludes announcements with ip_countries when IP has no country" do
+        annc = create :announcement, ip_countries: ["US"]
+        test_ip = "1.2.3.4"
+        allow( INatAPIService ).to receive( :geoip_lookup ) do
+          OpenStruct.new_recursive( results: nil )
+        end
+        expect( Announcement.active_in_placement( "users/dashboard#sidebar", { ip: test_ip } ) ).not_to include annc
+      end
     end
   end
 end

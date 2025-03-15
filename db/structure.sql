@@ -396,7 +396,17 @@ CREATE TABLE public.announcements (
     include_donor_start_date date,
     include_donor_end_date date,
     exclude_donor_start_date date,
-    exclude_donor_end_date date
+    exclude_donor_end_date date,
+    target_logged_in character varying DEFAULT 'any'::character varying,
+    min_identifications integer,
+    max_identifications integer,
+    min_observations integer,
+    max_observations integer,
+    user_created_start_date date,
+    user_created_end_date date,
+    last_observation_start_date date,
+    last_observation_end_date date,
+    ip_countries text[] DEFAULT '{}'::text[]
 );
 
 
@@ -11479,6 +11489,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250130003627'),
 ('20250204222646'),
 ('20250219234716'),
-('20250226225252');
+('20250226225252'),
+('20250306224627'),
+('20250307000624'),
+('20250307004743'),
+('20250311191217'),
+('20250311212144'),
+('20250311225953');
 
 

@@ -1,3 +1,34 @@
+:ruby
+  meta_attributes = %w(
+    created_at
+    updated_at
+    placement
+    clients
+    target_group_type
+    target_group_partition
+    start
+    end
+    locales
+    site_ids
+    ip_countries
+    dismissible
+    prefers_target_staff
+    prefers_target_unconfirmed_users
+    target_logged_in
+    prefers_exclude_monthly_supporters
+    include_donor_start_date
+    include_donor_end_date
+    exclude_donor_start_date
+    exclude_donor_end_date
+    min_observations
+    max_observations
+    min_identifications
+    max_identifications
+    last_observation_start_date
+    last_observation_end_date
+    user_created_start_date
+    user_created_end_date
+  )
 - content_for :title do
   =strip_tags t( :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id )
 - content_for :extracss do
@@ -21,31 +52,30 @@
     .col-xs-12
       %span.breadcrumbs
         = link_to t(:back), announcements_path, class: "back crumb"
+      = link_to edit_announcement_path(@announcement), class: "btn btn-primary pull-right" do
+        %i.fa.fa-pencil
+        = t :edit
       %h2=t :bold_label_colon_value_html, label: t( "activerecord.models.announcement" ), value: @announcement.id
-      %table#announcement.table.table-bordered
-        - %w(                                 |
-          created_at                          |
-          updated_at                          |
-          placement                           |
-          clients                             |
-          target_group_type                   |
-          target_group_partition              |
-          start                               |
-          end                                 |
-          site_ids                            |
-          locales                             |
-          dismissible?                        |
-          prefers_target_staff                |
-          prefers_target_unconfirmed_users    |
-          prefers_exclude_monthly_supporters  |
-          include_donor_start_date            |
-          include_donor_end_date              |
-          exclude_donor_start_date            |
-          exclude_donor_end_date              |
-        ).each do |a|                         |
-          %tr
-            %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
-            %td= @announcement.send( a )
+      .row
+        - meta_attributes.in_groups( 3 ) do | group |
+          .col-xs-4
+            %table#announcement.table.table-bordered
+              - group.compact.each do |a|
+                %tr
+                  %th=t "activerecord.attributes.announcement.#{a}", default: t( "#{a}_", default: t( a ) )
+                  %td
+                    - val = @announcement.send( a )
+                    - if a == "ip_countries"
+                      = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
+                    - elsif a == "locales"
+                      = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )
+                    - elsif val.is_a?( Array)
+                      = val.sort.join( ", " )
+                    - elsif val.is_a?( String ) || [true, false].include?( val )
+                      =t val, default: val
+                    - else
+                      = val
+      %table.table.table-bordered
         %tr
           %th=t :body
           - width = @announcement.placement == "users/dashboard#sidebar" ? "360px" : "100%"
@@ -69,6 +99,4 @@
               including you
             = link_to_toggle_box "show user IDs" do
               = @announcement.dismiss_user_ids
-      = link_to t(:edit), edit_announcement_path(@announcement)
-      |
-      = link_to t(:back), announcements_path
+      = link_to t(:back), announcements_path, class: "back crumb"

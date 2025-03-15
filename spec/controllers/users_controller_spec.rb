@@ -10,38 +10,109 @@ describe UsersController, "dashboard" do
     get :dashboard
     expect( response ).to be_successful
   end
-  it "should show a site-specific announcement instead of a siteless one" do
-    site = Site.make!
-    a = Announcement.make!
-    site_a = Announcement.make!
-    site_a.sites << site
-    u = User.make!( site: site )
-    sign_in u
-    get :dashboard, params: { inat_site_id: site.id }
-    expect( assigns( :announcements ) ).to include site_a
-    expect( assigns( :announcements ) ).not_to include a
-  end
-  it "should show a locale-specific announcement instead of a localeless one" do
-    a = Announcement.make!
-    locale_a = Announcement.make!( locales: ["es"] )
-    u = User.make!( locale: "es" )
-    sign_in u
-    get :dashboard, params: { locale: "es" }
-    expect( assigns( :announcements ) ).to include locale_a
-    expect( assigns( :announcements ) ).not_to include a
-  end
-  it "should show a siteless, localeless announcement" do
-    a = Announcement.make!
-    sign_in User.make!
-    get :dashboard
-    expect( assigns( :announcements ) ).to include a
-  end
-  it "should show a siteless, localeless announcement even if the user has a site and a locale" do
-    a = Announcement.make!
-    site = Site.make!
-    sign_in User.make!( locale: "es", site: site )
-    get :dashboard, params: { inat_site_id: site.id }
-    expect( assigns( :announcements ) ).to include a
+
+  describe "announcements" do
+    it "should target a site" do
+      site = create :site
+      annc = create :announcement
+      annc.sites << site
+      user = create :user, site: site
+      sign_in user
+      get :dashboard, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include annc
+    end
+
+    # The intent is to allow the creation of a siteless announcement that can
+    # be *overridden* for a site, e.g. an announcement to all iNat users that
+    # iNatMX chooses to translate into Spanish
+    it "should not include an anouncement without a site if one with a site exists" do
+      annc = create :announcement
+      site = create :site
+      site_annc = create :announcement
+      site_annc.sites << site
+      user = create :user, site: site
+      sign_in user
+      get :dashboard, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include site_annc
+      expect( assigns( :announcements ) ).not_to include annc
+    end
+
+    it "should target locales" do
+      a = Announcement.make!
+      locale_a = Announcement.make!( locales: ["es"] )
+      u = User.make!( locale: "es" )
+      sign_in u
+      get :dashboard, params: { locale: "es" }
+      expect( assigns( :announcements ) ).to include locale_a
+      expect( assigns( :announcements ) ).not_to include a
+    end
+
+    it "should appear for everyone without targeting" do
+      a = Announcement.make!
+      sign_in User.make!
+      get :dashboard
+      expect( assigns( :announcements ) ).to include a
+    end
+
+    it "should appear for everyone without targeting even if the user has a site and a locale" do
+      a = Announcement.make!
+      site = Site.make!
+      sign_in User.make!( locale: "es", site: site )
+      get :dashboard, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include a
+    end
+
+    describe "rendering" do
+      render_views
+
+      describe "for regular users" do
+        let( :user ) { create :user }
+        before { sign_in user }
+
+        it "should not include dismissed" do
+          a = create :announcement, dismissible: true
+          a.dismiss_user_ids << user.id
+          a.save!
+          expect( a ).to be_dismissed_by user
+          get :dashboard
+          expect( response.body ).not_to include a.body
+        end
+
+        it "should not be shown if targeting staff" do
+          a = create :announcement, prefers_target_staff: true
+          get :dashboard
+          expect( response.body ).not_to include a.body
+        end
+
+        it "should create an AnnouncementImpression" do
+          a = create :announcement
+          expect( AnnouncementImpression.where( announcement_id: a.id ).count ).to eq 0
+          get :dashboard
+          expect( response.body ).to include a.body
+          expect( AnnouncementImpression.where( announcement_id: a.id ).count ).to eq 1
+        end
+      end
+
+      it "should target staff" do
+        user = create :user, :as_admin
+        sign_in user
+        a = create :announcement, prefers_target_staff: true
+        get :dashboard
+        expect( response.body ).to include a.body
+      end
+
+      it "should exclude monthly supporters" do
+        user = create :user,
+          donorbox_donor_id: 1,
+          donorbox_plan_status: "active",
+          donorbox_plan_type: "monthly"
+        expect( user ).to be_monthly_donor
+        sign_in user
+        a = create :announcement, prefers_exclude_monthly_supporters: true
+        get :dashboard
+        expect( response.body ).not_to include a.body
+      end
+    end
   end
 end
 
