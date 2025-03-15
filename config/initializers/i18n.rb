@@ -4,7 +4,8 @@
 I18N_LOCALES = Dir[Rails.root.join( "config", "locales", "*.{rb,yml}" )].map do | p |
   p[%r{/([\w\-]+?)\.yml}, 1]
 end.compact.uniq
-I18N_SUPPORTED_LOCALES = I18N_LOCALES.reject {| l | l == "qqq" || l =~ /-phonetic/ }
+# Add en-2x to support double-sized English text in JS
+I18N_SUPPORTED_LOCALES = I18N_LOCALES.reject {| l | l == "qqq" || l =~ /-phonetic/ } # + ["en-2x"]
 
 Rails.application.config.i18n.available_locales = I18N_SUPPORTED_LOCALES
 

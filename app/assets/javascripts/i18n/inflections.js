@@ -30,3 +30,13 @@
     return translation.replace( matches[0], mapping[inflectorKey] || mapping.other );
   };
 }( ) );
+
+( function ( ) {
+  I18n.t = function ( key, params ) {
+    const translation = I18n.translate( key, params );
+    if ( I18n.locale === "en-2x" ) {
+      return `${translation} ${translation}`;
+    }
+    return translation;
+  };
+}( ) );
