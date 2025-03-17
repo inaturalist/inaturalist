@@ -1193,6 +1193,24 @@ describe User do
       expect( keeper.project_users.count ).to eq 1
     end
 
+    it "merged users inherit project manager status" do
+      project = Project.make!
+      ProjectUser.make!( project: project, user: reject, role: ProjectUser::MANAGER )
+      Delayed::Worker.new.work_off
+      expect( reject.project_users.count ).to eq 1
+      expect( keeper.project_users.count ).to eq 0
+      expect( project.as_indexed_json[:admins].select do |admin|
+        admin[:user_id] === reject.id && admin[:role] == "manager"
+      end ).not_to be_empty
+      expect( project.as_indexed_json[:admins].map{ |a| a[:user_id] } ).not_to include( keeper.id )
+      without_delay { keeper.merge( reject ) }
+      project.reload
+      expect( keeper.project_users.count ).to eq 1
+      expect( project.as_indexed_json[:admins].select do |admin|
+        admin[:user_id] === keeper.id && admin[:role] == "manager"
+      end ).not_to be_empty
+    end
+
     it "retains the earliest created_at date" do
       earlier_created_date = 1.year.ago
       later_created_date = Time.now

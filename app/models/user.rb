@@ -759,18 +759,15 @@ class User < ApplicationRecord
     return unless user = User.find_by_id( user_id )
     start = Time.now
     Observation.elastic_index!(
-      scope: Observation.by( user_id ),
-      wait_for_index_refresh: true
+      scope: Observation.by( user_id )
     )
     Observation.elastic_index!(
       scope: Observation.joins( :identifications ).
         where( "identifications.user_id = ?", user_id ).
-        where( "observations.last_indexed_at < ?", start ),
-      wait_for_index_refresh: true
+        where( "observations.last_indexed_at < ?", start )
     )
     Identification.elastic_index!(
-      scope: Identification.where( user_id: user_id ),
-      wait_for_index_refresh: true
+      scope: Identification.where( user_id: user_id )
     )
     User.update_identifications_counter_cache( user.id )
     User.update_observations_counter_cache( user.id )
@@ -778,8 +775,7 @@ class User < ApplicationRecord
     user.reload
     user.elastic_index!
     Project.elastic_index!(
-      ids: ProjectUser.where( user_id: user.id ).pluck(:project_id),
-      wait_for_index_refresh: true
+      ids: ProjectUser.where( user_id: user.id ).pluck(:project_id)
     )
   end
 
