@@ -6760,6 +6760,23 @@ en:
       clients_desc: |
         CMD- or SHIFT-click to select multiple. Not selecting any will show the
         announcement to all users regardless of client.
+      # Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Note that the creation date of the user's most recently-created
+        observation is cached, so it might take a few hours for targeting to
+        take effect
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
+      target_users_by_donation_behavior: Target users other by identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
+      target_users_by_identification_behavior: Target users other by identification behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
+      target_users_by_observation_behavior: Target users other by observation behavior
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
+      target_users_by_other_attributes: Target users other by attributes
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |

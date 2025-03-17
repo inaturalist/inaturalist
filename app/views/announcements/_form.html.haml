@@ -66,6 +66,8 @@
           %h4
             %i.fa.fa-heart
             =t :donations
+          %p.text-muted
+            Target users by donation behavior
           .row
             .col-xs-2= f.text_field :include_donor_start_date, type: "date"
             .col-xs-2= f.text_field :include_donor_end_date, type: "date"
@@ -76,20 +78,28 @@
           %h4
             %i.fa.fa-binoculars
             =t :observations
+          %p.text-muted=t "views.announcements.target_users_by_observation_behavior"
           .row
             .col-xs-2= f.text_field :min_observations, type: "number", min: 0
             .col-xs-2= f.text_field :max_observations, type: "number", min: 0
-            .col-xs-2= f.text_field :last_observation_start_date, type: "date"
-            .col-xs-2= f.text_field :last_observation_end_date, type: "date"
+            .col-xs-4
+              .row
+                .col-xs-6= f.text_field :last_observation_start_date, type: "date"
+                .col-xs-6= f.text_field :last_observation_end_date, type: "date"
+              .row
+                .col-xs-12
+                  %p.text-muted=t "views.announcements.last_observation_date_desc"
           %h4
             %i.icon-identification
             =t :identifications
+          %p.text-muted=t "views.announcements.target_users_by_identification_behavior"
           .row
             .col-xs-2= f.text_field :min_identifications, type: "number", min: 0
             .col-xs-2= f.text_field :max_identifications, type: "number", min: 0
           %h4
             %i.fa.fa-user
             =t :users
+          %p.text-muted=t "views.announcements.target_users_by_other_attributes"
           .row
             .col-xs-2= f.text_field :user_created_start_date, type: "date"
             .col-xs-2= f.text_field :user_created_end_date, type: "date"
