@@ -219,7 +219,8 @@ class ActivityItem extends React.Component {
       let canAgree = false;
       let userAgreedToThis;
       if (
-        item.current
+        loggedIn
+        && item.current
         && item.firstDisplay
         && item.user.id !== config.currentUser.id
         && ( item.taxon && item.taxon.is_active )
