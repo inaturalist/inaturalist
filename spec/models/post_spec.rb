@@ -224,4 +224,21 @@ describe Post do
       end
     end
   end
+
+  describe "search" do
+    it "returns search results" do
+      user = User.make!
+      post1 = Post.make!( title: "nonsense title", body: "this is a test", parent: user )
+      post2 = Post.make!( title: "this is a test", body: "nonsense body", parent: user )
+      expect( Post.dbsearch( user, "test" ).size ).to eq 2
+      expect( Post.dbsearch( user, "test" ) ).to include( post1 )
+      expect( Post.dbsearch( user, "test" ) ).to include( post2 )
+
+      expect( Post.dbsearch( user, "title" ).size ).to eq 1
+      expect( Post.dbsearch( user, "title" ) ).to include( post1 )
+
+      expect( Post.dbsearch( user, "body" ).size ).to eq 1
+      expect( Post.dbsearch( user, "body" ) ).to include( post2 )
+    end
+  end
 end
