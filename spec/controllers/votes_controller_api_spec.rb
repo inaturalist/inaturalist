@@ -3,7 +3,7 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a basic VotesController" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
   describe "vote" do
     let( :o ) { Observation.make! }
@@ -26,7 +26,7 @@ shared_examples_for "a basic VotesController" do
 end
 
 shared_examples_for "a VotesController" do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
   describe "vote" do
     let( :o ) { Observation.make! }

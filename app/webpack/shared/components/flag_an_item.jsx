@@ -7,10 +7,12 @@ const FlagAnItem = ( {
   item,
   itemTypeLabel,
   manageFlagsPath,
-  setFlaggingModalState
+  setFlaggingModalState,
+  performOrOpenConfirmationModal
 } ) => {
   const loggedIn = config.currentUser;
   const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
+  const userCanInteract = config?.currentUserCanInteractWithResource( item );
   if ( unresolvedFlags.length > 0 ) {
     const groupedFlags = _.groupBy( unresolvedFlags, f => ( f.flag ) );
     let flagQualifier;
@@ -19,7 +21,7 @@ const FlagAnItem = ( {
     } else if ( groupedFlags.inappropriate ) {
       flagQualifier = "inappropriate";
     }
-    const editLink = loggedIn
+    const editLink = userCanInteract
       ? (
         <a href={manageFlagsPath} className="view">
           { I18n.t( "add_edit_flags" ) }
@@ -47,7 +49,11 @@ const FlagAnItem = ( {
       <button
         type="button"
         className="btn btn-nostyle linky"
-        onClick={( ) => setFlaggingModalState( { item, show: true } )}
+        onClick={( ) => performOrOpenConfirmationModal( ( ) => {
+          setFlaggingModalState( { item, show: true } );
+        }, {
+          permitOwnerOf: item
+        } )}
       >
         { I18n.t( "flag_as_inappropriate" ) }
       </button>
@@ -70,7 +76,8 @@ FlagAnItem.propTypes = {
   setFlaggingModalState: PropTypes.func,
   manageFlagsPath: PropTypes.string,
   item: PropTypes.object,
-  itemTypeLabel: PropTypes.string.isRequired
+  itemTypeLabel: PropTypes.string.isRequired,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 export default FlagAnItem;

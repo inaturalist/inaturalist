@@ -14,8 +14,8 @@ import { showAlert } from "../../../shared/ducks/alert_modal";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 import { updateSession } from "../../show/ducks/users";
 import { setConfig } from "../../../shared/ducks/config";
+import { parseRailsErrorsResponse, isDisagreement } from "../../../shared/util";
 import { updateEditorContent } from "../../shared/ducks/text_editors";
-import { isDisagreement } from "../../../shared/util";
 
 const POST_IDENTIFICATION = "post_identification";
 const AGREEING_WITH_OBSERVATION = "agreeing_with_observation";
@@ -34,10 +34,18 @@ function postIdentification( params ) {
       delete body.identification.taxon;
     }
     return inatjs.identifications.create( body ).catch( e => {
-      dispatch( showAlert(
-        I18n.t( "failed_to_save_record" ),
-        { title: I18n.t( "request_failed" ) }
-      ) );
+      e.response.text( ).then( text => {
+        const railsErrors = parseRailsErrorsResponse( text ) || [I18n.t( "failed_to_save_record" )];
+        dispatch( showAlert(
+          railsErrors.join( "," ),
+          { title: I18n.t( "request_failed" ) }
+        ) );
+      } ).catch( ( ) => {
+        dispatch( showAlert(
+          I18n.t( "failed_to_save_record" ),
+          { title: I18n.t( "request_failed" ) }
+        ) );
+      } );
       throw e;
     } );
   };

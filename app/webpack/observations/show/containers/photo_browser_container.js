@@ -7,6 +7,7 @@ import {
   showModeratorActionForm,
   revealHiddenContent
 } from "../../../shared/ducks/moderator_actions";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   return {
@@ -26,7 +27,10 @@ function mapDispatchToProps( dispatch ) {
     setFlaggingModalState: state => dispatch( setFlaggingModalState( state ) ),
     hideContent: item => dispatch( showModeratorActionForm( item, "hide" ) ),
     unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) ),
-    revealHiddenContent: item => dispatch( revealHiddenContent( item ) )
+    revealHiddenContent: item => dispatch( revealHiddenContent( item ) ),
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

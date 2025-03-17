@@ -12,7 +12,7 @@ describe CuratorApplicationsController do
   end
 
   let( :eligible_user ) do
-    user = create :user, created_at: 100.days.ago
+    user = make_user_with_privilege( UserPrivilege::INTERACTION, created_at: 100.days.ago )
     allow( user ).to receive( :flags ) { OpenStruct.new_recursive( count: 10 ) }
     5.times { create( :flag, user: user ) }
     stub_idents_count
@@ -23,7 +23,7 @@ describe CuratorApplicationsController do
     render_views
 
     it "should show an error about account age if user signed up in the last 60 days" do
-      user = create :user
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
       stub_idents_count
       5.times { create( :flag, user: user ) }
       sign_in user
@@ -33,7 +33,7 @@ describe CuratorApplicationsController do
     end
 
     it "should show an error message about flags if viewer has fewer than 5 flags" do
-      user = create :user, created_at: 100.days.ago
+      user = make_user_with_privilege( UserPrivilege::INTERACTION, created_at: 100.days.ago )
       stub_idents_count
       sign_in user
       expect( user.flags.count ).to be < 5
@@ -43,7 +43,7 @@ describe CuratorApplicationsController do
     end
 
     it "should show an error message about idents if viewer has fewer than 100 improving idents" do
-      user = create :user, created_at: 100.days.ago
+      user = make_user_with_privilege( UserPrivilege::INTERACTION, created_at: 100.days.ago )
       5.times { create( :flag, user: user ) }
       sign_in user
       get :new

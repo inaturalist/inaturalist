@@ -13,7 +13,7 @@ import UserAutocomplete from "../../../observations/identify/components/user_aut
 import RegularForm from "./regular_form";
 import UmbrellaForm from "./umbrella_form";
 import SharedForm from "./shared_form";
-import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 import UserImage from "../../../shared/components/user_image";
 
 class ProjectForm extends React.Component {

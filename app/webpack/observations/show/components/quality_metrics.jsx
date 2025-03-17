@@ -24,9 +24,11 @@ class QualityMetrics extends React.Component {
   ) {
     const {
       config,
+      observation,
       unvoteMetric,
       voteMetric
     } = this.props;
+    const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     const votesCount = loading ? (
       <div className="loading_spinner" />
     ) : (
@@ -37,7 +39,7 @@ class QualityMetrics extends React.Component {
       />
     );
     // Disable voting if requested, but always allow unvoting
-    const thumb = config && config.currentUser && (
+    const thumb = userCanInteract && (
       <button
         type="button"
         className="btn btn-nostyle"
@@ -78,10 +80,10 @@ class QualityMetrics extends React.Component {
       unvoteMetric,
       voteMetric
     } = this.props;
-    const loggedIn = config && config.currentUser;
+    const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     const needsIDInfo = this.infoForMetric( "needs_id" );
     if (
-      !loggedIn
+      !userCanInteract
       && _.isEmpty( needsIDInfo.votersFor )
       && _.isEmpty( needsIDInfo.votersAgainst )
     ) {
@@ -107,7 +109,7 @@ class QualityMetrics extends React.Component {
       );
     const needsIDVoteDisabled = !observation.communityTaxon
       && !this.metricHasVotes( "needs_id" );
-    const checkboxYes = loggedIn
+    const checkboxYes = userCanInteract
       ? (
         <input
           type="checkbox"
@@ -126,7 +128,7 @@ class QualityMetrics extends React.Component {
         />
       )
       : null;
-    const checkboxNo = loggedIn
+    const checkboxNo = userCanInteract
       ? (
         <input
           type="checkbox"

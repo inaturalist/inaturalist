@@ -229,4 +229,20 @@ describe GuidesController, "import_tags_from_csv_template" do
       expect( names ).to include gt.name
     end
   end
+
+  describe GuidesController, "new" do
+    it "loads for users with interaction privilege" do
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
+      sign_in user
+      get :new
+      expect( response ).to be_successful
+    end
+    it "redirects users without interaction privilege" do
+      user = User.make!
+      sign_in user
+      get :new
+      expect( response ).to be_redirect
+      expect( flash.notice ).to eq "must have a confirmed email address to do that"
+    end
+  end
 end

@@ -29,7 +29,11 @@ describe DarwinCore::Occurrence do
   end
 
   describe "identifier fields" do
-    let( :pa ) { ProviderAuthorization.make!( provider_name: "orcid", provider_uid: "0000-0001-0002-0003" ) }
+    let( :pa ) do
+      authorization = ProviderAuthorization.make!( provider_name: "orcid", provider_uid: "0000-0001-0002-0003" )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: authorization.user )
+      authorization
+    end
     let( :o ) { make_research_grade_candidate_observation }
     let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
     let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
@@ -102,7 +106,7 @@ describe DarwinCore::Occurrence do
           controlled_attribute: @controlled_attribute,
           controlled_value: make_controlled_value_with_label( "Female", @controlled_attribute )
         )
-        annotation.vote_by voter: User.make!, vote: "bad"
+        annotation.vote_by voter: make_user_with_privilege( UserPrivilege::INTERACTION ), vote: "bad"
         expect( DarwinCore::Occurrence.adapt( annotation.resource ).gbif_sex ).to be_blank
       end
     end

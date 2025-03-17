@@ -1168,7 +1168,7 @@ describe Observation do
         Identification.make!( observation: o, taxon: o.taxon )
         o.reload
         expect( o.community_taxon.rank ).to eq Taxon::ORDER
-        o.downvote_from User.make!, vote_scope: "needs_id"
+        o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
         o.reload
         expect( o.quality_grade ).to eq Observation::CASUAL
       end
@@ -1181,7 +1181,7 @@ describe Observation do
         end
         o.reload
         expect( o.community_taxon ).to eq t
-        o.downvote_from User.make!, vote_scope: "needs_id"
+        o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
         o.reload
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
@@ -1194,7 +1194,7 @@ describe Observation do
         end
         o.reload
         expect( o.community_taxon ).to eq t
-        o.downvote_from User.make!, vote_scope: "needs_id"
+        o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
         o.reload
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
@@ -1275,7 +1275,7 @@ describe Observation do
             expect( o.quality_grade ).to eq Observation::NEEDS_ID
           end
           it "should be research if it has been voted out of needs_id" do
-            o.downvote_from User.make!, vote_scope: "needs_id"
+            o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
             o.reload
             expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
           end
@@ -1335,7 +1335,7 @@ describe Observation do
           2.times { Identification.make!( observation: o, taxon: genus ) }
           o.reload
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
-          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
           o.reload
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
@@ -1345,7 +1345,7 @@ describe Observation do
           o = make_research_grade_candidate_observation( taxon: subgenus, user: u )
           Identification.make!( observation: o, taxon: subgenus )
           o.reload
-          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
           o.reload
           expect( o.community_taxon ).to eq subgenus
           expect( o.taxon ).to eq subgenus
@@ -1358,7 +1358,7 @@ describe Observation do
           o = make_research_grade_candidate_observation( taxon: subfamily, user: u )
           Identification.make!( observation: o, taxon: subfamily )
           o.reload
-          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.downvote_from make_user_with_privilege( UserPrivilege::INTERACTION ), vote_scope: "needs_id"
           o.reload
           expect( o.community_taxon ).to eq subfamily
           expect( o.taxon ).to eq subfamily
@@ -1645,7 +1645,7 @@ describe Observation do
     end
 
     it "should delete associated updates" do
-      subscriber = User.make!
+      subscriber = UserPrivilege.make!( privilege: UserPrivilege::INTERACTION ).user
       user = User.make!
       Subscription.make!( user: subscriber, resource: user )
       o = Observation.make( user: user )

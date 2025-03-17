@@ -17,6 +17,14 @@ body > div > [role="dialog"] .modal-body {
       color: #333333;
     }
   }
+  &.EmailConfirmation {
+    p {
+      font-size: 14px;
+    }
+    .text > p:first-child {
+      font-size: 18px;
+    }
+  }
   .modal-dialog {
     width: 500px;
     margin-top: 100px;

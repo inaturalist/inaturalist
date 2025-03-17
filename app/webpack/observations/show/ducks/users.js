@@ -1,5 +1,5 @@
 import inatjs from "inaturalistjs";
-import { setConfig } from "../../../shared/ducks/config";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 
 const UPDATE_SESSION = "obs-show/users/UPDATE_SESSION";
 
@@ -24,7 +24,7 @@ export function updateSession( params ) {
     const { config } = getState( );
     if ( !config || !config.currentUser ) { return null; }
     const updatedUser = Object.assign( { }, config.currentUser, params );
-    dispatch( setConfig( { currentUser: updatedUser } ) );
+    dispatch( updateCurrentUser( { currentUser: updatedUser } ) );
     return inatjs.users.update_session( params ).catch( e => { } );
   };
 }

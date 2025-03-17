@@ -2,10 +2,12 @@
   text-align: center;
   background: #74ac00;
   color: white;
-  padding: 10px;
   font-size: 14px;
   line-height: 18px;
   display: block;
+  & > div > div {
+    padding: 10px;
+  }
   .email {
     font-weight: 700;
   }
@@ -22,5 +24,36 @@
     font-family: inherit;
     font-size: inherit;
     cursor: pointer;
+  }
+}
+
+body div[role="dialog"] .ConfirmModal.EmailConfirmation {
+  .modal-dialog {
+    width: 500px;
+    margin-top: 100px;
+  }
+  .text {
+    margin-left: 10px;
+    font-size: 14px;
+    & > div > p:first-child {
+      font-size: 18px;
+    }
+  }
+  .buttons {
+    text-align: center;
+    button {
+      min-width: 100px;
+      margin: 0px 10px;
+    }
+  }
+}
+
+body .confirm-to-interact, body .confirm-to-interact.bootstrap {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 15px;
+  text-align: center;
+  .confirm-button {
+    padding-top: 15px;
   }
 }

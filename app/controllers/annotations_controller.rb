@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class AnnotationsController < ApplicationController
-  before_action :doorkeeper_authorize!, if: ->{ authenticate_with_oauth? }
-  before_action :authenticate_user!, unless: ->{ authenticated_with_oauth? }
+  before_action :doorkeeper_authorize!, if: -> { authenticate_with_oauth? }
+  before_action :authenticate_user!, unless: -> { authenticated_with_oauth? }
   before_action :load_record, only: [:show, :update, :destroy]
 
   def show
@@ -14,21 +16,22 @@ class AnnotationsController < ApplicationController
   end
 
   def create
-    p = annotation_params(params[:annotation])
-    @annotation = Annotation.new(p)
-    if !@annotation.save
+    p = annotation_params( params[:annotation] )
+    @annotation = Annotation.new( p )
+    unless @annotation.save
       flash[:error] = @annotation.errors.full_messages.to_sentence
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         redirect_to @annotation.resource
       end
       format.json do
         if @annotation.errors.any?
-          head :bad_request
+          render status: :unprocessable_entity,
+            json: { error: @annotation.errors.full_messages }
         else
           @annotation.reload
-          render :json => @annotation.as_json
+          render json: @annotation.as_json
         end
       end
     end
@@ -50,7 +53,7 @@ class AnnotationsController < ApplicationController
 
   private
 
-  def annotation_params(p)
+  def annotation_params( p )
     p[:user_id] ||= current_user.id
     p.permit(
       :resource_id,

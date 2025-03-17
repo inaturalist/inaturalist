@@ -83,6 +83,7 @@ class Projects extends React.Component {
     } = this.props;
     const { open } = this.state;
     const loggedIn = config && config.currentUser;
+    const userCanInteract = config?.currentUserCanInteractWithResource( observation );
 
     const projectsOrProjObs = observation.non_traditional_projects
       ? _.cloneDeep( observation.non_traditional_projects )
@@ -104,14 +105,14 @@ class Projects extends React.Component {
       !observation
       || !observation.user
       || (
-        !loggedIn
+        !userCanInteract
         && projectsOrProjObs.length === 0
       )
     ) {
       return ( <span /> );
     }
     let addProjectInput;
-    if ( loggedIn ) {
+    if ( userCanInteract ) {
       let projectAdditionNotice;
       if ( config.currentUser.id !== observation.user.id && observation.user.preferences ) {
         if ( observation.user.preferences.prefers_project_addition_by === "none" ) {

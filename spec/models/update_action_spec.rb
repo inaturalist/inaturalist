@@ -35,7 +35,7 @@ describe UpdateAction do
     end
 
     describe "with user preferences should filter" do
-      let( :user ) { User.make! }
+      let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
       def test_preference( preference, &block )
         emailer_spy = spy( Emailer )

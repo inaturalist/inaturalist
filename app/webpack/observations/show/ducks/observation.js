@@ -16,7 +16,7 @@ import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions, resetSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
-import { setConfirmModalState, handleAPIError } from "./confirm_modal";
+import { setConfirmModalState, handleAPIError } from "../../../shared/ducks/confirm_modal";
 import { updateSession } from "./users";
 import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 import RejectedFilesError from "../../../shared/components/rejected_files_error";

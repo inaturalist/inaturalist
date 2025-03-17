@@ -3,7 +3,7 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 describe FlagsController do
-  let( :user ) { User.make! }
+  let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   let( :token ) do
     double acceptable?: true, accessible?: true, resource_owner_id: user.id, application: OauthApplication.make!
   end

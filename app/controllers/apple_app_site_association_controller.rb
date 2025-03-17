@@ -43,7 +43,11 @@ class AppleAppSiteAssociationController < ApplicationController
         }
       end
     end
-    return render_404 if applinks_details.blank?
+    if applinks_details.blank?
+      return render_404 if response.blank?
+
+      return render json: response
+    end
 
     response[:applinks] = {
       apps: [],

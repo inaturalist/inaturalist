@@ -1,13 +1,14 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe ActsAsVotable::Vote do
-
   it "associated with proper votables" do
-    u = User.make!
-    obs = Observation.make!(id: 100)
-    ident = Identification.make!(id: 100)
-    u.vote_up_for(obs)
-    u.vote_up_for(ident)
+    u = make_user_with_privilege( UserPrivilege::INTERACTION )
+    obs = Observation.make!( id: 100 )
+    ident = Identification.make!( id: 100 )
+    u.vote_up_for( obs )
+    u.vote_up_for( ident )
     expect( obs.id ).to eq ident.id
     # first vote has an obs, not an ident, even though they have the same ID
     expect( ActsAsVotable::Vote.first.observation ).to eq obs
@@ -16,6 +17,4 @@ describe ActsAsVotable::Vote do
     expect( ActsAsVotable::Vote.last.observation ).to be_nil
     expect( ActsAsVotable::Vote.last.identification ).to eq ident
   end
-
-
 end

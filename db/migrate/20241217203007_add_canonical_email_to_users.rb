@@ -6,4 +6,3 @@ class AddCanonicalEmailToUsers < ActiveRecord::Migration[6.1]
     add_index :users, :canonical_email
   end
 end
-

@@ -35,7 +35,7 @@ describe DeviseMailer, "confirmation_instructions" do
         expect( EmailSuppression.find_by_id( suppression.id ) ).to be_blank
       end
 
-      it "should try delete to delete a bounce suppression on Sendgrid" do
+      it "should try to delete a bounce suppression on Sendgrid" do
         expect( RestClient ).to have_received( :delete )
       end
     end

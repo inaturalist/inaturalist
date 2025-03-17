@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Banner from "../components/banner";
-import { confirmResendConfirmation } from "../reducers/reducer";
+import { confirmResendConfirmation } from "../../../shared/ducks/user_confirmation";
 
 function mapStateToProps( state ) {
   return {

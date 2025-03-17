@@ -27,6 +27,7 @@ const SET_HISTORY_LAYOUT = "observations-compare/compare/SET_HISTORY_LAYOUT";
 const SET_HISTORIES = "observations-compare/compare/SET_HISTORIES";
 const SET_HISTORY_INTERVAL = "observations-compare/compare/SET_HISTORY_INTERVAL";
 const SET_COLOR_SCHEME = "observations-compare/compare/SET_COLOR_SCHEME";
+const SET_ATTRIBUTES = "observations-compare/compare/SET_ATTRIBUTES";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -209,6 +210,8 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       newState.queries = colorizeQueries( newState );
       setUrl( newState );
       break;
+    case SET_ATTRIBUTES:
+      return { ...state, ...action.attributes };
     default:
       // nothing to see here
   }
@@ -244,6 +247,13 @@ export default function reducer( state = DEFAULT_STATE, action ) {
     }
   } );
   return newState;
+}
+
+export function setAttributes( attributes ) {
+  return {
+    type: SET_ATTRIBUTES,
+    attributes
+  };
 }
 
 export function setTab( tab ) {

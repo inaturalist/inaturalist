@@ -64,4 +64,12 @@ $( function ( ) {
   $( "a.muting" ).each( function ( ) {
     setupMuteAction( $( this ) );
   } );
+
+  $( "a.friend_link" ).click( function ( e ) {
+    if ( $( "#emailConfirmationModalButton.lacking-interaction" ).length === 1 ) {
+      $( "#emailConfirmationModalButton.lacking-interaction" ).click( );
+      e.preventDefault( );
+      e.stopPropagation( );
+    }
+  } );
 } );

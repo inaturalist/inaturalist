@@ -3,6 +3,13 @@ class Subscription < ApplicationRecord
   belongs_to :user
   belongs_to :taxon # in case this subscription has taxonomic specifity
 
+  # TODO: uncomment to strictly enforce email confirmation for interaction
+  # requires_privilege :interaction, if: proc {| subscription |
+  #   subscription.resource_type == "Observation" || resource_type == "User"
+  # }, unless: proc {| subscription |
+  #   subscription.resource.respond_to?( :user ) && subscription.resource.user.id == subscription.user_id
+  # }
+
   blockable_by lambda {|subscription| subscription.resource.try(:user_id) }
 
   after_save :clear_caches

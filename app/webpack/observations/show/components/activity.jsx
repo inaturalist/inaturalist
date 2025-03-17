@@ -200,7 +200,8 @@ Activity.propTypes = {
   trustUser: PropTypes.func,
   untrustUser: PropTypes.func,
   updateEditorContent: PropTypes.func,
-  showHidden: PropTypes.func
+  showHidden: PropTypes.func,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 export default Activity;

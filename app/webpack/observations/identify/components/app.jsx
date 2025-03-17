@@ -11,9 +11,8 @@ import AlertModalContainer from "../../../shared/containers/alert_modal_containe
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
-import TestGroupToggle from "../../../shared/components/test_group_toggle";
 import FlashMessage from "../../show/components/flash_message";
-import ConfirmModalContainer from "../../show/containers/confirm_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
 
 const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
@@ -41,14 +40,18 @@ const App = ( { sideBarHidden, setSideBarHidden, config } ) => (
       <Row className={`mainrow ${sideBarHidden && "side-bar-hidden"}`}>
         <div className="main-col">
           <ObservationsGridContainer />
-          <PaginationControlContainer />
+          { config?.currentUser?.privilegedWith( "interaction" ) && (
+            <PaginationControlContainer />
+          ) }
           <FinishedModalContainer />
         </div>
-        <SideBar
-          blind={config.blind}
-          hidden={sideBarHidden}
-          setSideBarHidden={setSideBarHidden}
-        />
+        { config?.currentUser?.privilegedWith( "interaction" ) && (
+          <SideBar
+            blind={config.blind}
+            hidden={sideBarHidden}
+            setSideBarHidden={setSideBarHidden}
+          />
+        ) }
       </Row>
       <ObservationModalContainer />
       <AlertModalContainer />

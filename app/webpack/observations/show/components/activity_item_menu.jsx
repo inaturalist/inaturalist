@@ -17,7 +17,8 @@ const ActivityItemMenu = ( {
   trustUser,
   untrustUser,
   hideContent,
-  unhideContent
+  unhideContent,
+  performOrOpenConfirmationModal
 } ) => {
   if ( !item ) { return ( <div /> ); }
   if ( item.api_status ) {
@@ -319,7 +320,11 @@ const ActivityItemMenu = ( {
           id="grouping-control"
           onSelect={key => {
             if ( key === "flag" ) {
-              setFlaggingModalState( { item, show: true } );
+              performOrOpenConfirmationModal( ( ) => (
+                setFlaggingModalState( { item, show: true } )
+              ), {
+                permitOwnerOf: item
+              } );
             } else if ( key === "view-flags-for-comment" ) {
               window.open( `/comments/${item.uuid}/flags`, "_blank", "noopener,noreferrer" );
             } else if ( key === "view-flags-for-identification" ) {
@@ -370,7 +375,8 @@ ActivityItemMenu.propTypes = {
   trustUser: PropTypes.func,
   untrustUser: PropTypes.func,
   hideContent: PropTypes.func,
-  unhideContent: PropTypes.func
+  unhideContent: PropTypes.func,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 export default ActivityItemMenu;

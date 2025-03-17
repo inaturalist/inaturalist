@@ -269,7 +269,8 @@ CommunityIDModal.propTypes = {
   observation: PropTypes.object,
   setCommunityIDModalState: PropTypes.func,
   show: PropTypes.bool,
-  config: PropTypes.object
+  config: PropTypes.object,
+  performOrOpenConfirmationModal: PropTypes.func
 };
 
 CommunityIDModal.defaultProps = {

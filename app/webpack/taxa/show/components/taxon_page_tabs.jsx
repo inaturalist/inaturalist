@@ -62,7 +62,7 @@ class TaxonPageTabs extends React.Component {
     const flagsCount = taxon.flag_counts
       ? parseInt( taxon.flag_counts.resolved, 10 ) + parseInt( taxon.flag_counts.unresolved, 10 )
       : 0;
-    if ( currentUser && currentUser.id ) {
+    if ( currentUser?.privilegedWith( "interaction" ) ) {
       const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
       const isAdmin = currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;

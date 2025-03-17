@@ -12,8 +12,11 @@ class ConfirmModal extends Component {
   }
 
   close( ) {
-    const { setConfirmModalState } = this.props;
-    setConfirmModalState( { show: false } );
+    const { updateConfirmModalState, preventClose } = this.props;
+    if ( preventClose ) {
+      return;
+    }
+    updateConfirmModalState( { show: false } );
   }
 
   confirm( ) {
@@ -80,11 +83,33 @@ class ConfirmModal extends Component {
         </span>
       );
     }
+    if ( type === "EmailConfirmation" ) {
+      const userEmail = message;
+      messageElt = (
+        <div>
+          <p>{I18n.t( "views.email_confirmation.please_confirm_to_interact_and_access" )}</p>
+          <p>{I18n.t( "views.email_confirmation.here_is_the_email_colon" )}</p>
+          <pre className="text-center text-large">{userEmail}</pre>
+          <p>
+            {I18n.t( "views.email_confirmation.if_you_do_not_receive_the_email_here_are_tips_colon" )}
+          </p>
+          <ul>
+            <li><p>{I18n.t( "views.email_confirmation.tips_check_your_spam_folder" )}</p></li>
+            <li><p>{I18n.t( "views.email_confirmation.tips_check_email_filters" )}</p></li>
+          </ul>
+          <p dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.email_confirmation.if_you_are_still_not_receiving_email_contact_us_html" )
+          }}
+          />
+        </div>
+      );
+    }
     const confirmMessage = messageElt || message;
     return (
       <Modal
         show={show}
         className={`ConfirmModal confirm ${type}`}
+        backdropClassName="bootstrap-modal"
         onHide={this.cancel}
       >
         <Modal.Body>
@@ -124,9 +149,10 @@ ConfirmModal.propTypes = {
   onConfirm: PropTypes.func,
   cancelText: PropTypes.string,
   confirmText: PropTypes.string,
-  setConfirmModalState: PropTypes.func,
+  updateConfirmModalState: PropTypes.func,
   hideCancel: PropTypes.bool,
-  hideFooter: PropTypes.bool
+  hideFooter: PropTypes.bool,
+  preventClose: PropTypes.bool
 };
 
 export default ConfirmModal;

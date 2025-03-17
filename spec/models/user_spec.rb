@@ -690,7 +690,7 @@ describe User do
 
     it "should reindex observations faved by the user" do
       o = Observation.make!
-      u = User.make!
+      u = make_user_with_privilege( UserPrivilege::INTERACTION )
       o.vote_by voter: u, vote: true
       es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
       expect( es_response.votes.size ).to eq 1
@@ -711,7 +711,11 @@ describe User do
   describe "sane_destroy" do
     elastic_models( Observation )
 
-    let( :user ) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
+    let( :user ) do
+      user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      user
+    end
 
     it "should destroy the user" do
       user.sane_destroy
@@ -949,8 +953,12 @@ describe User do
   end
 
   describe "suspension" do
-    let( :from_user ) { UserPrivilege.make!.user }
-    let( :to_user ) { UserPrivilege.make!.user }
+    let( :from_user ) do
+      from_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: from_user, privilege: UserPrivilege::INTERACTION )
+      from_user
+    end
+    let( :to_user ) { UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user }
     let( :sent_message ) do
       m = make_message( user: from_user, from_user: from_user, to_user: to_user )
       m.send_message
@@ -992,7 +1000,9 @@ describe User do
     it "sends unsent messages only by unsuspend user" do
       # Set up users who have the privilege to send messages
       bad_user = make_user_with_privilege( UserPrivilege::SPEECH )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: bad_user )
       good_user = make_user_with_privilege( UserPrivilege::SPEECH )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: good_user )
 
       # Create and send messages (sending usually happens in the controller)
       bad_msg = create( :message, user: bad_user )
@@ -1071,8 +1081,8 @@ describe User do
   describe "merge" do
     elastic_models( Observation, Identification )
 
-    let( :keeper ) { User.make! }
-    let( :reject ) { User.make! }
+    let(:keeper) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
+    let(:reject) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "should move observations" do
       o = Observation.make!( user: reject )
@@ -1256,7 +1266,7 @@ describe User do
       o = Observation.make!
       o.vote_by voter: keeper, vote: true
       o.vote_by voter: reject, vote: true
-      expect { keeper.merge( reject ) }.not_to raise_error( ActiveRecord::RecordNotUnique )
+      expect { keeper.merge( reject ) }.not_to raise_error
     end
 
     describe "user_parents" do
@@ -1482,7 +1492,7 @@ describe User do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
 
-    let( :u ) { User.make! }
+    let( :u ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
     let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
     let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
     let( :subspecies ) { Taxon.make!( rank: Taxon::SUBSPECIES, parent: species ) }
@@ -1539,8 +1549,12 @@ describe User do
   describe "when flagged as spam" do
     elastic_models( Observation, Identification, Project )
 
-    let( :user ) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
-    let( :flagger ) { User.make! }
+    let( :user ) do
+      user = make_user_with_privilege( UserPrivilege::ORGANIZER )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      user
+    end
+    let( :flagger ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
 
     it "should reindex observations as spam" do
       o = Observation.make!( user: user )

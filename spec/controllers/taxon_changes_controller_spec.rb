@@ -19,7 +19,7 @@ end
 
 describe TaxonChangesController, "commit_records" do
   let(:tc) { make_taxon_swap }
-  let(:u) { User.make! }
+  let(:u) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   before do
     sign_in u
   end

@@ -321,22 +321,22 @@ class User < ApplicationRecord
   ].freeze
 
   # Regexes from restful_authentication
-  LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
-  login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
-  
-  validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
-  validates_uniqueness_of   :login
-  validates_format_of       :login,     with: login_regex, message: :must_begin_with_a_letter
-  validates_exclusion_of    :login,     in: %w(password new edit create update delete destroy)
+  LOGIN_PATTERN = "[A-Za-z][\\\w\\\-_]+"
+  login_regex = /\A#{LOGIN_PATTERN}\z/ # ASCII, strict
 
-  validates_exclusion_of    :password,     in: %w(password)
+  validates_length_of :login, within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
+  validates_uniqueness_of :login
+  validates_format_of :login, with: login_regex, message: :must_begin_with_a_letter
+  validates_exclusion_of :login, in: %w(password new edit create update delete destroy)
 
-  validates_length_of       :name,      maximum: 100, allow_blank: true
+  validates_exclusion_of :password, in: %w(password)
 
-  validates_format_of       :email,     with: Devise.email_regexp,
+  validates_length_of :name, maximum: 100, allow_blank: true
+
+  validates_format_of :email, with: Devise.email_regexp,
     message: :must_look_like_an_email_address, allow_blank: true
-  validates_length_of       :email,     within: 6..100, allow_blank: true
-  validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validates_length_of :email, within: 6..100, allow_blank: true
+  validates_length_of :time_zone, minimum: 3, allow_nil: true
   validates_length_of :description, maximum: 10_000, if: -> { description_changed? }
   validate :validate_email_pattern
   validate :validate_email_domain_exists
@@ -344,11 +344,11 @@ class User < ApplicationRecord
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
-    order("? ?", sort_by, sort_dir)
+    order( "? ?", sort_by, sort_dir )
   }
-  scope :curators, -> { joins(:roles).where("roles.name IN ('curator', 'admin')") }
-  scope :admins, -> { joins(:roles).where("roles.name = 'admin'") }
-  scope :active, -> { where("suspended_at IS NULL") }
+  scope :curators, -> { joins( :roles ).where( "roles.name IN ('curator', 'admin')" ) }
+  scope :admins, -> { joins( :roles ).where( "roles.name = 'admin'" ) }
+  scope :active, -> { where( "suspended_at IS NULL" ) }
   scope :suspended, -> { where( "suspended_at IS NOT NULL" ) }
 
   def validate_email_pattern
@@ -1598,6 +1598,13 @@ class User < ApplicationRecord
 
   def privileged_with?( privilege )
     user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
+  end
+
+  def can_interact_with?( resource )
+    return true if privileged_with?( UserPrivilege::INTERACTION )
+    return true if resource&.user&.id == id
+
+    false
   end
 
   # Apparently some people, and maybe some third-party auth providers, sometimes

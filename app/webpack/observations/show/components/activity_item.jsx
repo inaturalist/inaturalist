@@ -171,7 +171,8 @@ class ActivityItem extends React.Component {
       showHidden,
       hideContent,
       unhideContent,
-      withdrawID
+      withdrawID,
+      performOrOpenConfirmationModal
     } = this.props;
     const { editing } = this.state;
 
@@ -180,6 +181,7 @@ class ActivityItem extends React.Component {
     }
     const { taxon } = item;
     const loggedIn = config && config.currentUser;
+    const userCanInteract = config?.currentUserCanInteractWithResource( observation );
     const canSeeHidden = config && config.currentUser && (
       config.currentUser.roles.indexOf( "admin" ) >= 0
       || config.currentUser.roles.indexOf( "curator" ) >= 0
@@ -230,7 +232,7 @@ class ActivityItem extends React.Component {
           canAgree = true;
         }
       }
-      if ( loggedIn && item.firstDisplay && !hideCompare ) {
+      if ( userCanInteract && item.firstDisplay && !hideCompare ) {
         let compareTaxonID = taxon.id;
         if ( taxon.rank_level <= 10 ) {
           compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
@@ -269,7 +271,9 @@ class ActivityItem extends React.Component {
             key={`id-agree-${item.uuid}`}
             className="btn btn-default btn-sm"
             onClick={() => {
-              addID( taxon, { agreedTo: item } );
+              performOrOpenConfirmationModal( ( ) => {
+                addID( taxon, { agreedTo: item } );
+              } );
             }}
             disabled={userAgreedToThis}
           >
@@ -569,6 +573,7 @@ class ActivityItem extends React.Component {
         untrustUser={untrustUser}
         hideContent={hideContent}
         unhideContent={unhideContent}
+        performOrOpenConfirmationModal={performOrOpenConfirmationModal}
       />
     );
     return (
@@ -623,6 +628,7 @@ ActivityItem.propTypes = {
   noTaxonLink: PropTypes.bool,
   observation: PropTypes.object,
   onClickCompare: PropTypes.func,
+  performOrOpenConfirmationModal: PropTypes.func,
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   showHidden: PropTypes.func,

@@ -21,15 +21,16 @@ describe Message do
 
   describe "flagging" do
     let( :serial_spammer ) do
-      user = UserPrivilege.make!.user
+      offender = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: offender, privilege: UserPrivilege::INTERACTION )
       3.times do
-        m = make_message( user: user, from_user: user )
+        m = make_message( user: offender, from_user: offender )
         m.send_message
         flag = Flag.make( flaggable: m, user: m.to_user, flag: Flag::SPAM )
         flag.save!
       end
-      user.reload
-      user
+      offender.reload
+      offender
     end
 
     it "should suspend the from_user if their messages have been flagged 3 times" do
@@ -37,8 +38,9 @@ describe Message do
     end
 
     it "should not destroy the flagger's copies of the messages in this thread" do
-      from_user = UserPrivilege.make!.user
-      to_user = UserPrivilege.make!.user
+      from_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: from_user, privilege: UserPrivilege::INTERACTION )
+      to_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       m = make_message( from_user: from_user, to_user: to_user, user: from_user )
       m.send_message
       flag = Flag.make( flaggable: m, user: m.to_user, flag: Flag::SPAM )
@@ -48,8 +50,9 @@ describe Message do
     end
 
     it "should not destroy the spammer's copies" do
-      from_user = UserPrivilege.make!.user
-      to_user = UserPrivilege.make!.user
+      from_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: from_user, privilege: UserPrivilege::INTERACTION )
+      to_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
       m = make_message( from_user: from_user, to_user: to_user, user: from_user )
       m.send_message
       flag = Flag.make( flaggable: m, user: m.to_user, flag: Flag::SPAM )
@@ -88,7 +91,11 @@ describe Message do
   end
 
   describe "send_message" do
-    let( :sender ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+    let( :sender ) do
+      sender = make_user_with_privilege( UserPrivilege::SPEECH )
+      UserPrivilege.make!( user: sender, privilege: UserPrivilege::INTERACTION )
+      sender
+    end
     it "should normally make a copy for the recipient" do
       m = Message.make!( user: sender, from_user: sender )
       m.reload
@@ -132,6 +139,41 @@ describe Message do
       expect( m.sent_at ).to be_blank
       m.send_message
       expect( m.sent_at ).to be_blank
+    end
+  end
+
+  describe "requires_privilege" do
+    let( :user ) { User.make! }
+
+    it "allows creation with speech and interaction" do
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::SPEECH )
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::INTERACTION )
+      m = Message.make( user: user, from_user: user )
+      expect( m ).to be_valid
+    end
+
+    it "disallows creation without speech" do
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::INTERACTION )
+      m = Message.make( user: user, from_user: user )
+      expect( m ).not_to be_valid
+      expect( m.errors.any? {| e | e.type == :requires_privilege_speech } ).to be true
+    end
+
+    # TODO: uncomment to strictly enforce email confirmation for interaction
+    it "disallows creation without interaction" do
+      pending( "fully enabled email confirmation for interaction" )
+      UserPrivilege.make!( user: user, privilege: UserPrivilege::SPEECH )
+      m = Message.make( user: user, from_user: user )
+      expect( m ).not_to be_valid
+      expect( m.errors.any? {| e | e.type == :requires_privilege_interaction } ).to be true
+    end
+
+    it "allows creation without speech or interaction for replies" do
+      existing_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+      UserPrivilege.make!( user: existing_user, privilege: UserPrivilege::INTERACTION )
+      m1 = Message.make!( user: existing_user, from_user: existing_user, to_user: user )
+      m2 = Message.make( user: user, from_user: user, to_user: m1.from_user, thread_id: m1.id )
+      expect( m2 ).to be_valid
     end
   end
 end

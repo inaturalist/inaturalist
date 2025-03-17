@@ -52,29 +52,27 @@ class ActivityCreatePanel extends React.Component {
     }
   }
 
-  render( ) {
+  commentContent( ) {
     const {
-      observation,
       config,
+      observation,
       content,
-      activeTab,
-      setActiveTab,
-      updateEditorContent
+      updateEditorContent,
+      confirmResendConfirmation
     } = this.props;
-    if ( !observation ) { return ( <div /> ); }
-    const loggedIn = config && config.currentUser;
-    // attempting to match the logic in the computervision/score_observation endpoint
-    // so we don't attempt to fetch vision results for obs which will have no results
-    const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
-      if ( !p.url || p.preview ) { return null; }
-      const mediumUrl = p.photoUrl( "medium" );
-      if ( mediumUrl && mediumUrl.match( /\/medium[./]/i ) ) {
-        return p;
-      }
-      return null;
-    } ) );
-    const commentContent = loggedIn
-      ? (
+    if ( !config?.currentUser ) {
+      return (
+        <span
+          className="log-in"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "log_in_or_sign_up_to_add_comments_html" )
+          }}
+        />
+      );
+    }
+    if ( config?.currentUserCanInteractWithResource( observation ) ) {
+      return (
         <div className="form-group">
           <TextEditor
             key={`comment-editor-${observation.id}-${_.size( observation.comments )}`}
@@ -86,16 +84,62 @@ class ActivityCreatePanel extends React.Component {
             onBlur={e => updateEditorContent( "activity", e.target.value )}
           />
         </div>
-      ) : (
+      );
+    }
+    return (
+      <div className="confirm-to-interact">
+        <div className="confirm-message">
+          { I18n.t( "views.email_confirmation.please_confirm_to_interact" ) }
+        </div>
+        <div className="confirm-button">
+          <a
+            href="/users/edit"
+            onClick={e => {
+              confirmResendConfirmation( );
+              e.preventDefault( );
+              e.stopPropagation( );
+            }}
+          >
+            <button type="button" className="btn btn-primary emailConfirmationModalTrigger">
+              { I18n.t( "send_confirmation_email" ) }
+            </button>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  idContent( ) {
+    const {
+      config,
+      observation,
+      content,
+      updateEditorContent,
+      confirmResendConfirmation
+    } = this.props;
+    if ( !( config && config.currentUser ) ) {
+      return (
         <span
           className="log-in"
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
-            __html: I18n.t( "log_in_or_sign_up_to_add_comments_html" )
+            __html: I18n.t( "log_in_or_sign_up_to_add_identifications_html" )
           }}
         />
       );
-    const idContent = loggedIn
-      ? (
+    }
+    if ( config?.currentUserCanInteractWithResource( observation ) ) {
+      // attempting to match the logic in the computervision/score_observation endpoint
+      // so we don't attempt to fetch vision results for obs which will have no results
+      const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
+        if ( !p.url || p.preview ) { return null; }
+        const mediumUrl = p.photoUrl( "medium" );
+        if ( mediumUrl && mediumUrl.match( /\/medium[./]/i ) ) {
+          return p;
+        }
+        return null;
+      } ) );
+      return (
         <div>
           <TaxonAutocomplete
             bootstrap
@@ -128,14 +172,39 @@ class ActivityCreatePanel extends React.Component {
             />
           </div>
         </div>
-      ) : (
-        <span
-          className="log-in"
-          dangerouslySetInnerHTML={{
-            __html: I18n.t( "log_in_or_sign_up_to_add_identifications_html" )
-          }}
-        />
       );
+    }
+    return (
+      // eslint-disable-next-line jsx-a11y/control-has-associated-label
+      <div className="confirm-to-interact">
+        <div className="confirm-message">
+          { I18n.t( "views.email_confirmation.please_confirm_to_interact" ) }
+        </div>
+        <div className="confirm-button">
+          <a
+            href="/users/edit"
+            onClick={e => {
+              confirmResendConfirmation( );
+              e.preventDefault( );
+              e.stopPropagation( );
+            }}
+          >
+            <button type="button" className="btn btn-primary emailConfirmationModalTrigger">
+              { I18n.t( "send_confirmation_email" ) }
+            </button>
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  render( ) {
+    const {
+      observation,
+      activeTab,
+      setActiveTab
+    } = this.props;
+    if ( !observation ) { return ( <div /> ); }
     const tabs = (
       <Tabs
         id="comment-id-tabs"
@@ -145,10 +214,10 @@ class ActivityCreatePanel extends React.Component {
         }}
       >
         <Tab eventKey="comment" title={I18n.t( "comment_" )} className="comment_tab">
-          { commentContent }
+          { this.commentContent( ) }
         </Tab>
         <Tab eventKey="add_id" title={I18n.t( "suggest_an_identification" )} className="id_tab">
-          { idContent }
+          { this.idContent( ) }
         </Tab>
       </Tabs>
     );
@@ -167,7 +236,8 @@ ActivityCreatePanel.propTypes = {
   addID: PropTypes.func,
   content: PropTypes.string,
   setActiveTab: PropTypes.func,
-  updateEditorContent: PropTypes.func
+  updateEditorContent: PropTypes.func,
+  confirmResendConfirmation: PropTypes.func
 };
 
 export default ActivityCreatePanel;

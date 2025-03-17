@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ConfirmModal from "../components/confirm_modal";
-import { setConfirmModalState } from "../ducks/confirm_modal";
+import { updateConfirmModalState } from "../ducks/confirm_modal";
 
 function mapStateToProps( state ) {
   return state.confirmModal;
@@ -8,7 +8,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setConfirmModalState: ( key, value ) => { dispatch( setConfirmModalState( key, value ) ); }
+    updateConfirmModalState: updatedState => dispatch( updateConfirmModalState( updatedState ) )
   };
 }
 

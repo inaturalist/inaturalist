@@ -24,7 +24,7 @@ import AnnotationsContainer from "../containers/annotations_container";
 import AssessmentContainer from "../containers/assessment_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
 import CommunityIDModalContainer from "../containers/community_id_modal_container";
-import ConfirmModalContainer from "../containers/confirm_modal_container";
+import ConfirmModalContainer from "../../../shared/containers/confirm_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 import CopyrightContainer from "../containers/copyright_container";
 import FavesContainer from "../containers/faves_container";
@@ -333,7 +333,7 @@ class App extends React.Component {
                       </MenuItem>
                     </SplitButton>
                   </Col>
-                ) : config && config.currentUser && ( <FollowButtonContainer /> ) }
+                ) : config?.currentUserCanInteractWithResource( observation ) && ( <FollowButtonContainer /> ) }
             </Row>
             <Row>
               <Col xs={12}>

@@ -1,21 +1,10 @@
-import _ from "lodash";
-import "core-js/stable";
 import moment from "moment";
-import "regenerator-runtime/runtime";
 import React from "react";
 import { render } from "react-dom";
-import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
-import {
-  createStore,
-  compose,
-  applyMiddleware,
-  combineReducers
-} from "redux";
-
 import inatjs from "inaturalistjs";
 import alertModal from "../../shared/ducks/alert_modal";
-import configReducer, { setConfig } from "../../shared/ducks/config";
+import { setConfig } from "../../shared/ducks/config";
 import userSettingsReducer, { fetchUserSettings } from "./ducks/user_settings";
 import sectionReducer, { setSelectedSectionFromHash } from "./ducks/app_sections";
 import sitesReducer, { fetchNetworkSites } from "./ducks/network_sites";
@@ -24,13 +13,13 @@ import deleteRelationshipModalReducer from "./ducks/delete_relationship_modal";
 import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from "./ducks/authorized_applications";
 import relationshipsReducer from "./ducks/relationships";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
-import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import confirmModalReducer from "../../shared/ducks/confirm_modal";
 import AppContainer from "./containers/app_container";
+import sharedStore from "../../shared/shared_store";
 
 moment.locale( I18n.locale );
 
-const rootReducer = combineReducers( {
-  config: configReducer,
+sharedStore.injectReducers( {
   profile: userSettingsReducer,
   sites: sitesReducer,
   revokeAccess: revokeAccessModalReducer,
@@ -43,24 +32,10 @@ const rootReducer = combineReducers( {
   alertModal
 } );
 
-const store = createStore(
-  rootReducer,
-  compose( ..._.compact( [
-    applyMiddleware( thunkMiddleware ),
-    // enable Redux DevTools if available
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__( )
-  ] ) )
-);
-
-if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( setConfig( {
-    currentUser: CURRENT_USER
-  } ) );
-}
 const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );
 const defaultApiUrl = element && element.getAttribute( "content" );
 if ( defaultApiUrl ) {
-  store.dispatch( setConfig( {
+  sharedStore.dispatch( setConfig( {
     testingApiV2: true
   } ) );
   inatjs.setConfig( {
@@ -70,22 +45,22 @@ if ( defaultApiUrl ) {
 }
 
 if ( window.location.hash ) {
-  store.dispatch( setSelectedSectionFromHash( window.location.hash ) );
+  sharedStore.dispatch( setSelectedSectionFromHash( window.location.hash ) );
 }
 
 window.onpopstate = e => {
   const { hash } = e.target.location;
-  store.dispatch( setSelectedSectionFromHash( hash ) );
+  sharedStore.dispatch( setSelectedSectionFromHash( hash ) );
 };
 
-store.dispatch( fetchUserSettings( null ) );
-store.dispatch( fetchNetworkSites( ) );
-store.dispatch( fetchAuthorizedApps( ) );
-store.dispatch( fetchProviderApps( ) );
+sharedStore.dispatch( fetchUserSettings( null ) );
+sharedStore.dispatch( fetchNetworkSites( ) );
+sharedStore.dispatch( fetchAuthorizedApps( ) );
+sharedStore.dispatch( fetchProviderApps( ) );
 
 render(
   // eslint-disable-next-line react/jsx-filename-extension
-  <Provider store={store}>
+  <Provider store={sharedStore}>
     <AppContainer />
   </Provider>,
   document.getElementById( "app" )

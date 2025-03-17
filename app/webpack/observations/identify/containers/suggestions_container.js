@@ -8,6 +8,7 @@ import {
   fetchSuggestions,
   fetchDetailTaxon
 } from "../ducks/suggestions";
+import { performOrOpenConfirmationModal } from "../../../shared/ducks/user_confirmation";
 import {
   onSubmitIdentification
 } from "../actions";
@@ -46,7 +47,10 @@ function mapDispatchToProps( dispatch, ownProps ) {
       dispatch( updateQuery( query, options ) );
       dispatch( fetchSuggestions( ) );
     },
-    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) ),
+    performOrOpenConfirmationModal: ( method, options = { } ) => (
+      dispatch( performOrOpenConfirmationModal( method, options ) )
+    )
   };
 }
 

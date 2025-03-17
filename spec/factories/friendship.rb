@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :friendship do
-    user
+    user { association( :user_privilege, privilege: UserPrivilege::INTERACTION ).user }
     friend { create :user }
   end
 end

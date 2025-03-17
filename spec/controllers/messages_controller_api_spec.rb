@@ -3,8 +3,16 @@
 require "#{File.dirname( __FILE__ )}/../spec_helper"
 
 shared_examples_for "a basic MessagesController" do
-  let( :user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
-  let( :to_user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
+  let( :to_user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
 
   it "should read a message" do
     message = make_message( user: user )
@@ -15,8 +23,16 @@ shared_examples_for "a basic MessagesController" do
 end
 
 shared_examples_for "a MessagesController" do
-  let( :user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
-  let( :to_user ) { make_user_with_privilege( UserPrivilege::SPEECH ) }
+  let( :user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
+  let( :to_user ) do
+    user = make_user_with_privilege( UserPrivilege::SPEECH )
+    UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+    user
+  end
 
   describe "create" do
     def post_message
@@ -238,6 +254,32 @@ shared_examples_for "a MessagesController" do
       get :count, format: :json
       json = JSON.parse( response.body )
       expect( json["count"] ).to eq 0
+    end
+  end
+
+  describe "new" do
+    it "loads for users with interaction and speech privilege" do
+      user = make_user_with_privilege( UserPrivilege::SPEECH )
+      UserPrivilege.make!( privilege: UserPrivilege::INTERACTION, user: user )
+      sign_in user
+      get :new
+      expect( response ).to be_successful
+    end
+    it "redirects users without interaction privilege" do
+      user = make_user_with_privilege( UserPrivilege::SPEECH )
+      sign_in user
+      get :new
+      expect( response ).to be_redirect
+      expect( flash.notice ).to eq "must have a confirmed email address to do that"
+    end
+    it "redirects users without speech privilege" do
+      user = make_user_with_privilege( UserPrivilege::INTERACTION )
+      sign_in user
+      get :new
+      expect( response ).to be_redirect
+      expect( flash.notice ).to match(
+        /must have three verifiable observations or three identifications/
+      )
     end
   end
 end

@@ -12,7 +12,7 @@ describe Friendship do
     describe "subscriptions" do
       before { enable_has_subscribers }
       after { enable_has_subscribers }
-      let(:user) { User.make! }
+      let(:user) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
       let(:friend) { User.make! }
       it "should subscribe the user to the friend if following" do
         expect( user.subscriptions.where( resource: friend ).count ).to eq 0
