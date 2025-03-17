@@ -187,27 +187,29 @@ const TaxonomyTab = ( {
               </h3>
             </Col>
             <Col xs={4}>
-              <ul className="tab-links list-group">
-                { viewerIsCurator ? (
-                  <li className="list-group-item internal">
-                    <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
-                      <i className="fa fa-gear accessory-icon" />
-                      { I18n.t( "manage_names" ) }
-                    </a>
-                  </li>
-                ) : null }
-                { currentUser && currentUser.content_creation_restrictions ? null : (
-                  <li className="list-group-item internal">
-                    <a
-                      href={`/taxa/${taxon.id}/taxon_names/new`}
-                      rel="nofollow"
-                    >
-                      <i className="fa fa-plus accessory-icon" />
-                      { I18n.t( "add_a_name" ) }
-                    </a>
-                  </li>
-                ) }
-              </ul>
+              { currentUser ? (
+                <ul className="tab-links list-group">
+                  { viewerIsCurator ? (
+                    <li className="list-group-item internal">
+                      <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
+                        <i className="fa fa-gear accessory-icon" />
+                        { I18n.t( "manage_names" ) }
+                      </a>
+                    </li>
+                  ) : null }
+                  { currentUser.content_creation_restrictions ? null : (
+                    <li className="list-group-item internal">
+                      <a
+                        href={`/taxa/${taxon.id}/taxon_names/new`}
+                        rel="nofollow"
+                      >
+                        <i className="fa fa-plus accessory-icon" />
+                        { I18n.t( "add_a_name" ) }
+                      </a>
+                    </li>
+                  ) }
+                </ul>
+              ) : null }
               <h4>{ I18n.t( "about_names" ) }</h4>
               <UserText
                 text={I18n.t( "views.taxa.show.about_names_desc" ).replace( /\n+/gm, " " )}
