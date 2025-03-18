@@ -5519,21 +5519,6 @@ ca:
   users_contributions_to_project_html: Contribucions de <a href="%{url}">%{login}</a> al projecte %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Després de tornar a enviar el correu de confirmació, se us tancarà la sessió i no podreu iniciar la sessió al vostre compte fins que no feu clic a l'enllaç del correu electrònic, de manera que <strong>assegureu-vos completament que heu introduït la vostra adreça electrònica correctament.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Assegureu-vos que la vostra adreça de correu electrònic és correcta. Aquesta és l'adreça de correu electrònic a la qual se us enviarà la confirmació:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Si no rebeu el correu electrònic, aquí teniu alguns consells:
-    </p>
-    <ul>
-    <li><p>Comprova la carpeta de correu brossa</p></li>
-    <li><p>Comprova els filtres que heu posat que poden eliminar els nostres correus electrònics de la safata d'entrada</p></li>
-    </ul>
-    <p>
-    Si encara no esteu rebent el correu de confirmació, contacteu amb nosaltres a <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> per poder ajudar-te.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Esteu a punt de tancar la sessió</h3>
     <p>
