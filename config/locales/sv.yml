@@ -5836,24 +5836,6 @@ sv:
     kommer inte att kunna logga in på ditt konto förrän du klickar på länken i
     mejlet, så <strong>se till att du verkligen har angett din e-postadress
     korrekt.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Se till att din e-postadress är korrekt. Här är e-postadressen vi
-    kommer att skicka bekräftelsen till:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Här är några tips om du inte skulle få mejlet:
-    </p>
-    <ul>
-    <li><p>Kolla din skräppostmapp</p></li>
-    <li><p>Kolla alla filter du skapat som skulle kunna ta bort våra mejl från din inkorg</p></li>
-    </ul>
-    <p>
-    Om du fortfarande inte får bekräftelsemejlet, kontakta oss på
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a>
-    så att vi kan hjälpa dig.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du är på väg att logga ut</h3>
     <p>
