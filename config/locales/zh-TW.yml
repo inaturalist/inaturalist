@@ -5225,23 +5225,6 @@ zh-TW:
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    請確保電子郵件地址沒錯。我們會將電子郵件傳送到此地址：
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    如果您沒有收到電子郵件，請參考以下提示：
-    </p>
-    <ul>
-    <li><p>檢查您的垃圾郵件資料夾</p></li>
-    <li><p>檢查您建立的篩選器，篩選器可能會從您的收件匣中刪除我們的電子郵件</p></li>
-    </ul>
-    <p>
-    如果您仍未收到確認電子郵件，請透過
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    與我們聯絡，以便我們協助您。
-    </p>
   users_favorites: "%{user} 的最愛"
   users_highlights_and_stats_from_year_on_site: "%{user} 的精彩內容與在 %{site} 上來自於 %{year} 的統計狀態"
   users_id: "%{user} 的鑑定"
