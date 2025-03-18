@@ -5646,25 +5646,6 @@ it:
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a> al progetto %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Dopo aver inviato nuovamente l'email di conferma, sarai disconnesso e non sarai in grado di accedere al tuo account fino a quando non fai clic sul link in l'email, quindi <strong>assicurati di aver inserito correttamente il tuo indirizzo email.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Per favore assicurati che la tua email sia corretta. Questo è l'indirizzo email a cui
-    manderemo la richiesta di conferma:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Se non ricevi l'email, qui alcuni suggerimenti:
-    </p>
-    <ul>
-    <li><p>Controlla la tua cartella di posta indesiderata</p></li>
-    <li><p>Controlla i filtri che hai impostato e che potrebbero rimuovere le nostre email
-    dalla tua posta in arrivo</p></li>
-    </ul>
-    <p>
-    Se ancora non stai ricevendo l'email di conferma, per favore contattaci a
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    affinchè possiamo aiutarti.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Stai per uscire</h3>
     <p>
