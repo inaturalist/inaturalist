@@ -1,4 +1,4 @@
-## iNaturalist ![Build Status](https://github.com/inaturalist/inaturalist/workflows/inaturalist%20CI/badge.svg)(https://github.com/inaturalist/inaturalist/actions)
+## iNaturalist [![Build Status](https://github.com/inaturalist/inaturalist/workflows/inaturalist%20CI/badge.svg)](https://github.com/inaturalist/inaturalist/actions)
 
 Open source Rails app behind [iNaturalist.org](https://www.inaturalist.org/)
 
