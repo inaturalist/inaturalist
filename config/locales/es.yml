@@ -5608,15 +5608,6 @@ es:
     no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
     el correo electrónico, así que <strong>asegúrate de agregar tu dirección de correo electrónico
     correctamente.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>Por favor, asegúrate de que tu dirección de correo electrónico es correcta. Esta es la dirección de e-mail a la que enviaremos la confirmación:</p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>Si no has recibido el mensaje de e-mail, estos son algunos consejos</p>
-    <ul>
-    <li><p>Comprueba tu carpeta de correo basura (spam)</p></li>
-    <li><p>Comprueba cualquier filtro que pueda eliminar los mensajes de tu bandeja de entrada</p></li>
-    </ul>
-    <p>Si todavía no has recibido el mensaje de confirmación, por favor, contacta con nosotros en <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para que podamos ayudarte.</p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Estás a punto de cerrar sesión</h3>
     <p>
