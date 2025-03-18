@@ -5417,21 +5417,6 @@ tr:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> kullanıcısının %{project_title} projesine katkıları
   users_edit_resend_confirmation_prompt_html: |
     Doğrulama e-postasını yeniden gönderdikten sonra oturumun kapatılacak ve e-postadaki bağlantıya tıklayana kadar hesabında oturum açamayacaksın, bu nedenle <strong>e-posta adresini doğru girdiğinden kesinlikle emin ol.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Lütfen e-posta adresinin doğru olduğundan emin ol. Doğrulamayı göndereceğimiz e-posta adresi:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    E-postayı almazsan, işte bazı ipuçları:
-    </p>
-    <ul>
-    <li><p>Gereksiz kutunu kontrol et</p></li>
-    <li><p>E-postalarımızı gelen kutundan kaldırabilecek herhangi bir filtre uygulayıp uygulamadığını kontrol et</p></li>
-    </ul>
-    <p>
-    Onay e-postasını hâlâ almadıysan, yardımcı olabilmemiz için lütfen <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> adresinden bizimle iletişime geç.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Çıkış yapmak üzeresiniz</h3>
     <p>
