@@ -5942,24 +5942,6 @@ cs:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Po opětovném odeslání ověřovacího e-mailu budete odhlášeni a nebudete se moci přihlásit ke svému účtu, dokud nekliknete na odkaz v e-mailu, takže <strong>se naprosto ujistěte, že jste svou e-mailovou adresu zadali správně.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Ujistěte se, že je vaše e-mailová adresa správná. Zde je e-mailová adresa,
-    na kterou zašleme potvrzení:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Pokud e-mail neobdržíte, zde je několik tipů:
-    </p>
-    <ul>
-    <li><p>Zkontrolujte složku se spamem</p></li>
-    <li><p>Zkontrolujte, zda nemáte vytvořené filtry, které by mohly odstranit naše e-maily z vaší doručené pošty</p></li>
-    </ul>
-    <p>
-    Pokud stále neobdržíte potvrzovací e-mail, kontaktujte nás prosíme na
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    abychom vám mohli pomoci.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Chystáte se odhlásit</h3>
     <p>
