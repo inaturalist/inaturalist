@@ -5513,21 +5513,6 @@ zh-CN:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
   users_edit_resend_confirmation_prompt_html: |
     在您重新发送确认邮件后， 您将被登出，并在您点击电子邮件中的链接之前再也无法登陆，因此<strong>一定要确保您输入了正确的电子邮件地址</strong>。
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    请确保您的邮箱地址是正确的。我们发送验证邮件的地址是：
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    如果您没能收到邮件，以下是一些小提示：
-    </p>
-    <ul>
-    <li><p>检查您的垃圾邮箱</p></li>
-    <li><p>检查您设置的任何可能导致邮件被移出收件箱的过滤器</p></li>
-    </ul>
-    <p>
-    如果您还是无法收到验证邮件，请通过<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>联系我们，让我们来帮助您。
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>您即将退出</h3>
     <p>
