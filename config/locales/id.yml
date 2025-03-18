@@ -5581,23 +5581,6 @@ id:
     tidak akan bisa masuk ke akun Anda sampai Anda mengeklik tautan di
     emailnya, jadi <strong>pastikan bahwa Anda yakin Anda telah memasukkan alamat email 
     yang benar</strong>.
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Pastikan alamat email Anda sudah benar. Ini adalah alamat email yang akan dikirimkan konfirmasinya:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Jika Anda tidak mendapatkan email-nya, ada beberapa tip:
-    </p>
-    <ul>
-    <li><p>Cek folder spam</p></li>
-    <li><p>Cek filter yang Anda buat yang mungkin menghapus email kami dari kotak masuk Anda</p></li>
-    </ul>
-    <p>
-    Jika Anda masih belum menerima email konfirmasinya, harap menghubungi kami di
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    supaya kami bisa membantu Anda.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Anda akan keluar</h3>
     <p>
