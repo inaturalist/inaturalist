@@ -5781,21 +5781,6 @@ he:
   users_contributions_to_project_html: התרומות של <a href="%{url}">%{login}</a> ל%{project_title}
   users_edit_resend_confirmation_prompt_html: |
     לאחר שתשלח.י מחדש את מייל האישור, תנותק.י ולא תוכל.י להתחבר לחשבון שלך עד שתלחצ.י על הקשירו במייל. לכן <strong>יש לוודא שהכנסת את כתובת הדוא"ל שלך נכון.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    נא לוודא שכתובת הדוא"ל שלך נכונה. הנה כתובת הדוא"ל אליה נשלח את מייל האישור:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    אם לא תקבל.י את המייל, להלן מספר עצות:
-    </p>
-    <ul>
-    <li><p>לבדוק בתיקיית ספאם שלך</p></li>
-    <li><p>לבדוק מסננים שעשית העלולים להוציא את המיילים שלנו מתיבת הדוא"ל שלך</p></li>
-    </ul>
-    <p>
-    אם את.ה עדיין לא מקבל.ת את מייל האישור, נא ליצור עמנו קשר בכתובת <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> בשביל שנוכל לסייע לך.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>הנך עומד.ת לצאת</h3>
     <p>
@@ -7556,6 +7541,8 @@ he:
         translators_title: מתרגמות ומתרגמים
         translators_desc: |
           הידעת ש-iNaturalist תורגם ל-%{x_languages} שפות, כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
+        translators_desc_2: |
+          הידעת ש-iNaturalist תורגם ל-%{x_languages}, כמעט לחלוטין על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות והמתרגמים המדהימים שהוסיפו תרגומים השנה, יחד עם מספר המילים שתרגמו עבור ה%{website_link_tag}אתר%{link_tag_end}, אפליקציות ה-%{iphone_link_tag}iPhone%{link_tag_end} ו-%{android_link_tag}Android%{link_tag_end}, %{seek_link_tag}Seek%{link_tag_end}, ו-%{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           הידעת ש-%{site_name} תורגם כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
         translators_desc_for_site_2: |
