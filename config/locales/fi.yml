@@ -5048,22 +5048,6 @@ fi:
     kirjautua tilillesi ennen kuin klikkaat linkkiä
     vahvistussähköpostissa, joten <strong>varmista, että olet syöttänyt sähköpostiosoitteesi
     oikein.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Tarkista, että sähköpostiosoitteesi on oikea. Lähetämme vahvistusviestin tähän osoitteeseen:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Jos et saanut viestiä, tässä muutama vinkki:
-    </p>
-    <ul>
-    <li><p>Tarkista roskapostikansiosi</p></li>
-    <li><p>Tarkista, oletko luonut filttereitä, josta estävät viestin kulkeutumisen postilaatikkoosi</p></li>
-    </ul>
-    <p>
-    Jos et edelleenkään saa vahvistusviestiä, ota yhteyttä osoitteeseen
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>, jotta voimme auttaa sinua.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Olet kirjautumassa ulos</h3>
     <p>
