@@ -5706,24 +5706,6 @@ fr:
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a> à %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Dès que vous aurez renvoyé l'e-mail de confirmation, la session se fermera et vous ne pourrez plus vous connecter à votre compte tant que vous n'aurez pas cliqué sur le lien dans l'e-mail. <strong>Assurez-vous donc d'avoir entré votre adresse e-mail correctement.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Veuillez vous assurer que votre adresse e-mail est correcte. Voici l'adresse à laquelle nous
-    enverrons la confirmation :
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Si vous ne recevez pas l'e-mail, voici quelques conseils :
-    </p>
-    <ul>
-    <li><p>Vérifiez qu’il ne se trouve pas dans votre dossier de courrier indésirable;</p></li>
-    <li><p>Vérifiez les filtres que vous auriez créés pour supprimer nos e-mails de votre boîte de réception.</p></li>
-    </ul>
-    <p>
-    Si vous ne recevez toujours pas l'e-mail de confirmation, veuillez prendre contact avec nous à
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    pour que nous puissions vous aider.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Vous êtes sur le point de vous déconnecter</h3>
     <p>
