@@ -4,7 +4,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import inatjs from "inaturalistjs";
 import AppContainer from "./containers/app_container";
-import configReducer, { setConfig, setCurrentUser } from "../../shared/ducks/config";
+import { setConfig, setCurrentUser } from "../../shared/ducks/config";
 import projectReducer, {
   setProject,
   fetchOverviewData,
@@ -20,7 +20,6 @@ import sharedStore from "../../shared/shared_store";
 /* global CURRENT_SUBTAB */
 
 sharedStore.injectReducers( {
-  config: configReducer,
   project: projectReducer,
   photoModal: photoModalReducer,
   confirmModal: confirmModalReducer,

@@ -55,14 +55,13 @@ namespace :inaturalist do
       task_logger = TaskLogger.new( log_task_name, nil, "cleanup" )
     end
     task_logger&.start
-    earliest_id = CONFIG.update_action_rollover_id || 1
-    min_id = UpdateAction.where( "id >= ?", earliest_id ).minimum( :id )
+    min_id = UpdateAction.minimum( :id )
     # using an ID clause to limit the number of rows in the query
     last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
       where( "id >= #{min_id} AND id < #{min_id + 1_000_000}" ).maximum( :id )
     next unless last_id_to_delete
 
-    UpdateAction.delete_and_purge( "id >= #{earliest_id} AND id <= #{last_id_to_delete}" )
+    UpdateAction.delete_and_purge( "id >= #{min_id} AND id <= #{last_id_to_delete}" )
     # delete anything that may be left in Elasticsearch
     try_and_try_again( Elastic::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       Elasticsearch::Model.client.delete_by_query( index: UpdateAction.index_name,

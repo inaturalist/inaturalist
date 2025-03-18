@@ -3,10 +3,7 @@ import { setConfig } from "../../../shared/ducks/config";
 import UmbrellaLeaderboard from "../components/umbrella_leaderboard";
 
 function mapStateToProps( state ) {
-  return {
-    config: state.config,
-    project: state.project
-  };
+  return state;
 }
 
 function mapDispatchToProps( dispatch ) {

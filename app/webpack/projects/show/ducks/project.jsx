@@ -139,7 +139,10 @@ export function fetchMembers( ) {
 
 export function fetchCurrentProjectUser( ) {
   return ( dispatch, getState ) => {
-    const { project } = getState( );
+    const { project, config } = getState( );
+    if ( !config.currentUser ) {
+      return null;
+    }
     const params = {
       id: project.id,
       fields: "all"

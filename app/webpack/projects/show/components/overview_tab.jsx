@@ -27,7 +27,6 @@ const OverviewTab = props => {
     <div className="OverviewTab">
       <LazyLoad
         debounce={false}
-        height={229}
         verticalOffset={100}
       >
         <OverviewRecentObservations {...props} />
@@ -35,7 +34,6 @@ const OverviewTab = props => {
       <Grid className="leaders-grid">
         <LazyLoad
           debounce={false}
-          height={229}
           verticalOffset={100}
         >
           <Row>

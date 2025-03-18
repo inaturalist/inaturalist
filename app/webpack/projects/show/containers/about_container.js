@@ -3,10 +3,7 @@ import About from "../components/about";
 import { setSelectedTab, feature, unfeature } from "../ducks/project";
 
 function mapStateToProps( state ) {
-  return {
-    config: state.config,
-    project: state.project
-  };
+  return state;
 }
 
 function mapDispatchToProps( dispatch ) {

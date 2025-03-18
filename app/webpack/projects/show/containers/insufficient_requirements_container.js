@@ -3,10 +3,7 @@ import { setAttributes, setSelectedTab } from "../ducks/project";
 import InsufficientRequirements from "../components/insufficient_requirements";
 
 function mapStateToProps( state ) {
-  return {
-    config: state.config,
-    project: state.project
-  };
+  return state;
 }
 
 function mapDispatchToProps( dispatch ) {
@@ -20,6 +17,5 @@ const InsufficientRequirementsContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )( InsufficientRequirements );
-
 
 export default InsufficientRequirementsContainer;

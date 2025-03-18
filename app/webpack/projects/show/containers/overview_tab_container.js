@@ -8,10 +8,7 @@ import {
 import { updateCurrentUser } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
-  return {
-    config: state.config,
-    project: state.project
-  };
+  return state;
 }
 
 function mapDispatchToProps( dispatch ) {

@@ -3,10 +3,7 @@ import { setConfig, updateCurrentUser } from "../../../shared/ducks/config";
 import UmbrellaMap from "../components/umbrella_map";
 
 function mapStateToProps( state ) {
-  return {
-    config: state.config,
-    project: state.project
-  };
+  return state;
 }
 
 function mapDispatchToProps( dispatch ) {
