@@ -5699,23 +5699,6 @@ es-MX:
     Después de reenviar el correo de confirmación, se cerrará la sesión y
     no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
     el correo electrónico, así que <strong>asegúrate de que has introducido tu dirección de correo electrónico correctamente.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Por favor asegúrate que tu correo electrónico es el correcto. Esta es la dirección de correo a la que te enviaremos la confirmación:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Si no recibes el correo electrónico, aquí hay algunas sugerencias:
-    </p>
-    <ul>
-    <li><p>Revisa tu carpeta de SPAM</p></li>
-    <li><p>Revisa si tienes algun filtro que remueva nuestros correos de tu bandeja de entrada</p></li>
-    </ul>
-    <p>
-    Si aun no recibes tu correo de confirmación, por favor contactanos en 
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    para poder ayudarte.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Estás a punto de cerrar sesión</h3>
     <p>
