@@ -5894,23 +5894,6 @@ hr:
   users_edit_resend_confirmation_prompt_html: |
     Nakon što ponovno pošaljete potvrdu e-poštom, bit ćete odjavljeni i nećete moći prijaviti se na svoj račun dok ne kliknete na poveznicu u
     e-poruci, stoga <strong>apsolutno se uvjerite da ste ispravno unijeli svoju e-adresu.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Provjerite je li vaša e-adresa točna. Evo e-adrese na koju ćemo poslati potvrdu:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Ako ne primite e-poštu, evo nekoliko savjeta:
-    </p>
-    <ul>
-    <li><p>Provjerite svoj spam folder</p></li>
-    <li><p>Provjerite sve filtre koje ste napravili koji bi mogli ukloniti naše e-poruke iz vaše pristigle pošte</p></li>
-    </ul>
-    <p>
-    Ako još uvijek ne primate potvrdu e-poštom, kontaktirajte nas na
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    kako bismo vam mogli pomoći.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Sada ćete se odjaviti</h3>
     <p>
