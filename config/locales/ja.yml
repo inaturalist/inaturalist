@@ -5151,22 +5151,6 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名またはユーザーID
   users: ユーザー
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    メールアドレスが正しいことをご確認ください。こちらが確認メールを送信するメールアドレスです：
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    メールが届かない場合は、以下のヒントをご参照ください：
-    </p>
-    <ul>
-    <li><p>迷惑メールフォルダを確認する</p></li>
-    <li><p>迷惑メールフォルダをチェックしてください。</p>
-    </li>
-    </ul>
-    <p>
-    それでも確認メールが届かない場合は、<a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>までご連絡ください。
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>サインアウトしようとしています</h3>
     <p>
