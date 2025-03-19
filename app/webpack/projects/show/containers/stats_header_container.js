@@ -3,7 +3,10 @@ import StatsHeader from "../components/stats_header";
 import { setSelectedTab } from "../ducks/project";
 
 function mapStateToProps( state ) {
-  return state;
+  return {
+    config: state.config,
+    project: state.project
+  };
 }
 
 function mapDispatchToProps( dispatch ) {

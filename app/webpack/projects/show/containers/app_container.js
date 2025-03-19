@@ -3,7 +3,10 @@ import App from "../components/app";
 import { setSelectedTab, leave, convertProject } from "../ducks/project";
 
 function mapStateToProps( state ) {
-  return state;
+  return {
+    config: state.config,
+    project: state.project
+  };
 }
 
 function mapDispatchToProps( dispatch ) {

@@ -5,7 +5,6 @@ import Config from "../models/config";
 
 // ACTIONS
 const CONFIG = "CONFIG";
-const UPDATE_CONFIG = "UPDATE_CONFIG";
 const TOGGLE_CONFIG = "TOGGLE_CONFIG";
 const UPDATE_CURRENT_USER = "config/update_current_user";
 
@@ -15,23 +14,12 @@ export default function reducer( state = new Config( { } ), action ) {
   switch ( action.type ) {
     case CONFIG:
       updatedState = { ...action.config };
-      // eslint-disable-next-line no-restricted-syntax
       if ( action.config.currentUser && action.config.currentUser.constructor !== CurrentUser ) {
         updatedState.currentUser = new CurrentUser( action.config.currentUser );
       }
-      return Object.assign( state, updatedState );
-    case UPDATE_CONFIG: {
-      updatedState = { ...action.config };
-      if ( action.config.currentUser && action.config.currentUser.constructor !== CurrentUser ) {
-        updatedState.currentUser = new CurrentUser( action.config.currentUser );
-      }
-      return {
-        ...state,
-        ...updatedState
-      };
-    }
+      return new Config( Object.assign( state, updatedState ) );
     case TOGGLE_CONFIG:
-      return Object.assign( state, { [action.key]: !state[action.key] } );
+      return new Config( Object.assign( state, { [action.key]: !state[action.key] } ) );
     case UPDATE_CURRENT_USER: {
       if ( !state.currentUser ) return state;
       if ( !state.currentUser.id ) return state;
@@ -50,9 +38,11 @@ export default function reducer( state = new Config( { } ), action ) {
           body
         } );
       }
-      return Object.assign(
-        state,
-        { currentUser: Object.assign( state.currentUser, action.updates ) }
+      return new Config(
+        Object.assign(
+          state,
+          { currentUser: Object.assign( state.currentUser, action.updates ) }
+        )
       );
     }
     default:
@@ -64,13 +54,6 @@ export default function reducer( state = new Config( { } ), action ) {
 export function setConfig( config ) {
   return {
     type: CONFIG,
-    config
-  };
-}
-
-export function updateConfig( config ) {
-  return {
-    type: UPDATE_CONFIG,
     config
   };
 }

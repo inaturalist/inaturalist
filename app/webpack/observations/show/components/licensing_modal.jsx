@@ -30,10 +30,9 @@ class LicensingModal extends Component {
     this.props.updateObservation( obsAttrs );
     this.props.setAttributes( { license_code: selectedLicense.toLowerCase( ) } );
     if ( makeDefault ) {
-      const updatedUser = Object.assign( { }, this.props.config.currentUser, {
+      this.props.updateCurrentUser( {
         preferred_observation_license: selectedLicense.toLowerCase( )
       } );
-      this.props.updateCurrentUser( { currentUser: updatedUser } );
     }
     this.close( );
   }

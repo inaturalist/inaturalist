@@ -9,7 +9,10 @@ import {
 import { setConfig } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
-  return state;
+  return {
+    config: state.config,
+    project: state.project
+  };
 }
 
 function mapDispatchToProps( dispatch ) {
