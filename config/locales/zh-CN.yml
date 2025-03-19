@@ -1450,6 +1450,8 @@ zh-CN:
   default_time_zone_desc: |
     这是默认时区。保存时将根据观察所在位置分配最后时区。
   defaults_to_your_name_or_username: 默认为您的名字或用户名
+  #As in the definition of a word
+  definition: 定义
   defines_a_taxon_framework_for: 定义用于%{taxon_name}的物种分类框架
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: 根据来源 %{source} 来定义 %{taxon} 的分类群框架
   definitions: 定义
@@ -1781,6 +1783,8 @@ zh-CN:
   export: 导出
   export_observations: 导出观察记录
   export_with_private_coordinates: 带私有坐标导出
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: 导出于%{datetime}
   exporting: "正在导出……"
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -1946,6 +1950,9 @@ zh-CN:
   following_x_people:
     other: '关注 %{count} 人'
   for_a_taxon: 用于一个分类
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    有关表头的更多信息，请参阅 %{url}
   formatting: 格式设置
   forgot_your_password: 忘记密码？
   forum: 论坛
@@ -2367,6 +2374,10 @@ zh-CN:
     看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    包含分类名称的单词集或词组名称，例如：
+    某一种语言的名称或缩写集
   lexicon_cannot_contain_words: "不能包含下列词汇：%{words}"
   lexicons:
     afrikaans: 南非语
@@ -3452,6 +3463,8 @@ zh-CN:
   original_url_for_this_map: 本地图的原始URL
   organism_appears_captive_cultivated: 生物似乎是被饲育/栽培的
   other: 其他
+  #Title for section listing terms that don't fit into established categories
+  other__terms: 其它
   other_animals: 其他动物
   other_lexicons: 其他辞典
   other_listings_of_this_taxon_for_this_place: 此地点关于该分类群的其他清单
@@ -5012,6 +5025,8 @@ zh-CN:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: 条款
+  #As in a list of distinct words
+  terminology: 术语
   terms_and_rules_html: "条款和规则"
   terms_new_users: "如果您添加条款，新用户必须在加入该项目前同意这些条款。"
   terms_service: 使用条款
@@ -6534,27 +6549,110 @@ zh-CN:
           </li>
           </ul>
       field_descriptions:
+        id: 观察的唯一、顺序的标识符
+        species_guess: |
+          观察到的分类单元的纯文本名称；可由观察者在观察创建期间设置，但当分类单元发生变化时，可以替换为规范的本地化名称
+        scientific_name: "被观察的分类单位在iNaturalist上的学名"
+        common_name: "被察到的分类单元在iNaturalist上的通用名或俗名"
         iconic_taxon_name: 被观察到的分类单元的高级分类学类别
+        taxon_id: 观察的分类单元的唯一、顺序的标识符
         id_please: 观察者是否请求ID帮助
+        num_identification_agreements: 与观察者鉴定的分类单元相匹配或包含在该分类单元中的分类单元的鉴定数
+        num_identification_disagreements: 与观察者鉴定的分类单元不匹配且不包含该分类单元的分类单元相关的鉴定数
         observed_on_string: 观察者输入的日期/时间
         observed_on: 规范化的观察日期
         time_observed_at: 规范化的观察日期与时间
         time_zone: 观察的时区
         place_guess: 由观察者输入的所在地描述
+        latitude: 观察位置公开可见的纬度
+        longitude: 观察位置公开可见的经度
         positional_accuracy: "坐标精度（对，对，准确性 != 精度，名称选择不当）"
         private_latitude: "私人纬度，如果观察是私密或模糊的，则设置此项"
         private_longitude: "私人经度，如果观察是私密或模糊的，则设置此项"
+        geoprivacy: "观察者是否选择模糊或隐藏坐标。见 https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "基于当前鉴定的分类群的保护状态而适用的最保守的位置隐私。"
         coordinates_obscured: "坐标是否被隐藏，无论这是由于地理位置隐私保护或是由于该分类单元的生存受到威胁，"
         out_of_range: 此观察是否在分类单元的已知范围之外
+        user_id: 观察者的唯一、顺序的标识符
+        user_login: 处理/观察者的用户名，即一个用户的简短、独特、由字母和数字构成的标识符
+        user_name: |
+          观察者的名称，通常用于在本站内的传播。
+          是一个可选字段，可以是一个化名。
         created_at: 日期时间观察已创建
         updated_at: 日期时间观察最近已更新
+        quality_grade: 此次观察的质量等级。有关其含义的详细信息，请参阅“帮助”部分。请参阅 https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: 观察者为此次观察选择的许可或豁免的标识符。如果为空，则保留所有权利
         url: 此观察的URL
+        image_url: 与观察结果相关的第一张照片的 URL
+        sound_url: |
+          与观察结果相关的第一个声音的 URL。请注意，此 URL 仅适用于直接上传，不适用于托管在第三方服务上的声音
         tag_list: 逗号分隔的标签列表
         place_admin1_name: 比国家低一级的行政单位名称
         place_admin2_name: 比国家低两级的行政单位名称
         positioning_method: 坐标如何被测定
         positioning_device: 测定坐标的设备
+        captive_cultivated: |
+          观察是指对生物体进行观察，因为人类希望它在当时和那里存在。有关更多信息，请参阅https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          观察员撰写的描述观察结果的文本或记录任何其他相关注释
+        oauth_application_id: |
+          创建观察结果的应用程序的顺序标识符。有关该应用程序的更多信息，请将此编号附加到 https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          包含此观测点坐标的三级行政区域的名称（例如，美国大部分地区的县）
+        place_country_name: |
+          包含此观测点坐标的国家/地区的名称
+        place_state_name: |
+          包含此观测点坐标的二级行政区域的名称（例如美国大部分地区的州）
+        place_town_name: |
+          包含此观测点的城镇或城市的名称
+          坐标（如果已知）
+        private_place_guess: |
+          如果位置被遮挡，则由观察员书写观察位置
+        public_positional_accuracy: 最大水平位置不确定度（以米为单位）；包括因坐标遮挡而增加的不确定性
+        taxon_class_name: |
+          包含所观察到的分类单元的纲的名称
+        taxon_family_name: |
+          包含所观察到的分类单元的科的名称
+        taxon_form_name: |
+          包含所观察到的分类单元的型的名称
+        taxon_genus_name: |
+          包含所观察到的分类单元的属的名称
+        taxon_genushybrid_name: |
+          包含所观察到的分类单元的杂交属的名称
+        taxon_hybrid_name: |
+          包含所观察到的分类单元的杂交种的名称
+        taxon_kingdom_name: |
+          包含所观察到的分类单元的界的名称
+        taxon_order_name: |
+          包含所观察到的分类单元的目的名称
+        taxon_phylum_name: |
+          包含所观察到的分类单元的门的名称
+        taxon_species_name: |
+          包含所观察到的分类单元的种的名称
+        taxon_subclass_name: |
+          包含所观察到的分类单元的亚纲的名称
+        taxon_subfamily_name: |
+          包含所观察到的分类单元的亚科的名称
+        taxon_suborder_name: |
+          包含所观察到的分类单元的亚目的名称
+        taxon_subphylum_name: |
+          包含所观察到的分类单元的亚门的名称
+        taxon_subspecies_name: |
+          包含所观察到的分类单元的亚种的名称
+        taxon_subtribe_name: |
+          包含所观察到的分类单元的亚族的名称
+        taxon_superclass_name: |
+          包含所观察到的分类单元的超纲的名称
+        taxon_superfamily_name: |
+          包含所观察到的分类单元的超科的名称
+        taxon_superorder_name: |
+          包含所观察到的分类单元的超目的名称
+        taxon_supertribe_name: |
+          包含所观察到的分类单元的超族的名称
+        taxon_tribe_name: |
+          包含所观察到的分类单元的族的名称
+        taxon_variety_name: |
+          包含所观察到的分类单元的变种的名称
       identify:
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
