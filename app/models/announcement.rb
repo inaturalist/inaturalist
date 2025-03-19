@@ -251,6 +251,12 @@ class Announcement < ApplicationRecord
           "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
           user.site_id || Site.default.id
         )
+    elsif site
+      scope.
+        where(
+          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
+          site || Site.default
+        )
     else
       # unauthenticated requests exclude announcements associated with sites
       scope.where( "announcements_sites.site_id IS NULL" )
@@ -267,6 +273,14 @@ class Announcement < ApplicationRecord
     end
     if announcements.blank?
       announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
+    end
+
+    # Remove non-site announcements if some announcements target sites
+    announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
+    if announcement_target_site
+      announcements = announcements.select do | annc |
+        annc.site_ids.present?
+      end
     end
     announcements = announcements.select do | a |
       a.targeted_to_user?( user ) && !a.dismissed_by?( user )

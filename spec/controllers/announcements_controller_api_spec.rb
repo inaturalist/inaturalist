@@ -198,7 +198,7 @@ describe AnnouncementsController do
         get :active, format: :json
         annc_ids = response.parsed_body.map {| a | a["id"] }
         expect( annc_ids ).to include( site_announcement.id )
-        expect( annc_ids ).to include( nosite_announcement.id )
+        expect( annc_ids ).not_to include( nosite_announcement.id )
         expect( annc_ids ).not_to include( other_site_announcement.id )
       end
 
