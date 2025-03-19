@@ -185,6 +185,9 @@ Rails.application.routes.draw do
   end
 
   resources :announcements do
+    collection do
+      get :active
+    end
     member do
       put :dismiss
     end

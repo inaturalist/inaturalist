@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class AnnouncementsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :site_admin_required, except: [:dismiss]
+  before_action :authenticate_user!, except: [:active]
+  before_action :site_admin_required, except: [:active, :dismiss]
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss]
   before_action :load_sites, only: [:new, :edit, :create]
 
@@ -18,6 +18,23 @@ class AnnouncementsController < ApplicationController
     @announcements = @announcements.where( "\"end\" > ?", Time.now ) if @active
     @placement = params[:placement] if Announcement::PLACEMENTS.include?( params[:placement] )
     @announcements = @announcements.where( placement: @placement ) unless @placement.blank?
+  end
+
+  def active
+    @announcements = Announcement.active(
+      placement: params[:placement],
+      client: params[:client],
+      user_agent_client: user_agent_client,
+      user: current_user,
+      site: @site
+    )
+    @announcements.each do | announcement |
+      helpers.create_announcement_impression( announcement )
+    end
+
+    respond_to do | format |
+      format.json { render json: @announcements }
+    end
   end
 
   def show
@@ -37,9 +54,7 @@ class AnnouncementsController < ApplicationController
         ( @site_admin = @site.site_admins.detect {| sa | sa.user_id == current_user.id } )
       @announcement.sites = [@site]
     end
-    respond_to do | format |
-      format.html
-    end
+    respond_to( &:html )
   end
 
   def edit; end
@@ -104,5 +119,17 @@ class AnnouncementsController < ApplicationController
 
   def load_sites
     @sites = Site.limit( 100 )
+  end
+
+  def user_agent_client
+    user_agent = request.headers["User-Agent"]
+    return if user_agent.blank?
+
+    return Announcement::INATRN if user_agent =~ /iNaturalistReactNative|iNaturalistRN/
+    return Announcement::SEEK if user_agent =~ /Seek/
+    return Announcement::INAT_IOS if user_agent =~ %r{iNaturalist/.*Darwin}
+    return Announcement::INAT_ANDROID if user_agent =~ %r{iNaturalist/.*Android}
+
+    nil
   end
 end

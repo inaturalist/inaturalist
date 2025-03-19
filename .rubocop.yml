@@ -1,5 +1,16 @@
 AllCops:
   NewCops: enable
+  SuggestExtensions: false
+
+# Consider these if you want to clean up all the new violations they introduce
+# plugins:
+#   - rubocop-rails
+#   - rubocop-rspec
+# Rspec/ExampleLength:
+#   Enabled: false
+
+# Rspec/MultipleExpectations:
+#   Enabled: false
 
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation

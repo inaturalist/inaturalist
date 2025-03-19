@@ -7,18 +7,24 @@ class Announcement < ApplicationRecord
     welcome/index
     mobile/home
   ).freeze
+  PARAM_PLACEMENTS = PLACEMENTS + %w(mobile)
 
   PLACEMENTS.each do | placement |
     const_set placement.parameterize.underscore.upcase, placement
   end
 
+  INAT_IOS = "inat-ios"
+  INAT_ANDROID = "inat-android"
+  SEEK = "seek"
+  INATRN = "inatrn"
+
   CLIENTS = {
-    "mobile/home" => %w(
-      inat-ios
-      inat-android
-      seek
-      inatrn
-    )
+    MOBILE_HOME => [
+      INAT_IOS,
+      INAT_ANDROID,
+      SEEK,
+      INATRN
+    ]
   }.freeze
 
   TARGET_GROUPS = {
@@ -213,17 +219,43 @@ class Announcement < ApplicationRecord
     end
   end
 
-  def self.active_in_placement( placement, options = {} )
+  def self.active( options = {} )
     site = options[:site]
     user = options[:user]
     scope = Announcement.
-      where( placement: placement ).
       where( '? BETWEEN "start" AND "end"', Time.now.utc ).
       joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
       joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
       limit( 50 )
+    placements = options[:placement].to_s.split( "," ) & PARAM_PLACEMENTS
+    if placements.size.positive?
+      scope = if placements.include?( "mobile" )
+        scope.where( "placement LIKE 'mobile%' OR placement IN (?)", placements )
+      else
+        scope.where( placement: placements )
+      end
+    end
+    if CLIENTS.values.flatten.include?( options[:client] )
+      scope = scope.where( "? = ANY( clients )", options[:client] )
+    end
+    if options[:user_agent_client]
+      scope = scope.where( "? = ANY( clients )", options[:user_agent_client] )
+    end
+
+    # Site filtering
+    scope = if user
+      # authenticated requests include announcements targeted at the users site,
+      # or that have no site affiliation
+      scope.
+        where(
+          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
+          user.site_id || Site.default.id
+        )
+    else
+      # unauthenticated requests exclude announcements associated with sites
+      scope.where( "announcements_sites.site_id IS NULL" )
+    end
     base_scope = scope
-    scope = scope.where( "sites.id = ?", site.id ) if site
     announcements = scope.in_specific_locale( I18n.locale )
     announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
     announcements = scope.in_locale( I18n.locale ) if announcements.blank?
@@ -236,10 +268,8 @@ class Announcement < ApplicationRecord
     if announcements.blank?
       announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
     end
-    if user
-      announcements = announcements.select do | a |
-        a.targeted_to_user?( user ) && !a.dismissed_by?( user )
-      end
+    announcements = announcements.select do | a |
+      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
     end
     if options[:ip]
       geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
@@ -252,5 +282,31 @@ class Announcement < ApplicationRecord
         a.id * -1
       ]
     end
+  end
+
+  def self.active_in_placement( placement, options = {} )
+    active( options.merge( placement: placement ) )
+  end
+
+  def serializable_hash( opts = {} )
+    options = opts.clone
+    options[:methods] ||= []
+    options[:only] ||= []
+    options[:only] += [
+      :body,
+      :clients,
+      :dismissible,
+      :end,
+      :id,
+      :locales,
+      :placement,
+      :start
+    ]
+    if options[:except]
+      options[:methods] = options[:methods] - options[:except]
+    end
+    options[:methods].uniq!
+    options[:only].uniq!
+    super( options )
   end
 end
