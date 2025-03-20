@@ -96,26 +96,34 @@ describe AnnouncementsController do
       end
 
       it "only returns announcements targeting the requested client" do
-        _other_announcement = create :announcement,
-          placement: Announcement::MOBILE_HOME,
-          clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].first]
         announcement = create :announcement,
           placement: Announcement::MOBILE_HOME,
+          clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].first]
+        other_client_announcement = create :announcement,
+          placement: Announcement::MOBILE_HOME,
           clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].last]
-        get :active, format: :json, params: { client: Announcement::CLIENTS[Announcement::MOBILE_HOME].last }
-        expect( response.parsed_body.map {| a | a["id"] } ).to eq( [announcement.id] )
+        no_client_announcement = create :announcement, placement: Announcement::MOBILE_HOME
+        get :active, format: :json, params: { client: Announcement::CLIENTS[Announcement::MOBILE_HOME].first }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( announcement.id )
+        expect( annc_ids ).not_to include( other_client_announcement.id )
+        expect( annc_ids ).to include( no_client_announcement.id )
       end
 
       it "only returns announcements targeting the client by User-Agent" do
         request.headers["User-Agent"] = "iNaturalistReactNative"
-        _other_announcement = create :announcement,
-          placement: Announcement::MOBILE_HOME,
-          clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].first]
         announcement = create :announcement,
           placement: Announcement::MOBILE_HOME,
-          clients: [Announcement::CLIENTS[Announcement::MOBILE_HOME].last]
+          clients: [Announcement::INATRN]
+        other_client_announcement = create :announcement,
+          placement: Announcement::MOBILE_HOME,
+          clients: [Announcement::INAT_IOS]
+        no_client_announcement = create :announcement, placement: Announcement::MOBILE_HOME
         get :active, format: :json
-        expect( response.parsed_body.map {| a | a["id"] } ).to eq( [announcement.id] )
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( announcement.id )
+        expect( annc_ids ).not_to include( other_client_announcement.id )
+        expect( annc_ids ).to include( no_client_announcement.id )
       end
 
       it "only returns mobile placements when placement is mobile" do

@@ -236,10 +236,10 @@ class Announcement < ApplicationRecord
       end
     end
     if CLIENTS.values.flatten.include?( options[:client] )
-      scope = scope.where( "? = ANY( clients )", options[:client] )
+      scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:client] )
     end
     if options[:user_agent_client]
-      scope = scope.where( "? = ANY( clients )", options[:user_agent_client] )
+      scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:user_agent_client] )
     end
 
     # Site filtering
