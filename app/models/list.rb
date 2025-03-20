@@ -63,21 +63,21 @@ class List < ApplicationRecord
     return unless taxon
     ListedTaxon.create( options.merge( list: self, taxon: taxon ) )
   end
-  
+
   # Determine whether this list can be edited or added to by a user. Default
   # permission is for the owner only. Override for subclasses.
-  def editable_by?(user)
-    user && self.user_id == user.id
+  def editable_by?( acting_user )
+    !!( acting_user && user_id == acting_user.id )
   end
-  
-  def listed_taxa_editable_by?(user)
-    editable_by?(user)
+
+  def listed_taxa_editable_by?( acting_user )
+    editable_by?( acting_user )
   end
-  
+
   def owner_name
     self.user ? self.user.login : 'Unknown'
   end
-  
+
   # Returns an associate that has observations
   def owner
     user

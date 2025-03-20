@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "spec_helper"
 
 describe CheckList do
@@ -461,6 +463,56 @@ describe CheckList, "refresh_with_observation" do
     end
   end
 
+  describe "listed_taxa_editable_by?" do
+    before do
+      allow( CONFIG ).to(
+        receive( :content_creation_restriction_days ).and_return( 1 )
+      )
+    end
+    let( :unrestricted_user ) do
+      user = User.make!( created_at: 2.days.ago )
+      UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: user )
+      expect( user.privileged_with?( UserPrivilege::ORGANIZER ) ).to be true
+      expect( user.content_creation_restrictions? ).to be false
+      user
+    end
+
+    it "is not editable by non-users" do
+      expect( @check_list.listed_taxa_editable_by?( nil ) ).to be false
+    end
+
+    it "is editable by curators" do
+      expect( @check_list.listed_taxa_editable_by?( make_curator ) ).to be true
+    end
+
+    it "is editable by owner" do
+      @check_list.update( user: User.make! )
+      expect( @check_list.listed_taxa_editable_by?( @check_list.user ) ).to be true
+    end
+
+    it "is editable by users without content restrictions" do
+      expect( @check_list.listed_taxa_editable_by?( unrestricted_user ) ).to be true
+    end
+
+    it "is not editable by users with content restrictions" do
+      expect( @check_list.listed_taxa_editable_by?( User.make! ) ).to be false
+    end
+
+    it "comprehensive lists are not editable by users without content restrictions" do
+      @check_list.update( comprehensive: true )
+      expect( @check_list.listed_taxa_editable_by?( unrestricted_user ) ).to be false
+    end
+
+    it "comprehensive lists are editable by curators" do
+      @check_list.update( comprehensive: true )
+      expect( @check_list.listed_taxa_editable_by?( make_curator ) ).to be true
+    end
+
+    it "comprehensive lists are editable by owner" do
+      @check_list.update( comprehensive: true, user: User.make! )
+      expect( @check_list.listed_taxa_editable_by?( @check_list.user ) ).to be true
+    end
+  end
 end
 
 describe CheckList, "sync_with_parent" do
