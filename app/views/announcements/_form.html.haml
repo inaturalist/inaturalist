@@ -38,23 +38,19 @@
     .col-xs-4
       = f.select :placement, Announcement::PLACEMENTS
       - clients = Announcement::CLIENTS[@announcement.placement] || []
-      = f.select :clients, clients, { include_blank: t( :all ) }, {      |
-        multiple: true,                                                  |
-        description: t( "views.announcements.clients_desc" ),            |
-        description_tip: true,                                           |
-        size: [clients.length + 1, 5].min }                              |
-      = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
-      = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
+      = f.select :clients, clients, { include_blank: t( :all ) }, { multiple: true, description: t( "views.announcements.clients_desc" ),description_tip: true, size: [clients.length + 1, 5].min, wrapper: {style: "display: none;"} }
+      = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.start_desc" ), description_tip: true
+      = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.end_desc" ), description_tip: true
       = f.check_box :dismissible, label_after: true
     .col-xs-4
-      = f.select :ip_countries, country_options, { include_blank: t( :any_place ) }, multiple: true
+      = f.select :ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.ip_countries_desc" ), description_tip: true
       - if current_user.is_admin?
         .admin
-          = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
+          = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true, description: t( "views.announcements.site_ids_desc" ), description_tip: true
       - else
         = f.hidden_field :site_ids
     .col-xs-4
-      = f.select :locales, locale_options, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
+      = f.select :locales, locale_options, { include_blank: t( :all ) }, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
   .row
     .col-xs-12
       = f.text_area :body

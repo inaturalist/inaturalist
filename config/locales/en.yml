@@ -6751,20 +6751,37 @@ en:
     views: 'Views'
     announcements:
       locales_desc: |
-        CMD- or SHIFT-click to select multiple. Not selecting any will show the
-        announcement for all users regardless of locale. Choosing a language
-        without a region will *not* target locales with regions, e.g. if
-        you chose en it will not appear for people who have chosen en-US. If you
-        want to target both, choose both. If you want to show an announcement
-        for all members of a site, just leave this blank.
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        locale. Choosing a language without a region will *not* target
+        locales with regions, e.g. if you chose English it will not appear
+        for people who have chosen English (UK).
       clients_desc: |
-        CMD- or SHIFT-click to select multiple. Not selecting any will show the
-        announcement to all users regardless of client.
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        client.
+      end_desc: |
+        Time in your account time zone that this announcement will stop
+        appearing. Applies across time zones, so everyone will stop seeing
+        it at the same time, not relative to their local time.
+      ip_countries_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        IP country.
       # Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Note that the creation date of the user's most recently-created
         observation is cached, so it might take a few hours for targeting to
         take effect
+      site_ids_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        site affiliation.
+      start_desc: |
+        Time in your account time zone that this announcement will start
+        appearing. Applies across time zones, so everyone will start seeing
+        it at the same time, not relative to their local time.
+
       # Description of a group of options for targeting announcements based
       # on donation behavior
       target_users_by_donation_behavior: Target users other by identification behavior

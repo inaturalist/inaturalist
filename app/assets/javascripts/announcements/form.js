@@ -14,10 +14,15 @@ $( function ( ) {
         clientsSelect.append( $( "<option value='" + placementClient + "'>" + placementClient + "</option>" ) );
       } );
       clientsSelect.attr( "size", _.min( [_.size( PLACEMENT_CLIENTS[placement] ) + 1, 5] ) );
+      $( ".clients_field" ).show( );
     } else {
       clientsSelect.attr( "size", 1 );
+      $( ".clients_field" ).hide( );
     }
   } );
+
+  // Show / hide the clients on load
+  $( "#announcement_placement" ).change();
 
   $( "#announcement_target_group_type" ).change( function ( ) {
     var targetGroupType = $( "#announcement_target_group_type" ).val( );
