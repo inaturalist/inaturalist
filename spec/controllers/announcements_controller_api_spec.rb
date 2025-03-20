@@ -223,6 +223,17 @@ describe AnnouncementsController do
         expect( annc_ids ).to include( nosite_announcement.id )
       end
 
+      it "does not allow dismissed locale-specific announcements to exclude undismissed non-locale ones" do
+        user = create :user
+        locale_announcement = create :announcement, locales: ["en"], dismissible: true, dismiss_user_ids: [user.id]
+        no_locale_announcement = create :announcement
+        sign_in user
+        get :active, format: :json, params: { locale: "en" }
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).not_to include( locale_announcement.id )
+        expect( annc_ids ).to include( no_locale_announcement.id )
+      end
+
       it "targets unconfirmed user" do
         unconfirmed_user = create( :user, confirmed_at: nil )
         unconfirmed_announcement = create :announcement, prefers_target_unconfirmed_users: true

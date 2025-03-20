@@ -279,6 +279,17 @@ class Announcement < ApplicationRecord
       a.targeted_to_user?( user ) && !a.dismissed_by?( user )
     end
 
+    # Locale- and site- specific targeting above may have excluded
+    # announcements without those filters, so we need to add them back in and
+    # check their targeting. This is kind of a pointless extra db query. We
+    # might just want to do locale and site filtering in Ruby instead of the
+    # DB for simplicity.
+    if announcements.blank?
+      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ).select do | a |
+        a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+      end
+    end
+
     if options[:ip]
       geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
       announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
