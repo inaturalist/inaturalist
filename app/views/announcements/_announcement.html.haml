@@ -1,7 +1,6 @@
-- unless announcement.dismissed_by?( current_user ) || !announcement.targeted_to_user?( current_user )
-  - create_announcement_impression( announcement )
-  .announcement
-    = announcement.body.html_safe
-    - if announcement.dismissible? && current_user
-      = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
-        %i.fa.fa-close
+- create_announcement_impression( announcement )
+.announcement
+  = announcement.body.html_safe
+  - if announcement.dismissible? && current_user
+    = button_to dismiss_announcement_path( announcement ), method: :put, remote: true, form_class: "dismiss-announcement", class: "dismiss-announcement-link", title: t(:dismiss) do
+      %i.fa.fa-close

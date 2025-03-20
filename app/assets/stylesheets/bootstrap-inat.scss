@@ -420,3 +420,11 @@ input[type="color"]:focus,
 .user_image.img-responsive {
   max-width: 100% !important;
 }
+
+label .fa-info-circle {
+  margin-inline-start: 5px;
+}
+
+summary.panel-heading {
+  cursor: pointer;
+}

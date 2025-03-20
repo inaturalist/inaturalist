@@ -396,7 +396,17 @@ CREATE TABLE public.announcements (
     include_donor_start_date date,
     include_donor_end_date date,
     exclude_donor_start_date date,
-    exclude_donor_end_date date
+    exclude_donor_end_date date,
+    target_logged_in character varying DEFAULT 'any'::character varying,
+    min_identifications integer,
+    max_identifications integer,
+    min_observations integer,
+    max_observations integer,
+    user_created_start_date date,
+    user_created_end_date date,
+    last_observation_start_date date,
+    last_observation_end_date date,
+    ip_countries text[] DEFAULT '{}'::text[]
 );
 
 
@@ -2874,7 +2884,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer DEFAULT 0
+    validation_count integer
 );
 
 
@@ -5503,9 +5513,9 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id character varying,
+    installation_id character varying(255),
     oauth_application_id integer,
-    platform_id character varying,
+    platform_id character varying(255),
     user_id integer,
     created_at date,
     first_logged_in_at date
@@ -11479,6 +11489,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250130003627'),
 ('20250204222646'),
 ('20250219234716'),
-('20250226225252');
+('20250226225252'),
+('20250306224627'),
+('20250307000624'),
+('20250307004743'),
+('20250311191217'),
+('20250311212144'),
+('20250311225953');
 
 

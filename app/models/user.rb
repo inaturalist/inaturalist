@@ -1723,6 +1723,22 @@ class User < ApplicationRecord
     nil
   end
 
+  # Creation datetime of the user's last observation by creation date. Note
+  # that if the cache expiry time needs to be extended, more than a day will
+  # probably be too limiting for announcement obs date targeting to be
+  # useful.
+  def last_observation_created_at
+    Rails.cache.fetch( "users/#{id}/last_observation_created_at", expires_in: 1.hour ) do
+      last_observation = Observation.elastic_query(
+        user_id: id,
+        order: "desc",
+        order_by: "created_at",
+        per_page: 1
+      ).first
+      last_observation&.created_at
+    end
+  end
+
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers

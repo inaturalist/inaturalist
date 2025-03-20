@@ -697,6 +697,8 @@ en:
   any_license: Any
   # Label for an option to show content with photos, sounds, or neither
   any_media: Any
+  # Label for an option to show any place
+  any_place: Any
   # Label for an option to show content from any project
   any_project: Any
   # Label for an option to show content with any quality grade
@@ -1981,7 +1983,8 @@ en:
   edited_by_name_some_rights_reserved_html: |
     Edited by %{name}, some rights reserved (%{license})
   editing: Editing
-  editing_announcement: Editing announcement
+  # Title for a page to edit an announcement
+  editing_announcement_x: Editing announcement %{id}
   editing_custom_project_fields_for: Editing custom project fields for
   editing_observation_field: Editing observation field
   editing_observation_id: "Editing Observation %{obs_id}"
@@ -3229,6 +3232,8 @@ en:
   more_info_title: More Info
   more_journal_posts: More Journal Posts
   more_observations: More Observations
+  # Label for a button or section that shows additional options
+  more_options: More Options
   more_photos: More Photos
   more_than_a_week_ago: More than a week ago
   most_agree: most agree
@@ -6728,15 +6733,49 @@ en:
     views: 'Views'
     announcements:
       locales_desc: |
-        CMD- or SHIFT-click to select multiple. Not selecting any will show the
-        announcement for all users regardless of locale. Choosing a language
-        without a region will *not* target locales with regions, e.g. if
-        you chose en it will not appear for people who have chosen en-US. If you
-        want to target both, choose both. If you want to show an announcement
-        for all members of a site, just leave this blank.
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        locale. Choosing a language without a region will *not* target
+        locales with regions, e.g. if you chose English it will not appear
+        for people who have chosen English (UK).
       clients_desc: |
-        CMD- or SHIFT-click to select multiple. Not selecting any will show the
-        announcement to all users regardless of client.
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        client.
+      end_desc: |
+        Time in your account time zone that this announcement will stop
+        appearing. Applies across time zones, so everyone will stop seeing
+        it at the same time, not relative to their local time.
+      ip_countries_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        IP country.
+      # Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Note that the creation date of the user's most recently-created
+        observation is cached, so it might take a few hours for targeting to
+        take effect
+      site_ids_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        site affiliation.
+      start_desc: |
+        Time in your account time zone that this announcement will start
+        appearing. Applies across time zones, so everyone will start seeing
+        it at the same time, not relative to their local time.
+
+      # Description of a group of options for targeting announcements based
+      # on donation behavior
+      target_users_by_donation_behavior: Target users other by identification behavior
+      # Description of a group of options for targeting announcements based
+      # on identification behavior
+      target_users_by_identification_behavior: Target users other by identification behavior
+      # Description of a group of options for targeting announcements based
+      # on observation behavior
+      target_users_by_observation_behavior: Target users other by observation behavior
+      # Description of a group of options for targeting announcements based
+      # miscellaneous user attributes
+      target_users_by_other_attributes: Target users other by attributes
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |
@@ -9802,6 +9841,37 @@ en:
         prefers_target_unconfirmed_users: Target unconfirmed users
         prefers_exclude_monthly_supporters: Exclude monthly supporters
         clients: Clients
+        # Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Exclude donor start date
+        # End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Exclude donor end date
+        # start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Include donor start date
+        # End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Include donor end date
+        # List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP Countries
+        # Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Latest obs start date
+        # end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Latest obs end date
+        # Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Max identifications
+        # Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min identifications
+        # Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Max observations
+        # Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min observations
+        # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Placement
+        # Whether or not the announcement is shown to logged in users
+        target_logged_in: Target logged in
+        # Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Earliest user signup date
+        # Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Latest user signup date
+
       assessment:
         description: Description
       assessment_section:
