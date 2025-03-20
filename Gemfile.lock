@@ -84,12 +84,6 @@ GIT
       rails (>= 4.2)
 
 GIT
-  remote: https://github.com/pleary/gdata.git
-  revision: 85805f4f077357ceafce89c34073fa163944d7d4
-  specs:
-    gdata (1.1.2)
-
-GIT
   remote: https://github.com/pleary/omniauth-flickr.git
   revision: fdfd81f47c33a21953ad97e0b5e2749b89989ef0
   ref: fdfd81f47c33a21953ad97e0b5e2749b89989ef0
@@ -812,7 +806,6 @@ DEPENDENCIES
   fastimage
   flickr
   friendly_id
-  gdata!
   georuby
   haml
   htmlentities
