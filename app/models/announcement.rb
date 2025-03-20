@@ -48,6 +48,7 @@ class Announcement < ApplicationRecord
   YES_NO_ANY = [YES, NO, ANY].freeze
 
   has_and_belongs_to_many :sites
+  has_many :announcement_impressions, dependent: :delete_all
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
@@ -119,6 +120,14 @@ class Announcement < ApplicationRecord
     user_id = user.id if user.is_a?( User )
     user_id = user_id.to_i
     dismiss_user_ids.include?( user_id )
+  end
+
+  def impressions_count
+    announcement_impressions.sum( :impressions_count )
+  end
+
+  def dismissals_count
+    dismiss_user_ids.count
   end
 
   def targeted_to_user?( user )
