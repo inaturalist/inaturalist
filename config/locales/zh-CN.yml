@@ -6653,6 +6653,9 @@ zh-CN:
           包含所观察到的分类单元的族的名称
         taxon_variety_name: |
           包含所观察到的分类单元的变种的名称
+        uuid: |
+          观察的通用、唯一的标识符。请见
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "将本页全部观察标记为已审核"
         you_reviewed_message: "您审核了本页%{pageTotal}个观察中的%{reviewed}个，一共有%{total}个匹配的观察。"
@@ -7464,6 +7467,14 @@ zh-CN:
       taxon:
         about_html: |
           分类群可以有很多常用名。我们全域支持一个默认的常用名，它可在此处通过拖动名字至列表顶部更改。您也可以通过编辑名字和添加地点指定不同地点的默认名，但请只当不同地点有冲突名字时这样做。
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          输出内容也可以包括包含观察字段值的列。要寻找上述列的含义，要么在<a href="%{observation_fields_url}">%{observation_fields_url}</a>进行搜索，要么把列名（包括冒号）追加到<code>%{terminology_url}</code>里（如<a href="%{term_url}">%{term_url}</a>）。
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist 使用多种独特的术语来描述该服务的各种
+          方面。 这里我们试图收集其中一些
+          及其定义以供参考。
     users:
       dashboard:
         taxon_change_desc: |
