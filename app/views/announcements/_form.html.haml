@@ -38,7 +38,7 @@
     .col-xs-4
       = f.select :placement, Announcement::PLACEMENTS
       - clients = Announcement::CLIENTS[@announcement.placement] || []
-      = f.select :clients, clients, { include_blank: t( :all ) }, { multiple: true, description: t( "views.announcements.clients_desc" ),description_tip: true, size: [clients.length + 1, 5].min, wrapper: {style: "display: none;"} }
+      = f.select :clients, clients, { include_blank: t( :all ) }, { multiple: true, description: t( "views.announcements.clients_desc" ),description_tip: true, size: [clients.length + 1, 5].min }
       = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.start_desc" ), description_tip: true
       = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.end_desc" ), description_tip: true
       = f.check_box :dismissible, label_after: true
