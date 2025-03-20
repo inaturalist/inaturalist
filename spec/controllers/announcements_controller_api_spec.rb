@@ -210,6 +210,19 @@ describe AnnouncementsController do
         expect( annc_ids ).not_to include( other_site_announcement.id )
       end
 
+      it "does not allow dismissed site-specific announcements to exclude undismissed non-site ones" do
+        create( :site ) unless Site.default
+        user_site = create :site
+        user = create :user, site: user_site
+        site_announcement = create :announcement, sites: [user_site], dismissible: true, dismiss_user_ids: [user.id]
+        nosite_announcement = create :announcement
+        sign_in user
+        get :active, format: :json
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).not_to include( site_announcement.id )
+        expect( annc_ids ).to include( nosite_announcement.id )
+      end
+
       it "targets unconfirmed user" do
         unconfirmed_user = create( :user, confirmed_at: nil )
         unconfirmed_announcement = create :announcement, prefers_target_unconfirmed_users: true

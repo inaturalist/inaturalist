@@ -275,19 +275,21 @@ class Announcement < ApplicationRecord
       announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
     end
 
+    announcements = announcements.select do | a |
+      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+    end
+
+    if options[:ip]
+      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
+      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
+    end
+
     # Remove non-site announcements if some announcements target sites
     announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
     if announcement_target_site
       announcements = announcements.select do | annc |
         annc.site_ids.present?
       end
-    end
-    announcements = announcements.select do | a |
-      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
-    end
-    if options[:ip]
-      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
-      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
     end
     announcements.sort_by do | a |
       [
