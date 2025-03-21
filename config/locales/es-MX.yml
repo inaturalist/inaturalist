@@ -1763,7 +1763,6 @@ es-MX:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, algunos derechos reservados (%{license})
   editing: Editando
-  editing_announcement: Editando noticia
   editing_custom_project_fields_for: Editando campos a la medida para
   editing_observation_field: Editando campo de observación
   editing_observation_id: "Editando observación %{obs_id}"
@@ -6162,11 +6161,6 @@ es-MX:
   verifiable_observations: Observaciones verificables
   views:
     views: 'Vistas'
-    announcements:
-      locales_desc: |
-        Presiona CMD (o SHIFT) junto con el click para realizar una selección múltiple. Si no seleccionas ninguna se le mostrará el anuncio a todos los usuarios sin importar su ubicación. Si seleccionas un lenguaje sin una región no se mostrará en los lenguajes regionales, p. ej. si escogiste "es" no se mostrará aparecerá para personas que han escogido "es-mx". Si quieres apuntar a ambos, escoge ambos. Si quieres mostrar un anuncio para todos los miembros de un sitio, no llenes este espacio.
-      clients_desc: |
-        Pulse mientras presiona CMD o MAYÚS para seleccionar varios elementos. Si no se selecciona nada, se mostrará el anuncio a todos los usuarios sin importar el cliente que usen.
     content_freeze:
       content_freeze: Contenido bloqueado
       during_this_time: |
