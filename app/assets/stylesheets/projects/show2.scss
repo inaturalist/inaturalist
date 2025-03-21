@@ -245,13 +245,13 @@ a {
           display: flex;
           justify-content: space-between;
           overflow: hidden;
+          align-items: center;
         }
         .header-about-title {
           font-size: 25px;
-          margin-top: 5px;
           overflow: hidden;
           text-overflow: ellipsis;
-
+          line-height: 1;
         }
         .header-about-members-only {
           position: absolute;
@@ -397,10 +397,10 @@ a {
     padding: 0;
     display: flex;
     justify-content: space-between;
+    gap: 3px;
     li {
       height: 80px;
       list-style: none;
-      margin-right: 3px;
     }
   }
   .overview-tab {
