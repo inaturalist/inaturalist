@@ -1775,7 +1775,6 @@ fr:
   edited_by_name_some_rights_reserved_html: |
     Modifié par %{name}, quelques droits réservés (%{license})
   editing: Modification en cours
-  editing_announcement: Modification de l’annonce
   editing_custom_project_fields_for: Modification des champs de projet personnalisés pour
   editing_observation_field: Modification du champ de l’observation
   editing_observation_id: "Modification de l’observation %{obs_id}"
@@ -6179,14 +6178,6 @@ fr:
   verifiable_observations: Observations vérifiables
   views:
     views: 'Vues'
-    announcements:
-      locales_desc: |
-        CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner affichera l’avertissement pour tous les utilisateurs quelle que soit leur localisation. Choisir une langue
-        sans région ne ciblera *pas* les localisations avec région, par exemple si
-        vous choisissez l'anglais en, il n’apparaîtra pas pour les personnes qui ont choisi l'anglais en-US. Si vous voulez cibler les deux, choisissez les deux. Si vous voulez afficher un avertissement pour tous les membres du site, laissez-le simplement vide.
-      clients_desc: |
-        CMD ou SHIFT-clic pour sélectionner plusieurs éléments. N'en sélectionner aucun affichera l'annonce
-        à tous les utilisateurs, quel que soit le client.
     content_freeze:
       content_freeze: Gel du contenu
       during_this_time: |
