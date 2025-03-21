@@ -23,18 +23,21 @@ class CheckList < List
   def to_s
     "<#{self.class} #{id}: #{title} taxon_id: #{taxon_id} place_id: #{place_id}>"
   end
-  
-  def editable_by?(user)
-    user && (self.user == user || user.is_curator?)
+
+  def editable_by?( acting_user )
+    acting_user && ( user == acting_user || acting_user.is_curator? )
   end
-  
-  def listed_taxa_editable_by?(user)
-    return false if user.blank?
-    return true if self.user == user || user.is_curator?
+
+  def listed_taxa_editable_by?( acting_user )
+    return false if acting_user.blank?
+    return true if user == acting_user
+    return false if acting_user.content_creation_restrictions?
+    return true if acting_user.is_curator?
     return false if comprehensive?
+
     true
   end
-  
+
   def owner_name
     place&.name
   end
