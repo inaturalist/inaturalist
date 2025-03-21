@@ -1815,7 +1815,6 @@ da:
   edited_by_name_some_rights_reserved_html: |
     Redigeret af%{name}, nogle rettigheder forbeholdes %{license}
   editing: Redigering
-  editing_announcement: Redigerings meddelelse
   editing_custom_project_fields_for: Redigering af brugerdefinerede projektfelter for
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: "Redigering af observation %{obs_id}"
@@ -6355,14 +6354,6 @@ da:
   verifiable_observations: Verificérbare observationer
   views:
     views: 'Visninger'
-    announcements:
-      locales_desc: |
-        CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
-        vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
-        til alle medlemmer af en side, skal du bare lade dette stå tomt.
-      clients_desc: |
-        Vælg flere med klik + CMD eller SHIFT. Vælges ingen, vises
-        bekendtgørelsen til alle brugere uanset klient.
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
