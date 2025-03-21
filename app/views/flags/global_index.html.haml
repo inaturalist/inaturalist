@@ -1,24 +1,7 @@
 - content_for(:title) do
   - @title = @user ? t(:flags_on_users_content, user: @user.login) : t(:flags)
-- content_for(:extrajs) do
-  :javascript
-    $( document ).ready( function( ) {
-      $( "form #user_name" ).userAutocomplete( { idEl: $( "#user_id" ) } );
-      $( "form #flagger_name" ).userAutocomplete( { idEl: $( "#flagger_user_id" ) } );
-      $( "form #flagger_name" ).on( "focus", function( ) {
-        $( "form input[name='flagger_type']" ).click( );
-      } );
-      $( "form #resolver_name" ).userAutocomplete( { idEl: $( "#resolver_user_id" ) } );
-      $( "form #taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_id" ) } );
-      $( "form select[name='flaggable_type']" ).change( function( ) {
-        if ( $( this ).val( ) === "all" ) {
-          $( "form .content-deleted" ).hide( );
-        } else {
-          $( "form .content-deleted" ).show( ).removeClass( "hidden" );
-        }
-        $( "form select[name='deleted']" ).val( "any" );
-      } );
-    });
+- content_for :extrajs do
+  = javascript_include_tag "flags/index"
 - content_for :extracss do
   :css
     #controls label { display: block; }
@@ -69,12 +52,13 @@
                     [I18n.t( t, default: t ), t]
                   }, @flaggable_type )
                 = select_tag :flaggable_type, flaggable_type_options, class: "select form-control"
-              - if @flaggable_type == "Taxon"
-                %label.form-group
-                  =t :taxon
-                  %input{ type: "text", name: "taxon_name", id: "taxon_name", placeholder: t(:start_typing_taxon_name, default: "" ), class: "form-control" }
-                  %input{ type: "hidden", name: "taxon_id", id: "taxon_id", value: @taxon.try(:id) }
-              %div{ class: "content-deleted form-group #{%w(yes no).include?( @deleted ) ? "" : "hidden"}"}
+              %label.form-group{ class: "taxon-search #{@flaggable_type == "Taxon" ? "" : "hidden"}" }
+                =t :taxon
+                %input{ type: "text", name: "taxon_name", id: "taxon_name", placeholder: t(:start_typing_taxon_name, default: "" ), class: "form-control" }
+                %input{ type: "hidden", name: "taxon_id", id: "taxon_id", value: @taxon.try(:id) }
+              - content_deleted_hidden = !%w(yes no).include?( @deleted ) && (                |
+                !@flaggable_type || @flaggable_type == "all" || @flaggable_type == "Taxon" )  |
+              %div{ class: "content-deleted form-group #{content_deleted_hidden ? "hidden" : ""}"}
                 %label=t :content_deleted
                 :ruby
                   deleted_options = options_for_select( %w(any yes no).map {|t|

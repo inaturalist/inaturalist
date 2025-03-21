@@ -87,13 +87,13 @@ class FlagsController < ApplicationController
       if @deleted == "yes"
         flaggable_klass = Object.const_get( @flaggable_type )
         @flags = @flags.
-          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
-          where( "#{flaggable_klass.table_name}.id IS NULL" )
+          joins( "LEFT JOIN #{flaggable_klass.table_name} as flags_deleted ON flags_deleted.id = flags.flaggable_id" ).
+          where( "flags_deleted.id IS NULL" )
       elsif @deleted == "no"
         flaggable_klass = Object.const_get( @flaggable_type )
         @flags = @flags.
-          joins( "LEFT JOIN #{flaggable_klass.table_name} ON #{flaggable_klass.table_name}.id = flags.flaggable_id" ).
-          where( "#{flaggable_klass.table_name}.id IS NOT NULL" )
+          joins( "LEFT JOIN #{flaggable_klass.table_name} as flags_deleted ON flags_deleted.id = flags.flaggable_id" ).
+          where( "flags_deleted.id IS NOT NULL" )
       end
     end
     if @flagger_type == "auto"
