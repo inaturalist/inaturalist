@@ -31,7 +31,7 @@
       <%= f.hidden_field :resource_type %>
       <%= f.hidden_field :resource_id %>
       <%= f.hidden_field :user_id %>
-      <%= link_to_function t(:subscribe_to_this) + ' ' + t(resource.class.to_s.underscore.humanize.downcase).downcase, "$(this).parents('form:first').submit()" %>
+      <%= link_to_function t(:subscribe), "$(this).parents('form:first').submit()" %>
     <% end -%>
 
     <%= form_tag delete_subscription_url(resource.class.to_s, resource.id), 

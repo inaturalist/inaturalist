@@ -5416,6 +5416,9 @@ en:
     one: Submit 1 observation
     other: Submit %{count} observations
   submitted: Submitted
+  # Label for a button that subscribes the user to updates on a resource, e.g.
+  # comments on a journal post
+  subscribe: Subscribe
   subscribe_to_a_taxon: Subscribe to a Taxon
   subscribe_to_a_place: Subscribe to a Place
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Subscribe%{tag_end} to comments on this flag"
@@ -5433,7 +5436,6 @@ en:
     For example, you can subscribe to a taxon to get updates about new
     observations of that taxon. You are automatically subscribed to updates
     about observations you comment on or identify.
-  subscribe_to_this: Subscribe to this
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribe</a>
     to %{x} from this %{y}.
