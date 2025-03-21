@@ -54,18 +54,18 @@
       - admin_site = @user.site_admins.live.first.try(:site)
       - if @user.is_admin? || @user.is_curator? || admin_site
         %small.role
-          - info_link = help_path(anchor: "curators")
+          - info_link = "https://help.inaturalist.org/support/solutions/articles/151000169913-what-are-staff-curators-and-site-admins"
           - if @user.is_admin?
             = t(:site_staff, site_name: "iNaturalist")
           - elsif admin_site
-            - site_link = link_to( admin_site.name, admin_site.url, class: "site")
+            - site_link = link_to( admin_site.name, admin_site.url, class: "site", target: "_blank", rel: "noopener noreferrer")
             = raw t(:site_site_admin, site_name: site_link)
             - if admin_site.place
               = " (#{admin_site.place.translated_name})"
             - info_link = network_sites_url
           - else
             = t(:curator)
-          = link_to info_link do
+          = link_to info_link, target: "_blank", rel: "noopener noreferrer" do
             %span.glyphicon.glyphicon.glyphicon-question-sign
     %p#user-subheader
       %span.date
