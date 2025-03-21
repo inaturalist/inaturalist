@@ -17,14 +17,24 @@
     .meta.ng-cloak
       %span{ :class => "quality_grade {{ o.quality_grade }}" }
         {{ o.qualityGrade( ) }}
-      %span.identifications{ "ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
-        %i.icon-identification
-        {{ o.identifications_count }}
-      %span.comments{ "ng-show" => "o.comments_count > 0", title: "{{ shared.t('x_comments', {count: o.comments_count}) }}" }
-        %i.icon-chatbubble
-        {{ o.comments_count }}
-      %span.favorites{ "ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}" }
-        %i.fa.fa-star
-        {{ o.faves_count }}
-      %span.created_at.pull-right
-        %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", obscured: "o.obscured && !o.private_geojson", short: "true", title: "(!o.obscured || o.private_geojson ) && shared.t('added_on_datetime', { datetime: shared.l('datetime.formats.long', o.created_at )})", "show-time-ago": "true" }
+      %span.meta-stats
+        %span.identifications{ "ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
+          %span.meta-item
+            %i.icon-identification
+            %span.meta-text
+              {{ o.identifications_count }}
+        %span.comments{ "ng-show" => "o.comments_count > 0", title: "{{ shared.t('x_comments', {count: o.comments_count}) }}" }
+          %span.meta-item
+            %i.icon-chatbubble
+            %span.meta-text
+              {{ o.comments_count }}
+        %span.favorites{ "ng-show" => "o.faves_count > 0", title: "{{ shared.t('x_faves', {count: o.faves_count}) }}" }
+          %span.meta-item
+            %i.fa.fa-star
+            %span.meta-text
+              {{ o.faves_count }}
+        %span.meta-item.meta-item-right
+          %i.fa.fa-calendar-plus-o{ "ng-show" => "!o.obscured" }
+          %span{ "ng-bind-html": "o.placeIcon() | sanitize", "ng-show" => "o.obscured" }
+          %span.meta-text
+            %inat-calendar-date{ date: "o.created_at_details.date", timezone: "o.created_time_zone", obscured: "o.obscured && !o.private_geojson", short: "true", title: "(!o.obscured || o.private_geojson ) && shared.t('added_on_datetime', { datetime: shared.l('datetime.formats.long', o.created_at )})", "show-time-ago": "true" }
