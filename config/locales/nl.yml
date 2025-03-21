@@ -1793,7 +1793,6 @@ nl:
   edited_by_name_some_rights_reserved_html: |
     Bewerkt door %{name}, sommige rechten voorbehouden (%{license})
   editing: Bewerken
-  editing_announcement: Bewerk aankondiging
   editing_custom_project_fields_for: Bewerk standaard project velden voor
   editing_observation_field: Bewerk waarnemingsveld
   editing_observation_id: "Waarneming bewerken %{obs_id}"
@@ -6271,11 +6270,6 @@ nl:
   verifiable_observations: Verifieerbare waarnemingen
   views:
     views: 'Weergaven'
-    announcements:
-      locales_desc: |
-        CMD- of SHIFT-klik om meerdere opties te selecteren. Als je niets selecteert wordt de standaardaankondiging voor alle gebruikers getoond, ongeacht lokalisatie-instelling. Het kiezen van een taal zonder een regio zal *niet* toepasbaar zijn op lokalisatie-instellingen mét regio's, bijvoorbeeld als je "en" kiest zal dit het niet zichbaar zijn voor mensen die "en-US" hebben gekozen. Als je beide wilt bereiken, kies dan beide. Als je een aankondiging wilt weergeven voor alle leden van een site, laat je dit gewoon leeg.
-      clients_desc: |
-        CMD- of SHIFT-klik om meerdere te selecteren. Als niets wordt geselecteerd wordt de aankondiging aan alle gebruikers getoond, ongeacht de cliënt.
     content_freeze:
       content_freeze: Inhoud bevroren
       during_this_time: |
