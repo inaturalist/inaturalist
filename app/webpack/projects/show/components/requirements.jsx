@@ -309,6 +309,7 @@ const Requirements = ( {
           <button
             type="button"
             className="btn btn-nostyle"
+            aria-label={I18n.t( "about" )}
             onClick={( ) => setSelectedTab( "about" )}
           >
             <i className="fa fa-arrow-circle-right" />
