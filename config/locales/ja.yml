@@ -1648,7 +1648,6 @@ ja:
   edited_by_name_some_rights_reserved_html: |
     編集者:%{name} 、いくつかの権利を保有(%{license})
   editing: 編集中
-  editing_announcement: お知らせを編集中
   editing_custom_project_fields_for: プロジェクト専用フィールド編集中：
   editing_observation_field: 観測記録のフィールドを編集中
   editing_observation_id: "%{obs_id}の観測記録を編集中"
@@ -5557,9 +5556,6 @@ ja:
   verifiable: 研究用+要同定
   views:
     views: '閲覧回数'
-    announcements:
-      clients_desc: |
-        CMD-またはSHIFT-クリックで複数を選択します。何も選択しないと、クライアントに関係なくすべてのユーザーにアナウンスが表示されます。
     content_freeze:
       we_expect_this_functionality_will_return_by_date: |
         この機能は %{date} までに復帰する予定です。
