@@ -868,7 +868,6 @@ ar:
   edited_by_name_some_rights_reserved_html: |
     تم التعديل بواسطة %{name}، بعض الحقوق محفوظة (%{license})
   editing: تعديل
-  editing_announcement: تعديل الإعلان
   editing_custom_project_fields_for: تعديل حقول المشروع المخصصة ل
   editing_observation_field: تحرير حقل الملاحظة
   editing_observation_id: "تحرير الملاحظة %{obs_id}"
@@ -3652,14 +3651,6 @@ ar:
   verifiable_observations: ملاحظات قابلة للتحقق منها
   views:
     views: 'المشاهدات'
-    announcements:
-      locales_desc: |
-        موجه الأوامر أو انقر فوق SHIFT لتحديد عدة، عدم تحديد أي منهم سيعرض 
-        الإعلان لجميع المستخدمين بغض النظر عن اللغة، اختيار لغة 
-        بدون منطقة *لن* يستهدف اللغات مع المناطق، على سبيل المثال إذا 
-        اخترت en فإنه لن يظهر للأشخاص الذين اختاروا en-US، إذا كنت 
-        تريد استهداف كليهما، فاختر كليهما، إذا كنت تريد عرض إعلان 
-        لجميع أعضاء الموقع، ما عليك سوى ترك هذا الحقل فارغا.
     custom_projects:
       edit:
         custom_project_fields_warning: |
