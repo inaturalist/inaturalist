@@ -1665,7 +1665,6 @@ zh-TW:
   edited_by_name_some_rights_reserved_html: |
     由%{name}所編輯，保留部分權利（%{license}）
   editing: 編輯中
-  editing_announcement: 編輯公告
   editing_custom_project_fields_for: 編輯自定義專案欄位用於
   editing_observation_field: 觀察欄位編輯中
   editing_observation_id: "編輯觀察 %{obs_id}"
@@ -5606,9 +5605,6 @@ zh-TW:
   verifiable_observations: 可證實觀察
   views:
     views: '查看數'
-    announcements:
-      locales_desc: |
-        點擊 CMD 鍵或 SHIFT 鍵來選擇多個項目。若不作選擇，會忽略在地化條件直接向所有用戶顯示出公告。若挑選不帶區域的語言，將 *不會* 針對帶有區域條件的在地化，例如：如果您挑選「en」，會無法呈現在挑選「en-US」的人們上。如果您想要針對兩方，就請兩邊都挑選。如果您想要向此網站上所有成員顯示公告，就請直接留空。
     content_freeze:
       content_freeze: 內容凍結
       during_this_time: |
