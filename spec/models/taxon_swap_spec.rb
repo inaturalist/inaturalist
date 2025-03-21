@@ -1,4 +1,6 @@
-require File.dirname(__FILE__) + '/../spec_helper.rb'
+# frozen_string_literal: true
+
+require "spec_helper"
 
 describe TaxonSwap, "creation" do
   before { enable_has_subscribers }
@@ -114,6 +116,21 @@ describe TaxonSwap, "commit" do
     @swap.commit
     @output_taxon.reload
     expect(@output_taxon.taxon_names.detect{|tn| tn.name == name}).not_to be_blank
+  end
+
+  it "duplicates place taxon names" do
+    name = "Bunny foo foo"
+    taxon_name = @input_taxon.taxon_names.create( name: name, lexicon: TaxonName::ENGLISH )
+    place_taxon_name1 = PlaceTaxonName.make!( taxon_name: taxon_name )
+    place_taxon_name2 = PlaceTaxonName.make!( taxon_name: taxon_name )
+    expect( @output_taxon.taxon_names.detect {| tn | tn.name == name } ).to be_blank
+    @swap.commit
+    @output_taxon.reload
+    replacement_name = @output_taxon.taxon_names.detect {| tn | tn.name == name }
+    expect( replacement_name ).not_to be_blank
+    expect( replacement_name.place_taxon_names.size ).to eq 2
+    expect( replacement_name.place_taxon_names.first.place ).to eq place_taxon_name1.place
+    expect( replacement_name.place_taxon_names.second.place ).to eq place_taxon_name2.place
   end
 
   it "should not associate users with the duplicate taxon names" do
