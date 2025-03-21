@@ -1663,7 +1663,6 @@ tr:
   edited_by_name_some_rights_reserved_html: |
     %{name} tarafından düzenlendi, bazı hakları saklıdır (%{license})
   editing: Düzenleme
-  editing_announcement: Açıklamayı düzenleme
   editing_custom_project_fields_for: Şunun için özel proje alanlarını düzenleme
   editing_observation_field: Gözlem alanını düzenleme
   editing_observation_id: "%{obs_id} Gözlemini Düzenleme"
@@ -5863,11 +5862,6 @@ tr:
   verifiable_observations: Doğrulanabilir Gözlemler
   views:
     views: 'Görüntülemeler'
-    announcements:
-      locales_desc: |
-        Birden çok seçmek için CMD ya da SHIFT'e tıkla. Hiçbirini seçmediğinde duyuru yerelden bağımsız olarak tüm kullanıcılara gösterilecektir. Bölge olmadan bir dil seçmek, bölgeleri olan yerelleri *hedeflemeyecektir*, örneğin en seçtiysen, en-US seçeneğini seçen kişiler için görünmeyecektir. Her ikisini de hedeflemek istiyorsan, ikisini de seç. Bir sitenin tüm üyeleri için duyuru göstermek istiyorsan, bunu boş bırak.
-      clients_desc: |
-        Birden çok seçmek için CMD- veya SHIFT-'e tıkla. Hiçbirini seçmemek, duyuruyu istemciden bağımsız olarak tüm kullanıcılara gösterecektir.
     content_freeze:
       content_freeze: İçeriği Dondurma
       during_this_time: |
