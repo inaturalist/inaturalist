@@ -2485,7 +2485,7 @@ class Observation < ApplicationRecord
       num_agreements    = 0
       num_disagreements = 0
     else
-      nodes = community_taxon_nodes
+      nodes = community_taxon_nodes( force: true )
       if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
