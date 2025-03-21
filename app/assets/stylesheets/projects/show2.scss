@@ -237,11 +237,21 @@ a {
       background: #28387d;
       color: white;
       .header-about-content {
+        display: flex;
+        flex-direction: column;
         height: 100%;
         position: relative;
+        .header-about-content-head {
+          display: flex;
+          justify-content: space-between;
+          overflow: hidden;
+          align-items: center;
+        }
         .header-about-title {
           font-size: 25px;
-          margin-top: 5px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 1;
         }
         .header-about-members-only {
           position: absolute;
@@ -253,13 +263,16 @@ a {
         .header-members-button {
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 100px;
+          display: flex;
           overflow: hidden;
           background: rgba(255, 255, 255, 0.1);
           .action {
             display: inline-block;
+            overflow: hidden;
             padding: 0px 8px 0px 10px;
             min-width: 72px;
             text-align: center;
+            text-overflow: ellipsis;
             &:hover,
             &:active,
             &:focus {
@@ -283,9 +296,6 @@ a {
           }
         }
         .header-about-button {
-          position: absolute;
-          top: 0;
-          right: 0;
           > button {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.3);
@@ -319,6 +329,9 @@ a {
             color: white;
           }
         }
+        .header-about-more {
+          margin-top: 17px;
+        }
         .header-about-read-more {
           i {
             font-size: 9px;
@@ -326,25 +339,46 @@ a {
             font-weight: 400;
           }
         }
+        .header-about-actions {
+          flex-grow: 2;
+          display: flex;
+          align-items: flex-end;
+          > div {
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center
+          }
+        }
         .header-about-edit {
-          position: absolute;
-          bottom: 0;
-          left: 0;
+          max-width: 50%;
+          overflow: hidden;
           .btn-white {
             border-radius: 2px;
             color: #333;
             padding: 6px 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
           }
         }
         .header-about-news {
-          position: absolute;
-          bottom: 4px;
-          right: 0;
+          overflow: hidden;
+          white-space: nowrap;
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 100px;
-          overflow: hidden;
+          display: flex;
+          align-items: center;
           background: rgba(255, 255, 255, 0.1);
           padding: 2px 14px;
+          a {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+          }
           .glyphicon {
             top: 2px;
             font-size: 12px;
@@ -361,27 +395,33 @@ a {
   height: 80px;
   ul {
     padding: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 3px;
     li {
       height: 80px;
-      float: left;
-      width: 16%;
       list-style: none;
-      margin-right: 3px;
     }
   }
   .overview-tab {
     padding-top: 47px;
     font-size: 20px;
     cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-inline-end: 10px;
     &.active, &:hover {
       border-bottom: 3px solid $inat-green;
     }
   }
   .stat-tab {
+    flex-grow: 1;
     font-size: 16px;
     padding-top: 22px;
     cursor: pointer;
     color: #888;
+    padding-inline-start: 10px;
     .stat,
     .count {
       display: block;
@@ -404,11 +444,14 @@ a {
   .stats-tab {
     button {
       font-size: 20px;
-      padding: 10px 45px;
+      padding: 10px 20px;
       border: 1px solid $border-grey;
       border-radius: 30px;
       margin-top: 18px;
       white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &.disabled {
         pointer-events: none;
         color: #aaa;
