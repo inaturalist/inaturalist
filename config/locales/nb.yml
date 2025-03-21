@@ -1680,7 +1680,6 @@ nb:
   edited_by_name_some_rights_reserved_html: |
     Redigert av %{name}, noen rettigheter forbeholdt (%{license})
   editing: Redigerer
-  editing_announcement: Redigerer kunngjørelse
   editing_custom_project_fields_for: Redigerer egendefinierte prosjektfelt for
   editing_observation_field: Redigerer observasjonsfelt
   editing_observation_id: "Redigerer observasjon %{obs_id}"
@@ -5718,11 +5717,6 @@ nb:
   verifiable_observations: Verifiserbare observasjoner
   views:
     views: 'Visninger'
-    announcements:
-      locales_desc: |
-        Klikk mens du holder cmd- eller shift-knappen for å velge flere. Å ikke velge minst en vil vise kunngjøringen for alle brukere uansett lokalisering. Å velge et språk uten en region vil *ikke* nå lokaliseringer med regioner, hvis du f.eks. velger "en" vil det ikke vises for personer som har valgt "en-US". Hvis du vil nå begge, velge begge. Hvis du vil vise en kunngjøring for alle medlemmer av en side, la dette stå tomt.
-      clients_desc: |
-        CMD- eller SHIFT-klikk for å velge flere. Velges ingen, vises kunngjørelsen for alle brukere uavhengig av klient.
     content_freeze:
       content_freeze: Frysing av innhold
       during_this_time: |
