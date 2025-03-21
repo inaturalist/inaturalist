@@ -2349,6 +2349,7 @@ $header-line-height: 34px;
           div.usericon {
             margin-right: 10px;
             max-width: 37px;
+            flex-shrink: 0;
           }
         }
       }
