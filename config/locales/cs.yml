@@ -1902,7 +1902,6 @@ cs:
   edited_by_name_some_rights_reserved_html: |
     Upraveno uživatelem %{name}, některá práva vyhrazena (%{license})
   editing: Upravuje se
-  editing_announcement: Editování oznámení
   editing_custom_project_fields_for: Editovat vlastní projektová pole pro
   editing_observation_field: Editování pole pozorování
   editing_observation_id: "Editování pozorování %{obs_id}"
@@ -6426,12 +6425,6 @@ cs:
   verifiable_observations: ověřitelné pozorování
   views:
     views: 'Zobrazení'
-    announcements:
-      locales_desc: |
-        Podržte CMD nebo SHIFT a klikněte, pokud chcete vybrat více položek. Pokud nevyberete žádné, oznámení se zobrazí všem uživatelům bez ohledu na místo. Když vyberete místo jazyka bez regionu, *nedojde* k nastavení míst společně s regiony, např. pokud chcete vybrat angličtinu, nezobrazí se lidem, kteří vybrali angličtina-US. Pokud chcete cílit na obojí, vyberte obojí. Pokud chcete oznámení zobrazit všem členům na stránce, nechte pole prázdné.
-      clients_desc: |
-        Kliknutím na CMD nebo SHIFT vyberte více položek. Když nevyberete nic,
-        oznámení bude zobrazeno všem uživatelům bez ohledu na klienta.
     content_freeze:
       content_freeze: Zmrazení obsahu
       during_this_time: |
