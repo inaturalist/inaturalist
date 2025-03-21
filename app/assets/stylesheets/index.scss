@@ -2139,7 +2139,6 @@ $header-line-height: 34px;
   }
 
 
-  padding: 0px 20px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -2149,6 +2148,8 @@ $header-line-height: 34px;
   background-color: #eee;
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
+  width: 100%;
+  min-width: fit-content;
   .logolink {
     position: relative;
     top: -3px;
@@ -2192,6 +2193,9 @@ $header-line-height: 34px;
       line-height: $header-line-height;
     }
     margin: 0;
+  }
+  #logonav {
+    padding-inline-start: 20px;
   }
   $header-search-width: 250px;
   .search {
@@ -2296,6 +2300,7 @@ $header-line-height: 34px;
     display: -ms-flexbox;
     display: flex;
     margin-right: 0;
+    padding-inline-end: 20px;
     .usericon {
       width: $header-line-height - 2 !important;
       height: $header-line-height - 2 !important;
