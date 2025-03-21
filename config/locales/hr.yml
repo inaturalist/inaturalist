@@ -1832,7 +1832,6 @@ hr:
   edited_by_name_some_rights_reserved_html: |
     Uredio %{name}, neka prava pridržana (%{license})
   editing: Uređivanje
-  editing_announcement: Uređivanje obavijesti
   editing_custom_project_fields_for: Uređivanje prilagođenih polja projekta za
   editing_observation_field: Uređivanje polja opažanja
   editing_observation_id: "Uređivanje opažanja %{obs_id}"
@@ -6391,11 +6390,6 @@ hr:
   verifiable_observations: Provjerljiva opažanja
   views:
     views: 'Pregledi'
-    announcements:
-      locales_desc: |
-        CMD- ili SHIFT-klik za odabir više. Ako ne odabereš nijedan, obavijest će se prikazati svim korisnicima bez obzira na lokalitet. Odabir jezika bez regije neće ciljati lokalitete s regijama, npr. ako odabereš en, neće se prikazati ljudima koji su odabrali en-US. Ako želiš ciljati oba, odaberi oba. Ako želiš prikazati obavijest za sve članove stranice, samo ostavi ovo prazno.
-      clients_desc: |
-        CMD- ili SHIFT-klik za odabir više. Ako ne odabereš nijedan, obavijest će se prikazati svim korisnicima bez obzira na klijenta.
     content_freeze:
       content_freeze: Zamrzavanje sadržaja
       during_this_time: |
