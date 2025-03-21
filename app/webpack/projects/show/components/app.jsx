@@ -275,24 +275,26 @@ const App = ( {
                   </div>
                 </div>
                 <div className="header-about-actions">
-                  { userCanEdit && (
-                    <div className="header-about-edit">
-                      <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
-                        <i className="fa fa-cog" />
-                        { I18n.t( "edit_project" ) }
+                  <div>
+                    { userCanEdit && (
+                      <div className="header-about-edit">
+                        <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
+                          <i className="fa fa-cog" />
+                          { I18n.t( "edit_project" ) }
+                        </a>
+                      </div>
+                    ) }
+                    { !userCanEdit && project.rule_members_only && (
+                      <div className="header-about-members-only">
+                        { I18n.t( "project_members_only" ) }
+                      </div>
+                    ) }
+                    <div className="header-about-news">
+                      <a href={`/projects/${project.slug}/journal`}>
+                        <span className="glyphicon glyphicon-book" />
+                        { I18n.t( "project_journal" ) }
                       </a>
                     </div>
-                  ) }
-                  { !userCanEdit && project.rule_members_only && (
-                    <div className="header-about-members-only">
-                      { I18n.t( "project_members_only" ) }
-                    </div>
-                  ) }
-                  <div className="header-about-news">
-                    <a href={`/projects/${project.slug}/journal`}>
-                      <span className="glyphicon glyphicon-book" />
-                      { I18n.t( "project_journal" ) }
-                    </a>
                   </div>
                 </div>
               </div>

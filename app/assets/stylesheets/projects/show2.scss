@@ -237,13 +237,13 @@ a {
       background: #28387d;
       color: white;
       .header-about-content {
-        display: grid;
+        display: flex;
+        flex-direction: column;
         height: 100%;
         position: relative;
         .header-about-content-head {
           display: flex;
           justify-content: space-between;
-          background-color: red;
           overflow: hidden;
         }
         .header-about-title {
@@ -329,6 +329,9 @@ a {
             color: white;
           }
         }
+        .header-about-more {
+          margin-top: 17px;
+        }
         .header-about-read-more {
           i {
             font-size: 9px;
@@ -337,11 +340,17 @@ a {
           }
         }
         .header-about-actions {
+          flex-grow: 2;
           display: flex;
-          align-self: flex-end;
-          align-items: center;
-          overflow: hidden;
-          justify-content: space-between;
+          align-items: flex-end;
+          > div {
+            display: flex;
+            flex-grow: 1;
+            overflow: hidden;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center
+          }
         }
         .header-about-edit {
           max-width: 50%;
@@ -356,7 +365,6 @@ a {
           }
         }
         .header-about-news {
-          max-width: 50%;
           overflow: hidden;
           white-space: nowrap;
           border: 1px solid rgba(255, 255, 255, 0.3);
