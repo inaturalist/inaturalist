@@ -127,6 +127,9 @@ body {
   #result-grid .caption .userimage {
     top: 120px;
   }
+  .quality_grade .full {
+    display: none;
+  }
 }
 @media (min-width: 992px) {
   .grid .photo {
@@ -158,6 +161,9 @@ body {
   }
   #result-grid .caption .userimage {
     top: 225px;
+  }
+  .quality_grade .full {
+    display: inline;
   }
 }
 
@@ -658,6 +664,10 @@ inat-taxon.split-taxon .icon {display: none;}
   bottom: 7px;
   padding-inline-end: 20px;
   width: 100%;
+  flex-wrap: nowrap;
+  .meta-stats {
+    flex-wrap: nowrap;
+  }
 }
 
 .bootstrap label.sectionlabel {
