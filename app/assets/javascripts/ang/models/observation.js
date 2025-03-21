@@ -84,7 +84,8 @@ iNatModels.Observation.prototype.displayPlace = function ( ) {
   return I18n.t( "location_unknown" );
 };
 
-iNatModels.Observation.prototype.qualityGrade = function ( options = {} ) {
+iNatModels.Observation.prototype.qualityGrade = function ( opts ) {
+  var options = opts || {};
   if ( this.quality_grade === "research" ) {
     if ( options.short ) return I18n.t( "research_grade_short_html" );
     return I18n.t( "research_grade" );
