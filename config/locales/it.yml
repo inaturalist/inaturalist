@@ -1752,7 +1752,6 @@ it:
   edited_by_name_some_rights_reserved_html: |
     Modificato da %{name}, alcuni diritti riservati (%{license})
   editing: Modifica in corso
-  editing_announcement: Modifica annuncio in corso
   editing_custom_project_fields_for: Modifica in corso dei campi del progetto personalizzato per
   editing_observation_field: Modifica del campo dell'osservazione in corso
   editing_observation_id: "Modifica in corso dell'osservazione %{obs_id}"
@@ -6106,11 +6105,6 @@ it:
   verifiable_observations: Osservazioni verificabili
   views:
     views: 'Visualizzazioni'
-    announcements:
-      locales_desc: |
-        CMD- o SHIFT-click per selezione multipla. Non selezionando niente verranno mostrate le notizie relative e tutti gli utenti indipendentemente dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito, lascia vuoto.
-      clients_desc: |
-        Fai click tenendo premuto CMD o SHIFT per selezionarne di più. Non selezionare nulla mostrerà l'annuncio a tutti gli utenti, indipendentemente dal client.
     content_freeze:
       content_freeze: Blocco Contenuti
       during_this_time: |
