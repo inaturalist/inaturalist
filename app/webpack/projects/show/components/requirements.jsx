@@ -1,8 +1,9 @@
 import _ from "lodash";
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import CollapseButton from "./collapse_button";
 /* global TIMEZONE */
 
 function dateToString( date, spansYears = false ) {
@@ -23,6 +24,10 @@ function dateToString( date, spansYears = false ) {
 const Requirements = ( {
   project, setSelectedTab, includeArrowLink, config
 } ) => {
+  const [isTaxaCollapsed, setIsTaxaCollapsed] = useState( true );
+  const [isLocationCollapsed, setIsLocationCollapsed] = useState( true );
+  const [isUserCollapsed, setIsUserCollapsed] = useState( true );
+
   const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" )
     : _.map( _.sortBy( project.taxonRules, r => r.taxon.name ), r => (
       <SplitTaxon
@@ -86,8 +91,10 @@ const Requirements = ( {
       </a>
     ) );
   const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
-    : _.map( _.keys( project.rule_quality_grade ),
-      q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
+    : _.map(
+      _.keys( project.rule_quality_grade ),
+      q => I18n.t( q === "research" ? "research_grade" : `${q}_` )
+    ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {
     media.push( I18n.t( "photo" ) );
@@ -129,9 +136,10 @@ const Requirements = ( {
         </td>
         <td className="value">
           <a href={`/observations?term_id=${project.rule_term_id}`}>
-            { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
-              { default: project.rule_term_id_instance.label } )
-            }
+            { I18n.t(
+              `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
+              { default: project.rule_term_id_instance.label }
+            )}
           </a>
           { project.rule_term_value_id_instance && (
             <span className="term-value">
@@ -139,9 +147,10 @@ const Requirements = ( {
                 &rarr;
               </span>
               <a href={`/observations?term_id=${project.rule_term_id}&term_value_id=${project.rule_term_value_id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
-                  { default: project.rule_term_value_id_instance.label } )
-                }
+                { I18n.t(
+                  `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
+                  { default: project.rule_term_value_id_instance.label }
+                )}
               </a>
             </span>
           )}
@@ -181,54 +190,81 @@ const Requirements = ( {
         <table>
           <tbody>
             <tr>
-              <td className="param">
+              <td className="param" style={{ position: "relative" }}>
                 <i className="fa fa-leaf" />
                 { I18n.t( "taxa" ) }
+                <CollapseButton
+                  isCollapsed={isTaxaCollapsed}
+                  onToggle={() => setIsTaxaCollapsed( !isTaxaCollapsed )}
+                  ariaLabel={isTaxaCollapsed ? I18n.t( "expand" ) : I18n.t( "collapse" )}
+                />
               </td>
               <td className="value">
-                { taxonRules }
-                { exceptTaxonRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptTaxonRules }
-                  </div>
-                ) }
+                {!isTaxaCollapsed && (
+                  <>
+                    { taxonRules }
+                    { exceptTaxonRules && (
+                      <div className="except">
+                        <div className="bold">
+                          { I18n.t( "except" ) }
+                        </div>
+                        { exceptTaxonRules }
+                      </div>
+                    ) }
+                  </>
+                )}
               </td>
             </tr>
             <tr>
-              <td className="param">
+              <td className="param" style={{ position: "relative" }}>
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location" ) }
+                <CollapseButton
+                  isCollapsed={isLocationCollapsed}
+                  onToggle={() => setIsLocationCollapsed( !isLocationCollapsed )}
+                  ariaLabel={isLocationCollapsed ? I18n.t( "expand" ) : I18n.t( "collapse" )}
+                />
               </td>
               <td className="value location-rules">
-                { locationRules }
-                { exceptLocationRules && (
+                {!isLocationCollapsed && (
+                <>
+                  { locationRules }
+                  { exceptLocationRules && (
                   <div className="except">
                     <div className="bold">
                       { I18n.t( "except" ) }
                     </div>
                     { exceptLocationRules }
                   </div>
-                ) }
+                  ) }
+                </>
+                )}
               </td>
             </tr>
             <tr>
-              <td className="param">
+              <td className="param" style={{ position: "relative" }}>
                 <i className="fa fa-user" />
                 { I18n.t( "users" ) }
+                <CollapseButton
+                  isCollapsed={isUserCollapsed}
+                  onToggle={() => setIsUserCollapsed( !isUserCollapsed )}
+                  ariaLabel={isUserCollapsed ? I18n.t( "expand" ) : I18n.t( "collapse" )}
+                />
               </td>
               <td className="value">
-                { userRules }
-                { exceptUserRules && (
+                {!isUserCollapsed && (
+                <>
+                  { userRules }
+                  { exceptUserRules && (
                   <div className="except">
                     <div className="bold">
                       { I18n.t( "except" ) }
                     </div>
                     { exceptUserRules }
                   </div>
-                ) }
+                  ) }
+                </>
+                )}
               </td>
             </tr>
             { projectsRequirement }
@@ -263,7 +299,8 @@ const Requirements = ( {
             { annotationRequirement }
           </tbody>
         </table>
-      </div> );
+      </div>
+    );
   return (
     <div className="Requirements">
       <h2>
