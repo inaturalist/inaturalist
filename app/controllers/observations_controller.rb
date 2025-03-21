@@ -1745,24 +1745,27 @@ class ObservationsController < ApplicationController
 
   def user_stats
     params[:skip_order] = true
-    search_params = Observation.get_search_params(params,
-      current_user: current_user)
+    search_params = Observation.get_search_params(
+      params,
+      current_user: current_user
+    )
     limit = params[:limit].to_i
     limit = 500 if limit > 500 || limit <= 0
-    stats_adequately_scoped?(search_params)
+    stats_adequately_scoped?( search_params )
     # all the HTML view needs to know is stats_adequately_scoped?
     if request.format.json?
-      elastic_user_stats(search_params, limit)
-      @user_ids = @user_counts.map{ |c| c["user_id"] } |
-        @user_taxon_counts.map{ |c| c["user_id"] }
-      @users = User.where(id: @user_ids).
-        select("id, login, name, icon_file_name, icon_updated_at, icon_content_type")
-      @users_by_id = @users.index_by(&:id)
+      elastic_user_stats( search_params, limit )
+      @user_ids = @user_counts.map {| c | c["user_id"] } |
+        @user_taxon_counts.map {| c | c["user_id"] }
+      @users = User.where( id: @user_ids ).select(
+        "id, login, name, icon_file_name, icon_updated_at, icon_content_type, icon_path_version"
+      )
+      @users_by_id = @users.index_by( &:id )
     else
-      @user_counts = [ ]
-      @user_taxon_counts = [ ]
+      @user_counts = []
+      @user_taxon_counts = []
     end
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         @headless = true
         render layout: "bootstrap"

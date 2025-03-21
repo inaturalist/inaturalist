@@ -85,7 +85,9 @@ module Shared::GuideModule
     @paged_scope = @scope.order(@order).limit(per_page).offset(offset)
     @paged_scope = @paged_scope.has_photos if @filter_params.blank?
     Taxon.preload_associations(@paged_scope, [
-      { taxon_photos: :photo }, 
+      { taxon_photos: {
+        photo: [:flags, :moderator_actions, :user, :file_prefix, :file_extension]
+      } },
       { taxon_names: :place_taxon_names},
       :conservation_statuses, 
       :taxon_descriptions, 
