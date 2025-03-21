@@ -1710,7 +1710,6 @@ es-AR:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, algunos derechos reservados (%{license})
   editing: Modificando
-  editing_announcement: Modificando anuncio
   editing_custom_project_fields_for: Editando campos a la medida para
   editing_observation_field: Modificando campo de observación
   editing_observation_id: "Modificando observación %{obs_id}"
@@ -5952,9 +5951,6 @@ es-AR:
   verifiable_observations: Observaciones verificables
   views:
     views: 'Visualizaciones'
-    announcements:
-      locales_desc: |
-        Presiona CMD- o SHIFT para seleccionar múltiple. Si no seleccionas ninguna se  mostrará el anuncio para todos los usuarios sin importar su ubicación. Si seleccionas un lenguaje sin una región no cambiará localidades con regiones, p. ej. si escogiste EN no aparecerá para personas que han escogido EN-EE.UU. Si quieres apuntar a ambos, escoge ambos. Si quieres mostrar un anuncio para todos los miembros de un sitio, no llenes este espacio.
     custom_projects:
       edit:
         custom_project_fields_warning: |
