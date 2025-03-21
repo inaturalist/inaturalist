@@ -35,7 +35,7 @@
   I18n.t = function ( key, params ) {
     var translation = I18n.translate( key, params );
     if ( I18n.locale === "en-2x" ) {
-      return `${translation} ${translation}`;
+      return translation + " " + translation;
     }
     return translation;
   };
