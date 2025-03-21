@@ -84,12 +84,6 @@ GIT
       rails (>= 4.2)
 
 GIT
-  remote: https://github.com/pleary/gdata.git
-  revision: 85805f4f077357ceafce89c34073fa163944d7d4
-  specs:
-    gdata (1.1.2)
-
-GIT
   remote: https://github.com/pleary/omniauth-flickr.git
   revision: fdfd81f47c33a21953ad97e0b5e2749b89989ef0
   ref: fdfd81f47c33a21953ad97e0b5e2749b89989ef0
@@ -401,7 +395,7 @@ GEM
       ice_cube (~> 0.16)
     ice_cube (0.16.3)
     jmespath (1.6.1)
-    json (2.5.1)
+    json (2.10.2)
     json-jwt (1.15.3.1)
       activesupport (>= 4.2)
       aes_key_wrap
@@ -432,7 +426,7 @@ GEM
       rake
     mini_mime (1.1.5)
     mini_portile2 (2.8.8)
-    minitest (5.25.4)
+    minitest (5.25.5)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.4.1)
@@ -517,7 +511,7 @@ GEM
     puma (5.6.9)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (2.2.12)
+    rack (2.2.13)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-mobile-detect (0.4.0)
@@ -644,12 +638,15 @@ GEM
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.41.0)
       parser (>= 3.3.7.2)
-    rubocop-rails (2.12.2)
+    rubocop-rails (2.30.3)
       activesupport (>= 4.2.0)
+      lint_roller (~> 1.1)
       rack (>= 1.1)
-      rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.5.0)
-      rubocop (~> 1.19)
+      rubocop (>= 1.72.1, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
+    rubocop-rspec (3.5.0)
+      lint_roller (~> 1.1)
+      rubocop (~> 1.72, >= 1.72.1)
     ruby-openid (2.9.2)
     ruby-progressbar (1.13.0)
     ruby_dig (0.0.2)
@@ -809,7 +806,6 @@ DEPENDENCIES
   fastimage
   flickr
   friendly_id
-  gdata!
   georuby
   haml
   htmlentities
@@ -854,6 +850,7 @@ DEPENDENCIES
   rdoc (< 6.4.0)
   redcarpet
   rest-client
+  rexml
   rgeo
   rgeo-geojson
   rgeo-proj4 (~> 3.1.1)

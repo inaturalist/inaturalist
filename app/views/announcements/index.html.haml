@@ -4,6 +4,9 @@
   :css
     #controls { display: flex; justify-content: space-between; }
     #controls form { max-width: 50%; }
+    .announcement-body {
+      max-width: 500px;
+    }
     .sidebar-body { max-width: 360px; }
     .sidebar-body img, .general-body img { max-width: 100%; }
 .container
@@ -50,13 +53,23 @@
                 =l announcement.end
                 - if announcement.end > Time.now
                   %span.label.label-success=t :active
-              %td
+              %td.announcement-body
                 - if announcement.placement === "users/dashboard#sidebar"
                   %div.sidebar-body=raw announcement.body
                 - else
                   %div.general-body=raw announcement.body
-              %td= link_to t(:show), announcement
-              %td= link_to t(:edit), edit_announcement_path(announcement)
-              %td= link_to t(:destroy), announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete
+              %td
+                = link_to announcement, class: "btn btn-default btn-sm" do
+                  %i.fa.fa-eye
+                  = t(:show)
+              %td
+                = link_to edit_announcement_path(announcement), class: "btn btn-default btn-sm" do
+                  %i.fa.fa-pencil
+                  = t(:edit)
+
+              %td
+                = link_to announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete, class: "btn btn-danger btn-sm" do
+                  %i.fa.fa-trash
+                  = t(:destroy)
       = will_paginate @announcements
       = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"

@@ -557,3 +557,12 @@ describe Place, "validate_with_geom" do
     )
   end
 end
+
+describe Place, "localized_name" do
+  it "should show the Spanish name for a country" do
+    country = create :place, name: "Mexico", admin_level: Place::COUNTRY_LEVEL
+    I18n.with_locale( :es ) do
+      expect( country.localized_name ).to eq "México"
+    end
+  end
+end

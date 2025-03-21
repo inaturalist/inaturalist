@@ -580,11 +580,6 @@ inat-taxon.split-taxon .icon {display: none;}
   display: inline-block;
   white-space: nowrap;
 }
-#obs-container .observation .date:before {
-  content: '\2022';
-  font-weight: bold;
-  margin: 0 3px 0 2px;
-}
 #obs-container .observation .pull-right .date:before {
   content: none;
 }
@@ -643,7 +638,8 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 #obs-container .media-body {
   padding: 5px 10px 26px 10px;
-  border-top: 1px solid #eee
+  border-top: 1px solid #eee;
+  position: relative;
 }
 
 #obs-container .userimage {
@@ -660,6 +656,8 @@ inat-taxon.split-taxon .icon {display: none;}
   clear: both;
   position: absolute;
   bottom: 7px;
+  padding-inline-end: 20px;
+  width: 100%;
 }
 
 .bootstrap label.sectionlabel {

@@ -1,56 +1,121 @@
+:ruby
+  month_names = I18n.t( "date.month_names" )
+  if month_names.is_a?( Hash )
+    month_names = [nil, I18n.t( "date.month_names" ).values].flatten
+  end
+  sorted_locales = I18n.t( "locales", locale: :en ).keys.sort_by { I18n.t( "locales.#{_1}", default: t( "locales.#{_1}" ) ).downcase }
+  locale_options = sorted_locales.map { | locale | [t( "locales.#{locale}", default: t( "locales.#{locale}" ) ), locale] }
+  country_options = Place::COUNTRIES_BY_NAME.values.select { | c | !c[:code].blank? }.map do | c |
+    [
+      Place.localized_name( c[:name], { admin_level: Place::COUNTRY_LEVEL } ),
+      c[:code]
+    ]
+  end
 - content_for :extracss do
   :css
-    #new_announcement textarea,
-    .edit_announcement textarea {
+    form.announcement textarea {
       width: 100%;
       min-height: 300px;
+    }
+    .bootstrap select.form-control {
+      max-width: inherit;
+    }
+    #announcement_site_ids, #announcement_locales { height: 150px; }
+    #announcement_locales,
+    .for-non-admin #announcement_ip_countries {
+      height: 286px;
     }
 - content_for :extrajs do
   :javascript
     var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
     var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe }
   = javascript_include_tag "announcements/form"
-= form_for @announcement, :builder => DefaultFormBuilder do |f|
-  = f.error_messages
-  = f.select :placement, Announcement::PLACEMENTS
-  - clients = Announcement::CLIENTS[@announcement.placement] || []
-  = f.select :clients, clients, { include_blank: t( :all ) }, {      |
-    multiple: true,                                                  |
-    description: t( "views.announcements.clients_desc" ),            |
-    size: [clients.length + 1, 5].min }                              |
-  = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
-  - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
-  = f.select :target_group_partition, target_group_partitions,              |
-    { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
-    { disabled: target_group_partitions.empty? }                            |
-  :ruby
-    month_names = I18n.t( "date.month_names" )
-    if month_names.is_a?( Hash )
-      month_names = [nil, I18n.t( "date.month_names" ).values].flatten
-    end
-  = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day]
-  = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day]
-  - if current_user.is_admin?
-    = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true
-  - else
-    = f.hidden_field :site_ids
-  = f.check_box :dismissible, label_after: true
-  = f.check_box :prefers_target_staff, label_after: true
-  = f.check_box :prefers_target_unconfirmed_users, label_after: true
-  = f.check_box :prefers_exclude_monthly_supporters, label_after: true
-  - donors_start_year = 2018
-  - donors_end_year = Time.now.year + 1
-  = f.date_select :include_donor_start_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-  = f.date_select :include_donor_end_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-  = f.date_select :exclude_donor_start_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-  = f.date_select :exclude_donor_end_date, use_month_names: month_names,
-    order: [:year, :month, :day], include_blank: true, start_year: donors_start_year, end_year: donors_end_year
-
-  = f.select :locales, I18N_SUPPORTED_LOCALES, {}, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ) }
-  = f.text_area :body
+= form_for @announcement, :builder => BootstrapFormBuilder, html: { class: current_user.is_admin? ? "announcement for-admin" : "announcement for-non-admin" } do |f|
+  .row
+    .col-xs-12
+      = f.error_messages
+  .row
+    .col-xs-4
+      = f.select :placement, Announcement::PLACEMENTS
+      - clients = Announcement::CLIENTS[@announcement.placement] || []
+      = f.select :clients, clients, { include_blank: t( :all ) }, { multiple: true, description: t( "views.announcements.clients_desc" ),description_tip: true, size: [clients.length + 1, 5].min, wrapper: { style: "display: none;" } }
+      = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.start_desc" ), description_tip: true
+      = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.end_desc" ), description_tip: true
+      = f.check_box :dismissible, label_after: true
+    .col-xs-4
+      = f.select :ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.ip_countries_desc" ), description_tip: true
+      - if current_user.is_admin?
+        .admin
+          = f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true, description: t( "views.announcements.site_ids_desc" ), description_tip: true
+      - else
+        = f.hidden_field :site_ids
+    .col-xs-4
+      = f.select :locales, locale_options, { include_blank: t( :all ) }, { multiple: true, label: I18n.t( "locales_" ), description: t( "views.announcements.locales_desc" ), description_tip: true }
+  .row
+    .col-xs-12
+      = f.text_area :body
+  .row.stacked.upstacked
+    .col-xs-12
+      %details.panel.panel-default
+        %summary.panel-heading=t :more_options
+        .panel-body
+          %h4
+            %i.fa.fa-heart
+            =t :donations
+          %p.text-muted
+            Target users by donation behavior
+          .row
+            .col-xs-2= f.text_field :include_donor_start_date, type: "date"
+            .col-xs-2= f.text_field :include_donor_end_date, type: "date"
+            .col-xs-2= f.text_field :exclude_donor_start_date, type: "date"
+            .col-xs-2= f.text_field :exclude_donor_end_date, type: "date"
+            .col-xs-4
+              = f.check_box :prefers_exclude_monthly_supporters, label_after: true
+          %h4
+            %i.fa.fa-binoculars
+            =t :observations
+          %p.text-muted=t "views.announcements.target_users_by_observation_behavior"
+          .row
+            .col-xs-2= f.text_field :min_observations, type: "number", min: 0
+            .col-xs-2= f.text_field :max_observations, type: "number", min: 0
+            .col-xs-4
+              .row
+                .col-xs-6= f.text_field :last_observation_start_date, type: "date"
+                .col-xs-6= f.text_field :last_observation_end_date, type: "date"
+              .row
+                .col-xs-12
+                  %p.text-muted=t "views.announcements.last_observation_date_desc"
+          %h4
+            %i.icon-identification
+            =t :identifications
+          %p.text-muted=t "views.announcements.target_users_by_identification_behavior"
+          .row
+            .col-xs-2= f.text_field :min_identifications, type: "number", min: 0
+            .col-xs-2= f.text_field :max_identifications, type: "number", min: 0
+          %h4
+            %i.fa.fa-user
+            =t :users
+          %p.text-muted=t "views.announcements.target_users_by_other_attributes"
+          .row
+            .col-xs-2= f.text_field :user_created_start_date, type: "date"
+            .col-xs-2= f.text_field :user_created_end_date, type: "date"
+            .col-xs-4
+              = f.check_box :prefers_target_staff, label_after: true
+              = f.check_box :prefers_target_unconfirmed_users, label_after: true
+              = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
+                = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
+                = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
+                = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+            .col-xs-4
+              = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
+              - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
+              = f.select :target_group_partition, target_group_partitions,              |
+                { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
+                { disabled: target_group_partitions.empty? }                            |
   .actions.buttons
     = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"
     = link_to t(:cancel), announcements_path, :class => "button"
+    - if f.object&.persisted?
+      = link_to f.object, :data => {:confirm => t(:are_you_sure?)}, :method => :delete, class: "btn btn-danger btn-sm pull-right" do
+        %i.fa.fa-trash
+        = t(:destroy)

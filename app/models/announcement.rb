@@ -7,14 +7,24 @@ class Announcement < ApplicationRecord
     welcome/index
     mobile/home
   ).freeze
+  PARAM_PLACEMENTS = PLACEMENTS + %w(mobile)
+
+  PLACEMENTS.each do | placement |
+    const_set placement.parameterize.underscore.upcase, placement
+  end
+
+  INAT_IOS = "inat-ios"
+  INAT_ANDROID = "inat-android"
+  SEEK = "seek"
+  INATRN = "inatrn"
 
   CLIENTS = {
-    "mobile/home" => %w(
-      inat-ios
-      inat-android
-      seek
-      inatrn
-    )
+    MOBILE_HOME => [
+      INAT_IOS,
+      INAT_ANDROID,
+      SEEK,
+      INATRN
+    ]
   }.freeze
 
   TARGET_GROUPS = {
@@ -32,12 +42,31 @@ class Announcement < ApplicationRecord
     )
   }.freeze
 
+  YES = "yes"
+  NO = "no"
+  ANY = "any"
+  YES_NO_ANY = [YES, NO, ANY].freeze
+
   has_and_belongs_to_many :sites
+  has_many :announcement_impressions, dependent: :delete_all
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
+  validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_presence_of :target_group_partition, if: :target_group_type?
   validate :valid_target_group_partition, if: :target_group_type?
+  validates :min_identifications,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_identifications,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :min_observations,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :max_observations,
+    allow_nil: true,
+    numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   preference :target_staff, :boolean
   preference :target_unconfirmed_users, :boolean
@@ -51,9 +80,8 @@ class Announcement < ApplicationRecord
     where( "? = ANY (locales)", locale )
   }
 
-  before_save :compact_locales
   before_save :clean_target_group
-  before_validation :compact_clients
+  before_validation :compact_array_attributes
 
   after_save :sync_announcement_dismissals
 
@@ -75,12 +103,10 @@ class Announcement < ApplicationRecord
     "user-seen-ann-#{id}"
   end
 
-  def compact_locales
-    self.locales = ( locales || [] ).reject( &:blank? ).compact
-  end
-
-  def compact_clients
+  def compact_array_attributes
     self.clients = ( clients || [] ).reject( &:blank? ).compact
+    self.locales = ( locales || [] ).reject( &:blank? ).compact
+    self.ip_countries = ( ip_countries || [] ).reject( &:blank? ).compact
   end
 
   def clean_target_group
@@ -96,10 +122,36 @@ class Announcement < ApplicationRecord
     dismiss_user_ids.include?( user_id )
   end
 
+  def impressions_count
+    announcement_impressions.sum( :impressions_count )
+  end
+
+  def dismissals_count
+    dismiss_user_ids.count
+  end
+
   def targeted_to_user?( user )
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
     return false if user&.monthly_donor? && prefers_exclude_monthly_supporters
     return false if target_group_type && user.blank?
+    return false if target_logged_in == YES && user.blank?
+    return false if target_logged_in == NO && user
+
+    if min_identifications && ( !user || user.identifications_count < min_identifications )
+      return false
+    end
+
+    if max_identifications && ( user&.identifications_count || 0 ) > max_identifications
+      return false
+    end
+
+    if min_observations && ( !user || user.observations_count < min_observations )
+      return false
+    end
+
+    if max_observations && ( user&.observations_count || 0 ) > max_observations
+      return false
+    end
 
     case target_group_type
     when "user_id_parity"
@@ -136,8 +188,20 @@ class Announcement < ApplicationRecord
         where( "donated_at >= ?", exclude_donor_start_date || Date.new( 2018, 1, 1 ) ).
         where( "donated_at <= ?", exclude_donor_end_date || Time.now ).any?
 
+    return false if user_created_start_date && user.created_at < user_created_start_date
+    return false if user_created_end_date && user.created_at > user_created_end_date
+
     if prefers_target_unconfirmed_users
       return user && !user.confirmed?
+    end
+
+    if user && ( last_observation_start_date || last_observation_end_date )
+      last_observation_created_at = user.last_observation_created_at
+      # if the user has never created an observation, don't show the announcement
+      return false unless last_observation_created_at
+      # if the user has created an observation, but it's outside the date range, don't show
+      return false if last_observation_start_date && last_observation_created_at < last_observation_start_date
+      return false if last_observation_end_date && last_observation_created_at > last_observation_end_date
     end
 
     true
@@ -164,32 +228,121 @@ class Announcement < ApplicationRecord
     end
   end
 
-  def self.active_in_placement( placement, site )
+  def self.active( options = {} )
+    site = options[:site]
+    user = options[:user]
     scope = Announcement.
+      where( '? BETWEEN "start" AND "end"', Time.now.utc ).
       joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id" ).
       joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
-      where( 'placement = ? AND ? BETWEEN "start" AND "end"', placement, Time.now.utc ).
       limit( 50 )
+    placements = options[:placement].to_s.split( "," ) & PARAM_PLACEMENTS
+    if placements.size.positive?
+      scope = if placements.include?( "mobile" )
+        scope.where( "placement LIKE 'mobile%' OR placement IN (?)", placements )
+      else
+        scope.where( placement: placements )
+      end
+    end
+    if CLIENTS.values.flatten.include?( options[:client] )
+      scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:client] )
+    end
+    if options[:user_agent_client]
+      scope = scope.where( "? = ANY( clients ) OR clients = '{}'", options[:user_agent_client] )
+    end
+
+    # Site filtering
+    scope = if user
+      # authenticated requests include announcements targeted at the users site,
+      # or that have no site affiliation
+      scope.
+        where(
+          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
+          user.site_id || Site.default.id
+        )
+    elsif site
+      scope.
+        where(
+          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
+          site || Site.default
+        )
+    else
+      # unauthenticated requests exclude announcements associated with sites
+      scope.where( "announcements_sites.site_id IS NULL" )
+    end
     base_scope = scope
-    scope = scope.where( "sites.id = ?", site.id )
-    @announcements = scope.in_specific_locale( I18n.locale )
-    @announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if @announcements.blank?
-    @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
-    @announcements = scope.in_locale( I18n.locale.to_s.split( "-" ).first ) if @announcements.blank?
-    if @announcements.blank?
-      @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
-      @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
-      @announcements = @announcements.to_a.flatten
+    announcements = scope.in_specific_locale( I18n.locale )
+    announcements = scope.in_specific_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
+    announcements = scope.in_locale( I18n.locale ) if announcements.blank?
+    announcements = scope.in_locale( I18n.locale.to_s.split( "-" ).first ) if announcements.blank?
+    if announcements.blank?
+      announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
+      announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if announcements.blank?
+      announcements = announcements.to_a.flatten
     end
-    if @announcements.blank?
-      @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
+    if announcements.blank?
+      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
     end
-    @announcements = @announcements.sort_by do | a |
+
+    announcements = announcements.select do | a |
+      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+    end
+
+    # Locale- and site- specific targeting above may have excluded
+    # announcements without those filters, so we need to add them back in and
+    # check their targeting. This is kind of a pointless extra db query. We
+    # might just want to do locale and site filtering in Ruby instead of the
+    # DB for simplicity.
+    if announcements.blank?
+      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ).select do | a |
+        a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+      end
+    end
+
+    if options[:ip]
+      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
+      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
+    end
+
+    # Remove non-site announcements if some announcements target sites
+    announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
+    if announcement_target_site
+      announcements = announcements.select do | annc |
+        annc.site_ids.present?
+      end
+    end
+    announcements.sort_by do | a |
       [
-        a.site_ids.include?( @site.try( :id ) ) ? 0 : 1,
+        a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
         a.locales.include?( I18n.locale ) ? 0 : 1,
         a.id * -1
       ]
     end
+  end
+
+  def self.active_in_placement( placement, options = {} )
+    active( options.merge( placement: placement ) )
+  end
+
+  def serializable_hash( opts = {} )
+    options = opts.clone
+    options[:methods] ||= []
+    options[:only] ||= []
+    options[:only] += [
+      :body,
+      :clients,
+      :dismissible,
+      :end,
+      :id,
+      :locales,
+      :placement,
+      :start
+    ]
+    if options[:except]
+      options[:methods] = options[:methods] - options[:except]
+    end
+    options[:methods].uniq!
+    options[:only].uniq!
+    super( options )
   end
 end

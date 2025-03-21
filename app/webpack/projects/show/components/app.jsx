@@ -246,11 +246,13 @@ const App = ( {
               }}
             >
               <div className="header-about-content">
-                <div className="header-about-title">
-                  { I18n.t( "about" ) }
-                </div>
-                <div className="header-about-button">
-                  { headerButton }
+                <div className="header-about-content-head">
+                  <div className="header-about-title">
+                    { I18n.t( "about" ) }
+                  </div>
+                  <div className="header-about-button">
+                    { headerButton }
+                  </div>
                 </div>
                 <div className="header-about-text">
                   <UserText
@@ -259,7 +261,7 @@ const App = ( {
                     moreToggle={false}
                   />
                 </div>
-                <div>
+                <div className="header-about-more">
                   <button
                     type="button"
                     className="header-about-read-more header-link-btn btn btn-nostyle"
@@ -272,25 +274,27 @@ const App = ( {
                     <ProjectMembershipButtonContainer />
                   </div>
                 </div>
-                <div>
-                  { userCanEdit && (
-                    <div className="header-about-edit">
-                      <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
-                        <i className="fa fa-cog" />
-                        { I18n.t( "edit_project" ) }
+                <div className="header-about-actions">
+                  <div>
+                    { userCanEdit && (
+                      <div className="header-about-edit">
+                        <a href={`/projects/${project.slug}/edit`} className="btn btn-default btn-white">
+                          <i className="fa fa-cog" />
+                          { I18n.t( "edit_project" ) }
+                        </a>
+                      </div>
+                    ) }
+                    { !userCanEdit && project.rule_members_only && (
+                      <div className="header-about-members-only">
+                        { I18n.t( "project_members_only" ) }
+                      </div>
+                    ) }
+                    <div className="header-about-news">
+                      <a href={`/projects/${project.slug}/journal`}>
+                        <span className="glyphicon glyphicon-book" />
+                        { I18n.t( "project_journal" ) }
                       </a>
                     </div>
-                  ) }
-                  { !userCanEdit && project.rule_members_only && (
-                    <div className="header-about-members-only">
-                      { I18n.t( "project_members_only" ) }
-                    </div>
-                  ) }
-                  <div className="header-about-news">
-                    <a href={`/projects/${project.slug}/journal`}>
-                      <span className="glyphicon glyphicon-book" />
-                      { I18n.t( "project_journal" ) }
-                    </a>
                   </div>
                 </div>
               </div>

@@ -28,9 +28,26 @@ class BootstrapFormBuilder < DefaultFormBuilder
 
     if options[:label] != false
       label_field = field
+      label_inside = (
+        options[:label] ||
+        I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: field.to_s.humanize )
+      ).to_s.html_safe
+      if options[:description_tip]
+        label_inside += content_tag(
+          :button,
+          content_tag( :i, "", class: "fa fa-info-circle" ),
+          class: "btn btn-nostyle",
+          data: {
+            toggle: "popover",
+            content: description,
+            placement: "bottom"
+          },
+          onclick: "return false;"
+        )
+      end
       label_tag = label(
         label_field,
-        options[:label].to_s.html_safe,
+        label_inside,
         class: options[:label_class],
         for: options[:id]
       )
@@ -44,6 +61,8 @@ class BootstrapFormBuilder < DefaultFormBuilder
       "#{content} #{datalist} #{label_content} #{description}"
     elsif description_after
       "#{label_content} #{content} #{datalist} #{description}"
+    elsif options[:description_tip]
+      "#{label_content} #{content} #{datalist}"
     else
       "#{label_content} #{description} #{content} #{datalist}"
     end
@@ -68,20 +87,31 @@ class BootstrapFormBuilder < DefaultFormBuilder
     super( method, choices, options, html_options, &block )
   end
 
-  # rubocop:disable Metrics/ParameterLists
-
   def check_radio_field( field, field_content = nil, options = {}, wrapper_options = {}, description = nil )
     wrapper_options[:class] = wrapper_options[:class].gsub( "form-group", field == "check_box" ? "checkbox" : "radio" )
-    label_content = ( options[:label] == false ? nil : options[:label] || field ).to_s.html_safe
+    label_content = if options[:label] == false
+      nil
+    else
+      (
+        options[:label] ||
+        I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: nil ) ||
+        field
+      )
+    end.to_s.html_safe
     if options[:required]
       label_content += content_tag( :span, " *", class: "required" )
     end
-    content = @template.content_tag( :label, [field_content, label_content].join( " " ).html_safe )
+    label_class = if options[:inline]
+      field == "check_box" ? "checkbox-inline" : "radio-inline"
+    end
+    content = @template.content_tag( :label, [field_content, label_content].join( " " ).html_safe, class: label_class )
     content += @template.content_tag( :div, description.html_safe ) unless description.blank?
+    if options[:inline]
+      return content
+    end
+
     @template.content_tag( :div, wrapper_options ) do
       content
     end
   end
-
-  # rubocop:enable Metrics/ParameterLists
 end
