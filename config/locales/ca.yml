@@ -1697,7 +1697,6 @@ ca:
   edited_by_name_some_rights_reserved_html: |
     Editat per %{name}, alguns drets reservats (%{license})
   editing: Modificant
-  editing_announcement: Modifica l'anunci
   editing_custom_project_fields_for: Editant els camps personalitzats del projecte per a
   editing_observation_field: Modifica camp d'observació
   editing_observation_id: "Modifica observació %{obs_id}"
@@ -5938,9 +5937,6 @@ ca:
   verifiable_observations: Observacions verificables
   views:
     views: 'Vistes'
-    announcements:
-      locales_desc: |
-        Premeu CMD- o SHIFT- per a seleccions múltiples. Si no seleccioneu cap es mostrarà un avís a tots els usuaris, amb independència de la seva localització. Si escolliu un idioma, sense cap regió, *no* seleccionarà les regions locals, per exemple, si escolliu en no li apareixerà a les persines que hagin escollit en-US. Si voleu dirigir-ho a ambdues, cal que es escolliu ambdues. Si voleu mostrar l'anunci per a tots els membres de un lloc, deixeu-lo en blanc.
     content_freeze:
       content_freeze: Congela el contingut
       during_this_time: |
