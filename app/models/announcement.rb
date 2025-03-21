@@ -48,6 +48,7 @@ class Announcement < ApplicationRecord
   YES_NO_ANY = [YES, NO, ANY].freeze
 
   has_and_belongs_to_many :sites
+  has_many :announcement_impressions, dependent: :delete_all
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
@@ -119,6 +120,14 @@ class Announcement < ApplicationRecord
     user_id = user.id if user.is_a?( User )
     user_id = user_id.to_i
     dismiss_user_ids.include?( user_id )
+  end
+
+  def impressions_count
+    announcement_impressions.sum( :impressions_count )
+  end
+
+  def dismissals_count
+    dismiss_user_ids.count
   end
 
   def targeted_to_user?( user )
@@ -275,19 +284,32 @@ class Announcement < ApplicationRecord
       announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" )
     end
 
+    announcements = announcements.select do | a |
+      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+    end
+
+    # Locale- and site- specific targeting above may have excluded
+    # announcements without those filters, so we need to add them back in and
+    # check their targeting. This is kind of a pointless extra db query. We
+    # might just want to do locale and site filtering in Ruby instead of the
+    # DB for simplicity.
+    if announcements.blank?
+      announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ).select do | a |
+        a.targeted_to_user?( user ) && !a.dismissed_by?( user )
+      end
+    end
+
+    if options[:ip]
+      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
+      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
+    end
+
     # Remove non-site announcements if some announcements target sites
     announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
     if announcement_target_site
       announcements = announcements.select do | annc |
         annc.site_ids.present?
       end
-    end
-    announcements = announcements.select do | a |
-      a.targeted_to_user?( user ) && !a.dismissed_by?( user )
-    end
-    if options[:ip]
-      geoip_country = INatAPIService.geoip_lookup( { ip: options[:ip] } )&.results&.country
-      announcements = announcements.select {| a | a.ip_countries.blank? || a.ip_countries.include?( geoip_country ) }
     end
     announcements.sort_by do | a |
       [
