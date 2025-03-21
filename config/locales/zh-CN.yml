@@ -1684,7 +1684,6 @@ zh-CN:
   edited_by_name_some_rights_reserved_html: |
     由%{name}编辑，保留部分权利（%{license}）
   editing: 编辑中
-  editing_announcement: 编辑公告
   editing_custom_project_fields_for: 编辑自定义项目字段
   editing_observation_field: 编辑观察记录字段
   editing_observation_id: "编辑观察记录%{obs_id}"
@@ -5969,11 +5968,6 @@ zh-CN:
   verifiable_observations: 可验证的观察
   views:
     views: '视图'
-    announcements:
-      locales_desc: |
-        CMD-或SHIFT-单击来选择多个。假如都不选择，将显示所有用户的通知，无论语言环境如何。选择不属于特定地区的语言环境将*不会*选出具有特定地区的语言环境，例如，如果你选择en，它将不会显示给选择en-US的人。如果要同时选择这二者，请同时选择它们。如果您想为网站的所有成员显示告示，请将其留空。
-      clients_desc: |
-        按住CMD-或SHIFT-点击以同时选中多个。如果存在任何未被选择的项目，都会在所有客户端上向所有用户显示通知。
     content_freeze:
       content_freeze: 内容冻结
       during_this_time: |
