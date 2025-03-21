@@ -1807,7 +1807,6 @@ pt-BR:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, alguns direitos reservados (%{license})
   editing: Editando
-  editing_announcement: Modificando anúncio
   editing_custom_project_fields_for: Modificando os campos de projeto personalizados
   editing_observation_field: Modifique o campo de observação
   editing_observation_id: "Modificando Observação %{obs_id}"
@@ -6303,17 +6302,6 @@ pt-BR:
   verifiable_observations: Observações verificáveis
   views:
     views: 'Visualizações'
-    announcements:
-      locales_desc: |
-        Clique em CMD ou SHIFT para selecionar vários. Não selecionar nenhum mostrará o
-        anúncio para todos os usuários, independentemente da localidade. Escolhendo um idioma
-        sem uma região, *não* segmentará localidades com regiões, por exemplo, E se
-        você escolheu en ele não aparecerá para as pessoas que escolheram en-US. Se vocês
-        quer segmentar ambos, escolha ambos. Se você quiser mostrar um anúncio
-        para todos os membros de um site, apenas deixe em branco.
-      clients_desc: |
-        Clique em CMD- ou SHIFT para selecionar vários. Sem selecionar nenhum mostrará o anúncio
-        para todos os usuários, independentemente do cliente.
     content_freeze:
       content_freeze: Congelamento de conteúdo
       during_this_time: |
