@@ -5040,6 +5040,9 @@ nl:
     one: 1 waarneming verzenden
     other: '%{count} waarnemingen verzenden'
   submitted: Verzonden
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonneer
   subscribe_to_a_taxon: Op een taxon abonneren
   subscribe_to_a_place: Op een gebied abonneren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze melding"
@@ -5057,7 +5060,6 @@ nl:
     Je kunt je bijvoorbeeld abonneren op een taxon om updates te krijgen over nieuwe
     waarnemingen van dat taxon. Je bent automatisch geabonneerd op updates
     over waarnemingen waarop je reageert of die je determineert.
-  subscribe_to_this: Hierop abonneren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonneer</a>
     op %{x} van @gender{n:dit|deze} %{y}.
