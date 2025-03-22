@@ -1557,7 +1557,6 @@ sl:
   edited_by_name_some_rights_reserved_html: |
     Urejano od %{name}, nekatere pravice pridržane (%{license})
   editing: Urejanje
-  editing_announcement: Urejanje obvestila
   editing_observation_field: Urejanje polja opazovanja
   editing_observation_id: "Urejanje opazovanja %{obs_id}"
   editing_observations:
@@ -4305,7 +4304,6 @@ sl:
     Naročnine vplivajo na to kaj vidite med svojimi novostmi in na vaši kontrolni plošči.
     Naprimer, naročite se lahko na takson, da bi dobili novice o novih opazovanjih tega
     taksona. Na novice v zvezi z vašimi opazovanji ste prijavljeni samodejno.
-  subscribe_to_this: Naročite se na to
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Naroči se</a>
     na %{x} od tega %{y}.
@@ -4778,23 +4776,6 @@ sl:
     Ko boste ponovno poslai potrditveno e-sporočilo, se boste izpisali in ne boste mogli
     dostopati do vašega računa, dokler ne pritisnete na povezavo v e-sporočilu. Zato se
     <strong>absolutno prepričajte, da ste vnesli pravilen e-naslov.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Preverite pravilnost vašega e-naslova. Tu je e-naslov, na katerega bomo poslali potrditev:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Tu je nekaj napotkov, v primeru, da ne prejmete e-sporočila:
-    </p>
-    <ul>
-    <li><p>Preverite med nezaželeno pošto</p></li>
-    <li><p>Preverite filter, ki bi lahko odstranili to sporočilo iz vašega nabiralnika</p></li>
-    </ul>
-    <p>
-    Če še vedno ne prejmete potrditvenega e-sporočila, prosimo kontaktirajte nas na 
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    da vam bomo lahko pomagali.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Po temu se boste izpisali</h3>
     <p>

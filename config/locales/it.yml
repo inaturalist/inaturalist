@@ -1752,7 +1752,6 @@ it:
   edited_by_name_some_rights_reserved_html: |
     Modificato da %{name}, alcuni diritti riservati (%{license})
   editing: Modifica in corso
-  editing_announcement: Modifica annuncio in corso
   editing_custom_project_fields_for: Modifica in corso dei campi del progetto personalizzato per
   editing_observation_field: Modifica del campo dell'osservazione in corso
   editing_observation_id: "Modifica in corso dell'osservazione %{obs_id}"
@@ -4926,7 +4925,6 @@ it:
     Ad esempio, puoi iscriverti ad un taxon per ottenere aggiornamenti sulle nuove
     osservazioni di quel taxon. Sei automaticamente iscritto agli aggiornamenti
     sulle osservazioni che hai commentato o identificato.
-  subscribe_to_this: Iscriviti
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Iscriviti</a>
     a %{x} da %{y}.
@@ -5646,25 +5644,6 @@ it:
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a> al progetto %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Dopo aver inviato nuovamente l'email di conferma, sarai disconnesso e non sarai in grado di accedere al tuo account fino a quando non fai clic sul link in l'email, quindi <strong>assicurati di aver inserito correttamente il tuo indirizzo email.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Per favore assicurati che la tua email sia corretta. Questo è l'indirizzo email a cui
-    manderemo la richiesta di conferma:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Se non ricevi l'email, qui alcuni suggerimenti:
-    </p>
-    <ul>
-    <li><p>Controlla la tua cartella di posta indesiderata</p></li>
-    <li><p>Controlla i filtri che hai impostato e che potrebbero rimuovere le nostre email
-    dalla tua posta in arrivo</p></li>
-    </ul>
-    <p>
-    Se ancora non stai ricevendo l'email di conferma, per favore contattaci a
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    affinchè possiamo aiutarti.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Stai per uscire</h3>
     <p>
@@ -6125,11 +6104,6 @@ it:
   verifiable_observations: Osservazioni verificabili
   views:
     views: 'Visualizzazioni'
-    announcements:
-      locales_desc: |
-        CMD- o SHIFT-click per selezione multipla. Non selezionando niente verranno mostrate le notizie relative e tutti gli utenti indipendentemente dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito, lascia vuoto.
-      clients_desc: |
-        Fai click tenendo premuto CMD o SHIFT per selezionarne di più. Non selezionare nulla mostrerà l'annuncio a tutti gli utenti, indipendentemente dal client.
     content_freeze:
       content_freeze: Blocco Contenuti
       during_this_time: |

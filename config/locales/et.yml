@@ -1656,7 +1656,6 @@ et:
   edited_by_name_some_rights_reserved_html: |
     Muutnud %{name}, mõned õigused kaitstud (%{license})
   editing: Muudan
-  editing_announcement: Teate muutmine
   editing_custom_project_fields_for: Muudan spetsiaalseid välju projektis
   editing_observation_field: Vaatlusvälja muutmine
   editing_observation_id: "Muudan vaatlust %{obs_id}"
@@ -4176,7 +4175,6 @@ et:
   subscribe_to_observations_in_a_place: Jälgi kõiki selles kohas tehtud vaatluseid. Saab kasutada koos taksoni filtriga (nt 'Texase skorpionid').
   subscribe_to_places_help: |
     Jälgimiste kaudu saad kontrollida, mida enda uudisvoos ja töölaual näed. Võid näiteks asuda jälgima mõnda taksonit, et saada teateid kõigi selle taksoni vaatluste kohta. Automaatselt asud jälgima neid vaatluseid, mida sa kommenteerid või mida määratlesid.
-  subscribe_to_this: Jälgi seda
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Jälgi</a> seda %{x} sellest %{y}.
   subscriptions: Jälgimised
@@ -4622,21 +4620,6 @@ et:
   username_or_user_id: Kasutajatunnus või kasutaja ID
   users: Kasutajad
   users_contributions_to_project_html: Kasutaja <a href="%{url}">%{login}</a> panus projekti %{project_title}
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Palun kontrolli, kas su e-posti aadress on korrektne. Allpool on kirjas aadress, millele saadame kinnituskirja:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Kui sa ei saanud e-kirja, proovi järgnevat:
-    </p>
-    <ul>
-    <li><p>Kontrolli rämpsposti kausta</p></li>
-    <li><p>Kontrolli, et sa ei kasuta filtreid, mis eemaldavad postkastist kirju</p></li>
-    </ul>
-    <p>
-    Kui sa ei saa ikka veel kinnituskirja, palun võta meiega ühendust aadressil <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> ja me aitame sind.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Sind logitakse peagi välja</h3>
     <p>
@@ -4989,9 +4972,6 @@ et:
   verifiable_observations: Tõendatud vaatlused
   views:
     views: 'Vaatamisi'
-    announcements:
-      locales_desc: |
-        Mitme valimiseks hoia enne hiirega vajutamist alla CMD- või SHIFT-klahvi. Kui sa ühtegi ei vali, näidatakse teadet kõigile kasutajatele keelest hoolimata. Valides keele ilma regioonita *ei näidata* teadet regiooniga keeltelt. St kui valid en ei ilmu teade inimestele, kelle keel on en-US. Kui soovid mõlemale näidata, vali mõlemad. Kui soovid teadet näidata kõigile liikmetele, jäta see koht lihtsalt tühjaks.
     content_freeze:
       content_freeze: Sisu külmutamine
       during_this_time: |

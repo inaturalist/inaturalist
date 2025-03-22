@@ -1758,7 +1758,6 @@ es:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, algunos derechos reservados (%{license})
   editing: Modificando
-  editing_announcement: Modificando anuncio
   editing_custom_project_fields_for: Editando campos a la medida para
   editing_observation_field: Modificando campo de observación
   editing_observation_id: "Modificando observación %{obs_id}"
@@ -4901,7 +4900,6 @@ es:
     Por ejemplo, puedes suscribirte a un taxón para obtener actualizaciones sobre nuevas
     observaciones de ese taxón. Te has suscrito automáticamente a las actualizaciones
     sobre las observaciones que has comentado o identificado.
-  subscribe_to_this: Suscribir a este
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Suscribirse</a> a %{x} de estas %{y}.
   subscriptions: Suscripciones
@@ -5608,15 +5606,6 @@ es:
     no podrás iniciar sesión en tu cuenta hasta que hagas clic en el enlace en
     el correo electrónico, así que <strong>asegúrate de agregar tu dirección de correo electrónico
     correctamente.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>Por favor, asegúrate de que tu dirección de correo electrónico es correcta. Esta es la dirección de e-mail a la que enviaremos la confirmación:</p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>Si no has recibido el mensaje de e-mail, estos son algunos consejos</p>
-    <ul>
-    <li><p>Comprueba tu carpeta de correo basura (spam)</p></li>
-    <li><p>Comprueba cualquier filtro que pueda eliminar los mensajes de tu bandeja de entrada</p></li>
-    </ul>
-    <p>Si todavía no has recibido el mensaje de confirmación, por favor, contacta con nosotros en <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> para que podamos ayudarte.</p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Estás a punto de cerrar sesión</h3>
     <p>
@@ -6076,11 +6065,6 @@ es:
   verifiable_observations: Observaciones verificables
   views:
     views: 'Visualizaciones'
-    announcements:
-      locales_desc: |
-        Presiona CMD- o SHIFT para seleccionar múltiple. Si no seleccionas ninguna se  mostrará el anuncio para todos los usuarios sin importar su ubicación. Si seleccionas un lenguaje sin una región no cambiará localidades con regiones, p. ej. si escogiste EN no aparecerá para personas que han escogido EN-EE.UU. Si quieres apuntar a ambos, escoge ambos. Si quieres mostrar un anuncio para todos los miembros de un sitio, no llenes este espacio.
-      clients_desc: |
-        Pulse mientras presiona CMD o MAYÚS para seleccionar varios elementos. Si no se selecciona nada, se mostrará el anuncio a todos los usuarios sin importar el cliente que usen.
     content_freeze:
       content_freeze: Contenido bloqueado
       during_this_time: |

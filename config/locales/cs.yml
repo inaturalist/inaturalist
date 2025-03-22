@@ -1902,7 +1902,6 @@ cs:
   edited_by_name_some_rights_reserved_html: |
     Upraveno uživatelem %{name}, některá práva vyhrazena (%{license})
   editing: Upravuje se
-  editing_announcement: Editování oznámení
   editing_custom_project_fields_for: Editovat vlastní projektová pole pro
   editing_observation_field: Editování pole pozorování
   editing_observation_id: "Editování pozorování %{obs_id}"
@@ -5170,7 +5169,6 @@ cs:
     Můžete například odebírat nějaký taxon, abyste dostávali informace o nových
     pozorováních tohoto taxonu. Automaticky odebíráte novinky o pozorováních,
     která komentujete nebo identifikujete.
-  subscribe_to_this: Přihlásit se k odběru
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Přihlásit se k odběru</a>
     %{x} z tohoto %{y}.
@@ -5942,24 +5940,6 @@ cs:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>příspěvky k %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Po opětovném odeslání ověřovacího e-mailu budete odhlášeni a nebudete se moci přihlásit ke svému účtu, dokud nekliknete na odkaz v e-mailu, takže <strong>se naprosto ujistěte, že jste svou e-mailovou adresu zadali správně.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Ujistěte se, že je vaše e-mailová adresa správná. Zde je e-mailová adresa,
-    na kterou zašleme potvrzení:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Pokud e-mail neobdržíte, zde je několik tipů:
-    </p>
-    <ul>
-    <li><p>Zkontrolujte složku se spamem</p></li>
-    <li><p>Zkontrolujte, zda nemáte vytvořené filtry, které by mohly odstranit naše e-maily z vaší doručené pošty</p></li>
-    </ul>
-    <p>
-    Pokud stále neobdržíte potvrzovací e-mail, kontaktujte nás prosíme na
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    abychom vám mohli pomoci.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Chystáte se odhlásit</h3>
     <p>
@@ -6444,12 +6424,6 @@ cs:
   verifiable_observations: ověřitelné pozorování
   views:
     views: 'Zobrazení'
-    announcements:
-      locales_desc: |
-        Podržte CMD nebo SHIFT a klikněte, pokud chcete vybrat více položek. Pokud nevyberete žádné, oznámení se zobrazí všem uživatelům bez ohledu na místo. Když vyberete místo jazyka bez regionu, *nedojde* k nastavení míst společně s regiony, např. pokud chcete vybrat angličtinu, nezobrazí se lidem, kteří vybrali angličtina-US. Pokud chcete cílit na obojí, vyberte obojí. Pokud chcete oznámení zobrazit všem členům na stránce, nechte pole prázdné.
-      clients_desc: |
-        Kliknutím na CMD nebo SHIFT vyberte více položek. Když nevyberete nic,
-        oznámení bude zobrazeno všem uživatelům bez ohledu na klienta.
     content_freeze:
       content_freeze: Zmrazení obsahu
       during_this_time: |

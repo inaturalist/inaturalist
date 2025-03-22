@@ -1811,7 +1811,6 @@ sv:
   edited_by_name_some_rights_reserved_html: |
     Redigerad av %{name}, vissa rättigheter förbehållna (%{license})
   editing: Redigerar
-  editing_announcement: Redigerar meddelande
   editing_custom_project_fields_for: Redigerar anpassade projektfält för
   editing_observation_field: Redigerar fyndfält
   editing_observation_id: "Redigerar fynd %{obs_id}"
@@ -5098,7 +5097,6 @@ sv:
     Till exempel kan du prenumerera på ett taxon för att få uppdateringar om nya
     fynd av detta taxon. Du prenumererar automatiskt på uppdateringar
     av fynd som du kommenterar eller artbestämmer.
-  subscribe_to_this: Prenumerera på detta
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Prenumerera</a>
     på %{x} från denna %{y}.
@@ -5836,24 +5834,6 @@ sv:
     kommer inte att kunna logga in på ditt konto förrän du klickar på länken i
     mejlet, så <strong>se till att du verkligen har angett din e-postadress
     korrekt.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Se till att din e-postadress är korrekt. Här är e-postadressen vi
-    kommer att skicka bekräftelsen till:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Här är några tips om du inte skulle få mejlet:
-    </p>
-    <ul>
-    <li><p>Kolla din skräppostmapp</p></li>
-    <li><p>Kolla alla filter du skapat som skulle kunna ta bort våra mejl från din inkorg</p></li>
-    </ul>
-    <p>
-    Om du fortfarande inte får bekräftelsemejlet, kontakta oss på
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a>
-    så att vi kan hjälpa dig.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du är på väg att logga ut</h3>
     <p>
@@ -6338,13 +6318,6 @@ sv:
   verifiable_observations: Verifierbara fynd
   views:
     views: 'Visningar'
-    announcements:
-      locales_desc: |
-        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något kommer meddelandet att visas för alla användare oavsett lokalisering. Att välja ett språk utan en region kommer *inte* att rikta det mot lokaliseringar i regioner, t.ex. om du valde en kommer det inte att visas för personer som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill 
-        visa ett meddelande för alla medlemmar på en webbplats, lämna helt enkelt detta tomt.
-      clients_desc: |
-        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något visas
-        tillkännagivandet för alla användare oavsett klient.
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
