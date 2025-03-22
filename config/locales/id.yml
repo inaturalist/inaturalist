@@ -4864,6 +4864,9 @@ id:
   submit_observations:
     other: Kirimkan %{count} pengamatan
   submitted: Dikirimkan
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Berlangganan
   subscribe_to_a_taxon: Berlangganan pada suatu Takson
   subscribe_to_a_place: Berlangganan pada suatu Tempat
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di tanda ini"
@@ -4879,7 +4882,6 @@ id:
   subscribe_to_places_help: |
     Langganan mengatur apa yang Anda akan lihat di berita dan dasbor Anda.
     Sebagai contoh, Anda bisa berlangganan dengan sebuah takson untuk mendapatkan kabar tentang pengamatan-pengamatan baru dari takson tersebut. Anda secara otomatis berlangganan kabar tentang pengamatan-pengamatan yang Anda komentari atau identifikasi.
-  subscribe_to_this: Berlangganan pada ini
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Berlangganan</a> pada %{x} dari %{y} ini.
   subscriptions: Langganan
