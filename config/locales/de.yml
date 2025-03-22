@@ -4856,6 +4856,9 @@ de:
     one: 1 Beobachtung absenden
     other: '%{count} Beobachtungen absenden'
   submitted: Hinzugefügt
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonnieren
   subscribe_to_a_taxon: Taxon abonnieren
   subscribe_to_a_place: Ein Gebiet abonnieren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}abonniere%{tag_end} Kommentare zu dieser Meldung"
@@ -4870,7 +4873,6 @@ de:
   subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Moose aus Baden-Württemberg').
   subscribe_to_places_help: |
     Durch Abonnements bestimmst du, welche Updates und Dashboard-Meldungen dir angezeigt werden. Wenn du zum Beispiel ein Taxon abonnierst, siehst du entsprechend aktuelle Beobachtungen auf deinem Dashboard. Beobachtungen, die du kommentierst oder zu welchen du Bestimmungen abgibst, werden automatisch abonniert.
-  subscribe_to_this: Abonnieren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonniere</a>
      %{x} aus diesem %{y}.
