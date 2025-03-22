@@ -613,6 +613,8 @@ da:
   any_license: Hvilken som helst
   #Label for an option to show content with photos, sounds, or neither
   any_media: Hvilken som helst
+  #Label for an option to show any place
+  any_place: Ethvert
   #Label for an option to show content from any project
   any_project: Hvilken som helst
   #Label for an option to show content with any quality grade
@@ -1815,6 +1817,8 @@ da:
   edited_by_name_some_rights_reserved_html: |
     Redigeret af%{name}, nogle rettigheder forbeholdes %{license}
   editing: Redigering
+  #Title for a page to edit an announcement
+  editing_announcement_x: Redigering af bekendtgørelse %{id}
   editing_custom_project_fields_for: Redigering af brugerdefinerede projektfelter for
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: "Redigering af observation %{obs_id}"
@@ -3011,6 +3015,8 @@ da:
   more_info_title: Mere info
   more_journal_posts: Flere journalindlæg
   more_observations: Flere observationer
+  #Label for a button or section that shows additional options
+  more_options: Flere muligheder
   more_photos: Flere fotos
   more_than_a_week_ago: For mere end en uge siden
   most_agree: mest enig
@@ -5095,6 +5101,9 @@ da:
     one: Indsend 1 observation
     other: Indsend %{count} observationer
   submitted: Indsendt
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonnér
   subscribe_to_a_taxon: Abonnér på en takson
   subscribe_to_a_place: Abonnér på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonnér%{tag_end} på kommentarer til denne markering"
@@ -5112,7 +5121,6 @@ da:
     Man kan f.eks. abonnere på en takson for at få opdateringer om nye
     observationer af denne. Man abonnerer automatisk på opdateringer
     om observationer, man kommenterer eller identificerer.
-  subscribe_to_this: Abonnér på dette
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).overordnet('form:first').indsend(); return false;">Abonnér</a>
     på %{x} fra dette %{y}.
@@ -6354,6 +6362,35 @@ da:
   verifiable_observations: Verificérbare observationer
   views:
     views: 'Visninger'
+    announcements:
+      locales_desc: |
+        CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
+        intet valg, vises bekendtgørelsen til alle brugere uanset landestandard.
+        Valg af sprog uden en region målretter *ikke* målrettes ikke
+        landestandarder med regioner; vælger man f.eks. engelsk, vises det
+        ikke for folk, som har valgt engelsk (UK).
+      clients_desc: |
+        CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
+        intet valg, vises bekendtgørelsen til alle brugere uanset klient.
+      end_desc: |
+        Tid i kontoens tidszone, hvor denne meddelelse ophører med at
+        vises. Anvendes på tværs af tidszoner, så alle ophører med at se
+        den på samme tid, ikke i forhold til deres lokale tid.
+      ip_countries_desc: |
+        CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
+        intet valg, vises bekendtgørelsen til alle brugere uanset IP-land.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Bemærk, at oprettelsesdatoen for brugerens senest oprettede
+        observation er cachet, så det kan tage et par timer, før målretning
+        træder i kraft
+      site_ids_desc: |
+        CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
+        intet valg, vises bekendtgørelsen til alle brugere uanset webstedstilknytning.
+      start_desc: |
+        Tid i kontoens tidszone, hvor denne meddelelse påbegyndes
+        vist. Anvendes på tværs af tidszoner, så alle begynder at se
+        den på samme tid, ikke i forhold til deres lokale tid.
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
@@ -8912,6 +8949,36 @@ da:
         prefers_target_unconfirmed_users: Målret mod ubekræftede brugere
         prefers_exclude_monthly_supporters: Udeluk månedlige supportere
         clients: Kunder
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Undtag donationsstartdato
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Undtag donationsslutdato
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Medtag donationsstartdato
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Medtag donationsslutdato
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-lande
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Seneste observ.startdato
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Seneste observ.slutdato
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maks. identifikationer
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min. identifikationer
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maks. observationer
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min. observationer
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Placering
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Mål logget ind
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Tidligste brugertilmeldingsdato
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Seneste brugertilmeldingsdato
       assessment:
         description: Beskrivelse
       assessment_section:
