@@ -17,4 +17,7 @@ feed.entry( observation ) do | entry |
   if observation.latitude && observation.longitude
     entry.georss( :point, "#{observation.latitude} #{observation.longitude}" )
   end
+  unless observation.place_guess.blank?
+    entry.georss( :featureName, observation.place_guess )
+  end
 end
