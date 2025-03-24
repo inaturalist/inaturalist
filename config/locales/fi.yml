@@ -4454,6 +4454,9 @@ fi:
     one: Lähetä 1 havainto
     other: Lähetä %{count} havaintoa
   submitted: Lähetetty
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Tilaa
   subscribe_to_a_taxon: Seuraa taksonia
   subscribe_to_a_place: Seuraa paikkaa
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Tilaa%{tag_end} tämän lipun kommentit"
