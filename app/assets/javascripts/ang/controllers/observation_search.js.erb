@@ -1325,15 +1325,23 @@ var SearchController = function (
 
   $scope.setupPlaceSearchbox = function ( ) {
     if ( !googleMapsIsLoaded( ) ) return;
+    var urlParams = $location.search( );
+    var autocompleteOptions = {
+      fields: ["place_id"]
+    };
+    if ( urlParams.autocomplete_place_types ) {
+      if ( urlParams.autocomplete_place_types !== "none" ) {
+        autocompleteOptions.types = urlParams.autocomplete_place_types.split( "," );
+      }
+    } else {
+      autocompleteOptions.types = ["geocode"];
+    }
     // only search for "geocode" types, not businesses. It is important to
     // specify the fields to return as that dictates which Autocomplete SKU
     // is used for billing purposes, and we want the minimal version
     $scope.placeSearchBox = new google.maps.places.Autocomplete(
       document.getElementById( "place_name" ),
-      {
-        types: ["geocode"],
-        fields: ["place_id"]
-      }
+      autocompleteOptions
     );
     $scope.placeSearchBox.addListener( "place_changed", function ( ) {
       var place = $scope.placeSearchBox.getPlace( );
