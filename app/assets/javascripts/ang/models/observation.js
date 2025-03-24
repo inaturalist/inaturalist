@@ -84,8 +84,10 @@ iNatModels.Observation.prototype.displayPlace = function ( ) {
   return I18n.t( "location_unknown" );
 };
 
-iNatModels.Observation.prototype.qualityGrade = function ( ) {
+iNatModels.Observation.prototype.qualityGrade = function ( opts ) {
+  var options = opts || {};
   if ( this.quality_grade === "research" ) {
+    if ( options.short ) return I18n.t( "research_grade_short_html" );
     return I18n.t( "research_grade" );
   }
   if ( this.quality_grade === "needs_id" ) {

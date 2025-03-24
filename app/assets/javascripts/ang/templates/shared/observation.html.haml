@@ -15,8 +15,7 @@
       %inat-calendar-date.hidden-lg{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", obscured: "o.obscured && !o.private_geojson", short: "o.obscured && !o.private_geojson" }
       %inat-calendar-date.visible-lg-inline-block{ date: "o.observed_on_details.date", timezone: "o.observed_time_zone", obscured: "o.obscured && !o.private_geojson" }
     .meta.ng-cloak
-      %span{ :class => "quality_grade {{ o.quality_grade }}" }
-        {{ o.qualityGrade( ) }}
+      %span{ :class => "quality_grade {{ o.quality_grade }}", "ng-bind_html": "o.qualityGrade( { short: true} ) | sanitize" }
       %span.meta-stats
         %span.identifications{ "ng-show" => "o.identifications_count > 0", title: "{{ shared.t('x_identifications', {count: o.identifications_count}) }}" }
           %span.meta-item
