@@ -8423,6 +8423,8 @@ nl:
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
         prefers_exclude_monthly_supporters: Sluit maandelijkse supporters uit
         clients: Client
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Target alleen aangemelde gebruikers
       assessment:
         description: Beschrijving
       assessment_section:
