@@ -18,6 +18,11 @@
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <%= favicon_link_tag @site && @site.favicon? ? @site.favicon.url : "favicon.png" %>
     <%= stylesheet_link_tag 'blueprint_bundle' %>
+    <% if responsive? %>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% else %>
+      <meta name="viewport" content="width=980">
+    <% end %>
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= stylesheet_link_tag "blueprint-inat" %>
     <%= stylesheet_link_tag "blueprint-bootstrap" %>
