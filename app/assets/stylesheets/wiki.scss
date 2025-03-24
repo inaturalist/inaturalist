@@ -68,3 +68,12 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
+
+// When this is headless and footless and has no Blueprint columns, set the
+// container to screen width and add some reasonable padding
+#bodywrapper:not(:has(#header)):not(:has(#footer)):not(:has(.column)) {
+  padding: 2em;
+  .container {
+    width: 100%;
+  }
+}

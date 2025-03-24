@@ -27,11 +27,15 @@ class WikiPagesController < ApplicationController
   end
 
   def setup_page
-    if params[:path].blank?
-      redirect_to root_url
-    else
-      super
-    end
+    return redirect_to root_url if params[:path].blank?
+
+    result = super
+
+    # If the content uses Blueprint's grid system, we can't make the page
+    # responsive
+    @responsive = false if @page&.content&.include?( "span-" )
+
+    result
   end
 
   def permitted_page_params
