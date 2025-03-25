@@ -6391,6 +6391,18 @@ da:
         Tid i kontoens tidszone, hvor denne meddelelse påbegyndes
         vist. Anvendes på tværs af tidszoner, så alle begynder at se
         den på samme tid, ikke i forhold til deres lokale tid.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Målbrugere efter donationsadfærd
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Målbrugere efter identifikationsadfærd
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Målbrugere efter observationsadfærd
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Målbrugere efter andre attributter
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
