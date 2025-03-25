@@ -542,6 +542,8 @@ zh-CN:
   any_license: 任意授权
   #Label for an option to show content with photos, sounds, or neither
   any_media: 全部
+  #Label for an option to show any place
+  any_place: 任意
   #Label for an option to show content from any project
   any_project: 全部
   #Label for an option to show content with any quality grade
@@ -1684,6 +1686,8 @@ zh-CN:
   edited_by_name_some_rights_reserved_html: |
     由%{name}编辑，保留部分权利（%{license}）
   editing: 编辑中
+  #Title for a page to edit an announcement
+  editing_announcement_x: 编辑公告%{id}
   editing_custom_project_fields_for: 编辑自定义项目字段
   editing_observation_field: 编辑观察记录字段
   editing_observation_id: "编辑观察记录%{obs_id}"
@@ -2849,6 +2853,8 @@ zh-CN:
   more_info_title: 更多信息
   more_journal_posts: 更多日记
   more_observations: 更多观察
+  #Label for a button or section that shows additional options
+  more_options: 更多选项
   more_photos: 更多照片
   more_than_a_week_ago: 超过一周之前
   most_agree: 多数同意
@@ -4816,6 +4822,9 @@ zh-CN:
   submit_observations:
     other: 提交 %{count} 个观察
   submitted: 提交日期
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: 订阅
   subscribe_to_a_taxon: 订阅分类单元
   subscribe_to_a_place: 订阅地点
   subscribe_to_comments_on_this_flag_html: "%{tag_start}订阅%{tag_end} 关于此标记的评论"
@@ -5967,6 +5976,34 @@ zh-CN:
   verifiable_observations: 可验证的观察
   views:
     views: '视图'
+    announcements:
+      locales_desc: |
+        按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论其语言环境如何。选择没有地区的语言将不会针对有地区的语言环境，例如，如果您选择英语，它将不会出现在选择英语（英国）的用户面前。
+      clients_desc: |
+        按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论客户端是什么。
+      end_desc: |
+        在您的帐户时区，这个通知将会停止呈现的时间。跨时区适用，所以每个人都在同一时间停止看到它，这跟他们的当地时间无关。
+      ip_countries_desc: |
+        按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论 IP 所在国家/地区。
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        请注意，用户最近创建的观察的创建日期会被缓存，因此定位可能需要几个小时才能生效
+      site_ids_desc: |
+        按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论其属于哪个站点。
+      start_desc: |
+        此公告将开始显示在您的帐户时区中的时间。适用于跨时区，因此每个人都将同时开始看到它，而不是相对于他们的当地时间。
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: 以捐助行为选择用户
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: 以鉴定行为选择用户
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: 以观察行为选择用户
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: 以其他贡献选择用户
     content_freeze:
       content_freeze: 内容冻结
       during_this_time: |
@@ -7938,6 +7975,36 @@ zh-CN:
         prefers_target_unconfirmed_users: 针对未确认电子邮件地址的用户
         prefers_exclude_monthly_supporters: 排除每月支持者
         clients: 客户端
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: 排除捐助者开始日期
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: 排除捐助者结束日期
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: 包含捐助者开始日期
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: 包含捐助者结束日期
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP国家
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: 最近的观察开始日期
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: 最近的观察结束日期
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: 最大鉴定数
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: 最小鉴定数
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: 最大观察数
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: 最小观察数
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: 位置
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: 目标是否登录
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: 最早的用户注册日期
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: 最晚的用户注册日期
       assessment:
         description: 描述
       assessment_section:
