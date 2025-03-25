@@ -295,7 +295,7 @@ class User < ApplicationRecord
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
-  after_update :send_welcome_email
+  after_create :send_welcome_email
   after_update :check_privileges_if_confirmed
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
@@ -1375,22 +1375,7 @@ class User < ApplicationRecord
   end
 
   def send_welcome_email
-    if (
-      saved_change_to_confirmed_at? &&
-      confirmed? &&
-      # This might happen if an existing user successfully resets their
-      # password, i.e. they don't send themselves a confirmation email b/c
-      # they can't sign in, but they can request the reset password email,
-      # and successfully clicking that link also confirms the email address
-      !confirmation_sent_at.blank? &&
-      # This is for existing users who explicitly request a confirmation
-      # email, which sets confirmation_sent_at. This is imperfect, but it
-      # should prevent most actual users from receiving the welcome email
-      # again.
-      created_at >= EMAIL_CONFIRMATION_RELEASE_DATE
-    )
-      Emailer.welcome( self ).deliver_now
-    end
+    Emailer.welcome( self ).deliver_now unless email.blank?
   end
 
   def check_privileges_if_confirmed
