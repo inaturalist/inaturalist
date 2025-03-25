@@ -4143,7 +4143,7 @@ hu:
     A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot támogatják elérhetik az email címedet (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordinátáknál a kitakart vagy privát beállításokat használtad.
   some_agree: néhányan egyetértenek
   some_observations_are_missing_media_or_identifications: |
-    Néhány megfigyelésből hiányzik a média vagy az asonosítás
+    Néhány megfigyelésből hiányzik a média vagy az azonosítás
   some_observations_are_missing_media_or_identifications_desc: |
     A képek vagy hangok nélküli megfigyelések alapértelmezetten nem jelennek meg a keresésekben, azonosítások nélkül pedig az egyes taxonokra szakosodott felhasználók nem fogják megtalálni. Javasoljuk, hogy legalább tágabb taxonokat (például "növények") adj a megfigyeléseidhez.
   some_observations_failed_to_be_added: Pár megfigyelés nem lett hozzáadva a projektekhez
@@ -5191,6 +5191,19 @@ hu:
   verifiable_observations: Hiteles megyfigyelések
   views:
     views: 'Nézetek'
+    announcements:
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Felhasználók célzása adományozási viselkedésük alapján
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Felhasználók célzása azonosítási viselkedésük alapján
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Felhasználók célzása megfigyelési viselkedésük alapján
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Felhasználók célzása egyéb tényezők alapján
     content_freeze:
       content_freeze: Tartalom lezárása
       during_this_time: |
