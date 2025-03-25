@@ -30,6 +30,14 @@ describe ProviderAuthorizationsController, "create" do
       expect( User.find_by_email( auth_hash[:info][:email] ) ).not_to be_nil
     end
 
+    it "should confirm the user" do
+      expect( User.find_by_email( auth_hash[:info][:email] ) ).to be_nil
+      post :create, params: { provider: "google" }
+      user = User.find_by_email( auth_hash[:info][:email] )
+      expect( user ).not_to be_nil
+      expect( user ).to be_confirmed
+    end
+
     it "should set the user oauth_application_id based on return_to client_id" do
       oauth_application = OauthApplication.make!(
         trusted: true,

@@ -35,6 +35,13 @@ describe ProviderOauthController do
         expect( User.find_by_email( google_response[:email] ) ).not_to be_blank
       end
 
+      it "confirms a user" do
+        expect( User.find_by_email( google_response[:email] ) ).to be_blank
+        post :assertion, format: :json, params: assertion_params
+        user = User.find_by_email( google_response[:email] )
+        expect( user ).to be_confirmed
+      end
+
       it "should set oauth_application_id" do
         expect( User.find_by_email( google_response[:email] ) ).to be_blank
         post :assertion, format: :json, params: assertion_params
@@ -46,7 +53,6 @@ describe ProviderOauthController do
         expect( User.find_by_email( google_response[:email] ) ).to be_blank
         post :assertion, format: :json, params: assertion_params
         expect( response ).to be_successful
-        expect( User.find_by_email( google_response[:email] ) ).not_to be_confirmed
         expect( JSON.parse( response.body )["access_token"] ).not_to be_blank
         expect( JSON.parse( response.body )["error"] ).to be_blank
       end

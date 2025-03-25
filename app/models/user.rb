@@ -888,32 +888,33 @@ class User < ApplicationRecord
   # create a user using 3rd party provider credentials (via omniauth)
   # note that this bypasses validation and immediately activates the new user
   # see https://github.com/intridea/omniauth/wiki/Auth-Hash-Schema for details of auth_info data
-  def self.create_from_omniauth(auth_info, oauth_application = nil)
-    email = auth_info["info"].try(:[], "email")
-    email ||= auth_info["extra"].try(:[], "user_hash").try(:[], "email")
+  def self.create_from_omniauth( auth_info, oauth_application = nil )
+    email = auth_info["info"].try( :[], "email" )
+    email ||= auth_info["extra"].try( :[], "user_hash" ).try( :[], "email" )
     # see if there's an existing inat user with this email. if so, just link the accounts and return the existing user.
-    if !email.blank? && u = User.find_by_email(email)
-      u.add_provider_auth(auth_info)
+    if !email.blank? && ( u = User.find_by_email( email ) )
+      u.add_provider_auth( auth_info )
       return u
     end
     auth_info_name = auth_info["info"]["nickname"]
     auth_info_name = auth_info["info"]["first_name"] if auth_info_name.blank?
     auth_info_name = auth_info["info"]["name"] if auth_info_name.blank?
     auth_info_name = User.remove_email_from_string( auth_info_name )
-    autogen_login = User.suggest_login(auth_info_name)
+    autogen_login = User.suggest_login( auth_info_name )
     autogen_login = User.suggest_login( DEFAULT_LOGIN ) if autogen_login.blank?
-    autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
+    autogen_pw = SecureRandom.hex( 6 ) # autogenerate a random password (or else validation fails)
     icon_url = auth_info["info"]["image"]
     # Don't bother if the icon URL looks like the default Google user icon
     icon_url = nil if icon_url =~ /4252rscbv5M/
     icon_url = nil if icon_url =~ /s96-c/
     u = User.new(
-      :login => autogen_login,
-      :email => email,
-      :name => auth_info["info"]["name"],
-      :password => autogen_pw,
-      :password_confirmation => autogen_pw,
-      :icon_url => icon_url,
+      login: autogen_login,
+      email: email,
+      confirmed_at: email&.present? ? Time.now : nil,
+      name: auth_info["info"]["name"],
+      password: autogen_pw,
+      password_confirmation: autogen_pw,
+      icon_url: icon_url,
       preferred_observation_license: Observation::CC_BY_NC,
       preferred_photo_license: Observation::CC_BY_NC,
       preferred_sound_license: Observation::CC_BY_NC
@@ -925,14 +926,15 @@ class User < ApplicationRecord
       u.save
     rescue PG::Error, ActiveRecord::RecordNotUnique => e
       raise e unless e.message =~ /duplicate key value violates unique constraint/
+
       false
     end
     unless user_saved
-      suggestion = User.suggest_login(u.login)
+      suggestion = User.suggest_login( u.login )
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
-      u.update(:login => suggestion)
+      u.update( login: suggestion )
     end
-    u.add_provider_auth(auth_info) if u.valid? && u.persisted?
+    u.add_provider_auth( auth_info ) if u.valid? && u.persisted?
     u
   end
 
