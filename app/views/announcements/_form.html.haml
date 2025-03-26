@@ -115,6 +115,10 @@
                 = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
                 = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
                 = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+              = f.form_field :target_curators, builder: BootstrapFormBuilder do
+                = f.radio_button :target_curators, Announcement::ANY, label: t( :any_ ), inline: true
+                = f.radio_button :target_curators, Announcement::YES, label: t( :yes ), inline: true
+                = f.radio_button :target_curators, Announcement::NO, label: t( :no ), inline: true
             .col-xs-4
               = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
               - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []

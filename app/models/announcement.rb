@@ -53,6 +53,7 @@ class Announcement < ApplicationRecord
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
+  validates_inclusion_of :target_curators, in: YES_NO_ANY
   validates_presence_of :target_group_partition, if: :target_group_type?
   validate :valid_target_group_partition, if: :target_group_type?
   validates :min_identifications,
@@ -107,6 +108,10 @@ class Announcement < ApplicationRecord
     self.clients = ( clients || [] ).reject( &:blank? ).compact
     self.locales = ( locales || [] ).reject( &:blank? ).compact
     self.ip_countries = ( ip_countries || [] ).reject( &:blank? ).compact
+    self.include_observation_oauth_application_ids = ( include_observation_oauth_application_ids || [] ).
+      reject( &:blank? ).compact
+    self.exclude_observation_oauth_application_ids = ( exclude_observation_oauth_application_ids || [] ).
+      reject( &:blank? ).compact
   end
 
   def clean_target_group
@@ -176,6 +181,9 @@ class Announcement < ApplicationRecord
         return false if user.id.digits.sum.even?
       end
     end
+
+    return false if target_curators == YES && !user&.is_curator?
+    return false if target_curators == NO && user&.is_curator?
 
     return false if ( include_donor_start_date || include_donor_end_date ) && (
       !user || user.user_donations.

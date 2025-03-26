@@ -184,6 +184,29 @@ describe Announcement do
       end
     end
 
+    describe "target_curators" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_curators ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target curators" do
+        annc = create :announcement, target_curators: Announcement::YES
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :user, :as_curator ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+      end
+
+      it "can target non-curators" do
+        annc = create :announcement, target_curators: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user, :as_curator ) ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+    end
+
     describe "min_identifications" do
       it "defaults to targeting all" do
         annc = create :announcement
