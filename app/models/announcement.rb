@@ -214,24 +214,26 @@ class Announcement < ApplicationRecord
 
     # If we're including obs apps, look for any obs the user has created with those apps
     if user && !include_observation_oauth_application_ids.blank?
-      return Observation.elastic_search(
+      num_obs_from_included_apps = Observation.elastic_search(
         filters: [
           { term: { "user.id" => user.id } },
           { terms: { oauth_application_id: include_observation_oauth_application_ids } }
         ],
         size: 0
-      ).total_entries.positive?
+      ).total_entries
+      return false if num_obs_from_included_apps.zero?
     end
 
     # If we're excluding obs apps, look for any obs the user has created with those apps
     if user && !exclude_observation_oauth_application_ids.blank?
-      return Observation.elastic_search(
+      num_obs_from_excluded_apps = Observation.elastic_search(
         filters: [
           { term: { "user.id" => user.id } },
           { terms: { oauth_application_id: exclude_observation_oauth_application_ids } }
         ],
         size: 0
-      ).total_entries.zero?
+      ).total_entries
+      return false if num_obs_from_excluded_apps.positive?
     end
     true
   end

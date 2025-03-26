@@ -345,6 +345,23 @@ describe Announcement do
         expect( annc.targeted_to_user?( obs.user ) ).to be false
       end
     end
+
+    it "includes and excludes users by observation oauth application ids" do
+      app_to_include = create :oauth_application, official: true
+      app_to_exclude = create :oauth_application, official: true
+      annc = create :announcement,
+        include_observation_oauth_application_ids: [app_to_include.id],
+        exclude_observation_oauth_application_ids: [app_to_exclude.id]
+      include_user = create( :observation, oauth_application: app_to_include ).user
+      exclude_user = create( :observation, oauth_application: app_to_exclude ).user
+      both_user = create :user
+      create :observation, oauth_application: app_to_include, user: both_user
+      create :observation, oauth_application: app_to_exclude, user: both_user
+      expect( annc.targeted_to_user?( include_user ) ).to be true
+      expect( annc.targeted_to_user?( exclude_user ) ).to be false
+      puts "testing both user"
+      expect( annc.targeted_to_user?( both_user ) ).to be false
+    end
   end
 
   describe "dismissals" do
