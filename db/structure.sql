@@ -409,7 +409,8 @@ CREATE TABLE public.announcements (
     ip_countries text[] DEFAULT '{}'::text[],
     include_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
     exclude_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
-    target_curators character varying DEFAULT 'any'::character varying
+    target_curators character varying DEFAULT 'any'::character varying,
+    target_project_admins character varying DEFAULT 'any'::character varying
 );
 
 
@@ -11500,6 +11501,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250311212144'),
 ('20250311225953'),
 ('20250326170449'),
-('20250326190722');
+('20250326190722'),
+('20250326213516');
 
 

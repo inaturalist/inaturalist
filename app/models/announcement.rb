@@ -54,6 +54,7 @@ class Announcement < ApplicationRecord
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
   validates_inclusion_of :target_curators, in: YES_NO_ANY
+  validates_inclusion_of :target_project_admins, in: YES_NO_ANY
   validates_presence_of :target_group_partition, if: :target_group_type?
   validate :valid_target_group_partition, if: :target_group_type?
   validates :min_identifications,
@@ -184,6 +185,9 @@ class Announcement < ApplicationRecord
 
     return false if target_curators == YES && !user&.is_curator?
     return false if target_curators == NO && user&.is_curator?
+
+    return false if target_project_admins == YES && !user&.projects&.any?
+    return false if target_project_admins == NO && user&.projects&.any?
 
     return false if ( include_donor_start_date || include_donor_end_date ) && (
       !user || user.user_donations.

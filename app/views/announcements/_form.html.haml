@@ -108,17 +108,23 @@
               .row
                 .col-xs-12
                   = f.select :clients, clients, { include_blank: t( :all ) }, { multiple: true, description: t( "views.announcements.clients_desc" ),description_tip: true, size: [clients.length + 1, 5].min, wrapper: { style: "display: none;" } }
+              .row
+                .col-xs-12
+                  = f.check_box :prefers_target_staff, label_after: true
+                  = f.check_box :prefers_target_unconfirmed_users, label_after: true
             .col-xs-4
-              = f.check_box :prefers_target_staff, label_after: true
-              = f.check_box :prefers_target_unconfirmed_users, label_after: true
               = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
                 = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
-                = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
-                = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+                = f.radio_button :target_logged_in, Announcement::YES, label: t( :logged_in ), inline: true
+                = f.radio_button :target_logged_in, Announcement::NO, label: t( :logged_out ), inline: true
               = f.form_field :target_curators, builder: BootstrapFormBuilder do
                 = f.radio_button :target_curators, Announcement::ANY, label: t( :any_ ), inline: true
-                = f.radio_button :target_curators, Announcement::YES, label: t( :yes ), inline: true
-                = f.radio_button :target_curators, Announcement::NO, label: t( :no ), inline: true
+                = f.radio_button :target_curators, Announcement::YES, label: t( :curator ), inline: true
+                = f.radio_button :target_curators, Announcement::NO, label: t( :non_curator ), inline: true
+              = f.form_field :target_project_admins, builder: BootstrapFormBuilder do
+                = f.radio_button :target_project_admins, Announcement::ANY, label: t( :any_ ), inline: true
+                = f.radio_button :target_project_admins, Announcement::YES, label: t( :project_admin ), inline: true
+                = f.radio_button :target_project_admins, Announcement::NO, label: t( :non_project_admin ), inline: true
             .col-xs-4
               = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
               - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []

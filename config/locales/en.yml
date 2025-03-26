@@ -3005,6 +3005,10 @@ en:
   # Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log out of %{site_name}?"
   log_scale_label: Log
+  # Adjectival phrase describing state of being logged in
+  logged_in: Logged in
+  # Adjectival phrase describing state of being logged out
+  logged_in: Logged out
   # Status message shown while logging in
   logging_in: Logging in...
   logo:
@@ -3473,6 +3477,10 @@ en:
   no_users_found_with_those_filters: No users found with those filters
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   noble_curators: "%{site}'s Noble Curators"
+  # A user who is not a curator
+  non_curator: Non-curator
+  # A user who does not admin any projects
+  non_project_admin: Non-project admin
   non_human?: Non-human?
   none: None
   none_found: None found
@@ -4573,6 +4581,8 @@ en:
     publicly visible after a user has contributed several Research Grade
     observations.
   project: Project
+  # A user who admin's a project
+  project_admin: Project admin
   project_admins:
     one: Project admin
     other: Project admins

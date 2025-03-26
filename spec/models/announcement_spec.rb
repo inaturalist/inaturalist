@@ -207,6 +207,29 @@ describe Announcement do
       end
     end
 
+    describe "target_project_admins" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_project_admins ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target project admins" do
+        annc = create :announcement, target_project_admins: Announcement::YES
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :project ).user ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+      end
+
+      it "can target non-project admins" do
+        annc = create :announcement, target_project_admins: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :project ).user ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+    end
+
     describe "min_identifications" do
       it "defaults to targeting all" do
         annc = create :announcement
