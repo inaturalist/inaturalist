@@ -6,7 +6,7 @@ FactoryBot.define do
     parent_user { build :user }
     name { Faker::Name.name }
     child_name { Faker::Name.name }
-    email { Faker::Internet.email }
+    email { instance.parent_user.email || Faker::Internet.email }
 
     trait :as_donor do
       donorbox_donor_id { Faker::Number.number }

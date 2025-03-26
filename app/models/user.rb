@@ -295,7 +295,16 @@ class User < ApplicationRecord
   after_save :restore_access_tokens_by_suspended_user
   after_save :update_taxon_name_priorities
   after_update :set_observations_taxa_if_pref_changed
-  after_create :send_welcome_email
+  after_create :send_welcome_email, if: lambda {| user |
+    # Can't send emails to addresses that don't exist
+    return false if user.email.blank?
+
+    # Should not automatically send if this is a child account and the parent
+    # has not verified with a donation
+    return false if user.child?
+
+    true
+  }
   after_update :check_privileges_if_confirmed
   after_create :set_uri
   after_destroy :remove_oauth_access_tokens
