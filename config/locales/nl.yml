@@ -6272,6 +6272,19 @@ nl:
   verifiable_observations: Verifieerbare waarnemingen
   views:
     views: 'Weergaven'
+    announcements:
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Target gebruikers op basis van hun determinaties
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Target gebruikers op basis van hun waarnemingen
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Target gebruikers op basis van hun andere eigenschappen
     content_freeze:
       content_freeze: Inhoud bevroren
       during_this_time: |
