@@ -6757,6 +6757,10 @@ en:
         Note that the creation date of the user's most recently-created
         observation is cached, so it might take a few hours for targeting to
         take effect
+      observation_oauth_application_ids_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        app.
       site_ids_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -9847,10 +9851,16 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
+        exclude_observation_oauth_application_ids: Exclude observers from apps
         # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Include donor start date
         # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Include donor end date
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
+        include_observation_oauth_application_ids: Include observers from apps
         # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP Countries
         # Start of a date range that includes the viewer's most recent observation

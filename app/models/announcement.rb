@@ -204,6 +204,27 @@ class Announcement < ApplicationRecord
       return false if last_observation_end_date && last_observation_created_at > last_observation_end_date
     end
 
+    # If we're including obs apps, look for any obs the user has created with those apps
+    if user && !include_observation_oauth_application_ids.blank?
+      return Observation.elastic_search(
+        filters: [
+          { term: { "user.id" => user.id } },
+          { terms: { oauth_application_id: include_observation_oauth_application_ids } }
+        ],
+        size: 0
+      ).total_entries.positive?
+    end
+
+    # If we're excluding obs apps, look for any obs the user has created with those apps
+    if user && !exclude_observation_oauth_application_ids.blank?
+      return Observation.elastic_search(
+        filters: [
+          { term: { "user.id" => user.id } },
+          { terms: { oauth_application_id: exclude_observation_oauth_application_ids } }
+        ],
+        size: 0
+      ).total_entries.zero?
+    end
     true
   end
 
