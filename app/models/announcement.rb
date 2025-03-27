@@ -133,6 +133,7 @@ class Announcement < ApplicationRecord
 
   def targeted_to_user?( user )
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
+    return false if target_creator && ( user.blank? || user.id != user_id )
     return false if user&.monthly_donor? && prefers_exclude_monthly_supporters
     return false if target_group_type && user.blank?
     return false if target_logged_in == YES && user.blank?

@@ -65,6 +65,14 @@ describe Announcement do
       expect( a.targeted_to_user?( User.make! ) ).to be false
     end
 
+    it "targets creator" do
+      a = create :announcement, target_creator: true
+      expect( a.targeted_to_user?( make_admin ) ).to be false
+      expect( a.targeted_to_user?( make_curator ) ).to be false
+      expect( a.targeted_to_user?( User.make! ) ).to be false
+      expect( a.targeted_to_user?( a.user ) ).to be true
+    end
+
     it "targets unconfirmed users" do
       a = Announcement.make!( prefers_target_unconfirmed_users: true )
       expect( a.targeted_to_user?( User.make!( confirmed_at: Time.now ) ) ).to be false
