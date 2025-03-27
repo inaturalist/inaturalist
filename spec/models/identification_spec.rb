@@ -425,6 +425,65 @@ describe Identification, "creation" do
           end.to_not change( user, :identifications_count )
         end
       end
+
+      describe "with notifications" do
+        before { enable_has_subscribers }
+        after { disable_has_subscribers }
+
+        it "notifies the observer" do
+          o = create :observation
+          expect( o.user.recent_notifications.detect {| ua | ua.resource == o } ).to be_blank
+          after_delayed_job_finishes( ignore_run_at: true ) do
+            create :identification, observation: o
+          end
+          expect( o.user.recent_notifications.detect {| ua | ua.resource == o } ).not_to be_blank
+        end
+
+        it "notifies other identifiers" do
+          i = create :identification
+          expect( i.user.recent_notifications.detect {| ua | ua.resource == i.observation } ).to be_blank
+          after_delayed_job_finishes( ignore_run_at: true ) do
+            create :identification, observation: i.observation
+          end
+          expect( i.user.recent_notifications.detect {| ua | ua.resource == i.observation } ).not_to be_blank
+        end
+
+        describe "when subscriber doesn't prefers_redundant_identification_notifications" do
+          let( :subscriber ) { create :user, prefers_redundant_identification_notifications: false }
+          let( :genus ) { create :taxon, :as_genus }
+          let( :species ) { create :taxon, :as_species, parent: genus }
+
+          it "notifies when taxon is an ancestor of the subscriber's identification taxon" do
+            subscribers_ident = create :identification, user: subscriber, taxon: species
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: genus
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).not_to be_blank
+          end
+
+          it "notifies when taxon is a descendant of the subscriber's identification taxon" do
+            subscribers_ident = create :identification, user: subscriber, taxon: genus
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: species
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).not_to be_blank
+          end
+
+          it "does not notify when taxon does match the subscriber's identification taxon" do
+            subscribers_ident = create :identification, user: subscriber, taxon: genus
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: genus
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+          end
+        end
+      end
     end
   end
 end
