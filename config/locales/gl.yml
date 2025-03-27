@@ -6690,9 +6690,6 @@ gl:
             login:
               must_begin_with_a_letter: |
                 debe comezar cunha letra, non ter espazos, e usa só letras, díxitos, guións e barras baixas
-            email:
-              must_look_like_an_email_address: Ten que ser semellante a un enderezo de correo electrónico
-              domain_is_not_supported: o dominio non está soportado
         user_block:
           attributes:
             base:
