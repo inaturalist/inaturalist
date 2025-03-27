@@ -131,6 +131,9 @@ class Announcement < ApplicationRecord
     dismiss_user_ids.count
   end
 
+  # This works by excluding users from filters, so it should only return false
+  # until the very end, otherwise you'll block subsequent filters from being
+  # checked
   def targeted_to_user?( user )
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
     return false if target_creator && ( user.blank? || user.id != user_id )
@@ -193,9 +196,7 @@ class Announcement < ApplicationRecord
     return false if user_created_start_date && user.created_at < user_created_start_date
     return false if user_created_end_date && user.created_at > user_created_end_date
 
-    if prefers_target_unconfirmed_users
-      return user && !user.confirmed?
-    end
+    return false if prefers_target_unconfirmed_users && user&.confirmed?
 
     if user && ( last_observation_start_date || last_observation_end_date )
       last_observation_created_at = user.last_observation_created_at
