@@ -2,6 +2,7 @@
   meta_attributes = %w(
     created_at
     updated_at
+    user
     placement
     clients
     target_group_type
@@ -71,6 +72,9 @@
                       = val.map { | code | Place::COUNTRIES_BY_NAME.values.detect { | country | country[:code] == code }.try(:[], :name) }.sort.join( ", " )
                     - elsif a == "locales"
                       = val.map { | locale | I18n.t( "locales.#{locale}" ) }.sort.join( ", " )
+                    - elsif a == "user"
+                      = link_to( user_image( @announcement.user), @announcement.user ) if @announcement.user
+                      = link_to_user @announcement.user, missing: t( :unknown )
                     - elsif val.is_a?( Array)
                       = val.sort.join( ", " )
                     - elsif val.is_a?( String ) || [true, false].include?( val )

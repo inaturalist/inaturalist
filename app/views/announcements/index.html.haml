@@ -9,6 +9,7 @@
     }
     .sidebar-body { max-width: 360px; }
     .sidebar-body img, .general-body img { max-width: 100%; }
+    th.user, td.user { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .container
   .row
     .col-xs-12
@@ -38,6 +39,7 @@
             %th= t :start
             %th= t :end
             %th= t :body
+            %th.user= t :created_by
         %tbody
           - @announcements.each do |announcement|
             %tr
@@ -48,9 +50,9 @@
                   .clients
                     = announcement.clients.join( ", " )
               %td= announcement.site_ids.empty? ? t(:all)  : announcement.sites.map(&:name).join(", ")
-              %td=l announcement.start
+              %td=l announcement.start, format: :short
               %td
-                =l announcement.end
+                =l announcement.end, format: :short
                 - if announcement.end > Time.now
                   %span.label.label-success=t :active
               %td.announcement-body
@@ -58,6 +60,9 @@
                   %div.sidebar-body=raw announcement.body
                 - else
                   %div.general-body=raw announcement.body
+              %td.user
+                = link_to( user_image( announcement.user), announcement.user ) if announcement.user
+                = link_to_user announcement.user, missing: t( :unknown )
               %td
                 = link_to announcement, class: "btn btn-default btn-sm" do
                   %i.fa.fa-eye
@@ -66,10 +71,5 @@
                 = link_to edit_announcement_path(announcement), class: "btn btn-default btn-sm" do
                   %i.fa.fa-pencil
                   = t(:edit)
-
-              %td
-                = link_to announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete, class: "btn btn-danger btn-sm" do
-                  %i.fa.fa-trash
-                  = t(:destroy)
       = will_paginate @announcements
       = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"

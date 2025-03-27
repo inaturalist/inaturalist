@@ -47,6 +47,7 @@ class Announcement < ApplicationRecord
   ANY = "any"
   YES_NO_ANY = [YES, NO, ANY].freeze
 
+  belongs_to :user
   has_and_belongs_to_many :sites
   has_many :announcement_impressions, dependent: :delete_all
   validates_presence_of :placement, :start, :end, :body
