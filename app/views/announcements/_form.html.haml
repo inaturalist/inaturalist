@@ -107,9 +107,6 @@
                 .col-xs-6= f.text_field :user_created_end_date, type: "date"
               .row
                 .col-xs-12
-                  = f.select :clients, clients, { include_blank: t( :all ) }, { multiple: true, description: t( "views.announcements.clients_desc" ),description_tip: true, size: [clients.length + 1, 5].min, wrapper: { style: "display: none;" } }
-              .row
-                .col-xs-12
                   = f.check_box :prefers_target_staff, label_after: true
                   = f.check_box :prefers_target_unconfirmed_users, label_after: true
             .col-xs-4
