@@ -6773,9 +6773,6 @@ hu:
             login:
               must_begin_with_a_letter: |
                 betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat
-            email:
-              must_look_like_an_email_address: email címnek kell lennie
-              domain_is_not_supported: a domén nem támogatott
         user_block:
           attributes:
             base:
