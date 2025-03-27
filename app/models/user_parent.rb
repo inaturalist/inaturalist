@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserParent < ApplicationRecord
   # This is the child
   belongs_to :user, inverse_of: :user_parent
@@ -24,9 +26,10 @@ class UserParent < ApplicationRecord
   end
 
   def strip_strings
-    [:name, :child_name, :email].each do |a|
+    [:name, :child_name, :email].each do | a |
       next if send( a ).blank?
-      send( "#{a}=", send( a ).gsub(/[\s\n\t]+/, " " ).strip )
+
+      send( "#{a}=", send( a ).gsub( /[\s\n\t]+/, " " ).strip )
     end
     true
   end
@@ -39,14 +42,19 @@ class UserParent < ApplicationRecord
   end
 
   def deliver_confirmation_email_if_donor_verified
-    if saved_change_to_donorbox_donor_id? && previous_changes[:donorbox_donor_id][0].blank? && donorbox_donor_id.to_i > 0
+    if saved_change_to_donorbox_donor_id? && previous_changes[:donorbox_donor_id][0].blank? && donor?
       Emailer.user_parent_confirmation( self ).deliver_now
+      # In theory the child user did not receive their welcome email when
+      # their account was created b/c they were an unverified child account,
+      # so now we can welcome them
+      user.send_welcome_email
     end
     true
   end
 
   def email_does_not_belong_to_another_user
     return true if email.blank?
+
     scope = User.where( email: email )
     scope = scope.where( "id != ?", parent_user.id ) if parent_user
     if scope.exists?
@@ -56,6 +64,6 @@ class UserParent < ApplicationRecord
   end
 
   def donor?
-    donorbox_donor_id.to_i > 0
+    donorbox_donor_id.to_i.positive?
   end
 end

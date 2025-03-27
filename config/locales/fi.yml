@@ -1677,7 +1677,6 @@ fi:
   edited_by_name_some_rights_reserved_html: |
     Muokannut %{name}, osa oikeuksista pidätetään (%{license})
   editing: Muokataan
-  editing_announcement: Muokataan ilmoitusta
   editing_custom_project_fields_for: Muokataan mukautettuja projektikenttiä projektille
   editing_observation_field: Muokataan havaintokenttää
   editing_observation_id: "Muokataan havaintoa %{obs_id}"
@@ -4455,6 +4454,9 @@ fi:
     one: Lähetä 1 havainto
     other: Lähetä %{count} havaintoa
   submitted: Lähetetty
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Tilaa
   subscribe_to_a_taxon: Seuraa taksonia
   subscribe_to_a_place: Seuraa paikkaa
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Tilaa%{tag_end} tämän lipun kommentit"
@@ -4472,7 +4474,6 @@ fi:
     Voit esimerkiksi tilata taksonin saadaksesi ilmoitukset tämän taksonin uusista
     havainnoista. Olet automaattisesti tilannut ilmoitukset
     havainnoista, joita kommentoit tai tunnistat.
-  subscribe_to_this: Seuraa tätä
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Tilaa</a>
     %{x} tästä %{y}sta.
@@ -5048,22 +5049,6 @@ fi:
     kirjautua tilillesi ennen kuin klikkaat linkkiä
     vahvistussähköpostissa, joten <strong>varmista, että olet syöttänyt sähköpostiosoitteesi
     oikein.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Tarkista, että sähköpostiosoitteesi on oikea. Lähetämme vahvistusviestin tähän osoitteeseen:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Jos et saanut viestiä, tässä muutama vinkki:
-    </p>
-    <ul>
-    <li><p>Tarkista roskapostikansiosi</p></li>
-    <li><p>Tarkista, oletko luonut filttereitä, josta estävät viestin kulkeutumisen postilaatikkoosi</p></li>
-    </ul>
-    <p>
-    Jos et edelleenkään saa vahvistusviestiä, ota yhteyttä osoitteeseen
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>, jotta voimme auttaa sinua.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Olet kirjautumassa ulos</h3>
     <p>

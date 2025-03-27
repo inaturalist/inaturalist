@@ -6,5 +6,6 @@ FactoryBot.define do
     send( :end ) { 1.day.from_now }
     body { Faker::Lorem.sentence }
     placement { "users/dashboard#sidebar" }
+    user
   end
 end

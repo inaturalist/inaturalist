@@ -1807,7 +1807,6 @@ pt-BR:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, alguns direitos reservados (%{license})
   editing: Editando
-  editing_announcement: Modificando anúncio
   editing_custom_project_fields_for: Modificando os campos de projeto personalizados
   editing_observation_field: Modifique o campo de observação
   editing_observation_id: "Modificando Observação %{obs_id}"
@@ -5101,7 +5100,6 @@ pt-BR:
     Por exemplo, você pode se inscrever em um táxon para obter atualizações sobre novas
     observações desse táxon. Você se inscreve automaticamente em atualizações
     sobre as observações que você comenta ou identifica.
-  subscribe_to_this: Assinar isto
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Registre-se</a>
     to %{x} destas %{y}.
@@ -5829,23 +5827,6 @@ pt-BR:
     não conseguirá entrar em sua conta até que você clique no link
     da mensagem, então <strong>tenha certeza de que você digitou seu endereço eletrônico
     corretamente.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Por favor certifique-se de que seu endereço de e-mail está correto. Este é o endereço de e-mail para o qual enviaremos o pedido de confirmação:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Se voce não receber a mensagem, aqui vão algumas dicas:
-    </p>
-    <ul>
-    <li><p>Verifique sua caixa de spam</p></li>
-    <li><p>Verifique se existem filtros que poderiam remover nossas mensagens da sua caixa de entrada</p></li>
-    </ul>
-    <p>
-    Se ainda assim não localizar a mensagem de confirmação, por favor entre em contato conosco através do endereço
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    de modo a podermos ajudá-lo.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Você será desconectado</h3>
     <p>
@@ -6320,17 +6301,6 @@ pt-BR:
   verifiable_observations: Observações verificáveis
   views:
     views: 'Visualizações'
-    announcements:
-      locales_desc: |
-        Clique em CMD ou SHIFT para selecionar vários. Não selecionar nenhum mostrará o
-        anúncio para todos os usuários, independentemente da localidade. Escolhendo um idioma
-        sem uma região, *não* segmentará localidades com regiões, por exemplo, E se
-        você escolheu en ele não aparecerá para as pessoas que escolheram en-US. Se vocês
-        quer segmentar ambos, escolha ambos. Se você quiser mostrar um anúncio
-        para todos os membros de um site, apenas deixe em branco.
-      clients_desc: |
-        Clique em CMD- ou SHIFT para selecionar vários. Sem selecionar nenhum mostrará o anúncio
-        para todos os usuários, independentemente do cliente.
     content_freeze:
       content_freeze: Congelamento de conteúdo
       during_this_time: |

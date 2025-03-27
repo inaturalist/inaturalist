@@ -1536,7 +1536,6 @@ hu:
   edited_by_name_some_rights_reserved_html: |
     %{name} módosította, néhány jog fenntartva (%{license})
   editing: Szerkesztés
-  editing_announcement: Közlemény szerkesztése
   editing_custom_project_fields_for: Saját projektmező szerkesztése
   editing_observation_field: Az adatmezők szerkesztése
   editing_observation_id: "%{obs_id} megfigyelés módosítása"
@@ -4144,7 +4143,7 @@ hu:
     A felhasználóneved és a jelszavad minden honlapon működik ami az iNaturalist Hálózat tagja. Ha csatlakozol a Hálózat egyik honlapjához, a helyi intézmények amelyek e helyi honlapot támogatják elérhetik az email címedet (csak azért, hogy a honlap tevékenységeiről értesítsenek) és hozzáférhetnek az olyan megfigyelések valós koordinátáihoz, ahol a koordinátáknál a kitakart vagy privát beállításokat használtad.
   some_agree: néhányan egyetértenek
   some_observations_are_missing_media_or_identifications: |
-    Néhány megfigyelésből hiányzik a média vagy az asonosítás
+    Néhány megfigyelésből hiányzik a média vagy az azonosítás
   some_observations_are_missing_media_or_identifications_desc: |
     A képek vagy hangok nélküli megfigyelések alapértelmezetten nem jelennek meg a keresésekben, azonosítások nélkül pedig az egyes taxonokra szakosodott felhasználók nem fogják megtalálni. Javasoljuk, hogy legalább tágabb taxonokat (például "növények") adj a megfigyeléseidhez.
   some_observations_failed_to_be_added: Pár megfigyelés nem lett hozzáadva a projektekhez
@@ -4272,7 +4271,6 @@ hu:
   subscribe_to_places_help: |
     Az értesítésekkel beállíthatod, hogy milyen újdonságokat láss a vezérlőpulton és a frissítésekben.
     Például feliratkozhatsz egy taxonhoz, hogy értesítéseket kapj annak a taxonnak a megfigyeléseíről. Automatikusan fel vagy iratkozva olyan megfigyelések értesítéseire, amelyekhez megjegyzést fűzöl hozzá vagy amelyeket azonosítasz.
-  subscribe_to_this: 'Feliratkozás:'
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Feliratkozás</a>
     ehhez: %{x}, innen: %{y}.
@@ -4816,22 +4814,6 @@ hu:
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> hozzájárulása a %{project_title} projekthez
   users_edit_resend_confirmation_prompt_html: |
     A megerősítő email újraküldése után a rendszer kiléptet, és nem fog tudni belépni mindaddig, amíg nem kattintasz az emailben található linkre. Ezért <strong>mindenképpen bizonyosodj meg arról, hogy helyesen adtad meg az email címet.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Kérjük, hogy bizonyosodj meg arról, hogy a megadott email cím helyes. Erre az email címre küldjük a megerősítő emailt:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Ha nem érkezne meg az email:
-    </p>
-    <ul>
-    <li><p>Nézz utána a spamek között</p></li>
-    <li><p>Ellenőrizzd, hogy fennakadt-e az email a fiókod filterein</p></li>
-    </ul>
-    <p>
-    Ha még így sem találod az emailt, vedd fel velünk a kapcsolatot a <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    címen.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Ezzel ki fogsz jelentkezni</h3>
     <p>
@@ -5209,6 +5191,19 @@ hu:
   verifiable_observations: Hiteles megyfigyelések
   views:
     views: 'Nézetek'
+    announcements:
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Felhasználók célzása adományozási viselkedésük alapján
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Felhasználók célzása azonosítási viselkedésük alapján
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Felhasználók célzása megfigyelési viselkedésük alapján
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Felhasználók célzása egyéb tényezők alapján
     content_freeze:
       content_freeze: Tartalom lezárása
       during_this_time: |

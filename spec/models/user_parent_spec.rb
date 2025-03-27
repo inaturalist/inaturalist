@@ -9,7 +9,7 @@ describe UserParent do
   it { is_expected.to validate_presence_of :child_name }
   it { is_expected.to validate_presence_of :user }
 
-  describe UserParent, "creation" do
+  describe "creation" do
     it "should not trigger the delivery of any emails" do
       deliveries = Devise.mailer.deliveries.size
       # The blueprint makes an active user that was a created a little while ago
@@ -42,7 +42,7 @@ describe UserParent do
     end
   end
 
-  describe UserParent, "update" do
+  describe "update" do
     it "should allow the donorbox_donor_id to be set even if a non-parent user exists with the same email address" do
       up = UserParent.make!
       u = User.make!( email: up.email )
@@ -51,22 +51,30 @@ describe UserParent do
     end
   end
 
-  describe UserParent, "donorbox_donor_id" do
-    it "should get set on create based on the parent_user" do
+  describe "donorbox_donor_id" do
+    it "gets set on create based on the parent_user" do
       up = UserParent.make!( parent_user: User.make!( donorbox_donor_id: 1 ) )
       expect( up.donorbox_donor_id ).not_to be_blank
       expect( up.donorbox_donor_id ).to eq up.parent_user.donorbox_donor_id
     end
-    it "should deliver an email when set on update" do
-      up = UserParent.make!
-      deliveries = ActionMailer::Base.deliveries.size
+
+    it "delivers an email to child when set on update" do
+      up = create( :user_parent )
+      emails_to_child_before = ActionMailer::Base.deliveries.select {| m | m.to.include?( up.user.email ) }
+      emails_to_parent_before = ActionMailer::Base.deliveries.select {| m | m.to.include?( up.parent_user.email ) }
+      expect( up ).not_to be_donor
+      expect( emails_to_child_before.size ).to eq 0
       up.update( donorbox_donor_id: 1 )
-      expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
+      emails_to_child_after = ActionMailer::Base.deliveries.select {| m | m.to.include?( up.user.email ) }
+      emails_to_parent_after = ActionMailer::Base.deliveries.select {| m | m.to.include?( up.parent_user.email ) }
+      expect( emails_to_parent_after.size ).to eq emails_to_parent_before.size + 1
+      expect( emails_to_child_after.size ).to eq emails_to_child_before.size + 1
     end
-    it "should deliver an email when set on create" do
-      deliveries = ActionMailer::Base.deliveries.size
-      up = UserParent.make!( donorbox_donor_id: 1 )
-      expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
+
+    it "delivers emails to child when set on create" do
+      up = create( :user_parent, donorbox_donor_id: 1 )
+      emails_to_child = ActionMailer::Base.deliveries.select {| m | m.to.include?( up.user.email ) }
+      expect( emails_to_child.size ).to eq 1
     end
   end
 end

@@ -65,10 +65,34 @@ describe Announcement do
       expect( a.targeted_to_user?( User.make! ) ).to be false
     end
 
+    it "targets creator" do
+      a = create :announcement, target_creator: true
+      expect( a.targeted_to_user?( make_admin ) ).to be false
+      expect( a.targeted_to_user?( make_curator ) ).to be false
+      expect( a.targeted_to_user?( User.make! ) ).to be false
+      expect( a.targeted_to_user?( a.user ) ).to be true
+    end
+
     it "targets unconfirmed users" do
       a = Announcement.make!( prefers_target_unconfirmed_users: true )
       expect( a.targeted_to_user?( User.make!( confirmed_at: Time.now ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( confirmed_at: nil ) ) ).to be true
+    end
+
+    it "targets unconfirmed users and last observation date" do
+      annc = create :announcement,
+        prefers_target_unconfirmed_users: true,
+        last_observation_start_date: 2.days.ago
+      confirmed_user = create :user
+      expect( confirmed_user ).to be_confirmed
+      unconfirmed_user = create :user, :as_unconfirmed
+      unconfirmed_user_no_obs = create :user, :as_unconfirmed
+      expect( unconfirmed_user ).not_to be_confirmed
+      create :observation, created_at: 1.day.ago, user: confirmed_user
+      create :observation, created_at: 1.day.ago, user: unconfirmed_user
+      expect( annc.targeted_to_user?( unconfirmed_user ) ).to be true
+      expect( annc.targeted_to_user?( confirmed_user ) ).to be false
+      expect( annc.targeted_to_user?( unconfirmed_user_no_obs ) ).to be false
     end
 
     it "can exclude monthly supporters" do

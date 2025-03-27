@@ -1597,7 +1597,6 @@ uk:
   edited_by_name_some_rights_reserved_html: |
     Відредагував/ла %{name}, деякі права захищені (%{license})
   editing: Редагування
-  editing_announcement: Редагування оголошення
   editing_custom_project_fields_for: Редагування полів користувацького проєкту для
   editing_observation_field: Редагування поля спостереження
   editing_observation_id: "Редагування спостереження %{obs_id}"
@@ -4271,7 +4270,6 @@ uk:
   subscribe_to_observations_from_this_place_html: <a>Підписатися</a> на спостереження з цього місця
   subscribe_to_observations_in_a_taxon: Підписатися на всі спостереження певного виду або групи організмів (наприклад, 'синиці').
   subscribe_to_observations_in_a_place: Підписатися на всі спостереження з цього місця. Також, ви можете додати опційний фільтр за таксоном (наприклад, "синиці з України").
-  subscribe_to_this: Підписатися на це
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Підписатися</a>
     на %{x} з %{y}.
@@ -5165,9 +5163,6 @@ uk:
   verifiable_observations: Перевірювані спостереження
   views:
     views: 'Перегляди'
-    announcements:
-      locales_desc: |
-        Утримуйте клавішу CMD або SHIFT для вибору декількох варіантів. В разі, якщо не вибрано жодного, анонс буде видимий усім користувачам сайту незалежно від їхнього місцеперебування. Вибір мови без вказання регіону *не* пов'яже локалі з регіонами, наприклад, якщо ви оберете en анонс не буде видимими користувачам, у налаштуваннях яких вказано en-US. Якщо ви бажаєте обрати обидві опції, так і зробіть. Якщо ви хочете показати анонс для всіх учасників сайту, просто залиште це поле порожнім.
     content_freeze:
       content_freeze: Замороження вмісту
       during_this_time: |

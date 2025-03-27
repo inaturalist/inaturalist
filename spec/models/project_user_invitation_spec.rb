@@ -12,10 +12,13 @@ describe ProjectUserInvitation do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
 
-    it "should email the user" do
-      expect {
-        ProjectUserInvitation.make!
-      }.to change(ActionMailer::Base.deliveries, :size).by(1)
+    it "should email the invited user" do
+      user = create :user
+      invited_user = create :user
+      project = create :project
+      expect do
+        ProjectUserInvitation.make!( user: user, invited_user: invited_user, project: project )
+      end.to change( ActionMailer::Base.deliveries, :size ).by 1
     end
 
     it "should create an update for the user" do

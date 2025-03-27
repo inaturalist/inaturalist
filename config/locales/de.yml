@@ -1597,8 +1597,7 @@ de:
     Bitte klicke auf nachfolgenden Link, um deine E-Mail-Adresse zu verifizieren.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
-    Bitte klicken Sie auf den untenstehenden Link, um Ihre E-Mail-Adresse zu bestätigen. Wenn Sie Ihre E-Mail-Adresse nicht bestätigen
-    nicht in der Lage sein, mit den Inhalten anderer Benutzer zu interagieren.
+    Bitte klicke auf den untenstehenden Link, um deine E-Mail-Adresse zu bestätigen. Wenn du deine E-Mail-Adresse nicht bestätigst, wirst du nicht in der Lage sein, mit den Inhalten anderer Benutzer zu interagieren.
   devise_confirmation_instructions_resend_instructions: |
     Du musst eine funktionierende E-Mail-Adresse haben, um iNaturalist nutzen zu können. Wenn du
     dich für einen Zugang angemeldet hast, solltest du eine Bestätigungs-E-Mail mit einem
@@ -1732,7 +1731,6 @@ de:
   edited_by_name_some_rights_reserved_html: |
     Bearbeitet von %{name}, einige Rechte vorbehalten (%{license})
   editing: Bearbeiten
-  editing_announcement: Ankündigung bearbeiten
   editing_custom_project_fields_for: Benutzerdefinierte Projektfelder bearbeiten für
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: "Beobachtung %{obs_id} bearbeiten"
@@ -4858,6 +4856,9 @@ de:
     one: 1 Beobachtung absenden
     other: '%{count} Beobachtungen absenden'
   submitted: Hinzugefügt
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonnieren
   subscribe_to_a_taxon: Taxon abonnieren
   subscribe_to_a_place: Ein Gebiet abonnieren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}abonniere%{tag_end} Kommentare zu dieser Meldung"
@@ -4872,7 +4873,6 @@ de:
   subscribe_to_observations_in_a_place: Abonniere alle in diesem Gebiet veröffentlichten Beobachtungen. Du kannst auch einen optionalen Taxonfilter hinzufügen (z.B. 'Moose aus Baden-Württemberg').
   subscribe_to_places_help: |
     Durch Abonnements bestimmst du, welche Updates und Dashboard-Meldungen dir angezeigt werden. Wenn du zum Beispiel ein Taxon abonnierst, siehst du entsprechend aktuelle Beobachtungen auf deinem Dashboard. Beobachtungen, die du kommentierst oder zu welchen du Bestimmungen abgibst, werden automatisch abonniert.
-  subscribe_to_this: Abonnieren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonniere</a>
      %{x} aus diesem %{y}.
@@ -5577,24 +5577,6 @@ de:
   users_contributions_to_project_html: Beiträge von <a href="%{url}">%{login}</a> zu %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Nachdem du die Bestätigungs-Email gesendet hast, wirst du abgemeldet und du wirst dich erst wieder anmelden können, wenn du den Link in der E-Mail angeklickt hast - <strong>also überprüfe genau, dass die angegebene E-Mail-Adresse korrekt ist.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Bitte stelle sicher, dass deine E-Mail-Adresse korrekt ist. Hier ist die E-Mail-Adresse, an die wir die Bestätigung senden:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Falls du die E-Mail nicht erhältst, sind hier einige Tipps:
-    </p>
-
-    <ul>
-    <li><p>Überprüfe deinen Spam-Ordner</p></li>
-    <li><p>Überprüfe alle Filter, die du angelegt hast, um unsere E-Mails aus deinem Posteingang zu entfernen</p></li>
-    </ul>
-    <p>
-    Wenn du trotzdem noch keine Bestätigungs-E-Mail erhälst, dann kontaktiere uns bitte unter
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    damit wir dir helfen können.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du bist kurz davor dich auszuloggen</h3>
     <p>
@@ -6047,9 +6029,6 @@ de:
   verifiable_observations: Verifizierbare Beobachtungen
   views:
     views: 'Aufrufe'
-    announcements:
-      locales_desc: |
-        STRG- oder SHIFT-Taste mit der linken Maustaste benutzen, um mehrere auszuwählen. Wenn du keine auswählst, wird die Ankündigung für alle Benutzer unabhängig vom Gebietsschema angezeigt. Wenn du ein Sprachgebietsschema ohne eine Region wählst, wird es *nicht* für Gebietsschemata mit Regionen verwendet, z.B. wenn du "en" gewählt hast, erscheint es nicht für Leute, die "en-US" gewählt haben. Wenn du beide erreichen willst, wähle beides. Wenn du eine Ankündigung allen Mitgliedern einer Seite anzeigen möchtest, lass das einfach leer.
     content_freeze:
       content_freeze: Inhalt eingefroren
       during_this_time: |
@@ -6160,23 +6139,23 @@ de:
       #text displayed before showing a user the email address that we will
       #resend a confirmation email to
       here_is_the_email_colon: |
-        Hier ist die E-Mail-Adresse, an die wir die Bestätigung senden:
+        Dies ist die E-Mail-Adresse, an die wir die Bestätigung senden:
       #statement introducing suggestions for users that do no receive confirmation emails
       if_you_do_not_receive_the_email_here_are_tips_colon: |
-        Wenn Sie die E-Mail nicht erhalten, finden Sie hier einige Tipps:
+        Wenn du die E-Mail nicht erhältst, gibt es hier einige Tipps:
       #statement telling users to contact us if they are not receiving confirmation emails
-      if_you_are_still_not_receiving_email_contact_us_html: Wenn Sie die Bestätigungs-E-Mail immer noch nicht erhalten, kontaktieren Sie uns bitte unter <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> damit wir Ihnen helfen können.
+      if_you_are_still_not_receiving_email_contact_us_html: Wenn du die Bestätigungs-E-Mail immer noch nicht erhältst, kontaktiere uns bitte unter <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> damit wir dir helfen können.
       please_add_an_email_and_password: Bitte füge eine E-Mail und ein Passwort hinzu, damit du den Zugriff auf dein Konto nicht verlierst
       please_click_the_link_sent_to_email_to_confirm_html: Bitte klicke auf den Link, der an <span class="email">%{email}</span> gesendet wurde, um deine E-Mail-Adresse zu verifizieren.
       please_confirm_that_email_is_the_best_contact_html: Bitte bestätige, dass <span class="email">%{email}</span> die beste Möglichkeit ist, dich zu kontaktieren. #message requesting users confirm their email address to be able to engage with other users
-      please_confirm_to_interact_and_access: Bitte bestätigen Sie Ihre E-Mail-Adresse, um mit den Inhalten anderer Benutzer zu interagieren und auf bestimmte Seiten zuzugreifen. #message requesting that a user confirm their email address, displaying the email to confirm
-      please_confirm_your_email_address_html: Bitte bestätigen Sie Ihre E-Mail-Adresse <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
-      please_confirm_to_interact: Bitte bestätigen Sie Ihre E-Mail-Adresse, um mit den Inhalten anderer Benutzer interagieren zu können
+      please_confirm_to_interact_and_access: Bitte bestätige deine E-Mail-Adresse, um mit den Inhalten anderer Benutzer zu interagieren und auf bestimmte Seiten zugreifen zu können. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Bitte bestätige deine E-Mail-Adresse <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Bitte bestätige deine E-Mail-Adresse, um mit den Inhalten anderer Benutzer interagieren zu können
       #statement used on pages that are not functional unless a user has confirmed their email address
-      please_confirm_to_use_this_page: Bitte bestätigen Sie Ihre E-Mail-Adresse, um diese Seite zu nutzen
+      please_confirm_to_use_this_page: Bitte bestätige deine E-Mail-Adresse, um diese Seite nutzen zu können
       #tip for users who do not receive confirmation emails to check if their email view is filtered
-      tips_check_email_filters: Suchen Sie nach Filtern, die Sie erstellt haben und die unsere E-Mails aus Ihrem Posteingang entfernen könnten #tip for users who do not receive confirmation emails to check their email spam folder
-      tips_check_your_spam_folder: Überprüfen Sie Ihren Spam-Ordner
+      tips_check_email_filters: Überprüfe, ob es Filtereinstellungen geben könnte, die unsere E-Mails aus deinem Posteingang entfernen könnten #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Überprüfe deinen Spam-Ordner
       your_site_account_has_no_email: Dein %{site_name}-Konto ist mit keiner E-Mail-Adresse verknüpft.
     flags:
       show:
@@ -6470,14 +6449,11 @@ de:
         #Users cannot create messages if they lack the criteria for
         #earning interaction privilege
         interaction_privilege_notice: |
-          Sie können neue Nachrichten senden, nachdem Sie Ihre E-Mail-Adresse bestätigt haben
-          Adresse. Im Moment können Sie Nachrichten lesen und beantworten, die andere Personen Ihnen senden.
+          Du kannst neue Nachrichten senden, nachdem du deine E-Mail-Adresse bestätigt hast. Im Moment kannst du Nachrichten lesen und beantworten, die dir andere Personen senden.
         #Users cannot create messages if they lack the criteria for
         #earning interaction or speech privilege
         privilege_notice: |
-          Sie können neue Nachrichten senden, nachdem Sie Ihre E-Mail-Adresse bestätigt haben
-          Adresse und fügte drei überprüfbare Beobachtungen oder drei Identifikationen hinzu
-          für andere. Im Moment können Sie Nachrichten lesen und beantworten, die andere Personen Ihnen senden.
+          Du kannst neue Nachrichten senden, nachdem du deine E-Mail-Adresse bestätigt hast und drei verifizierbare Beobachtungen oder drei Bestimmungen für andere hinzugefügt hast. Im Moment kannst du Nachrichten lesen und beantworten, die dir andere Personen senden.
       show:
         flag_notice_html: |
           Du hast die Konversation am %{date} gemeldet. Falls du diese Konversation nicht mehr sehen möchtest, kannst du sie auch löschen - die Meldung bleibt weiterhin aufrecht und kann von den Kuratoren eingesehen werden.

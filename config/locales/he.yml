@@ -548,7 +548,7 @@ he:
     suborder: כל תתי-הסדרות הוספו לבסיס הנתונים
     infraorder: כל תתי המחלקות הוספו לבסיס הנתונים
     superfamily: כל משפחות העל הוספו לבסיס הנתונים
-    epifamily: כל העל-משפחות הוספו לבסיס הנתונים
+    epifamily: כל האפי-משפחות הוספו לבסיס הנתונים
     family: כל המשפחות הוספו לבסיס הנתונים
     subfamily: כל תתי-המשפחות הוספו לבסיס הנתונים
     supertribe: כל שבטי-על הוספו לבסיס הנתונים
@@ -1846,7 +1846,6 @@ he:
   edited_by_name_some_rights_reserved_html: |
     נערך על ידי %{name}, חלק מזכויות היוצרים שמורות (%{license})
   editing: עריכה
-  editing_announcement: עריכת הודעה
   editing_custom_project_fields_for: עורך שדות פרויקט מותאמים אישית עבור
   editing_observation_field: עריכת שדה תצפיות
   editing_observation_id: "עריכת תצפית %{obs_id}"
@@ -4369,7 +4368,7 @@ he:
       many: מחלקות
       other: מחלקות
     subclass: תת מחלקה
-    infraclass: תת-מחלקה
+    infraclass: אינפרא-מחלקה
     superorder: על-סדרה
     order: סדרה
     x_orders:
@@ -4384,7 +4383,7 @@ he:
     zoosection: זואוסקציה
     zoosubsection: זואו-תת-סקציה
     superfamily: משפחת על
-    epifamily: על-משפחה
+    epifamily: אפי-משפחה
     family: משפחה
     x_families:
       one: משפחה
@@ -4418,7 +4417,7 @@ he:
     subspecies: תת מין
     variety: זן
     form: טופס
-    infrahybrid: תת-בן-כלאיים
+    infrahybrid: אינפרא-היבריד
     leaves: עלים
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
   ranks_lowercase_stateofmatter: מצב צבירה
@@ -5025,7 +5024,6 @@ he:
   subscribe_to_observations_in_a_place: הירשמו כמנויים לכל התצפיות מהמקום הזה. אפשר גם להוסיף מסנן טקסונים (למשל "עקרבים מטקסס").
   subscribe_to_places_help: |
     מינויים קובעים מה את.ה רואה בעדכונים שלך בלוח המחוונים. למשל, באפשרותך לעשות מינוי לטקסון כדי לקבל עדכונים על תצפיות חדשות של אותו הטקסון. הנך מנוי.ה באופן אוטומטי לעדכונים על תצפיות שזיהית או שהגבת עליהן.
-  subscribe_to_this: הרשמה
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">מינוי</a> ל%{x} מ%{y} זה.
   subscriptions: מינויים
@@ -5781,21 +5779,6 @@ he:
   users_contributions_to_project_html: התרומות של <a href="%{url}">%{login}</a> ל%{project_title}
   users_edit_resend_confirmation_prompt_html: |
     לאחר שתשלח.י מחדש את מייל האישור, תנותק.י ולא תוכל.י להתחבר לחשבון שלך עד שתלחצ.י על הקשירו במייל. לכן <strong>יש לוודא שהכנסת את כתובת הדוא"ל שלך נכון.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    נא לוודא שכתובת הדוא"ל שלך נכונה. הנה כתובת הדוא"ל אליה נשלח את מייל האישור:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    אם לא תקבל.י את המייל, להלן מספר עצות:
-    </p>
-    <ul>
-    <li><p>לבדוק בתיקיית ספאם שלך</p></li>
-    <li><p>לבדוק מסננים שעשית העלולים להוציא את המיילים שלנו מתיבת הדוא"ל שלך</p></li>
-    </ul>
-    <p>
-    אם את.ה עדיין לא מקבל.ת את מייל האישור, נא ליצור עמנו קשר בכתובת <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> בשביל שנוכל לסייע לך.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>הנך עומד.ת לצאת</h3>
     <p>
@@ -6255,11 +6238,6 @@ he:
   verifiable_observations: תצפיות שניתנות לבדיקה
   views:
     views: 'צפיות'
-    announcements:
-      locales_desc: |
-        יש להקליק תוך כדי הקשת CMD או SHIFT לבחירה מרובה. אי-בחירה תציג את ההודעות עבור כל היוזרים ללא תלות במיקום. בחירת שפה ללא אזור *לא* תכוון למיקומים עם אזורים, למשל אם תבחר.י "en" זה לא יופיע עבור א.נשים שבחרו "en-US". אם ברצונך לכוון לשניהם, יש לבחור בשניהם. אם ברצונך להציג הודעה בפני כל חברות וחברי אתר, יש להשאיר את זה ריק.
-      clients_desc: |
-        לבחירה מרובה יש להקליק בעכבר תוך לחיצת מקש SHIFT או CMD. אי-בחירה תציג את ההודעה לכל המשתמשים בלי קשר ללקוח.
     content_freeze:
       content_freeze: הקפאת תוכן
       during_this_time: |
@@ -7556,6 +7534,8 @@ he:
         translators_title: מתרגמות ומתרגמים
         translators_desc: |
           הידעת ש-iNaturalist תורגם ל-%{x_languages} שפות, כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
+        translators_desc_2: |
+          הידעת ש-iNaturalist תורגם ל-%{x_languages}, כמעט לחלוטין על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות והמתרגמים המדהימים שהוסיפו תרגומים השנה, יחד עם מספר המילים שתרגמו עבור ה%{website_link_tag}אתר%{link_tag_end}, אפליקציות ה-%{iphone_link_tag}iPhone%{link_tag_end} ו-%{android_link_tag}Android%{link_tag_end}, %{seek_link_tag}Seek%{link_tag_end}, ו-%{help_link_tag}iNatHelp%{link_tag_end}.
         translators_desc_for_site: |
           הידעת ש-%{site_name} תורגם כמעט כולו על ידי %{x_people}, שחלקם אפילו לא משתמשים ב-iNat? הנה כל המתרגמות.ים המדהימות.ים שהוסיפו תרגומים השנה, לצד מספר המילים שתרגמו ל%{website_link_tag}אתר%{link_tag_end}, אפליקציות %{iphone_link_tag}האייפון%{link_tag_end} ו%{android_link_tag}האנדרואיד%{link_tag_end} שלנו, ו-%{seek_link_tag}Seek%{link_tag_end}. ניתן לצפות בכל הא.נשים שתרמו תרגומים, כולל א.נשים משנים קודמות וחבר'ה מ-Translatewiki, במאגר הקודים שלנו %{view_all_web_link_tag}באתר%{link_tag_end} %{view_all_mobile_link_tag}ובנייד%{link_tag_end}.
         translators_desc_for_site_2: |

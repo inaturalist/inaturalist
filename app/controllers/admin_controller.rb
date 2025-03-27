@@ -284,15 +284,40 @@ class AdminController < ApplicationController
       return false
     end
 
-    @reflection_names = []
+    @user_facing_reflections = [
+      "annotations",
+      "atlases",
+      "comments",
+      "created_guide_sections",
+      "flags_as_flagger",
+      "guides",
+      "identifications",
+      "identifications_for_others",
+      "journal_posts",
+      "listed_taxa",
+      "lists",
+      "obsevation_field_values",
+      "obsevation_fields",
+      "observations",
+      "photos",
+      "places",
+      "posts",
+      "projects",
+      "quality_metrics",
+      "taxa",
+      "taxon_names",
+      "trips",
+      "votes"
+    ]
+
+    @all_reflections = {}
     has_many_reflections = User.reflections.select {| _k, v | v.macro == :has_many }
     has_many_reflections.each do | k, reflection |
       # Avoid those pesky :through relats
       next unless reflection.klass.column_names.include?( reflection.foreign_key )
 
-      @reflection_names << k.to_s
+      @all_reflections[k.to_s] = @display_user.send( k ).any?
     end
-    @reflection_names.uniq!
     true
   end
 end

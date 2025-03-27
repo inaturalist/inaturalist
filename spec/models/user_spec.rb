@@ -304,6 +304,21 @@ describe User do
     it "should allow @ sign in name if it doesn't look like an email" do
       expect( User.make!( name: "@username" ) ).to be_valid
     end
+
+    it "sends the welcome email" do
+      create( :user )
+      welcome_email = ActionMailer::Base.deliveries.detect {| m | m.subject =~ /Welcome/ }
+      expect( welcome_email ).not_to be_blank
+    end
+
+    it "sends the confirmation email if not confirmed" do
+      user = create( :user, :as_unconfirmed )
+      expect( user ).not_to be_confirmed
+      confirmation_email = ActionMailer::Base.deliveries.detect do | m |
+        m.subject == I18n.t( "devise.mailer.confirmation_instructions.subject" )
+      end
+      expect( confirmation_email ).not_to be_blank
+    end
   end
 
   describe "update" do
@@ -1729,14 +1744,19 @@ describe User do
         }
       }
     end
-    it "should set the confirmation_token" do
+    it "confirms the user" do
       u = User.create_from_omniauth( auth_info )
-      expect( u ).not_to be_confirmed
-      expect( u.confirmation_token ).not_to be_blank
+      expect( u ).to be_confirmed
     end
-    it "should send the confirmation email" do
+
+    it "does not send the confirmation email" do
       User.create_from_omniauth( auth_info )
-      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
+      expect( ActionMailer::Base.deliveries.last.subject ).not_to include "Confirm"
+    end
+
+    it "sends the welcome email" do
+      User.create_from_omniauth( auth_info )
+      expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
     end
 
     describe "with oauth_application" do
@@ -1781,28 +1801,6 @@ describe User do
         u = User.create_from_omniauth( auth_info )
         expect( u.login ).not_to include email_login_suggestion
       end
-    end
-  end
-
-  describe "confirmation" do
-    it "should deliver the welcome email when a new user is confirmed" do
-      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE + 1.day )
-      expect( ActionMailer::Base.deliveries.last.subject ).to include "Confirm"
-      expect { user.confirm }.to change( ActionMailer::Base.deliveries, :size ).by( 1 )
-      expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
-    end
-    it "should not deliver the welcome email when confirmation_sent_at is nil" do
-      user = create :user
-      user.update( confirmed_at: nil, confirmation_sent_at: nil )
-      expect( user ).not_to be_confirmed
-      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
-    end
-    it "should not deliver the welcome email when user created before release date" do
-      user = create :user, :as_unconfirmed, created_at: ( User::EMAIL_CONFIRMATION_RELEASE_DATE - 1.day )
-      create :user_privilege, user: user
-      expect( user ).not_to be_confirmed
-      expect( user.created_at ).to be < User::EMAIL_CONFIRMATION_RELEASE_DATE
-      expect { user.confirm }.not_to change( ActionMailer::Base.deliveries, :size )
     end
   end
 

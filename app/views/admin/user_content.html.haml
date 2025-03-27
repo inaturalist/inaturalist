@@ -1,7 +1,7 @@
 - content_for :title do
   - @title = capture do
     Manage content by
-    = link_to @display_user.login, @display_user
+    = link_to @display_user.login, user_detail_admin_path( @display_user )
     = surround '(', ')' do
       = @klass.name.pluralize
   = strip_tags(@title)
@@ -18,15 +18,38 @@
       $('tr').labelize()
     })
 
+- content_for :extrahead do
+  = stylesheet_link_tag "admin/user_content"
+
 .container-fluid
   .row
     .col-xs-12
       %h2= @title
   .row
     .col-xs-2
-      %ul.leftmenu
-        - for klass in @reflection_names.sort
-          %li= link_to klass.underscore.humanize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil
+      :ruby
+        menu_options = [
+          { public: true, populated: true, label: "Public Facing Populated" },
+          { public: true, populated: false, label: "Public Facing Unpopulated" },
+          { public: false, populated: true, label: "Other Populated" },
+          { public: false, populated: false, label: "Other Unpopulated" },
+        ]
+      - menu_options.each do |menu_option|
+        %div.list_headers= menu_option[:label]
+        %ul.leftmenu
+          :ruby
+            reflections = @all_reflections.select do |k,v|
+              public = @user_facing_reflections.include?( k )
+              ( menu_option[:public] ? public : !public ) &&
+                v == menu_option[:populated]
+            end.keys.sort
+          - if reflections.empty?
+            %li.unpopulated.empty None
+          - else
+            - for klass in reflections
+              - classes = menu_option[:populated] ? ["populated"] : ["unpopulated"]
+              - classes << "active" if @type == klass.underscore
+              %li= link_to klass.underscore.humanize, url_for( type: klass.underscore ), class: classes
     .col-xs-10
       #controls.btn-toolbar.stacked
         = link_to_function "Select all", "$('form input[type=checkbox]').prop('checked', true)", class: "btn btn-default btn-sm"
