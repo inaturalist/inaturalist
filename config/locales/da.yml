@@ -9451,9 +9451,6 @@ da:
             login:
               must_begin_with_a_letter: |
                 skal begynde med et bogstav, ikke indeholde mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
-            email:
-              must_look_like_an_email_address: skal se ud som en e-mail adresse
-              domain_is_not_supported: domæne er uunderstøttet
         user_block:
           attributes:
             base:
