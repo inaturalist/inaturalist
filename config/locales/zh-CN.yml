@@ -8447,9 +8447,6 @@ zh-CN:
             login:
               must_begin_with_a_letter: |
                 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
-            email:
-              must_look_like_an_email_address: 必须看起来像电子邮件地址
-              domain_is_not_supported: 域名不被支持
         user_block:
           attributes:
             base:
