@@ -6286,8 +6286,6 @@ et:
             login:
               must_begin_with_a_letter: |
                 peab algama tähega, ei tohi sisalda tühikuid ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
-            email:
-              must_look_like_an_email_address: peab nägema välja nagu e-posti aadress
   doorkeeper:
     scopes:
       login: |
