@@ -1793,7 +1793,6 @@ nl:
   edited_by_name_some_rights_reserved_html: |
     Bewerkt door %{name}, sommige rechten voorbehouden (%{license})
   editing: Bewerken
-  editing_announcement: Bewerk aankondiging
   editing_custom_project_fields_for: Bewerk standaard project velden voor
   editing_observation_field: Bewerk waarnemingsveld
   editing_observation_id: "Waarneming bewerken %{obs_id}"
@@ -5041,6 +5040,9 @@ nl:
     one: 1 waarneming verzenden
     other: '%{count} waarnemingen verzenden'
   submitted: Verzonden
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonneer
   subscribe_to_a_taxon: Op een taxon abonneren
   subscribe_to_a_place: Op een gebied abonneren
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonneer%{tag_end} op reacties op deze melding"
@@ -5058,7 +5060,6 @@ nl:
     Je kunt je bijvoorbeeld abonneren op een taxon om updates te krijgen over nieuwe
     waarnemingen van dat taxon. Je bent automatisch geabonneerd op updates
     over waarnemingen waarop je reageert of die je determineert.
-  subscribe_to_this: Hierop abonneren
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Abonneer</a>
     op %{x} van @gender{n:dit|deze} %{y}.
@@ -5799,24 +5800,6 @@ nl:
     Nadat je de bevestigingsmail opnieuw hebt verstuurd word je afgemeld en kan 
     je niet inloggen op je account totdat je op de link in
     de e-mail klikt dus <strong>zorg ervoor dat je een geldig e-mailadres hebt ingevoerd.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Zorg ervoor dat jouw e-mailadres correct is. Hier is het e-mailadres waar wij
-    de bevestiging naar toesturen:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Als je de e-mail niet ontvangt, volgen hier enkele tips:
-    </p>
-    <ul>
-    <li><p>Controleer je map met spam/ongewenste e-mail</p></li>
-    <li><p>Controleer alle filters die je hebt gemaakt die onze e-mails uit je inbox zouden kunnen verplaatsen of verwijderen</p></li>
-    </ul>
-    <p>
-    Als je de bevestigingsmail nog steeds niet ontvangt neem dan contact met ons op via
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    zodat we je kunnen helpen.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Je staat op het punt uit te loggen</h3>
     <p>
@@ -6290,10 +6273,18 @@ nl:
   views:
     views: 'Weergaven'
     announcements:
-      locales_desc: |
-        CMD- of SHIFT-klik om meerdere opties te selecteren. Als je niets selecteert wordt de standaardaankondiging voor alle gebruikers getoond, ongeacht lokalisatie-instelling. Het kiezen van een taal zonder een regio zal *niet* toepasbaar zijn op lokalisatie-instellingen mét regio's, bijvoorbeeld als je "en" kiest zal dit het niet zichbaar zijn voor mensen die "en-US" hebben gekozen. Als je beide wilt bereiken, kies dan beide. Als je een aankondiging wilt weergeven voor alle leden van een site, laat je dit gewoon leeg.
-      clients_desc: |
-        CMD- of SHIFT-klik om meerdere te selecteren. Als niets wordt geselecteerd wordt de aankondiging aan alle gebruikers getoond, ongeacht de cliënt.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Target gebruikers op basis van donatiegedrag
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Target gebruikers op basis van hun determinaties
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Target gebruikers op basis van hun waarnemingen
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Target gebruikers op basis van hun andere eigenschappen
     content_freeze:
       content_freeze: Inhoud bevroren
       during_this_time: |
@@ -8445,6 +8436,8 @@ nl:
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
         prefers_exclude_monthly_supporters: Sluit maandelijkse supporters uit
         clients: Client
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Target alleen aangemelde gebruikers
       assessment:
         description: Beschrijving
       assessment_section:

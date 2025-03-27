@@ -1488,7 +1488,6 @@ gl:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, algúns dereitos reservados (%{license})
   editing: Modificar
-  editing_announcement: Modificar anuncio
   editing_custom_project_fields_for: Editando campos personalizados para
   editing_observation_field: Modificar campo de observación
   editing_observation_id: "Modificar observación %{obs_id}"
@@ -4075,7 +4074,6 @@ gl:
   subscribe_to_observations_from_this_place_html: <a>Subscríbete</a> a observacións deste lugar
   subscribe_to_observations_in_a_taxon: Subscríbete a tódalas observacións publicadas dunha especie ou grupo de organismos (p.e. "escorpións").
   subscribe_to_observations_in_a_place: Subscríbete a tódalas observacións publicadas neste lugar. Tamén podes engadir un filtro de taxons opcional (p.e. "escorpións de Texas")
-  subscribe_to_this: Subscribirse a este
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Subscribirse</a> a %{x} destas %{y}.
   subscriptions: Subscricións
@@ -4900,9 +4898,6 @@ gl:
   verifiable_observations: Observacións Verificables
   views:
     views: 'Vistas'
-    announcements:
-      locales_desc: |
-        Premer CMD ou SHIFT para selección múltiple. Non seleccionar ningún amosará o anuncio a tódolos usuarios independentemente da ubicación. Escoller unha língua sen unha rexión *non* terá como obxectivo lugares con rexións, p.e. se escolles inglés, non aparecerá para persoas que escolleron inglés-EEUU. Se queres que aparezan nos dous, terás que escoller ambos. Se queres mostrar un anuncio a tódolos membros dun sitio, simplemente deixa isto baleiro.
     content_freeze:
       content_freeze: Contido Pausado
       during_this_time: |

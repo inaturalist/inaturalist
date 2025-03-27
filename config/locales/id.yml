@@ -541,6 +541,8 @@ id:
   any_license: Bebas
   #Label for an option to show content with photos, sounds, or neither
   any_media: Semua
+  #Label for an option to show any place
+  any_place: Semua
   #Label for an option to show content from any project
   any_project: Semua
   #Label for an option to show content with any quality grade
@@ -1701,7 +1703,8 @@ id:
   edited_by_name_some_rights_reserved_html: |
     Diubah oleh %{name}, beberapa hak dilindungi (%{license})
   editing: Menyunting
-  editing_announcement: Pengumuman perubahan
+  #Title for a page to edit an announcement
+  editing_announcement_x: Mengedit pengumuman %{id}
   editing_custom_project_fields_for: Mengubah bidang proyek kustom untuk
   editing_observation_field: Mengubah bidang pengamatan
   editing_observation_id: "Mengubah Pengamatan %{obs_id}"
@@ -2868,6 +2871,8 @@ id:
   more_info_title: Info Lebih Lanjut
   more_journal_posts: Postingan Jurnal Lainnya
   more_observations: Pengamatan Lainnya
+  #Label for a button or section that shows additional options
+  more_options: Lebih Banyak Pilihan
   more_photos: Foto Lainnya
   more_than_a_week_ago: Lebih dari satu minggu yang lalu
   most_agree: kebanyakan setuju
@@ -4859,6 +4864,9 @@ id:
   submit_observations:
     other: Kirimkan %{count} pengamatan
   submitted: Dikirimkan
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Berlangganan
   subscribe_to_a_taxon: Berlangganan pada suatu Takson
   subscribe_to_a_place: Berlangganan pada suatu Tempat
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Berlanggananlah%{tag_end} pada komentar di tanda ini"
@@ -4874,7 +4882,6 @@ id:
   subscribe_to_places_help: |
     Langganan mengatur apa yang Anda akan lihat di berita dan dasbor Anda.
     Sebagai contoh, Anda bisa berlangganan dengan sebuah takson untuk mendapatkan kabar tentang pengamatan-pengamatan baru dari takson tersebut. Anda secara otomatis berlangganan kabar tentang pengamatan-pengamatan yang Anda komentari atau identifikasi.
-  subscribe_to_this: Berlangganan pada ini
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Berlangganan</a> pada %{x} dari %{y} ini.
   subscriptions: Langganan
@@ -5581,23 +5588,6 @@ id:
     tidak akan bisa masuk ke akun Anda sampai Anda mengeklik tautan di
     emailnya, jadi <strong>pastikan bahwa Anda yakin Anda telah memasukkan alamat email 
     yang benar</strong>.
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Pastikan alamat email Anda sudah benar. Ini adalah alamat email yang akan dikirimkan konfirmasinya:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Jika Anda tidak mendapatkan email-nya, ada beberapa tip:
-    </p>
-    <ul>
-    <li><p>Cek folder spam</p></li>
-    <li><p>Cek filter yang Anda buat yang mungkin menghapus email kami dari kotak masuk Anda</p></li>
-    </ul>
-    <p>
-    Jika Anda masih belum menerima email konfirmasinya, harap menghubungi kami di
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    supaya kami bisa membantu Anda.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Anda akan keluar</h3>
     <p>
@@ -6059,9 +6049,36 @@ id:
     views: 'Lihat'
     announcements:
       locales_desc: |
-        Klik CMD atau SHIFT untuk memilih beberapa. Tidak memilih apapun akan menampilkan pengumuman untuk semua pengguna tanpa memandang daerahnya. Memilih sebuah bahasa tanpa daerahnya *tidak* akan menargetkan bahasa yang memiliki daerah. Contohnya, jika Anda memilih en, hal ini tidak akan ditampilkan untuk orang yang telah memilih en-US. Jika Anda ingin menargetkan keduanya, pilihlah dua-duanya. JIka Anda hanya ingin mengumumkan kepada semua anggota dari suatu situs, biarkan kosong saja.
+        Klik CMD atau SHIFT untuk memilih beberapa. Memilih "Semua" atau tidak membuat pilihan akan menampilkan pengumuman untuk semua pengguna tanpa memandang daerahnya. Memilih suatu bahasa tanpa daerahnya *tidak* akan menargetkan bahasa yang memiliki daerah. Contohnya, jika Anda memilih English, pengumuman tidak akan ditampilkan untuk orang yang telah memilih English (UK).
       clients_desc: |
-        Klik-CMD atau Klik-Shift untuk memilih lebih dari satu. Jika Anda tidak memilih, pengumuman akan dikirimkan ke semua pengguna tanpa memandang kliennya.
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang kliennya.
+      end_desc: |
+        Waktu di zona waktu akun Anda di mana pengumuman ini akan berhenti 
+        ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan berhenti 
+        melihatnya di waktu yang sama, tidak relatif terhadap waktu lokal mereka.
+      ip_countries_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang IP negaranya.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
+      site_ids_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
+      start_desc: |
+        Waktu di zona waktu akun Anda di mana pengumuman ini akan mulai 
+        ditampilkan. Berlaku di seluruh zona waktu, sehingga semua orang akan mulai 
+        melihatnya di waktu yang sama, tidak relatif terhadap waktu lokal mereka.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Target pengguna berdasarkan perilaku donasi
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Target pengguna berdasarkan perilaku identifikasi
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Target pengguna berdasarkan perilaku pengamatan
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Target pengguna berdasarkan atribut lain
     content_freeze:
       content_freeze: Pembekuan Konten
       during_this_time: |
@@ -8126,6 +8143,36 @@ id:
         prefers_target_unconfirmed_users: Target pengguna yang belum dikonfirmasi
         prefers_exclude_monthly_supporters: Kecualikan pendukung bulanan
         clients: Klien
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Kecualikan tanggal mulai donor
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Kecualikan tanggal akhir donor
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Sertakan tanggal mulai donor
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Sertakan tanggal akhir donor
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP Negara
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Tanggal mulai pgmtn terbaru
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Tanggal akhir pgmtn terbaru
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Identifikasi maks
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Identifikasi min
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Pengamatan maks
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Pengamatan min
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Penempatan
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Target masuk
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Tanggal pendaftaran pengguna terawal
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Tanggal pendaftaran pengguna terbaru
       assessment:
         description: Deskripsi
       assessment_section:

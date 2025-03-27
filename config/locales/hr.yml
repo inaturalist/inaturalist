@@ -1832,7 +1832,6 @@ hr:
   edited_by_name_some_rights_reserved_html: |
     Uredio %{name}, neka prava pridržana (%{license})
   editing: Uređivanje
-  editing_announcement: Uređivanje obavijesti
   editing_custom_project_fields_for: Uređivanje prilagođenih polja projekta za
   editing_observation_field: Uređivanje polja opažanja
   editing_observation_id: "Uređivanje opažanja %{obs_id}"
@@ -5132,7 +5131,6 @@ hr:
     Pretplate kontroliraju o čemu te obavještavamo i što vidiš na nadzornoj ploči.
     Na primjer, možeš se pretplatiti na takson da bi pratio nova opažanja tog taksona. 
     Automatski si pretplaćen na opažanja koja komentiraš ili identificiraš.
-  subscribe_to_this: Pretplati se na ovo
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Pretplati se</a>
       na %{x} s ovog %{y}.
@@ -5894,23 +5892,6 @@ hr:
   users_edit_resend_confirmation_prompt_html: |
     Nakon što ponovno pošaljete potvrdu e-poštom, bit ćete odjavljeni i nećete moći prijaviti se na svoj račun dok ne kliknete na poveznicu u
     e-poruci, stoga <strong>apsolutno se uvjerite da ste ispravno unijeli svoju e-adresu.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Provjerite je li vaša e-adresa točna. Evo e-adrese na koju ćemo poslati potvrdu:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Ako ne primite e-poštu, evo nekoliko savjeta:
-    </p>
-    <ul>
-    <li><p>Provjerite svoj spam folder</p></li>
-    <li><p>Provjerite sve filtre koje ste napravili koji bi mogli ukloniti naše e-poruke iz vaše pristigle pošte</p></li>
-    </ul>
-    <p>
-    Ako još uvijek ne primate potvrdu e-poštom, kontaktirajte nas na
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    kako bismo vam mogli pomoći.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Sada ćete se odjaviti</h3>
     <p>
@@ -6408,11 +6389,6 @@ hr:
   verifiable_observations: Provjerljiva opažanja
   views:
     views: 'Pregledi'
-    announcements:
-      locales_desc: |
-        CMD- ili SHIFT-klik za odabir više. Ako ne odabereš nijedan, obavijest će se prikazati svim korisnicima bez obzira na lokalitet. Odabir jezika bez regije neće ciljati lokalitete s regijama, npr. ako odabereš en, neće se prikazati ljudima koji su odabrali en-US. Ako želiš ciljati oba, odaberi oba. Ako želiš prikazati obavijest za sve članove stranice, samo ostavi ovo prazno.
-      clients_desc: |
-        CMD- ili SHIFT-klik za odabir više. Ako ne odabereš nijedan, obavijest će se prikazati svim korisnicima bez obzira na klijenta.
     content_freeze:
       content_freeze: Zamrzavanje sadržaja
       during_this_time: |

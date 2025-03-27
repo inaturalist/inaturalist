@@ -1440,7 +1440,6 @@ sr:
   edited_by_name_some_rights_reserved_html: |
     Uredio/la %{name}, neka prava zadržana (%{license})
   editing: Uređivanje
-  editing_announcement: Uredi najavu
   editing_observation_field: Uređivanje opservacionog polja
   editing_observation_id: "Uređivanje opservacije %{obs_id}"
   editing_observations:
@@ -3832,7 +3831,6 @@ sr:
   subscribe_to_observations_in_a_place: Prati sve opservacije dodate u okviru ovog mesta. Takođe možeš dodati opcioni filter taksona (npr. 'škorpije iz Teksasa').
   subscribe_to_places_help: |
     Praćenja određuju šta ti se prikazuje u obaveštenjima i kontrolnoj tabli. Na primer, ako pratiš neki takson dobijaćeš obaveštenja o novim opservacijama tog taksona. Automatski se aktivira praćenje opservacija na koje dodaš ID i/ili na kojima dodaš komentar.
-  subscribe_to_this: Prati ovo
   subscriptions: Praćenja
   successfully_changed_your_password: Uspešno promenjena lozinka.
   suggest_an_identification: Predloži identifikaciju
@@ -4338,23 +4336,6 @@ sr:
   users_contributions_to_project_html: doprinosi <a href="%{url}">%{login}</a> projektu %{project_title}
   users_edit_resend_confirmation_prompt_html: |
     Kada se imejl za potvrdu ponvo pošalje, bićeš izlogovan i nećeš moći da se uloguješ na nalog dok ne klikneš na link za potvrdu u imejlu,. Molimo te da <strong>dobro proveriš da li je adresa ispravno uneta.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Dobro proveri da li je imejl adresa ispravno uneta. Poslaćemo imejl za potvrdu na ovu adresu:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Ako imejl nije stigao, evo šta možeš uraditi:
-    </p>
-    <ul>
-    <li><p>Proveri spam folder</p></li>
-    <li><p>Proveri da li imaš aktivirane filtere koji bi potencijalno blokirali naš imejl</p></li>
-    </ul>
-    <p>
-    Ako imejla za potvrdu i dalje nema, kontaktiraj nas na
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a>
-    kako bismo ti pomogli.
-    </p>
   users_favorites: "Favoriti korisnika %{user}"
   users_id: "ID-jevi korisnika %{user}"
   users_identifications: "Identifikacije korisnika %{user}"

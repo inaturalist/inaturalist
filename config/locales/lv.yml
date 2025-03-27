@@ -1611,7 +1611,6 @@ lv:
   edited_by_name_some_rights_reserved_html: |
     Rediģējis lietotājs: %{name}, daļa no tiesībām paturētas (%{license})
   editing: Rediģēšana
-  editing_announcement: Rediģēšanas paziņojums
   editing_custom_project_fields_for: Rediģē projektam pielāgojamos laukus
   editing_observation_field: Rediģē novērojuma laukus
   editing_observation_id: "Rediģē novērojumu %{obs_id}"
@@ -4388,7 +4387,6 @@ lv:
   subscribe_to_observations_in_a_place: Sekot visiem vietas novērojumiem. Iespējams pievienot papildu taksonu filtru (piemēram, Teksasas skorpioni)
   subscribe_to_places_help: |
     Informācijas panelī un jaunumos redzamais ir atkarīgs no abonementiem, piemēram, iespējams abonēt taksona jaunumus, lai saņemtu paziņojumus par jauniem taksona novērojumiem. Tevis komentēto vai identificēto novērojumu paziņojumi tiek automātiski abonēti.
-  subscribe_to_this: Sekot šim
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Sekot</a> %{x} no šī %{y}.
   subscriptions: Abonementi
@@ -5438,9 +5436,6 @@ lv:
   verifiable_observations: Pierādāmi novērojumi
   views:
     views: 'Skatījumi'
-    announcements:
-      locales_desc: |
-        Nospied CMD vai SHIFT taustiņu un peles kreiso taustiņu, lai atlasītu vairākus reizē. Ja neatlasīsi nevienu valodu, paziņojums būs redzams visiem lietotājiem neatkarīgi no atrašanās vietas. Ja atlasīsi valodu bez konkrēta reģiona, tad paziņojums netiks rādīts darbības vietās, kas sastāv no reģioniem. Piemēram, ja izvēlēsies "en" (angļu valodu), lietotāji, kas izmanto en-US (ASV angļu valodu) neredzēs paziņojumus. Ja nevēlies, lai tā notiktu, atlasi abas valodas. Ja vēlies, lai visi vietnes lietotāji redzētu paziņojumu, atstāj lauku tukšu.
     content_freeze:
       content_freeze: Satura iesaldēšana
       during_this_time: |

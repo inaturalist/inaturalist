@@ -604,6 +604,8 @@ sv:
   any_license: Alla
   #Label for an option to show content with photos, sounds, or neither
   any_media: Alla
+  #Label for an option to show any place
+  any_place: Alla
   #Label for an option to show content from any project
   any_project: Alla
   #Label for an option to show content with any quality grade
@@ -1811,7 +1813,8 @@ sv:
   edited_by_name_some_rights_reserved_html: |
     Redigerad av %{name}, vissa rättigheter förbehållna (%{license})
   editing: Redigerar
-  editing_announcement: Redigerar meddelande
+  #Title for a page to edit an announcement
+  editing_announcement_x: Redigera meddelande %{id}
   editing_custom_project_fields_for: Redigerar anpassade projektfält för
   editing_observation_field: Redigerar fyndfält
   editing_observation_id: "Redigerar fynd %{obs_id}"
@@ -3021,6 +3024,8 @@ sv:
   more_info_title: Mer info
   more_journal_posts: Fler dagboksinlägg
   more_observations: Fler fynd
+  #Label for a button or section that shows additional options
+  more_options: Fler alternativ
   more_photos: Fler bilder
   more_than_a_week_ago: Mer än en vecka sedan
   most_agree: flesta eniga
@@ -5081,6 +5086,9 @@ sv:
     one: Skicka in 1 fynd
     other: Skicka in %{count} fynd
   submitted: Skickades in
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Prenumerera
   subscribe_to_a_taxon: Prenumerera på ett taxon
   subscribe_to_a_place: Prenumerera på en fyndplats
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Prenumerera%{tag_end} på kommentarer på denna flagga"
@@ -5098,7 +5106,6 @@ sv:
     Till exempel kan du prenumerera på ett taxon för att få uppdateringar om nya
     fynd av detta taxon. Du prenumererar automatiskt på uppdateringar
     av fynd som du kommenterar eller artbestämmer.
-  subscribe_to_this: Prenumerera på detta
   subscribe_to_x_from_this_y_html: |
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Prenumerera</a>
     på %{x} från denna %{y}.
@@ -5836,24 +5843,6 @@ sv:
     kommer inte att kunna logga in på ditt konto förrän du klickar på länken i
     mejlet, så <strong>se till att du verkligen har angett din e-postadress
     korrekt.</strong>
-  users_edit_send_confirmation_prompt_with_grace_html: |
-    <p>
-    Se till att din e-postadress är korrekt. Här är e-postadressen vi
-    kommer att skicka bekräftelsen till:
-    </p>
-    <pre class="text-center text-large">%{email}</pre>
-    <p>
-    Här är några tips om du inte skulle få mejlet:
-    </p>
-    <ul>
-    <li><p>Kolla din skräppostmapp</p></li>
-    <li><p>Kolla alla filter du skapat som skulle kunna ta bort våra mejl från din inkorg</p></li>
-    </ul>
-    <p>
-    Om du fortfarande inte får bekräftelsemejlet, kontakta oss på
-    <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist. rg</a>
-    så att vi kan hjälpa dig.
-    </p>
   users_edit_send_confirmation_prompt_html: |
     <h3>Du är på väg att logga ut</h3>
     <p>
@@ -6340,11 +6329,48 @@ sv:
     views: 'Visningar'
     announcements:
       locales_desc: |
-        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något kommer meddelandet att visas för alla användare oavsett lokalisering. Att välja ett språk utan en region kommer *inte* att rikta det mot lokaliseringar i regioner, t.ex. om du valde en kommer det inte att visas för personer som har valt en-US. Om du vill rikta dig mot båda, välj båda. Om du vill 
-        visa ett meddelande för alla medlemmar på en webbplats, lämna helt enkelt detta tomt.
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
+        ett val kommer att visa meddelandet för alla användare oavsett
+        lokalisering. Att välja ett språk utan en region kommer *inte* att rikta sig mot
+        lokaliseringar med regioner, t.ex. om du väljer Engelska kommer det inte
+        att visas för personer som har valt Engelska (UK).
       clients_desc: |
-        CMD- eller SHIFT-klicka för att välja flera. Väljer du inte något visas
-        tillkännagivandet för alla användare oavsett klient.
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
+        ett val kommer att visa meddelandet för alla användare oavsett
+        klient.
+      end_desc: |
+        Tid i tidszonen för ditt konto då detta meddelande kommer att sluta
+        visas. Gäller över tidszoner, så att alla slutar se
+        det samtidigt, inte i förhållande till deras lokala tid.
+      ip_countries_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
+        ett val kommer att visa meddelandet för alla användare oavsett
+        IP-land.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Observera att datumet för användarens senast skapade
+        fynd cachelagras, så det kan ta några timmar för målinriktningen
+        att få genomslag
+      site_ids_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
+        ett val kommer att visa meddelandet för alla användare oavsett
+        vilken webbplats de är anknutna till.
+      start_desc: |
+        Tid i tidszonen för ditt konto då detta meddelande börjar
+        visas. Gäller över tidszoner, så alla börjar se
+        det samtidigt, inte relativt deras lokala tid.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Användarmålgrupp efter givarbeteende
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Användarmålgrupp efter bestämningsbeteende
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Användarmålgrupp utifrån observationsbeteende
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Användarmålgrupp utifrån andra attribut
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
@@ -8655,6 +8681,36 @@ sv:
         prefers_target_unconfirmed_users: Riktat mot obekräftade användare
         prefers_exclude_monthly_supporters: Exkludera månatliga bidragsgivare
         clients: Klienter
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Exkludera givare startdatum
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Exkludera givare slutdatum
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Inkludera givare startdatum
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Inkludera givare slutdatum
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-länder
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Senaste fynd startdatum
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Senaste fynd slutdatum
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Max bestämningar
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min bestämningar
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Max fynd
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min fynd
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Placering
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Målgrupp inloggad
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Tidigast registreringsdatum användare
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Senast registreringsdatum användare
       assessment:
         description: Beskrivning
       assessment_section:
