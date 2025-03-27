@@ -9165,9 +9165,6 @@ sv:
             login:
               must_begin_with_a_letter: |
                 måste börja med en bokstav, inte innehålla några mellanslag, och endast använda bokstäver, siffror, bindestreck och understreck
-            email:
-              must_look_like_an_email_address: måste se ut som en e-postadress
-              domain_is_not_supported: domänen stöds inte
         user_block:
           attributes:
             base:
