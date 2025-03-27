@@ -7106,9 +7106,6 @@ ja:
             login:
               must_begin_with_a_letter: |
                 文字で始まり、スペースを含まず、アルファベット、数字、ダッシュ、アンダースコアのみを使用すること
-            email:
-              must_look_like_an_email_address: メールアドレスではないようです？
-              domain_is_not_supported: このドメインはサポートされていません
         user_block:
           attributes:
             base:
