@@ -3,5 +3,6 @@
 FactoryBot.define do
   factory :site do
     name { Faker::Lorem.sentence }
+    url { Faker::Internet.url }
   end
 end

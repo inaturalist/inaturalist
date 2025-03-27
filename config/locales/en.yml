@@ -10068,6 +10068,7 @@ en:
         equal_to:
           one: must be equal to %{count}
           other: must be equal to %{count}
+        must_look_like_an_email_address: must look like an email address
         even: must be even
         exclusion: is reserved
         greater_than:
@@ -10341,8 +10342,6 @@ en:
               must_begin_with_a_letter: |
                 must begin with a letter, contain no spaces, and use only
                 letters, numbers, dashes, and underscores
-            email:
-              must_look_like_an_email_address: must look like an email address
               domain_is_not_supported: domain is not supported
         user_block:
           attributes:
