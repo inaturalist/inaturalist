@@ -8801,9 +8801,6 @@ es-MX:
             login:
               must_begin_with_a_letter: |
                 tiene que empezar con una letra, no contener espacios y usar sólo letras, números, guiones, y guiones bajos
-            email:
-              must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
-              domain_is_not_supported: el dominio no está soportado
         user_block:
           attributes:
             base:
