@@ -9867,6 +9867,8 @@ en:
         min_observations: Min observations
         # Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placement
+        # Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Target creator (for testing)
         # Whether or not the announcement is shown to logged in users
         target_logged_in: Target logged in
         # Earliest date the viewer can have signed up to see the announcement

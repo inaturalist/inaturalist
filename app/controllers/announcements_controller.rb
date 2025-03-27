@@ -66,6 +66,7 @@ class AnnouncementsController < ApplicationController
         ( @site_admin = @site.site_admins.detect {| sa | sa.user_id == current_user.id } )
       @announcement.sites = [@site]
     end
+    @announcement.user = current_user
     respond_to do | format |
       if @announcement.save
         format.html { redirect_to( @announcement, notice: t( :announcement_was_successfully_created ) ) }

@@ -101,6 +101,7 @@
             .col-xs-2= f.text_field :user_created_end_date, type: "date"
             .col-xs-4
               = f.check_box :prefers_target_staff, label_after: true
+              = f.check_box :target_creator, label_after: true
               = f.check_box :prefers_target_unconfirmed_users, label_after: true
               = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
                 = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true

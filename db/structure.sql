@@ -406,7 +406,9 @@ CREATE TABLE public.announcements (
     user_created_end_date date,
     last_observation_start_date date,
     last_observation_end_date date,
-    ip_countries text[] DEFAULT '{}'::text[]
+    ip_countries text[] DEFAULT '{}'::text[],
+    user_id integer,
+    target_creator boolean DEFAULT false
 );
 
 
@@ -2884,7 +2886,7 @@ CREATE TABLE public.observation_accuracy_validators (
     email_date timestamp without time zone,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
-    validation_count integer
+    validation_count integer DEFAULT 0
 );
 
 
@@ -5513,9 +5515,9 @@ ALTER SEQUENCE public.user_donations_id_seq OWNED BY public.user_donations.id;
 
 CREATE TABLE public.user_installations (
     id bigint NOT NULL,
-    installation_id character varying(255),
+    installation_id character varying,
     oauth_application_id integer,
-    platform_id character varying(255),
+    platform_id character varying,
     user_id integer,
     created_at date,
     first_logged_in_at date
@@ -8289,6 +8291,13 @@ CREATE INDEX index_announcement_impressions_on_user_id ON public.announcement_im
 --
 
 CREATE INDEX index_announcements_on_start_and_end ON public.announcements USING btree (start, "end");
+
+
+--
+-- Name: index_announcements_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_on_user_id ON public.announcements USING btree (user_id);
 
 
 --
@@ -11495,6 +11504,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250307004743'),
 ('20250311191217'),
 ('20250311212144'),
-('20250311225953');
+('20250311225953'),
+('20250326223846'),
+('20250327191619');
 
 

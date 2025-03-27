@@ -47,6 +47,7 @@ class Announcement < ApplicationRecord
   ANY = "any"
   YES_NO_ANY = [YES, NO, ANY].freeze
 
+  belongs_to :user
   has_and_belongs_to_many :sites
   has_many :announcement_impressions, dependent: :delete_all
   validates_presence_of :placement, :start, :end, :body
@@ -130,8 +131,12 @@ class Announcement < ApplicationRecord
     dismiss_user_ids.count
   end
 
+  # This works by excluding users from filters, so it should only return false
+  # until the very end, otherwise you'll block subsequent filters from being
+  # checked
   def targeted_to_user?( user )
     return false if prefers_target_staff && ( user.blank? || !user.is_admin? )
+    return false if target_creator && ( user.blank? || user.id != user_id )
     return false if user&.monthly_donor? && prefers_exclude_monthly_supporters
     return false if target_group_type && user.blank?
     return false if target_logged_in == YES && user.blank?
@@ -191,9 +196,7 @@ class Announcement < ApplicationRecord
     return false if user_created_start_date && user.created_at < user_created_start_date
     return false if user_created_end_date && user.created_at > user_created_end_date
 
-    if prefers_target_unconfirmed_users
-      return user && !user.confirmed?
-    end
+    return false if prefers_target_unconfirmed_users && user&.confirmed?
 
     if user && ( last_observation_start_date || last_observation_end_date )
       last_observation_created_at = user.last_observation_created_at
