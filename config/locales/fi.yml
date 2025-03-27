@@ -7179,9 +7179,6 @@ fi:
             login:
               must_begin_with_a_letter: |
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja
-            email:
-              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
-              domain_is_not_supported: verkkotunnusta ei voi käyttää
         user_block:
           attributes:
             base:
