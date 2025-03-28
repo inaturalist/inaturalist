@@ -8363,6 +8363,7 @@ id:
         empty: tidak boleh kosong
         equal_to:
           other: harus sama dengan %{count}
+        must_look_like_an_email_address: harus terlihat seperti alamat email
         even: harus genap
         exclusion: telah dipesan
         greater_than:
@@ -8615,6 +8616,7 @@ id:
             login:
               must_begin_with_a_letter: |
                 harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung, dan garis bawah
+              domain_is_not_supported: domain tidak didukung
         user_block:
           attributes:
             base:
