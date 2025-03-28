@@ -2452,7 +2452,7 @@ class ObservationsController < ApplicationController
       uuid_scope = uuid_scope.includes( includes ) unless @skipping_preloading
       @observation = uuid_scope.first
     end
-    render_404 unless @observation
+    handle_missing_observation unless @observation
   end
 
   def search_taxon
@@ -2951,4 +2951,20 @@ class ObservationsController < ApplicationController
     }.compact
   end
 
+  def handle_missing_observation
+    obs_id = params[:id] || params[:observation_id]
+    deleted_observation = if obs_id.to_s =~ BelongsToWithUuid::UUID_PATTERN
+      DeletedObservation.where( observation_uuid: obs_id ).first
+    else
+      DeletedObservation.where( observation_id: obs_id ).first
+    end
+    if deleted_observation
+      unless Observation.where( id: deleted_observation.observation_id ).exists?
+        Observation.elastic_delete_by_ids!( [deleted_observation.observation_id] )
+      end
+      render_410
+      return
+    end
+    render_404
+  end
 end
