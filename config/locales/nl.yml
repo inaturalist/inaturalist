@@ -8629,6 +8629,7 @@ nl:
         equal_to:
           one: moet gelijk zijn aan %{count}
           other: moeten gelijk zijn aan %{count}
+        must_look_like_an_email_address: moet eruit zien als een e-mailadres
         even: moet even zijn
         exclusion: is voorbehouden
         greater_than:
@@ -8896,6 +8897,7 @@ nl:
             login:
               must_begin_with_a_letter: |
                 moet beginnen met een letter, mag geen spaties bevatten en enkel gebruik maken van letters, cijfers, liggende streepjes en underscores
+              domain_is_not_supported: domein wordt niet ondersteund
         user_block:
           attributes:
             base:
