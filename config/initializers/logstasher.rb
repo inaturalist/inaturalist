@@ -60,6 +60,7 @@ module Logstasher
     payload[:http_lang_matches_i18n] = payload[:i18n_locale] &&
       payload[:http_languages] &&
       payload[:i18n_locale].split( "-" )[0] == payload[:http_languages].split( "-" )[0]
+    payload[:fingerprint] = Digest::SHA256.hexdigest( request.raw_fingerprint.to_s )
     payload
   end
 
