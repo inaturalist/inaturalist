@@ -2952,6 +2952,7 @@ class Observation < ApplicationRecord
   def create_deleted_observation
     DeletedObservation.create(
       observation_id: id,
+      observation_uuid: uuid,
       user_id: user_id,
       observation_created_at: created_at
     )

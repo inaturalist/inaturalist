@@ -227,6 +227,48 @@ describe ObservationsController do
       )
     end
 
+    describe "missing observations" do
+      it "renders a 404 for missing observations" do
+        get :show, params: { id: 99 }
+        expect( response.status ).to eq 404
+      end
+
+      it "renders a 410 for deleted observations" do
+        o = Observation.make!
+        o.destroy
+        get :show, params: { id: o.id }
+        expect( response.status ).to eq 410
+      end
+
+      it "removes deleted observations from elasticsearch when fetching by ID" do
+        o = Observation.make!
+        DeletedObservation.create(
+          user_id: o.user_id,
+          observation_id: o.id,
+          observation_uuid: o.uuid
+        )
+        o.delete
+        expect( Observation.elastic_get( o.id ) ).not_to be_nil
+        get :show, params: { id: o.id }
+        expect( Observation.elastic_get( o.id ) ).to be_nil
+        expect( response.status ).to eq 410
+      end
+
+      it "removes deleted observations from elasticsearch when fetching by uuid" do
+        o = Observation.make!
+        DeletedObservation.create(
+          user_id: o.user_id,
+          observation_id: o.id,
+          observation_uuid: o.uuid
+        )
+        o.delete
+        expect( Observation.elastic_get( o.id ) ).not_to be_nil
+        get :show, params: { id: o.uuid }
+        expect( Observation.elastic_get( o.id ) ).to be_nil
+        expect( response.status ).to eq 410
+      end
+    end
+
     describe "opengraph description" do
       it "should include not be blank if there's a taxon, date, and place_guess" do
         o = make_research_grade_candidate_observation( taxon: Taxon.make!, place_guess: "this rad pad" )
