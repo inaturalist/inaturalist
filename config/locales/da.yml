@@ -8985,6 +8985,8 @@ da:
         min_observations: Min. observationer
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placering
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Målrettet kreatøren (til test)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Mål logget ind
         #Earliest date the viewer can have signed up to see the announcement
@@ -9182,6 +9184,7 @@ da:
         equal_to:
           one: skal være lig med %{count}
           other: skal være lig med %{count}
+        must_look_like_an_email_address: skal være en gyldig e-mailadresse
         even: skal være lige
         exclusion: er reserveret
         greater_than:
@@ -9451,6 +9454,7 @@ da:
             login:
               must_begin_with_a_letter: |
                 skal begynde med et bogstav, ikke indeholde mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
+              domain_is_not_supported: domæne ikke understøttet
         user_block:
           attributes:
             base:
