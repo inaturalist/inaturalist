@@ -23,6 +23,10 @@ class OauthApplication < Doorkeeper::Application
   validate :redirect_uri_has_no_params
 
   WEB_APP_ID = 0
+  ANDROID_APP_NAME = "iNaturalist Android App"
+  IPHONE_APP_NAME = "iNaturalist iPhone App"
+  SEEK_APP_NAME = "Seek"
+  INAT_NEXT_APP_NAME = "iNat Next"
 
   def redirect_uri_has_no_params
     if redirect_uri.to_s.split( "?" ).size > 1
@@ -31,19 +35,19 @@ class OauthApplication < Doorkeeper::Application
   end
 
   def self.inaturalist_android_app
-    @@inaturalist_android_app ||= OauthApplication.where( name: "iNaturalist Android App" ).first
+    @@inaturalist_android_app ||= OauthApplication.where( name: ANDROID_APP_NAME ).first
   end
 
   def self.inaturalist_iphone_app
-    @@inaturalist_iphone_app ||= OauthApplication.where( name: "iNaturalist iPhone App" ).first
+    @@inaturalist_iphone_app ||= OauthApplication.where( name: IPHONE_APP_NAME ).first
   end
 
   def self.seek_app
-    @@seek_app ||= OauthApplication.where( name: "Seek" ).first
+    @@seek_app ||= OauthApplication.where( name: SEEK_APP_NAME ).first
   end
 
   def self.inat_next_app
-    @@inat_next_app ||= OauthApplication.where( name: "iNat Next" ).first
+    @@inat_next_app ||= OauthApplication.where( name: INAT_NEXT_APP_NAME ).first
   end
 
   def set_scopes

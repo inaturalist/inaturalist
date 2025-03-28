@@ -54,6 +54,8 @@ class Announcement < ApplicationRecord
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
   validates_inclusion_of :target_logged_in, in: YES_NO_ANY
+  validates_inclusion_of :target_curators, in: YES_NO_ANY
+  validates_inclusion_of :target_project_admins, in: YES_NO_ANY
   validates_presence_of :target_group_partition, if: :target_group_type?
   validate :valid_target_group_partition, if: :target_group_type?
   validates :min_identifications,
@@ -108,6 +110,10 @@ class Announcement < ApplicationRecord
     self.clients = ( clients || [] ).reject( &:blank? ).compact
     self.locales = ( locales || [] ).reject( &:blank? ).compact
     self.ip_countries = ( ip_countries || [] ).reject( &:blank? ).compact
+    self.include_observation_oauth_application_ids = ( include_observation_oauth_application_ids || [] ).
+      reject( &:blank? ).compact
+    self.exclude_observation_oauth_application_ids = ( exclude_observation_oauth_application_ids || [] ).
+      reject( &:blank? ).compact
   end
 
   def clean_target_group
@@ -182,6 +188,12 @@ class Announcement < ApplicationRecord
       end
     end
 
+    return false if target_curators == YES && !user&.is_curator?
+    return false if target_curators == NO && user&.is_curator?
+
+    return false if target_project_admins == YES && !user&.projects&.any?
+    return false if target_project_admins == NO && user&.projects&.any?
+
     return false if ( include_donor_start_date || include_donor_end_date ) && (
       !user || user.user_donations.
         where( "donated_at >= ?", include_donor_start_date || Date.new( 2018, 1, 1 ) ).
@@ -207,6 +219,29 @@ class Announcement < ApplicationRecord
       return false if last_observation_end_date && last_observation_created_at > last_observation_end_date
     end
 
+    # If we're including obs apps, look for any obs the user has created with those apps
+    if user && !include_observation_oauth_application_ids.blank?
+      num_obs_from_included_apps = Observation.elastic_search(
+        filters: [
+          { term: { "user.id" => user.id } },
+          { terms: { oauth_application_id: include_observation_oauth_application_ids } }
+        ],
+        size: 0
+      ).total_entries
+      return false if num_obs_from_included_apps.zero?
+    end
+
+    # If we're excluding obs apps, look for any obs the user has created with those apps
+    if user && !exclude_observation_oauth_application_ids.blank?
+      num_obs_from_excluded_apps = Observation.elastic_search(
+        filters: [
+          { term: { "user.id" => user.id } },
+          { terms: { oauth_application_id: exclude_observation_oauth_application_ids } }
+        ],
+        size: 0
+      ).total_entries
+      return false if num_obs_from_excluded_apps.positive?
+    end
     true
   end
 
