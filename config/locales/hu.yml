@@ -6394,6 +6394,8 @@ hu:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
         prefers_exclude_monthly_supporters: A havi támogatók mellőzése
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: 'Láthatóság: létrehozó (teszteléshez)'
       assessment:
         description: Leírás
       assessment_section:
@@ -6562,6 +6564,7 @@ hu:
         blank: nem lehet üres
         confirmation: nem egyezik a jelszó
         empty: nem lehet üres
+        must_look_like_an_email_address: email címnek kell lennie
         even: páros kell legyen
         exclusion: foglalt
         greater_than:
@@ -6773,6 +6776,7 @@ hu:
             login:
               must_begin_with_a_letter: |
                 betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat
+              domain_is_not_supported: a domén nem támogatott
         user_block:
           attributes:
             base:
