@@ -2896,8 +2896,6 @@ ko:
             login:
               must_begin_with_a_letter: |
                 문자로 시작해야 하고 공백을 포함할 수 없으며, 문자, 숫자, 밑줄, 대시만 사용이 가능합니다.
-            email:
-              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
   doorkeeper:
     errors:
       messages:

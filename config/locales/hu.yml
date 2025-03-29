@@ -3687,7 +3687,7 @@ hu:
   project_list_defaults:
     title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> kurátorai hozzáadták pár megfigyelésedet
+    <a href="%{url}">%{project}</a> projekt kurátorai felvették megfigyelésedet
   project_members: "%{project} tagok"
   project_members_only: Csak projekttagok
   project_membership_model_description: Nyitott a projekt mindenki számára vagy csak azoknak akiket meghívsz?
@@ -6394,6 +6394,8 @@ hu:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
         prefers_exclude_monthly_supporters: A havi támogatók mellőzése
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: 'Láthatóság: létrehozó (teszteléshez)'
       assessment:
         description: Leírás
       assessment_section:
@@ -6562,6 +6564,7 @@ hu:
         blank: nem lehet üres
         confirmation: nem egyezik a jelszó
         empty: nem lehet üres
+        must_look_like_an_email_address: email címnek kell lennie
         even: páros kell legyen
         exclusion: foglalt
         greater_than:
@@ -6773,8 +6776,6 @@ hu:
             login:
               must_begin_with_a_letter: |
                 betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat
-            email:
-              must_look_like_an_email_address: email címnek kell lennie
               domain_is_not_supported: a domén nem támogatott
         user_block:
           attributes:

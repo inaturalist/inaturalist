@@ -7559,9 +7559,6 @@ zh-TW:
             login:
               must_begin_with_a_letter: |
                 必須以字母為開頭，內容不可包含空格，開頭以外部份僅能使用字母、數字、連接號、底線
-            email:
-              must_look_like_an_email_address: 必須要看起來像電子郵件地址
-              domain_is_not_supported: 尚未支援此網域
         user_block:
           attributes:
             base:

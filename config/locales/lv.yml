@@ -7357,9 +7357,6 @@ lv:
             login:
               must_begin_with_a_letter: |
                 jāsākas ar burtu, nedrīkst saturēt atstarpes, jāsastāv tikai no burtiem, skaitļiem, defisēm un apakšvītrām
-            email:
-              must_look_like_an_email_address: jāizskatās pēc e-pasta adreses
-              domain_is_not_supported: domēns nav atbalstīts
         user_block:
           attributes:
             base:

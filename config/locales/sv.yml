@@ -8705,6 +8705,8 @@ sv:
         min_observations: Min fynd
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placering
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Målgrupp skapare (för testning)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Målgrupp inloggad
         #Earliest date the viewer can have signed up to see the announcement
@@ -8902,6 +8904,7 @@ sv:
         equal_to:
           one: måste vara lika med %{count}
           other: måste vara lika med %{count}
+        must_look_like_an_email_address: måste se ut som en e-postadress
         even: måste vara jämn
         exclusion: är reserverad
         greater_than:
@@ -9165,8 +9168,6 @@ sv:
             login:
               must_begin_with_a_letter: |
                 måste börja med en bokstav, inte innehålla några mellanslag, och endast använda bokstäver, siffror, bindestreck och understreck
-            email:
-              must_look_like_an_email_address: måste se ut som en e-postadress
               domain_is_not_supported: domänen stöds inte
         user_block:
           attributes:

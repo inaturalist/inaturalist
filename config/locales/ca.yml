@@ -7945,9 +7945,6 @@ ca:
             login:
               must_begin_with_a_letter: |
                 ha de començar per una lletra, no contenir espai i utilitzar únicament lletres, xifres, guionets i guions baixos (subratllat)
-            email:
-              must_look_like_an_email_address: ha de semblar una adreça de correu electrònic
-              domain_is_not_supported: domini no està suportat
         user_block:
           attributes:
             base:

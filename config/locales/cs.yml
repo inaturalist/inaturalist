@@ -9210,9 +9210,6 @@ cs:
               must_begin_with_a_letter: |
                 musí začínat písmenem, neobsahovat žádné mezery a používat pouze
                 písmena, čísla, pomlčky a podtržítka
-            email:
-              must_look_like_an_email_address: musí vypadat jako e-mailová adresa
-              domain_is_not_supported: doména není podporována
         user_block:
           attributes:
             base:

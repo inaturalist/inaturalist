@@ -1020,11 +1020,6 @@ fr-CA:
               should_be_in_english: devrait être en anglais
             name:
               already_exists: existe déjà pour ce taxon dans ce lexique
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: doit ressembler à une adresse courriel
-              domain_is_not_supported: ce domaine n'est pas pris en charge
         user_parent:
           attributes:
             email:
