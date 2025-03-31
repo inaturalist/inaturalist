@@ -18,8 +18,8 @@ module Shared
         unless raw.blank? || raw["missing"]
           parsed = w.parse( page: raw["title"] )&.at( "text" )&.try( :inner_text )&.to_s
           @decoded = coder.decode( parsed )
-          @decoded.gsub!( 'href="//', 'href="http://' )
-          @decoded.gsub!( 'src="//', 'src="http://' )
+          @decoded.gsub!( 'href="//', 'href="https://' )
+          @decoded.gsub!( 'src="//', 'src="https://' )
           @decoded.gsub!( 'href="/', "href=\"#{w.base_url}/" )
           @decoded.gsub!( 'src="/', "src=\"#{w.base_url}/" )
           filter_wikipedia_content

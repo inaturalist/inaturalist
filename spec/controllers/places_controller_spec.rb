@@ -350,6 +350,30 @@ describe PlacesController do
   describe "guide" do
     it_behaves_like "loading a place from the ID parameter", :guide
   end
+
+  describe "wikipedia" do
+    it "replaces hrefs with no protocol with https" do
+      expect_any_instance_of( WikipediaService ).to receive( :query ).
+        and_return( Nokogiri::XML( "<page>Page</page>" ) )
+      expect_any_instance_of( WikipediaService ).to receive( :parse ).
+        and_return( Nokogiri::XML( "<text>#{
+          HTMLEntities.new.encode( '<a href="//www.wikipedia.org">link</a>' )
+        }</text>" ) )
+      get :wikipedia, params: { id: make_place_with_geom.id }
+      expect( response.body ).to include "<a href=\"https://www.wikipedia.org\">"
+    end
+
+    it "replaces srcs with no protocol with https" do
+      expect_any_instance_of( WikipediaService ).to receive( :query ).
+        and_return( Nokogiri::XML( "<page>Page</page>" ) )
+      expect_any_instance_of( WikipediaService ).to receive( :parse ).
+        and_return( Nokogiri::XML( "<text>#{
+          HTMLEntities.new.encode( '<img src="//upload.wikimedia.org">' )
+        }</text>" ) )
+      get :wikipedia, params: { id: make_place_with_geom.id }
+      expect( response.body ).to include "<img src=\"https://upload.wikimedia.org\">"
+    end
+  end
 end
 
 describe PlacesController, "geometry" do

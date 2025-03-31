@@ -148,15 +148,23 @@ module ObservationSearch
         api_params[:id_above] = api_params[:min_id] - 1
         api_params.delete(:min_id)
       end
-      api_params.delete(:partial)
-      api_params.delete(:controller)
-      api_params.delete(:action)
-      api_params.delete(:with_photos)
-      api_params.delete(:with_sounds)
-      api_params.delete(:_query_params_set)
-      api_params.reject!{ |k,v| v == "any" || v.blank? }
+      unless api_params[:ofv_params].blank?
+        api_params[:ofv_params].each do | k, v |
+          api_params[k] = v[:value]
+        end
+        api_params.delete(:ofv_params)
+      end
+      api_params.delete( :partial )
+      api_params.delete( :controller )
+      api_params.delete( :action )
+      api_params.delete( :with_photos )
+      api_params.delete( :with_sounds )
+      api_params.delete( :_query_params_set )
+      api_params.reject! do | k, v |
+        v == "any" || ( v.blank? && !k.start_with?( "field:" ) )
+      end
       if api_params[:reviewed].blank?
-        api_params.delete(:viewer_id)
+        api_params.delete( :viewer_id )
       end
       if api_params[:per_page] && api_params[:per_page].to_i > 200
         api_params[:per_page] = 200

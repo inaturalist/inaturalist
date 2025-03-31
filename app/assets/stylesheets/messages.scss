@@ -7,6 +7,10 @@ td.subject {width:100%;}
     td.user {
       position: relative;
       padding-right: 30px;
+      .user_image {
+        width: 16px;
+        height: 16px;
+      }
     }
     .user-search-link {
       visibility: hidden;

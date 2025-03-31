@@ -378,12 +378,25 @@ class ApplicationController < ActionController::Base
     unless request.format.json?
       request.format = "html"
     end
-    respond_to do |format|
-      format.json { render json: { error: t(:not_found) }, status: 404 }
+    respond_to do | format |
+      format.json { render json: { error: t( :not_found ) }, status: 404 }
       format.all { render template: "errors/error_404", status: 404, layout: "application" }
     end
   end
-  
+
+  #
+  # Return a 410 response with our default 404 page
+  #
+  def render_410
+    unless request.format.json?
+      request.format = "html"
+    end
+    respond_to do | format |
+      format.json { render json: { error: t( :not_found ) }, status: 410 }
+      format.all { render template: "errors/error_404", status: 410, layout: "application" }
+    end
+  end
+
   #
   # Redirect user to front page when they do something naughty.
   #
