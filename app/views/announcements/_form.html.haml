@@ -85,6 +85,10 @@
               .row
                 .col-xs-12
                   %p.text-muted=t "views.announcements.last_observation_date_desc"
+            .col-xs-2
+              = f.select :include_observation_oauth_application_ids, @oauth_applications.map {| oa | [oa.name, oa.id] }, { include_blank: t(:all) }, multiple: true, description: t( "views.announcements.observation_oauth_application_ids_desc" ), description_tip: true
+            .col-xs-2
+              = f.select :exclude_observation_oauth_application_ids, @oauth_applications.map {| oa | [oa.name, oa.id] }, { include_blank: t(:all) }, multiple: true, description: t( "views.announcements.observation_oauth_application_ids_desc" ), description_tip: true
           %h4
             %i.icon-identification
             =t :identifications
@@ -97,22 +101,35 @@
             =t :users
           %p.text-muted=t "views.announcements.target_users_by_other_attributes"
           .row
-            .col-xs-2= f.text_field :user_created_start_date, type: "date"
-            .col-xs-2= f.text_field :user_created_end_date, type: "date"
             .col-xs-4
-              = f.check_box :prefers_target_staff, label_after: true
-              = f.check_box :target_creator, label_after: true
-              = f.check_box :prefers_target_unconfirmed_users, label_after: true
+              .row
+                .col-xs-6= f.text_field :user_created_start_date, type: "date"
+                .col-xs-6= f.text_field :user_created_end_date, type: "date"
+              .row
+                .col-xs-12
+                  = f.check_box :prefers_target_staff, label_after: true
+                  = f.check_box :target_creator, label_after: true
+                  = f.check_box :prefers_target_unconfirmed_users, label_after: true
+            .col-xs-4
               = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
                 = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
-                = f.radio_button :target_logged_in, Announcement::YES, label: t( :yes ), inline: true
-                = f.radio_button :target_logged_in, Announcement::NO, label: t( :no ), inline: true
+                = f.radio_button :target_logged_in, Announcement::YES, label: t( :logged_in ), inline: true
+                = f.radio_button :target_logged_in, Announcement::NO, label: t( :logged_out ), inline: true
+              = f.form_field :target_curators, builder: BootstrapFormBuilder do
+                = f.radio_button :target_curators, Announcement::ANY, label: t( :any_ ), inline: true
+                = f.radio_button :target_curators, Announcement::YES, label: t( :curator ), inline: true
+                = f.radio_button :target_curators, Announcement::NO, label: t( :non_curator ), inline: true
+              = f.form_field :target_project_admins, builder: BootstrapFormBuilder do
+                = f.radio_button :target_project_admins, Announcement::ANY, label: t( :any_ ), inline: true
+                = f.radio_button :target_project_admins, Announcement::YES, label: t( :project_admin ), inline: true
+                = f.radio_button :target_project_admins, Announcement::NO, label: t( :non_project_admin ), inline: true
             .col-xs-4
               = f.select :target_group_type, Announcement::TARGET_GROUPS.keys, include_blank: t( :none )
               - target_group_partitions = Announcement::TARGET_GROUPS[@announcement.target_group_type] || []
               = f.select :target_group_partition, target_group_partitions,              |
                 { include_blank: target_group_partitions.empty? ? t( :none ) : false }, |
                 { disabled: target_group_partitions.empty? }                            |
+
   .actions.buttons
     = f.submit f.object.new_record? ? t(:create) : t(:update), :class => "default button"
     = link_to t(:cancel), announcements_path, :class => "button"

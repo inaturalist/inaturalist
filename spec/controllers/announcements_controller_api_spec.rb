@@ -250,6 +250,30 @@ describe AnnouncementsController do
         annc_ids = response.parsed_body.map {| a | a["id"] }
         expect( annc_ids ).not_to include( unconfirmed_announcement.id )
       end
+
+      it "includes users by observation oauth application ids" do
+        app = create :oauth_application, official: true
+        app_obs = create :observation, oauth_application: app
+        app_annc = create :announcement, include_observation_oauth_application_ids: [app.id]
+        oth_annc = create :announcement, include_observation_oauth_application_ids: [OauthApplication::WEB_APP_ID]
+        sign_in app_obs.user
+        get :active, format: :json
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).to include( app_annc.id )
+        expect( annc_ids ).not_to include( oth_annc.id )
+      end
+
+      it "excludes users by observation oauth application ids" do
+        app = create :oauth_application, official: true
+        app_obs = create :observation, oauth_application: app
+        app_annc = create :announcement, exclude_observation_oauth_application_ids: [app.id]
+        oth_annc = create :announcement, exclude_observation_oauth_application_ids: [OauthApplication::WEB_APP_ID]
+        sign_in app_obs.user
+        get :active, format: :json
+        annc_ids = response.parsed_body.map {| a | a["id"] }
+        expect( annc_ids ).not_to include( app_annc.id )
+        expect( annc_ids ).to include( oth_annc.id )
+      end
     end
 
     it "creates announcement impressions" do
