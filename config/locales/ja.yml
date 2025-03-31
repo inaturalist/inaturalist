@@ -509,6 +509,8 @@ ja:
   any_license: すべて
   #Label for an option to show content with photos, sounds, or neither
   any_media: 全てのメディア
+  #Label for an option to show any place
+  any_place: すべて
   #Label for an option to show content from any project
   any_project: すべて
   #Label for an option to show content with any quality grade
@@ -1108,6 +1110,10 @@ ja:
     hair: 体毛
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: 構造物
+    #Does the observation belong to a non-established population or not
+    established: 定着している個体群
+    #Organism is not a member of an established population
+    not_established: 未定着の個体群
   controlled_term_definitions:
     alive: 生物は生きており、差し迫った死の兆候はない
     bone: |
@@ -1417,6 +1423,8 @@ ja:
   default_time_zone_desc: |
     これがデフォルトのタイムゾーンです。観察記録の最終的なタイムゾーンは観察場所によってそれぞれ決定されます。
   defaults_to_your_name_or_username: デフォルトとして自分の名前またユーザ名になります
+  #As in the definition of a word
+  definition: 定義
   defines_a_taxon_framework_for: '%{taxon_name} のタクソン・フレームワークを定義する'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: '%{source} をソースとする %{taxon} のタクソン・フレームワークを定義する'
   definitions: 定義
@@ -1733,6 +1741,7 @@ ja:
   exit_full_screen: "全画面表示を終了"
   examples_of_data_use_by_network_members: ネットワークメンバーによるデータ利用例
   examples_of_ranking_organizations: ランク付け組織の例
+  expected_nearby: 近隣で期待される種
   explore: 探索
   export: エクスポート
   export_observations: 観測記録をエクスポート
@@ -1898,7 +1907,7 @@ ja:
   followers: フォロワー
   following: フォロー中
   following_x_people:
-    other: '%{count}人をフォロー中People'
+    other: '%{count}人をフォロー中'
   for_a_taxon: 分類群用
   formatting: フォーマット
   forgot_your_password: パスワードを忘れた場合
@@ -2150,6 +2159,8 @@ ja:
   in_place_x: '%{place} で'
   #As in a reason to flag something
   inappropriate: 不適切
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalistネットワーク
   inaturalist_network_affiliation: iNaturalistネットワーク所属
   #Label for messages you've received
@@ -2584,6 +2595,9 @@ ja:
   make_a_taxon_swap_instead?: 代わりに分類群の入れ替えをしますか？
   make_curator: キューレータ管理者の権限を付与
   make_manager: 管理権を与える
+  #Label for checkbox used to allow admin users to mark content as private when hiding. Private
+  #content is hidden from normal users, but also from curators, allowing only admins to view it
+  make_private: プライベートにする
   make_sure_the_default_photo_looks_good: デフォルトにする写真は大きなサイズで表示してもきれいであることを確認してください
   make_this_your_default_license: "デフォルの%{type}トライセンスにする"
   make_this_the_primary_listing: "主要記載にする"
@@ -2679,6 +2693,12 @@ ja:
     これには、モデレーターの操作（コメントの非表示や非表示解除など）、メモ、このユーザーが作成した分類群以外のすべてのフラグが含まれます。この履歴は<strong>キュレーターにのみ表示</strong>され、<strong>キュレーターは自分の履歴を見ることができません</strong>。
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: 非表示
+  #Action a moderator can take to unhide content, i.e. undo hiding; verb
+  moderator_actions_unhide2: 非表示解除する
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: 凍結する
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: 凍結解除する
   moderator_note_desc: |
     モデレーターノートとは、あるユーザーに関するモデレーション対応や証拠に基づく懸念、例えば、そのユーザーがソックパペット・アカウントの可能性があるかどうかなどを記録したものです。ユーザーに関する個人的な意見や伝聞は含めないでください。
   #Person who executed a moderator action or flagged something
@@ -3464,6 +3484,7 @@ ja:
       Parish: 教会区
       parish: 教会区
       Prefecture: 都道府県
+      prefecture: 都道府県
       Prefecture_City: 県庁所在都市
       prefecture_city: 県庁所在都市
       Point_of_Interest: 目印
@@ -5798,6 +5819,7 @@ ja:
     lifelists:
       observed_species: 観察された種
       unobserved_species: 観察されていない種
+      all_species: すべての種
       all_unobserved_species: すべての観察されていない種
       all_observations: すべての観察記録
       filter_by: 検索条件：
@@ -6465,6 +6487,22 @@ ja:
           アカウントを削除するには、フォームに%{confirmation_code}を入力する必要があります。
       edit:
         about_third_party_tracking: サードパーティのトラッキングについて
+        blocking_desc_html: |
+          <p>
+          誰かをブロックすると、その人はあなたにメッセージを送ったり、あなたの観察結果にコメントしたり、あなたの観察結果を同定したりなど、 %{site_name}上であなたと交流することができなくなります．
+          あなたから相手側にも同様となります．
+          </p>
+          <p>
+          また、あなたの検索結果から相手の観察記録を非表示にし、相手の検索結果からあなたの観察結果を非表示します。しかし、あなたが相手から完全に見えなくなるわけではありません．
+          ブロックされた相手はあなたの観察結果を見つけ、あなたのプロフィールを見ることはできますが、あなたと交流することはできません．
+          </p>
+          <p>
+          また、ブロックしてもすでに相手があなたの観察記録に追加したIDは無効化されません（コミュニティIDを無効化することは可能ですが，それには別の設定があります）
+          </p>
+          <p>
+          現在，ブロックは三アカウントまで可能です．これはブロックの乱用を防ぐためとブロックの必要性があまり高くないことが理由ですが，もしどうしてもこれよりも多くのアカウントをブロックする必要がある場合は <a href="mailto:%{help_email}">iNaturalist運営にご連絡ください</a>. 
+          また，もし誰かが%{site_name}上でストーカーや嫌がらせ行為を行っている場合，必要であれば凍結等の処置が可能なため<a href="mailto:%{help_email}">運営にご連絡</a>ください．
+          <p>
         common_scientific_name_display_order: 一般名 / 学名の表示順
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           考えが変わっても、いつでも
