@@ -603,6 +603,8 @@ pt-BR:
   any_license: Qualquer
   #Label for an option to show content with photos, sounds, or neither
   any_media: Qualquer
+  #Label for an option to show any place
+  any_place: Qualquer
   #Label for an option to show content from any project
   any_project: Qualquer
   #Label for an option to show content with any quality grade
@@ -1807,6 +1809,8 @@ pt-BR:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, alguns direitos reservados (%{license})
   editing: Editando
+  #Title for a page to edit an announcement
+  editing_announcement_x: Editando anúncio %{id}
   editing_custom_project_fields_for: Modificando os campos de projeto personalizados
   editing_observation_field: Modifique o campo de observação
   editing_observation_id: "Modificando Observação %{obs_id}"
@@ -3006,6 +3010,8 @@ pt-BR:
   more_info_title: Maiores informações
   more_journal_posts: Mais publicações do boletim
   more_observations: Mais observações
+  #Label for a button or section that shows additional options
+  more_options: Mais Opções
   more_photos: Mais Fotos
   more_than_a_week_ago: Mais de uma semana atrás
   most_agree: a maioria concorda
@@ -5083,6 +5089,9 @@ pt-BR:
     one: Submeter 1 observação?
     other: Submeter %{count} observações
   submitted: Enviado
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Inscrever
   subscribe_to_a_taxon: Registre-se para um táxon
   subscribe_to_a_place: Registre-se para um Local
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Inscreva-se%{tag_end} para comentar nesta sinalização"
@@ -6301,6 +6310,37 @@ pt-BR:
   verifiable_observations: Observações verificáveis
   views:
     views: 'Visualizações'
+    announcements:
+      locales_desc: |
+        CMD- or SHIFT- para múltipla seleção. Selecionar "Todos" ou não selecionar nada irá mostrar o anúnico para todos os usuários independentemente do local. Selecionar uma língua sem uma região *não* dirigirá a locais em uma região; por exemplo, se voce escolheu Inglês não vai aparecer para usuários que escolheram Inglês (UK).
+      clients_desc: |
+        Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
+        a todos os usuários, independentemente do cliente.
+      end_desc: |
+        Tempo no seu fuso horário em que este anúncio deixará de ser exibido. Se aplica a todos os fusos horários, de modo que cessará a exibição do anúncio simultaneamente, independentemente do fuso horário local.
+      ip_countries_desc: |
+        Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
+        a todos os usuários, independentemente do IP do pais.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Notar que a data de criação da observação mais recentemente criada pelo usuário é armazenada em cache, então pode levar algumas horas até que o direcionamento tenha efeito
+      site_ids_desc: |
+        Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
+        a todos os usuários, independentemente do site de afiliação.
+      start_desc: |
+        Tempo no seu fuso horário em que este anúncio passará a ser exibido. Se aplica a todos os fusos horários, de modo que iniciará a exibição do anúncio simultaneamente, independentemente do fuso horário local.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Direcionar usuários de acordo com comportamento de doação
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Direcionar usuários de acordo com comportamento de identificação
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Direcionar usuários de acordo com comportamento de observação
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Direcionar usuários de acordo com outros atributos
     content_freeze:
       content_freeze: Congelamento de conteúdo
       during_this_time: |
@@ -6974,6 +7014,8 @@ pt-BR:
           Nome da classe taxonômica que contém o táxon observado
         taxon_family_name: |
           Nome da família taxonômica que contém o táxon observado
+        taxon_form_name: |
+          Nome da ordem taxonômica que contém o táxon observado
         taxon_genus_name: |
           Nome do gênero taxonômico que contém o táxon observado
         taxon_genushybrid_name: |
@@ -7010,6 +7052,8 @@ pt-BR:
           Nome da supertribo taxonômica que contém o táxon observado
         taxon_tribe_name: |
           Nome da tribo taxonômica que contém o táxon observado
+        taxon_variety_name: |
+          Nome da variedade taxonômica que contém o táxon observado
         uuid: |
           Identificador universal único para a observação. Veja
           https://datatracker.ietf.org/doc/html/rfc9562
@@ -7954,6 +7998,12 @@ pt-BR:
       taxon:
         about_html: |
           Táxons podem ter muitos nomes comuns. Nós apoiamos um nome comum globalmente, que pode ser alterado aqui arrastando um nome para o topo da lista. Você também pode especificar nomes comuns em lugares diferentes modificando o nome e adicionando o local, mas por favor somente faça isso quando lugares diferentes tiverem nomes conflitantes.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          As exportações também podem conter colunas com valores de Campo de Observação. Para encontrar definições para esses valores, você pode procurá-los em <a href="%{observation_fields_url}">%{observation_fields_url}</a> ou adicionar o nome da coluna (com os dois-pontos) a <code>%{terminology_url}</code> (por exemplo, <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          O iNaturalist utiliza uma variedade de termos únicos para descrever diversos aspectos do serviço. Aqui, tentamos reunir alguns deles e suas definições para referência.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8534,6 +8584,36 @@ pt-BR:
         prefers_target_unconfirmed_users: Para usuário não confirmados
         prefers_exclude_monthly_supporters: Excluir apoiadores mensais
         clients: Clientes
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Exclui data de início do doador
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Exclui data de término do doador
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Inclui data de início do doador
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Inclui data de término do doador
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Paises do IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Data inicial da última observação
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Data final da última observação
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Máximo de identificações
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Mínimo de identificações
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Máximo de observações
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Mínimo de observações
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Posicionamento
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Destinatários logados
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Data de inscrição do usuário mais remota
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Data de inscrição do usuário mais recente
       assessment:
         description: Descrição
       assessment_section:
