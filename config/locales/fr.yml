@@ -1875,6 +1875,8 @@ fr:
   export: Exporter
   export_observations: Exporter les observations
   export_with_private_coordinates: Exporter avec les coordonnées masquées
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Exporté à %{datetime}
   exporting: "Exportation en cours…"
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -5182,6 +5184,8 @@ fr:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Conditions
+  #As in a list of distinct words
+  terminology: Terminologie
   terms_and_rules_html: "Conditions &amp; Règles"
   terms_new_users: "Si vous ajoutez des conditions, les nouveaux utilisateurs devront les accepter avant de se joindre à ce projet."
   terms_service: Conditions d'utilisation
