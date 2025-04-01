@@ -2732,6 +2732,10 @@ ja:
       yy: "%d 年前"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "YYYY/MM/DD · LT z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year: "MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    month_year_short: "MMM 'YY"
   month: 月
   #title for section describing people who donate to iNat every month
   monthly_supporters: マンスリーサポーター
@@ -4206,6 +4210,7 @@ ja:
   resolved: 解決済
   resolved_by: 解決済にしたユーザー：
   resolved_by_user_on_date_html: '%{user}さんによって %{date} に解決済み'
+  restart: やり直す
   restore: 復元
   restoring: 復旧中...
   result_window_too_large_error: |
