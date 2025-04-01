@@ -717,6 +717,8 @@ cs:
   any_license: Jakákoliv
   #Label for an option to show content with photos, sounds, or neither
   any_media: Kterýkoliv
+  #Label for an option to show any place
+  any_place: Jakékoliv
   #Label for an option to show content from any project
   any_project: Kterýkoliv
   #Label for an option to show content with any quality grade
@@ -3094,6 +3096,8 @@ cs:
   more_info_title: Více informací
   more_journal_posts: Další příspěvky v deníku
   more_observations: Další pozorování
+  #Label for a button or section that shows additional options
+  more_options: Více možností
   more_photos: Další fotky
   more_than_a_week_ago: Více než před týdnem
   most_agree: většina souhlasí
@@ -5152,6 +5156,9 @@ cs:
     many: Vložit %{count} pozorování
     other: Vložit %{count} pozorování
   submitted: Odesláno
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Odebírat
   subscribe_to_a_taxon: Sledovat taxon
   subscribe_to_a_place: Sledovat místo
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Odebírejte%{tag_end} komentáře k této vlajce"
@@ -8439,7 +8446,7 @@ cs:
           K vědě biodiverzity může přispět každé pozorování, od nejvzácnějšího motýla až po nejběžnější plevel na zahrádce. Vaše zjištění sdílíme s úložišti vědeckých údajů, jako je 
           <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>, abychom vědcům pomohli vaše údaje najít a využít. Stačí, když budete pozorovat.
         nature_at_your_fingertips: Příroda na dosah ruky
-        keep_track: Sledovat
+        keep_track: Pozorujte
         record_your_encounters: |
           Zaznamenávejte svá setkání s ostatními organismy a veďte si seznamy života, všechno v cloudu.
         create_useful_data: Vytvořte užitečné údaje
@@ -8734,6 +8741,12 @@ cs:
         prefers_target_unconfirmed_users: Jen pro nepotvrzené uživatele
         prefers_exclude_monthly_supporters: Bez měsíčních podporovatelů
         clients: Klienti
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Umístění
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Datum první registrace uživatele
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Datum poslední registrace uživatele
       assessment:
         description: Popis
       assessment_section:
