@@ -725,6 +725,8 @@ ru:
   any_license: Любая
   #Label for an option to show content with photos, sounds, or neither
   any_media: Любой
+  #Label for an option to show any place
+  any_place: Любое
   #Label for an option to show content from any project
   any_project: Любой
   #Label for an option to show content with any quality grade
@@ -1881,6 +1883,8 @@ ru:
   edited_by_name_some_rights_reserved_html: |
     Отредактировано %{name}, некоторые права защищены (%{license})
   editing: Редактирование
+  #Title for a page to edit an announcement
+  editing_announcement_x: Редактирование объявления %{id}
   editing_custom_project_fields_for: Редактирование пользовательских полей проекта для
   editing_observation_field: Редактирование поля наблюдения
   editing_observation_id: "Редактирование Наблюдения %{obs_id}"
@@ -3061,6 +3065,8 @@ ru:
   more_info_title: Подробнее
   more_journal_posts: Больше сообщений журнала
   more_observations: Больше наблюдений
+  #Label for a button or section that shows additional options
+  more_options: Больше вариантов
   more_photos: Больше фото
   more_than_a_week_ago: Более недели назад
   most_agree: большинство согласно
@@ -5078,6 +5084,9 @@ ru:
     many: Подтвердить %{count} наблюдений
     other: Подтвердить %{count} наблюдений
   submitted: Загружено
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Подписаться
   subscribe_to_a_taxon: Подписаться на Таксон
   subscribe_to_a_place: Подписаться на Место
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Подписаться%{tag_end} на комментарии к этому флагу"
@@ -6319,6 +6328,39 @@ ru:
   verifiable_observations: Проверяемые наблюдения
   views:
     views: 'Просмотры'
+    announcements:
+      locales_desc: |
+        Нажмите CMD- или SHIFT-клик, чтобы выбрать несколько. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от
+        локализации. Выбор языка без региона не будет нацелен на локализацию с регионами, например, если вы выбрали английский, он не будет отображаться для людей, которые выбрали английский (Великобритания).
+      clients_desc: |
+        Нажмите CMD- или SHIFT-клик для выбора нескольких. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от
+        клиента.
+      end_desc: |
+        Время в часовом поясе вашего аккаунта, когда это объявление перестанет
+        показываться. Применяется к часовым поясам, поэтому все перестанут видеть его
+        в одно и то же время, а не относительно их местного времени.
+      ip_countries_desc: |
+        Нажмите CMD- или SHIFT-клик для выбора нескольких. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от
+        страны IP.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Обратите внимание, что дата создания последнего созданного пользователем наблюдения кэшируется, поэтому для вступления в силу таргетинга может потребоваться несколько часов
+      site_ids_desc: |
+        Нажмите CMD- или SHIFT-клик для выбора нескольких. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от принадлежности к сайту.
+      start_desc: |
+        Время в часовом поясе вашего аккаунта, когда это объявление начнет появляться. Применяется во всех часовых поясах, поэтому все начнут видеть его в одно и то же время, а не в их местное время.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Целевые пользователи по размеру пожертвований
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Целевые пользователи по идентификациям
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Целевые пользователи по наблюдениям
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Целевые пользователи по другим параметрам
     content_freeze:
       content_freeze: Блокировка контента
       during_this_time: |
@@ -8497,6 +8539,38 @@ ru:
         prefers_target_unconfirmed_users: Предназначено пользователям, которые не подтвердили свой е-мейл
         prefers_exclude_monthly_supporters: Исключая ежемесячных спонсоров
         clients: Клиенты
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Исключить дату начала донорства
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Исключить дату окончания донорства
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Включить дату начала донорства
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Включить дату окончания донорства
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Страны по IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Последняя дата начала наблюдений
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Последняя дата окончания наблюдения
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Максимум идентификаций
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Минимум идентификаций
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Максимум наблюдений
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Минимум наблюдений
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Размещение
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Целевой создатель (для тестирования)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Целевой вход в систему
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Самая ранняя дата регистрации пользователя
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Последняя дата регистрации пользователя
       assessment:
         description: Описание
       assessment_section:
@@ -8690,6 +8764,7 @@ ru:
           few: должно быть равно %{count}
           many: должно быть равно %{count}
           other: должно быть равно %{count}
+        must_look_like_an_email_address: должно выглядеть как адрес электронной почты
         even: должно быть чётным
         exclusion: зарезервировано
         greater_than:
@@ -8966,6 +9041,7 @@ ru:
             login:
               must_begin_with_a_letter: |
                 должно начинаться с буквы, не содержать пробелов и использовать только буквы, цифры, тире и символы подчеркивания
+              domain_is_not_supported: домен не поддерживается
         user_block:
           attributes:
             base:
