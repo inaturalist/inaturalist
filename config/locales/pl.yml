@@ -998,6 +998,7 @@ pl:
   card: Karta
   casual: nieformalny
   casual_: Nieformalny
+  casual_tooltip_html: 'Obserwacje "Poziomu Nieformalnego" nie zawierają multimediów, lokalizacji lub daty, albo nie spełniają wymagań kategorii "Poziomu Badawczego" lub "Potrzebuje Identyfikacji" z innych powodów. <a href="https://www.inaturalist.org/pages/help#quality">Dowiedz się więcej o kategoriach jakości</a>'
   categories: Kategorie
   cc_0_description: "Ta licencja pozwala na opublikowanie twojej pracy w domenie publicznej. Dzięki temu inni mogą kopiować, modyfikować, dystrybuować i odtwarzać twoje dzieło, nawet w celach komercyjnych, bez pytania cię o zgodę oraz bez uznania twojego autorstwa. Jest to najbardziej otwarta forma licencjonowania, polecana do szerokiego rozprzestrzeniania licencjonowanych materiałów."
   cc_0_name: Brak praw autorskich (CC0)
@@ -1014,6 +1015,7 @@ pl:
   cc_by_nd_name: Uznanie autorstwa – Bez utworów zależnych
   cc_by_sa_description: "Ta licencja pozwala innym na remiksowanie, ulepszanie i nadbudowywanie twojej pracy, nawet w celach komercyjnych, o ile uznają twoje autorstwo i licencjonują nowe dzieła pod identycznymi zasadami. Wszystkie nowe utwory bazujące na twoich pracach będą miały taką samą licencję, więc jakiekolwiek utwory zależne również będą mogły zostać użyte komercyjnie."
   cc_by_sa_name: Uznanie autorstwa - Na tych samych warunkach
+  cc_used_under_a: "Creative Commons, wykorzystane na licencji "
   change_admin: Zmień administratora
   #Button to change the cover (or banner) image for a project
   change_cover: Zmień okładkę
@@ -1021,11 +1023,16 @@ pl:
     split: Stary takson został podzielony na kilka nowych taksonów
     merge: Niektóre stare taksony zostały połączone w jeden nowy takson
     swap: Zastąp takson wejściowy taksonem wyjściowym
+    drop: Koncepcja taksonu całkowicie nieważna, utrzymywana w celach historycznych lub kompatybilności z partnerami
+    stage: Przygotuj nieaktywną koncepcję do wydania jako część grupy zmian
   change_geoprivacy: 'Zmień geo-prywatność'
   change_group: Grupa zmian
   change_icon: Zmień ikonę
   change_password: Zmień hasło
+  #Message shown after you change your email address
+  change_to_email_requested_html: Zażądano zmiany <strong>%{email}</strong>. Sprawdź skrzynkę pod tym adresem e-mail, aby potwierdzić zmianę.
   change_types:
+    activated_soon: aktywowany wkrótce
     change_types: Rodzaje zmian
     split: Podział
     merge: Scalenie
@@ -1054,7 +1061,10 @@ pl:
   change_your_password: Zmień hasło
   #Plural noun, as in changes to a taxon record over time
   changes: Zmiany
+  #disagreements are identifications that disagree with other identifications on the same observation
+  changing_the_ancestry_to_that_parent: Zmiana pochodzenia na tego rodzica może spowodować niezamierzone niezgodności. Najpierw je przeanalizuj, co może chwilę potrwać.
   changing_the_geoprivacy: 'Zmiana geo-prywatności zmienia to jak inni widzą lokalizację Twojej obserwacji.'
+  check_above_for_errors: Sprawdź powyżej pod kątem błędów
   check_back_soon: Sprawdź ponownie wkrótce!
   check_here_to_autoload_description: Zaznacz tutaj, aby pobrać automatycznie opis z Wikipedii. Nie zaznaczaj, jeśli nazwa naukowa taksonu jest jednocześnie zwykłym słowem lub częstym błędem (np. "Lodówka").
   check_here_to_autoload_photos: Zaznacz tutaj, aby pobrać automatycznie zdjęcia z Flickra. Nie zaznaczaj, jeśli nazwa naukowa taksonu jest jednocześnie zwykłym słowem lub częstym błędem (np. "Lodówka").
@@ -1067,6 +1077,7 @@ pl:
   check_list_place: "Checklista %{place}"
   check_list_updated: Checklista uaktualniona!
   check_lists_for: "Inne checklisty dla %{place}"
+  check_out_the_inat_store: Sprawdź sklep iNaturalist
   check_out_what_the_observation: Sprawdź jak wygląda obserwacja, którą próbujesz oznaczyć.
   check_this_box_if_html: |
     Zaznacz tutaj, jeśli chcesz dodać licencję <a
@@ -1090,6 +1101,16 @@ pl:
   choose_what_kind_of_change_youre_creating: "Wybierz rodzaj wprowadzanej zmiany."
   cid_d_to_genus: Oznaczone przez społeczność co do gatunku
   citation: Przypis
+  #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
+  clashes_occur_for_moves_html: |
+    Niezamierzone niezgodności występują, gdy takson nadrzędny <strong>(B)</strong> jest
+    przerzedzony przez przesuwanie podrzędnego <strong>(E)</strong> do innej części
+    drzewa taksonomicznego, w wyniku czego istniejące identyfikacje nadrzędnego są interpretowane jako niezgodności z istniejącymi identyfikacjami przeniesionego podrzędnego.
+  #thinned refers to a branch of the taxonomy that has lost descendants because of a taxon swap with another taxon
+  clashes_occur_for_swaps_html: |
+    Niezamierzone niezgodności występują, gdy takson nadrzędny <strong>(B)</strong> jest
+    przerzedzony przez zamianę podrzędnego <strong>(E)</strong> do innej części
+    drzewa taksonomicznego, w wyniku czego istniejące identyfikacje nadrzędnego są interpretowane jako niezgodności z istniejącymi identyfikacjami zamienionego podrzędnego.
   classification: Klasyfikacja
   clear: wyczyść
   clear_filters: Wyczyść filtry
@@ -1124,12 +1145,18 @@ pl:
   commit: Przychodzące
   #Adjective describing a taxon change that has been committed
   committed: Wykonane
+  committed_by_user_on_date_html: Zatwierdzone przez %{user} %{date}
   #Label for date the taxon change was committed
   committed_on: Wykonano dnia %{date}
+  committed_taxon_changes_cannot_be_deleted: Nie można usunąć zatwierdzonych zmian taksonu
   #Status message while a taxon change is being committed
   committing: Zatwierdzanie...
+  #disagreements are identifications that disagree with previous identifications on the same observation
+  #committing refers to committing a taxon swap
+  committing_this_swap_may_result: Zatwierdzanie może stworzyć niezamierzone niezgodności. Najpierw je przeanalizuj, co może chwilę potrwać.
   common_name: Nazwa zwyczajowa
   community: Społeczność
+  community_curated: Wyselekcjonowane przez społeczność
   community_guidelines: Wytyczne dla społeczności
   community_id_heading: Takson wybrany przez społeczność
   community_id_at_species_or_lower?: Takson wybrany przez społeczność na poziomie gatunku lub niższym?
@@ -1151,9 +1178,22 @@ pl:
   #As in whether or not a check list is comprehensive, i.e. it contains all the
   #species in the taxon and place it purports to
   comprehensive?: Kompleksowy?
+  comprehensive_check_list_for_taxon_html: |
+    <span class="comprehensive_notice" data-tip="%{tip}">Wszechstronna</span>
+    lista kontrolna dla %{taxon}
   comprehensive_list: Kompleksowa lista
+  #Name for the statistical model used to determine visual similarity between
+  #photos and taxa
+  computer_vision_model: Model przetwarzania obrazów
+  #Status of a taxon that the Computer Vision Model can recognize
+  computer_vision_model_included: Zawarty
+  computer_vision_model_included_desc: |
+    Obecny model przetwarzania obrazów zna ten takson, więc może być
+    zawarty w automatycznych sugestiach z etykietą "Wizualnie podobne".
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: Oczekujący
+  computer_vision_model_pending_desc2: |
+    Obecny model przetwarzania obrazów nie zna tego taksonu, więc mimo że może on być zawarty w automatycznych sugestiach pod etykietą "Spodziewany w okolicy", nie pojawi się w kategorii "Wizualnie podobne". Podczas gdy wymagania co do zawartości zmieniają się z każdym modelem, generalnie uwzględnienie jest oparte o liczbę obserwacji, więc aby zwiększyć szansę włączenia tego taksonu przy następnym uczeniu modelu, dodaj lub zidentyfikuj więcej obserwacji tego taksonu.
   concept_status: Status konceptu
   confidential: Poufne
   configure: Konfiguruj
@@ -1173,10 +1213,12 @@ pl:
   #connecting to Flickr
   connect: Połącz
   connect_to_provider: "Połącz z %{provider}"
+  connected_accounts_description: Połączone konta to Twoje konta z innych aplikacji lub witryn internetowych, którym zezwoliłeś iNaturalist na dostęp w swoim imieniu w celu obsługi logowania, importowania zdjęć lub innych funkcji.
   connected_accounts_titlecase: Połączone konta
   connecting_flickr: "Łączenie z Flickr..."
   connect_to_flickr_again_to_authorize_write_permissions: Połącz się ponownie z Flickr, aby autoryzować uprawnienia do zapisu
   connecting_your_inat_account_to_accounts_other_sites: "Połączenie konta %{site_name} z kontami na innych stronach pozwoli ci na logowanie do %{site_name}, używając danych logowania z tych stron."
+  cannot_be_changed_during_a_content_freeze: Nie można zmienić podczas zamrożenia zawartości
   conservation_status: Status ochronny
   conservation_status_created: Status ochrony utworzony
   conservation_status_deleted: Status ochrony usunięty
@@ -1184,8 +1226,23 @@ pl:
   conservation_status_descriptions:
     status: Kategorie statusu. Jeśli podany krótki kod statusu (np. EN lub CR) istnieje, to go użyj. Jeśli nie, to użyj pełnego kodu statusu (np. zagrożony lub krytycznie zagrożony).
     description: Zwięzły opis wyjaśniający dlaczego zostało to ujęte na liście.
+    authority: |
+      Organizacja, która zadeklarowała ten status. Proszę użyć autouzupełniania, aby
+      wybrać istniejący organ przed dodaniem nowego. Możesz to pominąć, jeśli
+      *ty * chcesz być wymieniony jako autorytet.
     place: Miejsce, do którego odnosi się podatny status.
     url: URL do strony opisującej ten status.
+    geoprivacy: |
+      Domyślna geoprywatność dla obserwacji tego taksonu. Zauważ, że
+      geoprywatność statusu związanego z kontynentem, krajem, lub
+      miejscem na poziomie stanu może nadpisać status globalny lub powiązany z
+      z miejscem wyższego poziomu.
+    iucn: |
+      Równoważny kod Czerwonej Księgi IUCN. To nie jest rzeczywista ocena IUCN,
+      tylko kod IUCN, który najlepiej odpowiada zagrożeniu z ujawnienia współrzędnych
+      wynikający z tego statusu. Spowoduje to zastąpienie geoprywatności, jeśli jest to "Najmniejszej
+      Troski" lub poniżej, więc jeśli chcesz zaciemnić obserwacje na ten temat
+      takson, ustaw to na "Bliski Wymarcia" lub wyżej.
   conservation_status_geoprivacy_desc: |
     Domyślne ustawienia geoprywatności dla wszystkich obserwacji tego taksonu w tej lokalizacji
   contact_support: Skontaktuj się z pomocą
@@ -1195,6 +1252,9 @@ pl:
   content_and_display: Zawartość i wyświetlanie
   content_author: Autor zawartości
   content_hidden: Treść została ukryta
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    Zawartość ukryta %{date}, ponieważ: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     Treść została ukryta %{date} przez %{user}, ponieważ "%{reason}"
@@ -1276,20 +1336,42 @@ pl:
     leafmine: Miny na liściach
     #Evidence of hair no longer attached to the organism from which it originated
     hair: Sierść
+    #Evidence of something made my an organism, made with or excavated from other materials
+    construction: Konstrukcja
+    #Does the observation belong to a non-established population or not
+    established: Ustanowiona
+    #Organism is not a member of an established population
+    not_established: Nieustanowiona
   controlled_term_definitions:
     alive: Organizm żyje i nie wykazuje żadnych oznak zbliżającej się śmierci
+    bone: |
+      Głównie szczątki endoszkieletowe; częściowo odkryte kości w prawie nienaruszonym organizmie powinny zostać oznaczone jako "organizm"
     cannot_be_determined: Nie można ustalić na podstawie przedstawionych dowodów
     dead: Organizm jest martwy lub wykazuje oznaki zbliżającej się śmierci
+    feather: Jedno lub więcej piór nieprzymocowanych do organizmu
+    female: Dowody wskazują, że organizm może wytwarzać komórki jajowe do wykorzystania w rozmnażaniu płciowym
     flower_budding: Pąki kwiatowe są widoczne, ale nie otwarte
     flowering: Kwiaty widoczne, otwarte i nadal przymocowane do rośliny
     fruiting: Owoc widoczny i nadal przymocowany do rośliny
+    flowers: Co najmniej jeden otwarty kwiat
+    flower_buds: Co najmniej jeden zamknięty pąk kwiatowy
+    fruits_or_seeds: Co najmniej jeden owoc lub materiał siewny
+    breaking_leaf_buds: Co najmniej jeden pąk z pierwszym nowym liściem lub igłą nierozwiniętą w pełni
     green_leaves: Co najmniej jeden zielony liść bądź igła (lub zabarwione, jeśli jest to normalny zdrowy kolor dla danego gatunku)
+    colored_leaves: Co najmniej jeden liść lub igła ma kolor późnego sezonu lub suszy
     no_live_leaves: Nie są widoczne pąki liściowe ani zielone bądź kolorowe liście / igły
+    gall: Odkształcony rozrost tkanki roślinnej spowodowany przez organizm pasożytniczy
+    male: Dowody wskazują, że organizm może wytwarzać spermę do wykorzystania w rozmnażaniu płciowym
     molt: Zrzucona skóra lub egzoszkielet
     leafmine: Ślady żerowania pomiędzy warstwami epidermy liścia
+    hair: Włosy nieprzymocowane do organizmu, z którego pochodziły
     egg: Całe jajo lub część jaja
     construction: Coś stworzonego przez zwierzę, zbudowane z lub wydrążone z innych materiałów
+    no_evidence_of_flowering: Multimedia nie dostarczają dowodów na struktury rozrodcze
+    no_flowers_or_fruits: Nie są widoczne żadne kwiaty, owoce ani nasiona (w całości lub części)
+    not_established: Organizm należy do nieustanowionej populacji, w tym uwolnionych/zbiegłych zwierząt domowych, włóczęgów i wędrowców.
     organism: Cały lub częściowy organizm
+    scat: Odchody (nie wypluwki sowie ani inna zwrócona materia)
     teneral: Osobnik dorosły, który niedawno się przepoczwarzył ale nie osiągnął jeszcze końcowej postaci dorosłej
     track: Odcisk na ziemi lub śniegu pozostawiony przez organizm
   controls: Kontrolki
@@ -1301,6 +1383,8 @@ pl:
   #particular project, i.e. anythign unobscured as well as anything obscured
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Tylko z pełnymi współrzędnymi
+  coords_viewable_for_proj_desc: |
+    Pokazuj tylko obserwacje w tym projekcie, gdzie można zobaczyć "prawdziwe" współrzędne, łącznie z nieukrytymi obserwacjami, ukrytymi obserwacjami użytkowników, którzy ci ufają, ukrytymi obserwacjami użytkowników, którzy ufają projektowi, oraz ukryte obserwacje zagrożonych taksonów użytkowników, którzy ufają projektowi z wyświetlaniem obserwacji, które zostały ukryte jako zagrożone taksony.
   copy: Kopiuj
   copy_and_paste_the_following_code_to: Kopiuj i wklej ten kod, aby zagnieździć to oszacowanie na innej stronie.
   copy_and_paste_this_into_your_own_html: Kopiuj i wklej to do swojego HTMLa.
@@ -1331,6 +1415,8 @@ pl:
   copyright_info_and_more: Informacje o prawach autorskich i więcej
   copyright_infringement: Naruszenie praw autorskich
   copyright_infringement_desc: Narusza przepisy prawa autorskiego lub zostało stworzone przez kogoś innego niż obserwator i brakuje uznania autorstwa
+  covered_by_a_taxon_framework_html: "Objęty przez %{link}"
+  covered_by_a_taxon_framework_link: "ramy taksonu dla %{taxon_framework_rank}%{taxon_framework_name}"
   couldnt_change_your_password: "Nie udało się zmienić hasła: %{e}"
   couldnt_find_a_user_matching_x_param: "Nie udało się znaleźć użytkownika %{id}"
   couldnt_find_that_taxon: Nie udało się znaleźć podanego taksonu.
@@ -1363,33 +1449,137 @@ pl:
   curating: Naprawianie
   curation: Naprawa
   curator: Kurator
+  #A paragraph summarizing what curators are
+  curator_application_about_site_curators_desc_html: |
+    Kuratorzy strony iNaturalist to zaufani wolontariusze posiadający możliwość edytowania taksonomii iNaturalist i moderowania treści użytkowników. Kuratorzy strony są integralni dla iNaturalist, jako że utrzymują naszą taksonomię aktualną i pilnują, by dyskusje na iNaturalist były odpowiednie i kulturalne. Poniżej można znaleźć opis funkcji kuratora. Przeczytaj ją, i jeśli chciałbyś/chciałabyś zostać kuratorem, przeczytaj uważnie <a href="/pages/curator+guide" target="_blank">Przewodnik Kuratora</a> i wypełnij formularz aplikacji na tej stronie.
   #Prompt for information when applying to be a curator
   curator_application_explanation_required: |
     Musisz wyjaśnić, dlaczego chcesz zostać kuratorem
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: Dlaczego chcesz być kuratorem?
+  #Prompt for information when applying to be a curator
+  curator_application_fields_taxonomy_examples_html: |
+    Jeśli chcesz edytować taksonomię iNaturalist, podaj jeden lub dwa przykłady
+    zmian taksonomicznych, które chcesz wprowadzić, i podaj źródła dla swoich
+    proponowanych zmian. W stosownych przypadkach należy podać odpowiednie taksonomiczne
+    autorytety, <a
+    href="https://www.inaturalist.org/pages/curator+guide#policies">jak wymieniono
+    w Przewodniku Kuratora</a>. Jeśli nie podasz żadnych źródeł, Twój
+    wniosek nie będzie rozpatrywany.
+  #Prompt for information when applying to be a curator
+  curator_application_fields_name_examples_html: |
+    Jeśli chcesz edytować nazwy zwyczajowe, podaj jedną lub dwie zmiany,
+    które chcesz wprowadzić
+  #Prompt for information when applying to be a curator
+  curator_application_fields_moderation_examples_html: |
+    Jeśli chciałbyś/chciałabyś moderować aktywność na iNaturalist, podaj przykład lub dwa naruszeń Wytycznych Społeczności i co byś zrobił/a w takiej sytuacji
+  #Header
+  curator_application_how_curators_lose_their_powers: |
+    Jak kurator traci swoje uprawnienia
+  curator_application_how_curators_lose_their_powers_desc: |
+    Personel iNat może pozbawić uprawnień kuratora, który wielokrotnie:
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_lose_ignore_policies: |
+    Ignoruje zasady zawarte w Przewodniku Kuratora.
+  #Description of one way a curator may lose their curator status; part of list
+  #of things, so you might imagine it is preceded with "iNat staff may remove
+  #curatorial powers if a curator repeatedly..."
+  curator_application_how_curators_bad_behavior: |
+    Sam nie demonstruje odpowiedniego zachowania.
+  #Message shown when the viewer is not yet elligible to apply to become a
+  #curator
+  curator_application_inelligible2: |
+    Aby ubiegać się o stanowisko kuratora strony, musisz mieć konto od 60
+    dni lub więcej, musisz dodać co najmniej 5 flag i musisz dodać 100 ulepszeń identyfikacji do obserwacji dowolnej osoby, w tym
+    własnych (dodałeś %{num_idents}). Kiedy już spełnisz
+    wymagania, wróć tutaj, a będziesz mógł złożyć wniosek.
+  curator_application_inelligible_error2: |
+    Aby ubiegać się o stanowisko kuratora strony, musisz mieć konto od 60
+    dni lub więcej, dodać co najmniej 5 flag i dodać 100 ulepszonych
+    identyfikacja do czyichkolwiek obserwacji, w tym własnych.
   #Message shown when a curator application has been succesfully submitted
   curator_application_success: Podanie na kuratora wysłane.
   #Header
   curator_application_what_curators_can_do: Co mogą kuratorzy
+  #Description of a curator's ability to edit the taxonomy; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_taxonomy_html: 'Edytować taksonomię iNaturalist zgodnie z zasadami określonymi w <a href="/pages/curator+guide#policies" target="_blank">Sekcji "Zasady" w Przewodniku dla Kuratorów</a>. Oznacza to, że mogą dodawać, dzielić, zamieniać, łączyć, dezaktywować i usuwać taksony w iNaturalist. Mogą również edytować statusy ochrony i geoprywatność taksonów, a także edytować i zarządzać nazwami zwyczajowymi dodanymi przez dowolnego użytkownika.'
   curator_application_what_curators_can_do_hide_comments_html: |
     Ukrywać komentarze i zawieszać użytkowników za naruszanie <a
     href="/pages/community+guidelines" target="_blank">Wytycznych społeczności</a>.
+  #Description of a curator's ability to resolve flags; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_resolve_flags_html: |
+    Rozwiązywać <a href="/flags" target="_blank">flagi</a> na taksonach i treściach użytkowników.
+  #Description of a curator's ability to edit wiki pages; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_wiki_html: |
+    Tworzyć i edytować strony wiki, takie jak <a href="/pages/help"
+    target="_blank">strona FAQ iNaturalist</a>.
+  #Description of a curator's ability to edit places; part of a list of
+  #things curators can do, so you might imagine it is preceded with "Curators
+  #can..."
+  curator_application_what_curators_can_do_edit_places_html: |
+    Edytować miejsca sugerowane przez społeczność i przesyłać pliki KML większe niż 1MB (lecz mniejsze niż 5 MB).
   #Header
   curator_application_what_curators_cannot_do: Czego kuratorzy nie mogą
+  #Description of the fact that a curator cannot change certain attributes of
+  #observations any more than anyone else can; part of a list of things
+  #curators can do, so you might imagine it is preceded with "Curators
+  #cannot..."
+  curator_application_what_curators_cannot_do_change_observations_html: |
+    Wpływać na taksony sugerowane przez społeczność lub jakość danych obserwacji bardziej niż przeciętny użytkownik.
+  #Description of the fact that a curator cannot commit taxon changes for
+  #complete taxa; part of a list of things curators can do, so you might
+  #imagine it is preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_commit_complete_html: |
+    Wprowadzać zmian taksonomicznych dla <a href="/pages/curator+guide#completetaxa"
+    target="_blank">kompletnych taksonów</a>.
   #Description of the fact that a curator cannot delete content; part of a list
   #of things curators can do, so you might imagine it is preceded with
   #"Curators cannot..."
   curator_application_what_curators_cannot_do_delete_html: |
     Usuwać treści dodanych przez innych użytkowników.
+  #Description of the fact that a curator cannot read other peoples' messages;
+  #part of a list of things curators can do, so you might imagine it is
+  #preceded with "Curators cannot..."
+  curator_application_what_curators_cannot_do_read_messages_html: |
+    Czytać prywatnych wiadomości innych użytkowników.
   #Title of a page where people apply to become a curator
   curator_application_title: Podanie na kuratora
+  #Header followed by a list
+  curator_application_you_should_apply_if: |
+    Powinieneś ubiegać się o stanowisko kuratora tylko wtedy, gdy:
+  curator_application_you_should_apply_if_you_are_a_regular_user: |
+    Od kilku miesięcy dodajesz identyfikacje i/lub obserwacje
+    i zamierzasz kontynuować.
   curator_application_you_should_apply_if_you_have_added_flags: |
     Wykazałeś, że rozumiesz proces korekty, dodając kilka zgłoszeń.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_committed: |
+    Jesteś chętny i zdolny do regularnego wykonywania prac kuratorskich. Jeśli
+    chcesz dodać tylko kilka taksonów, po prostu poproś obecnych kuratorów o dodanie
+    tych taksonów poprzez dodanie flag do taksonów wyższego poziomu.
+  #A requirement for becoming a curator; part of a list, so you might imagine
+  #it is preceded with "You should apply to be a curator if..."
+  curator_application_you_should_apply_if_you_can_behave: |
+    Możesz modelować odpowiednie zachowanie na iNaturalist i przestrzegać wytycznych społeczności. Wraz z uprawnieniami kuratorskimi pojawia się oczekiwanie, żeby
+    być wzorowym użytkownikiem iNaturalist.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Przewodnik dla Kuratorów
   curators_changed_for_x_html: "Zmiana kuratorów %{x}"
   curators: Kuratorzy
+  curators_can_remove_observations_from: Kuratorzy mogą usuwać obserwacje z projektu, a ich identyfikacje są wyświetlane wraz z obserwacjami w widokach specyficznych dla projektu. Kuratorzy mogą również zobaczyć prawdziwe współrzędne prywatnego i ukrytego wkładu w ten projekt.
   curator_identification: Oznaczenie kuratora
   current_flags: Aktualne zgłoszenia
+  #Label for a custom boundary for an observation search
+  custom_boundary: Granica niestandardowa
   custom_project_fields: Niestandardowe pola projektu
   custom_project_was_successfully_created: Dodano dostosowania projektu
   custom_project_was_successfully_updated: Zaktualizowano dostosowania projektu
@@ -1463,11 +1653,22 @@ pl:
   default: domyślny
   #Default option
   default_: Domyślny
+  default_display_time_zone: Domyślna strefa czasowa wyświetlania
   default_invite_comment: "Świetne zdjęcie! Powinieneś opublikować je na %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Domyślna licencja dla obserwacji
   default_photo_license: Domyślna licencja dla zdjęcia
   default_search_place: Domyślna lokalizacja wyszukiwania
+  default_search_place_description: |
+    Będzie to domyślne miejsce dla wszystkich wyszukiwań w sekcjach Odkrywaj i Identyfikuj.
   default_sound_license: Domyślna licencja dla dźwięków
+  default_time_zone_desc: |
+    To jest domyślna strefa czasowa. Ostateczna strefa czasowa zostanie przypisana na podstawie
+    lokalizacji obserwacji, gdy zostanie zapisana.
+  defaults_to_your_name_or_username: Domyślnie imię lub nazwa użytkownika
+  #As in the definition of a word
+  definition: Definicja
+  defines_a_taxon_framework_for: Definiuje ramy taksonomiczne dla %{taxon_name}
+  defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definiuje ramy taksonomiczne dla %{taxon} pozyskane do %{source}
   definitions: Definicje
   delete: Usuń
   delete_all: Usuń wszystko
@@ -1480,6 +1681,8 @@ pl:
   #Label for a button to delete a taxon range
   delete_range: Usuń zasięg
   delete_selected: Usuń wybrane
+  delete_taxon_and_merge_most_data_html: |
+    Usuń <i>%{taxon}</i> i scal większość danych z niego z innym taksonem. Użyj tego narzędzia do <strong>usuwania zduplikowanych taksonów</strong>. Jeśli chcesz usunąć przestarzały synonim, przeprowadź zamianę taksonu. <strong>UWAŻAJ!</strong> Usuwanie taksonów może mieć negatywne skutki. Sprawdź <a href="%{curator_url}">Przewodnik dla Kuratorów</a> po więcej szczegółów.
   delete_user: Usuń użytkownika
   delete_your_account: Usuń konto
   deleted_synonyms: Usunięte synonimy
@@ -1498,14 +1701,22 @@ pl:
   description_slash_tags: Opis / Tagi
   description_tags_more: "Opis, Tagi, &amp; Więcej"
   desription: Opis
+  destination: Miejsce docelowe
   destroy: Usunięcie
   details: Szczegóły
   deviation: Odchylenie
   devise:
     confirmations:
+      confirmed: |
+        Twój adres e-mail został pomyślnie zweryfikowany.
       send_instructions: "W ciągu kilku minut otrzymasz email z instrukcjami, jak potwierdzić Twój adres email."
+      #Message a user sees when they try to manually trigger email
+      #confirmation. This is a feature we'd like to use in the future.
+      send_paranoid_instructions: |
+        Jeśli Twój adres email istnieje w naszej bazie danych, w ciągu kilku minut otrzymasz wiadomość z instrukcją, jak go potwierdzić.
     failure:
       already_authenticated: 'Jesteś już zalogowany.'
+      unauthenticated: 'Zanim przejdziesz dalej, musisz się zalogować lub zarejestrować.'
       invalid: 'Niepoprawny e-mail lub hasło.'
       invalid_token: 'Nieprawidłowy token uwierzytelniania.'
       unconfirmed: |
@@ -1520,11 +1731,16 @@ pl:
         W ciągu kilku minut otrzymasz e-mail z instrukcjami jak zresetować swoje hasło.
       updated: 'Twoje hasło zostało pomyślnie zmienione. Jesteś teraz zalogowany.'
       updated_not_active: 'Twoje hasło zostało pomyślnie zmienione.'
+      send_paranoid_instructions: |
+        Jeśli twój adres e-mail istnieje w naszej bazie, otrzymasz link do odzyskiwania hasła na twój adres e-mail w ciągu kilku minut.
+      no_token: |
+        Nie można uzyskać dostępu do tej strony inaczej, niż z wiadomości e-mail dotyczącej resetowania hasła. Jeżeli przekierowano Cię tu z wiadomości e-mail dotyczącej resetowania hasła, sprawdź, czy adres URL jest w pełni poprawny.
     registrations:
       destroyed: 'Do zobaczenia! Twoje konto zostało pomyślnie anulowane. Mamy nadzieję zobaczyć Cię ponownie wkrótce.'
       signed_up: 'Witamy! Zarejestrowałeś się pomyślnie.'
       signed_up_but_inactive: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto nie zostało jeszcze aktywowane."
       signed_up_but_locked: "Zarejestrowałeś się pomyślnie. Nie możemy Cię jednak zalogować, ponieważ Twoje konto jest zablokowane."
+      signed_up_but_unconfirmed: "Wiadomość z linkiem potwierdzającym została wysłana na Twój adres e-mail. Prosimy o skorzystanie z linku w celu aktywowania konta."
       updated: 'Pomyślnie zaktualizowałeś swoje konto'
       updated_but_not_signed_in: "Twoje konto zostało pomyślnie zaktualizowane, ale ponieważ Twoje hasło zostało zmienione, musisz zalogować się ponownie."
     mailer:
@@ -1545,9 +1761,19 @@ pl:
   devise_confirmation_instructions_please_click2: |
     Kliknij poniższy link, aby potwierdzić swój adres e-mail. Jeśli nie potwierdzisz swojego adresu e-mail
     adres, nie będziesz mógł wchodzić w interakcje z treściami innych użytkowników.
+  devise_confirmation_instructions_resend_instructions: |
+    Musisz mieć działający adres e-mail, aby używać iNaturalist. Przy zakładaniu konta na iNaturalist, powinieneś/powinnaś otrzymać e-mail potwierdzający zawierający link do potwierdzenia adresu e-mail; jeśli nie, możesz wysłać na swój adres kolejny taki e-mail tutaj.
   devise_confirmation_instructions_send_confirmation_email: Wyślij e-mail z potwierdzeniem
   devise_email_changed_you_requested: Poprosiłeś o zmianę z %{old_email} na %{new_email}.
+  devise_email_changed_you_will_receive: |
+    Otrzymasz e-mail na nowy adres, aby potwierdzić zmianę, lecz chcieliśmy powiadomić cię na wypadek, gdyby ktoś próbował bez twojej wiedzy uzyskać dostęp do twojego konta. Jeśli nie zamierzałeś/zamierzałaś zmienić swojego adresu e-mail, natychmiast prześlij tę wiadomość do help@inaturalist.org, abyśmy mogli zbadać sytuację.
   devise_reset_password_instructions_hello_email: Witaj %{email}
+  devise_reset_password_instructions_if_you_didnt_request_this: |
+    Jeśli to nie Ty poprosiłeś(aś) o zmianę hasła, zignoruj tę wiadomość.
+  devise_reset_password_instructions_someone_has_requested_a_link_to_change_your_password: |
+    Otrzymaliśmy prośbę o zmianę Twojego hasła. Możesz tego dokonać poprzez link poniżej:
+  devise_reset_password_instructions_your_password_wont_change_until: |
+    Hasło nie zmieni się, dopóki nie skorzystasz z linku powyżej i nie ustawisz nowego hasła.
   devise_unlock_instructions_your_account_has_been_locked: |
     Twoje konto zostało zablokowane z powodu zbyt dużej liczby nieudanych prób logowania.
   devise_unlock_instructions_click_the_link: |
@@ -1569,7 +1795,9 @@ pl:
   dismiss: Odrzuć
   display: Wyświetlanie
   display_link_to_checklist: Wyświetlaj link do listy projektów ze strony projektu
+  display_monthly_supporter_badge: Wyświetl Miesięczną Odznakę Wsparcia na profilu
   display_name: Nazwa wyświetlana
+  display_name_description: Jest to nazwa, która będzie wyświetlana na Twoim profilu, a także w celu przypisania praw autorskich
   distance_traveled_value: "Przebyta odległość: %{distance}m"
   distance_traveled: "Przebyta odległość (m)"
   documentation_for_developers_html: Dokumentacja dla <a href="/pages/developers">twórców</a>
@@ -1582,6 +1810,8 @@ pl:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: WSPOMÓŻ
+  donate_again_caps: PRZEŚLIJ DATEK PONOWNIE
+  donate_again_today_caps: PRZEŚLIJ DATEK PONOWNIE DZISIAJ
   #Title for pages and sections that encourage people to donate to iNaturalist
   donate_to_inaturalist: Wesprzyj iNaturalist
   done: Gotowe
@@ -1592,9 +1822,13 @@ pl:
   drop_it: Upuść
   download: Pobierz
   download_caps: POBIERZ
+  download_bulk_import_template_html: |
+    <a href="%{url}">Pobierz szablon</a> do wykorzystania w <a href="/observations/import?project_id=%{project_id}#csv_import">przesyłaniu zbiorczym</a>
   download_csv: Pobierz CSV
   download_csv_template: Pobierz szablon CSV
   download_kml: Pobierz KML
+  downstream_coverage_rank: Ranga zasięgu downstream
+  downstream_coverage_colon_rank: "Zasięg downstream: ranga %{rank}"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
   downstream_flagged_covered_taxa: Przenieś oflagowany takson w dół.
@@ -1609,11 +1843,18 @@ pl:
   #Noun, as in journal posts that has not been published
   drafts: Szkice
   drag_and_drop_some_photos_or_sounds: Przeciągnij i upuść zdjęcia lub dźwięki
+  #Button label for drawing a circular boundary for an observation search
+  draw_circular_boundary: Rysowanie okrągłej granicy
+  #Button label for drawing a rectangular boundary for an observation search
+  draw_rectangular_boundary: Rysowanie prostokątnej granicy
   drawings: Rysunki
   duplicate_verb: Duplikuj
   duration_value: "Czas trwania: %{duration} minut"
+  each_place_displays_all_species_inat_knows: "Każda strona miejsca wyświetla wszystkie gatunki %{site_name} znane z tego miejsca, w tym informacje o ich liczebności, status ochrony i kto najpierw zaobserwował ten gatunek w tym miejscu na %{site_name}. Możesz filtrować gatunki według grupy taksonomicznej, koloru, statusu ochrony lub zwykłego wyszukiwania."
   earliest_added: Najwcześniej dodane
   edit: Edytuj
+  #Title of the moderation note editor
+  edit_moderator_note: Edytuj notatkę moderatora
   edit_a_batch_of_observations: Edytuj serię obserwacji
   edit_account_settings_and_profile: "Edytuj ustawienia konta i profil"
   edit_assessment: Edytuj ocenę
@@ -1621,6 +1862,7 @@ pl:
   edit_atlas_for_taxon_html: Edytuj atlas dla %{taxon}
   edit_body: Edytuj treść
   edit_comment: Edytuj komentarz
+  edit_complete_set_for_taxon_in_place_html: "Edytuj kompletny zestaw %{taxon} w %{place}"
   edit_conservation_status: Edytuj status ochronny
   edit_custom_project_fields: Edytuj niestandardowe pola projektu
   edit_field: Edytuj notatkę
@@ -1640,9 +1882,12 @@ pl:
   edit_source: Edytuj źródło
   edit_taxa: Edytuj taksony
   edit_taxon: Edytuj takson
+  edit_taxon_framework: Edytuj ramy taksonu
   edit_taxon_link: Edytuj link do taksonu
   edit_taxon_range: Edytuj zasięg taksonu
   edit_the_observation: Edytuj obserwację
+  edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
+    Edytuj ten takson po jego utworzeniu, aby dodać statusy ochrony
   edit_your_account_and_profile_html: "Edytuj swoje konto i profil"
   edit_your_default_settings: "Edytuj domyślne ustawienia"
   edit_your_global_project_settings: Edytuj swoje globalne ustawienia projektu
@@ -1661,6 +1906,7 @@ pl:
     many: 'Edytowanie <span class="count">%{count}</span> obserwacji:'
     other: 'Edytowanie <span class="count">%{count}</span> obserwacji:'
   editing_project: Edytowanie projektu %{project}
+  editing_project_asset: Edycja zasobów projektu dla
   editing_subscription_to_x_html: "Edytowanie subskrypcji do %{x}"
   editing_taxon: Edytowanie %{taxon}
   editing_taxon_link: Edytuj Łącze Taksonu
@@ -1669,11 +1915,18 @@ pl:
   editing_this: Edytowanie %{elem}
   editing_x_in_y: "Edytowanie %{x} w %{y}"
   editors: Edytorzy
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Przewodnik dla Nauczyciela
   either_that_user_doesnt_exist_or: "Podany użytkownik nie istnieje lub już go obserwujesz."
   eligible_for_research_grade: Kwalifikuje się do stopnia badawczego
   email: E‐mail
   email_address_for_comments_and_other_feedback: Adres e-mail dla komentarzy i innych informacji zwrotnych.
+  #Introductory form of address in an email. %{user} could be a username or a
+  #name, and the gender is unknown. @vow_or_con should work.
+  email_dear_user: Drogi/a %{user},
   email_description: Twój e-mail nie jest udostępniany innym użytkownikom iNaturalist
+  email_conf_required_after_grace_period: |
+    Potwierdzenie adresu e-mail jest wymagane od dnia %{requirement_date}, a nie zrobiłeś/aś tego przed upływem terminu. Zresetuj swoje hasło, aby uzyskać dostęp do konta.
   email_copyright2: "&copy; %{year} iNaturalist, wszelkie prawa zastrzeżone"
   email_notifications: Powiadomienia e-mail
   embed: 'Osadź'
@@ -1682,6 +1935,7 @@ pl:
   embed_widget_project: Osadź widget projektu na swojej stronie
   enable_offline_access: Zezwól na dostęp offline
   enable_offline_access_for_mobile: Zezwól na dostęp offline dla urządzeń mobilnych
+  encompassing_places: Obejmujące miejsca
   end: Koniec
   end_date_time: Data / Czas zakończenia
   endangered: Gatunki zagrożone
@@ -1693,10 +1947,24 @@ pl:
   error_updating_photo: "Wystąpił błąd podczas aktualizacji zdjęcia: %{photo_errors}"
   establishment:
     endemic: Endemiczny
+    establishment: Placówka
     introduced: Introdukowany
     invasive: Inwazyjny
+    managed: Zarządzane
     native: Rodzimy
     naturalised: Naturalizowany
+  establishment_means: Sposoby wprowadzenia
+  establishment_means_describes_how: |
+    Wprowadzenie oznacza sposób, w jaki takson został wprowadzony na dany obszar. Wejdź na DarwinCore po <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">więcej informacji o terminologii</a>.
+  establishment_means_descriptions:
+    native: wyewoluował w tym regionie lub przybywał nieantropogenicznymi sposobami
+    endemic: rodzimy i nie występuje nigdzie indziej
+    introduced: przybył do regionu przy pomocy środków antropogenicznych
+  #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
+  estimate_which_input2: |
+    Oszacowanie, które oznaczenia taksonu wejściowego zostaną zastąpione przez
+    identyfikacje taksonów wyjściowych i które zostaną zgrubione do
+    wspólnego przodka po dokonaniu podziału. Obliczenia mogą chwilę potrwać. Linki do obserwacji są obcinane do podzbiorów liczących 200.
   event_in_progress: Wydarzenie w toku
   event_stats: Statystyki wydarzenia
   event_url: URL wydarzenia
@@ -1710,6 +1978,9 @@ pl:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Dokładna kategoria
   except: poza
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Wyklucz
   exclude_places: Wyklucz lokalizacje
   exclude_projects: Wyklucz projekty
   exclude_taxa: Wyklucz taksony
@@ -1717,24 +1988,35 @@ pl:
   exclusion_filters: Filtry wykluczające
   existing_flags: Istniejące zgłoszenia
   exit_full_screen: "Wyjdź z trybu pełnoekranowego"
+  examples_of_data_use_by_network_members: Przykłady wykorzystania danych przez członków sieci
+  examples_of_ranking_organizations: Przykłady organizacji tworzących rankingi
   expected_nearby: Spodziewany w pobliżu
   explore: Przeglądaj
   export: Eksport
   export_observations: Eksport obserwacji
   export_with_private_coordinates: Eksportuj wraz z ukrytymi współrzędnymi
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Wyeksportowano do %{datetime}
   exporting: "Eksportowanie..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
   external_applications: Aplikacje zewnętrzne
+  external_applications_description: |
+    Aplikacje zewnętrzne to aplikacje innych firm, które mają uprawnienia
+    do dostępu do swojego konta iNaturalist w Twoim imieniu. Ogólnie rzecz biorąc,
+    mogą zrobić wszystko z Twoim kontem, co ty możesz zrobić, więc upewnij się, że
+    ufasz programistom aplikacji przed przyznaniem im uprawnień.
   external_taxon_including_children: Takson zewnętrzny (w tym dzieci)
   extinct: wymarły
   extinct_in_the_wild: Wymarły na wolności
   extra_properties: Dodatkowe właściwości
   evidence_of_organism: Ślad organizmu
+  evidence_related_to_single_subject: Dowody dotyczące pojedynczego organizmu
   facebook: Facebook
   failed_to_find_your_location: Nie udało się odnaleźć twojej lokalizacji.
   failed_to_repair_photo: "Nie udało się naprawić zdjęcia: %{errors}"
   failed_to_save_record: "Nie udało się zapisać. Proszę spróbować ponownie później."
+  failed_to_save_record_with_errors: "Nie udało się zapisać wpisu: %{errors}"
   failed_to_unlink_your_account: Nie udało się odłączyć Twojego konta
   'false': 'Fałsz'
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
@@ -1768,6 +2050,7 @@ pl:
   filter: Filtruj
   filter_by_curator_identification: Filtruj po oznaczeniach kuratorów
   filter_by_place: Filtruj według lokalizacji
+  filter_by_species: Filtruj według gatunków
   filter_by_taxon: Filtruj po taksonach
   filter_by_place_taxon_and_color: Filtruj według miejsca, taksonu i koloru używając strzałek.
   filter_list_by_this_taxon: Filtruj listę według tego taksonu
@@ -1804,6 +2087,7 @@ pl:
   flag_created: Flaga utworzona
   flag_deleted: Zgłoszenie usunięte
   flag_description: Zgłoś tę zawartość, aby powiadomić kuratorów, że coś jest z nią nie tak.
+  flag_comment_description: Dodaj opcjonalny komentarz do tej flagi, który dokładniej wyjaśnia, dlaczego ją dodajesz, i zawiera linki do dowodów potwierdzających.
   flag_for_check_list_title_html: |
     Zgłoszenie dla checklisty: %{title}
   flag_for_comment_id_html: Zgłoszenie dla <a href="%{url}">Komentarza %{id}</a>
@@ -1834,6 +2118,7 @@ pl:
     Zgłoszenie dla użytkownika: %{title}
   flag_it!: Zgłoś to!
   flag_marked_as_resolved_html: '<span class="meta">Zgłoszenie</span> <strong>rozwiązane.</strong>'
+  flag_marked_as_unresolved_html: '<span class="meta">Flaga oznaczona jako</span> <strong>nierozwiązana.</strong>'
   #Label for the object that was flagged, e.g. a table header
   flag_object: Przedmiot
   flag_reason: "&ldquo;Zgłaszam %{record}, ponieważ"
@@ -1848,6 +2133,9 @@ pl:
   flagged_for_curation: Zgłoszone do naprawy
   flagged_taxon: Zgłoszony takson
   flagged_thing_explanation: "Użytkownicy zgłosili %{thing}, ponieważ"
+  flagging_desc: |
+    Flagowanie ma przyciągać uwagę wolontariuszy-kuratorów.
+    Proszę nie oznaczać problemów, które możesz rozwiązać z identyfikacjami, Oceną Jakości Danych lub rozmawiając z osobą, która utworzyła daną treść.
   flagger: Zgłaszający
   flags: Zgłoszenia
   flags_with_count: Zgłoszenia (%{count})
@@ -1856,12 +2144,16 @@ pl:
   flags_on_users_content: "Zgłoszenia dotyczące treści użytkownika %{user}"
   flickr_account_information: Informacja o Twoim koncie Flickr
   flickr_has_no_creative_commons: Flickr nie posiada zdjęć na licencji Creative Commons z tego miejsca.
+  flickr_identity: Tożsamość użytkownika Flickr
   flickr_needs_to_confirm: "Flickr oczekuje potwierdzenia połączenia konta z %{site_name}."
   flickr_photo: Zdjęcie z Flickra
   flickr_photos: Zdjęcia z Flickra
   flickr_style: Styl Flickra
   flickr_tagger: Tagger Flickr
   flickr_tags: Tagi z Flickra
+  fluid_layout: Układ płynny
+  #Adjective, as in a fluid layout of images
+  fluid: płynny
   follow: Obserwuj
   #Text for a button to follow updates on an observation
   follow_observation: Obserwuj obserwację
@@ -1876,13 +2168,18 @@ pl:
     many: 'Obserwuje %{count} osób'
     other: 'Obserwuje %{count} osoby'
   for_a_taxon: dla taksonu
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Aby uzyskać więcej informacji o nagłówkach kolumn, zobacz %{url}
   formatting: Formatowanie
   forgot_your_password: Nie pamiętasz hasła?
   forum: Forum
   forum_categories:
     bug_reports: Raporty błędów
     feature_requests: Prośby o ulepszenie
+    forum_feedback: Opinie na forum
     forum_moderation: Moderatorzy Forum
+    nature_talk: Nature Talk
     news_and_updates: Aktualności i aktualizacje
     tutorials: Samouczki
   forum_desc: |
@@ -1890,6 +2187,7 @@ pl:
   frequency: Częstotliwość
   from_a_place: z miejsca
   from_eol_collection: Z kolekcji EOL
+  from_flickr_etc: Z Flickr itp.
   from_list: Z listy
   from_photos: Ze zdjęć
   from_place: Z miejsca
@@ -1905,14 +2203,29 @@ pl:
   generate_taxonomic_tags_for_flickr: Wygeneruj taksonomiczne tagi do twoich zdjęć z Flickra.
   generate_widget: Wygeneruj Widget
   generate_your_stats: Wygeneruj swoje statystyki
+  #E.g GENERATE YOUR 2023 YEAR IN REVIEW
+  generate_your_year_in_review_caps: WYGENERUJ SWÓJ PRZEGLĄD ROKU %{year}
   generating_mobile_archive: "Generowanie moblinego archiwum"
   Genus: Rodzaj
+  #A score for an observation's location coming from the iNatuarlist Geo Model. The score
+  #represents the likelihood of the observation's taxon occuring in the observation's location
+  geo_score: Wynik Geo
+  geomodel_expected_nearby_label_is_derived: |
+    Etykieta "Spodziewane w pobliżu" pochodzi z Geomodelu.
+    <a href="%{url}">Dowiedz się więcej o Geomodelu tutaj</a>.
   geoprivacy: Geoprywatność
   geoprivacy_is_obscured: Geoprywatność jest ukryta
   geoprivacy_is_obscured_desc: Obserwator utajnił współrzędne.
   geoprivacy_is_private: Geoprywatność jest prywatna
   geoprivacy_is_private_desc: Obserwator ukrył współrzędne.
+  georeferenced: Georeferencjonowane?
+  #short heading for a category of filters relating to geospatial qualities of
+  #an observation - relating to its location
+  geospatial: Geoprzestrzenne
   get_started: Rozpocznij
+  #Label for a menu item linking to a help page about how to get started using iNaturalist
+  getting_started: Wprowadzenie
+  getting_started_guide: Przewodnik wprowadzający
   #Prompt to donate money on a montly basis
   give_monthly_caps: PRZEKAZUJ CO MIESIĄC
   #Prompt to donate money once
@@ -1924,19 +2237,32 @@ pl:
   going_to_your_observations: Przechodzenie do twoich obserwacji...
   good_choice_for_sharing: To dobry wybór, aby podzielić się z naukowacami
   google: Google
+  google_maps_not_loaded_error: |
+    Nie udało się uruchomić Map Google. Być może zablokowałeś dostęp do map Google
+    za pomocą rozszerzenia przeglądarki lub zapory sieciowej, lub coś innego blokuje dostęp,
+    jak dostawca usług internetowych.
   got_it!: Wszystko jasne!
   got_your_data_somewhere_else?: Przechowujesz dane gdzieś indziej? Możemy pomóc.
+  graft: Przeszczep
+  graft_taxon: Przeszczep %{taxon}
+  grafting_attemps_to_insert_this_taxon: Przeszczepianie próbuje wprowadzić ten takson do naszego drzewa taksonomicznego, znajdując istniejący takson nadrzędny lub tworząc wszystkie niezbędne taksony pośrednie w celu przyłączenia go do istniejącego taksonu wyższego poziomu.
   grid: Siatka
   grid_layout: Układ Siatki
   grid_tooltip: Pokaż widok siatki
   group: Grupa
   grouping: Grupowanie
+  #Link that lets the user guess the location of an observation that does not
+  #have coordinates based on observations observed before and after
+  guess_location_from_other_observations?: Odgadnąć lokalizację z innych obserwacji?
   guides: Przewodniki
+  guide_compiled_by: Przewodnik opracowany przez
   guide_deleted: Przewodnik usunięty
   guide_will_be_deleted: Przewodnik zostanie usunięty. Może to zająć chwilę w przypadku większych przewodników.
+  guide_taxon: Takson przewodnikowy
   guide_was_successfully_created: Przewodnik został pomyślnie utworzony.
   guide_was_successfully_published: Przewodnik został pomyślnie opublikowany.
   guide_was_successfully_updated: Przewodnik został pomyślnie zaktualizowany.
+  guidelines: Wytyczne
   has_already_been_flagged_by: zostało już zgłoszone przez
   has_id_supported_by_two_or_more: Oznaczenie podtrzymane przez dwóch lub więcej użytkowników
   has_one_or_more_faves: Posiada jedno lub więcej dodań do ulubionych
@@ -1971,6 +2297,8 @@ pl:
   #Option to hide data series that show "No Annotation" data, i.e. records that
   #have no annotation
   hide_no_annotation: Ukryj "Brak adnotacji"
+  #Label for a button to hide the running total of an accumulation chart
+  hide_running_total: Ukryj sumę bieżącą
   #Highest taxonomic rank to filter by, where the "highest" possible rank is
   #kingdom
   highest_rank: Najwyższa ranga
