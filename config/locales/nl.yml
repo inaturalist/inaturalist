@@ -605,6 +605,8 @@ nl:
   any_license: Alle
   #Label for an option to show content with photos, sounds, or neither
   any_media: Alle
+  #Label for an option to show any place
+  any_place: Elke
   #Label for an option to show content from any project
   any_project: Elke
   #Label for an option to show content with any quality grade
@@ -1552,6 +1554,8 @@ nl:
   default_time_zone_desc: |
     Dit is de standaard tijdzone. De definitieve tijdzone wordt toegewezen op basis van de locatie van de waarneming wanneer deze wordt opgeslagen.
   defaults_to_your_name_or_username: Standaardinstelling is je naam of gebruikersnaam
+  #As in the definition of a word
+  definition: Definitie
   defines_a_taxon_framework_for: Definieert een taxonkader voor %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: Definieert een taxonkader voor %{taxon} met %{source} als bron
   definitions: Definities
@@ -1793,6 +1797,8 @@ nl:
   edited_by_name_some_rights_reserved_html: |
     Bewerkt door %{name}, sommige rechten voorbehouden (%{license})
   editing: Bewerken
+  #Title for a page to edit an announcement
+  editing_announcement_x: Bewerk aankondiging %{id}
   editing_custom_project_fields_for: Bewerk standaard project velden voor
   editing_observation_field: Bewerk waarnemingsveld
   editing_observation_id: "Waarneming bewerken %{obs_id}"
@@ -1893,6 +1899,8 @@ nl:
   export: Exporteren
   export_observations: Waarnemingen exporteren
   export_with_private_coordinates: Exporteer met verborgen coördinaten
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Geëxporteerd op %{datetime}
   exporting: "Aan het exporteren..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2059,6 +2067,9 @@ nl:
     one: 'Volgt 1 Persoon'
     other: 'Volgt %{count} Personen'
   for_a_taxon: voor een taxon
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Voor meer informatie over kolomkoppen zie %{url}
   formatting: Opmaak
   forgot_your_password: Je wachtwoord vergeten?
   forum: Forum
@@ -2506,6 +2517,10 @@ nl:
     Vergeet niet <a href="%{url}">je wachtwoord te veranderen</a> voor de nieuwe versie.
   let_us_walk_you_through: Laten we de belangrijkste functies van de site doorlopen.
   lexicon: Lexicon
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Naam van een verzameling woorden of termen die een taxonnaam bevatten, bijvoorbeeld de
+    naam van een taal of een reeks afkortingen
   lexicon_cannot_contain_words: "kan de volgende woorden niet bevatten: %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -2984,6 +2999,8 @@ nl:
   more_info_title: Meer Info
   more_journal_posts: Meer dagboekberichten
   more_observations: Meer waarnemingen
+  #Label for a button or section that shows additional options
+  more_options: Meer Opties
   more_photos: Meer foto's
   more_than_a_week_ago: Meer dan een week geleden
   most_agree: meeste zijn het eens
@@ -3622,6 +3639,8 @@ nl:
   original_url_for_this_map: Oorspronkelijke URL voor deze kaart
   organism_appears_captive_cultivated: Het organisme lijkt gevangen/gecultiveerd
   other: Anders
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Overig
   other_animals: andere dieren
   other_lexicons: Andere Lexicons
   other_listings_of_this_taxon_for_this_place: Andere lijsten met dit taxon voor deze plaats
@@ -5273,6 +5292,8 @@ nl:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Voorwaarden
+  #As in a list of distinct words
+  terminology: Terminologie
   terms_and_rules_html: "Voorwaarden en regels"
   terms_new_users: "Als je voorwaarden toevoegd moeten nieuwe gebruikers daar mee akkoord gaan voordat ze deel kunnen nemen aan het dit project."
   terms_service: Gebruiksvoorwaarden
@@ -6941,6 +6962,11 @@ nl:
           </li>
           </ul>
       field_descriptions:
+        species_guess: |
+          Gewone tekstnaam van het waargenomen taxon; kan door de waarnemer worden ingesteld
+          tijdens het maken van een waarneming, maar kan worden vervangen door canonieke,
+          locale namen wanneer het taxon verandert
+        common_name: "Lokale of vernacular name van het waargenomen taxon volgens iNaturalist"
         iconic_taxon_name: Hogere taxonomische categorie voor het waargenomen taxon
         id_please: Of de waarnemer determinatie-hulp heeft gevraagd of niet
         observed_on_string: Datum/tijd zoals door de waarnemer ingegeven
@@ -8436,6 +8462,28 @@ nl:
         prefers_target_unconfirmed_users: Doel gebruikers met niet-bevestigde email
         prefers_exclude_monthly_supporters: Sluit maandelijkse supporters uit
         clients: Client
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Uitsluiten donor met startdatum
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Uitsluiten donor met einddatum
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Inclusief donor startdatum
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Inclusief donor einddatum
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-landen
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Laatste waarnemings-begindatum
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Laatste waarnemings-einddatum
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Max determinaties
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min. determinaties
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Plaatsing
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Target maker (voor testdoeleinden)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Target alleen aangemelde gebruikers
       assessment:
