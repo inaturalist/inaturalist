@@ -2658,6 +2658,10 @@ id:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Keluar dari %{site_name}?"
   log_scale_label: Log
+  #Adjectival phrase describing state of being logged in
+  logged_in: Masuk
+  #Adjectival phrase describing state of being logged out
+  logged_out: Keluar
   #Status message shown while logging in
   logging_in: Sedang masuk...
   logo:
@@ -3106,6 +3110,10 @@ id:
   no_users_found_with_those_filters: Tidak ada pengguna yang ditemukan dengan saringan ini
   no_wikipedia_page_for_taxon: Tidak ada halaman Wikipedia untuk takson ini.
   noble_curators: "Kurator %{site} Yang Bagus"
+  #A user who is not a curator
+  non_curator: Nonkurator
+  #A user who does not admin any projects
+  non_project_admin: Nonadmin proyek
   non_human?: Bukan manusia?
   none: Tidak ada
   none_found: Tidak ditemukan
@@ -4140,6 +4148,8 @@ id:
   profile_visibility_desc: |
     Untuk menjaga %{site_name} dari spam, profil pengguna hanya dapat dilihat publik jika pengguna sudah menambahkan beberapa pengamatan Kelas Riset.
   project: Proyek
+  #A user who admin's a project
+  project_admin: Admin proyek
   project_admins:
     other: Pengelola proyek
   project_aggregator_filter_error: |
@@ -6061,6 +6071,8 @@ id:
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
+      observation_oauth_application_ids_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang aplikasinya.
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
@@ -8147,10 +8159,16 @@ id:
         exclude_donor_start_date: Kecualikan tanggal mulai donor
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tanggal akhir donor
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Kecualikan pengamat dari aplikasi
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Sertakan tanggal mulai donor
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Sertakan tanggal akhir donor
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Sertakan pengamat dari aplikasi
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP Negara
         #Start of a date range that includes the viewer's most recent observation
@@ -8363,6 +8381,7 @@ id:
         empty: tidak boleh kosong
         equal_to:
           other: harus sama dengan %{count}
+        must_look_like_an_email_address: harus terlihat seperti alamat email
         even: harus genap
         exclusion: telah dipesan
         greater_than:
@@ -8615,8 +8634,6 @@ id:
             login:
               must_begin_with_a_letter: |
                 harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung, dan garis bawah
-            email:
-              must_look_like_an_email_address: harus terlihat seperti alamat email
               domain_is_not_supported: domain tidak didukung
         user_block:
           attributes:

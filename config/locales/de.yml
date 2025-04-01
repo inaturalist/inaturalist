@@ -2640,6 +2640,10 @@ de:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Von %{site_name} abmelden?"
   log_scale_label: Log
+  #Adjectival phrase describing state of being logged in
+  logged_in: Angemeldet
+  #Adjectival phrase describing state of being logged out
+  logged_out: Abgemeldet
   #Status message shown while logging in
   logging_in: Anmeldung läuft...
   logo:
@@ -3089,6 +3093,10 @@ de:
   no_users_found_with_those_filters: Keine Benutzer mit diesen Filtern gefunden
   no_wikipedia_page_for_taxon: Keine Wikipediaseite für dieses Taxon.
   noble_curators: "%{site}s ehrwürdige Kuratoren"
+  #A user who is not a curator
+  non_curator: Nicht-Kurator
+  #A user who does not admin any projects
+  non_project_admin: Nicht-Projekt-Admin
   non_human?: Nichtmenschlich?
   none: Keine
   none_found: nichts gefunden
@@ -4104,6 +4112,8 @@ de:
     öffentlich sichtbar, nachdem ein Benutzer mehrere Beobachtungen mit Forschungsqualität
     eingebracht hat.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Projekt-Admin
   project_admins:
     one: Projektadministrator
     other: Projektadministratoren
@@ -6029,6 +6039,10 @@ de:
   verifiable_observations: Verifizierbare Beobachtungen
   views:
     views: 'Aufrufe'
+    announcements:
+      observation_oauth_application_ids_desc: |
+        CTRL- oder SHIFT-Klick, um mehrere auszuwählen. Wenn "Alle" oder keine ausgewählt sind,
+        wird die Ankündigung allen Benutzern angezeigt, unabhängig von der App-Nutzung
     content_freeze:
       content_freeze: Inhalt eingefroren
       during_this_time: |
@@ -8124,6 +8138,12 @@ de:
         #announcement should be shown on
         site_ids: Website-IDs
         prefers_exclude_monthly_supporters: Monatliche Unterstützer ausschließen
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Ausschließen von Beobachtern mit Apps
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Einschließen von Beobachtern mit Apps
       assessment:
         description: Beschreibung
       assessment_section:
@@ -8295,6 +8315,7 @@ de:
         equal_to:
           one: muss gleich %{count} sein
           other: muss gleich %{count} sein
+        must_look_like_an_email_address: muss wie eine E-Mail-Adresse aussehen
         even: muss gerade sein
         exclusion: ist reserviert
         greater_than:
@@ -8539,8 +8560,6 @@ de:
             login:
               must_begin_with_a_letter: |
                 muss mit einem Buchstaben beginnen, darf keine Leerzeichen oder andere Zeichen als Buchstaben, Zahlen, Binde- oder Unterstriche enthalten
-            email:
-              must_look_like_an_email_address: muss wie eine E-Mail-Adresse aussehen
               domain_is_not_supported: Domain wird nicht unterstützt
         user_block:
           attributes:

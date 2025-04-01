@@ -1875,6 +1875,8 @@ fr:
   export: Exporter
   export_observations: Exporter les observations
   export_with_private_coordinates: Exporter avec les coordonnées masquées
+  #Notice about when a batch of observations was exported
+  exported_at_datetime: Exporté à %{datetime}
   exporting: "Exportation en cours…"
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -4956,6 +4958,9 @@ fr:
     one: Soumettre 1 observation
     other: Soumettre %{count} observations
   submitted: Enregistré
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: S'abonner
   subscribe_to_a_taxon: S’abonner à un taxon
   subscribe_to_a_place: S’abonner à un lieu
   subscribe_to_comments_on_this_flag_html: "%{tag_start}S'abonner%{tag_end} aux commentaires sur ce signalement"
@@ -5179,6 +5184,8 @@ fr:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Conditions
+  #As in a list of distinct words
+  terminology: Terminologie
   terms_and_rules_html: "Conditions &amp; Règles"
   terms_new_users: "Si vous ajoutez des conditions, les nouveaux utilisateurs devront les accepter avant de se joindre à ce projet."
   terms_service: Conditions d'utilisation
@@ -9025,9 +9032,6 @@ fr:
             login:
               must_begin_with_a_letter: |
                 doit commencer par une lettre, ne pas contenir d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères souligné
-            email:
-              must_look_like_an_email_address: doit ressembler à une adresse courriel
-              domain_is_not_supported: ce domaine n'est pas pris en charge
         user_block:
           attributes:
             base:

@@ -4936,7 +4936,7 @@ es-MX:
   still_needs_id?: '¿La comunidad puede confirmar/mejorar la ID?'
   still_working_on_classifying_taxon: Todavía estamos trabajando en clasificar esta especie o grupo. Regresa a checar más tarde
   stop_editing: Detén la edición
-  stop_following_user: "No sigas más a %{user}"
+  stop_following_user: "Dejar de seguir a %{user}"
   stop_testing: Detener prueba
   stop_trusting_this_person_with_your_private_coordinates: No confiar a esta persona mis coordenadas privadas
   #As in a place to purchase things. We use it as a link to a place where you
@@ -8801,9 +8801,6 @@ es-MX:
             login:
               must_begin_with_a_letter: |
                 tiene que empezar con una letra, no contener espacios y usar sólo letras, números, guiones, y guiones bajos
-            email:
-              must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
-              domain_is_not_supported: el dominio no está soportado
         user_block:
           attributes:
             base:
