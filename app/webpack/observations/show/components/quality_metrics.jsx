@@ -281,7 +281,6 @@ class QualityMetrics extends React.Component {
       observation.taxon
       && observation.taxon.rank_level < 30
     );
-    const mostAgree = observation.identifications_most_agree;
     let locationSpecified = false;
     if ( observation.geojson ) {
       locationSpecified = true;
@@ -372,8 +371,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa icon-identification" />
                 { I18n.t( "has_id_supported_by_two_or_more" ) }
               </td>
-              <td className="agree">{ mostAgree ? checkIcon : null }</td>
-              <td className="disagree">{ mostAgree ? null : xIcon }</td>
+              <td className="agree">{ observation.communityTaxon ? checkIcon : null }</td>
+              <td className="disagree">{ observation.communityTaxon ? null : xIcon }</td>
             </tr>
             <tr className={( dateCells.loading || dateVoteDisabled ) ? "disabled" : ""}>
               <td className="metric_title">
