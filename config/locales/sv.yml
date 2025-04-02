@@ -2804,6 +2804,10 @@ sv:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Logga ut från %{site_name}?"
   log_scale_label: Logaritmisk
+  #Adjectival phrase describing state of being logged in
+  logged_in: Inloggad
+  #Adjectival phrase describing state of being logged out
+  logged_out: Utloggad
   #Status message shown while logging in
   logging_in: Loggar in...
   logo:
@@ -3259,6 +3263,10 @@ sv:
   no_users_found_with_those_filters: Inga användare hittades med dessa filter
   no_wikipedia_page_for_taxon: Ingen Wikipedia-sida för detta taxon.
   noble_curators: "%{site}s ädla förvaltare"
+  #A user who is not a curator
+  non_curator: Icke-förvaltare
+  #A user who does not admin any projects
+  non_project_admin: Icke-projektadministratör
   non_human?: Icke-mänsklig?
   none: Ingen
   none_found: Hittade ingen
@@ -4309,6 +4317,8 @@ sv:
   profile_visibility_desc: |
     I ett försök att hålla spam borta från %{site_name}, är användarprofiler bara offentligt synliga efter att en användare har bidragit med flera fynd av forskningsklass.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Projektadministratör
   project_admins:
     one: Projektadministratör
     other: Projektadministratörer
@@ -6351,6 +6361,10 @@ sv:
         Observera att datumet för användarens senast skapade
         fynd cachelagras, så det kan ta några timmar för målinriktningen
         att få genomslag
+      observation_oauth_application_ids_desc: |
+        CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
+        ett val kommer att visa meddelandet för alla användare oavsett
+        app.
       site_ids_desc: |
         CMD- eller SHIFT-klicka för att välja flera. Att välja "Alla" eller inte göra
         ett val kommer att visa meddelandet för alla användare oavsett
@@ -8685,10 +8699,16 @@ sv:
         exclude_donor_start_date: Exkludera givare startdatum
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exkludera givare slutdatum
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Undanta observatörer från appar
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Inkludera givare startdatum
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Inkludera givare slutdatum
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Ta med observatörer från appar
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP-länder
         #Start of a date range that includes the viewer's most recent observation
