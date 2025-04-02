@@ -448,11 +448,12 @@ describe Identification, "creation" do
           expect( i.user.recent_notifications.detect {| ua | ua.resource == i.observation } ).not_to be_blank
         end
 
+        let( :genus ) { create :taxon, :as_genus }
+        let( :species ) { create :taxon, :as_species, parent: genus }
+        let( :subspecies ) { create :taxon, :as_subspecies, parent: species }
+
         describe "when subscriber doesn't prefers_redundant_identification_notifications" do
           let( :subscriber ) { create :user, prefers_redundant_identification_notifications: false }
-          let( :genus ) { create :taxon, :as_genus }
-          let( :species ) { create :taxon, :as_species, parent: genus }
-
           it "notifies when taxon is an ancestor of the subscriber's identification taxon" do
             subscribers_ident = create :identification, user: subscriber, taxon: species
             obs = subscribers_ident.observation
@@ -481,6 +482,73 @@ describe Identification, "creation" do
               _other_ident = create :identification, observation: obs, taxon: genus
             end
             expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+          end
+        end
+
+        describe "when subscriber doesn't prefers_infraspecies_identification_notifications" do
+          let( :subscriber ) { create :user, prefers_infraspecies_identification_notifications: false }
+          it "notifies when taxon is a species" do
+            subscribers_ident = create :identification, user: subscriber, taxon: genus
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: species
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).not_to be_blank
+          end
+
+          it "does not notify when taxon is a subspecies" do
+            subscribers_ident = create :identification, user: subscriber, taxon: species
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: subspecies
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+          end
+
+          it "does notify when taxon is a subspecies but body present" do
+            subscribers_ident = create :identification, user: subscriber, taxon: species
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            other_ident = after_delayed_job_finishes( ignore_run_at: true ) do
+              create :identification, observation: obs, taxon: subspecies, body: Faker::Lorem.sentence
+            end
+            expect( other_ident.body ).to be_present
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
+          end
+
+          it "does notify when taxon is a subspecies on a different branch than the subscriber's taxon" do
+            other_species = create :taxon, :as_species, parent: genus
+            other_subspecies = create :taxon, :as_subspecies, parent: other_species
+            subscribers_ident = create :identification, user: subscriber, taxon: species
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: other_subspecies
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
+          end
+
+          it "does notify when taxon is a subspecies sister to the subscriber's taxon" do
+            sister_subspecies = create :taxon, :as_subspecies, parent: species
+            subscribers_ident = create :identification, user: subscriber, taxon: subspecies
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: sister_subspecies
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
+          end
+
+          it "does notify when taxon is a subspecies and the subsriber's is a genus" do
+            subscribers_ident = create :identification, user: subscriber, taxon: genus
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              _other_ident = create :identification, observation: obs, taxon: subspecies
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
           end
         end
       end

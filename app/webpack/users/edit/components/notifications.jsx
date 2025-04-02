@@ -5,7 +5,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ToggleSwitchContainer from "../containers/toggle_switch_container";
 
-const Notifications = ( { profile } ) => (
+const Notifications = ( { config, profile } ) => (
   <div className="row">
     <div className="col-xs-12 col-md-10">
       <SettingsItem>
@@ -20,7 +20,7 @@ const Notifications = ( { profile } ) => (
             checked={profile.prefers_receive_mentions}
           />
         </div>
-        <div className="row">
+        <div className="row stacked">
           <div className="col-sm-9">
             <label>{I18n.t( "confirming_ids" )}</label>
             <p className="text-muted">{I18n.t( "confirming_ids_description" )}</p>
@@ -30,6 +30,20 @@ const Notifications = ( { profile } ) => (
             checked={profile.prefers_redundant_identification_notifications}
           />
         </div>
+        { config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
+          <div className="admin">
+            <div className="row">
+              <div className="col-sm-9">
+                <label>{I18n.t( "infraspecies_ids" )}</label>
+                <p className="text-muted">{I18n.t( "infraspecies_ids_description" )}</p>
+              </div>
+              <ToggleSwitchContainer
+                name="prefers_infraspecies_identification_notifications"
+                checked={profile.prefers_infraspecies_identification_notifications}
+              />
+            </div>
+          </div>
+        ) }
       </SettingsItem>
       <SettingsItem>
         <h4>{I18n.t( "email_notifications" )}</h4>
@@ -91,6 +105,9 @@ const Notifications = ( { profile } ) => (
 );
 
 Notifications.propTypes = {
+  config: PropTypes.shape( {
+    currentUser: PropTypes.object
+  } ),
   profile: PropTypes.object
 };
 

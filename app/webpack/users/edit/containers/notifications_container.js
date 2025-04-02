@@ -4,6 +4,7 @@ import Notifications from "../components/notifications";
 
 function mapStateToProps( state ) {
   return {
+    config: state.config,
     profile: state.profile
   };
 }

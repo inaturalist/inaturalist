@@ -1233,7 +1233,7 @@ en:
   confirmation_email_sent_at_datetime: Confirmation email sent at %{datetime}
   # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmed on %{date}
-  confirming_ids: Confirming ID's
+  confirming_ids: Confirming IDs
   confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
   # Label for a button to connect your iNat account to another account, e.g.
   # connecting to Flickr
@@ -2616,6 +2616,17 @@ en:
   inaturalist_applications: "iNaturalist Applications"
   inaturalist_places: "%{site_name} Places"
   info: Info
+  # Title for a preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
+  infraspecies_ids: Infraspecies IDs
+  # Description of preference to control whether you receive notifications about
+  # infraspecies IDs, i.e. identifications of taxa below the species level,
+  # like subspecies
+  infraspecies_ids_description: |
+    If you turn this off, you will no longer be notified about IDs of taxa
+    below species-level (like species and varieties) that agree with your
+    species-level ID. You will be notified if they disagree with your ID.
   input_taxon: Input taxon
   insects: insects
   insect_life_stage: Insect Life Stage

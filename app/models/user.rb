@@ -72,6 +72,7 @@ class User < ApplicationRecord
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
   preference :location_details, :boolean, default: false
   preference :redundant_identification_notifications, :boolean, default: true
+  preference :infraspecies_identification_notifications, :boolean, default: true
   preference :skip_coarer_id_modal, default: false
   preference :hide_observe_onboarding, default: false
   preference :hide_follow_onboarding, default: false

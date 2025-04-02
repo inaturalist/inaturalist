@@ -26,7 +26,7 @@ export function setUserData( userData, savedStatus = "unsaved" ) {
 
 export function fetchUserSettings( savedStatus, relationshipsPage ) {
   return ( dispatch, getState ) => {
-    const { profile, config } = getState( );
+    const { profile } = getState( );
     const params = {
       useAuth: true,
       fields: "all"

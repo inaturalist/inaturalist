@@ -90,15 +90,31 @@ class Identification < ApplicationRecord
     },
     if: lambda {| notifier, subscribable, subscription |
       return true unless notifier && subscribable && subscription
-      return true if subscription.user && subscription.user.prefers_redundant_identification_notifications
+      return false unless subscription.user
+      # Always notify people if someone actually said something
+      return true if notifier.body.present?
 
+      # Subsequent checks all depend on the subscriber's ident
       subscribers_identification = subscribable.identifications.current.detect do | i |
         i.user_id == subscription.user_id
       end
       return true unless subscribers_identification
-      return true unless notifier.body.blank?
 
-      subscribers_identification.taxon_id != notifier.taxon_id
+      # Check for redundancy
+      if !subscription.user.prefers_redundant_identification_notifications &&
+          subscribers_identification.taxon_id == notifier.taxon_id
+        return false
+      end
+
+      # Check for infraspecies preference
+      if !subscription.user.prefers_infraspecies_identification_notifications &&
+          notifier.taxon.rank_level < Taxon::SPECIES_LEVEL &&
+          subscribers_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+          notifier.in_agreement_with?( subscribers_identification )
+        return false
+      end
+
+      true
     }
 
   auto_subscribes :user, to: :observation, if: lambda {| ident, observation |
