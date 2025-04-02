@@ -1234,7 +1234,9 @@ en:
   # Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmed on %{date}
   confirming_ids: Confirming IDs
-  confirming_ids_description: If you turn this off, you will no longer be notified about IDs that agree with yours.
+  confirming_ids_description: |
+    If you turn this off, you will no longer be notified about IDs that agree
+    with yours unless they have additional remarks.
   # Label for a button to connect your iNat account to another account, e.g.
   # connecting to Flickr
   connect: Connect
@@ -2626,7 +2628,8 @@ en:
   infraspecies_ids_description: |
     If you turn this off, you will no longer be notified about IDs of taxa
     below species-level (like species and varieties) that agree with your
-    species-level ID. You will be notified if they disagree with your ID.
+    species-level ID. You will be notified if they disagree with your ID or
+    if they contain additional remarks.
   input_taxon: Input taxon
   insects: insects
   insect_life_stage: Insect Life Stage
