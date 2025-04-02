@@ -551,6 +551,53 @@ describe Identification, "creation" do
             expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
           end
         end
+
+        describe "when subscriber doesn't prefers_non_disagreeing_identification_notifications" do
+          let( :subscriber ) { create :user, prefers_non_disagreeing_identification_notifications: false }
+          it "notifies when taxon descends from subscriber's taxon" do
+            subscribers_ident = create :identification, user: subscriber, taxon: genus
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              create :identification, observation: obs, taxon: species
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
+          end
+
+          it "notifies when taxon is ancestor disagreement with subscriber's taxon" do
+            obs = create :observation, user: subscriber, taxon: species
+            subscribers_ident = obs.identifications.detect {| ident | ident.user_id == subscriber.id }
+            expect( subscribers_ident.taxon ).to eq species
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              create :identification, observation: obs, taxon: genus, disagreement: true
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
+          end
+
+          it "notifies when taxon is on a different branch from subscriber's taxon" do
+            other_species = create :taxon, :as_species, parent: genus
+            subscribers_ident = create :identification, user: subscriber, taxon: species
+            obs = subscribers_ident.observation
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            after_delayed_job_finishes( ignore_run_at: true ) do
+              create :identification, observation: obs, taxon: other_species
+            end
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_present
+          end
+
+          it "does not notify when taxon is an ancestor of subscriber's taxon but ident is not disagreement" do
+            obs = create :observation, user: subscriber, taxon: species
+            subscribers_ident = obs.identifications.detect {| ident | ident.user_id == subscriber.id }
+            expect( subscribers_ident.taxon ).to eq species
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+            other_ident = after_delayed_job_finishes( ignore_run_at: true ) do
+              create :identification, observation: obs, taxon: genus, disagreement: false
+            end
+            expect( other_ident ).not_to be_disagreement
+            expect( subscriber.recent_notifications.detect {| ua | ua.resource == obs } ).to be_blank
+          end
+        end
       end
     end
   end

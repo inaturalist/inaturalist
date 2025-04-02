@@ -1300,6 +1300,7 @@ class UsersController < ApplicationController
       :prefers_no_place,
       :prefers_no_site,
       :prefers_no_tracking,
+      :prefers_non_disagreeing_identification_notifications,
       :prefers_project_added_your_observation_email_notification,
       :prefers_project_curator_change_email_notification,
       :prefers_project_invitation_email_notification,

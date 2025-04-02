@@ -31,7 +31,7 @@ const Notifications = ( { config, profile } ) => (
           />
         </div>
         { config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
-          <div className="admin">
+          <div className="admin admin-lower-right">
             <div className="row">
               <div className="col-sm-9">
                 <label>{I18n.t( "infraspecies_ids" )}</label>
@@ -40,6 +40,16 @@ const Notifications = ( { config, profile } ) => (
               <ToggleSwitchContainer
                 name="prefers_infraspecies_identification_notifications"
                 checked={profile.prefers_infraspecies_identification_notifications}
+              />
+            </div>
+            <div className="row">
+              <div className="col-sm-9">
+                <label>{I18n.t( "non_disagreeing_ancestor_ids" )}</label>
+                <p className="text-muted">{I18n.t( "non_disagreeing_ancestor_ids_description" )}</p>
+              </div>
+              <ToggleSwitchContainer
+                name="prefers_non_disagreeing_identification_notifications"
+                checked={profile.prefers_non_disagreeing_identification_notifications}
               />
             </div>
           </div>

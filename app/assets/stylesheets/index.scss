@@ -1539,6 +1539,21 @@ table .numeric { text-align: center; }
   right: 10px;
   font-weight: bold;
 }
+.admin-lower-right:before {
+  top: inherit;
+  bottom: 10px;
+  right: 10px;
+}
+[dir = "rtl"] {
+  .admin:before {
+    left: reset;
+    right: 10px;
+  }
+  .admin-lower-right:before {
+    left: 10px;
+    right: reset;
+  }
+}
 
 .curatorsonly {
   border-width: 2px;

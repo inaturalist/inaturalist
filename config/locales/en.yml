@@ -3487,6 +3487,19 @@ en:
   no_users_found_with_those_filters: No users found with those filters
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   noble_curators: "%{site}'s Noble Curators"
+  # Title for a preference to control whether you receive notifications about
+  # non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  # someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Non-disagreeing Ancestor IDs
+  # Description of a preference to control whether you receive notifications
+  # about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  # and someone else adds an ID of Mammalia but does not make it a
+  # disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    If you turn this off, you will no longer be notified when someone adds an
+    ID of a taxon that is an ancestor of the taxon from your ID and does not
+    explicitly disagree with the Community Taxon. You will be notified if the
+    ID has additional remarks.
   non_human?: Non-human?
   none: None
   none_found: None found

@@ -114,6 +114,13 @@ class Identification < ApplicationRecord
         return false
       end
 
+      # Check for non-disagreeing preference
+      if !subscription.user.prefers_non_disagreeing_identification_notifications &&
+          !notifier.disagreement? &&
+          notifier.taxon.ancestor_of?( subscribers_identification.taxon )
+        return false
+      end
+
       true
     }
 
