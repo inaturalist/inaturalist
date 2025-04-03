@@ -1016,8 +1016,6 @@ zh-CN:
   confirmation_email_sent_at_datetime: 确认邮件已于 %{datetime} 发送
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 已于%{date}确认
-  confirming_ids: 鉴定确认
-  confirming_ids_description: 如果您关闭此功能，您将不再收到同意您鉴定的通知。
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: 绑定
@@ -1786,7 +1784,8 @@ zh-CN:
   export: 导出
   export_observations: 导出观察记录
   export_with_private_coordinates: 带私有坐标导出
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: 导出于%{datetime}
   exporting: "正在导出……"
   #A third-party app or service the user has authorized to access their iNat
