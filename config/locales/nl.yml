@@ -1106,8 +1106,6 @@ nl:
   confirmation_email_sent_at_datetime: Bevestigings-e-mail verzonden op %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bevestigd op %{date}
-  confirming_ids: Bevestigende ID's
-  confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koppelen
@@ -1899,7 +1897,8 @@ nl:
   export: Exporteren
   export_observations: Waarnemingen exporteren
   export_with_private_coordinates: Exporteer met verborgen coördinaten
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Geëxporteerd op %{datetime}
   exporting: "Aan het exporteren..."
   #A third-party app or service the user has authorized to access their iNat
