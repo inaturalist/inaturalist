@@ -1058,6 +1058,9 @@ de:
   confirmation_email_sent_at_datetime: Bestätigung per E-mail am %{datetime} gesendet
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bestätigt am %{date}
+  confirming_ids: Zustimmende IDs
+  confirming_ids_description: |
+    Wenn du diese Option deaktivierst, wirst du nicht mehr über zustimmende IDs benachrichtigt, es sei denn, sie enthalten zusätzliche Bemerkungen.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Verbinden
@@ -2263,6 +2266,10 @@ de:
   inaturalist_applications: "iNaturalist Anwendungen"
   inaturalist_places: "%{site_name} Gebiete"
   info: Info
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraspezies-IDs
   input_taxon: Taxon eingeben
   insects: Insekten
   insect_life_stage: Entwicklungsstufe (Insekten)
@@ -3094,6 +3101,18 @@ de:
   noble_curators: "%{site}s ehrwürdige Kuratoren"
   #A user who is not a curator
   non_curator: Nicht-Kurator
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Nicht-widersprechende höhere IDs
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Wenn du diese Option deaktivierst, wirst du nicht mehr benachrichtigt, wenn jemand eine
+    ID eines höheren Taxons hinzufügt, das in der gleichen Abstammungslinie mit deiner ID und nicht ausdrücklich dem Gemeinschaftstaxon widersprochen wurde. Du wirst benachrichtigt, wenn die
+    ID zusätzliche Bemerkungen enthält.
   non_human?: Nichtmenschlich?
   #A user who does not admin any projects
   non_project_admin: Nicht-Projekt-Admin
