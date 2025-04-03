@@ -1019,8 +1019,6 @@ fi:
   confirmation_email_sent_at_datetime: Vahvistussähköposti lähetetty osoitteeseen %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Vahvistettu %{date}
-  confirming_ids: Tunnistusten vahvistus
-  confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Yhdistä
@@ -2961,9 +2959,9 @@ fi:
   noble_curators: "%{site}in mahtavat kuraattorit"
   #A user who is not a curator
   non_curator: Ei-kuraattori
+  non_human?: Ei-ihminen?
   #A user who does not admin any projects
   non_project_admin: Ei projektin ylläpitäjä
-  non_human?: Ei-ihminen?
   none: Ei mitään
   none_found: Ei löytynyt
   normal: normaali
