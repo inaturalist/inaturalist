@@ -147,6 +147,9 @@ hu:
   _100_day_trends: Száznapos trend
   _percent_ID_d: "% meghatározott"
   a_community_for_naturalist: Természetbarátok közössége
+  a_default_taxon_name_will_automatically_created: |
+    E taxon tudományos név mezejéből egy alapértelmezett taxonnév lesz létrehozva automatikusan.
+    Amikor kimented ezt az új taxont itt majd más neveket is hozzáadhatsz (népnyelvi nevek, elavult tudományos nevek, stb.).
   a_flag_for_x: "%{x} bejelentés"
   a_member_of_taxon_html: "%{taxon} taxon tagja"
   #Ascending alphabetical sort option. Could be alternatively be translated as
@@ -539,6 +542,8 @@ hu:
   any_license: Bármely
   #Label for an option to show content with photos, sounds, or neither
   any_media: Bármely
+  #Label for an option to show any place
+  any_place: Bárhonnan
   #Label for an option to show content from any project
   any_project: Bármely
   #Label for an option to show content with any quality grade
@@ -680,6 +685,7 @@ hu:
   authority_list:
     iucn_red_list: IUCN Vörös lista
     natureserve: NatureServe
+    cites: CITES
   authorize: Engedélyezés
   #Second-person verb to authorize an application to access an iNat account
   #via Proof Key for Code Exchange (PKCE, https://oauth.net/2/pkce/)
@@ -864,6 +870,7 @@ hu:
   choose_photos_for_this_taxon: Válassz fotókat ehhez a taxonhoz
   choose_photos_to_tag_from_photostream: Címkézéshez válassz fotókat
   choose_rule: Válassz egy szabályt
+  choose_subjects: Alany kiválasztása
   choose_tags: Címke választása
   choose_taxon: Taxon választása
   cid_d_to_genus: Nemzetségszintű közösségi azonosítás
@@ -1316,6 +1323,8 @@ hu:
   default_time_zone_desc: |
     Ez az alapértelmezett időzóna. A végső időzónát a megfigyelés helyétől függően állítjuk be mentésnél.
   defaults_to_your_name_or_username: Alapértelmezetten a neved vagy a felhasználóneved
+  #As in the definition of a word
+  definition: Meghatározás
   definitions: Meghatározások
   delete: Törlés
   delete_all: Összes törlése
@@ -1536,6 +1545,8 @@ hu:
   edited_by_name_some_rights_reserved_html: |
     %{name} módosította, néhány jog fenntartva (%{license})
   editing: Szerkesztés
+  #Title for a page to edit an announcement
+  editing_announcement_x: '%{id} közlemény szerkesztése'
   editing_custom_project_fields_for: Saját projektmező szerkesztése
   editing_observation_field: Az adatmezők szerkesztése
   editing_observation_id: "%{obs_id} megfigyelés módosítása"
@@ -2381,6 +2392,10 @@ hu:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Kijelentkezés innen: %{site_name}?"
   log_scale_label: Logaritmikus
+  #Adjectival phrase describing state of being logged in
+  logged_in: Bejelentkezve
+  #Adjectival phrase describing state of being logged out
+  logged_out: Kijelentkezve
   #Status message shown while logging in
   logging_in: Bejelentkezés...
   logo:
@@ -2571,6 +2586,8 @@ hu:
   more_info_title: További információ
   more_journal_posts: Több hírmondó-bejegyzés
   more_observations: Több megfigyelés
+  #Label for a button or section that shows additional options
+  more_options: További beállítások
   more_photos: További fotók
   more_than_a_week_ago: Több, mint egy hete
   most_agree: legtöbben egyetértenek
@@ -2761,6 +2778,10 @@ hu:
   no_taxa_selected: Nincs taxon kiválasztva!
   no_wikipedia_page_for_taxon: Ennek a taxonnak nincs Wikipedia cikke.
   noble_curators: "%{site} tiszteletbeli kurátorai"
+  #A user who is not a curator
+  non_curator: Nem kurátor
+  #A user who does not admin any projects
+  non_project_admin: Nem projektadmin
   non_human?: Nem vagy ember?
   none: Nincs
   none_found: Nincs találat
@@ -3669,6 +3690,8 @@ hu:
   profile_visibility_desc: |
     Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos tudományos szintű megfigyelést tett közzé.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Projektadmin
   project_admins:
     one: Projekt admin
     other: Projekt adminok
@@ -3687,7 +3710,7 @@ hu:
   project_list_defaults:
     title: "%{owner_name} listája"
   project_curators_added_some_of_your_observations_html: |
-    <a href="%{url}">%{project}</a> kurátorai hozzáadták pár megfigyelésedet
+    <a href="%{url}">%{project}</a> projekt kurátorai felvették megfigyelésedet
   project_members: "%{project} tagok"
   project_members_only: Csak projekttagok
   project_membership_model_description: Nyitott a projekt mindenki számára vagy csak azoknak akiket meghívsz?
@@ -4256,6 +4279,9 @@ hu:
     one: Egy megfigyelés feltöltése
     other: '%{count} megfigyelés feltöltése'
   submitted: Feltöltve
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Feliratkozás
   subscribe_to_a_taxon: Feliratkozás taxonhoz
   subscribe_to_a_place: Feliratkozás területhez
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Feliratkozás%{tag_end} a megjegyzésekre erről a bejelentésről"
@@ -5192,6 +5218,8 @@ hu:
   views:
     views: 'Nézetek'
     announcements:
+      observation_oauth_application_ids_desc: |
+        CMD- vagy SHIFT-kattintással jelölhetsz ki a többet. Az "Összes" kiválasztásával vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, az alkalmazástól függetlenül.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Felhasználók célzása adományozási viselkedésük alapján
@@ -6394,6 +6422,18 @@ hu:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
         prefers_exclude_monthly_supporters: A havi támogatók mellőzése
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Applikáció-specifikus megfigyelők célzása
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Elhelyezés
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: 'Láthatóság: létrehozó (teszteléshez)'
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Cél bejelentkezve
       assessment:
         description: Leírás
       assessment_section:
@@ -6562,6 +6602,7 @@ hu:
         blank: nem lehet üres
         confirmation: nem egyezik a jelszó
         empty: nem lehet üres
+        must_look_like_an_email_address: email címnek kell lennie
         even: páros kell legyen
         exclusion: foglalt
         greater_than:
@@ -6773,8 +6814,6 @@ hu:
             login:
               must_begin_with_a_letter: |
                 betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat
-            email:
-              must_look_like_an_email_address: email címnek kell lennie
               domain_is_not_supported: a domén nem támogatott
         user_block:
           attributes:

@@ -5,6 +5,7 @@ class AnnouncementsController < ApplicationController
   before_action :site_admin_required, except: [:active, :dismiss]
   before_action :load_announcement, only: [:show, :edit, :update, :destroy, :dismiss]
   before_action :load_sites, only: [:new, :edit, :create]
+  before_action :load_oauth_applications, only: [:new, :edit, :create]
 
   layout "bootstrap"
 
@@ -120,6 +121,13 @@ class AnnouncementsController < ApplicationController
 
   def load_sites
     @sites = Site.limit( 100 )
+  end
+
+  def load_oauth_applications
+    @oauth_applications = [OauthApplication.new( id: 0, name: "Web" )] + OauthApplication.where(
+      "official AND scopes LIKE '%write%'"
+    )
+    @oauth_applications.sort_by!( &:name )
   end
 
   def user_agent_client

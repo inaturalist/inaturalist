@@ -2094,7 +2094,8 @@ en:
   export: Export
   export_observations: Export Observations
   export_with_private_coordinates: Export with Hidden Coordinates
-  # Notice about when a batch of observations was exported
+  # Notice about when a batch of observations was exported, e.g. Exported at
+  # 2025-03-06T19:18:56Z
   exported_at_datetime: Exported at %{datetime}
   exporting: "Exporting..."
   # A third-party app or service the user has authorized to access their iNat
@@ -3019,6 +3020,10 @@ en:
   # Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log out of %{site_name}?"
   log_scale_label: Log
+  # Adjectival phrase describing state of being logged in
+  logged_in: Logged in
+  # Adjectival phrase describing state of being logged out
+  logged_out: Logged out
   # Status message shown while logging in
   logging_in: Logging in...
   logo:
@@ -3487,6 +3492,8 @@ en:
   no_users_found_with_those_filters: No users found with those filters
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   noble_curators: "%{site}'s Noble Curators"
+  # A user who is not a curator
+  non_curator: Non-curator
   # Title for a preference to control whether you receive notifications about
   # non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   # someone else adds an ID of Mammalia but does not make it a disagreement.
@@ -3501,6 +3508,8 @@ en:
     explicitly disagree with the Community Taxon. You will be notified if the
     ID has additional remarks.
   non_human?: Non-human?
+  # A user who does not admin any projects
+  non_project_admin: Non-project admin
   none: None
   none_found: None found
   normal: normal
@@ -4600,6 +4609,8 @@ en:
     publicly visible after a user has contributed several Research Grade
     observations.
   project: Project
+  # A user who admin's a project
+  project_admin: Project admin
   project_admins:
     one: Project admin
     other: Project admins
@@ -6784,6 +6795,10 @@ en:
         Note that the creation date of the user's most recently-created
         observation is cached, so it might take a few hours for targeting to
         take effect
+      observation_oauth_application_ids_desc: |
+        CMD- or SHIFT-click to select multiple. Selecting "All" or not making
+        a selection will show the announcement to all users regardless of
+        app.
       site_ids_desc: |
         CMD- or SHIFT-click to select multiple. Selecting "All" or not making
         a selection will show the announcement to all users regardless of
@@ -9874,10 +9889,16 @@ en:
         exclude_donor_start_date: Exclude donor start date
         # End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclude donor end date
+        # iNat client applications that the user must not have made an observation
+        # with to see the announcement
+        exclude_observation_oauth_application_ids: Exclude observers from apps
         # start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Include donor start date
         # End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Include donor end date
+        # iNat client applications that the user must have made an observation
+        # with to see the announcement
+        include_observation_oauth_application_ids: Include observers from apps
         # List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP Countries
         # Start of a date range that includes the viewer's most recent observation

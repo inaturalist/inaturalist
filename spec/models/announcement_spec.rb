@@ -208,6 +208,52 @@ describe Announcement do
       end
     end
 
+    describe "target_curators" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_curators ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target curators" do
+        annc = create :announcement, target_curators: Announcement::YES
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :user, :as_curator ) ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+      end
+
+      it "can target non-curators" do
+        annc = create :announcement, target_curators: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user, :as_curator ) ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+    end
+
+    describe "target_project_admins" do
+      it "defaults to targeting all" do
+        annc = create :announcement
+        expect( annc.target_project_admins ).to eq Announcement::ANY
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+
+      it "can target project admins" do
+        annc = create :announcement, target_project_admins: Announcement::YES
+        expect( annc.targeted_to_user?( nil ) ).to be false
+        expect( annc.targeted_to_user?( create( :project ).user ) ).to be true
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be false
+      end
+
+      it "can target non-project admins" do
+        annc = create :announcement, target_project_admins: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be true
+        expect( annc.targeted_to_user?( create( :project ).user ) ).to be false
+        expect( annc.targeted_to_user?( create( :user ) ) ).to be true
+      end
+    end
+
     describe "min_identifications" do
       it "defaults to targeting all" do
         annc = create :announcement
@@ -345,6 +391,23 @@ describe Announcement do
         obs = create :observation, created_at: 1.day.ago
         expect( annc.targeted_to_user?( obs.user ) ).to be false
       end
+    end
+
+    it "includes and excludes users by observation oauth application ids" do
+      app_to_include = create :oauth_application, official: true
+      app_to_exclude = create :oauth_application, official: true
+      annc = create :announcement,
+        include_observation_oauth_application_ids: [app_to_include.id],
+        exclude_observation_oauth_application_ids: [app_to_exclude.id]
+      include_user = create( :observation, oauth_application: app_to_include ).user
+      exclude_user = create( :observation, oauth_application: app_to_exclude ).user
+      both_user = create :user
+      create :observation, oauth_application: app_to_include, user: both_user
+      create :observation, oauth_application: app_to_exclude, user: both_user
+      expect( annc.targeted_to_user?( include_user ) ).to be true
+      expect( annc.targeted_to_user?( exclude_user ) ).to be false
+      puts "testing both user"
+      expect( annc.targeted_to_user?( both_user ) ).to be false
     end
   end
 

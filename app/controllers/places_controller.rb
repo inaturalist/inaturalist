@@ -602,6 +602,7 @@ class PlacesController < ApplicationController
   def filter_wikipedia_content
     hhtml = Nokogiri::HTML( @decoded )
     hhtml.search( "table[id=toc], table.metadata" ).remove
+    hhtml.css( ".mw-editsection" ).remove
     @decoded = hhtml.to_s
     @decoded.gsub!( /\[\d+\]/, "" )
     @decoded.gsub!( /width:\d+/, "" )

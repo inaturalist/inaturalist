@@ -134,6 +134,8 @@ af:
   amphibians: amfibieë
   android: Android
   animals: Diere
+  #Label for an option to show any place
+  any_place: Enige
   app_owner_application_inelligible: |
     Om 'n aansoek in te dien moet jou rekening minstens 2 maande oud wees en minstens 10 verbeterende identifiserings gemaak het in die afgelope maand.
   appropriate?: Van toepassing?
@@ -348,6 +350,8 @@ af:
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
     adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
+  #Title for a page to edit an announcement
+  editing_announcement_x: Redigeer tans aankondiging %{id}
   email: E-pos
   email_notifications: E-poskennisgewings
   end: Einde
@@ -441,6 +445,10 @@ af:
     pt: Portugees
     pt-BR: Portugees (Brasilië)
     ru: Russies
+  #Adjectival phrase describing state of being logged in
+  logged_in: Aangemeld
+  #Adjectival phrase describing state of being logged out
+  logged_out: Afgemeld
   longitude: Lengtegraad
   low: Laag
   map: Kaart
@@ -466,6 +474,8 @@ af:
   #Button to show more translators, as in people who added translations
   more__context_translators_caps: MEER
   more_caps: MEER
+  #Label for a button or section that shows additional options
+  more_options: Meer opsies
   more_photos: Meer foto's
   next: Volgende
   next_date_short: Volgende
@@ -474,6 +484,10 @@ af:
   next_post_short: Volgende
   next_taxon_short: Volgende
   'no': 'Nee'
+  #A user who is not a curator
+  non_curator: Nie-kurator
+  #A user who does not admin any projects
+  non_project_admin: Nie-projek admin
   none: Geen
   observation: Waarneming
   observation_: waarneming
@@ -568,6 +582,8 @@ af:
   posts: Plasings
   private_: Privaat
   project: Projek
+  #A user who admin's a project
+  project_admin: Projek admin
   project_group_label: Groep
   projects: Projekte
   ranks:
@@ -610,6 +626,9 @@ af:
   start: Begin
   stats: Statistieke
   status: Status
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Inteken
   suggestions: Voorstelle
   taxon: Takson
   taxonomy: Taksonomie
@@ -648,6 +667,54 @@ af:
   yesterday: Gister
   verifiable: Verifieerbaar
   views:
+    announcements:
+      locales_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        Lokaliteit. Die keuse van 'n taal sonder 'n streek sal *nie* teiken
+        plekke met streke, byvoorbeeld as jy Engels gekies het, sal dit nie verskyn nie
+        vir mense wat Engels (VK) gekies het.
+      clients_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        Kliënt.
+      end_desc: |
+        Tyd in jou rekening tydsone wat hierdie aankondiging sal stop
+        Verskyn. Is van toepassing oor tydsones, sodat almal sal ophou sien
+        dit terselfdertyd, nie relatief tot hul plaaslike tyd nie.
+      ip_countries_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        IP-land.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Let daarop dat die skeppingsdatum van die gebruiker se mees onlangse geskep
+        waarneming in die kas geplaas word, so dit kan 'n paar uur neem om te teiken
+        in werking tree
+      observation_oauth_application_ids_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        Toepassing.
+      site_ids_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        webwerf affiliasie.
+      start_desc: |
+        Tyd in jou rekening tydsone wat hierdie aankondiging sal begin
+        Verskyn. Van toepassing oor tydsones, sodat almal sal begin sien
+        dit terselfdertyd, nie relatief tot hul plaaslike tyd nie.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Teiken gebruikers volgens skenkingsgedrag
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Teiken gebruikers volgens identifikasiegedrag
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Teiken gebruikers volgens waarnemingsgedrag
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Teiken gebruikers volgens ander eienskappe
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik hier om 'n bevestigings-e-pos weer te stuur
       #message displayed after users trigger sending a email to confirm their email address
@@ -771,6 +838,45 @@ af:
       Identification: Identifikasie
       Photo: Foto
     attributes:
+      announcement:
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Sluit skenker se begindatum uit
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Sluit skenker se einddatum uit
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Sluit waarnemers van programme uit
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Sluit die begindatum van die skenker in
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Sluit skenker se einddatum in
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Sluit waarnemers van programme in
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-lande
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Laaste obs-begindatum
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Jongste obs-einddatum
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maksimum identifikasies
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min identifikasies
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maksimum waarnemings
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min waarnemings
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Plasing
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Teikenskepper (vir toetsing)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Teiken aangemeld
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Vroegste gebruiker aanmelddatum
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Datum vir die aanmelding van die laaste gebruiker
       assessment:
         description: Beskrywing
       conservation_status:
@@ -800,7 +906,13 @@ af:
         place_id: Plek
     errors:
       messages:
+        must_look_like_an_email_address: moet soos 'n e-posadres lyk
         requires_privilege_interaction: moet 'n bevestigde e-posadres hê om dit te doen
+      models:
+        user:
+          attributes:
+            login:
+              domain_is_not_supported: domein word nie ondersteun nie
   i18n:
     inflections:
       "@gender":

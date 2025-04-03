@@ -2542,6 +2542,10 @@ fi:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Kirjaudu ulos %{site_name}?"
   log_scale_label: Loki
+  #Adjectival phrase describing state of being logged in
+  logged_in: Kirjautunut sisään
+  #Adjectival phrase describing state of being logged out
+  logged_out: Kirjauduttu ulos
   #Status message shown while logging in
   logging_in: Kirjaudutaan sisään...
   logo:
@@ -2955,6 +2959,10 @@ fi:
   no_users_found_with_those_filters: Yhtään käyttäjää ei löytynyt näillä suodattimilla
   no_wikipedia_page_for_taxon: Ei Wikipedia-artikkelia tälle taksonille.
   noble_curators: "%{site}in mahtavat kuraattorit"
+  #A user who is not a curator
+  non_curator: Ei-kuraattori
+  #A user who does not admin any projects
+  non_project_admin: Ei projektin ylläpitäjä
   non_human?: Ei-ihminen?
   none: Ei mitään
   none_found: Ei löytynyt
@@ -3819,6 +3827,8 @@ fi:
   profile_visibility_desc: |
     Roskapostituksen välttämiseksi %{site_name}issa käyttäjäprofiilit tulevat julkisesti näkyville vasta sen jälkeen kun käyttäjä on tehnyt useita tutkimustason havaintoja.
   project: Projekti
+  #A user who admin's a project
+  project_admin: Projektin ylläpitäjä
   project_admins:
     one: Projektin ylläpitäjä
     other: Projektin ylläpitäjät
@@ -5434,6 +5444,9 @@ fi:
   verifiable: Todennettavissa
   views:
     views: 'Näyttökerrat'
+    announcements:
+      observation_oauth_application_ids_desc: |
+        Klikkaa CMD- tai SHIFT-näppäintä valitaksesi useita. Valitsemalla "Kaikki" tai jos et valitse mitään, ilmoitus näytetään kaikille käyttäjille riippumatta sovelluksesta.
     content_freeze:
       content_freeze: Sisällön jäädytys
       during_this_time: |
@@ -5790,6 +5803,8 @@ fi:
         place_guess: Havainnoijan syöttämä paikan kuvaus
         private_latitude: "Yksityinen leveysaste, asetettu jos on havainto yksityinen tai karkeistettu"
         private_longitude: "Yksityinen pituusaste, asetettu jos havainto yksityinen tai piilotettu"
+        geoprivacy: "Onko havainnoija päättänyt karkeistaa koordinaatit tai piilottaa ne. Katso https://help.inaturalist.org/support/solutions/articles/151000169938"
+        quality_grade: Tämän havainnon laatutaso. Katso ohjeista lisätietoja siitä, mitä tämä tarkoittaa. Katso https://help.inaturalist.org/support/solutions/articles/151000169936
         url: URL-osoite havainnolle
         tag_list: Pilkulla erotettu luettelo tunnisteista
       import:
@@ -6846,6 +6861,12 @@ fi:
         #announcement should be shown on
         site_ids: Sivuston tunniste
         prefers_exclude_monthly_supporters: Jätä pois kuukausittaiset tukijat
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Jätä havainnoijat pois sovelluksista
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Sisällytä havainnoijat sovelluksiin
       assessment:
         description: Kuvaus
       assessment_section:
@@ -7179,9 +7200,6 @@ fi:
             login:
               must_begin_with_a_letter: |
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja
-            email:
-              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
-              domain_is_not_supported: verkkotunnusta ei voi käyttää
         user_block:
           attributes:
             base:

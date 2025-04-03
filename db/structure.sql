@@ -408,6 +408,10 @@ CREATE TABLE public.announcements (
     last_observation_end_date date,
     ip_countries text[] DEFAULT '{}'::text[],
     user_id integer,
+    include_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
+    exclude_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
+    target_curators character varying DEFAULT 'any'::character varying,
+    target_project_admins character varying DEFAULT 'any'::character varying,
     target_creator boolean DEFAULT false
 );
 
@@ -1304,7 +1308,8 @@ CREATE TABLE public.deleted_observations (
     observation_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    observation_created_at timestamp without time zone
+    observation_created_at timestamp without time zone,
+    observation_uuid uuid
 );
 
 
@@ -8623,6 +8628,20 @@ CREATE INDEX index_delayed_jobs_on_unique_hash ON public.delayed_jobs USING btre
 
 
 --
+-- Name: index_deleted_observations_on_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deleted_observations_on_observation_id ON public.deleted_observations USING btree (observation_id);
+
+
+--
+-- Name: index_deleted_observations_on_observation_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deleted_observations_on_observation_uuid ON public.deleted_observations USING btree (observation_uuid);
+
+
+--
 -- Name: index_deleted_observations_on_user_id_and_created_at; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11505,7 +11524,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250311191217'),
 ('20250311212144'),
 ('20250311225953'),
+('20250326170449'),
+('20250326190722'),
+('20250326213516'),
 ('20250326223846'),
-('20250327191619');
+('20250327191619'),
+('20250328144900');
 
 

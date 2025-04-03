@@ -8704,9 +8704,6 @@ he:
             login:
               must_begin_with_a_letter: |
                 חייב להתחיל באות, ללא מרווחים, ולהכיל אותיות, ספרות, מקפים וקווים תחתונים בלבד
-            email:
-              must_look_like_an_email_address: חייב להראות כמו כתובת אימייל
-              domain_is_not_supported: הדומיין אינו נתמך
         user_block:
           attributes:
             base:
