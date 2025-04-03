@@ -1014,8 +1014,6 @@ id:
   confirmation_email_sent_at_datetime: Email konfirmasi telah dikirimkan pada %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Dikonfirmasi pada %{date}
-  confirming_ids: ID Konfirmasi
-  confirming_ids_description: Jika Anda mematikan fungsi ini, Anda tidak akan lagi mendapatkan notifikasi mengenai ID yang setuju dengan Anda.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hubungkan
@@ -1802,7 +1800,8 @@ id:
   export: Ekspor
   export_observations: Ekspor Pengamatan
   export_with_private_coordinates: Ekspor dengan Koordinat Tersembunyi
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Diekspor pada %{datetime}
   exporting: "Mengekspor..."
   #A third-party app or service the user has authorized to access their iNat
@@ -3112,9 +3111,9 @@ id:
   noble_curators: "Kurator %{site} Yang Bagus"
   #A user who is not a curator
   non_curator: Nonkurator
+  non_human?: Bukan manusia?
   #A user who does not admin any projects
   non_project_admin: Nonadmin proyek
-  non_human?: Bukan manusia?
   none: Tidak ada
   none_found: Tidak ditemukan
   normal: normal
