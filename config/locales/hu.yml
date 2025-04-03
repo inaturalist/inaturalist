@@ -961,8 +961,6 @@ hu:
   confirmation_email_sent_at_datetime: 'Megerősítő email elküldve ekkor: %{datetime}'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 'Megerősítve ekkor: %{date}'
-  confirming_ids: Egyetértő meghatározások
-  confirming_ids_description: Ha ezt kikapcsolod, nem fogsz értesítéseket kapni azokról a meghatározásokról, amelyek megegyeznek a tiéddel.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Csatlakozás
@@ -2780,9 +2778,9 @@ hu:
   noble_curators: "%{site} tiszteletbeli kurátorai"
   #A user who is not a curator
   non_curator: Nem kurátor
+  non_human?: Nem vagy ember?
   #A user who does not admin any projects
   non_project_admin: Nem projektadmin
-  non_human?: Nem vagy ember?
   none: Nincs
   none_found: Nincs találat
   normal: normál
