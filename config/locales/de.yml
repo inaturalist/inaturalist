@@ -1058,8 +1058,6 @@ de:
   confirmation_email_sent_at_datetime: Bestätigung per E-mail am %{datetime} gesendet
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bestätigt am %{date}
-  confirming_ids: Zustimmende IDs
-  confirming_ids_description: Wenn du dies deaktivierst, wirst du nicht mehr über IDs informiert, die mit deinen übereinstimmen.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Verbinden
@@ -1820,7 +1818,8 @@ de:
   export: Exportieren
   export_observations: Beobachtungen exportieren
   export_with_private_coordinates: Mit versteckten Koordinaten exportieren
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Exportiert am %{datetime}
   exporting: "Exportiere..."
   #A third-party app or service the user has authorized to access their iNat
@@ -3095,9 +3094,9 @@ de:
   noble_curators: "%{site}s ehrwürdige Kuratoren"
   #A user who is not a curator
   non_curator: Nicht-Kurator
+  non_human?: Nichtmenschlich?
   #A user who does not admin any projects
   non_project_admin: Nicht-Projekt-Admin
-  non_human?: Nichtmenschlich?
   none: Keine
   none_found: nichts gefunden
   normal: normal
