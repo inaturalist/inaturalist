@@ -991,8 +991,6 @@ ja:
   confirmation_email_sent_at_datetime: '%{datetime} に確認メールを送信しました'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 確認日:%{date}
-  confirming_ids: IDの確認
-  confirming_ids_description: これをオフにすると、自分と一致するIDについては通知されなくなります。
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: 接続
