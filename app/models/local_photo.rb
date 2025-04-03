@@ -13,12 +13,12 @@ class LocalPhoto < Photo
   FILE_OPTIONS = {
     preserve_files: true,
     styles: {
-      original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator, :metadata_filter ] },
-      large:    { geometry: "1024x1024>", auto_orient: false },
-      medium:   { geometry: "500x500>",   auto_orient: false },
-      small:    { geometry: "240x240>",   auto_orient: false, processors: [ :deanimator ] },
-      thumb:    { geometry: "100x100>",   auto_orient: false, processors: [ :deanimator ] },
-      square:   { geometry: "75x75#",     auto_orient: false, processors: [ :deanimator ] }
+      original: { geometry: "2048x2048>", auto_orient: false, format: :jpg, processors: [ :rotator, :metadata_filter ] },
+      large:    { geometry: "1024x1024>", auto_orient: false, format: :jpg },
+      medium:   { geometry: "500x500>",   auto_orient: false, format: :jpg },
+      small:    { geometry: "240x240>",   auto_orient: false, format: :jpg, processors: [ :deanimator ] },
+      thumb:    { geometry: "100x100>",   auto_orient: false, format: :jpg, processors: [ :deanimator ] },
+      square:   { geometry: "75x75#",     auto_orient: false, format: :jpg, processors: [ :deanimator ] }
     },
     convert_options: {
       original: image_convert_options,
@@ -94,7 +94,7 @@ class LocalPhoto < Photo
   # is the former subclass. Those subclasses don't validate :user
   validates_presence_of :user, unless: :subtype
   validates_attachment_content_type :file, content_type: Photo::MIME_PATTERNS,
-    :message => "must be JPG, PNG, or GIF"
+    :message => "must be JPG, PNG, GIF, HEIC, or HEIF"
 
   attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
 
@@ -199,22 +199,23 @@ class LocalPhoto < Photo
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
   # validates_attachment_size :file, :less_than => 5.megabytes
-  
-  def file=(data)
-    self.file.assign(data)
+
+  def file=( data )
+    self.file.assign( data )
     # uploaded photos need metadata immediately in order to
     # "Sync obs. w/ photo metadata"
-    if data.is_a?(ActionDispatch::Http::UploadedFile)
-      extract_metadata(data.path)
-    end
+    return unless data.is_a?( ActionDispatch::Http::UploadedFile )
+
+    extract_metadata( data.path, data.content_type )
   end
 
-  def extract_metadata(path = nil)
-    return unless file && (path || !file.queued_for_write.blank?)
+  def extract_metadata( path = nil, content_type = nil )
+    return unless file && ( path || !file.queued_for_write.blank? )
+
     extracted_metadata = metadata.to_h.clone || {}
     begin
-      if ( file_path = ( path || file.queued_for_write[:original].path ) )
-        exif_data = ExifMetadata.new( path: file_path, type: file_content_type ).extract
+      if ( file_path = path || file.queued_for_write[:original].path )
+        exif_data = ExifMetadata.new( path: file_path, type: content_type || file_content_type ).extract
         extracted_metadata.merge!( exif_data )
       end
     rescue EXIFR::MalformedImage, EOFError => e

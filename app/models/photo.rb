@@ -46,7 +46,7 @@ class Photo < ApplicationRecord
   MEDIUM = 500
   LARGE = 1024
 
-  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
+  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /heic/i, /heif/i, /octet-stream/]
 
   class MissingPhotoError < StandardError; end
 

@@ -51,6 +51,8 @@ class ExifMetadata
       extract_jpg
     when /png/i
       extract_png
+    else
+      extract_other
     end
     metadata.except( *REJECTED_TAGS )
   rescue Errno::ENOENT, Exiftool::ExiftoolNotInstalled, Exiftool::NoSuchFile, Exiftool::NotAFile => e
@@ -78,6 +80,13 @@ class ExifMetadata
     map_png_dates
     map_png_chunks
     metadata.slice!( *EXIFR::TIFF::TAGS ) # Only tags in existing implementation
+  end
+
+  def extract_other
+    exif = Exiftool.new( path )
+    return unless exif
+
+    self.metadata = exif.to_hash.slice( *EXIFR::TIFF::TAGS )
   end
 
   def extract_xmp( xmp )
