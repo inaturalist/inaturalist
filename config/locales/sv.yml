@@ -1117,8 +1117,6 @@ sv:
   confirmation_email_sent_at_datetime: Bekräftelsemejl skickat vid %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bekräftat den %{date}
-  confirming_ids: Bekräftande bestämningar
-  confirming_ids_description: Om du stänger av detta kommer du inte längre att meddelas om bestämningar som stämmer med din.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koppla
@@ -1916,7 +1914,8 @@ sv:
   export: Exportera
   export_observations: Exportera fynd
   export_with_private_coordinates: Exportera med dolda koordinater
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Exporterad %{datetime}
   exporting: "Exporterar..."
   #A third-party app or service the user has authorized to access their iNat
@@ -3265,9 +3264,9 @@ sv:
   noble_curators: "%{site}s ädla förvaltare"
   #A user who is not a curator
   non_curator: Icke-förvaltare
+  non_human?: Icke-mänsklig?
   #A user who does not admin any projects
   non_project_admin: Icke-projektadministratör
-  non_human?: Icke-mänsklig?
   none: Ingen
   none_found: Hittade ingen
   normal: normal
