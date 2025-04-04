@@ -2270,6 +2270,11 @@ de:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: Infraspezies-IDs
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Wenn du diese Option deaktivierst, wirst du nicht mehr über solche IDs von Taxa unterhalb der Artebene (wie Unterarten und Sorten) benachrichtigt, die mit deiner ID auf Artebene übereinstimmt. Du wirst bei widersprüchlichen IDs benachrichtigt, oder wenn sie zusätzlich Bemerkungen enthalten.
   input_taxon: Taxon eingeben
   insects: Insekten
   insect_life_stage: Entwicklungsstufe (Insekten)
