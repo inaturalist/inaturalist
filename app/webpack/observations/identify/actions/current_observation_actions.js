@@ -294,10 +294,11 @@ function receiveCurrentObservation( observation, others ) {
   } );
 }
 
-function updateCurrentObservation( updates ) {
+function updateCurrentObservation( updates, options = { } ) {
   return Object.assign( { }, {
     type: UPDATE_CURRENT_OBSERVATION,
-    updates
+    updates,
+    observation_id: options.observation_id
   } );
 }
 
@@ -637,7 +638,7 @@ function stopLoadingDiscussionItem( item ) {
   return { type: STOP_LOADING_DISCUSSION_ITEM, item };
 }
 
-export function addAnnotation( controlledAttribute, controlledValue ) {
+export function addAnnotation( controlledAttribute, controlledValue, options = {} ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const newAnnotations = ( state.currentObservation.observation.annotations || [] ).concat( [{
@@ -649,7 +650,10 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
     dispatch( updateSession( {
       prefers_hide_identify_annotations: false
     } ) );
-    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation(
+      { annotations: newAnnotations },
+      { observation_id: state.currentObservation.observation.id }
+    ) );
 
     const payload = {
       resource_type: "Observation",
