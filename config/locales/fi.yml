@@ -2183,6 +2183,14 @@ fi:
   inaturalist_applications: "iNaturalist sovellukset"
   inaturalist_places: "%{site_name} Paikat"
   info: Tiedot
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Jos poistat tämän käytöstä, et enää saa ilmoituksia taksonin tunnistuksista
+    lajitason alapuolelle (kuten alalajit ja lajikkeet), jotka ovat samaa mieltä
+    lajitason tunnistuksen kanssa. Saat ilmoituksen, jos tunnistus on eri mieltä tunnistuksesi kanssa tai
+    jos niissä on lisähuomautuksia.
   input_taxon: Syötä taksoni
   insects: hyönteiset
   insect_life_stage: Hyönteisen elinvaihe
