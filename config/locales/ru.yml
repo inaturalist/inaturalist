@@ -1210,8 +1210,6 @@ ru:
   confirmation_email_sent_at_datetime: Письмо с подтверждением отправлено %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Подтверждено %{date}
-  confirming_ids: Подтверждение ID
-  confirming_ids_description: Если вы отключите эту настройку, вы не будете получать уведомления об идентификациях, подтверждающих вашу идентификацию.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Подключиться
@@ -1982,7 +1980,8 @@ ru:
   export: Экспорт
   export_observations: Экспорт наблюдений
   export_with_private_coordinates: Экспорт со скрытыми координатами
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Экспортировано в %{datetime}
   exporting: "Экспортируется..."
   #A third-party app or service the user has authorized to access their iNat
