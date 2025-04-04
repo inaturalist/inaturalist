@@ -1059,31 +1059,30 @@ class TaxaController < ApplicationController
     end
     # We only need to fetch new data for logged in users and when the cache is empty
     if logged_in? || @description.blank?
-      # Fall back to English wikipedia as a last resort unless the default
+      # Fall back to English wikipedia as a second-to-last resort unless the default
       # Wikipedia describer is already in English
       if I18n.locale.to_s !~ /^en/
         @describers.insert( -2, TaxonDescribers::Wikipedia.new( locale: :en ) )
       end
-      if @taxon.auto_description?
-        if describer_klass = TaxonDescribers.get_describer(params[:from])
-          @describer = describer_klass.new( locale: I18n.locale )
-          @description = @describer.describe( @taxon )
-        else
-          @describers.each do |d|
-            @describer = d
-            @description = begin
-              d.describe(@taxon)
-            rescue OpenURI::HTTPError, Timeout::Error => e
-              nil
-            end
-            break unless @description.blank?
-          end
-        end
-        if @describers.detect {| d | d.is_a?( TaxonDescribers::Wikipedia ) } && @taxon.wikipedia_summary.blank?
-          @taxon.wikipedia_summary( refresh_if_blank: true )
-        end
+      unless @taxon.auto_description?
+        @describers = @describers.reject {| describer | describer.is_a?( TaxonDescribers::Wikipedia ) }
+      end
+      if ( describer_klass = TaxonDescribers.get_describer( params[:from] ) )
+        @describer = describer_klass.new( locale: I18n.locale )
+        @description = @describer.describe( @taxon )
       else
-        @describer = @describers.first
+        @describers.each do | d |
+          @describer = d
+          @description = begin
+            d.describe( @taxon )
+          rescue OpenURI::HTTPError, Timeout::Error
+            nil
+          end
+          break unless @description.blank?
+        end
+      end
+      if @describer.is_a?( TaxonDescribers::Wikipedia ) && @taxon.wikipedia_summary.blank?
+        @taxon.wikipedia_summary( refresh_if_blank: true )
       end
       if @describer
         @describer_url = @describer.page_url( @taxon )
@@ -1093,7 +1092,7 @@ class TaxaController < ApplicationController
       if !@description.blank? && !logged_in?
         Rails.cache.write( key, {
           description: @description,
-          describer:  @describer.describer_name || @describer.name.split( "::" ).last,
+          describer: @describer.describer_name || @describer.name.split( "::" ).last,
           url: @describer_url
         }, expires_in: 1.day )
       end
