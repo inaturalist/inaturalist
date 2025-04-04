@@ -1064,7 +1064,7 @@ class TaxaController < ApplicationController
       if I18n.locale.to_s !~ /^en/
         @describers.insert( -2, TaxonDescribers::Wikipedia.new( locale: :en ) )
       end
-      unless @taxon.auto_description?
+      unless @taxon.shows_wikipedia?
         @describers = @describers.reject {| describer | describer.is_a?( TaxonDescribers::Wikipedia ) }
       end
       if ( describer_klass = TaxonDescribers.get_describer( params[:from] ) )
