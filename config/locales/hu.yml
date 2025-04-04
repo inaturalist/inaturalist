@@ -961,6 +961,9 @@ hu:
   confirmation_email_sent_at_datetime: 'Megerősítő email elküldve ekkor: %{datetime}'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 'Megerősítve ekkor: %{date}'
+  confirming_ids: Egyetértő meghatározások
+  confirming_ids_description: |
+    Ha ezt kikapcsolod, nem kapsz értesítést a tiéddel egyező azonosításokról, hacsak nem tartozik hozzájuk megjegyzés.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Csatlakozás
@@ -2032,6 +2035,10 @@ hu:
   inaturalist_applications: "iNaturalist Alkalmazások"
   inaturalist_places: "%{site_name} területek"
   info: Leírás
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infrafajok azonosításai
   input_taxon: Bemeneti taxon
   insects: rovarok
   insect_life_stage: Rovar életszakasz
@@ -2778,6 +2785,16 @@ hu:
   noble_curators: "%{site} tiszteletbeli kurátorai"
   #A user who is not a curator
   non_curator: Nem kurátor
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Egyező felsőbbszintű azonosítók
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Ha ezt kikapcsolod, nem kap értesítést, ha valaki hozzáad egy olyan azonosítást, amely taxon a te azonosításodnál magasabb szintű és nem mond ellent a Közösségi taxonnak. Értesítést viszont kapsz, ha az azonosításhoz tartozik megjegyzés.
   non_human?: Nem vagy ember?
   #A user who does not admin any projects
   non_project_admin: Nem projektadmin
