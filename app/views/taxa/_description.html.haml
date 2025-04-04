@@ -25,7 +25,7 @@
   - if @description.blank?
     %p.nocontent.meta.center-block
       - if describer_is_wikipedia || @describer.blank?
-        - if @taxon.auto_description?
+        - if @taxon.shows_wikipedia?
           =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
         - else
           =t "views.taxa.show.site_curators_disabled_wikipedia_html", url: @describer_url
@@ -33,7 +33,7 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
-  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) && @taxon.auto_description?
+  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) && @taxon.shows_wikipedia?
     %hr
     .alert.alert-warning.upstacked
       %p
