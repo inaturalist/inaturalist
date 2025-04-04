@@ -10351,6 +10351,12 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+        taxon_change:
+          attributes:
+            base:
+              # Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved:
+                The Life taxon cannot be involved in taxon changes
         taxon_name:
           attributes:
             lexicon:
