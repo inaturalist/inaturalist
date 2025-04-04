@@ -2391,6 +2391,13 @@ nl:
   inaturalist_applications: "iNaturalist Toepassingen"
   inaturalist_places: "%{site_name} Gebieden"
   info: Informatie
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Als je dit uitschakelt wordt je niet langer gewaarschuwd over ID's van taxa
+    onder het soortniveau (zoals ondersoorten en variëteiten) die overeenkomen met je ID op soortniveau. Je wordt op de hoogte gebracht als ze het oneens zijn met jouw ID of
+    als ze aanvullende opmerkingen bevatten.
   input_taxon: Invoer taxon
   insects: insecten
   insect_life_stage: Levensstadium van het insect
