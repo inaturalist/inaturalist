@@ -113,7 +113,7 @@ class Taxon < ApplicationRecord
   before_save :set_iconic_taxon, # if after, it would require an extra save
     :strip_name,
     :capitalize_name,
-    :remove_wikipedia_summary_unless_shows_wikipedia,
+    :remove_wikipedia_summary_unless_auto_description,
     :ensure_parent_ancestry_in_ancestry,
     :unfeature_inactive
   after_save :create_matching_taxon_name,
@@ -1400,7 +1400,7 @@ class Taxon < ApplicationRecord
   end
 
   def wikipedia_summary( options = {} )
-    return unless shows_wikipedia?
+    return unless auto_description?
 
     locale = options[:locale] || I18n.locale
     td = taxon_descriptions.detect {| desc | desc.locale.to_s == locale.to_s }
@@ -1429,7 +1429,7 @@ class Taxon < ApplicationRecord
   end
 
   def set_wikipedia_summary( options = {} )
-    unless shows_wikipedia?
+    unless auto_description?
       update( wikipedia_summary: false )
       taxon_descriptions.destroy_all
       return
@@ -1468,8 +1468,8 @@ class Taxon < ApplicationRecord
     details[:summary]
   end
 
-  def remove_wikipedia_summary_unless_shows_wikipedia
-    self.wikipedia_summary = nil unless shows_wikipedia?
+  def remove_wikipedia_summary_unless_auto_description
+    self.wikipedia_summary = nil unless auto_description?
     true
   end
 
@@ -2565,7 +2565,7 @@ class Taxon < ApplicationRecord
   def self.default_json_options
     {
       methods: [:default_name, :photo_url, :iconic_taxon_name, :conservation_status_name],
-      except: [:delta, :shows_wikipedia, :source_url,
+      except: [:delta, :auto_description, :source_url,
                :source_identifier, :creator_id, :updater_id, :version,
                :featured_at, :auto_photos, :locked],
       include: {

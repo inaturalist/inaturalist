@@ -10039,6 +10039,7 @@ en:
         citation: Citation
       taxon:
         ancestry: Ancestry
+        auto_description: Auto description
         auto_photos: Auto photos
         # Rank down to which all of this taxon's descendants have been added,
         # e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -10066,8 +10067,6 @@ en:
         photos_locked: Photos locked?
         rank: Rank
         rank_level: Rank level
-        # Boolean attribute that controls whether Wikipedia content is shown for this taxon
-        shows_wikipedia: Shows Wikipedia
         source_id: Source ID
         source_identifier: Source identifier
         source_url: Source URL

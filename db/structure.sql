@@ -4768,7 +4768,7 @@ CREATE TABLE public.taxa (
     iconic_taxon_id integer,
     is_iconic boolean DEFAULT false,
     auto_photos boolean DEFAULT true,
-    shows_wikipedia boolean DEFAULT true,
+    auto_description boolean DEFAULT true,
     version integer,
     name_provider character varying(255),
     delta boolean DEFAULT false,
@@ -11529,7 +11529,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250326213516'),
 ('20250326223846'),
 ('20250327191619'),
-('20250328144900'),
-('20250404192042');
+('20250328144900');
 
 
