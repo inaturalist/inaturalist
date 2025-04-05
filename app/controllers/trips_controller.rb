@@ -146,7 +146,7 @@ class TripsController < ApplicationController
           :trip_purposes => {
             :include => {
               :resource => {
-                :except => [:delta, :auto_description, :source_url,
+                :except => [:delta, :shows_wikipedia, :source_url,
                   :source_identifier, :creator_id, :updater_id, :version,
                   :featured_at, :auto_photos, :locked, :wikipedia_summary,
                   :wikipedia_title, :name_provider, :source_id,

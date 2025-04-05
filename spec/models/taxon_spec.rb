@@ -380,11 +380,11 @@ describe Taxon, "updating" do
     expect( taxon.errors ).to be_blank
   end
 
-  describe "auto_description" do
+  describe "shows_wikipedia" do
     it "should remove the wikipedia_summary when it changes to false" do
       t = Taxon.make!( wikipedia_summary: "foo" )
       expect( t.wikipedia_summary ).not_to be_blank
-      t.update( auto_description: false )
+      t.update( shows_wikipedia: false )
       t.reload
       expect( t.wikipedia_summary ).to be_blank
     end
