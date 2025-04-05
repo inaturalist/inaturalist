@@ -1102,6 +1102,7 @@ class TaxaController < ApplicationController
       response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
+    @description&.force_encoding( "UTF-8" )
     respond_to do |format|
       format.html { render partial: "description" }
     end
