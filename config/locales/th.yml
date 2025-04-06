@@ -1429,6 +1429,9 @@ th:
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
   location_unknown: ไม่มีตำแหน่ง
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: ล็อกระดับการขยาย
   language_slash_type: ภาษา / ศัพท์เฉพาะ
   #Large photo size
   large: ใหญ่
@@ -3784,6 +3787,7 @@ th:
         project_icon: ไอคอนโครงการ
         description: คำอธิบาย
         map_type: ประเภทแผนที่
+        zoom_level: ระดับการขยาย
       project_observation:
         user_id: ผู้ส่ง
       place:
@@ -3969,3 +3973,4 @@ th:
   z_to_a: Z ถึง A
   zoom_in: ขยาย
   zoom_out: ย่อ
+  zoom_photo: ขยายรูป
