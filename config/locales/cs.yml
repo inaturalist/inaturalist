@@ -2874,6 +2874,10 @@ cs:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Odhlásit se z %{site_name}?"
   log_scale_label: logaritmické
+  #Adjectival phrase describing state of being logged in
+  logged_in: Přihlášen
+  #Adjectival phrase describing state of being logged out
+  logged_out: Odhlášen
   #Status message shown while logging in
   logging_in: Přihlašování...
   logo:
