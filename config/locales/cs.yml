@@ -1212,8 +1212,6 @@ cs:
   confirmation_email_sent_at_datetime: Potvrzovací e-mail odeslán %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrzeno dne %{date}
-  confirming_ids: Potvrzování ID
-  confirming_ids_description: Pokud toto vypnete, již nebudete upozorňováni na ID, která s vámi souhlasí.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Připojit
@@ -2876,6 +2874,10 @@ cs:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Odhlásit se z %{site_name}?"
   log_scale_label: logaritmické
+  #Adjectival phrase describing state of being logged in
+  logged_in: Přihlášen
+  #Adjectival phrase describing state of being logged out
+  logged_out: Odhlášen
   #Status message shown while logging in
   logging_in: Přihlašování...
   logo:

@@ -1020,7 +1020,8 @@ fi:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Vahvistettu %{date}
   confirming_ids: Tunnistusten vahvistus
-  confirming_ids_description: Jos laitat tämän pois päältä, et saa enää ilmoituksia tunnistuksista, jotka ovat samaa mieltä kanssasi.
+  confirming_ids_description: |
+    Jos poistat tämän käytöstä, et enää saa ilmoitusta tunnistuksista, joiden kanssa olet samaa mieltä, ellei niissä ole lisähuomautuksia.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Yhdistä
@@ -2185,6 +2186,18 @@ fi:
   inaturalist_applications: "iNaturalist sovellukset"
   inaturalist_places: "%{site_name} Paikat"
   info: Tiedot
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Lajia alempien taksonien tunnistukset
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Jos poistat tämän käytöstä, et enää saa ilmoituksia taksonin tunnistuksista
+    lajitason alapuolelle (kuten alalajit ja lajikkeet), jotka ovat samaa mieltä
+    lajitason tunnistuksen kanssa. Saat ilmoituksen, jos tunnistus on eri mieltä tunnistuksesi kanssa tai
+    jos niissä on lisähuomautuksia.
   input_taxon: Syötä taksoni
   insects: hyönteiset
   insect_life_stage: Hyönteisen elinvaihe
@@ -2961,9 +2974,19 @@ fi:
   noble_curators: "%{site}in mahtavat kuraattorit"
   #A user who is not a curator
   non_curator: Ei-kuraattori
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Ylempien taksonien tunnistukset
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Jos poistat tämän käytöstä, et saa enää ilmoituksia, kun joku lisää tunnistuksen taksonista, joka on tunnistamasi taksonin ylätaksoni eikä nimenomaisesti ole eri mieltä taksonin kanssa. Saat ilmoituksen, jos tunnistuksessa on lisähuomautuksia.
+  non_human?: Ei-ihminen?
   #A user who does not admin any projects
   non_project_admin: Ei projektin ylläpitäjä
-  non_human?: Ei-ihminen?
   none: Ei mitään
   none_found: Ei löytynyt
   normal: normaali

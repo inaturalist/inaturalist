@@ -1015,7 +1015,9 @@ id:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Dikonfirmasi pada %{date}
   confirming_ids: ID Konfirmasi
-  confirming_ids_description: Jika Anda mematikan fungsi ini, Anda tidak akan lagi mendapatkan notifikasi mengenai ID yang setuju dengan Anda.
+  confirming_ids_description: |
+    Jika Anda menonaktifkan ini, Anda tidak akan lagi diberi tahu tentang ID yang setuju
+    dengan Anda kecuali mereka memiliki komentar tambahan.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hubungkan
@@ -1802,7 +1804,8 @@ id:
   export: Ekspor
   export_observations: Ekspor Pengamatan
   export_with_private_coordinates: Ekspor dengan Koordinat Tersembunyi
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Diekspor pada %{datetime}
   exporting: "Mengekspor..."
   #A third-party app or service the user has authorized to access their iNat
@@ -2276,6 +2279,10 @@ id:
   inaturalist_applications: "Aplikasi-aplikasi iNaturalist"
   inaturalist_places: "Tempat-tempat %{site_name}"
   info: Informasi
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ID Infraspesies
   input_taxon: Takson Masukan
   insects: serangga
   insect_life_stage: Tahap Kehidupan Serangga
@@ -3112,9 +3119,21 @@ id:
   noble_curators: "Kurator %{site} Yang Bagus"
   #A user who is not a curator
   non_curator: Nonkurator
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: ID Nenek Moyang yang tidak setuju
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Jika Anda menonaktifkan ini, Anda tidak akan lagi diberi tahu saat seseorang menambahkan
+    ID takson yang merupakan nenek moyang takson ID Anda dan tidak setuju secara tidak eksplisit dengan Takson Komunitas. Anda akan diberi tahu jika
+    ID-nya memiliki komentar tambahan.
+  non_human?: Bukan manusia?
   #A user who does not admin any projects
   non_project_admin: Nonadmin proyek
-  non_human?: Bukan manusia?
   none: Tidak ada
   none_found: Tidak ditemukan
   normal: normal
