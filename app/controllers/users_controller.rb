@@ -429,31 +429,39 @@ class UsersController < ApplicationController
     if params[:filter] == "following"
       filters << { terms: { notification: %w(created_observations new_observations) } }
     end
-    
+
     @pagination_updates = current_user.recent_notifications(
-      filters: filters, per_page: 50)
-    @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
-    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
-    obs = UpdateAction.components_of_class(Observation, @updates)
-    taxa = UpdateAction.components_of_class(Taxon, @updates)
-    with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
-    with_user = UpdateAction.components_with_assoc(:user, @updates)
-    Observation.preload_associations( obs, [
-      :comments,
-      { identifications: :moderator_actions },
-      { photos: [:flags, :moderator_actions] }
-    ] )
-    with_taxa += obs.map(&:identifications).flatten
-    with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
-    Taxon.preload_associations(with_taxa, :taxon)
-    taxa += with_taxa.map(&:taxon)
-    Taxon.preload_associations(taxa, { taxon_names: :place_taxon_names })
-    User.preload_associations(with_user, :user)
-    @updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
-    @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
-    respond_to do |format|
+      filters: filters, per_page: 50
+    )
+    @updates = UpdateAction.load_additional_activity_updates( @pagination_updates, current_user.id )
+    UpdateAction.preload_associations( @updates, [:resource, :notifier, :resource_owner] )
+    obs = UpdateAction.components_of_class( Observation, @updates )
+    taxa = UpdateAction.components_of_class( Taxon, @updates )
+    with_taxa = UpdateAction.components_with_assoc( :taxon, @updates )
+    with_user = UpdateAction.components_with_assoc( :user, @updates )
+    Observation.preload_associations( obs,
+      [
+        :comments,
+        { identifications: :moderator_actions },
+        { photos: [:flags, :moderator_actions] }
+      ] )
+    with_taxa += obs.map( &:identifications ).flatten
+    with_user += obs.map( &:identifications ).flatten + obs.map( &:comments ).flatten
+    Taxon.preload_associations( with_taxa, {
+      taxon: {
+        taxon_photos: {
+          photo: [:flags, :moderator_actions]
+        }
+      }
+    } )
+    taxa += with_taxa.map( &:taxon )
+    Taxon.preload_associations( taxa, { taxon_names: :place_taxon_names } )
+    User.preload_associations( with_user, :user )
+    @updates.delete_if {| u | u.resource.nil? || u.notifier.nil? }
+    @grouped_updates = UpdateAction.group_and_sort( @updates, hour_groups: true )
+    respond_to do | format |
       format.html do
-        render :partial => 'dashboard_updates', :layout => false
+        render partial: "dashboard_updates", layout: false
       end
     end
   end
