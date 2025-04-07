@@ -5,7 +5,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ToggleSwitchContainer from "../containers/toggle_switch_container";
 
-const Notifications = ( { config, profile } ) => (
+const Notifications = ( { profile } ) => (
   <div className="row">
     <div className="col-xs-12 col-md-10">
       <SettingsItem>
@@ -30,30 +30,26 @@ const Notifications = ( { config, profile } ) => (
             checked={profile.prefers_redundant_identification_notifications}
           />
         </div>
-        { config.currentUser && config.currentUser.roles.indexOf( "admin" ) >= 0 && (
-          <div className="admin admin-lower-right">
-            <div className="row">
-              <div className="col-sm-9">
-                <label>{I18n.t( "infraspecies_ids" )}</label>
-                <p className="text-muted">{I18n.t( "infraspecies_ids_description" )}</p>
-              </div>
-              <ToggleSwitchContainer
-                name="prefers_infraspecies_identification_notifications"
-                checked={profile.prefers_infraspecies_identification_notifications}
-              />
-            </div>
-            <div className="row">
-              <div className="col-sm-9">
-                <label>{I18n.t( "non_disagreeing_ancestor_ids" )}</label>
-                <p className="text-muted">{I18n.t( "non_disagreeing_ancestor_ids_description" )}</p>
-              </div>
-              <ToggleSwitchContainer
-                name="prefers_non_disagreeing_identification_notifications"
-                checked={profile.prefers_non_disagreeing_identification_notifications}
-              />
-            </div>
+        <div className="row">
+          <div className="col-sm-9">
+            <label>{I18n.t( "infraspecies_ids" )}</label>
+            <p className="text-muted">{I18n.t( "infraspecies_ids_description" )}</p>
           </div>
-        ) }
+          <ToggleSwitchContainer
+            name="prefers_infraspecies_identification_notifications"
+            checked={profile.prefers_infraspecies_identification_notifications}
+          />
+        </div>
+        <div className="row">
+          <div className="col-sm-9">
+            <label>{I18n.t( "non_disagreeing_ancestor_ids" )}</label>
+            <p className="text-muted">{I18n.t( "non_disagreeing_ancestor_ids_description" )}</p>
+          </div>
+          <ToggleSwitchContainer
+            name="prefers_non_disagreeing_identification_notifications"
+            checked={profile.prefers_non_disagreeing_identification_notifications}
+          />
+        </div>
       </SettingsItem>
       <SettingsItem>
         <h4>{I18n.t( "email_notifications" )}</h4>
@@ -115,9 +111,6 @@ const Notifications = ( { config, profile } ) => (
 );
 
 Notifications.propTypes = {
-  config: PropTypes.shape( {
-    currentUser: PropTypes.object
-  } ),
   profile: PropTypes.object
 };
 
