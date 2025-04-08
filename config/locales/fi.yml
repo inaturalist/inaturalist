@@ -6463,8 +6463,6 @@ fi:
         photo_chooser_modal_explanation: |
           Huomaa, että taksonisivulla näkyy kuvia tästä taksonista ja sen jälkeläisistä. Tälle taksonille valitut kuvat näkyvät tosin ensimmäisinä. Ensimmäistä kuvaa käytetään taksonin oletuskuvana kaikkialla sivustolla.
         rare_desc: Harvimmin havaitut uhanalaiset taksonit
-        site_curators_disabled_wikipedia_html: |
-          Sivuston kuraattorit ovat väliaikaisesti estäneet <a href="%{url}">tämän sisällön näyttämisen Wikipediasta</a>. Voit auttaa parantamalla sivua Wikipediassa. Voit myös liputtaa tämän taksonin tuodaksesi sen kuraattorien huomioon.
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
@@ -6975,7 +6973,6 @@ fi:
         url: URL-osoite
         citation: Viittaus
       taxon:
-        auto_description: Automaattinen kuvaus
         auto_photos: Automaattiset kuvat
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktiivinen?
