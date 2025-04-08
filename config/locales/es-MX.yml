@@ -7755,8 +7755,6 @@ es-MX:
           Tenga en cuenta que en la página del taxón se muestran las fotos de este taxón y los de taxa inferiores. Las fotos elegidas para este taxón muestran en primer lugar. La primera foto es la imagen por defecto utilizada en todo el sitio.
         rare_desc: Taxa amenazados menos observados
         rare_in_place_desc_html: Taxa amenazados menos observados en <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Los curadores del sitio han deshabilitado temporalmente <a href="%{url}">este contenido de Wikipedia</a>. Puedes ayudar editando la página en Wikipedia para hacerla apropiada para este taxón o marcando este taxón para llamar la atención de los curadores del sitio.
         trending_desc: Taxa más observados en el último mes
         trending_in_place_desc_html: Taxa más observados en el último mes en <a href="%{url}">%{place}</a>
         wanted_desc: Especies en este taxón que aún no se han observado.
@@ -8461,7 +8459,6 @@ es-MX:
         citation: Bibliografía
       taxon:
         ancestry: Ancestro
-        auto_description: Cargar automáticamente la descripción
         auto_photos: Cargar fotos automáticamente
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
