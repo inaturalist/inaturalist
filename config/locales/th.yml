@@ -771,14 +771,13 @@ th:
   comprehensive?: ครอบคลุมหรือไม่?
   #Name for the statistical model used to determine visual similarity between
   #photos and taxa
-  computer_vision_model: โมเดลคอมพิวเตอร์วิทัศน์
+  computer_vision_model: โมเดลจำแนกภาพด้วยคอมพิวเตอร์
   confidential: ไม่เปิดเผย
   confirm: ยืนยัน
   confirm_membership: ยืนยันการเป็นสมาชิก
   confirm_new_password: ยืนยันรหัสผ่านใหม่
   confirm_now: ยืนยันเลย
   confirm_your_info: ยืนยันข้อมูลของคุณ
-  confirming_ids: การจำแนกที่ยืนยัน
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: เชื่อมต่อ
@@ -1373,6 +1372,8 @@ th:
   identifications: การจำแนก
   inaturalist_global_year_in_review: "ภาพรวม iNaturalist ทั่วโลกในปี %{year}"
   computer_vision_suggestion: แนะนำจากการจำแนกภาพด้วยคอมพิวเตอร์
+  computer_vision_suggestion_desc: |
+    การจำแนกภาพด้วยคอมพิวเตอร์ คือกระบวนการสอนให้คอมพิวเตอร์จดจำรูปแบบในภาพ เราใช้โมเดลจำแนกภาพด้วยคอมพิวเตอร์มาฝึกฝนกับรูปถ่ายของทุกคนแล้วนำมาสร้างเครื่องมือช่วยจำแนกชนิด เช่น การแนะนำชนิดที่ใกล้เคียงโดยอัตโนมัติ และการเปรียบเทียบภาพสิ่งมีชีวิตที่คล้ายกัน สัญลักษณ์นี้จะปรากฏขึ้นมาเมื่อผู้ใช้งานจำแนกชนิดด้วยเครื่องมือนี้โดยไม่ได้จำแนกด้วยตนเอง
   identifiers: ผู้จำแนก
   ids: "การจำแนก"
   ids_made_for_others__title: การจำแนกให้ผู้อื่น
@@ -1428,6 +1429,9 @@ th:
   #English but we switched to "missing" to convey that a complete observation
   #*should* have a location
   location_unknown: ไม่มีตำแหน่ง
+  #Option to lock the zoom level for maps on Identify so the zoom level remains
+  #the same as you move from one observation to another
+  lock_zoom_level: ล็อกระดับการขยาย
   language_slash_type: ภาษา / ศัพท์เฉพาะ
   #Large photo size
   large: ใหญ่
@@ -3783,6 +3787,7 @@ th:
         project_icon: ไอคอนโครงการ
         description: คำอธิบาย
         map_type: ประเภทแผนที่
+        zoom_level: ระดับการขยาย
       project_observation:
         user_id: ผู้ส่ง
       place:
@@ -3968,3 +3973,4 @@ th:
   z_to_a: Z ถึง A
   zoom_in: ขยาย
   zoom_out: ย่อ
+  zoom_photo: ขยายรูป

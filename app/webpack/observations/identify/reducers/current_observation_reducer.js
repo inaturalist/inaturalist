@@ -63,6 +63,14 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
       } );
     }
     case UPDATE_CURRENT_OBSERVATION:
+      // If for some reason we're reducing an attempt to update the current
+      // observation but the request was made when the current observation
+      // was *different*, just bail. Potential workaround for
+      // https://github.com/inaturalist/inaturalist/issues/4478 which I can't
+      // replicate. ~~~~kueda 20250304
+      if ( action.observation_id && action.observation_id !== state.observation.id ) {
+        return state;
+      }
       return Object.assign( {}, state, {
         observation: Object.assign( {}, state.observation, action.updates )
       }, action.updates );

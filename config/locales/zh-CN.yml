@@ -1017,7 +1017,8 @@ zh-CN:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 已于%{date}确认
   confirming_ids: 鉴定确认
-  confirming_ids_description: 如果您关闭此功能，您将不再收到同意您鉴定的通知。
+  confirming_ids_description: |
+    如果您关闭此功能，您将不再收到关于同意您的鉴定的通知，除非他们有额外的评论。
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: 绑定
@@ -1786,7 +1787,8 @@ zh-CN:
   export: 导出
   export_observations: 导出观察记录
   export_with_private_coordinates: 带私有坐标导出
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: 导出于%{datetime}
   exporting: "正在导出……"
   #A third-party app or service the user has authorized to access their iNat
@@ -2256,6 +2258,15 @@ zh-CN:
   inaturalist_applications: "iNaturalist 应用程序"
   inaturalist_places: "%{site_name} 地点"
   info: 信息
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: 物种以下级别鉴定
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    如果您关闭此功能， 您将不再收到与您的物种级鉴定相关的物种以下级别（如亚种和变种）的鉴定通知。 如果他人不同意您的鉴定或包含额外的评论，您将收到通知。
   input_taxon: 输入分类单元
   insects: 昆虫
   insect_life_stage: 昆虫生命阶段
@@ -2639,6 +2650,10 @@ zh-CN:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "登出 %{site_name}？"
   log_scale_label: 日志
+  #Adjectival phrase describing state of being logged in
+  logged_in: 登录
+  #Adjectival phrase describing state of being logged out
+  logged_out: 注销
   #Status message shown while logging in
   logging_in: 登陆中……
   logo:
@@ -3083,7 +3098,21 @@ zh-CN:
   no_users_found_with_those_filters: 没有找到符合过滤规则的用户
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
   noble_curators: "%{site}的知名馆长"
+  #A user who is not a curator
+  non_curator: 非馆长
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: 不同意见的祖先鉴定
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    如果您关闭此功能，当有人添加一个分类单元的鉴定，而该鉴定是您的鉴定中的分类单元的祖先且未明确反对社区分类单元时，您将不再收到通知。如果鉴定有其他备注，您将收到通知。
   non_human?: 非人类？
+  #A user who does not admin any projects
+  non_project_admin: 非项目管理员
   none: 无
   none_found: 未找到
   normal: 一般
@@ -4094,6 +4123,8 @@ zh-CN:
   profile_visibility_desc: |
     为防止在 %{site_name} 上出现垃圾邮件，使用者的个人档案仅在使用者有贡献出数个研究等级的观察后才会公开可见。
   project: 项目
+  #A user who admin's a project
+  project_admin: 项目管理员
   project_admins:
     other: 项目超管
   project_aggregator_filter_error: |
@@ -5988,6 +6019,8 @@ zh-CN:
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         请注意，用户最近创建的观察的创建日期会被缓存，因此定位可能需要几个小时才能生效
+      observation_oauth_application_ids_desc: |
+        按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论是否使用应用软件。
       site_ids_desc: |
         按住 CMD 或 SHIFT 键单击可选择多个。选择“全部”或不进行选择将向所有用户显示公告，无论其属于哪个站点。
       start_desc: |
@@ -7979,10 +8012,16 @@ zh-CN:
         exclude_donor_start_date: 排除捐助者开始日期
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: 排除捐助者结束日期
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: 排除来自应用软件的观察者
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: 包含捐助者开始日期
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: 包含捐助者结束日期
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: 包括来自应用软件的观察者
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP国家
         #Start of a date range that includes the viewer's most recent observation
@@ -7999,6 +8038,8 @@ zh-CN:
         min_observations: 最小观察数
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: 位置
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: 目标创建者（用于测试）
         #Whether or not the announcement is shown to logged in users
         target_logged_in: 目标是否登录
         #Earliest date the viewer can have signed up to see the announcement
@@ -8195,6 +8236,7 @@ zh-CN:
         empty: 不能为空
         equal_to:
           other: 必须等于 %{count}
+        must_look_like_an_email_address: 必须满足电子邮箱格式
         even: 必须是偶数
         exclusion: 已被保留
         greater_than:
@@ -8447,6 +8489,7 @@ zh-CN:
             login:
               must_begin_with_a_letter: |
                 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
+              domain_is_not_supported: 域名不被支持
         user_block:
           attributes:
             base:

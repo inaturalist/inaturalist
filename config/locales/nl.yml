@@ -1107,7 +1107,8 @@ nl:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bevestigd op %{date}
   confirming_ids: Bevestigende ID's
-  confirming_ids_description: Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen.
+  confirming_ids_description: |
+    Als je dit uitschakelt krijg je geen meldingen meer over ID's die de jouwe bevestigen, tenzij ze aanvullende opmerkingen hebben.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koppelen
@@ -1899,7 +1900,8 @@ nl:
   export: Exporteren
   export_observations: Waarnemingen exporteren
   export_with_private_coordinates: Exporteer met verborgen coördinaten
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Geëxporteerd op %{datetime}
   exporting: "Aan het exporteren..."
   #A third-party app or service the user has authorized to access their iNat
@@ -2392,6 +2394,17 @@ nl:
   inaturalist_applications: "iNaturalist Toepassingen"
   inaturalist_places: "%{site_name} Gebieden"
   info: Informatie
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infrasoort ID's
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Als je dit uitschakelt wordt je niet langer gewaarschuwd over ID's van taxa
+    onder het soortniveau (zoals ondersoorten en variëteiten) die overeenkomen met je ID op soortniveau. Je wordt op de hoogte gebracht als ze het oneens zijn met jouw ID of
+    als ze aanvullende opmerkingen bevatten.
   input_taxon: Invoer taxon
   insects: insecten
   insect_life_stage: Levensstadium van het insect
@@ -3233,6 +3246,19 @@ nl:
   no_users_found_with_those_filters: Geen gebruikers gevonden met deze filters
   no_wikipedia_page_for_taxon: Geen Wikipediapagina voor dit taxon
   noble_curators: "%{site}'s Edele Curatoren"
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Niet-oneens zijnde voorouder-ID's
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Als je dit uitschakelt, krijg je geen melding meer wanneer iemand een
+    ID van een taxon dat een voorouder is van het taxon van jouw ID en niet
+    expliciet niet akkoord gaat met het GemeenschapsTaxon. Je wordt op de hoogte gebracht als het 
+    ID aanvullende opmerkingen heeft.
   non_human?: Niet-menselijk?
   none: Geen
   none_found: Niet gevonden

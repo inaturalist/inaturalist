@@ -2628,7 +2628,7 @@ en:
   # like subspecies
   infraspecies_ids_description: |
     If you turn this off, you will no longer be notified about IDs of taxa
-    below species-level (like species and varieties) that agree with your
+    below species-level (like subspecies and varieties) that agree with your
     species-level ID. You will be notified if they disagree with your ID or
     if they contain additional remarks.
   input_taxon: Input taxon
@@ -9082,7 +9082,7 @@ en:
         rare_desc: Least-observed threatened taxa
         rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Site curators have temporarily disabled showing <a href="%{url}">this
+          Site curators have disabled showing <a href="%{url}">this
           content from Wikipedia</a>. You can help by editing the page on
           Wikipedia to make it appropriate for this taxon, or by flagging this
           taxon to bring it to the attention of site curators.
@@ -10039,7 +10039,6 @@ en:
         citation: Citation
       taxon:
         ancestry: Ancestry
-        auto_description: Auto description
         auto_photos: Auto photos
         # Rank down to which all of this taxon's descendants have been added,
         # e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -10067,6 +10066,8 @@ en:
         photos_locked: Photos locked?
         rank: Rank
         rank_level: Rank level
+        # Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Shows Wikipedia
         source_id: Source ID
         source_identifier: Source identifier
         source_url: Source URL
