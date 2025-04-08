@@ -8238,11 +8238,6 @@ hr:
           zadana slika koja se koristi na cijeloj stranici.
         rare_desc: Najmanje opaženi ugroženi taksoni
         rare_in_place_desc_html: Najmanje opaženi ugroženi taksoni u <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Kustosi stranice su privremeno onemogućili prikazivanje <a href="%{url}">ovog
-          sadržaja s Wikipedije</a>. Možete pomoći uređivanjem stranice na
-          Wikipediji kako bi bila prikladna za ovaj takson ili označavanjem ovog
-          taksona kako bi privukli pažnju kustosa stranice.
         trending_desc: Najviše opaženi taksoni u posljednjem mjesecu
         trending_in_place_desc_html: Najviše opaženi taksoni u posljednjem mjesecu u <a href="%{url}">%{place}</a>
         wanted_desc: Vrste u ovom taksonu koje još nisu opažene.
@@ -9083,7 +9078,6 @@ hr:
         citation: Citiranje
       taxon:
         ancestry: Poreklo
-        auto_description: Automatski opis
         auto_photos: Automatske fotografije
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
