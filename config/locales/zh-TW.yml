@@ -6804,8 +6804,6 @@ zh-TW:
           註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
         rare_desc: 最少被觀察到生存受威脅的物種分類
         rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>最少被觀察到生存受威脅的物種分類群
-        site_curators_disabled_wikipedia_html: |
-          網站策展人臨時停用顯示<a href="%{url}">來自維基百科的此內容</a>。您可以透過編輯在維基百科的頁面來協助該適用於此物種分類，或是透過標記此分類來提醒網站策展人留意。
         trending_desc: 在最近一個月的最多觀察物種分類群
         trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
         wanted_desc: 物種分類中尚未被觀察到的物種。
@@ -7348,7 +7346,6 @@ zh-TW:
         url: 網址
         citation: 引用
       taxon:
-        auto_description: 自動描述
         auto_photos: 自動照片
         locked: 已鎖定
         name: 名稱
