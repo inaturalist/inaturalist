@@ -37,31 +37,41 @@ class ObservationFieldsController < ApplicationController
   # GET /observation_fields/1
   # GET /observation_fields/1.xml
   def show
-    respond_to do |format|
+    respond_to do | format |
       format.html do
         @value = params[:value] || "any"
-        scope = ObservationFieldValue.includes(:observation).
-          where(:observation_field_id => @observation_field)
+        scope = ObservationFieldValue.includes( :observation, :observation_field ).
+          where( observation_field_id: @observation_field )
         ofv_scope = scope.order( "observation_field_values.id DESC" )
         ofv_scope = ofv_scope.where( "value = ?", @value ) unless @value == "any"
-        @observation_field_values = ofv_scope.page(params[:page])
-        @observations = @observation_field_values.map{|ofv| ofv.observation}
-        @projects = @observation_field.project_observation_fields.includes(:project).page(1).map(&:project)
+        @observation_field_values = ofv_scope.page( params[:page] )
+        @observations = @observation_field_values.map( &:observation )
+        Observation.preload_associations( @observations,
+          [
+            :user, :sounds,
+            { taxon: :taxon_names },
+            { identifications: :moderator_actions },
+            { photos: [:flags, :file_prefix, :file_extension, :moderator_actions] }
+          ] )
+        ObservationField.preload_associations( @observation_field, {
+          comments: [:user, :flags, :moderator_actions]
+        } )
+        @projects = @observation_field.project_observation_fields.includes( :project ).page( 1 ).map( &:project )
         unless @observation_field.allowed_values.blank?
           @value_counts = scope.
-            where( "value IN (?)", @observation_field.allowed_values.split( "|" ).map(&:strip) ).
+            where( "value IN (?)", @observation_field.allowed_values.split( "|" ).map( &:strip ) ).
             group( "value" ).count
         end
         render layout: "bootstrap"
       end
-      format.json  do
-        extra = params[:extra].to_s.split(',')
-        opts = if extra.include?('counts')
-          {:methods => [:observations_count, :projects_count]}
+      format.json do
+        extra = params[:extra].to_s.split( "," )
+        opts = if extra.include?( "counts" )
+          { methods: [:observations_count, :projects_count] }
         else
           {}
         end
-        render :json => @observation_field.as_json(opts)
+        render json: @observation_field.as_json( opts )
       end
     end
   end
