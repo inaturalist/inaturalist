@@ -7918,11 +7918,6 @@ fr:
           celle par défaut utilisée sur le site.
         rare_desc: Taxons menacés les moins observés
         rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Les responsables du site ont temporairement désactivé l’affichage de <a href="%{url}">ce
-          contenu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
-          Wikipédia en la rendant appropriée à ce taxon, ou en marquant ce
-          taxon pour attirer l’attention des responsables du site.
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois à <a href="%{url}">%{place}</a>
         wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
@@ -8680,7 +8675,6 @@ fr:
         citation: Citation
       taxon:
         ancestry: Généalogie
-        auto_description: Description automatique
         auto_photos: Photos automatiques
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
