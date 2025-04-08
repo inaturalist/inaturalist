@@ -253,6 +253,31 @@ describe LocalPhoto, "to_observation" do
     end
   end
 
+  context "HEIC" do
+    let( :photo ) do
+      photo = build :local_photo
+      photo.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "lupine-oakland.heic" ) )
+      photo.extract_metadata
+      photo
+    end
+
+    it "should set a taxon from tags" do
+      expect( photo.metadata[:dc][:subject] ).to include "Lupinus"
+      taxon = create :taxon, :as_genus, name: "Lupinus"
+      expect( photo.to_observation.taxon ).to eq( taxon )
+    end
+
+    it "should set time_observed_at" do
+      expect( photo.metadata[:date_time_original] ).not_to be_blank
+      expect( photo.to_observation.time_observed_at ).not_to be_blank
+    end
+
+    it "should set description" do
+      expect( photo.metadata[:dc][:description] ).not_to be_blank
+      expect( photo.to_observation.description ).to eq photo.metadata[:dc][:description]
+    end
+  end
+
   context "Dublin Core" do
     it "should set observation fields from machine tags" do
       of = ObservationField.make!( name: "sex", allowed_values: "unknown|male|female",
