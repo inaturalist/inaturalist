@@ -1167,8 +1167,10 @@ $tickmark: 6px;
   }
 }
 
-.loading_spinner {
-  width: 100px;
-  height: 100px;
-  border-width: 10px;
+.Photo {
+  .loading_spinner {
+    width: 100px;
+    height: 100px;
+    border-width: 10px;
+  }
 }

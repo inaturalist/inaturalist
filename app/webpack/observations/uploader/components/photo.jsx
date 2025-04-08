@@ -47,7 +47,7 @@ class Photo extends Component {
       imgSrc = null;
     }
     return (
-      <div>
+      <div className="Photo">
         { connectDragSource(
           <button className={className} onClick={onClick} type="button">
             {
