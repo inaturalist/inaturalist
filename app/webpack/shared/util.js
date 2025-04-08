@@ -1,7 +1,7 @@
 import baseFetch from "cross-fetch";
 import _ from "lodash";
 import moment from "moment-timezone";
-import heic2any from "heic2any";
+import { heicTo } from "heic-to";
 
 // Light wrapper around fetch to ensure credentials are always passed through
 const fetch = ( url, options = {} ) => baseFetch( url, Object.assign( {}, options, {
@@ -70,7 +70,7 @@ function resizeUploadWithCanvas( file, opts, callback ) {
 }
 
 function resizeHeic( file, opts, callback ) {
-  return heic2any( { blob: file, toType: "image/jpeg" } )
+  return heicTo( { blob: file, type: "image/jpeg" } )
     .then( blob => resizeUploadWithCanvas( blob, opts, callback ) )
     .catch( e => {
       console.error( "[DEBUG util.js] failed to convert heic: ", e );
