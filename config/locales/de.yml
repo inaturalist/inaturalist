@@ -7574,11 +7574,6 @@ de:
           das Standardbild sein, das auf der Seite verwendet wird.
         rare_desc: Am wenigsten beobachtete, bedrohte Taxa
         rare_in_place_desc_html: Am seltensten beobachtete, bedrohte Taxa in <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Website-Kuratoren haben es vorübergehend deaktiviert, <a href="%{url}">diesen
-          Inhalt von Wikipedia</a>anzuzeigen. Du kannst helfen, indem du die Seite auf
-          Wikipedia editierst, um es für dieses Taxon geeignet zu machen oder indem du dieses
-          Taxon kennzeichnest, um es den Kuratoren kenntlich zu machen.
         trending_desc: Am meisten beobachtete Taxa im letzten Monat
         trending_in_place_desc_html: Meistbeobachtete Taxa im letzten Monat in <a href="%{url}">%{place}</a>
         wanted_desc: Arten in diesem Taxon, die noch nicht beobachtet wurden.
@@ -8274,7 +8269,6 @@ de:
         citation: Zitierung
       taxon:
         ancestry: Ancestry
-        auto_description: Automatische Beschreibung
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Schutzstatus
         #Datetime this taxon was featured for display on /taxa
