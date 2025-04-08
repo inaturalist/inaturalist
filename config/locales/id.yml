@@ -7639,8 +7639,6 @@ id:
           Ingat bahwa halaman takson akan menampilkan foto-foto takson ini dan turunannya. Namun, foto-foto yang terpilih untuk takson ini akan diperlihatkan pertama. Foto pertama adalah foto standar yang akan digunakan di seluruh situs.
         rare_desc: Taksa terancam yang paling sedikit diamati
         rare_in_place_desc_html: Taksa terancam yang paling sedikit diamati di <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Kurator situs telah mematikan penampilan <a href="%{url}">konten ini dari Wikipedia</a>. Anda dapat membantu mengubah halaman ini di Wikipedia untuk membuatnya patut untuk takson ini, atau menandai takson ini untuk meminta perhatian dari kurator situs.
         trending_desc: Taksa yang paling banyak diamati sejak bulan lalu
         trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
         wanted_desc: Spesies di dalam takson ini yang belum diamati.
@@ -8322,7 +8320,6 @@ id:
         citation: Kutipan
       taxon:
         ancestry: Nenek Moyang
-        auto_description: Deskripsi Otomatis
         auto_photos: Foto Otomatis
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
