@@ -7630,8 +7630,6 @@ he:
           יש לשים לב שעמוד הטקסון יציג תמונות של טקסון זה וצאצאיו, אבל התמונות שנבחרו עבור הטקסון עצמו תוצגנה ראשונות. התמונה הראשונה תהיה ברירת המחדל שייעשה בה שימוש ברחבי האתר.
         rare_desc: הטקסונים בסיכון הכי פחות נצפים
         rare_in_place_desc_html: טקסונים בסיכון הכי פחות נצפים ב<a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          אוצרות ואוצרי האתר השביתו באופן זמני את הצגת <a href="%{url}">תוכן זה מויקיפדיה</a>. באפשרותך לעזור באמצעות עריכת העמוד בויקיפדיה כדי שיתאים לטקסון זה, או דרך סימון טקסון זה להביאו לתשומת הלב של אוצרות ואוצרי האתר.
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
         wanted_desc: מינים בטקסון זה שטרם נצפו.
@@ -8345,7 +8343,6 @@ he:
         citation: מקור ביבליוגרפי
       taxon:
         ancestry: ייחוס
-        auto_description: תיאור אוטומטי
         auto_photos: תמונות אוטומטיות
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
