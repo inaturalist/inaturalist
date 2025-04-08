@@ -6923,8 +6923,6 @@ nb:
           Merk at taksonsiden vil vise bilder av dette taksonet og sine etterkommere. Bildene valgt for dette taksonet vil imidlertid vises først. Det første bildet vil være standardbildet overalt på siden.
         rare_desc: Minst observerte truede taksa
         rare_in_place_desc_html: Minst observerte truede taksa i <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Sidekuratorer har midlertidig slått av visning av <a href="%{url}">dette innholdet fra Wikipedia</a>. Du kan hjelpe ved å redigere siden på Wikipedia for å gjøre den passende for dette taksonet, eller ved å markere dette taksonet for å gjøre sidekuratorene oppmerksom på det.
         trending_desc: Mest-observerte taksa i den siste måneden
         trending_in_place_desc_html: Mest-observerte taksa i den siste måneden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i dette taksonet som ikke har blitt observert ennå.
@@ -7544,7 +7542,6 @@ nb:
         citation: Sitering
       taxon:
         ancestry: Herkomst
-        auto_description: Auto-beskrivelse
         auto_photos: Automatiske bilder
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
