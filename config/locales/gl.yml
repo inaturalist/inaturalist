@@ -5957,8 +5957,6 @@ gl:
           Repara que a páxina do taxon mostrará fotos do taxon e dos descendentes. As fotos escollidas para este taxon aparecerán primeiro. A primeira foto será a foto predeterminada usada por todo o sitio.
         rare_desc: Taxons ameazados menos observados
         rare_in_place_desc_html: Taxons ameazados en <a href="%{url}">%{place}</a> menos observados
-        site_curators_disabled_wikipedia_html: |
-          Os conservadores do sitio interromperon temporalmente a mostra <a href="%{url}">deste contido de Wikipedia</a>. Podes axudar editando a páxina en Wikipedia para facela apropiada para este taxon, ou marcando este taxon para chamar a atención dos conservadores do sitio.
         trending_desc: Taxons máis observados no último mes
         trending_in_place_desc_html: Especies máis observadas no último mes en <a href="%{url}">%{place}</a>
         wanted_desc: Especies neste taxon que non se observaron aínda.
@@ -6490,7 +6488,6 @@ gl:
         url: Enlace
         citation: Bibliografía
       taxon:
-        auto_description: Cargar a descrición automaticamente
         auto_photos: Cargar as fotos automaticamente
         locked: Cadeado
         name: Nome
