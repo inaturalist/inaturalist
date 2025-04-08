@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React from "react";
+// import heic2any from "heic2any";
 import inaturalistjs from "inaturalistjs";
 import * as types from "../constants/constants";
 import DroppedFile from "../models/dropped_file";
@@ -144,6 +145,27 @@ const actions = class actions {
       const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
+
+      // This works to add a preview for some HEIC files, but heic2any is
+      // slow, even for small files, and this blocks all future work while
+      // that happens. We could generate previews asynchronously and update
+      // the files when done, but it's not clear that that would be faster
+      // than just uploading to the server and waiting for its converted
+      // copies. Either way, what we need is a loading state after the file
+      // has been dropped and before a preview is available for browsers
+      // without native heic support (i.e. non-Safari)
+      //
+      // const heicFiles = droppedFiles.filter( f => f.type === "image/heic" || f.type === "image/heif" );
+      // const heicPreviews = await Promise.all( heicFiles.map( async file => {
+      //   const jpegBlob = await heic2any( { blob: file, toType: "image/jpeg" } );
+      //   return { name: file.name, preview: window.URL.createObjectURL( jpegBlob ) };
+      // } ) );
+      // heicPreviews.forEach( preview => {
+      //   const file = droppedFiles.find( f => f.name === preview.name );
+      //   file.preview = preview.preview;
+      // } );
+      // console.log( "[DEBUG actions.jsx] heicPreviews: ", heicPreviews );
+
       droppedFiles.forEach( f => {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );

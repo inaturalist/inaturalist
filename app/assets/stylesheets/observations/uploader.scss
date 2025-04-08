@@ -2,6 +2,7 @@
 @import "../colors";
 @import "../shared/saved_location_chooser";
 @import "../shared/google_maps";
+@import "../shared/loading_spinner";
 
 $obs-card-width: 220px;
 
@@ -1164,4 +1165,10 @@ $tickmark: 6px;
     text-overflow: ellipses;
     width: 250px;
   }
+}
+
+.loading_spinner {
+  width: 100px;
+  height: 100px;
+  border-width: 10px;
 }
