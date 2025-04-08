@@ -211,6 +211,17 @@ describe LocalPhoto, "to_observation" do
           expect( o.time_observed_at_in_zone.hour ).to eq 22
         end
       end
+
+      it "should set time_observed_at for colon-separated date parts" do
+        photo = build(
+          :local_photo,
+          photo_metadata: build(
+            :photo_metadata,
+            metadata: { date_time_original: "2025:02:03 09:51:37" }
+          )
+        )
+        expect( photo.to_observation.time_observed_at ).not_to be_blank
+      end
     end
   end
 

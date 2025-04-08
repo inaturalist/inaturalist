@@ -355,7 +355,11 @@ class LocalPhoto < Photo
       if o.georeferenced?
         o.place_guess = o.system_places.sort_by{|p| p.bbox_area || 0}.map(&:name).join(', ')
       end
-      if capture_time = (metadata[:date_time_original] || metadata[:date_time_digitized])
+      if ( capture_time = metadata[:date_time_original] || metadata[:date_time_digitized] )
+        # Sometimes this value has colon-separated date parts that Ruby won't parse
+        if capture_time.is_a?( String )
+          capture_time.sub!( /(\d{4}):(\d{2}):(\d{2})/, "\\1-\\2-\\3" )
+        end
         o.set_time_zone
         o.time_observed_at = capture_time
         # Force the time to be in the time zone, b/c the value from EXIFR will
@@ -364,7 +368,9 @@ class LocalPhoto < Photo
         # https://github.com/MikeKovarik/exifr/issues/84#issuecomment-1004691190
         o.set_time_in_time_zone
         if o.time_observed_at
-          o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")
+          o.observed_on_string = o.time_observed_at.
+            in_time_zone( o.time_zone || user.time_zone ).
+            strftime( "%Y-%m-%d %H:%M:%S" )
           o.observed_on = o.time_observed_at.to_date
         end
       end
