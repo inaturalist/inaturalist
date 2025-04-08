@@ -73,7 +73,7 @@ function resizeHeic( file, opts, callback ) {
   return heicTo( { blob: file, type: "image/jpeg" } )
     .then( blob => resizeUploadWithCanvas( blob, opts, callback ) )
     .catch( e => {
-      console.error( "[DEBUG util.js] failed to convert heic: ", e );
+      console.error( "Failed to convert heic: ", e );
     } );
 }
 
