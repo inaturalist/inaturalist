@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TaxonChange < ApplicationRecord
   belongs_to :taxon, inverse_of: :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon_change, dependent: :destroy
@@ -14,10 +16,11 @@ class TaxonChange < ApplicationRecord
   after_create :index_taxon
   after_destroy :index_taxon
   after_update :commit_records_later
-  
+
   validates_presence_of :taxon_id
   validate :uniqueness_of_taxa
   validate :uniqueness_of_output_taxa
+  validate :taxa_do_not_include_life
   accepts_nested_attributes_for :source
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
@@ -498,6 +501,15 @@ class TaxonChange < ApplicationRecord
     if taxon_ids.size != taxon_ids.uniq.size
       errors.add(:base, "output taxa must be unique")
     end
+  end
+
+  def taxa_do_not_include_life
+    return unless Taxon::LIFE
+
+    taxon_ids_involved = [taxon_id, taxon_change_taxa.map( &:taxon_id )].flatten.compact
+    return unless taxon_ids_involved.include?( Taxon::LIFE.id )
+
+    errors.add( :base, :life_taxon_cannot_be_involved )
   end
 
   def move_input_children_to_output( target_input_taxon )
