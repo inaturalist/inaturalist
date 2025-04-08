@@ -7589,8 +7589,6 @@ it:
           l'immagine predefinita per tutto il sito.
         rare_desc: Taxa minacciati osservati meno frequentemente
         rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          I curatori del sito hanno temporaneamente disabilitato <a href="%{url}">questo contenuto da Wikipedia</a>. Puoi aiutarci modificando la pagina su Wikipedia per renderla appropriata a questo taxon, o segnalando questo taxon per portarlo all'attenzione dei curatori.
         trending_desc: Taxa più osservati nell'ultimo mese
         trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
         wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
@@ -8254,7 +8252,6 @@ it:
         citation: Citazione
       taxon:
         ancestry: Discendenza
-        auto_description: Carica descrizione automaticamente
         auto_photos: Carica foto automaticamente
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
