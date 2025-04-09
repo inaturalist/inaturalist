@@ -204,7 +204,8 @@ module HasSubscribers
       
       notification ||= options[:notification] || "create"
       users_to_notify = { }
-      users_with_unviewed_from_notifier = Subscription.users_with_unviewed_updates_from(notifier)
+      notifer_updates = UpdateAction.for_notifier( notifier )
+      users_with_unviewed_from_notifier = Subscription.users_with_unviewed_updates_from( notifer_updates )
 
       # give the model a chance to load needed associations in an efficient way
       if options[:before_notify] && options[:before_notify].is_a?( Proc )
@@ -255,32 +256,43 @@ module HasSubscribers
         end
       }
       Observation.connection.transaction do
-        if has_many_reflections.include?(subscribable_association.to_s)
-          notifier.send(subscribable_association).find_each(&updater_proc)
-        elsif reflections.detect{|k,v| k.to_s == subscribable_association.to_s}
-          updater_proc.call(notifier.send(subscribable_association))
+        if has_many_reflections.include?( subscribable_association.to_s )
+          notifier.send( subscribable_association ).find_each( &updater_proc )
+        elsif reflections.detect {| k, _v | k.to_s == subscribable_association.to_s }
+          updater_proc.call( notifier.send( subscribable_association ) )
         elsif subscribable_association == :self
-          updater_proc.call(notifier)
+          updater_proc.call( notifier )
         else
-          subscribable = notifier.send(subscribable_association)
-          if subscribable.is_a?(Enumerable)
-            subscribable.each(&updater_proc)
+          subscribable = notifier.send( subscribable_association )
+          if subscribable.is_a?( Enumerable )
+            # preload subscriptions if there are a smaller number of subscribables
+            if subscribable.length < 100
+              ActiveRecord::Base.preload_associations(
+                subscribable,
+                :update_subscriptions_with_unsuspended_users
+              )
+            end
+            subscribable.each( &updater_proc )
           elsif subscribable
-            updater_proc.call(subscribable)
+            updater_proc.call( subscribable )
           end
         end
       end
-      if users_to_notify.length > 0
-        users_to_notify.each do |subscribable, user_ids|
-          action_attrs = {
-            resource: subscribable,
-            notifier: notifier,
-            notification: notification
-          }
-          if action = UpdateAction.first_with_attributes(action_attrs)
-            action.append_subscribers( user_ids )
-          end
-        end
+      return if users_to_notify.empty?
+
+      users_to_notify.each do | subscribable, user_ids |
+        action_attrs = {
+          resource: subscribable,
+          notifier: notifier,
+          notification: notification
+        }
+        action = UpdateAction.first_with_attributes(
+          action_attrs,
+          candidate_update_actions: notifer_updates
+        )
+        next unless action
+
+        action.append_subscribers( user_ids )
       end
     end
 
