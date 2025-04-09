@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import UserText from "../../../shared/components/user_text";
 
+import HeaderWithMoreLink from "./header_with_more_link";
+
 const News = ( { project } ) => {
   if ( !project.posts_loaded ) {
     return ( <div className="loading_spinner huge" /> );
@@ -11,12 +13,9 @@ const News = ( { project } ) => {
   const noNews = _.isEmpty( project.posts ) || _.isEmpty( project.posts.results );
   return (
     <div className="News">
-      <h2>
+      <HeaderWithMoreLink href={`/projects/${project.slug}/journal`}>
         { I18n.t( "journal" ) }
-        <a href={`/projects/${project.slug}/journal`} aria-label={I18n.t( "view_more" )}>
-          <i className="fa fa-arrow-circle-right" />
-        </a>
-      </h2>
+      </HeaderWithMoreLink>
       { noNews ? (
         <div className="empty-text">
           { I18n.t( "no_journal_posts_yet" ) }

@@ -1677,3 +1677,15 @@ $tip-opacity: 1;
     }
   }
 }
+
+.HeaderWithMoreLink {
+  display: flex;
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .btn {
+    line-height: 0;
+  }
+}

@@ -1,9 +1,11 @@
+/* global TIMEZONE */
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
-/* global TIMEZONE */
+
+import HeaderWithMoreLink from "./header_with_more_link";
 
 function dateToString( date, spansYears = false ) {
   let format;
@@ -271,19 +273,12 @@ const Requirements = ( {
     );
   return (
     <div className="Requirements">
-      <h2>
+      <HeaderWithMoreLink
+        onClick={( ) => setSelectedTab( "about" )}
+        nolink={!includeArrowLink}
+      >
         { I18n.t( "project_requirements" ) }
-        { includeArrowLink && (
-          <button
-            type="button"
-            className="btn btn-nostyle"
-            onClick={( ) => setSelectedTab( "about" )}
-            aria-label={I18n.t( "about_this_project" )}
-          >
-            <i className="fa fa-arrow-circle-right" />
-          </button>
-        ) }
-      </h2>
+      </HeaderWithMoreLink>
       { requirementContents }
     </div>
   );

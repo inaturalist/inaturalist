@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import QualityGradePieChart from "./quality_grade_pie_chart";
 
+import HeaderWithMoreLink from "./header_with_more_link";
+
 const OverviewStats = ( { project, setSelectedTab } ) => {
   if ( !project.quality_grade_counts_loaded ) {
     return ( <div className="loading_spinner" /> );
@@ -11,17 +13,9 @@ const OverviewStats = ( { project, setSelectedTab } ) => {
   if ( _.isEmpty( project.quality_grade_counts.results ) ) { return ( <div /> ); }
   return (
     <Col xs={4}>
-      <h2>
+      <HeaderWithMoreLink onClick={( ) => setSelectedTab( "stats" )}>
         { I18n.t( "stats" ) }
-        <button
-          type="button"
-          className="btn btn-nostyle"
-          onClick={( ) => setSelectedTab( "stats" )}
-          aria-label={I18n.t( "view_more" )}
-        >
-          <i className="fa fa-arrow-circle-right" />
-        </button>
-      </h2>
+      </HeaderWithMoreLink>
       <QualityGradePieChart project={project} />
     </Col>
   );
