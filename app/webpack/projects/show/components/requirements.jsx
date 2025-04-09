@@ -75,7 +75,8 @@ const Requirements = ( {
         { r.user.login }
       </a>
     ) );
-  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any_project" )
+  const projectRules = _.isEmpty( project.projectRules )
+    ? I18n.t( "any_project" )
     : _.map( _.sortBy( project.projectRules, r => r.project.title ), r => (
       <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
         { r.project.title }
@@ -156,7 +157,7 @@ const Requirements = ( {
     );
   }
   let projectsRequirement;
-  if ( !_.isEmpty( projectRules ) || !_.isEmpty( projectRules ) ) {
+  if ( !_.isEmpty( project.projectRules ) || !_.isEmpty( project.notProjectRules ) ) {
     projectsRequirement = (
       <tr>
         <td className="param">
