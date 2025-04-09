@@ -1563,7 +1563,7 @@ class Observation < ApplicationRecord
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
     elsif community_taxon_id && voted_out_of_needs_id?
-      if community_taxon_below_family?
+      if community_taxon_below_family? && community_taxon == taxon
         RESEARCH_GRADE
       else
         CASUAL
