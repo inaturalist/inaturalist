@@ -6,6 +6,7 @@ import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
 import HeaderWithMoreLink from "./header_with_more_link";
+import PartialDetails from "./partial_details";
 
 function dateToString( date, spansYears = false ) {
   let format;
@@ -25,7 +26,8 @@ function dateToString( date, spansYears = false ) {
 const Requirements = ( {
   project, setSelectedTab, includeArrowLink, config
 } ) => {
-  const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" )
+  const taxonRules = _.isEmpty( project.taxonRules )
+    ? I18n.t( "all_taxa_" )
     : _.map( _.sortBy( project.taxonRules, r => r.taxon.name ), r => (
       <SplitTaxon
         key={`project-taxon-rules-${r.id}`}
@@ -178,9 +180,48 @@ const Requirements = ( {
       </tr>
     );
   }
-  const requirementContents = project.hasInsufficientRequirements( )
-    ? I18n.t( "views.projects.show.this_project_has_not_defined_requirements" )
-    : (
+  let requirementContents = I18n.t( "views.projects.show.this_project_has_not_defined_requirements" );
+  if ( !project.hasInsufficientRequirements( ) ) {
+    const taxaContent = (
+      <>
+        { taxonRules }
+        { exceptTaxonRules && (
+          <div className="except">
+            <div className="bold">
+              { I18n.t( "except" ) }
+            </div>
+            { exceptTaxonRules }
+          </div>
+        ) }
+      </>
+    );
+    const locationContent = (
+      <>
+        { locationRules }
+        { exceptLocationRules && (
+          <div className="except">
+            <div className="bold">
+              { I18n.t( "except" ) }
+            </div>
+            { exceptLocationRules }
+          </div>
+        ) }
+      </>
+    );
+    const userContent = (
+      <>
+        { userRules }
+        { exceptUserRules && (
+          <div className="except">
+            <div className="bold">
+              { I18n.t( "except" ) }
+            </div>
+            { exceptUserRules }
+          </div>
+        ) }
+      </>
+    );
+    requirementContents = (
       <div>
         <div className="section-intro">
           { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
@@ -193,15 +234,14 @@ const Requirements = ( {
                 { I18n.t( "taxa" ) }
               </td>
               <td className="value">
-                { taxonRules }
-                { exceptTaxonRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptTaxonRules }
-                  </div>
-                ) }
+                {
+                  (
+                    Number( project?.taxonRules?.length )
+                    + Number( project?.notTaxonRules?.length ) > 3
+                  )
+                    ? <PartialDetails>{taxaContent}</PartialDetails>
+                    : taxaContent
+                }
               </td>
             </tr>
             <tr>
@@ -210,15 +250,14 @@ const Requirements = ( {
                 { I18n.t( "location" ) }
               </td>
               <td className="value location-rules">
-                { locationRules }
-                { exceptLocationRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptLocationRules }
-                  </div>
-                ) }
+                {
+                  (
+                    Number( project?.placeRules?.length )
+                    + Number( project?.notPlaceRules?.length ) > 3
+                  )
+                    ? <PartialDetails>{locationContent}</PartialDetails>
+                    : locationContent
+                }
               </td>
             </tr>
             <tr>
@@ -227,15 +266,14 @@ const Requirements = ( {
                 { I18n.t( "users" ) }
               </td>
               <td className="value">
-                { userRules }
-                { exceptUserRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptUserRules }
-                  </div>
-                ) }
+                {
+                  (
+                    Number( project?.userRules?.length )
+                    + Number( project?.notUserRules?.length ) > 3
+                  )
+                    ? <PartialDetails>{userContent}</PartialDetails>
+                    : userContent
+                }
               </td>
             </tr>
             { projectsRequirement }
@@ -272,6 +310,7 @@ const Requirements = ( {
         </table>
       </div>
     );
+  }
   return (
     <div className="Requirements">
       <HeaderWithMoreLink
