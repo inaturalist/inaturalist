@@ -13,7 +13,7 @@ const News = ( { project } ) => {
     <div className="News">
       <h2>
         { I18n.t( "journal" ) }
-        <a href={`/projects/${project.slug}/journal`}>
+        <a href={`/projects/${project.slug}/journal`} aria-label={I18n.t( "view_more" )}>
           <i className="fa fa-arrow-circle-right" />
         </a>
       </h2>

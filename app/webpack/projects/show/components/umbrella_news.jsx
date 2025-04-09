@@ -16,30 +16,32 @@ const UmbrellaNews = ( { project } ) => {
         <Col xs={12}>
           <h2>
             { I18n.t( "journal" ) }
-            <a href={ `/projects/${project.slug}/journal` }>
+            <a href={`/projects/${project.slug}/journal`} aria-label={I18n.t( "view_more" )}>
               <i className="fa fa-arrow-circle-right" />
             </a>
           </h2>
         </Col>
       </Row>
-      { noNews ?
-        (
+      { noNews
+        ? (
           <div className="empty-text">
-            { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
+            { I18n.t( "no_journal_posts_yet" ) }
+            .
+            { I18n.t( "check_back_soon" ) }
           </div>
         ) : (
           <div>
             <Row className="posts">
               { _.map( project.posts.results, post => (
-                <Col xs={ 4 } className="post" key={ `post_${post.id}` }>
-                  <a href={ `/projects/${project.slug}/journal/${post.id}` }>
+                <Col xs={4} className="post" key={`post_${post.id}`}>
+                  <a href={`/projects/${project.slug}/journal/${post.id}`}>
                     <div className="date">{ moment( post.published_at ).format( "LL - LT" ) }</div>
                     <div className="title">{ post.title }</div>
                     <div className="body">
                       <UserText
-                        text={ post.body }
-                        truncate={ 120 }
-                        moreToggle={ false }
+                        text={post.body}
+                        truncate={120}
+                        moreToggle={false}
                         stripWhitespace
                       />
                     </div>
@@ -49,25 +51,21 @@ const UmbrellaNews = ( { project } ) => {
             </Row>
             <Row>
               <Col xs={12}>
-                <a href={ `/projects/${project.slug}/journal` }>
-                  <button className="btn-green" >
+                <a href={`/projects/${project.slug}/journal`}>
+                  <button type="button" className="btn-green">
                     { I18n.t( "view_all" ) }
                   </button>
                 </a>
               </Col>
             </Row>
           </div>
-        )
-      }
+        )}
     </Grid>
   );
 };
 
 UmbrellaNews.propTypes = {
-  config: PropTypes.object,
-  project: PropTypes.object,
-  leaders: PropTypes.array,
-  type: PropTypes.string
+  project: PropTypes.object
 };
 
 export default UmbrellaNews;

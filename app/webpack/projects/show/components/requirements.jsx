@@ -86,8 +86,10 @@ const Requirements = ( {
       </a>
     ) );
   const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
-    : _.map( _.keys( project.rule_quality_grade ),
-      q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
+    : _.map(
+      _.keys( project.rule_quality_grade ),
+      q => I18n.t( q === "research" ? "research_grade" : `${q}_` )
+    ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {
     media.push( I18n.t( "photo" ) );
@@ -129,9 +131,10 @@ const Requirements = ( {
         </td>
         <td className="value">
           <a href={`/observations?term_id=${project.rule_term_id}`}>
-            { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
-              { default: project.rule_term_id_instance.label } )
-            }
+            { I18n.t(
+              `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
+              { default: project.rule_term_id_instance.label }
+            )}
           </a>
           { project.rule_term_value_id_instance && (
             <span className="term-value">
@@ -139,9 +142,10 @@ const Requirements = ( {
                 &rarr;
               </span>
               <a href={`/observations?term_id=${project.rule_term_id}&term_value_id=${project.rule_term_value_id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
-                  { default: project.rule_term_value_id_instance.label } )
-                }
+                { I18n.t(
+                  `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
+                  { default: project.rule_term_value_id_instance.label }
+                )}
               </a>
             </span>
           )}
@@ -263,7 +267,8 @@ const Requirements = ( {
             { annotationRequirement }
           </tbody>
         </table>
-      </div> );
+      </div>
+    );
   return (
     <div className="Requirements">
       <h2>
@@ -273,6 +278,7 @@ const Requirements = ( {
             type="button"
             className="btn btn-nostyle"
             onClick={( ) => setSelectedTab( "about" )}
+            aria-label={I18n.t( "about_this_project" )}
           >
             <i className="fa fa-arrow-circle-right" />
           </button>
