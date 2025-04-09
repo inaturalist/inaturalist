@@ -7918,6 +7918,11 @@ fr:
           celle par défaut utilisée sur le site.
         rare_desc: Taxons menacés les moins observés
         rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Les gestionnaires du site ont désactivé l’affichage de <a href="%{url}">ce
+          contenu issu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
+          Wikipédia pour qu'il corresponde à ce taxon, ou en signalant ce 
+          taxon pour le porter à l’attention des gestionnaires du site.
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois à <a href="%{url}">%{place}</a>
         wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
@@ -8702,6 +8707,8 @@ fr:
         photos_locked: Photos verrouillées ?
         rank: Rang
         rank_level: Niveau de rang
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Affiche Wikipédia
         source_id: ID source
         source_identifier: Identifiant source
         source_url: URL source
