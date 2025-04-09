@@ -57,7 +57,7 @@ class ExifMetadata
       extract_jpg
     when /png/i
       extract_png
-    else
+    when /hei[cf]/i
       extract_other
     end
     metadata.except( *REJECTED_TAGS )
