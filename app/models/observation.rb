@@ -3333,29 +3333,36 @@ class Observation < ApplicationRecord
     if target_taxon.rank_level.blank? || target_taxon.rank_level.to_i > Taxon::GENUS_LEVEL
       return false
     end
-    place = system_places.detect do |p|
+
+    place = system_places.detect do | p |
       [
         Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
       ].include?( p.admin_level )
     end
     return false unless place
+
     base_filters = [
       { term: { "taxon.ancestor_ids.keyword": target_taxon.id } },
       { term: { "place_ids.keyword": place.id } },
     ]
-    count_captive = Observation.elastic_search(
-      filters: base_filters + [{ term: { captive: true } }],
-      size: 0,
-      track_total_hits: true
-    ).results.total_entries
-    count_wild = Observation.elastic_search(
-      filters: base_filters + [{ term: { captive: false } }],
-      size: 0,
-      track_total_hits: true
-    ).results.total_entries
+    captive_count_buckets = Observation.elastic_search(
+      filters: base_filters,
+      aggs: {
+        captive_counts: {
+          filters: {
+            filters: {
+              captive: { term: { captive: true } },
+              wild: { term: { captive: false } }
+            }
+          }
+        }
+      },
+      size: 0
+    ).response.aggregations["captive_counts"]["buckets"]
+    count_captive = captive_count_buckets["captive"]["doc_count"]
+    count_wild = captive_count_buckets["wild"]["doc_count"]
     total = count_captive + count_wild
     ratio = count_captive.to_f / total
-    # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
     total > 10 && ratio >= 0.8
   end
 
