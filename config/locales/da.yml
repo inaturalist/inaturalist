@@ -8345,10 +8345,10 @@ da:
         rare_desc: Mindst observerede truede taksa
         rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Sidekuratorer har midlertidigt deaktiveret visning af <a href="%{url}"> dette
-          indhold fra Wikipedia </a>. Du kan hjælpe ved at redigere siden på
-          Wikipedia for at gøre det passende for denne takson, eller ved at markere denne
-          takson for at bringe det til kendskab til sidekuratorer.
+          Webstedskuratører har deaktiveret visning af <a href="%{url}">dette
+          indhold fra Wikipedia</a>. Man kan hjælpe ved at redigere siden på
+          Wikipedia for at gøre den passende for denne takson, eller ved at markere
+          denne takson for at gøre kuratorerne opmærksomme herpå.
         trending_desc: Mest observerede taksa i den sidste måned
         trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
@@ -9150,7 +9150,6 @@ da:
         citation: Citation
       taxon:
         ancestry: Herkomst
-        auto_description: Auto. beskrivelse
         auto_photos: Auto. foto´s
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -9178,6 +9177,8 @@ da:
         photos_locked: Fotos låst?
         rank: Rang
         rank_level: Rangeringsniveau
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Viser Wikipedia
         source_id: 'Kilde-ID:'
         source_identifier: Kilde identifikator
         source_url: Kilde URL

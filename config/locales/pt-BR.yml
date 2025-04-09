@@ -1108,6 +1108,10 @@ pt-BR:
   confirmation_email_sent_at_datetime: E-mail de confirmação enviado em %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmado em %{date}
+  confirming_ids: IDs de confirmação
+  confirming_ids_description: |
+    Se você desativar esta opção, você não mais será notificado sobre IDs que concordem com
+    com as suas, a menos que elas tenham comentários adicionais.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Conectar
@@ -2407,6 +2411,10 @@ pt-BR:
   inaturalist_applications: "Aplicativos do iNaturalist"
   inaturalist_places: "%{site_name} Lugares"
   info: Informação
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: IDs de infraspecies
   input_taxon: Táxon de entrada
   insects: insetos
   insect_life_stage: Estágio de Vida de Inseto
@@ -3240,7 +3248,24 @@ pt-BR:
   no_users_found_with_those_filters: Nenhum usuário encontrado com esses filtros
   no_wikipedia_page_for_taxon: Nenhuma página da Wikipédia foi encontrada para este táxon.
   noble_curators: "Nobres Coordenadores de %{site}"
+  #A user who is not a curator
+  non_curator: Não é curador
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: IDs de Ancestrais Não Discordantes
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Se você desativar essa opção, você não mais será notificado quando alguém adicionar como ID
+    um táxon que é um ancestral do táxon da sua ID, não
+    explicitamente discordante do táxon comunitário. Você será notificado se a ID
+    tiver comentários adicionais.
   non_human?: Não-humano?
+  #A user who does not admin any projects
+  non_project_admin: Não é administrador de projeto
   none: Nenhum
   none_found: Não encontrado
   normal: normal
@@ -4291,6 +4316,8 @@ pt-BR:
     publicamente visível após um usuário ter contribuído com vários Graus de Pesquisa
     observações.
   project: Projeto
+  #A user who admin's a project
+  project_admin: Administrador de projeto
   project_admins:
     one: Administrador do projeto
     other: Administradores do projeto
@@ -6323,6 +6350,9 @@ pt-BR:
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Notar que a data de criação da observação mais recentemente criada pelo usuário é armazenada em cache, então pode levar algumas horas até que o direcionamento tenha efeito
+      observation_oauth_application_ids_desc: |
+        Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
+        a todos os usuários, sem considerar app.
       site_ids_desc: |
         Clique em CMD ou SHIFT para selecionar vários. Selecionar "Todos" ou não selecionar mostrará o anúncio
         a todos os usuários, independentemente do site de afiliação.
@@ -7951,7 +7981,7 @@ pt-BR:
         rare_desc: Táxons ameaçados menos observados
         rare_in_place_desc_html: Táxons ameaçados menos observados <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Os curadores do site desativaram temporariamente a exibição <a href="%{url}">de conteúdo da Wikipédia</a>. Você pode ajudar editando a página na Wikipédia para torná-lo apropriado para este táxon, ou sinalizando o táxon para chamar a atenção dos curadores do site.
+          Os curadores do site desativaram a exibição <a href="%{url}">de conteúdo da Wikipédia</a>. Você pode ajudar editando a página na Wikipedia para torná-la apropriada para este táxon, ou sinalizando o táxon para chamar a atenção dos curadores do site.
         trending_desc: Táxons mais observados no último mês
         trending_in_place_desc_html: Táxons mais observados no último mês <a href="%{url}">%{place}</a>
         wanted_desc: Espécies deste táxon que ainda não foram observadas.
@@ -8587,10 +8617,16 @@ pt-BR:
         exclude_donor_start_date: Exclui data de início do doador
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Exclui data de término do doador
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Excluir observadores dos apps
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Inclui data de início do doador
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Inclui data de término do doador
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Incluir observadores dos apps
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Paises do IP
         #Start of a date range that includes the viewer's most recent observation
@@ -8725,7 +8761,6 @@ pt-BR:
         citation: Citação
       taxon:
         ancestry: Ancestral
-        auto_description: Descrição automática
         auto_photos: Carregar as fotos automaticamente
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8753,6 +8788,8 @@ pt-BR:
         photos_locked: Fotos bloqueadas?
         rank: Posição
         rank_level: Nível de classificação
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Exibe Wikipedia
         source_id: ID de origem
         source_identifier: Identificador de fonte
         source_url: URL de origem

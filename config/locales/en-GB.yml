@@ -1262,6 +1262,9 @@ en-GB:
   favorite_taxa: Favourite Taxa
   favorites: "Favourites"
   header_your_favorites: Your Favourites
+  momentjs:
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone: "D MMM YYYY · LT z"
   no_favorites_added:
     current_user: You haven't added favourites yet.
     user: "%{user} hasn't added favourites."

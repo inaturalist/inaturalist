@@ -7907,7 +7907,7 @@ nl:
         rare_desc: Minst waargenomen bedreigde taxa
         rare_in_place_desc_html: Minst waargenomen bedreigde taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Sitecuratoren hebben tijdelijk de weergave van <a href="%{url}">deze inhoud van Wikipedia</a> uitgeschakeld. Je kunt helpen door de pagina in Wikipedia te bewerken om het geschikt te maken voor dit taxon, of door dit taxon te melden om het onder de aandacht van sitecuratoren te brengen.
+          Sitecuratoren hebben de weergave van <a href="%{url}">deze inhoud van Wikipedia</a> uitgeschakeld. Je kunt helpen door de pagina in Wikipedia te bewerken om het geschikt te maken voor dit taxon, of door dit taxon te melden om het onder de aandacht van sitecuratoren te brengen.
         trending_desc: Meest waargenomen taxa gedurende de laatste maand
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
@@ -8624,7 +8624,6 @@ nl:
         citation: Citaat
       taxon:
         ancestry: Voorouders
-        auto_description: Auto Beschrijving
         auto_photos: Auto fotos
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8652,6 +8651,8 @@ nl:
         photos_locked: Foto's vergrendeld?
         rank: Rang
         rank_level: Hiërarchie niveau
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Toont Wikipedia
         source_id: Bron ID
         source_identifier: Bron-id
         source_url: Bron-URL

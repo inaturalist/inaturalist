@@ -7953,7 +7953,8 @@ ru:
         rare_desc: Наименее наблюдаемые таксоны, находящиеся под угрозой исчезновения
         rare_in_place_desc_html: Наименее наблюдаемые таксоны, находящиеся под угрозой исчезновения в <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Кураторы сайта временно отключили показ <a href="%{url}">этого контента из Википедии</a>. Вы можете помочь, отредактировав страницу в Википедии, сделав её подходящей для этого таксона, или пометить это таксон, чтобы довести это до сведения кураторов сайта.
+          Кураторы сайта отключили показ <a href="%{url}">этого
+          контента из Википедии</a>. Вы можете помочь, отредактировав страницу Википедии, чтобы сделать её подходящей для этого таксона, или пометить этот таксон, чтобы обратить на него внимание кураторов сайта.
         trending_desc: Наиболее наблюдаемые таксоны за последний месяц
         trending_in_place_desc_html: Наиболее наблюдаемые таксоны за последний месяц в <a href="%{url}">%{place}</a>
         wanted_desc: Виды этого таксона пока не наблюдались.
@@ -8703,7 +8704,6 @@ ru:
         citation: Ссылка
       taxon:
         ancestry: Предки
-        auto_description: Автоматическое описание
         auto_photos: Автоматические фото
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8731,6 +8731,8 @@ ru:
         photos_locked: Фото заблокированы?
         rank: Ранг
         rank_level: Уровень ранга
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Показать в Википедии
         source_id: 'ID источника:'
         source_identifier: Идентификатор источника
         source_url: URL источника

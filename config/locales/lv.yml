@@ -6504,8 +6504,6 @@ lv:
           Taksona lapā rādīsies taksona un tā zemāku pakāpju fotogrāfijas. Paša taksona fotogrāfijas būs redzamas pirmās. Pati pirmā redzamā fotogrāfija ir noklusējuma fotogrāfija, kas tiek lietota visā vietnē.
         rare_desc: Vismazāk novēroto apdraudēto sugu
         rare_in_place_desc_html: Vismazāk novērotie taksoni, kas ir apdraudēti no <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Vietnes pārziņi uz laiku atspējojuši <a href="%{url}">šo Vikipēdijas saturu</a>. Tu vari palīdzēt atrisināt šo problēmu, rediģējot šo Vikipēdijas lapu tā, lai tā būtu piemērota noteiktajam taksonam. Vēl iespējams pievienot taksonam karodziņu, lai iegūtu vietnes pārziņu uzmanību.
         trending_desc: Pēdējā mēnesī visnovērotākie taksoni
         trending_in_place_desc_html: Pēdējā mēnesī visnovērotākie taksoni no <a href="%{url}">%{place}</a>
         wanted_desc: Taksona sugas vēk nav nekad novērotas.
@@ -7104,7 +7102,6 @@ lv:
         citation: Citāts
       taxon:
         ancestry: Priekštecība
-        auto_description: Autom. apraksta pievienošana
         auto_photos: Autom. fotogrāfijas
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect

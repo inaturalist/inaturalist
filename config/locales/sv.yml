@@ -8097,8 +8097,6 @@ sv:
           Observera att taxonsidan kommer att visa bilder av detta taxon och dess barn. Utvalda bilder för detta taxon kommer dock att visas först. Den första bilden kommer att vara den standardbild som används på webbplatsen.
         rare_desc: Minst observerade hotade taxa
         rare_in_place_desc_html: Minst observerade hotade taxa i <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Webbplatsens förvaltare har tillfälligt inaktiverat visning av <a href="%{url}">detta innehåll från Wikipedia</a>. Du kan hjälpa till genom att redigera sidan på Wikipedia och göra den lämplig för detta taxon, eller genom att flagga detta taxon för att uppmärksamma webbplatsen förvaltare på det.
         trending_desc: Mest observerade taxa senaste månaden
         trending_in_place_desc_html: Mest observerade taxa senaste månaden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i detta taxon som ännu inte har observerats
@@ -8844,7 +8842,6 @@ sv:
         citation: Citering
       taxon:
         ancestry: Ursprung
-        auto_description: Automatisk beskrivning
         auto_photos: Automatiska bilder
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
