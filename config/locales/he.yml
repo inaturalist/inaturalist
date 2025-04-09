@@ -2797,6 +2797,8 @@ he:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "להתנתק מ%{site_name}?"
   log_scale_label: יומן
+  #Adjectival phrase describing state of being logged out
+  logged_out: מנותק.ת
   #Status message shown while logging in
   logging_in: מתחבר...
   logo:
@@ -3241,6 +3243,8 @@ he:
   no_users_found_with_those_filters: לא נמצאו יוזרים במסננים ההם
   no_wikipedia_page_for_taxon: אין ערך בויקיפידיה לטקסון זה.
   noble_curators: "האוצרות והאוצרים של %{site}"
+  #A user who is not a curator
+  non_curator: לא אוצר.ת
   non_human?: לא בן אדם?
   none: אף לא אחד
   none_found: לא נמצא דבר
@@ -6861,6 +6865,41 @@ he:
         place_admin2_name: שם המקום האדמיניסטרטיבי שתי רמות מתחת לרמת המדינה
         positioning_method: כיצד נקבעו הקואורדינטות
         positioning_device: מכשיר המשמש לקביעת קואורדינטות
+        place_town_name: |
+          שם הישוב המכיל את קואורדינטות התצפית הזו, אם הן ידועות
+        taxon_form_name: |
+          שם המופע הטקסונומי המכיל את הטקסון הנצפה
+        taxon_genushybrid_name: |
+          שם הסוג ההיברידי הטקסונומי המכיל את הטקסון הנצפה
+        taxon_hybrid_name: |
+          שם ההיבריד הטקסונומי המכיל את הטקסון הנצפה
+        taxon_order_name: |
+          שם הסדרה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_phylum_name: |
+          שם המערכה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_subclass_name: |
+          שם תת-המחלקה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_subfamily_name: |
+          שם תת-המשפחה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_suborder_name: |
+          שם תת-הסדרה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_subphylum_name: |
+          שם תת-המערכה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_subspecies_name: |
+          שם תת-המין הטקסונומי המכיל את הטקסון הנצפה
+        taxon_subtribe_name: |
+          שם תת-השבט הטקסונומי המכיל את הטקסון הנצפה
+        taxon_superclass_name: |
+          שם העל-מחלקה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_superfamily_name: |
+          שם העל-משפחה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_superorder_name: |
+          שם העל-סדרה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_supertribe_name: |
+          שם העל-שבט הטקסונומי המכיל את הטקסון הנצפה
+        uuid: |
+          מזהה ייחודי אוניברסלי לתצפית. ראו
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "סימון כל התצפיות בדף כתצפיות שנסקרו"
         you_reviewed_message: "סקרת %{reviewed} מתוך %{pageTotal} תצפיות בדף הזה, מתוך %{total} תצפיות תואמות."
@@ -8231,6 +8270,18 @@ he:
         prefers_target_unconfirmed_users: להראות למשתמשים לא מאושרים
         prefers_exclude_monthly_supporters: למעט תומכות ותומכים חודשיים
         clients: לקוחות
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP מדינות
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: תאריך התחלת תצפית אחרונה
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: תאריך סיום תצפית אחרונה
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: מקסימום זיהויים
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: מינימום זיהויים
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: מינימום תצפיות
       assessment:
         description: תיאור
       assessment_section:
