@@ -7486,6 +7486,8 @@ zh-CN:
           请注意，分类单元页面将显示此分类单元及其后代的照片。然而，为这个分类选择的照片将首先显示。第一张照片将是整个网站使用的默认图片。
         rare_desc: 最少观察到受威胁的分类群
         rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>中观察到最少的受威胁的分类群
+        site_curators_disabled_wikipedia_html: |
+          站点馆长关闭了显示<a href="%{url}">来自维基百科的这一内容</a>。你可以通过编辑维基百科页面来让其符合对该分类单元的描述，或者对这一分类单元进行标记，吸引站点馆长来处置。
         trending_desc: 上个月观察到最多的分类群
         trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
         wanted_desc: 此分类中尚未观察到的物种。
@@ -8183,6 +8185,8 @@ zh-CN:
         photos_locked: 照片被锁定？
         rank: 分类阶层
         rank_level: 等级级别
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: 显示维基百科
         source_id: 来源ID
         source_identifier: 来源标识符
         source_url: 来源URL
