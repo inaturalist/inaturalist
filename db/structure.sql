@@ -8964,10 +8964,10 @@ CREATE INDEX index_identifications_on_created_at ON public.identifications USING
 
 
 --
--- Name: index_identifications_on_observation_id_and_created_at; Type: INDEX; Schema: public; Owner: -
+-- Name: index_identifications_on_observation_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_identifications_on_observation_id_and_created_at ON public.identifications USING btree (observation_id, created_at);
+CREATE INDEX index_identifications_on_observation_id ON public.identifications USING btree (observation_id);
 
 
 --
@@ -11530,6 +11530,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250326223846'),
 ('20250327191619'),
 ('20250328144900'),
-('20250404192042');
+('20250404192042'),
+('20250409212827');
 
 
