@@ -412,7 +412,8 @@ CREATE TABLE public.announcements (
     exclude_observation_oauth_application_ids integer[] DEFAULT '{}'::integer[],
     target_curators character varying DEFAULT 'any'::character varying,
     target_project_admins character varying DEFAULT 'any'::character varying,
-    target_creator boolean DEFAULT false
+    target_creator boolean DEFAULT false,
+    excludes_non_site boolean DEFAULT false
 );
 
 
@@ -11531,6 +11532,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250327191619'),
 ('20250328144900'),
 ('20250404192042'),
-('20250409212827');
+('20250409212827'),
+('20250410213850');
 
 
