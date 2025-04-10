@@ -4,6 +4,7 @@
 @import "../users/user_popover";
 @import "../shared/taxon_photo";
 @import "../shared/flash_message";
+@import "../shared/linear_gradient";
 @import "../shared/modals";
 @import "../shared/flag_an_item";
 @import "./observations_grid";
@@ -955,7 +956,8 @@ a {
         font-size: 17px;
       }
     }
-    td.value {
+    td.value,
+    td.value .preview {
       .display-name {
         font-weight: 700;
       }
@@ -1674,6 +1676,49 @@ $tip-opacity: 1;
       text-overflow: ellipsis;
       width: auto;
       overflow: hidden;
+    }
+  }
+}
+
+.HeaderWithMoreLink {
+  display: flex;
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .btn {
+    line-height: 0;
+  }
+}
+
+.PartialDetails {
+  .preview {
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+  }
+  &.less {
+    .preview:after {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      height: 50px;
+      @include linearGradient(transparent, rgb(248, 248, 248));
+    }
+  }
+  &.more {
+    .preview {
+      height: 100%;
+    }
+  }
+  .toggle {
+    i {
+      font-size: 10px;
+      margin-inline-start: 3px;
+      position: relative;
+      top: -2px;
     }
   }
 }
