@@ -12,13 +12,14 @@ import {
 
 function mapStateToProps( state ) {
   const props = {
+    config: state.config,
+    groupedPhotos: state.photos.groupedPhotos,
+    grouping: state.config.grouping,
     hasMorePhotos: false,
     layout: state.config.layout,
-    grouping: state.config.grouping,
-    groupedPhotos: state.photos.groupedPhotos,
     params: state.photos.observationParams,
     place: state.config.chosenPlace,
-    config: state.config
+    taxon: state.taxon.taxon
   };
   props.terms = Object.assign( { }, state.taxon.fieldValues || { } );
   // set props for selected term/value
