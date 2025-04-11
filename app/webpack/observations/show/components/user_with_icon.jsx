@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import UserImage from "../../../shared/components/user_image";
+import UserLink from "../../../shared/components/user_link";
 
 const UserWithIcon = ( {
   hideSubtitle,
@@ -38,7 +39,7 @@ const UserWithIcon = ( {
       </div>
       <div className="title-subtitle">
         <div className="title">
-          <a href={`/people/${user.login}`}>{ user.login }</a>
+          <UserLink user={user} uniqueKey={`UserWithIcon-${user.id}`} />
         </div>
         { !hideSubtitle && (
           <div className="subtitle">{ subtitleLink }</div>

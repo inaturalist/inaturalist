@@ -2454,3 +2454,38 @@ $header-line-height: 34px;
 .flex-grow-1 {
   flex-grow: 1 !important;
 }
+
+$periwinkle-filter: invert(49%) sepia(19%) saturate(1060%) hue-rotate(188deg) brightness(86%) contrast(87%);
+
+.btn-inativersary,
+.bootstrap .btn-inativersary {
+  position: relative;
+  top: -0.2em;
+  margin-inline-start: 3px;
+  line-height: 0;
+  img {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -1px;
+    filter: $periwinkle-filter;
+    margin-inline: 3px;
+  }
+  i.fa {
+    font-size: 14px;
+  }
+}
+
+.InativersaryOverlay {
+  .contents {
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    img {
+      width: 100px;
+      height: 100px;
+      filter: $periwinkle-filter;
+      margin-inline-end: 20px;
+    }
+  }
+}
