@@ -270,6 +270,7 @@ function fetchPhotosGroupedByParam( param, values ) {
         params[param] = groupName;
       } else {
         groupName = value.controlled_value.label;
+        groupObject = value.controlled_value;
         params.term_id = parseInt( value.controlled_attribute.id, 10 );
         params.term_value_id = parseInt( value.controlled_value.id, 10 );
       }
