@@ -30,10 +30,10 @@
             %label=t "views.messages.to"
             .user-field
               = image_tag User.new.icon.url(:thumb), class: "usericon", data: { original_src: User.new.icon.url(:thumb) }
-              %input.user_name.form-control{ type: "text", placeholder: t(:start_typing_someones_name) }
+              %input.user_name.form-control{ type: "text", placeholder: t(:start_typing_someones_name), required: true }
             = f.hidden_field :to_user_id
-        = f.text_field :subject
-        = f.text_area :body
+        = f.text_field :subject, required: true
+        = f.text_area :body, required: true
 
         .buttonrow
           = f.submit t(:send).capitalize, :class => "btn btn-primary", "data-loading-click" => t(:sending)
