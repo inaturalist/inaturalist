@@ -343,12 +343,15 @@ class Announcement < ApplicationRecord
     end
 
     # Remove non-site announcements if some announcements target sites
-    announcement_target_site = announcements.detect {| annc | annc.site_ids.present? }
+    announcement_target_site = announcements.detect do | annc |
+      annc.site_ids.present? && annc.excludes_non_site
+    end
     if announcement_target_site
       announcements = announcements.select do | annc |
         annc.site_ids.present?
       end
     end
+
     announcements.sort_by do | a |
       [
         a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
