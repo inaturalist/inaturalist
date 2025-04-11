@@ -208,7 +208,7 @@ class ComputerVisionEvalApp extends Component {
         activeClassName="hover"
         disableClick
         disablePreview
-        accept="image/*"
+        accept="image/jpeg,image/png,image/gif"
         multiple={false}
       >
         <nav className="navbar navbar-default">

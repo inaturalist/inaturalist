@@ -274,6 +274,7 @@ class ObsCardComponent extends Component {
               type="button"
               className="btn-close"
               onClick={confirmRemoveObsCard}
+              aria-label={I18n.t( "remove" )}
             >
               <Glyphicon glyph="remove" />
             </button>
