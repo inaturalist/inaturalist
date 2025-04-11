@@ -6,12 +6,24 @@ import {
   Popover
 } from "react-bootstrap";
 
-const Inativersary = ( { uniqueKey, user } ) => {
+const Inativersary = ( {
+  date: dateProp,
+  text: textProp,
+  uniqueKey,
+  user
+} ) => {
   const joinDate = moment( user.created_at );
-  const now = moment( );
-  const isInativersary = ( joinDate.month() === now.month() && joinDate.day() === now.day() );
+  const date = moment( dateProp ); // default to now
+  const isInativersary = ( joinDate.month() === date.month() && joinDate.day() === date.day() );
   if ( !isInativersary ) return null;
   if ( !window.location.search.match( /test=inativersary/ ) ) return null;
+
+  const text = textProp || (
+    `
+      It's ${user.name || user.login}'s iNativersary!
+      As of today they've been on iNat for ${date.year() - joinDate.year()} years!
+    `
+  );
 
   return (
     <OverlayTrigger
@@ -27,9 +39,7 @@ const Inativersary = ( { uniqueKey, user } ) => {
           <div className="contents">
             <img src="/assets/walrus.svg" alt="iNativersary" className="inativersary" />
             <div>
-              { `It's ${user.name || user.login}'s iNativersary!` }
-              &nbsp;
-              { `As of today they've been on iNat for ${now.year() - joinDate.year()} years!` }
+              { text }
               &nbsp;
               <span>Why is there a walrus? Reasons.</span>
             </div>
@@ -50,6 +60,8 @@ const Inativersary = ( { uniqueKey, user } ) => {
 };
 
 Inativersary.propTypes = {
+  date: PropTypes.string,
+  text: PropTypes.string,
   uniqueKey: PropTypes.string,
   user: PropTypes.object
 };

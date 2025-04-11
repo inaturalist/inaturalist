@@ -14,6 +14,7 @@ import LazyLoad from "react-lazy-load";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
+import Inativersary from "../../../shared/components/inativersary";
 import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import UserWithIcon from "./user_with_icon";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
@@ -357,6 +358,12 @@ class App extends React.Component {
                         <Col xs={6}>
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                           {this.displayDateObserved( )}
+                          <Inativersary
+                            user={observation.user}
+                            date={observation.observed_on}
+                            uniqueKey="DateObserved"
+                            text={`${observation.user.login} observed this on their iNativersary!`}
+                          />
                         </Col>
                         <Col xs={6}>
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
