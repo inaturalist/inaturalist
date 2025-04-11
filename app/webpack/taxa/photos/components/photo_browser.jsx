@@ -30,6 +30,7 @@ const PhotoBrowser = ( {
   showTaxonPhotoModal,
   selectedTerm,
   selectedTermValue,
+  taxon,
   terms,
   showTaxonGrouping,
   place,
@@ -127,6 +128,7 @@ const PhotoBrowser = ( {
         } else if ( grouping.param.match( /terms/ ) ) {
           const query = $.param( {
             ...params,
+            taxon_id: taxon.id,
             term_id: grouping.values,
             term_value_id: group?.groupObject?.id
           } );
@@ -415,24 +417,25 @@ const PhotoBrowser = ( {
 };
 
 PhotoBrowser.propTypes = {
-  observationPhotos: PropTypes.array,
+  config: PropTypes.object,
   groupedPhotos: PropTypes.object,
-  showTaxonPhotoModal: PropTypes.func.isRequired,
-  loadMorePhotos: PropTypes.func.isRequired,
+  grouping: PropTypes.object,
   hasMorePhotos: PropTypes.bool,
   layout: PropTypes.string,
-  setLayout: PropTypes.func.isRequired,
+  loadMorePhotos: PropTypes.func.isRequired,
+  observationPhotos: PropTypes.array,
+  params: PropTypes.object,
+  place: PropTypes.object,
   selectedTerm: PropTypes.object,
   selectedTermValue: PropTypes.object,
-  terms: PropTypes.object,
-  setTerm: PropTypes.func,
-  grouping: PropTypes.object,
   setGrouping: PropTypes.func,
-  params: PropTypes.object,
+  setLayout: PropTypes.func.isRequired,
   setParam: PropTypes.func,
+  setTerm: PropTypes.func,
   showTaxonGrouping: PropTypes.bool,
-  place: PropTypes.object,
-  config: PropTypes.object
+  showTaxonPhotoModal: PropTypes.func.isRequired,
+  taxon: PropTypes.object,
+  terms: PropTypes.object
 };
 
 PhotoBrowser.defaultProps = {
