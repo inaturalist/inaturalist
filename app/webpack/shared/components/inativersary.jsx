@@ -14,7 +14,7 @@ const Inativersary = ( {
 } ) => {
   const joinDate = moment( user.created_at );
   const date = moment( dateProp ); // default to now
-  const isInativersary = ( joinDate.month() === date.month() && joinDate.day() === date.day() );
+  const isInativersary = ( joinDate.month() === date.month() && joinDate.date() === date.date() );
   if ( !isInativersary ) return null;
   if ( !window.location.search.match( /test=inativersary/ ) ) return null;
 
