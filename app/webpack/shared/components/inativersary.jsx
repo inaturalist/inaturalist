@@ -13,8 +13,15 @@ const Inativersary = ( {
   user
 } ) => {
   const joinDate = moment( user.created_at );
-  const date = moment( dateProp ); // default to now
-  const isInativersary = ( joinDate.month() === date.month() && joinDate.date() === date.date() );
+  // default to now. Note that moment yields different results when parsing
+  // null, NaN, false, etc
+  const date = dateProp ? moment( dateProp ) : moment( );
+  const isInativersary = (
+    joinDate.month( ) === date.month( )
+    && joinDate.date( ) === date.date( )
+    // Not an anniversary if you signed up today
+    && joinDate.year( ) !== moment( ).year( )
+  );
   if ( !isInativersary ) return null;
   if ( !window.location.search.match( /test=inativersary/ ) ) return null;
 
