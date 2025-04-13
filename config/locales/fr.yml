@@ -2480,6 +2480,9 @@ fr:
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
   let_us_walk_you_through: Laissez-nous vous guider pour découvrir les fonctionnalités principales de ce site.
   lexicon: Lexique
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Nom d'une collection de mots ou termes contenant un nom de taxon, par ex. le nom d'une langue ou un ensemble d'abréviations.
   lexicon_cannot_contain_words: "ne peut pas contenir les mots suivants : %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -3213,7 +3216,7 @@ fr:
   notes: Notes
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l’attribut 'height' pour l’adapter à l’espace disponible sur votre page web."
   notifications: Notifications
-  notify_me_of_mentions: M’informer des mentions (par ex. @username)
+  notify_me_of_mentions: M’informer des mentions (par ex. @pseudo)
   notify_me_of_mentions_description: "Si vous désactivez cette option, vous ne recevrez aucune notification lorsque quelqu'un vous mentionnera sur %{site_name}."
   number_of_observations: Nombre d’observations
   number_of_observers_value: "Nombre d'observateurs : %{number}"
@@ -6843,13 +6846,23 @@ fr:
           </li>
           </ul>
       field_descriptions:
+        id: Identifiant unique et séquentiel pour une observation.
+        species_guess: |
+          Nom du taxon observé en texte brut ; peut être défini par l'observateur lors de la création de l'observation, mais peut être remplacé par des noms canoniques et localisés quand le taxon change.
+        scientific_name: "Nom scientifique du taxon observé selon iNaturalist"
+        common_name: "Nom commun ou vernaculaire du taxon observé selon iNaturalist"
         iconic_taxon_name: Catégorie taxinomique de rang supérieur pour le taxon observé
+        taxon_id: Identifiant unique et séquentiel pour le taxon observé
         id_please: Si l’observateur a bel et bien demandé de l’aide à l’identification
+        num_identification_agreements: Nombre d'identifications associées à un taxon qui correspondent ou sont contenues dans le taxon à partir de l'identification de l'observateur
+        num_identification_disagreements: Nombre d'identifications associées à un taxon qui ne correspondent pas ou ne pas sont contenues dans le taxon à partir de l'identification de l'observateur
         observed_on_string: Horodatage entré par l’observateur
         observed_on: Date normalisée de l’observation
         time_observed_at: Horodatage normalisé de l’observation
         time_zone: Fuseau horaire de l’observation
         place_guess: Description de l’emplacement entré par l’utilisateur
+        latitude: Latitude visible publiquement à partir de la localisation de l'observation
+        longitude: Longitude visible publiquement à partir de la localisation de l'observation
         positional_accuracy: "Exactitude des coordonnées (oui, oui, exactitude ≠ précision, mauvais choix de noms)"
         private_latitude: "Latitude privée, établie si l’observation est privée ou masquée"
         private_longitude: "Longitude privée, établie si l’observation est privée ou masquée"
@@ -6857,10 +6870,18 @@ fr:
         taxon_geoprivacy: "La géoconfidentialité la plus conservatrice est appliquée en raison du statut de conservation des taxons selon l’identification actuelle."
         coordinates_obscured: "Si les coordonnées ont été masquées, c'est soit à cause de la géoconfidentialité, soit à cause d’un taxon menacé"
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
+        user_id: Identifiant unique et séquentiel pour l'observateur
+        user_login: Indicatif ou pseudonyme de l'observateur, par ex. un identifiant court, unique, alphanumérique pour un utilisateur
+        user_name: |
+          Nom de l'observateur, généralement utilisé pour l'attribution sur le site. C'est un champ optionnel et peut être un pseudonyme.
         created_at: Horodatage de la création de l’observation
         updated_at: Horodatage de la dernière mise à jour de l’observation
         quality_grade: Niveau de qualité de cette observation. Consultez la section Aide pour plus de détails sur ce que cela signifie. Voir https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identifiant pour la licence ou renonciation que l'observateur a choisi pour cette observation. Tous droits réservés si vide.
         url: URL de l’observation
+        image_url: URL de la première photo associée avec l'observation
+        sound_url: |
+          URL du premier son associé avec l'observation. Notez que cela ne sera présent que pour les téléversements directs, mais pas les sons hébergés sur des services tiers.
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau pays
         place_admin2_name: Nom de l’endroit administratif deux rangs en dessous du niveau pays
@@ -6871,6 +6892,14 @@ fr:
           parce que l'homme l'a volontairement placé là. Pour
           plus d'information, voir
           https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Texte écrit par l'observateur décrivant l'observation ou l'enregistrement ou toute autre note semblant pertinente
+        oauth_application_id: |
+          Identifiant séquentiel de l'application qui a créé l'observation. Pour plus d'informations à propos de l'application, ajouter ce nombre après https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          Le nom de la zone administrative de troisième niveau qui contient les coordonnées de coordonnées de cette observation (par ex. un comté dans la plupart des États-Unis)
+        place_country_name: |
+          Le nom du pays qui contient les coordonnées de cette observation
       identify:
         review_all_tooltip: "Marquer toutes les observations de la page comme vérifiées"
         you_reviewed_message: "Vous avez vérifié %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
@@ -8490,7 +8519,13 @@ fr:
           quadrillion: Quadrillion
           thousand: Millier
           trillion: Billion
+          unit: ''
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half" this would be written as
+        #"1,000,002.5" in English, and "," is the delimiter. This should not be
+        #the same as the separator.
+        delimiter: ' '
         precision: 3
         significant: true
         strip_insignificant_zeros: true
