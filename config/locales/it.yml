@@ -6832,6 +6832,7 @@ it:
         coordinates_obscured: "Se le coordinate sono state oscurate oppure no, sia che il taxon sia minacciato sia che dipenda dalla geoprivacy"
         out_of_range: Se l'osservazione cade o no all'esterno dell'areale conosciuto per il taxon
         user_id: Identificatore univoco e sequenziale per l'osservatore
+        user_login: Identificatore/nome utente dell'osservatore, ovvero un identificatore alfanumerico breve e univoco per un utente
         user_name: |
           Nome dell'osservatore, generalmente utilizzato per l'attribuzione sul sito.
           Questo è un campo facoltativo e potrebbe essere uno pseudonimo
@@ -6840,11 +6841,79 @@ it:
         quality_grade: Grado di qualità di questa osservazione. Consulta la sezione Aiuto per i dettagli su cosa significa. Vedi https://help.inaturalist.org/support/solutions/articles/151000169936
         license: Identificatore della licenza o della rinuncia che l'osservatore ha scelto per questa osservazione. Tutti i diritti riservati se in bianco
         url: URL dell'osservazione
+        image_url: URL per la prima foto associata all'osservazione
+        sound_url: |
+          URL per il primo suono associato all'osservazione. Si noti quanto segue: sarà presente solo per i caricamenti diretti, non per i suoni ospitati su servizi di terze parti
         tag_list: Elenco separato da virgola delle etichette
         place_admin1_name: Nome dell'unità amministrativa di un rango inferiore al livello di stato
         place_admin2_name: Nome dell'unità amministrativa di due ranghi inferiore al livello di stato
         positioning_method: Come sono state determinate le coordinate
         positioning_device: Dispositivo utilizzato per determinare le coordinate
+        captive_cultivated: |
+          L'osservazione è di un organismo che esiste nel tempo e nel luogo in cui è stato osservato perché gli esseri umani volevano che fosse in quel luogo e in quel momento. Per saperne di più, vedi
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Testo scritto dall'osservatore che descrive l'osservazione o registra qualsiasi altra nota che sembri pertinente
+        oauth_application_id: |
+          Identificatore sequenziale per l'applicazione che ha creato l'osservazione. Per ulteriori informazioni sull'applicazione, aggiungere questo numero a https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          Il nome dell'area amministrativa di terzo livello che contiene le coordinate dell'osservazione (ad esempio, una contea nella maggior parte degli Stati Uniti)
+        place_country_name: |
+          Il nome del paese che contiene le coordinate di questa osservazione
+        place_state_name: |
+          Il nome dell'area amministrativa di secondo livello che contiene le coordinate di questa osservazione (ad esempio uno stato nella maggior parte delle parti degli Stati Uniti)
+        place_town_name: |
+          Il nome del paese o della città che contiene le coordinate di questa osservazione, se note
+        private_place_guess: |
+          Posizione di osservazione come scritta dall'osservatore se la posizione è oscurata
+        public_positional_accuracy: Incertezza di posizione orizzontale massima in metri; include l'incertezza aggiunta dall'oscuramento delle coordinate
+        taxon_class_name: |
+          Nome della classe tassonomica contenente il taxon osservato
+        taxon_family_name: |
+          Nome della famiglia tassonomica contenente il taxon osservato
+        taxon_form_name: |
+          Nome della forma tassonomica contenente il taxon osservato
+        taxon_genus_name: |
+          Nome del genere tassonomico contenente il taxon osservato
+        taxon_genushybrid_name: |
+          Nome del genere ibrido tassonomico contenente il taxon osservato
+        taxon_hybrid_name: |
+          Nome dell'ibrido tassonomico contenente il taxon osservato
+        taxon_kingdom_name: |
+          Nome del regno tassonomico contenente il taxon osservato
+        taxon_order_name: |
+          Nome dell'ordine tassonomico contenente il taxon osservato
+        taxon_phylum_name: |
+          Nome del phylum tassonomico contenente il taxon osservato
+        taxon_species_name: |
+          Nome della specie tassonomica contenente il taxon osservato
+        taxon_subclass_name: |
+          Nome della sottoclasse tassonomica contenente il taxon osservato
+        taxon_subfamily_name: |
+          Nome della sottofamiglia tassonomica contenente il taxon osservato
+        taxon_suborder_name: |
+          Nome del sottordine tassonomico contenente il taxon osservato
+        taxon_subphylum_name: |
+          Nome del subphylum tassonomico contenente il taxon osservato
+        taxon_subspecies_name: |
+          Nome della sottospecie tassonomica contenente il taxon osservato
+        taxon_subtribe_name: |
+          Nome della sottotribù tassonomica contenente il taxon osservato
+        taxon_superclass_name: |
+          Nome della superclasse tassonomica contenente il taxon osservato
+        taxon_superfamily_name: |
+          Nome della superfamiglia tassonomica contenente il taxon osservato
+        taxon_superorder_name: |
+          Nome del superordine tassonomico contenente il taxon osservato
+        taxon_supertribe_name: |
+          Nome della supertribù tassonomica contenente il taxon osservato
+        taxon_tribe_name: |
+          Nome della tribù tassonomica contenente il taxon osservato
+        taxon_variety_name: |
+          Nome della varietà tassonomica contenente il taxon osservato
+        uuid: |
+          Identificatore universale univoco per l'osservazione. Vedi
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Contrassegna tutte le osservazioni della pagina come già controllate"
         you_reviewed_message: "Hai controllato %{reviewed} di %{pageTotal} osservazioni in questa pagina su %{total} osservazioni corrispondenti."
@@ -7702,6 +7771,8 @@ it:
           l'immagine predefinita per tutto il sito.
         rare_desc: Taxa minacciati osservati meno frequentemente
         rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          I curatori del sito hanno disabilitato la visualizzazione di <a href="%{url}">questo contenuto da Wikipedia</a>. Puoi aiutare modificando la pagina su Wikipedia per renderla appropriata per questo taxon, o segnalando questo taxon per portarlo all'attenzione dei curatori del sito.
         trending_desc: Taxa più osservati nell'ultimo mese
         trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
         wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
@@ -7748,6 +7819,15 @@ it:
       taxon:
         about_html: |
           I taxa possono avere molti nomi comuni. Noi supportiamo globalmente un solo nome comune predefinito, che può essere cambiato in questa pagina spostandolo in cima alla lista. Puoi anche specificare diversi nomi predefiniti per luoghi diversi modificando il nome ed aggiungendo il luogo, ma per favore fallo solo quando luoghi diversi hanno nomi in conflitto.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          Le esportazioni possono contenere anche colonne con valori del campo di osservazione. Per trovare la loro definizione o cercarli 
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a> o per aggiungere il nome della colonna (con i due punti)
+          <code>%{terminology_url}</code> (ad es. <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist impiega una varietà di termini unici per descrivere vari aspetti del servizio. Qui abbiamo cercato di raccoglierne alcuni
+          e le relative definizioni come riferimento.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8253,6 +8333,32 @@ it:
         prefers_target_unconfirmed_users: Utenti di destinazione non confermati
         prefers_exclude_monthly_supporters: Escludi sostenitori mensili
         clients: Client
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Escludi data di inizio donatore
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Escludi data fine donatore
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Escludere osservatori dalle app
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Includi la data di inizio donatore
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Includi la data di fine donatore
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Includi osservatori dalle app
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Paesi IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Data di inizio ultime obs
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Data di fine ultime obs
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Numero massimo di identificazioni
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Identificazioni minime
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Osservazioni massime
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Osservazioni minime
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
