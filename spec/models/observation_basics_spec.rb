@@ -256,6 +256,18 @@ describe Observation do
         end.to raise_error( ActiveRecord::RecordInvalid )
       end
 
+      it "should not allow a year" do
+        expect do
+          create :observation, :without_times, observed_on_string: Date.today.year - 10
+        end.to raise_error( ActiveRecord::RecordInvalid )
+      end
+
+      it "should not allow a year in the future" do
+        expect do
+          create :observation, :without_times, observed_on_string: Date.today.year + 10
+        end.to raise_error( ActiveRecord::RecordInvalid )
+      end
+
       it "should parse a bunch of test date strings" do
         [
           ["Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)", { month: 4, day: 6, hour: 16, offset: "-05:00" }],
@@ -293,6 +305,7 @@ describe Observation do
 
           expect( observation.observed_on.day ).to eq opts[:day]
           expect( observation.observed_on.month ).to eq opts[:month]
+          expect( observation.time_observed_at ).not_to be_blank, "should parse a time from #{date_string}"
           time = observation.time_observed_at.in_time_zone( observation.time_zone )
           expect( time.hour ).to eq opts[:hour]
           expect( time.formatted_offset ).to eq opts[:offset]
