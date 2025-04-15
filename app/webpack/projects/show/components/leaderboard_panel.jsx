@@ -88,7 +88,7 @@ class LeaderboardPanel extends React.Component {
             <div className="leader-row">
               <div className="leader-label">
                 { leader.user ?
-                  ( <UserLink user={ leader.user } /> ) :
+                  ( <UserLink config={config} user={ leader.user } /> ) :
                   <SplitTaxon
                     taxon={ leader.taxon }
                     url={ `/taxa/${leader.taxon.id}` }
@@ -117,7 +117,7 @@ class LeaderboardPanel extends React.Component {
                     </a> )
                   }
                   { l.user ?
-                    ( <UserLink user={ l.user } /> ) :
+                    ( <UserLink config={config} user={ l.user } /> ) :
                     <SplitTaxon
                       taxon={ l.taxon }
                       url={ `/taxa/${l.taxon.id}` }
