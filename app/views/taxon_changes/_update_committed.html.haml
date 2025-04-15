@@ -20,4 +20,4 @@
     = formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
 .timeline-footer
   = link_to t(:view_details), taxon_change, class: "btn btn-sm btn-primary"
-  = link_to t(:view_my_affected_content), identifications_path(user_id: taxon_change.user.id, taxon_ids: taxon_change.output_taxa.compact.map(&:id)), class: "btn btn-sm btn-default"
+  = link_to t(:view_my_affected_content), identifications_path(user_id: taxon_change.user.id, taxon_change_id: taxon_change.id), class: "btn btn-sm btn-default"
