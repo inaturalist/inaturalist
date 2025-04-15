@@ -7,11 +7,19 @@ td.subject {
 .messages {
   .message {
     td.user {
+      display: flex;
+      align-items: center;
+      gap: 5px;
       position: relative;
-      padding-right: 30px;
+      padding-inline-end: 30px;
       .user_image {
         width: 16px;
         height: 16px;
+      }
+      > a:last-child {
+        max-width: 100px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     .user-search-link {
@@ -19,10 +27,24 @@ td.subject {
       position: absolute;
       right: 10px;
     }
+    .meta {
+      text-align: end;
+    }
   }
   .message:hover {
     .user-search-link {
       visibility: visible;
+    }
+  }
+}
+
+[dir="rtl"] {
+  .messages {
+    .message {
+      .user-search-link {
+        right: inherit;
+        left: 10px;
+      }
     }
   }
 }
