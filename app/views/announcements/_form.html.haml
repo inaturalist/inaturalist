@@ -42,6 +42,8 @@
       = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.start_desc" ), description_tip: true
       = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.end_desc" ), description_tip: true
       = f.check_box :dismissible, label_after: true
+      = f.check_box :prefers_target_staff, label_after: true
+      = f.check_box :target_creator, label_after: true
     .col-xs-4
       = f.select :ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.ip_countries_desc" ), description_tip: true
       - if current_user.is_admin?
@@ -107,8 +109,6 @@
                 .col-xs-6= f.text_field :user_created_end_date, type: "date"
               .row
                 .col-xs-12
-                  = f.check_box :prefers_target_staff, label_after: true
-                  = f.check_box :target_creator, label_after: true
                   = f.check_box :prefers_target_unconfirmed_users, label_after: true
             .col-xs-4
               = f.form_field :target_logged_in, builder: BootstrapFormBuilder do

@@ -9874,6 +9874,8 @@ en:
     attributes:
       announcement:
         created_at: Created at
+        # Whether or not the announcement can be dismissed by people who see it
+        dismissible: Dismissible
         updated_at: Updated at
         # Numerical IDs of the iNaturalist Network partner sites the
         # announcement should be shown on
