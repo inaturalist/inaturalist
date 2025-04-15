@@ -8933,6 +8933,11 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Het Life-taxon kan niet betrokken zijn bij taxonwijzigingen
         taxon_name:
           attributes:
             lexicon:
