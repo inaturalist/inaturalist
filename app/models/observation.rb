@@ -1007,9 +1007,10 @@ class Observation < ApplicationRecord
       GST
       IST
     )
-    
-    if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
+
+    if observed_on_string =~ /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/
       date_string = observed_on_string
+      iso8601_datetime = DateTime.parse( date_string )
       if observed_on_string =~ /[+-]\d{2}:?\d{2}/
         parsed_time_zone = ActiveSupport::TimeZone[iso8601_datetime.offset * 24]
       end
@@ -1080,23 +1081,26 @@ class Observation < ApplicationRecord
         puts "Invalid time zone, ignoring"
       end
     end
-    
-    date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
-    date_string.sub!(/(\d{2}:\d{2}:\d{2})\.\d+/, '\\1')
-    
+
+    # Honestly not sure why this would improve parsing
+    date_string.sub!( "T", " " ) if date_string =~ /\d{4}-\d{2}-\d{2}T/
+
+    # Ignore decimal dates
+    date_string.sub!( /(\d{2}:\d{2}:\d{2})\.\d+/, '\\1' )
+
     # strip leading month if present
-    date_string.sub!(/^[A-z]{3} ([A-z]{3})/, '\\1')
+    date_string.sub!( /^[A-z]{3} ([A-z]{3})/, '\\1' )
 
     # strip paranthesized stuff
-    date_string.gsub!(/\(.*\)/, '')
+    date_string.gsub!( /\(.*\)/, "" )
 
     # strip noon hour madness
     # this is due to a weird, weird bug in Chronic
     if date_string =~ /p\.?m\.?/i
-      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1')
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1' )
     elsif date_string =~ /a\.?m\.?/i
-      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
-      date_string.gsub!( / 12:/, " 00:" )
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1' )
+      date_string.gsub!( " 12:", " 00:" )
     end
 
     # Translate am/pm into English for parsing. This is a pretty conservative
@@ -2110,34 +2114,33 @@ class Observation < ApplicationRecord
     end
     true
   end
-  
+
   #
   # Make sure the observation resolves to a single day.  Right now we don't
   # store ambiguity...
   #
   def must_not_be_a_range
     return if observed_on_string.blank?
-    
+
     is_a_range = false
-    begin  
-      if tspan = Chronic.parse(observed_on_string, :context => :past, :guess => false)
-        is_a_range = true if tspan.width.seconds > 1.day.seconds
+    begin
+      tspan = Chronic.parse( observed_on_string, context: :past, guess: false )
+      if tspan && tspan.width.seconds > 1.day.seconds
+        is_a_range = true
       end
     rescue RuntimeError, ArgumentError
       # ignore parse errors, assume they're not spans
       return
     end
-    
-    # Special case: dates like '2004', which ordinarily resolve to today at 
+
+    # Special case: dates like '2004', which ordinarily resolve to today at
     # 8:04pm
-    observed_on_int = observed_on_string.gsub(/[^\d]/, '').to_i
-    if observed_on_int > 1900 && observed_on_int <= Date.today.year
-      is_a_range = true
+    if !is_a_range && observed_on_string =~ /^\d{4}$/
+      is_a_range = observed_on_string =~ /^\d{4}$/
     end
-    
-    if is_a_range
-      errors.add(:observed_on, "must be a single day, not a range")
-    end
+    return unless is_a_range
+
+    errors.add( :observed_on, :must_be_a_single_day )
   end
 
   def must_not_be_on_null_island
