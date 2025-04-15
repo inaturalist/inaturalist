@@ -359,12 +359,14 @@ class App extends React.Component {
                         <Col xs={6}>
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                           {this.displayDateObserved( )}
-                          <Inativersary
-                            config={config}
-                            user={observation.user}
-                            date={observation.observed_on}
-                            uniqueKey="DateObserved"
-                          />
+                          { observation.observed_on && !observation.obscured && (
+                            <Inativersary
+                              config={config}
+                              user={observation.user}
+                              date={observation.observed_on}
+                              uniqueKey="DateObserved"
+                            />
+                          ) }
                         </Col>
                         <Col xs={6}>
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>
