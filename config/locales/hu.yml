@@ -2039,6 +2039,11 @@ hu:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: Infrafajok azonosításai
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Ha ezt kikapcsolod, a továbbiakban nem kapsz értesítést a taxon fajszint alatti azonosításairól (például alfaj és faj), amelyek összhangban vannak a fajszintű azonosításoddal. Értesítést kapsz viszont, ha azok nem értenek egyet az azonosításoddal, vagy ha további megjegyzéseket tartalmaznak.
   input_taxon: Bemeneti taxon
   insects: rovarok
   insect_life_stage: Rovar életszakasz
@@ -6445,6 +6450,8 @@ hu:
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Applikáció-specifikus megfigyelők célzása
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP országok
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Elhelyezés
         #Preference for an announcement that is only shown to the user who created the announcement
@@ -6805,6 +6812,11 @@ hu:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 csak e taxon kurátora változtathatja meg
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Az élet taxon nem lehet tárgya taxonmódosításoknak
         taxon_name:
           attributes:
             name:
