@@ -52,7 +52,7 @@ class IdentificationsController < ApplicationController
         :user,
         { taxon: [
           { taxon_names: :place_taxon_names },
-          { photos: [:flags, :file_prefix,] }
+          { photos: [:flags, :file_prefix] }
         ] }
       ).order(id: :desc)
     Observation.preload_for_component(ids.map(&:observation), logged_in: logged_in?)
