@@ -347,6 +347,7 @@ class App extends React.Component {
                       <div className="user_info">
                         <PreviousNextButtonsContainer />
                         <UserWithIcon
+                          config={config}
                           user={observation.user}
                           hideSubtitle={
                             observation.obscured
@@ -359,10 +360,10 @@ class App extends React.Component {
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                           {this.displayDateObserved( )}
                           <Inativersary
+                            config={config}
                             user={observation.user}
                             date={observation.observed_on}
                             uniqueKey="DateObserved"
-                            text={`${observation.user.login} observed this on their iNativersary!`}
                           />
                         </Col>
                         <Col xs={6}>

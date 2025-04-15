@@ -64,7 +64,7 @@ class ObserversTab extends Component {
                         <td className="rank">{ index + 1 }</td>
                         <td>
                           <UserImage user={i.user} />
-                          <UserLink user={i.user} />
+                          <UserLink config={config} user={i.user} />
                         </td>
                         <td className={`count ${config.observersSort !== "species" && "sorted"}`}>
                           { numberWithCommas( i.observation_count ) }

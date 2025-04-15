@@ -7,6 +7,7 @@ import {
 } from "react-bootstrap";
 
 const Inativersary = ( {
+  config,
   date: dateProp,
   text: textProp,
   uniqueKey,
@@ -19,18 +20,27 @@ const Inativersary = ( {
   const isInativersary = (
     joinDate.month( ) === date.month( )
     && joinDate.date( ) === date.date( )
-    // Not an anniversary if you signed up today
-    && joinDate.year( ) !== moment( ).year( )
+    // Not an anniversary if you signed up on the same day
+    && joinDate.year( ) !== date.year( )
   );
   if ( !isInativersary ) return null;
-  if ( !window.location.search.match( /test=inativersary/ ) ) return null;
+  const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+  const viewerIsAdmin = loggedInUser && loggedInUser.roles
+    && loggedInUser.roles.indexOf( "admin" ) >= 0;
+  // Just testing with staff for now
+  if ( !viewerIsAdmin ) return null;
 
-  const text = textProp || (
-    `
+  // Text is obs-specific, so might be better to only show if an obs-specific
+  // prop is present. Text also needs to be globalized with plurals, of course.
+  const text = dateProp
+    ? ( `
+      ${user.name || user.login} observed this on their iNativersary, exactly
+      ${date.year() - joinDate.year()} years after they joined iNat!
+    ` )
+    : ( `
       It's ${user.name || user.login}'s iNativersary!
       As of today they've been on iNat for ${date.year() - joinDate.year()} years!
-    `
-  );
+    ` );
 
   return (
     <OverlayTrigger
@@ -67,6 +77,7 @@ const Inativersary = ( {
 };
 
 Inativersary.propTypes = {
+  config: PropTypes.object,
   date: PropTypes.string,
   text: PropTypes.string,
   uniqueKey: PropTypes.string,

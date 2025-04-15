@@ -208,6 +208,7 @@ class ActivityItem extends React.Component {
     const userLink = (
       <UserLink
         className="user"
+        config={config}
         noInativersary
         target={linkTarget}
         uniqueKey={`ActivityItem-${item.id}`}
@@ -353,6 +354,7 @@ class ActivityItem extends React.Component {
     }
     const inativersary = (
       <Inativersary
+        config={config}
         key={`ActivityItem-iNativersary-${item.uuid}`}
         user={item.user}
         uniqueKey={`ActivityItem-${item.uuid}`}

@@ -4,6 +4,7 @@ import UserImage from "../../../shared/components/user_image";
 import UserLink from "../../../shared/components/user_link";
 
 const UserWithIcon = ( {
+  config,
   hideSubtitle,
   skipSubtitleLink,
   subtitle,
@@ -39,7 +40,7 @@ const UserWithIcon = ( {
       </div>
       <div className="title-subtitle">
         <div className="title">
-          <UserLink user={user} uniqueKey={`UserWithIcon-${user.id}`} />
+          <UserLink config={config} user={user} uniqueKey={`UserWithIcon-${user.id}`} />
         </div>
         { !hideSubtitle && (
           <div className="subtitle">{ subtitleLink }</div>
@@ -50,6 +51,7 @@ const UserWithIcon = ( {
 };
 
 UserWithIcon.propTypes = {
+  config: PropTypes.object,
   user: PropTypes.object,
   subtitle: PropTypes.oneOfType( [
     PropTypes.string,

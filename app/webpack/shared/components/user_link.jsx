@@ -5,6 +5,7 @@ import Inativersary from "./inativersary";
 
 const UserLink = ( {
   className,
+  config,
   noInativersary,
   target,
   uniqueKey,
@@ -27,13 +28,14 @@ const UserLink = ( {
       >
         { displayName }
       </a>
-      { !noInativersary && <Inativersary uniqueKey={uniqueKey} user={user} /> }
+      { !noInativersary && <Inativersary config={config} uniqueKey={uniqueKey} user={user} /> }
     </span>
   );
 };
 
 UserLink.propTypes = {
   className: PropTypes.string,
+  config: PropTypes.object,
   noInativersary: PropTypes.bool,
   target: PropTypes.string,
   uniqueKey: PropTypes.string,
