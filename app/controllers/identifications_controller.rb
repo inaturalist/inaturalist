@@ -110,6 +110,7 @@ class IdentificationsController < ApplicationController
       observation: [
         { identifications: :moderator_actions },
         :user,
+        :sounds,
         { photos: [:file_prefix, :file_extension, :flags, :moderator_actions] },
         { taxon: [
           { taxon_names: :place_taxon_names },

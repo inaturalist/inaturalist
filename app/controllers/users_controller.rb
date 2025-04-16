@@ -50,7 +50,9 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  prepend_around_action :enable_replica, only: [:dashboard_updates, :show, :followers]
+  prepend_around_action :enable_replica, only: [
+    :index, :dashboard, :dashboard_updates, :show, :followers, :api_token
+  ]
 
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
