@@ -713,7 +713,8 @@ ul.leafylist li li:first-child {
       left: 1px;
     }
   }
-  .social-media-link.facebook {
+  .social-media-link.facebook,
+  .social-media-link.bluesky {
     background-color: #1877f2;
     line-height: $social-media-link-dim - 2px;
     @media (min-width: 1200px) {
@@ -730,6 +731,12 @@ ul.leafylist li li:first-child {
   }
   .social-media-link.facebook:before {
     display: none;
+  }
+  .social-media-link.bluesky {
+    background-color: #1185fe;
+    img {
+      filter: saturate(0%) invert(100%);
+    }
   }
   .social-media-link.instagram {
     background: white;
