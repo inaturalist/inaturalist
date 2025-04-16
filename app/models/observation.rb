@@ -1727,7 +1727,8 @@ class Observation < ApplicationRecord
       private_latitude,
       private_longitude,
       acc: calculate_public_positional_accuracy,
-      user: user
+      user: user,
+      skip_open_space: true
     )
     if coordinates_private?
       if !place_guess.blank? && place_guess != public_place_guess && place_guess_changed?
@@ -2264,7 +2265,12 @@ class Observation < ApplicationRecord
   def set_place_guess_from_latlon
     return true unless place_guess.blank?
     return true if coordinates_private?
-    if guess = Observation.place_guess_from_latlon( latitude, longitude, { acc: calculate_public_positional_accuracy, user: user } )
+
+    guess = Observation.place_guess_from_latlon( latitude, longitude, {
+      acc: calculate_public_positional_accuracy,
+      user: user
+    } )
+    if guess
       self.place_guess = guess
     end
     true
@@ -2750,10 +2756,14 @@ class Observation < ApplicationRecord
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p|
-      p.user_id.blank? && (
-        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
-        p.place_type == Place::PLACE_TYPE_CODES['Open Space']
+    all_places.select do | place |
+      place.user_id.blank? && (
+        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(
+          place.admin_level
+        ) || (
+          !options[:skip_open_space] &&
+          place.place_type == Place::OPEN_SPACE
+        )
       )
     end
   end
