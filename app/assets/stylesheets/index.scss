@@ -655,10 +655,7 @@ ul.leafylist li li:first-child {
     }
     .social-media {
       display: flex;
-      justify-content: center;
-    }
-    .social-media-link {
-      margin-left: 15%;
+      justify-content: space-around;
     }
   }
 
