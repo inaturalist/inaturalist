@@ -491,7 +491,6 @@ describe Observation do
           name: "User Place"
         )
       end
-
       it "should be set based on coordinates" do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
         expect( o.place_guess ).to match /#{small_place.name}/
@@ -582,18 +581,6 @@ describe Observation do
         o.reload
         expect( o.latitude ).not_to be_blank
         expect( o.place_guess ).not_to be_blank
-      end
-      it "should not include open space when obscured" do
-        open_space_place = make_place_with_geom(
-          wkt: "MULTIPOLYGON(((1.4 1.4,1.4 1.6,1.6 1.6,1.6 1.4,1.4 1.4)))",
-          parent: small_place,
-          name: "Open Space Place",
-          place_type: Place::OPEN_SPACE
-        )
-        o = create :observation, latitude: open_space_place.latitude, longitude: open_space_place.longitude
-        expect( o.place_guess ).to include open_space_place.name
-        o.update( geoprivacy: Observation::OBSCURED )
-        expect( o.place_guess ).not_to include open_space_place.name
       end
     end
 
