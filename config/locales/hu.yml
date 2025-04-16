@@ -682,6 +682,13 @@ hu:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, feltöltötte: %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Kibontott
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Becsomagolt
   authority_list:
     iucn_red_list: IUCN Vörös lista
     natureserve: NatureServe
@@ -2309,6 +2316,10 @@ hu:
   list_with_two_items: "%{one} és %{two}"
   listed_taxa: Listázott taxonok
   listed_taxon: Listázott taxon
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Listázott
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Nem listázott
   listed_taxon_updated: A listázott taxon frissítve
   listing_lists: Listák listázása
   listing_taxa: Taxonok listázása
@@ -5252,6 +5263,43 @@ hu:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Felhasználók célzása egyéb tényezők alapján
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Az atlaszokról
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Az atlaszok egy taxon globális eloszlását jelenítik meg. A kurátorok atlaszok at hozhatnak létre azok szerkezetének meghatározásával és a mögöttes taxonok gondozásával.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: E hely kibontása
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: E hely becsomagolása
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Még nincs módosítás ebben az atlaszban
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Legutóbbi atlaszmódosítások
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: A legutóbbi felsorolt taxonmódosítások
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Felsorolt taxonok megjelenítése
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Ez az atlasz jelenleg nem aktív
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Ezzel eltávolítod ezt a taxont és az összes leszármazottját az ellenőrző listákról
+          ehhez a helyhez, és a benne található standard helyeket is. Ezt a műveletet nem lehet visszavonni. Biztos vagy benne?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Figyelem: vannak olyan megfigyelések, amelyeket ez az atlasz nem képvisel
     content_freeze:
       content_freeze: Tartalom lezárása
       during_this_time: |
@@ -6404,6 +6452,10 @@ hu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y. %B %-d., %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%b %-d %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %-d %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y. %B %-d."
     pm: du.
   activerecord:
@@ -6432,6 +6484,8 @@ hu:
     attributes:
       announcement:
         created_at: 'Létrehozva:'
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Átugorható
         updated_at: 'Frissítve:'
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
