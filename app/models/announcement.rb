@@ -13,6 +13,12 @@ class Announcement < ApplicationRecord
     const_set placement.parameterize.underscore.upcase, placement
   end
 
+  DISMISSIBLE_PLACEMENTS = [
+    MOBILE_HOME,
+    USERS_DASHBOARD,
+    USERS_DASHBOARD_SIDEBAR
+  ].freeze
+
   INAT_IOS = "inat-ios"
   INAT_ANDROID = "inat-android"
   SEEK = "seek"
