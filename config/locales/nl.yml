@@ -8437,8 +8437,6 @@ nl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %=B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d. %=B %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -8827,6 +8825,9 @@ nl:
                 kan niet later zijn dan de datum waarop de waarneming is toegevoegd
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: moet binnen de afgelopen 130 jaar zijn
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: moet één dag zijn, geen reeks
         observation_field_value:
           attributes:
             value:
