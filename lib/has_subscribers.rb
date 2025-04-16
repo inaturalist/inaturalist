@@ -255,27 +255,25 @@ module HasSubscribers
           users_to_notify[subscribable] << subscription.user_id
         end
       }
-      Observation.connection.transaction do
-        if has_many_reflections.include?( subscribable_association.to_s )
-          notifier.send( subscribable_association ).find_each( &updater_proc )
-        elsif reflections.detect {| k, _v | k.to_s == subscribable_association.to_s }
-          updater_proc.call( notifier.send( subscribable_association ) )
-        elsif subscribable_association == :self
-          updater_proc.call( notifier )
-        else
-          subscribable = notifier.send( subscribable_association )
-          if subscribable.is_a?( Enumerable )
-            # preload subscriptions if there are a smaller number of subscribables
-            if subscribable.length < 100
-              ActiveRecord::Base.preload_associations(
-                subscribable,
-                :update_subscriptions_with_unsuspended_users
-              )
-            end
-            subscribable.each( &updater_proc )
-          elsif subscribable
-            updater_proc.call( subscribable )
+      if has_many_reflections.include?( subscribable_association.to_s )
+        notifier.send( subscribable_association ).find_each( &updater_proc )
+      elsif reflections.detect {| k, _v | k.to_s == subscribable_association.to_s }
+        updater_proc.call( notifier.send( subscribable_association ) )
+      elsif subscribable_association == :self
+        updater_proc.call( notifier )
+      else
+        subscribable = notifier.send( subscribable_association )
+        if subscribable.is_a?( Enumerable )
+          # preload subscriptions if there are a smaller number of subscribables
+          if subscribable.length < 100
+            ActiveRecord::Base.preload_associations(
+              subscribable,
+              :update_subscriptions_with_unsuspended_users
+            )
           end
+          subscribable.each( &updater_proc )
+        elsif subscribable
+          updater_proc.call( subscribable )
         end
       end
       return if users_to_notify.empty?
