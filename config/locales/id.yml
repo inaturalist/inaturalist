@@ -8121,8 +8121,6 @@ id:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8512,6 +8510,9 @@ id:
                 tidak boleh lebih besar dari tanggal penambahan pengamatan
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: harus berada dalam kurun waktu 130 tahun terakhir
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: harus berupa satu hari, bukan rentang
         observation_field_value:
           attributes:
             value:
@@ -8613,6 +8614,11 @@ id:
             name:
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Takson Kehidupan tidak dapat diganti dalam perubahan takson
         taxon_name:
           attributes:
             lexicon:
