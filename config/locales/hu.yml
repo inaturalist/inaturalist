@@ -6404,8 +6404,6 @@ hu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y. %B %-d., %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%b. %-d., %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y. %B %-d."
     pm: du.
   activerecord:
@@ -6727,6 +6725,9 @@ hu:
                 nem lehet nagyobb, mint a dátum amikor hozzáadták a megfigyelést
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: az utóbbi 130 évben kell legyen
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: egyetlen napnak kell lennie, nem pedig tartománynak
         observation_field_value:
           attributes:
             value:
