@@ -2,6 +2,7 @@
 /* global I18n */
 /* global PLACEMENT_CLIENTS */
 /* global TARGET_GROUP_PARTITIONS */
+/* global DISMISSIBLE_PLACEMENTS */
 
 $( function ( ) {
   $( "#announcement_placement" ).change( function ( ) {
@@ -23,6 +24,12 @@ $( function ( ) {
     } else {
       clientsSelect.attr( "size", 1 );
       $( ".clients_field" ).hide( );
+    }
+
+    if ( DISMISSIBLE_PLACEMENTS.indexOf( placement ) < 0 ) {
+      $( ".dismissible_field" ).hide( );
+    } else {
+      $( ".dismissible_field" ).show( );
     }
   } );
 

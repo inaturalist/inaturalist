@@ -27,8 +27,9 @@
     }
 - content_for :extrajs do
   :javascript
-    var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
-    var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe }
+    var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe };
+    var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe };
+    var DISMISSIBLE_PLACEMENTS = #{ Announcement::DISMISSIBLE_PLACEMENTS.to_json.html_safe };
   = javascript_include_tag "announcements/form"
 = form_for @announcement, :builder => BootstrapFormBuilder, html: { class: current_user.is_admin? ? "announcement for-admin" : "announcement for-non-admin" } do |f|
   .row
