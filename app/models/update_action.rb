@@ -297,7 +297,7 @@ class UpdateAction < ApplicationRecord
           candidate.notifier_id == v.id &&
             candidate.notifier_type == v.class.base_class.name
         else
-          candidate[k] == v.try( :id ) || v
+          candidate[k] == ( v.try( :id ) || v )
         end
       end
       return candidate if is_match

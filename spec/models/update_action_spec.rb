@@ -124,12 +124,66 @@ describe UpdateAction do
     it "does not throw an error if attempting to create duplicate" do
       o = Observation.make!
       c = Comment.make!( parent: o )
+      # this will be called twice, once for each call to `first_with_attributes`
+      expect( UpdateAction ).to receive( :arel_attributes_to_es_filters ).twice.and_call_original
       expect {
         ua = UpdateAction.first_with_attributes( resource: o, notifier: c, notification: "testing" )
         expect( ua ).to be_instance_of( UpdateAction )
         ua.elastic_delete!
         UpdateAction.first_with_attributes( resource: o, notifier: c, notification: "testing" )
       }.to_not raise_error
+    end
+
+    it "returns from candidates without generating additional queries" do
+      observation = Observation.make!
+      comment = Comment.make!( parent: observation )
+      expect( UpdateAction.count ).to eq 0
+      expect( UpdateAction.elastic_search.total_entries ).to eq 0
+      # this will be called once, once for the first call to `first_with_attributes`,
+      # and not on the second call as the second call will return from candidates
+      expect( UpdateAction ).to receive( :arel_attributes_to_es_filters ).once.and_call_original
+      update_action = UpdateAction.first_with_attributes(
+        resource: observation, notifier: comment, notification: "testing"
+      )
+      expect( UpdateAction.count ).to eq 1
+      expect( UpdateAction.elastic_search.total_entries ).to eq 1
+      expect( update_action.persisted? ).to eq true
+
+      update_action_from_candidates = UpdateAction.first_with_attributes( {
+        resource: update_action.resource,
+        notifier: update_action.notifier,
+        notification: update_action.notification
+      }, candidate_update_actions: [update_action] )
+      expect( UpdateAction.count ).to eq 1
+      expect( UpdateAction.elastic_search.total_entries ).to eq 1
+      expect( update_action_from_candidates.persisted? ).to eq true
+    end
+
+    it "does not return mismatching candidates" do
+      observation = Observation.make!
+      comment = Comment.make!( parent: observation )
+      expect( UpdateAction.count ).to eq 0
+      expect( UpdateAction.elastic_search.total_entries ).to eq 0
+      # this will be called once, once for the first call to `first_with_attributes`,
+      # and again for the second call with candidates as no candidate will match
+      expect( UpdateAction ).to receive( :arel_attributes_to_es_filters ).twice.and_call_original
+      update_action = UpdateAction.first_with_attributes(
+        resource: observation, notifier: comment, notification: "testing"
+      )
+      expect( UpdateAction.count ).to eq 1
+      expect( UpdateAction.elastic_search.total_entries ).to eq 1
+      expect( update_action.persisted? ).to eq true
+
+      update_action_from_candidates = UpdateAction.first_with_attributes( {
+        resource: update_action.resource,
+        notifier: update_action.notifier,
+        notification: "different notification"
+      }, candidate_update_actions: [update_action] )
+      expect( UpdateAction.count ).to eq 2
+      expect( UpdateAction.elastic_search.total_entries ).to eq 2
+      expect( update_action_from_candidates.persisted? ).to eq true
+      expect( update_action_from_candidates.id ).not_to eq update_action.id
+      expect( update_action_from_candidates.notification ).not_to eq update_action.notification
     end
   end
 
