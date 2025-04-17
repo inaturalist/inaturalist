@@ -40,15 +40,25 @@ class ObsCardComponent extends Component {
       )
     ) {
       // preview photo
-      photo = (
-        <div className="photoDrag">
-          <img
-            className="img-thumbnail"
-            src={obsCard.uploadedFile.preview}
-            alt={obsCard.uploadedFile.name}
-          />
-        </div>
-      );
+      if (
+        obsCard.uploadedFile.uploadState === "pending"
+        && (
+          obsCard.uploadedFile.type === "image/heic"
+          || obsCard.uploadedFile.type === "image/heif"
+        )
+      ) {
+        photo = <div className="loading_spinner" />;
+      } else {
+        photo = (
+          <div className="photoDrag">
+            <img
+              className="img-thumbnail"
+              src={obsCard.uploadedFile.preview}
+              alt={obsCard.uploadedFile.name}
+            />
+          </div>
+        );
+      }
     } else {
       photo = (
         <div className="failed">
@@ -79,7 +89,7 @@ class ObsCardComponent extends Component {
       );
     return (
       <div className={`uploadedPhoto thumbnail ${obsCard.visionResults ? "completed" : ""}`}>
-        <div className="img-container">
+        <div className="img-container Photo">
           { photo }
         </div>
         <div className="caption">

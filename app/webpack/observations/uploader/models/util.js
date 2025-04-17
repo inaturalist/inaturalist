@@ -6,6 +6,8 @@ export const ACCEPTED_FILE_TYPES = [
   "image/jpeg",
   "image/png",
   "image/gif",
+  "image/heic",
+  "image/heif",
   "audio/x-wav",
   "audio/wav",
   "audio/wave",
