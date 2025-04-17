@@ -749,6 +749,13 @@ de:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, hochgeladen von %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Unterteilt
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Nicht unterteilt
   authority_list:
     iucn_red_list: Rote Liste der IUCN
     natureserve: NatureServe
@@ -2551,6 +2558,10 @@ de:
   list_with_two_items: "%{one} und %{two}"
   listed_taxa: Gelistete Taxa
   listed_taxon: Gelistetes Taxon
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Gelistet
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Nicht gelistet
   listed_taxon_updated: Gelistetes Taxon aktualisiert
   listing_lists: Listen auflisten
   listing_project_assets: Projektdatein auflisten
@@ -6066,6 +6077,45 @@ de:
       observation_oauth_application_ids_desc: |
         CTRL- oder SHIFT-Klick, um mehrere auszuwählen. Wenn "Alle" oder keine ausgewählt sind,
         wird die Ankündigung allen Benutzern angezeigt, unabhängig von der App-Nutzung
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Über Atlasse
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasse veranschaulichen die globale Verbreitung eines Taxons. Kuratoren erstellen
+          Atlasse, indem sie die Struktur eines Atlasses definieren und die zugehörigen Taxa kuratieren.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Dieses Gebiet unterteilen
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Dieses Gebiet zusammenführen
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Noch keine Änderungen an diesem Atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Kürzliche Atlas-Änderungen
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Kürzliche Listen-Taxon-Änderungen
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Zeige gelistete Taxa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Dieser Atlas ist derzeit nicht aktiv
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dadurch werden dieses Taxon und alle untergeordneten Taxa aus den Checklisten entfernt,
+          die mit diesem Gebiet und allen darin enthaltenen Standardorten verknüpft sind. Dies
+          kann nicht rückgängig gemacht werden. Bist du sicher, dass du fortfahren möchtest?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Warnung: Es gibt Beobachtungen, die nicht durch diesen Atlas repräsentiert werden
     content_freeze:
       content_freeze: Inhalt eingefroren
       during_this_time: |
@@ -8119,6 +8169,10 @@ de:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %k:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %k:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8154,6 +8208,8 @@ de:
     attributes:
       announcement:
         created_at: Erstellt am
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Entbehrlich
         updated_at: Aktualisiert am
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
