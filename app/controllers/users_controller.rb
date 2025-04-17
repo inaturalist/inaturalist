@@ -1324,7 +1324,8 @@ class UsersController < ApplicationController
       :search_place_id,
       :site_id,
       :test_groups,
-      :time_zone
+      :time_zone,
+      faved_project_ids: []
     )
   end
 

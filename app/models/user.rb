@@ -144,6 +144,11 @@ class User < ApplicationRecord
   has_many :deleted_photos
   has_many :deleted_sounds
   has_many :email_suppressions, dependent: :delete_all
+  has_many :project_faves, dependent: :delete_all
+  has_many :faved_projects,
+    -> { order( "project_faves.position" => :asc ) },
+    through: :project_faves,
+    source: :project
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -1787,5 +1792,35 @@ class User < ApplicationRecord
     return false if total < 3
 
     count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
+
+  def faved_project_ids=( project_ids )
+    @faved_project_ids_errors ||= []
+    if project_ids.size > 7
+      @faved_project_ids_errors << :cannot_include_more_than_7_projects
+      return
+    end
+
+    projects = Project.where( id: project_ids )
+    if projects.size != project_ids.size
+      @faved_project_ids_errors << :must_all_exist
+      return
+    end
+
+    project_ids.each_with_index do | project_id, position |
+      fave = project_faves.detect {| existing_fave | existing_fave.project_id == project_id }
+      fave ||= project_faves.build( project_id: project_id )
+      fave.position = position
+      fave.save!
+    end
+    ProjectFave.where( user_id: id ).where( "project_id NOT IN (?)", project_ids ).delete_all
+  end
+
+  validate :validate_faved_project_ids
+
+  def validate_faved_project_ids
+    return unless @faved_project_ids_errors.present?
+
+    errors.add :faved_project_ids, @faved_project_ids_errors
   end
 end

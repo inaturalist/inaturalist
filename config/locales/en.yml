@@ -10357,6 +10357,9 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+        project_fave:
+          base:
+            only_seven_projects: You can only fave 7 projects
         project_observation:
           attributes:
             base:
@@ -10453,6 +10456,14 @@ en:
               already_has_a_range: already has a range
         user:
           attributes:
+            faved_project_ids:
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: cannot include more than 7 projects
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
+              must_all_exist: must all exist
             login:
               must_begin_with_a_letter: |
                 must begin with a letter, contain no spaces, and use only

@@ -1866,6 +1866,50 @@ describe User do
     end
   end
 
+  describe "faved_project_ids" do
+    it "should return ids of faved projects in position order" do
+      user = create :user
+      pf3 = create :project_fave, user: user, position: 3
+      pf2 = create :project_fave, user: user, position: 2
+      pf1 = create :project_fave, user: user, position: 1
+      expect( user.faved_project_ids ).to eq [pf1.project_id, pf2.project_id, pf3.project_id]
+    end
+  end
+
+  describe "faved_project_ids=" do
+    it "should create new ProjectFaves" do
+      user = create :user
+      project1 = create :project
+      project2 = create :project
+      expect( user.project_faves.length ).to eq 0
+      user.faved_project_ids = [project1.id, project2.id]
+      expect( user.project_faves.length ).to eq 2
+    end
+
+    it "should remove ProjectFaves not specified" do
+      user = create :user
+      project1 = create :project
+      project2 = create :project
+      project3 = create :project
+      user.faved_project_ids = [project1.id, project2.id, project3.id]
+      expect( user.project_faves.length ).to eq 3
+      user.faved_project_ids = [project1.id, project2.id]
+      user.reload
+      expect( user.project_faves.length ).to eq 2
+    end
+
+    it "should assign ProjectFave positions based on the order of IDs" do
+      user = create :user
+      project1 = create :project
+      project2 = create :project
+      project3 = create :project
+      user.faved_project_ids = [project3.id, project2.id, project1.id]
+      expect( user.project_faves.detect {| pf | pf.project_id == project1.id }.position ).to eq 2
+      expect( user.project_faves.detect {| pf | pf.project_id == project2.id }.position ).to eq 1
+      expect( user.project_faves.detect {| pf | pf.project_id == project3.id }.position ).to eq 0
+    end
+  end
+
   protected
 
   def create_user( options = {} )
