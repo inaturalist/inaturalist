@@ -85,6 +85,9 @@ class Place < ApplicationRecord
     if Place.where( slug: candidate ).exists? && !display_name.blank?
       candidate = display_name.parameterize
     end
+    if candidate.to_i.positive?
+      candidate = string.gsub( /^[0-9]+/, "" ).downcase
+    end
     candidate
   end
 
