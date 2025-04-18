@@ -289,7 +289,7 @@ function unreviewAll( ) {
     dispatch( setReviewing( true ) );
     const reviewedResults = _.filter(
       state.observations.results,
-      o => !o.reviewedByCurrentUser && state.config.currentUserCanInteractWithResource( o )
+      o => o.reviewedByCurrentUser && state.config.currentUserCanInteractWithResource( o )
     );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     dispatch( setReviewed( reviewedResults, iNaturalistJS.observations.unreview ) );
