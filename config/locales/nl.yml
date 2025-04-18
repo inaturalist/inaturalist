@@ -5924,6 +5924,8 @@ nl:
   view_more_observations_of_x_project: "Geef meer waarnemingen weer van %{project} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Geef meer waarnemingen weer van %{taxon} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Bekijk meer niet-nagekeken"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Toon jouw getroffen ID's
   view_observation: Waarneming weergeven
   view_observations: Waarnemingen weergeven
   view_observation_flags: Meldingen over waarneming bekijken
@@ -7008,6 +7010,8 @@ nl:
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
+        quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
@@ -7954,6 +7958,12 @@ nl:
       taxon:
         about_html: |
           Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist gebruikt verschillende unieke termen om verschillende
+          aspecten van de service te beschrijven. Hier hebben we geprobeerd enkele ervan
+          te verzamelen en geven hun definities ter referentie.
     users:
       dashboard:
         taxon_change_desc: |
