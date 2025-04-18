@@ -3,6 +3,7 @@ import _ from "lodash";
 import { fetchRelationships, updateBlockedAndMutedUsers } from "./relationships";
 import { setConfirmEmailModalState } from "../../../shared/ducks/confirm_email_modal";
 import { fetchNetworkSites } from "./network_sites";
+import { fetchFavoriteProjects } from "./favorite_projects";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
 
@@ -74,6 +75,8 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
       if ( relationshipsPage ) {
         dispatch( updateBlockedAndMutedUsers( ) );
       }
+
+      dispatch( fetchFavoriteProjects( userSettings ) );
 
       const { sites } = getState( );
       // If the user is affiliated with a site we don't know about, try fetching

@@ -14,6 +14,7 @@ import authenticatedAppsReducer, { fetchAuthorizedApps, fetchProviderApps } from
 import relationshipsReducer from "./ducks/relationships";
 import creativeCommonsLicensingModalReducer from "./ducks/cc_licensing_modal";
 import confirmModalReducer from "../../shared/ducks/confirm_modal";
+import favoriteProjectsReducer from "./ducks/favorite_projects";
 import AppContainer from "./containers/app_container";
 import sharedStore from "../../shared/shared_store";
 
@@ -29,7 +30,8 @@ sharedStore.injectReducers( {
   creativeCommonsLicensing: creativeCommonsLicensingModalReducer,
   section: sectionReducer,
   confirmModal: confirmModalReducer,
-  alertModal
+  alertModal,
+  favoriteProjects: favoriteProjectsReducer
 } );
 
 const element = document.querySelector( "meta[name=\"config:inaturalist_api_url\"]" );

@@ -6,6 +6,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import LicenseImageRow from "./license_image_row";
 import TaxonNamePrioritiesContainer from "../containers/taxon_name_priorities_container";
+import FavoriteProjectsContainer from "../containers/favorite_projects_container";
 
 const radioButtons = {
   any: I18n.t( "views.users.edit.project_addition_preferences.any" ),
@@ -101,6 +102,7 @@ const Content = ( {
               __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects" )
             }}
           />
+          <FavoriteProjectsContainer />
         </SettingsItem>
         <SettingsItem>
           <h4>{I18n.t( "taxonomy_settings" )}</h4>
