@@ -566,3 +566,11 @@ describe Place, "localized_name" do
     end
   end
 end
+
+describe Place, "normalize_friendly_id" do
+  it "does not suggest a number as a slug from a number w/ chars that get removed by parameterize" do
+    place = build :place, name: "賞蝶識花山行健", display_name: "2021 賞蝶識花山行健"
+    expect( place.normalize_friendly_id( place.name ).to_i ).to eq 0
+    expect( place.normalize_friendly_id( place.display_name ).to_i ).to eq 0
+  end
+end
