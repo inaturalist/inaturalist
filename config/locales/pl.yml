@@ -48,13 +48,13 @@ pl:
   #Number of people who have added identifications
   x_identifiers_caps_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> IDENTYFIKATOR'
+    one: '<span class="count">%{count}</span> OZNACZAJĄCY'
     #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> IDENTYFIKATORY'
+    few: '<span class="count">%{count}</span> OZNACZAJĄCYCH'
     #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> IDENTYFIKATORÓW'
+    many: '<span class="count">%{count}</span> OZNACZAJĄCYCH'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> IDENTYFIKATORÓW'
+    other: '<span class="count">%{count}</span> OZNACZAJĄCEGO'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID stworzone dla innych'
     few: '<span class="count">%{count}</span> ID stworzonych dla innych'
