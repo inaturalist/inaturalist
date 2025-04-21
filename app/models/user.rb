@@ -1678,7 +1678,7 @@ class User < ApplicationRecord
 
   def header_projects
     project_users.joins(:project).includes(:project).limit(7).
-      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
+      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at DESC" ) ).
       map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
   end
 
