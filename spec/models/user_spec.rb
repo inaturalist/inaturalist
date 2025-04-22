@@ -1759,6 +1759,12 @@ describe User do
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
     end
 
+    it "update user interaction privilege" do
+      u = User.create_from_omniauth( auth_info )
+      expect( UserPrivilege.earned_interaction?( u ) ).to be true
+      expect( UserPrivilege.where( user: u, privilege: UserPrivilege::INTERACTION ).exists? ).to be true
+    end
+
     describe "with oauth_application" do
       it "should not set oauth_application_id for untrusted applications" do
         oauth_application = OauthApplication.make!( trusted: false )

@@ -946,7 +946,10 @@ class User < ApplicationRecord
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update( login: suggestion )
     end
-    u.add_provider_auth( auth_info ) if u.valid? && u.persisted?
+    if u.valid? && u.persisted?
+      u.add_provider_auth( auth_info )
+      UserPrivilege.check( u.id, UserPrivilege::INTERACTION )
+    end
     u
   end
 
