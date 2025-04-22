@@ -1,6 +1,4 @@
 import { connect } from "react-redux";
-import { DragDropContext } from "react-dnd";
-import HTML5Backend from "react-dnd-html5-backend";
 import TaxonNamePrioritiesDragDrop from "../components/taxon_name_priorities_dragdrop";
 
 import {
@@ -27,6 +25,6 @@ function mapDispatchToProps( dispatch ) {
 const TaxonNamePrioritiesDragdropContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( DragDropContext( HTML5Backend )( TaxonNamePrioritiesDragDrop ) );
+)( TaxonNamePrioritiesDragDrop );
 
 export default TaxonNamePrioritiesDragdropContainer;

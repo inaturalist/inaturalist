@@ -206,6 +206,13 @@ export function handleDisplayNames( { target } ) {
   };
 }
 
+export function updateUserData( updates ) {
+  return ( dispatch, getState ) => {
+    const { profile: userData } = getState( );
+    dispatch( setUserData( { ...userData, ...updates } ) );
+  };
+}
+
 export function handleInputChange( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );

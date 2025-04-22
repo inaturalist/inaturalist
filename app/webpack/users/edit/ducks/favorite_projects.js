@@ -27,6 +27,13 @@ export function fetchFavoriteProjects( user ) {
     }
 
     return inatjs.projects.fetch( user.faved_project_ids, { fields: PROJECT_FIELDS } )
-      .then( response => dispatch( setFavoriteProjects( response.results ) ) );
+      .then( response => dispatch(
+        setFavoriteProjects(
+          // Ensure projects are in the correct order
+          user.faved_project_ids.map(
+            projectId => response.results.find( p => p.id === projectId )
+          )
+        )
+      ) );
   };
 }
