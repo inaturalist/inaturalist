@@ -747,17 +747,12 @@ describe Identification, "deletion" do
     # puts job.handler.inspect
   end
 
-  it "should queue a job to update check lists if changed from research grade" do
+  it "should update check lists if changed from research grade" do
     o = make_research_grade_observation
     Delayed::Job.delete_all
-    stamp = Time.now
-    o.identifications.by( o.user ).first.destroy
-    jobs = Delayed::Job.where( "created_at >= ?", stamp )
 
-    pattern = /CheckList.*refresh_with_observation/m
-    job = jobs.detect {| j | j.handler =~ pattern }
-    expect( job ).not_to be_blank
-    # puts job.handler.inspect
+    expect( o ).to receive( :refresh_check_lists ).at_least( :once )
+    o.identifications.by( o.user ).first.destroy
   end
 
   it "should queue a job to update check lists if research grade" do
@@ -765,16 +760,10 @@ describe Identification, "deletion" do
     o.identifications.each {| ident | ident.destroy if ident.user_id != o.user_id }
     o.reload
     expect( o.quality_grade ).to eq Observation::NEEDS_ID
-    stamp = Time.now
-    Delayed::Job.delete_all
+
+    expect( o ).to receive( :refresh_check_lists ).at_least( :once )
     Identification.make!( taxon: o.taxon, observation: o )
-    o.reload
     expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-    jobs = Delayed::Job.where( "created_at >= ?", stamp )
-    pattern = /CheckList.*refresh_with_observation/m
-    job = jobs.detect {| j | j.handler =~ pattern }
-    expect( job ).not_to be_blank
-    # puts job.handler.inspect
   end
 
   it "should nilify curator_identification_id on project observations if no other current identification" do

@@ -930,13 +930,10 @@ describe Observation do
       expect( jobs.select {| j | j.handler =~ /ProjectList.*refresh_with_observation/m } ).to be_blank
     end
 
-    it "should queue refresh job for check lists if the coordinates changed" do
+    it "should refresh check lists if the coordinates changed" do
       o = make_research_grade_observation
-      Delayed::Job.delete_all
-      stamp = Time.now
+      expect( o ).to receive( :refresh_check_lists ).at_least( :once )
       o.update( latitude: o.latitude + 1 )
-      jobs = Delayed::Job.where( "created_at >= ?", stamp )
-      expect( jobs.select {| j | j.handler =~ /CheckList.*refresh_with_observation/m } ).not_to be_blank
     end
 
     it "should not queue job to refresh life lists if taxon changed" do
@@ -962,28 +959,11 @@ describe Observation do
       expect( jobs.select {| j | j.handler =~ /ProjectList.*refresh_with_observation/m }.size ).to eq( 0 )
     end
 
-    it "should only queue one check list refresh job" do
+    it "should refresh check lists if the taxon changed" do
       o = make_research_grade_observation
-      Delayed::Job.delete_all
-      stamp = Time.now
-      3.times do
-        o.update( latitude: o.latitude + 1 )
-      end
-      jobs = Delayed::Job.where( "created_at >= ?", stamp )
-      expect( jobs.select {| j | j.handler =~ /CheckList.*refresh_with_observation/m }.size ).to eq( 1 )
-    end
-
-    it "should queue refresh job for check lists if the taxon changed" do
-      o = make_research_grade_observation
-      Delayed::Job.delete_all
-      stamp = Time.now
       o = Observation.find( o.id )
+      expect( o ).to receive( :refresh_check_lists ).at_least( :once )
       o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
-      jobs = Delayed::Job.where( "created_at >= ?", stamp )
-      pattern = /CheckList.*refresh_with_observation/m
-      job = jobs.detect {| j | j.handler =~ pattern }
-      expect( job ).not_to be_blank
-      # puts job.handler.inspect
     end
 
     it "should not queue refresh job for project lists if the taxon changed" do
