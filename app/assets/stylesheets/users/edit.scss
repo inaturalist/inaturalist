@@ -542,46 +542,47 @@ body>div>[role="dialog"] .modal-dialog {
   .PlaceAutocomplete .ac-chooser {
     margin-top: 5px;
   }
-  .TaxonNamePriority {
-    min-height: 34px;
-    cursor: grab;
-    margin-bottom: 5px;
-    font-weight: 600;
+}
+
+.DraggableOption {
+  min-height: 34px;
+  cursor: grab;
+  margin-bottom: 5px;
+  font-weight: 600;
+  display: flex;
+  &.dragging {
+    opacity: 0.3;
+  }
+  &:hover {
+    background: #f5f5f5;
+  }
+  .move-icons {
     display: flex;
-    &.dragging {
-      opacity: 0.3;
+    align-items: center;
+    padding: 0px 8px 0px 15px;
+    span.glyphicon {
+      color: #aaa;
+      display: block;
+      font-size: 0.7em;
     }
-    &:hover {
-      background: #f5f5f5;
+    span.glyphicon-triangle-bottom {
+      margin-top: -3px;
     }
-    .move-icons {
-      display: flex;
-      align-items: center;
-      padding: 0px 8px 0px 15px;
-      span.glyphicon {
-        color: #aaa;
-        display: block;
-        font-size: 0.7em;
-      }
-      span.glyphicon-triangle-bottom {
-        margin-top: -3px;
-      }
+  }
+  .content {
+    padding: 8px 5px 6px 0;
+    flex: 2;
+  }
+  .place {
+    &:before {
+      content: " ("
     }
-    .lexicon {
-      padding: 8px 5px 6px 0;
-      flex: 2;
+    &:after {
+      content: ")"
     }
-    .place {
-      &:before {
-        content: " ("
-      }
-      &:after {
-        content: ")"
-      }
-    }
-    button {
-      float: right;
-    }
+  }
+  button {
+    float: right;
   }
 }
 

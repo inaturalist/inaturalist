@@ -17,27 +17,33 @@ const FavoriteProjects = ( { favoriteProjects, updateFavedProjectIds } ) => {
 
   return (
     <div className="FavoriteProjects">
-      <h4>here are your favorite projects</h4>
-      <ul>
-        { positions.map( ( projectId, position ) => {
-          const project = favoriteProjects.find( p => p.id === projectId );
-          return (
-            <FavoriteProject
-              key={`fave-project-${project.id}`}
-              position={position}
-              onDrag={( oldPosition, newPosition ) => {
-                const changedProjectId = positions[oldPosition];
-                const newPositions = [...positions];
-                newPositions.splice( oldPosition, 1 );
-                newPositions.splice( newPosition, 0, changedProjectId );
-                setPositions( newPositions );
-              }}
-              project={project}
-              onChange={() => updateFavedProjectIds( positions )}
-            />
-          );
-        } ) }
-      </ul>
+      <h5>{ I18n.t( "your_favorite_projects" ) }</h5>
+      <p className="text-muted">
+        { I18n.t( "your_favorite_projects_desc" ) }
+      </p>
+      { positions.map( ( projectId, position ) => {
+        const project = favoriteProjects.find( p => p.id === projectId );
+        return (
+          <FavoriteProject
+            key={`fave-project-${project.id}`}
+            position={position}
+            onDrag={( oldPosition, newPosition ) => {
+              const changedProjectId = positions[oldPosition];
+              const newPositions = [...positions];
+              newPositions.splice( oldPosition, 1 );
+              newPositions.splice( newPosition, 0, changedProjectId );
+              setPositions( newPositions );
+            }}
+            project={project}
+            onChange={() => updateFavedProjectIds( positions )}
+            onRemove={removedProject => {
+              const newPositions = positions.filter( pid => pid !== removedProject.id );
+              setPositions( newPositions );
+              updateFavedProjectIds( newPositions );
+            }}
+          />
+        );
+      } ) }
     </div>
   );
 };

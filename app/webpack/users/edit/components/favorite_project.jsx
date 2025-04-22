@@ -3,6 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DragSource, DropTarget } from "react-dnd";
 
+import DraggableOption from "./draggable_option";
+
 const sourceSpec = {
   beginDrag: props => ( {
     // ensure the monitor has this value so we can use it below in the hover
@@ -47,13 +49,16 @@ class FavoriteProject extends React.Component {
     const {
       connectDragSource,
       connectDropTarget,
+      isDragging,
+      onRemove,
       project
     } = this.props;
     return connectDragSource( connectDropTarget( (
-      <li>
-        { project.title }
-        { `(${project.id})` }
-      </li>
+      <div>
+        <DraggableOption isDragging={isDragging} onDelete={() => onRemove( project )}>
+          { project.title }
+        </DraggableOption>
+      </div>
     ) ) );
   }
 }
@@ -61,8 +66,15 @@ class FavoriteProject extends React.Component {
 FavoriteProject.propTypes = {
   connectDropTarget: PropTypes.func.isRequired,
   connectDragSource: PropTypes.func.isRequired,
+  isDragging: PropTypes.bool,
+  // These callbacks are used, just not in the component definition
+  // eslint-disable-next-line react/no-unused-prop-types
+  onChange: PropTypes.func,
+  // eslint-disable-next-line react/no-unused-prop-types
+  onDrag: PropTypes.func,
   // eslint-disable-next-line react/no-unused-prop-types
   position: PropTypes.number,
+  onRemove: PropTypes.func,
   project: PropTypes.object
 };
 
