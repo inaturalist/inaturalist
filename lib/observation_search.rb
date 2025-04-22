@@ -306,7 +306,11 @@ module ObservationSearch
           p[:observations_taxon] = TaxonName.where(taxon_name_conditions).joins(includes).first.try(:taxon)
         end
         if !p[:observations_taxon]
-          p.delete(:taxon_name)
+          p.delete( :taxon_name )
+          # a taxon_name parameter was provided, but the taxon name does not exist. Set an
+          # impossible condition so this search fails and does not default to returning
+          # all matches for all taxa
+          p[:taxon_ids] = [-1]
         end
       end
       if p[:taxon_ids] == [""]
