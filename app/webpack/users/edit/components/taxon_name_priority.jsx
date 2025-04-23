@@ -72,7 +72,7 @@ class TaxonNamePriority extends React.Component {
       <div>
         <DraggableOption
           isDragging={isDragging}
-          onDelete={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
+          onRemove={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
         >
           { lexicon }
           { taxonNamePriority.place && (

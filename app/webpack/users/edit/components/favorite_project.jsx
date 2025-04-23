@@ -55,7 +55,7 @@ class FavoriteProject extends React.Component {
     } = this.props;
     return connectDragSource( connectDropTarget( (
       <div>
-        <DraggableOption isDragging={isDragging} onDelete={() => onRemove( project )}>
+        <DraggableOption isDragging={isDragging} onRemove={() => onRemove( project )}>
           { project.title }
         </DraggableOption>
       </div>

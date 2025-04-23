@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const DraggableOption = ( {
   children,
   isDragging,
-  onDelete
+  onRemove
 } ) => (
   <div className={`DraggableOption${isDragging ? " dragging" : ""}`}>
     <div className="move-icons">
@@ -19,10 +19,10 @@ const DraggableOption = ( {
     <div className="delete-button">
       <button
         type="button"
-        className="btn btn-default"
-        onClick={onDelete}
+        className="btn btn-default btn-sm"
+        onClick={onRemove}
       >
-        { I18n.t( "delete" ) }
+        { I18n.t( "remove" ) }
       </button>
     </div>
   </div>
@@ -31,7 +31,7 @@ const DraggableOption = ( {
 DraggableOption.propTypes = {
   children: PropTypes.any,
   isDragging: PropTypes.bool,
-  onDelete: PropTypes.func
+  onRemove: PropTypes.func
 };
 
 export default DraggableOption;
