@@ -19,10 +19,10 @@ const FavoriteProjects = ( { addProject, favoriteProjects, updateFavedProjectIds
   const projectAutocompleteRef = React.useRef( );
 
   return (
-    <div className="FavoriteProjects">
-      <h5>{ I18n.t( "your_favorite_projects" ) }</h5>
+    <div id="favorite-projects" className="FavoriteProjects">
+      <h5>{ I18n.t( "favorite_projects" ) }</h5>
       <p className="text-muted">
-        { I18n.t( "your_favorite_projects_desc" ) }
+        { I18n.t( "favorite_projects_desc" ) }
       </p>
       { positions.map( ( projectId, position ) => {
         const project = favoriteProjects.find( p => p.id === projectId );

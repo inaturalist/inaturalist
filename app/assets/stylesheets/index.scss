@@ -2398,7 +2398,24 @@ $header-line-height: 34px;
     line-height: 15px;
     margin: 3px 0;
   }
+
+  .communitytab {
+    .dropdown-menu {
+      img {
+        margin-inline-end: 3px;
+      }
+      .fa-suitcase {
+        margin-inline-start: 1px;
+        margin-inline-end: 4px;
+      }
+      .fa-pencil {
+        margin-inline-start: 2px;
+        margin-inline-end: 6px;
+      }
+    }
+  }
 }
+
 #footer-locale-chooser {
   .dropdown-menu {
     overflow-y: scroll;

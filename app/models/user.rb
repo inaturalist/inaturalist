@@ -1682,9 +1682,13 @@ class User < ApplicationRecord
   end
 
   def header_projects
-    project_users.joins(:project).includes(:project).limit(7).
-      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
-      map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+    # First try projects the user has explicitly chosen
+    return faved_projects unless faved_projects.blank?
+
+    # Fall back to projects the user has joined and have been updated recently
+    project_users.joins( :project ).includes( :project ).limit( 7 ).
+      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at DESC" ) ).
+      map( &:project ).sort_by {| p | p.title.downcase }
   end
 
   def anonymous?
