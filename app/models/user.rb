@@ -358,6 +358,7 @@ class User < ApplicationRecord
   validate :validate_email_pattern
   validate :validate_email_domain_exists
   validate :validate_canonical_email_not_shared_with_suspended_account
+  validate :validate_faved_project_ids
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -435,6 +436,12 @@ class User < ApplicationRecord
     return unless uniqueness_scope.any?
 
     errors.add( :email, :taken )
+  end
+
+  def validate_faved_project_ids
+    return unless @faved_project_ids_errors.present?
+
+    errors.add :faved_project_ids, @faved_project_ids_errors
   end
 
   def icon_url_provided?
@@ -1681,6 +1688,7 @@ class User < ApplicationRecord
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
   end
 
+  # Projects to display in the header for a signed-in user
   def header_projects
     # First try projects the user has explicitly chosen
     return faved_projects unless faved_projects.blank?
@@ -1798,9 +1806,14 @@ class User < ApplicationRecord
     count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
   end
 
+  # Custom setter to allow control ove ProjectFaves by updating the user.
+  # Order of the array will be preserved. Note that we're using
+  # the @faved_project_ids_errors instance variable because if we add actual
+  # errors before potentially running valid?, those errors will get erased
+  # when validation actually happens.
   def faved_project_ids=( project_ids )
     @faved_project_ids_errors ||= []
-    if project_ids.size > 7
+    if project_ids.size > ProjectFave::LIMIT_PER_USER
       @faved_project_ids_errors << :cannot_include_more_than_7_projects
       return
     end
@@ -1811,6 +1824,9 @@ class User < ApplicationRecord
       return
     end
 
+    # Create an destroy ProjectFaves, analagous to have HABTM relations work.
+    # Comes with the potential for problems if another validation error stops
+    # the user from being saved *after* this happens.
     project_ids.each_with_index do | project_id, position |
       fave = project_faves.detect {| existing_fave | existing_fave.project_id == project_id }
       fave ||= project_faves.build( project_id: project_id )
@@ -1818,13 +1834,5 @@ class User < ApplicationRecord
       fave.save!
     end
     ProjectFave.where( user_id: id ).where( "project_id NOT IN (?)", project_ids ).delete_all
-  end
-
-  validate :validate_faved_project_ids
-
-  def validate_faved_project_ids
-    return unless @faved_project_ids_errors.present?
-
-    errors.add :faved_project_ids, @faved_project_ids_errors
   end
 end

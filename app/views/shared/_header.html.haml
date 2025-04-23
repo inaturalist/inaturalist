@@ -44,7 +44,7 @@
               %li.divider{role: "separator"}
               %li.dropdown-header
                 - if current_user.faved_projects.any?
-                  =t :your_favorite_projects
+                  =t :favorite_projects
                 - else
                   =t :your_projects
               - for project in user_projects
