@@ -2,11 +2,13 @@
 
 class ModeratorAction < ApplicationRecord
   HIDE = "hide"
+  REPLACEUSERNAME = "replaceUsername"
   UNHIDE = "unhide"
   SUSPEND = "suspend"
   UNSUSPEND = "unsuspend"
   ACTIONS = [
     HIDE,
+    REPLACEUSERNAME,
     SUSPEND,
     UNHIDE,
     UNSUSPEND
@@ -27,6 +29,7 @@ class ModeratorAction < ApplicationRecord
   validates :reason, length: { minimum: MINIMUM_REASON_LENGTH, maximum: MAXIMUM_REASON_LENGTH }
   validate :only_curators_and_staff_can_hide, on: :create
   validate :only_staff_can_make_private
+  validate :only_staff_can_replace_username, on: :create
   validate :only_hidden_content_can_be_private
   validate :only_staff_and_hiding_curator_can_unhide, on: :create
   validate :check_accepted_actions, on: :create
@@ -91,6 +94,13 @@ class ModeratorAction < ApplicationRecord
     errors.add( :base, :only_staff_and_hiding_curators_can_unhide )
   end
 
+  def only_staff_can_replace_username
+    return unless action == REPLACEUSERNAME
+    return if user&.is_admin?
+
+    errors.add( :base, :only_staff_can_replace_username )
+  end
+
   def cannot_suspend_staff
     return unless resource.is_a?( User ) && resource.is_admin? && action == SUSPEND
 
@@ -150,6 +160,7 @@ class ModeratorAction < ApplicationRecord
 
   def set_resource_content
     return unless resource
+    return if action == REPLACEUSERNAME
 
     self.resource_content = Flag.instance_content( resource )
   end

@@ -37,10 +37,15 @@
       } );
     } );
 = content_for :extracss do
+  :javascript
+    $('#replaceusername').on('shown.bs.modal', function () {
+      $('.modal-footer .btn-danger', this).focus()
+    })
   :css
     .dropdown-menu.site-admins li {
       padding: 3px 10px;
     }
+
 .container
   .row
     .col-xs-12
@@ -295,6 +300,8 @@
         = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
           method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
           class: "btn btn-block btn-success"
+      = link_to "#replaceusername", "data-toggle" => "modal", class: "btn btn-block btn-warning" do
+        = t(:moderator_actions_replaceUsername)
       %hr
       - if !@display_user.confirmed? || @display_user.unconfirmed_email?
         = link_to "Confirm user email", admin_update_user_path( @display_user.id, confirm: true ), method: :put,
@@ -379,3 +386,17 @@
             = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete", data: { "1p_ignore" =>  true }
             = hidden_field_tag :reject_user_id
           = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }
+#replaceusername.modal.fade
+  .modal-dialog{ role: "document" }
+    .modal-content
+      = form_tag replace_username_admin_user_path(@display_user), method: :put do
+        .modal-header
+          %button.close{ type: "button", "data-dismiss" => "modal" } ×
+          %h4.modal-title= t(:moderator_actions_replaceUsername)
+        .modal-body
+          %p
+            = t(:replace_user_name_admin_explanation)
+            %code naturalistXXXX
+        .modal-footer
+          %button.btn.btn-default{ type: "button", "data-dismiss" => "modal" }= t(:cancel)
+          %button.btn.btn-danger{ type: "submit" }= "Yes, replace"

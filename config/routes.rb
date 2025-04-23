@@ -230,6 +230,7 @@ Rails.application.routes.draw do
   get "/users/:id/suspend" => "users#suspend", :as => :suspend_user, :constraints => { id: /\d+/ }
   get "/users/:id/unsuspend" => "users#unsuspend", :as => :unsuspend_user, :constraints => { id: /\d+/ }
   post "users/:id/add_role" => "users#add_role", :as => :add_role, :constraints => { id: /\d+/ }
+  put "users/:id/replace_username" => "users#replace_username", :as => :replace_username_admin_user, :constraints => { id: /\d+/ }
   post "users/set_spammer" => "users#set_spammer"
   post "users/:id/set_spammer" => "users#set_spammer", :as => :set_spammer, :constraints => { id: /\d+/ }
   delete "users/:id/remove_role" => "users#remove_role", :as => :remove_role, :constraints => { id: /\d+/ }
