@@ -16,16 +16,16 @@ $.fn.projectAutocomplete = function ( opts ) {
         q: request.term,
         per_page: request.term ? 10 : 300
       };
-      if ( options.currentUsersProjects && CURRENT_USER ) {
+      if ( this.options.currentUsersProjects && CURRENT_USER ) {
         params.member_id = CURRENT_USER.id;
       }
-      if ( options.notIDs ) {
-        params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
+      if ( this.options.notIDs ) {
+        params.not_id = this.options.notIDs.slice( 0, 750 ).join( "," );
       }
-      if ( options.notTypes ) {
-        params.not_type = options.notTypes.join( "," );
+      if ( this.options.notTypes ) {
+        params.not_type = this.options.notTypes.join( "," );
       }
-      if ( options.hasParams ) {
+      if ( this.options.hasParams ) {
         params.has_params = true;
       }
       $.ajax( {

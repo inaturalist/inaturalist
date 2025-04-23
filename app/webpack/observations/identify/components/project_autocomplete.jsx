@@ -14,6 +14,11 @@ class ProjectAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
+    // Update the jQuery UI autocomplete with the new options
+    const domNode = ReactDOM.findDOMNode( this );
+    $( "input[name='project_title']", domNode ).autocomplete( "option", this.props );
+
+    // Fetch the new project if necessary
     const { initialProjectID } = this.props;
     if ( initialProjectID
          && initialProjectID !== prevProps.initialProjectID ) {
@@ -44,6 +49,8 @@ class ProjectAutocomplete extends React.Component {
     }
   }
 
+  // This does get used as a public instance method
+  // eslint-disable-next-line react/no-unused-class-component-methods
   inputElement( ) {
     const domNode = ReactDOM.findDOMNode( this );
     return $( "input[name='project_title']", domNode );
