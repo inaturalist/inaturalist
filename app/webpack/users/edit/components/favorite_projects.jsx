@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import ProjectAutocomplete from "../../../observations/identify/components/project_autocomplete";
 import FavoriteProject from "./favorite_project";
 
-const FavoriteProjects = ( { favoriteProjects, updateFavedProjectIds } ) => {
+const FavoriteProjects = ( { addProject, favoriteProjects, updateFavedProjectIds } ) => {
   const [positions, setPositions] = React.useState( favoriteProjects.map( p => p.id ) );
 
   // update temp state when favoriteProjects actually updates
@@ -15,6 +16,8 @@ const FavoriteProjects = ( { favoriteProjects, updateFavedProjectIds } ) => {
     JSON.stringify( favoriteProjects.map( p => p.id ) )
   ] );
 
+  const projectAutocompleteRef = React.useRef( );
+
   return (
     <div className="FavoriteProjects">
       <h5>{ I18n.t( "your_favorite_projects" ) }</h5>
@@ -23,6 +26,7 @@ const FavoriteProjects = ( { favoriteProjects, updateFavedProjectIds } ) => {
       </p>
       { positions.map( ( projectId, position ) => {
         const project = favoriteProjects.find( p => p.id === projectId );
+        if ( !project ) return null;
         return (
           <FavoriteProject
             key={`fave-project-${project.id}`}
@@ -44,11 +48,23 @@ const FavoriteProjects = ( { favoriteProjects, updateFavedProjectIds } ) => {
           />
         );
       } ) }
+      <div className="add-project">
+        <ProjectAutocomplete
+          afterSelect={result => {
+            addProject( result.item );
+            projectAutocompleteRef.current?.inputElement( )?.val( "" );
+            projectAutocompleteRef.current?.inputElement( )?.trigger( "resetSelection" );
+          }}
+          placeholder={I18n.t( "add_a_project" )}
+          ref={projectAutocompleteRef}
+        />
+      </div>
     </div>
   );
 };
 
 FavoriteProjects.propTypes = {
+  addProject: PropTypes.func,
   favoriteProjects: PropTypes.arrayOf( PropTypes.shape( {
     id: PropTypes.number,
     title: PropTypes.string

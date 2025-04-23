@@ -50,14 +50,14 @@ class ProjectAutocomplete extends React.Component {
   }
 
   render( ) {
-    const { className, disabled } = this.props;
+    const { className, disabled, placeholder } = this.props;
     return (
       <span className="ProjectAutocomplete">
         <input
           type="search"
           name="project_title"
           className={`form-control ${className}`}
-          placeholder={I18n.t( "name_or_slug" )}
+          placeholder={placeholder || I18n.t( "name_or_slug" )}
           disabled={disabled}
         />
         <input type="hidden" name="project_id" />
@@ -72,7 +72,8 @@ ProjectAutocomplete.propTypes = {
     PropTypes.number,
     PropTypes.string
   ] ),
-  className: PropTypes.string
+  className: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default ProjectAutocomplete;

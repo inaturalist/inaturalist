@@ -570,7 +570,7 @@ body>div>[role="dialog"] .modal-dialog {
     }
   }
   .content {
-    padding: 8px 5px 6px 0;
+    padding: 8px 10px 6px 0;
     flex: 2;
   }
   .place {
@@ -580,9 +580,6 @@ body>div>[role="dialog"] .modal-dialog {
     &:after {
       content: ")"
     }
-  }
-  button {
-    float: right;
   }
 }
 
@@ -630,4 +627,15 @@ body>div>[role="dialog"] .modal-dialog {
 
 .chars-remaining {
   margin-top: 5px;
+}
+
+.FavoriteProjects {
+  .add-project {
+    display: flex;
+    .ProjectAutocomplete {
+      flex-grow: 2;
+      margin-inline-start: 30px;
+      margin-inline-end: 76px;
+    }
+  }
 }

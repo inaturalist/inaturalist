@@ -346,3 +346,14 @@ export function confirmResendConfirmation( ) {
     } ) );
   };
 }
+
+// Needs to update the user record which requires current state, as well as
+// fetch those projects
+export function addFavoriteProject( project ) {
+  return function ( dispatch, getState ) {
+    dispatch( updateUserData( {
+      faved_project_ids: [...getState( ).profile.faved_project_ids, project.id]
+    } ) );
+    return dispatch( fetchFavoriteProjects( ) );
+  };
+}

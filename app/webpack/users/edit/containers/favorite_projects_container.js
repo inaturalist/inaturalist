@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import FavoriteProjects from "../components/favorite_projects";
-import { updateUserData } from "../ducks/user_settings";
+import { addFavoriteProject, updateUserData } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {
@@ -11,6 +11,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
+    addProject: project => dispatch( addFavoriteProject( project ) ),
     updateFavedProjectIds: projectIds => dispatch(
       updateUserData( { faved_project_ids: projectIds } )
     )
