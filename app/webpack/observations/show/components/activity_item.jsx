@@ -298,7 +298,9 @@ class ActivityItem extends React.Component {
         (
           <span
             dangerouslySetInnerHTML={{
-              __html: I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } )
+              __html: item.taxon_change
+                ? I18n.t( "inaturalist_updated_the_id_suggested_by_user", { user: ReactDOMServer.renderToString( userLink ) } )
+                : I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } )
             }}
             key={`ActivityItem-UserLink-${item.id}`}
           />
