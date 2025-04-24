@@ -262,26 +262,26 @@ describe ModeratorAction do
         expect( u ).not_to be_suspended
       end
     end
-    describe "REPLACENAME" do
+    describe "RENAME" do
       let( :user ) { create( :user, login: "old_login" ) }
       let( :new_login ) { "new_login" }
       let( :action ) do
-        create( :moderator_action, action: ModeratorAction::REPLACEUSERNAME, resource: user, user: admin,
+        create( :moderator_action, action: ModeratorAction::RENAME, resource: user, user: admin,
           reason: generic_reason )
       end
 
-      it "should replace the login for a user and persist the action when admin performs it" do
+      it "should rename for a user and persist the action when admin performs it" do
         user.update!( login: new_login )
         action
         user.reload
         expect( user.login ).to eq( new_login )
         expect( action ).to be_persisted
-        expect( action.action ).to eq( ModeratorAction::REPLACEUSERNAME )
+        expect( action.action ).to eq( ModeratorAction::RENAME )
         expect( action.reason ).to eq( generic_reason )
       end
 
-      it "should not allow a non-admin user to replace the login" do
-        action = build( :moderator_action, action: ModeratorAction::REPLACEUSERNAME, resource: user, user: User.make!,
+      it "should not allow a non-admin user to rename" do
+        action = build( :moderator_action, action: ModeratorAction::RENAME, resource: user, user: User.make!,
           reason: generic_reason )
         expect( action ).not_to be_valid
       end

@@ -67,39 +67,6 @@ class UsersController < ApplicationController
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
-
-  def replace_username
-    @user = User.find(params[:id])
-    new_username = nil
-    i = 1
-    loop do
-      candidate = "naturalist#{i.to_s.rjust(4, '0')}"
-      unless User.exists?(login: candidate)
-        new_username = candidate
-        break
-      end
-      i += 1
-    end
-    if new_username
-      old_username = @user.login
-      begin
-        ModeratorAction.create!(
-          user: current_user,
-          resource: @user,
-          action: ModeratorAction::REPLACEUSERNAME,
-          reason: "Username changed from #{old_username} to #{new_username}",
-          resource_content: new_username
-        )
-
-        flash[:notice] = "Username successfully replaced with #{new_username}"
-      rescue ActiveRecord::RecordInvalid => e
-        flash[:alert] = flash[:alert] =  e.message
-      end
-    else
-      flash[:error] = "Failed to generate a unique username"
-    end
-    redirect_to user_detail_admin_path(id: params[:id])
-  end
   def suspend
     if @user.suspended?
       flash[:error] = "You cannot suspend someone who is already suspended"

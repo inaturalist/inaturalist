@@ -360,39 +360,6 @@ describe UsersController, "add_role" do
   end
 end
 
-describe UsersController, "replace_username" do
-  let( :admin_user ) { create( :user, :as_admin ) }
-  let( :normal_user ) { create( :user ) }
-  let( :user_to_update ) { create( :user, login: "old_username" ) }
-
-  describe "when admin" do
-    it "should replace the username and create a moderator action" do
-      sign_in admin_user
-      expect do
-        put :replace_username, params: { id: user_to_update.id }
-      end.to change { user_to_update.reload.login }.from( "old_username" ).to( /^naturalist\d{4}$/ )
-
-      expect( flash[:notice] ).to eq "Username successfully replaced with #{user_to_update.login}"
-      expect( ModeratorAction.where( action: ModeratorAction::REPLACEUSERNAME,
-        resource: user_to_update ).count ).to eq( 1 )
-    end
-  end
-
-  describe "when non-admin" do
-    it "should not allow a non-admin to replace username" do
-      normal_user = User.make!
-      sign_in normal_user
-      old_username = normal_user.login
-      put :replace_username, params: { id: normal_user.id }
-      normal_user.reload
-      expect( normal_user.login ).to eq( old_username )
-      expect( ModeratorAction.where( action: ModeratorAction::REPLACEUSERNAME,
-        resource: normal_user ).count ).to eq( 0 )
-      expect( flash[:alert] ).to eq("Validation failed: #{I18n.t('activerecord.errors.models.moderator_action.attributes.base.only_staff_can_replace_username')}")
-    end
-  end
-end
-
 describe UsersController, "remove_role" do
   let( :curator_user ) { make_curator }
   let( :target_curator_user ) { make_curator }

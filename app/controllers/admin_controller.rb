@@ -145,6 +145,21 @@ class AdminController < ApplicationController
       flash[:error] = "User doesn't exist"
       redirect_back_or_default( curate_users_path )
     end
+    if params[:reset_name]
+      new_username = User.suggest_login( User::DEFAULT_LOGIN )
+      old_username = user.login
+      user.update( login: new_username )
+      @moderator_action = ModeratorAction.new(
+        user: current_user,
+        resource: user,
+        action: ModeratorAction::RENAME,
+        reason: "Username changed from #{old_username} to #{new_username}",
+        resource_content: new_username
+      )
+      if @moderator_action.save
+        flash[:notice] = "Username successfully replaced with #{new_username}"
+      end
+    end
     if params[:icon_delete]
       user.icon = nil
       user.icon_url = nil
