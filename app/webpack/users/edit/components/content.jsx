@@ -88,21 +88,21 @@ const Content = ( {
       <div className="col-md-5 col-sm-10">
         <SettingsItem>
           <h4>{I18n.t( "project_settings" )}</h4>
-          <div className="stacked">
-            <label htmlFor="user_preferred_project_addition_by">{I18n.t( "which_projects_can_add_your_observations?" )}</label>
-          </div>
-          <div className="stacked">
+          <fieldset>
+            <legend>{I18n.t( "which_projects_can_add_your_observations?" )}</legend>
             {createRadioButtons( )}
-          </div>
-          <p className="text-muted">{I18n.t( "views.users.edit.project_settings_desc" )}</p>
-          <p
-            className="text-muted"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects" )
-            }}
-          />
-          <FavoriteProjectsContainer />
+            <p className="text-muted">{I18n.t( "views.users.edit.project_settings_desc" )}</p>
+            <p
+              className="text-muted"
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects" )
+              }}
+            />
+          </fieldset>
+          <fieldset>
+            <FavoriteProjectsContainer />
+          </fieldset>
         </SettingsItem>
         <SettingsItem>
           <h4>{I18n.t( "taxonomy_settings" )}</h4>
@@ -197,60 +197,66 @@ const Content = ( {
         </SettingsItem>
       </div>
       <div className="col-md-5 col-md-offset-1 col-sm-10">
-        <SettingsItem>
+        <section>
           <h4>{I18n.t( "names" )}</h4>
-          <label htmlFor="user_prefers_common_names">
-            { I18n.t( "views.users.edit.common_scientific_name_display_order" ) }
-          </label>
-          <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
-          <select
-            className="form-control stacked dropdown"
-            id="user_prefers_common_names"
-            name="prefers_common_names"
-            onChange={handleDisplayNames}
-            value={setDisplayName( )}
-          >
-            <option value="prefers_common_names">{`${I18n.t( "common_name" )} (${I18n.t( "scientific_name" )})`}</option>
-            <option value="prefers_scientific_name_first">{`${I18n.t( "scientific_name" )} (${I18n.t( "common_name" )})`}</option>
-            <option value="prefers_scientific_names">{I18n.t( "scientific_name" )}</option>
-          </select>
-        </SettingsItem>
-        <TaxonNamePrioritiesContainer />
-        <SettingsItem>
+          <fieldset>
+            <label htmlFor="user_prefers_common_names">
+              { I18n.t( "views.users.edit.common_scientific_name_display_order" ) }
+            </label>
+            <div className="text-muted stacked">{I18n.t( "this_is_how_taxon_names_will_be_displayed", { site_name: SITE.name } )}</div>
+            <select
+              className="form-control stacked dropdown"
+              id="user_prefers_common_names"
+              name="prefers_common_names"
+              onChange={handleDisplayNames}
+              value={setDisplayName( )}
+            >
+              <option value="prefers_common_names">{`${I18n.t( "common_name" )} (${I18n.t( "scientific_name" )})`}</option>
+              <option value="prefers_scientific_name_first">{`${I18n.t( "scientific_name" )} (${I18n.t( "common_name" )})`}</option>
+              <option value="prefers_scientific_names">{I18n.t( "scientific_name" )}</option>
+            </select>
+          </fieldset>
+          <fieldset>
+            <TaxonNamePrioritiesContainer />
+          </fieldset>
+        </section>
+        <section>
           <h4>{I18n.t( "community_moderation_settings" )}</h4>
-          <CheckboxRowContainer
-            name="prefers_community_taxa"
-            label={I18n.t( "accept_community_identifications" )}
-            description={
-              I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )
-            }
-          />
-          <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
-          <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
-          <select
-            className="form-control dropdown"
-            id="preferred_observation_fields_by"
-            value={profile.preferred_observation_fields_by}
-            name="preferred_observation_fields_by"
-            onChange={handleInputChange}
-          >
-            {Object.keys( obsFields ).map( value => (
-              <option value={value} key={value}>{obsFields[value]}</option>
-            ) )}
-          </select>
-        </SettingsItem>
+          <fieldset>
+            <CheckboxRowContainer
+              name="prefers_community_taxa"
+              label={I18n.t( "accept_community_identifications" )}
+              description={
+                I18n.t( "views.users.edit.prefers_community_taxa_desc", { site_name: SITE.short_name || SITE.name } )
+              }
+            />
+          </fieldset>
+          <fieldset>
+            <label htmlFor="preferred_observation_fields_by">{I18n.t( "who_can_add_observation_fields_to_my_obs" )}</label>
+            <p className="text-muted">{I18n.t( "observation_fields_by_preferences_description" )}</p>
+            <select
+              className="form-control dropdown"
+              id="preferred_observation_fields_by"
+              value={profile.preferred_observation_fields_by}
+              name="preferred_observation_fields_by"
+              onChange={handleInputChange}
+            >
+              {Object.keys( obsFields ).map( value => (
+                <option value={value} key={value}>{obsFields[value]}</option>
+              ) )}
+            </select>
+          </fieldset>
+        </section>
       </div>
     </div>
   );
 };
 
 Content.propTypes = {
-  config: PropTypes.object,
   profile: PropTypes.object,
   handleInputChange: PropTypes.func,
   handleCustomDropdownSelect: PropTypes.func,
   handleDisplayNames: PropTypes.func,
-  handlePlaceAutocomplete: PropTypes.func,
   showModal: PropTypes.func
 };
 

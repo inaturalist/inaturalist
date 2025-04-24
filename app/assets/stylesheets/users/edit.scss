@@ -12,9 +12,11 @@ $user-image-size: 65px;
 
 .save-button {
   justify-content: flex-end;
+  .status {
+    margin-inline-end: 12px;
+  }
   .saved-time {
     text-decoration: underline;
-    margin-right: 12px;
   }
   @media (max-width: 767.99px) {
     flex-direction: row-reverse;
@@ -529,6 +531,24 @@ body>div>[role="dialog"] .modal-dialog {
     background: none;
     font-weight: 700;
     margin-bottom: 5px;
+  }
+
+  legend {
+    font-size: inherit;
+    border: 0 none;
+    margin: 0;
+  }
+}
+
+.bootstrap {
+  section,
+  fieldset {
+    margin-bottom: 20px;
+  }
+
+  section:last-child,
+  fieldset:last-child {
+    margin-bottom: 0;
   }
 }
 
