@@ -2964,8 +2964,11 @@ class ObservationsController < ApplicationController
       unless Observation.where( id: deleted_observation.observation_id ).exists?
         Observation.elastic_delete_by_ids!( [deleted_observation.observation_id] )
       end
-      render_410
-      return
+      # Temporary workaround for clients that are hard-coded to expect a 404
+      if request.get?
+        render_410
+        return
+      end
     end
     render_404
   end
