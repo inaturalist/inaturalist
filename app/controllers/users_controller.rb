@@ -67,6 +67,7 @@ class UsersController < ApplicationController
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
+  
   def suspend
     if @user.suspended?
       flash[:error] = "You cannot suspend someone who is already suspended"

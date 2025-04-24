@@ -143,7 +143,7 @@ describe UsersController, "delete" do
   it "redirects with the account_deleted=true parameter" do
     sign_in user
     delete :destroy, params: { id: user.id, confirmation: user.login, confirmation_code: user.login }
-    expect( response.redirect_url ).to match( /account_deleted=true/ )
+    expect( response.redirect_url ).to match /account_deleted=true/
   end
 
   it "should be possible for the user" do
