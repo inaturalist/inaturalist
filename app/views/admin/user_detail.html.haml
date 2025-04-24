@@ -1,402 +1,1 @@
-- content_for(:title) do
-  = t(:curating)
-  = @user ? @user.login : t(:users)
-- content_for :extrajs do
-  :javascript
-    $( document ).ready( function( ) {
-      $( "#reject_user_name" ).userAutocomplete( {
-        idEl: $( "#reject_user_id" ),
-        afterSelect: function( ui ) {
-          $( "#reject_user_id" ).val( ui.item.user_id );
-        }
-      } );
-      $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {
-        e.stopPropagation( );
-      } );
-    } );
-  :javascript
-    $( document ).ready( function( ) {
-      $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {
-        $.ajax({
-          type: $( this ).is( ":checked" ) ? "POST" : "DELETE",
-          url: "/site_admins",
-          data: {
-            site_admin: {
-              user_id: #{ @display_user.id },
-              site_id: $( this ).val( )
-            }
-          },
-          success: function( data ) {
-            console.log( "success" );
-          },
-          error: function( data ) {
-            console.log( "error" );
-          },
-          dataType: "JSON"
-        });
-      } );
-    } );
-= content_for :extracss do
-  :javascript
-    $('#rename').on('shown.bs.modal', function () {
-      $('.modal-footer .btn-danger', this).focus()
-    })
-  :css
-    .dropdown-menu.site-admins li {
-      padding: 3px 10px;
-    }
-
-.container
-  .row
-    .col-xs-12
-      %form.stacked.form-inline{ method: "get", action: users_admin_path }
-        %input.form-control#id{ name: "q_email", type: "search", "data-1p-ignore" => true }
-        %input.btn.btn-default{ type: "submit", value: "Search" }
-  .row
-    .col-xs-8
-      %h3 Basics
-      %table.table
-        - basic_attrs = %w(id login name email created_at updated_at time_zone description last_ip last_active locale site_id place_id search_place_id spammer spam_count suspended_at suspension_reason suspended_by_user_id)
-        - for user_attr in basic_attrs
-          %tr
-            %th= user_attr
-            %td{ style: "width: 100%" }
-              - if user_attr == "login"
-                = link_to_user @display_user do
-                  = @display_user.login
-              - elsif user_attr == "last_ip"
-                = @display_user.send(user_attr).to_s.html_safe
-                - if @geoip_location
-                  &nbsp;
-                  = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )
-              - elsif user_attr == "email"
-                = @display_user.send( user_attr ).to_s.html_safe
-                - if @display_user.confirmed?
-                  %span.label.label-success
-                    Confirmed at
-                    = @display_user.confirmed_at
-                - else
-                  %span.label.label-warning Unconfirmed
-                %details.stacked
-                  %summary Edit
-                  = form_for @display_user, url: admin_update_user_path( @display_user ), method: :put, data: { confirm: "This will email the user at the old address and the new address and they will still have to confirm the new address. Ok?" }, builder: BootstrapFormBuilder, html: {class: "form-inline"} do | f |
-                    .form-group
-                      = f.text_field :email, class: "form-control", label: false, style: "min-width: 300px", data: { "1p_ignore" => true }
-                    = f.submit "Send confirmation to new email", class: "btn btn-primary"
-                - unless @display_user.unconfirmed_email.blank?
-                  .alert.alert-warning
-                    Unconfirmed new email:
-                    = @display_user.unconfirmed_email
-                - unless @email_suppressions.blank?
-                  .suppressions
-                    %h4 Sendgrid Suppressions
-                    %p Local records of Sendgrid suppression groups. These might explain why a user isn't receiving email (e.g. they requested we not send them a type of email via sendgrid)
-                    %table.table
-                      %thead
-                        %tr
-                          %th Address
-                          %th Type
-                          %th Updated at
-                      %tbody
-                        - for es in @email_suppressions
-                          %tr
-                            %td= es.email
-                            %td= es.suppression_type
-                            %td= es.updated_at
-              - else
-                = @display_user.send(user_attr).to_s.html_safe
-      %h3 Other Attributes
-      %table.table
-        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state reset_password_token) ).sort
-          %tr
-            %th= user_attr
-            %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
-      %h3 Preferences
-      %table.table
-        - @display_user.preferences.sort_by{|p,v| p}.each do |pref,val|
-          %tr
-            %th= pref
-            %td= val
-      %h3 Misc.
-      %table.table
-        %tr
-          %th Recent user agents
-          %td
-            - if !@observations.blank?
-              %ul
-                - for observation in @observations
-                  - next if observation.user_agent.blank?
-                  %li
-                    = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
-            - else
-              No observations to check
-        %tr
-          %th Blocks
-          %td
-            - if @display_user.user_blocks.count == 0
-              None
-            - else
-              %ul.plain
-                - @display_user.user_blocks.limit( 100 ).each do |ub|
-                  %li= link_to_user ub.blocked_user
-              %p.text-muted
-                = @display_user.user_blocks.count
-                total
-        %tr
-          %th Blocked by
-          %td
-            - if @display_user.user_blocks_as_blocked_user.count == 0
-              None
-            - else
-              %ul.plain
-                - @display_user.user_blocks_as_blocked_user.limit( 100 ).each do |ub|
-                  %li= link_to_user ub.user
-              %p.text-muted
-                = @display_user.user_blocks_as_blocked_user.count
-                total
-        %tr
-          %th Mutes
-          %td
-            - if @display_user.user_mutes.count == 0
-              None
-            - else
-              %ul.plain
-                - @display_user.user_mutes.limit( 100 ).each do |um|
-                  %li= link_to_user um.muted_user
-              %p.text-muted
-                = @display_user.user_mutes.count
-                total
-        %tr
-          %th Muted by
-          %td
-            - if @display_user.user_mutes_as_muted_user.count == 0
-              None
-            - else
-              %ul.plain
-                - @display_user.user_mutes_as_muted_user.limit( 100 ).each do |um|
-                  %li= link_to_user um.user
-              %p.text-muted
-                = @display_user.user_mutes_as_muted_user.count
-                total
-        - if @display_user.curator_sponsor
-          %tr
-            %th User who made this user a curator
-            %td= link_to_user @display_user.curator_sponsor
-        %tr
-          %th User Privileges
-          %td
-            - if @display_user.is_curator?
-              %p.alert.alert-warning
-                Note: user is a curator, which circumvents all privileges
-            - if @display_user.is_admin?
-              %p.alert.alert-warning
-                Note: user is an admin, which circumvents all privileges
-            %ul.plain
-              - UserPrivilege::PRIVILEGES.each do |privilege|
-                %li.lined.clearfix
-                  %strong= privilege
-                  - if up = @display_user.user_privileges.where( privilege: privilege ).first
-                    %p.success
-                      Earned on
-                      = up.created_at.to_date
-                    - if up.revoked?
-                      .alert.alert-warning
-                        Revoked on
-                        = up.revoked_at
-                        by
-                        = link_to_user up.revoke_user
-                        %blockquote= up.revoke_reason
-                        = button_to restore_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success", form_class: "inlineblock" do
-                          Restore
-                          %code= privilege
-                          privilege
-                        = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", title: "Remove the existing privilege record and check to see if the user has earned it agin", form_class: "inlineblock", style: "margin-left: 10px;" do
-                          Reset
-                          %code= privilege
-                          privilege
-                    - else
-                      = link_to_toggle_box "Revoke" do
-                        = form_tag revoke_user_privilege_admin_path, method: :put, class: "form-inline", style: "display: flex" do |f|
-                          = hidden_field_tag :user_id, @display_user.id
-                          = hidden_field_tag :privilege, privilege
-                          = text_field_tag :reason, "", placeholder: "From whence springs thy judgement?", class: "form-control", style: "width: 100%; margin-right: 10px;"
-                          = button_tag class: "btn btn-danger" do
-                            Revoke
-                            %code= privilege
-                            privilege
-                      = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", style: "margin-top: 10px", title: "Remove the existing privilege record and check to see if the user has earned it again. If they've earned it, this will reset the date they earned the privilege to today." do
-                        Reset
-                        %code= privilege
-                        privilege
-                  - else
-                    = button_to grant_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success" do
-                      Grant
-                      %code= privilege
-                      privilege
-        %tr
-          %th Parent
-          %td
-            - if up = @display_user.user_parent
-              .panel.panel-default
-                .panel-heading= up.name
-                %table.table
-                  %tbody
-                    %tr
-                      %th Parent User Account
-                      %td
-                        - if up.parent_user
-                          = link_to_user up.parent_user
-                        - else
-                          Parent doesn't have an account
-                    - %w(name email child_name created_at updated_at).each do |a|
-                      %tr
-                        %th= a.to_s.humanize
-                        %td= up.send( a.to_sym )
-                    %tr
-                      %th Donorbox donation?
-                      %td= up.donorbox_donor_id ? "yes" : "no"
-                    %tr
-                      %th Actions
-                      %td
-                        = button_to t(:delete), up, method: :delete, data: { confirm: t(:are_you_sure_no_undo) }, class: "btn btn-sm btn-danger"
-                        %small
-                          You
-                          %em might
-                          want to delete a parent record if it was created accidentally and is preventing a user from signing in.
-            - else
-              No parent record
-        %tr
-          %th Children
-          %td
-            - if @display_user.parentages.count > 0
-              - @display_user.parentages.each do |up|
-                .panel.panel-default
-                  .panel-heading= link_to_user up.user
-                  %table.table
-                    %tbody
-                      %tr
-                        %th User Account
-                        %td= link_to_user up.user
-                      - %w(name email child_name created_at updated_at).each do |a|
-                        %tr
-                          %th= a.to_s.humanize
-                          %td= up.send( a.to_sym )
-                      %tr
-                        %th Donorbox donation?
-                        %td= up.donorbox_donor_id ? "yes" : "no"
-            - else
-              No children
-    .col-xs-3
-      %p
-        = link_to_user @display_user do
-          = user_image( @display_user, size: "large", class: "img-responsive center-block", force_img: true )
-      - if @display_user.active?
-        = link_to "Suspend user", suspend_user_path(@display_user), class: "btn btn-block btn-warning"
-      - else
-        = link_to "Unsuspend user", unsuspend_user_path(@display_user), class: "btn btn-block btn-success"
-      - unless @display_user.spammer?
-        = flag_as_spammer_button(@display_user, class_name: "btn btn-block btn-warning")
-      - unless @display_user.known_non_spammer?
-        = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
-          method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
-          class: "btn btn-block btn-success"
-      = link_to "#rename", "data-toggle" => "modal", class: "btn btn-block btn-warning" do
-        = "Replace Username"
-      %hr
-      - if !@display_user.confirmed? || @display_user.unconfirmed_email?
-        = link_to "Confirm user email", admin_update_user_path( @display_user.id, confirm: true ), method: :put,
-          data: { confirm: "Are you sure #{@display_user.unconfirmed_email || @display_user.email} is actually this user's email address?" },
-          class: "btn btn-block btn-primary",
-          title: "Confirm the user's email or unconfirmed_email"
-      - if @display_user.is_curator?
-        = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
-      - else
-        = link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post, class: "btn btn-block btn-success"
-      = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
-      - if @display_user.is_app_owner?
-        = link_to t(:remove_app_owner_status), remove_role_path(@display_user, :role => Role::APP_OWNER), :method => :delete, class: "btn btn-block btn-warning"
-      - else
-        = link_to t(:make_app_owner), add_role_path(@display_user, :role => Role::APP_OWNER), :method => :post, class: "btn btn-block btn-success"
-      .dropdown.btn-block#site-admins
-        .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
-          = t :make_site_admin
-          %span.caret
-        %ul.dropdown-menu.site-admins{ style: "width:100%" }
-          - Site.order(:id).map do |s|
-            %li
-              %label
-                %input{                                                                |
-                  type: "checkbox",                                                    |
-                  id: "site-#{s.id}",                                                  |
-                  value: s.id,                                                         |
-                  checked: @display_user.site_admins.detect{ |sa| sa.site_id == s.id } |
-                }                                                                      |
-                = s.name
-                = " [#{ s.short_url }]"
-                - if s.draft
-                  = " (#{ I18n.t(:draft) })"
-      %hr
-      = link_to "Log in as #{@display_user.login}", login_as_admin_path( @display_user.id ), class: "btn btn-block btn-info"
-      = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
-      = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"
-
-      - if @display_user.confirmation_sent_at || @display_user.confirmed?
-        = link_to "Reset email confirmation",
-          admin_update_user_path( @display_user.id, reset_confirmation: true ),
-          method: :put,
-          data: { confirm: "Are you sure you want to reset the email confirmation state? This will allow the user to sign in but they will still need to confirm their email." },
-          class: "btn btn-block btn-warning",
-          title: "Reset email confirmation state so user can sign in and change their email"
-
-      = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
-        :data => {:confirm => t(:are_you_sure_no_undo)},
-        class: "btn btn-block btn-danger"
-      = link_to "Delete user photo", admin_update_user_path( @display_user.id, icon_delete: true ), method: :put,
-        :data => {:confirm => t(:are_you_sure_no_undo)},
-        class: "btn btn-block btn-danger"
-      = link_to t(:delete_user), user_url( @display_user, confirmation: @display_user.login, confirmation_code: @display_user.login), method: :delete, data: { confirm: t(:are_you_really_sure_want_delete_this_user) }, class: "btn btn-block btn-danger"
-      = separator
-      - extra = capture do
-        = link_to comments_by_login_path(@display_user.login), class: "list-group-item" do
-          %span.badge= @display_user.comments.count
-          %i.fa.fa-comments
-          Comments
-      = render :partial => '/users/glance', :locals => {:user => @display_user, :extra => extra}
-      - unless @display_user.provider_authorizations.blank?
-        %h3= t(:provider_authorizations)
-        %ul
-          - for pa in @display_user.provider_authorizations
-            %li
-              = pa.provider_name
-              (#{pa.provider_uid})
-              .small.meta
-                = t(:created_on)
-                = l pa.created_at
-      - if fi = @display_user.flickr_identity
-        %h3= t(:flickr_identity)
-        = link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}"
-        = link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}"
-        .small.meta
-          = t(:created_on)
-          = l fi.created_at
-      .merge.box.upstacked
-        %h3 Merge User
-        = form_tag merge_user_path( @display_user ), class: "form", method: :put do
-          .form-group
-            = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete", data: { "1p_ignore" =>  true }
-            = hidden_field_tag :reject_user_id
-          = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }
-#rename.modal.fade
-  .modal-dialog{ role: "document" }
-    .modal-content
-      = form_tag admin_update_user_path( @display_user.id, reset_name: true ), method: :put do
-        .modal-header
-          %button.close{ type: "button", "data-dismiss" => "modal" } ×
-          %h4.modal-title= "Replace Username"
-        .modal-body
-          %p
-            = "Are you sure you want to replace this user's username with an anonymized one? This cannot be undone. The new username will look like"
-            %code naturalistXXXX
-        .modal-footer
-          %button.btn.btn-default{ type: "button", "data-dismiss" => "modal" }= t(:cancel)
-          %button.btn.btn-danger{ type: "submit" } Yes, replace
+- content_for(:title) do  = t(:curating)  = @user ? @user.login : t(:users)- content_for :extrajs do  :javascript    $( document ).ready( function( ) {      $( "#reject_user_name" ).userAutocomplete( {        idEl: $( "#reject_user_id" ),        afterSelect: function( ui ) {          $( "#reject_user_id" ).val( ui.item.user_id );        }      } );      $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {        e.stopPropagation( );      } );    } );  :javascript    $( document ).ready( function( ) {      $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {        $.ajax({          type: $( this ).is( ":checked" ) ? "POST" : "DELETE",          url: "/site_admins",          data: {            site_admin: {              user_id: #{ @display_user.id },              site_id: $( this ).val( )            }          },          success: function( data ) {            console.log( "success" );          },          error: function( data ) {            console.log( "error" );          },          dataType: "JSON"        });      } );    } );= content_for :extracss do  :javascript    $('#rename').on('shown.bs.modal', function () {      $('.modal-footer .btn-danger', this).focus()    })  :css    .dropdown-menu.site-admins li {      padding: 3px 10px;    }.container  .row    .col-xs-12      %form.stacked.form-inline{ method: "get", action: users_admin_path }        %input.form-control#id{ name: "q_email", type: "search", "data-1p-ignore" => true }        %input.btn.btn-default{ type: "submit", value: "Search" }  .row    .col-xs-8      %h3 Basics      %table.table        - basic_attrs = %w(id login name email created_at updated_at time_zone description last_ip last_active locale site_id place_id search_place_id spammer spam_count suspended_at suspension_reason suspended_by_user_id)        - for user_attr in basic_attrs          %tr            %th= user_attr            %td{ style: "width: 100%" }              - if user_attr == "login"                = link_to_user @display_user do                  = @display_user.login              - elsif user_attr == "last_ip"                = @display_user.send(user_attr).to_s.html_safe                - if @geoip_location                  &nbsp;                  = link_to @geoip_location, observations_path( user_id: @display_user.id, lat: @geoip_latitude, lng: @geoip_longitude )              - elsif user_attr == "email"                = @display_user.send( user_attr ).to_s.html_safe                - if @display_user.confirmed?                  %span.label.label-success                    Confirmed at                    = @display_user.confirmed_at                - else                  %span.label.label-warning Unconfirmed                %details.stacked                  %summary Edit                  = form_for @display_user, url: admin_update_user_path( @display_user ), method: :put, data: { confirm: "This will email the user at the old address and the new address and they will still have to confirm the new address. Ok?" }, builder: BootstrapFormBuilder, html: {class: "form-inline"} do | f |                    .form-group                      = f.text_field :email, class: "form-control", label: false, style: "min-width: 300px", data: { "1p_ignore" => true }                    = f.submit "Send confirmation to new email", class: "btn btn-primary"                - unless @display_user.unconfirmed_email.blank?                  .alert.alert-warning                    Unconfirmed new email:                    = @display_user.unconfirmed_email                - unless @email_suppressions.blank?                  .suppressions                    %h4 Sendgrid Suppressions                    %p Local records of Sendgrid suppression groups. These might explain why a user isn't receiving email (e.g. they requested we not send them a type of email via sendgrid)                    %table.table                      %thead                        %tr                          %th Address                          %th Type                          %th Updated at                      %tbody                        - for es in @email_suppressions                          %tr                            %td= es.email                            %td= es.suppression_type                            %td= es.updated_at              - else                = @display_user.send(user_attr).to_s.html_safe      %h3 Other Attributes      %table.table        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state reset_password_token) ).sort          %tr            %th= user_attr            %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe      %h3 Preferences      %table.table        - @display_user.preferences.sort_by{|p,v| p}.each do |pref,val|          %tr            %th= pref            %td= val      %h3 Misc.      %table.table        %tr          %th Recent user agents          %td            - if !@observations.blank?              %ul                - for observation in @observations                  - next if observation.user_agent.blank?                  %li                    = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe            - else              No observations to check        %tr          %th Blocks          %td            - if @display_user.user_blocks.count == 0              None            - else              %ul.plain                - @display_user.user_blocks.limit( 100 ).each do |ub|                  %li= link_to_user ub.blocked_user              %p.text-muted                = @display_user.user_blocks.count                total        %tr          %th Blocked by          %td            - if @display_user.user_blocks_as_blocked_user.count == 0              None            - else              %ul.plain                - @display_user.user_blocks_as_blocked_user.limit( 100 ).each do |ub|                  %li= link_to_user ub.user              %p.text-muted                = @display_user.user_blocks_as_blocked_user.count                total        %tr          %th Mutes          %td            - if @display_user.user_mutes.count == 0              None            - else              %ul.plain                - @display_user.user_mutes.limit( 100 ).each do |um|                  %li= link_to_user um.muted_user              %p.text-muted                = @display_user.user_mutes.count                total        %tr          %th Muted by          %td            - if @display_user.user_mutes_as_muted_user.count == 0              None            - else              %ul.plain                - @display_user.user_mutes_as_muted_user.limit( 100 ).each do |um|                  %li= link_to_user um.user              %p.text-muted                = @display_user.user_mutes_as_muted_user.count                total        - if @display_user.curator_sponsor          %tr            %th User who made this user a curator            %td= link_to_user @display_user.curator_sponsor        %tr          %th User Privileges          %td            - if @display_user.is_curator?              %p.alert.alert-warning                Note: user is a curator, which circumvents all privileges            - if @display_user.is_admin?              %p.alert.alert-warning                Note: user is an admin, which circumvents all privileges            %ul.plain              - UserPrivilege::PRIVILEGES.each do |privilege|                %li.lined.clearfix                  %strong= privilege                  - if up = @display_user.user_privileges.where( privilege: privilege ).first                    %p.success                      Earned on                      = up.created_at.to_date                    - if up.revoked?                      .alert.alert-warning                        Revoked on                        = up.revoked_at                        by                        = link_to_user up.revoke_user                        %blockquote= up.revoke_reason                        = button_to restore_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success", form_class: "inlineblock" do                          Restore                          %code= privilege                          privilege                        = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", title: "Remove the existing privilege record and check to see if the user has earned it agin", form_class: "inlineblock", style: "margin-left: 10px;" do                          Reset                          %code= privilege                          privilege                    - else                      = link_to_toggle_box "Revoke" do                        = form_tag revoke_user_privilege_admin_path, method: :put, class: "form-inline", style: "display: flex" do |f|                          = hidden_field_tag :user_id, @display_user.id                          = hidden_field_tag :privilege, privilege                          = text_field_tag :reason, "", placeholder: "From whence springs thy judgement?", class: "form-control", style: "width: 100%; margin-right: 10px;"                          = button_tag class: "btn btn-danger" do                            Revoke                            %code= privilege                            privilege                      = button_to reset_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-warning", style: "margin-top: 10px", title: "Remove the existing privilege record and check to see if the user has earned it again. If they've earned it, this will reset the date they earned the privilege to today." do                        Reset                        %code= privilege                        privilege                  - else                    = button_to grant_user_privilege_admin_path( user_id: @display_user.id, privilege: privilege ), method: :put, class: "btn btn-success" do                      Grant                      %code= privilege                      privilege        %tr          %th Parent          %td            - if up = @display_user.user_parent              .panel.panel-default                .panel-heading= up.name                %table.table                  %tbody                    %tr                      %th Parent User Account                      %td                        - if up.parent_user                          = link_to_user up.parent_user                        - else                          Parent doesn't have an account                    - %w(name email child_name created_at updated_at).each do |a|                      %tr                        %th= a.to_s.humanize                        %td= up.send( a.to_sym )                    %tr                      %th Donorbox donation?                      %td= up.donorbox_donor_id ? "yes" : "no"                    %tr                      %th Actions                      %td                        = button_to t(:delete), up, method: :delete, data: { confirm: t(:are_you_sure_no_undo) }, class: "btn btn-sm btn-danger"                        %small                          You                          %em might                          want to delete a parent record if it was created accidentally and is preventing a user from signing in.            - else              No parent record        %tr          %th Children          %td            - if @display_user.parentages.count > 0              - @display_user.parentages.each do |up|                .panel.panel-default                  .panel-heading= link_to_user up.user                  %table.table                    %tbody                      %tr                        %th User Account                        %td= link_to_user up.user                      - %w(name email child_name created_at updated_at).each do |a|                        %tr                          %th= a.to_s.humanize                          %td= up.send( a.to_sym )                      %tr                        %th Donorbox donation?                        %td= up.donorbox_donor_id ? "yes" : "no"            - else              No children    .col-xs-3      %p        = link_to_user @display_user do          = user_image( @display_user, size: "large", class: "img-responsive center-block", force_img: true )      - if @display_user.active?        = link_to "Suspend user", suspend_user_path(@display_user), class: "btn btn-block btn-warning"      - else        = link_to "Unsuspend user", unsuspend_user_path(@display_user), class: "btn btn-block btn-success"      - unless @display_user.spammer?        = flag_as_spammer_button(@display_user, class_name: "btn btn-block btn-warning")      - unless @display_user.known_non_spammer?        = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |          method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |          class: "btn btn-block btn-success"      = link_to "#rename", "data-toggle" => "modal", class: "btn btn-block btn-warning" do        = "Replace Username"      %hr      - if !@display_user.confirmed? || @display_user.unconfirmed_email?        = link_to "Confirm user email", admin_update_user_path( @display_user.id, confirm: true ), method: :put,          data: { confirm: "Are you sure #{@display_user.unconfirmed_email || @display_user.email} is actually this user's email address?" },          class: "btn btn-block btn-primary",          title: "Confirm the user's email or unconfirmed_email"      - if @display_user.is_curator?        = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"      - else        = link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post, class: "btn btn-block btn-success"      = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"      - if @display_user.is_app_owner?        = link_to t(:remove_app_owner_status), remove_role_path(@display_user, :role => Role::APP_OWNER), :method => :delete, class: "btn btn-block btn-warning"      - else        = link_to t(:make_app_owner), add_role_path(@display_user, :role => Role::APP_OWNER), :method => :post, class: "btn btn-block btn-success"      .dropdown.btn-block#site-admins        .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }          = t :make_site_admin          %span.caret        %ul.dropdown-menu.site-admins{ style: "width:100%" }          - Site.order(:id).map do |s|            %li              %label                %input{                                                                |                  type: "checkbox",                                                    |                  id: "site-#{s.id}",                                                  |                  value: s.id,                                                         |                  checked: @display_user.site_admins.detect{ |sa| sa.site_id == s.id } |                }                                                                      |                = s.name                = " [#{ s.short_url }]"                - if s.draft                  = " (#{ I18n.t(:draft) })"      %hr      = link_to "Log in as #{@display_user.login}", login_as_admin_path( @display_user.id ), class: "btn btn-block btn-info"      = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"      = link_to "Moderation History", moderation_person_path( @display_user.id ), class: "btn btn-block btn-info"      - if @display_user.confirmation_sent_at || @display_user.confirmed?        = link_to "Reset email confirmation",          admin_update_user_path( @display_user.id, reset_confirmation: true ),          method: :put,          data: { confirm: "Are you sure you want to reset the email confirmation state? This will allow the user to sign in but they will still need to confirm their email." },          class: "btn btn-block btn-warning",          title: "Reset email confirmation state so user can sign in and change their email"      = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,        :data => {:confirm => t(:are_you_sure_no_undo)},        class: "btn btn-block btn-danger"      = link_to "Delete user photo", admin_update_user_path( @display_user.id, icon_delete: true ), method: :put,        :data => {:confirm => t(:are_you_sure_no_undo)},        class: "btn btn-block btn-danger"      = link_to t(:delete_user), user_url( @display_user, confirmation: @display_user.login, confirmation_code: @display_user.login), method: :delete, data: { confirm: t(:are_you_really_sure_want_delete_this_user) }, class: "btn btn-block btn-danger"      = separator      - extra = capture do        = link_to comments_by_login_path(@display_user.login), class: "list-group-item" do          %span.badge= @display_user.comments.count          %i.fa.fa-comments          Comments      = render :partial => '/users/glance', :locals => {:user => @display_user, :extra => extra}      - unless @display_user.provider_authorizations.blank?        %h3= t(:provider_authorizations)        %ul          - for pa in @display_user.provider_authorizations            %li              = pa.provider_name              (#{pa.provider_uid})              .small.meta                = t(:created_on)                = l pa.created_at      - if fi = @display_user.flickr_identity        %h3= t(:flickr_identity)        = link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}"        = link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}"        .small.meta          = t(:created_on)          = l fi.created_at      .merge.box.upstacked        %h3 Merge User        = form_tag merge_user_path( @display_user ), class: "form", method: :put do          .form-group            = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete", data: { "1p_ignore" =>  true }            = hidden_field_tag :reject_user_id          = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }#rename.modal.fade  .modal-dialog{ role: "document" }    .modal-content      = form_tag admin_update_user_path( @display_user.id, reset_name: true ), method: :put do        .modal-header          %button.close{ type: "button", "data-dismiss" => "modal" } ×          %h4.modal-title= "Replace Username"        .modal-body          %p            = "Are you sure you want to replace this user's username with an anonymized one? This cannot be undone. The new username will look like"            %code naturalistXXXX        .modal-footer          %button.btn.btn-default{ type: "button", "data-dismiss" => "modal" }= t(:cancel)          %button.btn.btn-danger{ type: "submit" } Yes, replace          
