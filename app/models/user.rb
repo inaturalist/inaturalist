@@ -1591,7 +1591,7 @@ class User < ApplicationRecord
       self.suspended_by_user = nil
       unsuspend!
     elsif moderator_action.action == ModeratorAction::RENAME
-      new_login = moderator_action.resource_content.to_s.strip
+      new_login = User.suggest_login( User::DEFAULT_LOGIN )
       return if new_login.blank? || User.exists?(login: new_login)
       self.login = new_login
       save!

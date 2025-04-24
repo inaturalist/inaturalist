@@ -146,17 +146,14 @@ class AdminController < ApplicationController
       redirect_back_or_default( curate_users_path )
     end
     if params[:reset_name]
-      new_username = User.suggest_login( User::DEFAULT_LOGIN )
-      user.update( login: new_username )
       @moderator_action = ModeratorAction.new(
         user: current_user,
         resource: user,
         action: ModeratorAction::RENAME,
-        reason: "Username changed from #{user.login} to #{new_username}",
-        resource_content: new_username
+        reason: "Inappropriate username: #{user.login} was renamed",
       )
       if @moderator_action.save
-        flash[:notice] = "Username successfully replaced with #{new_username}"
+        flash[:notice] = "Username successfully renamed"
       end
     end
     if params[:icon_delete]
