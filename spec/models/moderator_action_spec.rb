@@ -263,27 +263,22 @@ describe ModeratorAction do
       end
     end
     describe "RENAME" do
-      let( :user ) { create( :user, login: "old_login" ) }
-      let( :new_login ) { "new_login" }
-      let( :action ) do
-        create( :moderator_action, action: ModeratorAction::RENAME, resource: user, user: admin,
+      it "should rename a user when admin performs it" do
+        u = create( :user, login: "old_login" )
+        new_username = User.suggest_login( User::DEFAULT_LOGIN )
+        expect( u.login ).not_to eq( new_username )
+        create( :moderator_action, action: ModeratorAction::RENAME, resource: u, user: admin,
           reason: generic_reason )
-      end
-
-      it "should rename for a user and persist the action when admin performs it" do
-        user.update!( login: new_login )
-        action
-        user.reload
-        expect( user.login ).to eq( new_login )
-        expect( action ).to be_persisted
-        expect( action.action ).to eq( ModeratorAction::RENAME )
-        expect( action.reason ).to eq( generic_reason )
+        u.reload
+        expect( u.login ).to eq( new_username )
       end
 
       it "should not allow a non-admin user to rename" do
-        action = build( :moderator_action, action: ModeratorAction::RENAME, resource: user, user: User.make!,
+        u = create( :user, login: "old_login" )
+        action = build( :moderator_action, action: ModeratorAction::RENAME, resource: u, user: User.make!,
           reason: generic_reason )
         expect( action ).not_to be_valid
+        expect( action.errors[:base] ).to include( "Only staff can rename" )
       end
     end
     describe "set_resource_user_id" do
