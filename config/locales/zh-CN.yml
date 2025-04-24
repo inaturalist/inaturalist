@@ -689,6 +689,13 @@ zh-CN:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, 由 %{user} 上传"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: 已拆分
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: 未拆分
   authority_list:
     iucn_red_list: IUCN红色名录
     natureserve: NatureServe
@@ -2550,6 +2557,10 @@ zh-CN:
   list_with_two_items: "%{one} 和 %{two}"
   listed_taxa: 列举的分类群
   listed_taxon: 列举的分类单元
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: 已列入
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: 未列入
   listed_taxon_updated: 列举的分类已更新
   listing_lists: 正在列举列表
   listing_project_assets: 列出项目资产
@@ -5640,6 +5651,8 @@ zh-CN:
   view_more_observations_of_x_project: "查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project} 的观察 &raquo;"
   view_more_observations_of_x_taxon: "查看更多在 <nobr>%{site_name}</nobr> 上的 %{taxon} 的观察记录 &raquo;"
   view_more_unreviewed: "查看更多未复核"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: 查看您受影响的鉴定
   view_observation: 查看观察
   view_observations: 查看观察
   view_observation_flags: 查看观察标记
@@ -6037,6 +6050,42 @@ zh-CN:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: 以其他贡献选择用户
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: 关于地图集
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          地图集体现了某个分类单元的全球分布。馆长通过定义图集的结构并整理构成图集的分类单元来制作图集。
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: 拆分这一地方
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: 解除拆分这一地方
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: 此地图集尚未更改
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: 最近对地图集进行的更改
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: 最近的列明分类单元调整
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: 显示列出的分类群
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: 此地图集当前未激活
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          这将从清单中删除此分类单元及其所有后代与此地方及其包含的任何标准地方相关联。它无法撤消。您确定要执行此操作吗？
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          警告：此地图集没有包括观察记录
     content_freeze:
       content_freeze: 内容冻结
       during_this_time: |
@@ -7957,6 +8006,10 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日 %p %I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d%B日 %p%I:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y年%-d%B日 %p%I:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%p %I:%M %Z'
@@ -7995,6 +8048,8 @@ zh-CN:
     attributes:
       announcement:
         created_at: 创建于
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: 可关闭
         updated_at: 更新于
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8350,6 +8405,9 @@ zh-CN:
                 不能大于观察被添加的日期
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: 必须在过去130年内
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: 必须是一天，而不能是一个范围
         observation_field_value:
           attributes:
             value:
@@ -8451,6 +8509,11 @@ zh-CN:
             name:
               bad_format: |
                 只能包含标准的拉丁字符、连字符、空格和×；注意不允许假定的分类单元和栽培品种。
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: 生命分类单元不能参与分类单元的更改
         taxon_name:
           attributes:
             lexicon:
