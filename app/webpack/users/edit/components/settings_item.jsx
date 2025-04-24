@@ -7,7 +7,7 @@ const SettingsItem = ( {
   children,
   htmlFor
 } ) => (
-  <div className="row settings-item">
+  <section className="row settings-item">
     <div className="col-xs-12">
       {( header && htmlFor ) && (
         <h5>
@@ -18,7 +18,7 @@ const SettingsItem = ( {
       )}
       {children}
     </div>
-  </div>
+  </section>
 );
 
 SettingsItem.propTypes = {

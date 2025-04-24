@@ -2135,8 +2135,10 @@ en:
   Family: Family
   # Header for a section showing the user's favorite projects
   favorite_projects: Favorite Projects
-  # Description of what Your Favorite Proijects does
-  favorite_projects_desc: Choose up to seven projects that appear as links in the header.
+  # Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Choose up to seven projects that appear as links in the header. Updates
+    will appear after refreshing the page.
   favorite_taxa: Favorite Taxa
   favorites: "Favorites"
   feature_this_project_: "Feature This Project"
@@ -10165,6 +10167,7 @@ en:
         show_for_descendent_taxa: Show for descendant taxa
       user:
         email: Email
+        faved_project_ids: Favorite projects
         login: Username
         name: Name
         locale: Locale

@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 
 import ProjectAutocomplete from "../../../observations/identify/components/project_autocomplete";
 import FavoriteProject from "./favorite_project";
+import UserError from "./user_error";
 
-const FavoriteProjects = ( { addProject, favoriteProjects, updateFavedProjectIds } ) => {
+const FavoriteProjects = ( {
+  addProject,
+  favoriteProjects,
+  updateFavedProjectIds,
+  user
+} ) => {
   const [positions, setPositions] = React.useState( favoriteProjects.map( p => p.id ) );
 
   // update temp state when favoriteProjects actually updates
@@ -21,6 +27,7 @@ const FavoriteProjects = ( { addProject, favoriteProjects, updateFavedProjectIds
   return (
     <div id="favorite-projects" className="FavoriteProjects">
       <h5>{ I18n.t( "favorite_projects" ) }</h5>
+      <UserError user={user} attribute="faved_project_ids" />
       <p className="text-muted">
         { I18n.t( "favorite_projects_desc" ) }
       </p>
@@ -72,7 +79,8 @@ FavoriteProjects.propTypes = {
     id: PropTypes.number,
     title: PropTypes.string
   } ) ),
-  updateFavedProjectIds: PropTypes.func
+  updateFavedProjectIds: PropTypes.func,
+  user: PropTypes.object
 };
 
 export default FavoriteProjects;

@@ -441,7 +441,9 @@ class User < ApplicationRecord
   def validate_faved_project_ids
     return unless @faved_project_ids_errors.present?
 
-    errors.add :faved_project_ids, @faved_project_ids_errors
+    @faved_project_ids_errors.each do | err |
+      errors.add :faved_project_ids, err
+    end
   end
 
   def icon_url_provided?

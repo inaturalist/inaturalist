@@ -5,7 +5,8 @@ import { addFavoriteProject, updateUserData } from "../ducks/user_settings";
 function mapStateToProps( state ) {
   return {
     config: state.config,
-    favoriteProjects: state.favoriteProjects
+    favoriteProjects: state.favoriteProjects,
+    user: state.profile
   };
 }
 
