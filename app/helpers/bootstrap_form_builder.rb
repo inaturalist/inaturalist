@@ -92,15 +92,15 @@ class BootstrapFormBuilder < DefaultFormBuilder
   end
 
   def check_radio_field( field, field_content = nil, options = {}, wrapper_options = {}, description = nil )
-    wrapper_options[:class] = wrapper_options[:class].gsub( "form-group", field == "check_box" ? "checkbox" : "radio" )
+    css_classes = wrapper_options[:class].to_s.split.reject {| klass | klass == "form-group" }
+    css_classes << ( options[:field_name] == "check_box" ? "checkbox" : "radio" )
+    wrapper_options[:class] = css_classes.join( " " )
     label_content = if options[:label] == false
       nil
     else
-      (
-        options[:label] ||
+      options[:label] ||
         I18n.t( "activerecord.attributes.#{object.class.name.underscore}.#{field}", default: nil ) ||
         field
-      )
     end
     label_content += description_tip( description ) if options[:description_tip]
     label_content = label_content.to_s.html_safe
