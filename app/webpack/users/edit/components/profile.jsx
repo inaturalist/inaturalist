@@ -44,7 +44,7 @@ const Profile = ( {
 
   // this gets rid of the React warning about inputs being controlled vs. uncontrolled
   // by ensuring user data is fetched before the Profile & User page loads
-  if ( !profile.login && !profile.email ) {
+  if ( _.isEmpty( profile ) ) {
     return null;
   }
 
