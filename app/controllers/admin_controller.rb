@@ -154,6 +154,8 @@ class AdminController < ApplicationController
       )
       if @moderator_action.save
         flash[:notice] = "Username successfully renamed"
+      else
+        flash[:error] = "Failed to rename username: #{@moderator_action.errors.full_messages.to_sentence}"
       end
     end
     if params[:icon_delete]
