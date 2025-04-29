@@ -265,12 +265,10 @@ describe ModeratorAction do
     describe "RENAME" do
       it "should rename a user when admin performs it" do
         u = create( :user, login: "old_login" )
-        new_username = User.suggest_login( User::DEFAULT_LOGIN )
-        expect( u.login ).not_to eq( new_username )
         create( :moderator_action, action: ModeratorAction::RENAME, resource: u, user: admin,
           reason: generic_reason )
         u.reload
-        expect( u.login ).not_to eq u.login
+        expect( u.login ).not_to eq "old_login"
       end
 
       it "should not allow a non-admin user to rename" do
