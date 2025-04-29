@@ -160,9 +160,12 @@ class ModeratorAction < ApplicationRecord
 
   def set_resource_content
     return unless resource
-    return if action == RENAME
-
-    self.resource_content = Flag.instance_content( resource )
+    
+    if action == RENAME
+      self.resource_content = resource.try_methods(:name, :title)
+    else
+      self.resource_content = Flag.instance_content(resource)
+    end
   end
 
   def set_resource_parent
