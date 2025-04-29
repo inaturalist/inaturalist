@@ -27,6 +27,12 @@ fi:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> TUNNISTUS'
     other: '<span class="count">%{count}</span> TUNNISTUSTA'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> TUNNISTAJA'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> TUNNISTAJAA'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> muille tehty tunnistus'
     other: '<span class="count">%{count}</span> muille tehtyä tunnistusta'
@@ -77,6 +83,9 @@ fi:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> havainto tarkistettu"
     other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> HAVAINNOIJA'
+    other: '<span class="count">%{count}</span> HAVAINNOIJAA'
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
@@ -2079,6 +2088,10 @@ fi:
   highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   history: Historia
   home: Etusivu
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Saatat kuitenkin haluta kommentoida yllä linkitettyjä havaintoja tahattomista erimielisyyksistä ilmoittaaksesi tunnistajille, että %{old_parent}:n laajuutta on supistettu.
   i_dont_know_but_i_am_sure_this_is_taxon: En tiedä, mutta olen varma että tämä kuuluu taksoniin %{taxon}
   icon: Kuvake
   icon_size: Kuvakkeen koko
