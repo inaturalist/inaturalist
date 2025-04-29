@@ -1592,7 +1592,6 @@ class User < ApplicationRecord
       unsuspend!
     elsif moderator_action.action == ModeratorAction::RENAME
       new_login = User.suggest_login( User::DEFAULT_LOGIN )
-      return if new_login.blank? || User.exists?(login: new_login)
       self.login = new_login
       save!
     end
