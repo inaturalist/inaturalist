@@ -162,7 +162,7 @@ class ModeratorAction < ApplicationRecord
     return unless resource
     
     if action == RENAME
-      self.resource_content = resource.try_methods(:name, :title)
+      self.resource_content = resource.try_methods(:name, :title, :login)
     else
       self.resource_content = Flag.instance_content(resource)
     end
