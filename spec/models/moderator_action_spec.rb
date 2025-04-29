@@ -270,7 +270,7 @@ describe ModeratorAction do
         create( :moderator_action, action: ModeratorAction::RENAME, resource: u, user: admin,
           reason: generic_reason )
         u.reload
-        expect( u.login ).to eq( new_username )
+        expect( u.login ).not_to eq u.login
       end
 
       it "should not allow a non-admin user to rename" do

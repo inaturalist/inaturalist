@@ -648,6 +648,19 @@ describe User do
     expect( user ).to be_suspended
   end
 
+  describe "moderated_with" do
+    it "renames the user when given a RENAME action" do
+      user = User.make!( login: "old_login" )
+      moderator_action = ModeratorAction.new(
+        action: ModeratorAction::RENAME,
+        user: User.make!,
+        resource: user
+      )
+      user.moderated_with( moderator_action )
+      expect( user.login ).not_to eq "old_login"
+    end
+  end
+
   describe "deletion" do
     elastic_models( Observation )
 
