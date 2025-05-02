@@ -3813,6 +3813,10 @@ fi:
   places_warning_export_complex_boundary_html: |
     Jos yrität ladata havaintoja monimutkaiselta alueelta, harkitse
     <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">niiden lataamista sen sijaan GBIF:stä</a>, jossa voit piirtää monimutkaisia alueita tai voit ladata iNatista käyttämällä olemassa olevia paikkoja tai bounding box -alueita ja rajaa tiedot uudelleen, kun olet ladannut aineistot.
+  places_warning_look_for_existing2_html: |
+    Etsi <a href="/search?source[]=places">olemassa olevia paikkoja</a> varmistaaksesi, että
+    et luo kaksoiskappaletta. Meillä on jo paikat kaikista
+    maanosista ja maista sekä monia muita hallinnollisia rajoja.
   places_warning_please_keep_in_mind: |
     Huomioi seuraavat rajoitukset:
   places_warning_projects_can_have_multiple_places: |
