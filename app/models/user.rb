@@ -675,15 +675,12 @@ class User < ApplicationRecord
   end
 
   def update_photo_licenses
-    puts "update_photo_licenses, preferred_photo_license: #{preferred_photo_license}"
     license_number = Photo.license_number_for_code( preferred_photo_license )
-    puts "update_photo_licenses, license_number: #{license_number}"
     return true unless license_number
 
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
       update_all( license: license_number, updated_at: Time.now )
     index_observations
-    puts "update_photo_licenses, enqueing photo bucket moving jobs"
     User.enqueue_photo_bucket_moving_jobs( id )
   end
 

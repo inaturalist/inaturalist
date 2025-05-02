@@ -45,9 +45,11 @@ shared_examples_for "a signed in UsersController" do
         user.update( preferred_observation_license: Observation::CC_BY )
         o = Observation.make!( user: user )
         expect( o.license ).to eq Observation::CC_BY
-        put :update, format: :json, params: {
-          id: user.id, user: { preferred_observation_license: Observation::CC0, make_observation_licenses_same: "1" }
-        }
+        after_delayed_job_finishes( ignore_run_at: true ) do
+          put :update, format: :json, params: {
+            id: user.id, user: { preferred_observation_license: Observation::CC0, make_observation_licenses_same: "1" }
+          }
+        end
         o.reload
         expect( o.license ).to eq Observation::CC0
       end
@@ -66,14 +68,16 @@ shared_examples_for "a signed in UsersController" do
       end
     end
     describe "photo license preference" do
-      it "should update past observations if requested" do
+      it "should update past photos if requested" do
         user.update( preferred_photo_license: Observation::CC_BY )
         p = LocalPhoto.make!( user: user )
         expect( p.license_code ).to eq Observation::CC_BY
-        put :update, format: :json, params: { id: user.id, user: {
-          preferred_photo_license: Observation::CC0,
-          make_photo_licenses_same: "1"
-        } }
+        after_delayed_job_finishes( ignore_run_at: true ) do
+          put :update, format: :json, params: { id: user.id, user: {
+            preferred_photo_license: Observation::CC0,
+            make_photo_licenses_same: "1"
+          } }
+        end
         p.reload
         expect( p.license_code ).to eq Observation::CC0
       end
