@@ -669,6 +669,13 @@ ja:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, %{user} によって投稿されました"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: 爆発
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: 不発 弾
   authority_list:
     iucn_red_list: IUCNレッドリスト
     natureserve: NatureServe
@@ -991,6 +998,10 @@ ja:
   confirmation_email_sent_at_datetime: '%{datetime} に確認メールを送信しました'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 確認日:%{date}
+  confirming_ids: 本人確認
+  confirming_ids_description: |
+    これをオフにすると、一致するIDについて通知されなくなります
+    彼らが追加の発言をしない限り、あなたのものと一緒に。
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: 接続
@@ -1654,6 +1665,8 @@ ja:
   edited_by_name_some_rights_reserved_html: |
     編集者:%{name} 、いくつかの権利を保有(%{license})
   editing: 編集中
+  #Title for a page to edit an announcement
+  editing_announcement_x: アナウンスの編集 %{id}
   editing_custom_project_fields_for: プロジェクト専用フィールド編集中：
   editing_observation_field: 観測記録のフィールドを編集中
   editing_observation_id: "%{obs_id}の観測記録を編集中"
@@ -2192,6 +2205,18 @@ ja:
   inaturalist_applications: "iNaturalist アプリケーション"
   inaturalist_places: "%{site_name} 場所"
   info: 情報
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: インフラスピーシーズ ID
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    これをオフにすると、分類群のIDについて通知されなくなります
+    以下の種レベル(亜種や品種など)で、あなたと一致するもの
+    種レベルの ID。彼らがあなたのIDに同意しない場合、またはあなたに通知されます
+    追加のコメントが含まれている場合。
   input_taxon: 分類群を入力
   insects: 昆虫類
   insect_life_stage: 昆虫の変態段階
@@ -2461,6 +2486,10 @@ ja:
   list_with_two_items: "%{one} と %{two}"
   listed_taxa: 分類群一覧
   listed_taxon: リストの分類群
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: 上場
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: 未公開
   listed_taxon_updated: リストの分類群が更新されました
   listing_lists: リスト一覧
   listing_project_assets: プロジェクトアセット一覧
@@ -2561,6 +2590,10 @@ ja:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "%{site_name} からログアウトしますか？"
   log_scale_label: ログ
+  #Adjectival phrase describing state of being logged in
+  logged_in: ログイン
+  #Adjectival phrase describing state of being logged out
+  logged_out: ログアウトしました
   #Status message shown while logging in
   logging_in: ログインしています...
   logo:
@@ -2759,6 +2792,8 @@ ja:
   more_info_title: 詳細情報
   more_journal_posts: 日記をもっと表示する
   more_observations: 観測記録をもっと表示する
+  #Label for a button or section that shows additional options
+  more_options: その他のオプション
   more_photos: 写真をもっと表示する
   more_than_a_week_ago: 1週間以上前
   most_agree: 大半が賛成
@@ -2968,7 +3003,11 @@ ja:
   no_users_found_with_those_filters: これらの検索条件ではユーザーは見つかりませんでした
   no_wikipedia_page_for_taxon: ウィキペディアにこのタクソンに関するページがありません。
   noble_curators: "%{site}のキュレーター管理者の紹介"
+  #A user who is not a curator
+  non_curator: ノンキュレーター
   non_human?: 非人間？
+  #A user who does not admin any projects
+  non_project_admin: プロジェクト管理者以外
   none: 該当する項目がありません
   none_found: 見つかりません
   normal: 通常
@@ -3392,6 +3431,21 @@ ja:
     original: 元サイズ
   photos_updated: 写真は更新されました
   pi_consent_desc_title: 個人情報について
+  pi_consent_desc_html: |
+    <p>
+    ユーザー名やメールアドレスなどの個人情報は、
+    このサイトのアカウントを管理し、プライバシー法を遵守するため、
+    この使用に同意することを示すために、このボックスにチェックを入れていただく必要があります
+    個人情報の。私たちがどのような情報についてもっと知るために
+    収集方法とその使用方法については、当社の
+    <a href='%{privacy_url}' target='_blank'>プライバシーポリシー</a>
+    そして私たちの <a href='%{terms_url}' target='_blank'>利用規約</a>.
+    </p>
+    <p>
+    iNaturalistのアカウントを持つには、個人情報を保存せずにはいられません
+    情報であるため、この同意を取り消す唯一の方法は、
+    アカウント。
+    </p>
   pi_consent_label: |
     アカウントを管理するため、iNaturalistにいくつかの個人情報を保存し、処理させることに同意します。
   pi_consent_child_label: |
@@ -3883,6 +3937,8 @@ ja:
   profile_visibility_desc: |
     %{site_name} のスパムを防ぐため、ユーザのプロフィールはいくつかの研究用グレードの観測を投稿した後にのみ公開されます。
   project: プロジェクト
+  #A user who admin's a project
+  project_admin: プロジェクト管理者
   project_admins:
     other: プロジェクト管理者
   project_aggregator_filter_error: |
@@ -4568,6 +4624,9 @@ ja:
   submit_observations:
     other: '%{count}件の観察記録を送信'
   submitted: 投稿済
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: 購読する
   subscribe_to_a_taxon: 分類群をフォロー
   subscribe_to_a_place: 場所をフォロー
   subscribe_to_comments_on_this_flag_html: "フラグのコメントを%{tag_start} フォローする%{tag_end}"
@@ -5238,6 +5297,8 @@ ja:
   view_more_about_x: "%{x}について詳しく"
   view_more_observations_from_this_place: この場所からの観察記録をさらに見る
   view_more_unreviewed: "さらに未レビューの観察記録を見る"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: 影響を受ける ID を表示する
   view_observation: 観察記録を表示
   view_observations: 観測記録を表示
   view_observation_flags: 観測記録フラグを表示
@@ -5580,6 +5641,94 @@ ja:
   verifiable: 研究用+要同定
   views:
     views: '閲覧回数'
+    announcements:
+      locales_desc: |
+        CMD キーまたは Shift キーを押しながらクリックすると、複数を選択できます。「すべて」を選択するか、作らないか
+        選択すると、次の条件に関係なく、すべてのユーザーにアナウンスが表示されます
+        ロケール。地域のない言語を選択すると、ターゲットにならない*わけではありません*。
+        地域のあるロケール(例:英語を選択した場合、表示されません)
+        英語(英国)を選択された方向けです。
+      clients_desc: |
+        CMD キーまたは Shift キーを押しながらクリックすると、複数を選択できます。「すべて」を選択するか、作らないか
+        選択すると、次の条件に関係なく、すべてのユーザーにアナウンスが表示されます
+        クライアント。
+      end_desc: |
+        アカウントのタイムゾーンでこのお知らせが停止する時間
+        表示。タイムゾーンを超えて適用されるため、誰もが見なくなります
+        それは同時に、彼らの現地時間に対して相対的ではありません。
+      ip_countries_desc: |
+        CMD キーまたは Shift キーを押しながらクリックすると、複数を選択できます。「すべて」を選択するか、作らないか
+        選択すると、次の条件に関係なく、すべてのユーザーにアナウンスが表示されます
+        IP の国。
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        ユーザーの最後に作成された作成日に注意してください
+        観測値はキャッシュされるため、ターゲット設定に数時間かかる場合があります。
+        効果を得る
+      observation_oauth_application_ids_desc: |
+        CMD キーまたは Shift キーを押しながらクリックすると、複数を選択できます。「すべて」を選択するか、作らないか
+        選択すると、次の条件に関係なく、すべてのユーザーにアナウンスが表示されます
+        アプリ。
+      site_ids_desc: |
+        CMD キーまたは Shift キーを押しながらクリックすると、複数を選択できます。「すべて」を選択するか、作らないか
+        選択すると、次の条件に関係なく、すべてのユーザーにアナウンスが表示されます
+        サイトの所属。
+      start_desc: |
+        この発表が開始されるアカウントのタイムゾーンの時間
+        表示。タイムゾーンを超えて適用されるため、誰もが見始めます
+        それは同時に、彼らの現地時間に対して相対的ではありません。
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: 寄付行動によるユーザーのターゲティング
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: 識別行動によるユーザーのターゲティング
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: 観察行動によるユーザーターゲティング
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: 他の属性でユーザーをターゲティング
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: アトラスについて
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          アトラスは、分類群のグローバルな分布を伝えます。キュレーターが作る
+          アトラスの構造を定義し、
+          それを駆動するリストされた分類群。
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: この場所を爆発させる
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: この場所を不発弾にしてください
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: このアトラスにはまだ変更はありません
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: 最近のアトラスの変更
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: 最近リストされた分類群の変更
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: リストされている分類群を表示
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: このアトラスは現在アクティブではありません
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          これにより、この分類群とそのすべての子孫がチェックリストから削除されます
+          この場所とそれに含まれるすべての標準場所に関連付けられています。それ
+          元に戻すことはできません。本当にこれをやりたいですか?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          警告:このアトラスで表されていない観測値があります
     content_freeze:
       we_expect_this_functionality_will_return_by_date: |
         この機能は %{date} までに復帰する予定です。
@@ -6460,6 +6609,11 @@ ja:
           分類群は最大%{max}枚の写真のみ追加できます。他の写真を追加するには、既存の写真を削除してください。
         photo_chooser_modal_desc: |
           写真を左からここにドラッグするか、写真をここにドラッグして再配置できます。
+        site_curators_disabled_wikipedia_html: |
+          サイトのキュレーターは表示を無効にしています <a href="%{url}">これ
+          ウィキペディアのコンテンツ</a>.あなたは上のページを編集することで助けることができます
+          ウィキペディアは、この分類群に適切になるようにするか、これにフラグを立てることによって
+          分類群は、サイトのキュレーターの注意を引くために。
     taxon_changes:
       form:
         move_children_desc2_html: |
@@ -6805,6 +6959,10 @@ ja:
     am: 午前
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y年%B%d日"
     pm: 午後
   activerecord:
@@ -6830,8 +6988,44 @@ ja:
     attributes:
       announcement:
         created_at: '作成:'
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: 閉じ られる
         updated_at: 'アップデート:'
         clients: クライアント
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: 寄付者の開始日を除外する
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: 寄付者の終了日を除外する
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: アプリからオブザーバーを除外する
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: 寄付者の開始日を含める
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: 寄付者の終了日を含める
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: アプリからのオブザーバーを含める
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: 知財保有国
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: 最大識別数
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: 最小識別
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: 最大観測値
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: 最小観測値
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: 位置付け
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: ターゲット作成者 (テスト用)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: ログインしたターゲット
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: 最も早いユーザー登録日
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: 最新のユーザー登録日
       assessment:
         description: 説明
       assessment_section:
@@ -6903,6 +7097,8 @@ ja:
         name: 名称
         parent_id: 親ID
         rank: 階級
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: ウィキペディアを表示
         source_url: ソースURL
         wikipedia_summary: ウィキペディアより概要
         wikipedia_title: ウィキペディアのタイトル
@@ -6940,6 +7136,7 @@ ja:
         confirmation: パスワードが一致しませんでした
         equal_to:
           other: は %{count} と等しくなければなりません
+        must_look_like_an_email_address: メールアドレスのように見えなければならない
         even: 偶数でなければなりません
         greater_than:
           other: '%{count}より大きい必要がある'
@@ -7025,6 +7222,9 @@ ja:
             observed_on:
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: 過去130年以内である必要があります
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: 範囲ではなく、1日でなければならない
         observation_field_value:
           attributes:
             value:
@@ -7110,6 +7310,11 @@ ja:
                 標準のラテン文字、ハイフン、スペース、および
                 × (雑種を示すため。アルファベットのxではなく、×）のみを含めることができます。
                 原則として仮の分類群や栽培品種は認められていません。
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: 生命分類群は分類群の変更に関与することはできません
         taxon_name:
           attributes:
             lexicon:
@@ -7145,6 +7350,7 @@ ja:
             login:
               must_begin_with_a_letter: |
                 文字で始まり、スペースを含まず、アルファベット、数字、ダッシュ、アンダースコアのみを使用すること
+              domain_is_not_supported: ドメインはサポートされていません
         user_block:
           attributes:
             base:
