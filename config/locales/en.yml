@@ -10339,6 +10339,7 @@ en:
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90
               must_have_more_than_three_points: must have more than 3 points
               polygon_with_less_than_four_points: has a polygon with fewer than 4 points
+              polygon_with_no_area: has a polygon with no area (all points are the same)
         place_geometry:
           attributes:
             geom:
