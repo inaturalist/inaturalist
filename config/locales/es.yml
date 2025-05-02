@@ -27,6 +27,12 @@ es:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> IDENTIFICACIÓN'
     other: '<span class="count">%{count}</span> IDENTIFICACIONES'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> IDENTIFICADOR'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> IDENTIFICADORES'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID efectuada por otros'
     other: '<span class="count">%{count}</span> IDs efectuadas por otros'
@@ -77,6 +83,9 @@ es:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> observación revisada"
     other: "<span class='count'>%{count}</span> observaciones revisadas"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> OBSERVADOR'
+    other: '<span class="count">%{count}</span> OBSERVADORES'
   x_others:
     one: "1 otro"
     other: "%{count} otros"
@@ -1855,6 +1864,9 @@ es:
   export: Exporta
   export_observations: Exporta observaciones
   export_with_private_coordinates: Exporta con coordenadas privadas
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
+  exported_at_datetime: Exportado en %{datetime}
   exporting: "Exportando..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2022,6 +2034,9 @@ es:
     one: 'Siguiendo a 1 persona'
     other: 'Siguiendo a %{count} personas'
   for_a_taxon: de un taxón
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Para más información sobre los encabezados de columnas, vea %{url}
   formatting: Creando formato
   forgot_your_password: '¿Olvidaste tu contraseña?'
   forum: Foro
@@ -2718,6 +2733,8 @@ es:
   log_scale_label: Registro
   #Adjectival phrase describing state of being logged in
   logged_in: Sesión iniciada
+  #Adjectival phrase describing state of being logged out
+  logged_out: Sesión terminada
   #Status message shown while logging in
   logging_in: Iniciando sesión...
   logo:
@@ -2941,6 +2958,8 @@ es:
   more_info_title: Más información
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
+  #Label for a button or section that shows additional options
+  more_options: Más opciones
   more_photos: Más fotos
   more_than_a_week_ago: Hace más de una semana
   most_agree: La mayoría la apoya
@@ -3171,6 +3190,8 @@ es:
   no_users_found_with_those_filters: No hay usuarios que cumplan estos filtros
   no_wikipedia_page_for_taxon: No hay página en Wikipedia para este taxón.
   noble_curators: "Curadores activos de %{site}"
+  #A user who is not a curator
+  non_curator: No curador
   non_human?: '¿No humano?'
   none: Ninguno
   none_found: No se encontró ninguno
@@ -3243,6 +3264,7 @@ es:
   observation_accuracy_experiment_sample_generated: "Muestra generada: %{date}"
   observation_accuracy_experiment_sample_size: "Tamaño de la muestra: %{number}"
   observation_accuracy_experiment_target_validator: "Redundancia de validadores: %{number}"
+  observation_accuracy_experiment_number_of: "Número de validadores candidatos: %{number}"
   observation_accuracy_experiment_step_2: "Paso 2: Validando muestras"
   observation_accuracy_experiment_correct: "Correcto"
   observation_accuracy_experiment_uncertain: "Inseguro"
@@ -3250,6 +3272,8 @@ es:
   observation_accuracy_experiment_accuracy: "Exactitud"
   observation_accuracy_experiment_precision: "Precisión"
   observation_accuracy_validator_email_subject2: "¿Nos ayudarías con Experimento %{version} para estimar la precisión de las observaciones de iNaturalist?"
+  observation_accuracy_validator_email_will_you_help_us2_html: |
+    ¿Nos ayudarás con un <a href="%{url}">experimento (versión %{version})</a> para estimar la precisión de las observaciones de iNaturalist?
   observation_accuracy_validator_email_ids_equal_to: |
     Los IDs iguales (A) o más finos que (B) el taxón de observación serán marcados como Acuerdos.
   observation_accuracy_validator_email_with_gratitude: Con gratitud,
@@ -4664,6 +4688,8 @@ es:
   show_no_annotation: Mostrar "Sin anotaciones"
   show_off_your_recent_observations: '¡Presume de tus observaciones en tu propio blog o sitio web!'
   show_only: Mostrar solamente
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: Mostrar OpenStreetMap
   show_relative_proportions_of_all_observations: Enseña proporciones relativas de todas las observaciones
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Mostrar Total Acumulado
@@ -5125,6 +5151,8 @@ es:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Términos
+  #As in a list of distinct words
+  terminology: Terminología
   terms_and_rules_html: "Términos &amp; Reglas"
   terms_new_users: "Si añade Términos, los nuevos usuarios deberán aceptarlos antes de unirse a este proyecto."
   terms_service: Condiciones de uso
@@ -6105,6 +6133,9 @@ es:
             <a href="%{url}">Comprueba los lineamientos comunitarios </a> para ver sugerencias de cómo mantener NaturaLista como un lugar amistoso.
           please_read_the_teachers_guide_html: |
             Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
+            Si es así, por favor lee nuestra<a href="%{url}">guía para profesores</a> para sugerencias en la utilización de %{site_name} con estudiantes.
     donate:
       donate_short_desc: "¡Haz una donación ahora para mostrar tu apoyo!"
       donate_desc_moore_html: |
@@ -6731,16 +6762,53 @@ es:
         place_admin2_name: Nombre del sitio administrativo dos rangos debajo del nivel de país
         positioning_method: Cómo se determinaron las coordenadas
         positioning_device: Dispositivo usado para determinar las coordenadas
+        taxon_class_name: |
+          Nombre de la clase taxonómica que contiene el taxón observado
+        taxon_family_name: |
+          Nombre de la familia taxonómica que contiene el taxón observado
+        taxon_form_name: |
+          Nombre de la forma taxonómica que contiene el taxón observado
+        taxon_genus_name: |
+          Nombre del género taxonómico que contiene el taxón observado
+        taxon_genushybrid_name: |
+          Nombre del género híbrido taxonómico que contiene el taxón observado
+        taxon_hybrid_name: |
+          Nombre del híbrido taxonómico que contiene el taxón observado
+        taxon_kingdom_name: |
+          Nombre del reino taxonómico que contiene el taxón observado
+        taxon_order_name: |
+          Nombre del orden taxonómico que contiene el taxón observado
         taxon_phylum_name: |
           Nombre del filo taxonómico que contiene el taxón observado
         taxon_species_name: |
           Nombre de la especie taxonómica que contiene el taxón observado
+        taxon_subclass_name: |
+          Nombre de la subclase taxonómica que contiene el taxón observado
+        taxon_subfamily_name: |
+          Nombre de la subfamilia taxonómica que contiene el taxón observado
+        taxon_suborder_name: |
+          Nombre del suborden taxonómico que contiene el taxón observado
         taxon_subphylum_name: |
           Nombre del subfilo taxonómico que contiene el taxón observado
         taxon_subspecies_name: |
           Nombre de la subespecie taxonómica que contiene el taxón observado
+        taxon_subtribe_name: |
+          Nombre de la subtribu taxonómica que contiene el taxón observado
+        taxon_superclass_name: |
+          Nombre de la superclase taxonómica que contiene el taxón observado
+        taxon_superfamily_name: |
+          Nombre de la superfamilia taxonómica que contiene el taxón observado
         taxon_superorder_name: |
           Nombre del superorden taxonómico que contiene el taxón observado
+        taxon_supertribe_name: |
+          Nombre de la supertribu taxonómica que contiene el taxón observado
+        taxon_tribe_name: |
+          Nombre de la tribu taxonómica que contiene el taxón observado
+        taxon_variety_name: |
+          Nombre de la variedad taxonómica que contiene el taxón observado
+        uuid: |
+          Identificador único universal para la observación. Ver
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Marcar todas las observaciones de esta página como revisadas"
         you_reviewed_message: "Has revisado %{reviewed} de %{pageTotal} observaciones en esta página, de un total de %{total} observaciones coincidentes."
@@ -6794,6 +6862,12 @@ es:
           La evaluación de la calidad de los datos es un resumen de la exactitud de una observación. Todas las observaciones comienzan con el grado de <strong>"casual"</strong> y alcanzan el grado de <strong>"necesita identificación"</strong> cuando
         #One of a list of requirements an observation must meet to be in the Needs ID category
         dqa_help_needs_id_has_a_date_html: la observación <strong>tiene una fecha</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: la observación <strong>está georeferenciada </strong> (es decir, tiene coordenadas de lat/lon)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: la observación <strong>tiene fotos o sonidos</strong>
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: la observación <strong>no es de un humano</strong>
         #Leads a list of requirements for an observation to be Research Grade
         dqa_help_research_grade_lead_html: Las observaciones se convierten en <strong>"grado de investigación"</strong> cuando
         #Leads a list of ways that iNat itself can vote in the DQA
@@ -7566,6 +7640,12 @@ es:
       taxon:
         about_html: |
           Los taxones pueden tener muchos nombres vernáculos. Admitimos un nombre vernáculo global predeterminado, el cual puede cambiarse aquí arrastrando un nombre hacia la parte superior de la lista. También puedes especificar nombres predeterminados para lugares distintos editando el nombre y añadiéndole un lugar, pero utiliza este procedimiento únicamente cuando haya discrepancias entre nombres entre varias regiones.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist utiliza una variedad de términos únicos para describir varios
+          aspectos del servicio. Aquí hemos intentado recoger algunos de ellos
+          y sus definiciones para referencia.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8058,8 +8138,6 @@ es:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
@@ -8109,8 +8187,20 @@ es:
         prefers_target_unconfirmed_users: Para usuarios sin confirmación
         prefers_exclude_monthly_supporters: Excluir seguidores mensuales
         clients: Clientes
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Excluir la fecha de inicio del donante
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Excluir la fecha de finalización del donante
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Excluir observadores de las aplicaciones
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Incluir la fecha de inicio del donante
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Incluir la fecha de finalización del donante
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Incluye observadores de aplicaciones
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Última fecha de registro de usuario
       assessment:
@@ -8493,6 +8583,9 @@ es:
         project_observation_rule:
           attributes:
             ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: debe ser un proyecto
               #Umbrella projects can only have project-related rules, i.e. subprojects
               umbrella_projects_only_allow_project_rules: solo permite reglas de proyecto
         quality_metric:
@@ -8559,6 +8652,7 @@ es:
               must_begin_with_a_letter: |
                 tiene que empezar con una letra, sin contener espacios, y usar sólo
                 letras, números, guiones, y guiones bajos
+              domain_is_not_supported: dominio no soportado
         user_block:
           attributes:
             base:

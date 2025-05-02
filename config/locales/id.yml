@@ -687,6 +687,13 @@ id:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, diunggah oleh %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Dibagi
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Disatukan
   authority_list:
     iucn_red_list: Daftar Merah IUCN
     natureserve: NatureServe
@@ -2565,6 +2572,10 @@ id:
   list_with_two_items: "%{one} dan %{two}"
   listed_taxa: Daftar Taksa
   listed_taxon: Takson terdaftar
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Ditambahkan
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Dihapus
   listed_taxon_updated: Takson terdaftar diperbarui
   listing_lists: Pendaftaran daftar
   listing_project_assets: Pendaftaran Aset Proyek
@@ -6110,6 +6121,45 @@ id:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Target pengguna berdasarkan atribut lain
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Tentang Atlas
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlas menyampaikan distribusi suatu takson di dunia. Kurator membuat
+          atlas dengan menentukan strukturnya dan mengkurasi
+          takson-takson yang menjadi dasar penyusunannya.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Bagi tempat ini
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Satukan tempat ini
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Belum ada perubahan pada atlas ini
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Perubahan Atlas Terbaru
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Perubahan Takson Terdaftar Terbaru
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Tampilkan taksa yang terdaftar
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Atlas ini saat ini tidak aktif
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tindakan ini akan menghapus takson ini dan semua keturunannya dari daftar periksa yang terkait dengan tempat ini serta Tempat Standar apa pun yang dikandungnya. Tindakan ini
+          tidak dapat dibatalkan. Apakah Anda yakin ingin melakukannya?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Peringatan: ada pengamatan yang tidak digambarkan oleh atlas ini
     content_freeze:
       content_freeze: Pembekuan Konten
       during_this_time: |
@@ -8123,6 +8173,8 @@ id:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8161,6 +8213,8 @@ id:
     attributes:
       announcement:
         created_at: Dibuat pada
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Dapat ditutup
         updated_at: Diperbarui pada
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8512,6 +8566,9 @@ id:
                 tidak boleh lebih besar dari tanggal penambahan pengamatan
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: harus berada dalam kurun waktu 130 tahun terakhir
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: harus berupa satu hari, bukan rentang
         observation_field_value:
           attributes:
             value:
@@ -8613,6 +8670,11 @@ id:
             name:
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Takson Kehidupan tidak dapat diganti dalam perubahan takson
         taxon_name:
           attributes:
             lexicon:

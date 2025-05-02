@@ -171,6 +171,13 @@ af:
   assessment: assessering
   assessment_has_benn_completed: Assessering is voltooid
   assessment_sections: Assessering seksies
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Ontplof
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Onontplof
   authority_list:
     cites: CITES
   back: Terug
@@ -471,6 +478,10 @@ af:
   list: Lys
   list_views:
     photo: foto
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Gelys
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Nie gelys nie
   lists: Lyste
   locales:
     ar: Arabies
@@ -794,6 +805,8 @@ af:
   username: Gebruikersnaam
   username_or_email: Gebruikersnaam of e-pos
   video_tutorials: Video tutoriale
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Bekyk jou geaffekteerde ID's
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesoek
   weather: Weer
@@ -864,6 +877,46 @@ af:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Teiken gebruikers volgens ander eienskappe
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Oor atlasse
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasse dra die wêreldwye verspreiding van 'n takson oor. Kurators maak
+          atlasse deur die struktuur van 'n atlas te definieer en die
+          gelyste taksa wat dit dryf.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Ontplof hierdie plek
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Ontplof hierdie plek
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Nog geen veranderinge aan hierdie atlas nie
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Onlangse atlasveranderings
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Onlangse genoteerde taksonveranderings
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Wys gelyste taksa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Hierdie atlas is nie tans aktief nie
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dit sal hierdie takson en al sy afstammelinge van kontrolelyste verwyder
+          geassosieer met hierdie plek en enige standaardplekke wat dit bevat. Dit
+          kan nie ongedaan gemaak word nie. Is jy seker jy wil dit doen?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Waarskuwing: daar is waarnemings wat nie deur hierdie atlas voorgestel word nie
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik hier om 'n bevestigings-e-pos weer te stuur
       #message displayed after users trigger sending a email to confirm their email address
@@ -931,6 +984,11 @@ af:
           "Life Stage=Egg": Ei
           "Sex=Female": Wyfie
           "Sex=Male": Mannetjie
+        site_curators_disabled_wikipedia_html: |
+          Werfkurators het wysing gedeaktiveer <a href="%{url}">Hierdie
+          inhoud van Wikipedia</a>. Jy kan help deur die bladsy te wysig op
+          Wikipedia om dit geskik te maak vir hierdie takson, of deur dit te merk
+          takson om dit onder die aandag van terreinkurators te bring.
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
@@ -1020,12 +1078,20 @@ af:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     models:
       Identification: Identifikasie
       Photo: Foto
     attributes:
       announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Afwysbaar
         #Start of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_start_date: Sluit skenker se begindatum uit
         #End of a date range that the viewer must not have donated in to see the announcement
@@ -1082,6 +1148,8 @@ af:
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktief?
         rank: Rang
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Wys Wikipedia
       taxon_link:
         #Taxon this link is associated with
         taxon: Takson
@@ -1096,6 +1164,17 @@ af:
         must_look_like_an_email_address: moet soos 'n e-posadres lyk
         requires_privilege_interaction: moet 'n bevestigde e-posadres hê om dit te doen
       models:
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: moet 'n enkele dag wees, nie 'n reeks nie
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Die Life-takson kan nie by taksonveranderinge betrokke wees nie
         user:
           attributes:
             login:

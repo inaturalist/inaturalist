@@ -704,6 +704,8 @@ he:
   any_license: הכל
   #Label for an option to show content with photos, sounds, or neither
   any_media: הכל
+  #Label for an option to show any place
+  any_place: כלשהו
   #Label for an option to show content from any project
   any_project: הכל
   #Label for an option to show content with any quality grade
@@ -847,6 +849,13 @@ he:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, הועלה על ידי %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: פוצל
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: מאוחד
   authority_list:
     iucn_red_list: הרשימה האדומה של IUCN
     natureserve: NatureServe
@@ -1181,6 +1190,9 @@ he:
   confirmation_email_sent_at_datetime: דוא"ל אישור נשלח ב-%{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: אושר בתאריך %{date}
+  confirming_ids: זיהויים מאשרים
+  confirming_ids_description: |
+    אם תכבו את האפשרות הזו, לא תקבלו עוד התראות על זיהויים שתואמים לזיהוי שלכם, אלא אם הם כוללים הערות נוספות.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: התחברות
@@ -1612,6 +1624,8 @@ he:
   default_time_zone_desc: |
     זהו אזור הזמן ברירת המחדל. אזור הזמן הסופי ייבחר לפי מיקום המתצפת.ת בזמן השמירה.
   defaults_to_your_name_or_username: ברירות מחדל עבור השם או שם המשתמש שלך
+  #As in the definition of a word
+  definition: הגדרה
   defines_a_taxon_framework_for: מגדיר מערכת יחסים טקסונומית עבור %{taxon_name}
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: מגדיר מסגרת טקסון עבור %{taxon} הנובעת מהמקור %{source}
   definitions: הגדרות
@@ -1946,6 +1960,9 @@ he:
   export: ייצוא
   export_observations: ייצוא תצפיות
   export_with_private_coordinates: ייצוא עם קואורדינטות מוסתרות
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
+  exported_at_datetime: יוצא ב-%{datetime}
   exporting: "מתבצע ייצוא..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -2113,6 +2130,9 @@ he:
     many: 'עוקב.ת אחרי %{count} א.נשים'
     other: 'עוקב.ת אחרי %{count} א.נשים'
   for_a_taxon: עבור טקסון
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    לקבלת מידע נוסף אודות כותרות העמודות, ראו %{url}
   formatting: עיצוב
   forgot_your_password: שכחת סיסמה?
   forum: פורום
@@ -2420,6 +2440,10 @@ he:
   inaturalist_applications: "אפליקציות iNaturalist"
   inaturalist_places: "מיקומי %{site_name}"
   info: מידע
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: זיהויי אינפרא-מינים
   input_taxon: טקסון הקלט
   insects: חרקים
   insect_life_stage: שלב חיים של החרק
@@ -2499,6 +2523,8 @@ he:
   large: גדול
   last_active_with_date: "פעילות אחרונה: %{date}"
   last_confirmed_observation: תצפית מאושרח אחרונה
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: נערך לאחרונה על ידי
   last_observation: תצפית אחרונה
   last_observation_caps: תצפית אחרונה
   last_seen: נראה לאחרונה
@@ -2697,6 +2723,10 @@ he:
   list_with_two_items: "%{one} ו-%{two}"
   listed_taxa: טקסונים רשומים
   listed_taxon: טקסון רשום
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: נוסף לרשימה
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: הוסר מהרשימה
   listed_taxon_updated: עודכן טקסון רשום
   listing_lists: רשימת רישומים
   listing_project_assets: רושם נכסי פרויקט
@@ -2797,6 +2827,8 @@ he:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "להתנתק מ%{site_name}?"
   log_scale_label: יומן
+  #Adjectival phrase describing state of being logged in
+  logged_in: מחובר.ת
   #Adjectival phrase describing state of being logged out
   logged_out: מנותק.ת
   #Status message shown while logging in
@@ -3012,6 +3044,8 @@ he:
   more_info_title: מידע נוסף
   more_journal_posts: עוד פוסטים
   more_observations: תצפיות נוספות
+  #Label for a button or section that shows additional options
+  more_options: אפשרויות נוספות
   more_photos: תמונות נוספות
   more_than_a_week_ago: יותר משבוע
   most_agree: הרוב מסכים
@@ -3245,7 +3279,13 @@ he:
   noble_curators: "האוצרות והאוצרים של %{site}"
   #A user who is not a curator
   non_curator: לא אוצר.ת
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: זיהויים הוריים לא סותרים
   non_human?: לא בן אדם?
+  #A user who does not admin any projects
+  non_project_admin: אדמינ.ית לא של אף פרויקט
   none: אף לא אחד
   none_found: לא נמצא דבר
   normal: רגיל
@@ -3632,6 +3672,8 @@ he:
   original_url_for_this_map: URL מקורים למפה זו
   organism_appears_captive_cultivated: נראה כי הפרט בשבי / מתורבת
   other: אחר
+  #Title for section listing terms that don't fit into established categories
+  other__terms: אחר
   other_animals: בעלי־חיים אחרים
   other_lexicons: לקסיקונים אחרים
   other_listings_of_this_taxon_for_this_place: רשומות אחרות של טקסון זה במקום זה
@@ -4256,6 +4298,8 @@ he:
   profile_visibility_desc: |
     במטרה למנוע הפצת ספאם ב%{site_name}, פרופילים של יוזרים חדשים מוסתרים מהציבור עד שהם צוברים תצפיות מרובות בדרגת מחקר.
   project: פרויקט
+  #A user who admin's a project
+  project_admin: אדמינ.ית פרויקט
   project_admins:
     one: אדמינ.ית פרויקט
     two: אדמיני.ות פרויקט
@@ -5012,6 +5056,9 @@ he:
     many: הצגת %{count} תצפיות
     other: הצגת %{count} תצפיות
   submitted: נשלח
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: הרשמה
   subscribe_to_a_taxon: מינוי לטקסון
   subscribe_to_a_place: מינוי למקום
   subscribe_to_comments_on_this_flag_html: "%{tag_start}מינוי%{tag_end} לתגובות על סימון זה"
@@ -5262,6 +5309,8 @@ he:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: מונחים
+  #As in a list of distinct words
+  terminology: מינוח
   terms_and_rules_html: "תנאים &amp; כללים"
   terms_new_users: "אם את.ה מוסיפ.ה תנאים, יוזרים חדשים חייבים להסכים להם טרם ההצטרפות לפרויקט זה."
   terms_service: תנאי שימוש
@@ -5857,6 +5906,8 @@ he:
   view_more_observations_of_x_project: "צפייה בתצפיות נוספות מ%{project} של <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "צפייה בתצפיות נוספות של %{taxon} ב<nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "הצגת תצפיות נוספות שטרם נסקרו"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: צפייה בזיהויים המושפעים שלך
   view_observation: צפייה בתצפית
   view_observations: צפייה בתצפיות
   view_observation_flags: צפייה בסימונים עבור תצפית זו
@@ -6240,6 +6291,46 @@ he:
   verifiable_observations: תצפיות שניתנות לבדיקה
   views:
     views: 'צפיות'
+    announcements:
+      start_desc: |
+        השעה באזור הזמן של החשבון שלך שבה הודעה זו תתחיל
+        להופיע. חל על פני אזורי זמן שונים, כך שכולם יתחילו לראות
+        אותו באותו הזמן, לא ביחס לזמן המקומי שלהם.
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: אודות אטלסים
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          אטלסים מבטאים את התפוצה הגלובלית של טקסון. אוצרים יוצרים
+          אטלסים על ידי הגדרת המבנה של אטלס ואוצרות
+          טקסונים רשומים שמניעים אותו.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: פירוק מקום זה
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: ביטול פירוק המקום
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: עדיין אין שינויים באטלס זה
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: שינויים אחרונים באטלס
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: שינויי טקסונים רשומים אחרונים
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: הצגת טקסונים רשומים
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: אטלס זה אינו פעיל כרגע
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          אזהרה: ישנן תצפיות שאינן מיוצגות על ידי אטלס זה
     content_freeze:
       content_freeze: הקפאת תוכן
       during_this_time: |
@@ -6851,32 +6942,64 @@ he:
         time_observed_at: תאריך ושעה מנורמלים של התצפית
         time_zone: אזור הזמן של התצפית
         place_guess: תיאור המקום כפי שהוקלד על ידי המתצפת.ת
+        latitude: קו רוחב גלוי לציבור ממיקום התצפית
+        longitude: קו אורך גלוי לציבור ממיקום התצפית
         positional_accuracy: "רמת דיוק הקואורדינטה"
         private_latitude: "קו רוחב פרטי, יש לקבוע אם התצפית היא פרטית או מוסתרת"
         private_longitude: "קו אורך פרטי, יש לקבוע אם התצפית היא פרטית או מוסתרת"
+        geoprivacy: "האם המתצפת.ת בחר.ה לטשטש או להסתיר את הקואורדינטות או לא. ראו https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "פרטיות המיקום המחמירה ביותר נבחרה בגלל סטטוס השימור של הטקסונים בזיהוי הנוכחי."
         coordinates_obscured: "האם הקואורדינטות הוסתרו או לא, עקב פרטיות המיקום או בגלל טקסון בסיכון"
         out_of_range: האם תצפית זו נמצאת מחוץ לתפוצה הידועה של הטקסון
+        user_id: מזהה רציף ייחודי עבור המתצפת.ת
+        user_login: שם המשתמש של המתצפת.ת, כלומר מזהה קצר המורכב מאותיות ומספרים שייחודי למשתמש
+        user_name: |
+          שם המתצפת.ת, לרוב משמש לייחוס באתר.
+          זהו שדה אופציונאלי ויכול להיות כינוי
         created_at: נוצרה תצפית תאריך ושעה
         updated_at: תאריך ושעת התצפית עודכנו לאחרונה
+        quality_grade: ציון האיכות של תצפית זו. עיין בסעיף העזרה לפרטים בנושא. ראו https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: מזהה לרישיון או לכתב הוויתור שבחר.ה המתצפת.ת לתצפית זו. כל הזכויות שמורות אם ריק
         url: URL של התצפית
+        image_url: קישור URL עבור התמונה הראשונה המשויכת לתצפית
+        sound_url: |
+          כתובת URL עבור הקול הראשון המשויך לתצפית. שימו לב לזה
+          יהיה נוכח רק להעלאות ישירות, לא לקולות המאוחסנים על ידי שירותי 
+          צד שלישי
         tag_list: רשימת תגיות מופרדת פסיקים
         place_admin1_name: נא לתת את השם של מקום אדמיניסטרטיבי רמה אחת מתחת לרמת המדינה
         place_admin2_name: שם המקום האדמיניסטרטיבי שתי רמות מתחת לרמת המדינה
         positioning_method: כיצד נקבעו הקואורדינטות
         positioning_device: מכשיר המשמש לקביעת קואורדינטות
+        place_country_name: |
+          שם המדינה המכילה את קואורדינטות התצפית הזו
+        place_state_name: |
+          שם האזור האדמיניסטרטיבי המשני המכיל את קואורדינטות התצפית הזו (למשל מדינה בארצות הברית)
         place_town_name: |
           שם הישוב המכיל את קואורדינטות התצפית הזו, אם הן ידועות
+        private_place_guess: |
+          מיקום התצפית כפי שנרשם על ידי המתצפת.תה אם המיקום מוסתר
+        public_positional_accuracy: אי ודאות מיקום אופקית מקסימלית במטרים; כולל אי ודאות הנובעת מהסתרת קואורדינטות
+        taxon_class_name: |
+          שם המחלקה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_family_name: |
+          שם המשפחה הטקסונומית המכילה את הטקסון הנצפה
         taxon_form_name: |
           שם המופע הטקסונומי המכיל את הטקסון הנצפה
+        taxon_genus_name: |
+          שם הסוג הטקסונומי המכיל את הטקסון הנצפה
         taxon_genushybrid_name: |
           שם הסוג ההיברידי הטקסונומי המכיל את הטקסון הנצפה
         taxon_hybrid_name: |
           שם ההיבריד הטקסונומי המכיל את הטקסון הנצפה
+        taxon_kingdom_name: |
+          שם הממלכה הטקסונומית המכילה את הטקסון הנצפה
         taxon_order_name: |
           שם הסדרה הטקסונומית המכילה את הטקסון הנצפה
         taxon_phylum_name: |
           שם המערכה הטקסונומית המכילה את הטקסון הנצפה
+        taxon_species_name: |
+          שם המין הטקסונומי המכיל את הטקסון הנצפה
         taxon_subclass_name: |
           שם תת-המחלקה הטקסונומית המכילה את הטקסון הנצפה
         taxon_subfamily_name: |
@@ -6897,6 +7020,10 @@ he:
           שם העל-סדרה הטקסונומית המכילה את הטקסון הנצפה
         taxon_supertribe_name: |
           שם העל-שבט הטקסונומי המכיל את הטקסון הנצפה
+        taxon_tribe_name: |
+          שם השבט הטקסונומי המכיל את הטקסון הנצפה
+        taxon_variety_name: |
+          שם הזן הטקסונומי המכיל את הטקסון הנצפה
         uuid: |
           מזהה ייחודי אוניברסלי לתצפית. ראו
           https://datatracker.ietf.org/doc/html/rfc9562
@@ -7669,6 +7796,8 @@ he:
           יש לשים לב שעמוד הטקסון יציג תמונות של טקסון זה וצאצאיו, אבל התמונות שנבחרו עבור הטקסון עצמו תוצגנה ראשונות. התמונה הראשונה תהיה ברירת המחדל שייעשה בה שימוש ברחבי האתר.
         rare_desc: הטקסונים בסיכון הכי פחות נצפים
         rare_in_place_desc_html: טקסונים בסיכון הכי פחות נצפים ב<a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          אוצרות ואוצרי האתר השביתו את הצגת <a href="%{url}">תוכן זה מויקיפדיה</a>. באפשרותך לעזור באמצעות עריכת העמוד בויקיפדיה כדי שיתאים לטקסון זה, או דרך סימון טקסון זה להביאו לתשומת הלב של אוצרות ואוצרי האתר.
         trending_desc: הטקסונים הנצפים ביותר בחודש האחרון
         trending_in_place_desc_html: הטקסונים הנצפים ביותר בחודש האחרון <a href="%{url}">%{place}</a>
         wanted_desc: מינים בטקסון זה שטרם נצפו.
@@ -8219,7 +8348,9 @@ he:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8280,8 +8411,16 @@ he:
         max_identifications: מקסימום זיהויים
         #Minimum number of identifications the viewer must have added for others to see the announcement
         min_identifications: מינימום זיהויים
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: מקסימום תצפיות
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: מינימום תצפיות
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: מיקום
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: תאריך הרשמה ראשון למשתמשים
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: תאריך הרשמה אחרון למשתמשים
       assessment:
         description: תיאור
       assessment_section:
@@ -8421,6 +8560,8 @@ he:
         photos_locked: תמונות נעולות?
         rank: דרגה
         rank_level: שלב הדרגה
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: הצגת ויקיפדיה
         source_id: זיהוי מקור
         source_identifier: מזהה מקור
         source_url: URL המקור
@@ -8474,6 +8615,7 @@ he:
           two: חייבים להיות שווים ל־%{count}
           many: חייבים להיות שווים ל־%{count}
           other: חייבים להיות שווים ל־%{count}
+        must_look_like_an_email_address: חייב להיראות כמו כתובת דוא"ל
         even: חייב להיות זוגי
         exclusion: שמור
         greater_than:
@@ -8612,6 +8754,9 @@ he:
                 לא יכול להיות מאוחר יותר מאשר התאריך שבו התצפית הועלתה
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: חייב להיות במהלך 130 השנים האחרונות
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: חייב להיות יום אחד, לא טווח
         observation_field_value:
           attributes:
             value:
@@ -8713,6 +8858,11 @@ he:
             name:
               bad_format: |
                 יכול להכיל רק תווים לטיניים סטנדרטיים, מקפים רווחים ו-×. לידיעתך טקסונים משוערים וזנים אינם תקינים
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: טקסון החיים לא יכול להיות מעורב בשינויי טקסון
         taxon_name:
           attributes:
             lexicon:
@@ -8750,6 +8900,7 @@ he:
             login:
               must_begin_with_a_letter: |
                 חייב להתחיל באות, ללא מרווחים, ולהכיל אותיות, ספרות, מקפים וקווים תחתונים בלבד
+              domain_is_not_supported: הדומיין אינו נתמך
         user_block:
           attributes:
             base:
