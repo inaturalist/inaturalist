@@ -365,6 +365,8 @@ ko:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: 모두
+  #Label for an option to show any place
+  any_place: 어떤
   apply_to_selected: 선택에 적용
   apply_captive_cultivated: "포획됨 / 사육됨 적용"
   apply_fields: 필드 적용
@@ -428,6 +430,13 @@ ko:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: 특성
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: 폭발
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: 불폭발
   authority_list:
     iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: "%{provider}의 허용을 수락함"
@@ -556,6 +565,15 @@ ko:
   check_list_place: "%{place} 체크리스트"
   check_list_updated: 체크리스트가 업데이트되었습니다!
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
+  check_this_box_if_html: |
+    적용하려면 이 상자를 선택하십시오. <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>크리에이티브 커먼즈 저작자표시-비상업적 라이선스</a> 받는 사람
+    업로드된 콘텐츠. 즉, 누구나 귀하의 사진을 복사하고 재사용 할 수 있습니다.
+    허락을 구하지 않고 관찰한 경우, 신용을 제공하는 한
+    그리고 저작물을 상업적으로 사용하지 마십시오. 다른 라이선스를 선택하거나
+    나중에 라이선스를 제거하지만 이 라이선스는 공유하기에 가장 적합한 라이선스입니다.
+    연구자.
   checklist: 체크리스트
   choose_a_field: 필드 선택
   choose_a_list_above: 목록을 선택하세요.
@@ -922,6 +940,7 @@ ko:
   edit_multiple_locations: 다수의 장소 편집
   edit_multiple_species: 다수의 종 편집
   edit_notes: 메모 편집
+  edit_observations: 관찰 편집
   edit_photos: 사진 편집
   edit_photos_for_observation_id: "관찰 %{obs_id}의 사진 편집"
   edit_place: 장소 수정
@@ -940,6 +959,8 @@ ko:
   edit_your_settings_for_this_project: 이 프로젝트에 대한 내 설정 편집
   edited_by_name_html: "편집자 : %{name}"
   editing: 편집
+  #Title for a page to edit an announcement
+  editing_announcement_x: 공지 사항 편집 %{id}
   editing_custom_project_fields_for: 자체적 프로젝트 필드 편집
   editing_observation_field: 관찰 필드 편집
   editing_observation_id: "관찰 편집 %{obs_id}"
@@ -1242,6 +1263,7 @@ ko:
     <a href="%{manage_flags_path}">표시 관리</a>
   join: 가입하기
   join_project: 이 프로젝트 가입하기
+  join_the_largest_group_of_naturalists_in_the_world: 세계에서 가장 큰 박물학자 그룹에 가입하세요!
   join_this_project: 이 프로젝트 가입하기
   'joined!': 가입했습니다!
   joined_projects: 참가한 프로젝트
@@ -1250,6 +1272,7 @@ ko:
   journal_archives_for: '일지 저장소:'
   journal_post: 일지 포스트
   journal_post_deleted: 일지 포스트 삭제
+  journal_posts: 저널 게시물
   jpg_png_or_gif: "JPG, PNG나 GIF"
   just_added!: 추가했습니다!
   keep_editing: 편집 계속
@@ -1270,6 +1293,7 @@ ko:
   latitude: 위도
   latitude_value: "위도: %{latitude}"
   layout: 배치 (레이아웃)
+  learn: 배우다
   learn_more: 더 알아보기
   least_concern: 관심 대상
   leave: 떠나기
@@ -1331,6 +1355,11 @@ ko:
   list_updated: 목록 업데이트됨!
   list_views:
     photo: 사진
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: 나열
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: 미등록
+  lists: 목록
   load: 불러오기
   loading: "불러오는 중..."
   loading_flickr_photos: "Flickr 사진 불러오는 중..."
@@ -1377,6 +1406,10 @@ ko:
   location_is_private: 위치가 비공개이다
   log_in: 로그인
   log_scale_label: 로그
+  #Adjectival phrase describing state of being logged in
+  logged_in: 로그인됨
+  #Adjectival phrase describing state of being logged out
+  logged_out: 로그아웃됨
   logo:
     logo: 로고
     white_bg_gif: 흰색 배경 GIF
@@ -1400,6 +1433,7 @@ ko:
   manager: 매니저
   managers: 관리자들
   managers_can_do: 매니저들은 큐래이터가 하는 모든 활동을 할 수 있을 뿐만 아니라, 프로젝트 설정을 편집하고 프로젝트 일지 포스트 작성도 할 수 있다.
+  managing_projects: 프로젝트 관리
   map: 지도
   map_legend: 지도 설명문
   map_marker_size: 지도 마커 크기
@@ -1465,6 +1499,8 @@ ko:
   more_info: 자세한 정보
   more_info_title: 자세한 정보
   more_observations: 더 많은 관찰
+  #Label for a button or section that shows additional options
+  more_options: 더 많은 옵션
   more_photos: 더 많은 사진들
   more_than_a_week_ago: 한 주 이전에
   most_browser_print_pdf: "참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다"
@@ -1598,7 +1634,11 @@ ko:
   no_taxonomic_changes_match_those_criteria: 그 조건을 충족하는 분류군 없음
   no_wikipedia_page_for_taxon: 이 분류군은 위키백과 페이지가 없습니다.
   noble_curators: "%{site}의 고귀한 큐레이터들"
+  #A user who is not a curator
+  non_curator: 큐레이터가 아닌 경우
   non_human?: 사람이 아닙니까?
+  #A user who does not admin any projects
+  non_project_admin: 프로젝트 관리자가 아닌 경우
   none: 없음
   none_found: 찾을 수 없음
   normal: 보통
@@ -1756,6 +1796,68 @@ ko:
     large: 크게
   photos_updated: 사진 업데이트됨
   pi_consent_desc_title: 개인 정보에 관해
+  pi_consent_desc_html: |
+    <p>
+    우리는 사용자 이름 및 이메일 주소와 같은 개인 정보를 저장합니다.
+    이 사이트의 계정을 관리하고 개인 정보 보호법을 준수하기 위해
+    이 사용에 동의한다는 표시를 나타내기 위해 이 확인란을 선택해야 합니다.
+    개인 정보의. 우리가 어떤 정보를 가지고 있는지 더 알아보기 위해
+    수집 및 사용 방법은 다음을 참조하십시오.
+    <a href='%{privacy_url}' target='_blank'>개인정보처리방침</a>
+    그리고 우리의 <a href='%{terms_url}' target='_blank'>이용 약관</a>.
+    </p>
+    <p>
+    개인 정보를 저장하지 않고 iNaturalist 계정을 가질 수 있는 방법은 없습니다.
+    따라서 이 동의를 철회하는 유일한 방법은 귀하의
+    계좌.
+    </p>
+  pi_consent_label: |
+    본인은 iNaturalist가 제한된 종류의 저장 및 처리를 허용하는 데 동의합니다.
+    내 계정을 관리하기 위한 나에 대한 개인 정보
+  pi_consent_child_label: |
+    본인은 iNaturalist가 제한된 종류의 저장 및 처리를 허용하는 데 동의합니다.
+    내 아이의 계정을 관리하기 위해 내 아이에 대한 개인 정보
+  data_transfer_consent_desc_title: 개인정보 이전 동의에 대해서
+  data_transfer_consent_desc_html: |
+    <p>
+    유럽 연합의 일반 데이터와 같은 일부 데이터 개인 정보 보호법
+    보호 규정(GDPR), 전송에 대한 명시적 동의 필요
+    해당 관할권에서 다른 관할권으로의 개인 정보
+    이 정보의 법적 보호가 고려되지 않는 경우
+    충분한. 현재
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    유럽 연합은 더 이상 미국을 국가로 간주하지 않습니다.
+    개인에 대한 적절한 법적 보호를 제공하는 관할권
+    정보, 특히 미국 정부의 가능성 때문에
+    미국으로 들어오는 데이터를 감시합니다. 다른 관할권에서도 가능합니다
+    같은 의견을 가질 수 있습니다.
+    </p>
+    <p>
+    iNaturalist를 사용하려면 다음과 같은 개인 정보를 저장해야 합니다.
+    이메일 주소, 모든 iNaturalist 데이터는 미국에 저장되어 있습니다.
+    귀하가 사용할 때 귀하가 어떤 법적 관할권에 있는지 확신할 수 없습니다.
+    iNaturalist, 따라서 GDPR과 같은 개인 정보 보호법을 준수하기 위해 귀하는
+    귀하가 이 위험과 동의를 이해하고 수락한다는 것을 인정해야 합니다.
+    귀하의 개인 정보를 iNaturalist의 서버로 전송하기 위해
+    미국.
+    </p>
+    <p>
+    당사가 수집하는 정보 및 사용 방법에 대해 자세히 알아보기
+    저희를 참조하십시오
+    <a href='%{privacy_url}' target='_blank'>개인정보처리방침</a>
+    그리고 우리의 <a href='%{terms_url}' target='_blank'>이용 약관</a>.
+    </p>
+    <p>
+    개인 정보를 저장하지 않고 iNaturalist 계정을 가질 수 있는 방법은 없습니다.
+    따라서 이 동의를 철회하는 유일한 방법은 귀하의
+    계좌.
+    </p>
+  data_transfer_consent_label: |
+    본인은 본인의 개인 정보가 유나이티드로 전송되는 데 동의합니다.
+    미국
+  data_transfer_consent_child_label: |
+    본인은 제 자녀의 개인 정보가 다음 주소로 전송되는 데 동의합니다.
+    미국
   pin_verb: 저장
   place: 장소
   place_autocomplete_placeholder: 자이언 국립공원, 마이애미, 등등
@@ -2077,6 +2179,8 @@ ko:
   processing3p: "처리 중..."
   profile: 프로필
   project: 프로젝트
+  #A user who admin's a project
+  project_admin: 프로젝트 관리자
   project_created_on: 님이 %{date} 에 이 프로젝트를 생성하였습니다
   project_group_label: 그룹
   project_icon: 프로젝트 아이콘
@@ -2192,6 +2296,7 @@ ko:
   reviewed: 검토함
   rg_observations: 연구 자료 등급 관찰
   rules_for_adding_observations: 관찰을 추가할 때의 규칙
+  satellite: 위성
   save: 저장
   save_all: 모두 저장
   save_and_continue: "저장하고 계속하기..."
@@ -2302,6 +2407,9 @@ ko:
   store: 스토어
   store_caps: 스토어
   submitted: 업로드 날짜
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: 구독하다
   subscribe_to_a_taxon: 분류군 알림 받기
   subscribe_to_a_place: 장소 알림 받기
   subscribe_to_observations_in_a_taxon: '특정 분류군에 대한 모든 관찰에 대한 알림을 받기 (예시: ''메뚜기과'', ''흰나비속'')'
@@ -2324,8 +2432,10 @@ ko:
   taxon_name_was_deleted: 분류군 이름이 삭제되었습니다.
   taxon_name_was_successfully_updated: 분류군 이름이 성공적으로 수정되었습니다.
   taxonomic_order: 분류 체계
+  teachers_guide: 교사용 가이드
   tell_the_world_a_little_about_yourself: 자기소개하기
   tell_us_why: 이유를 말해주세요...
+  terrain: 지형
   text: 텍스트
   thanks!: 감사합니다!
   the_following_observations_could: "%{link}에 관찰을 추가하지 못했습니다."
@@ -2347,6 +2457,10 @@ ko:
   #As in the title of a book or a blog post
   title: 제목
   too_many_results: 결과가 너무 많음
+  tos_privacy_guidelines_label: |
+    동의합니다. <a href="/terms" target="_blank">이용 약관</a> 그리고
+    <a href="/privacy" target="_blank">개인정보처리방침</a>, 그리고 나는 검토했다.
+    이 <a href="/pages/community+guidelines" target="_blank">커뮤니티 가이드라인</a>.
   total: 합계
   total_observations: 총 관찰
   total_observations_caps: 전체 관찰 수
@@ -2471,6 +2585,8 @@ ko:
   year: 년
   year_month: 년/월
   'yes': "예"
+  yes_license_my_childs_observations: 예, 과학자들이 데이터를 사용할 수 있도록 내 아이의 사진, 소리 및 관찰 자료에 대한 라이선스를 부여하십시오(권장).
+  yes_license_my_observations_so_scientists_can_use: 예, 과학자들이 내 데이터를 사용할 수 있도록 내 사진, 소리 및 관찰 항목에 라이선스를 부여하십시오(권장).
   yesterday: 어제
   you: 나
   you_: 나
@@ -2502,6 +2618,94 @@ ko:
   your_recent_projects: 내 최근 프로젝트
   your_relationships: 내 관계
   views:
+    announcements:
+      locales_desc: |
+        Cmd 키 또는 Shift 키를 누른 상태에서 여러 항목을 선택합니다. "모두"를 선택하거나 만들지 않음
+        선택 항목은 다음에 관계없이 모든 사용자에게 공지 사항을 표시합니다.
+        로캘. 지역이 없는 언어를 선택하면 대상이 *아니*게 됩니다
+        지역이 있는 로케일, 예를 들어 영어를 선택하면 표시되지 않습니다.
+        영어(영국)를 선택한 사람들을 위해.
+      clients_desc: |
+        Cmd 키 또는 Shift 키를 누른 상태에서 여러 항목을 선택합니다. "모두"를 선택하거나 만들지 않음
+        선택 항목은 다음에 관계없이 모든 사용자에게 공지 사항을 표시합니다.
+        클라이언트.
+      end_desc: |
+        계정 시간대에서 이 공지가 중지되는 시간
+        나타나는. 여러 시간대에 걸쳐 적용되므로 모든 사람이 더 이상 볼 수 없습니다.
+        동시에 현지 시간과 관련이 없습니다.
+      ip_countries_desc: |
+        Cmd 키 또는 Shift 키를 누른 상태에서 여러 항목을 선택합니다. "모두"를 선택하거나 만들지 않음
+        선택 항목은 다음에 관계없이 모든 사용자에게 공지 사항을 표시합니다.
+        IP 국가.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        사용자가 가장 최근에 만든 생성 날짜입니다.
+        관찰은 캐시되므로 대상을 지정하는 데 몇 시간이 걸릴 수 있습니다.
+        적용
+      observation_oauth_application_ids_desc: |
+        Cmd 키 또는 Shift 키를 누른 상태에서 여러 항목을 선택합니다. "모두"를 선택하거나 만들지 않음
+        선택 항목은 다음에 관계없이 모든 사용자에게 공지 사항을 표시합니다.
+        앱.
+      site_ids_desc: |
+        Cmd 키 또는 Shift 키를 누른 상태에서 여러 항목을 선택합니다. "모두"를 선택하거나 만들지 않음
+        선택 항목은 다음에 관계없이 모든 사용자에게 공지 사항을 표시합니다.
+        사이트 제휴.
+      start_desc: |
+        계정 시간대에서 이 공지가 시작되는 시간입니다
+        나타나는. 여러 시간대에 걸쳐 적용되므로 모든 사람이 볼 수 있습니다.
+        동시에 현지 시간과 관련이 없습니다.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: 기부 행동으로 사용자 타겟팅
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: 식별 동작으로 사용자 타겟팅
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: 관찰 동작으로 사용자 타겟팅
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: 다른 속성으로 사용자 타겟팅
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: 아틀라스 소개
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlases는 분류군의 전 세계 분포를 전달합니다. 큐레이터는
+          Atlases는 Atlas의 구조를 정의하고
+          그것을 운전하는 분류군을 나열했습니다.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: 이곳을 폭발시켜라
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: 이 장소를 분해 해제합니다.
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: 이 아틀라스에는 아직 변경 사항이 없습니다
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: 최근 아틀라스 변경 사항
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: 최근 나열된 분류군 변경
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: 나열된 분류군 표시
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: 이 아틀라스는 현재 활성화되지 않았습니다.
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          이렇게 하면 이 분류군과 모든 하위 분류군이 체크리스트에서 제거됩니다
+          이 장소 및 여기에 포함된 모든 표준 장소와 연결됩니다. 술래
+          실행 취소할 수 없습니다. 이 작업을 수행하시겠습니까?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          경고: 이 아틀라스에 표시되지 않는 관측치가 있습니다
     devise:
       mailer:
         confirmation_instructions:
@@ -2666,6 +2870,11 @@ ko:
           "Alive or Dead=Alive": 살아있음
           "Alive or Dead=Dead": 죽음
           "Life Stage=Egg": 알
+        site_curators_disabled_wikipedia_html: |
+          사이트 큐레이터가 표시를 비활성화했습니다. <a href="%{url}">이
+          위키피디아의 콘텐츠</a>. 에서 페이지를 편집하여 도움을 줄 수 있습니다.
+          Wikipedia를 사용하여 이 분류군에 적합하게 만들거나 이것을 표시하여
+          Taxon을 사용하여 사이트 큐레이터의 관심을 끌 수 있습니다.
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
@@ -2690,6 +2899,7 @@ ko:
         step3_title: 확인 이메일 대기
     welcome:
       index:
+        connect_with_nature: 자연과 교감하다
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
         how_it_works: 사용하는 법
         record_your_observations: 관찰을 기록하세요
@@ -2715,6 +2925,7 @@ ko:
         works_on_all_your_devices: 모든 기기에서 사용 가능합니다
         install_our_mobile_apps: |
           iNaturalist 앱을 설치해서 인터넷 없이도 항상 관찰하세요
+        who_uses_site_name: "사용자 %{site_name}?"
         what_are_you_waiting_for: 더 망설일 필요 있나요?
         join_today: 지금 가입하기
   date:
@@ -2812,11 +3023,56 @@ ko:
   time:
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y년 %B %d일"
   activerecord:
     models:
       TaxonLink: 분류 링크
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: 닫기 가능
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: 기부자 시작일 제외
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: 기부자 종료일 제외
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: 앱에서 참관인 제외
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: 기부자 시작일 포함
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: 기부자 종료일 포함
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: 앱의 참관인 포함
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP 국가
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: 최신 obs 시작 날짜
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: 최신 obs 종료 날짜
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: 최대 식별 수
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: 최소 식별
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: 최대 관측치
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: 최소 관측치
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: 배치
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Target 작성자(테스트용)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Target 로그인됨
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: 가장 빠른 사용자 가입 날짜
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: 최신 사용자 가입 날짜
       assessment:
         description: 설명
       assessment_section:
@@ -2837,6 +3093,8 @@ ko:
         start_time: 시작 시간
         last_aggregated_at: 마지막으로 묶인 관찰
       taxon:
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: 위키백과를 보여줍니다.
         wikipedia_summary: 위키백과 요약
         wikipedia_title: 위키백과 제목
       user:
@@ -2852,6 +3110,7 @@ ko:
         accepted: 동의해야 합니다
         confirmation: 비밀번호와 일치하지 않습니다
         empty: 비워둘 수 없습니다
+        must_look_like_an_email_address: 이메일 주소처럼 보여야 합니다.
         even: 짝수여야 합니다
         inclusion: 목록에 포함되어 있지 않습니다
         invalid: 잘못되었습니다
@@ -2872,6 +3131,10 @@ ko:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "좌표는 0,0이 될 수 없습니다"
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: 범위가 아닌 하루여야 합니다.
         observation_field_value:
           attributes:
             value:
@@ -2882,6 +3145,11 @@ ko:
           attributes:
             place_geometry:
               is_too_large_to_edit: 편집하기에 너무 큼
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: 생명 분류군은 분류군 변경에 관여할 수 없습니다
         taxon_name:
           attributes:
             lexicon:
@@ -2896,6 +3164,7 @@ ko:
             login:
               must_begin_with_a_letter: |
                 문자로 시작해야 하고 공백을 포함할 수 없으며, 문자, 숫자, 밑줄, 대시만 사용이 가능합니다.
+              domain_is_not_supported: 도메인은 지원되지 않습니다.
   doorkeeper:
     errors:
       messages:
