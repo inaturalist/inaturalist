@@ -376,6 +376,7 @@ namespace :inaturalist do
       "places_name",
       "plants",
       "preview",
+      "profile_picture_file_type",
       "protozoans",
       "purple",
       "random",
