@@ -1169,7 +1169,7 @@ sr:
   curator_application_you_should_apply_if_you_have_added_flags: |
     Dokazao/la si da razumeš proces kustosiranja dodavanjem nekoliko prijava
   #Label for a menu item linking to a help page aimed at curators
-  curator_guide: Kustoski vodič
+  curator_guide: Vodič za kustose
   curators_changed_for_x_html: "Kustosi promenjeni za %{x}"
   curators: Kustosi
   curator_identification: Identifikacija kustosa
@@ -1452,6 +1452,8 @@ sr:
   editing_this: Uređivanje %{elem}
   editing_x_in_y: "Uređivanje %{x} u %{y}"
   editors: Urednici
+  #Label for a menu item linking to a help page aimed at educators that want to learn how to use iNaturalist
+  educators_guide: Vodič za nastavnike
   either_that_user_doesnt_exist_or: "Taj korisnik ili ne postoji ili ga već pratiš."
   eligible_for_research_grade: Prihvatljivo za istraživački nivo
   email: Imejl
@@ -2192,6 +2194,13 @@ sr:
   mark_all_as_reviewed: Označi sve kao pregledano
   mark_all_as_unreviewed: Označi sve kao nepregledano
   maverick: Kontraš
+  maximum_positional_accuracy: Maksimalna tačnost pozicije
+  maximum_positional_accuracy_including_unknown: |
+    Maksimalna tačnost pozicije, uključujući opservacije bez tačnosti pozicije
+  #Used to join media types required by a project, e.g. photos *and* sounds.
+  #If a single word won't work, a symbol like "+" would be fine.
+  media_and: i
+  media_type: Vrsta medija
   medium: srednje
   meet: Upoznaj
   member_of_the_inaturalist_network_html: |
@@ -2212,7 +2221,9 @@ sr:
   mentioned_you_in_an_x_on_noun_by_user_html: "%{user} te je pomenuo/la u %{x} na %{noun} korisnika/ce %{by}"
   mentioned_you_in_an_x_on_noun_by_you_html: "%{user} te je pomenuo/la u %{x} na tvojoj %{noun}"
   merge: Spoji
+  merge_it_with_another_place: Spoji ga sa drugim mestom
   merging: Spajanje
+  merging_places: Spajanje mesta
   message: Poruka
   message_deleted: Poruka izbrisana
   message_from_user_at_time: Od %{user} u %{time}
@@ -2228,14 +2239,26 @@ sr:
     Ako misliš da ova osoba krši naše <a href="%{tos_url}"
     target="_blank">Uslove korišćenja</a> ili se ne ponaša u skladu sa<a
     href="%{guidelines_url}" target="_blank"> Smernicama zajednice</a>, molimo te da prijaviš ovu poruku ispod.
+  minimum_positional_accuracy: Minimalna tačnost pozicije
   misidentifications: Pogrešne identifikacije
   misleading_or_illegal_content_html: |
     Obmanjujuć ili nezakonit sadržaj, uvrede bazirane na rasnoj ili etničkoj netrpeljivosti itd. Više informacija o našoj definiciji "prikladnog", možeš naći na strani <a href="/help#inappropriate">Često postavljena pitanja</a>.
   #Label shown when a date has not been entered
   missing_date: Datum nedostaje
   mobile: Mobilni
+  moderation_history_for_user_html: Istorija moderacije za %{user}
+  moderation_history_desc_html: |
+    Ovo obuhvata aktivnost moderatora (npr. skrivanje ili otkrivanje komentara), beleške,
+    i prijave na svemu što je ovaj korisnik/ca kreirao/la osim taksona. Ovo je
+    <strong>vidljivo samo kustosima</strong> i <strong>kustosi ne mogu da vide
+    svoju istoriju</strong>, tako da beleške o osobi nikada ne bi trebalo da budu vidljive
+    toj osobi.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Sakrij
+  #Action a moderator can take to suspend a user; verb
+  moderator_actions_suspend: Suspenduj
+  #Action a moderator can take to unsuspend a user; verb
+  moderator_actions_unsuspend: Ukloni suspenziju
   mollusks: mekušci
   momentjs:
     shortRelativeTime:
@@ -2298,6 +2321,8 @@ sr:
   more_info_title: Više informacija
   more_journal_posts: Prikaži više rubrika dnevnika
   more_observations: Više opservacija
+  #Label for a button or section that shows additional options
+  more_options: Više opcija
   more_photos: Više fotografija
   more_than_a_week_ago: Pre više od nedelju dana
   most_agree: većina se slaže
@@ -2309,13 +2334,20 @@ sr:
   most_observed_species: Najviše zabeleženih vrsta
   most_observed_introduced_species: Najviše zabeleženih invazivnih vrsta
   most_observed_threatened_species: Najviše zabeleženih ugroženih vrsta
+  multiple: više
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
   must_be_in_project: mora biti u projektu %{project}
+  must_be_in_taxon: mora biti u taksonu %{taxon}
+  must_be_not_in_taxon: ne sme biti u taksonu %{taxon}
   must_be_less_than_x_MB: "Mora biti manje od %{x} MB"
+  must_have_photos: mora imati fotografije
   #Grades is a comma separated list of quality grades
   must_have_quality_grades: "mora imati sledeći kvalitet podataka: %{grades}"
+  must_have_sounds: mora imati zvukove
   must_have_x: "mora imati %{x}"
+  #Imperative verb, label for a button that lets you mute another user
+  mute: Ućutkaj
   muted_users: Ućutkani korisnici
   n_ago: "pre %{n}"
   n_people_agrees: "%{amount} ljudi se slaže"
@@ -2392,6 +2424,7 @@ sr:
   new_users_w_7_obs: Novi korisnici sa 7 ops.
   newly_added: Novododati
   newly_added_species: Novododate vrste
+  newly_observed_species: Novozapažena vrsta
   newly_observed_species_in_year: "Novododate vrste u %{year}"
   next: Sledeće
   next_date_short: Sledeći
@@ -2439,19 +2472,33 @@ sr:
   no_one_has_added_any: Niko nije dodao belešku za ovo mesto
   no_one_posted_anything_yet: Ništa još nije objavljeno!
   no_photo: Nema fotografije
+  no_photos: Nema fotografija
+  no_photos_of_that_size: Nema fotografije te veličine.
   no_post_yet: Još nema objava!
+  no_project_selected: Nije izabran nijedan projekat
   no_project_to_admin_current_user: "Nisi administrator nijednog projekta"
   no_projects_yet: Nema projekata
+  no_attached_range: Nema priloženog opsega
   no_relevant_annotations: Nema bitnih pribeleški
   no_reply_yet: Nema još odgovora
+  no_results_found: Nema rezultata
+  no_results_for: 'Nema rezultata za '
+  no_results_matching: Nema rezultata koji se podudaraju
+  no_species_on_this_list: Još uvek nema nijedne vrste na ovoj listi!
   no_subject_parens: "(Bez naslova)"
+  no_such_wiki_page: Ne postoji takva stranica.
+  no_such_wiki_page_html: Ne postoji takva stranica. Da li želiš da <a href="%{new_url}">je kreiraš</a>?
   no_suggestions_available: Nijedan predlog nije dostupan
+  no_summary_from_wikipedia: Nema rezimea sa Vikipedije
   no_taxa: Nema taksona
+  no_taxa_selected: Nije izabran nijedan takson!
   no_wikipedia_page_for_taxon: Nema Vikipedija strane za ovaj takson.
+  noble_curators: "Uvaženi kustosi %{site}-a"
   none: Ništa
   none_found: Nije nađena nijedna
   normal: normalno
   not_atlased: Atlas nije kreiran
+  not_completed: Nije završeno
   not_confident_top_suggestions: Ne možemo sa sigurnošću dati preporuku ali evo naših predloga
   not_found: Nije pronađeno
   not_linked_flickr: "Tvoj %{site_name} nalog nije povezan sa tvojim Flickr nalogom"
@@ -2475,6 +2522,8 @@ sr:
   observation_accuracy_experiment_continent: "Kontinent"
   observation_accuracy_experiment_year: "Godina"
   observation_accuracy_experiment_quality_grade: "Kvalitet podataka"
+  observation_accuracy_experiment_all_results: "Svi rezutati"
+  observation_accuracy_experiment_sample_size: "Veličina uzorka: %{number}"
   observation_accuracy_experiment_correct: "Ispravno"
   observation_accuracy_experiment_uncertain: "Neizvesno"
   observation_accuracy_experiment_incorrect2: "Neispravno"
@@ -3568,6 +3617,7 @@ sr:
     one: Čuvanje opservacije...
     few: Čuvanje %{num} od %{count} opservacije
     other: Čuvanje %{num} od %{count} opservacija
+  saving_verb: Čuvanjе
   scale_colon: "Razmera:"
   schemes: Šeme
   schemes_including: Šeme obuhvataju
@@ -3765,8 +3815,10 @@ sr:
     nzbrn_plants: NZBRN biljke
     nzbrn_other: NZBRN drugo
   source_eg:
+    title: 'npr. Snakes: The Evolution of Mystery in Nature'
     in_text: 'npr. Greene, 2000'
     url: npr. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
+    citation: 'npr. Greene, Harry W. Snakes: The Evolution of Mystery in Nature. 1st ed. University of California Press, 1997. Print.'
   source_url: Izvorni URL
   sources: Izvori
   sources_youve_added: Izvori koje si dodao/la
@@ -3931,6 +3983,7 @@ sr:
   taxon_change_must_be_committed_to_update_records: Promena taksona mora biti potvrđena da bi se ažurirao registar
   taxon_change_title_taxon_drop: Poništen takson %{id}
   taxon_change_title_taxon_merge: Taksonomski spoj %{id}
+  taxon_change_title_taxon_split: Podela taksona %{id}
   taxon_change_title_taxon_swap: Zamena taksona %{id}
   taxon_deleted: Takson izbrisan.
   taxon_doesnt_have_a_range: Takson nema rasprostranjenost
@@ -3990,6 +4043,7 @@ sr:
   taxon_name_was_deleted: Naziv taksona izbrisan.
   taxon_name_was_successfully_updated: Naziv taksona je uspešno ažuriran.
   taxon_was_successfully_created: Takson je uspešno kreiran.
+  taxon_was_successfully_updated: Takson je uspešno ažuriran.
   taxonomic: taksonomski
   taxonomic_changes: Taksonomske promene
   taxonomic_groups: taksonomske grupe
@@ -4378,6 +4432,8 @@ sr:
   view_leaderboard_from_last_year: Pogledaj rang listu od prošle godine
   view_license: Pogledaj licencu
   view_lists: Pogledaj liste
+  view_moderation_history: Pogledaj istoriju moderacije
+  view_moderation_history_for_this_comment: Pogledaj istoriju moderacije za ovaj komentar
   view_more: Pogledaj više
   view_more_about_x: "Pogledaj više o %{x}"
   view_more_observations_near_x_place: "Pogledaj opservacije u blizini %{place} na <nobr>%{site_name} &raquo;</nobr>"
@@ -4689,6 +4745,35 @@ sr:
   verifiable_observations: Argumentovane opservacije
   views:
     views: 'Pregledi'
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: O atlasima
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasi predstavljaju globalnu rasprostranjenost taksona. Kustosi kreiraju
+          atlase definisanjem strukture atlasa i kustosiranjem
+          navedenih taksona koji ga čine.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Zumiraj na ovo mesto
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Odzumiraj od ovog mesta
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Još uvek nema izmena u ovom atlasu
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Upozorenje: ima opservacija koje nisu obuhvaćene ovim atlasom
+    content_freeze:
+      we_expect_this_functionality_will_return_by_date: |
+        Očekujemo da će se ova funkcionalnost vratiti do %{date}.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4700,6 +4785,9 @@ sr:
           community_guidelines_html: |
             <a href="%{url}">Pogledaj smernice zajednice</a> za savete kako održati iNaturalist kao prijateljsko i prijatno mesto.
           please_read_the_teachers_guide_html: |
+            Ako je tako, pročitaj naš<a href="%{url}">Vodič za nastavnike</a> za savete o upotrebi %{site_name} u nastavne svrhe.
+          #welcome email text displayed after asking if the reader is planning to use iNaturalist in the classroom
+          please_read_the_educators_guide_html: |
             Ako je tako, pročitaj naš<a href="%{url}">Vodič za nastavnike</a> za savete o upotrebi %{site_name} u nastavne svrhe.
     donate:
       donate_short_desc: "Doniraj sada da bi podržao!"
@@ -4906,6 +4994,12 @@ sr:
     oauth:
       authorizations:
         new:
+          #Application is an app or service the user is about to
+          #authorize to access their iNat account
+          authorize_application_to_use_your_account?: Odobri %{application} da koristi tvoj nalog?
+          #Application is an app or service the user has authorized to
+          #access their iNat account
+          this_application_will_be_able_to_colon: "Ova aplikacija će moći:"
           #Application is an app or service the user has authorized to
           #access their iNat account
           more_about_application: Više o %{application}
@@ -4964,9 +5058,28 @@ sr:
         url: URL opservacije
         positioning_method: Kako su koordinate određene
         positioning_device: Uređaj korišćen za određivanje koordinata
+        private_place_guess: |
+          Lokacija opservacije kako ju je definisao posmatrač ako je lokacija prikrivena
+        taxon_family_name: |
+          Naziv taksonomske porodice koja sadrži zapaženi takson
+        taxon_genus_name: |
+          Naziv taksonomskog roda koji sadrži zapaženi takson
+        taxon_kingdom_name: |
+          Naziv taksonomskog carstva koje sadrži zapaženi takson
+        taxon_order_name: |
+          Naziv taksonomskog reda koji sadrži zapaženi takson
+        taxon_phylum_name: |
+          Naziv taksonomskog tipa koji sadrži zapaženi takson
+        taxon_species_name: |
+          Naziv taksonomske vrste koja sadrži zapaženi takson
+        taxon_subfamily_name: |
+          Naziv taksonomske potporodice koja sadrži zapaženi takson
+        taxon_tribe_name: |
+          Naziv taksonomskog plemena koje sadrži zapaženi takson
       identify:
         review_all_tooltip: "Označi sve opservacije na strani kao pregledane"
         you_reviewed_message: "Pregledao/la si %{reviewed} od %{pageTotal} opservacija na ovoj strani od ukupno %{total} opservacija"
+        unreview_all_tooltip: "Ukloni pregledani status za sve opservacije na stranici"
       import:
         coordinate_systems_help: |
           %{site_name} dozvoljava unos koordinata putem više različitih koordinatnih sistema. Kada unosiš koordinate u sistemu koji zasnovan na geografskoj širini / dužini, moraš naznačiti koji koordinatni sistem koristiš kako bi se mogao adekvatno interpretirati. Molimo te da dobro proveriš koji koordinatni sistem koristiš inače se lokacija može znatno razlikovati. Ako uzmeš koordinate sa svog GPS uređaja, proveri njegova podešavanja i trebalo bi biti naznačeno koji koordinatni sistem uređaj koristi. Imaj u vidu da mi ne čuvamo konkretne koordinate, samo njihove gš/gd konverzije.
@@ -5079,6 +5192,7 @@ sr:
       collection: Kolekcija
       umbrella: Skupni
       tracks_multiple_projects: prati više projekata
+      projects_included: Uključeni projekti
       collection_and_umbrellas_do_not_support: |
         Pretražni i skupni projekti trenutno ne podržavaju pristup skrivenim koordinatama.
       confirm_leave:
@@ -5151,6 +5265,7 @@ sr:
         leaderboards_among_individuals: Rang lista <strong>članova</strong>
         leaderboards_among_projects_and_bioblitzes: |
           Rang lista <strong>projekata</strong>
+        multiple_project_administrators: Više administratora projekta
         name_placeholder: Ptice Čikaga, Neverovatni Vilini Konjici, itd.
         note_these_users_will_be_able_to_edit: |
           Napomena: ovi korisnici će moći da izmene SVE detalje projekta uključujući administratore.
@@ -5240,6 +5355,8 @@ sr:
         avg_ttcid: Prosečno VDIDZ
         avg_ttid: Prosečno VDID
         identifiers_desc: Danas dodali ID na nečiju opservaciju
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: Kreirano pomoću <a href="%{url}">iNatNext-a</a>
         iphone_desc_html: Kreirano pomoću <a href="%{url}">iNaturalist iPhone aplikacije</a>
         new_users_desc: Registrovani do danas
         obs_1_day: "Ops (1 dan)"
@@ -5396,6 +5513,7 @@ sr:
           "Plant Phenology=Budding": Pupenje
           "Plant Phenology=Flowering": Cvetanje
           "Plant Phenology=No Evidence of Flowering": Nema dokaza cvetanja
+          "Flowers and Fruits=Flower Buds": Cvetni pupoljci
           "Flowers and Fruits=Flowers": Cvetovi
           "Flowers and Fruits=Fruits or Seeds": Voćke ili seme
           "Flowers and Fruits=No Flowers or Fruits": Bez voćki i semena
@@ -5829,7 +5947,11 @@ sr:
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
         site_ids: ID-jevi sajtova
+        #Preference for an announcement that is only shown to staff
+        prefers_target_staff: Ciljno osoblje (za testiranje)
         clients: Klijenti
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Položaj
       assessment:
         description: Opis
       assessment_section:
@@ -6101,6 +6223,12 @@ sr:
                 mora biti zabeleženo posle %{time}
               must_be_observed_before: |
                 mora biti zabeleženo pre %{time}
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: mora biti projekat
         taxon:
           attributes:
             rank:
