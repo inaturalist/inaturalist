@@ -288,9 +288,9 @@ class User < ApplicationRecord
   before_save :set_pi_consent_at
   before_save :set_data_transfer_consent_at
   before_save :set_locale
-  after_save :update_observation_licenses
-  after_save :update_photo_licenses
-  after_save :update_sound_licenses
+  after_save :update_observation_licenses_later
+  after_save :update_photo_licenses_later
+  after_save :update_sound_licenses_later
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_save :send_messages_by_unsuspended_user
@@ -649,35 +649,57 @@ class User < ApplicationRecord
       detect{ |pa| pa.provider_name == "orcid" }.try( :provider_uid )
   end
 
-  def update_observation_licenses
-    return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.where( user_id: id ).
-      update_all( license: preferred_observation_license, updated_at: Time.now )
-    index_observations_later
-    true
+  def update_observation_licenses_later
+    return true unless [true, "1", "true"].include?( @make_observation_licenses_same )
+
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_observation_licenses_later": id },
+      queue: "throttled"
+    ).update_observation_licenses
   end
-  
-  def update_photo_licenses
+
+  def update_observation_licenses
+    Observation.where( user_id: id ).update_all( license: preferred_observation_license, updated_at: Time.now )
+    index_observations
+  end
+
+  def update_photo_licenses_later
     return true unless [true, "1", "true"].include?( @make_photo_licenses_same )
-    number = Photo.license_number_for_code( preferred_photo_license )
-    return true unless number
+
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_photo_licenses": id },
+      queue: "throttled"
+    ).update_photo_licenses
+  end
+
+  def update_photo_licenses
+    license_number = Photo.license_number_for_code( preferred_photo_license )
+    return true unless license_number
+
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
-      update_all( license: number, updated_at: Time.now )
-    index_observations_later
-    User.delay(
-      queue: "photos",
-      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": id }
-    ).enqueue_photo_bucket_moving_jobs( id )
-    true
+      update_all( license: license_number, updated_at: Time.now )
+    index_observations
+    User.enqueue_photo_bucket_moving_jobs( id )
+  end
+
+  def update_sound_licenses_later
+    return true unless [true, "1", "true"].include?( @make_sound_licenses_same )
+
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_sound_licenses": id },
+      queue: "throttled"
+    ).update_sound_licenses
   end
 
   def update_sound_licenses
-    return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
-    number = Photo.license_number_for_code(preferred_sound_license)
-    return true unless number
-    Sound.where( user_id: id ).update_all( license: number, updated_at: Time.now )
-    index_observations_later
-    true
+    license_number = Photo.license_number_for_code( preferred_sound_license )
+    return true unless license_number
+
+    Sound.where( user_id: id ).update_all( license: license_number, updated_at: Time.now )
+    index_observations
   end
 
   def update_observation_sites_later

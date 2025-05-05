@@ -157,6 +157,8 @@ const Content = ( {
               <CheckboxRowContainer
                 name="make_observation_licenses_same"
                 label={I18n.t( "update_existing_observations_with_new_license" )}
+                modalDescriptionTitle={I18n.t( "update_existing_observations_with_new_license" )}
+                modalDescription={I18n.t( "update_existing_observations_with_new_license_desc" )}
               />
             </div>
             <label htmlFor="preferred_photo_license">{I18n.t( "default_photo_license" )}</label>
@@ -174,6 +176,8 @@ const Content = ( {
               <CheckboxRowContainer
                 name="make_photo_licenses_same"
                 label={I18n.t( "update_existing_photos_with_new_license" )}
+                modalDescriptionTitle={I18n.t( "update_existing_photos_with_new_license" )}
+                modalDescription={I18n.t( "update_existing_photos_with_new_license_desc" )}
               />
             </div>
             <label htmlFor="preferred_sound_license">{I18n.t( "default_sound_license" )}</label>
@@ -191,6 +195,8 @@ const Content = ( {
           <CheckboxRowContainer
             name="make_sound_licenses_same"
             label={I18n.t( "update_existing_sounds_with_new_license" )}
+            modalDescriptionTitle={I18n.t( "update_existing_sounds_with_new_license" )}
+            modalDescription={I18n.t( "update_existing_sounds_with_new_license_desc" )}
           />
         </SettingsItem>
       </div>

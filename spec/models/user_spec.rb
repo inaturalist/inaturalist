@@ -1055,10 +1055,14 @@ describe User do
     elastic_models( Observation )
 
     it "should update existing observations if requested" do
-      u = User.make!
-      o = Observation.make!( user: u )
-      u.preferred_observation_license = Observation::CC_BY
-      u.update( make_observation_licenses_same: true )
+      u = create :user
+      o = create( :observation, user: u, license: nil )
+      expect( u.preferred_observation_license ).not_to eq Observation::CC_BY
+      expect( o.license ).not_to eq Observation::CC_BY
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_observation_license = Observation::CC_BY
+        u.update( make_observation_licenses_same: true )
+      end
       o.reload
       expect( o.license ).to eq Observation::CC_BY
     end
@@ -1066,8 +1070,11 @@ describe User do
     it "should update existing photo if requested" do
       u = User.make!
       p = LocalPhoto.make!( user: u )
-      u.preferred_photo_license = Observation::CC_BY
-      u.update( make_photo_licenses_same: true )
+      expect( p.license ).not_to eq Photo.license_number_for_code( Observation::CC_BY )
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_photo_license = Observation::CC_BY
+        u.update( make_photo_licenses_same: true )
+      end
       p.reload
       expect( p.license ).to eq Photo.license_number_for_code( Observation::CC_BY )
     end
@@ -1075,12 +1082,13 @@ describe User do
     it "should queue moving photos if needed" do
       u = User.make!
       p = LocalPhoto.make!( user: u )
-      u.update( make_photo_licenses_same: true )
-      p.reload
-      expect( Delayed::Job.where(
-        queue: "photos",
-        unique_hash: "{:\"User::enqueue_photo_bucket_moving_jobs\"=>#{u.id}}"
-      ).any? ).to be true
+      expect( p.license ).to eq Photo::COPYRIGHT
+      user_spy = spy( User )
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_photo_license = Observation::CC_BY
+        u.update( make_photo_licenses_same: true )
+      end
+      expect( user_spy ).to have_been_called_with( u )
     end
 
     it "should not update GoogleStreetViewPhotos" do
