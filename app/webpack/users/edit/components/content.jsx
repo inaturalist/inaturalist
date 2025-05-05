@@ -98,7 +98,7 @@ const Content = ( {
             className="text-muted"
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
-              __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects" )
+              __html: I18n.t( "views.users.edit.this_only_applies_to_traditional_projects2" )
             }}
           />
         </SettingsItem>
