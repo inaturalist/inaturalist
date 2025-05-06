@@ -6,6 +6,9 @@ import { fetchNetworkSites } from "./network_sites";
 import { fetchFavoriteProjects } from "./favorite_projects";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
+const SAVED = "saved";
+const UNSAVED = "unsaved";
+export const NO_CHANGE = "no change";
 
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
@@ -16,8 +19,8 @@ export default function reducer( state = { }, action ) {
   return state;
 }
 
-export function setUserData( userData, savedStatus = "unsaved" ) {
-  userData.saved_status = savedStatus;
+export function setUserData( userData, savedStatus = UNSAVED ) {
+  if ( savedStatus !== NO_CHANGE ) userData.saved_status = savedStatus;
 
   return {
     type: SET_USER_DATA,
@@ -120,7 +123,7 @@ export async function handleSaveError( e ) {
   return null;
 }
 
-export function saveUserSettings( ) {
+export function saveUserSettings( options = {} ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     const { id } = profile;
@@ -141,6 +144,14 @@ export function saveUserSettings( ) {
       params[attr] = true;
       delete params.user[attr];
     } );
+
+    // If we only want to update certain attributes, filter out everything but
+    // those
+    if ( options.only ) {
+      params.user = Object.fromEntries(
+        Object.entries( params.user ).filter( ( [key] ) => options.only.includes( key ) )
+      );
+    }
 
     // don't include the icon value from users.me, otherwise, will get a 500 error
     if ( typeof params.user.icon === "string" ) {
@@ -170,7 +181,12 @@ export function saveUserSettings( ) {
     // currently users.me returns different results than
     // dispatching setUserData( results[0] ) from users.update response
     return inatjs.users.update( params, { useAuth: true } )
-      .then( ( ) => dispatch( fetchUserSettings( "saved" ) ) )
+      .then( ( ) => {
+        // If we want to update without fetching the user again...
+        if ( options.skipFetch ) return null;
+
+        return dispatch( fetchUserSettings( SAVED ) );
+      } )
       .catch( e => handleSaveError( e ).then( errors => {
         profile.errors = errors;
         dispatch( setUserData( profile, null ) );
@@ -210,10 +226,10 @@ export function handleDisplayNames( { target } ) {
   };
 }
 
-export function updateUserData( updates ) {
+export function updateUserData( updates, options = {} ) {
   return ( dispatch, getState ) => {
     const { profile: userData } = getState( );
-    dispatch( setUserData( { ...userData, ...updates } ) );
+    dispatch( setUserData( { ...userData, ...updates }, options.savedStatus ) );
   };
 }
 
@@ -309,7 +325,7 @@ export function resendConfirmation( ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
-      dispatch( fetchUserSettings( "saved" ) );
+      dispatch( fetchUserSettings( SAVED ) );
       // If we go back to signing people out after sending the confirmation,
       // we will need to reload the window
       // window.location.reload( );
@@ -357,7 +373,7 @@ export function addFavoriteProject( project ) {
   return function ( dispatch, getState ) {
     dispatch( updateUserData( {
       faved_project_ids: [...getState( ).profile.faved_project_ids, project.id]
-    } ) );
+    }, { savedStatus: NO_CHANGE } ) );
     return dispatch( fetchFavoriteProjects( ) );
   };
 }

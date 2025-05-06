@@ -57,6 +57,14 @@ class FavoriteProject extends React.Component {
       <div>
         <DraggableOption isDragging={isDragging} onRemove={() => onRemove( project )}>
           { project.title }
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href={`/projects/${project.slug}`}
+            alt={I18n.t( "view_project" )}
+          >
+            <i className="icon-link-external" />
+          </a>
         </DraggableOption>
       </div>
     ) ) );

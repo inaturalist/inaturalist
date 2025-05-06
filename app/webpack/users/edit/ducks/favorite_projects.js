@@ -2,7 +2,7 @@ import inatjs from "inaturalistjs";
 
 const SET_FAVORITE_PROJECTS = "user/edit/SET_FAVORITE_PROJECTS";
 
-const PROJECT_FIELDS = "id,title,project_type";
+const PROJECT_FIELDS = "id,title,project_type,slug";
 
 export default function reducer( state = [], action ) {
   switch ( action.type ) {
