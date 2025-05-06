@@ -651,11 +651,7 @@ describe User do
   describe "moderated_with" do
     it "renames the user when given a RENAME action" do
       user = User.make!( login: "old_login" )
-      moderator_action = ModeratorAction.new(
-        action: ModeratorAction::RENAME,
-        user: User.make!,
-        resource: user
-      )
+      moderator_action = build :moderator_action, action: ModeratorAction::RENAME, resource: user
       user.moderated_with( moderator_action )
       expect( user.login ).not_to eq "old_login"
     end
