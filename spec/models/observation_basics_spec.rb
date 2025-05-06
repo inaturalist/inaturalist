@@ -635,7 +635,8 @@ describe Observation do
     it "should increment the taxon's counter cache" do
       t = without_delay { Taxon.make! }
       expect( t.observations_count ).to eq 0
-      without_delay { Observation.make!( taxon: t ) }
+      Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       t.reload
       expect( t.observations_count ).to eq 1
     end
@@ -644,7 +645,8 @@ describe Observation do
       p = without_delay { Taxon.make!( rank: Taxon::GENUS ) }
       t = without_delay { Taxon.make!( parent: p, rank: Taxon::SPECIES ) }
       expect( p.observations_count ).to eq 0
-      without_delay { Observation.make!( taxon: t ) }
+      Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       p.reload
       expect( p.observations_count ).to eq 1
     end
@@ -1593,7 +1595,8 @@ describe Observation do
 
     it "should decrement the taxon's counter cache" do
       t = Taxon.make!
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       t.reload
       expect( t.observations_count ).to eq( 1 )
       o = without_delay { o.update( taxon: nil, editing_user_id: o.user_id ) }
@@ -1604,7 +1607,8 @@ describe Observation do
     it "should decrement the taxon's ancestors' counter caches" do
       p = Taxon.make!( rank: Taxon::GENUS )
       t = Taxon.make!( parent: p, rank: Taxon::SPECIES )
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       p.reload
       expect( p.observations_count ).to eq( 1 )
       o = without_delay { o.update( taxon: nil, editing_user_id: o.user_id ) }
@@ -1670,7 +1674,8 @@ describe Observation do
 
     it "should decrement the taxon's counter cache" do
       t = Taxon.make!
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       t.reload
       expect( t.observations_count ).to eq 1
       o.destroy
@@ -1682,7 +1687,8 @@ describe Observation do
     it "should decrement the taxon's ancestors' counter caches" do
       p = Taxon.make!( rank: Taxon::GENUS )
       t = Taxon.make!( parent: p, rank: Taxon::SPECIES )
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       p.reload
       expect( p.observations_count ).to eq( 1 )
       o.destroy

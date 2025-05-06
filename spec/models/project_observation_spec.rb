@@ -300,10 +300,11 @@ describe ProjectObservation, "creation" do
 
   it "should set curator ID if observer is not a curator but a curator has identified the observation", :with_setup do
     o = Observation.make!
+    po = without_delay { make_project_observation( observation: o, project: @project ) }
     i = Identification.make!( observation: o, user: @project.user )
     expect( @project ).to be_curated_by i.user
     expect( i.project_observations.count ).to eq 0
-    po = without_delay { make_project_observation( observation: o, project: @project ) }
+    Delayed::Worker.new.work_off
     i.reload
     expect( i.project_observations.first ).to eq po
   end
