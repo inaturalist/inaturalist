@@ -89,7 +89,7 @@ class UpdateAction < ApplicationRecord
     puts "[INFO] UpdateAction.email_updates queing #{user_ids.size} jobs..."
     user_ids.each do |subscriber_id|
       UpdateAction.delay(
-        priority: INTEGRITY_PRIORITY,
+        priority: NOTIFICATION_PRIORITY,
         queue: "slow",
         unique_hash: {
           "UpdateAction::email_updates_to_user": subscriber_id,
