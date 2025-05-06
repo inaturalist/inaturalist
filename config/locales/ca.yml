@@ -7212,9 +7212,6 @@ ca:
         same_day_geoprivacy_protection: Protecció de geoprivacitat per "mateix dia"
         taxon_change_desc: |
           Quan es fusionen o canvien de nom els tàxons a %{site_name}, les vostres observacions, llistes de tàxons, identificacions, etc. seran actualitzades automàticament al nou tàxon si el canvi és inequívoc. Si opteu pel contrari o el canvi és ambigu (per exemple, es tracta d'un separació de dos tàxons), rebreu una actualització sobre el canvi vinculat a una eina que, si ho voleu, podreu utilitzar per actualitzar manualment el contingut.
-        this_only_applies_to_traditional_projects: |
-          Això només s'aplica als projectes tradicionals. No podeu excloure observacions de projectes col·lectius o paraigua, els quals són essencialment va salvar recerques.
-          Podeu llegir més <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
       recent:
         about_recent_users: Quant a
         definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui un spammer, el que significa que no té cap observació o identificació però sí que té una descripció al perfil. </dd> <dt>Spam Automàtic</dt> <dd> Spammer que ha estat identificats pel sistema com Spammer, de forma automàtica. </dd> <dt>Spam Manual</dt> <dd> Spammer que ha estat considerat així per un supervisor del lloc. </dd> <dt>Falsos Positius</dt> <dd> Usuaris que van ser marcats com spammers però resolts pels supervisors del lloc perquè no eren realment spammers. </dd> </dl>
