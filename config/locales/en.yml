@@ -10369,8 +10369,9 @@ en:
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
         project_fave:
-          base:
-            only_seven_projects: You can only fave 7 projects
+          attributes:
+            base:
+              only_seven_projects: You can only fave 7 projects
         project_observation:
           attributes:
             base:

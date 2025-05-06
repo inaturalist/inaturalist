@@ -1898,6 +1898,16 @@ describe User do
       expect( user.project_faves.length ).to eq 2
     end
 
+    it "should remove the last ProjectFave" do
+      user = create :user
+      projects = 7.times.map { create :project }
+      user.faved_project_ids = projects.map( &:id )
+      expect( user.project_faves.length ).to eq 7
+      user.faved_project_ids = projects[0..1].map( &:id )
+      user.reload
+      expect( user.project_faves.length ).to eq 2
+    end
+
     it "should assign ProjectFave positions based on the order of IDs" do
       user = create :user
       project1 = create :project

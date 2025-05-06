@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import FavoriteProjects from "../components/favorite_projects";
+import { fetchFavoriteProjects } from "../ducks/favorite_projects";
 import {
   addFavoriteProject,
   NO_CHANGE,
@@ -28,6 +29,7 @@ function mapDispatchToProps( dispatch ) {
     updateFavedProjectIds: projectIds => {
       dispatch( updateUserData( { faved_project_ids: projectIds }, { savedStatus: NO_CHANGE } ) );
       dispatch( saveUserSettings( { only: ["faved_project_ids"], skipFetch: true } ) );
+      dispatch( fetchFavoriteProjects( ) );
     }
   };
 }

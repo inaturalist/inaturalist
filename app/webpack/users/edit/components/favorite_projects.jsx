@@ -55,19 +55,17 @@ const FavoriteProjects = ( {
           />
         );
       } ) }
-      <div className="add-project">
-        { positions.length <= 7 && (
-          <ProjectAutocomplete
-            afterSelect={result => {
-              addProject( result.item );
-              projectAutocompleteRef.current?.inputElement( )?.val( "" );
-              projectAutocompleteRef.current?.inputElement( )?.trigger( "resetSelection" );
-            }}
-            placeholder={I18n.t( "add_a_project" )}
-            ref={projectAutocompleteRef}
-            notIDs={positions}
-          />
-        ) }
+      <div className={`add-project ${positions.length < 7 ? "visible" : "hidden"}`}>
+        <ProjectAutocomplete
+          afterSelect={result => {
+            addProject( result.item );
+            projectAutocompleteRef.current?.inputElement( )?.val( "" );
+            projectAutocompleteRef.current?.inputElement( )?.trigger( "resetSelection" );
+          }}
+          placeholder={I18n.t( "add_a_project" )}
+          ref={projectAutocompleteRef}
+          notIDs={positions}
+        />
       </div>
     </div>
   );
