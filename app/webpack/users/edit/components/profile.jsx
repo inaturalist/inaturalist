@@ -8,6 +8,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ChangePasswordContainer from "../containers/change_password_container";
 import UserImage from "../../../shared/components/user_image";
+import { MAX_FILE_SIZE } from "../../../observations/uploader/models/util";
 
 const DESCRIPTION_WARNING_LENGTH = 8000;
 const MAX_DESCRIPTION_LENGTH = 10000;
@@ -130,6 +131,7 @@ const Profile = ( {
       <div className="col-md-5 col-sm-10">
         <h4>{I18n.t( "profile" )}</h4>
         <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
+          {showError( "icon_content_type", "profile_picture_file_type" )}
           <Dropzone
             ref={iconDropzone}
             className="dropzone"
@@ -152,13 +154,14 @@ const Profile = ( {
                   console.error( "Failed to generate preview for file", file, err );
                 }
               } );
-              onFileDrop( acceptedFiles );
+              onFileDrop( acceptedFiles, rejectedFiles );
             }}
             activeClassName="hover"
             disableClick
             disablePreview
             accept="image/png,image/jpeg,image/gif"
             multiple={false}
+            maxSize={MAX_FILE_SIZE}
           >
             <div className="flex-no-wrap">
               <div className="user-profile-image">

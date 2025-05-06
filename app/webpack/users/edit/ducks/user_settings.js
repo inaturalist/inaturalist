@@ -1,7 +1,10 @@
+import React from "react";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { fetchRelationships, updateBlockedAndMutedUsers } from "./relationships";
 import { setConfirmEmailModalState } from "../../../shared/ducks/confirm_email_modal";
+import { setConfirmModalState } from "../../../shared/ducks/confirm_modal";
+import RejectedFilesError from "../../../shared/components/rejected_files_error";
 import { fetchNetworkSites } from "./network_sites";
 
 const SET_USER_DATA = "user/edit/SET_USER_DATA";
@@ -242,10 +245,28 @@ export function handlePhotoUpload( e ) {
   };
 }
 
-export function onFileDrop( droppedFiles ) {
+export function onFileDrop( droppedFiles, rejectedFiles ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
 
+    if ( rejectedFiles && rejectedFiles.length > 0 ) {
+      /* eslint-disable react/jsx-filename-extension */
+      const message = (
+        <RejectedFilesError
+          rejectedFiles={rejectedFiles}
+          supportedFilesRegex="gif|png|jpe?g"
+          unsupportedFileTypeMessage={I18n.t( "views.users.edit.errors.unsupported_file_type" )}
+        />
+      );
+      if ( message ) {
+        dispatch( setConfirmModalState( {
+          show: true,
+          message,
+          confirmText: I18n.t( "ok" )
+        } ) );
+      }
+      return;
+    }
     if ( _.isEmpty( droppedFiles ) ) { return; }
     const droppedFile = droppedFiles[0];
     if ( droppedFile.type.match( /^image\// ) ) {

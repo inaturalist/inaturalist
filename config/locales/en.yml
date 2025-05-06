@@ -4619,6 +4619,9 @@ en:
   processing3p: "Processing..."
   profile: Profile
   profile_picture: Profile Picture
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profile Picture file type
   profile_visibility_desc: |
     In an effort to keep spam off of %{site_name}, user profiles are only
     publicly visible after a user has contributed several Research Grade
@@ -9388,6 +9391,10 @@ en:
           Facility</a> (GBIF), an international, inter-governmental organization
           that compiles and distributes biodiversity information from around the
           world.
+        errors:
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
+          unsupported_file_type: File type not supported. We accept JPG, PNG, and GIF
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
           to iNaturalist (United States IRS EIN 92-1296468) to support the
