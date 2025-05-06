@@ -16,7 +16,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_spammable fields: [:description],
     comment_type: "signup"
-  has_moderator_actions %w(suspend unsuspend)
+  has_moderator_actions %w(suspend unsuspend rename)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = "admin"
@@ -1612,6 +1612,10 @@ class User < ApplicationRecord
       self.spammer = false
       self.suspended_by_user = nil
       unsuspend!
+    elsif moderator_action.action == ModeratorAction::RENAME
+      new_login = User.suggest_login( User::DEFAULT_LOGIN )
+      self.login = new_login
+      save!
     end
   end
 
