@@ -2191,6 +2191,8 @@ id:
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist adalah organisasi nirlaba independen bebas pajak 501(c)(3) berbasis di Amerika Serikat (ID Pajak: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist memperbarui ID yang disarankan oleh %{user}
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2302,6 +2304,8 @@ id:
   internal_taxon_rank: Tingkat takson internal
   introduced: Diperkenalkan
   introduced_in_place: "Diperkenalkan di %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Tanggal tidak sah
   invitation: Undangan
   invite: undang
   invite_people: Undang orang
@@ -5467,8 +5471,20 @@ id:
   upcoming_bioblitzes: Bioblitz yang akan datang
   update: Perbarui
   update_existing_observations_with_new_license: Perbarui pengamatan yang sudah ada dengan pilihan lisensi baru
+  update_existing_observations_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    pengamatan yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    pengamatan.
   update_existing_photos_with_new_license: Perbarui foto yang sudah ada dengan pilihan lisensi baru
+  update_existing_photos_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    gambar Anda yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    gambar.
   update_existing_sounds_with_new_license: Perbarui suara yang sudah ada dengan pilihan lisensi baru
+  update_existing_sounds_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    suara Anda yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    suara.
   update_observations: Perbarui Pengamatan
   update_past: "Perbarui %{type} Yang Dulu"
   update_photos: Perbarui Foto
@@ -7907,8 +7923,8 @@ id:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Sebanyak 3 kosakata nama umum (maksimal) sudah ditambahkan
-        this_only_applies_to_traditional_projects: |
-          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang intinya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">di sini</a>.
+        this_only_applies_to_traditional_projects2: |
+          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang pada dasarnya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">di sini</a>.
       recent:
         about_recent_users: Tentang
         definitions_html: <dl> <dt>Sepertinya Spam</dt> <dd> Pengguna yang mungkin seorang spammer, yang berarti mereka tidak memiliki pengamatan atau identifikasi, tetapi mereka memiliki deskripsi profil.</dd> <dt>Auto Spam</dt> <dd> Spammer yang secara otomatis ditandai sebagai spammer dari sistem. </dd> <dt>Manual Spam</dt> <dd> Spammer yang secara manual ditandai sebagai spammer oleh kurator situs. </dd> <dt>False Positive</dt> <dd> Pengguna yang ditandai sebagai spammer, tetapi tandanya diselesaikan oleh kurator situs karena mereka sebenarnya bukan spammer. </dd> </dl>
@@ -8601,6 +8617,9 @@ id:
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
               polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: memiliki poligon tanpa luas (semua titik sama)
         place_geometry:
           attributes:
             geom:
