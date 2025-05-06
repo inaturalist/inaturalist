@@ -945,6 +945,23 @@ describe Identification do
     end
   end
 
+  describe "update_curator_identification" do
+    it "does not queue a job if an observation has no project_observations" do
+      observation = Observation.make!
+      expect( Delayed::Job.where( "handler LIKE '%run_update_curator_identification%'" ) ).to be_empty
+      Identification.make!( observation: observation )
+      expect( Delayed::Job.where( "handler LIKE '%run_update_curator_identification%'" ) ).to be_empty
+    end
+
+    it "does queue a job if an observation has project_observations" do
+      observation = Observation.make!
+      ProjectObservation.make!( observation: observation )
+      expect( Delayed::Job.where( "handler LIKE '%run_update_curator_identification%'" ) ).to be_empty
+      Identification.make!( observation: observation )
+      expect( Delayed::Job.where( "handler LIKE '%run_update_curator_identification%'" ) ).not_to be_empty
+    end
+  end
+
   describe "run_update_curator_identification" do
     it "indexes the observation in elasticsearch" do
       o = Observation.make!
