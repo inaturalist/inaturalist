@@ -55,13 +55,23 @@ describe WelcomeController do
       expect( assigns( :announcements ) ).to include annc
     end
 
-    # The intent is to allow the creation of a siteless announcement that can
-    # be *overridden* for a site, e.g. an announcement to all iNat users that
-    # iNatMX chooses to translate into Spanish
-    it "should not include an anouncement without a site if one with a site exists" do
+    it "should include an anouncement without a site if one with a site exists" do
       annc = create :announcement, placement: Announcement::WELCOME_INDEX
       site = create :site
       site_annc = create :announcement, placement: Announcement::WELCOME_INDEX
+      site_annc.sites << site
+      get :index, params: { inat_site_id: site.id }
+      expect( assigns( :announcements ) ).to include site_annc
+      expect( assigns( :announcements ) ).to include annc
+    end
+
+    # The intent is to allow the creation of a siteless announcement that can
+    # be *overridden* for a site, e.g. an announcement to all iNat users that
+    # iNatMX chooses to translate into Spanish
+    it "should not include an anouncement without a site if one with a site that excludes non-site ones exists" do
+      annc = create :announcement, placement: Announcement::WELCOME_INDEX
+      site = create :site
+      site_annc = create :announcement, placement: Announcement::WELCOME_INDEX, excludes_non_site: true
       site_annc.sites << site
       get :index, params: { inat_site_id: site.id }
       expect( assigns( :announcements ) ).to include site_annc
