@@ -4145,6 +4145,9 @@ de:
   processing3p: "Verarbeite…"
   profile: Profil
   profile_picture: Profilbild
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Dateityp des Profilbilds
   profile_visibility_desc: |
     In dem Bestreben, Spam von %{site_name} abzuhalten, sind Benutzerprofile nur dann
     öffentlich sichtbar, nachdem ein Benutzer mehrere Beobachtungen mit Forschungsqualität
@@ -7780,6 +7783,10 @@ de:
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 
            (CC BY-NC)-Datensätze in das Archiv auf, das wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Dateityp wird nicht unterstützt. Akzeptiert werden JPG, PNG und GIF
         monthly_supporter_desc_html: |
           Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, um den gemeinnützigen Betrieb von iNaturalist (United States IRS EIN 92-1296468) und der Webseiten des iNaturalist-Netzwerks zu unterstützen.
           <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
@@ -8480,6 +8487,8 @@ de:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Nur Admins und Kuratoren können Inhalte ausblenden
               only_staff_and_hiding_curators_can_unhide: Nur Administratoren und Kuratoren, die den Inhalt ausblendeten, können ihn wieder sichtbar machen
+              #Error saying that only staff can rename
+              only_staff_can_rename: Nur Admins können umbenennen
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Nur Admins können Inhalte als privat festlegen
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
