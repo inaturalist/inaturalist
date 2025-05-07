@@ -1829,7 +1829,11 @@ class User < ApplicationRecord
     # Create and destroy ProjectFaves, analagous to have HABTM relations work.
     # Comes with the potential for problems if another validation error stops
     # the user from being saved *after* this happens.
-    ProjectFave.where( user_id: id ).where( "project_id NOT IN (?)", project_ids ).delete_all
+    if project_ids.blank?
+      ProjectFave.where( user_id: id ).delete_all
+    else
+      ProjectFave.where( user_id: id ).where( "project_id NOT IN (?)", project_ids ).delete_all
+    end
     project_ids.each_with_index do | project_id, position |
       fave = project_faves.detect {| existing_fave | existing_fave.project_id == project_id }
       fave ||= project_faves.build( project_id: project_id )

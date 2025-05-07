@@ -1877,6 +1877,8 @@ describe User do
   end
 
   describe "faved_project_ids=" do
+    let( :user ) { create :user }
+
     it "should create new ProjectFaves" do
       user = create :user
       project1 = create :project
@@ -1887,7 +1889,6 @@ describe User do
     end
 
     it "should remove ProjectFaves not specified" do
-      user = create :user
       project1 = create :project
       project2 = create :project
       project3 = create :project
@@ -1898,8 +1899,16 @@ describe User do
       expect( user.project_faves.length ).to eq 2
     end
 
+    it "should remove all ProjectFaves if none specified" do
+      project = create :project
+      user.faved_project_ids = [project.id]
+      expect( user.project_faves.length ).to eq 1
+      user.faved_project_ids = []
+      user.reload
+      expect( user.project_faves.length ).to eq 0
+    end
+
     it "should remove the last ProjectFave" do
-      user = create :user
       projects = 7.times.map { create :project }
       user.faved_project_ids = projects.map( &:id )
       expect( user.project_faves.length ).to eq 7
@@ -1909,7 +1918,6 @@ describe User do
     end
 
     it "should assign ProjectFave positions based on the order of IDs" do
-      user = create :user
       project1 = create :project
       project2 = create :project
       project3 = create :project
