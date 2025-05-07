@@ -59,15 +59,15 @@ module Shared::LicenseModule
     end
   end
 
-  def attribution_name
+  def attribution_name( options = {} )
     if !native_realname.blank?
       native_realname
     elsif !native_username.blank?
       native_username
     elsif user
       user.name.blank? ? user.login : user.name
-    else
-      I18n.t('copyright.anonymous')
+    elsif !options[:allow_nil]
+      I18n.t( "copyright.anonymous" )
     end
   end
 
