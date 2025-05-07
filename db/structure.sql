@@ -3849,6 +3849,39 @@ ALTER SEQUENCE public.project_assets_id_seq OWNED BY public.project_assets.id;
 
 
 --
+-- Name: project_faves; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_faves (
+    id bigint NOT NULL,
+    project_id integer,
+    user_id integer,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_faves_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_faves_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_faves_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_faves_id_seq OWNED BY public.project_faves.id;
+
+
+--
 -- Name: project_observation_fields; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -6619,6 +6652,13 @@ ALTER TABLE ONLY public.project_assets ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: project_faves id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_faves ALTER COLUMN id SET DEFAULT nextval('public.project_faves_id_seq'::regclass);
+
+
+--
 -- Name: project_observation_fields id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7727,6 +7767,14 @@ ALTER TABLE ONLY public.preferences
 
 ALTER TABLE ONLY public.project_assets
     ADD CONSTRAINT project_assets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_faves project_faves_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_faves
+    ADD CONSTRAINT project_faves_pkey PRIMARY KEY (id);
 
 
 --
@@ -9944,6 +9992,20 @@ CREATE INDEX index_project_assets_on_project_id ON public.project_assets USING b
 
 
 --
+-- Name: index_project_faves_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_faves_on_project_id ON public.project_faves USING btree (project_id);
+
+
+--
+-- Name: index_project_faves_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_faves_on_user_id ON public.project_faves USING btree (user_id);
+
+
+--
 -- Name: index_project_observation_fields_on_observation_field_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -11531,6 +11593,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250327191619'),
 ('20250328144900'),
 ('20250404192042'),
-('20250409212827');
+('20250409212827'),
+('20250417172959');
 
 

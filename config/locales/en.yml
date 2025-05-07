@@ -381,6 +381,8 @@ en:
   add_a_new_change_group: Add a New Change Group
   # Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Add a numbered list
+  # Placeholder for a project autocomplete field
+  add_a_project: Add a project
   add_a_single_observation: Add a Single Observation.
   add_a_taxon: Add a Taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1654,6 +1656,8 @@ en:
   custom_project_fields: Custom Project Fields
   custom_project_was_successfully_created: Project customizations added
   custom_project_was_successfully_updated: Project customizations updated
+  # Button to customize projects that appear in the header
+  customize__projects: Customize
   customize_location: Customize Location
   darr_apply_darr: "&darr; Apply &darr;"
   daily_users: Daily Users
@@ -2129,6 +2133,12 @@ en:
   # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Faves
   Family: Family
+  # Header for a section showing the user's favorite projects
+  favorite_projects: Favorite Projects
+  # Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Choose up to seven projects that appear as links in the header. Updates
+    will appear after refreshing the page.
   favorite_taxa: Favorite Taxa
   favorites: "Favorites"
   feature_this_project_: "Feature This Project"
@@ -10182,6 +10192,7 @@ en:
         show_for_descendent_taxa: Show for descendant taxa
       user:
         email: Email
+        faved_project_ids: Favorite projects
         login: Username
         name: Name
         locale: Locale
@@ -10387,6 +10398,10 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: You can only fave 7 projects
         project_observation:
           attributes:
             base:
@@ -10483,6 +10498,14 @@ en:
               already_has_a_range: already has a range
         user:
           attributes:
+            faved_project_ids:
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: cannot include more than 7 projects
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
+              must_all_exist: must all exist
             login:
               must_begin_with_a_letter: |
                 must begin with a letter, contain no spaces, and use only

@@ -1324,7 +1324,10 @@ class UsersController < ApplicationController
       :search_place_id,
       :site_id,
       :test_groups,
-      :time_zone
+      :time_zone,
+      # FYI this attribute gets submitted as an array, and arrays won't be
+      # permitted unless allowed like this
+      faved_project_ids: []
     )
   end
 

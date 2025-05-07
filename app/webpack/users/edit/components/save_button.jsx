@@ -7,10 +7,13 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
 
   return (
     <div className="flex-no-wrap save-button">
-      <div className={profile.saved_status === "saved" ? "text-muted saved-time" : "collapse"}>
+      <div className={profile.saved_status === "saved" ? "text-muted saved-time status" : "collapse"}>
         { I18n.t( "saved_at_time", {
           time: moment( profile.updated_at ).format( I18n.t( "momentjs.time_hours" ) )
         } ) }
+      </div>
+      <div className={profile.errors ? "text-danger status" : "collapse"}>
+        { I18n.t( "doh_something_went_wrong" ) }
       </div>
       <button
         className={`btn btn-inat ${disabled ? "btn-default" : "btn-primary"}`}
