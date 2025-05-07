@@ -4179,6 +4179,9 @@ id:
   processing3p: "Memproses..."
   profile: Profil
   profile_picture: Foto Profil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Jenis berkas Gambar Profil
   profile_visibility_desc: |
     Untuk menjaga %{site_name} dari spam, profil pengguna hanya dapat dilihat publik jika pengguna sudah menambahkan beberapa pengamatan Kelas Riset.
   project: Proyek
@@ -7827,6 +7830,10 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Jenis berkas tidak didukung. Kami menerima JPG, PNG, dan GIF
         monthly_supporter_desc_html: |
           Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
           ke iNaturalist (United States IRS EIN 92-1296468) untuk mendukung 
