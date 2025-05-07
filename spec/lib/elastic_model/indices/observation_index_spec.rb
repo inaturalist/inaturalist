@@ -282,10 +282,10 @@ describe "Observation Index" do
       expect( eq[:filters] ).to eq( [{ term: { id: -1 } }])
     end
 
-    it "queries tags" do
+    it "queries using exact keyword matching when explicitly searching on tags" do
       expect( Observation.params_to_elastic_query({ q: "s", search_on: "tags" }) ).to include(
         filters: [ { multi_match:
-          { query: "s", operator: "and", fields: [ :tags ] } } ] )
+          { query: "s", operator: "and", fields: [ "tags.keyword" ] } } ] )
     end
 
     it "queries descriptions" do
