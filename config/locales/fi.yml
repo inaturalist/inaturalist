@@ -3883,6 +3883,9 @@ fi:
   processing3p: "Käsitellään..."
   profile: Profiili
   profile_picture: Profiilikuva
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profiilikuvan tiedostotyyppi
   profile_visibility_desc: |
     Roskapostituksen välttämiseksi %{site_name}issa käyttäjäprofiilit tulevat julkisesti näkyville vasta sen jälkeen kun käyttäjä on tehnyt useita tutkimustason havaintoja.
   project: Projekti
@@ -6586,6 +6589,10 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tiedostotyyppiä ei tueta. Hyväksymme JPG-, PNG- ja GIF-tiedostot
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
@@ -7179,6 +7186,8 @@ fi:
             action:
               not_supported_for_this_kind_of_content: ei ole tuettu tällaista sisältöä
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Vain henkilökunta voi nimetä uudelleen
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
