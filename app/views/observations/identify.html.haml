@@ -7,7 +7,12 @@
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]).html_safe : "[]" };
 - content_for :extrajs do
   :javascript
-    var OFFICIAL_APP_IDS = #{ [OauthApplication.inaturalist_android_app&.id, OauthApplication.inaturalist_iphone_app&.id, OauthApplication.seek_app&.id].compact.to_json };
+    var OFFICIAL_APP_IDS = #{ [
+      OauthApplication.inat_next_app&.id,
+      OauthApplication.inaturalist_android_app&.id,
+      OauthApplication.inaturalist_iphone_app&.id,
+      OauthApplication.seek_app&.id
+    ].compact.to_json };
     if ( typeof( CURRENT_USER ) !== undefined ) {
       CURRENT_USER.prefers_identify_side_bar = #{logged_in? && current_user.prefers_identify_side_bar};
       CURRENT_USER.preferred_identify_image_size = #{logged_in? && current_user.preferred_identify_image_size ? current_user.preferred_identify_image_size.inspect.html_safe : "null"};

@@ -36,11 +36,16 @@
         });
       } );
     } );
+  :javascript
+    $('#rename').on('shown.bs.modal', function () {
+      $('.modal-footer .btn-danger', this).focus()
+    })
 = content_for :extracss do
   :css
     .dropdown-menu.site-admins li {
       padding: 3px 10px;
     }
+
 .container
   .row
     .col-xs-12
@@ -295,6 +300,8 @@
         = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
           method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
           class: "btn btn-block btn-success"
+      = link_to "#rename", "data-toggle" => "modal", class: "btn btn-block btn-warning" do
+        Replace Username
       %hr
       - if !@display_user.confirmed? || @display_user.unconfirmed_email?
         = link_to "Confirm user email", admin_update_user_path( @display_user.id, confirm: true ), method: :put,
@@ -379,3 +386,18 @@
             = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete", data: { "1p_ignore" =>  true }
             = hidden_field_tag :reject_user_id
           = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }
+#rename.modal.fade
+  .modal-dialog{ role: "document" }
+    .modal-content
+      = form_tag admin_update_user_path( @display_user.id, reset_name: true ), method: :put do
+        .modal-header
+          %button.close{ type: "button", "data-dismiss" => "modal" } ×
+          %h4.modal-title Replace Username
+        .modal-body
+          %p 
+            Are you sure you want to replace this user's username with an anonymized one? This cannot be undone. The new username will look like
+            %code naturalistXXXX
+        .modal-footer
+          %button.btn.btn-default{ type: "button", "data-dismiss" => "modal" } Cancel
+          %button.btn.btn-danger{ type: "submit" } Yes, replace
+          

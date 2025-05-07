@@ -2531,6 +2531,8 @@ en:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
     organization based in the United States of America (Tax ID: 92-1296468).
+  # Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist updated the ID suggested by %{user}
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2660,6 +2662,8 @@ en:
   internal_taxon_rank: Internal taxon rank
   introduced: Introduced
   introduced_in_place: "Introduced in %{place}"
+  # Error message shown when a date format is invalid
+  invalid_date: Invalid date
   invitation: Invitation
   invite: invite
   invite_people: Invite people
@@ -4625,6 +4629,9 @@ en:
   processing3p: "Processing..."
   profile: Profile
   profile_picture: Profile Picture
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profile Picture file type
   profile_visibility_desc: |
     In an effort to keep spam off of %{site_name}, user profiles are only
     publicly visible after a user has contributed several Research Grade
@@ -6101,8 +6108,20 @@ en:
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
+  update_existing_observations_with_new_license_desc: |
+    Selecting this option will apply your new license choice to all your
+    existing observations. This can take a few hours if you have a lot of
+    observations.
   update_existing_photos_with_new_license: Update existing photos with new license choices
+  update_existing_photos_with_new_license_desc: |
+    Selecting this option will apply your new license choice to all your
+    existing photos. This can take a few hours if you have a lot of
+    photos.
   update_existing_sounds_with_new_license: Update existing sounds with new license choices
+  update_existing_sounds_with_new_license_desc: |
+    Selecting this option will apply your new license choice to all your
+    existing sounds. This can take a few hours if you have a lot of
+    sounds.
   update_observations: Update Observations
   update_past: "Update Past %{type}"
   update_photos: Update Photos
@@ -6365,6 +6384,8 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "View more unreviewed"
+  # Link to view identifications affected by a taxon change
+  view_your_affected_ids: View your affected IDs
   view_observation: View Observation
   view_observations: View Observations
   view_observation_flags: View observation flags
@@ -9380,6 +9401,10 @@ en:
           Facility</a> (GBIF), an international, inter-governmental organization
           that compiles and distributes biodiversity information from around the
           world.
+        errors:
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
+          unsupported_file_type: File type not supported. We accept JPG, PNG, and GIF
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
           to iNaturalist (United States IRS EIN 92-1296468) to support the
@@ -9536,11 +9561,11 @@ en:
           # lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added:
             The maximum of 3 common name lexicons have already been added
-        this_only_applies_to_traditional_projects: |
+        this_only_applies_to_traditional_projects2: |
           This only applies to traditional projects. You can't exclude observations
           from collection or umbrella projects, which are essentially saved searches.
           You can read more
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">here</a>.
       recent:
         about_recent_users: About
         definitions_html:
@@ -10289,6 +10314,8 @@ en:
               # a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Only staff and curators can hide content
               only_staff_and_hiding_curators_can_unhide: Only staff and curators who hide content can unhide it
+              # Error saying that only staff can rename
+              only_staff_can_rename: Only staff can rename
               # Error saying that only staff can set resources as private
               only_staff_can_make_private: Only staff can set content as private
               staff_cannot_be_suspended: Staff cannot be suspended
@@ -10348,6 +10375,9 @@ en:
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90
               must_have_more_than_three_points: must have more than 3 points
               polygon_with_less_than_four_points: has a polygon with fewer than 4 points
+              # Error message when a user uploads a KML that has a polygon
+              # where all the points are the same.
+              polygon_with_no_area: has a polygon with no area (all points are the same)
         place_geometry:
           attributes:
             geom:

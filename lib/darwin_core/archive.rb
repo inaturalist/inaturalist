@@ -78,7 +78,18 @@ module DarwinCore
       @extension_paths || { }
     end
 
+    def enable_replica
+      # enable replica usage and tell makara to refresh its
+      # context so it is not locked to using the primary DB
+      ActiveRecord::Base.connection.enable_replica
+      return unless ActiveRecord::Base.connection.respond_to?( :enable_context_refresh )
+
+      ActiveRecord::Base.connection.enable_context_refresh
+      Makara::Context.release_all
+    end
+
     def generate
+      enable_replica
       @generate_started_at = Time.now
       logger.debug "[DEBUG] Generating archive, options: #{@opts}"
       unless @opts[:metadata].to_s.downcase == "skip"

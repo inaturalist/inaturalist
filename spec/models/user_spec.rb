@@ -648,6 +648,15 @@ describe User do
     expect( user ).to be_suspended
   end
 
+  describe "moderated_with" do
+    it "renames the user when given a RENAME action" do
+      user = User.make!( login: "old_login" )
+      moderator_action = build :moderator_action, action: ModeratorAction::RENAME, resource: user
+      user.moderated_with( moderator_action )
+      expect( user.login ).not_to eq "old_login"
+    end
+  end
+
   describe "deletion" do
     elastic_models( Observation )
 
@@ -1055,10 +1064,14 @@ describe User do
     elastic_models( Observation )
 
     it "should update existing observations if requested" do
-      u = User.make!
-      o = Observation.make!( user: u )
-      u.preferred_observation_license = Observation::CC_BY
-      u.update( make_observation_licenses_same: true )
+      u = create :user
+      o = create( :observation, user: u, license: nil )
+      expect( u.preferred_observation_license ).not_to eq Observation::CC_BY
+      expect( o.license ).not_to eq Observation::CC_BY
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_observation_license = Observation::CC_BY
+        u.update( make_observation_licenses_same: true )
+      end
       o.reload
       expect( o.license ).to eq Observation::CC_BY
     end
@@ -1066,8 +1079,11 @@ describe User do
     it "should update existing photo if requested" do
       u = User.make!
       p = LocalPhoto.make!( user: u )
-      u.preferred_photo_license = Observation::CC_BY
-      u.update( make_photo_licenses_same: true )
+      expect( p.license ).not_to eq Photo.license_number_for_code( Observation::CC_BY )
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_photo_license = Observation::CC_BY
+        u.update( make_photo_licenses_same: true )
+      end
       p.reload
       expect( p.license ).to eq Photo.license_number_for_code( Observation::CC_BY )
     end
@@ -1075,12 +1091,13 @@ describe User do
     it "should queue moving photos if needed" do
       u = User.make!
       p = LocalPhoto.make!( user: u )
-      u.update( make_photo_licenses_same: true )
-      p.reload
-      expect( Delayed::Job.where(
-        queue: "photos",
-        unique_hash: "{:\"User::enqueue_photo_bucket_moving_jobs\"=>#{u.id}}"
-      ).any? ).to be true
+      expect( p.license ).to eq Photo::COPYRIGHT
+      user_spy = spy( User )
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_photo_license = Observation::CC_BY
+        u.update( make_photo_licenses_same: true )
+      end
+      expect( user_spy ).to have_been_called_with( u )
     end
 
     it "should not update GoogleStreetViewPhotos" do
@@ -1757,6 +1774,12 @@ describe User do
     it "sends the welcome email" do
       User.create_from_omniauth( auth_info )
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
+    end
+
+    it "update user interaction privilege" do
+      u = User.create_from_omniauth( auth_info )
+      expect( UserPrivilege.earned_interaction?( u ) ).to be true
+      expect( UserPrivilege.where( user: u, privilege: UserPrivilege::INTERACTION ).exists? ).to be true
     end
 
     describe "with oauth_application" do

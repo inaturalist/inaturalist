@@ -10,8 +10,10 @@ class Observation < ApplicationRecord
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
   }
-  notifies_subscribers_of :user, :notification => "created_observations",
-    unless: lambda {| observation | observation.bulk_import }
+  notifies_subscribers_of :user,
+    delay: false,
+    notification: "created_observations",
+    unless: lambda( &:bulk_import )
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::ORGANIZER
@@ -25,6 +27,7 @@ class Observation < ApplicationRecord
   notifies_subscribers_of :public_places,
     notification: "new_observations",
     on: :create,
+    priority: USER_INTEGRITY_PRIORITY,
     unless: lambda {| observation |
       !observation.georeferenced? || observation.bulk_import
     },
@@ -45,6 +48,7 @@ class Observation < ApplicationRecord
     }
   notifies_subscribers_of :taxon_and_ancestors,
     notification: "new_observations",
+    priority: USER_INTEGRITY_PRIORITY,
     unless: lambda {| observation |
       observation.taxon_id.blank? || observation.bulk_import
     },
@@ -57,13 +61,14 @@ class Observation < ApplicationRecord
   notifies_users :mentioned_users,
     on: :save,
     notification: "mention",
-    delay: true,
-    if: lambda {|u| u.prefers_receive_mentions? },
-    unless: lambda { |observation|
+    delay: false,
+    if: lambda( &:prefers_receive_mentions? ),
+    unless: lambda {| observation |
       # description hasn't changed, so mentions haven't changed
       return true unless observation.previous_changes[:description]
+
       # description has changed, but neither version mentioned users
-      observation.previous_changes[:description].map do |d|
+      observation.previous_changes[:description].map do | d |
         d ? d.mentioned_users.any? : false
       end.none?
     }
@@ -1274,32 +1279,35 @@ class Observation < ApplicationRecord
     end
     assign_nested_attributes_for_collection_association(:observation_field_values, attr_array)
   end
-  
+
   def refresh_check_lists
     return true if skip_refresh_check_lists
+
     changing_quality_grade = will_save_change_to_quality_grade? || saved_change_to_quality_grade?
     changing_taxon_id = will_save_change_to_taxon_id? || saved_change_to_taxon_id?
     changing_latitude = will_save_change_to_latitude? || saved_change_to_latitude?
     changing_longitude = will_save_change_to_longitude? || saved_change_to_longitude?
     changing_observed_on = will_save_change_to_observed_on? || saved_change_to_observed_on?
-    refresh_needed = (georeferenced? || was_georeferenced?) && 
-      ( taxon_id || taxon_id_before_last_save) &&
+    refresh_needed = ( georeferenced? || was_georeferenced? ) &&
+      ( taxon_id || taxon_id_before_last_save ) &&
       ( changing_quality_grade ||
         changing_taxon_id ||
         changing_latitude ||
         changing_longitude ||
         changing_observed_on )
     return true unless refresh_needed
-    CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "CheckList::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was  => saved_change_to_taxon_id? ? taxon_id_before_last_save : nil,
-        :latitude_was  => saved_change_to_latitude? ? latitude_before_last_save : nil,
-        :longitude_was => saved_change_to_longitude? ? longitude_before_last_save : nil,
-        :new => saved_change_to_id? )
+
+    CheckList.refresh_with_observation(
+      self,
+      taxon_id: taxon_id,
+      taxon_id_was: saved_change_to_taxon_id? ? taxon_id_before_last_save : nil,
+      latitude_was: saved_change_to_latitude? ? latitude_before_last_save : nil,
+      longitude_was: saved_change_to_longitude? ? longitude_before_last_save : nil,
+      new: saved_change_to_id?
+    )
     true
   end
-  
+
   #
   # Preserve the old taxon id if the taxon has changed so we know to update
   # that taxon in the user's lists after_save
@@ -1727,7 +1735,8 @@ class Observation < ApplicationRecord
       private_latitude,
       private_longitude,
       acc: calculate_public_positional_accuracy,
-      user: user
+      user: user,
+      skip_open_space: true
     )
     if coordinates_private?
       if !place_guess.blank? && place_guess != public_place_guess && place_guess_changed?
@@ -2264,7 +2273,12 @@ class Observation < ApplicationRecord
   def set_place_guess_from_latlon
     return true unless place_guess.blank?
     return true if coordinates_private?
-    if guess = Observation.place_guess_from_latlon( latitude, longitude, { acc: calculate_public_positional_accuracy, user: user } )
+
+    guess = Observation.place_guess_from_latlon( latitude, longitude, {
+      acc: calculate_public_positional_accuracy,
+      user: user
+    } )
+    if guess
       self.place_guess = guess
     end
     true
@@ -2750,10 +2764,14 @@ class Observation < ApplicationRecord
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p|
-      p.user_id.blank? && (
-        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
-        p.place_type == Place::PLACE_TYPE_CODES['Open Space']
+    all_places.select do | place |
+      place.user_id.blank? && (
+        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(
+          place.admin_level
+        ) || (
+          !options[:skip_open_space] &&
+          place.place_type == Place::OPEN_SPACE
+        )
       )
     end
   end

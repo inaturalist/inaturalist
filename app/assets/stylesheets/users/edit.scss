@@ -2,6 +2,7 @@
 @import "../shared/loading_spinner";
 @import "./_user_image";
 @import "./toggle_switch";
+@import "../shared/modals";
 
 $user-image-size: 65px;
 
@@ -215,7 +216,15 @@ body>div>[role="dialog"] .modal-dialog {
   margin: 30px auto;
 }
 
-.AlertModal.modal {
+body>div>[role="dialog"] .modal-body {
+  max-height: 400px;
+}
+.ConfirmModal.confirm .text {
+  margin-left: 0px;
+  width: 100%;
+}
+
+.AlertModal.modal, .ConfirmModal.modal {
   .modal-dialog {
     width: 100%;
     max-width: 60%;

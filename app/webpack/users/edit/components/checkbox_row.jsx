@@ -56,7 +56,7 @@ const CheckboxRow = ( {
             </button>
           </div>
         ) }
-        { description && typeof ( description ) === "string" && (
+        { typeof ( description ) === "string" && (
           <div className="checkbox-description-margin">
             <p
               className="text-muted"
@@ -65,7 +65,7 @@ const CheckboxRow = ( {
             />
           </div>
         ) }
-        { description && typeof ( description ) === "object" && (
+        { typeof ( description ) === "object" && (
           <div className="checkbox-description-margin">
             { description }
           </div>

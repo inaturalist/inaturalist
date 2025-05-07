@@ -760,6 +760,13 @@ pt-BR:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, carregado por %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Sub-dividido
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Unificado
   authority_list:
     iucn_red_list: Lista Vermelha da IUCN
     natureserve: NatureServe
@@ -2699,6 +2706,10 @@ pt-BR:
   list_with_two_items: "%{one} e %{two}"
   listed_taxa: Táxon listado
   listed_taxon: Táxon listado
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Incluído
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Retirado
   listed_taxon_updated: A lista de espécies e grupos foi atualizada
   listing_lists: Mostrando listas
   listing_project_assets: Listando as avaliações de projeto
@@ -2799,6 +2810,10 @@ pt-BR:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sair de %{site_name}?"
   log_scale_label: Logarítmica
+  #Adjectival phrase describing state of being logged in
+  logged_in: Logado
+  #Adjectival phrase describing state of being logged out
+  logged_out: Sessão encerrada
   #Status message shown while logging in
   logging_in: Iniciando sessão...
   logo:
@@ -5945,6 +5960,8 @@ pt-BR:
   view_more_observations_of_x_project: "Ver mais observações do projeto %{project} em <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver mais observações de %{taxon} em <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver mais não revisados"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Ver suas IDs afetadas
   view_observation: Ver observação
   view_observations: Ver observações
   view_observation_flags: Ver observações sinalizadas
@@ -6370,6 +6387,46 @@ pt-BR:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Direcionar usuários de acordo com outros atributos
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Sobre Atlases
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlases exibem a distribuição global de um táxon. Curadores criam
+          atlases definindo a estrutura de um atlas e a curadoria dos táxons
+          listados que o impulsionam.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Subdividir este lugar
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Reunificar este local
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ainda não há alterações neste atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Alterações recentes do Atlas
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Alterações recentes de táxons listados
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Exibir táxons listados
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Este atlas não está ativo atualmente
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Isso removerá este táxon e todos os seus descendentes das listas de verificação
+          associadas a este lugar e a quaisquer Lugares Padrão que ele contenha.
+          Não pode ser desfeito. Tem certeza de que deseja fazer isso?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Aviso: existem observações não representadas por este atlas
     content_freeze:
       content_freeze: Congelamento de conteúdo
       during_this_time: |
@@ -8562,8 +8619,6 @@ pt-BR:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8602,6 +8657,8 @@ pt-BR:
     attributes:
       announcement:
         created_at: Criado em
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Dispensável
         updated_at: Atualizado em
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8841,6 +8898,7 @@ pt-BR:
         equal_to:
           one: deve ser igual a %{count}
           other: devem ser iguais a %{count}
+        must_look_like_an_email_address: deve parecer um endereço de e-mail
         even: deve ser par
         exclusion: está reservado
         greater_than:
@@ -8966,6 +9024,9 @@ pt-BR:
                 não pode ser maior que a data em que a observação foi adicionada
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: deve estar nos últimos 130 anos
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: deve ser um único dia, não um intervalo
         observation_field_value:
           attributes:
             value:
@@ -9070,6 +9131,11 @@ pt-BR:
               bad_format: |
                 só pode conter caracteres latinos, hífens, espaços e
                 ×; note que táxons putativos e cultivares não são permitidos
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: O táxon Vida não pode estar envolvido em mudanças de táxon
         taxon_name:
           attributes:
             lexicon:
@@ -9110,6 +9176,7 @@ pt-BR:
             login:
               must_begin_with_a_letter: |
                 tem obrigatoriamente de começar por uma letra, sem conter espaços e usar só letras, números, traços e sublinhados
+              domain_is_not_supported: domínio não é suportado
         user_block:
           attributes:
             base:

@@ -21,7 +21,9 @@ function mapDispatchToProps( dispatch ) {
   return {
     handleInputChange: e => dispatch( handleInputChange( e ) ),
     handlePhotoUpload: e => dispatch( handlePhotoUpload( e ) ),
-    onFileDrop: droppedFiles => dispatch( onFileDrop( droppedFiles ) ),
+    onFileDrop: ( droppedFiles, rejectedFiles ) => (
+      dispatch( onFileDrop( droppedFiles, rejectedFiles ) )
+    ),
     removePhoto: ( ) => dispatch( removePhoto( ) ),
     changePassword: input => dispatch( changePassword( input ) ),
     resendConfirmation: ( ) => dispatch( resendConfirmation( ) ),

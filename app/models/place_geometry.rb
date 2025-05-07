@@ -52,6 +52,11 @@ class PlaceGeometry < ApplicationRecord
     if geom.detect {| g | g.num_points < 4 }
       errors.add( :geom, :polygon_with_less_than_four_points )
     end
+    # Somehow rgeo allows polygons with identical points to exist, and when
+    # that happens, the envelope is itself a point
+    if geom.detect {| g | g.envelope.is_a?( RGeo::Geos::CAPIPointImpl ) }
+      errors.add( :geom, :polygon_with_no_area )
+    end
     unless geom.detect {| g | g.points.detect {| pt | pt.x < -180 || pt.x > 180 || pt.y < -90 || pt.y > 90 } }
       return
     end
