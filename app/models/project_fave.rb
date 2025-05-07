@@ -9,7 +9,7 @@ class ProjectFave < ApplicationRecord
   validates_presence_of :user
 
   validates :project_id, uniqueness: { scope: :user_id }
-  validate :only_seven_projects_per_user
+  validate :only_seven_projects_per_user, on: :create
 
   LIMIT_PER_USER = 7
 
@@ -17,5 +17,9 @@ class ProjectFave < ApplicationRecord
     return unless user && user.project_faves.count >= LIMIT_PER_USER
 
     errors.add( :base, :only_seven_projects )
+  end
+
+  def to_s
+    "<ProjectFave #{id}>"
   end
 end

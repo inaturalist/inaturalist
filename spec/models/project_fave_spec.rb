@@ -12,6 +12,8 @@ describe ProjectFave do
     it "fails if there are 7 other projects for this user" do
       user = create :user
       7.times { create :project_fave, user: user }
+      expect( user.project_faves.count ).to eq 7
+      expect( user.project_faves.first ).to be_valid
       expect( build( :project_fave, user: user ) ).not_to be_valid
     end
 
