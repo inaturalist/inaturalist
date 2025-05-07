@@ -43,6 +43,9 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
   if ( user && userName.length === 0 ) {
     userName = user.name || user.login || userName;
   }
+  if ( userName.length === 0 && photo.attribution_name ) {
+    userName = photo.attribution_name;
+  }
   if ( userName.length === 0 && photo.attribution ) {
     const matches = photo.attribution.match( /\(.+\) (.+?),/ );
     if ( matches ) {
