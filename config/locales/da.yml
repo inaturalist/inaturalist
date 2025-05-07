@@ -2326,6 +2326,8 @@ da:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profit organisation
     baseret i USA (Skatte-ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist opdaterede ID'en foreslået af %{user}
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -2441,6 +2443,8 @@ da:
   internal_taxon_rank: Intern takson rang
   introduced: indført
   introduced_in_place: "indført i %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Ugyldig dato
   invitation: Invitation
   invite: invitér
   invite_people: Invitér personer
@@ -4337,6 +4341,9 @@ da:
   processing3p: "Bearbejder..."
   profile: Profil
   profile_picture: Profilbillede
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profilbillede filtype
   profile_visibility_desc: |
     For at undgå spam på%{site_name}, er brugerprofiler kun offentligt synlige efter at en bruger har bidraget med flere observationer af forskningskvalitet.
   project: Projekt
@@ -5756,8 +5763,20 @@ da:
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
   update_existing_observations_with_new_license: Opdatér eksisterende observationer med det nye licensvalg
+  update_existing_observations_with_new_license_desc: |
+    Vælger man denne mulighed, anvendes det nye licensvalg på alle ens
+    eksisterende observationer. Dette kan tage et par timer, hvis man har
+    mange Observationer.
   update_existing_photos_with_new_license: Opdatér eksisterende foto´s med nye licensvalg
+  update_existing_photos_with_new_license_desc: |
+    Vælger man denne mulighed, anvendes det nye licensvalg på alle ens
+    eksisterende fotos. Dette kan tage et par timer, hvis man har mange
+    fotos.
   update_existing_sounds_with_new_license: Opdatér eksisterende lyde med nye licensvalg
+  update_existing_sounds_with_new_license_desc: |
+    Vælger man denne mulighed, anvendes det nye licensvalg på alle ens
+    eksisterende lyde. Dette kan tage et par timer, hvis man har mange
+    lyde.
   update_observations: Opdatér observationer
   update_past: "Opdatér tidligere%{type}"
   update_photos: Opdatér foto´s
@@ -8587,6 +8606,10 @@ da:
           Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
           Facility</a> (GBIF), en international, mellemstatslig organisation,
           der kompilerer og distribuerer information om biodiversitet fra hele verden.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Filtype uunderstøttet. Gyldige filtyper er JPG, PNG og GIF
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters leverer automatiske månedlige bidrag
           til iNaturalist (USA IRS EIN 92-1296468) for at støtte
@@ -8707,6 +8730,11 @@ da:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: De maksimalt 3 leksika for almindelige navne er allerede tilføjet
+        this_only_applies_to_traditional_projects2: |
+          Dette gælder kun for traditionelle projekter. Man kan ikke undtage observationer
+          fra samlings- eller paraplyprojekter, som i det væsentlige er gemte søgninger.
+          Læs evt. mere her
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Her</a>.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis er en spammer, hvilket betyder, at de ikke har nogen observationer eller identifikationer, men de har en profilbeskrivelse. </dd><dt> Auto Spam </dt><dd> Spammer, der automatisk blev markeret som en spammer af systemet. </dd><dt> Manuel spam </dt><dd> Spammer, der blev manuelt markeret som en spammer af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev markeret som spammere, men markeringerne blev løst af sidens kuratorer, fordi de ikke var virkelig spammere. </dd></dl>
@@ -9386,6 +9414,8 @@ da:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Kun personale og kuratorer kan skjule indhold
               only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen
+              #Error saying that only staff can rename
+              only_staff_can_rename: Kun medarbejdere kan omdøbe
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Kun personale kan indstille indhold som fortroligt
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
@@ -9445,6 +9475,9 @@ da:
               invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
               must_have_more_than_three_points: skal have flere end 3 punkter
               polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: har en polygon uden areal (alle punkter er ens)
         place_geometry:
           attributes:
             geom:
