@@ -67,7 +67,12 @@
 
 .photo-group {
   margin-bottom: 20px;
-  h3 { margin-top: 40px; }
+  .photo-group-header {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
   h3 .SplitTaxon {
     text-transform: none;
   }

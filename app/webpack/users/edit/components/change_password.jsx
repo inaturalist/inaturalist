@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
+import UserError from "./user_error";
+
 class ChangePassword extends Component {
   constructor( ) {
     super( );
@@ -45,7 +47,7 @@ class ChangePassword extends Component {
 
   render( ) {
     const { showPasswordForm } = this.state;
-    const { showError } = this.props;
+    const { user } = this.props;
 
     return (
       <div className="settings-item">
@@ -65,7 +67,7 @@ class ChangePassword extends Component {
             <div className="form-group">
               <label>
                 {I18n.t( "new_password" )}
-                {showError( "password", "new_password" )}
+                <UserError user={user} attribute="password" alias="new_password" />
                 <input
                   type="password"
                   className="form-control"
@@ -77,7 +79,7 @@ class ChangePassword extends Component {
             <div className="form-group">
               <label>
                 {I18n.t( "confirm_new_password" )}
-                {showError( "password_confirmation", "confirm_new_password" )}
+                <UserError user={user} attribute="password_confirmation" alias="confirm_new_password" />
                 <input
                   type="password"
                   className="form-control"
@@ -102,7 +104,7 @@ class ChangePassword extends Component {
 ChangePassword.propTypes = {
   changePassword: PropTypes.func,
   showAlert: PropTypes.func,
-  showError: PropTypes.func
+  user: PropTypes.object
 };
 
 export default ChangePassword;

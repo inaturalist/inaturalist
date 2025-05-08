@@ -14,6 +14,7 @@ import LazyLoad from "react-lazy-load";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
+import Inativersary from "../../../shared/components/inativersary";
 import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import UserWithIcon from "./user_with_icon";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
@@ -346,6 +347,7 @@ class App extends React.Component {
                       <div className="user_info">
                         <PreviousNextButtonsContainer />
                         <UserWithIcon
+                          config={config}
                           user={observation.user}
                           hideSubtitle={
                             observation.obscured
@@ -357,6 +359,14 @@ class App extends React.Component {
                         <Col xs={6}>
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "observed" ) } ) }</span>
                           {this.displayDateObserved( )}
+                          { observation.observed_on && !observation.obscured && (
+                            <Inativersary
+                              config={config}
+                              user={observation.user}
+                              date={observation.observed_on}
+                              uniqueKey="DateObserved"
+                            />
+                          ) }
                         </Col>
                         <Col xs={6}>
                           <span className="bold_label">{ I18n.t( "label_colon", { label: I18n.t( "submitted" ) } ) }</span>

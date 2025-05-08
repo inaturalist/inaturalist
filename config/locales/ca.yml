@@ -7058,8 +7058,6 @@ ca:
           Tingueu en compte que la pàgina del tàxon mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies escollides per aquest tàxon es mostraran les primeres. La primera foto serà la imatge que s'utilitzi per defecte de tot el lloc.
         rare_desc: Tàxon amenaçat menys observat
         rare_in_place_desc_html: Tàxon amenaçat menys observa a <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Els supervisors han desactivat temporalment que es pugui mostrar el <a href="%{url}"> contingut d'aquest a Wikipedia</a>. Podeu ajudar-nos editant la pàgina de la Wiquipèdia perquè sigui apropiada per a aquest taxó, o marcant aquest taxó per cridar l'atenció dels supervisors del lloc.
         trending_desc: Tàxons més observats el darrer mes
         trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
         wanted_desc: Espècies d'aquest taxon que encara no han estat observades
@@ -7496,8 +7494,6 @@ ca:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %b %Y %H:%M:%S %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d/%m/%Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -7652,7 +7648,6 @@ ca:
         citation: Bibliografia
       taxon:
         ancestry: Ancestre
-        auto_description: Carrega automàticament la descripció
         auto_photos: Carrega fotos automàticament
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect

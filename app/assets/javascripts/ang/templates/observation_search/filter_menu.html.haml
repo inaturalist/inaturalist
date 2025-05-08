@@ -91,16 +91,16 @@
             %select#params-hrank.form-control{ "ng-model" => "params.hrank", "ng-model-options" => "{debounce: 1000}", "ng-class" => "{ 'filter-changed': params.hrank }"}
               %option{value: ''}
                 {{ shared.t('high') }}
-              - for rank in Taxon::VISIBLE_RANKS
+              - for rank in Taxon::UNIQUE_LEVELED_RANKS
                 %option{value: rank}
-                  {{ shared.t('ranks.#{rank}') }}
+                  {{ shared.t('rank_levels.#{rank}', {defaultValue: shared.t('ranks.#{rank}')}) }}
           .col-xs-6
             %select#params-lrank.form-control{ "ng-model" => "params.lrank", "ng-model-options" => "{debounce: 1000}", "ng-class" => "{ 'filter-changed': params.hrank }" }
               %option{ value: '' }
                 {{ shared.t('low') }}
-              - for rank in Taxon::VISIBLE_RANKS
+              - for rank in Taxon::UNIQUE_LEVELED_RANKS
                 %option{ value: rank }
-                  {{ shared.t('ranks.#{rank}') }}
+                  {{ shared.t('rank_levels.#{rank}', {defaultValue: shared.t('ranks.#{rank}')}) }}
         .row
           .col-xs-12
             %label.sectionlabel{for: 'params-order-by'}

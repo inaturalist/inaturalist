@@ -7175,8 +7175,6 @@ tr:
           Sınıf sayfasının bu sınıfın ve onun alt soyundan gelenlerin fotoğraflarını göstereceğini unutma. Ancak bu sınıf için seçilen fotoğraflar ilk olarak gösterilecektir. İlk fotoğraf site genelinde kullanılan varsayılan resim olacaktır.
         rare_desc: En az gözlemlenen tehdit altındaki sınıflar
         rare_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda en az gözlemlenen tehdit altındaki sınıflar
-        site_curators_disabled_wikipedia_html: |
-          Site küratörleri <a href="%{url}">bu içeriği Vikipedi'den</a> göstermeyi geçici olarak devre dışı bıraktı. Vikipedi'deki sayfayı bu sınıf için uygun hale getirecek şekilde düzenleyerek veya bu sınıfı site küratörlerinin dikkatine sunmak için işaretleyerek yardımcı olabilirsin.
         trending_desc: Geçen ayda en çok gözlemlenen sınıflar
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen sınıflar
         wanted_desc: Bu sınıfta yer alan henüz gözlemlenmemiş türler.
@@ -7685,8 +7683,6 @@ tr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H.%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H.%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -7846,7 +7842,6 @@ tr:
         citation: Alıntı
       taxon:
         ancestry: Soy
-        auto_description: Otomatik açıklama
         auto_photos: Otomatik fotoğraflar
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect

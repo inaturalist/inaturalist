@@ -5793,11 +5793,6 @@ sl:
           po spletni strani.
         rare_desc: Najmanj opazovani ogroženi taksoni
         rare_in_place_desc_html: Najmanj opazovani ogroženi taksoni v <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Kustosi so začasno iključili prikazovanje <a href="%{url}">te
-          vsebine iz Wikipedije</a>. Lahko pomagate pri urejanju te strani na
-          Wikipediji, da bo primerna za ta takson ali z prijavo tega taksona, da
-          pritegnete pozornost kustosov.
         trending_desc: Najbolj opazovani taksoni v zadnjem mesecu.
         trending_in_place_desc_html: Najbolj opazovani taksoni v zadnjem mesecu v <a href="%{url}">%{place}</a>
         wanted_desc: Vrste iz tega taksona, ki še nimajo opazovanj.
@@ -6218,8 +6213,6 @@ sl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -6378,7 +6371,6 @@ sl:
         citation: Navedba
       taxon:
         ancestry: Predniki
-        auto_description: Avtomatski opis
         auto_photos: Avtomatske fotografije
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect

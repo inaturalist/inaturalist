@@ -171,7 +171,7 @@ class Annotations extends React.Component {
     );
     return (
       <tr
-        key={`term-row-${value.id}`}
+        key={`term-row-${a.uuid}-${value.id}`}
         className={a.api_status ? "disabled" : ""}
       >
         <td className="attribute">
@@ -204,7 +204,8 @@ class Annotations extends React.Component {
               type="button"
               className="btn btn-nostyle"
               onClick={voteAction}
-              label={I18n.t( "agree" )}
+              aria-label={I18n.t( "agree_" )}
+              title={I18n.t( "disagree_" )}
             >
               <i className={`fa ${agreeClass}`} />
             </button>
@@ -223,6 +224,8 @@ class Annotations extends React.Component {
               type="button"
               onClick={unvoteAction}
               className="btn btn-nostyle"
+              aria-label={I18n.t( "disagree_" )}
+              title={I18n.t( "disagree_" )}
             >
               <i className={`fa ${disagreeClass}`} />
             </button>

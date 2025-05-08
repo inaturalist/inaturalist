@@ -262,7 +262,16 @@ describe ModeratorAction do
         expect( u ).not_to be_suspended
       end
     end
-
+    describe "RENAME" do
+      
+      it "should not allow a non-admin user to rename" do
+        u = create( :user, login: "old_login" )
+        action = build( :moderator_action, action: ModeratorAction::RENAME, resource: u, user: User.make!,
+          reason: generic_reason )
+        expect( action ).not_to be_valid
+        expect( action.errors[:base] ).to include( "Only staff can rename" )
+      end
+    end
     describe "set_resource_user_id" do
       it "is set properly for Comments" do
         comment = Comment.make!

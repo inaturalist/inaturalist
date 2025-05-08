@@ -5924,6 +5924,8 @@ nl:
   view_more_observations_of_x_project: "Geef meer waarnemingen weer van %{project} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Geef meer waarnemingen weer van %{taxon} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Bekijk meer niet-nagekeken"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Toon jouw getroffen ID's
   view_observation: Waarneming weergeven
   view_observations: Waarnemingen weergeven
   view_observation_flags: Meldingen over waarneming bekijken
@@ -7000,6 +7002,7 @@ nl:
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
+        latitude: Openbaar zichtbare breedtegraad vanaf de waarneminglocatie
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
@@ -7008,6 +7011,8 @@ nl:
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
+        quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
@@ -7907,7 +7912,7 @@ nl:
         rare_desc: Minst waargenomen bedreigde taxa
         rare_in_place_desc_html: Minst waargenomen bedreigde taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Sitecuratoren hebben tijdelijk de weergave van <a href="%{url}">deze inhoud van Wikipedia</a> uitgeschakeld. Je kunt helpen door de pagina in Wikipedia te bewerken om het geschikt te maken voor dit taxon, of door dit taxon te melden om het onder de aandacht van sitecuratoren te brengen.
+          Sitecuratoren hebben de weergave van <a href="%{url}">deze inhoud van Wikipedia</a> uitgeschakeld. Je kunt helpen door de pagina in Wikipedia te bewerken om het geschikt te maken voor dit taxon, of door dit taxon te melden om het onder de aandacht van sitecuratoren te brengen.
         trending_desc: Meest waargenomen taxa gedurende de laatste maand
         trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand uit <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
@@ -7954,6 +7959,12 @@ nl:
       taxon:
         about_html: |
           Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist gebruikt verschillende unieke termen om verschillende
+          aspecten van de service te beschrijven. Hier hebben we geprobeerd enkele ervan
+          te verzamelen en geven hun definities ter referentie.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8437,8 +8448,6 @@ nl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %=B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d. %=B %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -8624,7 +8633,6 @@ nl:
         citation: Citaat
       taxon:
         ancestry: Voorouders
-        auto_description: Auto Beschrijving
         auto_photos: Auto fotos
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8652,6 +8660,8 @@ nl:
         photos_locked: Foto's vergrendeld?
         rank: Rang
         rank_level: Hiërarchie niveau
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Toont Wikipedia
         source_id: Bron ID
         source_identifier: Bron-id
         source_url: Bron-URL
@@ -8826,6 +8836,9 @@ nl:
                 kan niet later zijn dan de datum waarop de waarneming is toegevoegd
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: moet binnen de afgelopen 130 jaar zijn
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: moet één dag zijn, geen reeks
         observation_field_value:
           attributes:
             value:
@@ -8932,6 +8945,11 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Het Life-taxon kan niet betrokken zijn bij taxonwijzigingen
         taxon_name:
           attributes:
             lexicon:

@@ -601,6 +601,8 @@ fr:
   any_license: Toutes
   #Label for an option to show content with photos, sounds, or neither
   any_media: Tous
+  #Label for an option to show any place
+  any_place: Quelconque
   #Label for an option to show content from any project
   any_project: Tous
   #Label for an option to show content with any quality grade
@@ -743,6 +745,13 @@ fr:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, publiées par %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Explosé
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Non explosé
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
     natureserve: NatureServe
@@ -1091,6 +1100,7 @@ fr:
   confirmation_email_sent_at_datetime: E-mail de confirmation envoyé à %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmé le %{date}
+  confirming_ids: Confirmation des IDs
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connecter
@@ -1773,6 +1783,8 @@ fr:
   edited_by_name_some_rights_reserved_html: |
     Modifié par %{name}, quelques droits réservés (%{license})
   editing: Modification en cours
+  #Title for a page to edit an announcement
+  editing_announcement_x: Modification de l’annonce %{id}
   editing_custom_project_fields_for: Modification des champs de projet personnalisés pour
   editing_observation_field: Modification du champ de l’observation
   editing_observation_id: "Modification de l’observation %{obs_id}"
@@ -2355,6 +2367,14 @@ fr:
   inaturalist_applications: "Applications iNaturalist"
   inaturalist_places: "Lieux d’%{site_name}"
   info: Info
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Si vous désactivez cette option, vous ne serez plus informé des identifiants des taxons
+    en dessous du niveau de l’espèce (comme les sous-espèces et les variétés) qui correspondent à votre
+    ID au niveau de l’espèce. Vous serez averti s’ils ne sont pas d’accord avec votre pièce d’identité ou
+    s’ils contiennent des remarques supplémentaires.
   input_taxon: Taxon en entrée
   insects: insectes
   insect_life_stage: Stade de l'insecte
@@ -2480,6 +2500,9 @@ fr:
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
   let_us_walk_you_through: Laissez-nous vous guider pour découvrir les fonctionnalités principales de ce site.
   lexicon: Lexique
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    Nom d'une collection de mots ou termes contenant un nom de taxon, par ex. le nom d'une langue ou un ensemble d'abréviations.
   lexicon_cannot_contain_words: "ne peut pas contenir les mots suivants : %{words}"
   lexicons:
     afrikaans: Afrikaans
@@ -2638,6 +2661,10 @@ fr:
   list_with_two_items: "%{one} et %{two}"
   listed_taxa: Taxons listés
   listed_taxon: Taxon listé
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Énumérés
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Non cotées
   listed_taxon_updated: Taxon listé à jour
   listing_lists: Liste de listes
   listing_project_assets: Liste des fichiers du projet
@@ -2738,6 +2765,10 @@ fr:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Se déconnecter de %{site_name}?"
   log_scale_label: Trace
+  #Adjectival phrase describing state of being logged in
+  logged_in: Connecté
+  #Adjectival phrase describing state of being logged out
+  logged_out: Déconnecté
   #Status message shown while logging in
   logging_in: Connexion en cours...
   logo:
@@ -2956,6 +2987,8 @@ fr:
   more_info_title: Plus d’informations
   more_journal_posts: Plus d'articles de journal
   more_observations: D'avantage d’observations
+  #Label for a button or section that shows additional options
+  more_options: Plus d’options
   more_photos: Plus de photos
   more_than_a_week_ago: Il y a plus d’une semaine
   most_agree: la plupart sont d’accord
@@ -3186,7 +3219,11 @@ fr:
   no_users_found_with_those_filters: Pas d'utilisateurs trouvés ave ces filtres
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
   noble_curators: "Les éminents curateurs d'%{site}"
+  #A user who is not a curator
+  non_curator: Non-conservateur
   non_human?: Non-humain ?
+  #A user who does not admin any projects
+  non_project_admin: Non-administrateur de projet
   none: Aucun
   none_found: Aucun trouvé
   normal: normal
@@ -3213,7 +3250,7 @@ fr:
   notes: Notes
   note_you_can_modify_the_height_attribute: "Remarque : Vous pouvez modifier l’attribut 'height' pour l’adapter à l’espace disponible sur votre page web."
   notifications: Notifications
-  notify_me_of_mentions: M’informer des mentions (par ex. @username)
+  notify_me_of_mentions: M’informer des mentions (par ex. @pseudo)
   notify_me_of_mentions_description: "Si vous désactivez cette option, vous ne recevrez aucune notification lorsque quelqu'un vous mentionnera sur %{site_name}."
   number_of_observations: Nombre d’observations
   number_of_observers_value: "Nombre d'observateurs : %{number}"
@@ -4217,6 +4254,8 @@ fr:
   profile_visibility_desc: |
     Afin de combattre les spams sur %{site_name}, les profils des utilisateurs sont seulement visibles publiquement après qu'ils aient contribué à plusieurs observations de niveau "Research Grade".
   project: Projet
+  #A user who admin's a project
+  project_admin: Administrateur de projet
   project_admins:
     one: Administrateur projet
     other: Administrateurs projet
@@ -6183,6 +6222,83 @@ fr:
   verifiable_observations: Observations vérifiables
   views:
     views: 'Vues'
+    announcements:
+      locales_desc: |
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
+        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
+        paramètres régionaux. Le choix d’une langue sans région ne ciblera *pas*
+        locales avec des régions, par exemple si vous avez choisi l’anglais, il n’apparaîtra pas
+        pour les personnes qui ont choisi l’anglais (Royaume-Uni).
+      clients_desc: |
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
+        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
+        client.
+      end_desc: |
+        Heure dans le fuseau horaire de votre compte à laquelle cette annonce s’arrêtera
+        Apparaissant. S’applique à tous les fuseaux horaires, de sorte que tout le monde cessera de voir
+        en même temps, non par rapport à leur heure locale.
+      ip_countries_desc: |
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
+        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
+        Pays de propriété intellectuelle.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Notez que la date de création de la dernière
+        observation est mise en cache, il peut donc s’écouler quelques heures avant que le ciblage
+        entrer en vigueur
+      observation_oauth_application_ids_desc: |
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
+        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
+        appli.
+      site_ids_desc: |
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
+        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
+        affiliation au site.
+      start_desc: |
+        Heure dans le fuseau horaire de votre compte à laquelle cette annonce commencera
+        Apparaissant. S’applique à tous les fuseaux horaires, de sorte que tout le monde commencera à voir
+        en même temps, non par rapport à leur heure locale.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Ciblez les utilisateurs en fonction de leur comportement de don
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Ciblez les utilisateurs en fonction de leur comportement d’identification
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Ciblez les utilisateurs en fonction du comportement d’observation
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Cibler les utilisateurs par d’autres attributs
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: À propos des atlas
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Les atlas transmettent la distribution mondiale d’un taxon. Les commissaires font
+          en définissant la structure d’un atlas et en organisant les
+          les taxons répertoriés qui l’alimentent.
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Aucune modification n’a encore été apportée à cet atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Modifications récentes de l’Atlas
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Modifications récentes des taxons répertoriés
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Afficher les taxons listés
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Cet atlas n’est pas actif actuellement
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Cela supprimera ce taxon et tous ses descendants des listes de contrôle
+          associés à ce lieu et à tous les lieux standard qu’il contient. Il
+          ne peut pas être défait. Êtes-vous sûr de vouloir le faire ?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Attention : il y a des observations non représentées par cet atlas
     content_freeze:
       content_freeze: Gel du contenu
       during_this_time: |
@@ -6843,13 +6959,23 @@ fr:
           </li>
           </ul>
       field_descriptions:
+        id: Identifiant unique et séquentiel pour une observation.
+        species_guess: |
+          Nom du taxon observé en texte brut ; peut être défini par l'observateur lors de la création de l'observation, mais peut être remplacé par des noms canoniques et localisés quand le taxon change.
+        scientific_name: "Nom scientifique du taxon observé selon iNaturalist"
+        common_name: "Nom commun ou vernaculaire du taxon observé selon iNaturalist"
         iconic_taxon_name: Catégorie taxinomique de rang supérieur pour le taxon observé
+        taxon_id: Identifiant unique et séquentiel pour le taxon observé
         id_please: Si l’observateur a bel et bien demandé de l’aide à l’identification
+        num_identification_agreements: Nombre d'identifications associées à un taxon qui correspondent ou sont contenues dans le taxon à partir de l'identification de l'observateur
+        num_identification_disagreements: Nombre d'identifications associées à un taxon qui ne correspondent pas ou ne pas sont contenues dans le taxon à partir de l'identification de l'observateur
         observed_on_string: Horodatage entré par l’observateur
         observed_on: Date normalisée de l’observation
         time_observed_at: Horodatage normalisé de l’observation
         time_zone: Fuseau horaire de l’observation
         place_guess: Description de l’emplacement entré par l’utilisateur
+        latitude: Latitude visible publiquement à partir de la localisation de l'observation
+        longitude: Longitude visible publiquement à partir de la localisation de l'observation
         positional_accuracy: "Exactitude des coordonnées (oui, oui, exactitude ≠ précision, mauvais choix de noms)"
         private_latitude: "Latitude privée, établie si l’observation est privée ou masquée"
         private_longitude: "Longitude privée, établie si l’observation est privée ou masquée"
@@ -6857,10 +6983,18 @@ fr:
         taxon_geoprivacy: "La géoconfidentialité la plus conservatrice est appliquée en raison du statut de conservation des taxons selon l’identification actuelle."
         coordinates_obscured: "Si les coordonnées ont été masquées, c'est soit à cause de la géoconfidentialité, soit à cause d’un taxon menacé"
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire de répartition connue du taxon
+        user_id: Identifiant unique et séquentiel pour l'observateur
+        user_login: Indicatif ou pseudonyme de l'observateur, par ex. un identifiant court, unique, alphanumérique pour un utilisateur
+        user_name: |
+          Nom de l'observateur, généralement utilisé pour l'attribution sur le site. C'est un champ optionnel et peut être un pseudonyme.
         created_at: Horodatage de la création de l’observation
         updated_at: Horodatage de la dernière mise à jour de l’observation
         quality_grade: Niveau de qualité de cette observation. Consultez la section Aide pour plus de détails sur ce que cela signifie. Voir https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identifiant pour la licence ou renonciation que l'observateur a choisi pour cette observation. Tous droits réservés si vide.
         url: URL de l’observation
+        image_url: URL de la première photo associée avec l'observation
+        sound_url: |
+          URL du premier son associé avec l'observation. Notez que cela ne sera présent que pour les téléversements directs, mais pas les sons hébergés sur des services tiers.
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau pays
         place_admin2_name: Nom de l’endroit administratif deux rangs en dessous du niveau pays
@@ -6871,6 +7005,14 @@ fr:
           parce que l'homme l'a volontairement placé là. Pour
           plus d'information, voir
           https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Texte écrit par l'observateur décrivant l'observation ou l'enregistrement ou toute autre note semblant pertinente
+        oauth_application_id: |
+          Identifiant séquentiel de l'application qui a créé l'observation. Pour plus d'informations à propos de l'application, ajouter ce nombre après https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          Le nom de la zone administrative de troisième niveau qui contient les coordonnées de coordonnées de cette observation (par ex. un comté dans la plupart des États-Unis)
+        place_country_name: |
+          Le nom du pays qui contient les coordonnées de cette observation
       identify:
         review_all_tooltip: "Marquer toutes les observations de la page comme vérifiées"
         you_reviewed_message: "Vous avez vérifié %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
@@ -7919,10 +8061,10 @@ fr:
         rare_desc: Taxons menacés les moins observés
         rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Les responsables du site ont temporairement désactivé l’affichage de <a href="%{url}">ce
-          contenu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
-          Wikipédia en la rendant appropriée à ce taxon, ou en marquant ce
-          taxon pour attirer l’attention des responsables du site.
+          Les gestionnaires du site ont désactivé l’affichage de <a href="%{url}">ce
+          contenu issu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
+          Wikipédia pour qu'il corresponde à ce taxon, ou en signalant ce 
+          taxon pour le porter à l’attention des gestionnaires du site.
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois à <a href="%{url}">%{place}</a>
         wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
@@ -8490,7 +8632,13 @@ fr:
           quadrillion: Quadrillion
           thousand: Millier
           trillion: Billion
+          unit: ''
       format:
+        #The delimiter separates parts of large integers, so if the number is
+        #"one million and two and a half" this would be written as
+        #"1,000,002.5" in English, and "," is the delimiter. This should not be
+        #the same as the separator.
+        delimiter: ' '
         precision: 3
         significant: true
         strip_insignificant_zeros: true
@@ -8517,7 +8665,9 @@ fr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %b %Y, %k h %M min'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b, %k h %M min'
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%k:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8557,6 +8707,8 @@ fr:
     attributes:
       announcement:
         created_at: 'Création :'
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Renvoi
         updated_at: 'Mise à jour :'
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8568,6 +8720,44 @@ fr:
         prefers_target_unconfirmed_users: Pour les utilisateurs qui n'ont pas confirmé leur adresse mail
         prefers_exclude_monthly_supporters: Exclure les soutiens mensuels
         clients: Clients
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Exclure la date de début du donateur
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Exclure la date de fin du donateur
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Exclure les observateurs des applications
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Inclure la date de début du donateur
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Inclure la date de fin du donateur
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Inclure des observateurs à partir d’applications
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Pays de propriété intellectuelle
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Date de début du dernier obs
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Date de fin du dernier obs
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Nombre maximal d’identifications
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Identifications minimales
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Nombre maximal d’observations
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min d’observations
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Placement
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Créateur cible (pour les tests)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Cible connectée
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Date d’inscription de l’utilisateur le plus proche
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Date de la dernière inscription de l’utilisateur
       assessment:
         description: Description
       assessment_section:
@@ -8680,7 +8870,6 @@ fr:
         citation: Citation
       taxon:
         ancestry: Généalogie
-        auto_description: Description automatique
         auto_photos: Photos automatiques
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8708,6 +8897,8 @@ fr:
         photos_locked: Photos verrouillées ?
         rank: Rang
         rank_level: Niveau de rang
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Affiche Wikipédia
         source_id: ID source
         source_identifier: Identifiant source
         source_url: URL source
@@ -8759,6 +8950,7 @@ fr:
         equal_to:
           one: doit être égal à %{count}
           other: doit être égal à %{count}
+        must_look_like_an_email_address: doit ressembler à une adresse e-mail
         even: doit être pair
         exclusion: est réservé
         greater_than:
@@ -8883,6 +9075,9 @@ fr:
                 ne peut pas être postérieure à la date à laquelle l’observation a été ajoutée
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: doit être dans les 130 dernières années
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: doit être un seul jour, pas une plage
         observation_field_value:
           attributes:
             value:
@@ -8991,6 +9186,11 @@ fr:
               bad_format: |
                 ne peut contenir que des caractères standards latins, des tirets, des espaces, et 
                 ×; notez que les taxons et cultivars putatifs ne sont pas autorisés
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Le taxon Vie ne peut pas être impliqué dans les changements de taxons
         taxon_name:
           attributes:
             lexicon:
@@ -9031,6 +9231,7 @@ fr:
             login:
               must_begin_with_a_letter: |
                 doit commencer par une lettre, ne pas contenir d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères souligné
+              domain_is_not_supported: n’est pas pris en charge
         user_block:
           attributes:
             base:

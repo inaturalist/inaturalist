@@ -9,7 +9,10 @@
   - unless hide_buttons
     .pull-right.inline.buttonrow
       - if taxon_change.committed?
-        = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-default"
+        - if taxon_change.automatable? && current_user&.prefers_automatic_taxonomic_changes?
+          = link_to t(:view_your_affected_ids), identifications_path( user_id: current_user.id, taxon_change_id: taxon_change.id ), :class => "btn btn-default"
+        - else
+          = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-default"
       - if taxon_change.editable_by?(current_user)
         = link_to t(:edit), edit_taxon_change_path(taxon_change), :class => "btn btn-default"
         - if show_commit_button && !taxon_change.committed? && taxon_change.committable_by?( current_user )

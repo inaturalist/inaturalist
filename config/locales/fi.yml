@@ -27,6 +27,12 @@ fi:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> TUNNISTUS'
     other: '<span class="count">%{count}</span> TUNNISTUSTA'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> TUNNISTAJA'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> TUNNISTAJAA'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> muille tehty tunnistus'
     other: '<span class="count">%{count}</span> muille tehtyä tunnistusta'
@@ -77,6 +83,9 @@ fi:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> havainto tarkistettu"
     other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> HAVAINNOIJA'
+    other: '<span class="count">%{count}</span> HAVAINNOIJAA'
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
@@ -727,6 +736,13 @@ fi:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, lähettänyt %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Jaettu osiin
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Jakamaton
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
     natureserve: NatureServe
@@ -2072,6 +2088,10 @@ fi:
   highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   history: Historia
   home: Etusivu
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Saatat kuitenkin haluta kommentoida yllä linkitettyjä havaintoja tahattomista erimielisyyksistä ilmoittaaksesi tunnistajille, että %{old_parent}:n laajuutta on supistettu.
   i_dont_know_but_i_am_sure_this_is_taxon: En tiedä, mutta olen varma että tämä kuuluu taksoniin %{taxon}
   icon: Kuvake
   icon_size: Kuvakkeen koko
@@ -2455,6 +2475,10 @@ fi:
   list_with_two_items: "%{one} ja %{two}"
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Lisätty
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Poistettu
   listed_taxon_updated: Listattu taksoni päivitetty
   listing_lists: Luettelointiluettelot
   listing_project_assets: Luettelo projektitiedostoista
@@ -3786,12 +3810,22 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_export_complex_boundary_html: |
+    Jos yrität ladata havaintoja monimutkaiselta alueelta, harkitse
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">niiden lataamista sen sijaan GBIF:stä</a>, jossa voit piirtää monimutkaisia alueita tai voit ladata iNatista käyttämällä olemassa olevia paikkoja tai bounding box -alueita ja rajaa tiedot uudelleen, kun olet ladannut aineistot.
   places_warning_look_for_existing2_html: |
     Etsi <a href="/search?source[]=places">olemassa olevia paikkoja</a> varmistaaksesi, että
-    et luo kaksoiskappaletta. Meillä on jo paikat kaikkia
-    maanosia ja maita varten sekä monia muita hallinnollisia rajoja.
+    et luo kaksoiskappaletta. Meillä on jo paikat kaikista
+    maanosista ja maista sekä monia muita hallinnollisia rajoja.
   places_warning_please_keep_in_mind: |
     Huomioi seuraavat rajoitukset:
+  places_warning_projects_can_have_multiple_places: |
+    Jos yrität luoda paikan projektin aluetta varten, projektit voivat koostua useista paikoista. Jos esimerkiksi haluat tehdä projektin, joka kattaa Uuden-Seelannin ja Australian, voit vain lisätä projektiin vaatimuksiin kaksi paikkaa sen sijaan, että tekisit uuden.
+  places_warning_new_places_are_slow_html: |
+    Uudet paikat ovat yksi suurimmista iNaturalistin hidastumisen syistä, joten
+    <strong>harkitse uuden paikan tekemistä</strong>. Pienet paikat, jotka
+    sisältävät vain muutamia tuhansia havaintoja ovat yleensä ok, mutta jos teet
+    uuden paikan, joka sisältää paljon havaintoja, tulet hidastamaan iNaturalistin toimintaa kaikilla. Tässä on joitain vaihtoehtoisia lähestymistapoja:
   places_warning_quota: |
     Voit luoda vain kolme paikkaa päivässä.
   places_warning_the_future: |
@@ -5153,6 +5187,8 @@ fi:
   view_more_observations_of_x_project: "Näytä lisää havaintoja projektista %{project} sivustolla <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa &raquo;</nobr>"
   view_more_unreviewed: "Katso lisää tarkistamattomia"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Näytä tunnistukset, joihin muutos vaikuttaa
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput
@@ -5470,6 +5506,42 @@ fi:
     announcements:
       observation_oauth_application_ids_desc: |
         Klikkaa CMD- tai SHIFT-näppäintä valitaksesi useita. Valitsemalla "Kaikki" tai jos et valitse mitään, ilmoitus näytetään kaikille käyttäjille riippumatta sovelluksesta.
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Tietoa atlaksista
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlakset kertovat taksonin maailmanlaajuisesta levinneisyydestä. Kuraattorit tekevät atlaksia määrittelemällä atlaksen rakenteen ja kuratoimalla atlaksen taksonit.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Jaa tämä paikka osiin
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Yhdistä tämän paikan osat
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ei muutoksia tähän atlakseen vielä
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Viimeaikaiset Atlas-muutokset
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Viimeaikaiset luettelon taksonien muutokset
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Näytä luettelon taksonit
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Tämä atlas ei ole tällä hetkellä aktiivinen
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tämä poistaa tämän taksonin ja kaikki sen alataksonit tarkistuslistoilta, jotka liittyvät tähän paikkaan ja kaikkiin sen sisältämiin vakiopaikkoihin. Toimintoa ei voi perua. Haluatko varmasti jatkaa?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Varoitus: on havaintoja, joita tämä atlas ei edusta
     content_freeze:
       content_freeze: Sisällön jäädytys
       during_this_time: |
@@ -6463,8 +6535,6 @@ fi:
         photo_chooser_modal_explanation: |
           Huomaa, että taksonisivulla näkyy kuvia tästä taksonista ja sen jälkeläisistä. Tälle taksonille valitut kuvat näkyvät tosin ensimmäisinä. Ensimmäistä kuvaa käytetään taksonin oletuskuvana kaikkialla sivustolla.
         rare_desc: Harvimmin havaitut uhanalaiset taksonit
-        site_curators_disabled_wikipedia_html: |
-          Sivuston kuraattorit ovat väliaikaisesti estäneet <a href="%{url}">tämän sisällön näyttämisen Wikipediasta</a>. Voit auttaa parantamalla sivua Wikipediassa. Voit myös liputtaa tämän taksonin tuodaksesi sen kuraattorien huomioon.
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
@@ -6843,7 +6913,9 @@ fi:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -6879,6 +6951,8 @@ fi:
     attributes:
       announcement:
         created_at: Luotu
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Suljettavissa
         updated_at: Päivitetty
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -6975,7 +7049,6 @@ fi:
         url: URL-osoite
         citation: Viittaus
       taxon:
-        auto_description: Automaattinen kuvaus
         auto_photos: Automaattiset kuvat
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktiivinen?
@@ -7111,6 +7184,9 @@ fi:
                 ei voi olla suurempi kuin päivä jolloin havainto lisättiin
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: on oltava viimeisten 130 vuoden aikana
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: on oltava yksittäinen päivä, ei vaihteluväli
         observation_field_value:
           attributes:
             value:
@@ -7193,6 +7269,11 @@ fi:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 voi muuttaa vain tämän taksonin kuraattori
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Elämä-taksoni ei voi olla mukana taksonimuutoksissa
         taxon_name:
           attributes:
             lexicon:

@@ -40,7 +40,7 @@ class ConabioService
         user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}",
         raw_response: true
       )
-      taxon_response_json = JSON.parse( taxon_response_body )
+      taxon_response_json = JSON.parse( taxon_response_body ) if taxon_response_body
       unless taxon_response_json && taxon_response_json["taxa"] &&
           !taxon_response_json["taxa"].empty?
         return

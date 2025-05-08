@@ -15,6 +15,10 @@
             .menu
               %ul
                 %li
+                  %button.btn.btn-sm.btn-default{ "ng-click": "subtractTaxon(t)" }
+                    %i.fa.fa-close{ "aria-hidden": true }
+                    {{ shared.t( "exclude__taxon" ) }}
+                %li
                   {{ shared.t( 'include_slash_exclude_ancestor_taxa' ) }}
                   %ul
                     %li.ancestor{ "ng-repeat": "a in t.ancestors" }

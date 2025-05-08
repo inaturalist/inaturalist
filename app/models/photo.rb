@@ -536,6 +536,7 @@ class Photo < ApplicationRecord
     json[:native_page_url] = native_page_url if options[:native_page_url]
     json[:native_photo_id] = native_photo_id if options[:native_photo_id]
     json[:type] = type if options[:type]
+    json[:attribution_name] = attribution_name( allow_nil: true ) if options[:attribution_name]
     options[:sizes] ||= [ ]
     options[:sizes].each do |size|
       json["#{ size }_url"] = best_url(size)

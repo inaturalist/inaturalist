@@ -14,7 +14,7 @@ class Subscription < ApplicationRecord
 
   after_save :clear_caches
   after_destroy :clear_caches
-  
+
   validates_presence_of :resource, :user
   validates_uniqueness_of :user_id, :scope => [:resource_type, :resource_id, :taxon_id], 
     :message => "has already subscribed to this resource"
@@ -27,24 +27,18 @@ class Subscription < ApplicationRecord
     "<Subscription #{id} user: #{user_id} resource: #{resource_type} #{resource_id}>"
   end
 
-  def self.users_with_unviewed_updates_from(notifier)
-    es_response = UpdateAction.elastic_search(
-      filters: [
-        { term: { notifier_type: notifier.class.to_s } },
-        { term: { notifier_id: notifier.id } }
-      ],
-      sort: { id: :desc }
-    ).per_page(100).page(1)
-    if es_response && es_response.results
-      subscriber_ids = []
-      viewed_subscriber_ids = []
-      es_response.results.each do |result|
-        subscriber_ids += result.subscriber_ids
-        viewed_subscriber_ids += result.viewed_subscriber_ids
-      end
-      return subscriber_ids.uniq - viewed_subscriber_ids.uniq
+  def self.users_with_unviewed_updates_from( notifier_updates )
+    return [] if notifier_updates.blank?
+
+    subscriber_ids = []
+    viewed_subscriber_ids = []
+    notifier_updates.each do | result |
+      next unless result.try( :es_source )
+
+      subscriber_ids += result.es_source.subscriber_ids
+      viewed_subscriber_ids += result.es_source.viewed_subscriber_ids
     end
-    []
+    subscriber_ids.uniq - viewed_subscriber_ids.uniq
   end
 
   def cannot_subscribe_to_north_america

@@ -225,6 +225,8 @@ zh-TW:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: 加入項目符號列表
   add_a_comment: 新增評論
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: 新增保育等級
   add_a_field: 新增一個欄位
   add_a_flag: 新增一個標記
   #Tool tip for a button that adds a link to a text area
@@ -237,7 +239,7 @@ zh-TW:
   add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
-    若您想更改名稱，請添加<a target="_blank" href="%{url}">物種分類對換</a>
+    若您想更改名稱，請新增<a target="_blank" href="%{url}">物種分類對換</a>
   add_an_assessment: 新增評估
   add_an_identification: 新增物種鑑定
   add_an_observation: 新增觀察紀錄
@@ -256,7 +258,7 @@ zh-TW:
   add_another_section: 加入其它資訊
   add_another_subscription: 新增其它訂閱
   #Project assets are files associated with projects, e.g. image files for a custom header
-  add_asset: 添加可用物件
+  add_asset: 新增專案項目
   add_batch: 批次新增
   add_blocked_users: 新增封鎖使用者
   #Tool tip for a button that adds bold text to a text area
@@ -306,6 +308,7 @@ zh-TW:
   add_plant_phenology_fruiting_annotation: '新增「植物物候：結果」註解'
   add_plant_phenology_no_evidence_of_flowering_annotation: '新增「植物物候：沒有開花的證據」註記'
   add_flowers_and_fruits_flower_buds_annotation: '新增「花與果實：花芽」註解'
+  add_flowers_and_fruits_flowers_annotation: '新增「花與果實：開花的花」註解'
   add_flowers_and_fruits_fruits_and_seeds_annotation: '新增「花與果實：果實和種子」註解'
   add_flowers_and_fruits_no_flower_or_fruits: '新增「花與果實：沒有花或果實」註解'
   add_leaves_breaking_leaf_buds: '新增「葉：開展中的葉芽」註解'
@@ -333,22 +336,22 @@ zh-TW:
   add_evidence_of_presence_construction_annotation: '新增「出現記錄的證據：構造物」註記'
   add_established_not_established: '新增「定殖：未定殖建立族群」註解'
   #As in a Taxon Framework Relationship
-  add_relationship: '添加關聯'
+  add_relationship: '新增關聯'
   #As in a Guide Section
   add_section: 新增章節
   add_several_observations_at_once: 一次增加多筆觀察紀錄。
   add_sex_female_annotation: '新增「性别：雌」的註解'
   add_sex_male_annotation: '新增「性別：雄」之註解'
   add_sex_cannot_be_determined_annotation: '新增「性別：無法判定」的註記'
-  add_some_now: 現在添加一些
-  add_tag: 添加標籤
-  add_tags: 添加標籤
-  add_tags_to_selected_taxa: 添加標籤到已挑選的物種分類
+  add_some_now: 現在新增一些
+  add_tag: 新增標籤
+  add_tags: 新增標籤
+  add_tags_to_selected_taxa: 新增標籤到已選擇的分類群中
   add_taxa: 新增物種分類
-  add_taxon_batch_to: "把物種分類添加到 %{list}"
-  add_taxon_range: 添加物種分類範圍
-  add_taxonomic_tags_to: "添加物種分類標籤至所選的 Flickr 照片&raquo;"
-  add_to_a_scheme: 添加至綱要
+  add_taxon_batch_to: "把分類群批次新增到 %{list}"
+  add_taxon_range: 新增分類群分布範圍
+  add_taxonomic_tags_to: "新增物種分類標籤至已選的 Flickr 照片中&raquo;"
+  add_to_a_scheme: 新增至綱要
   add_to_a_project: 新增至專案
   add_to_calendar: 加入行事曆
   add_to_checklist: 加入名錄
@@ -357,7 +360,7 @@ zh-TW:
   add_to_project: 新增至專案
   add_to_your_list: 新增到你的名錄
   add_your_email_to_get: |
-    添加您的電子郵件，以讓您的觀察能獲得來自於社群的意見回饋。若您不想分享它請立即查驗！
+    新增您的電子郵件，以讓您的觀察紀錄能獲得來自於社群的意見回饋。若您不想分享它，請稍後回來確認！
   add_your_own_observations_at: "新增您的觀察到 %{site_name}"
   added: 已新增
   added!: 已新增!
@@ -405,18 +408,18 @@ zh-TW:
   all_places: "所有地點"
   all_projects: 所有專案
   all_rank_added_to_the_database:
-    phylum: 所有添加到資料庫的「門」
-    subphylum: 所有添加到資料庫的「亞門」
-    superclass: 所有添加到資料庫的「超綱」
-    class: 所有添加到資料庫的「綱」
-    subclass: 所有添加到資料庫的「亞綱」
-    infraclass: 所有添加到資料庫的「下綱」
-    superorder: 所有添加到資料庫的「總目」
-    order: 所有添加到資料庫的「目」
-    suborder: 所有添加到資料庫的「亞目」
-    infraorder: 所有添加到資料庫的「下目」
-    superfamily: 所有添加到資料庫的「總科」
-    epifamily: 所有添加到資料庫的「領科」
+    phylum: 所有新增到資料庫中的「門」
+    subphylum: 所有新增到資料庫中的「亞門」
+    superclass: 所有新增到資料庫中的「超綱」
+    class: 所有新增到資料庫中的「綱」
+    subclass: 所有新增到資料庫中的「亞綱」
+    infraclass: 所有新增到資料庫中的「下綱」
+    superorder: 所有新增到資料庫中的「總目」
+    order: 所有新增到資料庫中的「目」
+    suborder: 所有新增到資料庫中的「亞目」
+    infraorder: 所有新增到資料庫中的「下目」
+    superfamily: 所有新增到資料庫中的「總科」
+    epifamily: 所有新增到資料庫中的「領科」
     family: 所有添加到資料庫的「科」
     subfamily: 所有添加到資料庫的「亞科」
     supertribe: 所有添加到資料庫的「總族」
@@ -530,6 +533,8 @@ zh-TW:
   any_license: 任一授權
   #Label for an option to show content with photos, sounds, or neither
   any_media: 任一
+  #Label for an option to show any place
+  any_place: 任一
   #Label for an option to show content from any project
   any_project: 任一
   #Label for an option to show content with any quality grade
@@ -6804,8 +6809,6 @@ zh-TW:
           註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
         rare_desc: 最少被觀察到生存受威脅的物種分類
         rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>最少被觀察到生存受威脅的物種分類群
-        site_curators_disabled_wikipedia_html: |
-          網站策展人臨時停用顯示<a href="%{url}">來自維基百科的此內容</a>。您可以透過編輯在維基百科的頁面來協助該適用於此物種分類，或是透過標記此分類來提醒網站策展人留意。
         trending_desc: 在最近一個月的最多觀察物種分類群
         trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
         wanted_desc: 物種分類中尚未被觀察到的物種。
@@ -7228,8 +7231,6 @@ zh-TW:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%m月%d日 %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%m月%d日 %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -7348,7 +7349,6 @@ zh-TW:
         url: 網址
         citation: 引用
       taxon:
-        auto_description: 自動描述
         auto_photos: 自動照片
         locked: 已鎖定
         name: 名稱

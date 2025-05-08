@@ -18,6 +18,10 @@ module Users
 
     skip_before_action :verify_authenticity_token
 
+    def new
+      self.resource = resource_class.new( email: params[:email] )
+    end
+
     def update
       super do | user |
         if resource.errors.empty? && !user.confirmed?

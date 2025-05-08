@@ -256,6 +256,18 @@ describe Observation do
         end.to raise_error( ActiveRecord::RecordInvalid )
       end
 
+      it "should not allow a year" do
+        expect do
+          create :observation, :without_times, observed_on_string: Date.today.year - 10
+        end.to raise_error( ActiveRecord::RecordInvalid )
+      end
+
+      it "should not allow a year in the future" do
+        expect do
+          create :observation, :without_times, observed_on_string: Date.today.year + 10
+        end.to raise_error( ActiveRecord::RecordInvalid )
+      end
+
       it "should parse a bunch of test date strings" do
         [
           ["Fri Apr 06 2012 16:23:35 GMT-0500 (GMT-05:00)", { month: 4, day: 6, hour: 16, offset: "-05:00" }],
@@ -293,6 +305,7 @@ describe Observation do
 
           expect( observation.observed_on.day ).to eq opts[:day]
           expect( observation.observed_on.month ).to eq opts[:month]
+          expect( observation.time_observed_at ).not_to be_blank, "should parse a time from #{date_string}"
           time = observation.time_observed_at.in_time_zone( observation.time_zone )
           expect( time.hour ).to eq opts[:hour]
           expect( time.formatted_offset ).to eq opts[:offset]
@@ -478,6 +491,7 @@ describe Observation do
           name: "User Place"
         )
       end
+
       it "should be set based on coordinates" do
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude )
         expect( o.place_guess ).to match /#{small_place.name}/
@@ -569,6 +583,18 @@ describe Observation do
         expect( o.latitude ).not_to be_blank
         expect( o.place_guess ).not_to be_blank
       end
+      it "should not include open space when obscured" do
+        open_space_place = make_place_with_geom(
+          wkt: "MULTIPOLYGON(((1.4 1.4,1.4 1.6,1.6 1.6,1.6 1.4,1.4 1.4)))",
+          parent: small_place,
+          name: "Open Space Place",
+          place_type: Place::OPEN_SPACE
+        )
+        o = create :observation, latitude: open_space_place.latitude, longitude: open_space_place.longitude
+        expect( o.place_guess ).to include open_space_place.name
+        o.update( geoprivacy: Observation::OBSCURED )
+        expect( o.place_guess ).not_to include open_space_place.name
+      end
     end
 
     describe "quality_grade" do
@@ -609,7 +635,8 @@ describe Observation do
     it "should increment the taxon's counter cache" do
       t = without_delay { Taxon.make! }
       expect( t.observations_count ).to eq 0
-      without_delay { Observation.make!( taxon: t ) }
+      Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       t.reload
       expect( t.observations_count ).to eq 1
     end
@@ -618,7 +645,8 @@ describe Observation do
       p = without_delay { Taxon.make!( rank: Taxon::GENUS ) }
       t = without_delay { Taxon.make!( parent: p, rank: Taxon::SPECIES ) }
       expect( p.observations_count ).to eq 0
-      without_delay { Observation.make!( taxon: t ) }
+      Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       p.reload
       expect( p.observations_count ).to eq 1
     end
@@ -904,13 +932,10 @@ describe Observation do
       expect( jobs.select {| j | j.handler =~ /ProjectList.*refresh_with_observation/m } ).to be_blank
     end
 
-    it "should queue refresh job for check lists if the coordinates changed" do
+    it "should refresh check lists if the coordinates changed" do
       o = make_research_grade_observation
-      Delayed::Job.delete_all
-      stamp = Time.now
+      expect( o ).to receive( :refresh_check_lists ).at_least( :once )
       o.update( latitude: o.latitude + 1 )
-      jobs = Delayed::Job.where( "created_at >= ?", stamp )
-      expect( jobs.select {| j | j.handler =~ /CheckList.*refresh_with_observation/m } ).not_to be_blank
     end
 
     it "should not queue job to refresh life lists if taxon changed" do
@@ -936,28 +961,11 @@ describe Observation do
       expect( jobs.select {| j | j.handler =~ /ProjectList.*refresh_with_observation/m }.size ).to eq( 0 )
     end
 
-    it "should only queue one check list refresh job" do
+    it "should refresh check lists if the taxon changed" do
       o = make_research_grade_observation
-      Delayed::Job.delete_all
-      stamp = Time.now
-      3.times do
-        o.update( latitude: o.latitude + 1 )
-      end
-      jobs = Delayed::Job.where( "created_at >= ?", stamp )
-      expect( jobs.select {| j | j.handler =~ /CheckList.*refresh_with_observation/m }.size ).to eq( 1 )
-    end
-
-    it "should queue refresh job for check lists if the taxon changed" do
-      o = make_research_grade_observation
-      Delayed::Job.delete_all
-      stamp = Time.now
       o = Observation.find( o.id )
+      expect( o ).to receive( :refresh_check_lists ).at_least( :once )
       o.update( taxon: Taxon.make!, editing_user_id: o.user_id )
-      jobs = Delayed::Job.where( "created_at >= ?", stamp )
-      pattern = /CheckList.*refresh_with_observation/m
-      job = jobs.detect {| j | j.handler =~ pattern }
-      expect( job ).not_to be_blank
-      # puts job.handler.inspect
     end
 
     it "should not queue refresh job for project lists if the taxon changed" do
@@ -1587,7 +1595,8 @@ describe Observation do
 
     it "should decrement the taxon's counter cache" do
       t = Taxon.make!
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       t.reload
       expect( t.observations_count ).to eq( 1 )
       o = without_delay { o.update( taxon: nil, editing_user_id: o.user_id ) }
@@ -1598,7 +1607,8 @@ describe Observation do
     it "should decrement the taxon's ancestors' counter caches" do
       p = Taxon.make!( rank: Taxon::GENUS )
       t = Taxon.make!( parent: p, rank: Taxon::SPECIES )
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       p.reload
       expect( p.observations_count ).to eq( 1 )
       o = without_delay { o.update( taxon: nil, editing_user_id: o.user_id ) }
@@ -1664,7 +1674,8 @@ describe Observation do
 
     it "should decrement the taxon's counter cache" do
       t = Taxon.make!
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       t.reload
       expect( t.observations_count ).to eq 1
       o.destroy
@@ -1676,7 +1687,8 @@ describe Observation do
     it "should decrement the taxon's ancestors' counter caches" do
       p = Taxon.make!( rank: Taxon::GENUS )
       t = Taxon.make!( parent: p, rank: Taxon::SPECIES )
-      o = without_delay { Observation.make!( taxon: t ) }
+      o = Observation.make!( taxon: t )
+      Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
       p.reload
       expect( p.observations_count ).to eq( 1 )
       o.destroy

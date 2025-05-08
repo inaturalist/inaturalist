@@ -3038,7 +3038,7 @@ cs:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%dm"
+      mm: "%dmin"
       #Short text representing 1 hour in the past
       h: "1 h"
       #Short text representing %d hours in the past
@@ -3337,6 +3337,8 @@ cs:
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
   noble_curators: "Vybraní kurátoři stránky %{site}"
   non_human?: Není lidský?
+  #A user who does not admin any projects
+  non_project_admin: Neprojektový správce
   none: Žádný
   none_found: Nenalezeno
   normal: normální
@@ -4371,6 +4373,8 @@ cs:
   profile_visibility_desc: |
     Ve snaze bojovat proti spamu na %{site_name} jsou profily uživatelů veřejně viditelné až poté, co uživatel přispěl k několika pozorováním programu Research Grade.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Správce projektu
   project_admins:
     one: Správce projektu
     few: Správců projektu
@@ -8092,8 +8096,6 @@ cs:
           Vezměte prosím na vědomí, že stránka taxonu zobrazí fotky tohoto taxonu a jeho následných taxonů. Fotky vybrané pro tento taxon se však zobrazí jako první. První fotka bude základním obrázkem používaným na celých stránkách.
         rare_desc: Nejméně pozorované ohrožené taxony
         rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Vedoucí webu dočasně zakázali zobrazení <a href="%{url}"> tohoto obsahu Wikipedia </a>. Pomoci můžete úpravou stránky na Wikipedii tak, aby byla vhodná pro tento taxon, nebo označením tohoto taxonu, abyste získali pozornost dozorců stránek.
         trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
         trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci v <a href="%{url}">%{place}</a>
         wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
@@ -8692,8 +8694,6 @@ cs:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8861,7 +8861,6 @@ cs:
         citation: Citace
       taxon:
         ancestry: Předchůdce
-        auto_description: Automatický popis
         auto_photos: Automatické fotky
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8889,6 +8888,8 @@ cs:
         photos_locked: Fotografie uzamčeny?
         rank: Pořadí
         rank_level: Úroveň taxonomické kategorie
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Zobrazí Wikipedii
         source_id: ID zdroje
         source_identifier: Identifikátor zdroje
         source_url: URL zdroje
@@ -8942,6 +8943,7 @@ cs:
           few: musí být rovno %{count}
           many: musí být rovno %{count}
           other: musí být rovno %{count}
+        must_look_like_an_email_address: musí vypadat jako e-mailová adresa
         even: musí být sudé číslo
         exclusion: je rezervováno
         greater_than:
@@ -9225,6 +9227,7 @@ cs:
               must_begin_with_a_letter: |
                 musí začínat písmenem, neobsahovat žádné mezery a používat pouze
                 písmena, čísla, pomlčky a podtržítka
+              domain_is_not_supported: doména není podporována
         user_block:
           attributes:
             base:

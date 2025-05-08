@@ -48,13 +48,13 @@ pl:
   #Number of people who have added identifications
   x_identifiers_caps_html:
     #Number of people who have added identifications
-    one: '<span class="count">%{count}</span> IDENTYFIKATOR'
+    one: '<span class="count">%{count}</span> OZNACZAJĄCY'
     #Number of people who have added identifications
-    few: '<span class="count">%{count}</span> IDENTYFIKATORY'
+    few: '<span class="count">%{count}</span> OZNACZAJĄCYCH'
     #Number of people who have added identifications
-    many: '<span class="count">%{count}</span> IDENTYFIKATORÓW'
+    many: '<span class="count">%{count}</span> OZNACZAJĄCYCH'
     #Number of people who have added identifications
-    other: '<span class="count">%{count}</span> IDENTYFIKATORÓW'
+    other: '<span class="count">%{count}</span> OZNACZAJĄCEGO'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> ID stworzone dla innych'
     few: '<span class="count">%{count}</span> ID stworzonych dla innych'
@@ -5433,8 +5433,6 @@ pl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %-H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %-H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%-H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%-H:%M %Z'
@@ -5543,7 +5541,6 @@ pl:
         in_text: W tekście
         url: Adres URL
       taxon:
-        auto_description: Automatyczny opis
         auto_photos: Automatyczne zdjęcia
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Status ochronny

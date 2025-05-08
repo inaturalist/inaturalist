@@ -13,6 +13,8 @@ import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 import UserImage from "../../../shared/components/user_image";
+import UserLink from "../../../shared/components/user_link";
+import Inativersary from "../../../shared/components/inativersary";
 import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 import { urlForTaxon } from "../../../taxa/shared/util";
@@ -204,14 +206,14 @@ class ActivityItem extends React.Component {
       );
     }
     const userLink = (
-      <a
+      <UserLink
         className="user"
-        href={`/people/${item.user.login}`}
+        config={config}
+        noInativersary
         target={linkTarget}
-        rel={linkTarget === "_blank" ? "noopener noreferrer" : null}
-      >
-        {item.user.login}
-      </a>
+        uniqueKey={`ActivityItem-${item.id}`}
+        user={item.user}
+      />
     );
     if ( this.isID ) {
       className = "identification";
@@ -292,9 +294,20 @@ class ActivityItem extends React.Component {
         </div>
       );
       const taxonImageTag = util.taxonImage( taxon );
-      header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
+      header = [
+        (
+          <span
+            dangerouslySetInnerHTML={{
+              __html: item.taxon_change
+                ? I18n.t( "inaturalist_updated_the_id_suggested_by_user", { user: ReactDOMServer.renderToString( userLink ) } )
+                : I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } )
+            }}
+            key={`ActivityItem-UserLink-${item.id}`}
+          />
+        )
+      ];
       if ( item.disagreement && !this.isDisagreementWithHiddenIdent( ) ) {
-        header += "*";
+        header.push( <span key={`ActivityItem-disagree-${item.id}`}>*</span> );
       }
       if ( !item.current ) {
         className = "withdrawn";
@@ -331,9 +344,25 @@ class ActivityItem extends React.Component {
         </div>
       );
     } else if ( !item.hidden || canSeeHidden ) {
-      header = I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } );
+      header = [
+        <span
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } )
+          }}
+          key={`ActivityItem-UserLink-${item.id}`}
+        />
+      ];
       contents = editing ? this.editItemForm( ) : ( <UserText text={item.body} /> );
     }
+    const inativersary = (
+      <Inativersary
+        config={config}
+        key={`ActivityItem-iNativersary-${item.uuid}`}
+        user={item.user}
+        uniqueKey={`ActivityItem-${item.uuid}`}
+      />
+    );
+    if ( inativersary ) header.push( inativersary );
     const relativeTime = moment.parseZone( item.created_at ).fromNow();
     let panelClass;
     const headerItems = [];
@@ -588,7 +617,9 @@ class ActivityItem extends React.Component {
         <Panel className={`${panelClass}${item.api_status ? " loading" : ""}${hideUserIcon ? " no-user-icon" : ""}`}>
           <Panel.Heading>
             <Panel.Title>
-              <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
+              <span className="title_text">
+                { header }
+              </span>
               { headerItems }
               { time }
               { menu }

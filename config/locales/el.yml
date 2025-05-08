@@ -5800,8 +5800,6 @@ el:
           η προεπιλεγμένη εικόνα που χρησιμοποιείται στην ιστοσελίδα.
         rare_desc: Λιγότερο παρατηρημένα απειλούμενα taxa
         rare_in_place_desc_html: Λιγότερο παρατηρημένα απειλούμενα taxa σε <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Οι επιμελητές της ιστοσελίδας έχουν απενεργοποιήσει προσωρινά την εμφάνιση <a href="%{url}">αυτού του περιεχομένου από τη Βικιπαίδεια</a>.Μπορείτε να βοηθήσετε είτε μέσω της επεξεργασίας της σελίδας στη Βικιπαίδεια για να είναι έγκυρη σχετικά με αυτή την ταξινομική βαθμίδα είτε μέσω της αναφοράς αυτής της ταξινομικής βαθμίδας για να επιστήσετε την προσοχή των επιμελητών της ιστοσελίδας.
         trending_desc: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
         trending_in_place_desc_html: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα σε <a href="%{url}">%{place}</a>
         wanted_desc: Είδη σε αυτό το taxon που δεν έχουν παρατηρηθεί ακόμα.
@@ -6276,8 +6274,6 @@ el:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -6385,7 +6381,6 @@ el:
         url: URL
         citation: Παραπομπή
       taxon:
-        auto_description: Αυτόματη περιγραφή
         auto_photos: Αυτόματες φωτογραφίες
         locked: Κλειδωμένο
         name: Όνομα
