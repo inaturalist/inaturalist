@@ -288,6 +288,8 @@ fi:
   add_a_new_change_group: Lisää uusi muutosryhmä
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Lisää numeroitu lista
+  #Placeholder for a project autocomplete field
+  add_a_project: Lisää projekti
   add_a_single_observation: Lisää yksittäinen havainto.
   add_a_taxon: Lisää taksoni
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1382,6 +1384,8 @@ fi:
   custom_project_fields: Mukautetut projektikentät
   custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
   custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
+  #Button to customize projects that appear in the header
+  customize__projects: Mukauta
   customize_location: Muokkaa sijaintia
   darr_apply_darr: "&darr; Käytä &darr;"
   daily_users: Päivittäiskäyttäjät
@@ -1811,6 +1815,12 @@ fi:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Suosikit
   Family: Heimo
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Suosikkiprojektit
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Valitse enintään seitsemän projektia, jotka näkyvät linkkeinä otsikossa. Päivitykset
+    tulevat näkyviin sivun päivittämisen jälkeen.
   favorite_taxa: Suosikkitaksonit
   favorites: "Suosikit"
   feature_this_project_: "Nosta tämä projekti esille"
@@ -3968,6 +3978,16 @@ fi:
   range: Väli
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Sija
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Suku/sukuristeymä
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Laji/risteymä
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alalaji/muunnos/muoto
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -7102,6 +7122,7 @@ fi:
         show_for_descendent_taxa: Näytä jälkeläistaksonit
       user:
         email: Sähköposti
+        faved_project_ids: Suosikkiprojektit
         login: Käyttäjänimi
         name: Nimi
         locale: Maa
@@ -7251,6 +7272,10 @@ fi:
             user:
               must_be_on_site_long_enough: |
                 täytyy olla rekisteröitynyt aiemmin kuin 24 tuntia sitten, jotta voit julkaista tietoja. Saamme paljon roskaviestejä (spam) ja tällä tavalla pyrimme estämään niiden määrää. Voit tallentaa tietosi luonnoksena, ja jos käytät vielä sivustoa vuorokauden päästä, voit julkaista ne.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Sinulla voi olla vain 7 suosikkiprojektia
         project_observation:
           attributes:
             base:
@@ -7324,6 +7349,14 @@ fi:
               already_has_a_range: on jo alue
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ei voi sisältää enempää kuin 7 projektia
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: kaikkien on oltava olemassa
             login:
               must_begin_with_a_letter: |
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja
