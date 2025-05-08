@@ -6293,6 +6293,17 @@ fr:
           Les atlas transmettent la distribution mondiale d’un taxon. Les commissaires font
           en définissant la structure d’un atlas et en organisant les
           les taxons répertoriés qui l’alimentent.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Disloquer ce lieu
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Assembler ce lieu
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Aucune modification n’a encore été apportée à cet atlas
         #Title for a section showing recent alterations to an atlas
@@ -8672,6 +8683,12 @@ fr:
           kb: ko
           mb: Mo
           tb: To
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
   support:
     array:
       last_word_connector: ', et'
