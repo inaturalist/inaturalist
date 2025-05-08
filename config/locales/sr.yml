@@ -44,6 +44,10 @@ sr:
     few: '<span class="count">%{count}</span> IDENTIFIKATORA'
     #Number of people who have added identifications
     other: '<span class="count">%{count}</span> IDENTIFIKATORA'
+  x_ids_made_for_others_html:
+    one: '<span class="count">%{count}</span> ID dodat za druge'
+    few: '<span class="count">%{count}</span> ID-ja dodatih za druge'
+    other: '<span class="count">%{count}</span> ID-jeva dodatih za druge'
   x_languages:
     one: "%{count} jezik"
     few: "%{count} jezika"
@@ -5179,6 +5183,10 @@ sr:
           Izvoz tvojih opservacija nije uspeo. Poseti stranu <a href="%{url}">Izvoz opservacija</a> gde ćeš naći listu tvojih izvoza.
       parental_consent:
         subject: Tvoje dete bi volelo da koristi iNaturalist
+      photos_missing:
+        subject: Neke fotografije treba popraviti
+        we_included_links: |
+          U nastavku smo naveli linkove ka spornim fotografijama
       user_parent_confirmation:
         subject: iNaturalist nalog tvog deteta je aktiviran
       users_updates_suspended:
@@ -5282,6 +5290,9 @@ sr:
           Opciona ikonica. Minimum 72px x 72px i biće opsečena u kvadrat.
         project_name: Naziv projekta
         project_summary: Rezime projekta
+        project_summary_help: |
+          Daj sažeto objašnjenje projekta. Otprilike prvih 200 znakova će
+          biti vidljivo sa desne strane banera početne stranice projekta, tako da prvo stavi najvažnije stvari!
         project_summary_placeholder: Istraži i prati ptice parka Golden Gate...
         select_quality_grade: |
           Izaberi bar jedan kvalitet podataka. Detaljnije objašnjenje za svaki kvalitet podataka možeš naći na stranici <a href="%{url}">Često postavljena pitanja</a>.
