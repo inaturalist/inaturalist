@@ -56,7 +56,8 @@ class TaxonPhoto < ApplicationRecord
           sizes: [:square, :small, :medium, :large, :original],
           native_page_url: true,
           native_photo_id: true,
-          type: true
+          type: true,
+          attribution_name: true
         )
       }
     end
