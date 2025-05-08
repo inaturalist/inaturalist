@@ -380,6 +380,7 @@ namespace :inaturalist do
       "protozoans",
       "purple",
       "random",
+      "rank_levels",
       "ranks",
       "ranks_lowercase_stateofmatter",
       "ranks_lowercase_kingdom",

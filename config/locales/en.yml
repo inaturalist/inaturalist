@@ -4736,6 +4736,16 @@ en:
   range: Range
   # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rank
+  rank_levels:
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
+    genus: Genus / Genushybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
+    species: Species / Hybrid
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
+    subspecies: Subspecies / Variety / Form
   # A person's rank on an ordinal scale (e.g. "first place," "second place,"
   # etc.). Generally used as a column header in lists of observers and
   # identifiers

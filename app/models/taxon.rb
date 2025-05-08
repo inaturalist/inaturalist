@@ -231,6 +231,7 @@ class Taxon < ApplicationRecord
 
   RANKS = RANK_LEVELS.keys
   VISIBLE_RANKS = RANKS - ["stateofmatter"]
+  UNIQUE_LEVELED_RANKS = RANK_FOR_RANK_LEVEL.to_a.sort.map(&:last) - ["stateofmatter"]
 
   RANK_EQUIVALENTS = {
     "division" => "phylum",
