@@ -280,7 +280,7 @@ class Photo < ApplicationRecord
 
   def best_url( size = "medium" )
     size = size.to_s
-    sizes = LocalPhoto::FILE_OPTIONS[:styles].keys.map( &:to_s )
+    sizes = LocalPhoto::SIZES.map( &:to_s )
     size = "medium" unless sizes.include?( size )
     size_index = sizes.index( size )
     methods = sizes[size_index.to_i..-1].map {| s | "#{s}_url" } + ["original"]

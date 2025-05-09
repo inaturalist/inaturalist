@@ -9,16 +9,19 @@ class LocalPhoto < Photo
   image_convert_options = Proc.new {|record|
     record.rotation.blank? ? "-auto-orient" : nil
   }
-  
+
   FILE_OPTIONS = {
     preserve_files: true,
-    styles: {
-      original: { geometry: "2048x2048>", auto_orient: false, format: :jpg, processors: [ :rotator, :metadata_filter ] },
-      large:    { geometry: "1024x1024>", auto_orient: false, format: :jpg },
-      medium:   { geometry: "500x500>",   auto_orient: false, format: :jpg },
-      small:    { geometry: "240x240>",   auto_orient: false, format: :jpg, processors: [ :deanimator ] },
-      thumb:    { geometry: "100x100>",   auto_orient: false, format: :jpg, processors: [ :deanimator ] },
-      square:   { geometry: "75x75#",     auto_orient: false, format: :jpg, processors: [ :deanimator ] }
+    styles: proc {| record |
+      fmt = record.content_type == "image/gif" ? :gif : :jpg
+      {
+        original: { geometry: "2048x2048>", auto_orient: false, format: fmt, processors: [:rotator, :metadata_filter] },
+        large:    { geometry: "1024x1024>", auto_orient: false, format: fmt },
+        medium:   { geometry: "500x500>",   auto_orient: false, format: fmt },
+        small:    { geometry: "240x240>",   auto_orient: false, format: fmt, processors: [:deanimator] },
+        thumb:    { geometry: "100x100>",   auto_orient: false, format: fmt, processors: [:deanimator] },
+        square:   { geometry: "75x75#",     auto_orient: false, format: fmt, processors: [:deanimator] }
+      }
     },
     convert_options: {
       original: image_convert_options,
@@ -30,6 +33,8 @@ class LocalPhoto < Photo
     },
     default_url: "/attachment_defaults/:class/:style.png"
   }
+
+  SIZES = FILE_OPTIONS[:convert_options].keys
 
   if CONFIG.usingS3
 
