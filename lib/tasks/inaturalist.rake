@@ -112,8 +112,8 @@ namespace :inaturalist do
       next unless moderator_action.resource
       next unless moderator_action.resource_type == "Photo"
 
-      deleted_photo = DeletedPhoto.where( photo_id: moderator_action.resource_id )
-      next unless deleted_photo.eligible_for_removal?
+      deleted_photo = DeletedPhoto.where( photo_id: moderator_action.resource_id ).first
+      next unless deleted_photo&.eligible_for_removal?
 
       begin
         deleted_photo.remove_from_s3( s3_client: client )
@@ -151,7 +151,7 @@ namespace :inaturalist do
       where( "sounds.id IS NULL" ).
       where( "(orphan=false AND deleted_sounds.created_at <= ?)
         OR (orphan=true AND deleted_sounds.created_at <= ?)",
-        6.months.ago, 1.month.ago ).select( :id, :sound_id ).find_each do | deleted_sound |
+        6.months.ago, 1.month.ago ).find_each do | deleted_sound |
       begin
         deleted_sound.remove_from_s3( s3_client: client )
       rescue
@@ -233,7 +233,7 @@ namespace :inaturalist do
         # set the orphan attribute on sound, which will set the same on Deletedsound
         s.orphan = true
         s.destroy
-        last_orphan_id = p.id
+        last_orphan_id = s.id
         orphans_count += 1
       end
       index += batch_size
