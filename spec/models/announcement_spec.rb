@@ -344,6 +344,11 @@ describe Announcement do
         annc = create :announcement, user_created_start_date: 2.days.ago
         expect( annc.targeted_to_user?( create( :user, created_at: 3.day.ago ) ) ).to be false
       end
+
+      it "excludes signed out users" do
+        annc = create :announcement, user_created_start_date: 2.days.ago
+        expect( annc.targeted_to_user?( nil ) ).to be false
+      end
     end
 
     describe "user_created_end_date" do
@@ -362,6 +367,11 @@ describe Announcement do
       it "excludes users created after value" do
         annc = create :announcement, user_created_end_date: 2.days.ago
         expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be false
+      end
+
+      it "excludes signed out users" do
+        annc = create :announcement, user_created_end_date: 2.days.ago
+        expect( annc.targeted_to_user?( nil ) ).to be false
       end
     end
 
