@@ -5,12 +5,15 @@
 /* global DISMISSIBLE_PLACEMENTS */
 
 $( function ( ) {
+  // show/hide inputs depending on placement selected
   $( "#announcement_placement" ).change( function ( ) {
     var placement = $( "#announcement_placement" ).val( );
     var clientsSelect = $( "#announcement_clients" );
     var valuesToSelect = clientsSelect.val( ) || clientsSelect.data( "originalValues" ) || [];
     clientsSelect.empty( );
     clientsSelect.append( $( "<option value>" + I18n.t( "all" ) + "</option>" ) );
+    // Some placements are only relevant to certain clients, so if the user
+    // chooses a placement we need to show/hide the relevant clients
     if ( PLACEMENT_CLIENTS[placement] ) {
       _.each( PLACEMENT_CLIENTS[placement], function ( placementClient ) {
         var option = $( "<option value='" + placementClient + "'>" + placementClient + "</option>" );
@@ -25,7 +28,7 @@ $( function ( ) {
       clientsSelect.attr( "size", 1 );
       $( ".clients_field" ).hide( );
     }
-
+    // Not all placements *can* be dismissed, so we hide that checkbox if the user chooses one
     if ( DISMISSIBLE_PLACEMENTS.indexOf( placement ) < 0 ) {
       $( ".dismissible_field" ).hide( );
     } else {
@@ -53,6 +56,42 @@ $( function ( ) {
       } );
     } else {
       partitionSelect.append( $( "<option value>" + I18n.t( "none" ) + "</option>" ) );
+    }
+  } );
+
+  // Enable / disable inputs that require a signed in user
+  $( "[name='announcement[target_logged_in]']" ).change( function ( ) {
+    var form = $( this ).parents( "form" ).get( 0 );
+    const val = $( "[name='announcement[target_logged_in]']:checked", form ).val( );
+    if ( val === "yes" ) {
+      // Disable created start and end date inputs
+      $( "[name='announcement[user_created_start_date]']", form ).prop( "disabled", true );
+      $( "[name='announcement[user_created_end_date]']", form ).prop( "disabled", true );
+    } else {
+      // Enable created start and end date inputs
+      $( "[name='announcement[user_created_start_date]']", form ).prop( "disabled", false );
+      $( "[name='announcement[user_created_end_date]']", form ).prop( "disabled", false );
+    }
+  } );
+
+  // Enable / disable logged_in input when inputs that require a signed in user change
+  var inputsRequiringLoggedIn = $( "[name='announcement[user_created_start_date]'], [name='announcement[user_created_end_date]']" );
+  inputsRequiringLoggedIn.change( function ( ) {
+    // if any of the inputsRequiringLoggedIn have a value
+    const inputsRequiringLoggedInSet = inputsRequiringLoggedIn
+      .toArray( )
+      .some( input => $( input ).val( ) );
+    var form = $( this ).parents( "form" ).get( 0 );
+    if ( inputsRequiringLoggedInSet ) {
+      // Disable logged_in input
+      $( "[name='announcement[target_logged_in]']", form ).prop( "disabled", true );
+      // Check the yes option
+      $( "[name='announcement[target_logged_in]'][value='yes']", form ).prop( "checked", true );
+    } else {
+      // Enable logged_in input
+      $( "[name='announcement[target_logged_in]']", form ).prop( "disabled", false );
+      // Check the any option
+      $( "[name='announcement[target_logged_in]'][value='any']", form ).prop( "checked", true );
     }
   } );
 } );
