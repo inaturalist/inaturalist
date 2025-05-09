@@ -59,7 +59,11 @@
       = f.text_area :body
   .row.stacked.upstacked
     .col-xs-12
-      %details.panel.panel-default
+      = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
+        = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
+        = f.radio_button :target_logged_in, Announcement::YES, label: t( :logged_in ), inline: true
+        = f.radio_button :target_logged_in, Announcement::NO, label: t( :logged_out ), inline: true
+      %details#logged-in-options.panel.panel-default
         %summary.panel-heading=t :more_options
         .panel-body
           %h4
@@ -112,10 +116,6 @@
                 .col-xs-12
                   = f.check_box :prefers_target_unconfirmed_users, label_after: true
             .col-xs-4
-              = f.form_field :target_logged_in, builder: BootstrapFormBuilder do
-                = f.radio_button :target_logged_in, Announcement::ANY, label: t( :any_ ), inline: true
-                = f.radio_button :target_logged_in, Announcement::YES, label: t( :logged_in ), inline: true
-                = f.radio_button :target_logged_in, Announcement::NO, label: t( :logged_out ), inline: true
               = f.form_field :target_curators, builder: BootstrapFormBuilder do
                 = f.radio_button :target_curators, Announcement::ANY, label: t( :any_ ), inline: true
                 = f.radio_button :target_curators, Announcement::YES, label: t( :curator ), inline: true

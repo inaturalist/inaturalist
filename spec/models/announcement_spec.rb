@@ -74,13 +74,14 @@ describe Announcement do
     end
 
     it "targets unconfirmed users" do
-      a = Announcement.make!( prefers_target_unconfirmed_users: true )
+      a = create( :announcement, target_logged_in: Announcement::YES, prefers_target_unconfirmed_users: true )
       expect( a.targeted_to_user?( User.make!( confirmed_at: Time.now ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( confirmed_at: nil ) ) ).to be true
     end
 
     it "targets unconfirmed users and last observation date" do
       annc = create :announcement,
+        target_logged_in: Announcement::YES,
         prefers_target_unconfirmed_users: true,
         last_observation_start_date: 2.days.ago
       confirmed_user = create :user
@@ -102,19 +103,29 @@ describe Announcement do
         donorbox_plan_type: "monthly"
       )
       non_monthly_supporter = User.make!
-      a = Announcement.make!( prefers_exclude_monthly_supporters: true )
+      a = create( :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true )
       expect( a.targeted_to_user?( monthly_supporter ) ).to be false
       expect( a.targeted_to_user?( non_monthly_supporter ) ).to be true
     end
 
     it "can target users by ID parity" do
-      a = Announcement.make!( target_group_type: "user_id_parity", target_group_partition: "even" )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        target_group_type: "user_id_parity",
+        target_group_partition: "even"
+      )
       expect( a.targeted_to_user?( User.make!( id: 100 ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( id: 101 ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( id: 200 ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( id: 201 ) ) ).to be false
 
-      a = Announcement.make!( target_group_type: "user_id_parity", target_group_partition: "odd" )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        target_group_type: "user_id_parity",
+        target_group_partition: "odd"
+      )
       expect( a.targeted_to_user?( User.make!( id: 300 ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( id: 301 ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( id: 400 ) ) ).to be false
@@ -122,13 +133,23 @@ describe Announcement do
     end
 
     it "can target users by ID sum parity" do
-      a = Announcement.make!( target_group_type: "user_id_digit_sum_parity", target_group_partition: "even" )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        target_group_type: "user_id_digit_sum_parity",
+        target_group_partition: "even"
+      )
       expect( a.targeted_to_user?( User.make!( id: 100 ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( id: 101 ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( id: 200 ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( id: 201 ) ) ).to be false
 
-      a = Announcement.make!( target_group_type: "user_id_digit_sum_parity", target_group_partition: "odd" )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        target_group_type: "user_id_digit_sum_parity",
+        target_group_partition: "odd"
+      )
       expect( a.targeted_to_user?( User.make!( id: 300 ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( id: 301 ) ) ).to be false
       expect( a.targeted_to_user?( User.make!( id: 400 ) ) ).to be false
@@ -136,7 +157,12 @@ describe Announcement do
     end
 
     it "can target users by created second parity" do
-      a = Announcement.make!( target_group_type: "created_second_parity", target_group_partition: "even" )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        target_group_type: "created_second_parity",
+        target_group_partition: "even"
+      )
       expect( a.targeted_to_user?( User.make!( created_at: "2024-01-01 00:00:00" ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( created_at: "2024-01-01 00:00:00" ) ) ).to be true
       expect( a.targeted_to_user?( User.make!( created_at: "2024-01-01 00:00:01" ) ) ).to be false
@@ -146,19 +172,30 @@ describe Announcement do
     end
 
     it "can target donors by donation date" do
-      a = Announcement.make!( include_donor_start_date: Date.today )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        include_donor_start_date: Date.today
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be true
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be false
       expect( a.targeted_to_user?( User.make! ) ).to be false
       expect( a.targeted_to_user?( nil ) ).to be false
 
-      a = Announcement.make!( include_donor_end_date: 1.day.ago )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        include_donor_end_date: 1.day.ago
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
       expect( a.targeted_to_user?( User.make! ) ).to be false
       expect( a.targeted_to_user?( nil ) ).to be false
 
-      a = Announcement.make!( include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        include_donor_start_date: 10.days.ago, include_donor_end_date: 1.day.ago )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 20.days.ago ).user ) ).to be false
@@ -167,24 +204,37 @@ describe Announcement do
     end
 
     it "can exclude donors by donation date" do
-      a = Announcement.make!( exclude_donor_start_date: Date.today )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        exclude_donor_start_date: Date.today
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be false
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be true
       expect( a.targeted_to_user?( User.make! ) ).to be true
-      expect( a.targeted_to_user?( nil ) ).to be true
+      expect( a.targeted_to_user?( nil ) ).to be false
 
-      a = Announcement.make!( exclude_donor_end_date: 1.day.ago )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        exclude_donor_end_date: 1.day.ago
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be true
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be false
       expect( a.targeted_to_user?( User.make! ) ).to be true
-      expect( a.targeted_to_user?( nil ) ).to be true
+      expect( a.targeted_to_user?( nil ) ).to be false
 
-      a = Announcement.make!( exclude_donor_start_date: 10.days.ago, exclude_donor_end_date: 1.day.ago )
+      a = create(
+        :announcement,
+        target_logged_in: Announcement::YES,
+        exclude_donor_start_date: 10.days.ago,
+        exclude_donor_end_date: 1.day.ago
+      )
       expect( a.targeted_to_user?( UserDonation.make!.user ) ).to be true
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 2.days.ago ).user ) ).to be false
       expect( a.targeted_to_user?( UserDonation.make!( donated_at: 20.days.ago ).user ) ).to be true
       expect( a.targeted_to_user?( User.make! ) ).to be true
-      expect( a.targeted_to_user?( nil ) ).to be true
+      expect( a.targeted_to_user?( nil ) ).to be false
     end
 
     describe "target_logged_in" do
@@ -217,15 +267,15 @@ describe Announcement do
       end
 
       it "can target curators" do
-        annc = create :announcement, target_curators: Announcement::YES
+        annc = create :announcement, target_logged_in: Announcement::YES, target_curators: Announcement::YES
         expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user, :as_curator ) ) ).to be true
         expect( annc.targeted_to_user?( create( :user ) ) ).to be false
       end
 
       it "can target non-curators" do
-        annc = create :announcement, target_curators: Announcement::NO
-        expect( annc.targeted_to_user?( nil ) ).to be true
+        annc = create :announcement, target_logged_in: Announcement::YES, target_curators: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user, :as_curator ) ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
       end
@@ -240,15 +290,15 @@ describe Announcement do
       end
 
       it "can target project admins" do
-        annc = create :announcement, target_project_admins: Announcement::YES
+        annc = create :announcement, target_logged_in: Announcement::YES, target_project_admins: Announcement::YES
         expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :project ).user ) ).to be true
         expect( annc.targeted_to_user?( create( :user ) ) ).to be false
       end
 
       it "can target non-project admins" do
-        annc = create :announcement, target_project_admins: Announcement::NO
-        expect( annc.targeted_to_user?( nil ) ).to be true
+        annc = create :announcement, target_logged_in: Announcement::YES, target_project_admins: Announcement::NO
+        expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :project ).user ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
       end
@@ -263,7 +313,7 @@ describe Announcement do
       end
 
       it "includes users with more than value" do
-        annc = create :announcement, min_identifications: 1
+        annc = create :announcement, target_logged_in: Announcement::YES, min_identifications: 1
         expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be false
         identifier = create :user, identifications_count: 2
@@ -281,8 +331,8 @@ describe Announcement do
       end
 
       it "includes users with less than value" do
-        annc = create :announcement, max_identifications: 2
-        expect( annc.targeted_to_user?( nil ) ).to be true
+        annc = create :announcement, target_logged_in: Announcement::YES, max_identifications: 2
+        expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         identifier = create :user, identifications_count: 1
         expect( identifier.identifications_count ).to eq 1
@@ -290,8 +340,8 @@ describe Announcement do
       end
 
       it "exclude users with more than value" do
-        annc = create :announcement, max_identifications: 2
-        expect( annc.targeted_to_user?( nil ) ).to be true
+        annc = create :announcement, target_logged_in: Announcement::YES, max_identifications: 2
+        expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         identifier = create :user, identifications_count: 10
         expect( identifier.identifications_count ).to eq 10
@@ -309,8 +359,8 @@ describe Announcement do
       end
 
       it "includes users with less than value" do
-        annc = create :announcement, max_observations: 2
-        expect( annc.targeted_to_user?( nil ) ).to be true
+        annc = create :announcement, target_logged_in: Announcement::YES, max_observations: 2
+        expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         identifier = create :user, observations_count: 1
         expect( identifier.observations_count ).to eq 1
@@ -318,8 +368,8 @@ describe Announcement do
       end
 
       it "exclude users with more than value" do
-        annc = create :announcement, max_observations: 2
-        expect( annc.targeted_to_user?( nil ) ).to be true
+        annc = create :announcement, target_logged_in: Announcement::YES, max_observations: 2
+        expect( annc.targeted_to_user?( nil ) ).to be false
         expect( annc.targeted_to_user?( create( :user ) ) ).to be true
         identifier = create :user, observations_count: 10
         expect( identifier.observations_count ).to eq 10
@@ -336,13 +386,18 @@ describe Announcement do
       end
 
       it "includes users created after value" do
-        annc = create :announcement, user_created_start_date: 2.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, user_created_start_date: 2.days.ago
         expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be true
       end
 
       it "excludes users created before value" do
-        annc = create :announcement, user_created_start_date: 2.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, user_created_start_date: 2.days.ago
         expect( annc.targeted_to_user?( create( :user, created_at: 3.day.ago ) ) ).to be false
+      end
+
+      it "excludes signed out users" do
+        annc = create :announcement, target_logged_in: Announcement::YES, user_created_start_date: 2.days.ago
+        expect( annc.targeted_to_user?( nil ) ).to be false
       end
     end
 
@@ -355,25 +410,30 @@ describe Announcement do
       end
 
       it "includes users created before value" do
-        annc = create :announcement, user_created_end_date: 1.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, user_created_end_date: 1.days.ago
         expect( annc.targeted_to_user?( create( :user, created_at: 2.day.ago ) ) ).to be true
       end
 
       it "excludes users created after value" do
-        annc = create :announcement, user_created_end_date: 2.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, user_created_end_date: 2.days.ago
         expect( annc.targeted_to_user?( create( :user, created_at: 1.day.ago ) ) ).to be false
+      end
+
+      it "excludes signed out users" do
+        annc = create :announcement, target_logged_in: Announcement::YES, user_created_end_date: 2.days.ago
+        expect( annc.targeted_to_user?( nil ) ).to be false
       end
     end
 
     describe "last_observation_start_date" do
       it "includes users with last observation after value" do
-        annc = create :announcement, last_observation_start_date: 2.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, last_observation_start_date: 2.days.ago
         obs = create :observation, created_at: 1.day.ago
         expect( annc.targeted_to_user?( obs.user ) ).to be true
       end
 
       it "excludes users with last observation before value" do
-        annc = create :announcement, last_observation_start_date: 2.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, last_observation_start_date: 2.days.ago
         obs = create :observation, created_at: 3.day.ago
         expect( annc.targeted_to_user?( obs.user ) ).to be false
       end
@@ -381,13 +441,13 @@ describe Announcement do
 
     describe "last_observation_end_date" do
       it "includes users with last observation before value" do
-        annc = create :announcement, last_observation_end_date: 1.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, last_observation_end_date: 1.days.ago
         obs = create :observation, created_at: 2.day.ago
         expect( annc.targeted_to_user?( obs.user ) ).to be true
       end
 
       it "excludes users with last observation after value" do
-        annc = create :announcement, last_observation_end_date: 2.days.ago
+        annc = create :announcement, target_logged_in: Announcement::YES, last_observation_end_date: 2.days.ago
         obs = create :observation, created_at: 1.day.ago
         expect( annc.targeted_to_user?( obs.user ) ).to be false
       end
@@ -397,6 +457,7 @@ describe Announcement do
       app_to_include = create :oauth_application, official: true
       app_to_exclude = create :oauth_application, official: true
       annc = create :announcement,
+        target_logged_in: Announcement::YES,
         include_observation_oauth_application_ids: [app_to_include.id],
         exclude_observation_oauth_application_ids: [app_to_exclude.id]
       include_user = create( :observation, oauth_application: app_to_include ).user
