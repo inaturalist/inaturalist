@@ -62,7 +62,7 @@ $( function ( ) {
   // Enable / disable inputs that require a signed in user
   $( "[name='announcement[target_logged_in]']" ).change( function ( ) {
     var form = $( this ).parents( "form" ).get( 0 );
-    const val = $( "[name='announcement[target_logged_in]']:checked", form ).val( );
+    var val = $( "[name='announcement[target_logged_in]']:checked", form ).val( );
 
     // show / hide the options that concern users
     if ( val === "yes" ) {
