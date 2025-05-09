@@ -1026,8 +1026,6 @@ nb:
   confirmation_email_sent_at_datetime: Bekreftelsesepost sendt den %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bekreftet den %{date}
-  confirming_ids: Bekreftende ID'er
-  confirming_ids_description: Hvis du skrur av dette vil du ikke lenger bli varslet om ID-er som er enige med deg.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koble til
@@ -6925,8 +6923,6 @@ nb:
           Merk at taksonsiden vil vise bilder av dette taksonet og sine etterkommere. Bildene valgt for dette taksonet vil imidlertid vises først. Det første bildet vil være standardbildet overalt på siden.
         rare_desc: Minst observerte truede taksa
         rare_in_place_desc_html: Minst observerte truede taksa i <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Sidekuratorer har midlertidig slått av visning av <a href="%{url}">dette innholdet fra Wikipedia</a>. Du kan hjelpe ved å redigere siden på Wikipedia for å gjøre den passende for dette taksonet, eller ved å markere dette taksonet for å gjøre sidekuratorene oppmerksom på det.
         trending_desc: Mest-observerte taksa i den siste måneden
         trending_in_place_desc_html: Mest-observerte taksa i den siste måneden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i dette taksonet som ikke har blitt observert ennå.
@@ -7386,8 +7382,6 @@ nb:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d. %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -7546,7 +7540,6 @@ nb:
         citation: Sitering
       taxon:
         ancestry: Herkomst
-        auto_description: Auto-beskrivelse
         auto_photos: Automatiske bilder
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -7848,9 +7841,6 @@ nb:
             login:
               must_begin_with_a_letter: |
                 må begynne med en bokstav, ikke inneholde mellomrom, og bruke kun bokstaver, tall, bindestreker og liggende streker
-            email:
-              must_look_like_an_email_address: må se ut som en e-postadresse
-              domain_is_not_supported: domene støttes ikke
         user_block:
           attributes:
             base:

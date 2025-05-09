@@ -1049,7 +1049,6 @@ es-AR:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmado el %{date}
   confirming_ids: Confirmando la identificación
-  confirming_ids_description: Si lo desactivas, ya no se te notificará sobre identificaciones que coincidan con la tuya.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Conectar
@@ -6929,8 +6928,6 @@ es-AR:
           la imagen por defecto utilizada en todo el sitio.
         rare_desc: Taxones amenazados menos observados
         rare_in_place_desc_html: Taxones amenazados menos observados en <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Los curadores del sitio han inhabilitado temporalmente <a href="%{url}">este contenido desde Wikipedia</a>. Puedes ayudar editando la página en Wikipedia para adecuarla a este taxón, o marcando este taxón para llamar la atención de los curadores del sitio.
         trending_desc: Taxones más observados en el último mes
         trending_in_place_desc_html: Taxones más observados en el último mes en <a href="%{url}">%{place}</a>
         wanted_desc: Especies en este taxón que aún no se han observado.
@@ -7326,8 +7323,6 @@ es-AR:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d/%m/%Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
@@ -7432,7 +7427,6 @@ es-AR:
         url: Enlace
         citation: Bibliografía
       taxon:
-        auto_description: Cargar automáticamente la descripción
         auto_photos: Cargar fotos automáticamente
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Estado de conservación
@@ -7651,9 +7645,6 @@ es-AR:
               must_begin_with_a_letter: |
                 tiene que empezar con una letra, sin contener espacios, y usar sólo
                 letras, números, guiones, y guiones bajos
-            email:
-              must_look_like_an_email_address: debe asemejarse a una dirección de correo electrónico
-              domain_is_not_supported: el dominio no está soportado
         user_parent:
           attributes:
             email:

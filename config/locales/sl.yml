@@ -1021,8 +1021,6 @@ sl:
   confirmation_email_sent_at_datetime: Potrditveno sporočilo poslano %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potrjeno %{date}
-  confirming_ids: Potrditvene določitve
-  confirming_ids_description: Če izklopite to možnost ne boste več obveščeni o določitvah, ki se ujemajo z vašimi.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Povežite
@@ -1423,6 +1421,10 @@ sl:
     Če se niste prijavili za račun na %{site_name}, prosim ignorirajte to sporočilo.
   devise_confirmation_instructions_please_click: |
     Preverite, prosim, svoj e-poštni naslov s klikom na spodnjo povezano.
+  #message informing the user the must confirm their email address to interact with other users
+  devise_confirmation_instructions_please_click2: |
+    Kliknite spodnjo povezavo, da potrdite svoj e-poštni naslov. Če ne potrdite svojega e-poštnega naslova
+    naslov, ne boste mogli komunicirati z vsebino drugih uporabnikov.
   devise_confirmation_instructions_resend_instructions: |
     Za uporabo iNaturalist morate imeti delujoč e-naslov. Ko ste se prijavili
     za račun, bi morali dobiti potrditveno sporočilo s povezavo, na kateri lahko
@@ -5121,6 +5123,31 @@ sl:
       monthly_supporters:
         become_a_monthly_supporter_of_inaturalist: Postanite mesečni podpornik iNaturalista
         become_a_monthly_supporter_of_inaturalist_caps: POSTANITE MESEČNI PODPORNIK INATURALISTA
+    email_confirmation:
+      click_here_to_resend_a_confirmation_email: Kliknite tukaj, če želite znova poslati potrditveno e-poštno sporočilo
+      #message displayed after users trigger sending a email to confirm their email address
+      confirmation_email_sent: Poslano potrditveno e-poštno sporočilo
+      #text displayed before showing a user the email address that we will
+      #resend a confirmation email to
+      here_is_the_email_colon: |
+        Tukaj je e-poštni naslov, na katerega bomo poslali potrditev:
+      #statement introducing suggestions for users that do no receive confirmation emails
+      if_you_do_not_receive_the_email_here_are_tips_colon: |
+        Če ne prejmete e-pošte, je tukaj nekaj nasvetov:
+      #statement telling users to contact us if they are not receiving confirmation emails
+      if_you_are_still_not_receiving_email_contact_us_html: Če še vedno ne prejemate potrditvenega e-poštnega sporočila, nas kontaktirajte na <a href="mailto:help+confirmation@inaturalist.org">help@inaturalist.org</a> Tako vam lahko pomagamo.
+      please_add_an_email_and_password: Dodajte e-poštni naslov in geslo, da ne boste izgubili dostopa do svojega računa
+      please_click_the_link_sent_to_email_to_confirm_html: Kliknite povezavo, poslano na <span class="email">%{email}</span> za potrditev e-poštnega naslova.
+      please_confirm_that_email_is_the_best_contact_html: Prosimo, potrdite, da <span class="email">%{email}</span> je najboljši način, da stopim v stik z vami. #message requesting users confirm their email address to be able to engage with other users
+      please_confirm_to_interact_and_access: Potrdite svoj e-poštni naslov za interakcijo z vsebino drugih uporabnikov in dostop do določenih strani. #message requesting that a user confirm their email address, displaying the email to confirm
+      please_confirm_your_email_address_html: Prosimo, potrdite svoj e-poštni naslov <span class="email">%{email}</span>. #statement used in areas that might contain a form allowing users to add comments, etc. This # informs users they must confirm their email address if they want to be able to interact
+      please_confirm_to_interact: Potrdite svoj e-poštni naslov za interakcijo z vsebino drugih uporabnikov
+      #statement used on pages that are not functional unless a user has confirmed their email address
+      please_confirm_to_use_this_page: Prosimo, potrdite svoj e-poštni naslov za uporabo te strani
+      #tip for users who do not receive confirmation emails to check if their email view is filtered
+      tips_check_email_filters: Preverite, ali so na voljo filtri, ki bi lahko odstranili naša e-poštna sporočila iz mape »Prejeto« #tip for users who do not receive confirmation emails to check their email spam folder
+      tips_check_your_spam_folder: Preverjanje mape z vsiljeno pošto
+      your_site_account_has_no_email: Tvoj %{site_name} račun nima e-poštnega naslova, povezanega z njim.
     geo_model:
       explain:
         nearby_map:
@@ -5194,6 +5221,17 @@ sl:
           Nova sporočila boste lahko pošiljal, ko boste dodali 3 preverljiva 
           opazovanja ali 3 določitve za druge. Za zdaj lahko berete in odgovarjate
           na sporočila, ki so vam jih poslali drugi.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction privilege
+        interaction_privilege_notice: |
+          Nova sporočila boste lahko pošiljali, ko potrdite e-poštno sporočilo
+          naslov. Za zdaj lahko berete in odgovarjate na sporočila, ki vam jih pošljejo drugi ljudje.
+        #Users cannot create messages if they lack the criteria for
+        #earning interaction or speech privilege
+        privilege_notice: |
+          Nova sporočila boste lahko pošiljali, ko potrdite e-poštno sporočilo
+          naslov in dodal tri preverljive ugotovitve ali tri identifikacije
+          za druge. Za zdaj lahko berete in odgovarjate na sporočila, ki vam jih pošljejo drugi ljudje.
       show:
         flag_notice_html: |
           Ta pogovor ste prijavili dne %{date}. Prijava bo ostala tudi, če izbrišete
@@ -5755,11 +5793,6 @@ sl:
           po spletni strani.
         rare_desc: Najmanj opazovani ogroženi taksoni
         rare_in_place_desc_html: Najmanj opazovani ogroženi taksoni v <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Kustosi so začasno iključili prikazovanje <a href="%{url}">te
-          vsebine iz Wikipedije</a>. Lahko pomagate pri urejanju te strani na
-          Wikipediji, da bo primerna za ta takson ali z prijavo tega taksona, da
-          pritegnete pozornost kustosov.
         trending_desc: Najbolj opazovani taksoni v zadnjem mesecu.
         trending_in_place_desc_html: Najbolj opazovani taksoni v zadnjem mesecu v <a href="%{url}">%{place}</a>
         wanted_desc: Vrste iz tega taksona, ki še nimajo opazovanj.
@@ -6180,8 +6213,6 @@ sl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -6340,7 +6371,6 @@ sl:
         citation: Navedba
       taxon:
         ancestry: Predniki
-        auto_description: Avtomatski opis
         auto_photos: Avtomatske fotografije
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -6454,6 +6484,7 @@ sl:
         requires_privilege_speech: |
           Da lahko to storite, morate imeti tri preverljiva opazovanja ali tri določitve za druge.
         requires_privilege_organizer: Da lahko to storite, morate imeti 50 preverljivih opazovanj
+        requires_privilege_interaction: Za to morate imeti potrjen e-poštni naslov
         taken: je že zaseden
         too_long:
           one: je predolgo (največ %{count} znak)
@@ -6672,9 +6703,6 @@ sl:
             login:
               must_begin_with_a_letter: |
                 se mora začeti s črko, ne sme vsebovati presledkov in sme vsebovati samo črke, številke, vezaje in podčrtaje
-            email:
-              must_look_like_an_email_address: mora imeti obliko zapisa e-poštnih naslovov.
-              domain_is_not_supported: nepodprta domena
         user_block:
           attributes:
             base:

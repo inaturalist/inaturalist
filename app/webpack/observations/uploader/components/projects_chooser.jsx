@@ -22,11 +22,7 @@ class ProjectsChooser extends SelectionBasedComponent {
 
   setUpProjectAutocomplete( ) {
     const input = $( ".projects input" );
-    if ( input.data( "uiAutocomplete" ) ) {
-      input.autocomplete( "destroy" );
-      input.removeData( "uiAutocomplete" );
-    }
-    input.projectAutocomplete( {
+    const opts = {
       resetOnChange: false,
       allowEnterSubmit: true,
       idEl: $( "<input/>" ),
@@ -49,7 +45,12 @@ class ProjectsChooser extends SelectionBasedComponent {
         input.val( "" ).blur( );
         setTimeout( () => input.focus( ).val( "" ), 500 );
       }
-    } );
+    };
+    try {
+      input.autocomplete( "option", opts );
+    } catch {
+      input.projectAutocomplete( opts );
+    }
   }
 
   removeProject( p ) {

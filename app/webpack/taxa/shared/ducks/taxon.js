@@ -396,6 +396,7 @@ export function fetchTaxon( taxon, options = { params: { } } ) {
         taxon_photos: {
           photo: {
             attribution: true,
+            attribution_name: true,
             id: true,
             license_code: true,
             small_url: true,

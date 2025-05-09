@@ -3849,6 +3849,39 @@ ALTER SEQUENCE public.project_assets_id_seq OWNED BY public.project_assets.id;
 
 
 --
+-- Name: project_faves; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.project_faves (
+    id bigint NOT NULL,
+    project_id integer,
+    user_id integer,
+    "position" integer,
+    created_at timestamp(6) without time zone NOT NULL,
+    updated_at timestamp(6) without time zone NOT NULL
+);
+
+
+--
+-- Name: project_faves_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.project_faves_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: project_faves_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.project_faves_id_seq OWNED BY public.project_faves.id;
+
+
+--
 -- Name: project_observation_fields; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4768,7 +4801,7 @@ CREATE TABLE public.taxa (
     iconic_taxon_id integer,
     is_iconic boolean DEFAULT false,
     auto_photos boolean DEFAULT true,
-    auto_description boolean DEFAULT true,
+    shows_wikipedia boolean DEFAULT true,
     version integer,
     name_provider character varying(255),
     delta boolean DEFAULT false,
@@ -6619,6 +6652,13 @@ ALTER TABLE ONLY public.project_assets ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
+-- Name: project_faves id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_faves ALTER COLUMN id SET DEFAULT nextval('public.project_faves_id_seq'::regclass);
+
+
+--
 -- Name: project_observation_fields id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -7727,6 +7767,14 @@ ALTER TABLE ONLY public.preferences
 
 ALTER TABLE ONLY public.project_assets
     ADD CONSTRAINT project_assets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: project_faves project_faves_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.project_faves
+    ADD CONSTRAINT project_faves_pkey PRIMARY KEY (id);
 
 
 --
@@ -8964,10 +9012,10 @@ CREATE INDEX index_identifications_on_created_at ON public.identifications USING
 
 
 --
--- Name: index_identifications_on_observation_id_and_created_at; Type: INDEX; Schema: public; Owner: -
+-- Name: index_identifications_on_observation_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_identifications_on_observation_id_and_created_at ON public.identifications USING btree (observation_id, created_at);
+CREATE INDEX index_identifications_on_observation_id ON public.identifications USING btree (observation_id);
 
 
 --
@@ -9941,6 +9989,20 @@ CREATE INDEX index_project_assets_on_asset_content_type ON public.project_assets
 --
 
 CREATE INDEX index_project_assets_on_project_id ON public.project_assets USING btree (project_id);
+
+
+--
+-- Name: index_project_faves_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_faves_on_project_id ON public.project_faves USING btree (project_id);
+
+
+--
+-- Name: index_project_faves_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_faves_on_user_id ON public.project_faves USING btree (user_id);
 
 
 --
@@ -11529,6 +11591,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20250326213516'),
 ('20250326223846'),
 ('20250327191619'),
-('20250328144900');
+('20250328144900'),
+('20250404192042'),
+('20250409212827'),
+('20250417172959');
 
 

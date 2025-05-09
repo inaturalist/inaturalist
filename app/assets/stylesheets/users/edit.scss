@@ -2,6 +2,7 @@
 @import "../shared/loading_spinner";
 @import "./_user_image";
 @import "./toggle_switch";
+@import "../shared/modals";
 
 $user-image-size: 65px;
 
@@ -12,9 +13,11 @@ $user-image-size: 65px;
 
 .save-button {
   justify-content: flex-end;
+  .status {
+    margin-inline-end: 12px;
+  }
   .saved-time {
     text-decoration: underline;
-    margin-right: 12px;
   }
   @media (max-width: 767.99px) {
     flex-direction: row-reverse;
@@ -213,7 +216,15 @@ body>div>[role="dialog"] .modal-dialog {
   margin: 30px auto;
 }
 
-.AlertModal.modal {
+body>div>[role="dialog"] .modal-body {
+  max-height: 400px;
+}
+.ConfirmModal.confirm .text {
+  margin-left: 0px;
+  width: 100%;
+}
+
+.AlertModal.modal, .ConfirmModal.modal {
   .modal-dialog {
     width: 100%;
     max-width: 60%;
@@ -530,6 +541,24 @@ body>div>[role="dialog"] .modal-dialog {
     font-weight: 700;
     margin-bottom: 5px;
   }
+
+  legend {
+    font-size: inherit;
+    border: 0 none;
+    margin: 0;
+  }
+}
+
+.bootstrap {
+  section,
+  fieldset {
+    margin-bottom: 20px;
+  }
+
+  section:last-child,
+  fieldset:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .TaxonNamePriorities {
@@ -542,46 +571,48 @@ body>div>[role="dialog"] .modal-dialog {
   .PlaceAutocomplete .ac-chooser {
     margin-top: 5px;
   }
-  .TaxonNamePriority {
-    min-height: 34px;
-    cursor: grab;
-    margin-bottom: 5px;
-    font-weight: 600;
+}
+
+.DraggableOption {
+  min-height: 34px;
+  cursor: grab;
+  margin-bottom: 5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  &.dragging {
+    opacity: 0.3;
+  }
+  &:hover {
+    background: #f5f5f5;
+  }
+  .move-icons {
     display: flex;
-    &.dragging {
-      opacity: 0.3;
+    align-items: center;
+    padding: 0px 8px 0px 15px;
+    span.glyphicon {
+      color: #aaa;
+      display: block;
+      font-size: 0.7em;
     }
-    &:hover {
-      background: #f5f5f5;
+    span.glyphicon-triangle-bottom {
+      margin-top: -3px;
     }
-    .move-icons {
-      display: flex;
-      align-items: center;
-      padding: 0px 8px 0px 15px;
-      span.glyphicon {
-        color: #aaa;
-        display: block;
-        font-size: 0.7em;
-      }
-      span.glyphicon-triangle-bottom {
-        margin-top: -3px;
-      }
+  }
+  .content {
+    padding: 8px 10px 6px 0;
+    flex: 2;
+  }
+  .place {
+    &:before {
+      content: " ("
     }
-    .lexicon {
-      padding: 8px 5px 6px 0;
-      flex: 2;
+    &:after {
+      content: ")"
     }
-    .place {
-      &:before {
-        content: " ("
-      }
-      &:after {
-        content: ")"
-      }
-    }
-    button {
-      float: right;
-    }
+  }
+  a {
+    margin-inline-start: 5px;
   }
 }
 
@@ -629,4 +660,15 @@ body>div>[role="dialog"] .modal-dialog {
 
 .chars-remaining {
   margin-top: 5px;
+}
+
+.FavoriteProjects {
+  .add-project {
+    display: flex;
+    .ProjectAutocomplete {
+      flex-grow: 2;
+      margin-inline-start: 30px;
+      margin-inline-end: 76px;
+    }
+  }
 }

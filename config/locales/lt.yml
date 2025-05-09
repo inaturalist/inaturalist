@@ -987,8 +987,6 @@ lt:
   confirm_new_password: Patvirtinkite Naują Slaptažodį
   confirm_now: Patvirtinti dabar
   confirm_your_info: Patvirtinkite savo informaciją
-  confirming_ids: Identifikacijų patvirtinimai
-  confirming_ids_description: Jei išjungsite, daugiau nebegausite pranešimų apie jūsų identifikacijų patvirtinimus.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Sujungti
@@ -5022,7 +5020,6 @@ lt:
         url: URL
         citation: Citata
       taxon:
-        auto_description: Automatinis aprašymas
         auto_photos: Automatinės nuotraukos
         locked: Užrakintas
         name: Pavadinimas
@@ -5149,10 +5146,6 @@ lt:
             taxon:
               too_many_photos: |
                 negalima turėti daugiau nei %{max} nuotraukų
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: turi atrodyti kaip el. pašto adresas
         user_block:
           attributes:
             base:

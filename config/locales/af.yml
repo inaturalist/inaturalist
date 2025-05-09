@@ -1,4 +1,7 @@
 af:
+  x_faves:
+    one: '%{count} gunsteling'
+    other: '%{count} gunstelinge'
   x_languages:
     one: "%{count} taal"
     other: "%{count} tale"
@@ -8,6 +11,9 @@ af:
   x_observations_:
     one: "%{count} Waarneming"
     other: "%{count} Waarnemings"
+  x_observations_html:
+    one: "<span class='count'>%{count}</span> Waarneming"
+    other: "<span class='count'>%{count}</span> Waarnemings"
   x_photos:
     one: "%{count} foto"
     other: "%{count} foto's"
@@ -20,11 +26,15 @@ af:
   x_species:
     one: '%{count} Spesie'
     other: '%{count} Spesies'
+  x_species_html:
+    one: "<span class='count'>%{count}</span> Spesies"
+    other: "<span class='count'>%{count}</span> Spesies"
   _100_day_trends: 100-dae neiging
   #Ascending alphabetical sort option. Could be alternatively be translated as
   #"Alphabetical (ascending)"
   a_to_z: "A tot Z"
   about_conservation_status: Oor Bewaringstatus
+  about_licenses: Aangaande lisensies
   #Header for a section describing taxon names
   about_names: Oor Name
   #Title for a section providing a text description of a place, @vow_or_con
@@ -49,6 +59,7 @@ af:
   #Header for a section listing the different ways you can trust a project
   about_trusting_projects_you_can_choose: |-
     Jy kan kies om weggesteekte koördinate te deel vir
+  account_settings: Rekening instellings
   accuracy: Akkuraatheid
   #Noun, as in "Ken-ichi's action was not acceptable"
   action: Aksie
@@ -131,9 +142,12 @@ af:
     mammals: Soogdiere
     other_animals: Ander Diere
     plants: Plante
+  already_have_an_account_log_in_html: Het jy reeds 'n rekening? <strong>Teken aan.</strong>
   amphibians: amfibieë
   android: Android
   animals: Diere
+  #Label for an option to show any place
+  any_place: Enige
   app_owner_application_inelligible: |
     Om 'n aansoek in te dien moet jou rekening minstens 2 maande oud wees en minstens 10 verbeterende identifiserings gemaak het in die afgelope maand.
   appropriate?: Van toepassing?
@@ -157,6 +171,13 @@ af:
   assessment: assessering
   assessment_has_benn_completed: Assessering is voltooid
   assessment_sections: Assessering seksies
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Ontplof
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Onontplof
   authority_list:
     cites: CITES
   back: Terug
@@ -181,6 +202,7 @@ af:
   back_to_your_profile: Terug na jou profiel
   be_the_first_to_fave_this_observation: Wees die eerste om hierdie waarneming onder jou gunstelinge te tel!
   birds: voëls
+  birthday: Verjaardag
   by_everyone: Deur almal
   by_user: "Deur %{user}"
   by_you: Deur jou
@@ -196,6 +218,15 @@ af:
   change_your_password: Verander Jou Wagwoord
   #Plural noun, as in changes to a taxon record over time
   changes: Veranderinge
+  check_this_box_if_html: |
+    Merk hierdie blokkie as u 'n <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Toeskrywing-Nie-kommersiële lisensie</a> tot
+    Opgelaaide inhoud. Dit beteken enigiemand kan jou foto's kopieer en hergebruik en/of
+    waarnemings sonder om toestemming te vra solank dit jou krediet gee
+    en moenie die werke kommersieel gebruik nie. Jy kan 'n ander lisensie kies of
+    verwyder die lisensie later, maar dit is die beste lisensie om te deel met
+    Navorsers.
   choose_a_field: Kies 'n veld
   choose_a_list_above: Kies 'n lys hier bo.
   choose_a_place: Kies 'n plek
@@ -239,6 +270,9 @@ af:
   computer_vision_model_included: Ingesluit
   computer_vision_model_included_desc: |
     Die huidige Rekenaarvisie Model weet van hierdie takson, so dit kan dalk ingesluit word in die outomatiese voorstelle met die "Visueel soortgelyk" aanduiding
+  confirming_ids_description: |
+    As jy dit afskakel, sal jy nie meer in kennis gestel word van ID's wat saamstem nie
+    met joune, tensy hulle bykomende opmerkings het.
   conservation_status_deleted: Bewaringstatus uitgevee
   conservation_status_updated: Bewaringstatus opgedateer
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -303,12 +337,14 @@ af:
   create_a_guide: Skep 'n Gids
   create_a_new_place: Skep 'n Nuwe Plek
   create_a_new_taxon: Skep 'n Nuwe Takson
+  create_an_account: Skep 'n rekening
   create_new_taxon: Skep 'n Nuwe Takson
   create_observations: Skep Waarnemings
   created: Geskep
   created_by: Geskep deur
   created_by_user_on_date: Geskep deur %{user} op %{date}
   created_on: Geskep op
+  dashboard: Paneelbord
   date_: Datum
   date_format:
     month:
@@ -348,10 +384,14 @@ af:
     Klik asseblief op die skakel hieronder om jou e-posadres te bevestig. As jy nie jou e-pos bevestig nie
     adres, sal jy nie met ander gebruikers se inhoud kan kommunikeer nie.
   devise_reset_password_instructions_hello_email: Hallo %{email}
+  edit_observations: Redigeer waarnemings
+  #Title for a page to edit an announcement
+  editing_announcement_x: Redigeer tans aankondiging %{id}
   email: E-pos
   email_notifications: E-poskennisgewings
   end: Einde
   endemic: Endemies
+  explore: Verken
   facebook: Facebook
   Family: Familie
   favorites: "Gunstelinge"
@@ -367,7 +407,9 @@ af:
   Genus: Genus
   go: Gaan
   google: Google
+  grid: Rooster
   group: Groep
+  guides: Gidse
   help: Help
   help_translate!: Help met Vertaling!
   high: Hoog
@@ -385,13 +427,30 @@ af:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: Onaktief
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraspesie ID's
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    As jy dit afskakel, sal jy nie meer in kennis gestel word van ID's van taksa nie
+    onder spesievlak (soos subspesies en variëteite) wat ooreenstem met jou
+    spesie-vlak ID. Jy sal in kennis gestel word as hulle nie met jou ID saamstem nie of
+    as hulle addisionele opmerkings bevat.
   insects: insekte
   instagram: Instagram
   iphone: iPhone
+  join_the_largest_group_of_naturalists_in_the_world: Sluit aan by die grootste groep natuurkundiges ter wêreld!
+  journal: Joernaal
+  journal_posts: Tydskrif Poste
+  labels: Etikette
   #Large photo size
   large: groot
   latitude: Breedtegraad
   leaderboards: Ranglyste
+  learn: Leer
   learn_more: Leer meer
   lexicons:
     afrikaans: Afrikaans
@@ -419,6 +478,10 @@ af:
   list: Lys
   list_views:
     photo: foto
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Gelys
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Nie gelys nie
   lists: Lyste
   locales:
     ar: Arabies
@@ -441,8 +504,14 @@ af:
     pt: Portugees
     pt-BR: Portugees (Brasilië)
     ru: Russies
+  log_in: Teken aan
+  #Adjectival phrase describing state of being logged in
+  logged_in: Aangemeld
+  #Adjectival phrase describing state of being logged out
+  logged_out: Afgemeld
   longitude: Lengtegraad
   low: Laag
+  managing_projects: Bestuur van projekte
   map: Kaart
   maps:
     overlays:
@@ -451,6 +520,7 @@ af:
   #Used to join media types required by a project, e.g. photos *and* sounds.
   #If a single word won't work, a symbol like "+" would be fine.
   media_and: en
+  meet: Ontmoet
   merge: Kombineer
   message: Boodskap
   messages: Boodskape
@@ -466,6 +536,8 @@ af:
   #Button to show more translators, as in people who added translations
   more__context_translators_caps: MEER
   more_caps: MEER
+  #Label for a button or section that shows additional options
+  more_options: Meer opsies
   more_photos: Meer foto's
   next: Volgende
   next_date_short: Volgende
@@ -474,6 +546,23 @@ af:
   next_post_short: Volgende
   next_taxon_short: Volgende
   'no': 'Nee'
+  #A user who is not a curator
+  non_curator: Nie-kurator
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Voorouer-ID's wat nie saamstem nie
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    As jy dit afskakel, sal jy nie meer in kennis gestel word wanneer iemand 'n byvoeg nie
+    ID van 'n takson wat 'n voorouer van die takson van jou ID is en nie
+    stem uitdruklik nie saam met die gemeenskapstakson nie. Jy sal in kennis gestel word as die
+    ID het bykomende opmerkings.
+  #A user who does not admin any projects
+  non_project_admin: Nie-projek admin
   none: Geen
   observation: Waarneming
   observation_: waarneming
@@ -493,13 +582,79 @@ af:
   observers: Waarnemers
   observer_short: Waarnemer
   of_places: plekke
+  or: Of
   organisms: Organisme
   owner: Eienaar
+  password: Wagwoord
+  password_confirmation: 'Wagwoord bevestiging'
   people: Mense
   photo: Foto
   photo_attribution: "Foto %{attribution}"
   photos_size:
     large: groot
+  pi_consent_desc_title: Oor persoonlike inligting
+  pi_consent_desc_html: |
+    <p>
+    Ons stoor persoonlike inligting soos gebruikersname en e-posadresse in
+    om rekeninge op hierdie webwerf te bestuur en om aan privaatheidswette te voldoen,
+    Ons het nodig dat u hierdie blokkie merk om aan te dui dat u tot hierdie gebruik instem
+    van persoonlike inligting. Om meer te wete te kom oor watter inligting ons
+    versamel en hoe ons dit gebruik, sien asseblief ons
+    <a href='%{privacy_url}' target='_blank'>Privaatheidsbeleid</a>
+    en ons <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaardes</a>.
+    </p>
+    <p>
+    Daar is geen manier om 'n iNaturalist-rekening te hê sonder om persoonlike te stoor nie
+    inligting, so die enigste manier om hierdie toestemming te herroep, is om jou
+    Rekening.
+    </p>
+  pi_consent_label: |
+    Ek stem in om iNaturalist toe te laat om beperkte soorte te stoor en te verwerk
+    persoonlike inligting oor my om my rekening te bestuur
+  pi_consent_child_label: |
+    Ek stem in om iNaturalist toe te laat om beperkte soorte te stoor en te verwerk
+    persoonlike inligting oor my kind om my kind se rekening te bestuur
+  data_transfer_consent_desc_title: Oor toestemming vir die oordrag van persoonlike inligting
+  data_transfer_consent_desc_html: |
+    <p>
+    Sommige wette oor dataprivaatheid, soos die algemene data van die Europese Unie
+    Beskermingsregulasie (GDPR), vereis uitdruklike toestemming om oor te dra
+    persoonlike inligting van hul jurisdiksies na ander jurisdiksies
+    waar die wetlike beskerming van hierdie inligting nie oorweeg word nie
+    Voldoende. Vanaf
+    <a href="https://en.wikipedia.org/wiki/Max_Schrems#Schrems_II">2020</a>,
+    die Europese Unie beskou die Verenigde State nie meer as 'n
+    jurisdiksie wat voldoende wetlike beskerming van persoonlike
+    inligting, spesifiek as gevolg van die moontlikheid van die Amerikaanse regering
+    toesig oor data wat die VSA binnekom. Dit is moontlik dat ander jurisdiksies
+    kan dieselfde mening hê.
+    </p>
+    <p>
+    Die gebruik van iNaturalist vereis die berging van persoonlike inligting soos u
+    e-posadres, word alle iNaturalist-data in die Verenigde State gestoor, en
+    Ons kan nie seker wees in watter regsjurisdiksie jy is wanneer jy gebruik nie
+    iNaturalist, so om aan privaatheidswette soos die GDPR te voldoen, moet jy
+    moet erken dat jy hierdie risiko en toestemming verstaan en aanvaar
+    om jou persoonlike inligting na iNaturalist se bedieners oor te dra in
+    die VSA.
+    </p>
+    <p>
+    Om meer te wete te kom oor watter inligting ons insamel en hoe ons dit gebruik,
+    Sien asseblief ons
+    <a href='%{privacy_url}' target='_blank'>Privaatheidsbeleid</a>
+    en ons <a href='%{terms_url}' target='_blank'>Gebruiksvoorwaardes</a>.
+    </p>
+    <p>
+    Daar is geen manier om 'n iNaturalist-rekening te hê sonder om persoonlike te stoor nie
+    inligting, so die enigste manier om hierdie toestemming te herroep, is om jou
+    Rekening.
+    </p>
+  data_transfer_consent_label: |
+    Ek stem in om toe te laat dat my persoonlike inligting na die Verenigde Koninkryk oorgedra word
+    State van Amerika
+  data_transfer_consent_child_label: |
+    Ek stem in om toe te laat dat my kind se persoonlike inligting aan die
+    Verenigde State van Amerika
   place: Plek
   place_geo:
     geo_planet_place_types:
@@ -521,6 +676,7 @@ af:
       time_zone: tydsone
       Town: Dorp
       town: dorp
+  places: Plekke
   places_name:
     albania: Albanië
     angola: Angola
@@ -566,8 +722,12 @@ af:
   plants: plante
   position: Posisie
   posts: Plasings
+  privacy: Privaatheid
   private_: Privaat
+  profile: Profiel
   project: Projek
+  #A user who admin's a project
+  project_admin: Projek admin
   project_group_label: Groep
   projects: Projekte
   ranks:
@@ -587,6 +747,7 @@ af:
   required: benodig
   required_: Benodig
   restore: Herstel
+  satellite: Satelliet
   search: Soek
   #Title of the Seek app: https://www.inaturalist.org/pages/seek_app
   seek: Seek
@@ -594,8 +755,10 @@ af:
   share: Deel
   share_caps: DEEL
   share_colon: "Deel:"
+  sign_out: Teken af
   sign_up: Registreer
   small: klein
+  site_stats: Webwerf Statistieke
   some_rights_reserved: sommige regte voorbehou
   sounds:
     sound: Klank
@@ -610,26 +773,40 @@ af:
   start: Begin
   stats: Statistieke
   status: Status
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Inteken
   suggestions: Voorstelle
+  taxa_info: Taksa Inligting
   taxon: Takson
   taxonomy: Taksonomie
   taxon_id: Takson ID
+  teachers_guide: Onderwyser se gids
   terms_service: Gebruiksvoorwaardes
+  terrain: Terrein
   text: Teks
   thank_you!: Dankie!
   thanks!: Dankie!
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_etc_utc: UTC
   today: Vandag
+  tos_privacy_guidelines_label: |
+    Ek stem in tot die <a href="/terms" target="_blank">Gebruiksvoorwaardes</a> En
+    <a href="/privacy" target="_blank">Privaatheidsbeleid</a>, en ek het hersien
+    Die <a href="/pages/community+guidelines" target="_blank">Gemeenskap riglyne</a>.
   total: Totaal
   'true': 'Waar'
   unblock: Deblokkeer
   unknown: Onbekend
   update: Opdateer
+  upload: Oplaai
   user: Gebruiker
   user_blocked: Gebruiker geblokkeer
   username: Gebruikersnaam
   username_or_email: Gebruikersnaam of e-pos
+  video_tutorials: Video tutoriale
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Bekyk jou geaffekteerde ID's
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gesoek
   weather: Weer
@@ -645,9 +822,101 @@ af:
   worldwide: Wêreldwyd
   year: Jaar
   'yes': "Ja"
+  yes_license_my_childs_observations: Ja, lisensieer my kind se foto's, klanke en waarnemings sodat wetenskaplikes die data kan gebruik (aanbeveel).
+  yes_license_my_observations_so_scientists_can_use: Ja, lisensieer my foto's, klanke en waarnemings sodat wetenskaplikes my data kan gebruik (aanbeveel).
   yesterday: Gister
+  your_observations: Jou waarnemings
+  your_recent_projects: Jou onlangse projekte
   verifiable: Verifieerbaar
   views:
+    announcements:
+      locales_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        Lokaliteit. Die keuse van 'n taal sonder 'n streek sal *nie* teiken
+        plekke met streke, byvoorbeeld as jy Engels gekies het, sal dit nie verskyn nie
+        vir mense wat Engels (VK) gekies het.
+      clients_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        Kliënt.
+      end_desc: |
+        Tyd in jou rekening tydsone wat hierdie aankondiging sal stop
+        Verskyn. Is van toepassing oor tydsones, sodat almal sal ophou sien
+        dit terselfdertyd, nie relatief tot hul plaaslike tyd nie.
+      ip_countries_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        IP-land.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Let daarop dat die skeppingsdatum van die gebruiker se mees onlangse geskep
+        waarneming in die kas geplaas word, so dit kan 'n paar uur neem om te teiken
+        in werking tree
+      observation_oauth_application_ids_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        Toepassing.
+      site_ids_desc: |
+        CMD- of SHIFT-klik om veelvuldige te kies. Kies "Alles" of maak nie
+        'n Seleksie sal die aankondiging aan alle gebruikers wys, ongeag
+        webwerf affiliasie.
+      start_desc: |
+        Tyd in jou rekening tydsone wat hierdie aankondiging sal begin
+        Verskyn. Van toepassing oor tydsones, sodat almal sal begin sien
+        dit terselfdertyd, nie relatief tot hul plaaslike tyd nie.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Teiken gebruikers volgens skenkingsgedrag
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Teiken gebruikers volgens identifikasiegedrag
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Teiken gebruikers volgens waarnemingsgedrag
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Teiken gebruikers volgens ander eienskappe
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Oor atlasse
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasse dra die wêreldwye verspreiding van 'n takson oor. Kurators maak
+          atlasse deur die struktuur van 'n atlas te definieer en die
+          gelyste taksa wat dit dryf.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Ontplof hierdie plek
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Ontplof hierdie plek
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Nog geen veranderinge aan hierdie atlas nie
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Onlangse atlasveranderings
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Onlangse genoteerde taksonveranderings
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Wys gelyste taksa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Hierdie atlas is nie tans aktief nie
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dit sal hierdie takson en al sy afstammelinge van kontrolelyste verwyder
+          geassosieer met hierdie plek en enige standaardplekke wat dit bevat. Dit
+          kan nie ongedaan gemaak word nie. Is jy seker jy wil dit doen?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Waarskuwing: daar is waarnemings wat nie deur hierdie atlas voorgestel word nie
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Klik hier om 'n bevestigings-e-pos weer te stuur
       #message displayed after users trigger sending a email to confirm their email address
@@ -715,6 +984,11 @@ af:
           "Life Stage=Egg": Ei
           "Sex=Female": Wyfie
           "Sex=Male": Mannetjie
+        site_curators_disabled_wikipedia_html: |
+          Werfkurators het wysing gedeaktiveer <a href="%{url}">Hierdie
+          inhoud van Wikipedia</a>. Jy kan help deur die bladsy te wysig op
+          Wikipedia om dit geskik te maak vir hierdie takson, of deur dit te merk
+          takson om dit onder die aandag van terreinkurators te bring.
     users:
       edit:
         #Checkbox label for user preference about what to receive in the daily email update
@@ -723,6 +997,44 @@ af:
         notification_preferences_messages: Boodskappe
         project_addition_preferences:
           any: Enige
+    welcome:
+      index:
+        connect_with_nature: Verbind met die natuur
+        explore_and_share: Verken en deel jou waarnemings uit die natuurlike wêreld.
+        how_it_works: Hoe dit werk
+        record_your_observations: Teken jou waarnemings aan
+        share_with_fellow_naturalists: Deel met mede-natuurkundiges
+        discuss_your_findings: Bespreek jou bevindinge
+        contribute_to_science: Dra by tot die wetenskap
+        science_desc_html: |
+          Elke waarneming kan bydra tot biodiversiteitswetenskap, van die
+          skaarsste skoenlapper tot die mees algemene agterplaasonkruid.  Ons deel jou
+          Bevindings met wetenskaplike databewaarplekke soos die
+          <a href='http://gbif.org' target='_blank'>Wêreldwye inligtingsfasiliteit vir biodiversiteit</a>
+          om wetenskaplikes te help om jou data te vind en te gebruik. Al wat jy hoef te doen is om
+          Neem.
+        nature_at_your_fingertips: Die natuur binne jou vingers
+        keep_track: Om rekord te hou
+        record_your_encounters: |
+          Teken jou ontmoetings met ander organismes aan en hou lewenslyste by,
+          alles in die wolk.
+        create_useful_data: Skep nuttige data
+        help_scientists: Help wetenskaplikes en hulpverradenbestuurders om te verstaan wanneer en waar organismes voorkom.
+        crowdsource_identifications: Crowdsource-identifikasies
+        connect_with_experts: Maak kontak met kundiges wat die organismes wat jy waarneem kan identifiseer.
+        become_a_citizen_scientist: Word 'n burgerwetenskaplike
+        find_a_project: "Soek 'n projek met 'n missie wat jou interesseer, of begin jou eie."
+        learn_about_nature: Leer oor die natuur
+        build_your_knowledge: Bou jou kennis op deur met ander natuurkundiges te praat en ander te help.
+        run_a_bioblitz: Hardloop 'n Bioblitz
+        hold_an_event: Hou 'n geleentheid waar mense probeer om soveel spesies as moontlik te vind.
+        works_on_all_your_devices: Werk op al jou toestelle
+        install_our_mobile_apps: |
+          Installeer ons mobiele toepassings sodat jy altyd kan waarneem, selfs sonder sel
+          Ontvangs of WiFi.
+        who_uses_site_name: "Wie gebruik %{site_name}?"
+        what_are_you_waiting_for: Waarvoor wag jy?
+        join_today: Sluit vandag aan
   date:
     day_names:
       - Sondag
@@ -766,11 +1078,58 @@ af:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     models:
       Identification: Identifikasie
       Photo: Foto
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Afwysbaar
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Sluit skenker se begindatum uit
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Sluit skenker se einddatum uit
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Sluit waarnemers van programme uit
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Sluit die begindatum van die skenker in
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Sluit skenker se einddatum in
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Sluit waarnemers van programme in
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-lande
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Laaste obs-begindatum
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Jongste obs-einddatum
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maksimum identifikasies
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min identifikasies
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maksimum waarnemings
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min waarnemings
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Plasing
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Teikenskepper (vir toetsing)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Teiken aangemeld
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Vroegste gebruiker aanmelddatum
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Datum vir die aanmelding van die laaste gebruiker
       assessment:
         description: Beskrywing
       conservation_status:
@@ -789,6 +1148,8 @@ af:
         #Boolean attribute stating whether this taxon is active (i.e. available for use)
         is_active: Aktief?
         rank: Rang
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Wys Wikipedia
       taxon_link:
         #Taxon this link is associated with
         taxon: Takson
@@ -800,7 +1161,24 @@ af:
         place_id: Plek
     errors:
       messages:
+        must_look_like_an_email_address: moet soos 'n e-posadres lyk
         requires_privilege_interaction: moet 'n bevestigde e-posadres hê om dit te doen
+      models:
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: moet 'n enkele dag wees, nie 'n reeks nie
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Die Life-takson kan nie by taksonveranderinge betrokke wees nie
+        user:
+          attributes:
+            login:
+              domain_is_not_supported: domein word nie ondersteun nie
   i18n:
     inflections:
       "@gender":

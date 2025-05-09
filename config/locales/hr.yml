@@ -1138,8 +1138,6 @@ hr:
   confirmation_email_sent_at_datetime: E-mail za potvrdu poslan je u %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 'Datum potvrde: %{date}'
-  confirming_ids: Potvrđivanje ID-a
-  confirming_ids_description: Ako isključite ovu opciju, više nećete biti obaviješteni o ID-ovima koji se slažu s vašima.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Poveži
@@ -8240,11 +8238,6 @@ hr:
           zadana slika koja se koristi na cijeloj stranici.
         rare_desc: Najmanje opaženi ugroženi taksoni
         rare_in_place_desc_html: Najmanje opaženi ugroženi taksoni u <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Kustosi stranice su privremeno onemogućili prikazivanje <a href="%{url}">ovog
-          sadržaja s Wikipedije</a>. Možete pomoći uređivanjem stranice na
-          Wikipediji kako bi bila prikladna za ovaj takson ili označavanjem ovog
-          taksona kako bi privukli pažnju kustosa stranice.
         trending_desc: Najviše opaženi taksoni u posljednjem mjesecu
         trending_in_place_desc_html: Najviše opaženi taksoni u posljednjem mjesecu u <a href="%{url}">%{place}</a>
         wanted_desc: Vrste u ovom taksonu koje još nisu opažene.
@@ -8924,8 +8917,6 @@ hr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -9085,7 +9076,6 @@ hr:
         citation: Citiranje
       taxon:
         ancestry: Poreklo
-        auto_description: Automatski opis
         auto_photos: Automatske fotografije
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -9422,9 +9412,6 @@ hr:
               must_begin_with_a_letter: |
                 mora početi s slovom, ne smije sadržavati razmake i koristiti samo
                 slova, brojeve, crtice i podvlake
-            email:
-              must_look_like_an_email_address: mora izgledati kao adresa e-pošte
-              domain_is_not_supported: domena nije podržana
         user_block:
           attributes:
             base:

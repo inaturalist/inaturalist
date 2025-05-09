@@ -938,8 +938,6 @@ sr:
   confirmation_email_sent_at_datetime: Imejl za potvrdu poslat %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrđeno %{date}
-  confirming_ids: Potvrdni ID-jevi
-  confirming_ids_description: Ako isključiš ovu opciju, nećeš dobijati obaveštenja o ID-jevima koji se poklapaju sa tvojim.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Poveži se
@@ -5795,8 +5793,6 @@ sr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d. %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -6158,9 +6154,6 @@ sr:
             login:
               must_begin_with_a_letter: |
                 mora početi slovom, ne može sadržati razmake i moguće je upotrebiti samo slova, brojeve, crtice i donje crte
-            email:
-              must_look_like_an_email_address: mora biti prava imejl adresa
-              domain_is_not_supported: domen nije podržan
         user_block:
           attributes:
             base:

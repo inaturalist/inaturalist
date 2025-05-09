@@ -1034,8 +1034,6 @@ lv:
   confirm_new_password: Apstiprināt jauno paroli
   confirm_now: Apstiprināt tagad
   confirm_your_info: Apstiprināt informāciju par sevi
-  confirming_ids: Vairākkārt apstiprinātas ID
-  confirming_ids_description: Ja izslēgsi šo funkciju, vairs nesaņemsi paziņojumus par ID, kas sakrīt ar tavām ID.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Savienot
@@ -6506,8 +6504,6 @@ lv:
           Taksona lapā rādīsies taksona un tā zemāku pakāpju fotogrāfijas. Paša taksona fotogrāfijas būs redzamas pirmās. Pati pirmā redzamā fotogrāfija ir noklusējuma fotogrāfija, kas tiek lietota visā vietnē.
         rare_desc: Vismazāk novēroto apdraudēto sugu
         rare_in_place_desc_html: Vismazāk novērotie taksoni, kas ir apdraudēti no <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Vietnes pārziņi uz laiku atspējojuši <a href="%{url}">šo Vikipēdijas saturu</a>. Tu vari palīdzēt atrisināt šo problēmu, rediģējot šo Vikipēdijas lapu tā, lai tā būtu piemērota noteiktajam taksonam. Vēl iespējams pievienot taksonam karodziņu, lai iegūtu vietnes pārziņu uzmanību.
         trending_desc: Pēdējā mēnesī visnovērotākie taksoni
         trending_in_place_desc_html: Pēdējā mēnesī visnovērotākie taksoni no <a href="%{url}">%{place}</a>
         wanted_desc: Taksona sugas vēk nav nekad novērotas.
@@ -6967,8 +6963,6 @@ lv:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -7106,7 +7100,6 @@ lv:
         citation: Citāts
       taxon:
         ancestry: Priekštecība
-        auto_description: Autom. apraksta pievienošana
         auto_photos: Autom. fotogrāfijas
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -7357,9 +7350,6 @@ lv:
             login:
               must_begin_with_a_letter: |
                 jāsākas ar burtu, nedrīkst saturēt atstarpes, jāsastāv tikai no burtiem, skaitļiem, defisēm un apakšvītrām
-            email:
-              must_look_like_an_email_address: jāizskatās pēc e-pasta adreses
-              domain_is_not_supported: domēns nav atbalstīts
         user_block:
           attributes:
             base:

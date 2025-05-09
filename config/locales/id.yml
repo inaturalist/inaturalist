@@ -687,6 +687,13 @@ id:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, diunggah oleh %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Dibagi
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Disatukan
   authority_list:
     iucn_red_list: Daftar Merah IUCN
     natureserve: NatureServe
@@ -1015,7 +1022,9 @@ id:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Dikonfirmasi pada %{date}
   confirming_ids: ID Konfirmasi
-  confirming_ids_description: Jika Anda mematikan fungsi ini, Anda tidak akan lagi mendapatkan notifikasi mengenai ID yang setuju dengan Anda.
+  confirming_ids_description: |
+    Jika Anda menonaktifkan ini, Anda tidak akan lagi diberi tahu tentang ID yang setuju
+    dengan Anda kecuali mereka memiliki komentar tambahan.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hubungkan
@@ -1802,7 +1811,8 @@ id:
   export: Ekspor
   export_observations: Ekspor Pengamatan
   export_with_private_coordinates: Ekspor dengan Koordinat Tersembunyi
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Diekspor pada %{datetime}
   exporting: "Mengekspor..."
   #A third-party app or service the user has authorized to access their iNat
@@ -2276,6 +2286,10 @@ id:
   inaturalist_applications: "Aplikasi-aplikasi iNaturalist"
   inaturalist_places: "Tempat-tempat %{site_name}"
   info: Informasi
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ID Infraspesies
   input_taxon: Takson Masukan
   insects: serangga
   insect_life_stage: Tahap Kehidupan Serangga
@@ -2558,6 +2572,10 @@ id:
   list_with_two_items: "%{one} dan %{two}"
   listed_taxa: Daftar Taksa
   listed_taxon: Takson terdaftar
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Ditambahkan
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Dihapus
   listed_taxon_updated: Takson terdaftar diperbarui
   listing_lists: Pendaftaran daftar
   listing_project_assets: Pendaftaran Aset Proyek
@@ -2658,6 +2676,10 @@ id:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Keluar dari %{site_name}?"
   log_scale_label: Log
+  #Adjectival phrase describing state of being logged in
+  logged_in: Masuk
+  #Adjectival phrase describing state of being logged out
+  logged_out: Keluar
   #Status message shown while logging in
   logging_in: Sedang masuk...
   logo:
@@ -3106,7 +3128,23 @@ id:
   no_users_found_with_those_filters: Tidak ada pengguna yang ditemukan dengan saringan ini
   no_wikipedia_page_for_taxon: Tidak ada halaman Wikipedia untuk takson ini.
   noble_curators: "Kurator %{site} Yang Bagus"
+  #A user who is not a curator
+  non_curator: Nonkurator
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: ID Nenek Moyang yang tidak setuju
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Jika Anda menonaktifkan ini, Anda tidak akan lagi diberi tahu saat seseorang menambahkan
+    ID takson yang merupakan nenek moyang takson ID Anda dan tidak setuju secara tidak eksplisit dengan Takson Komunitas. Anda akan diberi tahu jika
+    ID-nya memiliki komentar tambahan.
   non_human?: Bukan manusia?
+  #A user who does not admin any projects
+  non_project_admin: Nonadmin proyek
   none: Tidak ada
   none_found: Tidak ditemukan
   normal: normal
@@ -4140,6 +4178,8 @@ id:
   profile_visibility_desc: |
     Untuk menjaga %{site_name} dari spam, profil pengguna hanya dapat dilihat publik jika pengguna sudah menambahkan beberapa pengamatan Kelas Riset.
   project: Proyek
+  #A user who admin's a project
+  project_admin: Admin proyek
   project_admins:
     other: Pengelola proyek
   project_aggregator_filter_error: |
@@ -6061,6 +6101,8 @@ id:
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Perhatikan bahwa tanggal pembuatan pengamatan yang paling baru dibuat oleh pengguna di-cache, jadi mungkin perlu beberapa jam hingga penargetannya diterapkan
+      observation_oauth_application_ids_desc: |
+        Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang aplikasinya.
       site_ids_desc: |
         Klik CMD atau Shift untuk memilih lebih dari satu. Jika Anda memilih semua atau tidak membuat pilihan, pengumuman akan ditampilkan untuk semua pengguna tanpa memandang afiliasi situsnya.
       start_desc: |
@@ -6079,6 +6121,45 @@ id:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Target pengguna berdasarkan atribut lain
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Tentang Atlas
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlas menyampaikan distribusi suatu takson di dunia. Kurator membuat
+          atlas dengan menentukan strukturnya dan mengkurasi
+          takson-takson yang menjadi dasar penyusunannya.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Bagi tempat ini
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Satukan tempat ini
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Belum ada perubahan pada atlas ini
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Perubahan Atlas Terbaru
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Perubahan Takson Terdaftar Terbaru
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Tampilkan taksa yang terdaftar
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Atlas ini saat ini tidak aktif
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tindakan ini akan menghapus takson ini dan semua keturunannya dari daftar periksa yang terkait dengan tempat ini serta Tempat Standar apa pun yang dikandungnya. Tindakan ini
+          tidak dapat dibatalkan. Apakah Anda yakin ingin melakukannya?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Peringatan: ada pengamatan yang tidak digambarkan oleh atlas ini
     content_freeze:
       content_freeze: Pembekuan Konten
       during_this_time: |
@@ -7608,8 +7689,6 @@ id:
           Ingat bahwa halaman takson akan menampilkan foto-foto takson ini dan turunannya. Namun, foto-foto yang terpilih untuk takson ini akan diperlihatkan pertama. Foto pertama adalah foto standar yang akan digunakan di seluruh situs.
         rare_desc: Taksa terancam yang paling sedikit diamati
         rare_in_place_desc_html: Taksa terancam yang paling sedikit diamati di <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Kurator situs telah mematikan penampilan <a href="%{url}">konten ini dari Wikipedia</a>. Anda dapat membantu mengubah halaman ini di Wikipedia untuk membuatnya patut untuk takson ini, atau menandai takson ini untuk meminta perhatian dari kurator situs.
         trending_desc: Taksa yang paling banyak diamati sejak bulan lalu
         trending_in_place_desc_html: Taksa yang paling banyak diamati sejak bulan lalu di <a href="%{url}">%{place}</a>
         wanted_desc: Spesies di dalam takson ini yang belum diamati.
@@ -8094,6 +8173,8 @@ id:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8132,6 +8213,8 @@ id:
     attributes:
       announcement:
         created_at: Dibuat pada
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Dapat ditutup
         updated_at: Diperbarui pada
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8147,10 +8230,16 @@ id:
         exclude_donor_start_date: Kecualikan tanggal mulai donor
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Kecualikan tanggal akhir donor
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Kecualikan pengamat dari aplikasi
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Sertakan tanggal mulai donor
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Sertakan tanggal akhir donor
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Sertakan pengamat dari aplikasi
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP Negara
         #Start of a date range that includes the viewer's most recent observation
@@ -8285,7 +8374,6 @@ id:
         citation: Kutipan
       taxon:
         ancestry: Nenek Moyang
-        auto_description: Deskripsi Otomatis
         auto_photos: Foto Otomatis
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8363,6 +8451,7 @@ id:
         empty: tidak boleh kosong
         equal_to:
           other: harus sama dengan %{count}
+        must_look_like_an_email_address: harus terlihat seperti alamat email
         even: harus genap
         exclusion: telah dipesan
         greater_than:
@@ -8477,6 +8566,9 @@ id:
                 tidak boleh lebih besar dari tanggal penambahan pengamatan
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: harus berada dalam kurun waktu 130 tahun terakhir
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: harus berupa satu hari, bukan rentang
         observation_field_value:
           attributes:
             value:
@@ -8578,6 +8670,11 @@ id:
             name:
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Takson Kehidupan tidak dapat diganti dalam perubahan takson
         taxon_name:
           attributes:
             lexicon:
@@ -8615,8 +8712,6 @@ id:
             login:
               must_begin_with_a_letter: |
                 harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung, dan garis bawah
-            email:
-              must_look_like_an_email_address: harus terlihat seperti alamat email
               domain_is_not_supported: domain tidak didukung
         user_block:
           attributes:

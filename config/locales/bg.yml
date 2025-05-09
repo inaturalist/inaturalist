@@ -786,8 +786,6 @@ bg:
   confirmation_email_sent_at_datetime: Потвърдително писмо изпратено на %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Потвърден на %{date}
-  confirming_ids: Потвърждаващи разпознавания
-  confirming_ids_description: Ако изключите това, повече няма да получавате известия за разпознавания потвърждаващи Вашето.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Свържи
@@ -4053,6 +4051,7 @@ bg:
   view_more_observations_near_x_place: "Виж още наблюдения край %{place} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Виж още наблюдения от %{project} на <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Виж още наблюдения на %{taxon} на <nobr>%{site_name} &raquo;</nobr>"
+  view_more_unreviewed: "Виж още нерецензирани"
   view_observation: Виж наблюдението
   view_observations: Виж наблюденията
   view_observation_flags: Виж маркерите на наблюдението
@@ -5148,8 +5147,6 @@ bg:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y, %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b, %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -5368,8 +5365,6 @@ bg:
             login:
               must_begin_with_a_letter: |
                 трябва да започва с буква, да не съдържа интервали и да съдържа само букви, числа, тирета и подчертавки.
-            email:
-              domain_is_not_supported: домейнът не се поддържа
         user_block:
           attributes:
             base:

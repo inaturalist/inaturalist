@@ -20,7 +20,7 @@ const Notifications = ( { profile } ) => (
             checked={profile.prefers_receive_mentions}
           />
         </div>
-        <div className="row">
+        <div className="row stacked">
           <div className="col-sm-9">
             <label>{I18n.t( "confirming_ids" )}</label>
             <p className="text-muted">{I18n.t( "confirming_ids_description" )}</p>
@@ -28,6 +28,26 @@ const Notifications = ( { profile } ) => (
           <ToggleSwitchContainer
             name="prefers_redundant_identification_notifications"
             checked={profile.prefers_redundant_identification_notifications}
+          />
+        </div>
+        <div className="row">
+          <div className="col-sm-9">
+            <label>{I18n.t( "infraspecies_ids" )}</label>
+            <p className="text-muted">{I18n.t( "infraspecies_ids_description" )}</p>
+          </div>
+          <ToggleSwitchContainer
+            name="prefers_infraspecies_identification_notifications"
+            checked={profile.prefers_infraspecies_identification_notifications}
+          />
+        </div>
+        <div className="row">
+          <div className="col-sm-9">
+            <label>{I18n.t( "non_disagreeing_ancestor_ids" )}</label>
+            <p className="text-muted">{I18n.t( "non_disagreeing_ancestor_ids_description" )}</p>
+          </div>
+          <ToggleSwitchContainer
+            name="prefers_non_disagreeing_identification_notifications"
+            checked={profile.prefers_non_disagreeing_identification_notifications}
           />
         </div>
       </SettingsItem>

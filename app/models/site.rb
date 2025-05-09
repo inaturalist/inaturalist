@@ -269,12 +269,17 @@ class Site < ApplicationRecord
   preference :developers_url, :string, default: "/pages/developers"
   preference :community_guidelines_url, :string, default: "/pages/community+guidelines"
   preference :jobs_url, :string, default: "/pages/jobs"
-  preference :twitter_url, :string
+
+  # apps
   preference :iphone_app_url, :string
   preference :android_app_url, :string
+
+  # social media
   preference :facebook_url, :string
   preference :twitter_url, :string
   preference :instagram_url, :string
+  preference :bluesky_url, :string
+
   preference :blog_url, :string
   preference :understanding_projects_url, :string
   preference :educators_guide_url, :string

@@ -26,7 +26,7 @@ class OauthApplication < Doorkeeper::Application
   ANDROID_APP_NAME = "iNaturalist Android App"
   IPHONE_APP_NAME = "iNaturalist iPhone App"
   SEEK_APP_NAME = "Seek"
-  INAT_NEXT_APP_NAME = "iNat Next"
+  INAT_NEXT_APP_NAME = "iNaturalist (iNat Next)"
 
   def redirect_uri_has_no_params
     if redirect_uri.to_s.split( "?" ).size > 1

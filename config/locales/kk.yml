@@ -792,7 +792,6 @@ kk:
   confirmation_email_sent_at_datetime: Растау электрондық хаты %{datetime} мекенжайында жіберілді
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: '%{date} күні расталды'
-  confirming_ids: Идентификацияларды растау
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Қосылу
@@ -3610,8 +3609,6 @@ kk:
           Фотоларды сол жақтан осы жерге сүйреңіз немесе қайта реттеу үшін фотоларды осы жерге сүйреңіз.
         photo_chooser_modal_explanation: |
           Таксон бетінде осы таксонның және оның ұрпақтарының фотосуреттері көрсетілетінін ескеріңіз. Бұл таксон үшін таңдалған фотосуреттер бірінші болып көрсетіледі. Бірінші фотосурет сайтта қолданылатын әдепкі сурет болады.
-        site_curators_disabled_wikipedia_html: |
-          Сайт кураторлары <a href="%{url}">Уикипедиядағы осы мазмұнды</a> көрсетуді уақытша тоқтатты. Сіз Уикипедиядағы бетті осы таксонға сәйкес ету үшін өңдеу арқылы немесе сайт кураторларының назарына жеткізу үшін осы таксонды белгілеу арқылы көмектесе аласыз.
         trending_desc: Соңғы айда ең көп байқалған таксондар
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> аймағында соңғы айда ең көп байқалған таксондар
     taxon_links:
@@ -3981,8 +3978,6 @@ kk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -4128,7 +4123,6 @@ kk:
         url: URL
         citation: Сілтеме
       taxon:
-        auto_description: Автоматты сипаттама
         auto_photos: Автоматты фотосуреттер
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -4358,9 +4352,6 @@ kk:
             login:
               must_begin_with_a_letter: |
                 әріптен басталып, бос орындар болмауы керек және тек әріптерді, сандарды, сызықшаларды және астын сызуларды пайдалану керек.
-            email:
-              must_look_like_an_email_address: электрондық пошта мекенжайы сияқты болуы керек
-              domain_is_not_supported: доменге қолдау көрсетілмейді
         user_block:
           attributes:
             base:

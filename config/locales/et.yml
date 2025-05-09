@@ -1023,8 +1023,6 @@ et:
   confirmation_email_sent_at_datetime: Kinnituskiri saadetud kuupäeval %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Kinnitatud kuupäeval %{date}
-  confirming_ids: Kinnitavad määratlused
-  confirming_ids_description: Kui sa lülitad selle välja, ei saa sa enam teateid määratluste kohta, mis kattuvad sinu omaga.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Ühenda
@@ -6032,8 +6030,6 @@ et:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d. %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d. %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%d. %B %Y"
@@ -6136,7 +6132,6 @@ et:
         in_text: Tekstis
         citation: Viide
       taxon:
-        auto_description: Automaatne kirjeldus
         auto_photos: Automaatsed fotod
         #The most conservative, global, IUCN Red List status for this taxon
         conservation_status: Kaitsestaatus
@@ -6286,8 +6281,6 @@ et:
             login:
               must_begin_with_a_letter: |
                 peab algama tähega, ei tohi sisalda tühikuid ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
-            email:
-              must_look_like_an_email_address: peab nägema välja nagu e-posti aadress
   doorkeeper:
     scopes:
       login: |

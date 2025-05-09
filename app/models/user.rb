@@ -16,7 +16,7 @@ class User < ApplicationRecord
   acts_as_voter
   acts_as_spammable fields: [:description],
     comment_type: "signup"
-  has_moderator_actions %w(suspend unsuspend)
+  has_moderator_actions %w(suspend unsuspend rename)
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = "admin"
@@ -72,6 +72,8 @@ class User < ApplicationRecord
   preference :project_addition_by, :string, default: PROJECT_ADDITION_BY_ANY
   preference :location_details, :boolean, default: false
   preference :redundant_identification_notifications, :boolean, default: true
+  preference :infraspecies_identification_notifications, :boolean, default: true
+  preference :non_disagreeing_identification_notifications, :boolean, default: true
   preference :skip_coarer_id_modal, default: false
   preference :hide_observe_onboarding, default: false
   preference :hide_follow_onboarding, default: false
@@ -142,6 +144,11 @@ class User < ApplicationRecord
   has_many :deleted_photos
   has_many :deleted_sounds
   has_many :email_suppressions, dependent: :delete_all
+  has_many :project_faves, dependent: :delete_all
+  has_many :faved_projects,
+    -> { order( "project_faves.position" => :asc ) },
+    through: :project_faves,
+    source: :project
   has_many :flags_as_flagger, inverse_of: :user, class_name: "Flag"
   has_many :flags_as_flaggable_user, inverse_of: :flaggable_user,
     class_name: "Flag", foreign_key: "flaggable_user_id", dependent: :nullify
@@ -286,9 +293,9 @@ class User < ApplicationRecord
   before_save :set_pi_consent_at
   before_save :set_data_transfer_consent_at
   before_save :set_locale
-  after_save :update_observation_licenses
-  after_save :update_photo_licenses
-  after_save :update_sound_licenses
+  after_save :update_observation_licenses_later
+  after_save :update_photo_licenses_later
+  after_save :update_sound_licenses_later
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_save :send_messages_by_unsuspended_user
@@ -351,6 +358,7 @@ class User < ApplicationRecord
   validate :validate_email_pattern
   validate :validate_email_domain_exists
   validate :validate_canonical_email_not_shared_with_suspended_account
+  validate :validate_faved_project_ids
 
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -428,6 +436,14 @@ class User < ApplicationRecord
     return unless uniqueness_scope.any?
 
     errors.add( :email, :taken )
+  end
+
+  def validate_faved_project_ids
+    return unless @faved_project_ids_errors.present?
+
+    @faved_project_ids_errors.each do | err |
+      errors.add :faved_project_ids, err
+    end
   end
 
   def icon_url_provided?
@@ -647,35 +663,57 @@ class User < ApplicationRecord
       detect{ |pa| pa.provider_name == "orcid" }.try( :provider_uid )
   end
 
-  def update_observation_licenses
-    return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
-    Observation.where( user_id: id ).
-      update_all( license: preferred_observation_license, updated_at: Time.now )
-    index_observations_later
-    true
+  def update_observation_licenses_later
+    return true unless [true, "1", "true"].include?( @make_observation_licenses_same )
+
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_observation_licenses_later": id },
+      queue: "throttled"
+    ).update_observation_licenses
   end
-  
-  def update_photo_licenses
+
+  def update_observation_licenses
+    Observation.where( user_id: id ).update_all( license: preferred_observation_license, updated_at: Time.now )
+    index_observations
+  end
+
+  def update_photo_licenses_later
     return true unless [true, "1", "true"].include?( @make_photo_licenses_same )
-    number = Photo.license_number_for_code( preferred_photo_license )
-    return true unless number
+
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_photo_licenses": id },
+      queue: "throttled"
+    ).update_photo_licenses
+  end
+
+  def update_photo_licenses
+    license_number = Photo.license_number_for_code( preferred_photo_license )
+    return true unless license_number
+
     Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
-      update_all( license: number, updated_at: Time.now )
-    index_observations_later
-    User.delay(
-      queue: "photos",
-      unique_hash: { "User::enqueue_photo_bucket_moving_jobs": id }
-    ).enqueue_photo_bucket_moving_jobs( id )
-    true
+      update_all( license: license_number, updated_at: Time.now )
+    index_observations
+    User.enqueue_photo_bucket_moving_jobs( id )
+  end
+
+  def update_sound_licenses_later
+    return true unless [true, "1", "true"].include?( @make_sound_licenses_same )
+
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::update_sound_licenses": id },
+      queue: "throttled"
+    ).update_sound_licenses
   end
 
   def update_sound_licenses
-    return true unless [true, "1", "true"].include?(@make_sound_licenses_same)
-    number = Photo.license_number_for_code(preferred_sound_license)
-    return true unless number
-    Sound.where( user_id: id ).update_all( license: number, updated_at: Time.now )
-    index_observations_later
-    true
+    license_number = Photo.license_number_for_code( preferred_sound_license )
+    return true unless license_number
+
+    Sound.where( user_id: id ).update_all( license: license_number, updated_at: Time.now )
+    index_observations
   end
 
   def update_observation_sites_later
@@ -944,7 +982,10 @@ class User < ApplicationRecord
       Rails.logger.info "[INFO #{Time.now}] unique violation on #{u.login}, suggested login: #{suggestion}"
       u.update( login: suggestion )
     end
-    u.add_provider_auth( auth_info ) if u.valid? && u.persisted?
+    if u.valid? && u.persisted?
+      u.add_provider_auth( auth_info )
+      UserPrivilege.check( u.id, UserPrivilege::INTERACTION )
+    end
     u
   end
 
@@ -1585,6 +1626,10 @@ class User < ApplicationRecord
       self.spammer = false
       self.suspended_by_user = nil
       unsuspend!
+    elsif moderator_action.action == ModeratorAction::RENAME
+      new_login = User.suggest_login( User::DEFAULT_LOGIN )
+      self.login = new_login
+      save!
     end
   end
 
@@ -1674,10 +1719,15 @@ class User < ApplicationRecord
     Taxon.where( id: taxa_plus_ancestor_ids - previous_observed_taxon_ids )
   end
 
+  # Projects to display in the header for a signed-in user
   def header_projects
-    project_users.joins(:project).includes(:project).limit(7).
-      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at ASC" ) ).
-      map{ |pu| pu.project }.sort_by{ |p| p.title.downcase }
+    # First try projects the user has explicitly chosen
+    return faved_projects unless faved_projects.blank?
+
+    # Fall back to projects the user has joined and have been updated recently
+    project_users.joins( :project ).includes( :project ).limit( 7 ).
+      order( Arel.sql( "(projects.user_id = #{id}) DESC, projects.updated_at DESC" ) ).
+      map( &:project ).sort_by {| p | p.title.downcase }
   end
 
   def anonymous?
@@ -1785,5 +1835,39 @@ class User < ApplicationRecord
     return false if total < 3
 
     count_suspended.to_f / ( count_suspended + count_active ) >= 0.9
+  end
+
+  # Custom setter to allow control ove ProjectFaves by updating the user.
+  # Order of the array will be preserved. Note that we're using
+  # the @faved_project_ids_errors instance variable because if we add actual
+  # errors before potentially running valid?, those errors will get erased
+  # when validation actually happens.
+  def faved_project_ids=( project_ids )
+    @faved_project_ids_errors ||= []
+    if project_ids.size > ProjectFave::LIMIT_PER_USER
+      @faved_project_ids_errors << :cannot_include_more_than_7_projects
+      return
+    end
+
+    projects = Project.where( id: project_ids )
+    if projects.size != project_ids.size
+      @faved_project_ids_errors << :must_all_exist
+      return
+    end
+
+    # Create and destroy ProjectFaves, analagous to have HABTM relations work.
+    # Comes with the potential for problems if another validation error stops
+    # the user from being saved *after* this happens.
+    if project_ids.blank?
+      ProjectFave.where( user_id: id ).delete_all
+    else
+      ProjectFave.where( user_id: id ).where( "project_id NOT IN (?)", project_ids ).delete_all
+    end
+    project_ids.each_with_index do | project_id, position |
+      fave = project_faves.detect {| existing_fave | existing_fave.project_id == project_id }
+      fave ||= project_faves.build( project_id: project_id )
+      fave.position = position
+      fave.save!
+    end
   end
 end

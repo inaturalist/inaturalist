@@ -862,8 +862,6 @@ kn:
   confirm_new_password: ಹೊಸ ಗುಪ್ತಪದವನ್ನು ಖಚಿತಪಡಿಸಿ
   confirm_now: ಈಗ ಖಚಿತಪಡಿಸಿ
   confirm_your_info: ನಿಮ್ಮ ಮಾಹಿತಿಯನ್ನು ಖಚಿತಪಡಿಸಿ
-  confirming_ids: ID ಗಳನ್ನು ಖಚಿತಪಡಿಸಲಾಗುತ್ತಿದೆ
-  confirming_ids_description: ನೀವು ಇದನ್ನು ಟರ್ನ್ ಆಫ್ ಮಾಡಿದಲ್ಲಿ, ನಿಮ್ಮದರ ಜೊತೆ ಸಮ್ಮತಿಸುವ IDಗಳ ಬಗ್ಗೆ ಇನ್ನೆಂದಿಗೂ ಸೂಚನೆಗಳು ದೊರಕುವುದಿಲ್ಲ.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: ಸಂಪರ್ಕಿಸಿ
@@ -5746,8 +5744,6 @@ kn:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -5873,7 +5869,6 @@ kn:
         citation: ಉಲ್ಲೇಖ
       taxon:
         ancestry: ಪೀಳಿಗೆ
-        auto_description: ಸ್ವಯಂ ವಿವರಣೆಗಳು
         auto_photos: ಸ್ವಯಂ ಚಿತ್ರಗಳು
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -6087,9 +6082,6 @@ kn:
               must_begin_with_a_letter: |
                 ಒಂದು ಅಕ್ಷರದಿಂದ ಆರಂಭವಾಗಬೇಕು, ಖಾಲಿಜಾಗವಿರಬಾರದು, ಹಾಗೂ ಕೇವಲ ಅಕ್ಷರಗಳು, ಅಂಕೆಗಳು, 
                 ಅಡ್ಡಗೆರೆಗಳು ಮತ್ತು ಅಡಿಗೆರೆಗಳನ್ನು ಮಾತ್ರ ಬಳಸಿ.
-            email:
-              must_look_like_an_email_address: ಮಿಂಚೆಯು ಮಿಂಚೆ ವಿಳಾಸದಂತೆ ಕಾಣಬೇಕು
-              domain_is_not_supported: ಡೊಮೈನ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ
         user_block:
           attributes:
             base:

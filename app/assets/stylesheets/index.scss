@@ -655,10 +655,7 @@ ul.leafylist li li:first-child {
     }
     .social-media {
       display: flex;
-      justify-content: center;
-    }
-    .social-media-link {
-      margin-left: 15%;
+      justify-content: space-around;
     }
   }
 
@@ -713,7 +710,8 @@ ul.leafylist li li:first-child {
       left: 1px;
     }
   }
-  .social-media-link.facebook {
+  .social-media-link.facebook,
+  .social-media-link.bluesky {
     background-color: #1877f2;
     line-height: $social-media-link-dim - 2px;
     @media (min-width: 1200px) {
@@ -730,6 +728,12 @@ ul.leafylist li li:first-child {
   }
   .social-media-link.facebook:before {
     display: none;
+  }
+  .social-media-link.bluesky {
+    background-color: #1185fe;
+    img {
+      filter: saturate(0%) invert(100%);
+    }
   }
   .social-media-link.instagram {
     background: white;
@@ -1538,6 +1542,21 @@ table .numeric { text-align: center; }
   top: 10px;
   right: 10px;
   font-weight: bold;
+}
+.admin-lower-right:before {
+  top: inherit;
+  bottom: 10px;
+  right: 10px;
+}
+[dir = "rtl"] {
+  .admin:before {
+    left: reset;
+    right: 10px;
+  }
+  .admin-lower-right:before {
+    left: 10px;
+    right: reset;
+  }
 }
 
 .curatorsonly {
@@ -2379,7 +2398,24 @@ $header-line-height: 34px;
     line-height: 15px;
     margin: 3px 0;
   }
+
+  .communitytab {
+    .dropdown-menu {
+      img {
+        margin-inline-end: 3px;
+      }
+      .fa-suitcase {
+        margin-inline-start: 1px;
+        margin-inline-end: 4px;
+      }
+      .fa-pencil {
+        margin-inline-start: 2px;
+        margin-inline-end: 6px;
+      }
+    }
+  }
 }
+
 #footer-locale-chooser {
   .dropdown-menu {
     overflow-y: scroll;
@@ -2438,4 +2474,39 @@ $header-line-height: 34px;
 }
 .flex-grow-1 {
   flex-grow: 1 !important;
+}
+
+$periwinkle-filter: invert(49%) sepia(19%) saturate(1060%) hue-rotate(188deg) brightness(86%) contrast(87%);
+
+.btn-inativersary,
+.bootstrap .btn-inativersary {
+  position: relative;
+  top: -0.2em;
+  margin-inline-start: 3px;
+  line-height: 0;
+  img {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: -1px;
+    filter: $periwinkle-filter;
+    margin-inline: 3px;
+  }
+  i.fa {
+    font-size: 12px;
+  }
+}
+
+.InativersaryOverlay {
+  .contents {
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    img {
+      width: 100px;
+      height: 100px;
+      filter: $periwinkle-filter;
+      margin-inline-end: 20px;
+    }
+  }
 }

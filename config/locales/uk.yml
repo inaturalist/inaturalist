@@ -1041,8 +1041,6 @@ uk:
   confirm_new_password: Підтвердити новий пароль
   confirm_now: Підтвердити зараз
   confirm_your_info: Підтвердіть вашу інформацію
-  confirming_ids: Визначення на підтвердження
-  confirming_ids_description: Якщо ви вимкнете це, ви більше не отримуватимете сповіщень про визначення, які підтверджують ваші.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Під'єднати
@@ -6374,10 +6372,6 @@ uk:
           Зверніть увагу, що на сторінці таксону відображені світлини цього таксону та його дочірніх таксонів. Утім, світлини, обрані для цього таксону, будуть показані першими. Першим фото буде стандартне зображення, яке використовується на всьому сайті.
         rare_desc: Таксони під загрозою із найменшою кількістю спостережень
         rare_in_place_desc_html: Таксони під загрозою із найменшою кількістю спостережень у <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Куратори сайту тимчасово вимкнули показ <a href="%{url}">цього
-          вмісту з Вікіпедії</a>. Ви можете допомогти у редагуванні сторінки Вікіпедії, зробивши її відповідною цьому таксонові. Також ви можете позначити таксон прапорцем,
-          щоб привернути до нього увагу кураторів сайту.
         trending_desc: Найчастіше спостережені таксони за останній місяць
         trending_in_place_desc_html: 'Найчастіше спостережені таксони за останній місяць у такому місці: <a href="%{url}">%{place}</a>'
         wanted_desc: Види цього таксону, яких ще не спостерігали.
@@ -6869,8 +6863,6 @@ uk:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -6986,7 +6978,6 @@ uk:
         url: URL-адреса
         citation: 'Як цитувати:'
       taxon:
-        auto_description: Автоматичний опис
         auto_photos: Автоматичні фото
         locked: Заблоковано
         name: Назва
@@ -7190,9 +7181,6 @@ uk:
               must_begin_with_a_letter: |
                 має починатися з літери, не містити пробілів і використовувати лише
                 літери, цифри, дефіси та підкреслення
-            email:
-              must_look_like_an_email_address: повинне бути схожим на адресу електронної пошти
-              domain_is_not_supported: домен не підтримується
         user_block:
           attributes:
             base:

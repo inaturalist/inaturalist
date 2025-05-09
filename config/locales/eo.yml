@@ -2108,7 +2108,6 @@ eo:
         url: Retadreso
         citation: Citaĵo
       taxon:
-        auto_description: Aŭtomata priskribo
         auto_photos: Aŭtomataj fotoj
         locked: Ŝlosita
         name: Nomo
@@ -2159,10 +2158,6 @@ eo:
             taxon:
               too_many_photos: |
                 ne povas enhavi pli ol %{max} fotoj
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: devas ŝajni retpoŝta adreso
   doorkeeper:
     flash:
       applications:

@@ -5,7 +5,14 @@
     .bootstrap .table > tbody > tr.reply > td {vertical-align: top; padding-top: 20px;}
     tr.reply h3 { margin-top: 0; }
     .messages > tbody > tr:first-child > td { border-top: 0 transparent; }
-    td.body {overflow:hidden; max-width: 600px; }
+    td.from .usericon {
+      margin-inline-end: 5px;
+    }
+    td.body {
+      overflow:hidden;
+      max-width: 600px;
+      width: 100%;
+    }
     textarea {min-height:300px;}
 = content_for :extrajs do
   = javascript_include_tag "messages/show"

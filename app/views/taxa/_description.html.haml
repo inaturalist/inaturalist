@@ -3,9 +3,13 @@
     @description ||= "<p>#{@taxon.wikipedia_summary}</p>".html_safe
   end
   css_class = "clear taxon_description"
+  describer_is_wikipedia = (
+    @describer.is_a?( TaxonDescribers::Wikipedia ) ||
+    @describer.class.ancestors.include?( TaxonDescribers::Wikipedia )
+  )
   if @describer
     css_class += " #{@describer.name.split('::').last.underscore}_description"
-    if @describer.is_a?( TaxonDescribers::Wikipedia ) || @describer.class.ancestors.include?( TaxonDescribers::Wikipedia )
+    if describer_is_wikipedia
       css_class += " wikipedia_description"
     end
   end
@@ -19,9 +23,9 @@
     - else
       %a{ href: @describer_url } Wikipedia
   - if @description.blank?
-    %p.nocontent.meta
-      - if @describer == TaxonDescribers::Wikipedia || @describer.blank?
-        - if @taxon.auto_description?
+    %p.nocontent.meta.center-block
+      - if describer_is_wikipedia || @describer.blank?
+        - if @taxon.shows_wikipedia?
           =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
         - else
           =t "views.taxa.show.site_curators_disabled_wikipedia_html", url: @describer_url
@@ -29,7 +33,7 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
-  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist )
+  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist ) && @taxon.shows_wikipedia?
     %hr
     .alert.alert-warning.upstacked
       %p

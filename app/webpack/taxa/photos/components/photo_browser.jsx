@@ -30,6 +30,7 @@ const PhotoBrowser = ( {
   showTaxonPhotoModal,
   selectedTerm,
   selectedTermValue,
+  taxon,
   terms,
   showTaxonGrouping,
   place,
@@ -102,28 +103,54 @@ const PhotoBrowser = ( {
   );
   const renderGroupedPhotos = ( ) => (
     <div>
-      { sortedGroupedPhotos.map( ( group, i ) => (
-        <div key={`group-${group.groupName}`} className={`photo-group ${i === 0 ? "first" : ""}`}>
-          <h3>
-            { group.groupObject ? (
-              <SplitTaxon
-                taxon={group.groupObject}
-                user={config.currentUser}
-                url={urlForTaxonPhotos(
-                  group.groupObject,
-                  $.deparam( window.location.search.replace( /^\?/, "" ) )
-                )}
-              />
-            ) : I18n.t( `controlled_term_labels.${_.snakeCase( group.groupName )}`, { defaultValue: group.groupName } ) }
-          </h3>
-          <div className="photos">
-            { group.observationPhotos.length === 0 ? (
-              <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
-            ) : null }
-            { renderObservationPhotos( group.observationPhotos ) }
+      { sortedGroupedPhotos.map( ( group, i ) => {
+        const title = grouping.param === "taxon_id" && group.groupObject
+          ? (
+            <SplitTaxon
+              taxon={group.groupObject}
+              user={config.currentUser}
+              url={urlForTaxonPhotos(
+                group.groupObject,
+                $.deparam( window.location.search.replace( /^\?/, "" ) )
+              )}
+            />
+          )
+          : I18n.t( `controlled_term_labels.${_.snakeCase( group.groupName )}`, {
+            defaultValue: group.groupName
+          } );
+        let obsUrl;
+        if ( group?.groupObject?.id ) {
+          if ( grouping.param === "taxon_id" ) {
+            const query = $.param( {
+              ...params,
+              taxon_id: group.groupObject.id
+            } );
+            obsUrl = `/observations?${query}`;
+          } else if ( grouping.param.match( /terms/ ) ) {
+            const query = $.param( {
+              ...params,
+              taxon_id: taxon.id,
+              term_id: grouping.values,
+              term_value_id: group.groupObject.id
+            } );
+            obsUrl = `/observations?${query}`;
+          }
+        }
+        return (
+          <div key={`group-${group.groupName}`} className={`photo-group ${i === 0 ? "first" : ""}`}>
+            <div className="photo-group-header">
+              <h3>{ title }</h3>
+              { obsUrl && <a href={obsUrl}>{ I18n.t( "view_observations" ) }</a> }
+            </div>
+            <div className="photos">
+              { group.observationPhotos.length === 0 ? (
+                <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
+              ) : null }
+              { renderObservationPhotos( group.observationPhotos ) }
+            </div>
           </div>
-        </div>
-      ) ) }
+        );
+      } ) }
     </div>
   );
   const orderByDisplay = key => {
@@ -392,24 +419,25 @@ const PhotoBrowser = ( {
 };
 
 PhotoBrowser.propTypes = {
-  observationPhotos: PropTypes.array,
+  config: PropTypes.object,
   groupedPhotos: PropTypes.object,
-  showTaxonPhotoModal: PropTypes.func.isRequired,
-  loadMorePhotos: PropTypes.func.isRequired,
+  grouping: PropTypes.object,
   hasMorePhotos: PropTypes.bool,
   layout: PropTypes.string,
-  setLayout: PropTypes.func.isRequired,
+  loadMorePhotos: PropTypes.func.isRequired,
+  observationPhotos: PropTypes.array,
+  params: PropTypes.object,
+  place: PropTypes.object,
   selectedTerm: PropTypes.object,
   selectedTermValue: PropTypes.object,
-  terms: PropTypes.object,
-  setTerm: PropTypes.func,
-  grouping: PropTypes.object,
   setGrouping: PropTypes.func,
-  params: PropTypes.object,
+  setLayout: PropTypes.func.isRequired,
   setParam: PropTypes.func,
+  setTerm: PropTypes.func,
   showTaxonGrouping: PropTypes.bool,
-  place: PropTypes.object,
-  config: PropTypes.object
+  showTaxonPhotoModal: PropTypes.func.isRequired,
+  taxon: PropTypes.object,
+  terms: PropTypes.object
 };
 
 PhotoBrowser.defaultProps = {

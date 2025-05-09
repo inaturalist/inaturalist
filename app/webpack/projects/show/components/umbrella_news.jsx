@@ -5,6 +5,8 @@ import { Grid, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import UserText from "../../../shared/components/user_text";
 
+import HeaderWithMoreLink from "./header_with_more_link";
+
 const UmbrellaNews = ( { project } ) => {
   if ( !project.posts_loaded ) {
     return ( <div className="loading_spinner huge" /> );
@@ -14,32 +16,31 @@ const UmbrellaNews = ( { project } ) => {
     <Grid className="News">
       <Row>
         <Col xs={12}>
-          <h2>
+          <HeaderWithMoreLink href={`/projects/${project.slug}/journal`}>
             { I18n.t( "journal" ) }
-            <a href={ `/projects/${project.slug}/journal` }>
-              <i className="fa fa-arrow-circle-right" />
-            </a>
-          </h2>
+          </HeaderWithMoreLink>
         </Col>
       </Row>
-      { noNews ?
-        (
+      { noNews
+        ? (
           <div className="empty-text">
-            { I18n.t( "no_journal_posts_yet" ) }. { I18n.t( "check_back_soon" ) }
+            { I18n.t( "no_journal_posts_yet" ) }
+            .
+            { I18n.t( "check_back_soon" ) }
           </div>
         ) : (
           <div>
             <Row className="posts">
               { _.map( project.posts.results, post => (
-                <Col xs={ 4 } className="post" key={ `post_${post.id}` }>
-                  <a href={ `/projects/${project.slug}/journal/${post.id}` }>
+                <Col xs={4} className="post" key={`post_${post.id}`}>
+                  <a href={`/projects/${project.slug}/journal/${post.id}`}>
                     <div className="date">{ moment( post.published_at ).format( "LL - LT" ) }</div>
                     <div className="title">{ post.title }</div>
                     <div className="body">
                       <UserText
-                        text={ post.body }
-                        truncate={ 120 }
-                        moreToggle={ false }
+                        text={post.body}
+                        truncate={120}
+                        moreToggle={false}
                         stripWhitespace
                       />
                     </div>
@@ -49,25 +50,21 @@ const UmbrellaNews = ( { project } ) => {
             </Row>
             <Row>
               <Col xs={12}>
-                <a href={ `/projects/${project.slug}/journal` }>
-                  <button className="btn-green" >
+                <a href={`/projects/${project.slug}/journal`}>
+                  <button type="button" className="btn-green">
                     { I18n.t( "view_all" ) }
                   </button>
                 </a>
               </Col>
             </Row>
           </div>
-        )
-      }
+        )}
     </Grid>
   );
 };
 
 UmbrellaNews.propTypes = {
-  config: PropTypes.object,
-  project: PropTypes.object,
-  leaders: PropTypes.array,
-  type: PropTypes.string
+  project: PropTypes.object
 };
 
 export default UmbrellaNews;

@@ -8,7 +8,7 @@ describe SiteStatistic do
     OauthApplication.make!( name: "iNaturalist Android App" )
     OauthApplication.make!( name: "iNaturalist iPhone App" )
     OauthApplication.make!( name: "Seek" )
-    OauthApplication.make!( name: "iNat Next" )
+    OauthApplication.make!( name: "iNaturalist (iNat Next)" )
   end
 
   elastic_models( Observation, Identification, User, Project )

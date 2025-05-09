@@ -50,7 +50,9 @@ class UsersController < ApplicationController
   skip_before_action :check_preferred_site, only: :api_token
   skip_before_action :set_ga_trackers, only: :api_token
 
-  prepend_around_action :enable_replica, only: [:dashboard_updates, :show, :followers]
+  prepend_around_action :enable_replica, only: [
+    :index, :dashboard, :dashboard_updates, :show, :followers, :api_token
+  ]
 
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
@@ -429,31 +431,39 @@ class UsersController < ApplicationController
     if params[:filter] == "following"
       filters << { terms: { notification: %w(created_observations new_observations) } }
     end
-    
+
     @pagination_updates = current_user.recent_notifications(
-      filters: filters, per_page: 50)
-    @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
-    UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
-    obs = UpdateAction.components_of_class(Observation, @updates)
-    taxa = UpdateAction.components_of_class(Taxon, @updates)
-    with_taxa = UpdateAction.components_with_assoc(:taxon, @updates)
-    with_user = UpdateAction.components_with_assoc(:user, @updates)
-    Observation.preload_associations( obs, [
-      :comments,
-      { identifications: :moderator_actions },
-      { photos: [:flags, :moderator_actions] }
-    ] )
-    with_taxa += obs.map(&:identifications).flatten
-    with_user += obs.map(&:identifications).flatten + obs.map(&:comments).flatten
-    Taxon.preload_associations(with_taxa, :taxon)
-    taxa += with_taxa.map(&:taxon)
-    Taxon.preload_associations(taxa, { taxon_names: :place_taxon_names })
-    User.preload_associations(with_user, :user)
-    @updates.delete_if{ |u| u.resource.nil? || u.notifier.nil? }
-    @grouped_updates = UpdateAction.group_and_sort(@updates, hour_groups: true)
-    respond_to do |format|
+      filters: filters, per_page: 50
+    )
+    @updates = UpdateAction.load_additional_activity_updates( @pagination_updates, current_user.id )
+    UpdateAction.preload_associations( @updates, [:resource, :notifier, :resource_owner] )
+    obs = UpdateAction.components_of_class( Observation, @updates )
+    taxa = UpdateAction.components_of_class( Taxon, @updates )
+    with_taxa = UpdateAction.components_with_assoc( :taxon, @updates )
+    with_user = UpdateAction.components_with_assoc( :user, @updates )
+    Observation.preload_associations( obs,
+      [
+        :comments,
+        { identifications: :moderator_actions },
+        { photos: [:flags, :moderator_actions] }
+      ] )
+    with_taxa += obs.map( &:identifications ).flatten
+    with_user += obs.map( &:identifications ).flatten + obs.map( &:comments ).flatten
+    Taxon.preload_associations( with_taxa, {
+      taxon: {
+        taxon_photos: {
+          photo: [:flags, :moderator_actions]
+        }
+      }
+    } )
+    taxa += with_taxa.map( &:taxon )
+    Taxon.preload_associations( taxa, { taxon_names: :place_taxon_names } )
+    User.preload_associations( with_user, :user )
+    @updates.delete_if {| u | u.resource.nil? || u.notifier.nil? }
+    @grouped_updates = UpdateAction.group_and_sort( @updates, hour_groups: true )
+    respond_to do | format |
       format.html do
-        render :partial => 'dashboard_updates', :layout => false
+        render partial: "dashboard_updates", layout: false
       end
     end
   end
@@ -1281,38 +1291,43 @@ class UsersController < ApplicationController
       :preferred_photo_license,
       :preferred_project_addition_by,
       :preferred_sound_license,
+      :prefers_automatic_taxonomic_changes,
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
+      :prefers_common_names,
+      :prefers_community_taxa,
       :prefers_forum_topics_on_dashboard,
       :prefers_gbif_layer_maps,
       :prefers_identification_email_notification,
       :prefers_identify_side_bar,
-      :prefers_message_email_notification,
-      :prefers_medialess_obs_maps,
-      :prefers_project_invitation_email_notification,
-      :prefers_mention_email_notification,
-      :prefers_project_journal_post_email_notification,
-      :prefers_project_curator_change_email_notification,
-      :prefers_project_added_your_observation_email_notification,
-      :prefers_taxon_change_email_notification,
-      :prefers_user_observation_email_notification,
-      :prefers_taxon_or_place_observation_email_notification,
-      :prefers_no_email,
-      :prefers_automatic_taxonomic_changes,
-      :prefers_community_taxa,
+      :prefers_infraspecies_identification_notifications,
       :prefers_location_details,
-      :prefers_receive_mentions,
-      :prefers_redundant_identification_notifications,
-      :prefers_common_names,
-      :prefers_scientific_name_first,
+      :prefers_medialess_obs_maps,
+      :prefers_mention_email_notification,
+      :prefers_message_email_notification,
+      :prefers_monthly_supporter_badge,
+      :prefers_no_email,
       :prefers_no_place,
       :prefers_no_site,
       :prefers_no_tracking,
-      :prefers_monthly_supporter_badge,
+      :prefers_non_disagreeing_identification_notifications,
+      :prefers_project_added_your_observation_email_notification,
+      :prefers_project_curator_change_email_notification,
+      :prefers_project_invitation_email_notification,
+      :prefers_project_journal_post_email_notification,
+      :prefers_receive_mentions,
+      :prefers_redundant_identification_notifications,
+      :prefers_scientific_name_first,
+      :prefers_taxon_change_email_notification,
+      :prefers_taxon_or_place_observation_email_notification,
+      :prefers_user_observation_email_notification,
       :search_place_id,
       :site_id,
       :test_groups,
-      :time_zone
+      :time_zone,
+      # FYI this attribute gets submitted as an array, and arrays won't be
+      # permitted unless allowed like this
+      faved_project_ids: []
     )
   end
 

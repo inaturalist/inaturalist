@@ -1,9 +1,12 @@
+/* global TIMEZONE */
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
-/* global TIMEZONE */
+
+import HeaderWithMoreLink from "./header_with_more_link";
+import PartialDetails from "./partial_details";
 
 function dateToString( date, spansYears = false ) {
   let format;
@@ -23,7 +26,8 @@ function dateToString( date, spansYears = false ) {
 const Requirements = ( {
   project, setSelectedTab, includeArrowLink, config
 } ) => {
-  const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" )
+  const taxonRules = _.isEmpty( project.taxonRules )
+    ? I18n.t( "all_taxa_" )
     : _.map( _.sortBy( project.taxonRules, r => r.taxon.name ), r => (
       <SplitTaxon
         key={`project-taxon-rules-${r.id}`}
@@ -73,7 +77,8 @@ const Requirements = ( {
         { r.user.login }
       </a>
     ) );
-  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any_project" )
+  const projectRules = _.isEmpty( project.projectRules )
+    ? I18n.t( "any_project" )
     : _.map( _.sortBy( project.projectRules, r => r.project.title ), r => (
       <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
         { r.project.title }
@@ -86,8 +91,10 @@ const Requirements = ( {
       </a>
     ) );
   const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any_quality_grade" )
-    : _.map( _.keys( project.rule_quality_grade ),
-      q => I18n.t( q === "research" ? "research_grade" : `${q}_` ) ).join( ", " );
+    : _.map(
+      _.keys( project.rule_quality_grade ),
+      q => I18n.t( q === "research" ? "research_grade" : `${q}_` )
+    ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {
     media.push( I18n.t( "photo" ) );
@@ -129,9 +136,10 @@ const Requirements = ( {
         </td>
         <td className="value">
           <a href={`/observations?term_id=${project.rule_term_id}`}>
-            { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
-              { default: project.rule_term_id_instance.label } )
-            }
+            { I18n.t(
+              `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
+              { default: project.rule_term_id_instance.label }
+            )}
           </a>
           { project.rule_term_value_id_instance && (
             <span className="term-value">
@@ -139,9 +147,10 @@ const Requirements = ( {
                 &rarr;
               </span>
               <a href={`/observations?term_id=${project.rule_term_id}&term_value_id=${project.rule_term_value_id}`}>
-                { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
-                  { default: project.rule_term_value_id_instance.label } )
-                }
+                { I18n.t(
+                  `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
+                  { default: project.rule_term_value_id_instance.label }
+                )}
               </a>
             </span>
           )}
@@ -150,7 +159,7 @@ const Requirements = ( {
     );
   }
   let projectsRequirement;
-  if ( !_.isEmpty( projectRules ) || !_.isEmpty( projectRules ) ) {
+  if ( !_.isEmpty( project.projectRules ) || !_.isEmpty( project.notProjectRules ) ) {
     projectsRequirement = (
       <tr>
         <td className="param">
@@ -171,9 +180,48 @@ const Requirements = ( {
       </tr>
     );
   }
-  const requirementContents = project.hasInsufficientRequirements( )
-    ? I18n.t( "views.projects.show.this_project_has_not_defined_requirements" )
-    : (
+  let requirementContents = I18n.t( "views.projects.show.this_project_has_not_defined_requirements" );
+  if ( !project.hasInsufficientRequirements( ) ) {
+    const taxaContent = (
+      <>
+        { taxonRules }
+        { exceptTaxonRules && (
+          <div className="except">
+            <div className="bold">
+              { I18n.t( "except" ) }
+            </div>
+            { exceptTaxonRules }
+          </div>
+        ) }
+      </>
+    );
+    const locationContent = (
+      <>
+        { locationRules }
+        { exceptLocationRules && (
+          <div className="except">
+            <div className="bold">
+              { I18n.t( "except" ) }
+            </div>
+            { exceptLocationRules }
+          </div>
+        ) }
+      </>
+    );
+    const userContent = (
+      <>
+        { userRules }
+        { exceptUserRules && (
+          <div className="except">
+            <div className="bold">
+              { I18n.t( "except" ) }
+            </div>
+            { exceptUserRules }
+          </div>
+        ) }
+      </>
+    );
+    requirementContents = (
       <div>
         <div className="section-intro">
           { I18n.t( "label_colon", { label: I18n.t( "observations_in_this_project_must" ) } )}
@@ -186,15 +234,14 @@ const Requirements = ( {
                 { I18n.t( "taxa" ) }
               </td>
               <td className="value">
-                { taxonRules }
-                { exceptTaxonRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptTaxonRules }
-                  </div>
-                ) }
+                {
+                  (
+                    Number( project?.taxonRules?.length )
+                    + Number( project?.notTaxonRules?.length ) > 3
+                  )
+                    ? <PartialDetails>{taxaContent}</PartialDetails>
+                    : taxaContent
+                }
               </td>
             </tr>
             <tr>
@@ -203,15 +250,14 @@ const Requirements = ( {
                 { I18n.t( "location" ) }
               </td>
               <td className="value location-rules">
-                { locationRules }
-                { exceptLocationRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptLocationRules }
-                  </div>
-                ) }
+                {
+                  (
+                    Number( project?.placeRules?.length )
+                    + Number( project?.notPlaceRules?.length ) > 3
+                  )
+                    ? <PartialDetails>{locationContent}</PartialDetails>
+                    : locationContent
+                }
               </td>
             </tr>
             <tr>
@@ -220,15 +266,14 @@ const Requirements = ( {
                 { I18n.t( "users" ) }
               </td>
               <td className="value">
-                { userRules }
-                { exceptUserRules && (
-                  <div className="except">
-                    <div className="bold">
-                      { I18n.t( "except" ) }
-                    </div>
-                    { exceptUserRules }
-                  </div>
-                ) }
+                {
+                  (
+                    Number( project?.userRules?.length )
+                    + Number( project?.notUserRules?.length ) > 3
+                  )
+                    ? <PartialDetails>{userContent}</PartialDetails>
+                    : userContent
+                }
               </td>
             </tr>
             { projectsRequirement }
@@ -263,21 +308,17 @@ const Requirements = ( {
             { annotationRequirement }
           </tbody>
         </table>
-      </div> );
+      </div>
+    );
+  }
   return (
     <div className="Requirements">
-      <h2>
+      <HeaderWithMoreLink
+        onClick={( ) => setSelectedTab( "about" )}
+        nolink={!includeArrowLink}
+      >
         { I18n.t( "project_requirements" ) }
-        { includeArrowLink && (
-          <button
-            type="button"
-            className="btn btn-nostyle"
-            onClick={( ) => setSelectedTab( "about" )}
-          >
-            <i className="fa fa-arrow-circle-right" />
-          </button>
-        ) }
-      </h2>
+      </HeaderWithMoreLink>
       { requirementContents }
     </div>
   );

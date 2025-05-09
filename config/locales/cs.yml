@@ -717,6 +717,8 @@ cs:
   any_license: Jakákoliv
   #Label for an option to show content with photos, sounds, or neither
   any_media: Kterýkoliv
+  #Label for an option to show any place
+  any_place: Jakékoliv
   #Label for an option to show content from any project
   any_project: Kterýkoliv
   #Label for an option to show content with any quality grade
@@ -1210,8 +1212,6 @@ cs:
   confirmation_email_sent_at_datetime: Potvrzovací e-mail odeslán %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrzeno dne %{date}
-  confirming_ids: Potvrzování ID
-  confirming_ids_description: Pokud toto vypnete, již nebudete upozorňováni na ID, která s vámi souhlasí.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Připojit
@@ -2874,6 +2874,10 @@ cs:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Odhlásit se z %{site_name}?"
   log_scale_label: logaritmické
+  #Adjectival phrase describing state of being logged in
+  logged_in: Přihlášen
+  #Adjectival phrase describing state of being logged out
+  logged_out: Odhlášen
   #Status message shown while logging in
   logging_in: Přihlašování...
   logo:
@@ -3034,7 +3038,7 @@ cs:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%dm"
+      mm: "%dmin"
       #Short text representing 1 hour in the past
       h: "1 h"
       #Short text representing %d hours in the past
@@ -3094,6 +3098,8 @@ cs:
   more_info_title: Více informací
   more_journal_posts: Další příspěvky v deníku
   more_observations: Další pozorování
+  #Label for a button or section that shows additional options
+  more_options: Více možností
   more_photos: Další fotky
   more_than_a_week_ago: Více než před týdnem
   most_agree: většina souhlasí
@@ -3331,6 +3337,8 @@ cs:
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
   noble_curators: "Vybraní kurátoři stránky %{site}"
   non_human?: Není lidský?
+  #A user who does not admin any projects
+  non_project_admin: Neprojektový správce
   none: Žádný
   none_found: Nenalezeno
   normal: normální
@@ -4365,6 +4373,8 @@ cs:
   profile_visibility_desc: |
     Ve snaze bojovat proti spamu na %{site_name} jsou profily uživatelů veřejně viditelné až poté, co uživatel přispěl k několika pozorováním programu Research Grade.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Správce projektu
   project_admins:
     one: Správce projektu
     few: Správců projektu
@@ -5152,6 +5162,9 @@ cs:
     many: Vložit %{count} pozorování
     other: Vložit %{count} pozorování
   submitted: Odesláno
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Odebírat
   subscribe_to_a_taxon: Sledovat taxon
   subscribe_to_a_place: Sledovat místo
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Odebírejte%{tag_end} komentáře k této vlajce"
@@ -8083,8 +8096,6 @@ cs:
           Vezměte prosím na vědomí, že stránka taxonu zobrazí fotky tohoto taxonu a jeho následných taxonů. Fotky vybrané pro tento taxon se však zobrazí jako první. První fotka bude základním obrázkem používaným na celých stránkách.
         rare_desc: Nejméně pozorované ohrožené taxony
         rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
-        site_curators_disabled_wikipedia_html: |
-          Vedoucí webu dočasně zakázali zobrazení <a href="%{url}"> tohoto obsahu Wikipedia </a>. Pomoci můžete úpravou stránky na Wikipedii tak, aby byla vhodná pro tento taxon, nebo označením tohoto taxonu, abyste získali pozornost dozorců stránek.
         trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
         trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci v <a href="%{url}">%{place}</a>
         wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
@@ -8439,7 +8450,7 @@ cs:
           K vědě biodiverzity může přispět každé pozorování, od nejvzácnějšího motýla až po nejběžnější plevel na zahrádce. Vaše zjištění sdílíme s úložišti vědeckých údajů, jako je 
           <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>, abychom vědcům pomohli vaše údaje najít a využít. Stačí, když budete pozorovat.
         nature_at_your_fingertips: Příroda na dosah ruky
-        keep_track: Sledovat
+        keep_track: Pozorujte
         record_your_encounters: |
           Zaznamenávejte svá setkání s ostatními organismy a veďte si seznamy života, všechno v cloudu.
         create_useful_data: Vytvořte užitečné údaje
@@ -8683,8 +8694,6 @@ cs:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8734,6 +8743,12 @@ cs:
         prefers_target_unconfirmed_users: Jen pro nepotvrzené uživatele
         prefers_exclude_monthly_supporters: Bez měsíčních podporovatelů
         clients: Klienti
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Umístění
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Datum první registrace uživatele
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Datum poslední registrace uživatele
       assessment:
         description: Popis
       assessment_section:
@@ -8846,7 +8861,6 @@ cs:
         citation: Citace
       taxon:
         ancestry: Předchůdce
-        auto_description: Automatický popis
         auto_photos: Automatické fotky
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -8874,6 +8888,8 @@ cs:
         photos_locked: Fotografie uzamčeny?
         rank: Pořadí
         rank_level: Úroveň taxonomické kategorie
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Zobrazí Wikipedii
         source_id: ID zdroje
         source_identifier: Identifikátor zdroje
         source_url: URL zdroje
@@ -8927,6 +8943,7 @@ cs:
           few: musí být rovno %{count}
           many: musí být rovno %{count}
           other: musí být rovno %{count}
+        must_look_like_an_email_address: musí vypadat jako e-mailová adresa
         even: musí být sudé číslo
         exclusion: je rezervováno
         greater_than:
@@ -9210,8 +9227,6 @@ cs:
               must_begin_with_a_letter: |
                 musí začínat písmenem, neobsahovat žádné mezery a používat pouze
                 písmena, čísla, pomlčky a podtržítka
-            email:
-              must_look_like_an_email_address: musí vypadat jako e-mailová adresa
               domain_is_not_supported: doména není podporována
         user_block:
           attributes:

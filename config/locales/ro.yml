@@ -4,6 +4,10 @@ ro:
     one: "%{count} modificare"
     few: "%{count} modificări"
     other: "%{count} modificări"
+  x_comments:
+    one: 'comentariu'
+    few: '%{count} comentarii'
+    other: '%{count} comentarii'
   x_journal_posts_html:
     one: '<span class="număr">%{count}</span> postare jurnal'
     few: '<span class="număr">%{count}</span> postări jurnal'
@@ -39,6 +43,7 @@ ro:
   #should work here
   about_place: "Despre %{place}"
   about_places: Despre Locuri
+  about_taxon_ranges: Despre Arealele Taxonului
   about_the_network: Despre rețea
   about_this_bioblitz: Despre acest bioblitz
   about_this_map: Despre această hartă

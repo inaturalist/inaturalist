@@ -43,6 +43,7 @@ class IdentificationsController < ApplicationController
     elsif params[:for] == "self"
       search_params[:own_observation] = "true"
     end
+    search_params[:taxon_change_id] = params[:taxon_change_id] if params[:taxon_change_id]
     search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
     api_response = INatAPIService.identifications(search_params)
     ids = Identification.where(id: api_response.results.map{ |r| r["id"] }).
@@ -52,7 +53,7 @@ class IdentificationsController < ApplicationController
         :user,
         { taxon: [
           { taxon_names: :place_taxon_names },
-          { photos: [:flags, :file_prefix,] }
+          { photos: [:flags, :file_prefix] }
         ] }
       ).order(id: :desc)
     Observation.preload_for_component(ids.map(&:observation), logged_in: logged_in?)
@@ -110,6 +111,7 @@ class IdentificationsController < ApplicationController
       observation: [
         { identifications: :moderator_actions },
         :user,
+        :sounds,
         { photos: [:file_prefix, :file_extension, :flags, :moderator_actions] },
         { taxon: [
           { taxon_names: :place_taxon_names },

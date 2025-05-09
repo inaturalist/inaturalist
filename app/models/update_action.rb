@@ -89,7 +89,7 @@ class UpdateAction < ApplicationRecord
     puts "[INFO] UpdateAction.email_updates queing #{user_ids.size} jobs..."
     user_ids.each do |subscriber_id|
       UpdateAction.delay(
-        priority: INTEGRITY_PRIORITY,
+        priority: NOTIFICATION_PRIORITY,
         queue: "slow",
         unique_hash: {
           "UpdateAction::email_updates_to_user": subscriber_id,
@@ -269,12 +269,43 @@ class UpdateAction < ApplicationRecord
     UpdateAction.where(*args).delete_all
   end
 
-  def self.first_with_attributes( attrs, options = { } )
+  def self.for_notifier( notifier )
+    update_actions = UpdateAction.elastic_paginate(
+      page: 1,
+      per_page: 100,
+      filters: [
+        { term: { notifier_type: notifier.class.to_s } },
+        { term: { notifier_id: notifier.id } }
+      ],
+      sort: { id: :desc },
+      keep_es_source: true
+    )
+    UpdateAction.preload_associations( update_actions, :notifier )
+    update_actions
+  end
+
+  def self.first_with_attributes( attrs, options = {} )
     return if CONFIG.has_subscribers == :disabled
     skip_validations = options.delete( :skip_validations )
+
+    options[:candidate_update_actions]&.each do | candidate |
+      is_match = attrs.all? do | k, v |
+        if k.to_sym == :resource
+          candidate.resource_id == v.id &&
+            candidate.resource_type == v.class.base_class.name
+        elsif k.to_sym == :notifier
+          candidate.notifier_id == v.id &&
+            candidate.notifier_type == v.class.base_class.name
+        else
+          candidate[k] == ( v.try( :id ) || v )
+        end
+      end
+      return candidate if is_match
+    end
+
     filters = UpdateAction.arel_attributes_to_es_filters( attrs )
     # first search for a doc in Elasticsearch with these attributes
-    if es_action = UpdateAction.elastic_paginate( filters: filters, keep_es_source: true ).first
+    if ( es_action = UpdateAction.elastic_paginate( filters: filters, keep_es_source: true ).first )
       return es_action
     end
     # if none are found, see if one exists in the DB
@@ -288,7 +319,8 @@ class UpdateAction < ApplicationRecord
     end
     # no match was found in Elasticsearch or the DB, so attempt to create it
     begin
-      action = UpdateAction.new( attrs.merge(created_at: Time.now, skip_indexing: true ).merge( options ) )
+      action = UpdateAction.new( attrs.merge( created_at: Time.now, skip_indexing: true ).
+        merge( options.except( :candidate_update_actions ) ) )
       if !action.save( validate: !skip_validations )
         return
       end

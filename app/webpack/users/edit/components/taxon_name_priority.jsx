@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { findDOMNode } from "react-dom";
 import { DragSource, DropTarget } from "react-dnd";
 
+import DraggableOption from "./draggable_option";
+
 /* global TAXON_NAME_LEXICONS */
 
 const sourceSpec = {
@@ -58,10 +60,6 @@ class TaxonNamePriority extends React.Component {
       connectDropTarget,
       isDragging
     } = this.props;
-    let className = "TaxonNamePriority";
-    if ( isDragging ) {
-      className += " dragging";
-    }
     let lexicon;
     if ( taxonNamePriority.lexicon ) {
       lexicon = TAXON_NAME_LEXICONS[taxonNamePriority.lexicon]
@@ -71,30 +69,18 @@ class TaxonNamePriority extends React.Component {
       lexicon = I18n.t( "views.users.edit.taxon_name_priorities.same_as_locale" );
     }
     return connectDragSource( connectDropTarget(
-      <div className={className}>
-        <div className="move-icons">
-          <div>
-            <span className="glyphicon glyphicon-triangle-top" />
-            <span className="glyphicon glyphicon-triangle-bottom" />
-          </div>
-        </div>
-        <div className="lexicon">
+      <div>
+        <DraggableOption
+          isDragging={isDragging}
+          onRemove={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
+        >
           { lexicon }
           { taxonNamePriority.place && (
             <span className="place">
               { taxonNamePriority.place.display_name }
             </span>
           ) }
-        </div>
-        <div className="delete-button">
-          <button
-            type="button"
-            className="btn btn-default"
-            onClick={( ) => deleteTaxonNamePriority( taxonNamePriority.id )}
-          >
-            { I18n.t( "delete" ) }
-          </button>
-        </div>
+        </DraggableOption>
       </div>
     ) );
   }

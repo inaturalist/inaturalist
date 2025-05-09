@@ -156,7 +156,7 @@ module Shared::ListsModule
         ListedTaxon.preload_associations(@listed_taxa, [
           { taxon: [
             { taxon_names: :place_taxon_names },
-            { photos: [:user, :flags, :file_prefix, :file_extension] },
+            { photos: [:user, :flags, :file_prefix, :file_extension, :moderator_actions] },
             :taxon_descriptions
           ]}
         ])
@@ -455,7 +455,7 @@ private
         :list, :user, :first_observation, :last_observation,
         { taxon: [
           :iconic_taxon,
-          { photos: [:flags, :file_prefix, :file_extension] },
+          { photos: [:flags, :file_prefix, :file_extension, :moderator_actions] },
           { taxon_names: :place_taxon_names }
         ] }
       ]

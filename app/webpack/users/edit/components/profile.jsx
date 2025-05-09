@@ -8,6 +8,8 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ChangePasswordContainer from "../containers/change_password_container";
 import UserImage from "../../../shared/components/user_image";
+import UserError from "./user_error";
+import { MAX_FILE_SIZE } from "../../../observations/uploader/models/util";
 
 const DESCRIPTION_WARNING_LENGTH = 8000;
 const MAX_DESCRIPTION_LENGTH = 10000;
@@ -44,26 +46,9 @@ const Profile = ( {
 
   // this gets rid of the React warning about inputs being controlled vs. uncontrolled
   // by ensuring user data is fetched before the Profile & User page loads
-  if ( !profile.login && !profile.email ) {
+  if ( _.isEmpty( profile ) ) {
     return null;
   }
-
-  const showError = ( errorType, attribute ) => {
-    const errors = profile.errors && profile.errors[errorType];
-    let errorTranslationKey = attribute || errorType;
-    if ( errorTranslationKey === "description" ) {
-      errorTranslationKey = "bio";
-    }
-    return (
-      <div className={!errors ? "hidden" : null}>
-        {errors && profile.errors[errorType].map( reason => (
-          <div className="error-message" key={reason}>
-            {`${I18n.t( errorTranslationKey )} ${reason}`}
-          </div>
-        ) )}
-      </div>
-    );
-  };
 
   const unconfirmedEmailAlert = (
     <div className="alert alert-warning alert-mini">
@@ -130,6 +115,7 @@ const Profile = ( {
       <div className="col-md-5 col-sm-10">
         <h4>{I18n.t( "profile" )}</h4>
         <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
+          <UserError user={profile} attribute="icon_content_type" alias="profile_picture_file_type" />
           <Dropzone
             ref={iconDropzone}
             className="dropzone"
@@ -152,13 +138,14 @@ const Profile = ( {
                   console.error( "Failed to generate preview for file", file, err );
                 }
               } );
-              onFileDrop( acceptedFiles );
+              onFileDrop( acceptedFiles, rejectedFiles );
             }}
             activeClassName="hover"
             disableClick
             disablePreview
             accept="image/png,image/jpeg,image/gif"
             multiple={false}
+            maxSize={MAX_FILE_SIZE}
           >
             <div className="flex-no-wrap">
               <div className="user-profile-image">
@@ -190,7 +177,7 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
-          {showError( "login", "username" )}
+          <UserError user={profile} attribute="login" alias="username" />
           <input
             id="user_login"
             type="text"
@@ -202,7 +189,7 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
-          {showError( "email" )}
+          <UserError user={profile} attribute="email" />
           <input
             id="user_email"
             type="text"
@@ -213,12 +200,12 @@ const Profile = ( {
           />
           { emailConfirmation }
         </SettingsItem>
-        <ChangePasswordContainer showError={showError} />
+        <ChangePasswordContainer user={profile} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
-          {showError( "name" )}
+          <UserError user={profile} attribute="name" />
           <input
             id="user_name"
             type="text"
@@ -230,7 +217,7 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
-          {showError( "description" )}
+          <UserError user={profile} attribute="description" />
           <textarea
             id="user_description"
             className="form-control user-description"

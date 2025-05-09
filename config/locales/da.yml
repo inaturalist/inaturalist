@@ -771,6 +771,13 @@ da:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, uploadet af %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Eksploderet
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Ueksploderet
   authority_list:
     iucn_red_list: IUCN rødliste
     natureserve: NatureServe
@@ -1120,8 +1127,9 @@ da:
   confirmation_email_sent_at_datetime: Bekræftelsesmail sendt den %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bekræftet %{date}
-  confirming_ids: Bekræfter ID'er
-  confirming_ids_description: Slås dette fra, får du ikke længere besked om ID'er, som er i overensstemmelse med dine.
+  confirming_ids: Bekræftelse af ID'er
+  confirming_ids_description: |
+    Slår man dette fra, får man ikke længere besked om overensstemmende ID'er, medmindre de har yderligere bemærkninger.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Forbind
@@ -1919,7 +1927,8 @@ da:
   export: Eksportér
   export_observations: Eksportér observationer
   export_with_private_coordinates: Eksportér med skjulte koordinater
-  #Notice about when a batch of observations was exported
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
   exported_at_datetime: Eksporteret pr. %{datetime}
   exporting: "Eksporterer..."
   #A third-party app or service the user has authorized to access their iNat
@@ -2409,6 +2418,17 @@ da:
   inaturalist_applications: "iNaturalist-applikationer"
   inaturalist_places: "%{site_name} steder"
   info: Info
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraarts-ID'er
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Slår man dette fra, får man ikke længere besked om artsniveau-overensstemmende taxa-ID'er
+    (såsom underarter og sorter). Man får besked enten i tilfælde af uenighed i ID'en eller
+    yderligere bemærkninger hertil.
   input_taxon: Input takson
   insects: insekter
   insect_life_stage: Insekt livsstadie
@@ -2694,6 +2714,10 @@ da:
   list_with_two_items: "%{one} og %{two}"
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Opført
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Unoterede
   listed_taxon_updated: Opført takson opdateret
   listing_lists: Oversigts lister
   listing_project_assets: Oversigts projektvurderinger
@@ -2794,6 +2818,10 @@ da:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Log ud af %{site_name}?"
   log_scale_label: Log
+  #Adjectival phrase describing state of being logged in
+  logged_in: Logget ind
+  #Adjectival phrase describing state of being logged out
+  logged_out: Logget ud
   #Status message shown while logging in
   logging_in: Logger ind...
   logo:
@@ -3251,7 +3279,24 @@ da:
   no_users_found_with_those_filters: Ingen kunder fundet med de filtre
   no_wikipedia_page_for_taxon: Ingen Wikipedia side for denne takson.
   noble_curators: "%{site}'s noble kuratorer"
+  #A user who is not a curator
+  non_curator: Ikke-kurator
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Ikke-uenige Forfædre-ID'er
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Slår man dette fra, får man ikke længere besked ved tilføjelse af en
+    ID for en takson, der er en forfader til taksonen fra ens egen ID og ikke
+    er udtrykkeligt uenig med Fællesskabstakson. Man får besked, hvis
+    ID'en har yderligere kommentarer.
   non_human?: Ikke menneskelig?
+  #A user who does not admin any projects
+  non_project_admin: Ikke-projektadmin
   none: Ingen
   none_found: Ingen fundet
   normal: normal
@@ -4295,6 +4340,8 @@ da:
   profile_visibility_desc: |
     For at undgå spam på%{site_name}, er brugerprofiler kun offentligt synlige efter at en bruger har bidraget med flere observationer af forskningskvalitet.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Projektadmin
   project_admins:
     one: Projektadmin
     other: Projektadmins
@@ -5960,6 +6007,8 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Se de berørte ID'er
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -6384,6 +6433,9 @@ da:
         Bemærk, at oprettelsesdatoen for brugerens senest oprettede
         observation er cachet, så det kan tage et par timer, før målretning
         træder i kraft
+      observation_oauth_application_ids_desc: |
+        CMD- eller SHIFT-klik for valg af flere. Valg af "Alle", eller intet valg,
+        viser meddelelsen til alle brugere uanset app.
       site_ids_desc: |
         CMD- eller SHIFT-klik for at vælge flere. Vælges "Alle", eller foretages
         intet valg, vises bekendtgørelsen til alle brugere uanset webstedstilknytning.
@@ -6403,6 +6455,46 @@ da:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Målbrugere efter andre attributter
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Om atlasser
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasser formidler den globale fordeling af en takson. Kuratorer laver
+          atlasser ved at definere strukturen af et atlas og kuratere
+          listede taksa, som driver det.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Eksplodér dette sted
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Ueksplodér dette sted
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ingen ændringer i dette atlas endnu
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Nylige atlasændringer
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Nylige listede taksonændringer
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Vis listede taksa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Dette atlas er ikke aktivt p.t.
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dette fjerner denne takson og alle dens efterkommere fra tjeklister
+          tilknyttet dette sted og evt. standardsteder, det indeholder. Dette
+          valg er irreversibelt. Sikker på, at dette skal gøre?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Advarsel: Der er observationer, som ikke er repræsenteret af dette atlas
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
@@ -8306,10 +8398,10 @@ da:
         rare_desc: Mindst observerede truede taksa
         rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
-          Sidekuratorer har midlertidigt deaktiveret visning af <a href="%{url}"> dette
-          indhold fra Wikipedia </a>. Du kan hjælpe ved at redigere siden på
-          Wikipedia for at gøre det passende for denne takson, eller ved at markere denne
-          takson for at bringe det til kendskab til sidekuratorer.
+          Webstedskuratører har deaktiveret visning af <a href="%{url}">dette
+          indhold fra Wikipedia</a>. Man kan hjælpe ved at redigere siden på
+          Wikipedia for at gøre den passende for denne takson, eller ved at markere
+          denne takson for at gøre kuratorerne opmærksomme herpå.
         trending_desc: Mest observerede taksa i den sidste måned
         trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
@@ -8910,7 +9002,9 @@ da:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %=B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d. %=b %H:%M'
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8950,6 +9044,8 @@ da:
     attributes:
       announcement:
         created_at: Oprettet
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Afviselig
         updated_at: Opdateret
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8965,10 +9061,16 @@ da:
         exclude_donor_start_date: Undtag donationsstartdato
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Undtag donationsslutdato
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Undtag observatører fra apps
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Medtag donationsstartdato
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Medtag donationsslutdato
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Medtag observatører fra apps
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP-lande
         #Start of a date range that includes the viewer's most recent observation
@@ -8985,6 +9087,8 @@ da:
         min_observations: Min. observationer
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Placering
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Målrettet kreatøren (til test)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Mål logget ind
         #Earliest date the viewer can have signed up to see the announcement
@@ -9103,7 +9207,6 @@ da:
         citation: Citation
       taxon:
         ancestry: Herkomst
-        auto_description: Auto. beskrivelse
         auto_photos: Auto. foto´s
         #Rank down to which all of this taxon's descendants have been added,
         #e.g. if Homonidae has complete_rank set to genus, you would expect
@@ -9131,6 +9234,8 @@ da:
         photos_locked: Fotos låst?
         rank: Rang
         rank_level: Rangeringsniveau
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Viser Wikipedia
         source_id: 'Kilde-ID:'
         source_identifier: Kilde identifikator
         source_url: Kilde URL
@@ -9182,6 +9287,7 @@ da:
         equal_to:
           one: skal være lig med %{count}
           other: skal være lig med %{count}
+        must_look_like_an_email_address: skal være en gyldig e-mailadresse
         even: skal være lige
         exclusion: er reserveret
         greater_than:
@@ -9306,6 +9412,9 @@ da:
                 kan ikke være større end datoen observationen blev tilføjet
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: skal være indenfor de seneste 130 år
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: skal være en enkelt dag, ikke et interval
         observation_field_value:
           attributes:
             value:
@@ -9411,6 +9520,11 @@ da:
               bad_format: |
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Livstaksonen kan ikke være involveret i taksonændringer
         taxon_name:
           attributes:
             lexicon:
@@ -9451,9 +9565,7 @@ da:
             login:
               must_begin_with_a_letter: |
                 skal begynde med et bogstav, ikke indeholde mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
-            email:
-              must_look_like_an_email_address: skal se ud som en e-mail adresse
-              domain_is_not_supported: domæne er uunderstøttet
+              domain_is_not_supported: domæne ikke understøttet
         user_block:
           attributes:
             base:

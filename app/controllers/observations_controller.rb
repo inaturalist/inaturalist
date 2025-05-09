@@ -67,15 +67,17 @@ class ObservationsController < ApplicationController
     :update_photos, :destroy]
   before_action :curator_required, :only => [:curation]
   before_action :load_photo_identities, :only => [:new, :new_batch, :show,
-    :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
+    :new_batch_csv,:edit, :update, :edit_batch, :import,
     :import_photos, :import_sounds, :new_from_list]
   before_action :load_sound_identities, :only => [:new, :new_batch, :show,
-    :new_batch_csv,:edit, :update, :edit_batch, :create, :import, 
+    :new_batch_csv,:edit, :update, :edit_batch, :import,
     :import_photos, :import_sounds, :new_from_list]
   before_action :photo_identities_required, :only => [:import_photos]
   before_action :load_prefs, :only => [:index, :project, :by_login]
 
-  prepend_around_action :enable_replica, only: [:index, :by_login, :show, :taxon_summary]
+  prepend_around_action :enable_replica, only: [
+    :index, :by_login, :show, :taxon_summary, :identify, :viewed_updates
+  ]
 
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
   REJECTED_FEED_PARAMS = %w"page view filters_open partial action id locale"
@@ -1278,7 +1280,7 @@ class ObservationsController < ApplicationController
         prepare_map(search_params)
         @observer_provider_authorizations = @selected_user.provider_authorizations
         if logged_in? && @selected_user.id == current_user.id
-          @project_users = current_user.project_users.joins(:project).order("projects.title")
+          @project_users = current_user.project_users.includes(:project)
           if @proj_obs_errors = Rails.cache.read("proj_obs_errors_#{current_user.id}") 
             @project = Project.find_by_id(@proj_obs_errors[:project_id])
             @proj_obs_errors_obs = current_user.observations.
@@ -2962,8 +2964,11 @@ class ObservationsController < ApplicationController
       unless Observation.where( id: deleted_observation.observation_id ).exists?
         Observation.elastic_delete_by_ids!( [deleted_observation.observation_id] )
       end
-      render_410
-      return
+      # Temporary workaround for clients that are hard-coded to expect a 404
+      if request.get?
+        render_410
+        return
+      end
     end
     render_404
   end
