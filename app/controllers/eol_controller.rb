@@ -22,7 +22,12 @@ class EolController < ApplicationController
     page = params[:page].to_i
     page = 1 if page.zero?
 
-    @photos = EolPhoto.search_eol( @q, page: page, per_page: per_page, eol_page_id: params[:eol_page_id] )
+    @photos = begin
+      EolPhoto.search_eol( @q, page: page, per_page: per_page, eol_page_id: params[:eol_page_id] )
+    rescue Timeout::Error
+      @timeout = true
+      []
+    end
 
     partial = params[:partial].to_s
     partial = "photo_list_form" unless %w(photo_list_form bootstrap_photo_list_form).include?( partial )
@@ -34,7 +39,13 @@ class EolController < ApplicationController
           local_photos: false
         }
       end
-      format.json { render json: @photos }
+      format.json do
+        if @timeout
+          return render json: [], status: :gateway_timeout
+        end
+
+        render json: @photos
+      end
     end
   end
 end

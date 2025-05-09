@@ -20,7 +20,12 @@ class EolPhoto < Photo
       search_xml = eol.search( query, exact: 1 )
       return [] if search_xml.blank?
 
-      eol_page_id = search_xml.at( "entry/id" ).try( :text )
+      # exact param does not seem to work as of 2025-05-09, so this tries to
+      # find the result that exactly matches the query
+      eol_page_id = search_xml.
+        search( "//result" ).
+        detect {| result | result.at( "title" ).text == query }.
+        at( "id" ).text
     end
     return [] if eol_page_id.blank?
 
@@ -39,7 +44,7 @@ class EolPhoto < Photo
     rescue OpenURI::HTTPError
       return []
     end
-    eol_page_xml.xpath( "//xmlns:dataObject[.//xmlns:mediaURL]" ).map do | data_object |
+    eol_page_xml.xpath( "//dataObject[.//eolMediaURL]" ).map do | data_object |
       new_from_api_response( data_object )
     end.compact
   end
@@ -74,27 +79,26 @@ class EolPhoto < Photo
     _, _, small_url, medium_url, = nil
     image_url = api_response.at( "eolMediaURL" ).content
     unless image_url.blank?
-      image_url.gsub( /(\.\w+?)$/, ".88x88\\1" )
       small_url = image_url.gsub( /(\.\w+?)$/, ".260x190\\1" )
       medium_url = image_url.gsub( /(\.\w+?)$/, ".580x360\\1" )
     end
     thumb_url = api_response.at( "eolThumbnailURL" ).content
-    rights_holder = api_response.search( "dataObject rightsHolder" )
+    rights_holder = api_response.search( ".//rightsHolder" )
     if rights_holder.count.zero?
-      agent = api_response.search( "agent[role=creator]" ).first
-      agent ||= api_response.search( "agent[role=photographer]" ).first
-      native_username = agent.inner_text if agent
+      agent = api_response.search( ".//agent[role[text()='creator']]" ).first
+      agent ||= api_response.search( ".//agent[role[text()='photographer']]" ).first
+      native_username = agent&.at( "full-name" )&.inner_text
     elsif rights_holder.children.size.positive?
       native_username = rights_holder.children.first.inner_text
     else
-      native_username = rights_holder.content
+      native_username = rights_holder.try( :content )
     end
 
-    native_page_url = if ( source = api_response.at( "dataObject source" ) )
+    native_page_url = if ( source = api_response.at( ".//source" ) )
       source.content
     elsif ( verson_id = api_response.at( "dataObjectVersionID" ).try( :content ) )
       "https://eol.org/media/#{verson_id}"
-    elsif ( eol_taxon_id = api_response.at( "taxon identifier" ).try( :content ) )
+    elsif ( eol_taxon_id = api_response.at( "taxon/identifier" ).try( :content ) )
       "http://eol.org/pages/#{eol_taxon_id}"
     end
 

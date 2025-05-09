@@ -2,6 +2,13 @@
 
 require "#{File.dirname( __FILE__ )}/../spec_helper.rb"
 
+describe EolPhoto, "search_eol" do
+  it "should return some data" do
+    photos = EolPhoto.search_eol( "Nycticorax" )
+    expect( photos ).not_to be_blank
+  end
+end
+
 describe EolPhoto, "new_from_api_response" do
   it "should set native_photo_id" do
     api_response = EolPhoto.get_api_response( 5_246_083 )
@@ -15,6 +22,7 @@ describe EolPhoto, "new_from_api_response" do
     api_response = page.at( "//dataObject[.//mediaURL]" )
     p = EolPhoto.new_from_api_response( api_response )
     expect( p.native_photo_id ).not_to be_blank
+    expect( p.remote_original_url ).not_to be_blank
   end
 
   it "should not set native_realname to inaturalist" do
