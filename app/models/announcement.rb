@@ -56,6 +56,7 @@ class Announcement < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :sites
   has_many :announcement_impressions, dependent: :delete_all
+
   validates_presence_of :placement, :start, :end, :body
   validate :valid_placement_clients
   validates_inclusion_of :target_group_type, in: TARGET_GROUPS.keys, if: :target_group_type?
@@ -90,6 +91,7 @@ class Announcement < ApplicationRecord
   }
 
   before_save :clean_target_group
+  before_save :reset_options_requiring_login
   before_validation :compact_array_attributes
 
   after_save :sync_announcement_dismissals
@@ -125,6 +127,33 @@ class Announcement < ApplicationRecord
   def clean_target_group
     self.target_group_type = nil if target_group_type.blank?
     self.target_group_partition = nil if target_group_type.nil?
+  end
+
+  def reset_options_requiring_login
+    return if target_logged_in == YES
+
+    self.user_created_start_date = nil
+    self.user_created_end_date = nil
+    self.include_donor_start_date = nil
+    self.include_donor_end_date = nil
+    self.exclude_donor_start_date = nil
+    self.exclude_donor_end_date = nil
+    self.prefers_exclude_monthly_supporters = false
+    self.min_observations = nil
+    self.max_observations = nil
+    self.last_observation_start_date = nil
+    self.last_observation_end_date = nil
+    self.include_observation_oauth_application_ids = []
+    self.exclude_observation_oauth_application_ids = []
+    self.min_identifications = nil
+    self.max_identifications = nil
+    self.user_created_start_date = nil
+    self.user_created_end_date = nil
+    self.prefers_target_unconfirmed_users = false
+    self.target_curators = ANY
+    self.target_project_admins = ANY
+    self.target_group_type = nil
+    self.target_group_partition = nil
   end
 
   def dismissed_by?( user )
