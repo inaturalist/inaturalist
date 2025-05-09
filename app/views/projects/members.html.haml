@@ -28,6 +28,11 @@
               %th= t :role
               - if @project.prefers_user_trust?
                 %th=t :hidden_coordinate_trust
+              - elsif !@project.is_new_project?
+                %th
+                  =t :curator_coordinate_access
+                  %button.btn.btn-nostyle{ type: "button", data: { toggle: "tooltip", placement: "right" }, title: t( :curator_coordinate_access_desc ) }
+                    %i.fa.fa-info-circle
               - unless @project.is_new_project?
                 %th.nobr
                   \# #{t :obs}.
@@ -59,6 +64,19 @@
                   = translate_with_consistent_case project_user.prefers_curator_coordinate_access_for, case: "upper"
                   %button.btn.btn-nostyle{ type: "button", data: { toggle: "tooltip", placement: "top" }, title: t( "user_trusts_this_project_for_#{project_user.prefers_curator_coordinate_access_for}" ) }
                     %i.fa.fa-info-circle
+              - elsif !@project.is_new_project?
+                %td.nobr
+                  = translate_with_consistent_case project_user.preferred_curator_coordinate_access, case: "upper"
+                  - if project_user.preferred_curator_coordinate_access == ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER
+                    %button.btn.btn-nostyle{ type: "button", data: { toggle: "tooltip", placement: "top" }, title: t( :user_trusts_this_project_when_added_by_observer ) }
+                      %i.fa.fa-info-circle
+                  - elsif project_user.preferred_curator_coordinate_access == ProjectUser::CURATOR_COORDINATE_ACCESS_NONE
+                    %button.btn.btn-nostyle{ type: "button", data: { toggle: "tooltip", placement: "top" }, title: t( :user_trusts_this_project_when_added_by_none ) }
+                      %i.fa.fa-info-circle
+                  - else
+                    %button.btn.btn-nostyle{ type: "button", data: { toggle: "tooltip", placement: "top" }, title: t( :user_trusts_this_project_when_added_by_any ) }
+                      %i.fa.fa-info-circle
+
               - unless @project.is_new_project?
                 %td.nobr.numeric
                   = link_to number_with_delimiter(project_user.observations_count),  |

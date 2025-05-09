@@ -1649,6 +1649,16 @@ en:
     identifications are shown alongside the observations on project-
     specific views. Curators can also see the true coordinates of
     private and obscured contributions to this project.
+  # Attribute that controls whether or not project curators can view the
+  # hidden coordinates of an observation in a traditional project. This
+  # exists on the record of the observation's addition to the project, and it
+  # exists as a default value in the user's membership in the project.
+  curator_coordinate_access: Curator Coordinate Access
+  curator_coordinate_access_desc: |
+    Curator coordinate access for traditional projects depends on who added
+    the observation to the project. This is just the default setting for
+    observations in projects. Observers can also choose to change this for
+    individual observations.
   curator_identification: Curator identification
   current_flags: Current Flags
   # Label for a custom boundary for an observation search
@@ -6290,6 +6300,14 @@ en:
   user_trusts_this_project_for_taxon: |
     User only trusts this project with hidden coordinates that were obscured
     because of threatened taxa.
+  user_trusts_this_project_when_added_by_any: |
+    User trusts project curators with hidden coordinates of observations added
+    to the project by anyone.
+  user_trusts_this_project_when_added_by_observer: |
+    User trusts project curators with hidden coordinates of observations added
+    to the project by the observer.
+  user_trusts_this_project_when_added_by_none: |
+    User does not trust project curators with hidden coordinates.
   user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their hidden coordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
