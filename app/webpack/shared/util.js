@@ -1,6 +1,7 @@
 import baseFetch from "cross-fetch";
 import _ from "lodash";
 import moment from "moment-timezone";
+import { heicTo } from "heic-to";
 
 // Light wrapper around fetch to ensure credentials are always passed through
 const fetch = ( url, options = {} ) => baseFetch( url, Object.assign( {}, options, {
@@ -34,7 +35,7 @@ function objectToComparable( object = {} ) {
   } ).sort( ).join( "," );
 }
 
-function resizeUpload( file, opts, callback ) {
+function resizeUploadWithCanvas( file, opts, callback ) {
   const options = opts || { };
   options.quality = options.quality || 0.9;
   const reader = new FileReader( );
@@ -66,6 +67,21 @@ function resizeUpload( file, opts, callback ) {
     image.src = readerEvent.target.result;
   };
   reader.readAsDataURL( file );
+}
+
+function resizeHeic( file, opts, callback ) {
+  return heicTo( { blob: file, type: "image/jpeg" } )
+    .then( blob => resizeUploadWithCanvas( blob, opts, callback ) )
+    .catch( e => {
+      console.error( "Failed to convert heic: ", e );
+    } );
+}
+
+function resizeUpload( file, opts, callback ) {
+  if ( file.type === "image/heic" || file.type === "image/heif" ) {
+    return resizeHeic( file, opts, callback );
+  }
+  return resizeUploadWithCanvas( file, opts, callback );
 }
 
 function isBlank( val ) {

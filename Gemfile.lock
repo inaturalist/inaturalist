@@ -25,6 +25,18 @@ GIT
       rails_autolink (>= 1.0)
 
 GIT
+  remote: https://github.com/inaturalist/kt-paperclip.git
+  revision: ec96bfe78298fe139374b7dc2bbc0a4f5fcbc4ef
+  ref: reset-original-content-type
+  specs:
+    kt-paperclip (7.2.2)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      marcel (~> 1.0.1)
+      mime-types
+      terrapin (>= 0.6.0, < 2.0)
+
+GIT
   remote: https://github.com/inaturalist/objectify_xml.git
   revision: 85347a02896480775dbb8b6bbd479afc2c11ce8d
   specs:
@@ -64,18 +76,6 @@ GIT
   specs:
     makara (0.6.0.pre)
       activerecord (>= 6.0.0)
-
-GIT
-  remote: https://github.com/kreeti/kt-paperclip.git
-  revision: f35ca58fad8ae4681b26240adc4eb43d2b0d767f
-  ref: f35ca58fad8ae4681b26240adc4eb43d2b0d767f
-  specs:
-    kt-paperclip (7.2.2)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      marcel (~> 1.0.1)
-      mime-types
-      terrapin (>= 0.6.0, < 2.0)
 
 GIT
   remote: https://github.com/narze/machinist
