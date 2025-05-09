@@ -288,6 +288,8 @@ fi:
   add_a_new_change_group: Lisää uusi muutosryhmä
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Lisää numeroitu lista
+  #Placeholder for a project autocomplete field
+  add_a_project: Lisää projekti
   add_a_single_observation: Lisää yksittäinen havainto.
   add_a_taxon: Lisää taksoni
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1382,6 +1384,8 @@ fi:
   custom_project_fields: Mukautetut projektikentät
   custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
   custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
+  #Button to customize projects that appear in the header
+  customize__projects: Mukauta
   customize_location: Muokkaa sijaintia
   darr_apply_darr: "&darr; Käytä &darr;"
   daily_users: Päivittäiskäyttäjät
@@ -1811,6 +1815,12 @@ fi:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Suosikit
   Family: Heimo
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Suosikkiprojektit
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Valitse enintään seitsemän projektia, jotka näkyvät linkkeinä otsikossa. Päivitykset
+    tulevat näkyviin sivun päivittämisen jälkeen.
   favorite_taxa: Suosikkitaksonit
   favorites: "Suosikit"
   feature_this_project_: "Nosta tämä projekti esille"
@@ -2230,6 +2240,8 @@ fi:
   internal_taxon_rank: Sisäinen taksonin taso
   introduced: Vieraslaji
   introduced_in_place: "Vieraslaji paikassa %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Virheellinen päivämäärä
   invitation: Kutsu
   invite: kutsu
   invite_people: Kutsu ihmisiä
@@ -3881,6 +3893,9 @@ fi:
   processing3p: "Käsitellään..."
   profile: Profiili
   profile_picture: Profiilikuva
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profiilikuvan tiedostotyyppi
   profile_visibility_desc: |
     Roskapostituksen välttämiseksi %{site_name}issa käyttäjäprofiilit tulevat julkisesti näkyville vasta sen jälkeen kun käyttäjä on tehnyt useita tutkimustason havaintoja.
   project: Projekti
@@ -3963,6 +3978,16 @@ fi:
   range: Väli
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Sija
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Suku/sukuristeymä
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Laji/risteymä
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alalaji/muunnos/muoto
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4996,8 +5021,14 @@ fi:
   upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot uusilla lisenssivaihtoehdoilla
+  update_existing_observations_with_new_license_desc: |
+    Tämän vaihtoehdon valitseminen päivittää lisenssivalinnan kaikkiin olemassa oleviin havaintoihisi. Prosessi voi kestää useita tunteja, jos havaintoja on paljon.
   update_existing_photos_with_new_license: Päivitä olemassa olevat kuvat uusilla lisenssivaihtoehdoilla
+  update_existing_photos_with_new_license_desc: |
+    Tämän vaihtoehdon valitseminen päivittää lisenssivalinnan kaikkiin valokuviisi. Prosessi voi kestää useita tunteja, jos kuvia on paljon.
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
+  update_existing_sounds_with_new_license_desc: |
+    Tämän vaihtoehdon valitseminen päivittää lisenssivalinnan kaikkiin äänitallenteisiisi. Prosessi voi kestää useita tunteja, jos tallenteita on paljon.
   update_observations: Päivitä havainnot
   update_photos: Päivitä kuvat
   update_search: Päivitä haku
@@ -6578,6 +6609,10 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tiedostotyyppiä ei tueta. Hyväksymme JPG-, PNG- ja GIF-tiedostot
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
@@ -6631,8 +6666,11 @@ fi:
           Kun taksoneita yhdistetään tai uudelleennimetään %{site_name}:ssa havaintosi, taksoniluettelosi, määrityksesi ym. päivitetään automaattisesti vastaamaan uutta taksonia, mikäli muutos on yksiselitteinen. Jos et hyväksy tätä tai muutos on epämääräinen (esim. taksoni jaetaan kahtia), saat viestin muutoksesta. Viestissä on linkki työkaluun, jolla voit itse halutessasi päivittää sisältösi.
         taxon_name_priorities:
           select_a_lexicon: Valitse sanasto
-        this_only_applies_to_traditional_projects: |
-          Tämä pätee ainoastaan perinteisiin projekteihin. Koonti- tai sateenvarjoprojekteista ei voi sulkea pois havaintoja - ne ovat käytännössä tallennettuja hakuehtoja. <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">Lue lisää (englanniksi)</a>.
+        this_only_applies_to_traditional_projects2: |
+          Tämä koskee vain perinteisiä projekteja. Et voi sulkea pois havaintoja
+          kokoelma- tai sateenvarjoprojekteista, jotka ovat pohjimmiltaan tallennettuja hakuja.
+          Voit lukea lisää
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">täällä</a>.
       recent:
         about_recent_users: Tietoja
         definitions_html: <dl> <dt>Todennäköinen spammaaja</dt> <dd> Käyttäjä, joka on todennäköisesti spammeri, eli käyttäjällä ei ole havaintoja tai määrityksiä, mutta on profiilikuvaus. </dd> <dt>Auto Spam -merkintä</dt> <dd> Spaammaaja, jonka järjestelmä on automaattisesti merkinnyt spammeriksi. </dd> <dt>Manuaalinen Spam -merkintä</dt> <dd> Sivuston kuraattorin spammaajaksi merkitsemä käyttäjä. </dd> <dt>Väärä postiviinen</dt> <dd> Käyttäjä, joka on merkitty spammaajaksi, mutta sivuston kuraattorit ovat todenneet, ettei käyttäjä ole todellisuudessa spammaaja. </dd> </dl>
@@ -7084,6 +7122,7 @@ fi:
         show_for_descendent_taxa: Näytä jälkeläistaksonit
       user:
         email: Sähköposti
+        faved_project_ids: Suosikkiprojektit
         login: Käyttäjänimi
         name: Nimi
         locale: Maa
@@ -7168,6 +7207,8 @@ fi:
             action:
               not_supported_for_this_kind_of_content: ei ole tuettu tällaista sisältöä
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Vain henkilökunta voi nimetä uudelleen
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
@@ -7211,6 +7252,9 @@ fi:
               invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
               must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
               polygon_with_less_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: on monikulmio, jolla ei ole aluetta (kaikki pisteet ovat samoja)
         place_geometry:
           attributes:
             geom:
@@ -7228,6 +7272,10 @@ fi:
             user:
               must_be_on_site_long_enough: |
                 täytyy olla rekisteröitynyt aiemmin kuin 24 tuntia sitten, jotta voit julkaista tietoja. Saamme paljon roskaviestejä (spam) ja tällä tavalla pyrimme estämään niiden määrää. Voit tallentaa tietosi luonnoksena, ja jos käytät vielä sivustoa vuorokauden päästä, voit julkaista ne.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Sinulla voi olla vain 7 suosikkiprojektia
         project_observation:
           attributes:
             base:
@@ -7301,6 +7349,14 @@ fi:
               already_has_a_range: on jo alue
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ei voi sisältää enempää kuin 7 projektia
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: kaikkien on oltava olemassa
             login:
               must_begin_with_a_letter: |
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja

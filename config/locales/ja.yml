@@ -6743,8 +6743,6 @@ ja:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: 上限3つの一般名の辞書がすでに追加されています
-        this_only_applies_to_traditional_projects: |
-          これは従来のプロジェクトにのみ適用されます。基本的に保存された検索であるコレクションやアンブレラプロジェクト（親プロジェクト）から観察記録を除外することはできません。詳細は<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">こちら</a>をご覧ください。
       recent:
         definitions_html: <dl> <dt>スパムの疑い</dt> <dd> おそらくスパマーであろうと思われるユーザー。つまり、観察結果や識別情報はないが、プロフィールの説明はあるということです。 </dd> <dt>自動スパム</dt> <dd> システムによって自動的にスパムとしてマークされたユーザー。 </dd> <dt> 手動スパム</dt> <dd> サイトキュレーターが手動でスパムとしてマークしたスパム。 </dd> <dt>誤検知</dt> <dd> スパマーとしてフラグが立てられたが、実際にはスパマーではなかったため、サイトキュレーターによってフラグが解消されたユーザー。 </dd> </dl>
         recent_users_desc_html: |

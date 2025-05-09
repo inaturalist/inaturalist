@@ -2199,6 +2199,8 @@ de:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
     organization based in the United States of America (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist hat die von %{user} vorgeschlagene ID aktualisiert
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -4143,6 +4145,9 @@ de:
   processing3p: "Verarbeite…"
   profile: Profil
   profile_picture: Profilbild
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Dateityp des Profilbilds
   profile_visibility_desc: |
     In dem Bestreben, Spam von %{site_name} abzuhalten, sind Benutzerprofile nur dann
     öffentlich sichtbar, nachdem ein Benutzer mehrere Beobachtungen mit Forschungsqualität
@@ -7778,6 +7783,10 @@ de:
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 
            (CC BY-NC)-Datensätze in das Archiv auf, das wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Dateityp wird nicht unterstützt. Akzeptiert werden JPG, PNG und GIF
         monthly_supporter_desc_html: |
           Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, um den gemeinnützigen Betrieb von iNaturalist (United States IRS EIN 92-1296468) und der Webseiten des iNaturalist-Netzwerks zu unterstützen.
           <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
@@ -7871,9 +7880,6 @@ de:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Es wurde bereits das Maximum von 3 Trivialnamen-Lexika hinzugefügt
-        this_only_applies_to_traditional_projects: |
-          Dies gilt nur für traditionelle Projekte. Du kannst Beobachtungen nicht von Sammel- oder Dach-Projekten ausschließen, die im Wesentlichen gespeicherte Suchen sind.
-          Mehr <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a>.
       recent:
         about_recent_users: Über
         definitions_html: <dl> <dt>Wahrscheinlich Spam</dt> <dd> Benutzer, der wahrscheinlich ein Spammer ist - was bedeutet, dass er keine Beobachtungen oder Bestimmungen hat, aber eine Profilbeschreibung. </dd> <dt>Auto Spam</dt> <dd> Spammer, der vom System automatisch als Spammer markiert wurde. </dd> <dt>Manueller Spam</dt> <dd> Spammer, der manuell von einem Website-Kurator als Spammer markiert wurde. </dd> <dt>Falsche Positive</dt> <dd> Benutzer, die als Spammer markiert wurden, aber die Meldungen von Kuratoren der Website aufgelöst wurden, weil sie nicht wirklich Spammer waren. </dd> </dl>
@@ -8481,6 +8487,8 @@ de:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Nur Admins und Kuratoren können Inhalte ausblenden
               only_staff_and_hiding_curators_can_unhide: Nur Administratoren und Kuratoren, die den Inhalt ausblendeten, können ihn wieder sichtbar machen
+              #Error saying that only staff can rename
+              only_staff_can_rename: Nur Admins können umbenennen
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Nur Admins können Inhalte als privat festlegen
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden

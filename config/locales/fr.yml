@@ -2272,6 +2272,8 @@ fr:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist est une organisation indépendante 501(c)(3), exonérée d'impôt, sans but lucratif,
     basée aux États-Unis d'Amérique (ID fiscal : 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist a mis à jour l’ID suggéré par %{user}
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
   computer_vision_suggestion_desc: |
     La vision par l’ordinateur est le processus par lequel l'ordinateur apprend à reconnaître les motifs présents dans les images. Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé indique quand une personne a ajouté une identification en utilisant un de ces outils.
@@ -2373,7 +2375,7 @@ fr:
   infraspecies_ids_description: |
     Si vous désactivez cette option, vous ne serez plus informé des identifiants des taxons
     en dessous du niveau de l’espèce (comme les sous-espèces et les variétés) qui correspondent à votre
-    ID au niveau de l’espèce. Vous serez averti s’ils ne sont pas d’accord avec votre pièce d’identité ou
+    ID au niveau de l’espèce. Vous serez averti s’ils ne sont pas d’accord avec votre identifiant ou
     s’ils contiennent des remarques supplémentaires.
   input_taxon: Taxon en entrée
   insects: insectes
@@ -2387,6 +2389,8 @@ fr:
   internal_taxon_rank: Rang du taxon interne
   introduced: Introduit
   introduced_in_place: "Introduit dans %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Date non valide
   invitation: Invitation
   invite: inviter
   invite_people: Inviter des gens
@@ -3220,7 +3224,7 @@ fr:
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
   noble_curators: "Les éminents curateurs d'%{site}"
   #A user who is not a curator
-  non_curator: Non-conservateur
+  non_curator: Non curateur
   non_human?: Non-humain ?
   #A user who does not admin any projects
   non_project_admin: Non-administrateur de projet
@@ -5585,8 +5589,18 @@ fr:
   upcoming_bioblitzes: Bioblitz à venir
   update: Mettre à jour
   update_existing_observations_with_new_license: Mettre à jour les observations existantes au moyen des nouveaux choix de licence
+  update_existing_observations_with_new_license_desc: |
+    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à toutes vos
+    observations existantes. Cela peut prendre quelques heures si vous avez beaucoup d'observations.
   update_existing_photos_with_new_license: Mettre à jour les photos existantes au moyen des nouveaux choix de licence
+  update_existing_photos_with_new_license_desc: |
+    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à toutes vos
+    photos existantes. Cela peut prendre quelques heures si vous avez beaucoup d'observations.
   update_existing_sounds_with_new_license: Mettre à jour les sons existants au moyen des nouveaux choix de licence
+  update_existing_sounds_with_new_license_desc: |
+    En sélectionnant cette option, votre nouveau choix de licence s’appliquera à tous vos
+    sons existants. Cela peut prendre quelques heures si vous avez beaucoup de
+    Sons.
   update_observations: Mettre à jour les observations
   update_past: "Mettre à jour les derniers %{type}"
   update_photos: Mettre à jour les photos
@@ -5824,6 +5838,8 @@ fr:
   view_more_observations_of_x_project: "Afficher plus d'observations de %{project} sur <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Afficher plus d’observations de %{taxon} sur <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Afficher plus d'observations non vérifiées"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Voir vos identifiants affectés
   view_observation: Afficher l’observation
   view_observations: Afficher les observations
   view_observation_flags: Voir les signalements pour cette observation
@@ -6247,9 +6263,7 @@ fr:
         observation est mise en cache, il peut donc s’écouler quelques heures avant que le ciblage
         entrer en vigueur
       observation_oauth_application_ids_desc: |
-        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
-        Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
-        appli.
+        Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélectionner « Tous » ou ne pas réaliser de sélection affichera l’annonce à tous les utilisateurs, indépendamment de l'appli.
       site_ids_desc: |
         Maintenez la touche CMD ou MAJ enfoncée pour en sélectionner plusieurs. Sélection de « Tous » ou non-réalisation
         Une sélection affichera l’annonce à tous les utilisateurs, indépendamment de
@@ -6260,16 +6274,16 @@ fr:
         en même temps, non par rapport à leur heure locale.
       #Description of a group of options for targeting announcements based
       #on donation behavior
-      target_users_by_donation_behavior: Ciblez les utilisateurs en fonction de leur comportement de don
+      target_users_by_donation_behavior: Ciblez les utilisateurs en fonction de leur comportement de donateur
       #Description of a group of options for targeting announcements based
       #on identification behavior
       target_users_by_identification_behavior: Ciblez les utilisateurs en fonction de leur comportement d’identification
       #Description of a group of options for targeting announcements based
       #on observation behavior
-      target_users_by_observation_behavior: Ciblez les utilisateurs en fonction du comportement d’observation
+      target_users_by_observation_behavior: Ciblez les utilisateurs en fonction de leur comportement d’observation
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
-      target_users_by_other_attributes: Cibler les utilisateurs par d’autres attributs
+      target_users_by_other_attributes: Cibler les utilisateurs en fonction d’autres attributs
     atlases:
       show:
         #Title for section describing atlases
@@ -6279,6 +6293,17 @@ fr:
           Les atlas transmettent la distribution mondiale d’un taxon. Les commissaires font
           en définissant la structure d’un atlas et en organisant les
           les taxons répertoriés qui l’alimentent.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Disloquer ce lieu
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Assembler ce lieu
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Aucune modification n’a encore été apportée à cet atlas
         #Title for a section showing recent alterations to an atlas
@@ -8250,6 +8275,10 @@ fr:
           biodiversité</a> (GBIF), une organisation internationale
           intergouvernementale qui compile et distribue des informations sur la
           biodiversité dans le monde entier.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Type de fichier non pris en charge. Seuls les formats JPG, PNG et GIF sont acceptés
         monthly_supporter_desc_html: |
           L'existence et le fonctionnement d'iNaturalist ne sont possibles que grâce au soutien des personnes qui font chaque mois un don automatique (code fiscal des États-Unis IRS EIN 94-1156258) pour appuyer ses activités sans but lucratif et les sites du réseau iNaturalist. <a href="%{url}">Cliquez ici pour faire un don mensuel</a>. Une fois votre soutien confirmé, vous pourrez cocher cette case pour afficher ce statut sur votre profil. Notez que l'adresse courriel sur Donorbox doit être identique à celle sur iNaturalist pour que nous puissions confirmer que vous effectuez un don mensuel. Si ces deux adresses ne sont pas identiques, veuillez en changer une.
         muting_desc_html: |
@@ -8351,9 +8380,11 @@ fr:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Le maximum de 3 lexiques de noms communs a déjà été ajouté
-        this_only_applies_to_traditional_projects: |
-          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des projets de collection ni de compilation, qui sont essentiellement des recherches sauvegardées.
-          Plus d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
+        this_only_applies_to_traditional_projects2: |
+          Cela ne s’applique qu’aux projets traditionnels. Vous ne pouvez pas exclure des observations
+          à partir de projets de collection ou cadres, qui sont essentiellement des recherches enregistrées.
+          Vous pouvez lire la suite
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">ici</a>.
       recent:
         about_recent_users: À propos
         definitions_html: <dl> <dt>Sans doute du spam</dt> <dd> Utilisateur qui est sans doute un pollueur, ce qui veut dire qu’ils n’ont pas d’observations ou d’identifications, mais une description e profil. </dd> <dt>Spam automatique</dt> <dd> Spammeur qui a été marqué automatiquement comme tel par le système. </dd> <dt>Spam manuel</dt> <dd> Spammeurqui a été marqué comme tel par un responsable du site. </dd> <dt>Faux positifs</dt> <dd> Utilisateurs qui ont été marqués comme spammeurs mais les marquages ont été résolus par les curateurs du site parce qu’ils ne sont pas vraiment des spammeurs. </dd> </dl>
@@ -8652,6 +8683,12 @@ fr:
           kb: ko
           mb: Mo
           tb: To
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
   support:
     array:
       last_word_connector: ', et'
@@ -9053,6 +9090,8 @@ fr:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Seuls l'équipe iNaturalist et les curateurs peuvent masquer le contenu
               only_staff_and_hiding_curators_can_unhide: Seuls le personnel et les superviseurs qui masquent du contenu peuvent l'afficher à nouveau
+              #Error saying that only staff can rename
+              only_staff_can_rename: Seule l'équipe iNaturalist peut renommer
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Seul le personnel peut définir le contenu comme privé
               staff_cannot_be_suspended: Les membres de l'équipe ne peuvent pas être suspendus
@@ -9112,6 +9151,9 @@ fr:
               invalid_point: a des coordonnées non valides, par exemple une longitude supérieure à 180° ou une latitude inférieure à -90°
               must_have_more_than_three_points: doit avoir plus de 3 points
               polygon_with_less_than_four_points: a un polygone avec moins de 4 points
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: contient un polygone sans aire (tous les points sont identiques)
         place_geometry:
           attributes:
             geom:
@@ -9231,7 +9273,7 @@ fr:
             login:
               must_begin_with_a_letter: |
                 doit commencer par une lettre, ne pas contenir d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères souligné
-              domain_is_not_supported: n’est pas pris en charge
+              domain_is_not_supported: ce domaine n'est pas pris en charge
         user_block:
           attributes:
             base:

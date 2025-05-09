@@ -244,6 +244,8 @@ id:
   add_a_new_change_group: Tambahkan Grup Perubahan Baru
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Tambahkan daftar bernomor
+  #Placeholder for a project autocomplete field
+  add_a_project: Tambah proyek
   add_a_single_observation: Tambahkan Observasi Tunggal.
   add_a_taxon: Tambahkan Takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1396,6 +1398,8 @@ id:
   custom_project_fields: Proyek Kolom Kustom
   custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
   custom_project_was_successfully_updated: Proyek kustom telah berhasil diperbaharui
+  #Button to customize projects that appear in the header
+  customize__projects: Sesuaikan
   customize_location: Sesuaikan Lokasi
   darr_apply_darr: "&darr; Terapkan &darr;"
   daily_users: Pengguna Harian
@@ -1836,6 +1840,12 @@ id:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorit
   Family: Keluarga
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Proyek Favorit
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Pilih hingga tujuh proyek yang muncul sebagai tautan di atas. Perubahan
+    akan muncul setelah menyegarkan halaman.
   favorite_taxa: Taksa Favorit
   favorites: "Favorit"
   feature_this_project_: "Pamerkan Proyek Ini"
@@ -2191,6 +2201,8 @@ id:
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist adalah organisasi nirlaba independen bebas pajak 501(c)(3) berbasis di Amerika Serikat (ID Pajak: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist memperbarui ID yang disarankan oleh %{user}
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2302,6 +2314,8 @@ id:
   internal_taxon_rank: Tingkat takson internal
   introduced: Diperkenalkan
   introduced_in_place: "Diperkenalkan di %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Tanggal tidak sah
   invitation: Undangan
   invite: undang
   invite_people: Undang orang
@@ -4175,6 +4189,9 @@ id:
   processing3p: "Memproses..."
   profile: Profil
   profile_picture: Foto Profil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Jenis berkas Gambar Profil
   profile_visibility_desc: |
     Untuk menjaga %{site_name} dari spam, profil pengguna hanya dapat dilihat publik jika pengguna sudah menambahkan beberapa pengamatan Kelas Riset.
   project: Proyek
@@ -5467,8 +5484,20 @@ id:
   upcoming_bioblitzes: Bioblitz yang akan datang
   update: Perbarui
   update_existing_observations_with_new_license: Perbarui pengamatan yang sudah ada dengan pilihan lisensi baru
+  update_existing_observations_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    pengamatan yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    pengamatan.
   update_existing_photos_with_new_license: Perbarui foto yang sudah ada dengan pilihan lisensi baru
+  update_existing_photos_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    gambar Anda yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    gambar.
   update_existing_sounds_with_new_license: Perbarui suara yang sudah ada dengan pilihan lisensi baru
+  update_existing_sounds_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    suara Anda yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    suara.
   update_observations: Perbarui Pengamatan
   update_past: "Perbarui %{type} Yang Dulu"
   update_photos: Perbarui Foto
@@ -7811,6 +7840,10 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Jenis berkas tidak didukung. Kami menerima JPG, PNG, dan GIF
         monthly_supporter_desc_html: |
           Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
           ke iNaturalist (United States IRS EIN 92-1296468) untuk mendukung 
@@ -7907,8 +7940,8 @@ id:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Sebanyak 3 kosakata nama umum (maksimal) sudah ditambahkan
-        this_only_applies_to_traditional_projects: |
-          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang intinya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">di sini</a>.
+        this_only_applies_to_traditional_projects2: |
+          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang pada dasarnya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">di sini</a>.
       recent:
         about_recent_users: Tentang
         definitions_html: <dl> <dt>Sepertinya Spam</dt> <dd> Pengguna yang mungkin seorang spammer, yang berarti mereka tidak memiliki pengamatan atau identifikasi, tetapi mereka memiliki deskripsi profil.</dd> <dt>Auto Spam</dt> <dd> Spammer yang secara otomatis ditandai sebagai spammer dari sistem. </dd> <dt>Manual Spam</dt> <dd> Spammer yang secara manual ditandai sebagai spammer oleh kurator situs. </dd> <dt>False Positive</dt> <dd> Pengguna yang ditandai sebagai spammer, tetapi tandanya diselesaikan oleh kurator situs karena mereka sebenarnya bukan spammer. </dd> </dl>
@@ -8435,6 +8468,7 @@ id:
         show_for_descendent_taxa: Tampilkan untuk takson turunan
       user:
         email: Email
+        faved_project_ids: Proyek favorit
         login: Nama pengguna
         name: Nama
         locale: Tempat
@@ -8601,6 +8635,9 @@ id:
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
               polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: memiliki poligon tanpa luas (semua titik sama)
         place_geometry:
           attributes:
             geom:
@@ -8618,6 +8655,10 @@ id:
             user:
               must_be_on_site_long_enough: |
                 harus terdaftar lebih dari 24 jam yang lalu untuk menerbitkan. Kami mendapatkan banyak spammer, dan ini adalah semacam cara yang kurang baik untuk berurusan dengan mereka. Anda masih dapat menyimpan draf, dan jika Anda masih menggunakan situs ini dalam satu hari, Anda bisa menerbitkan.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Anda hanya bisa memfavoritkan 7 proyek
         project_observation:
           attributes:
             base:
@@ -8709,6 +8750,14 @@ id:
               already_has_a_range: sudah memiliki jangkauan
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: tidak bisa menyertakan lebih dari 7 proyek
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: harus ada semua
             login:
               must_begin_with_a_letter: |
                 harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung, dan garis bawah
