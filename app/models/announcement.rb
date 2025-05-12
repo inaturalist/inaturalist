@@ -13,6 +13,12 @@ class Announcement < ApplicationRecord
     const_set placement.parameterize.underscore.upcase, placement
   end
 
+  DISMISSIBLE_PLACEMENTS = [
+    MOBILE_HOME,
+    USERS_DASHBOARD,
+    USERS_DASHBOARD_SIDEBAR
+  ].freeze
+
   INAT_IOS = "inat-ios"
   INAT_ANDROID = "inat-android"
   SEEK = "seek"
@@ -205,8 +211,8 @@ class Announcement < ApplicationRecord
         where( "donated_at >= ?", exclude_donor_start_date || Date.new( 2018, 1, 1 ) ).
         where( "donated_at <= ?", exclude_donor_end_date || Time.now ).any?
 
-    return false if user_created_start_date && user.created_at < user_created_start_date
-    return false if user_created_end_date && user.created_at > user_created_end_date
+    return false if user && user_created_start_date && user.created_at < user_created_start_date
+    return false if user && user_created_end_date && user.created_at > user_created_end_date
 
     return false if prefers_target_unconfirmed_users && user&.confirmed?
 

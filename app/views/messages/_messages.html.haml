@@ -22,5 +22,6 @@
           %td.subject
             = link_to message.subject.blank? ? t(:no_subject_parens) : message.subject, message_path(message, :box => @box)
           %td.meta.nobr
-            =l message.created_at, format: :long
+            %time.datetime{ datetime: message.created_at.iso8601, title: l( message.created_at, format: :long ) }
+              =l message.created_at, format: message.created_at.year == Date.today.year ? :short : :short_with_year
   = will_paginate @messages, :params => {:box => @box, :anchor => @box, :partial => nil}

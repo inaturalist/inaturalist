@@ -229,7 +229,12 @@ class PostsController < ApplicationController
   end
 
   def archives
-    @target_date = Date.parse( "#{params[:year]}-#{params[:month]}-01" )
+    @target_date = begin
+      Date.parse( "#{params[:year]}-#{params[:month]}-01" )
+    rescue Date::Error
+      flash[:notice] = t :invalid_date
+      return redirect_back_or_default posts_url
+    end
     @posts = @parent.posts.
       where( ["published_at >= ? AND published_at < ?", @target_date, @target_date + 1.month] ).
       paginate( page: params[:page] || 1, per_page: 10 )

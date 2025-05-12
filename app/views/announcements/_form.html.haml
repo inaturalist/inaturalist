@@ -27,8 +27,9 @@
     }
 - content_for :extrajs do
   :javascript
-    var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe }
-    var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe }
+    var PLACEMENT_CLIENTS = #{ Announcement::CLIENTS.to_json.html_safe };
+    var TARGET_GROUP_PARTITIONS = #{ Announcement::TARGET_GROUPS.to_json.html_safe };
+    var DISMISSIBLE_PLACEMENTS = #{ Announcement::DISMISSIBLE_PLACEMENTS.to_json.html_safe };
   = javascript_include_tag "announcements/form"
 = form_for @announcement, :builder => BootstrapFormBuilder, html: { class: current_user.is_admin? ? "announcement for-admin" : "announcement for-non-admin" } do |f|
   .row
@@ -42,6 +43,8 @@
       = f.datetime_select :start, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.start_desc" ), description_tip: true
       = f.datetime_select :end, use_month_names: month_names, order: [:year, :month, :day], description: t( "views.announcements.end_desc" ), description_tip: true
       = f.check_box :dismissible, label_after: true
+      = f.check_box :prefers_target_staff, label_after: true
+      = f.check_box :target_creator, label_after: true
     .col-xs-4
       = f.select :ip_countries, country_options, { include_blank: t( :all ) }, multiple: true, description: t( "views.announcements.ip_countries_desc" ), description_tip: true
       - if current_user.is_admin?
@@ -108,8 +111,6 @@
                 .col-xs-6= f.text_field :user_created_end_date, type: "date"
               .row
                 .col-xs-12
-                  = f.check_box :prefers_target_staff, label_after: true
-                  = f.check_box :target_creator, label_after: true
                   = f.check_box :prefers_target_unconfirmed_users, label_after: true
             .col-xs-4
               = f.form_field :target_logged_in, builder: BootstrapFormBuilder do

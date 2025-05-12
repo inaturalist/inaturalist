@@ -358,7 +358,10 @@ class Identification < ApplicationRecord
   # Set the project_observation curator_identification_id if the
   # identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
-    return true if observation.blank?
+    return if observation.blank?
+    # run_update_curator_identification will assess the observation's project_observations.
+    # If there are none, there is no need to queue the job in the first place
+    return if observation.project_observations.blank?
 
     Identification.
       delay(
@@ -367,7 +370,6 @@ class Identification < ApplicationRecord
         run_at: 1.minute.from_now
       ).
       run_update_curator_identification( id )
-    true
   end
 
   # Update the counter cache in users.  That cache ONLY tracks observations

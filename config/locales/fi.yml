@@ -27,6 +27,12 @@ fi:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> TUNNISTUS'
     other: '<span class="count">%{count}</span> TUNNISTUSTA'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> TUNNISTAJA'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> TUNNISTAJAA'
   x_ids_made_for_others_html:
     one: '<span class="count">%{count}</span> muille tehty tunnistus'
     other: '<span class="count">%{count}</span> muille tehtyä tunnistusta'
@@ -77,6 +83,9 @@ fi:
   x_observations_reviewed_html:
     one: "<span class='count'>1</span> havainto tarkistettu"
     other: "<span class='count'>%{count}</span> havaintoa tarkistettu"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> HAVAINNOIJA'
+    other: '<span class="count">%{count}</span> HAVAINNOIJAA'
   x_others:
     one: "1 muu"
     other: "%{count} muuta"
@@ -279,6 +288,8 @@ fi:
   add_a_new_change_group: Lisää uusi muutosryhmä
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Lisää numeroitu lista
+  #Placeholder for a project autocomplete field
+  add_a_project: Lisää projekti
   add_a_single_observation: Lisää yksittäinen havainto.
   add_a_taxon: Lisää taksoni
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -727,6 +738,13 @@ fi:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, lähettänyt %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Jaettu osiin
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Jakamaton
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
     natureserve: NatureServe
@@ -1366,6 +1384,8 @@ fi:
   custom_project_fields: Mukautetut projektikentät
   custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
   custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
+  #Button to customize projects that appear in the header
+  customize__projects: Mukauta
   customize_location: Muokkaa sijaintia
   darr_apply_darr: "&darr; Käytä &darr;"
   daily_users: Päivittäiskäyttäjät
@@ -1795,6 +1815,12 @@ fi:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Suosikit
   Family: Heimo
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Suosikkiprojektit
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Valitse enintään seitsemän projektia, jotka näkyvät linkkeinä otsikossa. Päivitykset
+    tulevat näkyviin sivun päivittämisen jälkeen.
   favorite_taxa: Suosikkitaksonit
   favorites: "Suosikit"
   feature_this_project_: "Nosta tämä projekti esille"
@@ -2072,6 +2098,10 @@ fi:
   highlights_and_stats_from_year_on_site: "Kohokohdat ja tilastot vuodelta %{year} %{site}issa"
   history: Historia
   home: Etusivu
+  #disagreements are identifications that disagree with other identifications on the same observation
+  #thinned refers to a branch of the taxonomy that was altered to contain fewer taxa
+  however_you_may_want_to_commit_html: |
+    Saatat kuitenkin haluta kommentoida yllä linkitettyjä havaintoja tahattomista erimielisyyksistä ilmoittaaksesi tunnistajille, että %{old_parent}:n laajuutta on supistettu.
   i_dont_know_but_i_am_sure_this_is_taxon: En tiedä, mutta olen varma että tämä kuuluu taksoniin %{taxon}
   icon: Kuvake
   icon_size: Kuvakkeen koko
@@ -2210,6 +2240,8 @@ fi:
   internal_taxon_rank: Sisäinen taksonin taso
   introduced: Vieraslaji
   introduced_in_place: "Vieraslaji paikassa %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Virheellinen päivämäärä
   invitation: Kutsu
   invite: kutsu
   invite_people: Kutsu ihmisiä
@@ -2455,6 +2487,10 @@ fi:
   list_with_two_items: "%{one} ja %{two}"
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Lisätty
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Poistettu
   listed_taxon_updated: Listattu taksoni päivitetty
   listing_lists: Luettelointiluettelot
   listing_project_assets: Luettelo projektitiedostoista
@@ -3786,12 +3822,22 @@ fi:
     zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
+  places_warning_export_complex_boundary_html: |
+    Jos yrität ladata havaintoja monimutkaiselta alueelta, harkitse
+    <a href="https://www.gbif.org/occurrence/search?dataset_key=50c9509d-22c7-4a22-a47d-8c48425ef4a7">niiden lataamista sen sijaan GBIF:stä</a>, jossa voit piirtää monimutkaisia alueita tai voit ladata iNatista käyttämällä olemassa olevia paikkoja tai bounding box -alueita ja rajaa tiedot uudelleen, kun olet ladannut aineistot.
   places_warning_look_for_existing2_html: |
     Etsi <a href="/search?source[]=places">olemassa olevia paikkoja</a> varmistaaksesi, että
-    et luo kaksoiskappaletta. Meillä on jo paikat kaikkia
-    maanosia ja maita varten sekä monia muita hallinnollisia rajoja.
+    et luo kaksoiskappaletta. Meillä on jo paikat kaikista
+    maanosista ja maista sekä monia muita hallinnollisia rajoja.
   places_warning_please_keep_in_mind: |
     Huomioi seuraavat rajoitukset:
+  places_warning_projects_can_have_multiple_places: |
+    Jos yrität luoda paikan projektin aluetta varten, projektit voivat koostua useista paikoista. Jos esimerkiksi haluat tehdä projektin, joka kattaa Uuden-Seelannin ja Australian, voit vain lisätä projektiin vaatimuksiin kaksi paikkaa sen sijaan, että tekisit uuden.
+  places_warning_new_places_are_slow_html: |
+    Uudet paikat ovat yksi suurimmista iNaturalistin hidastumisen syistä, joten
+    <strong>harkitse uuden paikan tekemistä</strong>. Pienet paikat, jotka
+    sisältävät vain muutamia tuhansia havaintoja ovat yleensä ok, mutta jos teet
+    uuden paikan, joka sisältää paljon havaintoja, tulet hidastamaan iNaturalistin toimintaa kaikilla. Tässä on joitain vaihtoehtoisia lähestymistapoja:
   places_warning_quota: |
     Voit luoda vain kolme paikkaa päivässä.
   places_warning_the_future: |
@@ -3847,6 +3893,9 @@ fi:
   processing3p: "Käsitellään..."
   profile: Profiili
   profile_picture: Profiilikuva
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profiilikuvan tiedostotyyppi
   profile_visibility_desc: |
     Roskapostituksen välttämiseksi %{site_name}issa käyttäjäprofiilit tulevat julkisesti näkyville vasta sen jälkeen kun käyttäjä on tehnyt useita tutkimustason havaintoja.
   project: Projekti
@@ -3929,6 +3978,16 @@ fi:
   range: Väli
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Sija
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Suku/sukuristeymä
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Laji/risteymä
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alalaji/muunnos/muoto
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4962,8 +5021,14 @@ fi:
   upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot uusilla lisenssivaihtoehdoilla
+  update_existing_observations_with_new_license_desc: |
+    Tämän vaihtoehdon valitseminen päivittää lisenssivalinnan kaikkiin olemassa oleviin havaintoihisi. Prosessi voi kestää useita tunteja, jos havaintoja on paljon.
   update_existing_photos_with_new_license: Päivitä olemassa olevat kuvat uusilla lisenssivaihtoehdoilla
+  update_existing_photos_with_new_license_desc: |
+    Tämän vaihtoehdon valitseminen päivittää lisenssivalinnan kaikkiin valokuviisi. Prosessi voi kestää useita tunteja, jos kuvia on paljon.
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
+  update_existing_sounds_with_new_license_desc: |
+    Tämän vaihtoehdon valitseminen päivittää lisenssivalinnan kaikkiin äänitallenteisiisi. Prosessi voi kestää useita tunteja, jos tallenteita on paljon.
   update_observations: Päivitä havainnot
   update_photos: Päivitä kuvat
   update_search: Päivitä haku
@@ -5153,6 +5218,8 @@ fi:
   view_more_observations_of_x_project: "Näytä lisää havaintoja projektista %{project} sivustolla <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa &raquo;</nobr>"
   view_more_unreviewed: "Katso lisää tarkistamattomia"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Näytä tunnistukset, joihin muutos vaikuttaa
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput
@@ -5470,6 +5537,42 @@ fi:
     announcements:
       observation_oauth_application_ids_desc: |
         Klikkaa CMD- tai SHIFT-näppäintä valitaksesi useita. Valitsemalla "Kaikki" tai jos et valitse mitään, ilmoitus näytetään kaikille käyttäjille riippumatta sovelluksesta.
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Tietoa atlaksista
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlakset kertovat taksonin maailmanlaajuisesta levinneisyydestä. Kuraattorit tekevät atlaksia määrittelemällä atlaksen rakenteen ja kuratoimalla atlaksen taksonit.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Jaa tämä paikka osiin
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Yhdistä tämän paikan osat
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ei muutoksia tähän atlakseen vielä
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Viimeaikaiset Atlas-muutokset
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Viimeaikaiset luettelon taksonien muutokset
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Näytä luettelon taksonit
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Tämä atlas ei ole tällä hetkellä aktiivinen
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tämä poistaa tämän taksonin ja kaikki sen alataksonit tarkistuslistoilta, jotka liittyvät tähän paikkaan ja kaikkiin sen sisältämiin vakiopaikkoihin. Toimintoa ei voi perua. Haluatko varmasti jatkaa?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Varoitus: on havaintoja, joita tämä atlas ei edusta
     content_freeze:
       content_freeze: Sisällön jäädytys
       during_this_time: |
@@ -6506,6 +6609,10 @@ fi:
           Sisältösi lisensointi antaa kenelle tahansa laillisen oikeuden käyttää sitä kysymättä erikseen lupaasi, kunhan he noudattavat lisenssin ehtoja. Lisäksi %{site_name} sisällyttää Creative Commons -lisensoidun sisällön säännöllisesti päivitettäviin tietoarkistoihin, jotka toimitetaan valituille kumppaniorganisaatioillemme. Esimerkiksi sisällytämme CC0-, Nimeä- (CC BY) ja Nimeä-Epäkaupallinen
           (CC BY-NC) -lisensoidut tiedot arkistoon, jonka toimitamme <a href="http://www.gbif.org/">Global Biodiversity Information
           Facilitylle</a> (GBIF), joka on kansainvälinen organisaatio joka kokoaa yhteen ja jakaa tietoa luonnon monimuotoisuudesta ympäri maailmaa.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tiedostotyyppiä ei tueta. Hyväksymme JPG-, PNG- ja GIF-tiedostot
         muting_desc_html: |
           <p>
           Jonkun mykistäminen estää sinua saamasta ilmoituksia tämän tekemisistä, kuten havaintojesi kommentoimisesta, viestistä sinulle, mainitsemisestasi jne. Mykistäminen mahdollistaa jonkun jättämisen huomiotta ilman, että tekemisiä estetään.
@@ -6559,8 +6666,11 @@ fi:
           Kun taksoneita yhdistetään tai uudelleennimetään %{site_name}:ssa havaintosi, taksoniluettelosi, määrityksesi ym. päivitetään automaattisesti vastaamaan uutta taksonia, mikäli muutos on yksiselitteinen. Jos et hyväksy tätä tai muutos on epämääräinen (esim. taksoni jaetaan kahtia), saat viestin muutoksesta. Viestissä on linkki työkaluun, jolla voit itse halutessasi päivittää sisältösi.
         taxon_name_priorities:
           select_a_lexicon: Valitse sanasto
-        this_only_applies_to_traditional_projects: |
-          Tämä pätee ainoastaan perinteisiin projekteihin. Koonti- tai sateenvarjoprojekteista ei voi sulkea pois havaintoja - ne ovat käytännössä tallennettuja hakuehtoja. <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">Lue lisää (englanniksi)</a>.
+        this_only_applies_to_traditional_projects2: |
+          Tämä koskee vain perinteisiä projekteja. Et voi sulkea pois havaintoja
+          kokoelma- tai sateenvarjoprojekteista, jotka ovat pohjimmiltaan tallennettuja hakuja.
+          Voit lukea lisää
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">täällä</a>.
       recent:
         about_recent_users: Tietoja
         definitions_html: <dl> <dt>Todennäköinen spammaaja</dt> <dd> Käyttäjä, joka on todennäköisesti spammeri, eli käyttäjällä ei ole havaintoja tai määrityksiä, mutta on profiilikuvaus. </dd> <dt>Auto Spam -merkintä</dt> <dd> Spaammaaja, jonka järjestelmä on automaattisesti merkinnyt spammeriksi. </dd> <dt>Manuaalinen Spam -merkintä</dt> <dd> Sivuston kuraattorin spammaajaksi merkitsemä käyttäjä. </dd> <dt>Väärä postiviinen</dt> <dd> Käyttäjä, joka on merkitty spammaajaksi, mutta sivuston kuraattorit ovat todenneet, ettei käyttäjä ole todellisuudessa spammaaja. </dd> </dl>
@@ -6841,7 +6951,9 @@ fi:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -6877,6 +6989,8 @@ fi:
     attributes:
       announcement:
         created_at: Luotu
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Suljettavissa
         updated_at: Päivitetty
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -7008,6 +7122,7 @@ fi:
         show_for_descendent_taxa: Näytä jälkeläistaksonit
       user:
         email: Sähköposti
+        faved_project_ids: Suosikkiprojektit
         login: Käyttäjänimi
         name: Nimi
         locale: Maa
@@ -7092,6 +7207,8 @@ fi:
             action:
               not_supported_for_this_kind_of_content: ei ole tuettu tällaista sisältöä
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Vain henkilökunta voi nimetä uudelleen
               staff_cannot_be_suspended: Ylläpitäjiä ei voida hyllyttää
             user_id:
               must_be_a_curator: on oltava kuraattori
@@ -7108,6 +7225,9 @@ fi:
                 ei voi olla suurempi kuin päivä jolloin havainto lisättiin
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: on oltava viimeisten 130 vuoden aikana
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: on oltava yksittäinen päivä, ei vaihteluväli
         observation_field_value:
           attributes:
             value:
@@ -7132,6 +7252,9 @@ fi:
               invalid_point: on virheellinen piste, esim. pituus suurempi kuin 180 tai leveysaste pienempi kuin -90
               must_have_more_than_three_points: on oltava enemmän kuin 3 pistettä
               polygon_with_less_than_four_points: on monikulmio, jossa on vähemmän kuin neljä pistettä
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: on monikulmio, jolla ei ole aluetta (kaikki pisteet ovat samoja)
         place_geometry:
           attributes:
             geom:
@@ -7149,6 +7272,10 @@ fi:
             user:
               must_be_on_site_long_enough: |
                 täytyy olla rekisteröitynyt aiemmin kuin 24 tuntia sitten, jotta voit julkaista tietoja. Saamme paljon roskaviestejä (spam) ja tällä tavalla pyrimme estämään niiden määrää. Voit tallentaa tietosi luonnoksena, ja jos käytät vielä sivustoa vuorokauden päästä, voit julkaista ne.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Sinulla voi olla vain 7 suosikkiprojektia
         project_observation:
           attributes:
             base:
@@ -7190,6 +7317,11 @@ fi:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 voi muuttaa vain tämän taksonin kuraattori
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Elämä-taksoni ei voi olla mukana taksonimuutoksissa
         taxon_name:
           attributes:
             lexicon:
@@ -7217,6 +7349,14 @@ fi:
               already_has_a_range: on jo alue
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ei voi sisältää enempää kuin 7 projektia
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: kaikkien on oltava olemassa
             login:
               must_begin_with_a_letter: |
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja

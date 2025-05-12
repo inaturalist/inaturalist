@@ -7391,8 +7391,6 @@ tr:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: En çok 3 yaygın ad sözlüğü halihazırda eklenmiştir
-        this_only_applies_to_traditional_projects: |
-          Bu sadece geleneksel projeler için geçerlidir. Esasen kaydedilmiş aramalar olan koleksiyon ya da şemsiye projelerden gözlemleri hariç tutamazsınız. <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">Daha çok bilgi</a>.
       recent:
         about_recent_users: Hakkında
         definitions_html: <dl><dt>Olasılıkla Gereksiz İleti</dt><dd>Muhtemelen gereksiz ileti oluşturan bir kullanıcı, başka bir deyişle gözlem veya tanımları yok, ancak bir profil açıklaması var.</dd><dt>Otomatik Gereksiz İleti</dt><dd>Sistem tarafından otomatik olarak gereksiz ileti oluşturan bir kullanıcı olarak işaretlendi.</dd><dt>Manuel Gereksiz İleti</dt><dd>Bir site sorumlusu tarafından el ile gereksiz ileti oluşturan kullanıcı olarak işaretlendi.</dd><dt>Yalancı Pozitiflik</dt><dd>Gereksiz ileti oluşturan kullanıcı olarak işaretlenen ancak site sorumluları tarafından gerçekten gereksiz ileti oluşturan kullanıcılar olmadıklarından dolayı işaretleri kaldırılan kullanıcılar.</dd></dl>
@@ -7682,8 +7680,6 @@ tr:
       default: '%-d %b %Y, %H.%M.%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H.%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H.%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

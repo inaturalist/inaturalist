@@ -4914,8 +4914,6 @@ bg:
           Помнете, това не дава достъп на проектите до Вашите поверителни координати, нито им позволява да Ви изпращат новини. Трябва да се включите в проект, за да стане това възможно, или да дадете такива права собственоръчно.
         taxon_change_desc: |
           Когато таксон бъде променен или преименуван на %{site_name}, Вашите наблюдения, списъци, разпознавания и т.н. ще бъдат автоматично обновени до новия таксон, ако тези промени са еднозначни. Ако изключите тази функция или ако промяната е двузначна (например разделяне на таксон), ще получите известие за промяната с препратка към инструмент, с който собственоръчно да обновите съдържанието си ако пожелаете.
-        this_only_applies_to_traditional_projects: |
-          Това се отнася единствено за традиционните проекти. Не можете да изключвате наблюдения от Събирателни или Обединителни проекти, които по същество са преконфигурирани търсения. Можете да прочетете повече <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">тук</a>.
       recent:
         about_recent_users: Относно
       show:
@@ -5146,8 +5144,6 @@ bg:
       default: '%-d %b %Y, %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y, %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b, %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

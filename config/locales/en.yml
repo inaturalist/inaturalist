@@ -381,6 +381,8 @@ en:
   add_a_new_change_group: Add a New Change Group
   # Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Add a numbered list
+  # Placeholder for a project autocomplete field
+  add_a_project: Add a project
   add_a_single_observation: Add a Single Observation.
   add_a_taxon: Add a Taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -858,6 +860,13 @@ en:
   # {attribution} will be one of the copyright.* keys, like
   # copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, uploaded by %{user}"
+  # Adjective describing when a place in an atlas was "exploded," i.e. divided
+  # into its constituent places
+  atlas_alteration_action_exploded: Exploded
+  # Adjective describing when a place in an atlas was "unexploded," i.e. its
+  # constituent places were removed and now the atlas just contains this
+  # place
+  atlas_alteration_action_unexploded: Unexploded
   authority_list:
     iucn_red_list: IUCN Red List
     natureserve: NatureServe
@@ -1640,6 +1649,16 @@ en:
     identifications are shown alongside the observations on project-
     specific views. Curators can also see the true coordinates of
     private and obscured contributions to this project.
+  # Attribute that controls whether or not project curators can view the
+  # hidden coordinates of an observation in a traditional project. This
+  # exists on the record of the observation's addition to the project, and it
+  # exists as a default value in the user's membership in the project.
+  curator_coordinate_access: Curator Coordinate Access
+  curator_coordinate_access_desc: |
+    Curator coordinate access for traditional projects depends on who added
+    the observation to the project. This is just the default setting for
+    observations in projects. Observers can also choose to change this for
+    individual observations.
   curator_identification: Curator identification
   current_flags: Current Flags
   # Label for a custom boundary for an observation search
@@ -1647,6 +1666,8 @@ en:
   custom_project_fields: Custom Project Fields
   custom_project_was_successfully_created: Project customizations added
   custom_project_was_successfully_updated: Project customizations updated
+  # Button to customize projects that appear in the header
+  customize__projects: Customize
   customize_location: Customize Location
   darr_apply_darr: "&darr; Apply &darr;"
   daily_users: Daily Users
@@ -2122,6 +2143,12 @@ en:
   # Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Faves
   Family: Family
+  # Header for a section showing the user's favorite projects
+  favorite_projects: Favorite Projects
+  # Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Choose up to seven projects that appear as links in the header. Updates
+    will appear after refreshing the page.
   favorite_taxa: Favorite Taxa
   favorites: "Favorites"
   feature_this_project_: "Feature This Project"
@@ -2514,6 +2541,8 @@ en:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
     organization based in the United States of America (Tax ID: 92-1296468).
+  # Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist updated the ID suggested by %{user}
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
@@ -2643,6 +2672,8 @@ en:
   internal_taxon_rank: Internal taxon rank
   introduced: Introduced
   introduced_in_place: "Introduced in %{place}"
+  # Error message shown when a date format is invalid
+  invalid_date: Invalid date
   invitation: Invitation
   invite: invite
   invite_people: Invite people
@@ -2919,6 +2950,10 @@ en:
   list_with_two_items: "%{one} and %{two}"
   listed_taxa: Listed Taxa
   listed_taxon: Listed taxon
+  # Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Listed
+  # Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Unlisted
   listed_taxon_updated: Listed taxon updated
   listing_lists: Listing lists
   listing_project_assets: Listing Project Assets
@@ -4604,6 +4639,9 @@ en:
   processing3p: "Processing..."
   profile: Profile
   profile_picture: Profile Picture
+  # A user may attempt to upload a profile picture with an unsupported content type, and this
+  # text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profile Picture file type
   profile_visibility_desc: |
     In an effort to keep spam off of %{site_name}, user profiles are only
     publicly visible after a user has contributed several Research Grade
@@ -4708,6 +4746,16 @@ en:
   range: Range
   # Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rank
+  rank_levels:
+    # Label when displaying genus level, which is the same for genus and
+    # genushybrid
+    genus: Genus / Genushybrid
+    # Label when displaying species level, which is the same for species and
+    # hybrid
+    species: Species / Hybrid
+    # Label when displaying infraspecies level, which is the same for all the
+    # infraspecies ranks
+    subspecies: Subspecies / Variety / Form
   # A person's rank on an ordinal scale (e.g. "first place," "second place,"
   # etc.). Generally used as a column header in lists of observers and
   # identifiers
@@ -6080,8 +6128,20 @@ en:
   upcoming_bioblitzes: Upcoming bioblitzes
   update: Update
   update_existing_observations_with_new_license: Update existing observations with new license choices
+  update_existing_observations_with_new_license_desc: |
+    Selecting this option will apply your new license choice to all your
+    existing observations. This can take a few hours if you have a lot of
+    observations.
   update_existing_photos_with_new_license: Update existing photos with new license choices
+  update_existing_photos_with_new_license_desc: |
+    Selecting this option will apply your new license choice to all your
+    existing photos. This can take a few hours if you have a lot of
+    photos.
   update_existing_sounds_with_new_license: Update existing sounds with new license choices
+  update_existing_sounds_with_new_license_desc: |
+    Selecting this option will apply your new license choice to all your
+    existing sounds. This can take a few hours if you have a lot of
+    sounds.
   update_observations: Update Observations
   update_past: "Update Past %{type}"
   update_photos: Update Photos
@@ -6240,6 +6300,14 @@ en:
   user_trusts_this_project_for_taxon: |
     User only trusts this project with hidden coordinates that were obscured
     because of threatened taxa.
+  user_trusts_this_project_when_added_by_any: |
+    User trusts project curators with hidden coordinates of observations added
+    to the project by anyone.
+  user_trusts_this_project_when_added_by_observer: |
+    User trusts project curators with hidden coordinates of observations added
+    to the project by the observer.
+  user_trusts_this_project_when_added_by_none: |
+    User does not trust project curators with hidden coordinates.
   user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their hidden coordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
@@ -6344,6 +6412,8 @@ en:
   view_more_observations_of_x_project: "View more observations from %{project} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "View more observations of %{taxon} on <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "View more unreviewed"
+  # Link to view identifications affected by a taxon change
+  view_your_affected_ids: View your affected IDs
   view_observation: View Observation
   view_observations: View Observations
   view_observation_flags: View observation flags
@@ -6824,6 +6894,46 @@ en:
       # Description of a group of options for targeting announcements based
       # miscellaneous user attributes
       target_users_by_other_attributes: Target users by other attributes
+    atlases:
+      show:
+        # Title for section describing atlases
+        about_atlases: About Atlases
+        # Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlases convey the global distribution of a taxon. Curators make
+          atlases by defining the structure of an atlas and curating the
+          listed taxa that drive it.
+        # Label for a button that divides a place in an atlas into it's
+        # constituent places. E.g. if the atlas for Red Fox contained Europe
+        # you wanted to specify that Red Fox only occurs in Belgium and
+        # France, you would "explode" Europe so you could choose Belgium and
+        # France.
+        explode_this_place: Explode this place
+        # Label for a button that reunites places in an atlas into the place
+        # that contains them. E.g. if an atlas contains Europe but it has
+        # been "exploded" into its constituent countries, this would remove
+        # those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Unexplode this place
+        # Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: No alterations to this atlas yet
+        # Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Recent Atlas Alterations
+        # Title for a section showing taxa that were recently added to a check
+        # list
+        recent_listed_taxon_additions: Recent Listed Taxon Alterations
+        # Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Show listed taxa
+        # Notice when an atlas is not active
+        this_atlas_is_not_currently_active: This atlas is not currently active
+        # Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          This will remove this taxon and all its descendants from checklists
+          associated with this place and any Standard Places it contains. It
+          cannot be undone. Are you sure you want to do this?
+        # Warning when there are observations outside of the places defined by
+        # the atlas
+        warning_there_are_observations_not_represented: |
+          Warning: there are observations not represented by this atlas
     content_freeze:
       content_freeze: Content Freeze
       during_this_time: |
@@ -9323,6 +9433,10 @@ en:
           Facility</a> (GBIF), an international, inter-governmental organization
           that compiles and distributes biodiversity information from around the
           world.
+        errors:
+          # error message when a user attempts to update their profile picture using
+          # an image that has an unsupported file type
+          unsupported_file_type: File type not supported. We accept JPG, PNG, and GIF
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters make automatic monthly contributions
           to iNaturalist (United States IRS EIN 92-1296468) to support the
@@ -9479,11 +9593,11 @@ en:
           # lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added:
             The maximum of 3 common name lexicons have already been added
-        this_only_applies_to_traditional_projects: |
+        this_only_applies_to_traditional_projects2: |
           This only applies to traditional projects. You can't exclude observations
           from collection or umbrella projects, which are essentially saved searches.
           You can read more
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">here</a>.
       recent:
         about_recent_users: About
         definitions_html:
@@ -9838,7 +9952,9 @@ en:
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
+      short: '%-d %b %I:%M %p'
+      # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       # See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -9878,6 +9994,8 @@ en:
     attributes:
       announcement:
         created_at: Created at
+        # Whether or not the announcement can be dismissed by people who see it
+        dismissible: Dismissible
         updated_at: Updated at
         # Numerical IDs of the iNaturalist Network partner sites the
         # announcement should be shown on
@@ -10107,6 +10225,7 @@ en:
         show_for_descendent_taxa: Show for descendant taxa
       user:
         email: Email
+        faved_project_ids: Favorite projects
         login: Username
         name: Name
         locale: Locale
@@ -10228,6 +10347,8 @@ en:
               # a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Only staff and curators can hide content
               only_staff_and_hiding_curators_can_unhide: Only staff and curators who hide content can unhide it
+              # Error saying that only staff can rename
+              only_staff_can_rename: Only staff can rename
               # Error saying that only staff can set resources as private
               only_staff_can_make_private: Only staff can set content as private
               staff_cannot_be_suspended: Staff cannot be suspended
@@ -10250,6 +10371,9 @@ en:
                 cannot be greater than the date the observation was added
               # Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: must be within the last 130 years
+              # Error message when user attempts to enter an observation date
+              # like "2020 or "2020-05"
+              must_be_a_single_day: must be a single day, not a range
         observation_field_value:
           attributes:
             value:
@@ -10284,6 +10408,9 @@ en:
               invalid_point: has an invalid point, e.g. longitude greater than 180 or latitude less than -90
               must_have_more_than_three_points: must have more than 3 points
               polygon_with_less_than_four_points: has a polygon with fewer than 4 points
+              # Error message when a user uploads a KML that has a polygon
+              # where all the points are the same.
+              polygon_with_no_area: has a polygon with no area (all points are the same)
         place_geometry:
           attributes:
             geom:
@@ -10304,6 +10431,10 @@ en:
                 a lot of spammers, and this is a kind of lame way of dealing
                 with them. You can still save a draft, and if you're still
                 using the site in a day, you'll be able to publish.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: You can only fave 7 projects
         project_observation:
           attributes:
             base:
@@ -10357,6 +10488,12 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+        taxon_change:
+          attributes:
+            base:
+              # Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved:
+                The Life taxon cannot be involved in taxon changes
         taxon_name:
           attributes:
             lexicon:
@@ -10394,6 +10531,14 @@ en:
               already_has_a_range: already has a range
         user:
           attributes:
+            faved_project_ids:
+              # Error when a user tries to add more than 7 favorite projects,
+              # e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: cannot include more than 7 projects
+              # Error when a user tries to add a project that does not exist
+              # to their favorite projects, e.g. "Faved projects must all
+              # exist"
+              must_all_exist: must all exist
             login:
               must_begin_with_a_letter: |
                 must begin with a letter, contain no spaces, and use only

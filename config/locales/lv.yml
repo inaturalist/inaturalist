@@ -6673,8 +6673,6 @@ lv:
         same_day_geoprivacy_protection: Vienas dienas ģeoprivātuma aizsardzība
         taxon_change_desc: |
           Kad taksoni tiek apvienoti vai pārsaukti %{site_name} vietnē, tavas identifikācijas, novērojumi, sarakstā iekļautie taksoni, u.c. tiks automātiski atjaunoti un samainīti pret jaunizveidotajiem taksoniem, bet ar nosacījumu, ka izmaiņas taksonos ir viennozīmīgas. Ja atspējo šo funkciju vai arī ja izmaiņas ir viennozīmīgas (piemēram, taksonu sadalīšanas rezultātā), saņemsi paziņojumu par izmaiņām kopā ar saiti uz rīku, kuru var izmantot, lai manuāli atjaunotu savu saturu.
-        this_only_applies_to_traditional_projects: |
-          Tas attiecas tikai uz standarta projektiem. Nav iespējams izlaist kolekciju projektu vai projektu grupu novērojumus, jo tie ir tikai saglabāti meklēšanas rezultāti. Vairāk informācijas <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">šeit</a>.
       recent:
         about_recent_users: Apraksts
         definitions_html: <dl> <dt>Potenciāls mēstuļotājs</dt> <dd> Lietotājs, visticamāk, ir mēstuļotājs bez novērojumiem vai identifikācijām, bet ar profila aprakstu.</dd> <dt>Automātiskā mēstuļotāju noteikšana</dt> <dd> Sistēma automātiski atpazina mēstuļotāju. </dd> <dt>Manuālā mēstuļotāju noteikšana</dt> <dd> Mēstuļotāju atpazinis vietnes pārzinis. </dd> <dt>Kļūdaina atbilsme</dt> <dd> Pārziņu pārbaudīti lietotāji, kuriem pievienots mēstuļotāja karodziņš, kas patiesībā nav mēstuļotāji.</dd> </dl>
@@ -6962,8 +6960,6 @@ lv:
       default: '%b. %d, %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

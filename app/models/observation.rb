@@ -10,8 +10,10 @@ class Observation < ApplicationRecord
     :comments => {:notification => "activity", :include_owner => true},
     :identifications => {:notification => "activity", :include_owner => true}
   }
-  notifies_subscribers_of :user, :notification => "created_observations",
-    unless: lambda {| observation | observation.bulk_import }
+  notifies_subscribers_of :user,
+    delay: false,
+    notification: "created_observations",
+    unless: lambda( &:bulk_import )
 
   earns_privilege UserPrivilege::SPEECH
   earns_privilege UserPrivilege::ORGANIZER
@@ -25,6 +27,7 @@ class Observation < ApplicationRecord
   notifies_subscribers_of :public_places,
     notification: "new_observations",
     on: :create,
+    priority: USER_INTEGRITY_PRIORITY,
     unless: lambda {| observation |
       !observation.georeferenced? || observation.bulk_import
     },
@@ -45,6 +48,7 @@ class Observation < ApplicationRecord
     }
   notifies_subscribers_of :taxon_and_ancestors,
     notification: "new_observations",
+    priority: USER_INTEGRITY_PRIORITY,
     unless: lambda {| observation |
       observation.taxon_id.blank? || observation.bulk_import
     },
@@ -57,13 +61,14 @@ class Observation < ApplicationRecord
   notifies_users :mentioned_users,
     on: :save,
     notification: "mention",
-    delay: true,
-    if: lambda {|u| u.prefers_receive_mentions? },
-    unless: lambda { |observation|
+    delay: false,
+    if: lambda( &:prefers_receive_mentions? ),
+    unless: lambda {| observation |
       # description hasn't changed, so mentions haven't changed
       return true unless observation.previous_changes[:description]
+
       # description has changed, but neither version mentioned users
-      observation.previous_changes[:description].map do |d|
+      observation.previous_changes[:description].map do | d |
         d ? d.mentioned_users.any? : false
       end.none?
     }
@@ -1007,9 +1012,10 @@ class Observation < ApplicationRecord
       GST
       IST
     )
-    
-    if ( iso8601_datetime = DateTime.iso8601( observed_on_string ) rescue nil )
+
+    if observed_on_string =~ /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/
       date_string = observed_on_string
+      iso8601_datetime = DateTime.parse( date_string )
       if observed_on_string =~ /[+-]\d{2}:?\d{2}/
         parsed_time_zone = ActiveSupport::TimeZone[iso8601_datetime.offset * 24]
       end
@@ -1080,23 +1086,26 @@ class Observation < ApplicationRecord
         puts "Invalid time zone, ignoring"
       end
     end
-    
-    date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
-    date_string.sub!(/(\d{2}:\d{2}:\d{2})\.\d+/, '\\1')
-    
+
+    # Honestly not sure why this would improve parsing
+    date_string.sub!( "T", " " ) if date_string =~ /\d{4}-\d{2}-\d{2}T/
+
+    # Ignore decimal dates
+    date_string.sub!( /(\d{2}:\d{2}:\d{2})\.\d+/, '\\1' )
+
     # strip leading month if present
-    date_string.sub!(/^[A-z]{3} ([A-z]{3})/, '\\1')
+    date_string.sub!( /^[A-z]{3} ([A-z]{3})/, '\\1' )
 
     # strip paranthesized stuff
-    date_string.gsub!(/\(.*\)/, '')
+    date_string.gsub!( /\(.*\)/, "" )
 
     # strip noon hour madness
     # this is due to a weird, weird bug in Chronic
     if date_string =~ /p\.?m\.?/i
-      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1')
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1' )
     elsif date_string =~ /a\.?m\.?/i
-      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
-      date_string.gsub!( / 12:/, " 00:" )
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1' )
+      date_string.gsub!( " 12:", " 00:" )
     end
 
     # Translate am/pm into English for parsing. This is a pretty conservative
@@ -1270,32 +1279,35 @@ class Observation < ApplicationRecord
     end
     assign_nested_attributes_for_collection_association(:observation_field_values, attr_array)
   end
-  
+
   def refresh_check_lists
     return true if skip_refresh_check_lists
+
     changing_quality_grade = will_save_change_to_quality_grade? || saved_change_to_quality_grade?
     changing_taxon_id = will_save_change_to_taxon_id? || saved_change_to_taxon_id?
     changing_latitude = will_save_change_to_latitude? || saved_change_to_latitude?
     changing_longitude = will_save_change_to_longitude? || saved_change_to_longitude?
     changing_observed_on = will_save_change_to_observed_on? || saved_change_to_observed_on?
-    refresh_needed = (georeferenced? || was_georeferenced?) && 
-      ( taxon_id || taxon_id_before_last_save) &&
+    refresh_needed = ( georeferenced? || was_georeferenced? ) &&
+      ( taxon_id || taxon_id_before_last_save ) &&
       ( changing_quality_grade ||
         changing_taxon_id ||
         changing_latitude ||
         changing_longitude ||
         changing_observed_on )
     return true unless refresh_needed
-    CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "CheckList::refresh_with_observation": id }).
-      refresh_with_observation(id, :taxon_id => taxon_id,
-        :taxon_id_was  => saved_change_to_taxon_id? ? taxon_id_before_last_save : nil,
-        :latitude_was  => saved_change_to_latitude? ? latitude_before_last_save : nil,
-        :longitude_was => saved_change_to_longitude? ? longitude_before_last_save : nil,
-        :new => saved_change_to_id? )
+
+    CheckList.refresh_with_observation(
+      self,
+      taxon_id: taxon_id,
+      taxon_id_was: saved_change_to_taxon_id? ? taxon_id_before_last_save : nil,
+      latitude_was: saved_change_to_latitude? ? latitude_before_last_save : nil,
+      longitude_was: saved_change_to_longitude? ? longitude_before_last_save : nil,
+      new: saved_change_to_id?
+    )
     true
   end
-  
+
   #
   # Preserve the old taxon id if the taxon has changed so we know to update
   # that taxon in the user's lists after_save
@@ -1723,7 +1735,8 @@ class Observation < ApplicationRecord
       private_latitude,
       private_longitude,
       acc: calculate_public_positional_accuracy,
-      user: user
+      user: user,
+      skip_open_space: true
     )
     if coordinates_private?
       if !place_guess.blank? && place_guess != public_place_guess && place_guess_changed?
@@ -2110,34 +2123,33 @@ class Observation < ApplicationRecord
     end
     true
   end
-  
+
   #
   # Make sure the observation resolves to a single day.  Right now we don't
   # store ambiguity...
   #
   def must_not_be_a_range
     return if observed_on_string.blank?
-    
+
     is_a_range = false
-    begin  
-      if tspan = Chronic.parse(observed_on_string, :context => :past, :guess => false)
-        is_a_range = true if tspan.width.seconds > 1.day.seconds
+    begin
+      tspan = Chronic.parse( observed_on_string, context: :past, guess: false )
+      if tspan && tspan.width.seconds > 1.day.seconds
+        is_a_range = true
       end
     rescue RuntimeError, ArgumentError
       # ignore parse errors, assume they're not spans
       return
     end
-    
-    # Special case: dates like '2004', which ordinarily resolve to today at 
+
+    # Special case: dates like '2004', which ordinarily resolve to today at
     # 8:04pm
-    observed_on_int = observed_on_string.gsub(/[^\d]/, '').to_i
-    if observed_on_int > 1900 && observed_on_int <= Date.today.year
-      is_a_range = true
+    if !is_a_range && observed_on_string =~ /^\d{4}$/
+      is_a_range = observed_on_string =~ /^\d{4}$/
     end
-    
-    if is_a_range
-      errors.add(:observed_on, "must be a single day, not a range")
-    end
+    return unless is_a_range
+
+    errors.add( :observed_on, :must_be_a_single_day )
   end
 
   def must_not_be_on_null_island
@@ -2261,7 +2273,12 @@ class Observation < ApplicationRecord
   def set_place_guess_from_latlon
     return true unless place_guess.blank?
     return true if coordinates_private?
-    if guess = Observation.place_guess_from_latlon( latitude, longitude, { acc: calculate_public_positional_accuracy, user: user } )
+
+    guess = Observation.place_guess_from_latlon( latitude, longitude, {
+      acc: calculate_public_positional_accuracy,
+      user: user
+    } )
+    if guess
       self.place_guess = guess
     end
     true
@@ -2747,10 +2764,14 @@ class Observation < ApplicationRecord
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p|
-      p.user_id.blank? && (
-        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
-        p.place_type == Place::PLACE_TYPE_CODES['Open Space']
+    all_places.select do | place |
+      place.user_id.blank? && (
+        [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(
+          place.admin_level
+        ) || (
+          !options[:skip_open_space] &&
+          place.place_type == Place::OPEN_SPACE
+        )
       )
     end
   end
@@ -3333,29 +3354,36 @@ class Observation < ApplicationRecord
     if target_taxon.rank_level.blank? || target_taxon.rank_level.to_i > Taxon::GENUS_LEVEL
       return false
     end
-    place = system_places.detect do |p|
+
+    place = system_places.detect do | p |
       [
         Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
       ].include?( p.admin_level )
     end
     return false unless place
+
     base_filters = [
       { term: { "taxon.ancestor_ids.keyword": target_taxon.id } },
       { term: { "place_ids.keyword": place.id } },
     ]
-    count_captive = Observation.elastic_search(
-      filters: base_filters + [{ term: { captive: true } }],
-      size: 0,
-      track_total_hits: true
-    ).results.total_entries
-    count_wild = Observation.elastic_search(
-      filters: base_filters + [{ term: { captive: false } }],
-      size: 0,
-      track_total_hits: true
-    ).results.total_entries
+    captive_count_buckets = Observation.elastic_search(
+      filters: base_filters,
+      aggs: {
+        captive_counts: {
+          filters: {
+            filters: {
+              captive: { term: { captive: true } },
+              wild: { term: { captive: false } }
+            }
+          }
+        }
+      },
+      size: 0
+    ).response.aggregations["captive_counts"]["buckets"]
+    count_captive = captive_count_buckets["captive"]["doc_count"]
+    count_wild = captive_count_buckets["wild"]["doc_count"]
     total = count_captive + count_wild
     ratio = count_captive.to_f / total
-    # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
     total > 10 && ratio >= 0.8
   end
 

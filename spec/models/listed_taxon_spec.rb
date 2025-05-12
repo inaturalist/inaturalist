@@ -112,12 +112,14 @@ describe ListedTaxon do
           expect(@last_observation.places).to include @place
         end
         it "should set first observation to the first research grade observation added" do
-          lt = without_delay { ListedTaxon.make!(:list => @check_list, :place => @place, :taxon => @taxon) }
-          expect(lt.first_observation).to eq @first_observation
+          Delayed::Worker.new.work_off
+          lt = ListedTaxon.where( list: @check_list, place: @place, taxon: @taxon ).first
+          expect( lt.first_observation ).to eq @first_observation
         end
         it "should set last observation to the last research grade observation observed" do
-          lt = without_delay { ListedTaxon.make!(:list => @check_list, :place => @place, :taxon => @taxon) }
-          expect(lt.last_observation).to eq @last_observation
+          Delayed::Worker.new.work_off
+          lt = ListedTaxon.where( list: @check_list, place: @place, taxon: @taxon ).first
+          expect( lt.last_observation ).to eq @last_observation
         end
       end
 
@@ -377,12 +379,9 @@ describe ListedTaxon do
     it "should set first observation to obs of desc taxa" do
       subspecies = Taxon.make!(:rank => Taxon::SUBSPECIES, :parent => @taxon)
       o = make_research_grade_observation(:taxon => subspecies, :latitude => @place.latitude, :longitude => @place.longitude)
-      lt = ListedTaxon.make!(:list => @check_list, :place => @place, :taxon => @taxon)
-      without_delay do
-        ListedTaxon.update_cache_columns_for(lt)
-      end
-      lt.reload
-      expect(lt.first_observation_id).to eq o.id
+      Delayed::Worker.new.work_off
+      lt = ListedTaxon.where( list: @check_list, place: @place, taxon: @taxon ).first
+      expect( lt.first_observation_id ).to eq o.id
     end
   end
 

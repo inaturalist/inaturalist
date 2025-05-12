@@ -406,7 +406,6 @@ describe Announcement do
       create :observation, oauth_application: app_to_exclude, user: both_user
       expect( annc.targeted_to_user?( include_user ) ).to be true
       expect( annc.targeted_to_user?( exclude_user ) ).to be false
-      puts "testing both user"
       expect( annc.targeted_to_user?( both_user ) ).to be false
     end
   end

@@ -5983,10 +5983,6 @@ el:
         taxon_change_desc: |
           Όταν οι ταξινομικές μονάδες συγχωνεύονται ή μετονομάζονται στο%{site_name}, οι παρατηρήσεις σας, οι καταχωρημένες ταξινομικές μονάδες, οι ταυτοποιήσεις σας κ.λπ. θα ενημερώνονται αυτόματα στις νέες ταξινομικές μονάδες εάν η αλλαγή είναι σαφής. Εάν το επιλέξετε ή η αλλαγή είναι διφορούμενη (π.χ. διαχωρισμός), θα λάβετε μια ενημέρωση σχετικά με την
           αλλαγή που συνδέεται σε ένα εργαλείο που μπορείτε να χρησιμοποιήσετε για να ενημερώσετε χειροκίνητα (μη αυτόματα) το περιεχόμενό σας αν το επιλέξετε.
-        this_only_applies_to_traditional_projects: |
-          Αυτό είναι διαθέσιμο μόνο για τα παραδοσιακά πρότζεκτ. Δεν μπορείτε να εξαιρέσετε παρατηρήσεις από συλλογή ή από πρότζεκτ ομπρέλα, που είναι ουσιαστικά αποθηκευμένες αναζητήσεις.
-          Διαβάστε περισσότερα 
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">εδώ</a>.
       recent:
         about_recent_users: Πληροφορίες
         definitions_html: <dl> <dt>Πιθανώς Spam</dt> <dd> Χρήστης που είναι πιθανώς ένας spammer, πράγμα που σημαίνει ότι δε διαθέτει παρατηρήσεις ή ταυτοποιήσεις αλλά έχει περιγραφή στο προφίλ του. </dd> <dt>Αυτόματο Spam</dt> <dd> Spammer που επισημάνθηκε αυτόματα ως spammer από το σύστημα. </dd> <dt>Χειροκίνητο Spam</dt> <dd> Spammer που επισημάνθηκε χειροκίνητα ως spammer από έναν επιμελητή της πλατφόρμας. </dd> <dt>Χρήστες που λανθασμένα φαίνονται ως Spammers</dt> <dd> Χρήστες που είχαν επισημανθεί ως spammers αλλά οι επισημάνσεις αφαιρέθηκαν από επιμελητές της πλατφόρμας επειδή δεν ήταν πραγματικά spammers. </dd> </dl>
@@ -6273,8 +6269,6 @@ el:
       default: '%b. %d, %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

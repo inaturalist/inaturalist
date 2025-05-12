@@ -5,4 +5,6 @@
     = link_to_user message.from_user
   %td.body
     = formatted_user_text( message.body )
-  %td.nobr.meta.date= l( message.created_at.to_datetime, format: :long )
+  %td.nobr.meta.date
+    %time.datetime{ datetime: message.created_at.iso8601, title: l( message.created_at, format: :long ) }
+      =l message.created_at, format: message.created_at.year == Date.today.year ? :short : :short_with_year

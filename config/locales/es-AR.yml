@@ -7055,8 +7055,6 @@ es-AR:
         same_day_geoprivacy_protection: Protección de geoprivacidad del mismo día
         taxon_change_desc: |
           Cuando los taxones se fusionan o cambian de nombre  en %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc., se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás una actualización sobre el cambio de la vinculación a una herramienta que puedes utilizar para actualizar manualmente el contenido si así lo eliges.
-        this_only_applies_to_traditional_projects: |
-          Esto sólo aplica a proyectos tradicionales. No puedes excluir observaciones de proyectos de colección o paraguas, los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente es un spammer, lo que significa que no tienen observaciones o identificaciones pero sí una descripción de perfil. </dd><dt>Auto Spam</dt><dd> Spammer que fue marcado automáticamente como spammer por el sistema. </dd><dt>Manual Spam</dt><dd> Spammer que fue marcado manualmente como spammer por un curador del sitio. </dd><dt>False Positives</dt><dd> Usuarios que fueron marcados como spammers pero las marcas fueron resueltas por los curadores del sitio porque no eran realmente spammers.</dd></dl>
@@ -7322,8 +7320,6 @@ es-AR:
       default: '%d %b %Y %H:%M:%S %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d de %B de %Y'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d/%m/%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

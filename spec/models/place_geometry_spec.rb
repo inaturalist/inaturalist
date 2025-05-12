@@ -45,6 +45,14 @@ describe PlaceGeometry do
       expect( pg ).not_to be_valid
       expect( pg.errors.size ).to eq 1
     end
+
+    it "should be invalid with a polygon that has 4 identical points" do
+      pg = PlaceGeometry.new( place: @place )
+      impossible_polygon = "MULTIPOLYGON(((1 1,1 1,1 1,1 1)))"
+      pg.geom = impossible_polygon
+      expect( pg ).not_to be_valid
+      expect( pg.errors.size ).to eq 1
+    end
   end
 
   describe "observations_places" do

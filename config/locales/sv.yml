@@ -8355,10 +8355,6 @@ sv:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Max 3 vardagsnamnslexikon har redan lagts till
-        this_only_applies_to_traditional_projects: |
-          Det här gäller endast traditionella projekt. Du kan inte utesluta fynd från samlings- eller paraplyprojekt, som i grund och botten är sparade sökningar.
-          Du kan läsa mer
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">här</a>.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt>Antagligen spam</dt> <dd> Användare som förmodligen är spammare vilket innebär att de inte har några fynd eller bestämningar, men har en profilbeskrivning. </dd> <dt>Autospam</dt> <dd> Spammare som automatiskt markerades som en spammare av systemet. </dd> <dt>Manuellt spam</dt> <dd> Spammare som manuellt markerades som en spammare av en webbplatsförvaltare. </dd> <dt>Falsklarm</dt> <dd> Användare som flaggades som spammare men flaggorna lyftes av webbplatsens förvaltare eftersom den faktiskt inte var spammare. </dd> </dl>
@@ -8640,8 +8636,6 @@ sv:
       default: '%-d %b %Y %H.%M.%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H.%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H.%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

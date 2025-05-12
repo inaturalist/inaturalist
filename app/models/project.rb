@@ -23,6 +23,7 @@ class Project < ApplicationRecord
   has_many :assessments, dependent: :destroy
   has_many :site_featured_projects, dependent: :destroy
   has_many :project_observation_rules_as_operand, class_name: "ProjectObservationRule", as: :operand
+  has_many :project_faves, dependent: :delete_all
 
   before_save :strip_title
   before_save :reset_last_aggregated_at

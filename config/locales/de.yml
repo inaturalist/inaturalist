@@ -593,6 +593,8 @@ de:
   any_license: Alle
   #Label for an option to show content with photos, sounds, or neither
   any_media: Alle
+  #Label for an option to show any place
+  any_place: Irgendein
   #Label for an option to show content from any project
   any_project: Alle
   #Label for an option to show content with any quality grade
@@ -749,6 +751,13 @@ de:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, hochgeladen von %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Unterteilt
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Nicht unterteilt
   authority_list:
     iucn_red_list: Rote Liste der IUCN
     natureserve: NatureServe
@@ -2190,6 +2199,8 @@ de:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist is an independent 501(c)(3), tax-exempt, not-for-profit
     organization based in the United States of America (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist hat die von %{user} vorgeschlagene ID aktualisiert
   computer_vision_suggestion: Vorschlag der Computer-Vision
   computer_vision_suggestion_desc: |
     Computer-Vision ist der Lernprozess von Computern, Muster in Bildern zu erkennen. Um Vorschläge zur Bestimmung zu geben, stellen wir Instrumente zur Verfügung, die Computer-Vision-Modelle verwenden, die durch Fotos der Community trainiert worden sind, wie z. B. die Autovervollständigung und Vergleichsfunktionen. Dieses Symbol zeigt an, wenn eine Person eine Bestimmung mit einem dieser Instrumente hinzugefügt hat.
@@ -2551,6 +2562,10 @@ de:
   list_with_two_items: "%{one} und %{two}"
   listed_taxa: Gelistete Taxa
   listed_taxon: Gelistetes Taxon
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Gelistet
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Nicht gelistet
   listed_taxon_updated: Gelistetes Taxon aktualisiert
   listing_lists: Listen auflisten
   listing_project_assets: Projektdatein auflisten
@@ -4130,6 +4145,9 @@ de:
   processing3p: "Verarbeite…"
   profile: Profil
   profile_picture: Profilbild
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Dateityp des Profilbilds
   profile_visibility_desc: |
     In dem Bestreben, Spam von %{site_name} abzuhalten, sind Benutzerprofile nur dann
     öffentlich sichtbar, nachdem ein Benutzer mehrere Beobachtungen mit Forschungsqualität
@@ -5173,7 +5191,7 @@ de:
   there_were_problems_adding_that_observation_to_this_project: "Es gab Probleme beim Hinzufügen dieser Beobachtung zu diesem Projekt:"
   there_were_problems_importing_that_place: "Problem bei Importieren vom Ort: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
-    Es gab Probleme beim Importieren dieser Gebiets-Geometrie: %{error}
+    Es gab Probleme beim Importieren dieser Gebiets-Grenzen: %{error}
   there_were_some_problems_saving_this_observation: Beim Speichern dieser Beobachtung gab es Probleme
   there_were_some_problems_saving_those_colors: "Problem beim Speichern dieser Farben: %{error}"
   there_were_some_problems_with_fields: "Es gab einige Probleme mit den folgenden Feldern:"
@@ -5684,6 +5702,8 @@ de:
   view_more_observations_of_x_project: "Weitere Beobachtungen von %{project} auf <nobr>%{site_name} &raquo;</nobr> ansehen"
   view_more_observations_of_x_taxon: "Mehr Beobachtungen zu %{taxon} auf <nobr>%{site_name} &raquo;</nobr> anzeigen"
   view_more_unreviewed: "Weitere \"nicht-Begutachtete\" ansehen"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Zeige deine betreffenden IDs
   view_observation: Beobachtung ansehen
   view_observations: Beobachtungen anzeigen
   view_observation_flags: Meldungen für Beobachtung anzeigen
@@ -6066,6 +6086,45 @@ de:
       observation_oauth_application_ids_desc: |
         CTRL- oder SHIFT-Klick, um mehrere auszuwählen. Wenn "Alle" oder keine ausgewählt sind,
         wird die Ankündigung allen Benutzern angezeigt, unabhängig von der App-Nutzung
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Über Atlasse
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasse veranschaulichen die globale Verbreitung eines Taxons. Kuratoren erstellen
+          Atlasse, indem sie die Struktur eines Atlasses definieren und die zugehörigen Taxa kuratieren.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Dieses Gebiet unterteilen
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Dieses Gebiet zusammenführen
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Noch keine Änderungen an diesem Atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Kürzliche Atlas-Änderungen
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Kürzliche Listen-Taxon-Änderungen
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Zeige gelistete Taxa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Dieser Atlas ist derzeit nicht aktiv
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dadurch werden dieses Taxon und alle untergeordneten Taxa aus den Checklisten entfernt,
+          die mit diesem Gebiet und allen darin enthaltenen Standardorten verknüpft sind. Dies
+          kann nicht rückgängig gemacht werden. Bist du sicher, dass du fortfahren möchtest?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Warnung: Es gibt Beobachtungen, die nicht durch diesen Atlas repräsentiert werden
     content_freeze:
       content_freeze: Inhalt eingefroren
       during_this_time: |
@@ -7724,6 +7783,10 @@ de:
           So nehmen wir beispielsweise "Kein Copyright" (CC0), "Namensnennung" (CC BY) und "Namensnennung-Nicht kommerziell" 
            (CC BY-NC)-Datensätze in das Archiv auf, das wir für die <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF) generieren: eine internationale, zwischenstaatliche Organisation, die Biodiversitätsinformationen aus der ganzen Welt sammelt und verteilt.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Dateityp wird nicht unterstützt. Akzeptiert werden JPG, PNG und GIF
         monthly_supporter_desc_html: |
           Monatliche Unterstützer von iNaturalist spenden monatliche Beträge, um den gemeinnützigen Betrieb von iNaturalist (United States IRS EIN 92-1296468) und der Webseiten des iNaturalist-Netzwerks zu unterstützen.
           <a href="%{url}">Klicke hier, um iNaturalist monatlich zu unterstützen</a>.
@@ -7817,9 +7880,6 @@ de:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Es wurde bereits das Maximum von 3 Trivialnamen-Lexika hinzugefügt
-        this_only_applies_to_traditional_projects: |
-          Dies gilt nur für traditionelle Projekte. Du kannst Beobachtungen nicht von Sammel- oder Dach-Projekten ausschließen, die im Wesentlichen gespeicherte Suchen sind.
-          Mehr <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a>.
       recent:
         about_recent_users: Über
         definitions_html: <dl> <dt>Wahrscheinlich Spam</dt> <dd> Benutzer, der wahrscheinlich ein Spammer ist - was bedeutet, dass er keine Beobachtungen oder Bestimmungen hat, aber eine Profilbeschreibung. </dd> <dt>Auto Spam</dt> <dd> Spammer, der vom System automatisch als Spammer markiert wurde. </dd> <dt>Manueller Spam</dt> <dd> Spammer, der manuell von einem Website-Kurator als Spammer markiert wurde. </dd> <dt>Falsche Positive</dt> <dd> Benutzer, die als Spammer markiert wurden, aber die Meldungen von Kuratoren der Website aufgelöst wurden, weil sie nicht wirklich Spammer waren. </dd> </dl>
@@ -8119,7 +8179,9 @@ de:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
+      short: '%-d %b %k:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %k:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8156,6 +8218,8 @@ de:
     attributes:
       announcement:
         created_at: Erstellt am
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Entbehrlich
         updated_at: Aktualisiert am
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8423,6 +8487,8 @@ de:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Nur Admins und Kuratoren können Inhalte ausblenden
               only_staff_and_hiding_curators_can_unhide: Nur Administratoren und Kuratoren, die den Inhalt ausblendeten, können ihn wieder sichtbar machen
+              #Error saying that only staff can rename
+              only_staff_can_rename: Nur Admins können umbenennen
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Nur Admins können Inhalte als privat festlegen
               staff_cannot_be_suspended: iNat-Personal kann nicht gesperrt werden
@@ -8545,6 +8611,11 @@ de:
               bad_format: |
                 kann nur lateinische Standardzeichen, Bindestriche, Leerzeichen und
                 × enthalten; beachte bitte, dass strittige Taxa und Kultivare nicht erlaubt sind
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Das Taxon 'Lebewesen' kann nicht an Taxonänderungen beteiligt sein
         taxon_name:
           attributes:
             lexicon:

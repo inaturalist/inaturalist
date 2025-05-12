@@ -37,11 +37,14 @@
         .social-media
           - unless site.facebook_url.blank?
             = link_to site.facebook_url, :class => "social-media-link facebook", title: t(:facebook) do
-              = image_tag "facebook-f-logo-white.svg"
+              = image_tag "facebook-f-logo-white.svg", "aria-hidden" => true
           - unless site.twitter_url.blank?
             = link_to t(:twitter), site.twitter_url, :class => "social-media-link twitter", title: t(:twitter)
           - unless site.instagram_url.blank?
             = link_to t(:instagram), site.instagram_url, :class => "social-media-link instagram", title: t(:instagram)
+          - unless site.bluesky_url.blank?
+            = link_to site.bluesky_url, :class => "social-media-link bluesky", title: "Bluesky" do
+              = image_tag "bluesky-logo.svg", "aria-hidden" => true
       = raw site.custom_footer if site.custom_footer
 = raw site.custom_secondary_footer if site.custom_secondary_footer
 #inatnotice.bootstrap

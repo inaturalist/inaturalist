@@ -7,6 +7,9 @@ module ActsAsElasticModel
 
   module ClassMethods
     def acts_as_elastic_model( options = {} )
+      # do not let this initialization method run twice
+      return if instance_methods.include?( :es_source )
+
       options[:lifecycle_callbacks] ||= [:create, :update, :destroy]
       @inserts = 0
       include Elasticsearch::Model

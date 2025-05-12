@@ -144,18 +144,23 @@
       margin-top: 0;
       font-size: 16px;
 
+
       > div {
         position: relative;
         top: -2px;
-        padding-left: 10px;
+        padding-inline-start: 10px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+
+        .btn-primary {
+          margin-inline-start: 10px;
+        }
       }
       .display-names {
         line-height: 20px;
       }
-    }
-    
-    .btn-label {
-      margin-right: 10px;
     }
 
     .suggestion-row-content {

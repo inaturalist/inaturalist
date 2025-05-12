@@ -3038,7 +3038,7 @@ cs:
       #Short text representing 1 minute in the past
       m: "1 min"
       #Short text representing %d minutes in the past
-      mm: "%dm"
+      mm: "%dmin"
       #Short text representing 1 hour in the past
       h: "1 h"
       #Short text representing %d hours in the past
@@ -3337,6 +3337,8 @@ cs:
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
   noble_curators: "Vybraní kurátoři stránky %{site}"
   non_human?: Není lidský?
+  #A user who does not admin any projects
+  non_project_admin: Neprojektový správce
   none: Žádný
   none_found: Nenalezeno
   normal: normální
@@ -4371,6 +4373,8 @@ cs:
   profile_visibility_desc: |
     Ve snaze bojovat proti spamu na %{site_name} jsou profily uživatelů veřejně viditelné až poté, co uživatel přispěl k několika pozorováním programu Research Grade.
   project: Projekt
+  #A user who admin's a project
+  project_admin: Správce projektu
   project_admins:
     one: Správce projektu
     few: Správců projektu
@@ -8354,9 +8358,6 @@ cs:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Už byl vybrán maximální počet 3 slovníků obecných názvů
-        this_only_applies_to_traditional_projects: |
-          To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.
-          Další informace <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">zde</a>.
       recent:
         about_recent_users: O projektu
         definitions_html: <dl> <dt> Bezpochyby spam </dt> <dd> Uživatel, který je pravděpodobně spammer, což znamená, že nemá žádné pozorování ani identifikace, ale má popis profilu.</dd><dt>Automatický spam </dt> <dd> Spammer, který byl jako takový automaticky označen systémem.</dd><dt>Manuální spam </dt><dd>Spammer, který byl jako takový označen vedoucím webu.</dd><dt>Falešné pozitiva</dt><dd>Uživatelé, kteří byli označeni jako spammmeři, aby byli řešeni kurátory stránek, protože nebyli skutečnými spammery </dd> </dl>
@@ -8690,8 +8691,6 @@ cs:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8886,6 +8885,8 @@ cs:
         photos_locked: Fotografie uzamčeny?
         rank: Pořadí
         rank_level: Úroveň taxonomické kategorie
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Zobrazí Wikipedii
         source_id: ID zdroje
         source_identifier: Identifikátor zdroje
         source_url: URL zdroje
@@ -8939,6 +8940,7 @@ cs:
           few: musí být rovno %{count}
           many: musí být rovno %{count}
           other: musí být rovno %{count}
+        must_look_like_an_email_address: musí vypadat jako e-mailová adresa
         even: musí být sudé číslo
         exclusion: je rezervováno
         greater_than:
@@ -9222,6 +9224,7 @@ cs:
               must_begin_with_a_letter: |
                 musí začínat písmenem, neobsahovat žádné mezery a používat pouze
                 písmena, čísla, pomlčky a podtržítka
+              domain_is_not_supported: doména není podporována
         user_block:
           attributes:
             base:

@@ -42,7 +42,11 @@
             - user_projects = current_user.header_projects
             - unless user_projects.blank?
               %li.divider{role: "separator"}
-              %li.dropdown-header=t :your_recent_projects
+              %li.dropdown-header
+                - if current_user.faved_projects.any?
+                  =t :favorite_projects
+                - else
+                  =t :your_projects
               - for project in user_projects
                 %li
                   = link_to project do
@@ -51,6 +55,10 @@
                     - else
                       %i.fa.fa-suitcase.text-muted
                     = truncate( project.title )
+              %li
+                = link_to generic_edit_user_path( anchor: "favorite-projects" ) do
+                  %i.fa.fa-pencil
+                  = t( :customize__projects )
     - if logged_in?
       %li.navtab.header-md.header-lg{ class: controller.class.name == "ObservationsController" && %w( identify ).include?( controller.action_name ) ? "active" : nil }
         = link_to t(:identify), identify_observations_path

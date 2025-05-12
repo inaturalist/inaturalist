@@ -149,7 +149,7 @@ const ObservationsListView = ( {
                         </td>
                         <td className="user">
                           <UserImage user={o.user} />
-                          <UserLink user={o.user} />
+                          <UserLink config={config} user={o.user} />
                         </td>
                         <td className={`date ${sortColumn === "observed" && "sorting"}`}>
                           <FormattedDate

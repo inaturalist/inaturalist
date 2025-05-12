@@ -20,4 +20,7 @@
     = formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
 .timeline-footer
   = link_to t(:view_details), taxon_change, class: "btn btn-sm btn-primary"
-  = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), class: "btn btn-sm btn-default"
+  - if taxon_change.automatable? && current_user&.prefers_automatic_taxonomic_changes?
+    = link_to t(:view_your_affected_ids), identifications_path( user_id: current_user.id, taxon_change_id: taxon_change.id ), class: "btn btn-sm btn-default"
+  - else
+    = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), class: "btn btn-sm btn-default"
