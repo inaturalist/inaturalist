@@ -296,15 +296,7 @@ class Announcement < ApplicationRecord
     end
 
     # Site filtering
-    scope = if user
-      # authenticated requests include announcements targeted at the users site,
-      # or that have no site affiliation
-      scope.
-        where(
-          "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
-          user.site_id || Site.default.id
-        )
-    elsif site
+    scope = if site
       scope.
         where(
           "announcements_sites.site_id IS NULL OR announcements_sites.site_id = ?",
