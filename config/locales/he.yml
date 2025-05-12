@@ -2444,6 +2444,11 @@ he:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: זיהויי אינפרא-מינים
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    אם תכב.י את האפשרות הזו, לא תקבל.י יותר התראה על זיהויים של טקסונים מתחת לרמת המין (כמו תתי־מינים או זנים) שתואמים את הזיהוי שלך ברמת המין. עדיין תקבל.י התראה אם הם סותרים את הזיהוי שלך או כוללים הערות נוספות.
   input_taxon: טקסון הקלט
   insects: חרקים
   insect_life_stage: שלב חיים של החרק
@@ -2565,6 +2570,9 @@ he:
     נראה כי הסיסמה היא של גירסה ישנה יותר של האתר. יש <a href="%{url}">לעדכן את הסיסמה</a> לפעילות בגירסה החדשה.
   let_us_walk_you_through: נראה לך את התכונות העיקריות של האתר הזה.
   lexicon: לקסיקון
+  #Definition of what a lexicon is on iNat
+  lexicon__definition: |
+    שם של אוסף מילים או מונחים המכיל שם של טקסון, למשל שם של שפה או קבוצה של קיצורים.
   lexicon_cannot_contain_words: "לא יכול להכיל את המילים הבאות: %{words}"
   lexicons:
     afrikaans: אפריקאנס
@@ -3283,6 +3291,12 @@ he:
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
   non_disagreeing_ancestor_ids: זיהויים הוריים לא סותרים
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    אם תכב.י אפשרות זו, לא תקבל.י יותר התראה כאשר יוסיפו זיהוי של טקסון שהוא הורה של הטקסון בזיהוי שלך, כל עוד אין בכך סתירה מפורשת לטקסון הקהילתי. עדיין תקבל.י התראה אם הזיהוי כולל הערות נוספות.
   non_human?: לא בן אדם?
   #A user who does not admin any projects
   non_project_admin: אדמינ.ית לא של אף פרויקט
@@ -6292,10 +6306,39 @@ he:
   views:
     views: 'צפיות'
     announcements:
+      locales_desc: |
+        לחיצה עם CMD או SHIFT תאפשר בחירה מרובה. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא קשר לאזור השפה שנבחר. בחירה בשפה ללא אזור לא תציג את ההודעה למי שבחרו גרסה אזורית של אותה שפה, למשל אם תיבחר אנגלית, ההודעה לא תופיע למי שבחרו אנגלית (UK).
+      clients_desc: |
+        לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא קשר ללקוח.
+      end_desc: |
+        השעה באזור הזמן של החשבון שלך שבה הודעה זו תפסיק
+        להופיע. חל על פני אזורי זמן שונים, כך שכולם יפסיקו לראות
+        אותו באותו הזמן, לא ביחס לזמן המקומי שלהם.
+      ip_countries_desc: |
+        לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא תלות במדינת ה־IP שלהם.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        שימו לב שהתאריך שבו נוצרה התצפית האחרונה של המשתמש.ת נשמר במטמון, ולכן עשויה לחלוף כמה שעות עד שהמיקוד ייכנס לתוקף.
+      observation_oauth_application_ids_desc: |
+        לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא קשר לאפליקציה.
+      site_ids_desc: |
+        לחיצה עם CMD או SHIFT תאפשר לבחור מספר פריטים. בחירה ב"הכל" או אי-בחירה תציג את ההודעה לכל המשתמשים, ללא תלות בשיוך האתר.
       start_desc: |
         השעה באזור הזמן של החשבון שלך שבה הודעה זו תתחיל
         להופיע. חל על פני אזורי זמן שונים, כך שכולם יתחילו לראות
         אותו באותו הזמן, לא ביחס לזמן המקומי שלהם.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: מיקוד משתמשים לפי התנהגות תרומה
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: מיקוד משתמשים לפי התנהגות זיהויים
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: מיקוד משתמשים לפי התנהגות תצפיות
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: מיקוד משתמשים לפי תכונות אחרות
     atlases:
       show:
         #Title for section describing atlases
@@ -6327,6 +6370,9 @@ he:
         show_listed_taxa: הצגת טקסונים רשומים
         #Notice when an atlas is not active
         this_atlas_is_not_currently_active: אטלס זה אינו פעיל כרגע
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          פעולה זו תסיר את הטקסון הזה ואת כל הצאצאים שלו מרשימות מינים המשויכות למקום הזה ולכל המקומות הסטנדרטיים שהוא כולל. לא ניתן לבטל פעולה זו. האם ברצונך להמשיך?
         #Warning when there are observations outside of the places defined by
         #the atlas
         warning_there_are_observations_not_represented: |
@@ -6477,6 +6523,9 @@ he:
           you_can_think: |
             אפשר לחשוב על מפת "צפוי בסביבה" כהערכה האם המין נוכח במקום כלשהו בתוך התא או נעדר ממנו לחלוטין.
           figure_alt_text: הגיאו-מודל מיישם את התווית "צפוי בסביבה"
+          #text for a link to a GeoJSON-formatted representation of the taxon's
+          #Expected Nearby range that the user can download
+          download_expected_nearby_map_as_geojson: הורדת מפת 'צפוי בסביבה' בתור GeoJSON
         unthresholded_map:
           unthresholded_map: מפה "ללא סף"
           we_use_the_unthresholded_map: |
@@ -6935,8 +6984,16 @@ he:
           </li>
           </ul>
       field_descriptions:
+        id: מזהה ייחודי ורציף לתצפית
+        species_guess: |
+          שם טקסון בתצורה של טקסט פשוט; ניתן להזנה על ידי המתצפ.ת בעת יצירת התצפית, אך עלול להתחלף בשם הקנוני והמקומי אם הטקסון משתנה.
+        scientific_name: "השם המדעי של הטקסון הנצפה על פי iNaturalist"
+        common_name: "שם נפוץ או עממי של הטקסון הנצפה על פי iNaturalist"
         iconic_taxon_name: קטגוריה טקסונומית בדרגה גבוהה יותר עבור הטקסון הנצפה
+        taxon_id: מזהה רציף ייחודי עבור הטקסון הנצפה
         id_please: האם המתצפת.ת ביקש.ה עזרה בזיהוי
+        num_identification_agreements: מספר הזיהויים הקשורים לטקסונים התואמים או מוכלים על ידי הטקסון מזיהוי המתצפת.ת
+        num_identification_disagreements: מספר הזיהויים הקשורים לטקסונים שאינם תואמים ואינם מוכלים על ידי הטקסון מהזיהוי של המתצפת.ת
         observed_on_string: תאריך/שעה כפי שהוזן על ידי המתצפת
         observed_on: תאריך תצפית מנורמל
         time_observed_at: תאריך ושעה מנורמלים של התצפית
@@ -6971,6 +7028,17 @@ he:
         place_admin2_name: שם המקום האדמיניסטרטיבי שתי רמות מתחת לרמת המדינה
         positioning_method: כיצד נקבעו הקואורדינטות
         positioning_device: מכשיר המשמש לקביעת קואורדינטות
+        captive_cultivated: |
+          התצפית היא של אורגניזם שנמצא בזמן ובמקום מסויימים מכיוון שבני האדם התכוונו שזה יהיה שם אז.
+          למידע נוסף:
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          טקסט שנכתב על ידי המתצפת.ת שמתאר את התצפית או כולל הערות נוספות שנראות רלוונטיות.
+        oauth_application_id: |
+          מזהה סדרתי של האפליקציה שיצר את התצפית. למידע נוסף על האפליקציה, ניתן להוסיף את המספר הזה לכתובת:
+          https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          שם האזור האדמיניסטרטיבי השלישוני המכיל את קואורדינטות התצפית הזו (למשל מחוז ברוב ארצות הברית)
         place_country_name: |
           שם המדינה המכילה את קואורדינטות התצפית הזו
         place_state_name: |
@@ -7840,6 +7908,15 @@ he:
       taxon:
         about_html: |
           לטקסונים יכולים להיות שמות עממיים מרובים. אנו תומכות בשם עממי אחד כברירת מחדל גלובלית, אשר יכול להשתנות כאן באמצעות גרירת שם לראש הרשימה. באפשרותך גם לפרט שמות ברירת מחדל במקומות שונים באמצעות עריכת השם והוספת מקום, אך בבקשה לעשות זאת רק כאשר למקומות שונים יש שמות סותרים.
+    terminology:
+      index:
+        exports_can_also_contain_observation_field_values_html: |
+          קובצי הייצוא יכולים להכיל גם עמודות עם ערכים של שדות תצפית. כדי למצוא הגדרות עבורם, ניתן לחפש אותם ב־
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          או לצרף את שם העמודה (כולל הנקודתיים) לכתובת
+          <code>%{terminology_url}</code> (למשל <a href="%{term_url}">%{term_url}</a>).
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist משתמשת במגוון מונחים ייחודיים לתיאור היבטים שונים של השירות. כאן ריכזנו כמה מהם יחד עם ההגדרות שלהם לצורך התייחסות.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8015,8 +8092,6 @@ he:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: כבר נוספו 3 הלקסיקונים המותרים של שמות עממיים
-        this_only_applies_to_traditional_projects: |
-          זה נכון רק עבור פרויקטים בסיסיים. אין ביכולתך להוציא תצפיות מאוספים או מפרויקטי מטריה, שהם בעצם חיפושים שמורים. ניתן לקרוא עוד <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">כאן</a>.
       recent:
         about_recent_users: אודות
         definitions_html: <dl> <dt>כנראה ספאם</dt> <dd> יוזר שהוא ככל הנראה מפיץ ספאם, כלומר אין לו תצפיות או זיהויים אבל יש לו תיאור פרופיל. </dd> <dt>ספאם אוטומטי</dt> <dd> מפיצ.ת ספאם שסומנ.ה אוטומטית על ידי המערכת. </dd> <dt>ספאם ידני</dt> <dd> מפיצ.ת ספאם שסומנ.ה ידנית על ידי אוצר.ת של האתר. </dd> <dt>חיוביים כוזבים</dt> <dd> יוזרים שסומנו כמפיצי ספאם אך הסימונים נפתרו על ידי אוצרות ואוצרי האתר מכיוון שלא היו מפיצי ספאם באמת. </dd> </dl>
@@ -8390,6 +8465,8 @@ he:
     attributes:
       announcement:
         created_at: נוצר ב
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: ניתן להסרה
         updated_at: עודכן ב
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8401,6 +8478,20 @@ he:
         prefers_target_unconfirmed_users: להראות למשתמשים לא מאושרים
         prefers_exclude_monthly_supporters: למעט תומכות ותומכים חודשיים
         clients: לקוחות
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: תאריך תחילת תרומה שיש להחריג
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: תאריך סיום תרומה שיש להחריג
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: להחריג מתצפתים מאפליקציות
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: לכלול תאריך תחילת תרומה
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: לכלול תאריך סיום תרומה
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: לכלול מתצפתים מאפליקציות
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: IP מדינות
         #Start of a date range that includes the viewer's most recent observation
@@ -8417,6 +8508,10 @@ he:
         min_observations: מינימום תצפיות
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: מיקום
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: למקד ביוצר.ת (למטרות בדיקה)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: היעד מחובר
         #Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: תאריך הרשמה ראשון למשתמשים
         #Latest date the viewer can have signed up to see the announcement
