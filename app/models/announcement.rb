@@ -352,7 +352,6 @@ class Announcement < ApplicationRecord
 
     announcements.sort_by do | a |
       [
-        a.site_ids.include?( site.try( :id ) ) ? 0 : 1,
         a.locales.include?( I18n.locale ) ? 0 : 1,
         a.id * -1
       ]
