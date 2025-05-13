@@ -21,16 +21,25 @@
       } );
     } );
 
+- content_for :extrajs do
+  :javascript
+    $(function( ) {
+      $( "#queryTabs a" ).click(function ( e ) {
+        e.preventDefault( );
+        $( this ).tab( "show" );
+      } );
+    } );
+
 %h2.sub-header= "Active Queries"
 
-%ul.nav.nav-tabs#queryTabs{role: "tablist"}
+%ul.nav.nav-tabs#queryTabs
+ %li.nav-item
+    %a.nav-link.active{"data-toggle" => "tab", href: "#primary_queries"} Primary Queries (#{@primary_queries.count})
   %li.nav-item
-    %button.nav-link.active{"data-bs-toggle" => "tab", "data-bs-target" => "#primary_queries", type: "button", role: "tab"} Primary Queries (#{@primary_queries.count})
-  %li.nav-item
-    %button.nav-link{"data-bs-toggle" => "tab", "data-bs-target" => "#replica_queries", type: "button", role: "tab"} Replica Queries (#{@replica_queries.count})
+    %a.nav-link{"data-toggle" => "tab", href: "#replica_queries"} Replica Queries (#{@replica_queries.count})
 
 .tab-content.mt-3
-  %div.tab-pane.fade.show.active#primary_queries{role: "tabpanel"}
+  %div.tab-pane.fade.show.active#primary_queries
     %h3 Primary Queries (#{@primary_queries.count})
     %table.table.table-striped
       %thead
@@ -52,7 +61,7 @@
                 = v
                 %br
 
-  %div.tab-pane.fade#replica_queries{role: "tabpanel"}
+  %div.tab-pane.fade#replica_queries
     %h3 Replica Queries (#{@replica_queries.count})
     %table.table.table-striped
       %thead
