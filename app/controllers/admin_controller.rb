@@ -150,7 +150,7 @@ class AdminController < ApplicationController
         user: current_user,
         resource: user,
         action: ModeratorAction::RENAME,
-        reason: "Inappropriate username: #{user.login} was renamed",
+        reason: "Inappropriate username: #{user.login} was renamed"
       )
       if @moderator_action.save
         flash[:notice] = "Username successfully renamed"
@@ -253,7 +253,7 @@ class AdminController < ApplicationController
     connection_proxy = ActiveRecord::Base.connection
     @primary_queries = []
     @replica_queries = []
-    
+
     if connection_proxy.respond_to?( :makara_primary_pool ) && connection_proxy.respond_to?( :makara_replica_pools )
       # Primary pool
       primary_pool = connection_proxy.makara_primary_pool
@@ -277,31 +277,23 @@ class AdminController < ApplicationController
       end
     end
 
-    [@primary_queries, @replica_queries].each do | queries |
-      queries.delete_if { |q| q["query"] =~ /pg_stat_activity/ }
-    end
+#    [@primary_queries, @replica_queries].each do | queries |
+#      queries.delete_if { |q| q["query"] =~ /pg_stat_activity/ }
+#    end
 
     now = Time.current
 
     @primary_queries.each do | q |
-      if q["query_start"]
-        q["duration"] = now - q["query_start"]
-      else
-        q["duration"] = 0
-      end
+      q["duration"] = q["query_start"] ? now - q["query_start"] : 0
     end
-    
+
     @replica_queries.each do | q |
-      if q["query_start"]
-        q["duration"] = now - q["query_start"]
-      else
-        q["duration"] = 0
-      end
+      q["duration"] = q["query_start"] ? now - q["query_start"] : 0
     end
-    
-    @primary_queries = @primary_queries.sort_by { | q | q["duration"] }.reverse
-    @replica_queries = @replica_queries.sort_by { | q | q["duration"] }.reverse
-    
+
+    @primary_queries = @primary_queries.sort_by {| q | q["duration"] }.reverse
+    @replica_queries = @replica_queries.sort_by {| q | q["duration"] }.reverse
+
     render layout: "admin"
   end
 
