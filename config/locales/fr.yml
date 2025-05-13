@@ -4255,6 +4255,9 @@ fr:
   processing3p: "Traitement en cours…"
   profile: Profil
   profile_picture: Photo de profil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Le type de fichier de l'image de profil
   profile_visibility_desc: |
     Afin de combattre les spams sur %{site_name}, les profils des utilisateurs sont seulement visibles publiquement après qu'ils aient contribué à plusieurs observations de niveau "Research Grade".
   project: Projet
@@ -5631,6 +5634,7 @@ fr:
   uploader:
     errors:
       file_too_big: Le fichier ne doit pas dépasser %{megabytes} Mo
+      unsupported_file_type: 'Type de fichier non pris en charge. Sont acceptés : JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3, et MP4 (seulement audio)'
     resize_tip: |
       Les fichiers de photos sont trop grands, essayez de les réduire à un maximum de 2048 by 2048 pixels. Cela sera appliqué à toutes les photos du serveur et l'importation sera plus rapide.
     tooltips:
