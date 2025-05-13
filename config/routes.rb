@@ -588,7 +588,7 @@ Rails.application.routes.draw do
       put :restore_user_privilege
       put :reset_user_privilege
     end
-    resources :queries, only: :index do
+    resources :queries, only: :index, controller: "admin/queries" do
       collection do
         get :index
         get :primary
