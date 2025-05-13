@@ -254,25 +254,18 @@ class AdminController < ApplicationController
     @primary_queries = []
     @replica_queries = []
 
-    primary_pool = connection_proxy.instance_variable_get("@primary_pool")
-    replica_pool = connection_proxy.instance_variable_get("@replica_pool")
+    primary_pool = connection_proxy.instance_variable_get( "@primary_pool" )
+    replica_pool = connection_proxy.instance_variable_get( "@replica_pool" )
 
-    if primary_pool && replica_pool
-      # Primary pool
-      primary_pool.connections.each do | connection |
-        @primary_queries += connection.active_queries.map do | q |
-          { db_host: connection.config[:host] }.merge( q )
-        end
+    primary_pool&.connections&.each do | connection |
+      @primary_queries += connection.active_queries.map do | q |
+        { db_host: connection.config[:host] }.merge( q )
       end
-      # Replica pool
-      replica_pool.connections.each do | connection |
-        @replica_queries += connection.active_queries.map do | q |
-          { db_host: connection.config[:host] }.merge( q )
-        end
-      end
-    else
-      @primary_queries = connection_proxy.active_queries.map do |q|
-        { db_host: connection_proxy.connection_db_config.host }.merge( q )
+    end
+
+    replica_pool&.connections&.each do | connection |
+      @replica_queries += connection.active_queries.map do | q |
+        { db_host: connection.config[:host] }.merge( q )
       end
     end
 
