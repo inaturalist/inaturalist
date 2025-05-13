@@ -26,7 +26,13 @@
     $(function( ) {
       $( "#queryTabs a" ).click(function ( e ) {
         e.preventDefault( );
-        $( this ).tab( "show" );
+
+        $( "#queryTabs a" ).removeClass( "active" );
+        $( ".tab-pane" ).removeClass( "show active" );
+        
+        $( this ).addClass( "active" );
+        var target = $( this ).attr( "href" );
+        $( target ).addClass( "show active" );
       } );
     } );
 
@@ -34,9 +40,9 @@
 
 %ul.nav.nav-tabs#queryTabs
   %li.nav-item
-    %a.nav-link.active{"data-toggle" => "tab", href: "#primary_queries"} Primary Queries (#{@primary_queries.count})
+    %a.nav-link.active{href: "#primary_queries"} Primary Queries (#{@primary_queries.count})
   %li.nav-item
-    %a.nav-link{"data-toggle" => "tab", href: "#replica_queries"} Replica Queries (#{@replica_queries.count})
+    %a.nav-link{href: "#replica_queries"} Replica Queries (#{@replica_queries.count})
 
 .tab-content.mt-3
   %div.tab-pane.fade.show.active#primary_queries
@@ -51,9 +57,12 @@
           %tr
             %td
               %strong Duration:
+              %br
               = human_duration(query["duration"]) if query["duration"]
               %br
+              %br
               %strong State Changed:
+              %br
               = time_ago_in_words(query["state_change"]) if query["state_change"]
             %td
               - query.each do |k,v|
@@ -73,9 +82,12 @@
           %tr
             %td
               %strong Duration:
+              %br
               = human_duration(query["duration"]) if query["duration"]
               %br
+              %br
               %strong State Changed:
+              %br
               = time_ago_in_words(query["state_change"]) if query["state_change"]
             %td
               - query.each do |k,v|
