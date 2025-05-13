@@ -27,9 +27,7 @@ class Admin::QueriesController < ApplicationController
       end
     end
 
-#    queries.each do | queries |
-#      queries.delete_if { |q| q["query"] =~ /pg_stat_activity/ }
-#    end
+    queries.delete_if {| q | q["query"] =~ /pg_stat_activity/ }
 
     now = Time.current
     queries.each do | q |
