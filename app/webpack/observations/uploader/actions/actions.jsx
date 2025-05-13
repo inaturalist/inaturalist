@@ -144,6 +144,7 @@ const actions = class actions {
       const files = { };
       let i = 0;
       const startTime = new Date( ).getTime( );
+
       droppedFiles.forEach( f => {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );

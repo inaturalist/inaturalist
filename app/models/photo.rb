@@ -46,7 +46,7 @@ class Photo < ApplicationRecord
   MEDIUM = 500
   LARGE = 1024
 
-  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /octet-stream/]
+  MIME_PATTERNS = [/jpe?g/i, /png/i, /gif/i, /heic/i, /heif/i, /octet-stream/]
 
   class MissingPhotoError < StandardError; end
 
@@ -280,7 +280,7 @@ class Photo < ApplicationRecord
 
   def best_url( size = "medium" )
     size = size.to_s
-    sizes = LocalPhoto::FILE_OPTIONS[:styles].keys.map( &:to_s )
+    sizes = LocalPhoto::SIZES.map( &:to_s )
     size = "medium" unless sizes.include?( size )
     size_index = sizes.index( size )
     methods = sizes[size_index.to_i..-1].map {| s | "#{s}_url" } + ["original"]

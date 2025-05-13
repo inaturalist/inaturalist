@@ -132,7 +132,7 @@ class SharedForm extends React.Component {
                 activeClassName="hover"
                 disableClick
                 disablePreview
-                accept="image/png,image/jpeg,image/gif"
+                accept="image/png,image/jpeg,image/gif,image/heif,image/heic"
                 multiple={false}
               >
                 <div className="icon-cell icon">
