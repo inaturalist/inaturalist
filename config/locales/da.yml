@@ -5834,6 +5834,7 @@ da:
   uploader:
     errors:
       file_too_big: Filen skal være mindre end %{megabytes} MB
+      unsupported_file_type: Filtype ikke understøttet. Gyldige filtyper er JPG, PNG, GIF, HEIC, HEIF, WAV, AAC og MP4 (kun lyd)
     resize_tip: |
       Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
       2048 x 2048 pixels. Dette sker med alle fotos på
@@ -5954,6 +5955,14 @@ da:
     Bruger stoler på dette projekt med skjulte koordinater, sløret af en uspecificeret årsag.
   user_trusts_this_project_for_taxon: |
     Bruger stoler kun på dette projekt med skjulte koordinater, sløret grundet truet taksa.
+  user_trusts_this_project_when_added_by_any: |
+    Brugeren betror projektkuratorer med skjulte koordinater for observationer
+    tilføjet projektet af hvem som helst.
+  user_trusts_this_project_when_added_by_observer: |
+    Brugeren betror projektkuratorer med skjulte koordinater for observationer
+    tilføjet projektet af observatøren.
+  user_trusts_this_project_when_added_by_none: |
+    Brugeren betror ikke projektkuratorer med skjulte koordinater.
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
