@@ -4,7 +4,7 @@ import { fetchFavoriteProjects } from "../ducks/favorite_projects";
 import {
   addFavoriteProject,
   NO_CHANGE,
-  saveUserSettings,
+  postUserSettings,
   updateUserData
 } from "../ducks/user_settings";
 
@@ -24,11 +24,11 @@ function mapDispatchToProps( dispatch ) {
   return {
     addProject: project => {
       dispatch( addFavoriteProject( project ) );
-      dispatch( saveUserSettings( { only: ["faved_project_ids"], skipFetch: true } ) );
+      dispatch( postUserSettings( { only: ["faved_project_ids"], skipFetch: true } ) );
     },
     updateFavedProjectIds: projectIds => {
       dispatch( updateUserData( { faved_project_ids: projectIds }, { savedStatus: NO_CHANGE } ) );
-      dispatch( saveUserSettings( { only: ["faved_project_ids"], skipFetch: true } ) );
+      dispatch( postUserSettings( { only: ["faved_project_ids"], skipFetch: true } ) );
       dispatch( fetchFavoriteProjects( ) );
     }
   };

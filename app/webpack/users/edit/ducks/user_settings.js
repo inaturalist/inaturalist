@@ -126,7 +126,7 @@ export async function handleSaveError( e ) {
   return null;
 }
 
-export function saveUserSettings( options = {} ) {
+export function postUserSettings( options = {} ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     const { id } = profile;
@@ -378,7 +378,7 @@ export function confirmResendConfirmation( ) {
           ...getState( ).profile,
           confirmation_sent_at: ( new Date( ) ).toISOString( )
         } ) );
-        await dispatch( saveUserSettings( ) );
+        await dispatch( postUserSettings( ) );
         const { profile } = getState( );
         if ( !profile.errors || profile.errors.length <= 0 ) {
           dispatch( resendConfirmation( ) );
