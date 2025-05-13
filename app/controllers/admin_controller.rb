@@ -249,47 +249,39 @@ class AdminController < ApplicationController
     redirect_to root_path
   end
 
-  def queries
-    connection_proxy = ActiveRecord::Base.connection
-    @primary_queries = []
-    @replica_queries = []
+  def primary_queries
+    @queries = active_queries(:primary)
+    render layout: "admin"
+  end
 
-    primary_pool = connection_proxy.instance_variable_get( "@primary_pool" )
-    replica_pool = connection_proxy.instance_variable_get( "@replica_pool" )
-
-    primary_pool&.connections&.each do | connection |
-      @primary_queries += connection.active_queries.map do | q |
-        { db_host: connection.config[:host] }.merge( q )
-      end
-    end
-
-    replica_pool&.connections&.each do | connection |
-      @replica_queries += connection.active_queries.map do | q |
-        { db_host: connection.config[:host] }.merge( q )
-      end
-    end
-
-#    [@primary_queries, @replica_queries].each do | queries |
-#      queries.delete_if { |q| q["query"] =~ /pg_stat_activity/ }
-#    end
-
-    now = Time.current
-
-    @primary_queries.each do | q |
-      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) / 1000.0 : 0
-    end
-
-    @replica_queries.each do | q |
-      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) / 1000.0 : 0
-    end
-
-    @primary_queries = @primary_queries.sort_by {| q | q["duration"] }.reverse
-    @replica_queries = @replica_queries.sort_by {| q | q["duration"] }.reverse
-
+  def replica_queries
+    @queries = active_queries(:replica)
     render layout: "admin"
   end
 
   private
+
+  def active_queries( type )
+    pool = ActiveRecord::Base.connection.instance_variable_get( "@#{type}_pool" )
+    queries = []
+
+    pool&.connections&.each do | connection |
+      queries += connection.active_queries.map do | q |
+        { db_host: connection.config[:host] }.merge( q )
+      end
+    end
+
+#    queries.each do | queries |
+#      queries.delete_if { |q| q["query"] =~ /pg_stat_activity/ }
+#    end
+
+    now = Time.current
+    queries.each do | q |
+      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) / 1000.0 : 0
+    end
+
+    queries.sort_by {| q | q["duration"] }.reverse
+  end
 
   def load_user_content_info
     user_id = params[:id] || params[:user_id]

@@ -579,7 +579,8 @@ Rails.application.routes.draw do
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
-      get :queries
+      get :primary_queries
+      get :replica_queries
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as

@@ -16,10 +16,15 @@
               Pending
           %li.subitem{ class: ("active" if action_name == "failed") }
             %a{ href: failed_admin_delayed_jobs_path }
-              Failed
-          %li{ class: ("active" if action_name == "queries") }
-            %a{ href: queries_admin_path }
-              Active Queries
+              Failed          
+          %li
+            = link_to "Active Queries", queries_admin_path
+          %li.subitem{ class: ("active" if action_name == "primary") }
+            %a{ href: primary_queries_admin_path }
+              Primary
+          %li.subitem{ class: ("active" if action_name == "replica") }
+            %a{ href: replica_queries_admin_path }
+              Replica
           %li{ class: ("active" if %w(users user_detail).include?( action_name ) ) }
             = link_to t(:users), users_admin_path
           %li= link_to t(:blocked_ips), admin_blocked_ips_path
