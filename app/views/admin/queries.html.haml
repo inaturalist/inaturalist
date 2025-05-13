@@ -41,8 +41,8 @@
         - @primary_queries.each do | query |
           %tr
             %td
-              %strong Duration (s):
-              = query["computed_duration"].round(2)
+              %strong Duration:
+              = human_duration(query["duration"]) if query["duration"]
               %br
               %strong State Changed:
               = time_ago_in_words(query["state_change"]) if query["state_change"]
@@ -63,8 +63,8 @@
         - @replica_queries.each do | query |
           %tr
             %td
-              %strong Duration (s):
-              = query["computed_duration"].round(2)
+              %strong Duration:
+              = human_duration(query["duration"]) if query["duration"]
               %br
               %strong State Changed:
               = time_ago_in_words(query["state_change"]) if query["state_change"]

@@ -276,11 +276,11 @@ class AdminController < ApplicationController
     now = Time.current
 
     @primary_queries.each do | q |
-      q["duration"] = q["query_start"] ? now - q["query_start"] : 0
+      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) / 1000.0 : 0
     end
 
     @replica_queries.each do | q |
-      q["duration"] = q["query_start"] ? now - q["query_start"] : 0
+      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) / 1000.0 : 0
     end
 
     @primary_queries = @primary_queries.sort_by {| q | q["duration"] }.reverse
