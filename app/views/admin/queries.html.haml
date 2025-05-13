@@ -21,20 +21,55 @@
       } );
     } );
 
-%h2.sub-header= "Active Queries (#{ @queries.count })"
-%table-responsive
-  %table.table.table-striped
-    %thead
-      %tr
-        %th State Change
-        %th Info
-    %tbody
-      - @queries.each do |query|
+%h2.sub-header= "Active Queries"
+
+%ul.nav.nav-tabs#queryTabs{role: "tablist"}
+  %li.nav-item
+    %button.nav-link.active{"data-bs-toggle" => "tab", "data-bs-target" => "#primary_queries", type: "button", role: "tab"} Primary Queries (#{@primary_queries.count})
+  %li.nav-item
+    %button.nav-link{"data-bs-toggle" => "tab", "data-bs-target" => "#replica_queries", type: "button", role: "tab"} Replica Queries (#{@replica_queries.count})
+
+.tab-content.mt-3
+  %div.tab-pane.fade.show.active#primary_queries{role: "tabpanel"}
+    %h3 Primary Queries (#{@primary_queries.count})
+    %table.table.table-striped
+      %thead
         %tr
-          %td
-            = t(:n_ago, n: time_ago_in_words( query["state_change"] ))
-          %td
-            - query.each do |k,v|
-              %strong= "#{ k }:"
-              = v
+          %th Timing
+          %th Info
+      %tbody
+        - @primary_queries.each do | query |
+          %tr
+            %td
+              %strong Duration (s):
+              = query["computed_duration"].round(2)
               %br
+              %strong State Changed:
+              = time_ago_in_words(query["state_change"]) if query["state_change"]
+            %td
+              - query.each do |k,v|
+                %strong= "#{ k }:"
+                = v
+                %br
+
+  %div.tab-pane.fade#replica_queries{role: "tabpanel"}
+    %h3 Replica Queries (#{@replica_queries.count})
+    %table.table.table-striped
+      %thead
+        %tr
+          %th State Change
+          %th Info
+      %tbody
+        - @replica_queries.each do | query |
+          %tr
+            %td
+              %strong Duration (s):
+              = query["computed_duration"].round(2)
+              %br
+              %strong State Changed:
+              = time_ago_in_words(query["state_change"]) if query["state_change"]
+            %td
+              - query.each do |k,v|
+                %strong= "#{ k }:"
+                = v
+                %br

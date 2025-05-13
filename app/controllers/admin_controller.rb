@@ -250,23 +250,58 @@ class AdminController < ApplicationController
   end
 
   def queries
-    replica_pool = ActiveRecord::Base.connection.instance_variable_get( "@replica_pool" )
-    if replica_pool
-      # if configured to use replica DBs with Makara, fetch queries from all primaries and replicas
-      primary_pool = ActiveRecord::Base.connection.instance_variable_get( "@primary_pool" )
-      @queries = []
-      ( primary_pool.connections + replica_pool.connections ).flatten.each do | connection |
-        instance_queries = connection.active_queries.map do | q |
+    connection_proxy = ActiveRecord::Base.connection
+    @primary_queries = []
+    @replica_queries = []
+    
+    if connection_proxy.respond_to?( :makara_primary_pool ) && connection_proxy.respond_to?( :makara_replica_pools )
+      # Primary pool
+      primary_pool = connection_proxy.makara_primary_pool
+      primary_pool.connections.each do | connection |
+        @primary_queries += connection.active_queries.map do | q |
           { db_host: connection.config[:host] }.merge( q )
         end
-        @queries += instance_queries
+      end
+      # Replica pools
+      replica_pools = connection_proxy.makara_replica_pools
+      replica_pools.each do | pool |
+        pool.connections.each do | connection |
+          @replica_queries += connection.active_queries.map do | q |
+            { db_host: connection.config[:host] }.merge( q )
+          end
+        end
       end
     else
-      @queries = ActiveRecord::Base.connection.active_queries.map do | q |
+      @primary_queries = ActiveRecord::Base.connection.active_queries.map do | q |
         { db_host: ActiveRecord::Base.connection_db_config.host }.merge( q )
       end
     end
-    @queries.delete_if {| q | q["query"] =~ /pg_stat_activity/ }
+
+    [@primary_queries, @replica_queries].each do | queries |
+      queries.delete_if { |q| q["query"] =~ /pg_stat_activity/ }
+    end
+
+    now = Time.current
+
+    @primary_queries.each do | q |
+      if q["query_start"]
+        q["duration"] = now - q["query_start"]
+      else
+        q["duration"] = 0
+      end
+    end
+    
+    @replica_queries.each do | q |
+      if q["query_start"]
+        q["duration"] = now - q["query_start"]
+      else
+        q["duration"] = 0
+      end
+    end
+    
+    @primary_queries = @primary_queries.sort_by { | q | q["duration"] }.reverse
+    @replica_queries = @replica_queries.sort_by { | q | q["duration"] }.reverse
+    
     render layout: "admin"
   end
 
