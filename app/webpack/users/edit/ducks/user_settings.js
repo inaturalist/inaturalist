@@ -22,7 +22,7 @@ export default function reducer( state = { }, action ) {
   return state;
 }
 
-export function setUserData( userData, savedStatus = UNSAVED ) {
+export function setUserSettings( userData, savedStatus = UNSAVED ) {
   if ( savedStatus !== NO_CHANGE ) userData.saved_status = savedStatus;
 
   return {
@@ -73,7 +73,7 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         userSettings.confirmation_sent_at = profile.confirmation_sent_at;
       }
 
-      dispatch( setUserData( userSettings, savedStatus ) );
+      dispatch( setUserSettings( userSettings, savedStatus ) );
 
       if ( initialLoad ) {
         dispatch( fetchRelationships( true ) );
@@ -182,7 +182,7 @@ export function saveUserSettings( options = {} ) {
 
     // fetching user settings here to get the source of truth
     // currently users.me returns different results than
-    // dispatching setUserData( results[0] ) from users.update response
+    // dispatching setUserSettings( results[0] ) from users.update response
     return inatjs.users.update( params, { useAuth: true } )
       .then( ( ) => {
         // If we want to update without fetching the user again...
@@ -192,7 +192,7 @@ export function saveUserSettings( options = {} ) {
       } )
       .catch( e => handleSaveError( e ).then( errors => {
         profile.errors = errors;
-        dispatch( setUserData( profile, null ) );
+        dispatch( setUserSettings( profile, null ) );
       } ) );
   };
 }
@@ -206,7 +206,7 @@ export function handleCheckboxChange( e ) {
     } else {
       profile[e.target.name] = e.target.checked;
     }
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
@@ -225,14 +225,14 @@ export function handleDisplayNames( { target } ) {
       profile.prefers_common_names = false;
       profile.prefers_scientific_name_first = false;
     }
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
 export function updateUserData( updates, options = {} ) {
   return ( dispatch, getState ) => {
     const { profile: userData } = getState( );
-    dispatch( setUserData( { ...userData, ...updates }, options.savedStatus ) );
+    dispatch( setUserSettings( { ...userData, ...updates }, options.savedStatus ) );
   };
 }
 
@@ -240,7 +240,7 @@ export function handleInputChange( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[e.target.name] = e.target.value;
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
@@ -248,7 +248,7 @@ export function handleCustomDropdownSelect( eventKey, name ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile[name] = eventKey;
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
@@ -263,7 +263,7 @@ export function handlePlaceAutocomplete( { item }, name ) {
     }
 
     profile[name] = item.id;
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
@@ -271,7 +271,7 @@ export function handlePhotoUpload( e ) {
   return ( dispatch, getState ) => {
     const { profile } = getState( );
     profile.icon = e.target.files[0];
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
@@ -301,7 +301,7 @@ export function onFileDrop( droppedFiles, rejectedFiles ) {
     const droppedFile = droppedFiles[0];
     if ( droppedFile.type.match( /^image\// ) ) {
       profile.icon = droppedFile;
-      dispatch( setUserData( profile ) );
+      dispatch( setUserSettings( profile ) );
     }
   };
 }
@@ -312,7 +312,7 @@ export function removePhoto( ) {
     profile.icon = null;
     profile.icon_url = null;
     profile.icon_delete = true;
-    dispatch( setUserData( profile ) );
+    dispatch( setUserSettings( profile ) );
   };
 }
 
@@ -337,7 +337,7 @@ export function changePassword( input ) {
       .catch( e => handleSaveError( e ).then( errors => {
         // catch errors such as validation errors so they can be displayed
         profile.errors = errors;
-        dispatch( setUserData( profile, null ) );
+        dispatch( setUserSettings( profile, null ) );
       } ) );
   };
 }
@@ -353,7 +353,7 @@ export function resendConfirmation( ) {
     } ).catch( e => {
       handleSaveError( e ).then( errors => {
         profile.errors = errors;
-        dispatch( setUserData( profile, null ) );
+        dispatch( setUserSettings( profile, null ) );
       } );
     } );
   };
@@ -374,7 +374,7 @@ export function confirmResendConfirmation( ) {
       onConfirm: async ( ) => {
         // Preemptively set confirmation_sent_at so the user sees a change
         // immediately
-        await dispatch( setUserData( {
+        await dispatch( setUserSettings( {
           ...getState( ).profile,
           confirmation_sent_at: ( new Date( ) ).toISOString( )
         } ) );
