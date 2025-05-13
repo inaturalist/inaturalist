@@ -249,13 +249,17 @@ class AdminController < ApplicationController
     redirect_to root_path
   end
 
+  def queries
+    redirect_to :primary_admin_queries
+  end
+
   def primary_queries
-    @queries = active_queries(:primary)
+    @queries = active_queries( :primary )
     render layout: "admin"
   end
 
   def replica_queries
-    @queries = active_queries(:replica)
+    @queries = active_queries( :replica )
     render layout: "admin"
   end
 

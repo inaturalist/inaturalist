@@ -18,12 +18,12 @@
             %a{ href: failed_admin_delayed_jobs_path }
               Failed          
           %li
-            = link_to "Active Queries", queries_admin_path
+            = link_to "Active Queries", admin_queries_path
           %li.subitem{ class: ("active" if action_name == "primary") }
-            %a{ href: primary_queries_admin_path }
+            %a{ href: primary_admin_queries_path }
               Primary
           %li.subitem{ class: ("active" if action_name == "replica") }
-            %a{ href: replica_queries_admin_path }
+            %a{ href: replica_admin_queries_path }
               Replica
           %li{ class: ("active" if %w(users user_detail).include?( action_name ) ) }
             = link_to t(:users), users_admin_path
