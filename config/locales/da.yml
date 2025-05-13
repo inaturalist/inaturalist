@@ -1496,6 +1496,12 @@ da:
   curators_changed_for_x_html: "Kuratorer ændret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
+  curator_coordinate_access: Kuratorkoordinatadgang
+  curator_coordinate_access_desc: |
+    Kuratorkoordinatadgang i traditionelle projekter afhænger af, hvem der har føjet
+    observationen til projektet. Dette er blot standardindstillingen for
+    observationer i projekter. Observatører kan også vælge at ændre dette for
+    individuelle observationer.
   curator_identification: Kurator identifikation
   current_flags: Aktuelle markeringer
   #Label for a custom boundary for an observation search
@@ -5828,7 +5834,6 @@ da:
   uploader:
     errors:
       file_too_big: Filen skal være mindre end %{megabytes} MB
-      unsupported_file_type: Filtypen understøttes ikke. Vi accepterer JPG, PNG, GIF, WAV, AAC og MP4 (kun audio)
     resize_tip: |
       Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
       2048 x 2048 pixels. Dette sker med alle fotos på
