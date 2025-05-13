@@ -31,7 +31,7 @@ class Admin::QueriesController < ApplicationController
 
     now = Time.current
     queries.each do | q |
-      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) / 1000.0 : 0
+      q["duration"] = q["query_start"] ? ( now - q["query_start"] ) * 1000.0 : 0
     end
 
     queries.sort_by {| q | q["duration"] }.reverse
