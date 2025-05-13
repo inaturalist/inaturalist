@@ -254,26 +254,25 @@ class AdminController < ApplicationController
     @primary_queries = []
     @replica_queries = []
 
-    if connection_proxy.respond_to?( :makara_primary_pool ) && connection_proxy.respond_to?( :makara_replica_pools )
+    primary_pool = connection_proxy.instance_variable_get("@primary_pool")
+    replica_pool = connection_proxy.instance_variable_get("@replica_pool")
+
+    if primary_pool && replica_pool
       # Primary pool
-      primary_pool = connection_proxy.makara_primary_pool
       primary_pool.connections.each do | connection |
         @primary_queries += connection.active_queries.map do | q |
           { db_host: connection.config[:host] }.merge( q )
         end
       end
-      # Replica pools
-      replica_pools = connection_proxy.makara_replica_pools
-      replica_pools.each do | pool |
-        pool.connections.each do | connection |
-          @replica_queries += connection.active_queries.map do | q |
-            { db_host: connection.config[:host] }.merge( q )
-          end
+      # Replica pool
+      replica_pool.connections.each do | connection |
+        @replica_queries += connection.active_queries.map do | q |
+          { db_host: connection.config[:host] }.merge( q )
         end
       end
     else
-      @primary_queries = ActiveRecord::Base.connection.active_queries.map do | q |
-        { db_host: ActiveRecord::Base.connection_db_config.host }.merge( q )
+      @primary_queries = connection_proxy.active_queries.map do |q|
+        { db_host: connection_proxy.connection_db_config.host }.merge( q )
       end
     end
 
