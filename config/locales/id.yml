@@ -1391,6 +1391,11 @@ id:
   curators_changed_for_x_html: "Kurator diubah untuk %{x}"
   curators: Kurator
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
+  curator_coordinate_access: Akses Koordinat Kurator
+  curator_coordinate_access_desc: |
+    Akses koordinat kurator untuk proyek tradisional bergantung pada orang yang menambahkan
+    pengamatan ke proyeknya. Ini hanya pengaturan standar untuk
+    pengamatan-pengamatan di dalam proyek. Pengamat juga dapat mengubahnya untuk masing-masing pengamatan.
   curator_identification: Identifikasi kurator
   current_flags: Tanda Saat Ini
   #Label for a custom boundary for an observation search
@@ -5527,7 +5532,6 @@ id:
   uploader:
     errors:
       file_too_big: File harus lebih kecil dari %{megabytes} MB
-      unsupported_file_type: Jenis file tidak didukung. Kami menerima JPG, PNG, GIF, WAV, AAC, MP3, dan MP4 (audio saja)
     resize_tip: |
       Jika file foto Anda terlalu besar, coba memotongnya hingga ukuran paling besar 2048 x 2048 piksel. Hal ini berlaku pada semua foto di server juga, dan akan mempercepat proses unggahan.
     tooltips:
@@ -5641,6 +5645,9 @@ id:
     Pengguna mempercayakan proyek dengan koordinat tersembunyi ini yang telah dikaburkan untuk suatu alasan.
   user_trusts_this_project_for_taxon: |
     Pengguna hanya mempercayakan proyek dengan koordinat tersembunyi ini yang telah dikaburkan karena takson terancam.
+  user_trusts_this_project_when_added_by_any: |
+    Pengguna mempercayai kurator proyek dengan koordinat pengamatan tersembunyi yang ditambahkan 
+    oleh siapa pun ke dalam proyek.
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.

@@ -1946,6 +1946,10 @@ pt-BR:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
   Family: Família
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Escolha até sete projetos que aparecem como links no cabeçalho. Atualizações
+    aparecerão após recarregar a página.
   favorite_taxa: Táxons favoritos
   favorites: "Favoritos"
   feature_this_project_: "Apresentar este projeto"
@@ -2324,6 +2328,8 @@ pt-BR:
   inaturalist_global_year_in_review: "A Revisão do Ano de %{year} do iNaturalist global"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist é uma organização independente sem fins lucrativos, com isenção de impostos conforme 501(c)(3), com sede nos Estados Unidos da América (Tax ID: 92-1296468)
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist atualizou a identificação sugerida por %{user}
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -4326,6 +4332,9 @@ pt-BR:
   processing3p: "Processando…"
   profile: Perfil
   profile_picture: Imagem de Perfil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Tipo de arquivo de Imagem de Perfil
   profile_visibility_desc: |
     Em um esforço para manter o spam fora de %{site_name}, perfis de usuário são apenas
     publicamente visível após um usuário ter contribuído com vários Graus de Pesquisa
@@ -5710,8 +5719,19 @@ pt-BR:
   upcoming_bioblitzes: Próximas bioblitz
   update: Atualizar
   update_existing_observations_with_new_license: Atualizar as observações existentes com uma nova licença escolhida
+  update_existing_observations_with_new_license_desc: |
+    Selecionar esta opção aplicará esta sua escolha de licença a todas as suas
+    observações existentes. Isso pode levar algumas horas se você tiver muitas
+    observações.
   update_existing_photos_with_new_license: Atualizar fotos existentes com a nova licença escolhida
+  update_existing_photos_with_new_license_desc: |
+    Selecionar esta opção aplicará esta sua escolha de licença a todas as suas
+    fotos existentes. Isso pode levar algumas horas se você tiver muitas
+    fotos.
   update_existing_sounds_with_new_license: Atualizar sons existentes com a nova licença escolhida
+  update_existing_sounds_with_new_license_desc: |
+    Selecionar esta opção aplicará esta sua escolha de licença a todas os seus
+    áudios existentes. Isso pode levar algumas horas se você tiver muitos áudios.
   update_observations: Atualizar observações
   update_past: "Atualizar %{type} passado"
   update_photos: Atualizar fotos
@@ -5742,7 +5762,6 @@ pt-BR:
   uploader:
     errors:
       file_too_big: O arquivo deve ser menor que %{megabytes} MB
-      unsupported_file_type: Tipo de arquivo não suportado. Aceitamos JPG, PNG, GIF, WAV, AAC,MP3 e MP4 (somente áudio)
     resize_tip: |
       Se os seus arquivos de fotos forem muito grandes, tente recortá-los até um máximo de 2048 por 2048 pixels. Isso acontecerá com todas as fotos no servidor de qualquer maneira, e vai fazer um carregamento mais rápido.
     tooltips:
@@ -8217,6 +8236,10 @@ pt-BR:
         licensing_desc_html: |
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tipo de arquivo não suportado. São aceitos JPG, PNG e GIF
         monthly_supporter_desc_html: |
           Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
           recebidos pela Academia de Ciências da Califórnia (United
@@ -8322,6 +8345,11 @@ pt-BR:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: O máximo de 3 léxicos de nomes comuns já foi adicionado
+        this_only_applies_to_traditional_projects2: |
+          Isso se aplica apenas a projetos tradicionais. Não é possível excluir observações
+          de projetos de coleção ou guarda-chuva, que são essencialmente pesquisas salvas.
+          Você pode ler mais em
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">aqui</a>.
       recent:
         about_recent_users: Sobre
         definitions_html: <dl> <dt>Provável Spam</dt> <dd> Usuário que provavelmente é um difusor de spam, o que significa que não possui observações ou identificações, mas possui uma descrição do perfil. </dd> <dt>Auto Spam</dt> <dd> Difusor de spam que foi automaticamente marcado como difusor de spam pelo sistema. </dd> <dt>Spam Manual</dt> <dd> Difusor de spam que foi marcado manualmente como difusor de spam por um curador do site. </dd> <dt>Falsos Positivos</dt> <dd> Usuários que foram marcados como difusores de spam cujas sinalizações foram resolvidas pelos curadores do site, já que não eram realmente difusores de spam. </dd> </dl>
@@ -9168,6 +9196,10 @@ pt-BR:
               already_has_a_range: já possui um mapa de distribuição
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: não pode incluir mais que 7 projetos
             login:
               must_begin_with_a_letter: |
                 tem obrigatoriamente de começar por uma letra, sem conter espaços e usar só letras, números, traços e sublinhados

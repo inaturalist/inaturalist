@@ -277,6 +277,8 @@ de:
   add_a_new_change_group: Neue Änderungsgruppe hinzufügen
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Nummerierte Liste hinzufügen
+  #Placeholder for a project autocomplete field
+  add_a_project: Ein Projekt hinzufügen
   add_a_single_observation: Einzelbeobachtung hinzufügen.
   add_a_taxon: Taxon hinzufügen
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1433,6 +1435,8 @@ de:
   custom_project_fields: Benutzerdefinierte Projektfelder
   custom_project_was_successfully_created: Eigenes Projekt wurde erfolgreich erstellt.
   custom_project_was_successfully_updated: Eigenes Projekt wurde erfolgreich aktualisiert.
+  #Button to customize projects that appear in the header
+  customize__projects: Anpassen
   customize_location: Standort anpassen
   darr_apply_darr: "&darr; Anwenden &darr;"
   daily_users: Tägliche Benutzer
@@ -1855,6 +1859,12 @@ de:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Stimmen
   Family: Familie
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Favorisierte Projekte
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Wähle bis zu sieben Projekte aus, die als Links in der Kopfzeile angezeigt werden. Aktualisierungen
+    werden nach dem Aktualisieren der Seite angezeigt.
   favorite_taxa: bevorzugte Taxa
   favorites: "Favoriten"
   feature_this_project_: "Dieses Projekt featuren"
@@ -4238,6 +4248,16 @@ de:
   range: Zeitraum
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Gattung / Gattungshybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Art / Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Unterart / Sorte / Form
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5505,7 +5525,7 @@ de:
   uploader:
     errors:
       file_too_big: Datei muss kleiner als %{megabytes} MB sein
-      unsupported_file_type: Dateityp nicht unterstützt. Wir akzeptieren JPG, PNG, GIF, WAV, AAC, MP3 und MP4 (nur Audio)
+      unsupported_file_type: Dateityp wird nicht unterstützt. Wir akzeptieren JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 und MP4 (nur Audio)
     resize_tip: |
       Wenn deine Fotodateien zu groß sind, versuche sie auf maximal 2048 bis 2048 Pixel zuzuschneiden. Dies geschieht sowieso mit allen Fotos auf dem Server
       und sorgt für einen schnelleren Upload.
@@ -8386,6 +8406,7 @@ de:
         place: Ort
       user:
         email: E-Mail
+        faved_project_ids: Favorisierte Projekte
         login: Benutzername
         name: Name
         locale: Gebietsschema
@@ -8558,6 +8579,10 @@ de:
             user:
               must_be_on_site_long_enough: |
                 muss sich vor mehr als 24 Stunden registriert haben, um zu veröffentlichen. Wir haben viele Spammer, und dies ist eine Art mit ihnen umzugehen. Du kannst immer noch einen Entwurf speichern, und wenn du die Seite in einem Tag immer noch benutzt, kannst du den Post veröffentlichen.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Du kannst nur 7 Projekte favorisieren
         project_observation:
           attributes:
             base:
@@ -8652,6 +8677,14 @@ de:
               already_has_a_range: hat bereits ein Verbreitungsgebiet
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: kann nicht mehr als 7 Projekte enthalten
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: alle müssen existieren
             login:
               must_begin_with_a_letter: |
                 muss mit einem Buchstaben beginnen, darf keine Leerzeichen oder andere Zeichen als Buchstaben, Zahlen, Binde- oder Unterstriche enthalten

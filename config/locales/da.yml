@@ -1496,6 +1496,12 @@ da:
   curators_changed_for_x_html: "Kuratorer ændret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
+  curator_coordinate_access: Kuratorkoordinatadgang
+  curator_coordinate_access_desc: |
+    Kuratorkoordinatadgang i traditionelle projekter afhænger af, hvem der har føjet
+    observationen til projektet. Dette er blot standardindstillingen for
+    observationer i projekter. Observatører kan også vælge at ændre dette for
+    individuelle observationer.
   curator_identification: Kurator identifikation
   current_flags: Aktuelle markeringer
   #Label for a custom boundary for an observation search
@@ -5828,7 +5834,7 @@ da:
   uploader:
     errors:
       file_too_big: Filen skal være mindre end %{megabytes} MB
-      unsupported_file_type: Filtypen understøttes ikke. Vi accepterer JPG, PNG, GIF, WAV, AAC og MP4 (kun audio)
+      unsupported_file_type: Filtype ikke understøttet. Gyldige filtyper er JPG, PNG, GIF, HEIC, HEIF, WAV, AAC og MP4 (kun lyd)
     resize_tip: |
       Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
       2048 x 2048 pixels. Dette sker med alle fotos på
@@ -5949,6 +5955,14 @@ da:
     Bruger stoler på dette projekt med skjulte koordinater, sløret af en uspecificeret årsag.
   user_trusts_this_project_for_taxon: |
     Bruger stoler kun på dette projekt med skjulte koordinater, sløret grundet truet taksa.
+  user_trusts_this_project_when_added_by_any: |
+    Brugeren betror projektkuratorer med skjulte koordinater for observationer
+    tilføjet projektet af hvem som helst.
+  user_trusts_this_project_when_added_by_observer: |
+    Brugeren betror projektkuratorer med skjulte koordinater for observationer
+    tilføjet projektet af observatøren.
+  user_trusts_this_project_when_added_by_none: |
+    Brugeren betror ikke projektkuratorer med skjulte koordinater.
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
