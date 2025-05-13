@@ -1569,6 +1569,9 @@ ru:
   curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
+  curator_coordinate_access: Доступ куратора к координатам
+  curator_coordinate_access_desc: |
+    Доступ куратора к координатам для традиционных проектов зависит от того, кто добавил наблюдение к проектам. Это просто настройка по умолчанию для наблюдения в проектах. Наблюдатели также могут изменить это значение для отдельных наблюдений.
   curator_identification: Идентификация, сделанная куратором
   current_flags: Текущие флаги
   #Label for a custom boundary for an observation search
@@ -1981,6 +1984,12 @@ ru:
   exclude_projects: Исключить проекты
   exclude_taxa: Исключить таксоны
   exclude_users: Исключить пользователей
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Исключая таксон %{count}
+    few: Исключая %{count} таксонов
+    many: Исключая %{count} таксон
+    other: Исключая %{count} таксонов
   exclusion_filters: Фильтры исключений
   existing_flags: Существующие флаги
   exit_full_screen: "Выйти из полноэкранного режима"
@@ -2016,6 +2025,9 @@ ru:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
   Family: Семейство
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Выбрать до семи проектов, которые будут отображаться в виде ссылок в заголовке. Эти обновления появятся после перезагрузки страницы.
   favorite_taxa: Любимые таксоны
   favorites: "Фавориты"
   feature_this_project_: "Рекомендовать этот проект"
@@ -2386,6 +2398,8 @@ ru:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки.
     Америка (налоговый идентификационный номер: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: В iNaturalist обновлена идентификация, предложенная %{user}
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -4353,6 +4367,9 @@ ru:
   processing3p: "Обработка…"
   profile: Профиль
   profile_picture: Аватар
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Тип файла фото профиля
   profile_visibility_desc: |
     В целях защиты от спама в %{site_name} профили пользователей становятся общедоступными только после того, как пользователь предоставил несколько наблюдений исследовательского уровня.
   project: Проект
@@ -4441,6 +4458,16 @@ ru:
   range: Диапазон
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Род / Гибрид родов
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Вид / Гибрид
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Подвид / Разновидность / Форма
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5733,8 +5760,14 @@ ru:
   upcoming_bioblitzes: Предстоящие биоблицы
   update: Обновить
   update_existing_observations_with_new_license: Обновить существующие наблюдения новыми вариантами лицензий
+  update_existing_observations_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим наблюдениям. Это может занять несколько часов, если у вас много наблюдений.
   update_existing_photos_with_new_license: Обновить существующие фото новыми вариантами лицензий
+  update_existing_photos_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим наблюдениям. Это может занять несколько часов, если у вас много наблюдений.
   update_existing_sounds_with_new_license: Обновить существующие звуки новыми вариантами лицензий
+  update_existing_sounds_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим аудионаблюдениям. Это может занять несколько часов, если у вас много аудионаблюдений.
   update_observations: Обновить наблюдения
   update_past: "Обновить предыдущие %{type}"
   update_photos: Обновить фото
@@ -5889,6 +5922,12 @@ ru:
     Пользователь доверяет этому проекту со скрытыми координатами, которые были скрыты по какой-либо причине.
   user_trusts_this_project_for_taxon: |
     Пользователь доверяет этому проекту только те скрытые координаты, которые были скрыты из-за таксонов, подвергающимся угрозам.
+  user_trusts_this_project_when_added_by_any: |
+    Пользователь доверяет любым кураторам проекта скрытые координаты наблюдений, добавляемых в проект.
+  user_trusts_this_project_when_added_by_observer: |
+    Пользователь доверяет кураторам проекта скрытые координаты наблюдений, добавляемых к проекту.
+  user_trusts_this_project_when_added_by_none: |
+    Пользователь не доверяет кураторам проекта скрытые координаты.
   user_trusts_you_with_their_private_coordinates: "%{user} доверяет вам свои скрытые координаты"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдатель решил доверить вам скрытые координаты всех своих наблюдений.
@@ -8160,6 +8199,10 @@ ru:
           </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Тип файла не поддерживается. Допустимые типы JPG, PNG и GIF
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist автоматически делают ежемесячные взносы в iNaturalist (Налоговое управление США, EIN 92-1296468) для поддержки некоммерческой деятельности сайтов iNaturalist и сети iNaturalist. <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором</a>. Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить данный статус в своем профиле. Примечание: адреса электронной почты на Donor box и naturalist должны точно совпадать, чтобы мы могли подтвердить, что вы являетесь ежемесячным спонсором. Если они отличаются, измените один из них, чтобы они соответствовали друг другу.
         muting_desc_html: |
@@ -8247,6 +8290,10 @@ ru:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Уже добавлено максимальное число языков для народных названий - 3
+        this_only_applies_to_traditional_projects2: |
+          Это применимо только к традиционным проектам. Нельзя исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисковыми запросами.
+          Подробнее об этом 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">здесь</a>.
       recent:
         about_recent_users: Подробно
         definitions_html: <dl> <dt>Вероятно, спам</dt> <dd> Пользователь, который, вероятно, является спамером, что означает, что у него нет наблюдений или идентификаций, но у него есть описание профиля. </dd> <dt>Автомати</dt> <dd>ческий спам</dt> <dd> Спамер, автоматически помеченный системой как спамер. </dd> <dt>Ручной спам</dt> <dd>Спамер, который был вручную помечен куратором сайта как спамер. </dd> <dt>Ложное срабатывание</dt> <dd>Пользователи, которые были помечены как спамеры, но флаги были разрешены кураторами сайта, поскольку они на самом деле спамерами не были.</dd> </dl>
@@ -9045,6 +9092,10 @@ ru:
             user:
               must_be_on_site_long_enough: |
                 должны быть зарегистрированы более чем 24 часа назад для публикации. У нас много спамеров, и это своего рода обходной путь борьбы с ними. Вы можете сохранить черновик, и если вы всё ещё используете сайт день спустя, вы сможете опубликовать его.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Вы можете пометить как любимые только 7 проектов
         project_observation:
           attributes:
             base:
@@ -9136,6 +9187,11 @@ ru:
               already_has_a_range: уже имеет ареал
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: Должны существовать
             login:
               must_begin_with_a_letter: |
                 должно начинаться с буквы, не содержать пробелов и использовать только буквы, цифры, тире и символы подчеркивания
