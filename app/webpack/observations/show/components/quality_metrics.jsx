@@ -430,6 +430,14 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ rankPassed ? checkIcon : null }</td>
               <td className="disagree">{ rankPassed ? null : xIcon }</td>
             </tr>
+            <tr>
+              <td className="metric_title">
+                <i className="fa fa-arrows-h" />
+                { I18n.t( "community_taxon_matches_observation_taxon" ) }
+              </td>
+              <td className="agree">{ observation.communityTaxon?.id === observation.taxon?.id ? checkIcon : null }</td>
+              <td className="disagree">{ observation.communityTaxon?.id === observation.taxon?.id ? null : xIcon }</td>
+            </tr>
             { this.needsIDRow( ) }
           </tbody>
         </table>
