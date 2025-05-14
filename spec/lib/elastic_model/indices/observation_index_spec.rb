@@ -543,6 +543,8 @@ describe "Observation Index" do
         filters: [ { term: { identifications_some_agree: true } } ] )
       expect( Observation.params_to_elastic_query({ identifications: "most_disagree" }) ).to include(
         filters: [ { term: { identifications_most_disagree: true } } ] )
+      expect( Observation.params_to_elastic_query( { identifications: "some_disagree" } ) ).
+        to include( filters: [{ range: { num_identification_disagreements: { gt: 0 } } }] )
     end
 
     it "filters by bounding box" do
