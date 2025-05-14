@@ -88,9 +88,9 @@ export function setFilters( filters ) {
 
 export function fetchMutedUsers( ) {
   return ( dispatch, getState ) => {
-    const { relationships, profile, config } = getState( );
+    const { relationships, userSettings } = getState( );
     const { mutedUsers } = relationships;
-    const currentMutedUsers = profile.muted_user_ids || [];
+    const currentMutedUsers = userSettings.muted_user_ids || [];
 
     const params = {
       fields: {
@@ -129,9 +129,9 @@ export function fetchMutedUsers( ) {
 
 export function fetchBlockedUsers( ) {
   return ( dispatch, getState ) => {
-    const { relationships, profile, config } = getState( );
+    const { relationships, userSettings } = getState( );
     const { blockedUsers } = relationships;
-    const currentBlockedUsers = profile.blocked_user_ids || [];
+    const currentBlockedUsers = userSettings.blocked_user_ids || [];
 
     const params = {
       fields: {

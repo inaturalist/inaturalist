@@ -33,12 +33,12 @@ export function setUserSettings( userData, savedStatus = UNSAVED ) {
 
 export function fetchUserSettings( savedStatus, relationshipsPage ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
     const params = {
       useAuth: true,
       fields: "all"
     };
-    const initialLoad = _.isEmpty( profile );
+    const initialLoad = _.isEmpty( userSettings );
     inatjs.users.me( params ).then( ( { results } ) => {
       // this is kind of unnecessary, but removing these since they're read-only keys
       // and don't need to be included in UI or users.update
@@ -59,7 +59,7 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         "annotated_observations_count"
       ];
 
-      const userSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
+      const newUserSettings = Object.keys( results[0] ).reduce( ( object, key ) => {
         if ( !keysToIgnore.includes( key ) ) {
           object[key] = results[0][key];
         }
@@ -69,11 +69,11 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
       // We may have pre-set confirmation_sent_at before actually requesting
       // it, so we're keeping it there until we get a new value from the
       // server
-      if ( profile.confirmation_sent_at && !userSettings.confirmation_sent_at ) {
-        userSettings.confirmation_sent_at = profile.confirmation_sent_at;
+      if ( userSettings.confirmation_sent_at && !newUserSettings.confirmation_sent_at ) {
+        newUserSettings.confirmation_sent_at = userSettings.confirmation_sent_at;
       }
 
-      dispatch( setUserSettings( userSettings, savedStatus ) );
+      dispatch( setUserSettings( newUserSettings, savedStatus ) );
 
       if ( initialLoad ) {
         dispatch( fetchRelationships( true ) );
@@ -82,14 +82,14 @@ export function fetchUserSettings( savedStatus, relationshipsPage ) {
         dispatch( updateBlockedAndMutedUsers( ) );
       }
 
-      dispatch( fetchFavoriteProjects( userSettings ) );
+      dispatch( fetchFavoriteProjects( newUserSettings ) );
 
       const { sites } = getState( );
       // If the user is affiliated with a site we don't know about, try fetching
       // the sites again
-      if ( sites && sites.sites && userSettings.site_id ) {
+      if ( sites && sites.sites && newUserSettings.site_id ) {
         const siteIds = sites.sites.map( s => s.id );
-        if ( siteIds.indexOf( userSettings.site_id ) < 0 ) {
+        if ( siteIds.indexOf( newUserSettings.site_id ) < 0 ) {
           dispatch( fetchNetworkSites( ) );
         }
       }
@@ -128,12 +128,12 @@ export async function handleSaveError( e ) {
 
 export function postUserSettings( options = {} ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
-    const { id } = profile;
+    const { userSettings } = getState( );
+    const { id } = userSettings;
 
     const params = {
       id,
-      user: { ...profile }
+      user: { ...userSettings }
     };
 
     const topLevelAttributes = [
@@ -142,7 +142,7 @@ export function postUserSettings( options = {} ) {
 
     // move these attributes so they're nested under params, not params.user
     topLevelAttributes.forEach( attr => {
-      if ( !profile[attr] ) return;
+      if ( !userSettings[attr] ) return;
 
       params[attr] = true;
       delete params.user[attr];
@@ -191,93 +191,93 @@ export function postUserSettings( options = {} ) {
         return dispatch( fetchUserSettings( SAVED ) );
       } )
       .catch( e => handleSaveError( e ).then( errors => {
-        profile.errors = errors;
-        dispatch( setUserSettings( profile, null ) );
+        userSettings.errors = errors;
+        dispatch( setUserSettings( userSettings, null ) );
       } ) );
   };
 }
 
 export function handleCheckboxChange( e ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
 
     if ( e.target.name === "prefers_no_email" ) {
-      profile[e.target.name] = !e.target.checked;
+      userSettings[e.target.name] = !e.target.checked;
     } else {
-      profile[e.target.name] = e.target.checked;
+      userSettings[e.target.name] = e.target.checked;
     }
-    dispatch( setUserSettings( profile ) );
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function handleDisplayNames( { target } ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
     const { value } = target;
 
     if ( value === "prefers_common_names" ) {
-      profile.prefers_common_names = true;
-      profile.prefers_scientific_name_first = false;
+      userSettings.prefers_common_names = true;
+      userSettings.prefers_scientific_name_first = false;
     } else if ( value === "prefers_scientific_name_first" ) {
-      profile.prefers_common_names = true;
-      profile.prefers_scientific_name_first = true;
+      userSettings.prefers_common_names = true;
+      userSettings.prefers_scientific_name_first = true;
     } else {
-      profile.prefers_common_names = false;
-      profile.prefers_scientific_name_first = false;
+      userSettings.prefers_common_names = false;
+      userSettings.prefers_scientific_name_first = false;
     }
-    dispatch( setUserSettings( profile ) );
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function updateUserData( updates, options = {} ) {
   return ( dispatch, getState ) => {
-    const { profile: userData } = getState( );
+    const { userSettings: userData } = getState( );
     dispatch( setUserSettings( { ...userData, ...updates }, options.savedStatus ) );
   };
 }
 
 export function handleInputChange( e ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
-    profile[e.target.name] = e.target.value;
-    dispatch( setUserSettings( profile ) );
+    const { userSettings } = getState( );
+    userSettings[e.target.name] = e.target.value;
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function handleCustomDropdownSelect( eventKey, name ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
-    profile[name] = eventKey;
-    dispatch( setUserSettings( profile ) );
+    const { userSettings } = getState( );
+    userSettings[name] = eventKey;
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function handlePlaceAutocomplete( { item }, name ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
 
-    if ( profile[name] === null && item.id === 0 ) {
+    if ( userSettings[name] === null && item.id === 0 ) {
       // do nothing if the afterClear is triggered when the place input field starts empty
       // this ensures save settings button shows correctly
       return;
     }
 
-    profile[name] = item.id;
-    dispatch( setUserSettings( profile ) );
+    userSettings[name] = item.id;
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function handlePhotoUpload( e ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
-    profile.icon = e.target.files[0];
-    dispatch( setUserSettings( profile ) );
+    const { userSettings } = getState( );
+    userSettings.icon = e.target.files[0];
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function onFileDrop( droppedFiles, rejectedFiles ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
 
     if ( rejectedFiles && rejectedFiles.length > 0 ) {
       /* eslint-disable react/jsx-filename-extension */
@@ -300,27 +300,27 @@ export function onFileDrop( droppedFiles, rejectedFiles ) {
     if ( _.isEmpty( droppedFiles ) ) { return; }
     const droppedFile = droppedFiles[0];
     if ( droppedFile.type.match( /^image\// ) ) {
-      profile.icon = droppedFile;
-      dispatch( setUserSettings( profile ) );
+      userSettings.icon = droppedFile;
+      dispatch( setUserSettings( userSettings ) );
     }
   };
 }
 
 export function removePhoto( ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
-    profile.icon = null;
-    profile.icon_url = null;
-    profile.icon_delete = true;
-    dispatch( setUserSettings( profile ) );
+    const { userSettings } = getState( );
+    userSettings.icon = null;
+    userSettings.icon_url = null;
+    userSettings.icon_delete = true;
+    dispatch( setUserSettings( userSettings ) );
   };
 }
 
 export function changePassword( input ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
     const params = {
-      id: profile.id,
+      id: userSettings.id,
       user: {
         password: input.new_password,
         password_confirmation: input.confirm_new_password
@@ -336,15 +336,15 @@ export function changePassword( input ) {
       } )
       .catch( e => handleSaveError( e ).then( errors => {
         // catch errors such as validation errors so they can be displayed
-        profile.errors = errors;
-        dispatch( setUserSettings( profile, null ) );
+        userSettings.errors = errors;
+        dispatch( setUserSettings( userSettings, null ) );
       } ) );
   };
 }
 
 export function resendConfirmation( ) {
   return ( dispatch, getState ) => {
-    const { profile } = getState( );
+    const { userSettings } = getState( );
     return inatjs.users.resendConfirmation( { useAuth: true } ).then( ( ) => {
       dispatch( fetchUserSettings( SAVED ) );
       // If we go back to signing people out after sending the confirmation,
@@ -352,8 +352,8 @@ export function resendConfirmation( ) {
       // window.location.reload( );
     } ).catch( e => {
       handleSaveError( e ).then( errors => {
-        profile.errors = errors;
-        dispatch( setUserSettings( profile, null ) );
+        userSettings.errors = errors;
+        dispatch( setUserSettings( userSettings, null ) );
       } );
     } );
   };
@@ -364,7 +364,7 @@ export function confirmResendConfirmation( ) {
     const state = getState( );
     dispatch( setConfirmEmailModalState( {
       show: true,
-      message: state.profile.email,
+      message: state.userSettings.email,
       type: "EmailConfirmation",
       confirmText: I18n.t( "send_confirmation_email" ),
       // If we want to go back to signing people out, this is the text we should use
@@ -375,12 +375,12 @@ export function confirmResendConfirmation( ) {
         // Preemptively set confirmation_sent_at so the user sees a change
         // immediately
         await dispatch( setUserSettings( {
-          ...getState( ).profile,
+          ...getState( ).userSettings,
           confirmation_sent_at: ( new Date( ) ).toISOString( )
         } ) );
         await dispatch( postUserSettings( ) );
-        const { profile } = getState( );
-        if ( !profile.errors || profile.errors.length <= 0 ) {
+        const { userSettings } = getState( );
+        if ( !userSettings.errors || userSettings.errors.length <= 0 ) {
           dispatch( resendConfirmation( ) );
         }
       }
@@ -393,7 +393,7 @@ export function confirmResendConfirmation( ) {
 export function addFavoriteProject( project ) {
   return function ( dispatch, getState ) {
     dispatch( updateUserData( {
-      faved_project_ids: [...getState( ).profile.faved_project_ids, project.id]
+      faved_project_ids: [...getState( ).userSettings.faved_project_ids, project.id]
     }, { savedStatus: NO_CHANGE } ) );
     return dispatch( fetchFavoriteProjects( ) );
   };

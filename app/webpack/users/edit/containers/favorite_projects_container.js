@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
   return {
     config: state.config,
     favoriteProjects: state.favoriteProjects,
-    user: state.profile
+    user: state.userSettings
   };
 }
 

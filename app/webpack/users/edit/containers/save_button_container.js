@@ -5,7 +5,7 @@ import { postUserSettings } from "../ducks/user_settings";
 
 function mapStateToProps( state ) {
   return {
-    profile: state.profile
+    userSettings: state.userSettings
   };
 }
 
