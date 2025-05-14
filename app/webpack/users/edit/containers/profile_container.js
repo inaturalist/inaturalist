@@ -13,7 +13,7 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    profile: state.profile
+    userSettings: state.userSettings
   };
 }
 

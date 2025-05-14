@@ -21,7 +21,7 @@ import sharedStore from "../../shared/shared_store";
 moment.locale( I18n.locale );
 
 sharedStore.injectReducers( {
-  profile: userSettingsReducer,
+  userSettings: userSettingsReducer,
   sites: sitesReducer,
   revokeAccess: revokeAccessModalReducer,
   deleteRelationship: deleteRelationshipModalReducer,

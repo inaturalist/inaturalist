@@ -2,17 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 
-const SaveButton = ( { saveUserSettings, profile } ) => {
-  const disabled = profile.saved_status === null || profile.saved_status === "saved";
+const SaveButton = ( { saveUserSettings, userSettings } ) => {
+  const disabled = userSettings.saved_status === null || userSettings.saved_status === "saved";
 
   return (
     <div className="flex-no-wrap save-button">
-      <div className={profile.saved_status === "saved" ? "text-muted saved-time status" : "collapse"}>
+      <div className={userSettings.saved_status === "saved" ? "text-muted saved-time status" : "collapse"}>
         { I18n.t( "saved_at_time", {
-          time: moment( profile.updated_at ).format( I18n.t( "momentjs.time_hours" ) )
+          time: moment( userSettings.updated_at ).format( I18n.t( "momentjs.time_hours" ) )
         } ) }
       </div>
-      <div className={profile.errors ? "text-danger status" : "collapse"}>
+      <div className={userSettings.errors ? "text-danger status" : "collapse"}>
         { I18n.t( "doh_something_went_wrong" ) }
       </div>
       <button
@@ -28,8 +28,8 @@ const SaveButton = ( { saveUserSettings, profile } ) => {
 };
 
 SaveButton.propTypes = {
-  profile: PropTypes.object,
-  saveUserSettings: PropTypes.func
+  saveUserSettings: PropTypes.func,
+  userSettings: PropTypes.object
 };
 
 export default SaveButton;

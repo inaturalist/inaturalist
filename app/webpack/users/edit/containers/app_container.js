@@ -7,7 +7,7 @@ import { setSelectedSectionFromMenu } from "../ducks/app_sections";
 
 function mapStateToProps( state ) {
   return {
-    profile: state.profile,
+    userSettings: state.userSettings,
     section: state.section.section
   };
 }
