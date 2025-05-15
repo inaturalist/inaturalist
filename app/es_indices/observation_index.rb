@@ -809,8 +809,6 @@ class Observation < ApplicationRecord
       search_filters << { term: { identifications_some_agree: true } }
     when "most_disagree"
       search_filters << { term: { identifications_most_disagree: true } }
-    when "some_disagree"
-      search_filters << { range: { num_identification_disagreements: { gt: 0 } } }
     end
 
     unless p[:nelat].blank? && p[:nelng].blank? && p[:swlat].blank? && p[:swlng].blank?
