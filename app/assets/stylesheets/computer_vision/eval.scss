@@ -197,6 +197,29 @@ a {
   }
 }
 
+.geomodel-chooser {
+  .input-group-addon {
+    border: 0;
+    padding: 0;
+    button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-right: 0;
+      padding: 5px 12px;
+      background-color: #eee;
+      &:focus {
+        border-color: #ccc;
+      }
+    }
+  }
+  .input-sm {
+    background-color: #f6f6f6;
+    cursor: pointer;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+}
+
 .vision-results {
   text-align: left;
 }

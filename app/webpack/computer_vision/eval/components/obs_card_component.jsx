@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
+import {
+  Glyphicon,
+  OverlayTrigger,
+  Tooltip,
+  Dropdown,
+  MenuItem
+} from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment-timezone";
 import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
@@ -92,6 +98,8 @@ class ObsCardComponent extends Component {
         <button
           type="button"
           className="btn-close"
+          title={I18n.t( "remove" )}
+          alt={I18n.t( "remove" )}
           onClick={( ) => this.props.resetState( )}
         >
           <Glyphicon glyph="remove" />
@@ -109,7 +117,7 @@ class ObsCardComponent extends Component {
             searchExternal
             showPlaceholder
             perPage={6}
-            resetOnChange={true}
+            resetOnChange
             initialTaxonID={obsCard.taxon ? obsCard.taxon.iconic_taxon_id : null}
             afterSelect={r => {
               if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
@@ -176,6 +184,47 @@ class ObsCardComponent extends Component {
               value={locationText || ""}
               placeholder={locationText ? "" : I18n.t( "location" )}
               readOnly
+            />
+          </div>
+          <div className="input-group geomodel-chooser">
+            <Dropdown
+              id="obsSortDropdown"
+              className="input-group-addon btn-group-sm"
+              onSelect={key => updateObsCard( { humanExclusion: key } )}
+            >
+              <Dropdown.Toggle
+                noCaret
+              >
+                <i className="fa fa-user" title="Humans" />
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <MenuItem
+                  eventKey="Original"
+                >
+                  Original
+                </MenuItem>
+                <MenuItem
+                  eventKey="Limited"
+                >
+                  Limited
+                </MenuItem>
+                <MenuItem
+                  eventKey="Never Exclude"
+                >
+                  Never Exclude
+                </MenuItem>
+              </Dropdown.Menu>
+            </Dropdown>
+            <input
+              type="text"
+              className="form-control input-sm"
+              value={`Humans: ${obsCard.humanExclusion || "Original"}`}
+              readOnly
+              onClick={e => {
+                e.preventDefault( );
+                e.stopPropagation( );
+                $( ".geomodel-chooser button" ).trigger( "click" );
+              }}
             />
           </div>
         </div>
