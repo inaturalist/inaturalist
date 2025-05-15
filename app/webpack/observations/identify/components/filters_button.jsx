@@ -252,10 +252,9 @@ class FiltersButton extends React.Component {
               { param: "sounds", key: "show-filter-sounds", label: I18n.t( "has_sounds" ) },
               { param: "photos", key: "show-filter-photos", label: I18n.t( "has_photos" ) },
               {
-                param: "identifications",
+                param: "disagreements",
                 key: "show-filter-disagreements",
-                label: I18n.t( "disagreements" ),
-                checked: "some_disagree"
+                label: I18n.t( "disagreements" )
               },
               {
                 param: "user_id",
