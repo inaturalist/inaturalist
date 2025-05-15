@@ -246,7 +246,9 @@ class Observation < ApplicationRecord
       indexes :sounds_count, type: "short"
       indexes :spam, type: "boolean"
       indexes :species_guess, type: "keyword"
-      indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer" do
+        indexes :keyword, type: "keyword"
+      end
       indexes :taxon do
         indexes :ancestor_ids, type: "integer" do
           indexes :keyword, type: "keyword"
@@ -581,7 +583,7 @@ class Observation < ApplicationRecord
         search_taxa = true
         searched_taxa = matching_taxon_ids( q )
       elsif search_on === "tags"
-        fields = [ :tags ]
+        fields = [ "tags.keyword" ]
       elsif search_on === "description"
         fields = [ :description ]
       elsif search_on === "place"
