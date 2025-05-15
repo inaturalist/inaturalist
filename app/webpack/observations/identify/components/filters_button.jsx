@@ -90,15 +90,7 @@ class FiltersButton extends React.Component {
         config.currentUser.curator_projects,
         p => [p.id, p.slug].includes( params.project_id )
       );
-    const FilterCheckboxWrapper = checkbox => (
-      <FilterCheckbox
-        {...Object.assign( {}, checkbox, {
-          defaultParams,
-          params,
-          updateSearchParams
-        } )}
-      />
-    );
+
     const visibleRanks = [
       "kingdom",
       "phylum",
@@ -185,6 +177,28 @@ class FiltersButton extends React.Component {
       "CC-BY-NC-SA",
       "CC-BY-NC-ND"
     ];
+
+    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+    const viewerIsAdmin = loggedInUser && loggedInUser.roles
+      && loggedInUser.roles.indexOf( "admin" ) >= 0;
+    const lastColCheckboxProps = [
+      { param: "sounds", key: "show-filter-sounds", label: I18n.t( "has_sounds" ) },
+      { param: "photos", key: "show-filter-photos", label: I18n.t( "has_photos" ) },
+      {
+        param: "user_id",
+        key: "show-filter-user_id",
+        label: I18n.t( "your_observations" ),
+        checked: CURRENT_USER.id
+      }
+    ];
+    if ( viewerIsAdmin ) {
+      lastColCheckboxProps.splice( 2, 0, {
+        param: "disagreements",
+        key: "show-filter-disagreements",
+        label: I18n.t( "disagreements" ),
+        className: "admin"
+      } );
+    }
     const mainLeftCol = (
       <Col xs="4">
         <Row>
@@ -200,23 +214,32 @@ class FiltersButton extends React.Component {
         </Row>
         <Row>
           <Col className="quality-filters" xs="12">
-            <FilterCheckboxWrapper
-              param="quality_grade"
-              label={I18n.t( "casual_" )}
+            <FilterCheckbox
               checked="casual"
+              defaultParams={defaultParams}
+              label={I18n.t( "casual_" )}
               noBlank
-            />
-            <FilterCheckboxWrapper
               param="quality_grade"
-              label={I18n.t( "needs_id_" )}
+              params={params}
+              updateSearchParams={updateSearchParams}
+            />
+            <FilterCheckbox
               checked="needs_id"
+              defaultParams={defaultParams}
+              label={I18n.t( "needs_id_" )}
               noBlank
-            />
-            <FilterCheckboxWrapper
               param="quality_grade"
-              label={I18n.t( "research_grade" )}
+              params={params}
+              updateSearchParams={updateSearchParams}
+            />
+            <FilterCheckbox
               checked="research"
+              defaultParams={defaultParams}
+              label={I18n.t( "research_grade" )}
               noBlank
+              param="quality_grade"
+              params={params}
+              updateSearchParams={updateSearchParams}
             />
           </Col>
         </Row>
@@ -234,19 +257,31 @@ class FiltersButton extends React.Component {
               { param: "threatened", key: "show-filter-threatened" },
               { param: "introduced", key: "show-filter-introduced" },
               { param: "popular", key: "show-filter-popular" }
-            ].map( FilterCheckboxWrapper ) }
+            ].map( props => (
+              <FilterCheckbox
+                checked={props.checked}
+                defaultParams={defaultParams}
+                key={props.key}
+                label={props.label}
+                param={props.param}
+                params={params}
+                updateSearchParams={updateSearchParams}
+              />
+            ) ) }
           </Col>
           <Col className="filters-left-col" xs="6">
-            { [
-              { param: "sounds", key: "show-filter-sounds", label: I18n.t( "has_sounds" ) },
-              { param: "photos", key: "show-filter-photos", label: I18n.t( "has_photos" ) },
-              {
-                param: "user_id",
-                key: "show-filter-user_id",
-                label: I18n.t( "your_observations" ),
-                checked: CURRENT_USER.id
-              }
-            ].map( FilterCheckboxWrapper ) }
+            { lastColCheckboxProps.map( props => (
+              <FilterCheckbox
+                checked={props.checked}
+                className={props.className}
+                defaultParams={defaultParams}
+                key={props.key}
+                label={props.label}
+                param={props.param}
+                params={params}
+                updateSearchParams={updateSearchParams}
+              />
+            ) ) }
           </Col>
         </Row>
         <Row>
@@ -536,11 +571,14 @@ class FiltersButton extends React.Component {
             <input value={params.project_id} type="hidden" name="project_id" />
           </div>
           { params.project_id && viewerCuratesProject && (
-            <FilterCheckboxWrapper
-              param="coords_viewable_for_proj"
-              label={I18n.t( "coords_viewable_for_proj_label" )}
-              tipText={I18n.t( "coords_viewable_for_proj_desc" )}
+            <FilterCheckbox
               checked="true"
+              defaultParams={defaultParams}
+              label={I18n.t( "coords_viewable_for_proj_label" )}
+              param="coords_viewable_for_proj"
+              params={params}
+              tipText={I18n.t( "coords_viewable_for_proj_desc" )}
+              updateSearchParams={updateSearchParams}
             />
           ) }
         </div>
@@ -711,15 +749,21 @@ class FiltersButton extends React.Component {
         <label className="sectionlabel">
           { I18n.t( "geospatial" ) }
         </label>
-        <FilterCheckboxWrapper
-          param="with_private_location"
+        <FilterCheckbox
+          checked="false"
+          defaultParams={defaultParams}
           label={I18n.t( "hide_observations_with_private_locations" )}
-          checked="false"
+          param="with_private_location"
+          params={params}
+          updateSearchParams={updateSearchParams}
         />
-        <FilterCheckboxWrapper
-          param="expected_nearby"
-          label={I18n.t( "not_expected_nearby" )}
+        <FilterCheckbox
           checked="false"
+          defaultParams={defaultParams}
+          label={I18n.t( "not_expected_nearby" )}
+          param="expected_nearby"
+          params={params}
+          updateSearchParams={updateSearchParams}
         />
         <div className="form-group">
           <div className="input-group accuracy" title={I18n.t( "accuracy_meters" )}>
