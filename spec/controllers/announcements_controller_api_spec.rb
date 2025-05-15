@@ -195,19 +195,20 @@ describe AnnouncementsController do
         expect( annc_ids ).to include( active_announcement.id )
       end
 
-      it "targets user by site affiliation" do
+      it "targets by site viewed, not by user site affiliation" do
         create( :site ) unless Site.default
         user_site = create :site
         user = create :user, site: user_site
-        site_announcement = create :announcement, sites: [user_site]
-        other_site_announcement = create :announcement, sites: [create( :site )]
+        user_site_announcement = create :announcement, sites: [user_site]
+        other_site = create( :site )
+        other_site_announcement = create :announcement, sites: [other_site]
         nosite_announcement = create :announcement
         sign_in user
-        get :active, format: :json
+        get :active, format: :json, params: { inat_site_id: other_site.id }
         annc_ids = response.parsed_body.map {| a | a["id"] }
-        expect( annc_ids ).to include( site_announcement.id )
-        expect( annc_ids ).not_to include( nosite_announcement.id )
-        expect( annc_ids ).not_to include( other_site_announcement.id )
+        expect( annc_ids ).not_to include( user_site_announcement.id )
+        expect( annc_ids ).to include( other_site_announcement.id )
+        expect( annc_ids ).to include( nosite_announcement.id )
       end
 
       it "does not allow dismissed site-specific announcements to exclude undismissed non-site ones" do
