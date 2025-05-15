@@ -39,7 +39,8 @@ def get_records( url_base )
     Timeout::Error,
     RestClient::ServiceUnavailable,
     RestClient::GatewayTimeout,
-    RestClient::TooManyRequests
+    RestClient::TooManyRequests,
+    RestClient::InternalServerError
   ]
   while json.count.positive? && success == true
     @logger.info "\t...reading page #{i}"
