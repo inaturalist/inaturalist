@@ -340,7 +340,7 @@ GEM
       base64
       simpleidn
     erubi (1.13.1)
-    execjs (2.8.1)
+    execjs (2.10.0)
     exifr (1.3.9)
     exiftool (1.2.4)
       json
@@ -703,13 +703,13 @@ GEM
     temple (0.8.2)
     terrapin (1.0.1)
       climate_control
+    terser (1.2.5)
+      execjs (>= 0.3.0, < 3)
     thor (1.3.2)
     tilt (2.0.10)
     timeout (0.4.3)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    uglifier (4.2.0)
-      execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
@@ -873,7 +873,7 @@ DEPENDENCIES
   soundcloud
   sprockets
   terrapin
-  uglifier
+  terser
   utf8-cleaner
   vcr
   watu_table_builder

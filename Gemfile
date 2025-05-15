@@ -109,7 +109,7 @@ gem "savon" # allow to consume soap services with WSDL
 gem "soundcloud"
 gem "sprockets"
 gem "terrapin"
-gem "uglifier"
+gem "terser"
 gem "utf8-cleaner"
 gem "watu_table_builder", require: "table_builder"
 gem "whenever", require: false
