@@ -89,6 +89,8 @@ UserAutocomplete.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/no-unused-prop-types
+  includeSuspended: PropTypes.bool,
+  // eslint-disable-next-line react/no-unused-prop-types
   projectID: PropTypes.number,
   disabled: PropTypes.bool,
   config: PropTypes.object
@@ -96,7 +98,8 @@ UserAutocomplete.propTypes = {
 
 UserAutocomplete.defaultProps = {
   config: {},
-  disabled: false
+  disabled: false,
+  includeSuspended: false
 };
 
 export default UserAutocomplete;
