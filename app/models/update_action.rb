@@ -146,7 +146,9 @@ class UpdateAction < ApplicationRecord
     Rails.logger.debug "email_updates_to_user: #{subscriber} finished"
   end
 
-  def self.load_additional_activity_updates(updates, user_id)
+  # For a collection of UpdateActions, load all the additional UpdateActions
+  # associated with those resources that the user is subscribed to
+  def self.load_all_update_actions_for_updated_resources_for_user( updates, user_id )
     # fetch all other activity updates for the loaded resources
     activity_updates = updates.select{ |u| u.notification == "activity" }
     return updates if activity_updates.blank?
@@ -179,43 +181,59 @@ class UpdateAction < ApplicationRecord
     updates
   end
 
-  def self.group_and_sort(updates, options = {})
+  def self.stub_update_actions_for_all_activity_on_resource( resource, existing_update_actions )
+    # get the associations on that resource that generate activity updates
+    activity_assocs = resource.class.notifying_associations.select do | _assoc, assoc_options |
+      assoc_options[:notification] == "activity"
+    end
+
+    past_actions = []
+    # create pseudo updates for all activity objects
+    activity_assocs.each_key do | assoc |
+      # this is going to lazy load assoc's of the associate (e.g. a comment's user) which might not be ideal
+      resource.send( assoc ).each do | associate |
+        existing_action_on_resource = existing_update_actions.detect do | ua |
+          ua.notifier_type == associate.class.name && ua.notifier_id == associate.id
+        end
+        unless existing_action_on_resource
+          past_actions << UpdateAction.new( resource: resource, notifier: associate, notification: "activity" )
+        end
+      end
+    end
+    past_actions
+  end
+
+  def self.group_and_sort( updates, options = {} )
     grouped_updates = []
-    updates.group_by{|u| [u.resource_type, u.resource_id, u.notification]}.each do |key, batch|
+    updates.group_by {| u | [u.resource_type, u.resource_id, u.notification] }.each do | key, batch |
       resource_type, resource_id, notification = key
-      batch = batch.sort_by{|u| u.sort_by_date}
-      if options[:hour_groups] && "created_observations new_observations".include?(notification.to_s) && batch.size > 1
-        batch.group_by{|u| u.created_at.strftime("%Y-%m-%d %H")}.each do |hour, hour_updates|
+      batch = batch.sort_by( &:sort_by_date )
+      if options[:hour_groups] &&
+          "created_observations new_observations".include?( notification.to_s ) &&
+          batch.size > 1
+        batch.group_by {| u | u.created_at.strftime( "%Y-%m-%d %H" ) }.each_value do | hour_updates |
           grouped_updates << [key, hour_updates]
         end
       elsif notification == "activity" && !options[:skip_past_activity]
         # get the resource that has all this activity
         resource = batch.first.resource
         if resource.blank?
-          Rails.logger.error "[ERROR #{Time.now}] couldn't find resource #{resource_type} #{resource_id}, first update: #{batch.first}"
+          Rails.logger.error "[ERROR #{Time.now}] couldn't find resource #{resource_type} #{resource_id}, " \
+            "first update: #{batch.first}"
           next
         end
 
-        # get the associations on that resource that generate activity updates
-        activity_assocs = resource.class.notifying_associations.select do |assoc, assoc_options|
-          assoc_options[:notification] == "activity"
+        # If the viewer is no longer subscribed to the resource, do not load additional activity updates
+        if !options[:viewer] || options[:viewer].subscribed_to?( resource )
+          batch += stub_update_actions_for_all_activity_on_resource( resource, batch )
         end
 
-        # create pseudo updates for all activity objects
-        activity_assocs.each do |assoc, assoc_options|
-          # this is going to lazy load assoc's of the associate (e.g. a comment's user) which might not be ideal
-          resource.send(assoc).each do |associate|
-            unless batch.detect{|u| u.notifier_type == associate.class.name && u.notifier_id == associate.id}
-              batch << UpdateAction.new(:resource => resource, :notifier => associate, :notification => "activity")
-            end
-          end
-        end
-        grouped_updates << [key, batch.sort_by{|u| u.sort_by_date}]
+        grouped_updates << [key, batch.sort_by( &:sort_by_date )]
       else
         grouped_updates << [key, batch]
       end
     end
-    grouped_updates.sort_by {|key, updates| updates.last.sort_by_date.to_i * -1}
+    grouped_updates.sort_by {| _key, grp_updates | grp_updates.last.sort_by_date.to_i * -1 }
   end
 
   def self.user_viewed_updates( updates, user_id, options = {} )
