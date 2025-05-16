@@ -187,8 +187,8 @@ class PhotosController < ApplicationController
               methods: [:tag_list]
             }
           } )
-          json[:original_url] = @photo.file.url( :original )
-          json[:large_url] = @photo.file.url( :large )
+          json[:original_url] = @photo.original_url
+          json[:large_url] = @photo.large_url
           render json: json
         end
       else
