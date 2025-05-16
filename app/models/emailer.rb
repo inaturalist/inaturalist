@@ -20,7 +20,11 @@ class Emailer < ActionMailer::Base
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
 
     @user = user
-    @grouped_updates = UpdateAction.group_and_sort( updates, skip_past_activity: true )
+    @grouped_updates = UpdateAction.group_and_sort(
+      updates,
+      skip_past_activity: true,
+      viewer: @user
+    )
     mail_with_defaults(
       to: user.email,
       subject: [:updates_notification_email_subject, { prefix: subject_prefix, date: Date.today }]

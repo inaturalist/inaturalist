@@ -435,7 +435,10 @@ class UsersController < ApplicationController
     @pagination_updates = current_user.recent_notifications(
       filters: filters, per_page: 50
     )
-    @updates = UpdateAction.load_additional_activity_updates( @pagination_updates, current_user.id )
+    @updates = UpdateAction.load_all_update_actions_for_updated_resources_for_user(
+      @pagination_updates,
+      current_user.id
+    )
     UpdateAction.preload_associations( @updates, [:resource, :notifier, :resource_owner] )
     obs = UpdateAction.components_of_class( Observation, @updates )
     taxa = UpdateAction.components_of_class( Taxon, @updates )
@@ -460,7 +463,7 @@ class UsersController < ApplicationController
     Taxon.preload_associations( taxa, { taxon_names: :place_taxon_names } )
     User.preload_associations( with_user, :user )
     @updates.delete_if {| u | u.resource.nil? || u.notifier.nil? }
-    @grouped_updates = UpdateAction.group_and_sort( @updates, hour_groups: true )
+    @grouped_updates = UpdateAction.group_and_sort( @updates, hour_groups: true, viewer: current_user )
     respond_to do | format |
       format.html do
         render partial: "dashboard_updates", layout: false
