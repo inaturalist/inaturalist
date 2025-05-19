@@ -872,6 +872,13 @@ ru:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, загрузил %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Разделено на части
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Не разделено на части
   authority_list:
     iucn_red_list: Красный список МСОП
     natureserve: NatureServe
@@ -1562,6 +1569,9 @@ ru:
   curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
+  curator_coordinate_access: Доступ куратора к координатам
+  curator_coordinate_access_desc: |
+    Доступ куратора к координатам для традиционных проектов зависит от того, кто добавил наблюдение к проектам. Это просто настройка по умолчанию для наблюдения в проектах. Наблюдатели также могут изменить это значение для отдельных наблюдений.
   curator_identification: Идентификация, сделанная куратором
   current_flags: Текущие флаги
   #Label for a custom boundary for an observation search
@@ -1974,6 +1984,12 @@ ru:
   exclude_projects: Исключить проекты
   exclude_taxa: Исключить таксоны
   exclude_users: Исключить пользователей
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Исключая таксон %{count}
+    few: Исключая %{count} таксонов
+    many: Исключая %{count} таксон
+    other: Исключая %{count} таксонов
   exclusion_filters: Фильтры исключений
   existing_flags: Существующие флаги
   exit_full_screen: "Выйти из полноэкранного режима"
@@ -2009,6 +2025,9 @@ ru:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
   Family: Семейство
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Выбрать до семи проектов, которые будут отображаться в виде ссылок в заголовке. Эти обновления появятся после перезагрузки страницы.
   favorite_taxa: Любимые таксоны
   favorites: "Фавориты"
   feature_this_project_: "Рекомендовать этот проект"
@@ -2379,6 +2398,8 @@ ru:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки.
     Америка (налоговый идентификационный номер: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: В iNaturalist обновлена идентификация, предложенная %{user}
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2763,6 +2784,10 @@ ru:
   list_with_two_items: "%{one} и %{two}"
   listed_taxa: Перечисленные таксоны
   listed_taxon: Перечисленный таксон
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Указано в списках
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Отсутствует в списках
   listed_taxon_updated: Перечисленные таксоны обновлены
   listing_lists: Перечисляя списки
   listing_project_assets: Перечень активов проекта
@@ -2863,6 +2888,10 @@ ru:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Выйти из %{site_name}?"
   log_scale_label: Логарифмическая
+  #Adjectival phrase describing state of being logged in
+  logged_in: Вошел в систему
+  #Adjectival phrase describing state of being logged out
+  logged_out: Вышел из системы
   #Status message shown while logging in
   logging_in: Вход...
   logo:
@@ -3306,6 +3335,8 @@ ru:
   no_users_found_with_those_filters: По заданным условиям фильтра пользователи не найдены
   no_wikipedia_page_for_taxon: Страница Википедии для этого таксона отсутствует.
   noble_curators: "Почетные кураторы %{site}"
+  #A user who is not a curator
+  non_curator: Не куратор
   #Title for a preference to control whether you receive notifications about
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
@@ -3317,6 +3348,8 @@ ru:
   non_disagreeing_ancestor_ids_description: |
     Если вы отключите эту функцию, вы больше не будете получать уведомления, когда кто-то добавляет ID предка таксона от вашей ID и не согласуется с таксоном сообщества. Вы получите уведомление, если по ID есть дополнительные замечания.
   non_human?: Не человек?
+  #A user who does not admin any projects
+  non_project_admin: Не является администратором проекта
   none: Ничего
   none_found: Ничего не найдено
   normal: обычный
@@ -4334,9 +4367,14 @@ ru:
   processing3p: "Обработка…"
   profile: Профиль
   profile_picture: Аватар
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Тип файла фото профиля
   profile_visibility_desc: |
     В целях защиты от спама в %{site_name} профили пользователей становятся общедоступными только после того, как пользователь предоставил несколько наблюдений исследовательского уровня.
   project: Проект
+  #A user who admin's a project
+  project_admin: Администратор проекта
   project_admins:
     one: Администратор проекта
     few: Администратора проекта
@@ -4420,6 +4458,16 @@ ru:
   range: Диапазон
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Род / Гибрид родов
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Вид / Гибрид
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Подвид / Разновидность / Форма
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5712,8 +5760,14 @@ ru:
   upcoming_bioblitzes: Предстоящие биоблицы
   update: Обновить
   update_existing_observations_with_new_license: Обновить существующие наблюдения новыми вариантами лицензий
+  update_existing_observations_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим наблюдениям. Это может занять несколько часов, если у вас много наблюдений.
   update_existing_photos_with_new_license: Обновить существующие фото новыми вариантами лицензий
+  update_existing_photos_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим наблюдениям. Это может занять несколько часов, если у вас много наблюдений.
   update_existing_sounds_with_new_license: Обновить существующие звуки новыми вариантами лицензий
+  update_existing_sounds_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим аудионаблюдениям. Это может занять несколько часов, если у вас много аудионаблюдений.
   update_observations: Обновить наблюдения
   update_past: "Обновить предыдущие %{type}"
   update_photos: Обновить фото
@@ -5746,7 +5800,6 @@ ru:
   uploader:
     errors:
       file_too_big: Размер файла должен быть не более %{megabytes} Мб
-      unsupported_file_type: Данный тип файла не поддерживается. Допускаются расширения JPG, PNG, GIF, WAV, AAC, MP3, и MP4 (только для аудио)
     resize_tip: |
       Если ваши фото слишком большие, попробуйте обрезать их до максимум 2048 на 2048 пикселей. Так или иначе, это будет сделано со всеми фото на сервере, и это ускорит загрузку.
     tooltips:
@@ -5869,6 +5922,12 @@ ru:
     Пользователь доверяет этому проекту со скрытыми координатами, которые были скрыты по какой-либо причине.
   user_trusts_this_project_for_taxon: |
     Пользователь доверяет этому проекту только те скрытые координаты, которые были скрыты из-за таксонов, подвергающимся угрозам.
+  user_trusts_this_project_when_added_by_any: |
+    Пользователь доверяет любым кураторам проекта скрытые координаты наблюдений, добавляемых в проект.
+  user_trusts_this_project_when_added_by_observer: |
+    Пользователь доверяет кураторам проекта скрытые координаты наблюдений, добавляемых к проекту.
+  user_trusts_this_project_when_added_by_none: |
+    Пользователь не доверяет кураторам проекта скрытые координаты.
   user_trusts_you_with_their_private_coordinates: "%{user} доверяет вам свои скрытые координаты"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдатель решил доверить вам скрытые координаты всех своих наблюдений.
@@ -6365,6 +6424,10 @@ ru:
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Обратите внимание, что дата создания последнего созданного пользователем наблюдения кэшируется, поэтому для вступления в силу таргетинга может потребоваться несколько часов
+      observation_oauth_application_ids_desc: |
+        Нажмите мышью, удерживая клавиши CMD или SHIFT, чтобы выбрать несколько. Выбор «Все» или не создание
+        При выборе объявление будет показано всем пользователям, независимо от
+        приложение.
       site_ids_desc: |
         Нажмите CMD- или SHIFT-клик для выбора нескольких. Выбор всех или отсутствие выбора приведет к показу объявления всем пользователям, независимо от принадлежности к сайту.
       start_desc: |
@@ -6381,6 +6444,43 @@ ru:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Целевые пользователи по другим параметрам
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Об атласах
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Атласы отражают глобальное распространение таксона. Кураторы создают атлас, определяя его структуру и
+          отслеживая перечисленные таксоны, которые в него входят.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Разделите на части это место
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Не разделяйте на части это место
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: В этом атласе пока нет никаких изменений
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Последние изменения в атласе
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Недавние изменения таксонов, указанных в атласе
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Показать перечисленные таксоны
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Этот атлас сейчас не активен
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Это приведёт к удалению этого таксона и всех его потомков из чек-листов, связанных с этим местом и любыми Стандартными местами, которые оно содержит. Данное действие не может быть отменено. Вы уверены, что хотите это сделать?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Внимание: есть наблюдения, не представленные в этом атласе
     content_freeze:
       content_freeze: Блокировка контента
       during_this_time: |
@@ -8099,6 +8199,10 @@ ru:
           </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Тип файла не поддерживается. Допустимые типы JPG, PNG и GIF
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist автоматически делают ежемесячные взносы в iNaturalist (Налоговое управление США, EIN 92-1296468) для поддержки некоммерческой деятельности сайтов iNaturalist и сети iNaturalist. <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором</a>. Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить данный статус в своем профиле. Примечание: адреса электронной почты на Donor box и naturalist должны точно совпадать, чтобы мы могли подтвердить, что вы являетесь ежемесячным спонсором. Если они отличаются, измените один из них, чтобы они соответствовали друг другу.
         muting_desc_html: |
@@ -8186,9 +8290,10 @@ ru:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Уже добавлено максимальное число языков для народных названий - 3
-        this_only_applies_to_traditional_projects: |
-          Это относится только к традиционным проектам. Вы не можете исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисками.
-          Вы можете прочитать больше <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">здесь</a>.
+        this_only_applies_to_traditional_projects2: |
+          Это применимо только к традиционным проектам. Нельзя исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисковыми запросами.
+          Подробнее об этом 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">здесь</a>.
       recent:
         about_recent_users: Подробно
         definitions_html: <dl> <dt>Вероятно, спам</dt> <dd> Пользователь, который, вероятно, является спамером, что означает, что у него нет наблюдений или идентификаций, но у него есть описание профиля. </dd> <dt>Автомати</dt> <dd>ческий спам</dt> <dd> Спамер, автоматически помеченный системой как спамер. </dd> <dt>Ручной спам</dt> <dd>Спамер, который был вручную помечен куратором сайта как спамер. </dd> <dt>Ложное срабатывание</dt> <dd>Пользователи, которые были помечены как спамеры, но флаги были разрешены кураторами сайта, поскольку они на самом деле спамерами не были.</dd> </dl>
@@ -8509,7 +8614,9 @@ ru:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d %B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%b %d %H:%M'
+      short: '%-d %b %I:%M%p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M%p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8549,6 +8656,8 @@ ru:
     attributes:
       announcement:
         created_at: Создано
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Может быть отклонено
         updated_at: Обновлено
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8564,10 +8673,16 @@ ru:
         exclude_donor_start_date: Исключить дату начала донорства
         #End of a date range that the viewer must not have donated in to see the announcement
         exclude_donor_end_date: Исключить дату окончания донорства
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Исключение наблюдателей из приложений
         #start of a date range that the viewer must have donated in to see the announcement
         include_donor_start_date: Включить дату начала донорства
         #End of a date range that the viewer must have donated in to see the announcement
         include_donor_end_date: Включить дату окончания донорства
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Включение наблюдателей из приложений
         #List of countries that the viewer's IP address can come from to see the announcement
         ip_countries: Страны по IP
         #Start of a date range that includes the viewer's most recent observation
@@ -8925,6 +9040,9 @@ ru:
                 не может быть больше даты добавления наблюдения
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: должно произойти в последние 130 лет
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: это должен быть один день, а не диапазон
         observation_field_value:
           attributes:
             value:
@@ -8974,6 +9092,10 @@ ru:
             user:
               must_be_on_site_long_enough: |
                 должны быть зарегистрированы более чем 24 часа назад для публикации. У нас много спамеров, и это своего рода обходной путь борьбы с ними. Вы можете сохранить черновик, и если вы всё ещё используете сайт день спустя, вы сможете опубликовать его.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Вы можете пометить как любимые только 7 проектов
         project_observation:
           attributes:
             base:
@@ -9026,6 +9148,11 @@ ru:
             name:
               bad_format: |
                 может содержать только стандартные латинские символы, дефисы, пробелы и ×; обратите внимание, что предполагаемые таксоны и сорта не допускаются
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Таксон Life как таксон не может быть изменён.
         taxon_name:
           attributes:
             lexicon:
@@ -9060,6 +9187,11 @@ ru:
               already_has_a_range: уже имеет ареал
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: Должны существовать
             login:
               must_begin_with_a_letter: |
                 должно начинаться с буквы, не содержать пробелов и использовать только буквы, цифры, тире и символы подчеркивания

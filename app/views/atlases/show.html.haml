@@ -8,15 +8,30 @@
 - content_for :extracss do
   = stylesheet_link_tag "atlases/show"
 
+:ruby
+  def alteration_action( alteration )
+    case alteration.action
+    when "exploded"
+      t :listed_taxon_alteration_action_exploded
+    when "unexploded", "collapsed"
+      t :listed_taxon_alteration_action_unexploded
+    when "listed"
+      t :listed_taxon_alteration_action_listed
+    when "unlisted"
+      t :listed_taxon_alteration_action_unlisted
+    else
+      alteration.action
+    end
+  end
 .container
   .row
     .col-xs-12
       - unless @atlas.is_active
         .alert.alert-info{ role: :alert }
-          This atlas is currently not active
+          =t "views.atlases.show.this_atlas_is_not_currently_active"
       - if @num_obs_not_in_atlas_places > 0
         .alert.alert-warning{ role: :alert }
-          Warning: there are observations not represented by this atlas
+          =t "views.atlases.show.warning_there_are_observations_not_represented"
           = link_to t( :view ), observations_path( @observations_not_in_atlas_places_params )
       %h2.pull-left
         =t :atlas_for_taxon_html, taxon: render( "shared/taxon", taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon )
@@ -27,12 +42,11 @@
       .panel.panel-info
         .panel-heading
           %h3.panel-title
-            = "About Atlases"
+            =t "views.atlases.show.about_atlases"
         .panel-body
           %p
-            = "Atlases convey the global distribution of a taxon. Curators make atlases by defining the structure"
-            = "of an atlas and curating the listed taxa that drive it."
-            = link_to "Learn more", "/pages/atlases"
+            =t "views.atlases.show.atlases_convey_the_global_distribution"
+            = link_to t( :learn_more ), "/pages/atlases"
           %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/720-original.png", class: "img-responsive" }
       .content-entry#right
       .content-entry#bottomright
@@ -65,51 +79,51 @@
       = render partial: "comments/comments", object: @atlas
     
     %h3
-      = "Recent Atlas Alterations"
+      =t :recent_atlas_alterations
 
     %table.table.table-striped
       %thead
         %tr
-          %th= "Place"
-          %th= "Action"
-          %th= "Login"
-          %th= "Date"
+          %th=t :place
+          %th=t :action
+          %th=t :user
+          %th=t :date_
           %th= ""
       %tbody#alteration
         - @atlas_alterations.each do |atlas_alteration|
           %tr
-            %th{:scope => "row" }= link_to atlas_alteration.place.try_methods( :display_name, :name ), atlas_alteration.place
-            %td= atlas_alteration.action
+            %th{:scope => "row" }= link_to atlas_alteration.place.translated_name, atlas_alteration.place
+            %td= alteration_action( atlas_alteration )
             %td= atlas_alteration.user.nil? ? "" : ( link_to atlas_alteration.user.login, atlas_alteration.user )
             %td= atlas_alteration.created_at
             -if current_user.is_curator?
-              %td= link_to "remove", "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id }
+              %td= link_to t( :remove ), "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id }
 
     - if @atlas_alterations.count == 0
       .no_alterations= "No alterations to this atlas yet"
 
     %h3
-      = "Recent Listed Taxon Alterations"
+      =t :recent_listed_taxon_additions
 
     %table.table.table-striped
       %thead
         %tr
-          %th= "Place"
-          %th= "Taxon"
-          %th= "Action"
-          %th= "Login"
-          %th= "Date"
-          %th=""
+          %th=t :place
+          %th=t :taxon
+          %th=t :action
+          %th=t :login
+          %th=t :date_
+          %th
       %tbody#listed_taxon_alteration
         - @listed_taxon_alterations.each do |listed_taxon_alteration|
           %tr
-            %th{ :scope => "row" }= link_to listed_taxon_alteration.place.try_methods( :display_name, :name ), listed_taxon_alteration.place
+            %th{ :scope => "row" }= link_to listed_taxon_alteration.place.translated_name, listed_taxon_alteration.place
             %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
-            %td= listed_taxon_alteration.action
+            %td= alteration_action( listed_taxon_alteration )
             %td= listed_taxon_alteration.user.nil? ? "" : ( link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user )
             %td= listed_taxon_alteration.created_at
             -if current_user.is_curator?
-              %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
+              %td= link_to t( :remove ), "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
 
     - if @listed_taxon_alterations.count == 0
       .no_listed_taxon_alterations= "No listed taxon alterations relevant to this atlas yet"

@@ -38,6 +38,7 @@ class Taxon < ApplicationRecord
       indexes :current_synonymous_taxon_ids, type: "integer"
       indexes :default_photo do
         indexes :attribution, type: "keyword", index: false
+        indexes :attribution_name, type: "keyword", index: false
         indexes :flags do
           indexes :comment, type: "keyword", index: false
           indexes :created_at, type: "date", index: false
@@ -124,6 +125,7 @@ class Taxon < ApplicationRecord
         indexes :license_code, type: "keyword", index: false
         indexes :photo do
           indexes :attribution, type: "keyword", index: false
+          indexes :attribution_name, type: "keyword", index: false
           indexes :flags do
             indexes :comment, type: "keyword", index: false
             indexes :created_at, type: "date", index: false
@@ -209,7 +211,10 @@ class Taxon < ApplicationRecord
       json.merge!({
         created_at: created_at,
         default_photo: default_photo ?
-          default_photo.as_indexed_json(for_taxon: true, sizes: [ :square, :medium ]) : nil,
+          default_photo.as_indexed_json(
+            sizes: [:square, :medium],
+            attribution_name: true
+          ) : nil,
         colors: colors.map(&:as_indexed_json),
         ancestry: ancestry,
         taxon_changes_count: taxon_changes_count,

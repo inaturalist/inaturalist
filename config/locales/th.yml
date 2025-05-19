@@ -869,6 +869,10 @@ th:
     hair: ขน
     #Evidence of something made my an organism, made with or excavated from other materials
     construction: สิ่งที่สัตว์สร้าง
+    #Does the observation belong to a non-established population or not
+    established: หลุด/ถูกปล่อย?
+    #Organism is not a member of an established population
+    not_established: หลุด/ถูกปล่อย
   controlled_term_definitions:
     feather: ขนที่หลุดออกจากตัวนก
     flower_budding: พบตาดอกที่ยังไม่บาน
@@ -884,6 +888,7 @@ th:
     construction: สิ่งที่สัตว์เป็นผู้สร้างโดยขุดเอาหรือทำจากวัสดุอื่น ๆ
     no_evidence_of_flowering: สื่อไม่มีหลักฐานของโครงสร้างสืบพันธุ์
     no_flowers_or_fruits: ไม่พบดอก ผล หรือเมล็ด (ทั้งหมดหรือบางส่วน)
+    not_established: สิ่งมีชีวิตที่ไม่ใช่ประชากรพื้นเมือง ได้แก่สัตว์เลี้ยงที่หลุดหรือหนีออกมา ติดมากับพืช และเร่ร่อน
     organism: ตัวสิ่งมีชีวิตทั้งหมดหรือบางส่วน
   coordinate_systems: ระบบพิกัด
   coordinates: พิกัด
@@ -1738,12 +1743,16 @@ th:
       yy: "%d ปี"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     datetime_with_zone: "D MMM YYYY · LT Z"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    datetime_with_zone_no_year: "D MMMM H:mm Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
     datetime_with_offset: "D MMM YYYY · LT Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     date_long: "D MMMM YYYY"
+    #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
+    date_long_without_year: "D MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "HH:mm"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -3461,6 +3470,8 @@ th:
         observer: ใช่ แต่ฉันต้องเป็นคนเพิ่มการสังเกตเข้าโครงการเอง
         any: ใช่ ไม่สำคัญว่าใครเป็นคนเพิ่มการสังเกตเข้าโครงการ
         none: ไม่
+      curator_coordinate_access_label: |
+        คุณต้องการให้ผู้ดูแลโครงการนี้มองเห็นพิกัดการสังเกตที่คุณปิดบังหรือไม่
     search:
       index:
         no_taxa_forum: ติดต่อกระดานสนทนา
@@ -3741,8 +3752,6 @@ th:
       default: '%-d %b %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

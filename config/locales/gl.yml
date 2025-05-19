@@ -4469,7 +4469,6 @@ gl:
   uploader:
     errors:
       file_too_big: O ficheiro debe ser menor de %{megabytes} MB
-      unsupported_file_type: O tipo de ficheiro non é soportado. Aceptamos JPG, PNG, GIF, WAV, AAC, MP3, e MP4 (só audio)
     resize_tip: |
       Se os ficheiros das túas fotos son moi grandes, tenta recortalas ata un máximo de 2048 x 2048 pixeles. Isto acontecerá de tódolos xeitos ás fotos no servidor, e fará que se carguen máis rápido.
     tooltips:
@@ -6100,9 +6099,6 @@ gl:
         same_day_geoprivacy_protection: Protección de xeoprivacidade no mesmo día
         taxon_change_desc: |
           Cando se combinan ou renomean taxons en %{site_name}, as túas observacións, taxons listados, identificacións, etc. serán actualizados automáticamente ós novos taxons se o cambio non é ambíguo. Se optas por excluílo ou o cambio é ambíguo (p.e. unha división), recibirás novas sobre o cambio vinculadas a unha ferramenta que poderás empregar para actualizar o teu contido se así o decides.
-        this_only_applies_to_traditional_projects: |
-          Istó só é aplicable a proxectos tradicionais. Non podes excluír observacións de proxectos de recolla ou paraugas, que son esencialmente buscas gardadas.
-          Podes ler máis <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Lixo</dt><dd> O usuario probablemente é un remitente de correo lixo, o que significa que non ten observacións nin identificacións pero ten unha descrición no seu perfil. </dd><dt> Auto Lixo</dt><dd> Remitente de lixo que foi marcado como remitente de correo lixo polo sistema. </dd><dt> Lixo Manual</dt><dd> Remitente de lixo que foi marcado manualmente como remitente de correo lixo por un conservador do sitio. </dd><dt>Falsos Positivos</dt><dd> Usuarios que foron marcados como remitentes de lixo pero as marcas foron resoltas por conservadores do sitio porque realmente non eran remitentes de correo lixo.</dd></dl>

@@ -82,7 +82,7 @@
             :class => "minor button", 
             :wrapper => {:class => "inter toggle_menu_list", :style => "padding: 0"} ) do
             %ul
-              - for project_user in @project_users
+              - for project_user in @project_users.sort_by{ |pu| pu&.project&.title }
                 %li.inline.buttonrow
                   = link_to_function( t(:add),
                     "actOnSelected('#{add_project_observation_batch_path(project_user.project)}', {method: 'post'})", 

@@ -53,7 +53,7 @@ const About = ( {
                   { I18n.t( "label_colon", { label: I18n.t( "created_by" ) } )}
                 </span>
                 <UserImage user={project.user} />
-                <UserLink user={project.user} />
+                <UserLink config={config} user={project.user} />
                 { " " }
                 <span className="date">
                   { "- " }
@@ -78,7 +78,7 @@ const About = ( {
                           <span className="project-admin" key={`project-admins-${a.id}`}>
                             <span className="project-admin-span">
                               <UserImage user={a.user} />
-                              <UserLink user={a.user} />
+                              <UserLink config={config} user={a.user} />
                             </span>
                           </span>
                         ) ) }

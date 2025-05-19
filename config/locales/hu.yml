@@ -682,6 +682,13 @@ hu:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, feltöltötte: %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Kibontott
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Becsomagolt
   authority_list:
     iucn_red_list: IUCN Vörös lista
     natureserve: NatureServe
@@ -2039,6 +2046,11 @@ hu:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids: Infrafajok azonosításai
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Ha ezt kikapcsolod, a továbbiakban nem kapsz értesítést a taxon fajszint alatti azonosításairól (például alfaj és faj), amelyek összhangban vannak a fajszintű azonosításoddal. Értesítést kapsz viszont, ha azok nem értenek egyet az azonosításoddal, vagy ha további megjegyzéseket tartalmaznak.
   input_taxon: Bemeneti taxon
   insects: rovarok
   insect_life_stage: Rovar életszakasz
@@ -2304,6 +2316,10 @@ hu:
   list_with_two_items: "%{one} és %{two}"
   listed_taxa: Listázott taxonok
   listed_taxon: Listázott taxon
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Listázott
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Nem listázott
   listed_taxon_updated: A listázott taxon frissítve
   listing_lists: Listák listázása
   listing_taxa: Taxonok listázása
@@ -4758,7 +4774,6 @@ hu:
   uploader:
     errors:
       file_too_big: A fájl mérete legfeljebb %{megabytes} MB lehet
-      unsupported_file_type: 'A fájl típusa nem támogatott. Csak ezeket fogadjuk el: JPG, PNG, GIF, WAV, AAC, MP3, és MP4 (csak hang)'
     resize_tip: |
       Ha a képfájljaid túl nagyok, próbáld levágni őket maximum 2048 x 2048 pixelig. Ez amúgy is megtörténik a szerveren de így gyorsabban töltődnek majd fel.
     tooltips:
@@ -4922,6 +4937,8 @@ hu:
   view_more_observations_of_x_project: "Tekints meg több <nobr>%{site_name}</nobr> megfigyelést a %{project} projektből."
   view_more_observations_of_x_taxon: "További %{taxon} megfigyelések: <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "További átnézetlenek megtekintése"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Az érintett azonosításaid megtekintése
   view_observation: Megfigyelés megtekintése
   view_observations: Megfigyelések megtekintése
   view_observation_flags: Megfigyelés bejelentéseinek megtekintése
@@ -5233,8 +5250,39 @@ hu:
   views:
     views: 'Nézetek'
     announcements:
+      locales_desc: |
+        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
+        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
+        színhely. Ha régió nélküli nyelvet választasz, az *nem* céloz
+        területi beállítások régiókkal, pl. ha az angol nyelvet választotta, akkor nem jelenik meg
+        azoknak, akik az angol (Egyesült Királyság) nyelvet választották.
+      clients_desc: |
+        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
+        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
+        ügyfél.
+      end_desc: |
+        A fiók időzónájában a bejelentés leállításának időpontja
+        megjelenő. Időzónákon keresztül érvényes, így mindenki nem fog látni
+        ugyanakkor nem a helyi időhöz viszonyítva.
+      ip_countries_desc: |
+        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
+        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
+        IP ország.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Vegye figyelembe, hogy a felhasználó legutóbb létrehozott
+        megfigyelés gyorsítótárazva van, így a célzás néhány órát is igénybe vehet
+        használ
       observation_oauth_application_ids_desc: |
         CMD- vagy SHIFT-kattintással jelölhetsz ki a többet. Az "Összes" kiválasztásával vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, az alkalmazástól függetlenül.
+      site_ids_desc: |
+        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
+        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
+        Helyszíni hovatartozás.
+      start_desc: |
+        A fiók időzónájában a bejelentés kezdetének időpontja
+        megjelenő. Időzónákon keresztül érvényes, így mindenki látni fogja
+        ugyanakkor nem a helyi időhöz viszonyítva.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Felhasználók célzása adományozási viselkedésük alapján
@@ -5247,6 +5295,43 @@ hu:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Felhasználók célzása egyéb tényezők alapján
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Az atlaszokról
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Az atlaszok egy taxon globális eloszlását jelenítik meg. A kurátorok atlaszok at hozhatnak létre azok szerkezetének meghatározásával és a mögöttes taxonok gondozásával.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: E hely kibontása
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: E hely becsomagolása
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Még nincs módosítás ebben az atlaszban
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Legutóbbi atlaszmódosítások
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: A legutóbbi felsorolt taxonmódosítások
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Felsorolt taxonok megjelenítése
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Ez az atlasz jelenleg nem aktív
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Ezzel eltávolítod ezt a taxont és az összes leszármazottját az ellenőrző listákról
+          ehhez a helyhez, és a benne található standard helyeket is. Ezt a műveletet nem lehet visszavonni. Biztos vagy benne?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Figyelem: vannak olyan megfigyelések, amelyeket ez az atlasz nem képvisel
     content_freeze:
       content_freeze: Tartalom lezárása
       during_this_time: |
@@ -6174,8 +6259,6 @@ hu:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: A maximálisan kiválasztható három köznyelvi név-lexikon már hozzá van adva.
-        this_only_applies_to_traditional_projects: |
-          Ez csak hagyományos projektekre vonatkozik. Megfigyeléseket nem tudsz kivenni az ernyőprojektekből, amelyek lényegében mentett keresések. Bővebben <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">itt</a>.
       recent:
         about_recent_users: Rólunk
       show:
@@ -6399,7 +6482,9 @@ hu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y. %B %-d., %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%b. %-d., %H:%M'
+      short: '%b %-d %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y %b %-d %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%Y. %B %-d."
     pm: du.
@@ -6429,6 +6514,8 @@ hu:
     attributes:
       announcement:
         created_at: 'Létrehozva:'
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Átugorható
         updated_at: 'Frissítve:'
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -6439,18 +6526,44 @@ hu:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
         prefers_exclude_monthly_supporters: A havi támogatók mellőzése
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: A donor kezdő dátumának kizárása
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: A donor záró dátumának kizárása
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Adja meg a donor kezdő dátumát
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Adja meg a donor lejárati dátumát
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Applikáció-specifikus megfigyelők célzása
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP országok
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Utolsó obs kezdési dátum
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Utolsó obs befejezési dátum
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Azonosítások maximális száma
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Minimális azonosítások
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Megfigyelések maximális száma
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Minimális megfigyelések
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Elhelyezés
         #Preference for an announcement that is only shown to the user who created the announcement
         target_creator: 'Láthatóság: létrehozó (teszteléshez)'
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Cél bejelentkezve
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: A legkorábbi felhasználói regisztráció dátuma
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Legutóbbi felhasználói regisztráció dátuma
       assessment:
         description: Leírás
       assessment_section:
@@ -6720,6 +6833,9 @@ hu:
                 nem lehet nagyobb, mint a dátum amikor hozzáadták a megfigyelést
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: az utóbbi 130 évben kell legyen
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: egyetlen napnak kell lennie, nem pedig tartománynak
         observation_field_value:
           attributes:
             value:
@@ -6805,6 +6921,11 @@ hu:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 csak e taxon kurátora változtathatja meg
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Az élet taxon nem lehet tárgya taxonmódosításoknak
         taxon_name:
           attributes:
             name:

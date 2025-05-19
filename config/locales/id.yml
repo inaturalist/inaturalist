@@ -244,6 +244,8 @@ id:
   add_a_new_change_group: Tambahkan Grup Perubahan Baru
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Tambahkan daftar bernomor
+  #Placeholder for a project autocomplete field
+  add_a_project: Tambah proyek
   add_a_single_observation: Tambahkan Observasi Tunggal.
   add_a_taxon: Tambahkan Takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -687,6 +689,13 @@ id:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, diunggah oleh %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Dibagi
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Disatukan
   authority_list:
     iucn_red_list: Daftar Merah IUCN
     natureserve: NatureServe
@@ -1382,6 +1391,11 @@ id:
   curators_changed_for_x_html: "Kurator diubah untuk %{x}"
   curators: Kurator
   curators_can_remove_observations_from: Kurator dapat menghapus pengamatan dari proyek dan identifikasi mereka ditampilkan di samping pengamatan pada pandangan tertentu proyek-. Kurator juga dapat melihat koordinat sebenarnya dari kontribusi swasta dan menyembunyikannya untuk proyek ini.
+  curator_coordinate_access: Akses Koordinat Kurator
+  curator_coordinate_access_desc: |
+    Akses koordinat kurator untuk proyek tradisional bergantung pada orang yang menambahkan
+    pengamatan ke proyeknya. Ini hanya pengaturan standar untuk
+    pengamatan-pengamatan di dalam proyek. Pengamat juga dapat mengubahnya untuk masing-masing pengamatan.
   curator_identification: Identifikasi kurator
   current_flags: Tanda Saat Ini
   #Label for a custom boundary for an observation search
@@ -1389,6 +1403,8 @@ id:
   custom_project_fields: Proyek Kolom Kustom
   custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
   custom_project_was_successfully_updated: Proyek kustom telah berhasil diperbaharui
+  #Button to customize projects that appear in the header
+  customize__projects: Sesuaikan
   customize_location: Sesuaikan Lokasi
   darr_apply_darr: "&darr; Terapkan &darr;"
   daily_users: Pengguna Harian
@@ -1829,6 +1845,12 @@ id:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorit
   Family: Keluarga
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Proyek Favorit
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Pilih hingga tujuh proyek yang muncul sebagai tautan di atas. Perubahan
+    akan muncul setelah menyegarkan halaman.
   favorite_taxa: Taksa Favorit
   favorites: "Favorit"
   feature_this_project_: "Pamerkan Proyek Ini"
@@ -2184,6 +2206,8 @@ id:
   inaturalist_global_year_in_review: "Kilas Balik Satu Tahun %{year} iNaturalist Global"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist adalah organisasi nirlaba independen bebas pajak 501(c)(3) berbasis di Amerika Serikat (ID Pajak: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist memperbarui ID yang disarankan oleh %{user}
   computer_vision_suggestion: Rekomendasi Penglihatan Komputer
   computer_vision_suggestion_desc: |
     Penglihatan komputer merupakan proses mengajar komputer untuk mengenali pola pada gambar. Kami menyediakan peralatan yang menggunakan model penglihatan komputer yang dilatih dengan foto-foto dari komunitas untuk dapat memberikan rekomendasi identifikasi, seperti otokomplet dan fitur perbandingan. Label ini menunjukkan waktu seseorang menambahkan sebuah identifikasi dengan memakai salah satu peralatan ini.
@@ -2295,6 +2319,8 @@ id:
   internal_taxon_rank: Tingkat takson internal
   introduced: Diperkenalkan
   introduced_in_place: "Diperkenalkan di %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Tanggal tidak sah
   invitation: Undangan
   invite: undang
   invite_people: Undang orang
@@ -2565,6 +2591,10 @@ id:
   list_with_two_items: "%{one} dan %{two}"
   listed_taxa: Daftar Taksa
   listed_taxon: Takson terdaftar
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Ditambahkan
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Dihapus
   listed_taxon_updated: Takson terdaftar diperbarui
   listing_lists: Pendaftaran daftar
   listing_project_assets: Pendaftaran Aset Proyek
@@ -4164,6 +4194,9 @@ id:
   processing3p: "Memproses..."
   profile: Profil
   profile_picture: Foto Profil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Jenis berkas Gambar Profil
   profile_visibility_desc: |
     Untuk menjaga %{site_name} dari spam, profil pengguna hanya dapat dilihat publik jika pengguna sudah menambahkan beberapa pengamatan Kelas Riset.
   project: Proyek
@@ -5456,8 +5489,20 @@ id:
   upcoming_bioblitzes: Bioblitz yang akan datang
   update: Perbarui
   update_existing_observations_with_new_license: Perbarui pengamatan yang sudah ada dengan pilihan lisensi baru
+  update_existing_observations_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    pengamatan yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    pengamatan.
   update_existing_photos_with_new_license: Perbarui foto yang sudah ada dengan pilihan lisensi baru
+  update_existing_photos_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    gambar Anda yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    gambar.
   update_existing_sounds_with_new_license: Perbarui suara yang sudah ada dengan pilihan lisensi baru
+  update_existing_sounds_with_new_license_desc: |
+    Dengan memilih opsi ini, pilihan lisensi baru Anda akan diterapkan ke semua
+    suara Anda yang sudah ada. Prosesnya bisa memakan waktu beberapa jam jika Anda memiliki banyak
+    suara.
   update_observations: Perbarui Pengamatan
   update_past: "Perbarui %{type} Yang Dulu"
   update_photos: Perbarui Foto
@@ -5487,7 +5532,6 @@ id:
   uploader:
     errors:
       file_too_big: File harus lebih kecil dari %{megabytes} MB
-      unsupported_file_type: Jenis file tidak didukung. Kami menerima JPG, PNG, GIF, WAV, AAC, MP3, dan MP4 (audio saja)
     resize_tip: |
       Jika file foto Anda terlalu besar, coba memotongnya hingga ukuran paling besar 2048 x 2048 piksel. Hal ini berlaku pada semua foto di server juga, dan akan mempercepat proses unggahan.
     tooltips:
@@ -5601,6 +5645,9 @@ id:
     Pengguna mempercayakan proyek dengan koordinat tersembunyi ini yang telah dikaburkan untuk suatu alasan.
   user_trusts_this_project_for_taxon: |
     Pengguna hanya mempercayakan proyek dengan koordinat tersembunyi ini yang telah dikaburkan karena takson terancam.
+  user_trusts_this_project_when_added_by_any: |
+    Pengguna mempercayai kurator proyek dengan koordinat pengamatan tersembunyi yang ditambahkan 
+    oleh siapa pun ke dalam proyek.
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
@@ -6110,6 +6157,45 @@ id:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Target pengguna berdasarkan atribut lain
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Tentang Atlas
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlas menyampaikan distribusi suatu takson di dunia. Kurator membuat
+          atlas dengan menentukan strukturnya dan mengkurasi
+          takson-takson yang menjadi dasar penyusunannya.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Bagi tempat ini
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Satukan tempat ini
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Belum ada perubahan pada atlas ini
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Perubahan Atlas Terbaru
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Perubahan Takson Terdaftar Terbaru
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Tampilkan taksa yang terdaftar
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Atlas ini saat ini tidak aktif
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tindakan ini akan menghapus takson ini dan semua keturunannya dari daftar periksa yang terkait dengan tempat ini serta Tempat Standar apa pun yang dikandungnya. Tindakan ini
+          tidak dapat dibatalkan. Apakah Anda yakin ingin melakukannya?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Peringatan: ada pengamatan yang tidak digambarkan oleh atlas ini
     content_freeze:
       content_freeze: Pembekuan Konten
       during_this_time: |
@@ -7761,6 +7847,10 @@ id:
           </p>
         licensing_desc_html: |
           Dengan menerapkan lisensi pada konten-konten Anda, Anda memberikan kuasa hukum kepada siapa saja tanpa perlu menanyakan izin kepada Anda jika mereka mengikuti syarat-syarat yang tertera pada lisensi tersebut. Sebagai tambahan, %{site_name} menyimpan konten Anda yang dilisensi dengan Creative Commons di arsip yang terus diperbarui yang dibuat untuk organisasi mitra tertentu yang tertarik dengan data kami. Sebagai contoh, kami memasukkan catatan Tanpa Hak Cipta (CC0), Atribusi (CC BY), dan Atribusi-NonKomersial (CC BY-NC) di dalam arsip yang kami hasilkan dari <a href="http://www.gbif.org/">Fasilitas Informasi Keanekaragaman Hayati Global</a>, sebuah organisasi internasional dan interpemerintahan yang mengumpulkan dan mendistribusikan informasi keanekaragaman hayati dari seluruh dunia.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Jenis berkas tidak didukung. Kami menerima JPG, PNG, dan GIF
         monthly_supporter_desc_html: |
           Pendukung Bulanan iNaturalist membuat kontribusi bulanan otomatis
           ke iNaturalist (United States IRS EIN 92-1296468) untuk mendukung 
@@ -7857,8 +7947,8 @@ id:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Sebanyak 3 kosakata nama umum (maksimal) sudah ditambahkan
-        this_only_applies_to_traditional_projects: |
-          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang intinya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">di sini</a>.
+        this_only_applies_to_traditional_projects2: |
+          Hal ini hanya berlaku untuk proyek tradisional. Anda tidak bisa mengecualikan pengamatan dari proyek koleksi atau proyek payung, yang pada dasarnya adalah pencarian yang disimpan. Anda bisa membaca lebih lanjut <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">di sini</a>.
       recent:
         about_recent_users: Tentang
         definitions_html: <dl> <dt>Sepertinya Spam</dt> <dd> Pengguna yang mungkin seorang spammer, yang berarti mereka tidak memiliki pengamatan atau identifikasi, tetapi mereka memiliki deskripsi profil.</dd> <dt>Auto Spam</dt> <dd> Spammer yang secara otomatis ditandai sebagai spammer dari sistem. </dd> <dt>Manual Spam</dt> <dd> Spammer yang secara manual ditandai sebagai spammer oleh kurator situs. </dd> <dt>False Positive</dt> <dd> Pengguna yang ditandai sebagai spammer, tetapi tandanya diselesaikan oleh kurator situs karena mereka sebenarnya bukan spammer. </dd> </dl>
@@ -8123,6 +8213,8 @@ id:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %H:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8161,6 +8253,8 @@ id:
     attributes:
       announcement:
         created_at: Dibuat pada
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Dapat ditutup
         updated_at: Diperbarui pada
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8381,6 +8475,7 @@ id:
         show_for_descendent_taxa: Tampilkan untuk takson turunan
       user:
         email: Email
+        faved_project_ids: Proyek favorit
         login: Nama pengguna
         name: Nama
         locale: Tempat
@@ -8512,6 +8607,9 @@ id:
                 tidak boleh lebih besar dari tanggal penambahan pengamatan
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: harus berada dalam kurun waktu 130 tahun terakhir
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: harus berupa satu hari, bukan rentang
         observation_field_value:
           attributes:
             value:
@@ -8544,6 +8642,9 @@ id:
               invalid_point: memiliki titik yang tidak valid, contohnya bujur lebih dari 180 atau lintang kurang dari -90
               must_have_more_than_three_points: harus memiliki lebih dari 3 titik
               polygon_with_less_than_four_points: memiliki poligon yang titiknya kurang dari 4
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: memiliki poligon tanpa luas (semua titik sama)
         place_geometry:
           attributes:
             geom:
@@ -8561,6 +8662,10 @@ id:
             user:
               must_be_on_site_long_enough: |
                 harus terdaftar lebih dari 24 jam yang lalu untuk menerbitkan. Kami mendapatkan banyak spammer, dan ini adalah semacam cara yang kurang baik untuk berurusan dengan mereka. Anda masih dapat menyimpan draf, dan jika Anda masih menggunakan situs ini dalam satu hari, Anda bisa menerbitkan.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Anda hanya bisa memfavoritkan 7 proyek
         project_observation:
           attributes:
             base:
@@ -8613,6 +8718,11 @@ id:
             name:
               bad_format: |
                 hanya dapat mengandung karakter Latin standar, tanda hubung, spasi dan ×; ingat bahwa taksa yang masih diperdebatkan atau kultivar tidak diperbolehkan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Takson Kehidupan tidak dapat diganti dalam perubahan takson
         taxon_name:
           attributes:
             lexicon:
@@ -8647,6 +8757,14 @@ id:
               already_has_a_range: sudah memiliki jangkauan
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: tidak bisa menyertakan lebih dari 7 proyek
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: harus ada semua
             login:
               must_begin_with_a_letter: |
                 harus dimulai dengan huruf, tanpa spasi, dan hanya diperbolehkan menggunakan huruf, angka, tanda hubung, dan garis bawah

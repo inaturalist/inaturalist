@@ -26,6 +26,36 @@ describe "Taxon Index" do
     expect( taxon.as_indexed_json[:taxon_photos] ).to be_empty
   end
 
+  it "includes photo attribution names" do
+    taxon = Taxon.make!
+    user = User.make!( name: "photographer" )
+    photo = LocalPhoto.make!( user: user )
+    TaxonPhoto.make!( taxon: taxon, photo: photo )
+    taxon.reload
+    expect( taxon.as_indexed_json[:default_photo][:id] ).to eq photo.id
+    expect( taxon.as_indexed_json[:default_photo][:attribution_name] ).to eq user.name
+
+    expect( taxon.as_indexed_json[:taxon_photos].first[:photo][:id] ).to eq photo.id
+    expect( taxon.as_indexed_json[:taxon_photos].first[:photo][:attribution_name] ).to eq user.name
+  end
+
+  it "allows photo attribution names to be nil" do
+    taxon = Taxon.make!
+    photo = FlickrPhoto.make!(
+      user: nil,
+      native_realname: nil,
+      native_username: nil,
+      license: Photo::CC0
+    )
+    TaxonPhoto.make!( taxon: taxon, photo: photo )
+    taxon.reload
+    expect( taxon.as_indexed_json[:default_photo][:id] ).to eq photo.id
+    expect( taxon.as_indexed_json[:default_photo][:attribution_name] ).to be_nil
+
+    expect( taxon.as_indexed_json[:taxon_photos].first[:photo][:id] ).to eq photo.id
+    expect( taxon.as_indexed_json[:taxon_photos].first[:photo][:attribution_name] ).to be_nil
+  end
+
   describe "prepare_batch_for_index" do
     it "caches project_ids" do
       t = Taxon.make!

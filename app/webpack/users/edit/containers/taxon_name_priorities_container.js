@@ -9,8 +9,8 @@ import {
 function mapStateToProps( state ) {
   return {
     config: state.config,
-    profile: state.profile,
-    taxonNamePriorities: state.profile.taxon_name_priorities
+    userSettings: state.userSettings,
+    taxonNamePriorities: state.userSettings.taxon_name_priorities
   };
 }
 

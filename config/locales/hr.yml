@@ -5756,7 +5756,6 @@ hr:
   uploader:
     errors:
       file_too_big: Datoteka mora biti manja od %{megabytes} MB
-      unsupported_file_type: Vrsta datoteke nije podržana. Prihvaćamo JPG, PNG, GIF, WAV, AAC, MP3 i MP4 (samo audio)
     resize_tip: |
       Ako su vaše foto datoteke prevelike, pokušajte ih izrezati na maksimalno 2048 x 2048 piksela. Ovo će se ionako dogoditi sa svim fotografijama na serveru i omogućit će brže učitavanje.
     tooltips:
@@ -8582,10 +8581,6 @@ hr:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Maksimalan broj od 3 leksikona uobičajenih naziva već je dodan
-        this_only_applies_to_traditional_projects: |
-          Ovo se odnosi samo na tradicionalne projekte. Ne možete isključiti promatranja iz kolekcije ili krovnih projekata, koji su u biti spremljene pretrage.
-          Više možete pročitati
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ovdje</a>.
       recent:
         about_recent_users: Info
         definitions_html: <dl> <dt>Vjerojatno spam</dt> <dd> Korisnik koji je vjerojatno spammer, što znači da nema promatranja ili identifikacija, ali ima opis profila. </dd> <dt>Automatski spam</dt> <dd> Spammer koji je automatski označen kao spammer od strane sustava. </dd> <dt>Ručno spam</dt> <dd> Spammer koji je ručno označen kao spammer od strane kuratora stranice. </dd> <dt>Lažno pozitivan</dt> <dd> Korisnici koji su označeni kao spammeri, ali su kuratori stranice riješili zastavice jer nisu stvarno spammeri. </dd> </dl>
@@ -8916,8 +8911,6 @@ hr:
       default: '%b. %-d, %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

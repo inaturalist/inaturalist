@@ -12,8 +12,8 @@ const CheckboxRow = ( {
   modalDescription,
   modalDescriptionTitle,
   name,
-  profile,
-  showModalDescription
+  showModalDescription,
+  userSettings
 } ) => (
   <div className="row">
     <div className="col-xs-12">
@@ -22,8 +22,8 @@ const CheckboxRow = ( {
           <input
             id={`user_${name}`}
             type="checkbox"
-            // false when profile[name] is undefined
-            checked={profile[name] || false}
+            // false when userSettings[name] is undefined
+            checked={userSettings[name] || false}
             name={name}
             disabled={disabled}
             onChange={e => {
@@ -56,7 +56,7 @@ const CheckboxRow = ( {
             </button>
           </div>
         ) }
-        { description && typeof ( description ) === "string" && (
+        { typeof ( description ) === "string" && (
           <div className="checkbox-description-margin">
             <p
               className="text-muted"
@@ -65,7 +65,7 @@ const CheckboxRow = ( {
             />
           </div>
         ) }
-        { description && typeof ( description ) === "object" && (
+        { typeof ( description ) === "object" && (
           <div className="checkbox-description-margin">
             { description }
           </div>
@@ -76,7 +76,6 @@ const CheckboxRow = ( {
 );
 
 CheckboxRow.propTypes = {
-  profile: PropTypes.object,
   name: PropTypes.string,
   handleCheckboxChange: PropTypes.func,
   label: PropTypes.string,
@@ -87,7 +86,8 @@ CheckboxRow.propTypes = {
   modalClassName: PropTypes.string,
   modalDescription: PropTypes.any,
   modalDescriptionTitle: PropTypes.string,
-  showModalDescription: PropTypes.func
+  showModalDescription: PropTypes.func,
+  userSettings: PropTypes.object
 };
 
 export default CheckboxRow;

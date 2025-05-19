@@ -108,7 +108,7 @@ describe UsersController, "dashboard" do
           donorbox_plan_type: "monthly"
         expect( user ).to be_monthly_donor
         sign_in user
-        a = create :announcement, prefers_exclude_monthly_supporters: true
+        a = create :announcement, target_logged_in: Announcement::YES, prefers_exclude_monthly_supporters: true
         get :dashboard
         expect( response.body ).not_to include a.body
       end

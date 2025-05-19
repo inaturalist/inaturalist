@@ -298,6 +298,8 @@ da:
   add_a_new_change_group: Tilføj en ny ændringsgruppe
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Tilføj en nummereret liste
+  #Placeholder for a project autocomplete field
+  add_a_project: Tilføj et projekt
   add_a_single_observation: Tilføj en enkelt observation.
   add_a_taxon: Tilføj en takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -771,6 +773,13 @@ da:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, uploadet af %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Eksploderet
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Ueksploderet
   authority_list:
     iucn_red_list: IUCN rødliste
     natureserve: NatureServe
@@ -1487,6 +1496,12 @@ da:
   curators_changed_for_x_html: "Kuratorer ændret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet, og deres identifikationer vises sammen med observationerne på projektspecifikke visninger. Kuratorer kan også se de korrekte koordinater for fortrolige og slørede bidrag til dette projekt.
+  curator_coordinate_access: Kuratorkoordinatadgang
+  curator_coordinate_access_desc: |
+    Kuratorkoordinatadgang i traditionelle projekter afhænger af, hvem der har føjet
+    observationen til projektet. Dette er blot standardindstillingen for
+    observationer i projekter. Observatører kan også vælge at ændre dette for
+    individuelle observationer.
   curator_identification: Kurator identifikation
   current_flags: Aktuelle markeringer
   #Label for a custom boundary for an observation search
@@ -1494,6 +1509,8 @@ da:
   custom_project_fields: Standardfelter for projekt
   custom_project_was_successfully_created: Brugerdefineret projekt blev oprettet.
   custom_project_was_successfully_updated: Brugerdefineret projekt blev opdateret.
+  #Button to customize projects that appear in the header
+  customize__projects: Tilpas
   customize_location: Tilpas sted
   darr_apply_darr: "&darr; Anvend &darr;"
   daily_users: Daglige brugere
@@ -1945,6 +1962,12 @@ da:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: '"Synes godt om"'
   Family: Familie
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Favoritprojekter
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Vælg op til syv projekter, som vises som links i sidehovedet. Opdateringer
+    vises efter opfriskning af siden.
   favorite_taxa: favorit taksa
   favorites: "Favoritter"
   feature_this_project_: "Fremhæv dette projekt"
@@ -2319,6 +2342,8 @@ da:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist er en uafhængig 501(c)(3), skattefritaget, non-profit organisation
     baseret i USA (Skatte-ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist opdaterede ID'en foreslået af %{user}
   computer_vision_suggestion: Computer vision forslag
   computer_vision_suggestion_desc: |
     Computersyn er en læringsproces, hvor man lærer computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation, såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver, hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
@@ -2434,6 +2459,8 @@ da:
   internal_taxon_rank: Intern takson rang
   introduced: indført
   introduced_in_place: "indført i %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Ugyldig dato
   invitation: Invitation
   invite: invitér
   invite_people: Invitér personer
@@ -2707,6 +2734,10 @@ da:
   list_with_two_items: "%{one} og %{two}"
   listed_taxa: Opførte taksa
   listed_taxon: Opført takson
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Opført
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Unoterede
   listed_taxon_updated: Opført takson opdateret
   listing_lists: Oversigts lister
   listing_project_assets: Oversigts projektvurderinger
@@ -4326,6 +4357,9 @@ da:
   processing3p: "Bearbejder..."
   profile: Profil
   profile_picture: Profilbillede
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profilbillede filtype
   profile_visibility_desc: |
     For at undgå spam på%{site_name}, er brugerprofiler kun offentligt synlige efter at en bruger har bidraget med flere observationer af forskningskvalitet.
   project: Projekt
@@ -4424,6 +4458,16 @@ da:
   range: Område
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Slægt/Slægtshybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Art/Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Underarter/Sort/Form
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5745,8 +5789,20 @@ da:
   upcoming_bioblitzes: Kommende bioblitzer
   update: Opdatér
   update_existing_observations_with_new_license: Opdatér eksisterende observationer med det nye licensvalg
+  update_existing_observations_with_new_license_desc: |
+    Vælger man denne mulighed, anvendes det nye licensvalg på alle ens
+    eksisterende observationer. Dette kan tage et par timer, hvis man har
+    mange Observationer.
   update_existing_photos_with_new_license: Opdatér eksisterende foto´s med nye licensvalg
+  update_existing_photos_with_new_license_desc: |
+    Vælger man denne mulighed, anvendes det nye licensvalg på alle ens
+    eksisterende fotos. Dette kan tage et par timer, hvis man har mange
+    fotos.
   update_existing_sounds_with_new_license: Opdatér eksisterende lyde med nye licensvalg
+  update_existing_sounds_with_new_license_desc: |
+    Vælger man denne mulighed, anvendes det nye licensvalg på alle ens
+    eksisterende lyde. Dette kan tage et par timer, hvis man har mange
+    lyde.
   update_observations: Opdatér observationer
   update_past: "Opdatér tidligere%{type}"
   update_photos: Opdatér foto´s
@@ -5778,7 +5834,7 @@ da:
   uploader:
     errors:
       file_too_big: Filen skal være mindre end %{megabytes} MB
-      unsupported_file_type: Filtypen understøttes ikke. Vi accepterer JPG, PNG, GIF, WAV, AAC og MP4 (kun audio)
+      unsupported_file_type: Filtype ikke understøttet. Gyldige filtyper er JPG, PNG, GIF, HEIC, HEIF, WAV, AAC og MP4 (kun lyd)
     resize_tip: |
       Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
       2048 x 2048 pixels. Dette sker med alle fotos på
@@ -5899,6 +5955,14 @@ da:
     Bruger stoler på dette projekt med skjulte koordinater, sløret af en uspecificeret årsag.
   user_trusts_this_project_for_taxon: |
     Bruger stoler kun på dette projekt med skjulte koordinater, sløret grundet truet taksa.
+  user_trusts_this_project_when_added_by_any: |
+    Brugeren betror projektkuratorer med skjulte koordinater for observationer
+    tilføjet projektet af hvem som helst.
+  user_trusts_this_project_when_added_by_observer: |
+    Brugeren betror projektkuratorer med skjulte koordinater for observationer
+    tilføjet projektet af observatøren.
+  user_trusts_this_project_when_added_by_none: |
+    Brugeren betror ikke projektkuratorer med skjulte koordinater.
   user_trusts_you_with_their_private_coordinates: "%{user} har betroet dig med deres skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt at betro dig med alle skjulte koordinater for alle sine observationer.
@@ -5996,6 +6060,8 @@ da:
   view_more_observations_of_x_project: "Vis flere observationer fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observationer af %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere der ikke er gennemgået"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Se de berørte ID'er
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -6442,6 +6508,46 @@ da:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Målbrugere efter andre attributter
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Om atlasser
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasser formidler den globale fordeling af en takson. Kuratorer laver
+          atlasser ved at definere strukturen af et atlas og kuratere
+          listede taksa, som driver det.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Eksplodér dette sted
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Ueksplodér dette sted
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ingen ændringer i dette atlas endnu
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Nylige atlasændringer
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Nylige listede taksonændringer
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Vis listede taksa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Dette atlas er ikke aktivt p.t.
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dette fjerner denne takson og alle dens efterkommere fra tjeklister
+          tilknyttet dette sted og evt. standardsteder, det indeholder. Dette
+          valg er irreversibelt. Sikker på, at dette skal gøre?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Advarsel: Der er observationer, som ikke er repræsenteret af dette atlas
     content_freeze:
       content_freeze: Indholdsfrysning
       during_this_time: |
@@ -8534,6 +8640,10 @@ da:
           Licensering af dit indhold giver enhver den juridiske ret til at benytte dette uden at indhente din tilladelse, såfremt de overholder vilkårene i licensen. Derudover medtager %{site_name} dit Creative Commons-licenseret indhold i regelmæssigt opdaterede arkiver produceret til udvalgte partnerorganisationer med interesse for vores data. Eksempelvis medtager vi posterne No Copyright (CC0), Attribution (CC BY) og Attribution-NonCommercial (CC BY-NC) i det arkiv, vi genererer til <a href="http://www.gbif.org/">Global biodiversitetsinformation
           Facility</a> (GBIF), en international, mellemstatslig organisation,
           der kompilerer og distribuerer information om biodiversitet fra hele verden.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Filtype uunderstøttet. Gyldige filtyper er JPG, PNG og GIF
         monthly_supporter_desc_html: |
           iNaturalist Monthly Supporters leverer automatiske månedlige bidrag
           til iNaturalist (USA IRS EIN 92-1296468) for at støtte
@@ -8654,10 +8764,11 @@ da:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: De maksimalt 3 leksika for almindelige navne er allerede tilføjet
-        this_only_applies_to_traditional_projects: |
-          Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
-          fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
-          Du kan læse mere <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
+        this_only_applies_to_traditional_projects2: |
+          Dette gælder kun for traditionelle projekter. Man kan ikke undtage observationer
+          fra samlings- eller paraplyprojekter, som i det væsentlige er gemte søgninger.
+          Læs evt. mere her
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Her</a>.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis er en spammer, hvilket betyder, at de ikke har nogen observationer eller identifikationer, men de har en profilbeskrivelse. </dd><dt> Auto Spam </dt><dd> Spammer, der automatisk blev markeret som en spammer af systemet. </dd><dt> Manuel spam </dt><dd> Spammer, der blev manuelt markeret som en spammer af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev markeret som spammere, men markeringerne blev løst af sidens kuratorer, fordi de ikke var virkelig spammere. </dd></dl>
@@ -8949,7 +9060,9 @@ da:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %=B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d. %=b %H:%M'
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8989,6 +9102,8 @@ da:
     attributes:
       announcement:
         created_at: Oprettet
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Afviselig
         updated_at: Opdateret
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -9213,6 +9328,7 @@ da:
         show_for_descendent_taxa: Vis for efterkommer-taksa
       user:
         email: E-mail
+        faved_project_ids: Favoritprojekter
         login: Brugernavn
         name: Navn
         locale: Lokal
@@ -9333,6 +9449,8 @@ da:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Kun personale og kuratorer kan skjule indhold
               only_staff_and_hiding_curators_can_unhide: Kun personale og kuratorer, der skjuler indhold, kan gøre det synligt igen
+              #Error saying that only staff can rename
+              only_staff_can_rename: Kun medarbejdere kan omdøbe
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Kun personale kan indstille indhold som fortroligt
               staff_cannot_be_suspended: Personalet kan ikke suspenderes
@@ -9355,6 +9473,9 @@ da:
                 kan ikke være større end datoen observationen blev tilføjet
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: skal være indenfor de seneste 130 år
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: skal være en enkelt dag, ikke et interval
         observation_field_value:
           attributes:
             value:
@@ -9389,6 +9510,9 @@ da:
               invalid_point: har et ugyldigt punkt, f.eks. længdegrad større end 180 eller breddegrad på mindre end -90
               must_have_more_than_three_points: skal have flere end 3 punkter
               polygon_with_less_than_four_points: har en polygon med færre end 4 punkter
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: har en polygon uden areal (alle punkter er ens)
         place_geometry:
           attributes:
             geom:
@@ -9407,6 +9531,10 @@ da:
               must_be_on_site_long_enough: |
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får
                 en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Maksimalt 7 favoritprojekter
         project_observation:
           attributes:
             base:
@@ -9460,6 +9588,11 @@ da:
               bad_format: |
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Livstaksonen kan ikke være involveret i taksonændringer
         taxon_name:
           attributes:
             lexicon:
@@ -9497,6 +9630,14 @@ da:
               already_has_a_range: indeholder allerede udbredelse
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: kan ikke omfatte flere end 7 projekter
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: skal alle eksistere
             login:
               must_begin_with_a_letter: |
                 skal begynde med et bogstav, ikke indeholde mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger

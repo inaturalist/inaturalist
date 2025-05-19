@@ -579,7 +579,6 @@ Rails.application.routes.draw do
   resource :admin, only: :index, controller: :admin do
     collection do
       get :index
-      get :queries
       get :users
       get "users/:id" => "admin#user_detail", as: :user_detail
       get "login_as/:id" => "admin#login_as", as: :login_as
@@ -588,6 +587,13 @@ Rails.application.routes.draw do
       put :revoke_user_privilege
       put :restore_user_privilege
       put :reset_user_privilege
+    end
+    resources :queries, only: :index, controller: "admin/queries" do
+      collection do
+        get :index
+        get :primary
+        get :replica
+      end
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do

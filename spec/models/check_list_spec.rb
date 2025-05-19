@@ -108,9 +108,8 @@ describe CheckList, "refresh_with_observation" do
   end
 
   it "should add listed taxa" do
-    o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
     expect( @check_list.taxon_ids ).not_to include @taxon.id
-    CheckList.refresh_with_observation( o )
+    o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
     @check_list.reload
     expect( @check_list.taxon_ids ).to include @taxon.id
   end
@@ -199,6 +198,7 @@ describe CheckList, "refresh_with_observation" do
         where( "ST_Intersects( place_geometries.geom, ST_Point(#{obscured_lon}, #{obscured_lat} ))" ).
         map( &:place_id )
     ).not_to include( p.id )
+    expect( l.taxon_ids ).not_to include( @taxon.id )
     o = make_research_grade_observation(latitude: p.latitude, 
       longitude: p.longitude, taxon: @taxon, geoprivacy: Observation::OBSCURED)
     Observation.where( id: o.id ).update_all(
@@ -210,8 +210,6 @@ describe CheckList, "refresh_with_observation" do
         where( "ST_Intersects( place_geometries.geom, ST_Point(#{o.private_longitude}, #{o.private_latitude} ))" ).
         map( &:place_id )
     ).to include( p.id )
-    expect( l.taxon_ids ).not_to include( @taxon.id )
-    CheckList.refresh_with_observation( o )
     l.reload
     expect( l.taxon_ids ).to include( @taxon.id )
   end
@@ -369,16 +367,15 @@ describe CheckList, "refresh_with_observation" do
       @atlas = Atlas.make!(is_active: true, taxon: @taxon)
       @atlas_place_check_list = List.find(@atlas_place.check_list_id)
       @descendant_place_check_list = List.find(@descendant_place.check_list_id)
-      o = make_research_grade_observation( latitude: @descendant_place.latitude, longitude: @descendant_place.longitude, taxon: @taxon )
       expect( @descendant_place_check_list.taxon_ids ).not_to include @taxon.id
       expect( @atlas_place_check_list.taxon_ids ).not_to include @taxon.id
-      CheckList.refresh_with_observation( o )
+      make_research_grade_observation( latitude: @descendant_place.latitude, longitude: @descendant_place.longitude, taxon: @taxon )
       @descendant_place_check_list.reload
       @atlas_place_check_list.reload
       expect( @descendant_place_check_list.taxon_ids ).to include @taxon.id
       expect( @atlas_place_check_list.taxon_ids ).not_to include @taxon.id
     end
-    
+
     it "should remove listed taxa if observation deleted" do
       o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
       expect( @place.place_geometry.geom ).not_to be_blank
@@ -427,18 +424,16 @@ describe CheckList, "refresh_with_observation" do
       expect( state.check_list.taxa ).to include species
     end
     it "should add a listed taxon if there is an inactive complete set for the observed taxon" do
-      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
-      complete_set = CompleteSet.make!( is_active: false, taxon: species )
       expect( state.check_list.taxa ).not_to include( species )
-      CheckList.refresh_with_observation( o )
+      CompleteSet.make!( is_active: false, taxon: species )
+      make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
       state.reload
       expect( state.check_list.taxa ).to include( species )
     end
     it "should add a listed taxon if there is an inactive complete set for an ancestor of the observed taxon" do
-      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
-      complete_set = CompleteSet.make!( is_active: false, taxon: genus )
       expect( state.check_list.taxa ).not_to include( species )
-      CheckList.refresh_with_observation( o )
+      CompleteSet.make!( is_active: false, taxon: genus )
+      make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
       state.reload
       expect( state.check_list.taxa ).to include( species )
     end
@@ -455,9 +450,8 @@ describe CheckList, "refresh_with_observation" do
       ListedTaxon.make!( list: country.check_list, taxon: species )
       complete_set = CompleteSet.make!( is_active: true, taxon: genus, place: country )
       expect( complete_set.get_taxa_for_place_taxon ).to include species
-      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
       expect( state.check_list.taxa ).not_to include( species )
-      CheckList.refresh_with_observation( o )
+      make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
       state.reload
       expect( state.check_list.taxa ).to include( species )
     end

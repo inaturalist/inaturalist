@@ -10,7 +10,7 @@ import {
 function mapStateToProps( state ) {
   return {
     config: state.config,
-    profile: state.profile,
+    userSettings: state.userSettings,
     sites: state.sites.sites
   };
 }

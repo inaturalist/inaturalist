@@ -48,4 +48,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   
   inflect.plural /^(atlas)$/i, '\1es'
   inflect.singular /^(atlas)es/i, '\1'
+
+  inflect.plural /^(.*)([Ff])ave$/i, '\1\\2aves'
+  inflect.singular /^(.*)([Ff])aves$/i, '\1\2ave'
 end

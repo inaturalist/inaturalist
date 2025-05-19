@@ -35,13 +35,19 @@ def get_records( url_base )
   records = []
   success = true
   i = 0
-  errors = [Timeout::Error, RestClient::ServiceUnavailable]
+  potential_errors = [
+    Timeout::Error,
+    RestClient::ServiceUnavailable,
+    RestClient::GatewayTimeout,
+    RestClient::TooManyRequests,
+    RestClient::InternalServerError
+  ]
   while json.count.positive? && success == true
     @logger.info "\t...reading page #{i}"
     offset = 500 * i
     url = "#{url_base}?limit=500&offset=#{offset}"
     begin
-      response = try_and_try_again( errors ) do
+      response = try_and_try_again( potential_errors, exponential_backoff: true, sleep: 3 ) do
         get_response( url )
       end
       json = JSON.parse( response )

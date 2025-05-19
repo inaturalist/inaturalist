@@ -38,17 +38,30 @@ class Photo extends Component {
     ) {
       className += " drag";
     }
+    className += " btn btn-nostyle";
+    let imgSrc = file.photo ? file.photo.large_url : file.preview;
+    // If there's no remote file yet and this is an HEIC/HEIF, then
+    // the "preview" will not natively render in any browser other than
+    // Safari, so we show a loading spinner instead
+    if ( !file?.photo?.large_url && ( file.type === "image/heic" || file.type === "image/heif" ) ) {
+      imgSrc = null;
+    }
     return (
-      <div>
+      <div className="Photo">
         { connectDragSource(
-          <div className={className}>
-            <img
-              alt={file.name}
-              className="img-thumbnail"
-              src={file.photo ? file.photo.large_url : file.preview}
-              onClick={onClick}
-            />
-          </div>
+          <button className={className} onClick={onClick} type="button">
+            {
+              imgSrc
+                ? (
+                  <img
+                    alt={file.name}
+                    className="img-thumbnail"
+                    src={imgSrc}
+                  />
+                )
+                : <div className="loading_spinner" />
+            }
+          </button>
         ) }
       </div>
     );

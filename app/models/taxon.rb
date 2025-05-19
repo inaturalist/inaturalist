@@ -225,12 +225,13 @@ class Taxon < ApplicationRecord
   end
   ROOT_LEVEL = STATEOFMATTER_LEVEL
 
-  RANK_FOR_RANK_LEVEL = RANK_LEVELS.reject do | k, _v |
-    ["variety", "form", "infrahybrid", "hybrid", "genushybrid"].include? k
-  end.invert
+  RANK_FOR_RANK_LEVEL = RANK_LEVELS.except(
+    "variety", "form", "infrahybrid", "hybrid", "genushybrid"
+  ).invert
 
-  RANKS = RANK_LEVELS.keys
+  RANKS = RANK_LEVELS.to_a.sort_by( &:last ).reverse.map( &:first )
   VISIBLE_RANKS = RANKS - ["stateofmatter"]
+  UNIQUE_LEVELED_RANKS = RANK_FOR_RANK_LEVEL.to_a.sort.reverse.map( &:last ) - ["stateofmatter"]
 
   RANK_EQUIVALENTS = {
     "division" => "phylum",

@@ -290,6 +290,8 @@ nl:
   add_a_new_change_group: Nieuwe wijzigingengroep toevoegen
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Voeg een genummerde lijst toe
+  #Placeholder for a project autocomplete field
+  add_a_project: Een project toevoegen
   add_a_single_observation: Voeg één waarneming toe
   add_a_taxon: Een taxon toevoegen
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1467,6 +1469,12 @@ nl:
   curators_changed_for_x_html: "Curatoren voor %{x} gewijzigd"
   curators: Curatoren
   curators_can_remove_observations_from: Curatoren kunnen waarnemingen uit het project verwijderen, en hun determinaties worden getoond naast de waarnemingen in projectspecifieke presentaties. Curatoren kunnen ook de echte coördinaten zien van privé- en vervaagde bijdragen aan dit project.
+  curator_coordinate_access: Toegang curator tot de coördinaten
+  curator_coordinate_access_desc: |
+    De toegang van de curator tot de coördinaten in het geval van traditionele projecten is afhankelijk van wie
+    de waarneming aan het project heeft toegevoegd. Dit is slechts de standaard instelling voor
+    waarnemingen in projecten. Waarnemers kunnen ook kiezen om dit voor
+    individuele waarnemingen te veranderen.
   curator_identification: Curatordeterminatie
   current_flags: Huidige meldingen
   #Label for a custom boundary for an observation search
@@ -1474,6 +1482,8 @@ nl:
   custom_project_fields: Aangepaste projectvelden
   custom_project_was_successfully_created: Projectaanpassingen toegevoegd
   custom_project_was_successfully_updated: Projectaanpassingen bijgewerkt
+  #Button to customize projects that appear in the header
+  customize__projects: Aanpassen
   customize_location: Locatie aanpassen
   darr_apply_darr: "&darr; Toepassen &darr;"
   daily_users: Dagelijkse gebruikers
@@ -1925,6 +1935,12 @@ nl:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorieten
   Family: Familie
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Favoriete projecten
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Kies maximaal zeven projecten die als links in de koptekst worden weergegeven. Updates
+    verschijnen na het vernieuwen van de pagina.
   favorite_taxa: Favoriete taxa
   favorites: "Favorieten"
   feature_this_project_: "Dit project aanbevelen"
@@ -2417,6 +2433,8 @@ nl:
   internal_taxon_rank: Interne taxonrang
   introduced: Geïntroduceerd
   introduced_in_place: "Geïntroduceerd in %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Ongeldige datum
   invitation: Uitnodiging
   invite: uitnodigen
   invite_people: Mensen uitnodigen
@@ -4305,6 +4323,9 @@ nl:
   processing3p: "Verwerken ..."
   profile: Profiel
   profile_picture: Profielafbeelding
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Bestandstype profielfoto
   profile_visibility_desc: |
     In een poging om spam van %{site_name} te weren, zijn gebruikersprofielen alleen
     publiekelijk zichtbaar nadat een gebruiker verschillende waarnemingen van onderzoekskwaliteit heeft bijgedragen.
@@ -4396,6 +4417,16 @@ nl:
   range: Periode
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Geslacht / Geslachthybride
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Soort / Hybride
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Ondersoort / Variëteit / Vorm
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5681,8 +5712,16 @@ nl:
   upcoming_bioblitzes: Komende bioblitzes
   update: Bijwerken
   update_existing_observations_with_new_license: Werk bestaande waarnemingen bij met de nieuwe licentie-keuzes
+  update_existing_observations_with_new_license_desc: |
+    Als je deze optie selecteert wordt jouw nieuwe licentiekeuze toegepast op al jouw bestaande waarnemingen. Dit kan een paar uur duren als je veel waarnemingen hebt.
   update_existing_photos_with_new_license: Werk bestaande foto's bij met nieuwe licentie-keuzes
+  update_existing_photos_with_new_license_desc: |
+    Als je deze optie selecteert wordt je nieuwe licentiekeuze toegepast op al jouw
+    bestaande foto's. Dit kan een paar uur duren als je veel foto 's hebt.
   update_existing_sounds_with_new_license: Werk bestaande geluiden bij met de nieuwe licentie-keuzes
+  update_existing_sounds_with_new_license_desc: |
+    Als je deze optie selecteert wordt je nieuwe licentiekeuze toegepast op al jouw
+    bestaande geluiden. Dit kan een paar uur duren als je veel Geluiden hebt.
   update_observations: Waarnemingen bijwerken
   update_past: "Afgelopen %{type} bijwerken"
   update_photos: Foto's bijwerken
@@ -5713,7 +5752,6 @@ nl:
   uploader:
     errors:
       file_too_big: Bestand moet kleiner zijn dan %{megabytes} MB
-      unsupported_file_type: Bestandstype wordt niet ondersteund. We accepteren JPG, PNG, GIF, WAV, AAC, MP3 en MP4 (alleen audio)
     resize_tip: |
       Als je fotobestanden te groot zijn kan je proberen ze te verkleinen tot maximaal 2048 bij 2048 pixels. Dit gebeurt sowieso met alle foto's op de server en zorgt voor een snellere upload.
     tooltips:
@@ -5832,6 +5870,14 @@ nl:
   user_trusts_this_project_for_taxon: |
     De gebruiker vertrouwt dit project alleen verborgen coördinaten toe die
     werden vervaagd vanwege bedreigde taxa.
+  user_trusts_this_project_when_added_by_any: |
+    De gebruiker vertrouwt de verborgen coördinaten van waarnemingen 
+    aan het project toegevoegd door wie dan ook toe aan de projectcuratoren.
+  user_trusts_this_project_when_added_by_observer: |
+    De gebruiker vertrouwt de verborgen coördinaten van waarnemingen 
+    aan het project toegevoegd door de waarnemer toe aan de projectcuratoren.
+  user_trusts_this_project_when_added_by_none: |
+    De gebruiker vertrouwt projectcuratoren niet de verborgen coördinaten van toegevoegde waarnemingen toe.
   user_trusts_you_with_their_private_coordinates: "%{user} vertrouwt je hun verborgen coördinaten toe"
   user_trusts_you_with_their_private_coordinates_desc: |
     De waarnemer heeft ervoor gekozen om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
@@ -5924,6 +5970,8 @@ nl:
   view_more_observations_of_x_project: "Geef meer waarnemingen weer van %{project} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Geef meer waarnemingen weer van %{taxon} op <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Bekijk meer niet-nagekeken"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Toon jouw getroffen ID's
   view_observation: Waarneming weergeven
   view_observations: Waarnemingen weergeven
   view_observation_flags: Meldingen over waarneming bekijken
@@ -7000,6 +7048,7 @@ nl:
         time_observed_at: Genormaliseerde datumtijd van de waarneming
         time_zone: Tijdzone van de waarneming
         place_guess: Localiteitsbeschrijving zoals ingevoerd door de waarnemer
+        latitude: Openbaar zichtbare breedtegraad vanaf de waarneminglocatie
         positional_accuracy: "Precisie coördinaten (jaja, nauwkeurigheid != precisie, namen zijn ongelukkig gekozen)"
         private_latitude: "Privé-breedtegraad, instellen als privé-waarneming of vervaagd"
         private_longitude: "Privé-lengtegraad, instellen als waarneming privé of onzichtbaar is"
@@ -7008,6 +7057,8 @@ nl:
         out_of_range: Of deze waarneming al dan niet buiten het bekende verspreidingsgebied van het taxon ligt
         created_at: Datumtijd waarneming werd aangemaakt
         updated_at: Datumtijd waarneming werd recent bijgewerkt
+        quality_grade: Kwaliteitsgraad van deze waarneming. Zie de Help-sectie voor meer informatie over wat dit betekent. Zie https://help.inaturalist.org/support/solutions/articles/151000169936
+        license: Identificatie voor de licentie of ontheffing die de waarnemer voor deze waarneming heeft gekozen. Alle rechten voorbehouden indien blanco
         url: URL voor de waarneming
         tag_list: Lijst van labels door komma's gescheiden
         place_admin1_name: Naam van de administratieve plaats één rang onder het landniveau
@@ -7954,6 +8005,12 @@ nl:
       taxon:
         about_html: |
           Taxa kunnen veel lokale namen hebben. We ondersteunen één algemene lokale naam als standaard, die hier kan worden gewijzigd door een naam bovenaan de lijst te slepen. Je kunt ook standaardnamen op verschillende gebieden opgeven door de naam te bewerken en een plaats toe te voegen, maar doe dit alleen wanneer verschillende gebieden conflicterende namen hebben.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist gebruikt verschillende unieke termen om verschillende
+          aspecten van de service te beschrijven. Hier hebben we geprobeerd enkele ervan
+          te verzamelen en geven hun definities ter referentie.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8038,6 +8095,10 @@ nl:
         licensing_desc_html: |
           Het licentiëren van je inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder jouw toestemming te vragen zolang ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} je Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Bestandstype wordt niet ondersteund. We accepteren JPG, PNG en GIF
         monthly_supporter_desc_html: |
           Maandelijkse supporters van iNaturalist doneren maandelijks automatisch aan iNaturalist (United States IRS EIN 92-1296468) ter ondersteuning van het not-for-profit-beheer van iNaturalist en de iNaturalist-netwerksites.
           <a href="%{url}">Klik hier om een maandelijkse supporter te worden</a>.
@@ -8138,10 +8199,11 @@ nl:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Het maximum van 3 lokale-naam-lexicons zijn al toegevoegd
-        this_only_applies_to_traditional_projects: |
+        this_only_applies_to_traditional_projects2: |
           Dit geldt alleen voor traditionele projecten. Je kunt waarnemingen niet uitsluiten
-          van verzamel- of overkoepelende projecten, wat in feite opgeslagen zoekopdrachten zijn.
-          Je kunt <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a> meer lezen.
+          van collectie- of overkoepelende projecten, die feitelijk opgeslagen zoekopdrachten zijn.
+          Hier kun je meer lezen
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">hier</a>.
       recent:
         about_recent_users: Over
         definitions_html: "<dl><dt>Waarschijnlijk spam</dt><dd>Gebruiker die waarschijnlijk een spammer is, wat betekent dat ze geen waarnemingen of determinaties hebben maar wel een profielbeschrijving.\n</dd><dt>Automatische spam</dt><dd>Spammer die door het systeem automatisch als spammer is gemarkeerd. \n</dd><dt>Handmatige spam</dt><dd>Spammer die handmatig door een site-curator als spammer is gemarkeerd. \n</dd><dt>Valse positieven</dt><dd>Gebruikers die zijn gemarkeerd als spammers, maar de meldingen zijn opgelost door sitecuratoren omdat het toch geen spammers waren.</dd></dl>"
@@ -8437,8 +8499,6 @@ nl:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d. %=B %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d. %=B %H:%M'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -8687,6 +8747,7 @@ nl:
         show_for_descendent_taxa: Toon voor afstammende taxa
       user:
         email: E-mail
+        faved_project_ids: Favoriete projecten
         login: Gebruikersnaam
         name: Naam
         locale: Taalinstelling
@@ -8805,6 +8866,8 @@ nl:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Alleen medewerkers en curatoren kunnen inhoud verbergen
               only_staff_and_hiding_curators_can_unhide: Alleen medewerkers en curatoren die inhoud verbergen kunnen deze weer zichtbaar maken
+              #Error saying that only staff can rename
+              only_staff_can_rename: Alleen medewerkers kunnen de naam wijzigen
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Alleen medewerkers kunnen inhoud instellen als privé
               staff_cannot_be_suspended: Staf kan niet worden geschorst
@@ -8827,6 +8890,9 @@ nl:
                 kan niet later zijn dan de datum waarop de waarneming is toegevoegd
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: moet binnen de afgelopen 130 jaar zijn
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: moet één dag zijn, geen reeks
         observation_field_value:
           attributes:
             value:
@@ -8861,6 +8927,9 @@ nl:
               invalid_point: heeft een ongeldig punt, bijvoorbeeld lengtegraad groter dan 180 of breedtegraad minder dan -90
               must_have_more_than_three_points: moet meer dan 3 punten hebben
               polygon_with_less_than_four_points: heeft een veelhoek met minder dan 4 punten
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: Heeft een veelhoek zonder oppervlakte (alle punten zijn hetzelfde)
         place_geometry:
           attributes:
             geom:
@@ -8880,6 +8949,10 @@ nl:
                 moet meer dan 24 uur geleden hebben geregistreerd om te publiceren. We krijgen
                 veel spammers en dit is een soort van suffe manier om daarmee om te gaan.
                 Je kunt alsnog een kladversie opslaan, en als je de site morgen nog gebruikt kun je publiceren.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Je kunt maar 7 projecten favoriet maken
         project_observation:
           attributes:
             base:
@@ -8933,6 +9006,11 @@ nl:
               bad_format: |
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Het Life-taxon kan niet betrokken zijn bij taxonwijzigingen
         taxon_name:
           attributes:
             lexicon:
@@ -8969,6 +9047,14 @@ nl:
               already_has_a_range: heeft al een verspreiding
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: kan niet meer dan 7 projecten omvatten
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: moeten allemaal bestaan
             login:
               must_begin_with_a_letter: |
                 moet beginnen met een letter, mag geen spaties bevatten en enkel gebruik maken van letters, cijfers, liggende streepjes en underscores

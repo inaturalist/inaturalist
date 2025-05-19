@@ -3,21 +3,26 @@ import React from "react";
 import PropTypes from "prop-types";
 import { MAX_FILE_SIZE } from "../../observations/uploader/models/util";
 
-const RejectedFilesError = ( { rejectedFiles } ) => {
+const RejectedFilesError = ( {
+  rejectedFiles,
+  supportedFilesRegex,
+  unsupportedFileTypeMessage,
+  maxFileSizeInBytes
+} ) => {
   const errors = {};
   let showResizeTip = false;
   const namedRejectedFiles = _.filter( rejectedFiles, f => f.name && f.name.length > 0 );
   _.forEach( namedRejectedFiles, file => {
     errors[file.name] = errors[file.name] || [];
-    if ( file.size > MAX_FILE_SIZE ) {
+    if ( file.size > maxFileSizeInBytes ) {
       errors[file.name].push(
-        I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } )
+        I18n.t( "uploader.errors.file_too_big", { megabytes: maxFileSizeInBytes / 1024 / 1024 } )
       );
       showResizeTip = file.type && file.type.match( /image/ );
     }
-    if ( !file.type || !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr|mp4/i ) ) {
+    if ( !file.type || !file.type.match( new RegExp( supportedFilesRegex, "i" ) ) ) {
       errors[file.name].push(
-        I18n.t( "uploader.errors.unsupported_file_type" )
+        unsupportedFileTypeMessage
       );
     }
     if ( window.location.search.match( /debug=true/ ) ) {
@@ -46,11 +51,17 @@ const RejectedFilesError = ( { rejectedFiles } ) => {
 };
 
 RejectedFilesError.propTypes = {
-  rejectedFiles: PropTypes.array
+  rejectedFiles: PropTypes.array,
+  supportedFilesRegex: PropTypes.string,
+  unsupportedFileTypeMessage: PropTypes.string,
+  maxFileSizeInBytes: PropTypes.number
 };
 
 RejectedFilesError.defaultProps = {
-  rejectedFiles: []
+  rejectedFiles: [],
+  supportedFilesRegex: "gif|png|jpe?g|heic|heif|wav|mpe?g|mp3|aac|3gpp|amr|mp4",
+  unsupportedFileTypeMessage: I18n.t( "uploader.errors.unsupported_file_type" ),
+  maxFileSizeInBytes: MAX_FILE_SIZE
 };
 
 export default RejectedFilesError;

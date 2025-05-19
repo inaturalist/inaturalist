@@ -3187,7 +3187,6 @@ kk:
   uploader:
     errors:
       file_too_big: Файл %{megabytes} МБ-тан аз болуы керек
-      unsupported_file_type: Файл түрі қолданылмайды. Біз JPG, PNG, GIF, WAV, AAC, MP3 және MP4 (тек аудио) қабылдаймыз
     resize_tip: |
       Егер фото файлдарыңыз тым үлкен болса, оларды максимум 2048 x 2048 пиксельге дейін қиып көріңіз. Бұл бәрібір сервердегі барлық фотосуреттерде болады және жүктеп салуды жылдамырақ етеді.
     tooltips:
@@ -3977,8 +3976,6 @@ kk:
       default: '%b. %-d, %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

@@ -184,6 +184,9 @@ export function score( obsCard ) {
       scoreParams.lat = obsCard.latitude;
       scoreParams.lng = obsCard.longitude;
     }
+    if ( obsCard.humanExclusion && obsCard.humanExclusion !== "Original" ) {
+      scoreParams.human_exclusion = _.snakeCase( obsCard.humanExclusion );
+    }
 
     inaturalistjs.computervision.score_image( scoreParams )
       .then( r => {

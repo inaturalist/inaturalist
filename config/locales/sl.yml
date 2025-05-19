@@ -5876,10 +5876,6 @@ sl:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Največ 3 slovarji občnih imen so že bili dodani
-        this_only_applies_to_traditional_projects: |
-          To se nanaša samo na tradicionalne projekte. Ne morete izključevati
-          opazovanj iz zbirnih ali krovnih projektov, ki so v bistvu shranjena iskanja.
-          Preberite več <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">tu</a>.
       recent:
         about_recent_users: Predstavitev
       show:
@@ -6212,8 +6208,6 @@ sl:
       default: '%b. %-d, %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

@@ -719,9 +719,8 @@ describe TaxonSwap, "commit_records" do
   end
 
   it "should set counter caches correctly" do
-    without_delay do
-      3.times { Observation.make!(:taxon => @input_taxon) }
-    end
+    3.times { Observation.make!(:taxon => @input_taxon) }
+    Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
     @input_taxon.reload
     expect(@input_taxon.observations_count).to eq(3)
     expect(@output_taxon.observations_count).to eq(0)

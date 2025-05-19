@@ -9,6 +9,14 @@ $label-start: 7px;
 .ui-autocomplete {
   cursor: pointer;
   padding: 0px;
+  &.user-autocomplete {
+    .ac {
+      min-width: 240px;
+    }
+    .ac-label {
+      padding-right: 7px;
+    }
+  }
   .ac {
     min-width: 370px;
     display: flex;

@@ -33,8 +33,11 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       } );
       return modified;
     case UPDATE_OBS_CARD:
-      return Object.assign( { }, state,
-        { obsCard: Object.assign( { }, state.obsCard, action.obsCard ) } );
+      return Object.assign(
+        { },
+        state,
+        { obsCard: Object.assign( { }, state.obsCard, action.obsCard ) }
+      );
     default:
   }
   return state;
@@ -157,8 +160,15 @@ export function dataURLToBlob( dataURL ) {
 }
 
 export function uploadImage( obsCard ) {
-  return function ( dispatch ) {
+  return function ( dispatch, getState ) {
     resizeUpload( obsCard.uploadedFile.file, { }, resizedBlob => {
+      dispatch( updateObsCard( {
+        uploadedFile: Object.assign(
+          { },
+          obsCard.uploadedFile,
+          { preview: resizedBlob }
+        )
+      } ) );
       const body = new FormData( );
       body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
       body.append( "file", resizedBlob );
@@ -173,15 +183,23 @@ export function uploadImage( obsCard ) {
         .then( thenJson )
         .then( r => {
           const serverMetadata = obsCard.uploadedFile.additionalPhotoMetadata( r );
+          const uploadedFile = getState( ).computerVisionDemo.obsCard.uploadedFile || {};
           dispatch( updateObsCard( {
-            uploadedFile: Object.assign( { }, obsCard.uploadedFile,
-              { uploadState: "uploaded", photo: r, serverMetadata } )
+            uploadedFile: Object.assign(
+              { },
+              uploadedFile,
+              { uploadState: "uploaded", photo: r, serverMetadata }
+            )
           } ) );
         } )
         .catch( e => {
+          const uploadedFile = getState( ).computerVisionDemo.obsCard.uploadedFile || {};
           dispatch( updateObsCard( {
-            uploadedFile: Object.assign( { }, obsCard.uploadedFile,
-              { uploadState: "failed" } )
+            uploadedFile: Object.assign(
+              { },
+              uploadedFile,
+              { uploadState: "failed" }
+            )
           } ) );
           console.log( ["error", e] );// eslint-disable-line no-console
         } );

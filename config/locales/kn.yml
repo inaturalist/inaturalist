@@ -4364,7 +4364,6 @@ kn:
   uploader:
     errors:
       file_too_big: ಕಡತವು %{megabytes} MB ಗಿಂತ ಕಡಿಮೆಯಿರಬೇಕು
-      unsupported_file_type: ಕಡತದ ವಿಧ ಬೆಂಬಲಿತವಿಲ್ಲ. ನಾವು JPG, PNG, GIF, WAV, AAC, MP3, ಮತ್ತು MP4 (ಧ್ವನಿ ಮಾತ್ರ) ಗಳನ್ನು ಸ್ವೀಕರಿಸುತ್ತೇವೆ
     resize_tip: |
       ನಿಮ್ಮ ಚಿತ್ರಗಳು ಹೆಚ್ಚು ದೊಡ್ಡವಾಗಿದ್ದಲ್ಲಿ, ಅವುಗಳನ್ನು ಗರಿಷ್ಟ 2048 ಬೈ 2048 ಪಿಕ್ಸೆಲ್‍ಗಳಿಗೆ ಕ್ರಾಪ್‍ಮಾಡಲು ಪ್ರಯತ್ನಿಸಿ. ಹೇಗಿದ್ದರೂ ಇದು ಎಲ್ಲಾ ಚಿತ್ರಗಳಿಗೆ ಸರ್ವರ್‍ನಲ್ಲಿಯೇ ಆಗುತ್ತದೆ ಮತ್ತು ಇದು ಶೀಘ್ರವಾದ ಅಪ್ಲೋಡ್‍ಗೆ ಸಹಕಾರಿಯಾಗಿದೆ.
     tooltips:
@@ -5743,8 +5742,6 @@ kn:
       default: '%b. %d, %Y %H:%M:%S %z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
-      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.

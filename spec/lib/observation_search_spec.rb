@@ -65,6 +65,12 @@ describe Observation do
       query_params = Observation.get_search_params(req_params, { site: s })
       expect( query_params[:site_id] ).to be nil
     end
+
+    it "returns an impossible condition if given taxon_name does not have a match" do
+      req_params = { taxon_name: "nonsense" }
+      query_params = Observation.get_search_params( req_params )
+      expect( query_params[:taxon_ids] ).to eq [-1]
+    end
   end
 
   describe "elastic_taxon_leaf_ids" do

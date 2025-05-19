@@ -5,7 +5,7 @@ import CheckboxRowContainer from "../containers/checkbox_row_container";
 import SettingsItem from "./settings_item";
 import ToggleSwitchContainer from "../containers/toggle_switch_container";
 
-const Notifications = ( { profile } ) => (
+const Notifications = ( { userSettings } ) => (
   <div className="row">
     <div className="col-xs-12 col-md-10">
       <SettingsItem>
@@ -17,7 +17,7 @@ const Notifications = ( { profile } ) => (
           </div>
           <ToggleSwitchContainer
             name="prefers_receive_mentions"
-            checked={profile.prefers_receive_mentions}
+            checked={userSettings.prefers_receive_mentions}
           />
         </div>
         <div className="row stacked">
@@ -27,7 +27,7 @@ const Notifications = ( { profile } ) => (
           </div>
           <ToggleSwitchContainer
             name="prefers_redundant_identification_notifications"
-            checked={profile.prefers_redundant_identification_notifications}
+            checked={userSettings.prefers_redundant_identification_notifications}
           />
         </div>
         <div className="row">
@@ -37,7 +37,7 @@ const Notifications = ( { profile } ) => (
           </div>
           <ToggleSwitchContainer
             name="prefers_infraspecies_identification_notifications"
-            checked={profile.prefers_infraspecies_identification_notifications}
+            checked={userSettings.prefers_infraspecies_identification_notifications}
           />
         </div>
         <div className="row">
@@ -47,7 +47,7 @@ const Notifications = ( { profile } ) => (
           </div>
           <ToggleSwitchContainer
             name="prefers_non_disagreeing_identification_notifications"
-            checked={profile.prefers_non_disagreeing_identification_notifications}
+            checked={userSettings.prefers_non_disagreeing_identification_notifications}
           />
         </div>
       </SettingsItem>
@@ -60,10 +60,10 @@ const Notifications = ( { profile } ) => (
           </div>
           <ToggleSwitchContainer
             name="prefers_no_email"
-            checked={!profile.prefers_no_email}
+            checked={!userSettings.prefers_no_email}
           />
         </div>
-        <div className={profile.prefers_no_email ? "collapse" : null}>
+        <div className={userSettings.prefers_no_email ? "collapse" : null}>
           <CheckboxRowContainer
             name="prefers_comment_email_notification"
             label={I18n.t( "views.users.edit.notification_preferences_comments" )}
@@ -111,7 +111,7 @@ const Notifications = ( { profile } ) => (
 );
 
 Notifications.propTypes = {
-  profile: PropTypes.object
+  userSettings: PropTypes.object
 };
 
 export default Notifications;

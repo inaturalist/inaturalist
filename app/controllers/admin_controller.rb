@@ -145,6 +145,19 @@ class AdminController < ApplicationController
       flash[:error] = "User doesn't exist"
       redirect_back_or_default( curate_users_path )
     end
+    if params[:reset_name]
+      @moderator_action = ModeratorAction.new(
+        user: current_user,
+        resource: user,
+        action: ModeratorAction::RENAME,
+        reason: "Inappropriate username: #{user.login} was renamed"
+      )
+      if @moderator_action.save
+        flash[:notice] = "Username successfully renamed"
+      else
+        flash[:error] = "Failed to rename username: #{@moderator_action.errors.full_messages.to_sentence}"
+      end
+    end
     if params[:icon_delete]
       user.icon = nil
       user.icon_url = nil
@@ -234,27 +247,6 @@ class AdminController < ApplicationController
 
     flash[:notice] = "Logged in as #{user.login}. Be careful, and remember to log out when you're done."
     redirect_to root_path
-  end
-
-  def queries
-    replica_pool = ActiveRecord::Base.connection.instance_variable_get( "@replica_pool" )
-    if replica_pool
-      # if configured to use replica DBs with Makara, fetch queries from all primaries and replicas
-      primary_pool = ActiveRecord::Base.connection.instance_variable_get( "@primary_pool" )
-      @queries = []
-      ( primary_pool.connections + replica_pool.connections ).flatten.each do | connection |
-        instance_queries = connection.active_queries.map do | q |
-          { db_host: connection.config[:host] }.merge( q )
-        end
-        @queries += instance_queries
-      end
-    else
-      @queries = ActiveRecord::Base.connection.active_queries.map do | q |
-        { db_host: ActiveRecord::Base.connection_db_config.host }.merge( q )
-      end
-    end
-    @queries.delete_if {| q | q["query"] =~ /pg_stat_activity/ }
-    render layout: "admin"
   end
 
   private

@@ -30,6 +30,8 @@
   - else
     =t 'views.users.dashboard.cannot_update_your_content', :site_name => @site.name
 = link_to t(:view_details), taxon_change_url(taxon_change), :class => "readmore"
-- if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
-  &nbsp;
+&nbsp;
+- if taxon_change.automatable? && user&.prefers_automatic_taxonomic_changes?
+  = link_to t(:view_your_affected_ids), identifications_url( user_id: user.id, taxon_change_id: taxon_change.id ), :class => "readmore"
+- else
   = link_to t(:update_your_content), taxon_change_commit_for_user_url(taxon_change), :class => "readmore"

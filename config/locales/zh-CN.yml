@@ -240,6 +240,8 @@ zh-CN:
   add_a_new_change_group: 添加一个新的更改组
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 添加编号列表
+  #Placeholder for a project autocomplete field
+  add_a_project: 添加项目
   add_a_single_observation: 添加一个单独的观察。
   add_a_taxon: 加入一个分类
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -689,6 +691,13 @@ zh-CN:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, 由 %{user} 上传"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: 已拆分
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: 未拆分
   authority_list:
     iucn_red_list: IUCN红色名录
     natureserve: NatureServe
@@ -1365,6 +1374,9 @@ zh-CN:
   curators_changed_for_x_html: "为%{x}工作的馆长已更改"
   curators: 馆长
   curators_can_remove_observations_from: 馆长可以从项目中删除观察结果，并将其标识与项目特定视图的观察结果一起显示。馆长也可以看到这个项目中私人贡献者和匿名贡献者的真实地理位置。
+  curator_coordinate_access: 馆长坐标访问
+  curator_coordinate_access_desc: |
+    传统项目的馆长坐标访问权限取决于添加者对项目的观察。这只是项目中观察的默认设置。观察者还可以针对具体的观察结果更改此设置。
   curator_identification: 馆长鉴定
   current_flags: 当前标记
   #Label for a custom boundary for an observation search
@@ -1372,6 +1384,8 @@ zh-CN:
   custom_project_fields: 自定义项目字段
   custom_project_was_successfully_created: 已成功创建定制项目。
   custom_project_was_successfully_updated: 已成功更新自定义项目。
+  #Button to customize projects that appear in the header
+  customize__projects: 自定义
   customize_location: 自定义位置
   darr_apply_darr: "&darr; 应用 &darr;"
   daily_users: 每日用户
@@ -1812,6 +1826,11 @@ zh-CN:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 收藏数
   Family: 家庭
+  #Header for a section showing the user's favorite projects
+  favorite_projects: 收藏的项目
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    最多选择七个在页眉中显示为链接的项目。更新将在刷新页面后显示。
   favorite_taxa: 已收藏的分类单元
   favorites: "收藏夹"
   feature_this_project_: "突出此项目"
@@ -2166,6 +2185,8 @@ zh-CN:
   inaturalist_global_year_in_review: "iNaturalist 全球 %{year} 年度回顾"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist是一个基于美国的独立的501(c)(3)、免税、非营利组织(税号: 92-1296468)。
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist基于%{user}的建议更新了这一鉴定
   computer_vision_suggestion: 电脑视觉建议
   computer_vision_suggestion_desc: |
     计算机视觉是训练计算机识别图像特征的过程。 我们提供的工具使用基于社区照片训练的计算机视觉模型来提供识别建议，如自动填空和比较功能。此标签表示有人利用这些工具进行了一次鉴定。
@@ -2279,6 +2300,8 @@ zh-CN:
   internal_taxon_rank: 内部分类等级
   introduced: 外来
   introduced_in_place: "在%{place}系外来种"
+  #Error message shown when a date format is invalid
+  invalid_date: 无效日期
   invitation: 引诱
   invite: 邀请
   invite_people: 邀请人们
@@ -2550,6 +2573,10 @@ zh-CN:
   list_with_two_items: "%{one} 和 %{two}"
   listed_taxa: 列举的分类群
   listed_taxon: 列举的分类单元
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: 已列入
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: 未列入
   listed_taxon_updated: 列举的分类已更新
   listing_lists: 正在列举列表
   listing_project_assets: 列出项目资产
@@ -4120,6 +4147,9 @@ zh-CN:
   processing3p: "处理中..."
   profile: 个人信息
   profile_picture: 资料头像
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: 个人资料图片文件类型
   profile_visibility_desc: |
     为防止在 %{site_name} 上出现垃圾邮件，使用者的个人档案仅在使用者有贡献出数个研究等级的观察后才会公开可见。
   project: 项目
@@ -4205,6 +4235,16 @@ zh-CN:
   range: 范围
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 分类阶层
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: 属 / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: 物种 / 杂交种
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: 亚种 / 变种 / 型
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5408,8 +5448,14 @@ zh-CN:
   upcoming_bioblitzes: 即将到来的bioblitzes
   update: 更新
   update_existing_observations_with_new_license: 更新现有的观察为新选择的许可协议
+  update_existing_observations_with_new_license_desc: |
+    选择此选项会将您的新许可证选择应用于您的所有现有观察。如果您有很多观察的话这会花上几个小时。
   update_existing_photos_with_new_license: 更新现有的照片为新选择的许可协议
+  update_existing_photos_with_new_license_desc: |
+    选择此选项会将您的新许可证选择应用于您所有的现有照片。如果您有很多照片的话这会花上几个小时。
   update_existing_sounds_with_new_license: 更新现有的声音为新选择的许可协议
+  update_existing_sounds_with_new_license_desc: |
+    选择此选项会将您的新许可证选择应用于您所有的现有声音。如果您有很多声音的话这会花上几个小时。
   update_observations: 更新观察
   update_past: "对以前的%{type}进行更新"
   update_photos: 更新照片
@@ -5439,7 +5485,6 @@ zh-CN:
   uploader:
     errors:
       file_too_big: 文件必须小于 %{megabytes} MB
-      unsupported_file_type: 文件类型不支持。我们接受 JPG、PNG、GIF、WAV、AAC、MP3和MP4 (仅限音频)
     resize_tip: |
       如果你的照片文件太大，试着把它们裁剪到小于2048×2048像素。服务器将会把所有照片都压缩到这个大小，这会使照片更快的上传。
     tooltips:
@@ -5553,6 +5598,12 @@ zh-CN:
     用户信任这个项目，对该项目开放因为各种原因而被遮盖的地理坐标。
   user_trusts_this_project_for_taxon: |
     用户部分信任这个项目，仅对其开放因分类群受到威胁而遭到遮盖的地理坐标。
+  user_trusts_this_project_when_added_by_any: |
+    用户信任项目馆长，向其显示被任何人加入该项目的隐藏坐标。
+  user_trusts_this_project_when_added_by_observer: |
+    用户信任项目馆长，向其显示被观察者本人加入该项目的隐藏坐标。
+  user_trusts_this_project_when_added_by_none: |
+    用户不信任项目馆长，因此不会展示隐藏坐标。
   user_trusts_you_with_their_private_coordinates: "%{user} 信任您的并向您公开隐藏坐标"
   user_trusts_you_with_their_private_coordinates_desc: |
     此观察者信任您的并向您公开其所有的隐藏坐标
@@ -5640,6 +5691,8 @@ zh-CN:
   view_more_observations_of_x_project: "查看在 <nobr>%{site_name}</nobr> 上的更多来自 %{project} 的观察 &raquo;"
   view_more_observations_of_x_taxon: "查看更多在 <nobr>%{site_name}</nobr> 上的 %{taxon} 的观察记录 &raquo;"
   view_more_unreviewed: "查看更多未复核"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: 查看您受影响的鉴定
   view_observation: 查看观察
   view_observations: 查看观察
   view_observation_flags: 查看观察标记
@@ -6037,6 +6090,42 @@ zh-CN:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: 以其他贡献选择用户
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: 关于地图集
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          地图集体现了某个分类单元的全球分布。馆长通过定义图集的结构并整理构成图集的分类单元来制作图集。
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: 拆分这一地方
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: 解除拆分这一地方
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: 此地图集尚未更改
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: 最近对地图集进行的更改
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: 最近的列明分类单元调整
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: 显示列出的分类群
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: 此地图集当前未激活
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          这将从清单中删除此分类单元及其所有后代与此地方及其包含的任何标准地方相关联。它无法撤消。您确定要执行此操作吗？
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          警告：此地图集没有包括观察记录
     content_freeze:
       content_freeze: 内容冻结
       during_this_time: |
@@ -7605,6 +7694,10 @@ zh-CN:
           </p>
         licensing_desc_html: |
           许可您的内容使其他人有合法权利使用它，而无需征得您的许可，如果他们遵守许可条款。%{site_name}使用您的知识共享许可内容与数据合作伙伴共享，例如国际的<a href="http://www.gbif.org/">全球生物多样性信息工具</a>（GBIF）编制和分发来自世界各地的生物多样性信息的政府间组织。
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: 不支持文件类型。我们接受 JPG、PNG 和 GIF
         monthly_supporter_desc_html: |
           iNaturalist 月捐人每月会自动向 iNaturalist （United States IRS EIN 92-1296468）进行捐赠，以支持 iNaturalist 和 iNaturalist 网站的非营利运营。<a href="%{url}">您可以点击这里成为 iNaturalist 月捐人</a>。当我们确认到您的捐助后，勾选这个选项，您就可以在个人主页展示月捐人的状态。注意：您在 Donorbox 使用的邮箱必须与您的 iNaturalist 账户邮箱一致，如果不同，请更改邮箱使二者匹配，否则我们将无法确认您的月捐人身份。
         muting_desc_html: |
@@ -7691,8 +7784,10 @@ zh-CN:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: 已经添加了最多3个通用名词汇表。
-        this_only_applies_to_traditional_projects: |
-          这只适用于过去的项目。您不能将观察排除在收藏或总括项目之外，这些项目基本上都是已保存的搜索。您可以<a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">点击这里</a>阅读更多。
+        this_only_applies_to_traditional_projects2: |
+          这仅适用于传统项目。您无法从集合或伞形项目中排除观察，因为它们本质上是保存的搜索结果。
+          您可以参见
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">这里</a>。
       recent:
         about_recent_users: 关于
         definitions_html: <dl><dt>疑似骚扰账号</dt><dd>用户可能是骚扰账号，这意味着他们没有观察和坚定，但是却有个人简介。</dd><dt>自动标记骚扰账号</dt><dd>被系统自动标记的骚扰账号。</dd><dt>手动标记骚扰账号</dt><dd>被站点管理员手动标记的骚扰账号。</dd><dt>假阳性</dt><dd>被标记为骚扰账号，但被发现不是，因此标记被站点管理员去除。</dd></dl>
@@ -7957,7 +8052,9 @@ zh-CN:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%Y年%B%d日 %p %I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%b%d日 %H:%M'
+      short: '%-d%B日 %p%I:%M'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%Y年%-d%B日 %p%I:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%p %I:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -7997,6 +8094,8 @@ zh-CN:
     attributes:
       announcement:
         created_at: 创建于
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: 可关闭
         updated_at: 更新于
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8221,6 +8320,7 @@ zh-CN:
         show_for_descendent_taxa: 显示子分类群
       user:
         email: 电子邮件
+        faved_project_ids: 收藏的项目
         login: 用户名
         name: 名称
         locale: 地域
@@ -8330,6 +8430,8 @@ zh-CN:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: 仅有员工和馆长可以隐藏内容
               only_staff_and_hiding_curators_can_unhide: 只有员工和隐藏内容的馆长才能取消隐藏
+              #Error saying that only staff can rename
+              only_staff_can_rename: 只有员工可以重命名
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: 仅有员工可以将内容设置为私有
               staff_cannot_be_suspended: 员工不能被停用
@@ -8352,6 +8454,9 @@ zh-CN:
                 不能大于观察被添加的日期
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: 必须在过去130年内
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: 必须是一天，而不能是一个范围
         observation_field_value:
           attributes:
             value:
@@ -8384,6 +8489,9 @@ zh-CN:
               invalid_point: 有一个无效的点，例如：经度大于180°或纬度小于-90°
               must_have_more_than_three_points: 必须有超过3个点
               polygon_with_less_than_four_points: 有一个少于4个点的多边形
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: 具有没有面积的多边形（所有点都相同）
         place_geometry:
           attributes:
             geom:
@@ -8401,6 +8509,10 @@ zh-CN:
             user:
               must_be_on_site_long_enough: |
                 必须已经注册超过24小时才能发布。我们有大量的骚扰用户，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: 您只能收藏 7 个项目
         project_observation:
           attributes:
             base:
@@ -8453,6 +8565,11 @@ zh-CN:
             name:
               bad_format: |
                 只能包含标准的拉丁字符、连字符、空格和×；注意不允许假定的分类单元和栽培品种。
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: 生命分类单元不能参与分类单元的更改
         taxon_name:
           attributes:
             lexicon:
@@ -8487,6 +8604,14 @@ zh-CN:
               already_has_a_range: 已经有了一个范围
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 不能包含超过 7 个项目
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: 必须全部存在
             login:
               must_begin_with_a_letter: |
                 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线

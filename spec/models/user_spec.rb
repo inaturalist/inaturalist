@@ -648,6 +648,15 @@ describe User do
     expect( user ).to be_suspended
   end
 
+  describe "moderated_with" do
+    it "renames the user when given a RENAME action" do
+      user = User.make!( login: "old_login" )
+      moderator_action = build :moderator_action, action: ModeratorAction::RENAME, resource: user
+      user.moderated_with( moderator_action )
+      expect( user.login ).not_to eq "old_login"
+    end
+  end
+
   describe "deletion" do
     elastic_models( Observation )
 
@@ -1055,10 +1064,14 @@ describe User do
     elastic_models( Observation )
 
     it "should update existing observations if requested" do
-      u = User.make!
-      o = Observation.make!( user: u )
-      u.preferred_observation_license = Observation::CC_BY
-      u.update( make_observation_licenses_same: true )
+      u = create :user
+      o = create( :observation, user: u, license: nil )
+      expect( u.preferred_observation_license ).not_to eq Observation::CC_BY
+      expect( o.license ).not_to eq Observation::CC_BY
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_observation_license = Observation::CC_BY
+        u.update( make_observation_licenses_same: true )
+      end
       o.reload
       expect( o.license ).to eq Observation::CC_BY
     end
@@ -1066,8 +1079,11 @@ describe User do
     it "should update existing photo if requested" do
       u = User.make!
       p = LocalPhoto.make!( user: u )
-      u.preferred_photo_license = Observation::CC_BY
-      u.update( make_photo_licenses_same: true )
+      expect( p.license ).not_to eq Photo.license_number_for_code( Observation::CC_BY )
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_photo_license = Observation::CC_BY
+        u.update( make_photo_licenses_same: true )
+      end
       p.reload
       expect( p.license ).to eq Photo.license_number_for_code( Observation::CC_BY )
     end
@@ -1075,12 +1091,13 @@ describe User do
     it "should queue moving photos if needed" do
       u = User.make!
       p = LocalPhoto.make!( user: u )
-      u.update( make_photo_licenses_same: true )
-      p.reload
-      expect( Delayed::Job.where(
-        queue: "photos",
-        unique_hash: "{:\"User::enqueue_photo_bucket_moving_jobs\"=>#{u.id}}"
-      ).any? ).to be true
+      expect( p.license ).to eq Photo::COPYRIGHT
+      user_spy = spy( User )
+      after_delayed_job_finishes( ignore_run_at: true ) do
+        u.preferred_photo_license = Observation::CC_BY
+        u.update( make_photo_licenses_same: true )
+      end
+      expect( user_spy ).to have_been_called_with( u )
     end
 
     it "should not update GoogleStreetViewPhotos" do
@@ -1759,6 +1776,12 @@ describe User do
       expect( ActionMailer::Base.deliveries.last.subject ).to include "Welcome"
     end
 
+    it "update user interaction privilege" do
+      u = User.create_from_omniauth( auth_info )
+      expect( UserPrivilege.earned_interaction?( u ) ).to be true
+      expect( UserPrivilege.where( user: u, privilege: UserPrivilege::INTERACTION ).exists? ).to be true
+    end
+
     describe "with oauth_application" do
       it "should not set oauth_application_id for untrusted applications" do
         oauth_application = OauthApplication.make!( trusted: false )
@@ -1863,6 +1886,68 @@ describe User do
       UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER, user: user )
       expect( user.privileged_with?( UserPrivilege::ORGANIZER ) ).to be true
       expect( user.content_creation_restrictions? ).to be false
+    end
+  end
+
+  describe "faved_project_ids" do
+    it "should return ids of faved projects in position order" do
+      user = create :user
+      pf3 = create :project_fave, user: user, position: 3
+      pf2 = create :project_fave, user: user, position: 2
+      pf1 = create :project_fave, user: user, position: 1
+      expect( user.faved_project_ids ).to eq [pf1.project_id, pf2.project_id, pf3.project_id]
+    end
+  end
+
+  describe "faved_project_ids=" do
+    let( :user ) { create :user }
+
+    it "should create new ProjectFaves" do
+      user = create :user
+      project1 = create :project
+      project2 = create :project
+      expect( user.project_faves.length ).to eq 0
+      user.faved_project_ids = [project1.id, project2.id]
+      expect( user.project_faves.length ).to eq 2
+    end
+
+    it "should remove ProjectFaves not specified" do
+      project1 = create :project
+      project2 = create :project
+      project3 = create :project
+      user.faved_project_ids = [project1.id, project2.id, project3.id]
+      expect( user.project_faves.length ).to eq 3
+      user.faved_project_ids = [project1.id, project2.id]
+      user.reload
+      expect( user.project_faves.length ).to eq 2
+    end
+
+    it "should remove all ProjectFaves if none specified" do
+      project = create :project
+      user.faved_project_ids = [project.id]
+      expect( user.project_faves.length ).to eq 1
+      user.faved_project_ids = []
+      user.reload
+      expect( user.project_faves.length ).to eq 0
+    end
+
+    it "should remove the last ProjectFave" do
+      projects = 7.times.map { create :project }
+      user.faved_project_ids = projects.map( &:id )
+      expect( user.project_faves.length ).to eq 7
+      user.faved_project_ids = projects[0..1].map( &:id )
+      user.reload
+      expect( user.project_faves.length ).to eq 2
+    end
+
+    it "should assign ProjectFave positions based on the order of IDs" do
+      project1 = create :project
+      project2 = create :project
+      project3 = create :project
+      user.faved_project_ids = [project3.id, project2.id, project1.id]
+      expect( user.project_faves.detect {| pf | pf.project_id == project1.id }.position ).to eq 2
+      expect( user.project_faves.detect {| pf | pf.project_id == project2.id }.position ).to eq 1
+      expect( user.project_faves.detect {| pf | pf.project_id == project3.id }.position ).to eq 0
     end
   end
 

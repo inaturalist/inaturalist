@@ -1,5 +1,6 @@
 /* global _ */
 /* global google */
+/* global I18n */
 
 var atlasState = {
   map: null,
@@ -137,7 +138,7 @@ atlasJS.appendPlaceMetadata = function ( panel, place ) {
   if ( !existing || (
     ( existing.type !== "native" && existing.type !== "introduced" ) && existing.type !== "exploded"
   ) ) {
-    addPlaceLink = $( "<a href='#'>" ).text( "Add this place" );
+    addPlaceLink = $( "<a href='#'>" ).text( I18n.t( "add_place" ) );
     addPlaceLink.on( "click", function ( e ) {
       e.preventDefault( );
       atlasJS.alterAtlas( place );
@@ -146,11 +147,11 @@ atlasJS.appendPlaceMetadata = function ( panel, place ) {
     panel.append( "<br>" );
   }
   if ( existing && ( existing.type === "native" || existing.type === "introduced" ) ) {
-    addPlaceLink = $( "<a href='#'>" ).text( "Remove this place" );
+    addPlaceLink = $( "<a href='#'>" ).text( I18n.t( "remove_place" ) );
     addPlaceLink.on( "click", function ( e ) {
       e.preventDefault( );
-      var confirmText = "This will destroy all the listed taxa that are of this taxon (or any descendants)"
-        + " for this place (or any standard descendants). This can be very destructive, are you sure?";
+      var confirmText = I18n.t( "views.atlases.show.this_will_remove_this_taxon_and_all" )
+        .replace( /[\s\n]+/g, " " );
       if ( confirm( confirmText ) ) {
         atlasJS.alterAtlas( place );
       }
@@ -158,7 +159,7 @@ atlasJS.appendPlaceMetadata = function ( panel, place ) {
     panel.append( addPlaceLink );
     panel.append( "<br>" );
 
-    addPlaceLink = $( "<a href='#'>" ).text( "Show listed taxa" );
+    addPlaceLink = $( "<a href='#'>" ).text( I18n.t( "views.atlases.show.show_listed_taxa" ) );
     addPlaceLink.on( "click", function ( e ) {
       e.preventDefault( );
       atlasJS.getListings( place );
@@ -167,7 +168,7 @@ atlasJS.appendPlaceMetadata = function ( panel, place ) {
     panel.append( "<br>" );
   }
   if ( !existing || ( existing.type !== "exploded" && existing.place.admin_level < <%= Place::COUNTY_LEVEL %> ) ) {
-    var explodeLink = $( "<a href='#'>" ).text( "Explode this place" );
+    var explodeLink = $( "<a href='#'>" ).text( I18n.t( "views.atlases.show.explode_this_place" ) );
     explodeLink.on( "click", function ( e ) {
       e.preventDefault( );
       atlasJS.explodePlace( place );
@@ -176,7 +177,7 @@ atlasJS.appendPlaceMetadata = function ( panel, place ) {
     panel.append( "<br>" );
   }
   if ( existing && existing.type === "exploded" ) {
-    var unexplodeLink = $( "<a href='#'>" ).text( "Unexplode this place" );
+    var unexplodeLink = $( "<a href='#'>" ).text( I18n.t( "views.atlases.show.unexplode_this_place" ) );
     unexplodeLink.on( "click", function ( e ) {
       e.preventDefault( );
       atlasJS.unexplodePlace( place );
@@ -362,7 +363,7 @@ atlasJS.getListings = function ( place ) {
     success: function ( s ) {
       var panel = $( "#bottomright" );
       panel.html( "" );
-      panel.append( $( "<h4>" ).text( "Listed Taxa" ) );
+      panel.append( $( "<h4>" ).text( I18n.t( "listed_taxa" ) ) );
       $.each( s, function ( key, value ) {
         var placeName = value.place.display_name || value.place.name;
         var explodeLink = $( "<a href='/listed_taxa/" + value.id + "'>" ).text( value.taxon.name + " in " + placeName );
@@ -398,7 +399,11 @@ $( function ( ) {
       data: { id: atlasID },
       success: function ( ) {
         $( "tbody#alteration tr" ).fadeOut();
-        $( "table" ).append( "<div class='no_alteration'>No alterations to this atlas yet</div>" );
+        $( "table" ).append(
+          "<div class='no_alteration'>"
+          + I18n.t( "views.atlases.show.no_alterations_to_this_atlas_yet" )
+          + "</div>"
+        );
         $this.fadeOut();
       },
       error: function ( ) {

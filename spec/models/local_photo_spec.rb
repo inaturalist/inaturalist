@@ -211,6 +211,17 @@ describe LocalPhoto, "to_observation" do
           expect( o.time_observed_at_in_zone.hour ).to eq 22
         end
       end
+
+      it "should set time_observed_at for colon-separated date parts" do
+        photo = build(
+          :local_photo,
+          photo_metadata: build(
+            :photo_metadata,
+            metadata: { date_time_original: "2025:02:03 09:51:37" }
+          )
+        )
+        expect( photo.to_observation.time_observed_at ).not_to be_blank
+      end
     end
   end
 
@@ -239,6 +250,31 @@ describe LocalPhoto, "to_observation" do
       t = Taxon.make!( name: "Polistes dominula" )
       o = p.to_observation
       expect( o.taxon ).to eq t
+    end
+  end
+
+  context "HEIC" do
+    let( :photo ) do
+      photo = build :local_photo
+      photo.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "lupine-oakland.heic" ) )
+      photo.extract_metadata
+      photo
+    end
+
+    it "should set a taxon from tags" do
+      expect( photo.metadata[:dc][:subject] ).to include "Lupinus"
+      taxon = create :taxon, :as_genus, name: "Lupinus"
+      expect( photo.to_observation.taxon ).to eq( taxon )
+    end
+
+    it "should set time_observed_at" do
+      expect( photo.metadata[:date_time_original] ).not_to be_blank
+      expect( photo.to_observation.time_observed_at ).not_to be_blank
+    end
+
+    it "should set description" do
+      expect( photo.metadata[:dc][:description] ).not_to be_blank
+      expect( photo.to_observation.description ).to eq photo.metadata[:dc][:description]
     end
   end
 
@@ -308,6 +344,7 @@ describe LocalPhoto, "flagging" do
       expect( lp.send( "#{size}_url" ) ).to be =~ /copyright/
     end
   end
+
   it "should not change the actual photo URLs for copyright infringement" do
     Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
     lp.reload
@@ -315,6 +352,15 @@ describe LocalPhoto, "flagging" do
       expect( lp["#{size}_url"] ).not_to be =~ /copyright/
     end
   end
+
+  it "allows access to original file URLs for photos flagged for copyright" do
+    Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
+    lp.reload
+    %w(original large medium small thumb square).each do | size |
+      expect( lp.send( "#{size}_url", bypass_flags: true ) ).not_to be =~ /copyright/
+    end
+  end
+
   it "should not change URL method return values unless the flag was for copyright" do
     Flag.make!( flaggable: lp, flag: Flag::COPYRIGHT_INFRINGEMENT )
     f2 = Flag.make!( flaggable: lp, flag: Flag::SPAM )
