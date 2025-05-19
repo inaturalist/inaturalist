@@ -269,14 +269,12 @@ class Site < ApplicationRecord
   preference :developers_url, :string, default: "/pages/developers"
   preference :community_guidelines_url, :string, default: "/pages/community+guidelines"
   preference :jobs_url, :string, default: "/pages/jobs"
-
-  # apps
   preference :iphone_app_url, :string
   preference :android_app_url, :string
 
   # social media
   preference :facebook_url, :string
-  preference :twitter_url, :string
+  preference :x_url, :string
   preference :instagram_url, :string
   preference :bluesky_url, :string
 
@@ -286,7 +284,7 @@ class Site < ApplicationRecord
   preference :video_tutorials_url, :string
   preference :curator_guide_url, :string
 
-  preference :twitter_username, :string
+  preference :x_username, :string
 
   # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
   preference :home_page_wiki_path, :string
@@ -326,11 +324,6 @@ class Site < ApplicationRecord
   # google recaptcha, https://www.google.com/recaptcha
   preference :google_recaptcha_key, :string
   preference :google_recaptcha_secret, :string
-
-  # Vestigial unused preference. If removed, please do not deploy outside of
-  # downtime to prevent a caching issue with the preferences gem reading
-  # Site instances cached with preferences that are no longer defined
-  preference :twitter_sign_in, :boolean, default: false
 
   # fathom analytics, https://usefathom.com/
   preference :fathom_analytics_tracker_id, :string

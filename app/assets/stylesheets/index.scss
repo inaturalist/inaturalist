@@ -697,21 +697,9 @@ ul.leafylist li li:first-child {
       font-size: $social-media-link-font-size-1200;
     }
   }
-  .social-media-link.twitter {
-    background-color: #4099ff;
-  }
-  .social-media-link.twitter:before {
-    content: "\f099";
-    position: relative;
-    top: 0px;
-    left: 1px;
-    @media (min-width: 1200px) {
-      top: 0px;
-      left: 1px;
-    }
-  }
   .social-media-link.facebook,
-  .social-media-link.bluesky {
+  .social-media-link.bluesky,
+  .social-media-link.x {
     background-color: #1877f2;
     line-height: $social-media-link-dim - 2px;
     @media (min-width: 1200px) {
@@ -733,6 +721,24 @@ ul.leafylist li li:first-child {
     background-color: #1185fe;
     img {
       filter: saturate(0%) invert(100%);
+    }
+  }
+  .social-media-link.x {
+    background-color: black;
+    line-height: $social-media-link-dim - 2px;
+    @media (min-width: 1200px) {
+      line-height: $social-media-link-dim-1200 - 1px;
+    }
+    img {
+      width: $social-media-link-dim - 24px;
+      height: $social-media-link-dim - 24px;
+      @media (min-width: 1200px) {
+        width: $social-media-link-dim-1200 - 24px;
+        height: $social-media-link-dim-1200 - 24px;
+      }
+    }
+    img {
+      filter: invert(100%);
     }
   }
   .social-media-link.instagram {
