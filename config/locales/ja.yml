@@ -998,10 +998,12 @@ ja:
   confirmation_email_sent_at_datetime: '%{datetime} に確認メールを送信しました'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 確認日:%{date}
-  confirming_ids: 本人確認
+  confirming_ids: あなたの同定と全く同じ同定を他人が追加した際，通知する
   confirming_ids_description: |
-    これをオフにすると、一致するIDについて通知されなくなります
-    彼らが追加の発言をしない限り、あなたのものと一緒に。
+    これをオフにすると、だれかがあなたの同定に単に合意した場合について，通知されなくなります．
+
+    基本的にオフにすることを推奨します．
+    オンにすると通知が増えすぎてしまい，重要な通知（例：誤同定の指摘）を見過ごす可能性があります．
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: 接続
@@ -1686,7 +1688,7 @@ ja:
   educators_guide: 指導者向けガイド
   either_that_user_doesnt_exist_or: "そのユーザーは存在しないか、もしくは、もうすでにフォローしている可能性があります。"
   eligible_for_research_grade: 研究用候補
-  email: 電子メール
+  email: メールアドレス
   email_address_for_comments_and_other_feedback: コメントやフィードバックの送信先のEメールアドレス
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
@@ -2208,15 +2210,12 @@ ja:
   #Title for a preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
-  infraspecies_ids: インフラスピーシーズ ID
+  infraspecies_ids: 亜種以下の同定が追加された場合
   #Description of preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids_description: |
-    これをオフにすると、分類群のIDについて通知されなくなります
-    以下の種レベル(亜種や品種など)で、あなたと一致するもの
-    種レベルの ID。彼らがあなたのIDに同意しない場合、またはあなたに通知されます
-    追加のコメントが含まれている場合。
+    これをオフにすると，「あなたの同定に種レベルで同意しているものの亜種以下のみで異なる同定」が追加された場合，通知されません．（あなたの同定に対して不同意であるか，追加の説明がある場合には，変わらず通知されます）
   input_taxon: 分類群を入力
   insects: 昆虫類
   insect_life_stage: 昆虫の変態段階
@@ -3005,6 +3004,19 @@ ja:
   noble_curators: "%{site}のキュレーター管理者の紹介"
   #A user who is not a curator
   non_curator: ノンキュレーター
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: 不同意でない上位分類群の同定が追加された場合
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    これをオフにすると，他のユーザーが，あなたの追加した同定の上位分類群にあたる同定を，不同意を選択せずに追加した場合，通知されなくなります．オフにすることを推奨します．
+
+    例：あなたが「カブトムシ」という同定を追加した後，誰かがそこに「昆虫綱」という同定を追加しても，この設定をオフにしていると通知されません．
+    （この設定がオフになっていたとしても，その同定者が不同意の選択肢を選択した場合は，変わらず通知されます）
   non_human?: 非人間？
   #A user who does not admin any projects
   non_project_admin: プロジェクト管理者以外
@@ -4622,7 +4634,7 @@ ja:
   submission_model_description: プロジェクトに観察記録を追加できる対象は？
   submit: 送信
   submit_observations:
-    other: '%{count}件の観察記録を送信'
+    other: '%{count}件の観察記録を投稿'
   submitted: 投稿済
   #Label for a button that subscribes the user to updates on a resource, e.g.
   #comments on a journal post
@@ -6102,7 +6114,7 @@ ja:
           が表示されます。
         receive_an_email_with_your_data: メールで自分のデータを受信
         receive_an_email_with_your_data_help: 用意できたら、エキスポートデータが添付されたメールで送られます。
-        well_email_you: "準備ができましたら電子メールでお知らせします。"
+        well_email_you: "準備ができましたらメールでお知らせします．"
         taking_a_while: "しばらく時間がかかります。以下のオプションのいずれかを試してください。"
         created_on_help: "作成された日付、「観察された」ではない、たとえば 2015-01-17, 2015-01, 2015"
       field_descriptions:

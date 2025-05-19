@@ -5752,6 +5752,7 @@ nl:
   uploader:
     errors:
       file_too_big: Bestand moet kleiner zijn dan %{megabytes} MB
+      unsupported_file_type: Bestandstype wordt niet ondersteund. We accepteren JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 en MP4 (alleen audio)
     resize_tip: |
       Als je fotobestanden te groot zijn kan je proberen ze te verkleinen tot maximaal 2048 bij 2048 pixels. Dit gebeurt sowieso met alle foto's op de server en zorgt voor een snellere upload.
     tooltips:

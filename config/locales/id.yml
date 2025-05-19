@@ -5532,6 +5532,7 @@ id:
   uploader:
     errors:
       file_too_big: File harus lebih kecil dari %{megabytes} MB
+      unsupported_file_type: Jenis file tidak didukung. Kami menerima JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3, dan MP4 (audio saja)
     resize_tip: |
       Jika file foto Anda terlalu besar, coba memotongnya hingga ukuran paling besar 2048 x 2048 piksel. Hal ini berlaku pada semua foto di server juga, dan akan mempercepat proses unggahan.
     tooltips:
