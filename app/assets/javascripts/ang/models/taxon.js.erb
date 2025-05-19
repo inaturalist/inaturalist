@@ -185,27 +185,29 @@ iNatModels.Taxon.titleCaseName = function ( name ) {
   // these from translation files and have translators add the words that
   // are uncapitalized in their languages
   var uncapitalized = [
-    "à",
-    "a",
-    "and",
+    "a", // Spanish
+    "and", // English
     "atau", // Indonesian
-    "con",
+    "con", // Spanish
     "da",
     "dal",
     "dan", // Indonesian
-    "de",
+    "de", // Spanish
     "dei",
-    "del",
-    "des",
+    "del", // Spanish
+    "des", // French
     "di",
     "du",
-    "e",
+    "e", // Spanish
     "in",
     "la",
-    "o",
-    "of",
-    "on",
-    "the"
+    "o", // Spanish
+    "of", // English
+    "on", // English
+    "the", // English
+    "u",
+    "y", // Spanish
+    "à" // French
   ];
   var commonNamePieces = _.trim( name ).split( /\s+/ );
   return _.map( commonNamePieces, function ( piece, i ) {
