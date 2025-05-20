@@ -247,6 +247,53 @@ describe "Observation Index" do
     end
   end
 
+  describe "identification_disagreements_count" do
+    let( :kingdom ) { create :taxon, :as_kingdom, name: "Animalia", is_iconic: true }
+    let( :genus ) { create :taxon, :as_genus, parent: kingdom }
+    let( :sp1 ) { create :taxon, :as_species, parent: genus }
+    let( :sp2 ) { create :taxon, :as_species, parent: genus }
+
+    it "equals 1 when two idents disagree" do
+      expect( sp2 ).to be_grafted
+      o = create :observation, taxon: nil
+      ident1 = create :identification, observation: o, taxon: sp1
+      o.reload
+      expect( o.taxon ).to eq sp1
+      expect( o.taxon ).to be_grafted
+      ident2 = create :identification, observation: o, taxon: sp2
+      expect( ident2 ).to be_disagreement
+      expect( ident1 ).not_to be_in_agreement_with ident2
+      expect( ident2 ).not_to be_in_agreement_with ident1
+      o.reload
+      expect( o.as_indexed_json[:identification_disagreements_count] ).to eq 1
+    end
+
+    it "equals 1 with one explicit disagreement" do
+      o = create :observation, taxon: sp1
+      create :identification, observation: o, taxon: genus, disagreement: true
+      o.reload
+      expect( o.as_indexed_json[:identification_disagreements_count] ).to eq 1
+    end
+
+    it "equals 1 with 1 explicit disagreement and one non-disagreeing followup" do
+      o = create :observation, taxon: sp1
+      create :identification, observation: o, disagreement: true, taxon: genus
+      create :identification, observation: o, taxon: genus
+      o.reload
+      expect( o.as_indexed_json[:identification_disagreements_count] ).to eq 1
+    end
+
+    it "equals 0 when ID of disagreed with taxon is withdrawn" do
+      o = create :observation, taxon: nil
+      ident1 = create :identification, observation: o, taxon: sp1
+      ident2 = create :identification, observation: o, taxon: sp2
+      expect( ident2 ).to be_disagreement
+      ident1.update( current: false )
+      o.reload
+      expect( o.as_indexed_json[:identification_disagreements_count] ).to eq 0
+    end
+  end
+
   describe "params_to_elastic_query" do
     it "filters by project rules" do
       project = Project.make!
