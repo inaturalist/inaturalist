@@ -671,23 +671,34 @@ class ObservationModal extends React.Component {
             <ul className="inat-tabs">
               {activeTabs.map( tabName => (
                 <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
-                  <button
-                    type="button"
-                    className="btn btn-nostyle"
-                    onClick={e => {
-                      e.preventDefault( );
-                      chooseTab( tabName, { observation } );
-                      return false;
-                    }}
-                  >
-                    {
+                  {activeTabs.length > 1 ? (
+                    <button
+                      type="button"
+                      className="btn btn-nostyle"
+                      onClick={e => {
+                        e.preventDefault( );
+                        chooseTab( tabName, { observation } );
+                        return false;
+                      }}
+                    >
+                      {
                       tabTitles[tabName]
                       || translateWithConsistentCase(
                         _.snakeCase( tabName ),
                         { case: "upper", defaultValue: tabName }
                       )
                     }
-                  </button>
+                    </button>
+                  ) : (
+                    <span className="btn-nostyle active">
+                      { tabTitles[tabName]
+                      || translateWithConsistentCase(
+                        _.snakeCase( tabName ),
+                        { case: "upper", defaultValue: tabName }
+                      ) }
+                    </span>
+                  ) }
+
                 </li>
               ) ) }
             </ul>
