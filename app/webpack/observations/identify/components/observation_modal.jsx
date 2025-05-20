@@ -698,7 +698,6 @@ class ObservationModal extends React.Component {
                       ) }
                     </span>
                   ) }
-
                 </li>
               ) ) }
             </ul>
