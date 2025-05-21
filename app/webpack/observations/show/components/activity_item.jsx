@@ -235,35 +235,22 @@ class ActivityItem extends React.Component {
         }
       }
       if ( userCanInteract && item.firstDisplay && !hideCompare ) {
-        let compareTaxonID = taxon.id;
-        if ( taxon.rank_level <= 10 ) {
-          compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
-        }
         buttons.push( (
-          <a
+          <button
             key={`id-compare-${item.uuid}`}
-            href={`/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}`}
+            type="button"
+            className="btn btn-default btn-sm"
+            onClick={e => onClickCompare(
+              e,
+              taxon,
+              observation,
+              { currentUser: config.currentUser }
+            )}
           >
-            <button
-              type="button"
-              className="btn btn-default btn-sm"
-              onClick={e => {
-                if ( onClickCompare ) {
-                  return onClickCompare(
-                    e,
-                    taxon,
-                    observation,
-                    { currentUser: config.currentUser }
-                  );
-                }
-                return true;
-              }}
-            >
-              <i className="fa fa-exchange" />
-              {" "}
-              {I18n.t( "compare" )}
-            </button>
-          </a>
+            <i className="fa fa-exchange" />
+            {" "}
+            {I18n.t( "compare" )}
+          </button>
         ) );
       }
       if ( loggedIn && ( canAgree || userAgreedToThis ) && !hideAgree ) {

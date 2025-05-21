@@ -236,7 +236,6 @@ class CommunityIdentification extends React.Component {
     let canAgree = true;
     const taxonImageTag = util.taxonImage( taxon );
     const tid = taxon.rank_level <= 10 ? taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
-    const compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=${tid}`;
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
@@ -374,7 +373,6 @@ class CommunityIdentification extends React.Component {
     );
     return {
       taxon,
-      compareLink,
       stats,
       photo,
       canAgree,
@@ -397,7 +395,6 @@ class CommunityIdentification extends React.Component {
       return ( <div /> );
     }
     this.setInstanceVars( );
-    let compareLink;
     let canAgree = true;
     let userAgreedToThis;
     let stats;
@@ -408,7 +405,6 @@ class CommunityIdentification extends React.Component {
     if ( communityTaxon ) {
       (
         {
-          compareLink,
           stats,
           photo,
           canAgree,
@@ -419,7 +415,6 @@ class CommunityIdentification extends React.Component {
       );
     } else {
       sortedIdents = this.sortedIdents( );
-      compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=0`;
       canAgree = false;
       stats = (
         <span>
@@ -486,20 +481,15 @@ class CommunityIdentification extends React.Component {
                   y: numIdentifiers
                 } ) }
                 { loggedIn ? (
-                  <a
-                    href={compareLink}
-                    className="pull-right compare-link"
-                    onClick={e => {
-                      if ( onClickCompare ) {
-                        return onClickCompare( e, communityTaxon, observation );
-                      }
-                      return true;
-                    }}
+                  <button
+                    type="button"
+                    className="pull-right btn btn-nostyle compare-link"
+                    onClick={e => onClickCompare( e, communityTaxon, observation )}
                   >
                     <i className="fa fa-exchange" />
                     { " " }
                     {I18n.t( "compare" )}
-                  </a>
+                  </button>
                 ) : null }
               </div>
             ) : (
@@ -614,18 +604,13 @@ class CommunityIdentification extends React.Component {
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
             { loggedIn && !observation.communityTaxon && (
-              <a
-                href={compareLink}
-                className="linky compare-link"
-                onClick={e => {
-                  if ( onClickCompare ) {
-                    return onClickCompare( e, observation.taxon, observation );
-                  }
-                  return true;
-                }}
+              <button
+                type="button"
+                className="linky btn btn-nostyle compare-link"
+                onClick={e => onClickCompare( e, observation.taxon, observation )}
               >
                 { I18n.t( "compare" ) }
-              </a>
+              </button>
             ) }
             <button
               type="button"
@@ -646,24 +631,15 @@ class CommunityIdentification extends React.Component {
             </div>
             { loggedIn ? (
               <div className="btn-space">
-                <a
-                  href={compareLink}
-                  onClick={e => {
-                    if ( onClickCompare ) {
-                      return onClickCompare( e, communityTaxon, observation );
-                    }
-                    return true;
-                  }}
+                <button
+                  type="button"
+                  className="btn btn-default"
+                  onClick={e => onClickCompare( e, communityTaxon, observation )}
                 >
-                  <button
-                    type="button"
-                    className="btn btn-default"
-                  >
-                    <i className="fa fa-exchange" />
-                    { " " }
-                    { I18n.t( "compare" ) }
-                  </button>
-                </a>
+                  <i className="fa fa-exchange" />
+                  { " " }
+                  { I18n.t( "compare" ) }
+                </button>
               </div>
             ) : null }
             <div className="btn-space">
