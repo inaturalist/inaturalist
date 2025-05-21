@@ -669,7 +669,13 @@ class ObservationModal extends React.Component {
           </div>
           <div className="right-col">
             <ul className="inat-tabs">
-              {activeTabs.map( tabName => (
+              {activeTabs.map( tabName => {
+                const title = tabTitles[tabName]
+                || translateWithConsistentCase(
+                  _.snakeCase(tabName),
+                  { case: "upper", defaultValue: tabName }
+                );
+                return (
                 <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
                   {activeTabs.length > 1 ? (
                     <button
@@ -681,25 +687,16 @@ class ObservationModal extends React.Component {
                         return false;
                       }}
                     >
-                      {
-                      tabTitles[tabName]
-                      || translateWithConsistentCase(
-                        _.snakeCase( tabName ),
-                        { case: "upper", defaultValue: tabName }
-                      )
-                    }
+                      {title}
                     </button>
                   ) : (
                     <span className="btn-nostyle active">
-                      { tabTitles[tabName]
-                      || translateWithConsistentCase(
-                        _.snakeCase( tabName ),
-                        { case: "upper", defaultValue: tabName }
-                      ) }
+                      {title}
                     </span>
                   ) }
                 </li>
-              ) ) }
+                );
+              } ) }
             </ul>
             <div className="sidebar">
               { activeTabs.indexOf( "info" ) < 0 ? null : (
