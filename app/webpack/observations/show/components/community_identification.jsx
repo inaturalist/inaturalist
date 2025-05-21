@@ -483,7 +483,7 @@ class CommunityIdentification extends React.Component {
                 { loggedIn ? (
                   <button
                     type="button"
-                    className="pull-right btn btn-nostyle"
+                    className="pull-right btn btn-nostyle compare-link"
                     onClick={e => onClickCompare( e, communityTaxon, observation )}
                   >
                     <i className="fa fa-exchange" />
