@@ -300,4 +300,31 @@ describe UpdateAction do
       expect( update_action.es_source["subscriber_ids"] ).to include( other_user.id )
     end
   end
+
+  describe "group_and_sort" do
+    it "stubs UpdateAction for additional notifiers on a resource" do
+      post = create :post
+      comment_with_action = create :comment, parent: post
+      other_comment = create :comment, parent: post
+      update_action = create :update_action, resource: post, notifier: comment_with_action
+      grouped = UpdateAction.group_and_sort( [update_action] )
+      stub_update_action = grouped.map( &:last ).flatten.detect( &:new_record? )
+      expect( stub_update_action ).not_to be_nil
+      expect( stub_update_action.notifier ).to eq other_comment
+    end
+
+    it "does not stub UpdateAction for additional notifiers on a resource if the user is no longer subscribed" do
+      post = create :post
+      comment_with_action = create :comment, parent: post
+      subscription = comment_with_action.user.subscriptions.where( resource: post ).first
+      expect( subscription ).not_to be_blank
+      subscription.destroy
+      expect( comment_with_action.user ).not_to be_subscribed_to post
+      other_comment = create :comment, parent: post
+      update_action = create :update_action, resource: post, notifier: comment_with_action
+      grouped = UpdateAction.group_and_sort( [update_action], viewer: comment_with_action.user )
+      stub_update_action = grouped.map( &:last ).flatten.detect( &:new_record? )
+      expect( stub_update_action ).to be_nil
+    end
+  end
 end
