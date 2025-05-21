@@ -483,7 +483,7 @@ class CommunityIdentification extends React.Component {
                 { loggedIn ? (
                   <button
                     type="button"
-                    className="pull-right btn btn-nostyle compare-link"
+                    className="pull-right btn btn-nostyle"
                     onClick={e => onClickCompare( e, communityTaxon, observation )}
                   >
                     <i className="fa fa-exchange" />
@@ -606,7 +606,7 @@ class CommunityIdentification extends React.Component {
             { loggedIn && !observation.communityTaxon && (
               <button
                 type="button"
-                className="linky btn btn-nostyle compare-link"
+                className="linky btn btn-nostyle"
                 onClick={e => onClickCompare( e, observation.taxon, observation )}
               >
                 { I18n.t( "compare" ) }
