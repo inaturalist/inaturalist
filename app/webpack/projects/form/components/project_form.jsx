@@ -169,6 +169,7 @@ class ProjectForm extends React.Component {
                                   type="button"
                                   className="btn btn-nostyle"
                                   onClick={( ) => removeProjectManager( admin )}
+                                  alt={I18n.t( "remove" )}
                                 >
                                   <i className="fa fa-times-circle-o" />
                                 </button>
