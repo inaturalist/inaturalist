@@ -205,7 +205,7 @@ class Annotations extends React.Component {
               className="btn btn-nostyle"
               onClick={voteAction}
               aria-label={I18n.t( "agree_" )}
-              title={I18n.t( "disagree_" )}
+              title={I18n.t( "agree_" )}
             >
               <i className={`fa ${agreeClass}`} />
             </button>
