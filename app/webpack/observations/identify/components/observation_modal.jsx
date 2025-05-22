@@ -669,27 +669,34 @@ class ObservationModal extends React.Component {
           </div>
           <div className="right-col">
             <ul className="inat-tabs">
-              {activeTabs.map( tabName => (
-                <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
-                  <button
-                    type="button"
-                    className="btn btn-nostyle"
-                    onClick={e => {
-                      e.preventDefault( );
-                      chooseTab( tabName, { observation } );
-                      return false;
-                    }}
-                  >
-                    {
-                      tabTitles[tabName]
-                      || translateWithConsistentCase(
-                        _.snakeCase( tabName ),
-                        { case: "upper", defaultValue: tabName }
-                      )
-                    }
-                  </button>
-                </li>
-              ) ) }
+              {activeTabs.map( tabName => {
+                const title = tabTitles[tabName]
+                || translateWithConsistentCase(
+                  _.snakeCase( tabName ),
+                  { case: "upper", defaultValue: tabName }
+                );
+                return (
+                  <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
+                    {activeTabs.length > 1 ? (
+                      <button
+                        type="button"
+                        className="btn btn-nostyle"
+                        onClick={e => {
+                          e.preventDefault( );
+                          chooseTab( tabName, { observation } );
+                          return false;
+                        }}
+                      >
+                        {title}
+                      </button>
+                    ) : (
+                      <span className="btn-nostyle active">
+                        {title}
+                      </span>
+                    ) }
+                  </li>
+                );
+              } ) }
             </ul>
             <div className="sidebar">
               { activeTabs.indexOf( "info" ) < 0 ? null : (
