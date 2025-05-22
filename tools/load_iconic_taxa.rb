@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative "development_tools/taxon_importer/taxon_importer"
+
 #
 # Creates taxa and names for all the iconic taxa.  This is to get a blank db
 # up to speed.
@@ -5,60 +9,40 @@
 # Run this with script/runner!
 #
 
-iconic_taxa = {}
-if life = Taxon::LIFE
+if Taxon::LIFE
   puts "Life exists (yay), skipping..."
 else
   puts "Adding Life"
   life = Taxon.create(
-    :name => "Life", 
-    :rank => 'stateofmatter', 
-    :source => Source.find_by_title('iNaturalist'))
+    name: "Life",
+    rank: "stateofmatter",
+    source: Source.find_by_title( "iNaturalist" )
+  )
   life.iconic_taxon = life
   life.save
 end
 
-#scientific,common
-iconic_taxa_names = [
-  ['Animalia', 'Animals'],
-  ['Actinopterygii', 'Ray-finned Fishes'],
-  ['Aves', 'Birds'],
-  ['Reptilia', 'Reptiles'],
-  ['Amphibia', 'Amphibians'],
-  ['Mammalia', 'Mammals'],
-  ['Arachnida', 'Arachnids'],
-  ['Insecta', 'Insects'],
-  ['Plantae', 'Plants'],
-  ['Fungi', 'Fungi'],
-  ['Protozoa', 'Protozoans'],
-  ['Mollusca', 'Mollusks'],
-  ['Chromista', 'Chromista']
-]
+taxa_res = begin
+  try_and_try_again( [RestClient::TooManyRequests], exponential_backoff: true, sleep: 3 ) do
+    RestClient.get( "https://api.inaturalist.org/v2/taxa?iconic=true&fields=id,name,rank" )
+  end
+rescue Socket::ResolutionError, RestClient::Exception, Timeout::Error
+  puts "Failed to fetch iconic taxa from iNat. Try again later."
+  exit 0
+end
+taxa = JSON.parse( taxa_res.body )["results"]
 
-# Make sure we graft from CoL
-ratatosk = Ratatosk::Ratatosk.new(
-  :name_providers => [Ratatosk::NameProviders::ColNameProvider.new])
-
-
-iconic_taxa_names.each do |iconic_taxon_name|
-  if t = Taxon.where(is_iconic: true, name: iconic_taxon_name[0]).first
-    puts "#{iconic_taxon_name[0]} exists (#{t}), skipping..."
+taxa.each do | api_taxon |
+  if Taxon.where( name: api_taxon["name"], rank: api_taxon["rank"] ).exists?
+    puts "#{api_taxon['rank'].capitalize} #{api_taxon['name']} exists, skipping..."
     next
   end
-  puts "Adding #{iconic_taxon_name[0]}..."
-  taxon_name = ratatosk.find(iconic_taxon_name[0]).first
-  puts "\tMaking the taxon iconic..."
-  taxon_name.taxon.is_iconic = 1
-  puts "\tSaving the taxon..."
-  taxon_name.save
-  taxon_name.reload
-  puts "\tGrafting..."
-  ratatosk.graft(taxon_name.taxon)
-  iconic_taxa[iconic_taxon_name[0].to_sym] = taxon_name.taxon
-  puts "\tAdding Common Name..."
-  TaxonName.new(
-    :taxon => Taxon.find_by_name(iconic_taxon_name[0]), 
-    :name => iconic_taxon_name[1], 
-    :lexicon => 'english', 
-    :is_valid => 1).save
+
+  local_taxon_id = TaxonImporter.import( taxon_id: api_taxon["id"] )
+  if local_taxon_id.positive?
+    taxon = Taxon.find( local_taxon_id )
+    puts "Imported #{taxon}"
+  else
+    puts "Failed to import #{api_taxon['name']}"
+  end
 end
