@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Popover, OverlayTrigger, Panel } from "react-bootstrap";
+import { Popover, OverlayTrigger } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import CommunityIDPopover from "./community_id_popover";
 import TaxonSummaryPopover from "./taxon_summary_popover";
@@ -20,15 +20,10 @@ class CommunityIdentification extends React.Component {
     this.communityIDOverridePanel = this.communityIDOverridePanel.bind( this );
     this.communityIDOverrideStatement = this.communityIDOverrideStatement.bind( this );
     this.optOutPopoverClose = this.optOutPopoverClose.bind( this );
-    const currentUser = props.config && props.config.currentUser;
-    this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_expanded_cid : false
-    };
   }
 
   setInstanceVars( ) {
     const { observation, config } = this.props;
-    this.loggedIn = config && config.currentUser;
     this.observerOptedOut = observation.user
       && observation.user.preferences
       && observation.user.preferences.prefers_community_taxa === false;
@@ -75,7 +70,7 @@ class CommunityIdentification extends React.Component {
       <div className="override out">
         <span className="bold">
           { I18n.t( "views.observations.community_id.you_have_opted_out" ) }
-          { "." }
+          .
         </span>
         <button
           type="button"
@@ -235,8 +230,6 @@ class CommunityIdentification extends React.Component {
     let userAgreedToThis;
     let canAgree = true;
     const taxonImageTag = util.taxonImage( taxon );
-    const tid = taxon.rank_level <= 10 ? taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
-    const compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=${tid}`;
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
@@ -269,8 +262,9 @@ class CommunityIdentification extends React.Component {
       taxonIsMaverick = (
         !ancestriesMatch( taxonAncestry ) && !ancestriesMatch( obsTaxonAncestry, taxonAncestry )
       );
-      const firstIdentOfTaxon = _.filter( sortedIdents,
-        si => ( si.taxon.id === observation.communityTaxon.id ) )[0];
+      const firstIdentOfTaxon = _.filter( sortedIdents, si => (
+        si.taxon.id === observation.communityTaxon.id
+      ) )[0];
       _.each( sortedIdents, i => {
         const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
         if ( ancestriesMatch( idAncestry ) || ancestriesMatch( obsTaxonAncestry, idAncestry ) ) {
@@ -374,7 +368,6 @@ class CommunityIdentification extends React.Component {
     );
     return {
       taxon,
-      compareLink,
       stats,
       photo,
       canAgree,
@@ -389,37 +382,27 @@ class CommunityIdentification extends React.Component {
     const {
       observation, config, addID, onClickCompare, performOrOpenConfirmationModal
     } = this.props;
-    const { open } = this.state;
-    const { test } = $.deparam.querystring( );
     const loggedIn = config && config.currentUser;
     const { communityTaxon } = observation;
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
     this.setInstanceVars( );
-    let compareLink;
     let canAgree = true;
     let userAgreedToThis;
     let stats;
     let photo;
-    let sortedIdents = [];
-    let votesFor = [];
     const taxonImageTag = util.taxonImage( communityTaxon );
     if ( communityTaxon ) {
       (
         {
-          compareLink,
           stats,
           photo,
           canAgree,
-          userAgreedToThis,
-          sortedIdents,
-          votesFor
+          userAgreedToThis
         } = this.dataForTaxon( communityTaxon )
       );
     } else {
-      sortedIdents = this.sortedIdents( );
-      compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=0`;
       canAgree = false;
       stats = (
         <span>
@@ -442,9 +425,10 @@ class CommunityIdentification extends React.Component {
             } );
           }}
         >
-          { userAgreedToThis
-            ? <div className="loading_spinner" />
-            : <i className="fa fa-check" />
+          {
+            userAgreedToThis
+              ? <div className="loading_spinner" />
+              : <i className="fa fa-check" />
           }
           { " " }
           { I18n.t( "agree_" ) }
@@ -460,163 +444,17 @@ class CommunityIdentification extends React.Component {
           </button>
         </a>
       );
-    const numIdentifiers = sortedIdents.length;
-    let visualization;
-    let maverickEncountered;
-    let supportingEncountered;
-    const proposedTaxa = {};
-    const proposedTaxonItems = [];
-    if ( test === "cid-vis3" || test === "cid-vis4" ) {
-      if ( sortedIdents.length > 1 ) {
-        for ( let i = 0; i < sortedIdents.length; i += 1 ) {
-          const ident = sortedIdents[i];
-          if ( !proposedTaxa[ident.taxon.id] ) {
-            proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
-            proposedTaxa[ident.taxon.id] = ident.taxon.id;
-          }
-        }
-      }
-      visualization = (
-        <div className="cid-extended">
-          <div className="info">
-            { communityTaxon ? (
-              <div className="about stacked">
-                { I18n.t( "x_of_y_people_over_two_thirds_agree_it_is", {
-                  x: votesFor.length,
-                  y: numIdentifiers
-                } ) }
-                { loggedIn ? (
-                  <a
-                    href={compareLink}
-                    className="pull-right compare-link"
-                    onClick={e => {
-                      if ( onClickCompare ) {
-                        return onClickCompare( e, communityTaxon, observation );
-                      }
-                      return true;
-                    }}
-                  >
-                    <i className="fa fa-exchange" />
-                    { " " }
-                    {I18n.t( "compare" )}
-                  </a>
-                ) : null }
-              </div>
-            ) : (
-              <div className="about">
-                { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
-              </div>
-            )}
-            { communityTaxon ? (
-              <div className="inner">
-                <div className="photo">{ photo }</div>
-                <div className="stats-and-name">
-                  <div className="badges">
-                    <ConservationStatusBadge taxon={communityTaxon} />
-                    <EstablishmentMeansBadge taxon={communityTaxon} />
-                  </div>
-                  <SplitTaxon
-                    taxon={communityTaxon}
-                    url={communityTaxon ? `/taxa/${communityTaxon.id}` : null}
-                    user={config.currentUser}
-                  />
-                  { stats }
-                </div>
-              </div>
-            ) : null }
-          </div>
-          <Panel collapsible expanded={open}>
-            <div className="proposed-taxa">
-              { proposedTaxonItems.length <= 1 ? null : (
-                _.map( proposedTaxonItems, proposedTaxonData => {
-                  let about;
-                  if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
-                    about = (
-                      <div className="about stacked maverick">
-                        <i className="fa fa-bolt" />
-                        { " " }
-                        { I18n.t( "label_colon", { label: I18n.t( "proposed_taxa_that_contradict_the_community_id" ) } ) }
-                      </div>
-                    );
-                    maverickEncountered = true;
-                  } else if ( !supportingEncountered ) {
-                    about = (
-                      <div className="about supporting stacked">
-                        { I18n.t( "label_colon", { label: I18n.t( "proposed_taxa_that_support_the_community_id" ) } ) }
-                      </div>
-                    );
-                    supportingEncountered = true;
-                  }
-                  return (
-                    <div className="info" key={`proposed-taxon-${proposedTaxonData.taxon.id}`}>
-                      { about }
-                      <div className="inner">
-                        <div className="photo">{ proposedTaxonData.photo }</div>
-                        <div className="stats-and-name">
-                          <SplitTaxon
-                            taxon={proposedTaxonData.taxon}
-                            url={proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null}
-                            user={config.currentUser}
-                          />
-                          { proposedTaxonData.stats }
-                        </div>
-                      </div>
-                    </div>
-                  );
-                } )
-              ) }
-            </div>
-          </Panel>
-        </div>
-      );
-    } else {
-      visualization = communityTaxon ? (
-        <div className="info">
-          <div className="photo">{ photo }</div>
-          <div className="badges">
-            <ConservationStatusBadge taxon={communityTaxon} />
-            <EstablishmentMeansBadge taxon={communityTaxon} />
-          </div>
-          <SplitTaxon
-            taxon={communityTaxon}
-            url={communityTaxon ? `/taxa/${communityTaxon.id}` : null}
-            user={config.currentUser}
-          />
-          { stats }
-        </div>
-      ) : (
-        <div className="info">
-          <div className="about">
-            {I18n.t( "the_community_id_requires_at_least_two_identifications" )}
-          </div>
-        </div>
-      );
-    }
 
     return (
-      <div className={`CommunityIdentification collapsible-section ${test}`}>
-        <h4
-          className={proposedTaxonItems.length === 0 ? "" : "collapsible"}
-          onClick={( ) => {
-            if ( proposedTaxonItems.length <= 1 ) {
-              return;
-            }
-            if ( loggedIn ) {
-              this.props.updateSession( { prefers_hide_obs_show_expanded_cid: open } );
-            }
-            this.setState( { open: !open } );
-          }}
-        >
-          { proposedTaxonItems.length <= 1 ? null : (
-            <i className={`fa fa-chevron-circle-${open ? "down" : "right"}`} />
-          ) }
+      <div className="CommunityIdentification collapsible-section">
+        <h4>
           { I18n.t( "community_id_heading" ) }
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
             { loggedIn && !observation.communityTaxon && (
-              <a
-                href={compareLink}
-                className="linky compare-link"
+              <button
+                type="button"
+                className="btn btn-nostyle linky compare-link"
                 onClick={e => {
                   if ( onClickCompare ) {
                     return onClickCompare( e, observation.taxon, observation );
@@ -625,7 +463,7 @@ class CommunityIdentification extends React.Component {
                 }}
               >
                 { I18n.t( "compare" ) }
-              </a>
+              </button>
             ) }
             <button
               type="button"
@@ -638,16 +476,37 @@ class CommunityIdentification extends React.Component {
         </h4>
         { this.communityIDOverrideStatement( ) }
         { this.communityIDOverridePanel( ) }
-        { visualization }
-        { test === "cid-vis4" || !communityTaxon ? null : (
+        { communityTaxon ? (
+          <div className="info">
+            <div className="photo">{ photo }</div>
+            <div className="badges">
+              <ConservationStatusBadge taxon={communityTaxon} />
+              <EstablishmentMeansBadge taxon={communityTaxon} />
+            </div>
+            <SplitTaxon
+              taxon={communityTaxon}
+              url={communityTaxon ? `/taxa/${communityTaxon.id}` : null}
+              user={config.currentUser}
+            />
+            { stats }
+          </div>
+        ) : (
+          <div className="info">
+            <div className="about">
+              {I18n.t( "the_community_id_requires_at_least_two_identifications" )}
+            </div>
+          </div>
+        ) }
+        { communityTaxon && (
           <div className="action">
             <div className="btn-space">
               { agreeButton }
             </div>
-            { loggedIn ? (
+            { loggedIn && (
               <div className="btn-space">
-                <a
-                  href={compareLink}
+                <button
+                  type="button"
+                  className="btn btn-default"
                   onClick={e => {
                     if ( onClickCompare ) {
                       return onClickCompare( e, communityTaxon, observation );
@@ -655,17 +514,12 @@ class CommunityIdentification extends React.Component {
                     return true;
                   }}
                 >
-                  <button
-                    type="button"
-                    className="btn btn-default"
-                  >
-                    <i className="fa fa-exchange" />
-                    { " " }
-                    { I18n.t( "compare" ) }
-                  </button>
-                </a>
+                  <i className="fa fa-exchange" />
+                  { " " }
+                  { I18n.t( "compare" ) }
+                </button>
               </div>
-            ) : null }
+            ) }
             <div className="btn-space">
               <button
                 type="button"
@@ -690,7 +544,6 @@ CommunityIdentification.propTypes = {
   addID: PropTypes.func,
   setCommunityIDModalState: PropTypes.func,
   updateObservation: PropTypes.func,
-  updateSession: PropTypes.func,
   onClickCompare: PropTypes.func,
   performOrOpenConfirmationModal: PropTypes.func
 };
