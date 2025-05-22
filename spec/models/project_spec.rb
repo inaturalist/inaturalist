@@ -896,4 +896,36 @@ describe Project do
       expect( collection.project_observation_rules.where( operator: "not_observed_by_user?" ).length ).to eq 0
     end
   end
+
+  describe "admin_attributes" do
+    it "adds new admins" do
+      project_user = create :project_user
+      project = project_user.project
+      expect( project_user.role ).to be_blank
+      project.admin_attributes = [{ "user_id" => project_user.user_id }]
+      project.save!
+      project_user.reload
+      expect( project_user.role ).to eq ProjectUser::MANAGER
+    end
+
+    it "removes existing admins" do
+      project_user = create :project_user, role: ProjectUser::MANAGER
+      project = project_user.project
+      expect( project_user.role ).to eq ProjectUser::MANAGER
+      project.admin_attributes = [{ "user_id" => project_user.user_id, "_destroy" => true }]
+      project.save!
+      project_user.reload
+      expect( project_user.role ).to be_blank
+    end
+
+    it "removes existing admins if destroy attr is a string" do
+      project_user = create :project_user, role: ProjectUser::MANAGER
+      project = project_user.project
+      expect( project_user.role ).to eq ProjectUser::MANAGER
+      project.admin_attributes = [{ "user_id" => project_user.user_id, "_destroy" => "true" }]
+      project.save!
+      project_user.reload
+      expect( project_user.role ).to be_blank
+    end
+  end
 end
