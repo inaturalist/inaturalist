@@ -672,29 +672,29 @@ class ObservationModal extends React.Component {
               {activeTabs.map( tabName => {
                 const title = tabTitles[tabName]
                 || translateWithConsistentCase(
-                  _.snakeCase(tabName),
+                  _.snakeCase( tabName ),
                   { case: "upper", defaultValue: tabName }
                 );
                 return (
-                <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
-                  {activeTabs.length > 1 ? (
-                    <button
-                      type="button"
-                      className="btn btn-nostyle"
-                      onClick={e => {
-                        e.preventDefault( );
-                        chooseTab( tabName, { observation } );
-                        return false;
-                      }}
-                    >
-                      {title}
-                    </button>
-                  ) : (
-                    <span className="btn-nostyle active">
-                      {title}
-                    </span>
-                  ) }
-                </li>
+                  <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
+                    {activeTabs.length > 1 ? (
+                      <button
+                        type="button"
+                        className="btn btn-nostyle"
+                        onClick={e => {
+                          e.preventDefault( );
+                          chooseTab( tabName, { observation } );
+                          return false;
+                        }}
+                      >
+                        {title}
+                      </button>
+                    ) : (
+                      <span className="btn-nostyle active">
+                        {title}
+                      </span>
+                    ) }
+                  </li>
                 );
               } ) }
             </ul>
