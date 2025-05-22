@@ -8,8 +8,9 @@ class TaxonImporter
   class << self
     # @param [Integer] taxon_id Remote taxon ID
     # @return [Integer] taxon_id Locally created taxon ID
-    def import( taxon_id: )
-      new( taxon_id: taxon_id ).import
+    def import( options = {} )
+      taxon_id = options.delete( :taxon_id )
+      new( taxon_id: taxon_id ).import( options )
     end
   end
 
@@ -24,10 +25,12 @@ class TaxonImporter
   # Life was later added (48460) as the root
   #
   # Dynamic ancestry will track and translate PKs
-  def import
-    return 0 unless results.present?
+  def import( options = {} )
+    unless results.present?
+      return options[:with_taxon] ? nil : 0
+    end
 
-    results.each_with_object( [] ) do | result, dynamic_ancestry |
+    taxon_id = results.each_with_object( [] ) do | result, dynamic_ancestry |
       taxon = Taxon.find_or_initialize_by name: result[:name], rank: result[:rank]
       unless taxon.persisted?
         taxon.update(
@@ -40,6 +43,9 @@ class TaxonImporter
       end
       dynamic_ancestry << taxon.id
     end.last || 0
+    return taxon_id unless options[:with_taxon]
+
+    Taxon.find_by_id( taxon_id )
   end
 
   private

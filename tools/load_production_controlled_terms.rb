@@ -1,8 +1,16 @@
 # frozen_string_literal: true
 
+require_relative "development_tools/taxon_importer/taxon_importer"
+
 if Rails.env.production?
   puts "This script is for setting up a dev environment only."
   exit( 0 )
+end
+
+def get( url )
+  try_and_try_again( [RestClient::TooManyRequests], exponential_backoff: true, sleep: 3 ) do
+    RestClient.get( url )
+  end
 end
 
 def create_controlled_term_from_json( ct_json )
@@ -36,15 +44,16 @@ def create_controlled_term_from_json( ct_json )
   end
 
   combined_taxon_ids = [ct_json[:taxon_ids], ct_json[:excepted_taxon_ids]].flatten.compact.uniq
+  resp = get( "https://api.inaturalist.org/v2/taxa/#{combined_taxon_ids.join( ',' )}?fields=id,name,rank" )
   remote_taxa = JSON.parse(
-    RestClient.get(
-      "https://api.inaturalist.org/v2/taxa/#{combined_taxon_ids.join( ',' )}?fields=id,name,rank"
-    ).body,
+    resp.body,
     symbolize_names: true
   )[:results].each_with_object( {} ) do | taxon_json, memo |
     taxon = Taxon.where( name: taxon_json[:name], rank: taxon_json[:rank] ).first
-    taxon ||= Taxon.import( taxon_json[:name] )
+    taxon ||= TaxonImporter.import( taxon_id: taxon_json[:id], with_taxon: true )
     taxon ||= Taxon.create( name: taxon_json[:name], rank: taxon_json[:rank] )
+    raise "Failed to load taxon: #{taxon_json}" unless taxon
+
     memo[taxon_json[:id]] = taxon
   end
   ( ct_json[:taxon_ids] || [] ).each do | taxon_id |
@@ -71,7 +80,7 @@ def create_controlled_term_from_json( ct_json )
   controlled_term
 end
 
-response = RestClient.get( "https://api.inaturalist.org/v2/controlled_terms?fields=all" )
+response = get( "https://api.inaturalist.org/v2/controlled_terms?fields=all" )
 json = JSON.parse( response.body, symbolize_names: true )
 json[:results].each do | ct_json |
   attr_ct = create_controlled_term_from_json( ct_json )
