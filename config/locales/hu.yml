@@ -1446,6 +1446,9 @@ hu:
   disable_comments: Megjegyzések letiltása
   disable_comments_desc: További megjegyzések letiltása
   disagree_: Elutasít
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Egyetnemértések
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Kapcsolat bontása
@@ -5251,38 +5254,22 @@ hu:
     views: 'Nézetek'
     announcements:
       locales_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        színhely. Ha régió nélküli nyelvet választasz, az *nem* céloz
-        területi beállítások régiókkal, pl. ha az angol nyelvet választotta, akkor nem jelenik meg
-        azoknak, akik az angol (Egyesült Királyság) nyelvet választották.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki a többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a régiótól. Ha régió nélkül választasz ki nyelvet, az *nem* céloz régiókkal megadott nyelvekre, pl. ha az angol nyelvet választottad, akkor az nem célozza meg azokat, akik az angol (Egyesült Királyság) nyelvet választották.
       clients_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        ügyfél.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a klienstől.
       end_desc: |
-        A fiók időzónájában a bejelentés leállításának időpontja
-        megjelenő. Időzónákon keresztül érvényes, így mindenki nem fog látni
-        ugyanakkor nem a helyi időhöz viszonyítva.
+        A bejelentés leállításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog eltűnni a bejelentés, nem pedig a helyi időzónájuk alapján.
       ip_countries_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        IP ország.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az IP-cím alapján mehatározott országtól.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
-        Vegye figyelembe, hogy a felhasználó legutóbb létrehozott
-        megfigyelés gyorsítótárazva van, így a célzás néhány órát is igénybe vehet
-        használ
+        Vedd figyelembe, hogy a felhasználó legutóbb létrehozott megfigyelésének dátuma gyorsítótárazva van, így a célzás néhány órát is igénybe vehet.
       observation_oauth_application_ids_desc: |
         CMD- vagy SHIFT-kattintással jelölhetsz ki a többet. Az "Összes" kiválasztásával vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, az alkalmazástól függetlenül.
       site_ids_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        Helyszíni hovatartozás.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az oldaltól.
       start_desc: |
-        A fiók időzónájában a bejelentés kezdetének időpontja
-        megjelenő. Időzónákon keresztül érvényes, így mindenki látni fogja
-        ugyanakkor nem a helyi időhöz viszonyítva.
+        A bejelentés indításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog megkezdődni a bejelentés, nem pedig a helyi időzónájuk alapján.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Felhasználók célzása adományozási viselkedésük alapján
@@ -6527,16 +6514,16 @@ hu:
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
         prefers_exclude_monthly_supporters: A havi támogatók mellőzése
         #Start of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_start_date: A donor kezdő dátumának kizárása
+        exclude_donor_start_date: Kizárás a támogatás kezdő dátumának alapján
         #End of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_end_date: A donor záró dátumának kizárása
+        exclude_donor_end_date: Kizárás a támogatás befejezési dátumának alapján
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
         #start of a date range that the viewer must have donated in to see the announcement
-        include_donor_start_date: Adja meg a donor kezdő dátumát
+        include_donor_start_date: Belevétel a támogatás kezdési dátumának alapján
         #End of a date range that the viewer must have donated in to see the announcement
-        include_donor_end_date: Adja meg a donor lejárati dátumát
+        include_donor_end_date: Belevétel a támogatás befejezési dátumának alapján
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Applikáció-specifikus megfigyelők célzása
@@ -6545,23 +6532,23 @@ hu:
         #Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Utolsó obs kezdési dátum
         #end of a date range that includes the viewer's most recent observation
-        last_observation_end_date: Utolsó obs befejezési dátum
+        last_observation_end_date: Utolsó megfigyelési intervallum, befejezési dátum
         #Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Azonosítások maximális száma
         #Minimum number of identifications the viewer must have added for others to see the announcement
-        min_identifications: Minimális azonosítások
+        min_identifications: Azonosítások minimális száma
         #Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Megfigyelések maximális száma
         #Minimum number of observations the viewer must have added for others to see the announcement
-        min_observations: Minimális megfigyelések
+        min_observations: Megfigyelések minimális száma
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Elhelyezés
         #Preference for an announcement that is only shown to the user who created the announcement
         target_creator: 'Láthatóság: létrehozó (teszteléshez)'
         #Whether or not the announcement is shown to logged in users
-        target_logged_in: Cél bejelentkezve
+        target_logged_in: Bejelentkezettek célzása
         #Earliest date the viewer can have signed up to see the announcement
-        user_created_start_date: A legkorábbi felhasználói regisztráció dátuma
+        user_created_start_date: Legkorábbi felhasználói regisztráció dátuma
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Legutóbbi felhasználói regisztráció dátuma
       assessment:

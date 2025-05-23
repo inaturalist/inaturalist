@@ -778,6 +778,7 @@ th:
   confirm_new_password: ยืนยันรหัสผ่านใหม่
   confirm_now: ยืนยันเลย
   confirm_your_info: ยืนยันข้อมูลของคุณ
+  confirming_ids: ยืนยันการจำแนก
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: เชื่อมต่อ
@@ -2290,6 +2291,13 @@ th:
   random: สุ่ม
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ลำดับ
+  rank_levels:
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: ชนิด / พันธุ์ผสม
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: ชนิดย่อย / พันธุ์ / แบบ
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2696,6 +2704,9 @@ th:
   submit_observations:
     other: ส่ง %{count} การสังเกต
   submitted: ส่งเมื่อ
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: ติดตาม
   subscribe_to_a_taxon: ติดตามหน่วยอนุกรมวิธาน
   subscribe_to_a_place: ติดตามสถานที่
   subscribe_to_observations_from_this_place_html: <a>ติดตาม</a>การสังเกตจากสถานที่นี้
