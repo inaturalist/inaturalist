@@ -23,8 +23,9 @@
       noun_plural: 'species', 
       time_unit: @time_unit, 
       data: @most_species
-    = render 'leaderboard_column', :noun => 'identification',
-      noun_plural: 'identification',
+    = render 'leaderboard_column',
+      noun: 'identification',
+      noun_plural: 'identifications',
       time_unit: @time_unit,
       data: @most_identifications,
       last: true,
