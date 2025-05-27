@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
+import * as d3 from "d3";
 import bb, { areaSpline, spline, zoom } from "billboard.js";
 import { schemeCategory10 } from "d3";
 import { Modal } from "react-bootstrap";
@@ -214,6 +215,7 @@ class Charts extends React.Component {
       tipTitle = I18n.t( "relative_observations" );
     }
     const { seasonalityKeys } = this.props;
+    const currentMonth = ( new Date( ) ).getMonth( );
     return _.defaultsDeep( { }, this.defaultBBConfig( ), {
       data: {
         columns,
@@ -243,6 +245,33 @@ class Charts extends React.Component {
           color,
           `${tipTitle}: ${I18n.t( "date.month_names" )[d[0].index + 1]}`
         )
+      },
+      // This adds a dotted line and a label if we ever want to do that instead of a region
+      // grid: {
+      //   x: {
+      //     lines: [
+      //       {
+      //         value: currentMonth,
+      //         text: "Now",
+      //         position: currentMonth === 11 ? "middle" : "end"
+      //       }
+      //     ]
+      //   }
+      // },
+      regions: [
+        {
+          axis: "x",
+          start: 3.5,
+          end: 4.5
+        }
+      ],
+      // Add a class to the current month
+      onrendered: ( ) => {
+        d3.selectAll( ".bb-axis-x .tick" ).each( function ( d, i ) {
+          if ( i === currentMonth ) {
+            d3.select( this ).classed( "current", true );
+          }
+        } );
       }
     } );
   }
