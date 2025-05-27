@@ -272,12 +272,12 @@ export function removeProjectRule( ruleToRemove ) {
 export function removeProjectManager( projectUser ) {
   return ( dispatch, getState ) => {
     const { project } = getState( ).form;
-    if ( !project || !projectUser ) { return; }
+    if ( !project || !projectUser?.id ) { return; }
     const newAdmins = [];
     _.each( project.admins, admin => {
-      if ( projectUser.id && admin.id && projectUser.id === admin.id ) {
+      if ( projectUser.id === admin?.id ) {
         newAdmins.push( Object.assign( { }, admin, { _destroy: true } ) );
-      } else if ( projectUser.user.id !== admin.user.id ) {
+      } else {
         newAdmins.push( admin );
       }
     } );
