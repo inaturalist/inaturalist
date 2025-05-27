@@ -215,7 +215,6 @@ class Charts extends React.Component {
       tipTitle = I18n.t( "relative_observations" );
     }
     const { seasonalityKeys } = this.props;
-    const currentMonth = ( new Date( ) ).getMonth( );
     return _.defaultsDeep( { }, this.defaultBBConfig( ), {
       data: {
         columns,
@@ -264,16 +263,21 @@ class Charts extends React.Component {
           start: 3.5,
           end: 4.5
         }
-      ],
-      // Add a class to the current month
-      onrendered: ( ) => {
-        d3.selectAll( ".bb-axis-x .tick" ).each( function ( d, i ) {
-          if ( i === currentMonth ) {
-            d3.select( this ).classed( "current", true );
-          }
-        } );
-      }
+      ]
     } );
+  }
+
+  // Returns a callback for use with billboard's onrendered option that adds a
+  // class to the current month for monthly charts
+  static onRenderedWithMonthHighlightForMountNode( mountNode ) {
+    return ( ) => {
+      const currentMonth = ( new Date( ) ).getMonth( );
+      d3.select( mountNode ).selectAll( ".bb-axis-x .tick" ).each( function ( d, i ) {
+        if ( i === currentMonth ) {
+          d3.select( this ).classed( "current", true );
+        }
+      } );
+    };
   }
 
   renderSeasonalityChart( ) {
@@ -282,6 +286,7 @@ class Charts extends React.Component {
       _.filter( seasonalityColumns, column => column[0] === "verifiable" || column[0] === "research" )
     );
     const mountNode = $( "#SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    config.onrendered = Charts.onRenderedWithMonthHighlightForMountNode( mountNode );
     this.seasonalityChart = bb.generate( Object.assign( { bindto: mountNode }, config ) );
   }
 
@@ -317,6 +322,7 @@ class Charts extends React.Component {
       }
       config.data.order = null;
       const mountNode = $( `#FieldValueChart${attributeId}`, ReactDOM.findDOMNode( this ) ).get( 0 );
+      config.onrendered = Charts.onRenderedWithMonthHighlightForMountNode( mountNode );
       this.fieldValueCharts[attributeId] = bb.generate(
         Object.assign( { bindto: mountNode }, config )
       );
