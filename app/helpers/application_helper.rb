@@ -1795,4 +1795,19 @@ module ApplicationHelper
 
     URI.join( site.url.to_s, url.to_s ).to_s
   end
+
+  def leaderboard_id_link_for_user( user, count, time_unit, date = Time.now )
+    path_params = { user_id: user.login }
+    if time_unit == "year"
+      path_params[:d1] = date.beginning_of_year.strftime( "%Y-%m-%d" )
+      path_params[:d2] = date.end_of_year.strftime( "%Y-%m-%d" )
+    else
+      path_params[:d1] = date.beginning_of_month.strftime( "%Y-%m-%d" )
+      path_params[:d2] = date.end_of_month.strftime( "%Y-%m-%d" )
+    end
+    link_to(
+      t( :x_identifications_html, count: count ),
+      identifications_path( path_params )
+    )
+  end
 end

@@ -29,7 +29,7 @@
       time_unit: @time_unit,
       data: @most_identifications,
       last: true,
-      sub: Proc.new {|user, count| link_to("<span class='count'>#{count}</span> #{count == 1 ? 'identification' : 'identifications'}".html_safe, identifications_by_login_path(user.login, :on => @time_unit == 'year' ? @year : "#{@year}-#{@month}"))}
+      sub: Proc.new {|user, count| leaderboard_id_link_for_user(user, count, @time_unit, @date) }
 .column.span-24
   - if @time_unit == 'year'
     %strong.left= link_to "‹ #{@year - 1}".html_safe, :year => @year - 1
