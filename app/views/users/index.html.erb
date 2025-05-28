@@ -145,7 +145,7 @@
           :time_unit => 'year', 
           :data => @most_identifications_year, 
           :last => true,
-          :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y" ) ) )} %>      
+          :sub => Proc.new {|user, count| link_to( t(:x_identifications_html, count: count ), identifications_by_login_path( user.login, on: Time.now.strftime( "%Y" ) ) )} %>
         <div class="column span-24">
           <%- prev_date = Date.today - 1.year -%>
           <%= link_to t(:view_leaderboard_from_last_year), leaderboard_for_people_path(:year => prev_date.year), :class => "readmore" %>
