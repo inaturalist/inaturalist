@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get "/terms", to: redirect( "/pages/terms" ), as: :terms_of_service
   get "/privacy", to: redirect( "/pages/privacy" ), as: :privacy_policy
   get "/users/new.mobile", to: redirect( "/signup" )
+
+  # Shortcuts
   get "/donate", to: "donate#index"
   get "/donate/fundraiseup", to: "donate#fundraiseup"
   get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
   get "/independence",
     to: redirect( "/blog/82010-spreading-our-wings-inaturalist-is-now-an-independent-nonprofit", status: 302 )
   get "/giving", to: redirect( "/pages/giving", status: 302 )
+  get "/ted", to: redirect( "/pages/ted", status: 302 )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
