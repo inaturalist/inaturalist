@@ -162,21 +162,52 @@ const Relationships = ( {
         id="muted_users"
         placeholder={I18n.t( "add_muted_users" )}
         buttonText={I18n.t( "unmute" )}
-        htmlDescription={{
-          __html: I18n.t( "views.users.edit.muting_desc_html" )
-        }}
+        description={I18n.t( "views.users.edit.muting_desc_html" )}
       />
       <BlockedMutedUsersContainer
         headerText={I18n.t( "blocked_users" )}
         id="blocked_users"
         placeholder={I18n.t( "add_blocked_users" )}
         buttonText={I18n.t( "unblock" )}
-        htmlDescription={{
-          __html: I18n.t( "views.users.edit.blocking_desc_html", {
-            site_name: SITE.name,
-            help_email: SITE.help_email
-          } )
-        }}
+        description={(
+          <>
+            <p>
+              {I18n.t( "views.users.edit.block_desc_blocking_someone_prevents", {
+                site_name: SITE.name
+              } )}
+            </p>
+            <p>{I18n.t( "views.users.edit.block_desc_blocking_is_for_situations" )}</p>
+            <p
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.block_desc_you_can_only_block_html", {
+                  help_email: SITE.help_email
+                } )
+              }}
+            />
+            <p>There are two situations where blocking does not prevent interaction:</p>
+            <ol>
+              <li><p>comments on taxon flags created by you</p></li>
+              <li><p>comments on taxon changes created by you</p></li>
+            </ol>
+            <p>
+
+              Unlike more personal forms of content like observations
+              and journal posts, taxa are shared in common among everyone.
+              Even people you can't get along with deserve to talk about
+              them.
+            </p>
+            <p
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.block_desc_if_harassing_html", {
+                  site_name: SITE.name,
+                  help_email: SITE.help_email
+                } )
+              }}
+            />
+          </>
+        )}
       />
     </div>
   );

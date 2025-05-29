@@ -9361,41 +9361,36 @@ en:
           You must enter "%{confirmation_code}" in the form to delete your account
       edit:
         about_third_party_tracking: About third-party tracking
-        blocking_desc_html: |
-          <p>
-            Blocking someone prevents them from messaging you, commenting on your
-            observations, identifying your observations, and otherwise interacting
-            with you on %{site_name}. It also removes their observations from your
-            search results and removes your observations from their search
-            results. However, it does not make you invisible to them. They can
-            still find your observations and view your profile, they just can't
-            interact with you.
-          </p>
-          <p>
-            Blocking is for situations where you just can't get along with
-            someone and they won't leave you alone, despite your best efforts to
-            settle disputes in a civilized manner. It is not a way to hide from
-            people, to prevent identifications from people whose opinions you
-            don't trust, or to opt out of the community ID (there's another
-            setting for that). Thus, blocking works both ways: if you block
-            someone, they can't interact with you, but you also can't interact
-            with them. If you misuse it to prevent someone from identifying your
-            observations, you also prevent yourself from identifying their
-            observations.
-          </p>
-          <p>
-            You can only block three people. We think this is a reasonable
-            number that accommodates the people who need blocking while
-            preventing abuse of blocking. If you feel you need to block more
-            people, please <a href="mailto:%{help_email}">contact us</a>.
-          </p>
-          <p>
-            If someone is harassing or stalking you on %{site_name},
-            <a href="mailto:%{help_email}">please let us know</a>. If
-            this represents a violation of our Terms of Use or represents
-            other behavior we deem inappropriate for our site, we will
-            investigate.
-          </p>
+        block_desc_blocking_someone_prevents: |
+          Blocking someone prevents them from messaging you, commenting on your
+          observations, identifying your observations, and otherwise interacting
+          with you on %{site_name}. It also removes their observations from your
+          search results and removes your observations from their search
+          results. However, it does not make you invisible to them. They can
+          still find your observations and view your profile, they just can't
+          interact with you.
+        block_desc_blocking_is_for_situations: |
+          Blocking is for situations where you just can't get along with
+          someone and they won't leave you alone, despite your best efforts to
+          settle disputes in a civilized manner. It is not a way to hide from
+          people, to prevent identifications from people whose opinions you
+          don't trust, or to opt out of the community ID (there's another
+          setting for that). Thus, blocking works both ways: if you block
+          someone, they can't interact with you, but you also can't interact
+          with them. If you misuse it to prevent someone from identifying your
+          observations, you also prevent yourself from identifying their
+          observations.
+        block_desc_you_can_only_block_html: |
+          You can only block three people. We think this is a reasonable
+          number that accommodates the people who need blocking while
+          preventing abuse of blocking. If you feel you need to block more
+          people, please <a href="mailto:%{help_email}">contact us</a>.
+        block_desc_if_harassing_html: |
+          If someone is harassing or stalking you on %{site_name},
+          <a href="mailto:%{help_email}">please let us know</a>. If
+          this represents a violation of our Terms of Use or represents
+          other behavior we deem inappropriate for our site, we will
+          investigate.
         common_scientific_name_display_order: Common / Scientific Name Display Order
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           If you change your mind you can always

@@ -36,12 +36,12 @@ class BlockedMutedUsers extends Component {
 
   render( ) {
     const {
+      description,
       mutedUsers,
       headerText,
       id,
       placeholder,
       buttonText,
-      htmlDescription,
       unblockOrUnmute,
       blockedUsers
     } = this.props;
@@ -79,11 +79,21 @@ class BlockedMutedUsers extends Component {
               ? mutedUsers.map( user => displayList( user ) )
               : blockedUsers.map( user => displayList( user ) )}
           </SettingsItem>
-          <p
-            className="text-muted"
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={htmlDescription}
-          />
+          { description && (
+            <div className="text-muted">
+              {
+                typeof ( description ) === "string"
+                  ? (
+                    <div
+                      className="text-muted"
+                      // eslint-disable-next-line react/no-danger
+                      dangerouslySetInnerHTML={{ __html: description }}
+                    />
+                  )
+                  : description
+              }
+            </div>
+          ) }
         </div>
       </div>
     );
@@ -91,12 +101,12 @@ class BlockedMutedUsers extends Component {
 }
 
 BlockedMutedUsers.propTypes = {
+  description: PropTypes.oneOfType( PropTypes.string, PropTypes.func ),
   mutedUsers: PropTypes.array,
   headerText: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
   buttonText: PropTypes.string,
-  htmlDescription: PropTypes.object,
   blockOrMute: PropTypes.func,
   unblockOrUnmute: PropTypes.func,
   blockedUsers: PropTypes.array,

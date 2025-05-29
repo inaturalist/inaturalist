@@ -43,6 +43,7 @@ describe UserBlock do
       expect( UserBlock.make( blocked_user: make_admin ) ).not_to be_valid
     end
   end
+
   describe "creation" do
     it "unfollows the user from the blocked user" do
       Friendship.create!( user: user, friend: blocked_user )
@@ -71,6 +72,7 @@ describe UserBlock do
       expect( project.users ).not_to include( user )
     end
   end
+
   describe "prevents" do
     before do
       @user_block = UserBlock.create!( user: user, blocked_user: blocked_user )
@@ -128,6 +130,10 @@ describe UserBlock do
         it "with a flag" do
           expect( Flag.make( user: blocked_user, flaggable: post ) ).not_to be_valid
         end
+      end
+      it "commenting on non-taxon flags by the user" do
+        flag = create :flag, user: user, flaggable: create( :comment )
+        expect( build( :comment, user: blocked_user, parent: flag ) ).not_to be_valid
       end
     end
     describe "the user from" do
@@ -214,6 +220,24 @@ describe UserBlock do
           expect( update_action ).not_to be_blank
           expect( UpdateAction.unviewed_by_user_from_query( blocked_user.id, {} ) ).to eq false
         end
+      end
+    end
+  end
+
+  describe "allows" do
+    before do
+      @user_block = UserBlock.create!( user: user, blocked_user: blocked_user )
+    end
+
+    describe "the blocked user to" do
+      it "comment on a flag on a taxon by the user" do
+        flag = create :flag, user: user, flaggable: create( :taxon )
+        expect( build( :comment, user: blocked_user, parent: flag ) ).to be_valid
+      end
+
+      it "comment on a taxon change by the user" do
+        change = make_taxon_split( user: user )
+        expect( build( :comment, user: blocked_user, parent: change ) ).to be_valid
       end
     end
   end

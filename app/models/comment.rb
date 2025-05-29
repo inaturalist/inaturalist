@@ -39,7 +39,15 @@ class Comment < ApplicationRecord
     notification: "mention",
     if: lambda( &:prefers_receive_mentions? )
   auto_subscribes :user, to: :parent
-  blockable_by ->( comment ) { comment.parent.try( :user_id ) }
+  blockable_by proc {| comment |
+    should_bypass_block = comment.parent.is_a?( TaxonChange ) ||
+      ( comment.parent.is_a?( Flag ) && comment.parent.flaggable_type == "Taxon" )
+    if should_bypass_block
+      nil
+    else
+      comment.parent.try( :user_id )
+    end
+  }
 
   scope :by, ->( user ) { where( "comments.user_id = ?", user ) }
   scope :for_observer, lambda {| user |
