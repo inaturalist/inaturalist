@@ -17,6 +17,7 @@ const FilterCheckbox = ( {
   param,
   params,
   tipText,
+  title,
   unchecked,
   updateSearchParams
 } ) => {
@@ -44,7 +45,7 @@ const FilterCheckbox = ( {
       className={cssClass}
       key={`filters-${param}-${label}`}
     >
-      <label className={labelClass}>
+      <label className={labelClass} title={title}>
         <input
           type="checkbox"
           checked={thisValChecked}
@@ -108,6 +109,8 @@ FilterCheckbox.propTypes = {
   params: PropTypes.object,
   // Tooltip text
   tipText: PropTypes.string,
+  // Title attribute for the label element
+  title: PropTypes.string,
   // The param value when the box is NOT checked
   unchecked: PropTypes.oneOfType( [
     PropTypes.string,
