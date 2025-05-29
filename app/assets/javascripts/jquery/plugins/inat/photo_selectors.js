@@ -101,6 +101,9 @@
   };
   
   function buildControls(wrapper, options) {
+    // If there are no urls and no sources, there's no reason to build out this UI
+    if ( ( !options.urls || options.urls.length === 0 ) && ( !options.sources || options.sources.length === 0 ) ) return;
+
     if (options.bootstrap) {
       // Insert a search field and button.  No forms, please
       var controls = $('<div class="photoSelectorControls"></div>').css(
