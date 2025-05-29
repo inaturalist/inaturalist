@@ -37,18 +37,18 @@ class Comment < ApplicationRecord
     on: :save,
     delay: false,
     notification: "mention",
-    if: lambda {|u| u.prefers_receive_mentions? }
+    if: lambda( &:prefers_receive_mentions? )
   auto_subscribes :user, to: :parent
-  blockable_by lambda {|comment| comment.parent.try(:user_id) }
+  blockable_by ->( comment ) { comment.parent.try( :user_id ) }
 
-  scope :by, lambda {|user| where("comments.user_id = ?", user)}
-  scope :for_observer, lambda {|user| 
-    joins("JOIN observations o ON o.id = comments.parent_id").
-    where("comments.parent_type = 'Observation'").
-    where("o.user_id = ?", user)
+  scope :by, ->( user ) { where( "comments.user_id = ?", user ) }
+  scope :for_observer, lambda {| user |
+    joins( "JOIN observations o ON o.id = comments.parent_id" ).
+      where( "comments.parent_type = 'Observation'" ).
+      where( "o.user_id = ?", user )
   }
-  scope :since, lambda {|datetime| where("comments.created_at > DATE(?)", datetime)}
-  scope :dbsearch, lambda {|q| where("comments.body ILIKE ?", "%#{q}%")}
+  scope :since, ->( datetime ) { where( "comments.created_at > DATE(?)", datetime ) }
+  scope :dbsearch, ->( q ) { where( "comments.body ILIKE ?", "%#{q}%" ) }
 
   include ActsAsUUIDable
 
@@ -60,25 +60,26 @@ class Comment < ApplicationRecord
 
   def as_indexed_json
     return unless user
+
     {
       id: id,
       uuid: uuid,
-      user: user.as_indexed_json(no_details: true),
+      user: user.as_indexed_json( no_details: true ),
       created_at: created_at,
-      created_at_details: ElasticModel.date_details(created_at),
+      created_at_details: ElasticModel.date_details( created_at ),
       body: body,
-      flags: flags.map(&:as_indexed_json),
-      moderator_actions: moderator_actions.map(&:as_indexed_json),
+      flags: flags.map( &:as_indexed_json ),
+      moderator_actions: moderator_actions.map( &:as_indexed_json ),
       hidden: hidden?
     }
   end
 
   def update_parent_counter_cache
-    if parent && parent.class.column_names.include?("comments_count")
-      if parent.class.column_names.include?("updated_at")
-        parent.class.where(id: parent_id).update_all(comments_count: parent.comments.count, updated_at: Time.now)
+    if parent && parent.class.column_names.include?( "comments_count" )
+      if parent.class.column_names.include?( "updated_at" )
+        parent.class.where( id: parent_id ).update_all( comments_count: parent.comments.count, updated_at: Time.now )
       else
-        parent.class.where(id: parent_id).update_all(comments_count: parent.comments.count)
+        parent.class.where( id: parent_id ).update_all( comments_count: parent.comments.count )
       end
     end
     true
@@ -95,33 +96,34 @@ class Comment < ApplicationRecord
   end
 
   def mentioned_users
-    return [ ] unless body
+    return [] unless body
+
     body.mentioned_users
   end
 
   def index_parent
     return if @parent_indexed
     return if bulk_delete
-    if parent && parent.respond_to?(:elastic_index!)
-      if parent.is_a?( Observation )
-        parent.wait_for_index_refresh = !!wait_for_obs_index_refresh
-      end
-      parent.elastic_index!
-      @parent_indexed = true
+
+    return unless parent.respond_to?( :elastic_index! )
+
+    if parent.is_a?( Observation )
+      parent.wait_for_index_refresh = !wait_for_obs_index_refresh.nil?
     end
+    parent.elastic_index!
+    @parent_indexed = true
   end
 
-  def flagged_with(flag, options)
+  def flagged_with( flag, _options )
     parent&.touch
-    evaluate_new_flag_for_spam(flag)
+    evaluate_new_flag_for_spam( flag )
     index_parent
   end
 
   def parent_prefers_comments
-    if parent && parent.respond_to?( :prefers_no_comments? ) && parent.prefers_no_comments?
+    if parent.respond_to?( :prefers_no_comments? ) && parent.prefers_no_comments?
       errors.add( :parent, :prefers_no_comments )
     end
     true
   end
-
 end

@@ -4,8 +4,8 @@ require "spec_helper"
 
 describe UserBlock do
   it { is_expected.to belong_to :user }
-  it { is_expected.to belong_to(:blocked_user).class_name "User" }
-  it { is_expected.to belong_to(:override_user).class_name "User" }
+  it { is_expected.to belong_to( :blocked_user ).class_name "User" }
+  it { is_expected.to belong_to( :override_user ).class_name "User" }
 
   let( :user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
   let( :blocked_user ) { make_user_with_privilege( UserPrivilege::INTERACTION ) }
@@ -58,14 +58,14 @@ describe UserBlock do
     end
 
     it "removes the blocked user from the user's projects" do
-      project = Project.make!( project_type: 'umbrella', user: user )
+      project = Project.make!( project_type: "umbrella", user: user )
       ProjectUser.make!( user: blocked_user, project: project )
       UserBlock.create!( user: user, blocked_user: blocked_user )
       expect( project.users ).not_to include( blocked_user )
     end
 
     it "removes the blocker from the blocked user's projects" do
-      project = Project.make!( project_type: 'umbrella', user: blocked_user )
+      project = Project.make!( project_type: "umbrella", user: blocked_user )
       ProjectUser.make!( user: user, project: project )
       UserBlock.create!( user: user, blocked_user: blocked_user )
       expect( project.users ).not_to include( user )
@@ -158,29 +158,29 @@ describe UserBlock do
       after { disable_has_subscribers }
       it "when the blocked user mentions the user" do
         o = Observation.make!( user: blocked_user, description: "hey @#{user.login}" )
-        Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
+        Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
         update_action = UpdateAction.where( resource: o ).first
         expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( user.id, {} ) ).to eq false
       end
       describe "notifications for the user for an observation the user is following when the blocked user adds" do
-        let(:o) { Observation.make! }
+        let( :o ) { Observation.make! }
         before do
           Subscription.make!( user: user, resource: o )
         end
         it "a comment" do
           c = Comment.make!( user: blocked_user, parent: o )
-          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
+          Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: c ).first
           expect( update_action ).not_to be_blank
-          expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, {} ) ).to eq false
         end
         it "an identification" do
           i = Identification.make!( user: blocked_user, observation: o )
-          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
+          Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: i ).first
           expect( update_action ).not_to be_blank
-          expect( UpdateAction.unviewed_by_user_from_query(user.id, { }) ).to eq false
+          expect( UpdateAction.unviewed_by_user_from_query( user.id, {} ) ).to eq false
         end
       end
     end
@@ -189,29 +189,30 @@ describe UserBlock do
       after { disable_has_subscribers }
       it "when the user mentions the blocked user" do
         o = Observation.make!( user: user, description: "hey @#{blocked_user.login}" )
-        Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
+        Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
         update_action = UpdateAction.where( resource: o ).first
         expect( update_action ).not_to be_blank
-        expect( UpdateAction.unviewed_by_user_from_query(blocked_user.id, { }) ).to eq false
+        expect( UpdateAction.unviewed_by_user_from_query( blocked_user.id, {} ) ).to eq false
       end
-      describe "notifications for the blocked user for an observation the blocked user is following when the user adds" do
-        let(:o) { Observation.make! }
+      describe "notifications for the blocked user for an observation the blocked user is " \
+        "following when the user adds" do
+        let( :o ) { Observation.make! }
         before do
           Subscription.make!( user: user, resource: o )
         end
         it "a comment" do
           c = Comment.make!( user: user, parent: o )
-          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
+          Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: c ).first
           expect( update_action ).not_to be_blank
-          expect( UpdateAction.unviewed_by_user_from_query(blocked_user.id, { }) ).to eq false
+          expect( UpdateAction.unviewed_by_user_from_query( blocked_user.id, {} ) ).to eq false
         end
         it "an identification" do
           i = Identification.make!( user: user, observation: o )
-          Delayed::Job.all.each{ |j| Delayed::Worker.new.run( j ) }
+          Delayed::Job.all.each {| j | Delayed::Worker.new.run( j ) }
           update_action = UpdateAction.where( resource: o, notifier: i ).first
           expect( update_action ).not_to be_blank
-          expect( UpdateAction.unviewed_by_user_from_query(blocked_user.id, { }) ).to eq false
+          expect( UpdateAction.unviewed_by_user_from_query( blocked_user.id, {} ) ).to eq false
         end
       end
     end
