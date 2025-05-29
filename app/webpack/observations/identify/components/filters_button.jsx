@@ -178,27 +178,6 @@ class FiltersButton extends React.Component {
       "CC-BY-NC-ND"
     ];
 
-    const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
-    const viewerIsAdmin = loggedInUser && loggedInUser.roles
-      && loggedInUser.roles.indexOf( "admin" ) >= 0;
-    const lastColCheckboxProps = [
-      { param: "sounds", key: "show-filter-sounds", label: I18n.t( "has_sounds" ) },
-      { param: "photos", key: "show-filter-photos", label: I18n.t( "has_photos" ) },
-      {
-        param: "user_id",
-        key: "show-filter-user_id",
-        label: I18n.t( "your_observations" ),
-        checked: CURRENT_USER.id
-      }
-    ];
-    if ( viewerIsAdmin ) {
-      lastColCheckboxProps.splice( 2, 0, {
-        param: "disagreements",
-        key: "show-filter-disagreements",
-        label: I18n.t( "disagreements" ),
-        className: "admin"
-      } );
-    }
     const mainLeftCol = (
       <Col xs="4">
         <Row>
@@ -256,7 +235,7 @@ class FiltersButton extends React.Component {
               { param: "captive", key: "show-filter-captive" },
               { param: "threatened", key: "show-filter-threatened" },
               { param: "introduced", key: "show-filter-introduced" },
-              { param: "popular", key: "show-filter-popular" }
+              { param: "popular", key: "show-filter-popular", title: I18n.t( "has_one_or_more_faves" ) }
             ].map( props => (
               <FilterCheckbox
                 checked={props.checked}
@@ -265,12 +244,28 @@ class FiltersButton extends React.Component {
                 label={props.label}
                 param={props.param}
                 params={params}
+                title={props.title}
                 updateSearchParams={updateSearchParams}
               />
             ) ) }
           </Col>
           <Col className="filters-left-col" xs="6">
-            { lastColCheckboxProps.map( props => (
+            { [
+              { param: "sounds", key: "show-filter-sounds", label: I18n.t( "has_sounds" ) },
+              { param: "photos", key: "show-filter-photos", label: I18n.t( "has_photos" ) },
+              {
+                param: "disagreements",
+                key: "show-filter-disagreements",
+                label: I18n.t( "disagreements" ),
+                title: I18n.t( "disagreements_show_observations_that" )
+              },
+              {
+                param: "user_id",
+                key: "show-filter-user_id",
+                label: I18n.t( "your_observations" ),
+                checked: CURRENT_USER.id
+              }
+            ].map( props => (
               <FilterCheckbox
                 checked={props.checked}
                 className={props.className}
@@ -279,6 +274,8 @@ class FiltersButton extends React.Component {
                 label={props.label}
                 param={props.param}
                 params={params}
+                tipText={props.tipText}
+                title={props.title}
                 updateSearchParams={updateSearchParams}
               />
             ) ) }
