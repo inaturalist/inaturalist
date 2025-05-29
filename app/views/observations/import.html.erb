@@ -99,20 +99,14 @@
       <% else %>
         <div class="notice">
           <%=t :youll_need_to_link %>
-          <%= link_to(t(:your_flickr_account), :controller => 'flickr', :action => 'options') %> <%=t :or %>
-          <%= link_to(t(:your_google_account), :controller => 'picasa', :action => 'options') %>
+          <%= link_to(t(:your_flickr_account), :controller => 'flickr', :action => 'options') %>
           <%=t :before_importing_photos %>
-        </div>
-      <% end %>
-      <% if @photo_identities.detect{|pi| pi.is_a?( ProviderAuthorization ) && pi.provider_name =~ /google/ } %>
-        <div class="notice">
-          <%=t "views.observations.import.google_photos_notice_html" %>
         </div>
       <% end %>
     </div>
 
     <div id="sound_import">
-      <% if current_user.soundcloud_identity %>      
+      <% if current_user.soundcloud_identity %>
         <%= form_tag({:action => 'import_sounds'}) do %>
           <div class="readable description">
             <%=t :'sounds.import_from_soundcloud_description' %>

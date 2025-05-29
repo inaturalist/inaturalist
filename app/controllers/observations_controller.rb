@@ -442,7 +442,6 @@ class ObservationsController < ApplicationController
     end
 
     sync_flickr_photo if params[:flickr_photo_id] && current_user.flickr_identity
-    sync_picasa_photo if params[:picasa_photo_id] && current_user.picasa_identity
     sync_local_photo if params[:local_photo_id]
       
     @welcome = params[:welcome]
@@ -500,7 +499,6 @@ class ObservationsController < ApplicationController
     end
 
     sync_flickr_photo if params[:flickr_photo_id]
-    sync_picasa_photo if params[:picasa_photo_id]
     sync_local_photo if params[:local_photo_id]
     @observation_fields = ObservationField.recently_used_by(current_user).limit(10)
 
@@ -1143,17 +1141,7 @@ class ObservationsController < ApplicationController
         :user => current_user, :photo_class => klass)
     end.flatten.compact
     @observations = photos.map do |p|
-      photo_obs = p.to_observation
-      if p.is_a?( PicasaPhoto )
-        # Sometimes Google doesn't return all the metadata for undetermined
-        # reasons. See https://github.com/inaturalist/inaturalist/issues/1408
-        if photo_obs.observed_on.blank? || photo_obs.latitude.blank?
-          local_photo = Photo.local_photo_from_remote_photo( p )
-          photo_obs = local_photo.to_observation
-          photo_obs.observation_photos.build( photo: p )
-        end
-      end
-      photo_obs
+      p.to_observation
     end
     @observation_photos = ObservationPhoto.joins(:photo, :observation).
       where("photos.native_photo_id IN (?)", photos.map(&:native_photo_id))
@@ -2265,44 +2253,6 @@ class ObservationsController < ApplicationController
       flash.now[:error] = t(:sorry_we_didnt_find_that_photo)
     end
   end
-  
-  def sync_picasa_photo
-    begin
-      api_response = PicasaPhoto.get_api_response(params[:picasa_photo_id], :user => current_user)
-    rescue Timeout::Error => e
-      flash.now[:error] = t(:sorry_picasa_isnt_responding_at_the_moment)
-      Rails.logger.error "[ERROR #{Time.now}] Timeout: #{e}"
-      Logstasher.write_exception(e, request: request, session: session, user: current_user)
-      return
-    end
-    unless api_response
-      Rails.logger.debug "[DEBUG] Failed to find Picasa photo for #{params[:picasa_photo_id]}"
-      return
-    end
-    @picasa_photo = PicasaPhoto.new_from_api_response(api_response, :user => current_user)
-    
-    if @picasa_photo && @picasa_photo.valid?
-      @picasa_observation = @picasa_photo.to_observation
-      sync_attrs = PHOTO_SYNC_ATTRS
-      unless params[:picasa_sync_attrs].blank?
-        sync_attrs = sync_attrs & params[:picasa_sync_attrs]
-      end
-      sync_attrs.each do |sync_attr|
-        @observation.send("#{sync_attr}=", @picasa_observation.send(sync_attr))
-      end
-      photo_already_exists = @observation.observation_photos.detect do |op|
-        op.photo.native_photo_id == @picasa_photo.native_photo_id &&
-        op.photo.subclass == "PicasaPhoto"
-      end
-      unless photo_already_exists
-        @observation.observation_photos.build(:photo => @picasa_photo)
-      end
-      
-      flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
-    else
-      flash.now[:error] = t(:sorry_we_didnt_find_that_photo)
-    end
-  end
 
   def sync_local_photo
     unless @local_photo = Photo.find_by_id(params[:local_photo_id])
@@ -2340,7 +2290,6 @@ class ObservationsController < ApplicationController
       return true
     end
     if Rails.env.development?
-      PicasaPhoto
       LocalPhoto
       FlickrPhoto
     end
@@ -2384,12 +2333,7 @@ class ObservationsController < ApplicationController
       provider_name = nil
       provider_type = nil
       if identity.is_a?(ProviderAuthorization)
-        if identity.provider_name =~ /google/i
-          provider_type = "picasa"
-          provider_name = "Google Photos"
-        else
-          provider_type = identity.provider_name
-        end
+        provider_type = identity.provider_name
       else
         provider_type = identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
       end
@@ -2401,16 +2345,6 @@ class ObservationsController < ApplicationController
     @photo_sources = @photo_identities.inject({}) do |memo, ident| 
       if ident.respond_to?(:source_options)
         memo[ident.class.name.underscore.humanize.downcase.split.first] = ident.source_options
-      elsif ident.is_a?(ProviderAuthorization)
-        if ident.provider_name =~ /google/
-          memo[:picasa] = {
-            :title => 'Google Photos', 
-            :url => '/picasa/photo_fields', 
-            :contexts => [
-              ["Your photos", 'user', {:searchable => true}]
-            ]
-          }
-        end
       end
       memo
     end
