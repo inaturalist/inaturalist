@@ -161,9 +161,39 @@ describe ApplicationController do
         expect( I18n.locale.to_s ).to eq "pt-BR"
       end
     end
-  end
 
-  describe WelcomeController do
+    describe "set_site" do
+      let!( :site2 ) { Site.make!( url: "https://testingsetsite" ) }
+
+      it "uses default site by default" do
+        get :index
+        expect( assigns( :site ) ).to eq Site.default
+      end
+
+      it "can set site via inat_site_id parameter" do
+        get :index, params: { inat_site_id: site2.id }
+        expect( assigns( :site ) ).to eq site2
+      end
+
+      it "can set site via request host" do
+        request.headers["Host"] = "testingsetsite"
+        get :index
+        expect( assigns( :site ) ).to eq site2
+      end
+
+      it "can set site via request x-forwarded-host" do
+        request.headers["X-Forwarded-Host"] = "testingsetsite"
+        get :index
+        expect( assigns( :site ) ).to eq site2
+      end
+
+      it "reverts to default host if requested host not found" do
+        request.headers["X-Forwarded-Host"] = "test'); select 1; --"
+        get :index
+        expect( assigns( :site ) ).to eq Site.default
+      end
+    end
+
     describe "network affiliation prompt" do
       describe "for user in partner site place" do
         let( :place ) { make_place_with_geom }
