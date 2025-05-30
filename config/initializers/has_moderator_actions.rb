@@ -18,14 +18,22 @@ module HasModeratorActions
 
   module InstanceMethods
     def hidden?
+      return false if is_a?( User )
+
       most_recent_moderator_action&.action == ModeratorAction::HIDE
     end
 
     def moderated_as_private?
+      return false if is_a?( User )
+
       hidden? && most_recent_moderator_action&.private?
     end
 
     def most_recent_moderator_action
+      if is_a?( User )
+        return ModeratorAction.where( resource: self ).last
+      end
+
       moderator_actions.sort_by( &:id ).last
     end
 

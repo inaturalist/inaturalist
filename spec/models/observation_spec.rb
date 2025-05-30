@@ -1619,6 +1619,43 @@ describe Observation do
     end
   end
 
+  describe "notfications" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
+    it "notifies subscribers of the observer" do
+      subscriber = User.make!
+      observer = User.make!
+      Subscription.make!( user: subscriber, resource: observer )
+      observation = after_delayed_job_finishes do
+        Observation.make!( user: observer )
+      end
+      expect(
+        UpdateAction.unviewed_by_user_from_query(
+          subscriber.id, notifier: observation, resource: observer
+        )
+      ).to eq true
+    end
+
+    it "notifies subscribers of the observer even if the observer has recently hid something" do
+      subscriber = User.make!
+      observer = make_curator
+      Subscription.make!( user: subscriber, resource: observer )
+      comment = Comment.make!
+      _user_action = ModeratorAction.make!(
+        resource: comment, action: ModeratorAction::HIDE, user: observer
+      )
+      observation = after_delayed_job_finishes do
+        Observation.make!( user: observer )
+      end
+      expect(
+        UpdateAction.unviewed_by_user_from_query(
+          subscriber.id, notifier: observation, resource: observer
+        )
+      ).to eq true
+    end
+  end
+
   describe "mentions" do
     before { enable_has_subscribers }
     after { disable_has_subscribers }
