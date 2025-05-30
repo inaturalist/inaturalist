@@ -83,7 +83,7 @@ $(document).ready(function() {
     if (PHOTO_IDENTITY_URLS && PHOTO_IDENTITY_URLS.length > 0) {
       options.urls = PHOTO_IDENTITY_URLS
     }
-    $(this).photoSelector(options)
+    $( this ).photoSelector( options );
   })
 
   $('.observation_sounds').each(function(){
