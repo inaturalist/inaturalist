@@ -943,7 +943,7 @@ zh-CN:
   code_contributors: 代码贡献者
   colors: 颜色
   columns: 列数
-  combine: 结合
+  combine: 合并
   comma_separated_list_of_tracking_codes: |
     以逗号分隔的追踪代码列表。如果您希望向人们发送新的观察表时附加追踪代码，请添加它，例如%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可以使用它追踪来自不同来源的参与者。当下载您项目的观察为CSV文件时，您可以访问这些代码。
   comma_separated_please: 请以逗号分隔
@@ -1588,6 +1588,11 @@ zh-CN:
   disable_comments: 禁用评论
   disable_comments_desc: 阻止人们添加新评论
   disagree_: 不同意
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: 分歧
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: 显示鉴定有分歧的观察
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: 断开连接
@@ -5485,6 +5490,7 @@ zh-CN:
   uploader:
     errors:
       file_too_big: 文件必须小于 %{megabytes} MB
+      unsupported_file_type: "文件类型不支持。我们接受 JPG、PNG、GIF、HEIC、\nWAV、AAC、MP3和MP4 (仅限音频)"
     resize_tip: |
       如果你的照片文件太大，试着把它们裁剪到小于2048×2048像素。服务器将会把所有照片都压缩到这个大小，这会使照片更快的上传。
     tooltips:
@@ -6343,6 +6349,9 @@ zh-CN:
       index:
         deprecated_banner: |
           请注意，自2019年1月起，指南特性的情况将“维持不变”；我们没有计划删除它，但也没有计划进一步开发了。
+        funding2_html: |
+          开发指南的资金由
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>提供
         welcome_message_html: |
           指南可帮助您了解世界各地的生物多样性。无论您是在探索塞伦盖蒂国家公园还是仅是当地的公园（也可能就是塞伦盖蒂），指南都可以帮助您了解我们这个星球上令人惊叹的生物多样性。
       edit:
