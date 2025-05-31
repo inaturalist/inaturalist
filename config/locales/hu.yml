@@ -915,9 +915,9 @@ hu:
   commit: Közzététel
   #Adjective describing a taxon change that has been committed
   committed: Végrehajtva
-  committed_by_user_on_date_html: 'Elvégezte %{user} ekkor: %{date}'
+  committed_by_user_on_date_html: 'Végrehajtotta %{user} ekkor: %{date}'
   #Label for date the taxon change was committed
-  committed_on: 'Dátum: %{date}'
+  committed_on: 'Végrehajtva: %{date}'
   committed_taxon_changes_cannot_be_deleted: A végrehajtott taxonmódosítások nem törölhetőek
   #Status message while a taxon change is being committed
   committing: Végrehajtás...
@@ -1449,6 +1449,8 @@ hu:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Egyetnemértések
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Egyetnemértő azonosításokkal rendelkező megfigyelések megjelenítése
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Kapcsolat bontása
@@ -4541,6 +4543,9 @@ hu:
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
   this_photo_is_already_associated: Ez a fotó már társítva van egyik megfigyeléseddel.
   this_place_has_no_check_list: "Ennek a területnek nincs listája."
+  this_taxon_change_has_been_commited: |
+    <strong>Ez a taxonváltozás végre van hajtva!</strong>
+    Kérlek, ne szerkeszd a taxonokat. Más mezők szerkesztése lehetséges.
   this_taxon_concept_is_inactive: ez a taxon nem aktív
   this_taxon_has_no_default_photo: Ennek a taxonnak nincs alapértelmezett fotója!
   this_taxon_is_inactive_this_means: |
@@ -4844,7 +4849,15 @@ hu:
   user_blocked: Felhasználó letiltva
   user_commented: "Megjegyzés %{user} felhasználótól"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon}t érintő taxontörlést hajtott végre"
+  user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon} taxont érintő taxontörlést hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxonegyesítést hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxonszétválasztást hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} egy %{taxon} taxont érintő taxonmódosítást hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxoncserét hajtott végre"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   user_faved_an_observation_by_you: "%{user} kedvelte ezt a megfigyelésedet"
@@ -5422,9 +5435,8 @@ hu:
       index:
         deprecated_banner: |
           Kérünk, vedd figyelembe, hogy 2019 januárjától az Útmutatók funkcionalitás úgy jelenik meg "ahogy van"; habár nincs tervbe véve, hogy kitöröljük, nem tervezzük ezt többé feljeszteni.
-        funding_html: |
-          Az Útmutatók fejlesztésének költségeit 
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> állta.
+        funding2_html: |
+          Az útmutatók kidolgozását az <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a> támogatta.
         welcome_message_html: |
           Az útmutatók segítenek a biológia sokféleség tanulmányozásában a világ minden pontján.
           Akár a Serengetit fedezet fel vagy csak a helyi parkodat (ami lehet akár a Serengeti), az Útmutatók segítenek megérteni bolygónkon az élet pompás változatosságát.
