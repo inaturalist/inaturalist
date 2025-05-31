@@ -96,22 +96,9 @@
                       - tip = t( "views.observations.field_descriptions.#{c.underscore}", default: "" )
                       %td
                         = foc.check_box c, label: c, checked: c !~ /place_[tcsa]/ && ctype != :taxon_extras, label_after: true, wrapper: tip.blank? ? nil : { "data-tip": tip, "data-tip-position-at": "left bottom"}
-          .column.span-24
-            %h4
-              =t :observation_fields
-              %span.small.meta.ui
-                = surround '(',')' do
-                  = link_to_function t(:all), "$('#observation_field_columns :checkbox').prop('checked', true)"
-                  %span.meta
-                    |
-                  = link_to_function t(:none), "$('#observation_field_columns :checkbox').prop('checked', false)"
-            %table#observation_field_columns
-              - for grp in @observation_fields.in_groups_of(4)
-                %tr
-                  - for of in grp
-                    %td
-                      - if of
-                        = foc.check_box "field:#{of.normalized_name( escape: true )}", label: "field:#{of.normalized_name}", label_after: true, wrapper: of.description.blank? ? nil : { "data-tip": of.description, "data-tip-position-at": "left bottom" }
+          = render "export_observation_fields", title: t( :observation_fields ), observation_fields: @observation_fields, table_id: "observation_fields_columns", f: foc
+          - unless @observation_fields_for_projects.blank?
+            = render "export_observation_fields", title: t( :observation_fields_for_projects ), observation_fields: @observation_fields_for_projects, table_id: "observation_fields_for_projects_columns", f: foc
           - if @ident_user && !@identification_fields.blank?
             .column.span-24
               %h4

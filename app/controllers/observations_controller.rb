@@ -1192,8 +1192,8 @@ class ObservationsController < ApplicationController
       @projects = params[:projects].collect{|id| Project.find( id ) rescue nil}.compact
     end
     if @projects
-      @observation_fields = @projects.collect do |proj|
-        proj.project_observation_fields.collect(&:observation_field)
+      @observation_fields_for_projects = @projects.collect do | proj |
+        proj.project_observation_fields.collect( &:observation_field )
       end.flatten
     end
     if @observation_fields.blank?
