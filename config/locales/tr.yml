@@ -27,6 +27,15 @@ tr:
   x_identifications_caps_html:
     one: '<span class="count">%{count}</span> TANIMLAMA'
     other: '<span class="count">%{count}</span> TANIMLAMA'
+  #Number of people who have added identifications
+  x_identifiers_caps_html:
+    #Number of people who have added identifications
+    one: '<span class="count">%{count}</span> TANIMLAYICI'
+    #Number of people who have added identifications
+    other: '<span class="count">%{count}</span> TANIMLAYICI'
+  x_ids_made_for_others_html:
+    one: 'Başkaları için <span class="count">%{count}</span> tanımlama yapıldı'
+    other: 'Başkaları için <span class="count">%{count}</span> tanımlama yapıldı'
   x_languages:
     one: "%{count} dil"
     other: "%{count} dil"
@@ -74,6 +83,9 @@ tr:
   x_observations_reviewed_html:
     one: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
     other: "<span class='count'>%{count}</span> gözlem gözden geçirildi"
+  x_observers_caps_html:
+    one: '<span class="count">%{count}</span> GÖZLEMCİ'
+    other: '<span class="count">%{count}</span> GÖZLEMCİ'
   x_others:
     one: "diğer %{count}"
     other: "diğer %{count}"
@@ -244,6 +256,8 @@ tr:
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Madde işaretli bir liste ekle
   add_a_comment: Bir Yorum Ekle
+  #Text for a button that links to a page where curators can add new conservation statuses for taxa
+  add_a_conservation_status: Koruma Durumu Ekle
   add_a_field: Bir Alan Ekle
   add_a_flag: İşaret Ekle
   #Tool tip for a button that adds a link to a text area
@@ -253,6 +267,8 @@ tr:
   add_a_new_change_group: Yeni Bir Değişim Grubu Ekle
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Numaralı bir liste ekle
+  #Placeholder for a project autocomplete field
+  add_a_project: Bir proje ekle
   add_a_single_observation: Tek Gözlem Ekle.
   add_a_taxon: Bir Sınıf Ekle
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -555,6 +571,8 @@ tr:
   any_license: Tümü
   #Label for an option to show content with photos, sounds, or neither
   any_media: Tümü
+  #Label for an option to show any place
+  any_place: Herhangi
   #Label for an option to show content from any project
   any_project: Tümü
   #Label for an option to show content with any quality grade
@@ -1026,6 +1044,8 @@ tr:
   confirmation_email_sent_at_datetime: Doğrulama e-postası %{datetime} tarihinde gönderildi
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 'Onay tarihi: %{date}'
+  confirming_ids_description: |
+    Bunu kapatırsan, ek açıklamaları olmadığı sürece seninkiyle aynı olan tanımlamalar hakkında artık bilgilendirilmeyeceksin.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Bağlan
@@ -1060,6 +1080,9 @@ tr:
   content_and_display: İçerik & Görünüm
   content_author: İçerik Sahibi
   content_hidden: İçerik Gizlendi
+  #message on hidden content displaying when and why the content was hidden
+  content_hidden_on_date_because_reason_html: |
+    İçerik %{date} tarihinde şu nedenle gizlendi: "%{reason}"
   #message on hidden content displaying when and why the content was hidden, and by whom
   content_hidden_by_user_on_date_because_reason_html: |
     İçerik, %{user} tarafından %{date} tarihinde gizlendi çünkü: "%{reason}"
@@ -1078,6 +1101,10 @@ tr:
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_plant_phenology: Tümü
     #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_flowers_and_fruits: Herhangi
+    #Value displayed when a filter is not filtering by a specific value for this attribute
+    any_leaves: Herhangi
+    #Value displayed when a filter is not filtering by a specific value for this attribute
     any_life_stage: Tümü
     #Value displayed when a filter is not filtering by a specific value for this attribute
     any_alive_or_dead: Tümü
@@ -1087,10 +1114,20 @@ tr:
     male: Erkek
     female: Dişi
     plant_phenology: Bitki Fenolojisi
+    flowers_and_fruits: Çiçekler ve Meyveler
     budding: Tomurcuklu
     flower_budding: Tomurcuklu Çiçek
     flowering: Çiçekli
     fruiting: Meyveli
+    no_flowers_or_fruits: Çiçek veya meyve yok
+    flower_buds: Çiçek Tomurcukları
+    flowers: Çiçekler
+    fruits_or_seeds: Meyveler veya Tohumlar
+    leaves: Yapraklar
+    breaking_leaf_buds: Yaprak tomurcukları
+    green_leaves: Yeşil Yapraklar
+    colored_leaves: Renkli Yapraklar
+    no_live_leaves: Canlı Yaprak Yok
     life_stage: Yaşam Evresi
     adult: Yetişkin
     teneral: Teneral
@@ -1144,6 +1181,13 @@ tr:
     flower_budding: Çiçek tomurcukları görünür ama açmamış
     flowering: Çiçekler görünür, açık ve hâlâ bitkiye bağlı
     fruiting: Meyveler görünür ve hâlâ bitkiye bağlı
+    flowers: En az bir açık çiçek
+    flower_buds: En az bir kapalı çiçek tomurcuğu
+    fruits_or_seeds: En az bir meyve veya tohum
+    breaking_leaf_buds: En az bir tomurcuk, ilk yeni yaprağı ya da iğnesi henüz tamamen açılmamış halde
+    green_leaves: En az bir yeşil yaprak ya da iğne yaprak (veya bu normal sağlıklı renk ise kırmızımsı)
+    colored_leaves: En az bir yaprak veya iğne yaprak, mevsim sonu ya da kuruluk rengine sahip
+    no_live_leaves: Açılmakta olan yaprak tomurcukları ya da yeşil ya da renkli yapraklar veya iğne yapraklar görünür değil
     gall: Parazit bir organizmanın neden olduğu deforme olmuş doku büyümesi
     male: Kanıtlar, organizmanın eşeyli üremede kullanılmak üzere sperm üretebildiğini göstermektedir
     molt: Atılan deri veya dış iskelet
@@ -1152,6 +1196,7 @@ tr:
     egg: Bütün yumurta veya yumurtanın bir kısmı
     construction: Bir hayvan tarafından yaratılan, başka malzemelerle yapılan veya başka malzemelerden meyadana gelen bir şey
     no_evidence_of_flowering: Medya üreme yapılarıyla ilgili bir kanıt sunmuyor
+    no_flowers_or_fruits: Hiçbir çiçek, meyve veya tohum (tamamen veya kısmen) görünmüyor
     not_established: Organizma; serbest bırakılan/kaçan evcil hayvan, gezgin ve başıboş olanlar dahil olmak üzere yerleşik olmayan bir popülasyona aittir.
     organism: Organizmanın tamamı veya bir kısmı
     scat: Dışkı maddesi (baykuş peletleri ya da diğer kusmuk maddeleri değil)
@@ -1172,6 +1217,7 @@ tr:
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştır.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'ne yapıştır.
   copy_guide_taxon_to: Rehber sınıfını şuraya kopyala...
+  copy_to_clipboard: Panoya kopyala
   copied!: Kopyalandı!
   copyright:
     some_rights_reserved: bazı hakları saklıdır
@@ -1338,9 +1384,12 @@ tr:
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
     iNaturalist ve Topluluk İlkelerinin beklentilerini karşılayan, uygun davranışlar sergilemelisin. Küratör yetkileri, beraberinde örnek iNaturalist kullanıcısı olmayı gerektirir.
+  #Label for a menu item linking to a help page aimed at curators
+  curator_guide: Küratör Rehberi
   curators_changed_for_x_html: "%{x} için küratörler değiştirildi"
   curators: Küratörler
   curators_can_remove_observations_from: Küratörler gözlemleri projeden çıkarabilir ve bunların tanımlamaları projeye özel görünümlerde gözlemlerin yanında gösterilir. Küratörler ayrıca bu projeye yapılan özel ve gizlenmiş katkıların gerçek koordinatlarını da görebilirler.
+  curator_coordinate_access: Küratör Koordinat Erişimi
   curator_identification: Küratör tanımlaması
   current_flags: Mevcut İşaretler
   #Label for a custom boundary for an observation search
@@ -1348,6 +1397,8 @@ tr:
   custom_project_fields: Özel Proje Alanları
   custom_project_was_successfully_created: Proje özelleştirmeleri eklendi
   custom_project_was_successfully_updated: Proje özelleştirmeleri güncellendi
+  #Button to customize projects that appear in the header
+  customize__projects: Özelleştir
   customize_location: Konumu Özelleştir
   darr_apply_darr: "&darr; Uygula &darr;"
   daily_users: Günlük Kullanıcılar
@@ -1429,6 +1480,8 @@ tr:
   default_time_zone_desc: |
     Bu varsayılan zaman dilimidir. Nihai saat dilimi, gözlem kaydedildiğinde gözlemin konumuna göre atanacaktır.
   defaults_to_your_name_or_username: Adınıza ya da kullanıcı adınıza varsayılanlar
+  #As in the definition of a word
+  definition: Tanım
   defines_a_taxon_framework_for: '%{taxon_name} için bir Sınıf Yapısı tanımlar'
   defines_a_taxon_framework_for_taxon_sourced_to_source_html: '%{source} kaynaklı %{taxon} için bir Sınıf Yapısı tanımlar'
   definitions: Tanımlar
@@ -1548,6 +1601,9 @@ tr:
   disable_comments: Yorumları devre dışı bırak
   disable_comments_desc: İnsanların yeni yorum eklemesini önle
   disagree_: Katılmıyorum
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Anlaşmazlıklar
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Bağlantıyı Kes
@@ -1736,10 +1792,17 @@ tr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   exact_rank: Tam Düzey
   except: dışında
+  #Label for a button that filters an observation search so it does not
+  #include observations of a specific taxon
+  exclude__taxon: Hariç tut
   exclude_places: Konumları Hariç Tut
   exclude_projects: Projeleri Hariç Tut
   exclude_taxa: Sınıfları Hariç Tut
   exclude_users: Kullanıcıları Hariç Tut
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: '%{count} sınıf hariç'
+    other: '%{count} sınıf hariç'
   exclusion_filters: Hariç Tutma Filtreleri
   existing_flags: Mevcut İşaretler
   exit_full_screen: "Tam Ekrandan Çık"
@@ -1750,6 +1813,9 @@ tr:
   export: Dışa aktar
   export_observations: Gözlemleri Dışa Aktar
   export_with_private_coordinates: Gizli Koordinatlarla Dışa Aktar
+  #Notice about when a batch of observations was exported, e.g. Exported at
+  #2025-03-06T19:18:56Z
+  exported_at_datetime: '%{datetime} tarihinde dışa aktarıldı'
   exporting: "Dışa aktarılıyor..."
   #A third-party app or service the user has authorized to access their iNat
   #account, e.g. Flickr
@@ -1772,6 +1838,8 @@ tr:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriler
   Family: Familya
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Favori Projeler
   favorite_taxa: Favori Sınıflar
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
@@ -1800,6 +1868,7 @@ tr:
   filter: Filtre
   filter_by_curator_identification: Küratör Tanımlamasına Göre Filtrele
   filter_by_place: Konuma göre Filtrele
+  filter_by_species: Türlere göre filtrele
   filter_by_taxon: Sınıfa Göre Filtrele
   filter_by_place_taxon_and_color: Kontrolleri kullanarak konuma, sınıfa ve renge göre filtrele.
   filter_list_by_this_taxon: Listeyi bu sınıfa göre filtrele
@@ -1914,6 +1983,9 @@ tr:
     one: '1 Kişi Takip Ediliyor'
     other: '%{count} Kişi Takip Ediliyor'
   for_a_taxon: bir sınıf için
+  #Notice about column headers in an observations export
+  for_more_information_about_column_headers: |
+    Sütun başlıkları hakkında daha fazla bilgi için bkz. %{url}
   formatting: Biçimlendirme
   forgot_your_password: Şifreni mi unuttun?
   forum: Forum
@@ -2162,12 +2234,22 @@ tr:
   in_place_x: 'Konum: %{place}'
   #As in a reason to flag something
   inappropriate: Uygunsuz
+  #Name of the newer version of iNaturalist's mobile app, called iNatNext
+  inat_next: iNatNext
   inaturalist_network: iNaturalist Ağı
   inaturalist_network_affiliation: iNaturalist Ağ Üyeliği
   #Label for messages you've received
   inbox: Gelen Kutusu
+  #Label for a button that filters an observation search so it only includes
+  #observations of a specific taxon
+  include__taxon: Dahil et
   include_places: Konumları Dahil Et
   include_projects: Projeleri Dahil Et
+  #Title for an array of options that allows the user to include or exclude
+  #the taxa that contain another taxon from an observation search, e.g. if
+  #the search results include Homo sapiens, the user could choose to refine
+  #the search to only Mammalia, or exclude all observations of Mammalia
+  include_slash_exclude_ancestor_taxa: Üst Soy Sınıflarını Dahil Et / Hariç Tut
   include_suggestions_not_seen_nearby: Yakınlarda görünmeyen önerileri de içer
   include_suggestions_not_expected_nearby: Yakınlarda beklenmeyen önerileri dahil et
   include_taxa: Sınıfları Dahil Et
@@ -2207,6 +2289,8 @@ tr:
   internal_taxon_rank: İç sınıf düzeyi
   introduced: Yabancı
   introduced_in_place: "%{place} konumunda yabancı"
+  #Error message shown when a date format is invalid
+  invalid_date: Geçersiz tarih
   invitation: Davetiye
   invite: davet et
   invite_people: Kişileri davet et
@@ -2219,6 +2303,11 @@ tr:
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: Bunun %{taxon} olduğunu doğrulamak için yeterli kanıt var mı?
   is_this_offensive_html: 'Bu <a href="/help#inappropriate">uygunsuz</a>, gereksiz ya da rahatsız edici mi?'
   is_this_place_a_duplicate: Bu kopyalanmış bir yer mi?
+  #Form field label for setting a scientific name as the currently "accepted"
+  #scientific name for a taxon. "Accepted" in this case is a term used in
+  #taxonomic nomenclature to indicate the name that is the preferred scientific
+  #name to use for a taxon, with other names being considered synonyms
+  is_this_scientific_name_currently_accepted: Bu bilimsel ad şu anda kabul ediliyor mu?
   it_can_now_be_used_for_research: Şimdi araştırma için kullanılabilir ve diğer web sitelerinde öne çıkarılabilir
   #Text inserted into a textarea when the italic button is clicked but no text was selected
   italic_text: eğik yazı
@@ -2268,6 +2357,8 @@ tr:
   large: büyük
   last_active_with_date: "Son Aktiflik: %{date}"
   last_confirmed_observation: Son onaylanan gözlem
+  #label for a field displaying the username of the last user who edited this observation field
+  last_edited_by: Son düzenleyen
   last_observation: Son gözlem
   last_observation_caps: SON GÖZLEM
   last_seen: Son görülme
@@ -2464,6 +2555,10 @@ tr:
   list_with_two_items: "%{one} ve %{two}"
   listed_taxa: Listelenen Sınıflar
   listed_taxon: Listelenen sınıf
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Listelenen
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Listelenmemiş
   listed_taxon_updated: Listelenen sınıf güncellendi
   listing_lists: Listeleri listeleme
   listing_project_assets: Proje İçeriklerini Listeleme
@@ -2564,6 +2659,10 @@ tr:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "%{site_name}'den çıkış yapılsın mı?"
   log_scale_label: Günlük
+  #Adjectival phrase describing state of being logged in
+  logged_in: Giriş yapıldı
+  #Adjectival phrase describing state of being logged out
+  logged_out: Oturum kapatıldı
   #Status message shown while logging in
   logging_in: Oturum açılıyor...
   logo:
@@ -2774,6 +2873,8 @@ tr:
   more_info_title: Daha Fazla Bilgi
   more_journal_posts: Daha Çok Günlük Gönderisi
   more_observations: Daha Çok Gözlem
+  #Label for a button or section that shows additional options
+  more_options: Daha Fazla Seçenek
   more_photos: Daha Çok Fotoğraf
   more_than_a_week_ago: Bir haftadan uzun süre önce
   most_agree: çoğunluğun katıldığı
@@ -3002,6 +3103,8 @@ tr:
   no_users_found_with_those_filters: Bu filtrelerle eşleşen herhangi bir kullanıcı bulunamadı
   no_wikipedia_page_for_taxon: Bu sınıf için Vikipedi sayfası yok.
   noble_curators: "%{site}'in Saygın Küratörleri"
+  #A user who is not a curator
+  non_curator: Küratör olmayan
   non_human?: İnsan değil mi?
   none: Hiçbiri
   none_found: Hiçbir şey bulunamadı
@@ -3371,6 +3474,8 @@ tr:
   original_url_for_this_map: Bu harita için asıl URL
   organism_appears_captive_cultivated: Organizma Kısıtlanmış / Ekili Görünüyor
   other: Diğer
+  #Title for section listing terms that don't fit into established categories
+  other__terms: Diğer
   other_animals: diğer hayvanlar
   other_lexicons: Diğer Sözlükler
   other_listings_of_this_taxon_for_this_place: Bu konum için bu sınıfın diğer listelemeleri
@@ -4501,6 +4606,8 @@ tr:
   show_no_annotation: '"Açıklama Notu Olmayan"ları Göster'
   show_off_your_recent_observations: Son gözlemlerini kendi blogunda ya da web sitende göster!
   show_only: Sadece göster
+  #Label for a button that shows map data from OpenStreetMap
+  show_openstreetmap: OpenStreetMap'i göster
   show_relative_proportions_of_all_observations: Tüm gözlemlerin göreli oranlarını göster
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Toplam Bulunanı Göster
@@ -4719,6 +4826,9 @@ tr:
     one: 1 gözlem gönder
     other: '%{count} gözlemi gönder'
   submitted: Gönderi Tarihi
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abone ol
   subscribe_to_a_taxon: Bir Sınıfa Abone Ol
   subscribe_to_a_place: Bir Konuma Abone Ol
   subscribe_to_comments_on_this_flag_html: "Bu işaretteki yorumlara %{tag_start}abone ol%{tag_end}"
@@ -4925,6 +5035,8 @@ tr:
   #As in Terms of Service, an explicit description of what iNat the extent
   #and limitations of the service provided to users
   terms: Koşullar
+  #As in a list of distinct words
+  terminology: Terminoloji
   terms_and_rules_html: "Şartlar &amp; Kurallar"
   terms_new_users: "Koşul eklerseniz, yeni kullanıcılar bu projeye katılmadan önce bunları kabul etmelidir."
   terms_service: Kullanım Koşulları
@@ -5362,6 +5474,9 @@ tr:
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
   #@gender operates on %{x}
   user_added_an_x_to_noun_html: "%{user}, kendi %{noun}ine %{x} ekledi"
+  user_added_x_observations2_html:
+    one: "%{user} %{count} gözlem ekledi"
+    other: "%{user} %{count} gözlem ekledi"
   user_already_authenticated: Kullanıcı zaten doğrulandı
   user_already_app_owner: Kullanıcı zaten bir uygulama sahibi
   user_autocomplete_placeholder: kueda, simon123, vb.
@@ -6254,6 +6369,12 @@ tr:
         privacy_notice_html: |
           İletiler sen ve alıcı arasında özel olsa da, iNaturalist personeli de bu iletileri görüntüleyebilir ve iletiler moderasyon için işaretlendiğinde bu yapılacaktır. Gerçekten özel iletişim istiyorsan, lütfen güçlü şifrelemeyi destekleyen diğer iletişim mekanizmalarını araştır.
     nls_demo:
+      #Provides an example of a query to use with the Vision Language Demo.
+      #query_in_english will be something like "a bird eating fruit".
+      #Queries do not need to be in English but the model should perform
+      #better with English queries, so we want our example queries to
+      #(mostly) be in English
+      for_example_query: örn. %{query_in_english}
       #shortened text for a button requesting users help us improve the model
       #being using, hence the missing subject (implied to be the model). Try
       #to keep it under 20 characters
@@ -7151,6 +7272,13 @@ tr:
           "Plant Phenology=Flowering": Çiçekli
           "Plant Phenology=Fruiting": Meyveli
           "Plant Phenology=No Evidence of Flowering": Çiçeklenme Belirtisi Yok
+          "Flowers and Fruits=Flower Buds": Çiçek Tomurcukları
+          "Flowers and Fruits=Flowers": Çiçekler
+          "Flowers and Fruits=Fruits or Seeds": Meyveler veya Tohumlar
+          "Flowers and Fruits=No Flowers or Fruits": Çiçek veya meyve yok
+          "Leaves=Breaking Leaf Buds": Yaprak tomurcukları
+          "Leaves=Green Leaves": Yeşil Yapraklar
+          "Leaves=Colored Leaves": Renkli Yapraklar
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Olgunlaşmamış
@@ -7726,11 +7854,21 @@ tr:
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
         prefers_exclude_monthly_supporters: Aylık destekçileri hariç tut
         clients: İstemciler
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Azami tanımlama
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Asgari tanımlama
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Azami gözlem
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Asgari gözlem
       assessment:
         description: Açıklama
       assessment_section:
         title: Başlık
         body: İçerik
+      blocked_ip:
+        ip: IP
       blocked_user:
         #The user who has been blocked
         blocked_user: Engellenmiş kullanıcı
@@ -7897,6 +8035,7 @@ tr:
         show_for_descendent_taxa: Alt soy sınıflar için göster
       user:
         email: E-posta
+        faved_project_ids: Favori projeler
         login: Kullanıcı Adı
         name: İsim
         locale: Yerel
@@ -7914,6 +8053,7 @@ tr:
         equal_to:
           one: '%{count} değerine eşit olmalıdır'
           other: '%{count} değerine eşit olmalıdır'
+        must_look_like_an_email_address: bir e-posta adresi gibi görünmelidir
         even: çift sayı olmalı
         exclusion: ayrılmış
         greater_than:
@@ -8080,6 +8220,14 @@ tr:
                 %{time} sonrasında gözlenmeli
               must_be_observed_before: |
                 %{time} öncesinde gözlenmeli
+        project_observation_rule:
+          attributes:
+            ruler_id:
+              #The ruler (instance against which rules are being applied), must
+              #be an instance of a project
+              must_be_a_project: bir proje olmalı
+              #Umbrella projects can only have project-related rules, i.e. subprojects
+              umbrella_projects_only_allow_project_rules: yalnızca proje kurallarına izin verir
         quality_metric:
           attributes:
             base:
@@ -8138,6 +8286,11 @@ tr:
               already_has_a_range: zaten bir yayılımı var
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: hepsi var olmalı
             login:
               must_begin_with_a_letter: |
                 bir harf ile başlamalı, boşluk içermemeli ve yalnızca harfler, sayılar, kısa çizgiler ve alt çizgiler kullanılmalı
