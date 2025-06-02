@@ -758,6 +758,9 @@ nl:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, geüpload door %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Ontplofte
   authority_list:
     iucn_red_list: De IUCN Rode Lijst
     natureserve: NatureServe
@@ -2713,6 +2716,10 @@ nl:
   list_with_two_items: "%{one} en %{two}"
   listed_taxa: Taxa opgenomen in de lijst
   listed_taxon: taxon in de lijst
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Vermeld
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Niet vermeld
   listed_taxon_updated: taxon in de lijst bijgewerkt
   listing_lists: Lijsten oplijsten
   listing_project_assets: Projectbestanden weergeven
@@ -2813,6 +2820,10 @@ nl:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Afmelden bij %{site_name}?"
   log_scale_label: Logboek
+  #Adjectival phrase describing state of being logged in
+  logged_in: Ingelogd
+  #Adjectival phrase describing state of being logged out
+  logged_out: Uitgelogd
   #Status message shown while logging in
   logging_in: Aanmelden...
   logo:
@@ -3267,6 +3278,8 @@ nl:
   no_users_found_with_those_filters: Geen gebruikers gevonden met deze filters
   no_wikipedia_page_for_taxon: Geen Wikipediapagina voor dit taxon
   noble_curators: "%{site}'s Edele Curatoren"
+  #A user who is not a curator
+  non_curator: Niet-curator
   #Title for a preference to control whether you receive notifications about
   #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
   #someone else adds an ID of Mammalia but does not make it a disagreement.
@@ -6384,6 +6397,13 @@ nl:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Target gebruikers op basis van hun andere eigenschappen
+    atlases:
+      show:
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Deze atlas is momenteel niet actief
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Hierdoor wordt dit taxon en al zijn afstammelingen van de checklists van dit gebied verwijderd en eventuele standaardgebieden die deze bevat. Dit kan niet ongedaan worden gemaakt. Weet je zeker dat je dit wilt doen?
     content_freeze:
       content_freeze: Inhoud bevroren
       during_this_time: |
