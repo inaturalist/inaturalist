@@ -2609,7 +2609,6 @@ it:
   #a noun.
   link_to_authorization_code: Link al codice di autorizzazione
   link_your_flickr_account: Collega il tuo account Flickr
-  link_your_google_account: Collega il tuo account Google
   linked_flickr: "Il tuo account %{site_name} è attualmente collegato a quello di Flickr."
   linked_flickr_automatically: "Inoltre, ricordati che se tu accedi a %{site_name} via Flickr, automaticamente ricollegheremo i tuoi account %{site_name} e Flickr. Se usi Flickr è probabile che tu voglia poter importare le foto di Flickr, vero?"
   linked_flickr_description: "Mantenere il tuo account %{site_name} collegato a quello di Flickr ti permette di aggiungere foto multiple alle tue osservazioni. Se vuoi mantenere %{site_name} e Flickr separati, non è un problema, ma non ti sarà possibile aggiungere foto. In alcuni casi è addirittura preferibile, ad esempio quando crei un nuovo account Flickr che vuoi collegare a %{site_name}."
@@ -5522,7 +5521,6 @@ it:
   unfollow_observation: Smetti di seguire osservazione
   #Text for a button to stop following updates from a user
   unfollow_user: Smetti di seguire utente
-  unlink_your_google_account: Scollega il tuo account Google
   unlink_your_flickr_account: "Scollega il tuo Account Flickr"
   unmute: Riattiva
   updates_notification_email_subject: "Nuovi aggiornamenti %{prefix} in data %{date}"
@@ -5828,8 +5826,6 @@ it:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ricercate
   was_it_captive_cultivated?: "Era in cattività / coltivato?"
-  we_also_support2: |
-    Supportiamo anche l'importazione di foto da <a href="http://flickr.com">Flickr</a> e <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente formattazione
   we_couldnt_find_a_user: Non siamo riusciti a trovare alcun utente con questo indirizzo email.
   we_couldnt_find_a_user_with_that_activation_code: "Non siamo riusciti a trovare alcun utente con questo codice di attivazione. Potresti già aver attivato il tuo account, per favore prova ad accedere."
@@ -6925,11 +6921,6 @@ it:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: |
           La colonna geoprivacy deve essere in inglese e può essere vuota o avere i valori "obscured" o "private"
-        google_photos_notice_html: |
-          Nel febbraio 2019 Google ha modificato le sue API, rendendoci impossibile accedere alle coordinate GPS, alle informazioni di licenza, e a quasi tutte le informazioni che potremmo utilizzare per aggiungere un'identificazione (come le etichette). Ha anche rimosso la ricerca testuale e la paginazione numerica. Inoltre, hanno richiesto che tutti gli account connessi abbiano un'ulteriore autorizzazione, e prima che una terza parte possa richiedere tale autorizzazione agli utenti, la terza parte deve essere verificata. Siamo in attesa di verifica, ma fino a quando ciò non si verificherà, non potrai importare foto da Google. Se approvato, potrai ancora importare le foto, ma queste non includeranno nessuna informazione di localizzazione o di licenza che puoi visualizzare in Google Foto.
-          Può leggere più su questo argomento su:
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          La migliore alternativa è scaricare i file originali e aggiungerli usando l'<a href="/observations/upload">Uploader</a>
         project_csv_template_notice_html: |
           C'è un modello di file per questo progetto che potrebbe aiutarti nella preparazione del file CSV. 
           <a href="%{url}">Scarica modello</a>
