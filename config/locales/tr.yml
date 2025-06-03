@@ -727,6 +727,13 @@ tr:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, yükleyen: %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Patladı
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Patlamamış
   authority_list:
     iucn_red_list: IUCN Kırmızı Listesi
     natureserve: NatureServe
@@ -1401,6 +1408,11 @@ tr:
   curators: Küratörler
   curators_can_remove_observations_from: Küratörler gözlemleri projeden çıkarabilir ve bunların tanımlamaları projeye özel görünümlerde gözlemlerin yanında gösterilir. Küratörler ayrıca bu projeye yapılan özel ve gizlenmiş katkıların gerçek koordinatlarını da görebilirler.
   curator_coordinate_access: Küratör Koordinat Erişimi
+  curator_coordinate_access_desc: |
+    Geleneksel projeler için küratör koordinat erişimi, kimin eklediğine bağlıdır
+    projeye gözlem. Bu, yalnızca aşağıdakiler için varsayılan ayardır:
+    projelerde gözlemler. Gözlemciler bunu aşağıdakiler için değiştirmeyi de seçebilirler:
+    bireysel gözlemler.
   curator_identification: Küratör tanımlaması
   current_flags: Mevcut İşaretler
   #Label for a custom boundary for an observation search
@@ -1615,6 +1627,8 @@ tr:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Anlaşmazlıklar
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Uyuşmayan tanımlamalara sahip gözlemleri gösterin
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Bağlantıyı Kes
@@ -1728,6 +1742,8 @@ tr:
   edited_by_name_some_rights_reserved_html: |
     %{name} tarafından düzenlendi, bazı hakları saklıdır (%{license})
   editing: Düzenleme
+  #Title for a page to edit an announcement
+  editing_announcement_x: Duyuru düzenleme %{id}
   editing_custom_project_fields_for: Şunun için özel proje alanlarını düzenleme
   editing_observation_field: Gözlem alanını düzenleme
   editing_observation_id: "%{obs_id} Gözlemini Düzenleme"
@@ -1853,6 +1869,10 @@ tr:
   Family: Familya
   #Header for a section showing the user's favorite projects
   favorite_projects: Favori Projeler
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Başlıkta bağlantı olarak görünen en fazla yedi proje seçin. Güncelleştirme
+    sayfa yenilendikten sonra görünecektir.
   favorite_taxa: Favori Sınıflar
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
@@ -2210,6 +2230,8 @@ tr:
   inaturalist_global_year_in_review: "iNaturalist'in Küresel %{year} Yılı Değerlendirmesi"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist, Amerika Birleşik Devletleri merkezli, vergiden muaf, kâr amacı gütmeyen bağımsız bir 501(c)(3) kuruluşudur (Vergi Kimliği: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist, tarafından önerilen kimliği güncelledi %{user}
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -3138,6 +3160,8 @@ tr:
   #A user who is not a curator
   non_curator: Küratör olmayan
   non_human?: İnsan değil mi?
+  #A user who does not admin any projects
+  non_project_admin: Proje yöneticisi olmayan kişi
   none: Hiçbiri
   none_found: Hiçbir şey bulunamadı
   normal: sıradan
@@ -3335,6 +3359,7 @@ tr:
   observation_field_type_taxon: Sınıf
   observation_field_type_dna: DNA
   observation_fields: Gözlem Alanları
+  observation_fields_for_projects: Projeler için Gözlem Alanları
   observation_fields_are_additional: Gözlem alanları, gözlemlere eklenebilen ek veri alanlarıdır.
   observation_fields_by_preferences_description: |
     Gözlem alanları biraz etiketlere benzer ancak varsayılan olarak herkes bunları gözlemine ekleyebilir. Yalnızca senin ya da yalnızca site küratörlerinin yapabilmesini tercih ediyorsan bunu değiştir.
@@ -4132,9 +4157,14 @@ tr:
   processing3p: "İşleniyor..."
   profile: Profil
   profile_picture: Profil Resmi
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profil Resmi dosya türü
   profile_visibility_desc: |
     Gereksiz şeyleri %{site_name}'ten uzak tutmak amacıyla, kullanıcı profilleri yalnızca kullanıcı birkaç Araştırma Sınıfı gözleme katkıda bulunduktan sonra herkese açık olarak görünür.
   project: Proje
+  #A user who admin's a project
+  project_admin: Proje yöneticisi
   project_admins:
     one: Proje yöneticisi
     other: Proje yöneticileri
@@ -4216,6 +4246,16 @@ tr:
   range: Tarih Aralığı
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Düzey
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Cins / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Türler / Melez
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alt Türler / Çeşitlilik / Form
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5438,8 +5478,20 @@ tr:
   upcoming_bioblitzes: Yaklaşan bioblitzler
   update: Güncelle
   update_existing_observations_with_new_license: Mevcut gözlemleri yeni lisans seçenekleri ile güncelle
+  update_existing_observations_with_new_license_desc: |
+    Bu seçeneği belirlediğinizde, yeni lisans seçiminiz tüm lisanslarınız için geçerli olacaktır.
+    mevcut gözlemler. Çok fazla varsa bu birkaç saat sürebilir.
+    Gözlem.
   update_existing_photos_with_new_license: Mevcut fotoğrafları yeni lisans seçenekleri ile güncelle
+  update_existing_photos_with_new_license_desc: |
+    Bu seçeneği belirlediğinizde, yeni lisans seçiminiz tüm lisanslarınız için geçerli olacaktır.
+    mevcut fotoğraflar. Çok fazla varsa bu birkaç saat sürebilir.
+    Fotoğraf.
   update_existing_sounds_with_new_license: Mevcut sesleri yeni lisans seçenekleri ile güncelle
+  update_existing_sounds_with_new_license_desc: |
+    Bu seçeneği belirlediğinizde, yeni lisans seçiminiz tüm lisanslarınız için geçerli olacaktır.
+    mevcut sesler. Çok fazla varsa bu birkaç saat sürebilir.
+    Ses.
   update_observations: Gözlemleri Güncelle
   update_past: "Geçmişi Güncelle %{type}"
   update_photos: Fotoğrafları Güncelle
@@ -5587,6 +5639,14 @@ tr:
     Kullanıcı bu projeye herhangi bir nedenle gizlenmiş gizli koordinatları ile güveniyor.
   user_trusts_this_project_for_taxon: |
     Kullanıcı bu projeye yalnızca tehdit altındaki sınıflar nedeniyle gizlenmiş koordinatlar ile güvenmektedir.
+  user_trusts_this_project_when_added_by_any: |
+    Kullanıcı, eklenen gözlemlerin gizli koordinatları ile proje küratörlerine güvenir
+    projeye herkes tarafından.
+  user_trusts_this_project_when_added_by_observer: |
+    Kullanıcı, eklenen gözlemlerin gizli koordinatları ile proje küratörlerine güvenir
+    gözlemci tarafından projeye.
+  user_trusts_this_project_when_added_by_none: |
+    Kullanıcı, gizli koordinatlara sahip proje küratörlerine güvenmiyor.
   user_trusts_you_with_their_private_coordinates: "%{user} gizli koordinatları konusunda sana güveniyor"
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci, tüm gözlemlerinin gizli koordinatları ile size güvenmeyi tercih etti.
@@ -5717,6 +5777,8 @@ tr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
+  we_also_support3: |
+    Ayrıca fotoğrafların içe aktarılmasını da destekliyoruz. <a href="http://flickr.com">Flickr (İngilizce)</a>.
   we_can_only_understand_csv_in: CSV'yi yalnızca aşağıdaki formatta anlayabiliriz
   we_couldnt_find_a_user: Bu e-posta adresine sahip bir kullanıcı bulamadık.
   we_couldnt_find_a_user_with_that_activation_code: "Bu etkinleştirme koduna sahip bir kullanıcı bulamadık. Hesabını zaten etkinleştirmiş olabilirsin, lütfen giriş yapmayı dene."
@@ -6045,11 +6107,25 @@ tr:
   views:
     views: 'Görüntülemeler'
     announcements:
+      locales_desc: |
+        Birden çok seçmek için CMD veya SHIFT tuşunu basılı tutarak tıklayın. "Tümü"nü seçme veya yapmama
+        Bir seçim, duyuruyu aşağıdakilerden bağımsız olarak tüm kullanıcılara gösterecektir.
+        Yerel ayar. Bölgesi olmayan bir dil seçmek hedeflemeyecektir *
+        bölgeleri olan yerel ayarlar, örneğin İngilizce'yi seçtiyseniz görünmeyecektir
+        İngilizce'yi (İngiltere) seçen kişiler için.
+      clients_desc: |
+        Birden çok seçmek için CMD veya SHIFT tuşunu basılı tutarak tıklayın. "Tümü"nü seçme veya yapmama
+        Bir seçim, duyuruyu aşağıdakilerden bağımsız olarak tüm kullanıcılara gösterecektir.
+        müşteri.
       ip_countries_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu IP ülkesine bakılmaksızın tüm kullanıcılara gösterecektir.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kullanıcının en son oluşturduğu gözlemin oluşturulma tarihinin önbelleğe alındığını unutmayın, bu nedenle hedeflemenin etkili olması birkaç saat sürebilir.
+      observation_oauth_application_ids_desc: |
+        Birden çok seçmek için CMD veya SHIFT tuşunu basılı tutarak tıklayın. "Tümü"nü seçme veya yapmama
+        Bir seçim, duyuruyu aşağıdakilerden bağımsız olarak tüm kullanıcılara gösterecektir.
+        app.
       site_ids_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu site üyeliğine bakılmaksızın tüm kullanıcılara gösterecektir.
       start_desc: |
@@ -6066,6 +6142,46 @@ tr:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Kullanıcıları diğer özelliklere göre hedefleme
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Atlaslar Hakkında
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlaslar, bir taksonun küresel dağılımını aktarır. Küratörler yapar
+          bir atlasın yapısını tanımlayarak ve atlasların küratörlüğünü yaparak
+          onu yönlendiren taksonları listeledi.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Burayı patlat
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Burayı patlat
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Bu atlasta henüz bir değişiklik yapılmadı
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Atlas'ta Yapılan Son Değişiklikler
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Son Listelenen Takson Değişiklikleri
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Listelenen taksonları göster
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Bu atlas şu anda etkin değil
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Bu, bu taksonu ve tüm torunlarını kontrol listelerinden kaldıracaktır
+          bu yer ve içerdiği herhangi bir Standart Yer ile ilişkili. O
+          geri alınamaz. Bunu yapmak istediğinizden emin misiniz?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Uyarı: Bu atlasın temsil etmediği gözlemler var
     content_freeze:
       content_freeze: İçeriği Dondurma
       during_this_time: |
@@ -6282,6 +6398,9 @@ tr:
       index:
         deprecated_banner: |
           Ocak 2019 itibariyle Rehberler özelliğinin "olduğu gibi" sunulduğunu lütfen unutmayın; bu özelliği kaldırmak gibi bir planımız olmamakla birlikte, daha çok geliştirmeyi de düşünmüyoruz.
+        funding2_html: |
+          Rehberlerin geliştirilmesi için finansman şu şekilde sağlandı:
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Rehberler, tüm dünyada biyoçeşitlilik ile ilgili bilgi edinmenize yardımcı olur. İster Serengeti'yi, ister yalnız yerel parkınızı (Serengeti olabilir) keşfedin. Rehberler gezegenimizin çarpıcı yaşam çeşitliliğini anlamanıza yardımcı olabilir.
       edit:
@@ -7419,6 +7538,11 @@ tr:
           Sınıf sayfasının bu sınıfın ve onun alt soyundan gelenlerin fotoğraflarını göstereceğini unutma. Ancak bu sınıf için seçilen fotoğraflar ilk olarak gösterilecektir. İlk fotoğraf site genelinde kullanılan varsayılan resim olacaktır.
         rare_desc: En az gözlemlenen tehdit altındaki sınıflar
         rare_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda en az gözlemlenen tehdit altındaki sınıflar
+        site_curators_disabled_wikipedia_html: |
+          Site küratörleri göstermeyi devre dışı bıraktı <a href="%{url}">bu
+          Vikipedi'den içerik</a>. Sayfayı düzenleyerek yardımcı olabilirsiniz.
+          Vikipedi'yi bu takson için uygun hale getirmek veya bunu işaretleyerek
+          site küratörlerinin dikkatine sunmak için takson.
         trending_desc: Geçen ayda en çok gözlemlenen sınıflar
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen sınıflar
         wanted_desc: Bu sınıfta yer alan henüz gözlemlenmemiş türler.
@@ -7540,6 +7664,10 @@ tr:
           Ticari Olmayan Atfetme (CC BY-NC), gibi kayıtları <a href="http://www.gbif.org/">Küresel Biyoçeşitlilik 
           Danışma Tesisi</a> (GBIF), biyolojik çeşitlilik bilgisini dünyanın dört bir yanından 
           derleyen ve dağıtan uluslararası, hükümetler arası bir organizasyon için ürettiğimiz arşive dahil ediyoruz.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Dosya türü desteklenmiyor. JPG, PNG ve GIF'i kabul ediyoruz
         monthly_supporter_desc_html: |
           iNaturalist Aylık Destekçileri, iNaturalist ve iNaturalist Ağı sitelerinin kâr amacı gütmeyen işleyişini desteklemek için iNaturalist'e (Amerika Birleşik Devletleri IRS EIN 92-1296468) otomatik aylık katkılarda bulunur. <a href="%{url}">Aylık Destekçi olmak için buraya tıklayın</a>. Desteğini onayladığımızda, bu durumu profilinde görüntülemek için bu kutuyu işaretleyebileceksin. Not: Aylık Destekçi olduğunu onaylamamız için Donorbox ve iNaturalist'teki e-posta adresleri tam olarak eşleşmelidir. Farklı ise birini diğeri ile eşleşecek şekilde değiştirin.
         muting_desc_html: |
@@ -7925,6 +8053,10 @@ tr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H.%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -7963,6 +8095,8 @@ tr:
     attributes:
       announcement:
         created_at: 'Oluşturuldu:'
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Görevden alınabilir
         updated_at: 'Güncellendi:'
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -7974,6 +8108,12 @@ tr:
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
         prefers_exclude_monthly_supporters: Aylık destekçileri hariç tut
         clients: İstemciler
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Gözlemcileri uygulamalardan dışlama
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Uygulamalardan gözlemcileri dahil etme
         #Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Azami tanımlama
         #Minimum number of identifications the viewer must have added for others to see the announcement
@@ -7982,6 +8122,8 @@ tr:
         max_observations: Azami gözlem
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Asgari gözlem
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Hedef oluşturucu (test için)
       assessment:
         description: Açıklama
       assessment_section:
@@ -8121,6 +8263,8 @@ tr:
         photos_locked: Fotoğraflar kilitli mi?
         rank: Sıralama
         rank_level: Düzey sırası
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Vikipedi'yi gösterir
         source_id: Kaynak ID'si
         source_identifier: Kaynak tanımlayıcı
         source_url: Kaynak URL
@@ -8261,6 +8405,8 @@ tr:
               not_supported_for_this_kind_of_content: bu tür içerikler için desteklenmez
             base:
               only_staff_and_hiding_curators_can_unhide: Yalnızca içeriği gizleyen personel ve küratörler gizliliği kaldırabilir
+              #Error saying that only staff can rename
+              only_staff_can_rename: Yalnızca personel yeniden adlandırabilir
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
@@ -8277,6 +8423,9 @@ tr:
                 gözlemin eklendiği tarihten daha büyük olamaz
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: son 130 yıl içinde olmalı
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: Bir aralık değil, tek bir gün olmalıdır
         observation_field_value:
           attributes:
             value:
@@ -8307,6 +8456,9 @@ tr:
               invalid_point: geçersiz bir noktaya sahiptir, örneğin boylam 180'den büyük veya enlem -90'dan küçük
               must_have_more_than_three_points: 3'ten fazla noktaya sahip olmalıdır
               polygon_with_less_than_four_points: 4'ten az noktası olan bir çokgene sahiptir
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: alanı olmayan bir çokgene sahiptir (tüm noktalar aynıdır)
         place_geometry:
           attributes:
             geom:
@@ -8324,6 +8476,10 @@ tr:
             user:
               must_be_on_site_long_enough: |
                 yayınlamak için 24 saatten daha uzun süre önce kaydolmalıdır. Çok fazla istenmeyen ileti gönderen oluyor ve bu onlarla başa çıkmanın bir yolu. Yine de bir taslak kaydedebilirsin ve bir gün içinde siteyi hâlâ kullanıyorsan, yayınlayabilirsin.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Sadece 7 projeyi favoriye ayırabilirsiniz
         project_observation:
           attributes:
             base:
@@ -8376,6 +8532,11 @@ tr:
             name:
               bad_format: |
                 yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Yaşam taksonu, takson değişikliklerine dahil olamaz
         taxon_name:
           attributes:
             lexicon:
@@ -8407,6 +8568,9 @@ tr:
         user:
           attributes:
             faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7'den fazla proje içeremez
               #Error when a user tries to add a project that does not exist
               #to their favorite projects, e.g. "Faved projects must all
               #exist"
@@ -8414,6 +8578,7 @@ tr:
             login:
               must_begin_with_a_letter: |
                 bir harf ile başlamalı, boşluk içermemeli ve yalnızca harfler, sayılar, kısa çizgiler ve alt çizgiler kullanılmalı
+              domain_is_not_supported: Etki alanı desteklenmiyor
         user_block:
           attributes:
             base:
