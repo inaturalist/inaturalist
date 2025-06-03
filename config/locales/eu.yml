@@ -225,6 +225,8 @@ eu:
   add_a_new_change_group: Gehitu beste aldaketa bat taldean
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Zenbakidun zerrenda gehitu
+  #Placeholder for a project autocomplete field
+  add_a_project: Proiektu bat gehitu
   add_a_single_observation: Ohar arrunta gehitu.
   add_a_taxon: Espeziea edo taldea gehitu
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -518,6 +520,8 @@ eu:
   any_license: Edozein
   #Label for an option to show content with photos, sounds, or neither
   any_media: Edozein
+  #Label for an option to show any place
+  any_place: Edozein
   #Label for an option to show content from any project
   any_project: Edozein
   #Label for an option to show content with any quality grade
@@ -653,6 +657,13 @@ eu:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{user}-k %{attribution} igo du."
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Eztanda egin zuen
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Ustiatu gabe
   authority_list:
     iucn_red_list: IUCN zerrenda gorria
     natureserve: NatureServe
@@ -933,6 +944,10 @@ eu:
   confirmation_email_sent_at_datetime: 'Baieztatzeko helbide elektronikoa hona bidali da: %{datetime}'
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 'Data honetan berretsia: %{date}'
+  confirming_ids: Identifikazioen berrespena
+  confirming_ids_description: |
+    Aukera hori desaktibatzen baduzu, ez zaizu jakinaraziko onartzen dituzten IDak
+    berearekin, ohar gehigarririk ez badute behintzat.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Konektatu
@@ -1123,7 +1138,15 @@ eu:
   curators_changed_for_x_html: "%{x}-(e)rako administrariak aldatuta"
   curators: Administratzaileak
   curators_can_remove_observations_from: Administratzaileek behaketak ken ditzakete proiektutik eta identifikazioak zenbait ikuspegitan azaltzen dira (erreferentzia gisa). Gainera, proiektuko ilundutako koordenatuak edo koordenatu pribatuak ikus ditzakete.
+  curator_coordinate_access: Kuradoreak koordenatua
+  curator_coordinate_access_desc: |
+    Kuradoreak proiektu tradizionaletarako sarbide koordinatua noren esku egongo da
+    proiektuari behatzea. Hori da aurrez zehaztutako konfigurazioa
+    Oharrak proiektuetan. Begiraleek ere hau alda dezakete
+    banakako oharrak.
   custom_project_fields: Pertsonalizatutako proiektu-eremuak
+  #Button to customize projects that appear in the header
+  customize__projects: Pertsonalizatu
   darr_apply_darr: "↓ Aplikatu ↓"
   daily_users: Erabiltzaileak egunero
   danger_zone: Eremu arriskutsua
@@ -1236,6 +1259,11 @@ eu:
   did_you_photos_flickr?: Argazkiak jarri dituzu Flickr-en?
   disable_comments: Galarazi iruzkinak
   disagree_: Ez onartu
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Desadostasunak
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Identifikazio kontraesankorrak dituzten oharrak erakustea
   disconnect_provider: "Hemendik deskonektatu: %{provider}"
   documentation_for_developers_html: <a href="/pages/developers">Garatzaileentzako</a> dokumentazioa
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |
@@ -1294,6 +1322,8 @@ eu:
   edit_your_account_and_profile_html: "Zure kontua eta profila aldatu"
   edit_your_identification: Zure identifikazioa aldatu
   editing: Aldatu
+  #Title for a page to edit an announcement
+  editing_announcement_x: Edizioaren iragarkia %{id}
   editing_observation_field: Behaketa-eremua aldatu
   editing_observation_id: "%{obs_id} behaketa aldatu"
   editing_project: '%{project} aldatu'
@@ -1351,6 +1381,12 @@ eu:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Gogokoak
   Family: Familia
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Proiektu gogokoenak
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Aukeratu zazpi proiektu, lotura gisa agertzen direnak. Eguneraketak
+    orria eguneratu ondoren agertuko da.
   favorite_taxa: Taxoi gogokoenak
   favorites: "Gogokoak"
   featured: Nabarmendutakoak
@@ -1523,6 +1559,8 @@ eu:
   #Notification when an identification has been updated
   identification_updated: Identifikazioa eguneratuta!
   identifications: Identifikazioak
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist-ek iradokitako IDa eguneratu zuen %{user}
   identifiers: Identifikatzaileak
   identotron_for: 'Identotron honetarako:'
   identotron_help: Identotron-ekin laguntza
@@ -1564,8 +1602,22 @@ eu:
   inat_user_profile: "%{site_name}:  honen profila: %{user}"
   inaturalist_places: "%{site_name} lekuak"
   info: Informazioa
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraespezien identifikatzaileak
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Aukera hori desaktibatzen baduzu, ez zaizu jakinaraziko taxonen identifikazioei buruz
+    espezie-mailaren azpitik (subespezi eta aldaki gisa) beren espeziearekin bat datorren espezie-mailaren azpitik(subespezi eta aldaki gisa).
+    IHi espezie mailan. Identifikazioarekin ados ez dauden edo
+    ohar gehigarririk ba ote duten.
   insects: intsektuak
   introduced: sartu zuen
+  #Error message shown when a date format is invalid
+  invalid_date: Baliorik gabeko data
   invite: gonbidatu
   invite_people: Gonbidatu jendea
   is_not_following_anyone: Ez zara inor jarraitzen ari
@@ -1660,6 +1712,10 @@ eu:
     photo: argazkiak
   list_was_successfully_created: Zerrenda arrakastarekin sortu da.
   listed_taxon: Zerrendatutako taxona
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Zerrenda
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Ez kotizatua
   listed_taxon_updated: Espeziearen edo taldearen zerrenda eguneratu da
   listing_lists: Zerrendak erakusten
   listing_project_assets: Proiektuko jabetzen zerrenda
@@ -1695,6 +1751,10 @@ eu:
   location_specified: Kokapena zehaztuta dago
   locked_taxa_will_not_allow_new: Blokeatutako taxonek ez dute taxon ondorengo gehiago gehitzen utziko. Esate baterako, zuk Amphibia blokeatu baduzu eta norbait <i>Lithobates catesbeianus</i> kanpoko hornitzaile batetatik inportatzen saiatu bada, taxon berria sortuko da, baina ezin izango da anfibio gisa sailkatu. Hori gertatzen bada, berriki gehitutako taxonak markatu egin behar lirateke, administrari batek berrikusi ditzan. Dagoeneko ondorengo guztiak ditugula uste dugun taxonekin soilik aplikatu behar litzateke hau. Administrari batek hau berridatzi dezake taxonak aldatuta eta identifikadore nagusiak zuzenean sartuta, baina horren ordez, saiatu taxon berriak dagoeneko existitzen direnekin konbinatzen.
   log_in: Saioa hasi
+  #Adjectival phrase describing state of being logged in
+  logged_in: Konektatua
+  #Adjectival phrase describing state of being logged out
+  logged_out: Saio itxia
   logo:
     logo: Logotipoa
     white_bg_gif: Atzealde zuria GIF irudiarekin
@@ -1752,6 +1812,8 @@ eu:
   more_info_title: Informazio gehiago
   more_journal_posts: Egunkariko ohar gehiago
   more_observations: Ohar gehiago
+  #Label for a button or section that shows additional options
+  more_options: Aukera gehiago
   most_agree: Gehiengoak babesten du
   most_disagree: Gehiengoak ez du babesten
   multiple_taxa_for_taxon_change: "Espezie edo talde bat baino gehiago (datu-sarrera trukatzeko/nahasteko, datu-irteera bereizteko)"
@@ -1861,6 +1923,23 @@ eu:
   no_taxonomic_changes_match_those_criteria: Bilaketa-irizpide honekin ez dago aldaketa taxonomikorik
   no_wikipedia_page_for_taxon: Wikipedia-n ez dago orrialderik taxon honetarako.
   noble_curators: "Hemengo administratzaile aktiboak: %{site}"
+  #A user who is not a curator
+  non_curator: Ez kuradorea
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Bat ez datozen aurrekoen IDa
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Aukera hori desaktibatzen baduzu, ez zaizu jakinaraziko norbaitek eraso egiten duenean
+    IDaren taxonaren arbasoa den taxon baten IDa, eta ez
+    Taxon Komunitarioarekin bat ez datorrela. Jakinaraziko zaio
+    IDak iruzkin gehigarriak ditu.
+  #A user who does not admin any projects
+  non_project_admin: Proiektuarena ez den administratzailea
   none: Bat ere ez
   none_found: Ez da aurkitu
   normal: normala
@@ -1893,6 +1972,7 @@ eu:
   observation_date?: Data?
   observation_field: Behaketa-eremua
   observation_fields: Behaketa-eremuak
+  observation_fields_for_projects: Proiektuetarako behaketa-eremuak
   observation_fields_are_additional: Behaketa-eremuak behaketei gehitu daitezkeen datu-eremu osagarriak dira.
   observation_removed_from_the_project: "%{project} proiektuaren behaketa ezabatu da"
   observation_rules: Behaketa-arauak
@@ -2157,7 +2237,12 @@ eu:
   processing: Prozesatzen
   processing3p: "Prozesatzen..."
   profile: Profila
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profileko irudiaren artxibo mota
   project: Proiektua
+  #A user who admin's a project
+  project_admin: Proiektuaren administratzailea
   project_assessments: Proiektuaren ebaluazioa
   project_assets: Proiektuko fitxategiak
   project_created_on: 'egun honetan sortu zenuen proiektua: %{date}'
@@ -2189,6 +2274,16 @@ eu:
   range: Maila
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: maila
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Generoa / Generoahibridoa
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Espeziea / Hibridoa
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subespecie / Variedad / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2456,6 +2551,9 @@ eu:
   stuff_just_added: "Gehitu berri duzuna..."
   subject_resolved_noun_html: "%{subject} ebazten du %{noun}"
   submitted: Bidalita
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Izenpetu
   subscribe_to_a_taxon: Harpidetu taxon batera
   subscribe_to_a_place: Harpidetu toki batera
   subscribe_to_x_from_this_y_html: |
@@ -2627,8 +2725,20 @@ eu:
   unsuspend_user: Erabiltzailea berraktibatu
   update: Eguneratu
   update_existing_observations_with_new_license: Dauden behaketak aukeratutako lizentziarekin eguneratu
+  update_existing_observations_with_new_license_desc: |
+    Aukera hori aukeratzean, lizentzia aukera berria aplikatuko zaie lizentzia-aukera guztiei.
+    dauden oharrak. Horrek ordu batzuk behar ditu, baldin eta kopuru handia badu.
+    Oharrak.
   update_existing_photos_with_new_license: Dauden argazkiak aukeratutako lizentziarekin eguneratu
+  update_existing_photos_with_new_license_desc: |
+    Aukera hori aukeratzean, lizentzia aukera berria aplikatuko zaie lizentzia-aukera guztiei.
+    Dauden argazkiak. Horrek ordu batzuk behar ditu, baldin eta kopuru handia badu.
+    Argazkiak.
   update_existing_sounds_with_new_license: Lehendik dauden soinuak eguneratu aukeratutako lizentziarekin
+  update_existing_sounds_with_new_license_desc: |
+    Aukera hori aukeratzean, lizentzia aukera berria aplikatuko zaie lizentzia-aukera guztiei.
+    dauden soinuak. Horrek ordu batzuk behar ditu, baldin eta kopuru handia badu.
+    Soinuak.
   update_past: "Iraganeko %{type} eguneratu"
   update_photos: Argazkiak eguneratu
   update_your_content: Eguneratu zure edukia
@@ -2660,6 +2770,14 @@ eu:
   user_added_an_x_to_noun_html: "%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra"
   user_invite_observation_to_project: '%{user}-(e)k zure "%{observation}" behaketa %{project} proiektura gonbidatu nahi du.'
   user_is_a_naturalist: "%{user} naturalista da!"
+  user_trusts_this_project_when_added_by_any: |
+    Erabiltzaileak proiektuaren kuradoreengan konfiantza du, behaketa agregatuen koordenatu ezkutuekin
+    edozeinek proiektuari.
+  user_trusts_this_project_when_added_by_observer: |
+    Erabiltzaileak proiektuaren kuradoreengan konfiantza du, behaketa agregatuen koordenatu ezkutuekin
+    behatzaileak proiektuari.
+  user_trusts_this_project_when_added_by_none: |
+    Erabiltzaileak ez du konfiantzarik koordenatu ezkutuak dituzten proiektuen kuradoreengan.
   username: Erabiltzailearen izena
   username_or_email: Erabiltzailearen izena edo helbide elektronikoa
   username_or_user_id: Erabiltzailearen izena edo ID
@@ -2688,6 +2806,8 @@ eu:
   view_more_observations_near_x_place: "Behaketa gehiago ikusi %{place}-(e)tik gertu hemen: <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_project: "%{project} proiektuaren behaketa gehiago ikusi hemen: <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "%{taxon}-(r)en behaketa gehiago ikusi hemen: <nobr>%{site_name} »</nobr>"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Ikus kaltetutako IDak
   view_observation: Behaketa ikusi
   view_observations: Behaketak ikusi
   view_observations_of_this_taxon_by: Taxon honetako oharrak iksui
@@ -2719,6 +2839,8 @@ eu:
   w_sounds: soinuekin
   wait_file_generation: Itxaron fitxategia sortu bitartean. Agian minutu batzuk beharko ditu zerrenda handietarako.
   was_it_captive_cultivated?: "Gatibu/hezia izan da?"
+  we_also_support3: |
+    Argazkien inportazioa ere onartzen dugu <a href="http://flickr.com">Flickr (ingelesez)</a>.
   we_can_only_understand_csv_in: 'CSV formatu honetan soilik inporta dezakegu:'
   we_couldnt_find_a_user: Ezin izan dugu erabiltzailerik topatu posta-helbide honekin.
   we_couldnt_find_a_user_with_that_activation_code: "Ezin izan dugu erabiltzailerik topatu aktibazio-kode honekin. Baliteke zure kontua dagoeneko aktibatuta egotea, mesedez, saiatu sisteman sartzen"
@@ -2828,6 +2950,94 @@ eu:
   verifiable: Egiaztagarria
   views:
     views: 'Ikustaldiak'
+    announcements:
+      locales_desc: |
+        CMD edo MAYUS eta klik egin hainbat aukeratzeko. "Guztiak" aukeratu edo ez egin
+        Aukeraketa batek erabiltzaile guztiei erakutsiko die iragarkia, edozein dela ere
+        eskualdeen konfigurazioa. Hizkuntza bat aukeratzea *no* eskualderik gabe orientatuko da
+        eskualdeak dituzten eskualdeak, adibidez, ingelesa aukeratzen baduzu, ez da agertuko
+        ingelesa aukeratu dutenentzat (Erresuma Batua).
+      clients_desc: |
+        CMD edo MAYUS eta klik egin hainbat aukeratzeko. "Guztiak" aukeratu edo ez egin
+        Aukeraketa batek erabiltzaile guztiei erakutsiko die iragarkia, edozein dela ere
+        bezeroa.
+      end_desc: |
+        Iragarki hau geldituko den kontuaren ordu-eremuan ordua
+        Agertu. Ordu-eremu guztietan aplikatzen da, eta, beraz, mundu guztiak ez du ikusiko
+        aldi berean, ez bere ordu lokalari dagokionez.
+      ip_countries_desc: |
+        CMD edo MAYUS eta klik egin hainbat aukeratzeko. "Guztiak" aukeratu edo ez egin
+        Aukeraketa batek erabiltzaile guztiei erakutsiko die iragarkia, edozein dela ere
+        Jabetza intelektualeko herrialdea.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Kontuan izan jabetza sortzeko data
+        Behaketa katxean gordetzen da, eta, beraz, litekeena da destinoen segmentazioa ordu batzuk berandutzea.
+        Indarrean sartu
+      observation_oauth_application_ids_desc: |
+        CMD edo MAYUS eta klik egin hainbat aukeratzeko. "Guztiak" aukeratu edo ez egin
+        Aukeraketa batek erabiltzaile guztiei erakutsiko die iragarkia, edozein dela ere
+        aplikazioa.
+      site_ids_desc: |
+        CMD edo MAYUS eta klik egin hainbat aukeratzeko. "Guztiak" aukeratu edo ez egin
+        Aukeraketa batek erabiltzaile guztiei erakutsiko die iragarkia, edozein dela ere
+        lekuaren afiliazioa.
+      start_desc: |
+        Iragarkia hasiko den kontuaren ordu-gunean
+        Agertu. Ordu-eremu guztietan aplikatzen da, beraz, denak ikusiko dira
+        aldi berean, ez bere ordu lokalari dagokionez.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Erabiltzaileei zuzendu, dohaintza-jokabidearen arabera
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Erabiltzaileei zuzendu identifikazio-jokabidearen arabera
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Erabiltzaileei zuzendu behaketa-jokabidearen arabera
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Erabiltzaileei beste atributu batzuengatik zuzentzea
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Atlasei buruz
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasek taxon baten banaketa globala transmititzen dute. Kuradoreek egiten dute
+          atlas baten egitura definituz eta koma-koma
+          bultzatzen duten taxon zerrendatuak.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Leku hau ustiatzen du
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Leku hau desesplotatu
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Oraindik ez aldaketarik atlas honetan
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Atlasaren aldaketa berriak
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Taxonen aldaketa berriak
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Taxon zerrendatuak erakutsi
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Atlas hau ez aktibo gaur egun
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Horrek taxon hori eta bere ondorengo guztiak ezabatuko ditu egiaztapen zerrendetatik
+          leku honekin eta bertan dagoen edozein leku estandarrekin lotuta. Hori
+          ezin da desegin. Ziur al zaude hau egin nahi duzula?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Ohartarazpena: atlas honek ordezkatzen ez dituen ohar batzuk daude
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -2858,6 +3068,10 @@ eu:
       tips_check_your_spam_folder: Aztertu nahi ez duzun posta-karpeta
       your_site_account_has_no_email: Zu %{site_name} Kontuak ez du helbide elektronikorik.
     guides:
+      index:
+        funding2_html: |
+          Gidak egiteko finantzaketa eman zuen
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
       edit:
         licensing_explanation: |
           Zure edukiaren lizentzia emateak baimena eskatu gabe kopiatzeko eta aldatzeko eskubidea ematen die beste pertsona batzuei. Hori dela eta, askoz errazagoa da zure lana partekatzea, eta beste iturri batzuetako hirugarren pertsonen edukiak sartzen badira, Creative Commons BerdinPartekatu lizentziak (Wikipedia, adibidez) erabiltzen dituztenak, legez antzeko lizentzia bat erabiltzera behartuta zaude. 
@@ -2949,6 +3163,13 @@ eu:
     stats:
       index:
         observers_desc: Egun honetan behaketa bat gehitu da
+    taxa:
+      show:
+        site_curators_disabled_wikipedia_html: |
+          Webguneko kuradoreek aurkezpena bertan desgaitu dute <a href="%{url}">hau
+          Wikipediaren edukia</a>. Orria argitaratzea lagun dezakezu
+          Wikipedia, taxon honetarako egokia izan dadin, edo hau markatuz
+          Taxon, setioko kuradoreen arreta erakartzeko.
     users:
       dashboard:
         taxon_change_desc: |
@@ -2968,10 +3189,19 @@ eu:
           proiektuari gehitutako behaketen koordenatu pribatuak eta ezkutuak ikus
           ditzakete.
       edit:
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Ez da artxibo motarik onartzen. JPG, PNG eta GIF onartzen ditugu
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_taxon_changes: Aldaketak taxonomian
         project_addition_preferences:
           any: Edozein
+        this_only_applies_to_traditional_projects2: |
+          Hori proiektu tradizionalei bakarrik aplikatzen zaie. Ezin dira oharrak baztertu
+          bilduma- edo aterki-proiektuenak, funtsean gordetako bilaketak direnak.
+          Gehiago irakur dezakezu
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">hemen</a>.
   date:
     abbr_day_names:
       - ig.
@@ -3126,10 +3356,55 @@ eu:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %b %Y %H:%M:%S %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       day_month_year: "%d %b. %Y"
     pm: arratsaldea
   activerecord:
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Baztergarria
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Emailearen hasiera-data baztertzea
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Emailearen amaiera-data baztertzea
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Aplikazioen behatzaileak kanpoan uztea
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Emailearen hasiera-data sartu
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Emailearen amaiera-data barnean
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Aplikazioen behatzaileak sartu
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP herrialdeak
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: OBSren hasiera data
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Obsak amaitzeko azken eguna
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Gehieneko identifikazioak
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Gutxieneko identifikazioak
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Gehienezko oharpenak
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Gutxieneko oharrak
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Kokapena
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Helburuen sortzailea (probetarako)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Saioa hasi duen helburua
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Erabiltzaile-erregistro goiztiarrenaren data
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Erabiltzaile-erregistroaren azken eguna
       assessment:
         description: Deskribapena
       assessment_section:
@@ -3186,6 +3461,8 @@ eu:
         name: Izena
         parent_id: Klasearen edo espezie-aitaren identifikatzailea
         rank: Sailkapena
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Wikipedia erakustaldia
         source_identifier: Iturriaren identifikatzailea
         source_url: Iturriaren esteka
         wikipedia_summary: Wikipediako laburpena
@@ -3196,11 +3473,52 @@ eu:
         source_identifier: Iturriaren identifikatzailea
       user:
         email: Posta
+        faved_project_ids: Proiektu gogokoenak
         name: Izena
         time_zone: Ordu-zona
     errors:
       messages:
+        must_look_like_an_email_address: helbide elektroniko baten antza izan behar du
         requires_privilege_interaction: helbide elektroniko bat izan behar du, hori egiteko
+      models:
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Langileek bakarrik alda dezakete izena
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: egun bakarra izan behar du, ez maila bat
+        place:
+          attributes:
+            place_geometry:
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: eremurik gabeko poligonoa du (puntu guztiak berdinak dira)
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: 7 proiektu kuttun baino ezin dituzu markatu
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Life taxoia ezin da aldaketa taxonomikoetan nahasita egon
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: Ezin ditu 7 proiektu baino gehiago sartu
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: denak egon behar dira
+            login:
+              domain_is_not_supported: Domeinua ez da bateragarria
   will_paginate:
     previous_label: "&#8592; Aurrekoa"
     next_label: "Hurrengoa &#8594;"
