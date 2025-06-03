@@ -2554,7 +2554,6 @@ zh-CN:
   #a noun.
   link_to_authorization_code: 验证码的链接
   link_your_flickr_account: 链接您的Flickr账户
-  link_your_google_account: 链接您的Google账户
   linked_flickr: "您的%{site_name}账户目前已链接到您的Flickr账户。"
   linked_flickr_automatically: "另请注意，如果您通过Flickr登录至 %{site_name}，我们将自动重新连接您的 %{site_name} 账户与Flickr账户。看起来如果您使用Flickr的话，您将希望能够导入Flickr的照片，对么？"
   linked_flickr_description: "让您的%{site_name}帐户与您的Flickr帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Flickr取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Flickr账户会是个最佳选择。"
@@ -5433,7 +5432,6 @@ zh-CN:
   unfollow_observation: 取消关注观察
   #Text for a button to stop following updates from a user
   unfollow_user: 取消关注用户
-  unlink_your_google_account: 取消链接您的Google账户
   unlink_your_flickr_account: "取消连接至您的 Flickr 账号"
   unmute: 取消禁言
   updates_notification_email_subject: "%{prefix} 新的更新 %{date}"
@@ -5741,8 +5739,6 @@ zh-CN:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
   was_it_captive_cultivated?: "是被饲育/栽培的吗？"
-  we_also_support2: |
-    我们还支持从 <a href="http://flickr.com">Flickr</a>和 <a href="http://photos.google.com">Google 照片</a> 中导入照片。
   we_can_only_understand_csv_in: 我们只能解析此种格式的CSV文件
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_couldnt_find_a_user_with_that_activation_code: "我们找不到具有该激活码的用户。您可能已经激活了自己的帐户，请尝试登录。"
@@ -6828,11 +6824,6 @@ zh-CN:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           地理位置隐私这一列必须为英文，要么值为空，要么值为“obscured”或“private”
-        google_photos_notice_html: |
-          2019年，谷歌更改了其API，导致我们无法再获得GPS坐标、许可证信息，以及我们可能用于添加鉴定的几乎一切信息（比如标签）。他们还移除了文字搜索和数字页码。不仅如此，他们还要求所有连接的账号都进行额外许可，而在第三方请求得到用户许可之前，这一第三方必须得到验证。我们正在等待验证通过，但在此之前，你将无法从谷歌上传图片。如果我们得到批准，你将可以上传图片，但这不会包括你在谷歌图片里能看到的任何位置信息或许可证信息。你可以在 <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>阅读到更多有关信息。下载原始图片，并使用<a
-          href="/observations/upload">上传</a>来添加它们是最好的暂时解决方案。
         project_csv_template_notice_html: |
           这是一个用于此项目的模板文件，它可能帮助您了解CSV文件的结构。<a href="%{url}">下载模板</a>
         soundcloud_notice_html: |
