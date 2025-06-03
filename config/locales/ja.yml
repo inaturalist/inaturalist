@@ -2464,7 +2464,6 @@ ja:
   #a noun.
   link_to_authorization_code: 認証コードへのリンク
   link_your_flickr_account: Flickrアカウントと連携させる
-  link_your_google_account: Googleアカウントをリンクする
   linked_flickr: "現在あなたの%{site_name}アカウントはFacebookアカウントと連携されています"
   linked_flickr_automatically: "また、Flickrから%{site_name} にログインすると、%{site_name} とFlickrのアカウントが自動的に再リンクされます。Flickrを使っている人は、Flickrの写真をインポートできるようにしたいと思うでしょう。"
   linked_flickr_description: "%{site_name} のアカウントをFlickrアカウントとリンクさせておくことで、複数の写真をオブザベーションに追加することができます。 もちろん、%{site_name} のアカウントとFlickrアカウントを分離したい場合は、写真を追加できなくなるだけです。新しいFlickrアカウントを作成し、%{site_name} とリンクさせたい場合など、この方法が最善である場合もあります。"
@@ -5095,7 +5094,6 @@ ja:
   unfollow_observation: 観察記録のフォローを解除
   #Text for a button to stop following updates from a user
   unfollow_user: ユーザーのフォローを解除
-  unlink_your_google_account: Googleアカウントとの連携を解除する
   unlink_your_flickr_account: "Flickrアカウントとの連携を解除"
   unmute: ミュート解除
   updates_notification_email_subject: "%{prefix}新着情報%{date}"
@@ -5350,8 +5348,6 @@ ja:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 指名手配中
   was_it_captive_cultivated?: "飼育/栽培？"
-  we_also_support2: |
-    また、<a href="http://flickr.com">Flickr</a>や<a href="http://photos.google.com">Googleフォト</a>からの写真のインポートにも対応しています。
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_couldnt_find_a_user_with_that_activation_code: "そのアクティベーションコードのユーザーが見つかりませんでした。既にアカウントをアクティベートしている可能性があります。サインインしてみてください。"
@@ -6139,11 +6135,6 @@ ja:
         date_column_format: YYYY-MM-DD HH:MM
         geoprivacy_must_be_in_english: |
           位置情報公開状況の列は英語でなければなりません。空白または「obscured」（不明瞭）または「private」（非公開）の値である必要があります。
-        google_photos_notice_html: |
-          2019年2月、グーグルはAPIを変更し、GPS座標、ライセンス情報、同定を追加するために使用できるほとんどすべての情報（タグなど）にアクセスできなくなりました。また、テキスト検索と数値によるページネーションも削除されました。さらに、彼らはすべての接続アカウントに追加の許可を要求し、サードパーティがユーザーにその許可を要求する前に、そのサードパーティは検証されなければなりません。現在認証待ちですが、認証が下りるまではGoogleから写真をインポートすることはできません。私たちが承認されれば、写真をインポートできるようになりますが、Googleフォトで見ることができるような位置情報やライセンス情報は含まれません。これについては、<a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>で詳しく説明されています。元のファイルをダウンロードし、<a
-          href="/observations/upload">アップローダー</a>を使って追加するのが最善の回避策です。
       show:
         allow_curator_coordinate_access_desc_html: |
           この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
