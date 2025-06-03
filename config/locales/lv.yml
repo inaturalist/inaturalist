@@ -2304,7 +2304,6 @@ lv:
   #a noun.
   link_to_authorization_code: Saite uz autorizācijas kodu
   link_your_flickr_account: Pievieno savu Flickr kontu
-  link_your_google_account: Pievieno savu Google kontu
   linked_flickr: "Tavs %{site_name} konts pašlaik ir savienots ar tavu Flickr kontu."
   linked_flickr_automatically: "Pievērs uzmanību tam, ka pieslēdzoties %{site_name} vietnei ar Flickr kontu, mēs automātiski savienosim tavu %{site_name} kontu ar Flickr kontu. To darām tādēļ, jo pieļaujam, ka vēlēsies importēt fotogrāfijas no Flickr."
   linked_flickr_description: "%{site_name} konta savienošana ar Flickr kontu, sniedz tev iespēju pievienot saviem novērojumiem vairākas fotogrāfijas reizē. Ja izlem atvienot %{site_name} kontu no Flickr konta, mēs tevi no tā neatturēsim, bet tev vairs nebūs iespējas pievienot fotogrāfijas. Noteiktos gadījumos kontu atvienošana varētu būt pareizā izvēle, piemēram, ja izveidosi jaunu Flickr kontu, ko gribēsi savienot ar %{site_name} kontu."
@@ -4899,7 +4898,6 @@ lv:
   unknown: Nezināms
   unknown_error: Nezināma kļūda
   unknown_rank: '(Nezināma klasifikācija)'
-  unlink_your_google_account: Atvienot Google kontu
   unlink_your_flickr_account: "Atvienot Flickr kontu"
   unmute: Iespējot paziņojumus
   updates_notification_email_subject: "%{prefix} Jaunumi %{date}"
@@ -5877,11 +5875,6 @@ lv:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Ģeoprivātuma slejai jābūt tukšai vai arī aizpildītai ar vērtībām angļu valodā – "obscured" (noslēpta) vai "private" (privāta).
-        google_photos_notice_html: |
-          2019. gada februārī Google izmainīja savu lietojumprogrammas saskarni (API), kas liedza mums piekļuvi pie GPS koordinātām, licenču informācijas un gandrīz visas citas informācijas, ko varētu izmantot identifikāciju pievienošanai. Viņi atspējoja arī teksta meklēšanas un lappušu skaitīšanas funkcijas. Turklāt Google pieprasīja papildu atļaujas visiem savienotajiem kontiem. Trešās puses var pieprasīt šīs atļaujas no lietotājiem tikai tad, kad tās ir verificētas. Mēs vēl aizvien gaidām, kad mūsu tīkla verificēšana būs pabeigta. Tikmēr lietotāji nevarēs importēt fotogrāfijas no Google. Ja mūs verificēs, fotogrāfijas varēs importēt, bet tajās nebūs iekļauta Google Photos vietnē pieejamā informācija par atrašanās vietu un licencēm. Vairāk informācijas: <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Labākais risinājums šai problēmai ir lejupielādēt sākotnējos failus un pievienot tos mūsu <a
-          href="/observations/upload">Augšupielādes sadaļā</a>.
         project_csv_template_notice_html: |
           Projektam pieejams fails ar veidni, kas var noderēt CSV faila struktūras veidošanai.
           <a href="%{url}">Lejupielādēt veidni</a>
