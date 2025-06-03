@@ -1686,6 +1686,8 @@ fr:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Désaccords
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Montrez des observations qui ont des identifications en désaccord
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Déconnecter
@@ -3475,6 +3477,7 @@ fr:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: ADN
   observation_fields: Champs des observations
+  observation_fields_for_projects: Champs d’observation des projets
   observation_fields_are_additional: Les champs de l’observation sont des champs de données supplémentaires qui peuvent être ajoutés aux observations.
   observation_fields_by_preferences_description: |
     Les champs de l’observation sont comme des étiquettes que, par défaut, n’importe qui peut ajouter à votre observation. Modifiez vos paramètres si vous voulez être la seule personne à pouvoir les remplir ou pour donner cette capacité uniquement aux personnes responsables de l’organisation du site.
@@ -4382,6 +4385,9 @@ fr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
   rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Genre / Genrehybride
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: Espèce / Hybride
@@ -5933,6 +5939,8 @@ fr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Recherché
   was_it_captive_cultivated?: "Était-il en captivité / cultivé ?"
+  we_also_support3: |
+    Nous prenons également en charge l’importation de photos à partir de <a href="http://flickr.com">Flickr (en anglais)</a>.
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format suivant
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse électronique.
   we_couldnt_find_a_user_with_that_activation_code: "Nous n’avons pas pu trouver d’utilisateur avec ce code d’activation. Vous avez peut-être déjà activé votre compte; veuillez essayer de vous connecter."
@@ -7086,6 +7094,61 @@ fr:
           Le nom de la zone administrative de troisième niveau qui contient les coordonnées de coordonnées de cette observation (par ex. un comté dans la plupart des États-Unis)
         place_country_name: |
           Le nom du pays qui contient les coordonnées de cette observation
+        place_state_name: |
+          Le nom de la zone administrative de deuxième niveau qui contient les coordonnées de cette observation (par ex. un état dans la plupart des États-Unis)
+        place_town_name: |
+          Le nom du village ou de la ville qui contient les coordonnées
+          de cette observation, si connue
+        private_place_guess: |
+          Emplacement de l’observation tel qu’il est écrit par l’observateur si l’emplacement est masqué
+        public_positional_accuracy: Incertitude positionnelle maximale en mètres; inclut l'incertitude ajoutée par le masquage des coordonnées
+        taxon_class_name: |
+          Nom de la classe taxonomique contenant le taxon observé
+        taxon_family_name: |
+          Nom de la famille taxonomique contenant le taxon observé
+        taxon_form_name: |
+          Nom de la forme taxonomique contenant le taxon observé
+        taxon_genus_name: |
+          Nom du genre taxonomique contenant le taxon observé
+        taxon_genushybrid_name: |
+          Nom du genre hybride taxonomique contenant le taxon observé
+        taxon_hybrid_name: |
+          Nom de l'hybride taxonomique contenant le taxon observé
+        taxon_kingdom_name: |
+          Nom du règne taxonomique contenant le taxon observé
+        taxon_order_name: |
+          Nom de l’ordre taxonomique contenant le taxon observé
+        taxon_phylum_name: |
+          Nom du phylum taxonomique contenant le taxon observé
+        taxon_species_name: |
+          Nom de l’espèce taxonomique contenant le taxon observé
+        taxon_subclass_name: |
+          Nom de la sous-classe taxonomique contenant le taxon observé
+        taxon_subfamily_name: |
+          Nom de la sous-famille taxonomique contenant le taxon observé
+        taxon_suborder_name: |
+          Nom du sous-ordre taxonomique contenant le taxon observé
+        taxon_subphylum_name: |
+          Nom du sous-phylum taxonomique contenant le taxon observé
+        taxon_subspecies_name: |
+          Nom de la sous-espèce taxonomique contenant le taxon observé
+        taxon_subtribe_name: |
+          Nom de la sous-tribu taxonomique contenant le taxon observé
+        taxon_superclass_name: |
+          Nom de la superclasse taxonomique contenant le taxon observé
+        taxon_superfamily_name: |
+          Nom de la superfamille taxonomique contenant le taxon observé
+        taxon_superorder_name: |
+          Nom du superordre taxonomique contenant le taxon observé
+        taxon_supertribe_name: |
+          Nom de la supertribu taxonomique contenant le taxon observé
+        taxon_tribe_name: |
+          Nom de la tribu taxonomique contenant le taxon observé
+        taxon_variety_name: |
+          Nom de la variété taxonomique contenant le taxon observé
+        uuid: |
+          Identificateur unique universel pour l’observation. Voir
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Marquer toutes les observations de la page comme vérifiées"
         you_reviewed_message: "Vous avez vérifié %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
@@ -8172,6 +8235,12 @@ fr:
           différents noms de lieux sont en conflit.
     terminology:
       index:
+        exports_can_also_contain_observation_field_values_html: |
+          Les exportations peuvent également contenir des colonnes avec des valeurs de champ d’observation. Pour
+          trouver les définitions de ceux-ci, soit recherchez-les à
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          ou ajoutez le nom de la colonne (avec les deux-points) à
+          <code>%{terminology_url}</code> (p. ex. <a href="%{term_url}">%{term_url}</a>).
         inaturalist_employs_a_variety_of_terms: |
           iNaturalist utilise une variété de termes uniques pour décrire divers aspects du service. Ici, nous avons essayé d’en lister quelques-uns avec leurs définitions.
     users:
