@@ -2470,7 +2470,6 @@ nb:
   linear_scale_label: Lineær
   link: Lenker
   link_your_flickr_account: Tilknytt din Flickr-konto
-  link_your_google_account: Tilknytt din Google-konto
   linked_flickr: "Din %{site_name}-konto er knyttet til din Flickr-konto."
   linked_flickr_automatically: "Husk også at vi vil koble sammen din %{site_name} og Flickr kontoer på nytt automatisk hvis du logger inn på %{site_name} via Flickr. Når du bruker Flickr ønsker du jo å kunne importere Flickr-bilder, ikke sant?"
   linked_flickr_description: "Å holde din %{site_name}-konto koblet til din Flickr-konto lar deg legge til flere bilder til dine observasjoner. Hvis du noen gang vil oppheve koblingen mellom Flickr og %{site_name} vil vi selvfølgelig ikke stoppe deg, du får bare ikke til å legge til bilder da. Noen ganger er det kanskje bedre, som når du oppretter en ny Flickr-konto som du vil koble %{site_name} opp mot."
@@ -5144,7 +5143,6 @@ nb:
   unfollow_observation: Avfølg observasjon
   #Text for a button to stop following updates from a user
   unfollow_user: Avfølg bruker
-  unlink_your_google_account: Frakoble din Google-konto
   unlink_your_flickr_account: "Frakoble din Flickr-konto"
   unmute: Fjern demping
   updates_notification_email_subject: "%{prefix} Nye oppdateringer %{date}"
@@ -6237,22 +6235,6 @@ nb:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Geosperring-kolonnen ("geoprivacy") må være på engelsk og skal være enten tom eller ha en av verdiene "obscured" (tilslørt) eller "private" (privat)
-        google_photos_notice_html: |
-          I februar 2019 endret Google sitt API, noe som gjorde det umulig for
-          oss å få tilgang til GPS-koordinater, lisensinformasjon og nesten hvilken som helst
-          informasjon vi kan bruke for å legge til en identifikasjon (som etiketter). De
-          fjernet også tekstsøk og numerisk paginering. På toppen av det
-          krevde de at alle tilkoblede kontoer skulle ha en ekstra tillatelse,
-          og før en tredjepart kan be om den tillatelsen fra brukere,
-          må den tredjeparten verifiseres. Vi avventer verifisering, men
-          inntil det skjer vil du ikke kunne importere bilder fra Google.
-          Hvis vi blir godkjent kan du importere bilder, men de vil ikke
-          inkludere noe stedsinformasjon eller lisensinformasjon du
-          kan se på Google Foto. Du kan lese mer om dette på <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Nedlasting av
-          originale filer og legge dem til ved å bruke <a
-          href="/observations/upload">opplastningsmodulen</a> er den beste løsningen.
         project_csv_template_notice_html: |
           Det finnes en mal for dette prosjektet som kan hjelpe deg med strukturen til csv-filen. <a href="%{url}">Last ned mal</a>
         soundcloud_notice_html: |
