@@ -1620,8 +1620,8 @@ class User < ApplicationRecord
     "User #{login}"
   end
 
-  def subscribed_to?(resource)
-    subscriptions.where(resource: resource).exists?
+  def subscribed_to?( resource )
+    resource.try( :user_id ) == id || subscriptions.where( resource: resource ).exists?
   end
 
   def recent_observation_fields
