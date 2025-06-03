@@ -2667,7 +2667,6 @@ fr:
   #a noun.
   link_to_authorization_code: Lien vers le code d'autorisation
   link_your_flickr_account: Lier votre compte Flickr
-  link_your_google_account: Lier votre compte Google
   linked_flickr: "Votre compte %{site_name} est actuellement lié à votre compte Flickr."
   linked_flickr_automatically: "N’oubliez pas que si vous vous connectez à %{site_name} au moyen de Flickr, nous relierons automatiquement vos comptes %{site_name} et Flickr. Si vous utilisez Flickr, c’est probable que vous voudrez importer des photos de Flickr, n’est-ce pas ?"
   linked_flickr_description: "En liant votre compte %{site_name} à votre compte Flickr, vous pourrez ajouter plusieurs photos à vos observations. Bien entendu, si vous pouvez séparer %{site_name} et Flickr, mais vous ne pourrez plus ajouter de photos. Parfois c’est préférable, comme si vous créez un nouveau compte Flickr que vous voulez lier à %{site_name}."
@@ -5614,7 +5613,6 @@ fr:
   unfollow_observation: Ne plus suivre l'observation
   #Text for a button to stop following updates from a user
   unfollow_user: Ne plus suivre l'utilisateur
-  unlink_your_google_account: Supprimer le lien de votre compte Google
   unlink_your_flickr_account: "Dé-lier votre compte Flickr"
   unmute: Supprimer la mise en silence
   updates_notification_email_subject: "%{prefix} Nouvelles notifications du %{date}"
@@ -5935,9 +5933,6 @@ fr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Recherché
   was_it_captive_cultivated?: "Était-il en captivité / cultivé ?"
-  we_also_support2: |
-    L'importation de photos est également possible depuis <a href="http://flickr.com">Flickr</a>
-    et <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format suivant
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse électronique.
   we_couldnt_find_a_user_with_that_activation_code: "Nous n’avons pas pu trouver d’utilisateur avec ce code d’activation. Vous avez peut-être déjà activé votre compte; veuillez essayer de vous connecter."
@@ -7112,21 +7107,6 @@ fr:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           La colonne coordonnées privées doit être en anglais et laissée vide ou avoir une valeur « obscured » ou « private »
-        google_photos_notice_html: |
-          En février 2019, Google a modifié son API, nous empêchant
-          d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
-          toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
-          a aussi supprimé la recherche textuelle et la pagination numérique. De plus,
-          ils demandent que tous les comptes connectés nécessitent à une autorisation supplémentaire,
-          et avant qu’un tiers puisse demander ce droit pour les utilisateurs, le
-          tiers doit être vérifié. Nous attendons la vérification, mais
-          avant que cela n'arrive, vous ne pourrez pas importer de photos de Google.
-          Si nous sommes acceptés, vous pourrez importer des photos, mais elles 
-          n’incluront aucune information de localisation ni de licence que vous pourriez 
-          voir sur Google Photos. Vous pouvez lire d'avantage là-dessus à
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Importer des fichiers d’origine et les ajouter en utilisant
-          <a href="/observations/upload">Uploader</a> est la meilleure façon de contourner le problème.
         project_csv_template_notice_html: |
           Il y a un fichier modèle pour ce projet qui peut vous aider avec la structure du fichier CSV. 
           <a href="%{url}">Téléchargez le modèle</a>
