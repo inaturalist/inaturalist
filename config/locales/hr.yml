@@ -2662,7 +2662,6 @@ hr:
   #a noun.
   link_to_authorization_code: Link na autorizacijski kod
   link_your_flickr_account: Povežite svoj Flickr račun
-  link_your_google_account: Povežite svoj Google račun
   linked_flickr: "Vaš %{site_name} račun je trenutno povezan s vašim Flickr računom."
   linked_flickr_automatically: "Također, imajte na umu da ćemo automatski ponovno povezati vaše %{site_name} i Flickr račune ako se prijavite na %{site_name} putem Flickra. Čini se razumnim da, ako koristite Flickr, želite moći uvoziti Flickr fotografije, zar ne?"
   linked_flickr_description: "Održavanje vašeg %{site_name} računa povezanog s vašim Flickr računom omogućuje vam dodavanje više fotografija vašim opažanjima. Naravno, ako ikada poželite prekinuti vezu između %{site_name} i Flickra, nećemo vas zaustaviti, samo nećete moći dodavati fotografije. Ponekad to može biti najbolje, primjerice ako kreirate novi Flickr račun koji želite povezati s %{site_name}."
@@ -5703,7 +5702,6 @@ hr:
   unfollow_observation: Prestani pratiti promatranje
   #Text for a button to stop following updates from a user
   unfollow_user: Prestani pratiti korisnika
-  unlink_your_google_account: Otkači svoj Google račun
   unlink_your_flickr_account: "Otkači svoj Flickr račun"
   unmute: Uključi zvuk
   updates_notification_email_subject: "%{prefix} Novosti %{date}"
@@ -6013,9 +6011,6 @@ hr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Traženo
   was_it_captive_cultivated?: "Je li bilo u zatočeništvu / uzgojeno?"
-  we_also_support2: |
-    Također podržavamo uvoz fotografija s <a href="http://flickr.com">Flickra</a>
-    i <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Možemo razumjeti CSV samo u sljedećem formatu
   we_couldnt_find_a_user: Nismo mogli pronaći korisnika s tom email adresom.
   we_couldnt_find_a_user_with_that_activation_code: "Nismo mogli pronaći korisnika s tim aktivacijskim kodom. Možda ste već aktivirali svoj račun, pokušajte se prijaviti."
@@ -7187,15 +7182,6 @@ hr:
         geoprivacy_must_be_in_english: |
           Stupac za geoprivatnost mora biti na engleskom i mora biti prazan ili imati
           vrijednost "obscured" ili "private"
-        google_photos_notice_html: |
-          U veljači 2019. Google je promijenio svoj API, što nam je onemogućilo pristup GPS koordinatama, informacijama o licenci i gotovo bilo kojoj
-          informaciji koju bismo mogli koristiti za dodavanje identifikacije (poput oznaka). Također su uklonili tekstualno pretraživanje i numeričku paginaciju. Osim toga, zahtijevali su da svi povezani računi imaju dodatnu dozvolu, a prije nego što treća strana može zatražiti tu dozvolu od korisnika, treća strana mora biti verificirana. Čekamo verifikaciju, ali dok se to ne dogodi, nećete moći uvoziti fotografije s Googlea.
-          Ako dobijemo odobrenje, moći ćete uvoziti fotografije, ali neće
-          uključivati nikakve informacije o lokaciji ili licenciji koje biste mogli
-          vidjeti na Google Photos. Više o tome možete pročitati na <a
-          href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>. Preuzimanje
-          izvornih datoteka i njihovo dodavanje pomoću <a
-          href="/observations/upload">Uploadera</a> je najbolja zamjena.
         project_csv_template_notice_html: |
           Postoji predložak datoteke za ovaj projekt koji vam može pomoći sa strukturom CSV datoteke.
           <a href="%{url}">Preuzmi predložak</a>
