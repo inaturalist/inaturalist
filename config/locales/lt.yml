@@ -600,6 +600,8 @@ lt:
   any_license: Bet kokia
   #Label for an option to show content with photos, sounds, or neither
   any_media: Bet kokia
+  #Label for an option to show any place
+  any_place: Betkuris
   #Label for an option to show content from any project
   any_project: Bet kuris
   #Label for an option to show content with any quality grade
@@ -987,6 +989,10 @@ lt:
   confirm_new_password: Patvirtinkite Naują Slaptažodį
   confirm_now: Patvirtinti dabar
   confirm_your_info: Patvirtinkite savo informaciją
+  confirming_ids: Patvirtinantys ID
+  confirming_ids_description: |
+    Jei išjungsite šią parinktį, jums nebebus pranešama apie ID (ID), kurie sutinka
+    su jūsų, nebent jie turi papildomų pastabų.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Sujungti
@@ -1190,6 +1196,12 @@ lt:
   curator_application_title: Kuratoriaus paraiška
   curators_changed_for_x_html: "Kuratoriai keičiami kas %{x}"
   curators: Kuratoriai
+  curator_coordinate_access: Kuratorius koordinuoja prieigą
+  curator_coordinate_access_desc: |
+    Kuratorius koordinuoja prieigą prie tradicinių projektų priklauso nuo to, kas pridėjo
+    projekto stebėjimas. Tai tik numatytasis nustatymas
+    pastebėjimai projektuose. Stebėtojai taip pat gali nuspręsti tai pakeisti
+    individualūs pastebėjimai.
   curator_identification: Kuratorius identifikavimas
   current_flags: Dabartinės žymės
   custom_project_fields: Sukurti projekto laukai
@@ -1356,6 +1368,11 @@ lt:
   disable_comments: Išjungti komentarus
   disable_comments_desc: Neleisk žmonėms pridėti daugiau komentarų
   disagree_: Nesutikti
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Nesutarimų
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Parodykite pastebėjimus, kurių identifikacijos nesutampa
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Atsijungti
@@ -1447,6 +1464,8 @@ lt:
   edited_by_name_some_rights_reserved_html: |
     Redagavo %{name}, kai kurios teisės saugomos (%{license})
   editing: Redaguojama
+  #Title for a page to edit an announcement
+  editing_announcement_x: Skelbimo redagavimas %{id}
   editing_custom_project_fields_for: Redaguojama pritaikyti projekto laukai
   editing_observation_field: Redaguojamas stebėjimo laukas
   editing_observation_id: "Redaguojamas stebėjimas %{obs_id}"
@@ -1854,6 +1873,10 @@ lt:
   inaturalist_applications: "iNaturalist programėlės"
   inaturalist_places: "%{site_name} vietos"
   info: Informacija
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraspecies ID
   insects: vabzdžiai
   insect_life_stage: Vabzdžio gyvenimo ciklo stadija
   instagram: Instagram
@@ -2113,6 +2136,10 @@ lt:
   log_out: Atsijungti
   log_out_caps: ATSIJUNGTI
   log_scale_label: Įrašas
+  #Adjectival phrase describing state of being logged in
+  logged_in: Prisijungęs
+  #Adjectival phrase describing state of being logged out
+  logged_out: Atsijungė
   #Status message shown while logging in
   logging_in: Prisijungiama...
   logo:
@@ -2264,6 +2291,8 @@ lt:
   more_info_title: Daugiau informacijos
   more_journal_posts: Daugiau žurnalo įrašų
   more_observations: Daugiau stebėjimų
+  #Label for a button or section that shows additional options
+  more_options: Daugiau parinkčių
   more_photos: Daugiau nuotraukų
   more_than_a_week_ago: Seniau nei prieš savaitę
   most_agree: dauguma sutinka
@@ -2447,7 +2476,11 @@ lt:
   no_users_found_with_those_filters: Vartotojų nerasta pagal tokius kriterijus
   no_wikipedia_page_for_taxon: Šis taksonas neturi Vikipedijos straipsnio.
   noble_curators: "%{site} geraširdžiai kuratoriai"
+  #A user who is not a curator
+  non_curator: Ne kuratorius
   non_human?: Ne žmogus?
+  #A user who does not admin any projects
+  non_project_admin: Ne projekto administratorius
   none: Nė vienas
   none_found: Nieko nerasta
   normal: normalus
@@ -2509,6 +2542,7 @@ lt:
   observation_field_type_taxon: Taksonas
   observation_field_type_dna: DNR
   observation_fields: Stebėjimo laukai
+  observation_fields_for_projects: Projektų stebėjimo laukai
   observation_fields_are_additional: Stebėjimo laukai yra papildomų duomenų laukai, kurie gali būti pridėti prie stebėjimo.
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
@@ -3119,6 +3153,8 @@ lt:
   processing3p: "Apdorojama..."
   profile: Profilis
   project: Projektas
+  #A user who admin's a project
+  project_admin: Projekto administratorius
   project_admins:
     one: Projekto administratorius
     few: Projekto administratoriai
@@ -3177,6 +3213,16 @@ lt:
   range: Ribos
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rangas
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Gentis / gentis
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Rūšis / hibridas
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Porūšis / veislė / forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4069,6 +4115,14 @@ lt:
   user_observed_on_on_date_in_place: |
     %{user} stebėjo vieną %{date} vietovėje: %{place}
   user_suggested_an_id: "%{user} pasiūlė ID"
+  user_trusts_this_project_when_added_by_any: |
+    Vartotojas pasitiki projekto kuratoriais su pridėtomis paslėptomis stebėjimų koordinatėmis
+    į projektą bet kas.
+  user_trusts_this_project_when_added_by_observer: |
+    Vartotojas pasitiki projekto kuratoriais su pridėtomis paslėptomis stebėjimų koordinatėmis
+    stebėtojo projektui.
+  user_trusts_this_project_when_added_by_none: |
+    Vartotojas nepasitiki projektų kuratoriais su paslėptomis koordinatėmis.
   user_trusts_you_with_their_private_coordinates: "%{user} patiki jums savo paslėptas koordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
     Stebėtojas patiki jums visų savo stebėjimų paslėptas koordinates.
@@ -4156,6 +4210,8 @@ lt:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ieškomas
   was_it_captive_cultivated?: "Ar tai buvo naminis / kultivuojamas?"
+  we_also_support3: |
+    Taip pat palaikome nuotraukų importavimą iš <a href="http://flickr.com">"Flickr"</a>.
   we_can_only_understand_csv_in: Mes galime suprasti CSV tik jeigu jo formatas toks
   we_couldnt_find_a_user: Mes neradome vartotojo su tokiu el. pašto adresu.
   we_couldnt_find_a_user_with_that_activation_code: "Mes neradome vartotojo su tokiu aktyvacijos kodu. Galbūt jūs jau aktyvavote savo paskyrą. Pabandykite prisijungti."
@@ -4323,6 +4379,25 @@ lt:
   verifiable_observations: Identifikuotini stebėjimai
   views:
     views: 'Peržiūros'
+    announcements:
+      locales_desc: |
+        CMD- arba SHIFT-spustelėkite, kad pasirinktumėte kelis. Pasirinkimas "Visi" arba nedarymas
+        Pasirinkimas parodys pranešimą visiems vartotojams, neatsižvelgiant į
+        lokalė. Pasirinkus kalbą be regiono, *ne* bus siekiama
+        lokalės su regionais, pvz., jei pasirinkote anglų kalbą, ji nebus rodoma
+        žmonėms, pasirinkusiems anglų kalbą (JK).
+      clients_desc: |
+        CMD- arba SHIFT-spustelėkite, kad pasirinktumėte kelis. Pasirinkimas "Visi" arba nedarymas
+        Pasirinkimas parodys pranešimą visiems vartotojams, neatsižvelgiant į
+        klientas.
+      end_desc: |
+        Paskyros laiko juostos laikas, per kurį šis pranešimas bus sustabdytas
+        pasirodo. Taikoma visose laiko juostose, todėl visi nebematys
+        tai tuo pačiu metu, o ne jų vietos laiko atžvilgiu.
+      observation_oauth_application_ids_desc: |
+        CMD- arba SHIFT-spustelėkite, kad pasirinktumėte kelis. Pasirinkimas "Visi" arba nedarymas
+        Pasirinkimas parodys pranešimą visiems vartotojams, neatsižvelgiant į
+        programėlė.
     content_freeze:
       content_freeze: Turinio užšaldymas
       during_this_time: |
@@ -4369,6 +4444,9 @@ lt:
       index:
         deprecated_banner: |
           Prašome atkreipti dėmesį, kad nuo 2019 metų sausio mėnesio Vadovų funkcija nebeplėtojama; mes jos neištrinsime, bet ir nebetobulinsime.
+        funding2_html: |
+          Finansavimą gidų rengimui skyrė
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
       edit:
         import_tags_from_csv_help_html: |
           <p>
@@ -4942,6 +5020,15 @@ lt:
       Flag: Žymė
       TaxonLink: Taksono nuoroda
     attributes:
+      announcement:
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Stebėtojų išskyrimas iš programų
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Stebėtojų įtraukimas iš programų
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Tikslinis kūrėjas (testavimui)
       assessment:
         description: Aprašymas
       assessment_section:
@@ -5038,6 +5125,7 @@ lt:
         place: Vieta
       user:
         email: El. paštas
+        faved_project_ids: Mėgstamiausi projektai
         login: Vartotojo vardas
         name: Pavadinimas
         locale: Lokalė
@@ -5052,6 +5140,7 @@ lt:
         blank: negali būti tuščia
         confirmation: nesutapo su slaptažodžiu
         empty: negali būti tuščia
+        must_look_like_an_email_address: turi atrodyti kaip el. pašto adresas
         even: turi būti lyginis
         exclusion: yra užimta
         inclusion: neįtraukta į sąrašą
@@ -5108,6 +5197,10 @@ lt:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: neleidžia pridėti naujų komentarų
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Galite sukurti tik 7 projektus
         project_observation:
           attributes:
             user_id:
@@ -5141,6 +5234,18 @@ lt:
             taxon:
               too_many_photos: |
                 negalima turėti daugiau nei %{max} nuotraukų
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: negali apimti daugiau kaip 7 projektų
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: visi turi egzistuoti
+            login:
+              domain_is_not_supported: Domenas nepalaikomas
         user_block:
           attributes:
             base:
