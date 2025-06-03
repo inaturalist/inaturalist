@@ -5,7 +5,19 @@ te:
   all_updates: అన్ని నవీకరణలు
   #Label for an option to show content from any date
   any_date: ఏదైనా
+  #Label for an option to show any place
+  any_place: ఏదైనా
   casual_tooltip_html: '"అప్పుడప్పుడు" వీక్షణలు మీడియా, స్థానం లేదా తేదీలను కలిగి ఉండవు లేదా ఇతర కారణాల వల్ల అవి "పరిశోధన గ్రేడ్" లేదా "ID అవసరం" అవసరాలకు అనుగుణంగా లేవు. <a href="https://www.inaturalist.org/pages/help#qualitty">నాణ్యత గ్రేడ్‌ల గురించి మరింత తెలుసుకోండి</a>.'
+  confirming_ids: ఐడిలను ధృవీకరించడం
+  confirming_ids_description: |
+    ఒకవేళ మీరు దీన్ని ఆఫ్ చేసినట్లయితే, అంగీకరించే IDల గురించి మీకు ఇకపై తెలియజేయబడదు.
+    వారికి అదనపు వ్యాఖ్యలు ఉంటే తప్ప మీతో.
+  curator_coordinate_access: క్యూరేటర్ కోఆర్డినేట్ యాక్సెస్
+  curator_coordinate_access_desc: |
+    సంప్రదాయ ప్రాజెక్టులకు క్యూరేటర్ కోఆర్డినేట్ యాక్సెస్ ఎవరు జోడించారనే దానిపై ఆధారపడి ఉంటుంది
+    ప్రాజెక్టు పరిశీలన.. ఇది కేవలం డిఫాల్ట్ సెట్టింగ్ మాత్రమే
+    ప్రాజెక్టుల్లో పరిశీలనలు.. పరిశీలకులు దీని కోసం దీనిని మార్చడానికి కూడా ఎంచుకోవచ్చు
+    వ్యక్తిగత పరిశీలనలు..
   date_: తేదీ
   date_added: జోడించారు తేదీ
   date_authorized: అంగీకరించిన తేదీ
@@ -42,10 +54,21 @@ te:
   devise_confirmation_instructions_please_click2: |
     మీ ఇమెయిల్ చిరునామాను ధృవీకరించడానికి దయచేసి దిగువ లింక్ క్లిక్ చేయండి. మీరు మీ ఇమెయిల్ ని ధృవీకరించకపోతే
     చిరునామా, మీరు ఇతర వినియోగదారుల కంటెంట్ తో ఇంటరాక్ట్ కాలేరు.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: భిన్నాభిప్రాయాలు[మార్చు
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: విభేదించే గుర్తింపులను కలిగి ఉన్న పరిశీలనలను చూపించండి
+  #Title for a page to edit an announcement
+  editing_announcement_x: ఎడిటింగ్ ప్రకటన %{id}
   hi_user: "నమస్తే %{user}"
   identify: గుర్తించండి
   identify_observations: "వీక్షణలను గుర్తించండి"
   identify_title: "గుర్తించండి"
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ఇన్ ఫ్రాస్పెసిటీ ఐడీలు
   #Label shown when a location has been entered but has been hidden due to the geoprivacy
   location_private: స్థానం ప్రైవేట్
   #Label shown when a location has not been entered. Originally "unknown" in
@@ -62,16 +85,100 @@ te:
   location_is_public: స్థానం పబ్లిక్
   location_is_obscured: స్థానం అస్పష్టంగా ఉంది
   location_is_private: స్థానం ప్రైవేట్
+  #Adjectival phrase describing state of being logged in
+  logged_in: లాగిన్ చేయబడింది
+  #Adjectival phrase describing state of being logged out
+  logged_out: లాగ్ అవుట్ చేయబడింది
   more_from_x: '%{x} నుండి మరిన్ని'
+  #Label for a button or section that shows additional options
+  more_options: మరిన్ని ఎంపికలు
   no_matching_users: సరిపోలే వినియోగదారులు లేరు.
+  #A user who is not a curator
+  non_curator: నాన్ క్యూరేటర్
+  #A user who does not admin any projects
+  non_project_admin: నాన్-ప్రాజెక్ట్ అడ్మిన్
+  observation_fields_for_projects: ప్రాజెక్టుల కొరకు పరిశీలనా క్షేత్రాలు
   places_name:
     british_indian_ocean_territory: బ్రిటిష్ ఇండియన్ ఓషన్ టెర్రిటరీ
     india: ఇండియా
     russia: రష్యా
+  #A user who admin's a project
+  project_admin: ప్రాజెక్ట్ అడ్మిన్
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: జాతి / జెనుషిబ్రిడ్
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: జాతులు / హైబ్రిడ్
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: ఉపజాతులు / రకాలు / రూపం
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: సబ్ స్క్రైబ్
   the_world: మన ప్రపంచం
+  user_trusts_this_project_when_added_by_any: |
+    పరిశీలనల యొక్క దాచిన కోఆర్డినేట్ లతో యూజర్ ప్రాజెక్ట్ క్యూరేటర్ లను విశ్వసిస్తారు
+    ప్రాజెక్టుకు ఎవరైనా..
+  user_trusts_this_project_when_added_by_observer: |
+    పరిశీలనల యొక్క దాచిన కోఆర్డినేట్ లతో యూజర్ ప్రాజెక్ట్ క్యూరేటర్ లను విశ్వసిస్తారు
+    పరిశీలకుడి ద్వారా ప్రాజెక్టుకు.
+  user_trusts_this_project_when_added_by_none: |
+    దాచిన కోఆర్డినేట్ లతో ప్రాజెక్ట్ క్యూరేటర్లను యూజర్ విశ్వసించడు.
   view_more_observations_from_this_place: ఈ ప్రాంతం నుండి మరిన్ని వీక్షణలను చూడండి
   view_more_observations_of_x_project: "<nobr>%{site_name} &raquo;</nobr> వద్ద %{project} నుండి మరిన్ని వీక్షణలను చూడండి"
+  we_also_support3: |
+    మేము ఫోటోలను దిగుమతి చేసుకోవడానికి కూడా మద్దతు ఇస్తాము <a href="http://flickr.com">Flickr</a>.
   views:
+    announcements:
+      locales_desc: |
+        మల్టిపుల్ ఎంచుకోవడం కొరకు CMD- లేదా SHIFT-క్లిక్ చేయండి. "అన్నీ" ఎంచుకోవడం లేదా చేయకపోవడం
+        ఒక ఎంపిక దీనితో సంబంధం లేకుండా వినియోగదారులందరికీ ప్రకటనను చూపుతుంది
+        లోకల్.. ఒక ప్రాంతం లేని భాషను ఎంచుకోవడం *లక్ష్యం కాదు*
+        ప్రాంతాలతో కూడిన ప్రదేశాలు, ఉదా: మీరు ఇంగ్లిష్ ఎంచుకుంటే అది కనిపించదు
+        ఇంగ్లిష్ (యుకె) ఎంచుకున్న వ్యక్తుల కోసం.
+      clients_desc: |
+        మల్టిపుల్ ఎంచుకోవడం కొరకు CMD- లేదా SHIFT-క్లిక్ చేయండి. "అన్నీ" ఎంచుకోవడం లేదా చేయకపోవడం
+        ఒక ఎంపిక దీనితో సంబంధం లేకుండా వినియోగదారులందరికీ ప్రకటనను చూపుతుంది
+        క్లయింట్.
+      end_desc: |
+        మీ ఖాతా టైమ్ జోన్ లో ఈ ప్రకటన ఆగిపోతుంది
+        కనిపిస్తుంది. టైమ్ జోన్లలో వర్తిస్తుంది, కాబట్టి ప్రతి ఒక్కరూ చూడటం మానేస్తారు
+        అదే సమయంలో, వారి స్థానిక కాలానికి సంబంధించినది కాదు.
+      ip_countries_desc: |
+        మల్టిపుల్ ఎంచుకోవడం కొరకు CMD- లేదా SHIFT-క్లిక్ చేయండి. "అన్నీ" ఎంచుకోవడం లేదా చేయకపోవడం
+        ఒక ఎంపిక దీనితో సంబంధం లేకుండా వినియోగదారులందరికీ ప్రకటనను చూపుతుంది
+        ఐపి దేశం.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        యూజర్ ఇటీవల సృష్టించిన దాని సృష్టి తేదీ గురించి గమనించండి
+        పరిశీలన రహస్యంగా ఉంది, కాబట్టి లక్ష్యంగా చేసుకోవడానికి కొన్ని గంటలు పట్టవచ్చు
+        ప్రభావం చూపండి
+      observation_oauth_application_ids_desc: |
+        మల్టిపుల్ ఎంచుకోవడం కొరకు CMD- లేదా SHIFT-క్లిక్ చేయండి. "అన్నీ" ఎంచుకోవడం లేదా చేయకపోవడం
+        ఒక ఎంపిక దీనితో సంబంధం లేకుండా వినియోగదారులందరికీ ప్రకటనను చూపుతుంది
+        యాప్..
+      site_ids_desc: |
+        మల్టిపుల్ ఎంచుకోవడం కొరకు CMD- లేదా SHIFT-క్లిక్ చేయండి. "అన్నీ" ఎంచుకోవడం లేదా చేయకపోవడం
+        ఒక ఎంపిక దీనితో సంబంధం లేకుండా వినియోగదారులందరికీ ప్రకటనను చూపుతుంది
+        సైట్ అనుబంధం.
+      start_desc: |
+        మీ ఖాతా టైమ్ జోన్ లో ఈ ప్రకటన ప్రారంభమవుతుంది
+        కనిపిస్తుంది. టైమ్ జోన్లలో వర్తిస్తుంది, కాబట్టి ప్రతి ఒక్కరూ చూడటం ప్రారంభిస్తారు
+        అదే సమయంలో, వారి స్థానిక కాలానికి సంబంధించినది కాదు.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: విరాళాల ప్రవర్తన ద్వారా వినియోగదారులను లక్ష్యంగా చేసుకోండి
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: గుర్తింపు ప్రవర్తన ద్వారా వినియోగదారులను లక్ష్యంగా చేసుకోండి
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: పరిశీలన ప్రవర్తన ద్వారా వినియోగదారులను లక్ష్యంగా చేసుకోండి
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: ఇతర లక్షణాల ద్వారా యూజర్లను టార్గెట్ చేయండి
     email_confirmation:
       click_here_to_resend_a_confirmation_email: ధృవీకరణ ఇమెయిల్ ని తిరిగి పంపడానికి ఇక్కడ క్లిక్ చేయండి
       #message displayed after users trigger sending a email to confirm their email address
@@ -97,6 +204,11 @@ te:
       tips_check_email_filters: మీ ఇన్ బాక్స్ నుండి మా ఇమెయిల్ లను తొలగించే ఏవైనా ఫిల్టర్ లను మీరు తయారు చేశారా అని తనిఖీ చేయండి #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: మీ స్పామ్ ఫోల్డర్ ను తనిఖీ చేయండి
       your_site_account_has_no_email: నీ %{site_name} ఖాతాకు ఎటువంటి ఇమెయిల్ చిరునామా అసోసియేట్ చేయబడలేదు.
+    guides:
+      index:
+        funding2_html: |
+          గైడ్స్ అభివృద్ధికి నిధులు అందించింది
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -119,6 +231,66 @@ te:
         significant: true
         strip_insignificant_zeros: true
   activerecord:
+    attributes:
+      announcement:
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: దాత ప్రారంభ తేదీని మినహాయించండి
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: దాత ముగింపు తేదీని మినహాయించండి
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: యాప్ ల నుంచి పరిశీలకులను మినహాయించండి
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: దాత ప్రారంభ తేదీని చేర్చండి
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: దాత ముగింపు తేదీని చేర్చండి
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: యాప్ ల నుంచి పరిశీలకులను చేర్చండి
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP దేశాలు
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: తాజా ఒబిఎస్ ప్రారంభ తేదీ
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: తాజా ఒబిఎస్ ముగింపు తేదీ
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: గరిష్ట గుర్తింపులు
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: కనీస గుర్తింపులు
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: గరిష్ట పరిశీలనలు
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: కనీస పరిశీలనలు[మార్చు]
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: స్థానం[మార్చు]
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: టార్గెట్ క్రియేటర్ (టెస్టింగ్ కొరకు)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: టార్గెట్ లాగిన్ చేయబడింది
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: తొలి యూజర్ సైన్ అప్ తేదీ
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: తాజా యూజర్ సైన్ అప్ తేదీ
+      user:
+        faved_project_ids: ఇష్టమైన ప్రాజెక్టులు
     errors:
       messages:
+        must_look_like_an_email_address: ఇమెయిల్ చిరునామా వలె కనిపించాలి
         requires_privilege_interaction: అలా చేయడానికి ధృవీకరించబడిన ఇమెయిల్ చిరునామాను కలిగి ఉండాలి
+      models:
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: మీరు కేవలం 7 ప్రాజెక్టులను మాత్రమే చేయగలరు
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7 కంటే ఎక్కువ ప్రాజెక్టులను చేర్చలేరు
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: అన్నీ ఉండాలి
+            login:
+              domain_is_not_supported: డొమైన్ కు మద్దతు లేదు
