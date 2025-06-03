@@ -2679,7 +2679,6 @@ sv:
   #a noun.
   link_to_authorization_code: Länk till auktoriseringskod
   link_your_flickr_account: Anslut ditt Flickr-konto
-  link_your_google_account: Anslut ditt Google-konto
   linked_flickr: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Flickr-konto."
   linked_flickr_automatically: "Tänk på, att om du loggar in på %{site_name} via Flickr, kommer vi automatiskt att länka dina %{site_name}- och Flickr-konton. Det verkar rimligt att om du använder Flickr du vill kunna importera Flickr-bilder, eller hur?"
   linked_flickr_description: "Genom att hålla ditt %{site_name}-konto kopplat till ditt Flickr-konto kan du lägga till flera bilder till ett fynd. Om du någonsin vill att kopplingen mellan %{site_name} och Flickr ska brytas, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skapar ett nytt Flickr-konto som du vill länka %{site_name} till."
@@ -5664,7 +5663,6 @@ sv:
   unfollow_observation: Sluta följa fynd
   #Text for a button to stop following updates from a user
   unfollow_user: Sluta följa användaren
-  unlink_your_google_account: Koppla från ditt Google-konto
   unlink_your_flickr_account: "Koppla från ditt Flickr-konto"
   unmute: Ta bort "tysta"
   updates_notification_email_subject: "%{prefix} Nya uppdateringar %{date}"
@@ -5976,9 +5974,6 @@ sv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Efterlyst
   was_it_captive_cultivated?: "Var den i fångenskap / odlad?"
-  we_also_support2: |
-    Vi stöder även import av bilder från <a href="http://flickr.com">Flickr</a>
-    och <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Vi kan bara förstå CSV i följande format
   we_couldnt_find_a_user: Vi kunde inte hitta någon användare med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunde inte hitta någon användare med den aktiveringskoden. Du kanske redan har aktiverat ditt konto, försök logga in."
@@ -7180,12 +7175,6 @@ sv:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: |
           Kolumnen för koordinatsekretess måste vara på engelska och antingen vara tom eller ha något av värdena "obscured" eller "private"
-        google_photos_notice_html: |
-          I februari 2019 ändrade Google sitt API, och gjorde det omöjligt för oss att komma åt GPS-koordinater, licensinformation och nästan all information som vi skulle kunna använda för att lägga till en bestämning
-          (som taggningar). De tog också bort textsökning och sidnumrering. Utöver det måste numera alla anslutna konton ha ytterligare behörighet, och innan en tredjepart kan begära att få ett sådant tillstånd från användare, måste tredjeparten verifieras. Vi väntar på verifiering, men innan det är klart, kan du inte importera bilder från Google. Om vi blir godkända,
-          kommer du att kunna importera bilder, men de kommer inte att innehålla någon plats- eller licensinformation som du kanske kan se på Google Photos. Du kan läsa mer om detta på <a href="https://
-          developers.google.com/picasa-web">https://developers.google.com/
-          picasa-web</a>. Det bästa alternativet är att ladda ner originalfilerna och lägga till dem med <a href="/observations/upload">Upladdaren</a>.
         project_csv_template_notice_html: |
           Det finns en mall för detta projekt som kanske kan hjälpa dig med strukturen i CSV-filen.
           <a href="%{url}">Ladda ner mallen</a>
