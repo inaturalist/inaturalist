@@ -248,6 +248,8 @@ hu:
   add_a_note: Jegyzet hozzáadása
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Számozott lista hozzáadása
+  #Placeholder for a project autocomplete field
+  add_a_project: Projekt hozzáadása
   add_a_single_observation: Egy megfigyelés hozzáadása
   add_a_taxon: Taxon hozzáadása
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1243,6 +1245,12 @@ hu:
   curator_guide: Útmutató kurátoroknak
   curators_changed_for_x_html: "%{x} kurátorai megváltoztak"
   curators: Kurátorok
+  curator_coordinate_access: Kurátori koordináta-hozzáférés
+  curator_coordinate_access_desc: |
+    A kurátori koordinátori hozzáférés a hagyományos projektekhez attól függ, hogy ki adott hozzá
+    a megfigyelés a projekthez. Ez csak az alapértelmezett beállítás
+    megfigyelések a projektekben. A megfigyelők dönthetnek úgy is, hogy ezt megváltoztatják
+    egyéni megfigyelések.
   curator_identification: Kurátor meghatározása
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
@@ -1250,6 +1258,8 @@ hu:
   custom_project_fields: Egyéni projektmezők
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
+  #Button to customize projects that appear in the header
+  customize__projects: Testreszab
   customize_location: Hely testreszabása
   darr_apply_darr: "&darr; Alkalmaz &darr;"
   daily_users: Napi felhasználók
@@ -1667,6 +1677,12 @@ hu:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Kedvencek
   Family: Család
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Kedvenc projektek
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Válasszon ki legfeljebb hét projektet, amelyek hivatkozásként jelennek meg a fejlécben. Frissítések
+    az oldal frissítése után jelenik meg.
   favorite_taxa: Kedvenc taxonok
   favorites: "Kedvencek"
   feature_this_project_: "Emeld ki ezt a projektet"
@@ -1976,6 +1992,8 @@ hu:
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
   inaturalist_is_an_independent_nonprofit: |
     Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette a által javasolt azonosítót %{user}
   computer_vision_suggestion: Gépi képfelismerés javaslata
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
@@ -2067,6 +2085,8 @@ hu:
   internal_taxon_rank: Belső taxonszint
   introduced: Jövevény
   introduced_in_place: "Behurcolva ide: %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Érvénytelen dátum
   invitation: Meghívó
   invite: meghívás
   invite_people: Emberek meghívása
@@ -3722,6 +3742,9 @@ hu:
   processing: Feldolgozás alatt
   profile: Profil
   profile_picture: Profilkép
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profilkép fájltípus
   profile_visibility_desc: |
     Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos tudományos szintű megfigyelést tett közzé.
   project: Projekt
@@ -3784,6 +3807,16 @@ hu:
   range: Tartomány
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Besorolás
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Nemzetség / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Faj / hibrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alfaj / Fajta / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4753,8 +4786,20 @@ hu:
   upcoming_bioblitzes: Közeledő bioblitzek
   update: Frissítés
   update_existing_observations_with_new_license: Alkalmazd ezt a licencet az összes már létező megfigyelésekre
+  update_existing_observations_with_new_license_desc: |
+    Ha ezt a lehetőséget választja, az új licencválasztás az összes
+    meglévő megfigyelések alapján. Ez eltarthat néhány óráig, ha sok
+    Észrevételek.
   update_existing_photos_with_new_license: Alkalmazd ezt a licencet az összes, már létező képre
+  update_existing_photos_with_new_license_desc: |
+    Ha ezt a lehetőséget választja, az új licencválasztás az összes
+    meglévő fényképek. Ez eltarthat néhány óráig, ha sok
+    Fénykép.
   update_existing_sounds_with_new_license: Alkalmazd ezt a licencet az összes, már létező hangra
+  update_existing_sounds_with_new_license_desc: |
+    Ha ezt a lehetőséget választja, az új licencválasztás az összes
+    meglévő hangok. Ez eltarthat néhány óráig, ha sok
+    Hangok.
   update_observations: Megfigyelések módosítása
   update_past: "Régebbi %{type} tartalmak frissítése"
   update_photos: Képek frissítése
@@ -4875,6 +4920,14 @@ hu:
   user_observed_on_on_date_in_place: |
     %{user} megfigyelt egyet ekkor: %{date}, itt: %{place}
   user_suggested_an_id: "%{user} javasolt meghatározása"
+  user_trusts_this_project_when_added_by_any: |
+    A felhasználó megbízik a projekt kurátoraiban a hozzáadott megfigyelések rejtett koordinátáival
+    a projekthez bárki.
+  user_trusts_this_project_when_added_by_observer: |
+    A felhasználó megbízik a projekt kurátoraiban a hozzáadott megfigyelések rejtett koordinátáival
+    a megfigyelő által a projekthez.
+  user_trusts_this_project_when_added_by_none: |
+    A felhasználó nem bízik a rejtett koordinátákkal rendelkező projektkurátorokban.
   user_updated_an_observation_field_html: '%{user} frissítette a(z) "%{field_name}" adatmezőt %{owner} megfigyelésén'
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
@@ -6195,6 +6248,10 @@ hu:
           </p>
         licensing_desc_html: |
           A tartalmad licencelésével bárkinek megadod a törvényi jogot, hogy az engedélyed külön kikérése nélkül használhassa azt, amennyiben betartja a licenc feltételeit. Ezenkívül a %{site_name} a Creative Commons licenccel rendelkező tartalmadat is belefoglalja a rendszeresen frissített archívumokba, amelyeket olyan partnereink számára készítünk, akik érdeklődnek a biodiverzitási adataink iránt. Például a Nincs Szerzői Jog (CC0), a Név Megjelölése (CC BY) és a Név Megjelölése - Nem Kereskedelmi (CC BY-NC) rekordokat is belefoglaljuk a <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) számára generált archívumba, amely egy nemzetközi, kormányközi szervezet, amely összegyűjti és terjeszti a biodiverzitásról szóló információkat a világ minden tájáról.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: A fájltípus nem támogatott. Elfogadjuk a JPG, PNG és GIF formátumokat
         name_place_help_html: |
           Elsőbbségben részesülnek az ezen a területen használt közynelvi nevek.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6253,6 +6310,11 @@ hu:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: A maximálisan kiválasztható három köznyelvi név-lexikon már hozzá van adva.
+        this_only_applies_to_traditional_projects2: |
+          Ez csak a hagyományos projektekre vonatkozik. A megfigyelések nem zárhatók ki
+          gyűjteményi vagy ernyőprojektekből, amelyek lényegében mentett keresések.
+          Tovább olvashat
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">itt</a>.
       recent:
         about_recent_users: Rólunk
       show:
@@ -6716,6 +6778,7 @@ hu:
         place: Terület
       user:
         email: Email
+        faved_project_ids: Kedvenc projektjei
         login: Felhasználónév
         name: Név
         time_zone: Időzóna
@@ -6805,6 +6868,8 @@ hu:
               #Error saying that only curator and admin users are allowed to create
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Csak a személyzet és a kurátorok rejthetnek el tartalmat
+              #Error saying that only staff can rename
+              only_staff_can_rename: Csak a személyzet nevezheti át
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Csak a személyzet rejthet el tartalmat
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
@@ -6864,6 +6929,9 @@ hu:
               invalid_point: hibás pontja van, pl. 180-nál nagyobb hosszúság, vagy -90-nél kisebb szélesség
               must_have_more_than_three_points: háromnál több pontja kell legyen
               polygon_with_less_than_four_points: egy sokszöget tartalmaz kevesebb, mint 4 ponttal
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: terület nélküli sokszöge van (minden pont azonos)
         place_geometry:
           attributes:
             geom:
@@ -6878,6 +6946,10 @@ hu:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: nem enged új hozzászólást
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Csak 7 projektet lehet kedvencnek tekinteni
         project_observation:
           attributes:
             user_id:
@@ -6945,6 +7017,14 @@ hu:
               already_has_a_range: már van intervalluma
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: nem tartalmazhat 7-nél több projektet
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: Mindegyiknek léteznie kell
             login:
               must_begin_with_a_letter: |
                 betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat
