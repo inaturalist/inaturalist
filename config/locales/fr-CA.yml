@@ -585,21 +585,6 @@ fr-CA:
         receive_an_email_with_your_data_help: Vous recevrez un courriel avec votre exportation en pièce jointe.
         well_email_you: "D'accord, nous vous enverrons un courriel quand ce sera prêt."
       import:
-        google_photos_notice_html: |
-          En février 2019, Google a modifié son API, nous empêchant
-          d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
-          toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
-          a aussi supprimé la recherche textuelle et la pagination numérique. De plus,
-          ils demandent que tous les comptes connectés aient un droit en plus,
-          et avant qu’un tiers puisse demander ce droit pour les utilisateurs, le
-          tiers doit être vérifié. Nous attendons la vérification, mais
-          avant que cela n'arrive, vous ne pourrez pas importer de photos de Google.
-          Si nous sommes acceptés, vous pourrez importer des photos, mais elles 
-          n’incluront aucune information de localisation ni de licence que vous pourriez 
-          voir sur Google Photos. Vous pouvez lire davantage là-dessus à
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Télécharger des fichiers d’origine et les ajouter en utilisant
-          <a href="/observations/upload">Téléverseur</a> est le meilleur contournement.
         soundcloud_notice_html: |
           En 2018, Soundcloud a modifié son API et nous a empêché de
           faire de nouveaux liens avec votre compte Soundcloud. Si Soundcloud réactive
