@@ -630,11 +630,6 @@ class User < ApplicationRecord
     end
     friendships.where( friend_id: user, trust: true ).exists?
   end
-  
-  def picasa_client
-    return nil unless (pa = has_provider_auth('google'))
-    @picasa_client ||= Picasa.new(pa.token)
-  end
 
   def facebook_api
     # As of Spring 2023 we can no longer access the Facebook API on behalf of users
@@ -648,10 +643,6 @@ class User < ApplicationRecord
 
   def facebook_token
     facebook_identity.try(:token)
-  end
-
-  def picasa_identity
-    @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
   def api_token

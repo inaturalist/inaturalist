@@ -101,6 +101,9 @@
   };
   
   function buildControls(wrapper, options) {
+    // If there are no urls and no sources, there's no reason to build out this UI
+    if ( ( !options.urls || options.urls.length === 0 ) && ( !options.sources || options.sources.length === 0 ) ) return;
+
     if (options.bootstrap) {
       // Insert a search field and button.  No forms, please
       var controls = $('<div class="photoSelectorControls"></div>').css(
@@ -263,23 +266,6 @@
       $.each($allContextWrappers, function(i,c){ $sourceWrapper.append(c); });
 
     }
-
-    $(wrapper).on('click', ".picasaAlbums .album", function() {
-      var aid = $(this).attr('data-aid'); // $(this).data('aid') doesn't work because of ridiculous type conversion
-      try {
-        updateSource({
-          url: '/picasa/album/'+aid,
-          object_id: $(this).closest('.picasaAlbums').attr('data-friend_id')
-          });
-      } catch(e) {
-        $.fn.photoSelector.changeBaseUrl(
-          wrapper, 
-          '/picasa/album/' + aid, 
-          'user', //contextSelect.val(), 
-          $(this).closest('.picasaAlbums').attr('data-friend_id'));
-      }
-      return false;
-    });
   
     $(wrapper).on('click', '.back_to_albums', function(){
       try { updateSource({ object_id: $(this).attr('data-friend_id') }); } 
@@ -337,9 +323,6 @@
     prev.click(function(e) {
       var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       var currentURL = $( ".urlselect select", wrapper ).val( );
-      if ( currentURL && currentURL.match( /picasa/ ) ) {
-        return false;
-      }
       var pagenum = parseInt( $( wrapper ).find( ".photoSelectorPage" ).val( ) );
       pagenum -= 1;
       if ( pagenum < 1 ) pagenum = 1;
@@ -354,21 +337,10 @@
     next.click(function(e) {
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
       var currentURL = $( ".urlselect select", wrapper ).val( );
-      if ( currentURL && currentURL.match( /picasa/ ) ) {
-        var nextPageToken = $( "[name='next_page_token']", wrapper ).val( );
-        if ( nextPageToken ) {
-          nextOpts.urlParams = $.extend({}, nextOpts.urlParams, { page_token: nextPageToken } );
-          $(wrapper).find('.photoSelectorPageToken').val( nextPageToken );
-          $(wrapper).find('.photoSelectorNextPageToken').val( null );
-        } else {
-          return false;
-        }
-      } else {
-        var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
-        pagenum += 1;
-        nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
-        $(wrapper).find('.photoSelectorPage').val(pagenum);
-      }
+      var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
+      pagenum += 1;
+      nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
+      $(wrapper).find('.photoSelectorPage').val(pagenum);
       $.fn.photoSelector.queryPhotos(
         $searchInput.val(), 
         wrapper, 
@@ -460,13 +432,8 @@
     options.urlParams.context = (context || 'user');
     options.urlParams.object_id = (object_id || null);
     $(wrapper).data('photoSelectorOptions', options);
-    if ( url && url.match( /picasa/ ) ) {
-      $( ".photoSelectorSearch", wrapper ).hide( );
-      $( ".prevlink", wrapper ).hide( );
-    } else {
-      $( ".photoSelectorSearch", wrapper ).show( );
-      $( ".prevlink", wrapper ).show( );
-    }
+    $( ".photoSelectorSearch", wrapper ).show( );
+    $( ".prevlink", wrapper ).show( );
     $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
   };
 
@@ -545,12 +512,7 @@
           // Prevent adding files that are too big
           bindMaxFileSizeValidation( wrapper );
         } else {
-          if ( options.baseURL && options.baseURL.match( /picasa/ ) ) {
-            $('.nextlink, .allNone, .photoSelectorSearch', wrapper).show( );
-            $( ".photoSelectorSearch input" ).hide( );
-          } else {
-            $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).show()
-          }
+          $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).show()
           $(wrapper).find('.local_photos').hide()
         }
 
