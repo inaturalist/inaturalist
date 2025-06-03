@@ -216,6 +216,8 @@ el:
   add_a_new_change_group: Προσθήκη μιας νέας ομάδας αλλαγής
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Προσθέστε μια λίστα με νούμερα
+  #Placeholder for a project autocomplete field
+  add_a_project: Προσθήκη έργου
   add_a_single_observation: Προσθήκη απλής παρατήρησης.
   add_a_taxon: Προσθήκη ενός taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -486,6 +488,8 @@ el:
   any_license: Οποιαδήποτε
   #Label for an option to show content with photos, sounds, or neither
   any_media: Οποιοδήποτε
+  #Label for an option to show any place
+  any_place: Όποιος
   #Label for an option to show content from any project
   any_project: Οποιοδήποτε
   #Label for an option to show content with any quality grade
@@ -607,6 +611,13 @@ el:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Ιδιότητες
   attribution: Απόδοση
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Εξερράγη
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Δεν εξερράγη
   authority_list:
     iucn_red_list: Κόκκινη Λίστα της ΔΕΠΦ
     natureserve: NatureServe
@@ -865,6 +876,10 @@ el:
   confirm_new_password: Επιβεβαίωση νέου κωδικού πρόσβασης
   confirm_now: Επιβεβαίωση τώρα
   confirm_your_info: Επιβεβαίωση των πληροφοριών σας
+  confirming_ids: Επιβεβαίωση ταυτοτήτων
+  confirming_ids_description: |
+    Εάν απενεργοποιήσετε αυτήν τη ρύθμιση, δεν θα ειδοποιείστε πλέον για έγγραφα ταυτοποίησης που συμφωνούν
+    με τη δική σας, εκτός αν έχουν πρόσθετες παρατηρήσεις.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Σύνδεση
@@ -1115,11 +1130,19 @@ el:
   curators_changed_for_x_html: "Οι επιμελητές για %{x} άλλαξαν"
   curators: Επιμελητές
   curators_can_remove_observations_from: Οι επιμελητές μπορούν να αφαιρούν παρατηρήσεις από το πρότζεκτ και οι ταυτοποιήσεις τους φαίνονται μαζί με τις παρατηρήσεις πάνω στις προβολές που αφορούν το πρότζεκτ. Οι επιμελητές μπορούν επίσης να βλέπουν τις πραγματικές συντεταγμένες ιδιωτικών και κρυμμένων συνεισφορών σε αυτό το έργο.
+  curator_coordinate_access: Επιμέλεια Συντονιστείτε Πρόσβαση
+  curator_coordinate_access_desc: |
+    Ο επιμελητής συντονίζει την πρόσβαση για παραδοσιακά έργα εξαρτάται από το ποιος πρόσθεσε
+    την παρατήρηση του έργου. Αυτή είναι μόνο η προεπιλεγμένη ρύθμιση για
+    παρατηρήσεις σε έργα. Οι παρατηρητές μπορούν επίσης να επιλέξουν να το αλλάξουν αυτό για
+    μεμονωμένες παρατηρήσεις.
   curator_identification: Ταυτοποίηση Επιμελητή
   current_flags: Τρέχουσες αναφορές
   custom_project_fields: Προσαρμοσμένα στο Πρότζεκτ πεδία
   custom_project_was_successfully_created: Οι τροποποιήσεις της εργασίας προστέθηκαν
   custom_project_was_successfully_updated: Οι τροποποιήσεις της εργασίας ανανεώθηκαν
+  #Button to customize projects that appear in the header
+  customize__projects: Προσαρμογή
   customize_location: Εξατομίκευση Τοποθεσίας
   darr_apply_darr: "&darr; Εφαρμογή &darr;"
   daily_users: Χρήστες ανά ημέρα
@@ -1285,6 +1308,11 @@ el:
   disable_comments: Απενεργοποιήστε τα σχόλια
   disable_comments_desc: Απαγόρευση σε άτομα να προσθέτουν νέα σχόλια
   disagree_: Διαφωνώ
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Διαφωνίες
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Εμφάνιση παρατηρήσεων που έχουν διαφωνούσες ταυτοποιήσεις
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Αποσύνδεση
@@ -1377,6 +1405,8 @@ el:
   edited_by_name_some_rights_reserved_html: |
     Επιμέλεια %{name}, υπό την επιφύλαξη κάποιων δικαιωμάτων (%{license})
   editing: Επεξεργασία
+  #Title for a page to edit an announcement
+  editing_announcement_x: Επεξεργασία ανακοίνωσης %{id}
   editing_custom_project_fields_for: Επεξεργασία πεδίων προσαρμοσμένων στο πρότζεκτ για
   editing_observation_field: Επεξεργασία πεδίου παρατήρησης
   editing_observation_id: "Επεξεργασία Παρατήρησης %{obs_id}"
@@ -1475,6 +1505,12 @@ el:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Αγαπημένα
   Family: Οικογένεια
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Αγαπημένα Έργα
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Επιλέξτε έως επτά έργα που εμφανίζονται ως συνδέσεις στην κεφαλίδα. Ενημερώσεις
+    θα εμφανιστεί μετά την ανανέωση της σελίδας.
   favorite_taxa: Αγαπημένα Taxa
   favorites: "Αγαπημένα"
   feature_this_project_: "Παρουσιάστε Αυτό το Πρότζεκτ"
@@ -1752,6 +1788,8 @@ el:
   inaturalist_is_an_independent_nonprofit: |
     Το iNaturalist είναι μια ανεξάρτητη 501(c)(3), μη κερδοσκοπική
     οργάνωση με έδρα τις Ηνωμένες Πολιτείες της Αμερικής (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: Το iNaturalist ενημέρωσε το αναγνωριστικό που πρότεινε ο %{user}
   computer_vision_suggestion: Πρόταση Όρασης Υπολογιστή
   computer_vision_suggestion_desc: |
     Η Όραση Υπολογιστή είναι μια διαδικασία στην οποία ο υπολογιστής μαθαίνει να αναγνωρίζει μοτίβα σε εικόνες. Εμείς δίνουμε εργαλεία τα οποία χρησιμοποιούν μοντέλα όρασης υπολογιστή τα οποία είναι εκπαιδευμένα από τις εικόνες της κοινότητας ώστε να δίνουν προτάσεις ταυτοποίησης, όπως αυτόματη συμπλήρωση και σύγκριση. Αυτή η δείχνει πότε κάποιος προσθέτει μια ταυτοποίηση χρησιμοποιώντας κάποιο από αυτά τα εργαλεία.
@@ -1814,6 +1852,18 @@ el:
   inaturalist_applications: "Εφαρμογές iNaturalist"
   inaturalist_places: "Τόποι του %{site_name}"
   info: Πληροφορίες
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Αναγνωριστικά υποειδών
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Εάν απενεργοποιήσετε αυτήν τη ρύθμιση, δεν θα ειδοποιείστε πλέον σχετικά με τα αναγνωριστικά των ταξινομικών κατηγοριών
+    κάτω από το επίπεδο του είδους (όπως υποείδη και ποικιλίες) που συμφωνούν με το δικό σας
+    αναγνωριστικό σε επίπεδο είδους. Θα ειδοποιηθείτε εάν διαφωνούν με την ταυτότητά σας ή
+    εάν περιέχουν συμπληρωματικές παρατηρήσεις.
   input_taxon: Εισάγετε ταξινομική βαθμίδα
   insects: Έντομα
   insect_life_stage: Στάδιο ζωής εντόμου
@@ -1826,6 +1876,8 @@ el:
   internal_taxon_rank: Εσωτερική κατάταξη ταξινομικής βαθμίδας
   introduced: Εισαχθέν
   introduced_in_place: "Εισήχθη σε %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Μη έγκυρη ημερομηνία
   invitation: Πρόσκληση
   invite: πρόσκληση
   invite_people: Πρόσκληση ατόμων
@@ -1993,6 +2045,10 @@ el:
   list_was_successfully_created: Ο κατάλογος δημιουργήθηκε επιτυχώς.
   listed_taxa: Καταγεγραμμένες Ταξινομικές Ομάδες
   listed_taxon: Καταγεγραμμένη Ταξινομική Βαθμίδα
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Αναφέρονται
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Εκτός λίστας
   listed_taxon_updated: Καταγεγραμμένη Ταξινομική Βαθμίδα ενημερώθηκε
   listing_lists: Καταχώρηση λιστών
   listing_project_assets: Καταχώρηση Αποκτήματος Προγράμματος
@@ -2075,6 +2131,10 @@ el:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Αποσύνδεση από %{site_name}?"
   log_scale_label: Καταγραφή
+  #Adjectival phrase describing state of being logged in
+  logged_in: Συνδεδεμένος
+  #Adjectival phrase describing state of being logged out
+  logged_out: Αποσύνδεση
   logo:
     logo: Λογότυπο
     white_bg_gif: άσπρο BG GIF
@@ -2240,6 +2300,8 @@ el:
   more_info_title: Περισσότερες πληροφορίες
   more_journal_posts: Περισσότερες αναρτήσεις ημερολογίου
   more_observations: Περισσότερες Παρατηρήσεις
+  #Label for a button or section that shows additional options
+  more_options: Περισσότερες επιλογές
   more_photos: Περισσότερες φωτογραφίες
   more_than_a_week_ago: περισσότερο από μία εβδομάδα πριν
   most_agree: Οι περισσότεροι συμφωνούν
@@ -2432,7 +2494,24 @@ el:
   no_users_found_with_those_filters: Δεν βρέθηκαν χρήστες με αυτά τα φίλτρα
   no_wikipedia_page_for_taxon: Καμιά σελίδα της Wikipedia για αυτό το taxon.
   noble_curators: "Αξιότιμοι Επιμελητές του %{site}"
+  #A user who is not a curator
+  non_curator: Μη επιμελήτρια
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Αναγνωριστικά προγόνων που δεν διαφωνούν
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Εάν απενεργοποιήσετε αυτήν τη ρύθμιση, δεν θα ειδοποιείστε πλέον όταν κάποιος προσθέτει ένα
+    Αναγνωριστικό ταξινομικής κατηγορίας που είναι πρόγονος της ταξινομικής κατηγορίας από το αναγνωριστικό σας και δεν το κάνει
+    διαφωνούν ρητά με την κοινοτική ταξινομική κατηγορία. Θα ειδοποιηθείτε εάν η ένδειξη
+    Η ταυτότητα έχει πρόσθετες παρατηρήσεις.
   non_human?: Μη άνθρωπος;
+  #A user who does not admin any projects
+  non_project_admin: Διαχειριστής εκτός έργου
   none: Κανένα
   none_found: Δεν βρέθηκε
   normal: κανονικό
@@ -2516,6 +2595,7 @@ el:
   observation_field_type_taxon: Ταξινομική βαθμίδα
   observation_field_type_dna: DNA
   observation_fields: Πεδία παρατήρησης
+  observation_fields_for_projects: Πεδία παρατήρησης για έργα
   observation_fields_are_additional: Τα πεδία παρατήρησης είναι πρόσθετα πεδία δεδομένων που μπορούν να προστεθούν σε παρατηρήσεις.
   observation_fields_by_preferences_description: |
     Τα πεδία παρατηρήσεων μοιάζουν λίγο με τις ετικέτες, αν εξαιρέσουμε ότι ο καθένας μπορεί να τα προσθέσει στις δικές σας παρατηρήσεις. Αν θέλετε αυτό μπορείτε να το αλλάξετε ώστε μόνο εσείς να μπορείτε να το κάνετε αυτό, ή οι επιμελητές της σελίδας.
@@ -3248,9 +3328,14 @@ el:
   processing3p: "Γίνεται επεξεργασία..."
   profile: Προφίλ
   profile_picture: Εικόνα Προφίλ
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Τύπος αρχείου Profile Picture
   profile_visibility_desc: |
     Στην προσπάθεια να κρατήσουμε τα σπαμ έξω από το %{site_name}, τα προφίλ των χρηστών εμφανίζονται δημόσια μόνον αφότου κάποιος χρήστης έχει συνεισφέρει αρκετές παρατηρήσεις Ερευνητικού Επιπέδου.
   project: Πρότζεκτ
+  #A user who admin's a project
+  project_admin: Διαχειριστής έργου
   project_admins:
     one: Διαχειριστής πρότζεκτ
     other: Διαχειριστές πρότζεκτ
@@ -3320,6 +3405,16 @@ el:
   range: Εύρος
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Κατάταξη
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Γένος / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Είδος / Υβρίδιο
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Υποείδος / Ποικιλία / Μορφή
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -3805,6 +3900,9 @@ el:
     one: Προβολή 1 παρατήρησης
     other: Προβολή %{count} παρατηρήσεων
   submitted: Υποβλήθηκε
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Εγγράφομαι συνδρομητής
   subscribe_to_a_taxon: Συνδρομή σε ένα taxon
   subscribe_to_a_place: Συνδρομή σε έναν Τόπο
   subscribe_to_comments_on_this_flag_html: "%{tag_start} Εγγραφείτε %{tag_end} για να αφήσετε σχόλια σε αυτή την αναφορά"
@@ -4172,8 +4270,20 @@ el:
   upcoming_bioblitzes: Επερχόμενα bioblitzes
   update: Ενημέρωση
   update_existing_observations_with_new_license: Ενημέρωση υπαρχόντων παρατηρήσεων με νέες επιλογές αδειοδότησης
+  update_existing_observations_with_new_license_desc: |
+    Η ενεργοποίηση αυτής της επιλογής θα εφαρμόσει τη νέα σας επιλογή άδειας χρήσης σε όλες τις
+    υφιστάμενες παρατηρήσεις. Αυτό μπορεί να διαρκέσει μερικές ώρες εάν έχετε πολλά
+    Παρατηρήσεις.
   update_existing_photos_with_new_license: Ενημέρωση υπαρχόντων φωτογραφιών με νέες επιλογές αδειοδότησης
+  update_existing_photos_with_new_license_desc: |
+    Η ενεργοποίηση αυτής της επιλογής θα εφαρμόσει τη νέα σας επιλογή άδειας χρήσης σε όλες τις
+    υπάρχουσες φωτογραφίες. Αυτό μπορεί να διαρκέσει μερικές ώρες εάν έχετε πολλά
+    Φωτογραφίες.
   update_existing_sounds_with_new_license: Ενημέρωση υπαρχόντων ήχων με νέες επιλογές αδειοδότησης
+  update_existing_sounds_with_new_license_desc: |
+    Η ενεργοποίηση αυτής της επιλογής θα εφαρμόσει τη νέα σας επιλογή άδειας χρήσης σε όλες τις
+    υπάρχοντες ήχοι. Αυτό μπορεί να διαρκέσει μερικές ώρες εάν έχετε πολλά
+    Ήχους.
   update_observations: Ενημέρωση παρατηρήσεων
   update_past: "Ενημέρωση Παρελθόντος %{type}"
   update_photos: Ενημέρωση Φωτογραφιών
@@ -4299,6 +4409,14 @@ el:
   user_observed_on_on_date_in_place: |
     %{user} παρατήρησε ένα την %{date} σε %{place}
   user_suggested_an_id: "Η/Ο %{user} πρότεινε μια ταυτοποίηση"
+  user_trusts_this_project_when_added_by_any: |
+    Ο χρήστης εμπιστεύεται τους επιμελητές έργων με κρυφές συντεταγμένες παρατηρήσεων που προστέθηκαν
+    στο έργο από οποιονδήποτε.
+  user_trusts_this_project_when_added_by_observer: |
+    Ο χρήστης εμπιστεύεται τους επιμελητές έργων με κρυφές συντεταγμένες παρατηρήσεων που προστέθηκαν
+    στο έργο από τον παρατηρητή.
+  user_trusts_this_project_when_added_by_none: |
+    Ο χρήστης δεν εμπιστεύεται τους επιμελητές έργων με κρυφές συντεταγμένες.
   user_trusts_you_with_their_private_coordinates: "%{user} σας εμπιστεύεται με τις κρυμμένες συντεταγμένες"
   user_trusts_you_with_their_private_coordinates_desc: |
     Ο παρατηρητής έχει επιλέξει να σας εμπιστευτεί με τις κρυμμένες συντεταγμένες από όλες του τις παρατηρήσεις.
@@ -4352,6 +4470,8 @@ el:
   view_more_observations_of_x_project: "Προβολή περισσοτέρων παρατηρήσεων από %{project} στο <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Προβολή περισσοτέρων παρατηρήσεων του %{taxon} στο <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Προβολή περισσοτέρων αθεώρητων"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Προβολή των αναγνωριστικών που επηρεάζονται
   view_observation: Προβολή παρατήρησης
   view_observations: Προβολή Παρατηρήσεων
   view_observation_flags: Προβολή αναφορών παρατηρήσεων
@@ -4391,6 +4511,8 @@ el:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Καταζητείται
   was_it_captive_cultivated?: "Ήταν σε αιχμαλωσία ή καλλιεργημένο;"
+  we_also_support3: |
+    Υποστηρίζουμε επίσης την εισαγωγή φωτογραφιών από <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Δεχόμαστε μόνο αρχεία τύπου CSV
   we_couldnt_find_a_user: Δεν μπορέσαμε να βρούμε έναν χρήστη με αυτήν τη διεύθυνση email.
   we_couldnt_find_a_user_with_that_activation_code: "Αδυνατούμε να βρούμε χρήστη με αυτό τον κωδικό ενεργοποίησης.Ενδεχομένως να έχετε ήδη ενεργοποιήσει τον λογαριασμό σας, παρακαλούμε δοκιμάστε να συνδεθείτε."
@@ -4679,6 +4801,94 @@ el:
   verifiable_observations: Επαληθεύσιμες Παρατηρήσεις
   views:
     views: 'Προβολές'
+    announcements:
+      locales_desc: |
+        CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Επιλέγοντας "Όλα" ή μη κάνοντας
+        Μια επιλογή θα εμφανίσει την ανακοίνωση σε όλους τους χρήστες, ανεξάρτητα από
+        τοπικές ρυθμίσεις. Η επιλογή μιας γλώσσας χωρίς περιοχή * δεν θα * στοχεύσει
+        τοπικές ρυθμίσεις με περιοχές, π.χ. εάν επιλέξατε Αγγλικά δεν θα εμφανίζεται
+        για άτομα που έχουν επιλέξει Αγγλικά (UK).
+      clients_desc: |
+        CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Επιλέγοντας "Όλα" ή μη κάνοντας
+        Μια επιλογή θα εμφανίσει την ανακοίνωση σε όλους τους χρήστες, ανεξάρτητα από
+        πελάτης.
+      end_desc: |
+        Ώρα στη ζώνη ώρας του λογαριασμού σας που θα σταματήσει αυτή η ανακοίνωση
+        Εμφανίζονται. Ισχύει σε όλες τις ζώνες ώρας, επομένως όλοι θα σταματήσουν να βλέπουν
+        ταυτόχρονα, όχι σε σχέση με την τοπική τους ώρα.
+      ip_countries_desc: |
+        CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Επιλέγοντας "Όλα" ή μη κάνοντας
+        Μια επιλογή θα εμφανίσει την ανακοίνωση σε όλους τους χρήστες, ανεξάρτητα από
+        Χώρα IP.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Σημειώστε ότι η ημερομηνία δημιουργίας του χρήστη που δημιουργήθηκε πιο πρόσφατα
+        Η παρατήρηση αποθηκεύεται στην κρυφή μνήμη, επομένως μπορεί να χρειαστούν μερικές ώρες για να γίνει η στόχευση
+        Έναρξη ισχύος
+      observation_oauth_application_ids_desc: |
+        CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Επιλέγοντας "Όλα" ή μη κάνοντας
+        Μια επιλογή θα εμφανίσει την ανακοίνωση σε όλους τους χρήστες, ανεξάρτητα από
+        Εφαρμογή.
+      site_ids_desc: |
+        CMD- ή SHIFT-κλικ για να επιλέξετε πολλά. Επιλέγοντας "Όλα" ή μη κάνοντας
+        Μια επιλογή θα εμφανίσει την ανακοίνωση σε όλους τους χρήστες, ανεξάρτητα από
+        Υπαγωγή στον ιστότοπο.
+      start_desc: |
+        Ώρα στη ζώνη ώρας του λογαριασμού σας που θα ξεκινήσει αυτή η ανακοίνωση
+        Εμφανίζονται. Ισχύει σε όλες τις ζώνες ώρας, ώστε όλοι να αρχίσουν να βλέπουν
+        ταυτόχρονα, όχι σε σχέση με την τοπική τους ώρα.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Στοχεύστε χρήστες με βάση τη συμπεριφορά δωρεάς
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Στόχευση χρηστών με βάση τη συμπεριφορά αναγνώρισης
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Στόχευση χρηστών κατά συμπεριφορά παρατήρησης
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Στόχευση χρηστών με άλλα χαρακτηριστικά
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Σχετικά με τους Άτλαντες
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Οι άτλαντες μεταφέρουν την παγκόσμια κατανομή μιας ταξινομικής κατηγορίας. Οι επιμελητές κάνουν
+          άτλαντες καθορίζοντας τη δομή ενός άτλαντα και επιμελούμενοι το
+          καταχωρημένα taxa που το οδηγούν.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Ανατινάξτε αυτό το μέρος
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Ανατινάξτε αυτό το μέρος
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Δεν υπάρχουν ακόμη αλλαγές σε αυτόν τον άτλαντα
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Πρόσφατες τροποποιήσεις του Άτλαντα
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Πρόσφατες ταξινομικές μεταβολές
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Εμφάνιση καταχωρημένων ταξινομικών κατηγοριών
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Αυτός ο άτλας δεν είναι προς το παρόν ενεργός
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Αυτό θα αφαιρέσει αυτή την ταξινομική κατηγορία και όλους τους απογόνους της από τους καταλόγους ελέγχου
+          που σχετίζονται με αυτό το μέρος και τυχόν τυποποιημένα μέρη που περιέχει. Αυτό
+          δεν μπορεί να αναιρεθεί. Είστε βέβαιοι ότι θέλετε να το κάνετε αυτό;
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Προειδοποίηση: υπάρχουν παρατηρήσεις που δεν αντιπροσωπεύονται από αυτόν τον άτλαντα
     content_freeze:
       content_freeze: Αποκλεισμός περιεχομένου
       during_this_time: |
@@ -4741,6 +4951,9 @@ el:
       index:
         deprecated_banner: |
           Παρακαλούμε έχετε υπόψη σας πώς από τον Ιανουάριο του 2019, οι Οδηγοί θα μείνουν όπως είναι, δε θα διαγραφούν, αλλά ούτε θα αναπτυχθούν περαιτέρω.
+        funding2_html: |
+          Η χρηματοδότηση για την ανάπτυξη των οδηγών χορηγήθηκε από
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Οι Οδηγοί θα σας βοηθήσουν να μάθετε για τη βιοποικιλότητα σε ολόκληρο τον πλανήτη. Είτε σας ενδιαφέρει να εξερευνήσετε το Εθνικό Πάρκο Σερενγκέτι ή ένα πάρκο κοντά σας (που μπορεί να είναι και το Σερενγκέτι), οι Οδηγοί μπορούν να σας βοηθήσουν να κατανοήσετε τη βιοποικιλότητα του πλανήτη μας.
       edit:
@@ -5789,6 +6002,11 @@ el:
           η προεπιλεγμένη εικόνα που χρησιμοποιείται στην ιστοσελίδα.
         rare_desc: Λιγότερο παρατηρημένα απειλούμενα taxa
         rare_in_place_desc_html: Λιγότερο παρατηρημένα απειλούμενα taxa σε <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Οι επιμελητές ιστότοπων έχουν απενεργοποιήσει την εμφάνιση <a href="%{url}">αυτό
+          περιεχόμενο από τη Βικιπαίδεια</a>. Μπορείτε να βοηθήσετε επεξεργάζοντας τη σελίδα στο
+          Wikipedia για να το καταστήσει κατάλληλο για αυτήν την ταξινομική κατηγορία, ή επισημαίνοντας αυτό
+          ταξινομική κατηγορία για να το επιστήσει την προσοχή των επιμελητών του χώρου.
         trending_desc: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
         trending_in_place_desc_html: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα σε <a href="%{url}">%{place}</a>
         wanted_desc: Είδη σε αυτό το taxon που δεν έχουν παρατηρηθεί ακόμα.
@@ -5889,6 +6107,10 @@ el:
           <a href="http://www.gbif.org/">Υπηρεσία Παγκόσμιας Ενημέρωσης για τη Βιοποικιλότητα</a> (GBIF), που είναι ένας διεθνής, διακυβερνητικός οργανισμός
           που συγκεντρώνει και διανέμει πληροφορίες για τη βιοποικιλότητα από όλο τον κόσμο
           .
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Ο τύπος αρχείου δεν υποστηρίζεται. Δεχόμαστε JPG, PNG και GIF
         muting_desc_html: |
           <p>
           Με το να σιγάσετε κάποιον σταματάτε να λαμβάνετε ειδοποιήσεις για πράγματα
@@ -5972,6 +6194,11 @@ el:
         taxon_change_desc: |
           Όταν οι ταξινομικές μονάδες συγχωνεύονται ή μετονομάζονται στο%{site_name}, οι παρατηρήσεις σας, οι καταχωρημένες ταξινομικές μονάδες, οι ταυτοποιήσεις σας κ.λπ. θα ενημερώνονται αυτόματα στις νέες ταξινομικές μονάδες εάν η αλλαγή είναι σαφής. Εάν το επιλέξετε ή η αλλαγή είναι διφορούμενη (π.χ. διαχωρισμός), θα λάβετε μια ενημέρωση σχετικά με την
           αλλαγή που συνδέεται σε ένα εργαλείο που μπορείτε να χρησιμοποιήσετε για να ενημερώσετε χειροκίνητα (μη αυτόματα) το περιεχόμενό σας αν το επιλέξετε.
+        this_only_applies_to_traditional_projects2: |
+          Αυτό ισχύει μόνο για τα παραδοσιακά έργα. Δεν μπορείτε να εξαιρέσετε παρατηρήσεις
+          από έργα συλλογής ή ομπρέλας, τα οποία είναι ουσιαστικά αποθηκευμένες αναζητήσεις.
+          Μπορείτε να διαβάσετε περισσότερα
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Εδώ</a>.
       recent:
         about_recent_users: Πληροφορίες
         definitions_html: <dl> <dt>Πιθανώς Spam</dt> <dd> Χρήστης που είναι πιθανώς ένας spammer, πράγμα που σημαίνει ότι δε διαθέτει παρατηρήσεις ή ταυτοποιήσεις αλλά έχει περιγραφή στο προφίλ του. </dd> <dt>Αυτόματο Spam</dt> <dd> Spammer που επισημάνθηκε αυτόματα ως spammer από το σύστημα. </dd> <dt>Χειροκίνητο Spam</dt> <dd> Spammer που επισημάνθηκε χειροκίνητα ως spammer από έναν επιμελητή της πλατφόρμας. </dd> <dt>Χρήστες που λανθασμένα φαίνονται ως Spammers</dt> <dd> Χρήστες που είχαν επισημανθεί ως spammers αλλά οι επισημάνσεις αφαιρέθηκαν από επιμελητές της πλατφόρμας επειδή δεν ήταν πραγματικά spammers. </dd> </dl>
@@ -6259,6 +6486,10 @@ el:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -6277,6 +6508,47 @@ el:
       Flag: Αναφορά
       TaxonLink: Σύνδεσμος ταξινόμησης
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Απορρίπτεται
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Αποκλεισμός ημερομηνίας έναρξης δότη
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Εξαίρεση ημερομηνίας λήξης δότη
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Εξαίρεση παρατηρητών από εφαρμογές
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Συμπεριλάβετε την ημερομηνία έναρξης του δότη
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Συμπεριλάβετε την ημερομηνία λήξης του δότη
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Συμπερίληψη παρατηρητών από εφαρμογές
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Χώρες IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Τελευταία ημερομηνία έναρξης obs
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Τελευταία ημερομηνία λήξης obs
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Μέγιστες ταυτοποιήσεις
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Ελάχιστες ταυτοποιήσεις
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Μέγιστες παρατηρήσεις
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Ελάχιστες παρατηρήσεις
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Τοποθέτηση
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Δημιουργός-στόχος (για δοκιμή)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Ο στόχος συνδέθηκε
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Νωρίτερη ημερομηνία εγγραφής χρήστη
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Τελευταία ημερομηνία εγγραφής χρήστη
       assessment:
         description: Περιγραφή
       assessment_section:
@@ -6371,6 +6643,8 @@ el:
         name: Όνομα
         parent_id: Γονεϊκή ταυτότητα
         rank: Κατάταξη
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Δείχνει Wikipedia
         source_identifier: Ταυτοποιητής πηγής
         source_url: URL πηγής
         wikipedia_summary: Περίληψη στη Βικιπαίδεια
@@ -6381,6 +6655,7 @@ el:
         source_identifier: Ταυτοποιητής πηγής
       user:
         email: Διεύθυνση ηλ. ταχυδρομείου
+        faved_project_ids: Αγαπημένα έργα
         login: Όνομα χρήστη
         name: Όνομα
         locale: Τοπικές ρυθμίσεις
@@ -6395,6 +6670,7 @@ el:
         blank: δεν μπορεί να είναι κενό
         confirmation: δεν αντιστοιχεί στον κωδικό πρόσβασης
         empty: δεν μπορεί να είναι κενό
+        must_look_like_an_email_address: πρέπει να μοιάζει με διεύθυνση ηλεκτρονικού ταχυδρομείου
         even: πρέπει να είναι άρτιος αριθμός
         exclusion: είναι δεσμευμένο
         inclusion: δεν περιλαμβάνεται στη λίστα
@@ -6444,6 +6720,11 @@ el:
           attributes:
             base:
               guide_has_too_many_taxa: "ο οδηγός μπορεί να έχει μόνο 500 ταξινομικές βαθμίδες"
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Μόνο το προσωπικό μπορεί να μετονομάσει
         observation:
           attributes:
             base:
@@ -6451,6 +6732,9 @@ el:
             observed_on:
               cannot_be_greater_than_date_created: |
                 δεν μπορεί να είναι μεγαλύτερη από την ημερομηνία προσθήκης της καταχώρησης
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: πρέπει να είναι μία μόνο ημέρα, όχι ένα εύρος
         observation_field_value:
           attributes:
             value:
@@ -6475,6 +6759,9 @@ el:
               is_too_large_to_edit: πολύ μεγάλο για επεξεργασία
               is_too_large_to_import: πολύ μεγάλο για εισαγωγή
               contains_too_many_observations: περιλαμβάνει πάρα πολλές παρατηρήσεις για εισαγωγή
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: έχει ένα πολύγωνο χωρίς περιοχή (όλα τα σημεία είναι τα ίδια)
         post:
           attributes:
             parent:
@@ -6486,6 +6773,10 @@ el:
               must_be_on_site_long_enough: |
                 πρέπει να έχετε εγγραφεί πριν από περισσότερο από 24 ώρες για να δημοσιεύετε. Δεχόμαστε
                 πολλούς σπάμερς, και αυτός είναι ένας εύκολος τρόπος για να τους αντιμετωπίσουμε. Μπορείτε ακόμα να αποθηκεύσετε ένα πρόχειρο, και αν χρησιμοποιείτε ακόμα την ιστοσελίδα μέσα σε μια ημέρα, θα μπορείτε να δημοσιεύσετε.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Μπορείτε να αγαπήσετε μόνο 7 έργα
         project_observation:
           attributes:
             base:
@@ -6530,6 +6821,11 @@ el:
             name:
               bad_format: |
                 μπορεί μόνο να περιέχει λατινικούς χαρακτήρες, παύλες, κενά και ×. Να σημειωθεί ότι δεν επιτρέπονται μη τεκμηριωμένες επιστημονικά ταξινομικές μονάδες και ποικιλίες
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Η ταξινομική κατηγορία ζωής δεν μπορεί να εμπλέκεται σε αλλαγές ταξινομικής κατηγορίας
         taxon_name:
           attributes:
             lexicon:
@@ -6552,9 +6848,18 @@ el:
                 δεν μπορεί να έχει πάνω από %{max} φωτογραφίες
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: Δεν μπορεί να περιλαμβάνει περισσότερα από 7 έργα
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: πρέπει να υπάρχουν όλα
             login:
               must_begin_with_a_letter: |
                 πρέπει να ξεκινά με ένα γράμμα, να μην περιέχει κανένα κενό, και να χρησιμοποιεί μόνο γράμματα, αριθμούς, παύλες, και κάτω παύλες
+              domain_is_not_supported: Ο τομέας δεν υποστηρίζεται
         user_block:
           attributes:
             base:
