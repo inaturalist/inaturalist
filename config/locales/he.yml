@@ -1755,6 +1755,8 @@ he:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: חילוקי דעות
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: הצג תצפיות שיש להן זיהויים לא מסכימים
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: ניתוק
@@ -3532,6 +3534,7 @@ he:
   observation_field_type_taxon: טקסון
   observation_field_type_dna: DNA
   observation_fields: שדות תצפית
+  observation_fields_for_projects: שדות תצפית לפרויקטים
   observation_fields_are_additional: שדות תצפית מאפשרים להוסיף נתוני שדות נוספים שיתווספו לתצפיות.
   observation_fields_by_preferences_description: |
     שדות התצפית הם מעט דומים לתיוגים, רק שכל אחד יכול להוסיף לתצפיות שלך כברירת מחדל. באפשרותך לשנות זאת אם ברצונך שרק את.ה או רק אוצרי האתר יוכלו לעשות זאת.
@@ -6017,6 +6020,8 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
+  we_also_support3: |
+    אנו תומכים גם בייבוא תמונות מ <a href="http://flickr.com">פליקר</a>.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
@@ -6646,6 +6651,9 @@ he:
       index:
         deprecated_banner: |
           יש לציין כי נכון לינואר 2019, פיצ'ר המדריכים מוצג כמו שהוא; אמנם אין לנו כוונה למחוק אותו, אך אין לנו כוונה לפתח אותו עוד.
+        funding2_html: |
+          המימון לפיתוח Guides ניתן על ידי
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           מגדירים מסייעים ללמוד על מגוון המינים בכל העולם. בין אם אתם מגלים את הסרנגטי או את הגן הציבור שקרוב לביתכם, המגדירים יכולים לעזור לנו ללמוד על מגוון החיים המדהים של העולם שבו אנו חיים.
       edit:
@@ -8251,7 +8259,7 @@ he:
       - ו'
       - שבת
     abbr_month_names:
-      - 
+      -
       - ינו'
       - פבר'
       - מרץ
@@ -8296,7 +8304,7 @@ he:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%B %-d, %Y'
     month_names:
-      - 
+      -
       - ינואר
       - פברואר
       - מרץ
