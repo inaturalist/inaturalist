@@ -151,6 +151,8 @@ ko:
   add_a_new_change_group: 새로운 변화 그룹 추가하기
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 번호가 매겨진 목록 추가하기
+  #Placeholder for a project autocomplete field
+  add_a_project: 프로젝트 추가
   add_a_single_observation: 관찰 하나를 추가합니다.
   add_a_taxon: 분류군 추가하기
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -784,11 +786,14 @@ ko:
   curators_changed_for_x_html: "%{x} 큐레이터 변경됨"
   curators: 큐레이터
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가 표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트에서 수정된 좌표와 관찰에서 숨겨진 위치의 원래 좌표를 볼 수 있습니다.
+  curator_coordinate_access: 큐레이터 좌표 접근
   curator_identification: 큐레이터 확인
   current_flags: 현재 플래그
   custom_project_fields: 자체지정한 프로젝트 필드
   custom_project_was_successfully_created: 자체지정 프로젝트가 성공적으로 생성되었습니다.
   custom_project_was_successfully_updated: 자체지정 프로젝트가 성공적으로 업데이트되었습니다.
+  #Button to customize projects that appear in the header
+  customize__projects: 사용자 지정
   darr_apply_darr: "&darr; 적용 &darr;"
   dashboard: 대시보드
   data_deficient: 정보부족(DD)
@@ -894,6 +899,11 @@ ko:
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disable: 비활성화
   disagree_: 동의하지 않음
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: 불일치
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: 일치하지 않는 식별이 있는 관찰 결과를 표시합니다.
   disconnect_provider: "%{provider} 연결 끊기"
   display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
   distance_traveled: "여행한 거리 (m)"
@@ -1034,6 +1044,12 @@ ko:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: 즐겨찾기
   Family: 과
+  #Header for a section showing the user's favorite projects
+  favorite_projects: 좋아하는 프로젝트
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    헤더에 링크로 표시되는 프로젝트를 최대 7개까지 선택합니다. 업데이트
+    페이지를 새로 고친 후 나타납니다.
   favorite_taxa: 좋아하는 분류군
   favorites: "즐겨찾기"
   feedback: 피드백
@@ -1243,6 +1259,8 @@ ko:
   internal_server_error: 내부 서버 오류
   introduced: 도입종
   introduced_in_place: "%{place} 에 도입됨"
+  #Error message shown when a date format is invalid
+  invalid_date: 유효하지 않은 날짜
   invitation: 초대장
   invite: 초대
   invite_people: 사용자들 초대
@@ -1673,6 +1691,7 @@ ko:
   observation_date?: 날짜?
   observation_field: 관찰 필드
   observation_fields: 관찰 필드
+  observation_fields_for_projects: 프로젝트에 대한 관찰 필드
   observation_fields_are_additional: 관찰 필드는 관찰에 추가로 데이터 입력 필드를 더할 수 있는 필드입니다.
   observation_requirements: 관찰 요구사항
   observations: 관찰
@@ -2177,6 +2196,9 @@ ko:
   probably_spam: 스팸으로 추정
   processing3p: "처리 중..."
   profile: 프로필
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: 프로필 사진 파일 형식
   project: 프로젝트
   #A user who admin's a project
   project_admin: 프로젝트 관리자
@@ -2203,6 +2225,16 @@ ko:
   range: 범위
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 순위
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: 속 / 속잡종
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: 종 / 잡종
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: 아종 / 품종 / 형태
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2471,6 +2503,18 @@ ko:
   unmute: 알림 제외를 해제
   unsubscribe: 알림 해제
   update: 갱신
+  update_existing_observations_with_new_license_desc: |
+    이 옵션을 선택하면 새 라이선스 선택 사항이 모든 사용자에게 적용됩니다.
+    기존 관찰. 많은 경우 몇 시간이 걸릴 수 있습니다.
+    관찰.
+  update_existing_photos_with_new_license_desc: |
+    이 옵션을 선택하면 새 라이선스 선택 사항이 모든 사용자에게 적용됩니다.
+    기존 사진. 많은 경우 몇 시간이 걸릴 수 있습니다.
+    사진.
+  update_existing_sounds_with_new_license_desc: |
+    이 옵션을 선택하면 새 라이선스 선택 사항이 모든 사용자에게 적용됩니다.
+    기존 소리. 많은 경우 몇 시간이 걸릴 수 있습니다.
+    소리.
   update_observations: 관찰 업데이트
   update_photos: 사진 갱신
   update_subscription: 구독 갱신
@@ -2520,6 +2564,14 @@ ko:
   user_commented: "%{user}님이 댓글을 남겼습니다"
   user_muted: 사용자를 알림에서 제외함
   user_suggested_an_id: "%{user}님이 ID를 제시했습니다"
+  user_trusts_this_project_when_added_by_any: |
+    사용자는 관찰의 숨겨진 좌표가 추가된 프로젝트 큐레이터를 신뢰합니다.
+    누구에 의해서든지에 의해서의 프로젝트에.
+  user_trusts_this_project_when_added_by_observer: |
+    사용자는 관찰의 숨겨진 좌표가 추가된 프로젝트 큐레이터를 신뢰합니다.
+    관찰자에 의해 프로젝트에.
+  user_trusts_this_project_when_added_by_none: |
+    사용자는 숨겨진 좌표를 가진 프로젝트 큐레이터를 신뢰하지 않습니다.
   username: 사용자 이름
   username_or_email: 사용자 이름이나 이메일
   username_or_user_id: 사용자 이름이나 사용자 ID
@@ -2552,6 +2604,8 @@ ko:
   view_your_observations: 내 관찰 보기
   vulnerable: 취약(VU)
   was_it_captive_cultivated?: "포획되거나 사육되었습니까?"
+  we_also_support3: |
+    또한 다음에서 사진 가져오기를 지원합니다. <a href="http://flickr.com">플리커</a>.
   we_couldnt_find_a_user: 해당하는 이메일 주소의 사용자를 찾지 못했습니다.
   we_couldnt_find_a_user_with_that_activation_code: "해당 활성 코드와 맞는 사용자를 찾지 못했습니다. 이미 당신의 계정을 활성화했을 수 있습니다. 로그인을 시도해 보세요."
   we_had_trouble_saving_comment: "해당 댓글을 저장하는데 문제가 발생했습니다."
@@ -2736,6 +2790,10 @@ ko:
       tips_check_your_spam_folder: 스팸 폴더 확인
       your_site_account_has_no_email: 당신의 %{site_name} 계정에 연결된 이메일 주소가 없습니다.
     guides:
+      index:
+        funding2_html: |
+          가이드 개발을 위한 자금은 다음과 같이 제공되었습니다.
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
       edit:
         add_rank_tags_help_html: |
           우리 분류학을 바탕으로 분류 등급 태그를 추가하세요, 예를 들어
@@ -2878,6 +2936,10 @@ ko:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           마음이 바뀌면 언제든지
           <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: 지원되지 않는 파일 형식입니다. JPG, PNG 및 GIF를 사용할 수 있습니다.
         place_preference_changed_notice_html: |
           장소 설정이 변경되었습니다. 마음이 바뀌면 언제든지
           <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
@@ -3097,6 +3159,7 @@ ko:
         wikipedia_title: 위키백과 제목
       user:
         email: 이메일
+        faved_project_ids: 좋아하는 프로젝트
         login: 사용자 이름
         name: 이름
         locale: 언어 환경
@@ -3125,6 +3188,11 @@ ko:
               has_query_parameter: "쿼리 변수를 포함할 수 없습니다."
               invalid_uri: "유효한 URI이어야 합니다."
               relative_uri: "절대 URI이어야 합니다."
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: 직원만 이름을 변경할 수 있습니다.
         observation:
           attributes:
             base:
@@ -3143,6 +3211,9 @@ ko:
           attributes:
             place_geometry:
               is_too_large_to_edit: 편집하기에 너무 큼
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: 영역이 없는 폴리곤이 있습니다(모든 포인트가 동일함).
         taxon_change:
           attributes:
             base:
@@ -3159,6 +3230,11 @@ ko:
                 사진 %{max}장을 초과할 수 없습니다
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: 모두 존재해야 합니다.
             login:
               must_begin_with_a_letter: |
                 문자로 시작해야 하고 공백을 포함할 수 없으며, 문자, 숫자, 밑줄, 대시만 사용이 가능합니다.
