@@ -291,6 +291,8 @@ sr:
   add_a_note: Dodaj belešku
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Dodaj numerisanu listu
+  #Placeholder for a project autocomplete field
+  add_a_project: Dodajte projekat
   add_a_single_observation: Dodaj opservaciju
   add_a_taxon: Dodaj takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -583,6 +585,8 @@ sr:
   any_license: Sve
   #Label for an option to show content with photos, sounds, or neither
   any_media: Sve
+  #Label for an option to show any place
+  any_place: Bilo koji
   #Label for an option to show content from any project
   any_project: Sve
   #Label for an option to show content with any quality grade
@@ -697,6 +701,13 @@ sr:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, otpremio/la %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Eksplodirao
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Neeksplodirao
   authority_list:
     iucn_red_list: IUCN crvena lista
     cites: CITES
@@ -942,6 +953,10 @@ sr:
   confirmation_email_sent_at_datetime: Imejl za potvrdu poslat %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrđeno %{date}
+  confirming_ids: Potvrđivanje ličnih karata
+  confirming_ids_description: |
+    Ako isključite ovo, više nećete biti obavešteni o ličnim kartama koje se slažu
+    sa tvojim, osim ako nemaju dodatne primedbe.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Poveži se
@@ -1176,10 +1191,18 @@ sr:
   curator_guide: Vodič za kustose
   curators_changed_for_x_html: "Kustosi promenjeni za %{x}"
   curators: Kustosi
+  curator_coordinate_access: Koordinatni pristup kustosa
+  curator_coordinate_access_desc: |
+    Kustos koordinira pristup za tradicionalne projekte zavisi od toga ko je dodao
+    posmatranje projekta. Ovo je samo podrazumevana postavka za
+    zapažanja u projektima. Posmatrači takođe mogu da izaberu da promene ovo za
+    pojedinačna zapažanja.
   curator_identification: Identifikacija kustosa
   current_flags: Trenutne prijave
   #Label for a custom boundary for an observation search
   custom_boundary: Posebna granica
+  #Button to customize projects that appear in the header
+  customize__projects: Prilagođavanje
   customize_location: Prilagodi lokaciju
   darr_apply_darr: "&darr; Prijavi se &darr;"
   daily_users: Korisnika dnevno
@@ -1358,6 +1381,11 @@ sr:
   disable_comments: Onemogući komentare
   disable_comments_desc: Onemogući dodavanje komentara
   disagree_: Ne slažem se
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Neslaganja
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Pokažite zapažanja koja imaju neslaganje identifikacije
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Prekini vezu
@@ -1442,6 +1470,8 @@ sr:
   edited_by_name_some_rights_reserved_html: |
     Uredio/la %{name}, neka prava zadržana (%{license})
   editing: Uređivanje
+  #Title for a page to edit an announcement
+  editing_announcement_x: Uređivanje najave %{id}
   editing_observation_field: Uređivanje opservacionog polja
   editing_observation_id: "Uređivanje opservacije %{obs_id}"
   editing_observations:
@@ -1536,6 +1566,12 @@ sr:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriti
   Family: Porodica
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Omiljeni projekti
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Izaberite do sedam projekata koji se pojavljuju kao linkovi u zaglavlju. Ispravke
+    će se pojaviti nakon osvežavanja stranice.
   favorite_taxa: Omiljeni taksoni
   favorites: "Favoriti"
   feature_this_project_: "Istakni ovaj projekat"
@@ -1851,6 +1887,18 @@ sr:
   inaturalist_applications: "iNaturalist aplikacije"
   inaturalist_places: "%{site_name} mesta"
   info: Informacije
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraspecies IDs
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Ako isključite ovu opciju, više nećete biti obavešteni o ličnim kartama taksona
+    ispod nivoa vrsta (kao što su podvrste i sorte) koje se slažu sa vašim
+    ID na nivou vrsta. Bićete obavešteni ako se ne slažu sa vašom ličnom kartom ili
+    ako sadrže dodatne primedbe.
   input_taxon: ulazni takson
   insects: insekti
   insect_life_stage: Faze života insekta
@@ -1859,6 +1907,8 @@ sr:
   internal_server_error: Interna grеška sеrvеra
   introduced: Invazivna
   introduced_in_place: "Invazivna u %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Nevažeći datum
   invitation: Poziv
   invite: Pozovi
   invite_people: Pozovi ljude
@@ -2063,6 +2113,10 @@ sr:
   list_was_successfully_created: Lista je uspešno kreirana.
   listed_taxa: Navedeni taksoni
   listed_taxon: Naveden takson
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Navedene
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Na listi
   lists: Liste
   lists_by_login:
     title:
@@ -2155,6 +2209,10 @@ sr:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Izloguj se iz %{site_name}?"
   log_scale_label: Evidencija
+  #Adjectival phrase describing state of being logged in
+  logged_in: Prijavljen
+  #Adjectival phrase describing state of being logged out
+  logged_out: Odjavljen
   #Status message shown while logging in
   logging_in: Prijavljivanjе...
   logo:
@@ -2499,6 +2557,23 @@ sr:
   no_taxa_selected: Nije izabran nijedan takson!
   no_wikipedia_page_for_taxon: Nema Vikipedija strane za ovaj takson.
   noble_curators: "Uvaženi kustosi %{site}-a"
+  #A user who is not a curator
+  non_curator: Ne-kustos
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Identifikacije predaka koji se ne slažu
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Ako isključite ovo, više nećete biti obavešteni kada neko doda
+    ID taksona koji je predak taksona iz vaše lične karte i ne
+    eksplicitno se ne slažem sa taksonom zajednice. Bićete obavešteni ako
+    ID ima dodatne napomene.
+  #A user who does not admin any projects
+  non_project_admin: Administrator koji nije projekat
   none: Ništa
   none_found: Nije nađena nijedna
   normal: normalno
@@ -2613,6 +2688,7 @@ sr:
   observation_field_type_taxon: Takson
   observation_field_type_dna: DNK
   observation_fields: Opservaciona polja
+  observation_fields_for_projects: Polja posmatranja za projekte
   observation_fields_by_preferences_description: |
     Opservaciona polja su nešto kao oznake (tagovi), osim što ih svako može dodati na tvoju opservaciju po podrazumevanim podešavanjima. Izmeni ovo podešavanje ako želiš da samo ti to možeš da uradiš ili samo kustosi sajta.
   #Help text to show what kind of values you can enter for the date an observation was observed
@@ -3279,7 +3355,12 @@ sr:
   processing3p: "Obrada..."
   profile: Profil
   profile_picture: Profilna slika
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profil Slika tip datoteke
   project: Projekat
+  #A user who admin's a project
+  project_admin: Administrator projekta
   project_admins:
     one: Administrator projekta
     few: Administratori projekta
@@ -3338,6 +3419,16 @@ sr:
   range: Opseg
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Rod / Rodhibrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Vrsta / Hibrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Podvrste / Sorta / Obrazac
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -3873,6 +3964,9 @@ sr:
     few: Dodaj %{count} opservacije
     other: Dodaj %{count} opservacija
   submitted: Dodato
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Pretplata
   subscribe_to_a_taxon: Prati takson
   subscribe_to_a_place: Prati mesto
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Prati%{tag_end} komentare na ovoj pritužbi"
@@ -4254,8 +4348,20 @@ sr:
   unsubscribe_from_emails_like_this: Odjavi se od ovakvih imejlova
   update: Ažuriraj
   update_existing_observations_with_new_license: Ažuriraj postojeće opservacije sa novim izborom licence
+  update_existing_observations_with_new_license_desc: |
+    Odabirom ove opcije će se primeniti vaš novi izbor licence na sve vaše
+    postojeća zapažanja. Ovo može potrajati nekoliko sati ako imate puno
+    Zapaћanja.
   update_existing_photos_with_new_license: Ažuriraj postojeće fotografije sa novim izborom licence
+  update_existing_photos_with_new_license_desc: |
+    Odabirom ove opcije će se primeniti vaš novi izbor licence na sve vaše
+    postojeće fotografije. Ovo može potrajati nekoliko sati ako imate puno
+    Fotografije.
   update_existing_sounds_with_new_license: Ažuriraj postojeće zvukove sa novim izborom licence
+  update_existing_sounds_with_new_license_desc: |
+    Odabirom ove opcije će se primeniti vaš novi izbor licence na sve vaše
+    postojeći zvuci. Ovo može potrajati nekoliko sati ako imate puno
+    Zvuиi.
   update_observations: Ažuriraj opservacije
   update_photos: Ažuriraj fotografije
   update_search: Ažuriraj pretragu
@@ -4379,6 +4485,14 @@ sr:
     Korisnik je poverio skrivene koordinate ovom projektu koje su prikrivene iz nekog razloga.
   user_trusts_this_project_for_taxon: |
     Korisnik je ovom projektu poverio samo skrivene koordinate koje su prikrivene zbog ugroženog taksona.
+  user_trusts_this_project_when_added_by_any: |
+    Korisnik veruje kustosima projekta sa dodanim skrivenim koordinatama zapažanja
+    na projekat od strane bilo koga.
+  user_trusts_this_project_when_added_by_observer: |
+    Korisnik veruje kustosima projekta sa dodanim skrivenim koordinatama zapažanja
+    na projekat od strane posmatrača.
+  user_trusts_this_project_when_added_by_none: |
+    Korisnik ne veruje kustosima projekta sa skrivenim koordinatama.
   user_trusts_you_with_their_private_coordinates: "%{user} ti poverava njegove/njene skrivene koordinate"
   user_trusts_you_with_their_private_coordinates_desc: |
     Posmatrač je izabrao/la da ti poveri skrivene koordinate svih njegovih/njenih opservacija.
@@ -4442,6 +4556,8 @@ sr:
   view_more_observations_near_x_place: "Pogledaj opservacije u blizini %{place} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_project: "Pogledaj više opservacija iz %{project} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Pogledaj više opservacija %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Pregledajte svoje pogođene lične karte
   view_observation: Pogledaj opservaciju
   view_observations: Pogledaj opservacije
   view_observation_flags: Pogledaj prijave opservacije
@@ -4478,6 +4594,8 @@ sr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Tražene
   was_it_captive_cultivated?: "U zatoćeništvu / kultivisano?"
+  we_also_support3: |
+    Takođe podržavamo uvoz fotografija iz <a href="http://flickr.com">Fejsbuk</a>.
   we_can_only_understand_csv_in: CSV može biti prepoznat samo u sledećem formatu
   we_couldnt_find_a_user: Nema korisnika sa tom imejl adresom.
   we_have_no_conservation_status_for_this_taxon: Nemamo definisan status ugroženosti za ovaj takson
@@ -4745,6 +4863,54 @@ sr:
   verifiable_observations: Argumentovane opservacije
   views:
     views: 'Pregledi'
+    announcements:
+      locales_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Sve" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        Lokalne. Izbor jezika bez regiona neće *ne* meta
+        locales sa regionima, npr. ako ste izabrali engleski neće se pojaviti
+        za ljude koji su izabrali engleski (UK).
+      clients_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Sve" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        Klijent.
+      end_desc: |
+        Vreme u vremenskoj zoni vašeg naloga da će ova najava prestati
+        Pojavljivanje. Primenjuje se u svim vremenskim zonama, tako da će svi prestati da vide
+        to u isto vreme, ne u odnosu na njihovo lokalno vreme.
+      ip_countries_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Sve" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        IP zemlja.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Imajte na umu da je datum kreiranja korisnika poslednji kreiran
+        posmatranje je keširan, tako da može potrajati nekoliko sati za ciljanje
+        stupiti na snagu
+      observation_oauth_application_ids_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Sve" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        Aplikaciju.
+      site_ids_desc: |
+        CMD- ili SHIFT-kliknite da biste izabrali više. Izbor "Sve" ili ne pravljenje
+        Izbor će prikazati najavu svim korisnicima, bez obzira na
+        pripadnost sajtu.
+      start_desc: |
+        Vreme u vremenskoj zoni vašeg naloga da će ovo saopštenje početi
+        Pojavljivanje. Primenjuje se u svim vremenskim zonama, tako da će svi početi da vide
+        to u isto vreme, ne u odnosu na njihovo lokalno vreme.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Ciljajte korisnike ponašanjem donacija
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Ciljani korisnici prema ponašanju identifikacije
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Ciljani korisnici ponašanjem posmatranja
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Ciljani korisnici po drugim atributima
     atlases:
       show:
         #Title for section describing atlases
@@ -4767,6 +4933,17 @@ sr:
         unexplode_this_place: Odzumiraj od ovog mesta
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Još uvek nema izmena u ovom atlasu
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Nedavne izmene Atlasa
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Prikaži navedene taksone
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Ovaj atlas trenutno nije aktivan
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Ovo će ukloniti ovaj takson i sve njegove potomke sa kontrolnih lista
+          povezan sa ovim mestom i svim standardnim mestima koja sadrži. To je
+          ne može se poništiti. Da li ste sigurni da želite da uradite ovo?
         #Warning when there are observations outside of the places defined by
         #the atlas
         warning_there_are_observations_not_represented: |
@@ -4864,6 +5041,9 @@ sr:
       index:
         deprecated_banner: |
           Imaju u vidu da se od januara 2019 odeljak vodiči ostaje kakav jeste. Nemamo u planu da brišemo ovaj odeljak ali ni dalji razvoj.
+        funding2_html: |
+          Sredstva za razvoj vodiča obezbedili su
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Vodiči ti pomažu da upoznaš biodiverzitet širom sveta. Bilo da istražuješ Serengeti ili tvoj lokalni park (koji može biti Serengeti), vodiči ti pomažu da saznaš više o zadivljujućem diverzitetu života.
       edit:
@@ -5539,6 +5719,11 @@ sr:
           Takson može imati maksimalno %{max} fotografija. Moraćeš ukloniti postojeće fotografije da bi dodao/la još.
         rare_desc: Ugroženi taksoni sa najmanje opservacija
         rare_in_place_desc_html: Najređe zabaleženi taksoni u <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Kustosi sajta su onemogućili prikazivanje <a href="%{url}">Ovo
+          sadržaj sa Vikipedije</a>. Možete pomoći uređivanjem stranice na
+          Vikipedija da bude prikladna za ovaj takson, ili označavanjem ovog
+          takson da ga skrene pažnja kustosa sajta.
         trending_desc: Takson sa najviše opservacija u prethodnom mesecu
         trending_in_place_desc_html: Takson sa najviše opservacija u prethodnom mesecu u <a href="%{url}">%{place}</a>
         wanted_desc: Vrste u ovom taksonu još nisu zabeležene.
@@ -5584,6 +5769,10 @@ sr:
           </p>
         licensing_desc_html: |
           Licenciranje tvog sadržaja daje svakom zakonsko pravo da ga koristi bez da pita za tvoju dozvolu pod uslovom da poštuju uslove propisane licencom. Takođe, %{site_name} će uključiti tvoj sadržaj sa Creative Commons licencom u redovno ažurirane arhive koje se prave za određene partnerske organizacije koje su zainteresovane za naše podatke. Na primer, mi uključujemo sadržaj sa Copyright (CC0), Attribution (CC BY), i Attribution-NonCommercial (CC BY-NC) licencama u arhive koje pravimo za <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) koja je međunarodna, međuvladina organizacija i ima za cilj da skuplja i deli informacije o svetskom biodiverzitetu.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tip datoteke nije podržan. Prihvatamo JPG, PNG i GIF
         name_place_help_html: |
           Daj prioritet narodnim nazivima koji se koriste u ovom mestu:
         #Checkbox label for user preference about what to receive in the daily email update
@@ -5636,6 +5825,11 @@ sr:
         taxon_name_priorities:
           #optionally add a place configuration for a common name lexicon setting
           add_a_place_optional: Dodaj mesto (opciono)
+        this_only_applies_to_traditional_projects2: |
+          Ovo se odnosi samo na tradicionalne projekte. Ne možete isključiti zapažanja
+          iz zbirke ili krovnih projekata, koji su u suštini sačuvane pretrage.
+          Možete pročitati više
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Ovde</a>.
       recent:
         about_recent_users: Saznaj više
       show:
@@ -5916,6 +6110,10 @@ sr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d. %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -5948,6 +6146,8 @@ sr:
     attributes:
       announcement:
         created_at: Kreirano
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Može se odbaciti
         updated_at: Ažurirano
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -5955,8 +6155,44 @@ sr:
         #Preference for an announcement that is only shown to staff
         prefers_target_staff: Ciljno osoblje (za testiranje)
         clients: Klijenti
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Isključite datum početka donatora
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Isključite datum završetka donatora
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Isključite posmatrače iz aplikacija
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Uključite datum početka donatora
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Uključite datum završetka donatora
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Uključite posmatrače iz aplikacija
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP zemlje
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Poslednji datum početka OBS
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Poslednji datum završetka OBS
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Mak identifikacije
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Minimalne identifikacije
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maksimalna zapažanja
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Minimalna zapažanja
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Položaj
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Ciljni kreator (za testiranje)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Meta prijavljeni
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Najraniji datum registracije korisnika
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Poslednji datum registracije korisnika
       assessment:
         description: Opis
       assessment_section:
@@ -6070,6 +6306,8 @@ sr:
         #re-order photos of this taxon
         photos_locked: Fotografije zaključane?
         rank: Rang
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Prikazuje Vikipediju
         source_id: Izvorni ID
         source_url: Izvorni URL
         wikipedia_summary: Vikipedija rezime
@@ -6095,6 +6333,7 @@ sr:
         place: Mesto
       user:
         email: Imejl
+        faved_project_ids: Omiljeni projekti
         login: Korisničko ime
         name: Ime
         time_zone: Vremenska zona
@@ -6107,6 +6346,7 @@ sr:
         blank: ne može biti prazno
         confirmation: ne poklapa se sa lozinkom
         empty: ne možе biti prazno
+        must_look_like_an_email_address: mora da izgleda kao adresa e-pošte
         even: mora biti parno
         exclusion: je rezervisano
         inclusion: nije na listi
@@ -6166,6 +6406,8 @@ sr:
             action:
               not_supported_for_this_kind_of_content: nije podržan za ovakav sadržaj
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Samo osoblje može preimenovati
               staff_cannot_be_suspended: Osoblje ne može biti suspendovano
             user_id:
               must_be_a_curator: mora biti kustos
@@ -6180,6 +6422,9 @@ sr:
             observed_on:
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: mora biti u okviru poslednjih 130 godina
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: mora biti jedan dan, a ne opseg
         observation_field_value:
           attributes:
             value:
@@ -6199,6 +6444,9 @@ sr:
               cannot_be_blank: ne može biti prazno
               must_have_more_than_three_points: mora imati više od 3 poena
               polygon_with_less_than_four_points: ima poligon sa manje od 4 tačke
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: ima poligon bez površine (sve tačke su iste)
         place_geometry:
           attributes:
             geom:
@@ -6212,6 +6460,10 @@ sr:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: ne dozvoljava dodavanje komentara
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Možete samo da volite 7 projekata
         project_observation:
           attributes:
             base:
@@ -6254,6 +6506,11 @@ sr:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 samo kustos ovog taksona može izmeniti
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Takson Life ne može biti uključen u promene taksona
         taxon_name:
           attributes:
             lexicon:
@@ -6284,9 +6541,18 @@ sr:
               already_has_a_range: već ima rasprostranjenost
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ne može uključiti više od 7 projekata
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: moraju svi postojati
             login:
               must_begin_with_a_letter: |
                 mora početi slovom, ne može sadržati razmake i moguće je upotrebiti samo slova, brojeve, crtice i donje crte
+              domain_is_not_supported: Domen nije podržan
         user_block:
           attributes:
             base:
