@@ -2486,7 +2486,6 @@ ca:
   #a noun.
   link_to_authorization_code: Enllaç al codi d'autorització
   link_your_flickr_account: Vinculeu el compte de Flickr
-  link_your_google_account: Vinculeu el compte de Google
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
@@ -5337,7 +5336,6 @@ ca:
   unfollow_observation: Deixar de seguir l'observació
   #Text for a button to stop following updates from a user
   unfollow_user: Deixar de seguir l'usuari
-  unlink_your_google_account: Desvinculeu el vostre compte de Google
   unlink_your_flickr_account: "Desenllaçar el compte de Flickr"
   unmute: No silenciar
   updates_notification_email_subject: "%{prefix} Noves actualitzacions %{date}"
@@ -5630,9 +5628,6 @@ ca:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
-  we_also_support2: |
-    També admetem la importació de fotografies des de <a href="http://flickr.com">Flickr</a>
-    i des de <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
   we_couldnt_find_a_user_with_that_activation_code: "No hem trobat cap usuari amb aquest codi d'activació. Pot ser que el compte ja s’hagi activat; proveu d’entrar al sistema."
@@ -6398,10 +6393,6 @@ ca:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           La columna geoprivacitat ha d'estar en anglès i ha d'estar en blanca o tenir el valor de "enfoquit" o "privat"
-        google_photos_notice_html: |
-          El febrer del 2019, Google va canviar el seu API, fent impossible per nosaltres accedir a les coordenades del GPS, informació de llicència, i gairebé total la informació que  podiem utilitzar per afegir a una identificació (com etiquetes). També ha eliminat la cerca de text i la paginació numèrica. A més, han requerit que tots els comptes demanin permisos addicionals, i que els tercers siguin verificats. Estem esperant la verificació i mentre arriba, no podreu importar fotos de Google.
-          Si som aprovats, podreu importar fotos, però no inclourà informació d'ubicació o informació de llicència que sí que podeu veure a Photos de Google. Podeu llegir més sobre això a <a href="https://developers.google.com/picasa-
-          web">https://desenvolupadors.google.com/picasa-Web</a>. Descarregar els arxius originals i afegint-los utilitzant la <a href="/observations/upload">Nostra Aplicació </a> és, per ara la millor opció.
         project_csv_template_notice_html: |
           Hi ha un fitxer de plantilla per a aquest projecte que pot ajudar-vos amb l'estructura del fitxer CSV. 
           <a href="%{url}">Descarregar la plantilla</a>
