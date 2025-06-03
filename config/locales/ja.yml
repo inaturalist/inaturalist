@@ -212,6 +212,8 @@ ja:
   add_a_new_change_group: 新規変更グループを追加
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: 番号付き箇条書きにする
+  #Placeholder for a project autocomplete field
+  add_a_project: プロジェクトを追加する
   add_a_single_observation: 1件の観測記録を追加。
   add_a_taxon: 分類群を追加
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1346,6 +1348,7 @@ ja:
   curators_changed_for_x_html: "%{x}のキュレーターが変わりました"
   curators: キュレーター管理者
   curators_can_remove_observations_from: キュレーターはプロジェクトから観察を削除でき、同定結果をプロジェクト固有の表示画面に示すことができます。キュレーターはこのプロジェクト上で個人の不明瞭な投稿の真の座標を閲覧することもできます。
+  curator_coordinate_access: キュレーターコーディネートアクセス
   curator_identification: キューレータによるID
   current_flags: 現在のフラグ
   #Label for a custom boundary for an observation search
@@ -1353,6 +1356,8 @@ ja:
   custom_project_fields: プロジェクト専用フィールド
   custom_project_was_successfully_created: カスタムプロジェクトは無事作成されました。
   custom_project_was_successfully_updated: カスタムプロジェクトは無事更新されました。
+  #Button to customize projects that appear in the header
+  customize__projects: カスタマイズ
   customize_location: 場所をカスタマイズ
   darr_apply_darr: "&darr; 適用 &darr;"
   daily_users: 日ごとの利用者
@@ -1558,6 +1563,11 @@ ja:
   disable_comments: コメントの無効化
   disable_comments_desc: 新しいコメントを追加できないようにする
   disagree_: 同意しない
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: 不一致
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: 識別が一致しない観測値を表示する
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: 接続解除
@@ -1780,6 +1790,12 @@ ja:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: お気に入り
   Family: 科
+  #Header for a section showing the user's favorite projects
+  favorite_projects: お気に入りのプロジェクト
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    ヘッダーにリンクとして表示されるプロジェクトを最大 7 つ選択します。最新情報
+    ページを更新すると表示されます。
   favorite_taxa: お気に入り分類群
   favorites: "お気に入り"
   feature_this_project_: "このプロジェクトを紹介"
@@ -2127,6 +2143,8 @@ ja:
   inaturalist_global_year_in_review: "iNaturalistのグローバルな %{year} 年を振り返る"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalistはアメリカ合衆国に拠点を置く独立した501(c)(3)、非課税、非営利団体です（Tax ID: 92-1296468）。
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalistは、提案されたIDを更新しました。 %{user}
   computer_vision_suggestion: コンピュータビジョンの提案
   computer_vision_suggestion_desc: |
     コンピュータビジョンは、画像のパターン認識をコンピュータに教えるプロセスです。コミュニティの写真で訓練されたコンピュータビジョンモデルを使用して、オートコンプリートや比較機能などの識別候補を提供するツールを提供しています。このラベルは、ユーザーがこれらのツールのいずれかを使用して同定を追加したときに表示されます。
@@ -2227,6 +2245,8 @@ ja:
   internal_taxon_including_descendants: 内部分類群（子孫を含む）
   introduced: 外来種
   introduced_in_place: "%{place}の外来種"
+  #Error message shown when a date format is invalid
+  invalid_date: 無効な日付
   invitation: 招待
   invite: 招待する
   invite_people: ユーザーを紹介する
@@ -3178,6 +3198,7 @@ ja:
   observation_field_type_taxon: 分類群
   observation_field_type_dna: DNA
   observation_fields: 観察記録フィールド
+  observation_fields_for_projects: プロジェクトの観測フィールド
   observation_fields_are_additional: 観察フィールドは観察記録に追加できる任意データフィールドです
   observation_fields_by_preferences_description: |
     観察記録フィールドはタグに少し似ていますが、初期設定ではだれでも観察記録に追加できます。自分だけができるようにしたい場合、またはサイトの管理者だけができるようにしたい場合は、これを変更します。
@@ -3945,6 +3966,9 @@ ja:
   processing3p: "処理中..."
   profile: プロフィール
   profile_picture: プロフィール写真
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: プロフィール画像ファイルの種類
   profile_visibility_desc: |
     %{site_name} のスパムを防ぐため、ユーザのプロフィールはいくつかの研究用グレードの観測を投稿した後にのみ公開されます。
   project: プロジェクト
@@ -4028,6 +4052,16 @@ ja:
   range: 分布・生息区域
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 階級
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: 属 / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: 種族/ハイブリッド
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: 亜種・品種・形態
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5113,7 +5147,15 @@ ja:
   upcoming_bioblitzes: 開催予定のバイオビリッツ（観察会）
   update: 更新
   update_existing_observations_with_new_license: 既存の観察記録を新しく選択されたライセンスに更新する
+  update_existing_observations_with_new_license_desc: |
+    このオプションを選択すると、新しいライセンスの選択がすべての
+    既存の観測値。あなたがたくさん持っている場合、これは数時間かかることがあります
+    観測。
   update_existing_photos_with_new_license: 既存の写真を新しく選択したライセンスに更新する
+  update_existing_photos_with_new_license_desc: |
+    このオプションを選択すると、新しいライセンスの選択がすべての
+    既存の写真。あなたがたくさん持っている場合、これは数時間かかることがあります
+    写真。
   update_existing_sounds_with_new_license: 既存の音声を新しく選択したライセンスに更新する
   update_observations: 観察記録を更新
   update_past: "過去の%{type}を更新"
@@ -5233,6 +5275,14 @@ ja:
     ユーザーはこのプロジェクトのプロジェクトキュレーター/管理者に不明瞭な場所が見えるようになる設定を行っています。
   user_trusts_this_project_for_taxon: |
     ユーザーはこのプロジェクトのプロジェクトキュレーター/管理者に不明瞭な場所が明瞭に見えるようになる設定を行っていますが、それは自動で絶滅危惧種の場所が不明瞭に設定された場合のみで、ユーザーが手動で観察記録の場所を不明瞭に設定した場合はこのプロジェクトの管理者は場所を明瞭に見ることはできません。
+  user_trusts_this_project_when_added_by_any: |
+    ユーザーは、観測の非表示座標が追加されたプロジェクトキュレーターを信頼します
+    どなたでもプロジェクトに。
+  user_trusts_this_project_when_added_by_observer: |
+    ユーザーは、観測の非表示座標が追加されたプロジェクトキュレーターを信頼します
+    オブザーバーによってプロジェクトに。
+  user_trusts_this_project_when_added_by_none: |
+    ユーザーは、非表示の座標を持つプロジェクトキュレーターを信頼しません。
   user_trusts_you_with_their_private_coordinates: "%{user} はあなたを信頼して位置情報を公開しています。"
   user_trusts_you_with_their_private_coordinates_desc: |
     この観察者は、全ての観察記録について、あなたを信頼して隠された座標を表示することを選択しました。
@@ -5348,6 +5398,8 @@ ja:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 指名手配中
   was_it_captive_cultivated?: "飼育/栽培？"
+  we_also_support3: |
+    また、写真のインポートもサポートしています。 <a href="http://flickr.com">フリッカー</a>.
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
   we_couldnt_find_a_user_with_that_activation_code: "そのアクティベーションコードのユーザーが見つかりませんでした。既にアカウントをアクティベートしている可能性があります。サインインしてみてください。"
@@ -5930,6 +5982,9 @@ ja:
       index:
         deprecated_banner: |
           2019年1月現在、ガイド機能は「現状のまま」提示されており、削除する予定はありませんが、これ以上の開発は予定していませんのでご注意ください。
+        funding2_html: |
+          Guidesの開発のための資金は、
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           ガイドは世界中の生物多様性を学ぶ手助けをします。セレンゲティでも、地元の公園でも（もしかしたらそれがセレンゲティかもしれませんが）、地球上の驚くべき生物多様性を理解するのに役立ちます。
       edit:
@@ -6675,6 +6730,10 @@ ja:
           </p>
         licensing_desc_html: |
           あなたがコンテンツ（写真、音声など）のライセンスを取得すると、全ての人に対して、ライセンスを順守している限り、あなたの許可なしにコンテンツを使用する法的権利が与えられます。さらに、%{site_name} では、クリエイティブ・コモンズでライセンスされたコンテンツを、当社のデータに関心のある特定のパートナー組織のために定期的に更新されるアーカイブに収録しています。例えば、世界中の生物多様性情報を編集・配布している国際的な政府間組織である<a href="http://www.gbif.org/">地球規模生物多様性情報機構</a> (GBIF) のために作成したアーカイブには、著作権なし (CC0), 表示 (CC BY), 表示ー非営利 (CC BY-NC) の記録が含まれています。
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: ファイルタイプはサポートされていません。JPG、PNG、GIFをご利用いただけます
         monthly_supporter_desc_html: |
           iNaturalistのマンスリーサポーターはiNaturalist（アメリカ合衆国 IRS EIN 92-1296468）に毎月自動的に寄付をし、iNaturalistとiNaturalistネットワークサイトの非営利運営をサポートします。<a href="%{url}">マンスリーサポーターになるにはこちらをクリックしてください</a>。ご支援の確認後、このボックスにチェックを入れていただくと、あなたのプロフィールにこのステータスが表示されます。注意：DonorboxとiNaturalistのメールアドレスが正確に一致していないと、マンスリーサポーターであることが確認できません。もし異なる場合は、どちらかを変更してください。
         muting_desc_html: |
@@ -7120,6 +7179,7 @@ ja:
         show_for_descendent_taxa: 子孫分類群を表示
       user:
         email: メールアドレス
+        faved_project_ids: お気に入りのプロジェクト
         login: ユーザ名
         name: 名前
         locale: 地域
@@ -7205,6 +7265,8 @@ ja:
             action:
               not_supported_for_this_kind_of_content: この種のコンテンツには対応していません
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: 名前を変更できるのはスタッフだけです
               staff_cannot_be_suspended: スタッフは利用停止できません
             user_id:
               must_be_a_curator: キュレーターである必要があります
@@ -7252,6 +7314,9 @@ ja:
               invalid_point: は無効な点です。例えば、経度が180度より大きい、緯度が-90度より小さいなど。
               must_have_more_than_three_points: 3以上の点が必要です
               polygon_with_less_than_four_points: 点が4つ未満の多角形があります
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: 面積のないポリゴンがあります(すべてのポイントが同じです)
         place_geometry:
           attributes:
             geom:
@@ -7268,6 +7333,10 @@ ja:
             user:
               must_be_on_site_long_enough: |
                 を公開するには、24時間以上前に登録している必要があります。スパマーが多いので、これは一種の簡易的な対処法です。下書きを保存しておけば、1日経ってもまだサイトを利用していれば、公開できるようになります。
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: お気に入りにできるプロジェクトは7つだけです
         project_observation:
           attributes:
             user_id:
@@ -7344,6 +7413,14 @@ ja:
               already_has_a_range: すでに生息範囲が追加されています
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7 つ以上のプロジェクトを含めることはできません
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: すべて存在しなければなりません
             login:
               must_begin_with_a_letter: |
                 文字で始まり、スペースを含まず、アルファベット、数字、ダッシュ、アンダースコアのみを使用すること
