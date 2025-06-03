@@ -453,6 +453,8 @@ mr:
   any_license: कोणतेही
   #Label for an option to show content with photos, sounds, or neither
   any_media: कोणतेही
+  #Label for an option to show any place
+  any_place: कोणतेही
   #Label for an option to show content from any project
   any_project: कोणतेही
   #Label for an option to show content with any quality grade
@@ -519,6 +521,10 @@ mr:
   computer_vision_model_included: समाविष्ट
   #Status of a taxon that the Computer Vision Model cannot yet recognize
   computer_vision_model_pending: प्रलंबित
+  confirming_ids: कन्फर्मिंग आयडी
+  confirming_ids_description: |
+    जर आपण हे बंद केले तर आपल्याला यापुढे सहमत असलेल्या आयडीबद्दल सूचित केले जाणार नाही
+    जोपर्यंत त्यांच्याकडे अतिरिक्त टिप्पण्या नाहीत तोपर्यंत आपल्याबरोबर.
   conservation_status_created: संवर्धन स्थिती निर्माण केली
   conservation_status_deleted: संवर्धन स्थिती हटवली
   conservation_status_updated: संवर्धन स्थिती अद्ययावत केली
@@ -569,6 +575,12 @@ mr:
     साइट क्युरेटर होण्यासाठी अर्ज करण्यासाठी तुमचे खाते ६० दिवस किंवा त्यापेक्षा अधिक काळ आस्तित्वात असणे, तुम्ही किमान ५ निशाण जोडलेले असणे आणि तुमच्यासह इतर कोणाच्याही १०० हुन अधिक निरीक्षणांमध्ये सुधारित ओळख जोडलेली असणे आवश्यक आहे.
   curator_application_you_should_apply_if_you_have_added_flags: |
     तुम्ही काही निशाण जोडून क्युरेशन प्रक्रिया समजून घेतल्याचे दर्शविलेले आहे.
+  curator_coordinate_access: क्यूरेटर कोऑर्डिनेट अॅक्सेस
+  curator_coordinate_access_desc: |
+    पारंपारिक प्रकल्पांसाठी क्युरेटर समन्वय प्रवेश कोणी जोडला यावर अवलंबून असतो
+    प्रकल्पाचे निरीक्षण. हे फक्त डिफॉल्ट सेटिंग आहे
+    प्रकल्पांमधील निरीक्षणे. पर्यवेक्षक यासाठी हे बदलणे देखील निवडू शकतात
+    वैयक्तिक निरीक्षणे[संपादन]।
   #Label for a custom boundary for an observation search
   custom_boundary: स्वनिर्मित सीमारेषा
   dashboard: मुख्यपटल
@@ -588,6 +600,11 @@ mr:
   devise_confirmation_instructions_please_click2: |
     आपला ईमेल पत्ता निश्चित करण्यासाठी कृपया खालील लिंकवर क्लिक करा. आपण आपल्या ईमेलची पुष्टी न केल्यास
     पत्ता, आपण इतर वापरकर्त्यांच्या सामग्रीशी संवाद साधू शकणार नाही.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: मतभेद
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: असहमत ओळख असलेली निरीक्षणे दाखवा
   #Label for a button that dismisses an alert or popup
   dismiss: बाद करा
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -603,6 +620,8 @@ mr:
   edit_observations: निरीक्षणात बदल करा
   edit_this_taxon_after_you_create_it_to_add_conservation_statuses: |
     हा वर्ग तयार केल्यानंतर तो संवर्धन स्थितीत जोडण्यासाठी संपादित करा
+  #Title for a page to edit an announcement
+  editing_announcement_x: संपादन घोषणा %{id}
   email: ई-मेल
   email_copyright2: "&copy; %{year} iNaturalist, सर्व हक्क राखीव"
   #Description of the "Estimate IDs" tool for taxon changes. "Estimate" is a verb.
@@ -645,6 +664,10 @@ mr:
   #Status of a taxon that is not available for general use on iNat, e.g. an
   #output taxon in a split that hasn't been committed
   inactive_taxon_status: निष्क्रिय
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: इन्फ्रास्पिसिज आयडी
   join_the_largest_group_of_naturalists_in_the_world: जगातील निसर्गशास्त्रज्ञांच्या सर्वात मोठ्या गटात सामील व्हा!
   journal: नोंदवही
   journal_posts: नोंदवहीतील नोंदी
@@ -720,6 +743,10 @@ mr:
     mr: मराठी
     sr: सर्बियन
   log_in: लॉग इन करा
+  #Adjectival phrase describing state of being logged in
+  logged_in: लॉग इन केले
+  #Adjectival phrase describing state of being logged out
+  logged_out: लॉग आऊट केले
   #Status message shown while logging in
   logging_in: तुमचे खाते उघडत आहे
   #Name of a website showing geologic maps around the world: https://macrostrat.org
@@ -745,10 +772,16 @@ mr:
   #Button to show more translators, as in people who added translations
   more__context_translators_caps: अधिक
   more_caps: अधिक
+  #Label for a button or section that shows additional options
+  more_options: अधिक पर्याय
   #Imperative verb, label for a button that lets you mute another user
   mute: म्यूट करा
   muting_description: एखाद्याला म्यूट करणे तुम्हाला त्यांच्या कोणत्याही गतिविधीबद्दल सूचित होण्यापासून प्रतिबंधित करते, ज्यामध्ये "@" उल्लेख, संदेश किंवा टिप्पण्या आणि तुमच्या निरीक्षणावरील ओळख यांचा समावेश आहे.
   new_conservation_status: नवीन संवर्धन स्थिती
+  #A user who is not a curator
+  non_curator: नॉन-क्यूरेटर
+  #A user who does not admin any projects
+  non_project_admin: नॉन-प्रोजेक्ट अॅडमिन
   #Filter for observations not in a particular place
   not_in_place: याठिकाणी नाही
   #Basic observation export fields
@@ -759,6 +792,7 @@ mr:
   observation_export_column_type_taxon: टॅक्सन
   #Extra taxon-related observation export fields
   observation_export_column_type_taxon_extras: टॅक्सन व्यतिरिक्त
+  observation_fields_for_projects: प्रकल्पांसाठी निरीक्षण क्षेत्रे
   observer_prefers_addition_to_traditional_projects_joined: |
     निरीक्षक इतर लोकांना त्याची निरीक्षणे फक्त अशा पारंपारिक प्रकल्पांमध्ये जोडण्याची परवानगी देतो ज्याचा तो स्वतः सदस्य आहे.
   observer_prefers_no_traditional_project_addition: |
@@ -831,8 +865,20 @@ mr:
   posted_on_date_by_user_html: पोस्ट केले रोजी %{date} द्वारे %{user}
   privacy: गोपनीयता
   profile: प्रोफाइल
+  #A user who admin's a project
+  project_admin: प्रकल्प व्यवस्थापक
   projects: प्रकल्प
   radius_km: त्रिज्या (किमी)
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: जीनस / जीनसहायब्रीड
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: प्रजाती / संकरित
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: उपजाती / प्रकार / प्रकार
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: नोंद
   #Label for a button to reset search parameters, as in "Reset the observation search parameters"
@@ -869,6 +915,9 @@ mr:
   status_applied_from_higher_level_taxon_html: |
     <strong>उच्च-स्तरीय वर्गीकरणातून लागू करण्यात आलेला संवर्धन दर्जा:</strong>%{taxon}
   store_caps: स्टोअर
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: सदस्यता घ्या
   suspend_user_html: निलंबित %{user}
   taxa_show_obs_photo_search_tip: |
     टीप: तुम्हाला विशिष्ट निरीक्षणातून फोटो निवडायचा असल्यास शोध क्षेत्रात निरीक्षणाचा अनुक्रमांक भरा.
@@ -1009,6 +1058,14 @@ mr:
     कोणत्याही कारणास्तव अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत वापरकर्ता या प्रकल्पावर विश्वास ठेवतो.
   user_trusts_this_project_for_taxon: |
     वापरकर्ता केवळ धोक्यात असलेल्या वर्गांसाठी अस्पष्ट असलेल्या गुप्त निर्देशांकांबाबत या प्रकल्पावर विश्वास ठेवतो.
+  user_trusts_this_project_when_added_by_any: |
+    वापरकर्ते निरीक्षणांचे छुपे निर्देशांक जोडून प्रोजेक्ट क्युरेटर्सवर विश्वास ठेवतात
+    प्रकल्पास कोणीही मदत करतो.
+  user_trusts_this_project_when_added_by_observer: |
+    वापरकर्ते निरीक्षणांचे छुपे निर्देशांक जोडून प्रोजेक्ट क्युरेटर्सवर विश्वास ठेवतात
+    पर्यवेक्षकाद्वारे प्रकल्पाला.
+  user_trusts_this_project_when_added_by_none: |
+    वापरकर्ते लपलेल्या निर्देशांक असलेल्या प्रोजेक्ट क्युरेटर्सवर विश्वास ठेवत नाहीत.
   username: वापरकर्ता नाव
   users_edit_send_confirmation_prompt_html: |
     <h3>तुम्ही साइन आउट करत आहात</h3>
@@ -1040,6 +1097,8 @@ mr:
   view_more_observations_from_this_place: ह्या ठिकाणाभोवतीची इतर निरीक्षणे पहा
   view_your_personal_year_in_review: "तुमचे वैयक्तिक %{year} पुनरावलोकनाचे वर्ष पहा"
   view_your_personal_year_in_review_caps: "तुमचे वैयक्तिक %{year} वार्षिक पुनरावलोकन पहा"
+  we_also_support3: |
+    आम्ही फोटो आयात करण्यास देखील समर्थन देतो <a href="http://flickr.com">फ्लिकर</a>.
   #Prompt to explain why a user is changing a record, e.g. changing a taxon name or updating a taxon
   why_are_you_making_this_change_optional: आपण हा बदल का घडवत आहात? (ऐच्छिक)
   #Filter for observations not in a particular taxon
@@ -1061,6 +1120,54 @@ mr:
   your_observations: माझी निरीक्षणे
   your_recent_projects: माझे अलीकडील प्रकल्प
   views:
+    announcements:
+      locales_desc: |
+        एकाधिक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. "सर्व" निवडणे किंवा न करणे
+        एक निवड सर्व वापरकर्त्यांना घोषणा दर्शवेल
+        लोकेशन. प्रदेश नसलेली भाषा निवडणे *नाही* लक्ष्य असेल
+        प्रदेशांसह लोकेशन्स, उदा. आपण इंग्रजी निवडल्यास ते दिसणार नाही
+        ज्या लोकांनी इंग्रजी (यूके) निवडली आहे त्यांच्यासाठी.
+      clients_desc: |
+        एकाधिक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. "सर्व" निवडणे किंवा न करणे
+        एक निवड सर्व वापरकर्त्यांना घोषणा दर्शवेल
+        अशील।
+      end_desc: |
+        ही घोषणा थांबेल अशी वेळ तुमच्या अकाऊंट टाईम झोनमध्ये
+        प्रकट होत आहे. टाइम झोनमध्ये लागू होते, जेणेकरून प्रत्येकजण पाहणे बंद करेल
+        त्याच वेळी, त्यांच्या स्थानिक वेळेच्या सापेक्ष नाही.
+      ip_countries_desc: |
+        एकाधिक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. "सर्व" निवडणे किंवा न करणे
+        एक निवड सर्व वापरकर्त्यांना घोषणा दर्शवेल
+        आयपी देश.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        लक्षात घ्या की वापरकर्त्याने अलीकडेच तयार केलेल्या निर्मितीची तारीख
+        निरीक्षण कॅश केले गेले आहे, म्हणून लक्ष्य करण्यासाठी काही तास लागू शकतात
+        अंमलात आणा.
+      observation_oauth_application_ids_desc: |
+        एकाधिक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. "सर्व" निवडणे किंवा न करणे
+        एक निवड सर्व वापरकर्त्यांना घोषणा दर्शवेल
+        अ ॅप.
+      site_ids_desc: |
+        एकाधिक निवडण्यासाठी सीएमडी- किंवा शिफ्ट-क्लिक करा. "सर्व" निवडणे किंवा न करणे
+        एक निवड सर्व वापरकर्त्यांना घोषणा दर्शवेल
+        साइट संलग्नता।
+      start_desc: |
+        ही घोषणा सुरू होईल अशी वेळ तुमच्या अकाऊंट टाईम झोनमध्ये
+        प्रकट होत आहे. टाइम झोनमध्ये लागू होते, जेणेकरून सर्वांना दिसू लागेल
+        त्याच वेळी, त्यांच्या स्थानिक वेळेच्या सापेक्ष नाही.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: देणगी वर्तनाद्वारे वापरकर्त्यांना लक्ष्य करा
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: ओळख वर्तनाद्वारे वापरकर्त्यांना लक्ष्य करा
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: निरीक्षण वर्तनाद्वारे वापरकर्त्यांना लक्ष्य करा
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: इतर वैशिष्ट्यांद्वारे वापरकर्त्यांना लक्ष्य करा
     donate:
       donate_desc_moore_html: |
         <p class="lead">
@@ -1164,6 +1271,11 @@ mr:
       tips_check_email_filters: आपण बनविलेले कोणतेही फिल्टर तपासा जे आपल्या इनबॉक्समधून आमचे ईमेल काढून टाकू शकतात #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: आपले स्पॅम फोल्डर तपासा
       your_site_account_has_no_email: तुमचा %{site_name} खात्याशी संबंधित कोणताही ईमेल पत्ता नाही.
+    guides:
+      index:
+        funding2_html: |
+          मार्गदर्शकांच्या विकासासाठी निधी उपलब्ध करून देण्यात आला
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -1308,6 +1420,44 @@ mr:
         #Preference for an announcement that is only shown to users who have
         #not confirmed their email address
         prefers_target_unconfirmed_users: असत्यापित वापरकर्त्यांना केंद्रित करा
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: दाता सुरू होण्याची तारीख वगळा
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: दाता संपण्याची तारीख वगळा
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: अ ॅप्समधून पर्यवेक्षकांना वगळा
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: दाता सुरू होण्याची तारीख समाविष्ट करा
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: दाता शेवटची तारीख समाविष्ट करा
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: अॅप्समधील पर्यवेक्षकांचा समावेश करा
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: आयपी देश
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: नवीनतम ओबीएस प्रारंभ तारीख
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: नवीनतम ओबीएस समाप्ती तारीख
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: जास्तीत जास्त ओळख
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: min identifis
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: जास्तीत जास्त निरीक्षणे
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: मिनिट निरीक्षणे
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: प्लेसमेंट
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: लक्ष्य निर्माता (चाचणीसाठी)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: लक्ष्य लॉग इन केले
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: सर्वात लवकर वापरकर्ता साइनअप तारीख
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: नवीनतम वापरकर्ता साइनअप तारीख
       flag:
         #The person who resolved the flag
         resolver_id: निराकरण करणारा
@@ -1333,11 +1483,14 @@ mr:
         #Controls whether the taxon link is visible for descendants of this
         #taxon
         show_for_descendent_taxa: वंशज टॅक्सासाठी दाखवा
+      user:
+        faved_project_ids: आवडते प्रकल्प
     errors:
       messages:
         equal_to:
           one: '%{count} च्या समान असणे आवश्यक आहे'
           other: '%{count} च्या समान असणे आवश्यक आहे'
+        must_look_like_an_email_address: ईमेल पत्त्यासारखा दिसायला हवा
         greater_than:
           one: '%{count} पेक्षा मोठा असणे आवश्यक आहे'
           other: '%{count} पेक्षा मोठा असणे आवश्यक आहे'
@@ -1374,6 +1527,22 @@ mr:
               cannot_be_blank: रिक्त असू शकत नाही
               invalid_point: एखादा अवैध निर्देशांक आहे, उदा. रेखांश १८० पेक्षा जास्त किंवा अक्षांश -९० पेक्षा कमी
               must_have_more_than_three_points: ३ पेक्षा जास्त बिंदू असणे आवश्यक आहे
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: तुम्ही फक्त 7 प्रोजेक्ट्स लावू शकता
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7 पेक्षा जास्त प्रकल्पांचा समावेश करू शकत नाही
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: सर्व अस्तित्वात असणे आवश्यक आहे
+            login:
+              domain_is_not_supported: डोमेन समर्थित नाही
         user_block:
           attributes:
             base:
