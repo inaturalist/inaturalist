@@ -2561,7 +2561,6 @@ tr:
   #a noun.
   link_to_authorization_code: Yetkilendirme koduna bağlantı
   link_your_flickr_account: Flickr hesabını bağla
-  link_your_google_account: Google hesabını bağla
   linked_flickr: "%{site_name} hesabın şu anda Flickr hesabına bağlı."
   linked_flickr_automatically: "Ayrıca, Flickr üzerinden %{site_name}'e giriş yaparsan, %{site_name} ve Flickr hesaplarını otomatik olarak yeniden bağlayacağımızı unutma. Flickr kullanıyorsan Flickr fotoğraflarını içe aktarabilmek istemen mantıklı görünüyor, değil mi?"
   linked_flickr_description: "%{site_name} hesabını Flickr hesabına bağlı tutmak, gözlemlerine birden çok fotoğraf eklemene olanak tanır. Tabii ki, eğer %{site_name} ve Flickr'ın ayrılmasını istersen, seni durdurmayacağız, sadece fotoğraf ekleyemeyeceksin. Bazen bu en iyisi olabilir, örneğin %{site_name}'i bağlamak istediğin yeni bir Flickr hesabı oluşturursan."
@@ -5420,7 +5419,6 @@ tr:
   unfollow_observation: Gözlemi takipten çık
   #Text for a button to stop following updates from a user
   unfollow_user: Kullanıcıyı takipten çık
-  unlink_your_google_account: Google Hesabının Bağlantısını Kaldır
   unlink_your_flickr_account: "Flickr Hesabının Bağlantısını Kaldır"
   unmute: Sessizden Çıkart
   updates_notification_email_subject: "%{prefix} Yeni güncellemeler %{date}"
@@ -5719,8 +5717,6 @@ tr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
-  we_also_support2: |
-    Ayrıca <a href="http://flickr.com">Flickr</a> ve <a href="http://photos.google.com">Google Fotoğraflar</a>'dan fotoğraf içe aktarmayı da destekliyoruz.
   we_can_only_understand_csv_in: CSV'yi yalnızca aşağıdaki formatta anlayabiliriz
   we_couldnt_find_a_user: Bu e-posta adresine sahip bir kullanıcı bulamadık.
   we_couldnt_find_a_user_with_that_activation_code: "Bu etkinleştirme koduna sahip bir kullanıcı bulamadık. Hesabını zaten etkinleştirmiş olabilirsin, lütfen giriş yapmayı dene."
@@ -6683,11 +6679,6 @@ tr:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Coğrafi gizlilik sütunu İngilizce olmalı ve boş olmalı, veya "özel" ya da "gizlenmiş" bir değere sahip olmalı
-        google_photos_notice_html: |
-          Şubat 2019'da, Google, API'sini değiştirerek GPS koordinatlarına, lisans bilgilerine ve bir kimlik eklemek için kullanabileceğimiz neredeyse tüm bilgilere (etiketler gibi) erişmemizi imkansız hale getirdi. Ayrıca, metin aramayı ve sayısal sayfalamayı da kaldırdılar. Bunun da ötesinde, tüm bağlı hesapların ek bir izne sahip olmasını istediler ve üçüncü bir tarafın kullanıcılardan bu izni talep edebilmesi için üçüncü tarafın doğrulanması gerekiyor. Doğrulama bekliyoruz ancak bu gerçekleşene kadar Google'dan fotoğraf aktaramayacaksın. Onay alırsak, fotoğrafları içe aktarabileceksin ancak Google Fotoğraflar'da görebileceğin herhangi bir konum bilgisi ya da lisans bilgisi içermeyecekler. Bu konuda daha çok bilgiyi <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a> adresinde bulabilirsiniz. Asıl dosyaları indirmek ve <a
-          href="/observations/upload">Yükleyiciyi</a> kullanarak eklemek en iyi çözümdür.
         project_csv_template_notice_html: |
           Bu proje için, CSV dosyasının yapısında size yardımcı olabilecek bir şablon dosyası bulunmaktadır. <a href="%{url}">Şablonu indir</a>
         soundcloud_notice_html: |
