@@ -255,6 +255,8 @@ nb:
   add_a_new_change_group: Legg til en ny endringsgruppe
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Legg til en nummerert liste
+  #Placeholder for a project autocomplete field
+  add_a_project: Legg til et prosjekt
   add_a_single_observation: Legg til en enkel observasjon.
   add_a_taxon: Legg til et takson
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -559,6 +561,8 @@ nb:
   any_license: Alle
   #Label for an option to show content with photos, sounds, or neither
   any_media: Alle
+  #Label for an option to show any place
+  any_place: Enhver
   #Label for an option to show content from any project
   any_project: Alle
   #Label for an option to show content with any quality grade
@@ -702,6 +706,13 @@ nb:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, lasta opp av %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Eksploderte
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Unexploded
   authority_list:
     iucn_red_list: IUCN-rødliste
     natureserve: NatureServe
@@ -1026,6 +1037,10 @@ nb:
   confirmation_email_sent_at_datetime: Bekreftelsesepost sendt den %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Bekreftet den %{date}
+  confirming_ids: Bekrefte ID-er
+  confirming_ids_description: |
+    Hvis du slår av dette, vil du ikke lenger bli varslet om ID-er som samtykker
+    med din med mindre de har ytterligere kommentarer.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Koble til
@@ -1357,6 +1372,12 @@ nb:
   curators_changed_for_x_html: "Kuratorer endret for %{x}"
   curators: Kuratorer
   curators_can_remove_observations_from: Kuratorer kan fjerne observasjoner fra prosjektet og deres observasjoner vises ved siden ab observasjoner på prosjektspesifikke visninger. Kuratorer kan også se de nøyaktige koordinatene til private og skjermede bidrag til dette prosjektet.
+  curator_coordinate_access: Kurator koordinerer tilgang
+  curator_coordinate_access_desc: |
+    Kuratorkoordineringstilgang for tradisjonelle prosjekter avhenger av hvem som har lagt til
+    observasjonen til prosjektet. Dette er bare standardinnstillingen for
+    observasjoner i prosjekter. Observatører kan også velge å endre dette for
+    individuelle observasjoner.
   curator_identification: Kuratoridentifikasjon
   current_flags: Gjeldende markeringer
   #Label for a custom boundary for an observation search
@@ -1364,6 +1385,8 @@ nb:
   custom_project_fields: Egendefinerte prosjektfelt
   custom_project_was_successfully_created: Prosjekttilpasninger lagt til
   custom_project_was_successfully_updated: Prosjekttilpasninger oppdatert
+  #Button to customize projects that appear in the header
+  customize__projects: Tilpasse
   customize_location: Tilpass lokalitet
   darr_apply_darr: "&darr; Bruk &darr;"
   daily_users: Daglig brukere
@@ -1565,6 +1588,11 @@ nb:
   disable_comments: Deaktiver kommentarer
   disable_comments_desc: Hindre at folk legger inn nye kommentarer
   disagree_: Uenig
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Uenigheter
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Vis observasjoner som har uenige identifikasjoner
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Koble fra
@@ -1678,6 +1706,8 @@ nb:
   edited_by_name_some_rights_reserved_html: |
     Redigert av %{name}, noen rettigheter forbeholdt (%{license})
   editing: Redigerer
+  #Title for a page to edit an announcement
+  editing_announcement_x: Redigere kunngjøring %{id}
   editing_custom_project_fields_for: Redigerer egendefinierte prosjektfelt for
   editing_observation_field: Redigerer observasjonsfelt
   editing_observation_id: "Redigerer observasjon %{obs_id}"
@@ -1798,6 +1828,12 @@ nb:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritter
   Family: Familie
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Favorittprosjekter
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Velg opptil sju prosjekter som vises som lenker i overskriften. Oppdateringer
+    vises etter oppdatering av siden.
   favorite_taxa: Favoritte taksa
   favorites: "Favoritter"
   feature_this_project_: "Fremhev dette prosjektet"
@@ -2131,6 +2167,8 @@ nb:
   inaturalist_global_year_in_review: "iNaturalists globale årsoversikt for %{year}"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist er en uavhengig 501(c)(3), skattefritatt, ideell organisasjon basert i USA (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist oppdaterte ID-en foreslått av %{user}
   computer_vision_suggestion: Forslag fra Computer Vision
   computer_vision_suggestion_desc: |
     Computer vision er prosedyren av å lære datamaskiner å gjenkjenne mønstre i bilder. Vi tilbyr verktøy som bruker computer vision modeller trent på fellesskapets bilder for å komme med forslag til identifisering, som funksjonalitet for auto-komplettering og sammenligning. Dette ikonet angir når noen har lagt til en identifikasjon ved bruk av et av disse verktøy.
@@ -2223,6 +2261,18 @@ nb:
   inaturalist_applications: "iNaturalist applikasjoner"
   inaturalist_places: "%{site_name}-steder"
   info: Info
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ID-er for infraarter
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Hvis du slår av dette, vil du ikke lenger bli varslet om ID-er for taxa
+    under artsnivå (som underarter og varianter) som stemmer overens med din
+    ID på artsnivå. Du vil bli varslet hvis de er uenige i ID-en din eller
+    hvis de inneholder ytterligere bemerkninger.
   input_taxon: Inputtakson
   insects: insekter
   insect_life_stage: Livsstadium insekt
@@ -2235,6 +2285,8 @@ nb:
   internal_taxon_rank: Intern taksonrang
   introduced: Introdusert
   introduced_in_place: "Introdusert i %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Ugyldig dato
   invitation: Invitasjon
   invite: inviter
   invite_people: Inviter personer
@@ -2493,6 +2545,10 @@ nb:
   list_with_two_items: "%{one} og %{two}"
   listed_taxa: Taksa som er oppført på listen
   listed_taxon: Takson som er oppført på listen
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Oppført
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Unoterte
   listed_taxon_updated: Takson som er oppført på listen oppdatert
   listing_lists: Oppføre lister
   listing_project_assets: Lager liste over prosjektressurser
@@ -2593,6 +2649,10 @@ nb:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Logg ut av %{site_name}?"
   log_scale_label: Log
+  #Adjectival phrase describing state of being logged in
+  logged_in: Logget inn
+  #Adjectival phrase describing state of being logged out
+  logged_out: Logget ut
   #Status message shown while logging in
   logging_in: Logger inn...
   logo:
@@ -2807,6 +2867,8 @@ nb:
   more_info_title: Mer info
   more_journal_posts: Flere journalinnlegg
   more_observations: Flere observasjoner
+  #Label for a button or section that shows additional options
+  more_options: Flere alternativer
   more_photos: Flere bilder
   more_than_a_week_ago: Over en uke siden
   most_agree: de fleste er enige
@@ -3035,7 +3097,11 @@ nb:
   no_users_found_with_those_filters: Ingen brukere funnet med disse filtrene
   no_wikipedia_page_for_taxon: Ingen Wikipedia-side for dette taksonet.
   noble_curators: "%{site} sin noble kuratorer"
+  #A user who is not a curator
+  non_curator: Ikke-kurator
   non_human?: Ikke-menneskelig?
+  #A user who does not admin any projects
+  non_project_admin: Ikke-prosjektadministrator
   none: Ingen
   none_found: Ingen funnet
   normal: normal
@@ -3188,6 +3254,7 @@ nb:
   observation_field_type_taxon: Takson
   observation_field_type_dna: DNA
   observation_fields: Observasjonsfelt
+  observation_fields_for_projects: Observasjonsfelt for prosjekter
   observation_fields_are_additional: Observasjonsfelt er ekstra datafelt som kan bli lagt til observasjoner.
   observation_fields_by_preferences_description: |
     Observasjonsfelt er litt som etiketter, bare at hvem som helst kan legge dem til din observasjon. Hvis du foretrekker det kan du stille inn at kun du, eller kun sidekuratorer, kan gjøre det.
@@ -3960,9 +4027,14 @@ nb:
   processing3p: "Behandler..."
   profile: Profil
   profile_picture: Profilbilde
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profilbilde filtype
   profile_visibility_desc: |
     I et forsøk på å bekjempe spam på %{site_name} er brukerprofiler kun synlige etter en bruker har bidratt med flere observasjoner av forskningskvalitet.
   project: Prosjekt
+  #A user who admin's a project
+  project_admin: Prosjekt administrator
   project_admins:
     one: Prosjektadmin
     other: Prosjektadmins
@@ -4044,6 +4116,16 @@ nb:
   range: Intervall
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Slekt / Slekt hybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Arter / Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Underarter / Variasjon / Form
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4630,6 +4712,9 @@ nb:
     one: Legg inn 1 observasjon
     other: Legg inn %{count} observasjoner
   submitted: Lagt inn
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Abonnere
   subscribe_to_a_taxon: Abonner på et takson
   subscribe_to_a_place: Abonner på et sted
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Abonner%{tag_end} på kommentarer på denne markeringen"
@@ -5162,8 +5247,20 @@ nb:
   upcoming_bioblitzes: Kommende bioblitzer
   update: Oppdater
   update_existing_observations_with_new_license: Oppdater eksisterende observasjoner med nye lisensvalg
+  update_existing_observations_with_new_license_desc: |
+    Hvis du velger dette alternativet, brukes det nye lisensvalget på alle dine
+    eksisterende observasjoner. Dette kan ta noen timer hvis du har mye
+    Observasjoner.
   update_existing_photos_with_new_license: Oppdater eksisterende bilder med nye lisensvalg
+  update_existing_photos_with_new_license_desc: |
+    Hvis du velger dette alternativet, brukes det nye lisensvalget på alle dine
+    eksisterende bilder. Dette kan ta noen timer hvis du har mye
+    Bilder.
   update_existing_sounds_with_new_license: Oppdater eksisterende lyder med nye lisensvalg
+  update_existing_sounds_with_new_license_desc: |
+    Hvis du velger dette alternativet, brukes det nye lisensvalget på alle dine
+    eksisterende lyder. Dette kan ta noen timer hvis du har mye
+    Lyder.
   update_observations: Oppdater observasjoner
   update_past: "Oppdater tideligere %{type}"
   update_photos: Oppdater bilder
@@ -5294,6 +5391,14 @@ nb:
     Brukeren gir tillit til å dele skjulte koordinater med dette prosjektet uansett årsak.
   user_trusts_this_project_for_taxon: |
     Brukeren gir bare tillit til å dele skjulte koordinater som ble skjult på grunn av truede taksa.
+  user_trusts_this_project_when_added_by_any: |
+    Bruker stoler på prosjektkuratorer med skjulte koordinater for observasjoner lagt til
+    til prosjektet av hvem som helst.
+  user_trusts_this_project_when_added_by_observer: |
+    Bruker stoler på prosjektkuratorer med skjulte koordinater for observasjoner lagt til
+    til prosjektet av observatøren.
+  user_trusts_this_project_when_added_by_none: |
+    Brukeren stoler ikke på prosjektkuratorer med skjulte koordinater.
   user_trusts_you_with_their_private_coordinates: "%{user} stoler på deg med sine skjulte koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatøren har valgt å stole på deg med de skjulte koordinatene av alle sine observasjoner.
@@ -5365,6 +5470,8 @@ nb:
   view_more_observations_of_x_project: "Vis flere observasjoner fra %{project} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Vis flere observasjoner av %{taxon} på <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Vis flere urevidert"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Se de berørte ID-ene dine
   view_observation: Vis observasjon
   view_observations: Vis observasjoner
   view_observation_flags: Vis observasjonsmarkeringer
@@ -5405,6 +5512,8 @@ nb:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønskes
   was_it_captive_cultivated?: "Var det i fangenskap / dyrket?"
+  we_also_support3: |
+    Vi støtter også import av bilder fra <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Vi kan kun forstå csv i følgende format
   we_couldnt_find_a_user: Vi kunne ikke finne en bruker med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finne en bruker med den aktiveringskoden. Du har muligens allerede aktivert din konto, vennligst prøv å logge på."
@@ -5711,6 +5820,94 @@ nb:
   verifiable_observations: Verifiserbare observasjoner
   views:
     views: 'Visninger'
+    announcements:
+      locales_desc: |
+        CMD- eller SHIFT-klikk for å velge flere. Velge "Alle" eller ikke lage
+        Et utvalg vil vise kunngjøringen til alle brukere uavhengig av
+        Nasjonal innstilling. Å velge et språk uten en region vil *ikke* målrettes
+        nasjonale innstillinger med regioner, for eksempel hvis du velger engelsk, vil det ikke vises
+        for personer som har valgt engelsk (UK).
+      clients_desc: |
+        CMD- eller SHIFT-klikk for å velge flere. Velge "Alle" eller ikke lage
+        Et utvalg vil vise kunngjøringen til alle brukere uavhengig av
+        klient.
+      end_desc: |
+        Tid i kontoens tidssone da denne kunngjøringen stopper
+        Vises. Gjelder på tvers av tidssoner, slik at alle slutter å se
+        det på samme tid, ikke i forhold til deres lokale tid.
+      ip_countries_desc: |
+        CMD- eller SHIFT-klikk for å velge flere. Velge "Alle" eller ikke lage
+        Et utvalg vil vise kunngjøringen til alle brukere uavhengig av
+        IP-land.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Merk at opprettelsesdatoen for brukerens sist opprettede
+        observasjonen bufres, så det kan ta noen timer før målrettingen
+        trer i kraft
+      observation_oauth_application_ids_desc: |
+        CMD- eller SHIFT-klikk for å velge flere. Velge "Alle" eller ikke lage
+        Et utvalg vil vise kunngjøringen til alle brukere uavhengig av
+        app.
+      site_ids_desc: |
+        CMD- eller SHIFT-klikk for å velge flere. Velge "Alle" eller ikke lage
+        Et utvalg vil vise kunngjøringen til alle brukere uavhengig av
+        tilhørighet til nettstedet.
+      start_desc: |
+        Tid i kontoens tidssone da denne kunngjøringen starter
+        Vises. Gjelder på tvers av tidssoner, slik at alle begynner å se
+        det på samme tid, ikke i forhold til deres lokale tid.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Målrett brukere etter donasjonsatferd
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Målrett brukere etter identifikasjonsatferd
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Målrett brukere etter observasjonsatferd
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Målrette brukere etter andre attributter
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Om atlas
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlaser formidler den globale fordelingen av et takson. Kuratorer lager
+          atlas ved å definere strukturen til et atlas og kuratere
+          listede taxa som driver den.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Eksplodere dette stedet
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Frigjør dette stedet
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ingen endringer i dette atlaset ennå
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Nylige Atlas-endringer
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Nylige listede taksonendringer
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Vis listede taxa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Dette atlaset er for øyeblikket ikke aktivt
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Dette vil fjerne dette taksonet og alle dets etterkommere fra sjekklister
+          knyttet til dette stedet og eventuelle standardsteder det inneholder. Det
+          kan ikke angres. Er du sikker på at du vil gjøre dette?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Advarsel: det er observasjoner som ikke er representert av dette atlaset
     content_freeze:
       content_freeze: Frysing av innhold
       during_this_time: |
@@ -5835,6 +6032,9 @@ nb:
       index:
         deprecated_banner: |
           Vennligst merk at fra januar 2019 presenteres funksjonaliteten for guider "som den er"; mens vi ikke har noen planer om å slette den, har vi ikke planlagt å videreutvikle den.
+        funding2_html: |
+          Finansiering til utvikling av guider ble gitt av
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Guider hjelper deg med å lære om biodiversitet fra hele verden. Om du utforsker Serengeti eller bare din lokale park (som forsåvidt kan være Serengeti), guider kan hjelpe deg å forstå det fantastiske mangfoldet av livet på vår planet.
       edit:
@@ -6901,6 +7101,11 @@ nb:
           Merk at taksonsiden vil vise bilder av dette taksonet og sine etterkommere. Bildene valgt for dette taksonet vil imidlertid vises først. Det første bildet vil være standardbildet overalt på siden.
         rare_desc: Minst observerte truede taksa
         rare_in_place_desc_html: Minst observerte truede taksa i <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Nettstedets kuratorer har deaktivert visning <a href="%{url}">denne
+          innhold fra Wikipedia</a>. Du kan hjelpe ved å redigere siden på
+          Wikipedia for å gjøre det passende for dette taksonet, eller ved å flagge dette
+          takson for å gjøre det oppmerksom på stedets kuratorer.
         trending_desc: Mest-observerte taksa i den siste måneden
         trending_in_place_desc_html: Mest-observerte taksa i den siste måneden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i dette taksonet som ikke har blitt observert ennå.
@@ -6992,6 +7197,10 @@ nb:
           </p>
         licensing_desc_html: |
           Lisensiering av ditt innhold gir hvem som helst lov til å bruke det uten å be deg om tillatelse så lenge de oppfyller vilkårene i lisensen. I tillegg inkluderer %{site_name} ditt innhold som er lisensiert under Creative Commons i jevnlig oppdaterte arkiver som produseres for utvalgte partner-organisasjoner som er interessert i dine data. Vi inkluderer, for eksempel, registreringer uten opphavsrett (CC0), Navngivelse (CC BY), og Navngivelse-IkkeKommersiell (CC BY-NC) i arkivet som vi genererer for <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internasjonal mellomstatlig organisasjon som sammenstiller og distribuerer informasjon om biodiversitet fra hele verden.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Filtypen støttes ikke. Vi godtar JPG, PNG og GIF
         monthly_supporter_desc_html: |
           iNaturalists månedlige bidragsytere gir automatiske månedlige bidrag til iNaturalist (United States IRS EIN 92-1296468) for å støtte ikke-for-profitt-operasjonene til iNaturalist og iNaturalist Network sider. <a href="%{url}">Klikk her for å bli en Månedlig bidragsyter</a>. Når vi har bekreftet din støtte vil du kunne krysse av denne boksen for å vise statusen din på profilen din. Merk: e-postadresser på Donorbox og iNaturalist må matche nøyaktig for at vi skal kunne bekrefte at du er en Månedlig bidragsyter. Hvis de er ulike, må du bytte en så den matcher den andre.
         muting_desc_html: |
@@ -7076,6 +7285,11 @@ nb:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Maks 3 populærnavnleksikon er allerede lagt til
+        this_only_applies_to_traditional_projects2: |
+          Dette gjelder kun tradisjonelle prosjekter. Du kan ikke ekskludere observasjoner
+          fra samlings- eller paraplyprosjekter, som i hovedsak er lagrede søk.
+          Du kan lese mer
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">her</a>.
       recent:
         about_recent_users: Om
         definitions_html: "<dl> <dt>Sannsynligvis spam</dt> <dd>\nBruker som sannsynligvis er en spammer, som betyr at de ikke har observasjoner eller identifikasjoner men de har en beskrivelse på profilen. </dd> <dt>Automatisk spam</dt> <dd>\nSpammer som var markert som spammer av systemet automatisk </dd> <dt>Manuell spam</dt> <dd> Spammer som var markert som spammer manuelt av en sidekurator. </dd> <dt>Falske positiver</dt> <dd> Brukere som ble markert som spammere men markeringene ble løst av sidekuratorer fordi de faktisk ikke vare spammere. </dd> </dl>"
@@ -7358,6 +7572,10 @@ nb:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%d. %B %Y %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -7396,6 +7614,8 @@ nb:
     attributes:
       announcement:
         created_at: Oprettet på
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Avvises
         updated_at: Oppdatert på
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -7406,6 +7626,44 @@ nb:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Rettet mot ubekreftede brukere
         clients: Klienter
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Ekskluder giverens startdato
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Ekskluder sluttdato for bidragsgiver
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Ekskluder observatører fra apper
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Inkluder startdato for bidragsgiver
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Inkluder sluttdato for bidragsgiver
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Inkluder observatører fra apper
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-land
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Siste obs startdato
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Siste obs sluttdato
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maks identifikasjon
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min identifikasjoner
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Maks observasjoner
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Min observasjoner
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Plassering
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Målskaper (for testing)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Mål pålogget
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Tidligste dato for brukerregistrering
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Siste registreringsdato for brukere
       assessment:
         description: Beskrivelse
       assessment_section:
@@ -7543,6 +7801,8 @@ nb:
         photos_locked: Bilder låst?
         rank: Rang
         rank_level: Rangnivå
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Viser Wikipedia
         source_id: Kilde-ID
         source_identifier: Kildeidentifikator
         source_url: Kilde url
@@ -7576,6 +7836,7 @@ nb:
         show_for_descendent_taxa: Vis for underliggende taksa
       user:
         email: E-post
+        faved_project_ids: Favorittprosjekter
         login: Brukernavn
         name: Navn
         locale: Lokalisering
@@ -7593,6 +7854,7 @@ nb:
         equal_to:
           one: må være lik %{count}
           other: må være lik %{count}
+        must_look_like_an_email_address: Må se ut som en e-postadresse
         even: må være partall
         exclusion: er forbeholdt
         greater_than:
@@ -7679,6 +7941,8 @@ nb:
             action:
               not_supported_for_this_kind_of_content: støttes ikke for denne typen innhold
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Bare ansatte kan gi nytt navn
               staff_cannot_be_suspended: Personale kan ikke suspenderes
             user_id:
               must_be_a_curator: må være en kurator
@@ -7695,6 +7959,9 @@ nb:
                 kan ikke være større enn datoen observasjonen ble lagt til på
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: må være innenfor de siste 130 åra
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: må være en enkelt dag, ikke et område
         observation_field_value:
           attributes:
             value:
@@ -7722,6 +7989,9 @@ nb:
               cannot_be_blank: kan ikke være tom
               invalid_point: har et ugyldig punkt, f.eks. lengdegrad større enn 180 eller breddegrad under -90
               must_have_more_than_three_points: må ha mer enn 3 punkter
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: har en polygon uten areal (alle punkter er like)
         place_geometry:
           attributes:
             geom:
@@ -7738,6 +8008,10 @@ nb:
             user:
               must_be_on_site_long_enough: |
                 må ha registrert over 24 timer siden for å publisere. Vi får en del spammere, og dette er en litt teit måte å håndtere de. Du kan fortsatt lagre et utkast, og hvis du fortsatt bruker siden en dag senere, kan du publisere.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Du kan bare favoritt 7 prosjekter
         project_observation:
           attributes:
             base:
@@ -7782,6 +8056,11 @@ nb:
             name:
               bad_format: |
                 kan kun inneholde standard latinske bokstaver, bindestreker, mellomrom, og ×; merk at antatte taksa og kultivarer ikke er tillatt
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Livstaksonet kan ikke være involvert i taksonendringer
         taxon_name:
           attributes:
             lexicon:
@@ -7814,9 +8093,18 @@ nb:
               already_has_a_range: har allerede ett utbredelsesområde
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: kan ikke inkludere mer enn 7 prosjekter
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: må alle eksistere
             login:
               must_begin_with_a_letter: |
                 må begynne med en bokstav, ikke inneholde mellomrom, og bruke kun bokstaver, tall, bindestreker og liggende streker
+              domain_is_not_supported: Domenet støttes ikke
         user_block:
           attributes:
             base:
