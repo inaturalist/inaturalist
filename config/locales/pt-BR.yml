@@ -2688,7 +2688,6 @@ pt-BR:
   #a noun.
   link_to_authorization_code: Link para o código de autorização
   link_your_flickr_account: Conecte sua conta do Flickr
-  link_your_google_account: Vincule sua conta do Google
   linked_flickr: "Sua conta %{site_name} já está vinculada à sua conta do Flickr."
   linked_flickr_automatically: "Saiba também que se você entrar no %{site_name} através do Flickr, nós iremos automaticamente re-conectar sua conta do %{site_name} e do Flickr. Parece rasoável que se você utiliza o Flickr, você irá desejar importar suas fotos publicadas por lá, correto?"
   linked_flickr_description: "Manter sua conta %{site_name} conectada ao seu perfil do Flickr permite que você adicione múltiplas fotos nas suas observações. Claro que a qualquer momento você pode encerrar a conexão entre %{site_name} e o Flickr, nós não impedimos isto, você somente não poderá adicionar fotos. Algumas vezes isto pode ser para melhorar algo, como por exemplo se você desejar criar uma nova conta no Flickr que você quer conectar com %{site_name}."
@@ -5699,7 +5698,6 @@ pt-BR:
   unfollow_observation: Deixar de seguir a observação
   #Text for a button to stop following updates from a user
   unfollow_user: Deixar de seguir o usuário
-  unlink_your_google_account: Desvincular a sua conta Google
   unlink_your_flickr_account: "Desvincule sua conta do Flickr"
   unmute: Reativar
   updates_notification_email_subject: "%{prefix} Novas atualizações %{date}"
@@ -6023,9 +6021,6 @@ pt-BR:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Procurado
   was_it_captive_cultivated?: "Era cultivada / mantida em cativeiro?"
-  we_also_support2: |
-    Também suportamos a importação de fotos do <a href="http://flickr.com">Flickr</a>
-    e <a href="http://photos.google.com">Fotos do Google</a>.
   we_can_only_understand_csv_in: Só podemos entender CSV no seguinte formato
   we_couldnt_find_a_user: Não podemos encontrar um usuário com este endereço de e-mail.
   we_couldnt_find_a_user_with_that_activation_code: "Nós não podemos encontrar um usuário com este código de ativação. Você deve já ter ativado sua conta, por favor tente entrar no sistema."
@@ -7174,15 +7169,6 @@ pt-BR:
         geoprivacy_must_be_in_english: |
           A coluna de geoprivacidade deve estar em inglês e deve estar em branco ou ter
           valor de "obscurecido" ou "privado"
-        google_photos_notice_html: |
-          Em fevereiro de 2019, o Google mudou sua API, tornando impossível para nós acessarmos coordenadas de GPS, informações de licença, e quase qualquer
-          informação que poderíamos usar para adicionar uma identificação (como tags). Eles
-          também removeram a pesquisa por texto e a paginação numérica. Em cima disto, Eles requerem a todas contas conectadas a dar uma permissão adicional,
-          e antes que um terceiro possa solicitar esta permissão aos usuários a parte terceira precisa ser verificada. Nós estamos esperando a verificação, mas até lá, você não poderá importar fotos do Google.
-          Se nós formos aprovados, você poderá importar fotos, mas elas não incluirão nenhuma informações de localidade ou licença que você possa ver no Google Fotos. Você pode ler mais sobre isto em <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Baixando os arquivos originais e adicionando eles usando o <a
-          href="/observations/upload">Uploader</a> é a melhor solução alternativa.
         project_csv_template_notice_html: |
           Existe um arquivo modelo para este projeto que pode pode ajudá-lo com a estrutura do arquivo CSV. <a href="%{url}">Faça o download do arquivo modelo</a>
         soundcloud_notice_html: |
