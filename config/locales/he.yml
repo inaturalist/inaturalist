@@ -2729,7 +2729,6 @@ he:
   #a noun.
   link_to_authorization_code: קישור לקוד הרשאה
   link_your_flickr_account: קישור חשבון Flickr
-  link_your_google_account: קישור חשבון הגוגל שלך
   linked_flickr: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון ה Flickr שלך."
   linked_flickr_automatically: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פליקר, נקשר מחדש בין חשבונות ה-%{site_name} והפליקר שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפליקר אז את.ה רוצה את היכולת לייבא תמונות פליקר, נכון?"
   linked_flickr_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפליקר שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפליקר, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פליקר חדש שאת.ה רוצה לקשר אליו את %{site_name}."
@@ -5689,7 +5688,6 @@ he:
   unfollow_observation: ביטול מעקב אחר התצפית
   #Text for a button to stop following updates from a user
   unfollow_user: ביטול מעקב אחר המשתמש.ת
-  unlink_your_google_account: ניתוק חשבון גוגל
   unlink_your_flickr_account: "ניתוק חשבון פליקר"
   unmute: ביטול השתקה
   updates_notification_email_subject: "%{prefix} עדכונים חדשים %{date}"
@@ -6019,8 +6017,6 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
-  we_also_support2: |
-    אנחנו תומכים גם בייבוא תמונות <a href="http://flickr.com">מפליקר</a> <a href="http://photos.google.com">ומגוגל תמונות</a>.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
@@ -7160,11 +7156,6 @@ he:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           עמודת פרטיות המיקום חייבת להיות באנגלית, וריקה או עם אחד הערכים "מוסתר" או "פרטי"
-        google_photos_notice_html: |
-          בפברואר 2019 גוגל שינתה את ה-API שלה, מה שמונע מעמנו לגשת לקואורדינטות GPS, למידע על רשיונות וכמעט לכל מידע העשוי לשמש אותנו להוספה של זיהוי (כגון תגים). הם גם הסירו חיפוש טקסט וחלוקה נומרית לעמודים. נוסף על כך, הם דרשו מכל החשבונות המקושרים שיהיו בעלי הרשאה נוספת, ולפני שגורם צד שלישי יכול לבקש את ההרשאה ההיא מיוזרים, עליו להיות בר-אימות. אנו בהמתנה לקבל אימות, אבל עד אז, לא תוכל.י לייבא תמונות מגוגל. במידה ונקבל אישור, תוכל.י לייבא תמונות אבל הן לא יכילו שום מידע על מיקום או רשיון שהיית רואה בגוגל תמונות. למידע נוסף באפשרותך לעיין ב-<a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. הורדת הקבצים המקוריים והוספתם באמצעות <a
-          href="/observations/upload">המעלה</a> הוא הפתרון העוקף הטוב ביותר.
         project_csv_template_notice_html: |
           ישנו קובץ טמפלייט עבור פרויקט זה העשוי לעזור לך עם מבנה קובץ ה-CSV.
           <a href="%{url}">להורדת הטמפלייט</a>
