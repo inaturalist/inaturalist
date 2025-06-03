@@ -2100,7 +2100,6 @@ gl:
   linear_scale_label: Linear
   link: Vínculo
   link_your_flickr_account: Vincula a túa conta de Flickr
-  link_your_google_account: Conecta a túa conta de Google
   linked_flickr: "A túa conta de %{site_name} está vinculada actualmente coa túa conta de Flickr."
   linked_flickr_automatically: "Ademáis, repara en que se accedes a %{site_name} a través de Flickr, automáticamente reconectaremos a túa %{site_name} e conta de Flickr. Semella razoable que se usas Flickr, queiras ser quen de importar as túas fotos de Flickr, ¿non si?"
   linked_flickr_description: "Manter a túa conta de %{site_name} vinculada coa túa conta de Flickr permíteche engadir varias fotos ás túas observacións. Podes desvincular as túas contas de %{site_name} e de Flickr en calquera momento. Non cho impediremos, unicamente non poderás engadir fotos. Ás veces será o mellor, por exemplo, cando crees unha conta nova de Flickr que desexes vincular con %{site_name}."
@@ -4420,7 +4419,6 @@ gl:
   unknown: Descoñecido
   unknown_error: Erro descoñecido
   unknown_rank: '(Clasificación descoñecida)'
-  unlink_your_google_account: Desvincula A Túa Conta De Google
   unlink_your_flickr_account: "Desvincula A Túa Conta De Flickr"
   unmute: Desactivar Silenciamento
   updates_notification_email_subject: "%{prefix} Novas actualizacións %{date}"
@@ -5331,11 +5329,6 @@ gl:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           A columna de xeoprivacidade debe estar en Inglés e debe estar baleira ou ter un valor de "escuro" ou "privado"
-        google_photos_notice_html: |
-          En Febreiro de 2019, Google mudou o seu API, facéndonos imposible o acceso a coordenadas GPS, infomación sobre licenzas, e case calquera información que pudésemos empregar para engadir unha identificación (como etiquetas). Tamén eliminaron a busca de texto e a paxinación numérica. Inda por riba, obrigaron a que tódalas contas vinculadas conten con un consentimento adicional, e antes de que un terceiro poida pedir este consentimento dos usuarios, o terceiro ten que estar verificado. Aínda estamos á espera da verificación, pero ata que a teñamos, non vas ser quen de importar fotos dende Google. Se acadamos a verificación, poderñas importar fotos, pero non van incluír información sobre ubicacións nin licenzas que poideras ver en Google Fotos. Podes ler máis sobre isto en <a
-          href="https://developers.google.com/picasa-
-          web"> https://developers.google.com/picasa-web</a>. Descargar os ficheiros orixinais e engadíndoos usando o <a
-          href="/observations/upload">Cargador</a> é a mellor alternativa.
         project_csv_template_notice_html: |
           Hai un ficheiro modelo para este proxecto que che pode axudar cá estructura do ficheiro CSV. <a href="%{url}">Descargar modelo</a>
         soundcloud_notice_html: |
