@@ -2567,7 +2567,6 @@ id:
   #a noun.
   link_to_authorization_code: Tautan untuk kode otorisasi
   link_your_flickr_account: Hubungkan akun Flickr Anda
-  link_your_google_account: Hubungkan akun Google Anda
   linked_flickr: "Akun %{site_name} Anda saat ini terhubung dengan akun Flickr Anda."
   linked_flickr_automatically: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Flickr, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Flickr Anda. Tampak masuk akal bukan jika Anda menggunakan Flickr, Anda ingin dapat mengimpor foto dari Flickr?"
   linked_flickr_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Flickr, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
@@ -5469,7 +5468,6 @@ id:
   unfollow_observation: Berhenti mengikuti pengamatan ini
   #Text for a button to stop following updates from a user
   unfollow_user: Berhenti mengikuti pengguna
-  unlink_your_google_account: Putuskan Akun Google Anda
   unlink_your_flickr_account: "Putuskan Akun Flickr Anda"
   unmute: Bunyikan
   updates_notification_email_subject: "%{prefix} Kabar baru %{date}"
@@ -5781,8 +5779,6 @@ id:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Dicari
   was_it_captive_cultivated?: "Apakah itu dipelihara / dibudidayakan?"
-  we_also_support2: |
-    Kami juga mendukung pengimporan foto dari <a href="http://flickr.com">Flickr</a> dan <a href="http://photos.google.com">Google Photos</a>.
   we_can_only_understand_csv_in: Kami hanya dapat mengenali CSV dalam format berikut
   we_couldnt_find_a_user: Kami tidak dapat menemukan pengguna dengan alamat email tersebut.
   we_couldnt_find_a_user_with_that_activation_code: "Kami tidak dapat menemukan pengguna dengan kode aktivasi tersebut. Anda mungkin telah mengaktifkan akun Anda, silakan mencoba untuk masuk lagi."
@@ -6930,11 +6926,6 @@ id:
         decimal_degrees_format: dd,dddd
         geoprivacy_must_be_in_english: |
           Kolom geoprivasi harus berbahasa Inggris dan harus kosong atau memiliki nilai "dikaburkan" atau "pribadi"
-        google_photos_notice_html: |
-          Pada Februari 2019, Google mengubah APInya, membuat kami tidak bisa mengakses koordinat GPS, informasi lisensi, dan hampir semua informasi yang dapat kami gunakan untuk menambah identifikasi (seperti label). Mereka juga menghapus pencarian teks dan penomoran halaman. Selain itu, mereka juga mengharuskan semua akun yang terkoneksi untuk memiliki izin tambahan, dan sebelum pihak ketiga dapat meminta izin dari pengguna, pihak ketiga harus terverifikasi terlebih dahulu. Kami sedang menunggu verifikasi, tetapi hingga saatnya, Anda tidak akan bisa mengimpor foto dari Google. Jika sudah disetujui, Anda akan bisa mengimpor foto, tetapi mereka tidak akan memasukkan informasi lokasi atau informasi lisensi apapun yang Anda dapat lihat di Google Photos. Anda dapt membaca lebih lanjut tentang ini di <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Mengunduh file asli dan menambahkannya menggunakan <a
-          href="/observations/upload">Pengunggah</a> adalah cara terbaik untuk saat ini.
         project_csv_template_notice_html: |
           Ada file template untuk proyek ini yang dapat membantu Anda dengan struktur file CSV.
           <a href="%{url}">Unduh template</a>
