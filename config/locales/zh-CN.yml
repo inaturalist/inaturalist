@@ -3354,6 +3354,7 @@ zh-CN:
   observation_field_type_taxon: 分类群
   observation_field_type_dna: DNA
   observation_fields: 观察字段
+  observation_fields_for_projects: 项目的观察字段
   observation_fields_are_additional: 观察字段是可被添加到观察中的附加数据字段。
   observation_fields_by_preferences_description: |
     观察字段有点像标签，不过任何人都可以默认地将它们添加到您的观察中。如果您希望只有您或者只有网站馆长能做到这一点，请改变此设置。
@@ -5739,6 +5740,8 @@ zh-CN:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 希望的
   was_it_captive_cultivated?: "是被饲育/栽培的吗？"
+  we_also_support3: |
+    我们还支持从以下位置导入照片 <a href="http://flickr.com">Flickr的</a>.
   we_can_only_understand_csv_in: 我们只能解析此种格式的CSV文件
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_couldnt_find_a_user_with_that_activation_code: "我们找不到具有该激活码的用户。您可能已经激活了自己的帐户，请尝试登录。"
