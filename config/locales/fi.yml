@@ -2471,7 +2471,6 @@ fi:
   linear_scale_label: Lineraarinen
   link: Linkki
   link_your_flickr_account: Linkitä Flickr-tilisi
-  link_your_google_account: Linkitä Google-tilisi
   linked_flickr: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Flickr-tiliisi."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: linkin teksti
@@ -5008,7 +5007,6 @@ fi:
   unfollow_observation: Lopeta havainnon seuranta
   #Text for a button to stop following updates from a user
   unfollow_user: Lopeta käyttäjän seuraaminen
-  unlink_your_google_account: Poista linkitys Google-tiliisi
   unlink_your_flickr_account: "Poista linkitys Flickr-tiliisi"
   unmute: Poista hiljennys
   updates_notification_email_subject: "%{prefix} Uudet päivitykset %{date}"
@@ -5262,9 +5260,6 @@ fi:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
-  we_also_support2: |
-    Tuemme myös kuvien tuontia <a href="http://flickr.com">Flickr-</a>
-    ja <a href="http://photos.google.com">Google Photos</a> -palveluista.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -5942,11 +5937,6 @@ fi:
           %{site_name} hyväksyy koordinaatit useassa eri koordinaattijärjestelmässä, joten kun annat koordinaatit jossain muussa järjestelmässä kuin leveysaste/pituusaste (latitudi/longitudi), tarvitaan tieto koordinaattijärjestelmästä koordinaattien tulkitsemiseksi oikein. Ole hyvä ja varmista, että olet valinnut oikean koordinaattijärjestelmän datallesi tai sijainti voi mennä kauaksikin oikeasta paikasta. Jos koordinaatit ovat peräisin GPS-laitteelta, tarkista laitteen asetuksista sen käyttämä koordinaattijärjestelmä. Huomaa, että emme säilytä erikoiskoordinaatteja, vain niiden konversiot leveys- ja pituusasteisiin.
         date_column_format: VVVV-KK-PP TT:MM
         decimal_degrees_format: dd,dddd
-        google_photos_notice_html: |
-          Google muutti ohjelmointirajapintaansa helmikuussa 2019 siten että emme enää pääse käsiksi Googlen kautta tuotavien valokuvien koordinaatteihin, lisenssitietoihin, tageihin tai tekstihakuun. Lisäksi Google- ja iNaturalist-tilien linkitykseen vaaditaan lisäoikeuksia, ja ennen kuin voimme pyytää käyttäjiltä näitä oikeuksia on meidän verifioitava iNaturalist Googlelle. Odotamme verifikaatiota, mutta et voi tuoda kuvia Googlesta ennen kuin tämä on tehty. Jos meidät verifioidaan, voit jälleen tuoda valokuvia Googlesta, mutta ilman edellä mainittuja tietoja. Voit lukea lisää tästä osoitteessa <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Kuvat on toistaiseksi helpointa lisätä lataamalla ne ensin Googlesta omalle tietokoneelle ja <a
-          href="/observations/upload">sieltä iNaturalistiin</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Salli projektin kuraattorien nähdä piilotetut koordinaatit tälle havainnolle.
