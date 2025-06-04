@@ -1219,3 +1219,13 @@ body > [role="dialog"] .PhotoChooserModal {
 table.regional-names {
   margin-top: 15px;
 }
+
+.SeasonalityChart {
+  .tick.current text {
+    font-weight: bold;
+  }
+  // In case we wanted to do a dashed line instead of a region
+  // .bb-xgrid-line line {
+  //   stroke-dasharray: 1 2;
+  // }
+}
