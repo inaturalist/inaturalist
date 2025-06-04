@@ -468,7 +468,7 @@ tr:
     species: Tüm türler veri tabanına eklendi
     hybrid: Tüm melezler veri tabanına eklendi
     subspecies: Tüm alt türler veri tabanına eklendi
-    variety: Tüm varyasyonlar veri tabanına eklendi
+    variety: Tüm varyeteler veri tabanına eklendi
     form: Tüm formlar veri tabanına eklendi
   all_rights_reserved: tüm hakları saklıdır
   all_taxa:
@@ -729,11 +729,11 @@ tr:
   attribution_uploaded_by_user: "%{attribution}, yükleyen: %{user}"
   #Adjective describing when a place in an atlas was "exploded," i.e. divided
   #into its constituent places
-  atlas_alteration_action_exploded: Patladı
+  atlas_alteration_action_exploded: Bölünmüş
   #Adjective describing when a place in an atlas was "unexploded," i.e. its
   #constituent places were removed and now the atlas just contains this
   #place
-  atlas_alteration_action_unexploded: Patlamamış
+  atlas_alteration_action_unexploded: Bölünmemiş
   authority_list:
     iucn_red_list: IUCN Kırmızı Listesi
     natureserve: NatureServe
@@ -1062,6 +1062,7 @@ tr:
   confirmation_email_sent_at_datetime: Doğrulama e-postası %{datetime} tarihinde gönderildi
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 'Onay tarihi: %{date}'
+  confirming_ids: Tanımlama doğrulama
   confirming_ids_description: |
     Bunu kapatırsan, ek açıklamaları olmadığı sürece seninkiyle aynı olan tanımlamalar hakkında artık bilgilendirilmeyeceksin.
   #Label for a button to connect your iNat account to another account, e.g.
@@ -1409,10 +1410,7 @@ tr:
   curators_can_remove_observations_from: Küratörler gözlemleri projeden çıkarabilir ve bunların tanımlamaları projeye özel görünümlerde gözlemlerin yanında gösterilir. Küratörler ayrıca bu projeye yapılan özel ve gizlenmiş katkıların gerçek koordinatlarını da görebilirler.
   curator_coordinate_access: Küratör Koordinat Erişimi
   curator_coordinate_access_desc: |
-    Geleneksel projeler için küratör koordinat erişimi, kimin eklediğine bağlıdır
-    projeye gözlem. Bu, yalnızca aşağıdakiler için varsayılan ayardır:
-    projelerde gözlemler. Gözlemciler bunu aşağıdakiler için değiştirmeyi de seçebilirler:
-    bireysel gözlemler.
+    Küratör koordinat erişimi, geleneksel projelerde gözlemi projeye ekleyen kişiye bağlıdır. Bu, projelerdeki gözlemler için varsayılan ayardır. Gözlemciler ayrıca bireysel gözlemler için bu ayarı değiştirmeyi tercih edebilirler.
   curator_identification: Küratör tanımlaması
   current_flags: Mevcut İşaretler
   #Label for a custom boundary for an observation search
@@ -1628,7 +1626,7 @@ tr:
   #identifications or not
   disagreements: Anlaşmazlıklar
   #Title / tooltip for the disagreements checkbox
-  disagreements_show_observations_that: Uyuşmayan tanımlamalara sahip gözlemleri gösterin
+  disagreements_show_observations_that: Uyuşmayan tanımlamalara sahip gözlemleri göster
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Bağlantıyı Kes
@@ -1871,8 +1869,7 @@ tr:
   favorite_projects: Favori Projeler
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
-    Başlıkta bağlantı olarak görünen en fazla yedi proje seçin. Güncelleştirme
-    sayfa yenilendikten sonra görünecektir.
+    Başlıkta bağlantı olarak görünecek en fazla yedi proje seçin. Güncellemeler sayfa yenilendikten sonra görünecektir.
   favorite_taxa: Favori Sınıflar
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
@@ -2231,7 +2228,7 @@ tr:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist, Amerika Birleşik Devletleri merkezli, vergiden muaf, kâr amacı gütmeyen bağımsız bir 501(c)(3) kuruluşudur (Vergi Kimliği: 92-1296468).
   #Title of identification that was automatically added by a taxon change
-  inaturalist_updated_the_id_suggested_by_user: iNaturalist, tarafından önerilen kimliği güncelledi %{user}
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist, %{user} tarafından önerilen tanımlamayı güncelledi.
   computer_vision_suggestion: Bilgisayar Görü Önerisi
   computer_vision_suggestion_desc: |
     Bilgisayarla görü, bilgisayarlara görüntüdeki şekilleri öğretme sürecidir. Kendiliğinden tamamlama ve karşılaştırma özellikleri gibi tanımlama önerileri sağlamak için topluluğun fotoğrafları üzerinde eğitilmiş bilgisayarlı görme modellerini kullanan araçlar sunuyoruz. Bu etiket, bir kişinin bu araçlardan birini kullanarak ne zaman tanımlama eklediğini gösterir.
@@ -2324,6 +2321,15 @@ tr:
   inaturalist_applications: "iNaturalist Uygulamaları"
   inaturalist_places: "%{site_name} Konumları"
   info: Bilgi
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: İnfra tür tanımlamaları
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Bunu kapatırsan, tür altı seviyedeki sınıfların (alt türler ve varyeteler gibi) tür seviyesindeki tanımlamanla aynı olan kimlikleri hakkında artık bildirim almayacaksın. Ancak, tanımlamanla uyuşmayan ya da ek açıklamalar içeren durumlarda bildirim almaya devam edeceksin.
   input_taxon: Girdi sınıfı
   insects: böcekler
   insect_life_stage: Böcek Yaşam Evresi
@@ -3159,6 +3165,16 @@ tr:
   noble_curators: "%{site}'in Saygın Küratörleri"
   #A user who is not a curator
   non_curator: Küratör olmayan
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Çelişmeyen Üst Soy Tanımlamaları
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Bunu kapatırsan, tanımlamandaki sınıfın üst soyunu içeren ve Topluluk Sınıfı ile açıkça çelişmeyen bir sınıf tanımlaması eklendiğinde bildirim almazsın. Ancak, tanımlama ek açıklamalar içeriyorsa bildirim almaya devam edeceksin.
   non_human?: İnsan değil mi?
   #A user who does not admin any projects
   non_project_admin: Proje yöneticisi olmayan kişi
@@ -4249,13 +4265,13 @@ tr:
   rank_levels:
     #Label when displaying genus level, which is the same for genus and
     #genushybrid
-    genus: Cins / Genushybrid
+    genus: Cins / Melez Cins
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: Türler / Melez
     #Label when displaying infraspecies level, which is the same for all the
     #infraspecies ranks
-    subspecies: Alt Türler / Çeşitlilik / Form
+    subspecies: Alt Türler / Varyete / Form
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4320,7 +4336,7 @@ tr:
     hybrid: Melez
     #Singular
     subspecies: Alt Tür
-    variety: Varyasyon
+    variety: Varyete
     form: Form
     infrahybrid: İnfra Melez
     leaves: Birim Sınıf
@@ -4391,7 +4407,7 @@ tr:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subspecies X"
   ranks_lowercase_subspecies: alt tür
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the variety X"
-  ranks_lowercase_variety: varyasyon
+  ranks_lowercase_variety: varyete
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the form X"
   ranks_lowercase_form: form
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infrahybrid X"
@@ -5479,19 +5495,13 @@ tr:
   update: Güncelle
   update_existing_observations_with_new_license: Mevcut gözlemleri yeni lisans seçenekleri ile güncelle
   update_existing_observations_with_new_license_desc: |
-    Bu seçeneği belirlediğinizde, yeni lisans seçiminiz tüm lisanslarınız için geçerli olacaktır.
-    mevcut gözlemler. Çok fazla varsa bu birkaç saat sürebilir.
-    Gözlem.
+    Bu seçeneği işaretlemek, yeni lisans seçiminin tüm mevcut gözlemlerinde uygulanmasını sağlar. Çok sayıda gözlemin varsa bu işlem birkaç saat sürebilir.
   update_existing_photos_with_new_license: Mevcut fotoğrafları yeni lisans seçenekleri ile güncelle
   update_existing_photos_with_new_license_desc: |
-    Bu seçeneği belirlediğinizde, yeni lisans seçiminiz tüm lisanslarınız için geçerli olacaktır.
-    mevcut fotoğraflar. Çok fazla varsa bu birkaç saat sürebilir.
-    Fotoğraf.
+    Bu seçeneği işaretlemek, yeni lisans seçiminin tüm mevcut fotoğraflarına uygulanmasını sağlar. Çok sayıda fotoğrafın varsa bu işlem birkaç saat sürebilir.
   update_existing_sounds_with_new_license: Mevcut sesleri yeni lisans seçenekleri ile güncelle
   update_existing_sounds_with_new_license_desc: |
-    Bu seçeneği belirlediğinizde, yeni lisans seçiminiz tüm lisanslarınız için geçerli olacaktır.
-    mevcut sesler. Çok fazla varsa bu birkaç saat sürebilir.
-    Ses.
+    Bu seçeneği işaretlemek, yeni lisans seçiminin tüm mevcut ses kayıtlarına uygulanmasını sağlar. Çok sayıda ses kaydın varsa bu işlem birkaç saat sürebilir.
   update_observations: Gözlemleri Güncelle
   update_past: "Geçmişi Güncelle %{type}"
   update_photos: Fotoğrafları Güncelle
@@ -5640,13 +5650,11 @@ tr:
   user_trusts_this_project_for_taxon: |
     Kullanıcı bu projeye yalnızca tehdit altındaki sınıflar nedeniyle gizlenmiş koordinatlar ile güvenmektedir.
   user_trusts_this_project_when_added_by_any: |
-    Kullanıcı, eklenen gözlemlerin gizli koordinatları ile proje küratörlerine güvenir
-    projeye herkes tarafından.
+    Kullanıcı, projeye herhangi bir kişi tarafından eklenen gözlemlerin gizli koordinatları konusunda proje küratörlerine güvenir.
   user_trusts_this_project_when_added_by_observer: |
-    Kullanıcı, eklenen gözlemlerin gizli koordinatları ile proje küratörlerine güvenir
-    gözlemci tarafından projeye.
+    Kullanıcı, projeye kendi tarafından eklenen gözlemlerin gizli koordinatları konusunda proje küratörlerine güvenir.
   user_trusts_this_project_when_added_by_none: |
-    Kullanıcı, gizli koordinatlara sahip proje küratörlerine güvenmiyor.
+    Kullanıcı, gizli koordinatlar konusunda proje küratörlerine güvenmiyor.
   user_trusts_you_with_their_private_coordinates: "%{user} gizli koordinatları konusunda sana güveniyor"
   user_trusts_you_with_their_private_coordinates_desc: |
     Gözlemci, tüm gözlemlerinin gizli koordinatları ile size güvenmeyi tercih etti.
@@ -5735,6 +5743,8 @@ tr:
   view_more_observations_of_x_project: "<nobr>%{site_name}'teki &raquo;</nobr> %{project} projesinden daha çok gözlemi görüntüle"
   view_more_observations_of_x_taxon: "<nobr>%{site_name}'teki &raquo;</nobr> %{taxon} sınıfından daha çok gözlemi görüntüle"
   view_more_unreviewed: "İncelenmemişleri görüntüle"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Etkilenen tanımlamalarını görüntüle
   view_observation: Gözlemi Görüntüle
   view_observations: Gözlemleri Görüntüle
   view_observation_flags: Gözlem işaretlerini görüntüle
@@ -5778,7 +5788,7 @@ tr:
   wanted: Gerekli
   was_it_captive_cultivated?: "Kısıtlanmış ya da ekili miydi?"
   we_also_support3: |
-    Ayrıca fotoğrafların içe aktarılmasını da destekliyoruz. <a href="http://flickr.com">Flickr (İngilizce)</a>.
+    Ayrıca <a href="http://flickr.com">Flickr</a>'dan fotoğraf aktarmayı da destekliyoruz.
   we_can_only_understand_csv_in: CSV'yi yalnızca aşağıdaki formatta anlayabiliriz
   we_couldnt_find_a_user: Bu e-posta adresine sahip bir kullanıcı bulamadık.
   we_couldnt_find_a_user_with_that_activation_code: "Bu etkinleştirme koduna sahip bir kullanıcı bulamadık. Hesabını zaten etkinleştirmiş olabilirsin, lütfen giriş yapmayı dene."
@@ -6108,24 +6118,18 @@ tr:
     views: 'Görüntülemeler'
     announcements:
       locales_desc: |
-        Birden çok seçmek için CMD veya SHIFT tuşunu basılı tutarak tıklayın. "Tümü"nü seçme veya yapmama
-        Bir seçim, duyuruyu aşağıdakilerden bağımsız olarak tüm kullanıcılara gösterecektir.
-        Yerel ayar. Bölgesi olmayan bir dil seçmek hedeflemeyecektir *
-        bölgeleri olan yerel ayarlar, örneğin İngilizce'yi seçtiyseniz görünmeyecektir
-        İngilizce'yi (İngiltere) seçen kişiler için.
+        CMD veya SHIFT tuşuna basılı tutarak birden fazla seçim yapabilirsin. "Tümünü" seçmek ya da herhangi bir seçim yapmamak, duyurunun tüm kullanıcılara (yerel ayar fark etmeksizin) gösterilmesini sağlar. Bölge belirtilmemiş bir dil seçmek, bölge içeren yerel ayarları hedeflemez. Örneğin, yalnızca İngilizce seçersen, duyuru İngilizce (Birleşik Krallık) seçmiş kullanıcılara gösterilmez.
       clients_desc: |
-        Birden çok seçmek için CMD veya SHIFT tuşunu basılı tutarak tıklayın. "Tümü"nü seçme veya yapmama
-        Bir seçim, duyuruyu aşağıdakilerden bağımsız olarak tüm kullanıcılara gösterecektir.
-        müşteri.
+        Birden fazla seçim yapmak için CMD veya SHIFT tuşuna basarak tıkla. "Tümünü" seçmek ya da herhangi bir seçim yapmamak, duyurunun istemci fark etmeksizin tüm kullanıcılara gösterilmesini sağlar.
+      end_desc: |
+        Bu duyurunun görünmeyi durduracağı zaman, hesap saat diliminize göre ayarlanır. Saat dilimleri arasında geçerlidir; yani herkes duyuruyu aynı anda görmeyi bırakır, yerel saatlerine göre değil.
       ip_countries_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu IP ülkesine bakılmaksızın tüm kullanıcılara gösterecektir.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
         Kullanıcının en son oluşturduğu gözlemin oluşturulma tarihinin önbelleğe alındığını unutmayın, bu nedenle hedeflemenin etkili olması birkaç saat sürebilir.
       observation_oauth_application_ids_desc: |
-        Birden çok seçmek için CMD veya SHIFT tuşunu basılı tutarak tıklayın. "Tümü"nü seçme veya yapmama
-        Bir seçim, duyuruyu aşağıdakilerden bağımsız olarak tüm kullanıcılara gösterecektir.
-        app.
+        Birden fazla seçim yapmak için CMD veya SHIFT tuşuna basarak tıkla. "Tümünü" seçmek ya da herhangi bir seçim yapmamak, duyurunun uygulama fark etmeksizin tüm kullanıcılara gösterilmesini sağlar.
       site_ids_desc: |
         Birden fazla seçim yapmak için CMD- veya SHIFT-tıklayın. "Tümünü" seçmek veya seçim yapmamak, duyuruyu site üyeliğine bakılmaksızın tüm kullanıcılara gösterecektir.
       start_desc: |
@@ -6148,40 +6152,36 @@ tr:
         about_atlases: Atlaslar Hakkında
         #Description of what atlases are
         atlases_convey_the_global_distribution: |
-          Atlaslar, bir taksonun küresel dağılımını aktarır. Küratörler yapar
-          bir atlasın yapısını tanımlayarak ve atlasların küratörlüğünü yaparak
-          onu yönlendiren taksonları listeledi.
+          Atlaslar, bir sınıfın dünya genelindeki dağılımını gösterir. Küratörler, atlasın yapısını tanımlayarak ve atlası oluşturan sınıfları düzenleyerek atlasları oluştururlar.
         #Label for a button that divides a place in an atlas into it's
         #constituent places. E.g. if the atlas for Red Fox contained Europe
         #you wanted to specify that Red Fox only occurs in Belgium and
         #France, you would "explode" Europe so you could choose Belgium and
         #France.
-        explode_this_place: Burayı patlat
+        explode_this_place: Bu konmu böl
         #Label for a button that reunites places in an atlas into the place
         #that contains them. E.g. if an atlas contains Europe but it has
         #been "exploded" into its constituent countries, this would remove
         #those countries so the atlas would just contain Europe again.
-        unexplode_this_place: Burayı patlat
+        unexplode_this_place: Bu konumu birleştir
         #Notice when an atlas has not been altered
         no_alterations_to_this_atlas_yet: Bu atlasta henüz bir değişiklik yapılmadı
         #Title for a section showing recent alterations to an atlas
         recent_atlas_alterations: Atlas'ta Yapılan Son Değişiklikler
         #Title for a section showing taxa that were recently added to a check
         #list
-        recent_listed_taxon_additions: Son Listelenen Takson Değişiklikleri
+        recent_listed_taxon_additions: Son Listelenen Sınıf Değişiklikleri
         #Label for a button that shows taxa on checklists for a place
-        show_listed_taxa: Listelenen taksonları göster
+        show_listed_taxa: Listelenen sınıfları göster
         #Notice when an atlas is not active
         this_atlas_is_not_currently_active: Bu atlas şu anda etkin değil
         #Warning before removing a place from an atlas
         this_will_remove_this_taxon_and_all: |
-          Bu, bu taksonu ve tüm torunlarını kontrol listelerinden kaldıracaktır
-          bu yer ve içerdiği herhangi bir Standart Yer ile ilişkili. O
-          geri alınamaz. Bunu yapmak istediğinizden emin misiniz?
+          Bu işlem, bu sınıfı ve tüm alt soyu, bu yerle ilişkili kontrol listelerinden ve içindeki tüm Standart Konumlardan kaldıracaktır. Bu işlem geri alınamaz. Devam etmek istediğinizden emin misin?
         #Warning when there are observations outside of the places defined by
         #the atlas
         warning_there_are_observations_not_represented: |
-          Uyarı: Bu atlasın temsil etmediği gözlemler var
+          Uyarı: bu atlasta temsil edilmeyen gözlemler var
     content_freeze:
       content_freeze: İçeriği Dondurma
       during_this_time: |
@@ -6399,8 +6399,7 @@ tr:
         deprecated_banner: |
           Ocak 2019 itibariyle Rehberler özelliğinin "olduğu gibi" sunulduğunu lütfen unutmayın; bu özelliği kaldırmak gibi bir planımız olmamakla birlikte, daha çok geliştirmeyi de düşünmüyoruz.
         funding2_html: |
-          Rehberlerin geliştirilmesi için finansman şu şekilde sağlandı:
-          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
+          Rehberlerin geliştirilmesi için finansman, <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a> tarafından sağlanmıştır.
         welcome_message_html: |
           Rehberler, tüm dünyada biyoçeşitlilik ile ilgili bilgi edinmenize yardımcı olur. İster Serengeti'yi, ister yalnız yerel parkınızı (Serengeti olabilir) keşfedin. Rehberler gezegenimizin çarpıcı yaşam çeşitliliğini anlamanıza yardımcı olabilir.
       edit:
@@ -6764,27 +6763,64 @@ tr:
         id: Gözlem için benzersiz, sıralı belirteç
         species_guess: |
           Gözlemlenen sınıfın sade metin adı; gözlemci tarafından gözlem oluşturulurken belirlenebilir, ancak sınıf değiştirme olduğunda resmi ve yerelleştirilmiş isimlerle değiştirilebilir.
+        scientific_name: "iNaturalist’e göre gözlemlenen sınıfın bilimsel adı"
+        common_name: "iNaturalist’e göre gözlemlenen sınıfın yaygın ya da halk arasında kullanılan adı"
         iconic_taxon_name: Gözlenen sınıflar için üst düzey sınıflandırmasal kategori
+        taxon_id: Gözlemlenen sınıf için benzersiz ve sıralı belirteç
         id_please: Gözlemcinin tanımlama yardımı talep edip etmediği
+        num_identification_agreements: Gözlemcinin tanımlamasıyla eşleşen ya da onun kapsadığı sınıflarla ilişkili tanımlamaların sayısı
+        num_identification_disagreements: Gözlemcinin tanımlamasıyla eşleşmeyen ya da onun kapsamadığı sınıflarla ilişkili tanımlamaların sayısı
         observed_on_string: Gözlemci tarafından girilen tarih/saat
         observed_on: Standartlaştırılmış gözlem tarihi
         time_observed_at: Normalleştirilmiş gözlem tarih saati
         time_zone: Gözlem zaman dilimi
         place_guess: Gözlemci tarafından girilen bölge açıklaması
+        latitude: Gözlem konumuna ait herkese açık olarak görülebilen enlem bilgisi
+        longitude: Gözlem konumuna ait herkese açık olarak görülebilen boylam bilgisi
         positional_accuracy: "Koordinat hassasiyeti (evet, evet, doğruluk! = hassasiyet, isimlerin kötü seçimi)"
         private_latitude: "Özel enlem, gözlem özel veya gizlenmişse ayarlanır"
         private_longitude: "Özel boylam, gözlem özel veya gizlenmişse ayarlanır"
+        geoprivacy: "Gözlemcinin koordinatları gizlemeyi seçip seçmediği durumu. Ayrıntılar için: https://help.inaturalist.org/support/solutions/articles/151000169938"
         taxon_geoprivacy: "Çoğu koruyucu coğrafi gizlilik, mevcut tanımlamada sınıfların koruma durumları nedeniyle uygulanmaktadır."
         coordinates_obscured: "Coğrafi gizlilik nedeniyle veya tehdit altında olan bir sınıf nedeniyle, koordinatların gizlenmiş olup olmadığı"
         out_of_range: Bu gözlemin sınıfının bilinen yayılım alanının dışında olup olmadığı
+        user_id: Gözlemci için benzersiz ve sıralı belirteç
+        user_login: Gözlemcinin kullanıcı adı / takma adı; yani kısa, benzersiz ve alfanümerik bir kullanıcı belirteci
+        user_name: |
+          Gözlemcinin adı, genellikle sitede atıf için kullanılır. Bu alan isteğe bağlıdır ve bir takma ad olabilir.
         created_at: Tarih saat gözlemi oluşturuldu
         updated_at: Tarih saat gözlemi en son güncellendi
+        quality_grade: 'Bu gözlemin nitelik derecesi. Bu terimin ne anlama geldiğiyle ilgili detaylar için Yardım bölümüne bakın: https://help.inaturalist.org/support/solutions/articles/151000169936'
+        license: Gözlemcinin bu gözlem için seçtiği lisans veya feragatname belirteci. Boş bırakılırsa tüm haklar saklıdır.
         url: Gözlem için URL
+        image_url: Gözlemle ilişkili ilk fotoğrafın URL’si
+        sound_url: |
+          Gözlemle ilişkili ilk ses kaydının URL’si. Bu sadece doğrudan yüklenen sesler için geçerlidir; üçüncü taraf hizmetlerde barındırılan sesler için geçerli değildir.
         tag_list: Virgülle ayrılmış etiket listesi
         place_admin1_name: Ülke seviyesinin bir altındaki idari yerin ismi
         place_admin2_name: Ülke seviyesinin iki altındaki idari yerin ismi
         positioning_method: Koordinatlar nasıl belirlendi
         positioning_device: Koordinatları belirlemek için kullanılan cihaz
+        captive_cultivated: |
+          Gözlem, insan etkisiyle belli bir zaman ve konumda var olan bir organizmaya aittir. Daha fazla bilgi için:
+          https://help.inaturalist.org/support/solutions/articles/151000169932
+        description: |
+          Gözlemci tarafından gözlemi tanımlamak veya ilgili görünen diğer notları kaydetmek için yazılan metin
+        oauth_application_id: |
+          Gözlemi oluşturan uygulamanın sıralı belirteci. Uygulama hakkında daha fazla bilgi için bu numarayı şu adrese ekleyin: https://www.inaturalist.org/oauth/applications/
+        place_county_name: |
+          Bu gözlemin koordinatlarını içeren üçüncü düzey idari bölgenin adı (örneğin, ABD'nin çoğu bölgesinde bir ilçe).
+        place_country_name: |
+          Bu gözlemin koordinatlarını içeren ülkenin adı
+        place_state_name: |
+          Bu gözlemin koordinatlarını içeren ikinci düzey idari bölgenin adı (örneğin, ABD'nin çoğu bölgesinde bir eyalet).
+        place_town_name: |
+          Bu gözlemin koordinatlarını içeren kasaba veya şehrin adı, eğer biliniyorsa
+        private_place_guess: |
+          Koordinatlar gizliyse, gözlemci tarafından yazılan gözlem konumu
+        public_positional_accuracy: Metre cinsinden azami yatay konum belirsizliği; koordinat gizleme nedeniyle eklenen belirsizliği de içerir
+        uuid: |
+          Gözlem için evrensel benzersiz belirteç. Bkz: https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Sayfadaki tüm gözlemleri incelendi olarak işaretle"
         you_reviewed_message: "Bu sayfadaki %{total} eşleşen gözlemden %{pageTotal} gözlemin %{reviewed} tanesini inceledin."
@@ -6823,6 +6859,22 @@ tr:
         data_quality_assessment_desc3_html: |
           Kalite derecesi, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
         disagreement_count_desc: "# bir sınıfın üst soyu arasında yer almayan tanımlanmış sınıfların sayısı"
+        #Leads a list of requirements for an observation to be Needs ID
+        dqa_help_needs_id_lead_html: |
+          Veri nitelik değerlendirmesi, bir gözlemin doğruluğunun özetidir. Tüm gözlemler başlangıçta <strong>"sıradan"</strong> seviyesinde başlar ve aşağıdaki durumlarda <strong>"tanımlama gerekiyor"</strong> seviyesine yükselir:
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_a_date_html: gözlemin <strong>tarihi</strong> var
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_georeferenced_html: gözlem <strong>coğrafi konumlandırılmıştır</strong> (ör. enlem/boylam)
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_has_photos_or_sounds_html: gözlem <strong>fotoğraf veya sese</strong> sahiptir
+        #One of a list of requirements an observation must meet to be in the Needs ID category
+        dqa_help_needs_id_is_not_of_human_html: gözlem <strong>insana değildir</strong>
+        #Leads a list of requirements for an observation to be Research Grade
+        dqa_help_research_grade_lead_html: 'Gözlemler şu durumlarda <strong>"araştırma sınıfı"</strong> olur:'
+        #One of a list of requirements an observation must meet to be in the Research Grade category
+        dqa_help_research_grade_community_species_html: |
+          %{site_name} <strong>topluluğu tür seviyesi veya daha alt tanımlamalarda anlaşır</strong>, ör. tanımlayıcıların 2/3'ünden çoğu bir sınıf üzerinde hemfikirse (topluluk, Topluluk Sınıfı'nın artık geliştirilemeyeceğine oy verdiyse, bu alt familya seviyesi veya daha alt tanımlamaya döner).
         identification_count_desc: '# tek bir sınıf için tanımlama sayısı'
         flagged_photos_desc_html: |
           Bu fotoğraflardan bazıları uygunsuz içerik veya telif hakkı ihlali için işaretlendi. Ayrıntılar için bakınız %{links}
@@ -7227,6 +7279,8 @@ tr:
         we_have_redesigned_projects: |
           Projeler; tanımladığın konumlar, sınıflar, kullanıcılar, nitelik ve tarihlere uyan tüm gözlemleri otomatik olarak içerecek şekilde tasarlanmıştır. İki ana tür arasından seçim yap: Aşağıdaki özellikleri paylaşan Koleksiyon Projeleri ve Şemsiye Projeler:
         welcome_to_projects: Projelere Hoş Geldin!
+        you_can_learn_more2_html: |
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Buradan</a> projeleri yönetme hakkında daha fazla bilgi edinebilirsin veya projelerin geçmişini <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogumuzdan</a> okuyabilirsin.
         you_have_not_defined_any_observation_requirements: |
           Herhangi bir gözlem gereksinimi tanımlamadın. Projene dahil etmek istediğin gözlemleri tanımlamak için bir veya daha fazla sınıf (örn. kuşlar, kozalaklı ağaçlar), konum (örn. Brezilya, Yellowstone), kullanıcı ve/veya tarih seçtiğinden emin ol.
         errors:
@@ -7313,6 +7367,8 @@ tr:
         avg_ttcid: Ort TTCID
         avg_ttid: Ort TTID
         identifiers_desc: Bugün başkasının gözlemine bir tanımlama eklendi
+        #label for chart legend, linking to more information on iNatNext
+        inat_next_desc_html: <a href="%{url}">iNatNext</a> ile oluşturuldu
         iphone_desc_html: <a href="%{url}">iNaturalist iPhone uygulaması</a> üzerinden oluşturuldu
         med_ttcid: Orta TTCID
         med_ttid: Orta TTID
@@ -7333,6 +7389,8 @@ tr:
         recent_w_0_obs_desc: Önceki 7 gün içinde kaydoldu ve 0 gözl ekledi
         recent_w_7_obs: Son h/ >= 7 gözl
         recent_w_7_obs_desc: Önceki 7 gün içinde kaydoldu ve >=7 gözl ekledi
+        #label for chart legend, linking to more information on the Seek app
+        seek_desc_html: <a href="%{url}">Seek</a> ile oluşturuldu
         time_to_id_desc: Tanımlama zamanı (saat, 1 haftalık hareketli pencere)
         TTCID: TTCID
         TTCID_desc: Topluluk sınıfıyla eşleşen bir başkasının tanımlamasını alma zamanı.
@@ -7436,6 +7494,8 @@ tr:
           %{view_all_mobile_link_tag}mobil%{link_tag_end} kod depolarımızda,
           geçmiş yıllardan kişiler ve Translatewiki'den gelenler de dahil
           olmak üzere çevirilere katkıda bulunan tüm kişileri görüntüleyebilirsiniz.
+        translators_desc_2: |
+          Biliyor muydunuz, iNaturalist %{x_people} kişi tarafından %{x_languages} dile çevrildi; bunların bazıları iNat kullanmıyor bile! İşte bu yıl %{website_link_tag}web sitesi%{link_tag_end}, %{iphone_link_tag}iPhone%{link_tag_end} ve %{android_link_tag}Android%{link_tag_end} uygulamalarımız, %{seek_link_tag}Seek%{link_tag_end} ve %{help_link_tag}iNatHelp%{link_tag_end} için çeviri eklemiş tüm harika çevirmenler ve çevirdikleri kelime sayıları.
         translators_desc_for_site: |
           %{site_name}'in neredeyse tamamen %{x_people} tarafından
           çevrildiğini biliyor muydunuz?
@@ -7448,6 +7508,8 @@ tr:
           %{view_all_mobile_link_tag}mobil%{link_tag_end} kod depolarımızda,
           geçmiş yıllardan kişiler ve Translatewiki'den gelenler de dahil olmak
           üzere tüm dillerde çevirilere katkıda bulunan tüm kişileri görüntüleyebilirsiniz.
+        translators_desc_for_site_2: |
+          Biliyor muydunuz? %{site_name} neredeyse tamamen %{x_people} kişi tarafından çevrildi. İşte bu yıl %{website_link_tag}web sitesi%{link_tag_end}, iNaturalist %{iphone_link_tag}iPhone%{link_tag_end} ve %{android_link_tag}Android%{link_tag_end} uygulamaları, %{seek_link_tag}Seek%{link_tag_end} ve %{help_link_tag}iNatHelp%{link_tag_end} için çeviri eklemiş tüm harika çevirmenler ve çevirdikleri kelime sayıları.
         translators_prompt: |
           Çeviriye yardım etmek istiyorsanız, %{link_tag}nasıl yapıldığını öğrenin%{link_tag_end}.
         view_all_publications_count_caps2:
@@ -7490,6 +7552,7 @@ tr:
           "Yerleşim tipleri" bir türün şu anda bulunduğu yere nasıl geldiğini açıklar. Yabancı, insan faaliyeti nedeniyle geldiği anlamına gelirken, yerli insan yardımı olmadan geldiği anlamına gelir. Yöreye özgü türler yalnızca belirli bir yerde görülür ve başka hiçbir yerde görülmez.
         about_taxon_curators_desc: |
           Bu kişiler sınıflandırma ağacının bu sınıfı içeren kısmını yönetmektedir. Değişiklik yapmak istiyorsan, lütfen bu sınıfı işaretle veya bu kişilerden biriyle iletişime geç.
+        charts_caps: GRAFİKLER
         charts_help_seasonality: |
           Bu grafik, bu sınıfın aylara göre gruplandırılmış gözlem sayısını göstermektedir. Bunların gözlem sayıları olduğunu, dolayısıyla hem organizmanın ne zaman gözlemlenebileceğinden hem de insanların onları ne zaman gözlemleme zahmetine girdiğinden etkilendiğini unutma. Dolayısıyla, bir kuş mayıs ayında çok aktif görünebilir ancak bunun nedeni mayıs ayında kuş gözlemi yapan daha çok insanın daha sonraki aylarda bu türü görmezden gelme eğiliminde olması da olabilir. Benzer şekilde, haziran ayında ocak ayına göre daha çok yusufçuk görüyorsan, bu muhtemelen kuzey yarımkürede güney yarımküreye göre daha çok gözlemci olmasından kaynaklanmaktadır, yusufçukların haziran ayında daha aktif olmasından değil, bu yüzden bu tabloları değerlendirirken haritayı kontrol edin. Düşük sayıda gözlem ve/veya "Doğrulanabilir" ve "Araştırma Sınıfı" gözlem sayıları arasında büyük farklılıklar olduğunda bu çizelgelere şüpheyle yaklaşmak her zaman iyi bir fikirdir.
         charts_help_history: |
@@ -7518,6 +7581,7 @@ tr:
           "Leaves=Breaking Leaf Buds": Yaprak tomurcukları
           "Leaves=Green Leaves": Yeşil Yapraklar
           "Leaves=Colored Leaves": Renkli Yapraklar
+          "Leaves=No Live Leaves": Canlı Yaprak Yok
           "Life Stage=Egg": Yumurta
           "Life Stage=Larva": Larva
           "Life Stage=Juvenile": Olgunlaşmamış
@@ -7539,10 +7603,7 @@ tr:
         rare_desc: En az gözlemlenen tehdit altındaki sınıflar
         rare_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda en az gözlemlenen tehdit altındaki sınıflar
         site_curators_disabled_wikipedia_html: |
-          Site küratörleri göstermeyi devre dışı bıraktı <a href="%{url}">bu
-          Vikipedi'den içerik</a>. Sayfayı düzenleyerek yardımcı olabilirsiniz.
-          Vikipedi'yi bu takson için uygun hale getirmek veya bunu işaretleyerek
-          site küratörlerinin dikkatine sunmak için takson.
+          Site küratörleri, <a href="%{url}">Vikipedi'den gelen bu içeriğin</a> gösterilmesini devre dışı bıraktı. Bu sınıfa uygun hâle getirmek için Vikipedi sayfasını düzenleyerek yardımcı olabilir ya da bu sınıfı işaretleyerek site küratörlerinin dikkatine sunabilirsin.
         trending_desc: Geçen ayda en çok gözlemlenen sınıflar
         trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen sınıflar
         wanted_desc: Bu sınıfta yer alan henüz gözlemlenmemiş türler.
@@ -7563,6 +7624,10 @@ tr:
       taxon:
         about_html: |
           Sınıfların birçok ortak adı olabilir. Küresel olarak bir varsayılan ortak adı destekliyoruz, bu adı burada listenin en üstüne sürükleyerek değiştirebilirsin. Ayrıca adı düzenleyip bir yer ekleyerek farklı yerlerde varsayılan adlar belirleyebilirsin ancak lütfen bunu yalnızca farklı yerlerde çakışan adlar olduğunda yap.
+    terminology:
+      index:
+        inaturalist_employs_a_variety_of_terms: |
+          iNaturalist, hizmetin çeşitli yönlerini tanımlamak için benzersiz terimler kullanır. Burada, bazılarını ve tanımlarını referans olması için toplamaya çalıştık.
     users:
       dashboard:
         taxon_change_desc: |
@@ -8053,9 +8118,9 @@ tr:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H.%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b %I:%M %p'
+      short: '%-d %b %H:%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short_with_year: '%-d %b %Y %I:%M %p'
+      short_with_year: "%-d %b %Y %H:%M\n\n"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
@@ -8096,7 +8161,7 @@ tr:
       announcement:
         created_at: 'Oluşturuldu:'
         #Whether or not the announcement can be dismissed by people who see it
-        dismissible: Görevden alınabilir
+        dismissible: Kapatılabilir
         updated_at: 'Güncellendi:'
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8108,12 +8173,26 @@ tr:
         prefers_target_unconfirmed_users: Doğrulanmamış kullanıcıları hedefle
         prefers_exclude_monthly_supporters: Aylık destekçileri hariç tut
         clients: İstemciler
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Bağışçı başlangıç tarihini hariç tut
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Bağışçı bitiş tarihini hariç tut
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
-        exclude_observation_oauth_application_ids: Gözlemcileri uygulamalardan dışlama
+        exclude_observation_oauth_application_ids: Uygulamalardan gelen gözlemcileri hariç tut
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Bağışçı başlangıç tarihini dahil et
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Bağışçı bitiş tarihini dahil et
         #iNat client applications that the user must have made an observation
         #with to see the announcement
-        include_observation_oauth_application_ids: Uygulamalardan gözlemcileri dahil etme
+        include_observation_oauth_application_ids: Uygulamalardan gelen gözlemcileri dahil et
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP Ülkeleri
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: En son gözlem başlangıç tarihi
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: En son gözlem bitiş tarihi
         #Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Azami tanımlama
         #Minimum number of identifications the viewer must have added for others to see the announcement
@@ -8122,8 +8201,16 @@ tr:
         max_observations: Azami gözlem
         #Minimum number of observations the viewer must have added for others to see the announcement
         min_observations: Asgari gözlem
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Gösterim Yeri
         #Preference for an announcement that is only shown to the user who created the announcement
-        target_creator: Hedef oluşturucu (test için)
+        target_creator: Hedef oluşturma (test için)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Giriş yapanları hedefleme
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: En erken kullanıcı kayıt tarihi
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: En geç kullanıcı kayıt tarihi
       assessment:
         description: Açıklama
       assessment_section:
@@ -8370,6 +8457,13 @@ tr:
               #placement". Only site admins will see this text, so it's ok
               #if it's not translated perfectly.
               must_be_valid_for_specified_placement: belirtilen yerleşim için geçerli olmalıdır
+            target_group_partition:
+              #Error message shown when an Announcement has a value in the
+              #target_group_partition attribute that is not a valid partition in the
+              #annoumcement's target group type. This might be used in a
+              #sentence like "Target group partition must be valid for specified target group".
+              #Only site admins will see this text, so it's ok if it's not translated perfectly.
+              must_be_valid_for_specified_target_group: belirtilen hedef grup için geçerli olmalıdır
         application:
           attributes:
             redirect_uri:
@@ -8404,9 +8498,17 @@ tr:
             action:
               not_supported_for_this_kind_of_content: bu tür içerikler için desteklenmez
             base:
+              #Error saying that the private attribute of a ModeratorAction can only be applied
+              #if the moderated resource is also marked as hidden
+              only_hidden_content_can_be_private: Sadece gizli içerik özel olabilir
+              #Error saying that only curator and admin users are allowed to create
+              #a ModeratorAction with action Hide
+              only_staff_and_curators_can_hide: İçeriği yalnızca personel ve küratörler gizleyebilir
               only_staff_and_hiding_curators_can_unhide: Yalnızca içeriği gizleyen personel ve küratörler gizliliği kaldırabilir
               #Error saying that only staff can rename
               only_staff_can_rename: Yalnızca personel yeniden adlandırabilir
+              #Error saying that only staff can set resources as private
+              only_staff_can_make_private: İçeriği yalnızca personel özel olarak işaretleyebilir
               staff_cannot_be_suspended: Personel askıya alınamaz
             user_id:
               must_be_a_curator: küratör olmalı
@@ -8418,6 +8520,10 @@ tr:
           attributes:
             base:
               coordinates_cannot_be_zero_zero: "koordinatlar 0,0 olamaz"
+              #Message that might be displayed if an observation fails to
+              #save for an unknown reason, generally indicates a bug
+              cannot_be_saved_for_unknown_reason: |
+                bilinmeyen bir nedenle kaydedilemedi, lütfen ekran görüntüsü alın ve personele bildirin
             observed_on:
               cannot_be_greater_than_date_created: |
                 gözlemin eklendiği tarihten daha büyük olamaz
@@ -8425,7 +8531,7 @@ tr:
               must_be_within_130_years: son 130 yıl içinde olmalı
               #Error message when user attempts to enter an observation date
               #like "2020 or "2020-05"
-              must_be_a_single_day: Bir aralık değil, tek bir gün olmalıdır
+              must_be_a_single_day: bir aralık değil, tek bir gün olmalıdır
         observation_field_value:
           attributes:
             value:
@@ -8451,6 +8557,10 @@ tr:
             place_geometry:
               is_too_large_to_edit: düzenlemek için çok büyük
               is_too_large_to_import: içe aktarmak için çok büyük
+              #Error message when a query run during place geometry upload times out. The query
+              #will time out if the geometry covers a large area or is very complicated, containing
+              #a lot of coordinates, making the query computationally intensive
+              is_too_large_or_complicated: zaman aşımından önce işlenmesi için çok büyük veya karmaşık
               contains_too_many_observations: içe aktarılacak çok fazla gözlem var
               cannot_be_blank: boş bırakılamaz
               invalid_point: geçersiz bir noktaya sahiptir, örneğin boylam 180'den büyük veya enlem -90'dan küçük
@@ -8479,7 +8589,7 @@ tr:
         project_fave:
           attributes:
             base:
-              only_seven_projects: Sadece 7 projeyi favoriye ayırabilirsiniz
+              only_seven_projects: En fazla 7 projeyi favorilere ekleyebilirsin
         project_observation:
           attributes:
             base:
@@ -8536,7 +8646,7 @@ tr:
           attributes:
             base:
               #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
-              life_taxon_cannot_be_involved: Yaşam taksonu, takson değişikliklerine dahil olamaz
+              life_taxon_cannot_be_involved: Yaşam sınıfı, sınıf değiştirmelerde yer alamaz.
         taxon_name:
           attributes:
             lexicon:
@@ -8559,6 +8669,10 @@ tr:
             taxon:
               too_many_photos: |
                 %{max} fotoğraftan fazlası olamaz
+            photo:
+              #validation failure when trying to create a taxon photo from a flagged photo
+              cannot_have_unresolved_flags: |
+                çözülmemiş işaretler olamaz
         taxon_range:
           attributes:
             iucn_relationship:
@@ -8578,7 +8692,7 @@ tr:
             login:
               must_begin_with_a_letter: |
                 bir harf ile başlamalı, boşluk içermemeli ve yalnızca harfler, sayılar, kısa çizgiler ve alt çizgiler kullanılmalı
-              domain_is_not_supported: Etki alanı desteklenmiyor
+              domain_is_not_supported: alan adı desteklenmiyor
         user_block:
           attributes:
             base:
