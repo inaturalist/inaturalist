@@ -4897,11 +4897,11 @@ hu:
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonegyesítést hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxonszétválasztást hajtott végre"
+  user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonszétválasztást hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_stage_affecting_taxon2: "%{user} egy %{taxon} taxont érintő taxonmódosítást hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_swap_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxoncserét hajtott végre"
+  user_committed_taxon_swap_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxoncserét hajtott végre"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   user_faved_an_observation_by_you: "%{user} kedvelte ezt a megfigyelésedet"
