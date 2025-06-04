@@ -815,6 +815,15 @@ class Place < ApplicationRecord
     # will index all the observations that used to be in mergee
     merge_has_many_associations( mergee )
 
+    # merge project observation rules
+    ProjectObservationRule.where( operand: mergee ).each do | rule |
+      next if ProjectObservationRule.where(
+        operator: rule.operator, ruler: rule.ruler, operand: self
+      ).exists?
+
+      rule.update( operand: self )
+    end
+
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around
     mergee.reload
     mergee.destroy
