@@ -2990,6 +2990,7 @@ hu:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNS
   observation_fields: Adatmezők
+  observation_fields_for_projects: Projektek megfigyelési mezői
   observation_fields_are_additional: Az adatmezők kiegészítő információkkal szolgálhatnak a megfigyelésekhez.
   observation_fields_by_preferences_description: |
     Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
@@ -4894,7 +4895,7 @@ hu:
   #Notification about a taxon change. @vow_or_con works on %{taxon}
   user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon} taxont érintő taxontörlést hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
-  user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxonegyesítést hajtott végre"
+  user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonegyesítést hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
   user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxon} taxonokat érintő taxonszétválasztást hajtott végre"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
@@ -5043,6 +5044,8 @@ hu:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
+  we_also_support3: |
+    Támogatjuk a fényképek importálását <a href="http://flickr.com">Flickről</a> is.
   we_can_only_understand_csv_in: Csak a következő formátumú CSV-t értjük meg
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
   we_have_no_conservation_status_for_this_taxon: Nincs a természetvédelmi státuszra vonatkozó adatunk erről a taxonról
