@@ -10,7 +10,15 @@ class Subscription < ApplicationRecord
   #   subscription.resource.respond_to?( :user ) && subscription.resource.user.id == subscription.user_id
   # }
 
-  blockable_by lambda {|subscription| subscription.resource.try(:user_id) }
+  blockable_by proc {| subscription |
+    should_bypass_block = subscription.resource.is_a?( TaxonChange ) ||
+      ( subscription.resource.is_a?( Flag ) && subscription.resource.flaggable_type == "Taxon" )
+    if should_bypass_block
+      nil
+    else
+      subscription.resource.try( :user_id )
+    end
+  }
 
   after_save :clear_caches
   after_destroy :clear_caches

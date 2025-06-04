@@ -239,6 +239,16 @@ describe UserBlock do
         change = make_taxon_split( user: user )
         expect( build( :comment, user: blocked_user, parent: change ) ).to be_valid
       end
+
+      it "subscribe to a flag on a taxon by the user" do
+        flag = create :flag, user: user, flaggable: create( :taxon )
+        expect( build( :subscription, user: blocked_user, resource: flag ) ).to be_valid
+      end
+
+      it "subscribe to a taxon change by the user" do
+        change = make_taxon_split( user: user )
+        expect( build( :subscription, user: blocked_user, resource: change ) ).to be_valid
+      end
     end
   end
 end
