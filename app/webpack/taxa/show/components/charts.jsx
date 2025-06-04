@@ -215,6 +215,7 @@ class Charts extends React.Component {
       tipTitle = I18n.t( "relative_observations" );
     }
     const { seasonalityKeys } = this.props;
+    const currentMonth = ( new Date( ) ).getMonth( );
     return _.defaultsDeep( { }, this.defaultBBConfig( ), {
       data: {
         columns,
@@ -245,7 +246,7 @@ class Charts extends React.Component {
           `${tipTitle}: ${I18n.t( "date.month_names" )[d[0].index + 1]}`
         )
       },
-      // This adds a dotted line and a label if we ever want to do that instead of a region
+      // // This adds a dotted line and a label if we ever want to do that instead of a region
       // grid: {
       //   x: {
       //     lines: [
@@ -256,12 +257,12 @@ class Charts extends React.Component {
       //       }
       //     ]
       //   }
-      // },
+      // }
       regions: [
         {
           axis: "x",
-          start: 3.5,
-          end: 4.5
+          start: currentMonth - 0.5,
+          end: currentMonth + 0.5
         }
       ]
     } );
