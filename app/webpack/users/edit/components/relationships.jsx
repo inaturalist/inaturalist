@@ -185,18 +185,36 @@ const Relationships = ( {
                 } )
               }}
             />
-            <p>There are two situations where blocking does not prevent interaction:</p>
+            <p
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.block_desc_there_are_two_exceptions" )
+              }}
+            />
             <ol>
-              <li><p>comments on taxon flags created by you</p></li>
-              <li><p>comments on taxon changes created by you</p></li>
+              <li>
+                <p
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.block_desc_comments_on_taxon_flags" )
+                  }}
+                />
+              </li>
+              <li>
+                <p
+                  // eslint-disable-next-line react/no-danger
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t( "views.users.edit.block_desc_comments_on_taxon_changes" )
+                  }}
+                />
+              </li>
             </ol>
-            <p>
-
-              Unlike more personal forms of content like observations
-              and journal posts, taxa are shared in common among everyone.
-              Even people you can't get along with deserve to talk about
-              them.
-            </p>
+            <p
+              // eslint-disable-next-line react/no-danger
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "views.users.edit.block_desc_unlike_more_personal" )
+              }}
+            />
             <p
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{
