@@ -1951,6 +1951,52 @@ describe User do
     end
   end
 
+  describe "email_suppression_types=" do
+    let( :user ) { create :user }
+
+    before do
+      # Mock out SendgridService
+      asm_group_ids = EmailSuppression::GROUP_TYPES.each_with_object( {} ) do | type, memo |
+        memo[type] = memo.size + 1
+      end
+      allow( SendgridService ).to receive( :asm_group_ids ).and_return( asm_group_ids )
+      allow( SendgridService ).to receive( :post_group_suppression )
+      allow( SendgridService ).to receive( :delete_group_suppression )
+    end
+
+    it "creates new EmailSuppressions" do
+      expect( user.email_suppressions ).to be_blank
+      user.email_suppression_types = [EmailSuppression::DONATION_EMAILS]
+      user.reload
+      expect( user.email_suppressions ).not_to be_blank
+    end
+
+    it "makes Sendgrid API requests when creating new EmailSuppressions" do
+      expect( user.email_suppressions ).to be_blank
+      user.email_suppression_types = [EmailSuppression::DONATION_EMAILS]
+      user.reload
+      expect( SendgridService ).to have_received( :post_group_suppression )
+      expect( user.email_suppressions ).not_to be_blank
+    end
+
+    it "removes EmailSuppressions" do
+      create :email_suppression, user: user
+      expect( user.email_suppressions ).not_to be_blank
+      user.email_suppression_types = []
+      user.reload
+      expect( user.email_suppressions ).to be_blank
+    end
+
+    it "makes Sendgrid API requests when removing EmailSuppressions" do
+      create :email_suppression, user: user
+      expect( user.email_suppressions ).not_to be_blank
+      user.email_suppression_types = []
+      user.reload
+      expect( SendgridService ).to have_received( :delete_group_suppression )
+      expect( user.email_suppressions ).to be_blank
+    end
+  end
+
   protected
 
   def create_user( options = {} )

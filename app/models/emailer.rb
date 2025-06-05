@@ -18,6 +18,7 @@ class Emailer < ActionMailer::Base
     return if user.email.blank?
     return if user.prefers_no_email
     return if user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
+    return unless user.prefers_activity_email_notification?
 
     @user = user
     @grouped_updates = UpdateAction.group_and_sort(
@@ -43,6 +44,7 @@ class Emailer < ActionMailer::Base
     return if @user.email_suppressed_in_group?( EmailSuppression::TRANSACTIONAL_EMAILS )
     return if @message.from_user.suspended?
     return if ( fmc = @message.from_user_copy ) && fmc.flags.where( "resolver_id IS NULL" ).count.positive?
+    return unless user.prefers_message_email_notification?
 
     mail_with_defaults( to: @user.email, subject: "#{subject_prefix} #{@message.subject}" )
   end

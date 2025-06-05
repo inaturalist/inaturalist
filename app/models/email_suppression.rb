@@ -2,6 +2,7 @@
 
 class EmailSuppression < ApplicationRecord
   belongs_to :user
+
   # These are the names of sendgrid suppression groups specified on Sendgrid
   # The IDs of the suppression groups that we actually use when sending emails
   # are specified in config/config.yml.
@@ -42,27 +43,56 @@ class EmailSuppression < ApplicationRecord
     "<EmailSuppression #{id} #{suppression_type} />"
   end
 
+  def self.new_after_remote( attrs )
+    user = attrs[:user] || User.find_by_id( attrs[:user_id] )
+    email = attrs[:email] || user.email
+    asm_group_id = SendgridService.asm_group_ids[attrs[:suppression_type]]
+    SendgridService.post_group_suppression( email, asm_group_id )
+    new( attrs )
+  end
+
   def delete_url_for_group_type
     return nil unless sendgrid_api_available?
 
-    groups_resp = RestClient.get( "https://api.sendgrid.com/v3/asm/groups", SENDGRID_REST_OPTS )
-    group_ids = JSON.parse( groups_resp ).each_with_object( {} ) do | group, memo |
-      memo[group["name"].parameterize.underscore] = group["id"]
-    end
-    "https://api.sendgrid.com/v3/asm/groups/#{group_ids[suppression_type]}/suppressions/#{email}"
+    group_id = SendgridService.asm_group_ids[suppression_type]
+    "https://api.sendgrid.com/v3/asm/groups/#{group_id}/suppressions/#{email}"
   end
 
   def destroy_remote
     return nil unless sendgrid_api_available?
 
-    delete_url = if EmailSuppression::GROUP_TYPES.include?( suppression_type )
-      delete_url_for_group_type
-    elsif suppression_type == UNSUBSCRIBES
-      "https://api.sendgrid.com/v3/asm/suppressions/global/#{email}"
-    else
-      "https://api.sendgrid.com/v3/suppression/#{suppression_type}/#{email}"
+    if EmailSuppression::GROUP_TYPES.include?( suppression_type )
+      asm_group_id = SendgridService.asm_group_ids[suppression_type]
+      SendgridService.delete_group_suppression( email, asm_group_id )
+      return
     end
-    RestClient.delete( delete_url, SENDGRID_REST_OPTS )
+
+    if suppression_type == UNSUBSCRIBES
+      SendgridService.delete_global_suppression( email )
+      return
+    end
+
+    if suppression_type == BOUNCES
+      SendgridService.delete_bounce( email )
+      return
+    end
+
+    if suppression_type == SPAM_REPORTS
+      SendgridService.delete_spam_report( email )
+      return
+    end
+
+    if suppression_type == BLOCKS
+      SendgridService.delete_block( email )
+      return
+    end
+
+    if suppression_type == INVALID_EMAILS
+      SendgridService.delete_invalid_email( email )
+      return
+    end
+
+    raise "We don't know how to delete a suppression of type #{suppression_type}"
   end
 
   def self.destroy_for_email( email, options = {} )

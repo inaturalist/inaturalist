@@ -1294,6 +1294,7 @@ class UsersController < ApplicationController
       :preferred_photo_license,
       :preferred_project_addition_by,
       :preferred_sound_license,
+      :prefers_activity_email_notification,
       :prefers_automatic_taxonomic_changes,
       :prefers_captive_obs_maps,
       :prefers_comment_email_notification,
@@ -1330,6 +1331,7 @@ class UsersController < ApplicationController
       :time_zone,
       # FYI this attribute gets submitted as an array, and arrays won't be
       # permitted unless allowed like this
+      email_suppression_types: [],
       faved_project_ids: []
     )
   end

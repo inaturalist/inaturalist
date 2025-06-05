@@ -36,6 +36,7 @@ class User < ApplicationRecord
     :incognito_mode
 
   # Email notification preferences
+  preference :activity_email_notification, :boolean, default: true
   preference :comment_email_notification, :boolean, default: true
   preference :identification_email_notification, :boolean, default: true
   preference :message_email_notification, :boolean, default: true
@@ -1894,6 +1895,31 @@ class User < ApplicationRecord
       fave ||= project_faves.build( project_id: project_id )
       fave.position = position
       fave.save!
+    end
+  end
+
+  # TODO not sure how i feel about making the api requests here. if sendgrid
+  # is down for some reason or our api credentials stop working, that could
+  # cause problems with updating user accounts. Alternatively, we could do
+  # this in lifeycle callbacks in EmailSuppression, though that might lead to
+  # some redundant API calls
+  def email_suppression_types=( types )
+    if types.blank?
+      EmailSuppression.where( user_id: id ).all.each do | suppression |
+        suppression.destroy_remote
+        suppression.destroy!
+      end
+    else
+      EmailSuppression.where( user_id: id ).where( "suppression_type NOT IN (?)", types ).all.each do | suppression |
+        suppression.destroy_remote
+        suppression.destroy!
+      end
+    end
+
+    types.each do | type |
+      suppression = email_suppressions.detect {| existing | existing.suppression_type == type }
+      suppression ||= EmailSuppression.new_after_remote( user: self, suppression_type: type )
+      suppression.save!
     end
   end
 end
