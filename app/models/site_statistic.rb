@@ -311,6 +311,13 @@ class SiteStatistic < ApplicationRecord
               lte: at_time
             }
           }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: { field: "taxon_change" }
+            }
+          }
         }
       ],
       aggregate: {
