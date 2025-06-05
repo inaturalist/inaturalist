@@ -22,7 +22,7 @@ export function setFavoriteProjects( projects ) {
 
 export function fetchFavoriteProjects( userArg ) {
   return function ( dispatch, getState ) {
-    const user = userArg || getState( ).profile;
+    const user = userArg || getState( ).userSettings;
     if ( !user.faved_project_ids || Number( user.faved_project_ids ) === 0 ) {
       return dispatch( setFavoriteProjects( [] ) );
     }

@@ -42,11 +42,86 @@ fil:
   x_matching_taxa_html:
     one: '<span class="count">%{count}</span> tumugmang taxon'
     other: '<span class="count">%{count}</span> (na) tumugmang taxon'
+  #Label for an option to show any place
+  any_place: Anumang
+  confirming_ids: Pagkumpirma ng mga ID
+  confirming_ids_description: |
+    Kung i-off mo ito, hindi ka na aabisuhan tungkol sa mga ID na sumasang-ayon
+    Maliban na lang kung may mga karagdagang komento sila.
+  curator_coordinate_access: Pag-access sa Coordinate ng Curator
+  curator_coordinate_access_desc: |
+    Ang pag-access sa coordinate ng curator para sa mga tradisyunal na proyekto ay nakasalalay sa kung sino ang nagdagdag
+    Ang obserbasyon sa proyekto. Ito ay lamang ang default na setting para sa
+    obserbasyon sa mga proyekto. Maaari ring piliin ng mga tagamasid na baguhin ito para sa
+    Mga indibidwal na obserbasyon.
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     Mangyaring i click ang link sa ibaba upang kumpirmahin ang iyong email address. Kung hindi mo kumpirmahin ang iyong email
     address, hindi ka magagawang upang makihalubilo sa iba pang mga gumagamit 'nilalaman.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Hindi pagkakasundo
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Ipakita ang mga obserbasyon na may hindi magkasundo na pagkakakilanlan
+  #Title for a page to edit an announcement
+  editing_announcement_x: Anunsyo sa pag-edit %{id}
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Mga ID ng Infraspecies
+  #Adjectival phrase describing state of being logged in
+  logged_in: Email Address *
+  #Adjectival phrase describing state of being logged out
+  logged_out: Email Address *
+  #Label for a button or section that shows additional options
+  more_options: Higit pang mga Pagpipilian
+  #A user who is not a curator
+  non_curator: Hindi tagapangasiwa
+  #A user who does not admin any projects
+  non_project_admin: Admin ng di-proyekto
+  observation_fields_for_projects: Mga patlang ng pagmamasid para sa mga proyekto
+  #A user who admin's a project
+  project_admin: Admin ng proyekto
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Genus / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Species / Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subspecies / Iba't-ibang / Anyo
+  user_trusts_this_project_when_added_by_any: |
+    Pinagkakatiwalaan ng gumagamit ang mga curator ng proyekto na may mga nakatagong coordinate ng mga obserbasyon na idinagdag
+    sa proyekto ng sinuman.
+  user_trusts_this_project_when_added_by_observer: |
+    Pinagkakatiwalaan ng gumagamit ang mga curator ng proyekto na may mga nakatagong coordinate ng mga obserbasyon na idinagdag
+    sa proyekto ng tagamasid.
+  user_trusts_this_project_when_added_by_none: |
+    Hindi pinagkakatiwalaan ng user ang mga curator ng proyekto na may mga nakatagong coordinate.
+  we_also_support3: |
+    Sinusuportahan din namin ang pag-import ng mga larawan mula sa <a href="http://flickr.com">Flickr</a>.
   views:
+    announcements:
+      locales_desc: |
+        CMD- o SHIFT-click upang pumili ng maramihan. Piliin ang "Lahat" o Hindi Gawin
+        Ipapakita ng isang pagpipilian ang anunsyo sa lahat ng mga gumagamit anuman ang
+        lokal. Ang pagpili ng wika na walang rehiyon ay *hindi* target
+        Mga lugar na may mga rehiyon, halimbawa, kung pipiliin mo ang Ingles, hindi ito lilitaw
+        Para sa mga taong pumili ng Ingles (UK).
+      clients_desc: |
+        CMD- o SHIFT-click upang pumili ng maramihan. Piliin ang "Lahat" o Hindi Gawin
+        Ipapakita ng isang pagpipilian ang anunsyo sa lahat ng mga gumagamit anuman ang
+        kliyente.
+      end_desc: |
+        Oras sa time zone ng iyong account na titigil ang anunsyo na ito
+        lumilitaw. Nalalapat sa iba't ibang time zone, kaya hindi na makakakita ang lahat
+        Ito ay kasabay nito, hindi may kaugnayan sa kanilang lokal na oras.
+      observation_oauth_application_ids_desc: |
+        CMD- o SHIFT-click upang pumili ng maramihan. Piliin ang "Lahat" o Hindi Gawin
+        Ipapakita ng isang pagpipilian ang anunsyo sa lahat ng mga gumagamit anuman ang
+        app.
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Mag click dito upang muling magpadala ng isang email ng kumpirmasyon
       #message displayed after users trigger sending a email to confirm their email address
@@ -72,6 +147,11 @@ fil:
       tips_check_email_filters: Suriin para sa anumang mga filter na ginawa mo na maaaring alisin ang aming mga email mula sa iyong inbox #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Suriin ang iyong spam folder
       your_site_account_has_no_email: Ang iyong %{site_name} account ay walang email address na nauugnay dito.
+    guides:
+      index:
+        funding2_html: |
+          Ang pondo para sa pagbuo ng mga gabay ay ibinibigay sa pamamagitan ng
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -94,6 +174,36 @@ fil:
         significant: true
         strip_insignificant_zeros: true
   activerecord:
+    attributes:
+      announcement:
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Ibukod ang mga tagamasid mula sa mga app
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Isama ang mga tagamasid mula sa mga app
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Tagalikha ng target (para sa pagsubok)
+      user:
+        faved_project_ids: Mga paboritong proyekto
     errors:
       messages:
+        must_look_like_an_email_address: Dapat ay mukhang isang email address
         requires_privilege_interaction: dapat may confirmed email address para magawa yan
+      models:
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: 7 Mga Proyekto Lamang ang Maaari Mong Gawin
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: Hindi maaaring isama ang higit sa 7 mga proyekto
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: dapat lahat ay umiiral
+            login:
+              domain_is_not_supported: Hindi suportado ang domain

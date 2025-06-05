@@ -29,6 +29,12 @@ class ExifMetadata
     storage_serial_number
   ].freeze
 
+  EXIFTOOL_XMP_TAGS = %i[
+    description
+    subject
+    title
+  ].freeze
+
   attr_accessor :path, :type
   attr_reader :metadata
 
@@ -51,6 +57,8 @@ class ExifMetadata
       extract_jpg
     when /png/i
       extract_png
+    when /hei[cf]/i
+      extract_other
     end
     metadata.except( *REJECTED_TAGS )
   rescue Errno::ENOENT, Exiftool::ExiftoolNotInstalled, Exiftool::NoSuchFile, Exiftool::NotAFile => e
@@ -78,6 +86,27 @@ class ExifMetadata
     map_png_dates
     map_png_chunks
     metadata.slice!( *EXIFR::TIFF::TAGS ) # Only tags in existing implementation
+  end
+
+  def extract_other
+    exif = Exiftool.new( path )
+    return unless exif
+
+    self.metadata = exif.to_hash.slice( *EXIFR::TIFF::TAGS )
+    return unless exif.to_hash.keys.detect {| k | EXIFTOOL_XMP_TAGS.include?( k ) }
+
+    # If you use exiftool to add XMP:Subject to a photo, it gets read as
+    # `subject`, so we're putting that and similar attributes in the dc block
+    # similar to extract_xmp
+    metadata[:dc] ||= {}
+    EXIFTOOL_XMP_TAGS.each do | dc_attr |
+      if dc_attr == :subject
+        metadata[:dc][dc_attr] ||= []
+        metadata[:dc][dc_attr] += [exif[dc_attr]].flatten
+      else
+        metadata[:dc][dc_attr] = exif[dc_attr]
+      end
+    end
   end
 
   def extract_xmp( xmp )

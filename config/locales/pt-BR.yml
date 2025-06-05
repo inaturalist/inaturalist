@@ -288,6 +288,8 @@ pt-BR:
   add_a_new_change_group: Adicionar um novo Grupo de Mudanças
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Adicionar uma lista numerada
+  #Placeholder for a project autocomplete field
+  add_a_project: Adicionar um projeto
   add_a_single_observation: Adicione uma única observação.
   add_a_taxon: Adicionar um táxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1489,6 +1491,12 @@ pt-BR:
   curators_changed_for_x_html: "Administradores mudaram para %{x}"
   curators: Coordenadores
   curators_can_remove_observations_from: Coordenadores podem remover observações dos projetos e as identificações deles são apresentadas junto das observações dos projetos (em pontos específicos). Coordenadores também podem ver as coordenadas privadas ou contribuições ocultas neste projeto.
+  curator_coordinate_access: Acesso de Curador às Coordenadas
+  curator_coordinate_access_desc: |
+    O acesso às coordenadas pelo curador para projetos tradicionais depende de quem adicionou
+    a observação ao projeto. Esta é apenas a configuração padrão para as
+    observações nos projetos. Os observadores também podem optar por alterar isso para
+    observações individuais.
   curator_identification: Identificação do Administrador
   current_flags: Sinalizações Atuais
   #Label for a custom boundary for an observation search
@@ -1496,6 +1504,8 @@ pt-BR:
   custom_project_fields: Personalize os campos de projeto
   custom_project_was_successfully_created: O Projeto Personalizado foi criado com sucesso.
   custom_project_was_successfully_updated: Projeto Personalizado foi atualizado com sucesso.
+  #Button to customize projects that appear in the header
+  customize__projects: Personalizar
   customize_location: Personalizar Localização
   darr_apply_darr: "&darr; Aplicar &darr;"
   daily_users: Usuários diários
@@ -1704,6 +1714,11 @@ pt-BR:
   disable_comments: Desativar comentários
   disable_comments_desc: Impedir que pessoas adicionem novos comentários
   disagree_: Não concordo
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Desacordos
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Mostrar observações com identificações discordantes
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Desconectar
@@ -1946,6 +1961,12 @@ pt-BR:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
   Family: Família
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Projetos Favoritos
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Escolha até sete projetos que aparecem como links no cabeçalho. Atualizações
+    aparecerão após recarregar a página.
   favorite_taxa: Táxons favoritos
   favorites: "Favoritos"
   feature_this_project_: "Apresentar este projeto"
@@ -2324,6 +2345,8 @@ pt-BR:
   inaturalist_global_year_in_review: "A Revisão do Ano de %{year} do iNaturalist global"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist é uma organização independente sem fins lucrativos, com isenção de impostos conforme 501(c)(3), com sede nos Estados Unidos da América (Tax ID: 92-1296468)
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist atualizou a identificação sugerida por %{user}
   computer_vision_suggestion: Sugestão de visão por computador
   computer_vision_suggestion_desc: |
     Visão computacional é o processo de ensinar computadores a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão computacional focados em fotos da comunidade para fornecer sugestões de identificação, como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa adicionou um ID usando uma dessas ferramentas.
@@ -2434,6 +2457,8 @@ pt-BR:
   internal_taxon_rank: Classificação do táxon interno
   introduced: Introduzido
   introduced_in_place: "Introduzido em %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Data inválida
   invitation: Convite
   invite: convidar
   invite_people: Convide pessoas
@@ -2682,7 +2707,6 @@ pt-BR:
   #a noun.
   link_to_authorization_code: Link para o código de autorização
   link_your_flickr_account: Conecte sua conta do Flickr
-  link_your_google_account: Vincule sua conta do Google
   linked_flickr: "Sua conta %{site_name} já está vinculada à sua conta do Flickr."
   linked_flickr_automatically: "Saiba também que se você entrar no %{site_name} através do Flickr, nós iremos automaticamente re-conectar sua conta do %{site_name} e do Flickr. Parece rasoável que se você utiliza o Flickr, você irá desejar importar suas fotos publicadas por lá, correto?"
   linked_flickr_description: "Manter sua conta %{site_name} conectada ao seu perfil do Flickr permite que você adicione múltiplas fotos nas suas observações. Claro que a qualquer momento você pode encerrar a conexão entre %{site_name} e o Flickr, nós não impedimos isto, você somente não poderá adicionar fotos. Algumas vezes isto pode ser para melhorar algo, como por exemplo se você desejar criar uma nova conta no Flickr que você quer conectar com %{site_name}."
@@ -3493,6 +3517,7 @@ pt-BR:
   observation_field_type_taxon: Táxon
   observation_field_type_dna: DNA
   observation_fields: Campos de Observação
+  observation_fields_for_projects: Campos de Observação para Projetos
   observation_fields_are_additional: Campos de Observação são dados adicionais que podem ser somados às observações.
   observation_fields_by_preferences_description: |
     Campos de observação são como marcações, com exceção de que qualquer pessoa pode adicionar eles em suas observações padrão. Mude isto se você prefere que somente você faça isto, ou somente os coordenadores do site.
@@ -4326,6 +4351,9 @@ pt-BR:
   processing3p: "Processando…"
   profile: Perfil
   profile_picture: Imagem de Perfil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Tipo de arquivo de Imagem de Perfil
   profile_visibility_desc: |
     Em um esforço para manter o spam fora de %{site_name}, perfis de usuário são apenas
     publicamente visível após um usuário ter contribuído com vários Graus de Pesquisa
@@ -4424,6 +4452,16 @@ pt-BR:
   range: Área de Distribuição
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Classificação
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Gênero / Gênerohíbrido
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Espécie / Híbrido
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subespécie / Variedade / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5690,7 +5728,6 @@ pt-BR:
   unfollow_observation: Deixar de seguir a observação
   #Text for a button to stop following updates from a user
   unfollow_user: Deixar de seguir o usuário
-  unlink_your_google_account: Desvincular a sua conta Google
   unlink_your_flickr_account: "Desvincule sua conta do Flickr"
   unmute: Reativar
   updates_notification_email_subject: "%{prefix} Novas atualizações %{date}"
@@ -5710,8 +5747,19 @@ pt-BR:
   upcoming_bioblitzes: Próximas bioblitz
   update: Atualizar
   update_existing_observations_with_new_license: Atualizar as observações existentes com uma nova licença escolhida
+  update_existing_observations_with_new_license_desc: |
+    Selecionar esta opção aplicará esta sua escolha de licença a todas as suas
+    observações existentes. Isso pode levar algumas horas se você tiver muitas
+    observações.
   update_existing_photos_with_new_license: Atualizar fotos existentes com a nova licença escolhida
+  update_existing_photos_with_new_license_desc: |
+    Selecionar esta opção aplicará esta sua escolha de licença a todas as suas
+    fotos existentes. Isso pode levar algumas horas se você tiver muitas
+    fotos.
   update_existing_sounds_with_new_license: Atualizar sons existentes com a nova licença escolhida
+  update_existing_sounds_with_new_license_desc: |
+    Selecionar esta opção aplicará esta sua escolha de licença a todas os seus
+    áudios existentes. Isso pode levar algumas horas se você tiver muitos áudios.
   update_observations: Atualizar observações
   update_past: "Atualizar %{type} passado"
   update_photos: Atualizar fotos
@@ -5742,7 +5790,7 @@ pt-BR:
   uploader:
     errors:
       file_too_big: O arquivo deve ser menor que %{megabytes} MB
-      unsupported_file_type: Tipo de arquivo não suportado. Aceitamos JPG, PNG, GIF, WAV, AAC,MP3 e MP4 (somente áudio)
+      unsupported_file_type: Tipo de arquivo não suportado. São aceitos JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3, and MP4 (somente áudio)
     resize_tip: |
       Se os seus arquivos de fotos forem muito grandes, tente recortá-los até um máximo de 2048 por 2048 pixels. Isso acontecerá com todas as fotos no servidor de qualquer maneira, e vai fazer um carregamento mais rápido.
     tooltips:
@@ -5861,6 +5909,14 @@ pt-BR:
   user_trusts_this_project_for_taxon: |
     O usuário confia apenas neste projeto com coordenadas ocultas que foram obscurecidas
     por causa de táxons ameaçados.
+  user_trusts_this_project_when_added_by_any: |
+    O usuário confia nos curadores do projeto para coordenadas ocultas de observações adicionadas
+    ao projeto por qualquer pessoa.
+  user_trusts_this_project_when_added_by_observer: |
+    O usuário confia nos curadores do projeto para coordenadas ocultas de observações adicionadas
+    ao projeto pelo observador.
+  user_trusts_this_project_when_added_by_none: |
+    O usuário não confia nos curadores do projeto para coordenadas ocultas.
   user_trusts_you_with_their_private_coordinates: "%{user} confia suas coordenadas ocultadas a você"
   user_trusts_you_with_their_private_coordinates_desc: |
     O observador escolheu confiar em você com as coordenadas ocultadas de todas as suas observações.
@@ -6004,9 +6060,8 @@ pt-BR:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Procurado
   was_it_captive_cultivated?: "Era cultivada / mantida em cativeiro?"
-  we_also_support2: |
-    Também suportamos a importação de fotos do <a href="http://flickr.com">Flickr</a>
-    e <a href="http://photos.google.com">Fotos do Google</a>.
+  we_also_support3: |
+    Também oferecemos suporte à importação de fotos de <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Só podemos entender CSV no seguinte formato
   we_couldnt_find_a_user: Não podemos encontrar um usuário com este endereço de e-mail.
   we_couldnt_find_a_user_with_that_activation_code: "Nós não podemos encontrar um usuário com este código de ativação. Você deve já ter ativado sua conta, por favor tente entrar no sistema."
@@ -6654,8 +6709,9 @@ pt-BR:
       index:
         deprecated_banner: |
           Observe que a partir de janeiro de 2019, o recurso Guias é apresentado "como está"; enquanto não temos planos de excluí-lo, não planejamos desenvolvê-lo mais.
-        funding_html: |
-          Os recursos financeiros para o desenvolvimento destes Guias foram capitados graças ao apoio de <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          O financiamento para o desenvolvimento dos Guias foi fornecido por
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Guias oferecem informações sobre a biodiversidade mundial. Esteja você explorando a Amazônia ou apenas uma praça ao lado da sua casa (que pode na verdade ser tão importante quanto a Amazônia), Guias virtuais podem lhe ajudar a vislumbrar a incrível diversidade de vida presente em nosso planeta.
       edit:
@@ -7157,15 +7213,6 @@ pt-BR:
         geoprivacy_must_be_in_english: |
           A coluna de geoprivacidade deve estar em inglês e deve estar em branco ou ter
           valor de "obscurecido" ou "privado"
-        google_photos_notice_html: |
-          Em fevereiro de 2019, o Google mudou sua API, tornando impossível para nós acessarmos coordenadas de GPS, informações de licença, e quase qualquer
-          informação que poderíamos usar para adicionar uma identificação (como tags). Eles
-          também removeram a pesquisa por texto e a paginação numérica. Em cima disto, Eles requerem a todas contas conectadas a dar uma permissão adicional,
-          e antes que um terceiro possa solicitar esta permissão aos usuários a parte terceira precisa ser verificada. Nós estamos esperando a verificação, mas até lá, você não poderá importar fotos do Google.
-          Se nós formos aprovados, você poderá importar fotos, mas elas não incluirão nenhuma informações de localidade ou licença que você possa ver no Google Fotos. Você pode ler mais sobre isto em <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Baixando os arquivos originais e adicionando eles usando o <a
-          href="/observations/upload">Uploader</a> é a melhor solução alternativa.
         project_csv_template_notice_html: |
           Existe um arquivo modelo para este projeto que pode pode ajudá-lo com a estrutura do arquivo CSV. <a href="%{url}">Faça o download do arquivo modelo</a>
         soundcloud_notice_html: |
@@ -8217,6 +8264,10 @@ pt-BR:
         licensing_desc_html: |
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Tipo de arquivo não suportado. São aceitos JPG, PNG e GIF
         monthly_supporter_desc_html: |
           Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
           recebidos pela Academia de Ciências da Califórnia (United
@@ -8322,6 +8373,11 @@ pt-BR:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: O máximo de 3 léxicos de nomes comuns já foi adicionado
+        this_only_applies_to_traditional_projects2: |
+          Isso se aplica apenas a projetos tradicionais. Não é possível excluir observações
+          de projetos de coleção ou guarda-chuva, que são essencialmente pesquisas salvas.
+          Você pode ler mais em
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">aqui</a>.
       recent:
         about_recent_users: Sobre
         definitions_html: <dl> <dt>Provável Spam</dt> <dd> Usuário que provavelmente é um difusor de spam, o que significa que não possui observações ou identificações, mas possui uma descrição do perfil. </dd> <dt>Auto Spam</dt> <dd> Difusor de spam que foi automaticamente marcado como difusor de spam pelo sistema. </dd> <dt>Spam Manual</dt> <dd> Difusor de spam que foi marcado manualmente como difusor de spam por um curador do site. </dd> <dt>Falsos Positivos</dt> <dd> Usuários que foram marcados como difusores de spam cujas sinalizações foram resolvidas pelos curadores do site, já que não eram realmente difusores de spam. </dd> </dl>
@@ -8695,6 +8751,8 @@ pt-BR:
         min_observations: Mínimo de observações
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Posicionamento
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Criador do Target (para teste)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Destinatários logados
         #Earliest date the viewer can have signed up to see the announcement
@@ -8876,6 +8934,7 @@ pt-BR:
         show_for_descendent_taxa: Mostrar táxons descendentes
       user:
         email: E-mail
+        faved_project_ids: Projetos favoritos
         login: Nome de usuário
         name: Nome
         locale: Localização
@@ -8997,6 +9056,8 @@ pt-BR:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Somente a equipe e coordenadores podem ocultar conteúdo
               only_staff_and_hiding_curators_can_unhide: Apenas membros da equipe e coordenadores que ocultam conteúdo podem mostrá-lo
+              #Error saying that only staff can rename
+              only_staff_can_rename: Apenas equipe pode renomear
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Apenas membros da equipe podem definir conteúdo como privado
               staff_cannot_be_suspended: Funcionários do site não podem ser suspensos
@@ -9056,6 +9117,9 @@ pt-BR:
               invalid_point: tem um ponto inválido, por exemplo, longitude maior que 180 ou latitude menor que -90
               must_have_more_than_three_points: deve ter mais que 3 pontos
               polygon_with_less_than_four_points: tem um polígono com menos que 4 pontos
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: tem um polígono com área nula (todos os pontos são iguais)
         place_geometry:
           attributes:
             geom:
@@ -9073,6 +9137,10 @@ pt-BR:
             user:
               must_be_on_site_long_enough: |
                 Deve ter feito o registro há mais de 24 horas para publicar. Nós temos muitos casos de spam, e esta foi uma maneira que encontramos para lidar com isso. Você ainda pode salvar um rascunho, e se você voltar ao site em um dia, já poderá efetivar a publicação.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Você só pode favoritar 7 projetos
         project_observation:
           attributes:
             base:
@@ -9168,6 +9236,14 @@ pt-BR:
               already_has_a_range: já possui um mapa de distribuição
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: não pode incluir mais que 7 projetos
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: todos devem existir
             login:
               must_begin_with_a_letter: |
                 tem obrigatoriamente de começar por uma letra, sem conter espaços e usar só letras, números, traços e sublinhados

@@ -56,7 +56,7 @@ class Translators extends React.Component {
       } ),
       website_link_tag: `<a href='${window.location.origin}'>`,
       link_tag_end: "</a>",
-      iphone_link_tag: "<a href='https://itunes.apple.com/us/app/inaturalist/id421397028?mt=8'>",
+      iphone_link_tag: "<a href='https://itunes.apple.com/app/inaturalist/id6475737561'>",
       android_link_tag: "<a href='https://play.google.com/store/apps/details?id=org.inaturalist.android'>",
       seek_link_tag: "<a href='https://www.inaturalist.org/seek'>",
       help_link_tag: "<a href='https://help.inaturalist.org'>",

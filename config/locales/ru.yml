@@ -381,6 +381,8 @@ ru:
   add_a_new_change_group: Добавить новую группу изменений
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Добавить нумерованный список
+  #Placeholder for a project autocomplete field
+  add_a_project: Добавить проект
   add_a_single_observation: Добавить одиночное наблюдение.
   add_a_taxon: Добавить таксон
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1569,6 +1571,9 @@ ru:
   curators_changed_for_x_html: "Кураторы изменены для %{x}"
   curators: Кураторы
   curators_can_remove_observations_from: Кураторы могут удалять наблюдения из проекта, и их идентификации отображаются в наблюдениях в проектных представлениях. Кураторы также могут видеть истинные координаты конфиденциальных и скрытых наблюдений-вкладов в этот проект.
+  curator_coordinate_access: Доступ куратора к координатам
+  curator_coordinate_access_desc: |
+    Доступ куратора к координатам для традиционных проектов зависит от того, кто добавил наблюдение к проектам. Это просто настройка по умолчанию для наблюдения в проектах. Наблюдатели также могут изменить это значение для отдельных наблюдений.
   curator_identification: Идентификация, сделанная куратором
   current_flags: Текущие флаги
   #Label for a custom boundary for an observation search
@@ -1576,6 +1581,8 @@ ru:
   custom_project_fields: Пользовательские Поля Проекта
   custom_project_was_successfully_created: CustomProject был успешно создан.
   custom_project_was_successfully_updated: CustomProject был успешно обновлён.
+  #Button to customize projects that appear in the header
+  customize__projects: Настроить
   customize_location: Настройка местоположения
   darr_apply_darr: "&darr; Применить &darr;"
   daily_users: Пользователей за сутки
@@ -1778,6 +1785,11 @@ ru:
   disable_comments: Отключить комментарии
   disable_comments_desc: Запретить добавлять новые комментарии
   disagree_: Не согласен
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Несогласия
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Показать наблюдения, которые имеют несогласующиеся идентификации
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Отключиться
@@ -1981,6 +1993,12 @@ ru:
   exclude_projects: Исключить проекты
   exclude_taxa: Исключить таксоны
   exclude_users: Исключить пользователей
+  #Shows how many taxa have been excluded from an observation search
+  excluding_x_taxa:
+    one: Исключая таксон %{count}
+    few: Исключая %{count} таксонов
+    many: Исключая %{count} таксон
+    other: Исключая %{count} таксонов
   exclusion_filters: Фильтры исключений
   existing_flags: Существующие флаги
   exit_full_screen: "Выйти из полноэкранного режима"
@@ -2016,6 +2034,11 @@ ru:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Фавориты
   Family: Семейство
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Любимые проекты
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Выбрать до семи проектов, которые будут отображаться в виде ссылок в заголовке. Эти обновления появятся после перезагрузки страницы.
   favorite_taxa: Любимые таксоны
   favorites: "Фавориты"
   feature_this_project_: "Рекомендовать этот проект"
@@ -2386,6 +2409,8 @@ ru:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist - независимая 501(c)(3), не облагаемая налогами некоммерческая организация, базирующаяся в Соединенных Штатах Америки.
     Америка (налоговый идентификационный номер: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: В iNaturalist обновлена идентификация, предложенная %{user}
   computer_vision_suggestion: Предложение системы компьютерного зрения
   computer_vision_suggestion_desc: |
     Компьютерное зрение — это процесс обучения компьютеров распознаванию образов. Мы предоставляем инструменты, которые используют модели компьютерного зрения, обученные на фотографиях сообщества, предоставляя предложения по идентификации, таких как функции автодополнения и сравнения. Эта метка указывает на то, что человек добавил идентификацию с помощью одного из этих инструментов.
@@ -2497,6 +2522,8 @@ ru:
   internal_taxon_rank: Ранг внутреннего таксона
   introduced: Интродуцент
   introduced_in_place: "Интродуцирован в %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Неверная дата
   invitation: Приглашение
   invite: пригласить
   invite_people: Пригласить людей
@@ -2746,7 +2773,6 @@ ru:
   #a noun.
   link_to_authorization_code: Ссылка на код авторизации
   link_your_flickr_account: Привязать свою учётную запись Flickr
-  link_your_google_account: Привязать свою учётную запись Google
   linked_flickr: "Ваша учётная запись на сайте %{site_name} в настоящее время связана с вашей учётной записью Flickr."
   linked_flickr_automatically: "Кроме того, имейте в виду, что если вы войдете на сайт %{site_name} через Flickr, мы автоматически перепривяжем ваши учетные записи %{site_name} и Flickr. Кажется разумным, что если вы используете Flickr, вы захотите иметь возможность импортировать фото из Flickr, верно?"
   linked_flickr_description: "Привязка вашей учётной записи %{site_name} к учётной записи Flickr даёт возможность добавить несколько фото ваших наблюдений. Конечно, если вы хотите, чтобы сайт %{site_name} и Flickr не были связаны друг с другом, мы не можем вам препятствовать, но вы просто не сможете добавлять фото. Иногда это может быть нужно, как, например, в случае, если вы создаете новую учётную запись Flickr, которую хотите привязать к %{site_name}."
@@ -3547,6 +3573,7 @@ ru:
   observation_field_type_taxon: Таксон
   observation_field_type_dna: ДНК
   observation_fields: Поля наблюдения
+  observation_fields_for_projects: Поля наблюдения для проектов
   observation_fields_are_additional: Поля наблюдения - это дополнительные поля данных, которые могут быть добавлены к наблюдениям.
   observation_fields_by_preferences_description: |
     Поля наблюдения похожи на теги, за исключением того, что любой может добавить их в ваше наблюдение по умолчанию. Измените эту настройку, если вы хотите, чтобы только вы или кураторы сайта могли это делать.
@@ -4353,6 +4380,9 @@ ru:
   processing3p: "Обработка…"
   profile: Профиль
   profile_picture: Аватар
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Тип файла фото профиля
   profile_visibility_desc: |
     В целях защиты от спама в %{site_name} профили пользователей становятся общедоступными только после того, как пользователь предоставил несколько наблюдений исследовательского уровня.
   project: Проект
@@ -4441,6 +4471,16 @@ ru:
   range: Диапазон
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Ранг
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Род / Гибрид родов
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Вид / Гибрид
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Подвид / Разновидность / Форма
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5713,7 +5753,6 @@ ru:
   unfollow_observation: Отписаться от наблюдения
   #Text for a button to stop following updates from a user
   unfollow_user: Отписаться от пользователя
-  unlink_your_google_account: Отвязать ваш аккаунт Google
   unlink_your_flickr_account: "Отвязать свою учётную запись Flickr"
   unmute: Отмена игнорирования
   updates_notification_email_subject: "%{prefix} Новые обновления %{date}"
@@ -5733,8 +5772,14 @@ ru:
   upcoming_bioblitzes: Предстоящие биоблицы
   update: Обновить
   update_existing_observations_with_new_license: Обновить существующие наблюдения новыми вариантами лицензий
+  update_existing_observations_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим наблюдениям. Это может занять несколько часов, если у вас много наблюдений.
   update_existing_photos_with_new_license: Обновить существующие фото новыми вариантами лицензий
+  update_existing_photos_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим наблюдениям. Это может занять несколько часов, если у вас много наблюдений.
   update_existing_sounds_with_new_license: Обновить существующие звуки новыми вариантами лицензий
+  update_existing_sounds_with_new_license_desc: |
+    Выбор этого варианта приведёт к применению вашей новой лицензии ко всем вашим существующим аудионаблюдениям. Это может занять несколько часов, если у вас много аудионаблюдений.
   update_observations: Обновить наблюдения
   update_past: "Обновить предыдущие %{type}"
   update_photos: Обновить фото
@@ -5767,7 +5812,7 @@ ru:
   uploader:
     errors:
       file_too_big: Размер файла должен быть не более %{megabytes} Мб
-      unsupported_file_type: Данный тип файла не поддерживается. Допускаются расширения JPG, PNG, GIF, WAV, AAC, MP3, и MP4 (только для аудио)
+      unsupported_file_type: Данный тип файла не поддерживается. Поддерживаются типы JPG, PNG, GIF, WAV, AAC, MP3, и MP4 (только для аудио)
     resize_tip: |
       Если ваши фото слишком большие, попробуйте обрезать их до максимум 2048 на 2048 пикселей. Так или иначе, это будет сделано со всеми фото на сервере, и это ускорит загрузку.
     tooltips:
@@ -5890,6 +5935,12 @@ ru:
     Пользователь доверяет этому проекту со скрытыми координатами, которые были скрыты по какой-либо причине.
   user_trusts_this_project_for_taxon: |
     Пользователь доверяет этому проекту только те скрытые координаты, которые были скрыты из-за таксонов, подвергающимся угрозам.
+  user_trusts_this_project_when_added_by_any: |
+    Пользователь доверяет любым кураторам проекта скрытые координаты наблюдений, добавляемых в проект.
+  user_trusts_this_project_when_added_by_observer: |
+    Пользователь доверяет кураторам проекта скрытые координаты наблюдений, добавляемых к проекту.
+  user_trusts_this_project_when_added_by_none: |
+    Пользователь не доверяет кураторам проекта скрытые координаты.
   user_trusts_you_with_their_private_coordinates: "%{user} доверяет вам свои скрытые координаты"
   user_trusts_you_with_their_private_coordinates_desc: |
     Наблюдатель решил доверить вам скрытые координаты всех своих наблюдений.
@@ -6024,9 +6075,8 @@ ru:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Разыскиваемые
   was_it_captive_cultivated?: "Было ли оно в неволе / культивируемое?"
-  we_also_support2: |
-    Мы также поддерживаем импорт фото из <a href="http://flickr.com">Flickr</a>
-    и <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Мы также поддерживаем импорт фото из <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_couldnt_find_a_user: Мы не смогли найти пользователя с этим адресом электронной почты.
   we_couldnt_find_a_user_with_that_activation_code: "Мы не смогли найти пользователя с этим кодом активации. Возможно, вы уже активировали свою учётную запись, пожалуйста, попробуйте войти."
@@ -6673,8 +6723,9 @@ ru:
       index:
         deprecated_banner: |
           Обратите внимание, что по состоянию на январь 2019 года функционал «Руководства» представлен «как есть»; хотя у нас нет никаких планов по его удалению, мы не планируем его дальнейшее развитие.
-        funding_html: |
-          Финансирование разработки руководств было обеспечено <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Финансирование разработки Руководств осуществила
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Руководства помогают вам узнать о биоразнообразии во всем мире. Изучаете ли вы Серенгети или только свой местный парк (который может быть Серенгети), руководства могут помочь вам понять потрясающее многообразие нашей планеты.
       edit:
@@ -7190,10 +7241,6 @@ ru:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Столбец geoprivacy должен быть на английском языке и должен быть пустым или иметь значение "obscured" (скрытый) или "private" (конфиденциальный)
-        google_photos_notice_html: |
-          В феврале 2019 года Google изменил свой API, что сделало невозможным для нас доступ к координатам GPS, лицензионной информации и почти любой информации, которую мы могли бы использовать для добавления идентификации (например, тегов). Они также удалили текстовый поиск и нумерацию страниц. Кроме того, они потребовали, чтобы все подключенные учетные записи имели дополнительное разрешение, и прежде чем третья сторона может запросить это разрешение у пользователей, третья сторона должна быть проверена. Мы ждем проверки, но пока этого не произойдет, вы не сможете импортировать фотографии из Google.
-          Если мы получим одобрение, вы сможете импортировать фото, но они не будут содержать сведений о местоположении или лицензии, которые могут отображаться в Google фото. Прочесть об этом подробно вы можете здесь <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Наилучшая возможность сейчас - использовать <a href="/observations/upload">Загрузчик</a>.
         project_csv_template_notice_html: |
           Для этого проекта есть файл шаблона, который может помочь вам со структурой файла CSV.
           <a href="%{url}">Загрузить шаблон</a>
@@ -8161,6 +8208,10 @@ ru:
           </p>
         licensing_desc_html: |
           Лицензирование вашего контента дает любому законное право использовать его, не спрашивая вашего разрешения, если он соблюдает условия лицензии. Помимо этого, %{site_name} включает ваш контент, лицензированный Creative Commons, в регулярно обновляемый архив, создаваемый для отдельных партнерских организаций, заинтересованных в наших данных. Например, мы включаем записи с лицензиями No Copyright (CC0), Attribution (CC BY), and Attribution-NonCommercial (CC BY-NC)  в архив, который мы формируем для международной межправительственной организации <a href="http://www.gbif.org/">Глобальный информационный фонд по биоразнообразию</a> (GBIF), которая собирает и распространяет информацию о биоразнообразии со всего мира.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Тип файла не поддерживается. Допустимые типы JPG, PNG и GIF
         monthly_supporter_desc_html: |
           Ежемесячные спонсоры iNaturalist автоматически делают ежемесячные взносы в iNaturalist (Налоговое управление США, EIN 92-1296468) для поддержки некоммерческой деятельности сайтов iNaturalist и сети iNaturalist. <a href="%{url}">Нажмите здесь, чтобы стать ежемесячным спонсором</a>. Когда мы подтвердим вашу поддержку, вы сможете установить этот флажок, чтобы отобразить данный статус в своем профиле. Примечание: адреса электронной почты на Donor box и naturalist должны точно совпадать, чтобы мы могли подтвердить, что вы являетесь ежемесячным спонсором. Если они отличаются, измените один из них, чтобы они соответствовали друг другу.
         muting_desc_html: |
@@ -8248,6 +8299,10 @@ ru:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Уже добавлено максимальное число языков для народных названий - 3
+        this_only_applies_to_traditional_projects2: |
+          Это применимо только к традиционным проектам. Нельзя исключать наблюдения из коллекционных или зонтичных проектов, которые по сути являются сохраненными поисковыми запросами.
+          Подробнее об этом 
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">здесь</a>.
       recent:
         about_recent_users: Подробно
         definitions_html: <dl> <dt>Вероятно, спам</dt> <dd> Пользователь, который, вероятно, является спамером, что означает, что у него нет наблюдений или идентификаций, но у него есть описание профиля. </dd> <dt>Автомати</dt> <dd>ческий спам</dt> <dd> Спамер, автоматически помеченный системой как спамер. </dd> <dt>Ручной спам</dt> <dd>Спамер, который был вручную помечен куратором сайта как спамер. </dd> <dt>Ложное срабатывание</dt> <dd>Пользователи, которые были помечены как спамеры, но флаги были разрешены кураторами сайта, поскольку они на самом деле спамерами не были.</dd> </dl>
@@ -8836,6 +8891,7 @@ ru:
         show_for_descendent_taxa: Показать таксоны-потомки
       user:
         email: Электронная почта
+        faved_project_ids: Любимые проекты
         login: Имя пользователя
         name: Имя
         locale: Языковой стандарт
@@ -8972,6 +9028,8 @@ ru:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Только сотрудники и кураторы могут скрывать контент
               only_staff_and_hiding_curators_can_unhide: Только сотрудники и кураторы, которые блокируют контент, могут его разблокировать
+              #Error saying that only staff can rename
+              only_staff_can_rename: Только сотрудники могут переименовать
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Только сотрудники могут устанавливать контент как приватный
               staff_cannot_be_suspended: Работа сотрудников не может быть приостановлена
@@ -9029,6 +9087,9 @@ ru:
               invalid_point: содержит недопустимую точку, например, долгота больше 180 или широта меньше -90
               must_have_more_than_three_points: должно содержаться не менее 3 значений
               polygon_with_less_than_four_points: содержит многоугольник с количеством точек менее 4
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: является многоугольником без площади (все точки одинаковы)
         place_geometry:
           attributes:
             geom:
@@ -9046,6 +9107,10 @@ ru:
             user:
               must_be_on_site_long_enough: |
                 должны быть зарегистрированы более чем 24 часа назад для публикации. У нас много спамеров, и это своего рода обходной путь борьбы с ними. Вы можете сохранить черновик, и если вы всё ещё используете сайт день спустя, вы сможете опубликовать его.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Вы можете пометить как любимые только 7 проектов
         project_observation:
           attributes:
             base:
@@ -9137,6 +9202,14 @@ ru:
               already_has_a_range: уже имеет ареал
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: не может включать более 7 проектов
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: Должны существовать
             login:
               must_begin_with_a_letter: |
                 должно начинаться с буквы, не содержать пробелов и использовать только буквы, цифры, тире и символы подчеркивания

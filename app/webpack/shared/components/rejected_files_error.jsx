@@ -59,7 +59,7 @@ RejectedFilesError.propTypes = {
 
 RejectedFilesError.defaultProps = {
   rejectedFiles: [],
-  supportedFilesRegex: "gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp|amr|mp4",
+  supportedFilesRegex: "gif|png|jpe?g|heic|heif|wav|mpe?g|mp3|aac|3gpp|amr|mp4",
   unsupportedFileTypeMessage: I18n.t( "uploader.errors.unsupported_file_type" ),
   maxFileSizeInBytes: MAX_FILE_SIZE
 };

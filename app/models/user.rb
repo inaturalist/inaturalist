@@ -630,11 +630,6 @@ class User < ApplicationRecord
     end
     friendships.where( friend_id: user, trust: true ).exists?
   end
-  
-  def picasa_client
-    return nil unless (pa = has_provider_auth('google'))
-    @picasa_client ||= Picasa.new(pa.token)
-  end
 
   def facebook_api
     # As of Spring 2023 we can no longer access the Facebook API on behalf of users
@@ -648,10 +643,6 @@ class User < ApplicationRecord
 
   def facebook_token
     facebook_identity.try(:token)
-  end
-
-  def picasa_identity
-    @picasa_identity ||= has_provider_auth('google_oauth2')
   end
 
   def api_token
@@ -674,7 +665,17 @@ class User < ApplicationRecord
   end
 
   def update_observation_licenses
-    Observation.where( user_id: id ).update_all( license: preferred_observation_license, updated_at: Time.now )
+    if observations_count > 1000
+      observation_ids.in_groups_of( 1000 ).each do | ids |
+        Observation.
+          where( id: ids ).
+          update_all( license: preferred_observation_license, updated_at: Time.now )
+      end
+    else
+      Observation.
+        where( user_id: id ).
+        update_all( license: preferred_observation_license, updated_at: Time.now )
+    end
     index_observations
   end
 
@@ -692,8 +693,18 @@ class User < ApplicationRecord
     license_number = Photo.license_number_for_code( preferred_photo_license )
     return true unless license_number
 
-    Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
-      update_all( license: license_number, updated_at: Time.now )
+    if photos.count > 1000
+      photos.pluck( :id ).in_groups_of( 1000 ) do | ids |
+        Photo.
+          where( id: ids ).
+          where( "type != 'GoogleStreetViewPhoto'" ).
+          update_all( license: license_number, updated_at: Time.now )
+      end
+    else
+      Photo.where( "user_id = ? AND type != 'GoogleStreetViewPhoto'", id ).
+        update_all( license: license_number, updated_at: Time.now )
+    end
+
     index_observations
     User.enqueue_photo_bucket_moving_jobs( id )
   end
@@ -712,7 +723,13 @@ class User < ApplicationRecord
     license_number = Photo.license_number_for_code( preferred_sound_license )
     return true unless license_number
 
-    Sound.where( user_id: id ).update_all( license: license_number, updated_at: Time.now )
+    if sounds.count > 1000
+      sounds.pluck( :id ).in_groups_of( 1000 ) do | ids |
+        Sound.where( id: ids ).update_all( license: license_number, updated_at: Time.now )
+      end
+    else
+      Sound.where( user_id: id ).update_all( license: license_number, updated_at: Time.now )
+    end
     index_observations
   end
 
@@ -1594,8 +1611,8 @@ class User < ApplicationRecord
     "User #{login}"
   end
 
-  def subscribed_to?(resource)
-    subscriptions.where(resource: resource).exists?
+  def subscribed_to?( resource )
+    resource.try( :user_id ) == id || subscriptions.where( resource: resource ).exists?
   end
 
   def recent_observation_fields

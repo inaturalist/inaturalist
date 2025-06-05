@@ -21,11 +21,11 @@ const obsFields = {
 };
 
 const Content = ( {
-  profile,
   handleInputChange,
   handleCustomDropdownSelect,
   handleDisplayNames,
-  showModal
+  showModal,
+  userSettings
 } ) => {
   const iNatLicenses = iNaturalist.Licenses;
   const licenseList = ["cc0", "cc-by", "cc-by-nc", "cc-by-nc-sa", "cc-by-nc-nd", "cc-by-nd", "cc-by-sa", "c"];
@@ -38,7 +38,7 @@ const Content = ( {
           type="radio"
           value={button}
           name="preferred_project_addition_by"
-          checked={profile.preferred_project_addition_by === button}
+          checked={userSettings.preferred_project_addition_by === button}
           onChange={handleInputChange}
         />
         {radioButtons[button]}
@@ -68,14 +68,14 @@ const Content = ( {
         eventKey={code}
       >
         <LicenseImageRow license={license} />
-        {profile[name] === code && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+        {userSettings[name] === code && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
       </MenuItem>
     );
   } );
 
   const setDisplayName = ( ) => {
-    if ( profile.prefers_common_names ) {
-      if ( !profile.prefers_scientific_name_first ) {
+    if ( userSettings.prefers_common_names ) {
+      if ( !userSettings.prefers_scientific_name_first ) {
         return "prefers_common_names";
       }
       return "prefers_scientific_name_first";
@@ -149,7 +149,7 @@ const Content = ( {
               <DropdownButton
                 id="preferred_observation_license"
                 onSelect={e => handleCustomDropdownSelect( e, "preferred_observation_license" )}
-                title={showDefaultLicense( profile.preferred_observation_license )}
+                title={showDefaultLicense( userSettings.preferred_observation_license )}
                 noCaret
               >
                 {createLicenseList( "preferred_observation_license" )}
@@ -168,7 +168,7 @@ const Content = ( {
               <DropdownButton
                 id="preferred_photo_license"
                 onSelect={e => handleCustomDropdownSelect( e, "preferred_photo_license" )}
-                title={showDefaultLicense( profile.preferred_photo_license )}
+                title={showDefaultLicense( userSettings.preferred_photo_license )}
                 noCaret
               >
                 {createLicenseList( "preferred_photo_license" )}
@@ -187,7 +187,7 @@ const Content = ( {
               <DropdownButton
                 id="preferred_sound_license"
                 onSelect={e => handleCustomDropdownSelect( e, "preferred_sound_license" )}
-                title={showDefaultLicense( profile.preferred_sound_license )}
+                title={showDefaultLicense( userSettings.preferred_sound_license )}
                 noCaret
               >
                 {createLicenseList( "preferred_sound_license" )}
@@ -243,7 +243,7 @@ const Content = ( {
             <select
               className="form-control dropdown"
               id="preferred_observation_fields_by"
-              value={profile.preferred_observation_fields_by}
+              value={userSettings.preferred_observation_fields_by}
               name="preferred_observation_fields_by"
               onChange={handleInputChange}
             >
@@ -259,11 +259,11 @@ const Content = ( {
 };
 
 Content.propTypes = {
-  profile: PropTypes.object,
   handleInputChange: PropTypes.func,
   handleCustomDropdownSelect: PropTypes.func,
   handleDisplayNames: PropTypes.func,
-  showModal: PropTypes.func
+  showModal: PropTypes.func,
+  userSettings: PropTypes.object
 };
 
 export default Content;

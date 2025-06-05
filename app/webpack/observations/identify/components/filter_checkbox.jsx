@@ -9,6 +9,7 @@ import { isBlank } from "../../../shared/util";
 
 const FilterCheckbox = ( {
   checked,
+  className,
   defaultParams,
   disabled,
   label,
@@ -16,13 +17,14 @@ const FilterCheckbox = ( {
   param,
   params,
   tipText,
+  title,
   unchecked,
   updateSearchParams
 } ) => {
   const checkedVal = ( checked || true ).toString( );
   const vals = _.has( params, param ) ? params[param].toString( ).split( "," ) : [];
   const thisValChecked = vals.indexOf( checkedVal ) >= 0;
-  const cssClass = "FilterCheckbox checkbox";
+  const cssClass = `FilterCheckbox checkbox ${className}`;
   let labelClass = "";
   if ( params[param] !== defaultParams[param] && thisValChecked ) {
     labelClass += " filter-changed";
@@ -43,7 +45,7 @@ const FilterCheckbox = ( {
       className={cssClass}
       key={`filters-${param}-${label}`}
     >
-      <label className={labelClass}>
+      <label className={labelClass} title={title}>
         <input
           type="checkbox"
           checked={thisValChecked}
@@ -79,6 +81,7 @@ const FilterCheckbox = ( {
           <button
             type="button"
             className="btn btn-nostyle"
+            alt={I18n.t( "info" )}
           >
             <i className="fa fa-info-circle" />
           </button>
@@ -94,6 +97,7 @@ FilterCheckbox.propTypes = {
     PropTypes.string,
     PropTypes.number
   ] ),
+  className: PropTypes.string,
   defaultParams: PropTypes.object,
   disabled: PropTypes.bool,
   label: PropTypes.string,
@@ -105,6 +109,8 @@ FilterCheckbox.propTypes = {
   params: PropTypes.object,
   // Tooltip text
   tipText: PropTypes.string,
+  // Title attribute for the label element
+  title: PropTypes.string,
   // The param value when the box is NOT checked
   unchecked: PropTypes.oneOfType( [
     PropTypes.string,

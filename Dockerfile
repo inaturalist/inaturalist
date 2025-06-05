@@ -2,7 +2,17 @@ FROM ruby:3.3-bullseye
 
 ENV RAILS_ENV=development
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev imagemagick exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip openjdk-17-jdk
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client-13 libgeos-dev libgeos++-dev gdal-bin proj-bin libproj-dev exiftool ffmpeg libcurl4 libcurl4-openssl-dev zip openjdk-17-jdk
+
+RUN apt-get install -y libjpeg-dev libpng-dev libtiff-dev libwebp-dev libgif-dev libheif-dev libfreetype6-dev liblcms2-dev libxml2-dev libltdl-dev libde265-dev ghostscript imagemagick
+
+WORKDIR /tmp
+
+RUN apt-get update -qq && apt-get install -y build-essential cmake
+
+RUN git clone https://github.com/strukturag/libheif.git && cd libheif && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make && make install
+
+RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/aaa_libheif.conf && ldconfig
 
 RUN curl -sL https://deb.nodesource.com/setup_20.x | bash -\
   && apt-get update -qq && apt-get install -qq --no-install-recommends \

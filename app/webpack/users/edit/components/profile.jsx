@@ -15,38 +15,38 @@ const DESCRIPTION_WARNING_LENGTH = 8000;
 const MAX_DESCRIPTION_LENGTH = 10000;
 
 const Profile = ( {
-  profile,
   handleInputChange,
   handlePhotoUpload,
   onFileDrop,
   removePhoto,
   confirmResendConfirmation,
-  resendConfirmation
+  resendConfirmation,
+  userSettings
 } ) => {
   const hiddenFileInput = createRef( null );
   const iconDropzone = createRef( );
-  const descriptionLength = ( profile.description || "" ).length;
+  const descriptionLength = ( userSettings.description || "" ).length;
 
   const showFileDialog = ( ) => iconDropzone.current.open( );
 
   const showUserIcon = ( ) => {
-    if ( profile.icon && profile.icon.preview ) {
+    if ( userSettings.icon && userSettings.icon.preview ) {
       return (
         <a
           className="userimage UserImage"
-          href={`/people/${profile.login || profile.id}`}
-          title={profile.login}
+          href={`/people/${userSettings.login || userSettings.id}`}
+          title={userSettings.login}
           label={I18n.t( "profile_picture" )}
-          style={{ backgroundImage: `url("${profile.icon.preview}")` }}
+          style={{ backgroundImage: `url("${userSettings.icon.preview}")` }}
         />
       );
     }
-    return <UserImage user={profile} />;
+    return <UserImage user={userSettings} />;
   };
 
   // this gets rid of the React warning about inputs being controlled vs. uncontrolled
   // by ensuring user data is fetched before the Profile & User page loads
-  if ( _.isEmpty( profile ) ) {
+  if ( _.isEmpty( userSettings ) ) {
     return null;
   }
 
@@ -54,7 +54,7 @@ const Profile = ( {
     <div className="alert alert-warning alert-mini">
       <span
         dangerouslySetInnerHTML={{
-          __html: I18n.t( "change_to_email_requested_html", { email: profile.unconfirmed_email } )
+          __html: I18n.t( "change_to_email_requested_html", { email: userSettings.unconfirmed_email } )
         }}
       />
       { " " }
@@ -72,23 +72,23 @@ const Profile = ( {
     <div>
       <p className="text-success">
         { I18n.t( "confirmed_on_date", {
-          date: moment( profile.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )
+          date: moment( userSettings.confirmed_at ).format( I18n.t( "momentjs.date_long" ) )
         } )}
       </p>
-      { profile.unconfirmed_email && unconfirmedEmailAlert }
+      { userSettings.unconfirmed_email && unconfirmedEmailAlert }
     </div>
   );
-  if ( !profile.confirmed_at && profile.unconfirmed_email ) {
+  if ( !userSettings.confirmed_at && userSettings.unconfirmed_email ) {
     emailConfirmation = unconfirmedEmailAlert;
-  } else if ( !profile.confirmed_at ) {
+  } else if ( !userSettings.confirmed_at ) {
     emailConfirmation = (
       <div
-        className={`alert alert-mini alert-${profile.confirmation_sent_at ? "warning" : "danger"}`}
+        className={`alert alert-mini alert-${userSettings.confirmation_sent_at ? "warning" : "danger"}`}
       >
         {
-          profile.confirmation_sent_at
+          userSettings.confirmation_sent_at
             ? I18n.t( "confirmation_email_sent_at_datetime", {
-              datetime: moment( profile.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )
+              datetime: moment( userSettings.confirmation_sent_at ).format( I18n.t( "momentjs.datetime_with_zone_no_year" ) )
             } )
             : I18n.t( "you_have_not_confirmed_your_email_address" )
         }
@@ -99,7 +99,7 @@ const Profile = ( {
           onClick={( ) => confirmResendConfirmation( )}
         >
           {
-            profile.confirmation_sent_at
+            userSettings.confirmation_sent_at
               ? I18n.t( "resend_confirmation_email" )
               : I18n.t( "send_confirmation_email", {
                 defaultValue: I18n.t( "resend_confirmation_email" )
@@ -115,7 +115,7 @@ const Profile = ( {
       <div className="col-md-5 col-sm-10">
         <h4>{I18n.t( "profile" )}</h4>
         <SettingsItem header={I18n.t( "profile_picture" )} htmlFor="user_icon">
-          <UserError user={profile} attribute="icon_content_type" alias="profile_picture_file_type" />
+          <UserError user={userSettings} attribute="icon_content_type" alias="profile_picture_file_type" />
           <Dropzone
             ref={iconDropzone}
             className="dropzone"
@@ -177,51 +177,51 @@ const Profile = ( {
         </SettingsItem>
         <SettingsItem header={I18n.t( "username" )} required htmlFor="user_login">
           <div className="text-muted help-text">{I18n.t( "username_description" )}</div>
-          <UserError user={profile} attribute="login" alias="username" />
+          <UserError user={userSettings} attribute="login" alias="username" />
           <input
             id="user_login"
             type="text"
             className="form-control"
-            value={profile.login}
+            value={userSettings.login}
             name="login"
             onChange={handleInputChange}
           />
         </SettingsItem>
         <SettingsItem header={I18n.t( "email" )} required htmlFor="user_email">
           <div className="text-muted help-text">{I18n.t( "email_description" )}</div>
-          <UserError user={profile} attribute="email" />
+          <UserError user={userSettings} attribute="email" />
           <input
             id="user_email"
             type="text"
             className="form-control"
-            value={profile.email || ""}
+            value={userSettings.email || ""}
             name="email"
             onChange={handleInputChange}
           />
           { emailConfirmation }
         </SettingsItem>
-        <ChangePasswordContainer user={profile} />
+        <ChangePasswordContainer user={userSettings} />
       </div>
       <div className="col-md-offset-1 col-md-6 col-sm-10">
         <SettingsItem header={I18n.t( "display_name" )} htmlFor="user_name">
           <div className="text-muted help-text">{I18n.t( "display_name_description" )}</div>
-          <UserError user={profile} attribute="name" />
+          <UserError user={userSettings} attribute="name" />
           <input
             id="user_name"
             type="text"
             className="form-control"
-            value={profile.name || ""}
+            value={userSettings.name || ""}
             name="name"
             onChange={handleInputChange}
           />
         </SettingsItem>
         <SettingsItem header={I18n.t( "bio" )} htmlFor="user_description">
           <div className="text-muted help-text">{I18n.t( "bio_description" )}</div>
-          <UserError user={profile} attribute="description" />
+          <UserError user={userSettings} attribute="description" />
           <textarea
             id="user_description"
             className="form-control user-description"
-            value={profile.description || ""}
+            value={userSettings.description || ""}
             name="description"
             onChange={handleInputChange}
           />
@@ -242,7 +242,7 @@ const Profile = ( {
                 url: "https://www.inaturalist.org/monthly-supporters?utm_campaign=monthly-supporter&utm_content=inline-link&utm_medium=web&utm_source=inaturalist.org&utm_term=account-settings"
               } )
             }
-            disabled={!profile.monthly_supporter}
+            disabled={!userSettings.monthly_supporter}
           />
         </SettingsItem>
       </div>
@@ -251,13 +251,13 @@ const Profile = ( {
 };
 
 Profile.propTypes = {
-  profile: PropTypes.object,
+  confirmResendConfirmation: PropTypes.func,
   handleInputChange: PropTypes.func,
   handlePhotoUpload: PropTypes.func,
   onFileDrop: PropTypes.func,
   removePhoto: PropTypes.func,
   resendConfirmation: PropTypes.func,
-  confirmResendConfirmation: PropTypes.func
+  userSettings: PropTypes.object
 };
 
 export default Profile;

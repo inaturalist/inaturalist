@@ -136,6 +136,7 @@ class Observation < ApplicationRecord
         indexes :keyword, type: "keyword"
       end
       indexes :identification_categories, type: "keyword"
+      indexes :identification_disagreements_count, type: "integer"
       indexes :identifications_count, type: "short"
       indexes :identifications_most_agree, type: "boolean"
       indexes :identifications_most_disagree, type: "boolean"
@@ -401,6 +402,19 @@ class Observation < ApplicationRecord
         ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids rescue []}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
+        # Number of current disagreeing idents that disagreed with a taxon
+        # that is among (or an ancestor of) one of the taxa in other current
+        # idents
+        identification_disagreements_count: current_ids.select do | ident |
+          ident.disagreement? && current_ids.any? do | other_ident |
+            # Don't want to compare to ourselves
+            ident.id != other_ident.id &&
+              # Did this ident disagree with a taxon that is associated with
+              # another current ident OR that contains the taxon in another
+              # current ident?
+              other_ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id )
+          end
+        end.size,
         identifications_count: num_identifications_by_others,
         comments: comments.map( &:as_indexed_json ).compact,
         comments_count: comments.size,

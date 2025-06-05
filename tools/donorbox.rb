@@ -46,7 +46,8 @@ potential_errors = [
   Timeout::Error,
   RestClient::ServiceUnavailable,
   RestClient::GatewayTimeout,
-  RestClient::TooManyRequests
+  RestClient::TooManyRequests,
+  RestClient::InternalServerError
 ]
 loop do
   url = "https://donorbox.org/api/v1/donors?page=#{page}&per_page=#{per_page}"

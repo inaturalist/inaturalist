@@ -32,10 +32,18 @@ donorbox_key = CONFIG.donorbox.key
 donation_lookup_start_time = 1.day.ago.strftime( "%Y-%m-%d" )
 page = 1
 per_page = 100
+potential_errors = [
+  Timeout::Error,
+  RestClient::ServiceUnavailable,
+  RestClient::GatewayTimeout,
+  RestClient::TooManyRequests,
+  RestClient::InternalServerError
+]
+
 loop do
   url = "https://donorbox.org/api/v1/donations?page=#{page}&per_page=#{per_page}&date_from=#{donation_lookup_start_time}"
   puts url if opts.debug
-  response = try_and_try_again( RestClient::TooManyRequests, exponential_backoff: true, sleep: 3 ) do
+  response = try_and_try_again( potential_errors, exponential_backoff: true, sleep: 3 ) do
     RestClient.get( url, {
       "Authorization" => "Basic #{Base64.strict_encode64( "#{donorbox_email}:#{donorbox_key}" ).strip}",
       "User-Agent" => "iNaturalist/Donorbox"

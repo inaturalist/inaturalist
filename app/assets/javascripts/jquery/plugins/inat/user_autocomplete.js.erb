@@ -1,46 +1,56 @@
-$.fn.userAutocomplete = function( options ) {
+/* eslint-disable no-param-reassign */
+/* global _ */
+/* global I18n */
+/* global PREFERRED_PLACE */
+
+$.fn.userAutocomplete = function ( options ) {
   options = options || { };
-  if( !options.idEl ) { return; }
+  if ( !options.idEl ) { return; }
   var field = this;
 
-  field.template = function( item ) {
+  field.template = function ( item ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     var icon = item.icon || "/attachment_defaults/users/icons/defaults/mini.png";
     labelDiv.append(
-      "<img alt='" + item.login + "' title='" + item.login +
-        "' class='user_image  usericon' src='" + icon + "'>" );
+      "<img alt='" + item.login + "' title='" + item.login
+      + "' class='user_image  usericon' src='" + icon + "'>"
+    );
     labelDiv.append( "<span class='title'>" + item.login + "</span>" );
     wrapperDiv.append( labelDiv );
     return wrapperDiv;
   };
 
   field.genericAutocomplete( _.extend( options, {
-    source: function( request, response ) {
-      $.ajax({
+    source: function ( request, response ) {
+      var requestParameters = {
+        q: request.term,
+        per_page: options.per_page || 10,
+        project_id: options.projectID,
+        order: "activity"
+      };
+      if ( options.includeSuspended ) {
+        requestParameters.include_suspended = true;
+      }
+      $.ajax( {
         // TODO: check if the API needs to return users given an ID
         url: "<%= CONFIG.public_node_api_url || CONFIG.node_api_url %>/users/autocomplete",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "projectAutocompleteCallback",
-        data: {
-          q: request.term,
-          per_page: options.per_page || 10,
-          project_id: options.projectID,
-          order: "activity"
-        },
-        success: function( data ) {
-          response( _.map( data.results, function( r ) {
+        data: requestParameters,
+        success: function ( data ) {
+          response( _.map( data.results, function ( r ) {
             r.user_id = r.id;
             r.id = r.login;
             r.title = r.login;
             return r;
-          }));
+          } ) );
         }
-      });
+      } );
     },
     menuClass: "user-autocomplete"
-  }));
+  } ) );
 
   if ( $( options.idEl ).val( ) ) {
     $.ajax( {
@@ -50,7 +60,7 @@ $.fn.userAutocomplete = function( options ) {
         locale: I18n.locale,
         preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
       },
-      success: function( data ) {
+      success: function ( data ) {
         data.title = data.login;
         field.trigger( "assignSelection", data );
       }

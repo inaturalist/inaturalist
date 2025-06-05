@@ -248,6 +248,8 @@ hu:
   add_a_note: Jegyzet hozzáadása
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Számozott lista hozzáadása
+  #Placeholder for a project autocomplete field
+  add_a_project: Projekt hozzáadása
   add_a_single_observation: Egy megfigyelés hozzáadása
   add_a_taxon: Taxon hozzáadása
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -915,9 +917,9 @@ hu:
   commit: Közzététel
   #Adjective describing a taxon change that has been committed
   committed: Végrehajtva
-  committed_by_user_on_date_html: 'Elvégezte %{user} ekkor: %{date}'
+  committed_by_user_on_date_html: 'Végrehajtotta %{user} ekkor: %{date}'
   #Label for date the taxon change was committed
-  committed_on: 'Dátum: %{date}'
+  committed_on: 'Végrehajtva: %{date}'
   committed_taxon_changes_cannot_be_deleted: A végrehajtott taxonmódosítások nem törölhetőek
   #Status message while a taxon change is being committed
   committing: Végrehajtás...
@@ -1243,6 +1245,12 @@ hu:
   curator_guide: Útmutató kurátoroknak
   curators_changed_for_x_html: "%{x} kurátorai megváltoztak"
   curators: Kurátorok
+  curator_coordinate_access: Kurátori koordináta-hozzáférés
+  curator_coordinate_access_desc: |
+    A kurátori koordinátori hozzáférés a hagyományos projektekhez attól függ, hogy ki adott hozzá
+    a megfigyelés a projekthez. Ez csak az alapértelmezett beállítás
+    megfigyelések a projektekben. A megfigyelők dönthetnek úgy is, hogy ezt megváltoztatják
+    egyéni megfigyelések.
   curator_identification: Kurátor meghatározása
   current_flags: Jelenlegi jelölések
   #Label for a custom boundary for an observation search
@@ -1250,6 +1258,8 @@ hu:
   custom_project_fields: Egyéni projektmezők
   custom_project_was_successfully_created: Projekt testreszabások hozzáadva
   custom_project_was_successfully_updated: A projekt testreszabása frissítve
+  #Button to customize projects that appear in the header
+  customize__projects: Testreszab
   customize_location: Hely testreszabása
   darr_apply_darr: "&darr; Alkalmaz &darr;"
   daily_users: Napi felhasználók
@@ -1446,6 +1456,11 @@ hu:
   disable_comments: Megjegyzések letiltása
   disable_comments_desc: További megjegyzések letiltása
   disagree_: Elutasít
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Egyetnemértések
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Egyetnemértő azonosításokkal rendelkező megfigyelések megjelenítése
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Kapcsolat bontása
@@ -1662,6 +1677,12 @@ hu:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Kedvencek
   Family: Család
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Kedvenc projektek
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Válasszon ki legfeljebb hét projektet, amelyek hivatkozásként jelennek meg a fejlécben. Frissítések
+    az oldal frissítése után jelenik meg.
   favorite_taxa: Kedvenc taxonok
   favorites: "Kedvencek"
   feature_this_project_: "Emeld ki ezt a projektet"
@@ -1971,6 +1992,8 @@ hu:
   inaturalist_global_year_in_review: "Az iNaturalist %{year}. évi globális visszatekintője"
   inaturalist_is_an_independent_nonprofit: |
     Az iNaturalist egy független 501(c)(3), adómentes, nonprofit szervezet, amely az Amerikai Egyesült Államokban található (adóazonosító szám: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: Az iNaturalist frissítette a által javasolt azonosítót %{user}
   computer_vision_suggestion: Gépi képfelismerés javaslata
   computer_vision_suggestion_desc: |
     A gépi látás és képfelismerés egy olyan folyamat, melynek során a számítógépeket képek mintázatainak felismerésére tanítják meg. Olyan eszközöket fejlesztettünk, amelyek a közösségünk megfigyelései alapján tanított gépi látási modelleket használnak meghatározások javaslataihoz. Ez a címke azt jelöli, hogy a meghatározás ezen eszközök valamelyikével történt.
@@ -2062,6 +2085,8 @@ hu:
   internal_taxon_rank: Belső taxonszint
   introduced: Jövevény
   introduced_in_place: "Behurcolva ide: %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Érvénytelen dátum
   invitation: Meghívó
   invite: meghívás
   invite_people: Emberek meghívása
@@ -2297,7 +2322,6 @@ hu:
   #a noun.
   link_to_authorization_code: Hivatkozás a hitelesítési kódhoz
   link_your_flickr_account: Flickr-fiók csatlakoztatása
-  link_your_google_account: Google-fiók csatlakoztatása
   linked_flickr_password_html: "<strong>Sosem fogjuk kérni a Flickr jelszavadat</strong> (de a Flickr talán kérheti, ezért kérünk győződj meg arról, hogy a hivatkozás ahová a gomb küld tényleg Flickr.com)."
   linkedin: LinkedIn
   list: Lista
@@ -2966,6 +2990,7 @@ hu:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNS
   observation_fields: Adatmezők
+  observation_fields_for_projects: Projektek megfigyelési mezői
   observation_fields_are_additional: Az adatmezők kiegészítő információkkal szolgálhatnak a megfigyelésekhez.
   observation_fields_by_preferences_description: |
     Az adatmezők nagyjából címkékként működnek, és alapértelmezetten bárki hozzáadhatja azokat a megfigyelésedhez. Ezen a beállítások módosíthatsz, ha csak te szeretnéd ezt megtenni, vagy a kurátorokra bízod.
@@ -3718,6 +3743,9 @@ hu:
   processing: Feldolgozás alatt
   profile: Profil
   profile_picture: Profilkép
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Profilkép fájltípus
   profile_visibility_desc: |
     Annak érdekében, hogy a spamelőket távol tartsuk az %{site_name} oldaltól, a felhasználói profilok csak azután lesznek láthatók, miután a felhasználó számos tudományos szintű megfigyelést tett közzé.
   project: Projekt
@@ -3780,6 +3808,16 @@ hu:
   range: Tartomány
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Besorolás
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Nemzetség / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Faj / hibrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Alfaj / Fajta / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4538,6 +4576,9 @@ hu:
   this_observation_was_created_using: "A megfigyelés ezzel készült:"
   this_photo_is_already_associated: Ez a fotó már társítva van egyik megfigyeléseddel.
   this_place_has_no_check_list: "Ennek a területnek nincs listája."
+  this_taxon_change_has_been_commited: |
+    <strong>Ez a taxonváltozás végre van hajtva!</strong>
+    Kérlek, ne szerkeszd a taxonokat. Más mezők szerkesztése lehetséges.
   this_taxon_concept_is_inactive: ez a taxon nem aktív
   this_taxon_has_no_default_photo: Ennek a taxonnak nincs alapértelmezett fotója!
   this_taxon_is_inactive_this_means: |
@@ -4730,7 +4771,6 @@ hu:
   unfollow_observation: Megfigyelés követésének leállítása
   #Text for a button to stop following updates from a user
   unfollow_user: A felhasználó követésének leállítása
-  unlink_your_google_account: Google-fiók leválasztása
   unlink_your_flickr_account: "Flickr-fiók leválasztása"
   unmute: Némítás feloldása
   updates_notification_email_subject: "%{prefix} hírek - %{date}"
@@ -4747,8 +4787,20 @@ hu:
   upcoming_bioblitzes: Közeledő bioblitzek
   update: Frissítés
   update_existing_observations_with_new_license: Alkalmazd ezt a licencet az összes már létező megfigyelésekre
+  update_existing_observations_with_new_license_desc: |
+    Ha ezt a lehetőséget választja, az új licencválasztás az összes
+    meglévő megfigyelések alapján. Ez eltarthat néhány óráig, ha sok
+    Észrevételek.
   update_existing_photos_with_new_license: Alkalmazd ezt a licencet az összes, már létező képre
+  update_existing_photos_with_new_license_desc: |
+    Ha ezt a lehetőséget választja, az új licencválasztás az összes
+    meglévő fényképek. Ez eltarthat néhány óráig, ha sok
+    Fénykép.
   update_existing_sounds_with_new_license: Alkalmazd ezt a licencet az összes, már létező hangra
+  update_existing_sounds_with_new_license_desc: |
+    Ha ezt a lehetőséget választja, az új licencválasztás az összes
+    meglévő hangok. Ez eltarthat néhány óráig, ha sok
+    Hangok.
   update_observations: Megfigyelések módosítása
   update_past: "Régebbi %{type} tartalmak frissítése"
   update_photos: Képek frissítése
@@ -4774,7 +4826,6 @@ hu:
   uploader:
     errors:
       file_too_big: A fájl mérete legfeljebb %{megabytes} MB lehet
-      unsupported_file_type: 'A fájl típusa nem támogatott. Csak ezeket fogadjuk el: JPG, PNG, GIF, WAV, AAC, MP3, és MP4 (csak hang)'
     resize_tip: |
       Ha a képfájljaid túl nagyok, próbáld levágni őket maximum 2048 x 2048 pixelig. Ez amúgy is megtörténik a szerveren de így gyorsabban töltődnek majd fel.
     tooltips:
@@ -4842,7 +4893,15 @@ hu:
   user_blocked: Felhasználó letiltva
   user_commented: "Megjegyzés %{user} felhasználótól"
   #Notification about a taxon change. @vow_or_con works on %{taxon}
-  user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon}t érintő taxontörlést hajtott végre"
+  user_committed_taxon_drop_affecting_taxon: "%{user} egy %{taxon} taxont érintő taxontörlést hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_merge_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonegyesítést hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_split_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxonszétválasztást hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxon}
+  user_committed_taxon_stage_affecting_taxon2: "%{user} egy %{taxon} taxont érintő taxonmódosítást hajtott végre"
+  #Notification about a taxon change. @vow_or_con works on %{taxa}, which is a comma-separated list of taxon names
+  user_committed_taxon_swap_affecting_taxa2: "%{user} egy %{taxa} taxonokat érintő taxoncserét hajtott végre"
   user_disagrees_this_is_taxon: "%{user} nem ért egyet azzal, hogy ez %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} nem ért egyet az előző finomabb meghatározásokkal"
   user_faved_an_observation_by_you: "%{user} kedvelte ezt a megfigyelésedet"
@@ -4862,6 +4921,14 @@ hu:
   user_observed_on_on_date_in_place: |
     %{user} megfigyelt egyet ekkor: %{date}, itt: %{place}
   user_suggested_an_id: "%{user} javasolt meghatározása"
+  user_trusts_this_project_when_added_by_any: |
+    A felhasználó megbízik a projekt kurátoraiban a hozzáadott megfigyelések rejtett koordinátáival
+    a projekthez bárki.
+  user_trusts_this_project_when_added_by_observer: |
+    A felhasználó megbízik a projekt kurátoraiban a hozzáadott megfigyelések rejtett koordinátáival
+    a megfigyelő által a projekthez.
+  user_trusts_this_project_when_added_by_none: |
+    A felhasználó nem bízik a rejtett koordinátákkal rendelkező projektkurátorokban.
   user_updated_an_observation_field_html: '%{user} frissítette a(z) "%{field_name}" adatmezőt %{owner} megfigyelésén'
   username: Felhasználónév
   username_description: Ezzel a felhasználónévvel jelentkezhetsz be, és ennek révén tud az iNaturalist többi felhasználója azonosítani.
@@ -4977,9 +5044,8 @@ hu:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Még nincs megfigyelve
   was_it_captive_cultivated?: "Fogságban lévő vagy kultivált?"
-  we_also_support2: |
-    Támogatjuk fotók importálását <a href="http://flickr.com">Flickr</a>-ról
-    és <a href="http://photos.google.com">Google Photos</a>-ról is.
+  we_also_support3: |
+    Támogatjuk a fényképek importálását <a href="http://flickr.com">Flickről</a> is.
   we_can_only_understand_csv_in: Csak a következő formátumú CSV-t értjük meg
   we_didnt_find_any_photos: Nem találtunk egy fotót sem az általad megadott kulcsszavakkal.
   we_have_no_conservation_status_for_this_taxon: Nincs a természetvédelmi státuszra vonatkozó adatunk erről a taxonról
@@ -5252,38 +5318,22 @@ hu:
     views: 'Nézetek'
     announcements:
       locales_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        színhely. Ha régió nélküli nyelvet választasz, az *nem* céloz
-        területi beállítások régiókkal, pl. ha az angol nyelvet választotta, akkor nem jelenik meg
-        azoknak, akik az angol (Egyesült Királyság) nyelvet választották.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki a többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a régiótól. Ha régió nélkül választasz ki nyelvet, az *nem* céloz régiókkal megadott nyelvekre, pl. ha az angol nyelvet választottad, akkor az nem célozza meg azokat, akik az angol (Egyesült Királyság) nyelvet választották.
       clients_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        ügyfél.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül a klienstől.
       end_desc: |
-        A fiók időzónájában a bejelentés leállításának időpontja
-        megjelenő. Időzónákon keresztül érvényes, így mindenki nem fog látni
-        ugyanakkor nem a helyi időhöz viszonyítva.
+        A bejelentés leállításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog eltűnni a bejelentés, nem pedig a helyi időzónájuk alapján.
       ip_countries_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        IP ország.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az IP-cím alapján mehatározott országtól.
       #Note about how the announcement last observation date property works
       last_observation_date_desc: |
-        Vegye figyelembe, hogy a felhasználó legutóbb létrehozott
-        megfigyelés gyorsítótárazva van, így a célzás néhány órát is igénybe vehet
-        használ
+        Vedd figyelembe, hogy a felhasználó legutóbb létrehozott megfigyelésének dátuma gyorsítótárazva van, így a célzás néhány órát is igénybe vehet.
       observation_oauth_application_ids_desc: |
         CMD- vagy SHIFT-kattintással jelölhetsz ki a többet. Az "Összes" kiválasztásával vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, az alkalmazástól függetlenül.
       site_ids_desc: |
-        CMD- vagy SHIFT-kattintással jelölje ki a többet. Az "Összes" kiválasztása vagy nem készítése
-        A kijelölés minden felhasználó számára megjeleníti a bejelentést, függetlenül attól, hogy
-        Helyszíni hovatartozás.
+        CMD- vagy SHIFT-kattintással jelölhetsz ki többet egyszerre. Az "Összes" kiválasztásával, vagy a kiválasztás mellőzésével minden felhasználó számára megjeleníted a bejelentést, függetlenül az oldaltól.
       start_desc: |
-        A fiók időzónájában a bejelentés kezdetének időpontja
-        megjelenő. Időzónákon keresztül érvényes, így mindenki látni fogja
-        ugyanakkor nem a helyi időhöz viszonyítva.
+        A bejelentés indításának időpontja a fiókod időzonája szerint. Időzónákon keresztül érvényes, így mindenkinek ugyanakkor fog megkezdődni a bejelentés, nem pedig a helyi időzónájuk alapján.
       #Description of a group of options for targeting announcements based
       #on donation behavior
       target_users_by_donation_behavior: Felhasználók célzása adományozási viselkedésük alapján
@@ -5436,9 +5486,8 @@ hu:
       index:
         deprecated_banner: |
           Kérünk, vedd figyelembe, hogy 2019 januárjától az Útmutatók funkcionalitás úgy jelenik meg "ahogy van"; habár nincs tervbe véve, hogy kitöröljük, nem tervezzük ezt többé feljeszteni.
-        funding_html: |
-          Az Útmutatók fejlesztésének költségeit 
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> állta.
+        funding2_html: |
+          Az útmutatók kidolgozását az <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a> támogatta.
         welcome_message_html: |
           Az útmutatók segítenek a biológia sokféleség tanulmányozásában a világ minden pontján.
           Akár a Serengetit fedezet fel vagy csak a helyi parkodat (ami lehet akár a Serengeti), az Útmutatók segítenek megérteni bolygónkon az élet pompás változatosságát.
@@ -6202,6 +6251,10 @@ hu:
           </p>
         licensing_desc_html: |
           A tartalmad licencelésével bárkinek megadod a törvényi jogot, hogy az engedélyed külön kikérése nélkül használhassa azt, amennyiben betartja a licenc feltételeit. Ezenkívül a %{site_name} a Creative Commons licenccel rendelkező tartalmadat is belefoglalja a rendszeresen frissített archívumokba, amelyeket olyan partnereink számára készítünk, akik érdeklődnek a biodiverzitási adataink iránt. Például a Nincs Szerzői Jog (CC0), a Név Megjelölése (CC BY) és a Név Megjelölése - Nem Kereskedelmi (CC BY-NC) rekordokat is belefoglaljuk a <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF) számára generált archívumba, amely egy nemzetközi, kormányközi szervezet, amely összegyűjti és terjeszti a biodiverzitásról szóló információkat a világ minden tájáról.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: A fájltípus nem támogatott. Elfogadjuk a JPG, PNG és GIF formátumokat
         name_place_help_html: |
           Elsőbbségben részesülnek az ezen a területen használt közynelvi nevek.
         #Checkbox label for user preference about what to receive in the daily email update
@@ -6260,6 +6313,11 @@ hu:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: A maximálisan kiválasztható három köznyelvi név-lexikon már hozzá van adva.
+        this_only_applies_to_traditional_projects2: |
+          Ez csak a hagyományos projektekre vonatkozik. A megfigyelések nem zárhatók ki
+          gyűjteményi vagy ernyőprojektekből, amelyek lényegében mentett keresések.
+          Tovább olvashat
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">itt</a>.
       recent:
         about_recent_users: Rólunk
       show:
@@ -6528,16 +6586,16 @@ hu:
         prefers_target_unconfirmed_users: Megnemerősített felhasználóknak is
         prefers_exclude_monthly_supporters: A havi támogatók mellőzése
         #Start of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_start_date: A donor kezdő dátumának kizárása
+        exclude_donor_start_date: Kizárás a támogatás kezdő dátumának alapján
         #End of a date range that the viewer must not have donated in to see the announcement
-        exclude_donor_end_date: A donor záró dátumának kizárása
+        exclude_donor_end_date: Kizárás a támogatás befejezési dátumának alapján
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Applikáció-specifikus megfigyelők mellőzése
         #start of a date range that the viewer must have donated in to see the announcement
-        include_donor_start_date: Adja meg a donor kezdő dátumát
+        include_donor_start_date: Belevétel a támogatás kezdési dátumának alapján
         #End of a date range that the viewer must have donated in to see the announcement
-        include_donor_end_date: Adja meg a donor lejárati dátumát
+        include_donor_end_date: Belevétel a támogatás befejezési dátumának alapján
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Applikáció-specifikus megfigyelők célzása
@@ -6546,23 +6604,23 @@ hu:
         #Start of a date range that includes the viewer's most recent observation
         last_observation_start_date: Utolsó obs kezdési dátum
         #end of a date range that includes the viewer's most recent observation
-        last_observation_end_date: Utolsó obs befejezési dátum
+        last_observation_end_date: Utolsó megfigyelési intervallum, befejezési dátum
         #Maximum number of identifications the viewer must have added for others to see the announcement
         max_identifications: Azonosítások maximális száma
         #Minimum number of identifications the viewer must have added for others to see the announcement
-        min_identifications: Minimális azonosítások
+        min_identifications: Azonosítások minimális száma
         #Maximum number of observations the viewer must have added for others to see the announcement
         max_observations: Megfigyelések maximális száma
         #Minimum number of observations the viewer must have added for others to see the announcement
-        min_observations: Minimális megfigyelések
+        min_observations: Megfigyelések minimális száma
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Elhelyezés
         #Preference for an announcement that is only shown to the user who created the announcement
         target_creator: 'Láthatóság: létrehozó (teszteléshez)'
         #Whether or not the announcement is shown to logged in users
-        target_logged_in: Cél bejelentkezve
+        target_logged_in: Bejelentkezettek célzása
         #Earliest date the viewer can have signed up to see the announcement
-        user_created_start_date: A legkorábbi felhasználói regisztráció dátuma
+        user_created_start_date: Legkorábbi felhasználói regisztráció dátuma
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Legutóbbi felhasználói regisztráció dátuma
       assessment:
@@ -6723,6 +6781,7 @@ hu:
         place: Terület
       user:
         email: Email
+        faved_project_ids: Kedvenc projektjei
         login: Felhasználónév
         name: Név
         time_zone: Időzóna
@@ -6812,6 +6871,8 @@ hu:
               #Error saying that only curator and admin users are allowed to create
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Csak a személyzet és a kurátorok rejthetnek el tartalmat
+              #Error saying that only staff can rename
+              only_staff_can_rename: Csak a személyzet nevezheti át
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Csak a személyzet rejthet el tartalmat
               staff_cannot_be_suspended: A személyzetet nem lehet felfüggeszteni
@@ -6871,6 +6932,9 @@ hu:
               invalid_point: hibás pontja van, pl. 180-nál nagyobb hosszúság, vagy -90-nél kisebb szélesség
               must_have_more_than_three_points: háromnál több pontja kell legyen
               polygon_with_less_than_four_points: egy sokszöget tartalmaz kevesebb, mint 4 ponttal
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: terület nélküli sokszöge van (minden pont azonos)
         place_geometry:
           attributes:
             geom:
@@ -6885,6 +6949,10 @@ hu:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: nem enged új hozzászólást
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Csak 7 projektet lehet kedvencnek tekinteni
         project_observation:
           attributes:
             user_id:
@@ -6952,6 +7020,14 @@ hu:
               already_has_a_range: már van intervalluma
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: nem tartalmazhat 7-nél több projektet
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: Mindegyiknek léteznie kell
             login:
               must_begin_with_a_letter: |
                 betűvel kell kezdődjön, ne tartalmazzon hézagot és csak betűket, számokat, vonalat és alulvonást tartalmazhat

@@ -84,7 +84,7 @@ class PhotosController < ApplicationController
   end
 
   def fix
-    types = %w(FlickrPhoto PicasaPhoto)
+    types = %w(FlickrPhoto)
     @type = params[:type]
     @type = "FlickrPhoto" unless types.include?( @type )
     @provider_name = @type.underscore.gsub( /_photo/, "" )
@@ -101,7 +101,7 @@ class PhotosController < ApplicationController
   end
 
   def repair_all
-    @type = params[:type] if %w(FlickrPhoto PicasaPhoto).include?( params[:type] )
+    @type = params[:type] if %w(FlickrPhoto).include?( params[:type] )
     if @type.blank?
       respond_to do | format |
         format.json do
@@ -187,8 +187,8 @@ class PhotosController < ApplicationController
               methods: [:tag_list]
             }
           } )
-          json[:original_url] = @photo.file.url( :original )
-          json[:large_url] = @photo.file.url( :large )
+          json[:original_url] = @photo.original_url
+          json[:large_url] = @photo.large_url
           render json: json
         end
       else

@@ -96,7 +96,12 @@ class EmailerPreview < ActionMailer::Preview
 
   def collection_project_changed_for_trusting_member
     set_locale
-    Emailer.collection_project_changed_for_trusting_member( ProjectUser.last )
+    project_user = Project.where( project_type: "collection" ).first&.project_users&.last
+    unless project_user
+      raise "No collection project users exist yet"
+    end
+
+    Emailer.collection_project_changed_for_trusting_member( project_user )
   end
 
   def curator_application

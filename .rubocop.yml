@@ -110,5 +110,8 @@ Style/SymbolArray:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+
 Style/WordArray:
   Enabled: false

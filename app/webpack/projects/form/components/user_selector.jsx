@@ -35,6 +35,7 @@ class UserSelector extends React.Component {
               this.userAutocomplete.current.inputElement( ).val( "" );
             }}
             bootstrapClear
+            includeSuspended
             config={config}
             placeholder={I18n.t( "user_autocomplete_placeholder" )}
           />

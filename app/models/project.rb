@@ -1123,7 +1123,7 @@ class Project < ApplicationRecord
     attributes_array.each do | admin_attr |
       next unless admin_attr["user_id"]
 
-      new_role = admin_attr["_destroy"] == "true" ? nil : "manager"
+      new_role = admin_attr["_destroy"].yesish? ? nil : ProjectUser::MANAGER
       if is_new
         project_users.find_or_create_by( user_id: admin_attr["user_id"] ).update( role: new_role )
       else

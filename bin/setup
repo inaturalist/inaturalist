@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
-require 'fileutils'
+# frozen_string_literal: true
+
+require "fileutils"
 include FileUtils
 
 # path to your application root.
-APP_ROOT = File.expand_path('..', __dir__)
+APP_ROOT = File.expand_path( "..", __dir__ )
 
 USING_DOCKER = File.exist?( "./docker-compose.override.yml" )
 
@@ -16,16 +18,16 @@ chdir APP_ROOT do
   system "bundle", exception: true
 
   puts "\n== Copying sample files =="
-  unless File.exist?("config/config.yml")
+  unless File.exist?( "config/config.yml" )
     system "cp config/config.yml.example config/config.yml", exception: true
   end
-  unless File.exist?("config/database.yml")
+  unless File.exist?( "config/database.yml" )
     system "cp config/database.yml.example config/database.yml", exception: true
   end
-  unless File.exist?("config/secrets.yml")
+  unless File.exist?( "config/secrets.yml" )
     system "cp config/secrets.yml.example config/secrets.yml", exception: true
   end
-  unless File.exist?("config/smtp.yml")
+  unless File.exist?( "config/smtp.yml" )
     system "cp config/smtp.yml.example config/smtp.yml", exception: true
   end
 

@@ -364,6 +364,8 @@ he:
   add_a_new_change_group: הוספת קבוצת שינויים חדשה
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: הוספת רשימה ממוספרת
+  #Placeholder for a project autocomplete field
+  add_a_project: הוספת פרוייקט
   add_a_single_observation: הוספת תצפית אחת.
   add_a_taxon: הוספת טקסון
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1536,6 +1538,9 @@ he:
   curators_changed_for_x_html: "בפרוייקט %{x} הוחלפו האוצרים"
   curators: אוצרים ואוצרות
   curators_can_remove_observations_from: אוצרות.ים יכולות.ים להסיר תצפיות מהפרויקט והתצפיות שלהן.ם מוצגות לצד התצפיות בצפיות הספציפיות לפרויקט. אוצרות.ים יכולות.ים גם לראות את הקואורדינטות האמיתיות של תרומות פרטיות ומוסתרות לפרויקט זה.
+  curator_coordinate_access: גישת אוצר.ת לקואורדינטות
+  curator_coordinate_access_desc: |
+    גישת אוצרים לקואורדינטות בפרויקטים בסיסיים תלויה בזהות המשתמש שהוסיף את התצפית לפרויקט. זוהי הגדרת ברירת המחדל עבור תצפיות בפרויקטים, אך המתצפתים יכולים גם לבחור לשנות זאת עבור תצפיות בודדות.
   curator_identification: זיהוי אוצר.ת
   current_flags: סימונים כעת
   #Label for a custom boundary for an observation search
@@ -1543,6 +1548,8 @@ he:
   custom_project_fields: שדות יחודיים לפרוייקט
   custom_project_was_successfully_created: התאמות פרויקט נוספו
   custom_project_was_successfully_updated: התאמות פרויטקט עודכנו
+  #Button to customize projects that appear in the header
+  customize__projects: התאמה אישית
   customize_location: התאמת מיקום
   darr_apply_darr: "&darr; יישום &darr;"
   daily_users: משתמשות ומשתמשים יומיים
@@ -1745,6 +1752,11 @@ he:
   disable_comments: חסימת הערות
   disable_comments_desc: למנוע הוספת הערות מידי משתמשים
   disagree_: לא מסכים/מה
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: חילוקי דעות
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: הצג תצפיות שיש להן זיהויים לא מסכימים
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: ניתוק
@@ -1858,6 +1870,8 @@ he:
   edited_by_name_some_rights_reserved_html: |
     נערך על ידי %{name}, חלק מזכויות היוצרים שמורות (%{license})
   editing: עריכה
+  #Title for a page to edit an announcement
+  editing_announcement_x: הודעת עריכה %{id}
   editing_custom_project_fields_for: עורך שדות פרויקט מותאמים אישית עבור
   editing_observation_field: עריכת שדה תצפיות
   editing_observation_id: "עריכת תצפית %{obs_id}"
@@ -1985,6 +1999,12 @@ he:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: מועדפים
   Family: משפחה
+  #Header for a section showing the user's favorite projects
+  favorite_projects: פרויקטים מועדפים
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    בחרו עד שבעה פרוייקטים המופיעים כקישורים בכותרת העליונה. עדכונים
+    יופיע לאחר רענון הדף.
   favorite_taxa: טקסונים מועדפים
   favorites: "מועדפים"
   feature_this_project_: "הצגת פרוייקט זה"
@@ -2348,6 +2368,8 @@ he:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist הוא ארגון עצמאי (c)(3)501, פטור ממס, ארגון ללא מטרות רווח
     הממוקם בארצות הברית (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist עדכנה את הזיהוי שהוצע על ידי %{user}
   computer_vision_suggestion: הצעת ראייה ממוחשבת
   computer_vision_suggestion_desc: |
     ראייה ממוחשבת היא התהליך של לימוד מחשבים לזהות דפוסים בתמונות. אנו מספקים כלים המשתמשים במודלים של ראייה ממוחשבת שהתאמנו על התמונות של הקהילה כדי לתת הצעות זיהוי, כמו הפיצ'רים של השלמה אוטומטית והשוואה. תווית זו מסמנת שמישהו או מישהי הוסיפו זיהוי באמצעות אחד מכלים אלו.
@@ -2461,6 +2483,8 @@ he:
   internal_taxon_rank: דרגה טקסונומית פנימית
   introduced: פולש
   introduced_in_place: "הובא ל%{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: תאריך לא חוקי
   invitation: הזמנה
   invite: הזמן
   invite_people: הזמן אנשים
@@ -2707,7 +2731,6 @@ he:
   #a noun.
   link_to_authorization_code: קישור לקוד הרשאה
   link_your_flickr_account: קישור חשבון Flickr
-  link_your_google_account: קישור חשבון הגוגל שלך
   linked_flickr: "חשבון ה%{site_name} שלך מקושר כרגע לחשבון ה Flickr שלך."
   linked_flickr_automatically: "בנוסף, יש לזכור שאם תתחבר.י ל-%{site_name} באמצעות פליקר, נקשר מחדש בין חשבונות ה-%{site_name} והפליקר שלך באופן אוטומטי. נראה סביר שאם הנך משתמש.ת בפליקר אז את.ה רוצה את היכולת לייבא תמונות פליקר, נכון?"
   linked_flickr_description: "שמירת החיבור בין חשבון ה-%{site_name} לבין חשבון הפליקר שלך מאפשרת לך להוסיף תמונות מרובות לתצפיות שלך. כמובן, במידה ותחליט.י להפריד בין %{site_name} לפליקר, לא נעצור אותך, רק לא תוכל.י להוסיף תמונות. לעתים זה יכול להיות לטובה, למשל אם תפתח.י חשבון פליקר חדש שאת.ה רוצה לקשר אליו את %{site_name}."
@@ -3511,6 +3534,7 @@ he:
   observation_field_type_taxon: טקסון
   observation_field_type_dna: DNA
   observation_fields: שדות תצפית
+  observation_fields_for_projects: שדות תצפית לפרויקטים
   observation_fields_are_additional: שדות תצפית מאפשרים להוסיף נתוני שדות נוספים שיתווספו לתצפיות.
   observation_fields_by_preferences_description: |
     שדות התצפית הם מעט דומים לתיוגים, רק שכל אחד יכול להוסיף לתצפיות שלך כברירת מחדל. באפשרותך לשנות זאת אם ברצונך שרק את.ה או רק אוצרי האתר יוכלו לעשות זאת.
@@ -4309,6 +4333,9 @@ he:
   processing3p: "מתבצע עיבוד…"
   profile: פרופיל
   profile_picture: תמונת פרופיל
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: סוג קובץ תמונת פרופיל
   profile_visibility_desc: |
     במטרה למנוע הפצת ספאם ב%{site_name}, פרופילים של יוזרים חדשים מוסתרים מהציבור עד שהם צוברים תצפיות מרובות בדרגת מחקר.
   project: פרויקט
@@ -4397,6 +4424,16 @@ he:
   range: טווח
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: דירוג
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: סוג / סוג היברידי
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: מין / היבריד
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: תת-מין / זן / מופע
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5654,7 +5691,6 @@ he:
   unfollow_observation: ביטול מעקב אחר התצפית
   #Text for a button to stop following updates from a user
   unfollow_user: ביטול מעקב אחר המשתמש.ת
-  unlink_your_google_account: ניתוק חשבון גוגל
   unlink_your_flickr_account: "ניתוק חשבון פליקר"
   unmute: ביטול השתקה
   updates_notification_email_subject: "%{prefix} עדכונים חדשים %{date}"
@@ -5674,8 +5710,20 @@ he:
   upcoming_bioblitzes: ביובליצים עתידיים
   update: עדכון
   update_existing_observations_with_new_license: לעדכן תצפיות קיימות בבחירות רישוי חדשות
+  update_existing_observations_with_new_license_desc: |
+    בחירה באפשרות זו תחיל את בחירת הרשיון החדשה שלך על כל
+    התצפיות הקיימות שלך. זה יכול לקחת כמה שעות אם יש לך הרבה
+    תצפיות.
   update_existing_photos_with_new_license: לעדכן תמונות קיימות ברישיון השימוש החדש
+  update_existing_photos_with_new_license_desc: |
+    בחירה באפשרות זו תחיל את בחירת הרשיון החדשה שלך על כל
+    התמונות הקיימות שלך. זה יכול לקחת כמה שעות אם יש לך הרבה
+    תמונות.
   update_existing_sounds_with_new_license: לעדכן קולות קיימים בבחירות רישוי חדשות
+  update_existing_sounds_with_new_license_desc: |
+    בחירה באפשרות זו תחיל את בחירת הרשיון החדשה שלך על כל
+    הקולות הקיימים שלך. זה יכול לקחת כמה שעות אם יש לך הרבה
+    קולות.
   update_observations: עדכון תצפיות
   update_past: "עדכון %{type} קודמות"
   update_photos: עדכון תמונות
@@ -5708,7 +5756,7 @@ he:
   uploader:
     errors:
       file_too_big: הקובץ חייב להיות קטן מ %{megabytes} MB
-      unsupported_file_type: סוג הקובץ אינו נתמך. אנו מקבלים JPG, PNG, GIF, WAV, AAC, MP3, ו-MP4 (שמע בלבד)
+      unsupported_file_type: סוג הקובץ אינו נתמך. אנו מקבלים JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3 ו-MP4 (שמע בלבד)
     resize_tip: |
       אם קובצי התמונות שלך גדולות מדי, אפשר לנסות לגזור אותן לגודל מקסימלי של 2048 על 2048 פיקסלים. זה יקרה לכל התמונות בשרת בכל מקרה, ויעשה את ההעלאה מהירה יותר.
     tooltips:
@@ -5831,6 +5879,14 @@ he:
     היוזר בוטח.ת בפרויקט זה עם קואורדינטות מותסרות שהוסתרו מכל סיבה.
   user_trusts_this_project_for_taxon: |
     היוזר בוטח.ת בפרויקט זה רק עם קואורדינטות מותסרות שהוסתרו בגלל טקסונים בסיכון.
+  user_trusts_this_project_when_added_by_any: |
+    המשתמש סומך על אוצרי הפרויקט עם קואורדינטות נסתרות של תצפיות שנוספו
+    לפרויקט על ידי כל אחד.
+  user_trusts_this_project_when_added_by_observer: |
+    המשתמש סומך על אוצרי הפרויקט עם קואורדינטות נסתרות של תצפיות שנוספו
+    לפרויקט של המתצפת.ת.
+  user_trusts_this_project_when_added_by_none: |
+    המשתמש אינו סומך על אוצרי הפרויקט עם קואורדינטות נסתרות.
   user_trusts_you_with_their_private_coordinates: "%{user} בוטח.ת בך עם קואורדינטות מוסתרות"
   user_trusts_you_with_their_private_coordinates_desc: |
     המתצפת.ת בחר.ה לבטוח בך עם הקואורדינטות המוסתרות של כל תצפיותיו/ה.
@@ -5964,8 +6020,8 @@ he:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: מבוקשים
   was_it_captive_cultivated?: "האם היה בשבי / מתורבת?"
-  we_also_support2: |
-    אנחנו תומכים גם בייבוא תמונות <a href="http://flickr.com">מפליקר</a> <a href="http://photos.google.com">ומגוגל תמונות</a>.
+  we_also_support3: |
+    אנו תומכים גם בייבוא תמונות מ <a href="http://flickr.com">פליקר</a>.
   we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
   we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
   we_couldnt_find_a_user_with_that_activation_code: "לא מצאנו יוזר עם קוד ההפעלה ההוא. יתכן כי כבר הפעלת את החשבון שלך, נא לנסות להתחבר."
@@ -6595,9 +6651,9 @@ he:
       index:
         deprecated_banner: |
           יש לציין כי נכון לינואר 2019, פיצ'ר המדריכים מוצג כמו שהוא; אמנם אין לנו כוונה למחוק אותו, אך אין לנו כוונה לפתח אותו עוד.
-        funding_html: |
-          פיתוח המדריכים מומן על ידי
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          המימון לפיתוח Guides ניתן על ידי
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           מגדירים מסייעים ללמוד על מגוון המינים בכל העולם. בין אם אתם מגלים את הסרנגטי או את הגן הציבור שקרוב לביתכם, המגדירים יכולים לעזור לנו ללמוד על מגוון החיים המדהים של העולם שבו אנו חיים.
       edit:
@@ -7108,11 +7164,6 @@ he:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           עמודת פרטיות המיקום חייבת להיות באנגלית, וריקה או עם אחד הערכים "מוסתר" או "פרטי"
-        google_photos_notice_html: |
-          בפברואר 2019 גוגל שינתה את ה-API שלה, מה שמונע מעמנו לגשת לקואורדינטות GPS, למידע על רשיונות וכמעט לכל מידע העשוי לשמש אותנו להוספה של זיהוי (כגון תגים). הם גם הסירו חיפוש טקסט וחלוקה נומרית לעמודים. נוסף על כך, הם דרשו מכל החשבונות המקושרים שיהיו בעלי הרשאה נוספת, ולפני שגורם צד שלישי יכול לבקש את ההרשאה ההיא מיוזרים, עליו להיות בר-אימות. אנו בהמתנה לקבל אימות, אבל עד אז, לא תוכל.י לייבא תמונות מגוגל. במידה ונקבל אישור, תוכל.י לייבא תמונות אבל הן לא יכילו שום מידע על מיקום או רשיון שהיית רואה בגוגל תמונות. למידע נוסף באפשרותך לעיין ב-<a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. הורדת הקבצים המקוריים והוספתם באמצעות <a
-          href="/observations/upload">המעלה</a> הוא הפתרון העוקף הטוב ביותר.
         project_csv_template_notice_html: |
           ישנו קובץ טמפלייט עבור פרויקט זה העשוי לעזור לך עם מבנה קובץ ה-CSV.
           <a href="%{url}">להורדת הטמפלייט</a>
@@ -8004,6 +8055,10 @@ he:
           </p>
         licensing_desc_html: |
           מתן רשיוין לתוכן שלך נותן לכל אחת ואחד את הזכות החוקית להשתמש בו מבלי לבקש את רשותך במידה והם שומרות ושומרים על תנאי הרישיון. נוסף על כך, %{site_name} כולל את התוכן שלך שמורשה ב-Creative Commons בארכיונים המעודכנים בקביעות אשר מופקים עבור ארגונים שותפים שמעוניינים בנתונים שלנו. למשל, אנו כוללים רישומי No Copyright (CC0), Attribution (CC BY), ו-Attribution-NonCommercial (CC BY-NC) בארכיון שאנו מייצרים עבור <a href="https://www.gbif.org/">מתקן המידע העולמי למגוון הביולוגי (GBIF)</a>, ארגון בינלאומי ובין-ממשלתי שמרכז ומפיץ מידע על המגוון הביולוגי ברחבי העולם.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: סוג הקובץ אינו נתמך. אנו מקבלים JPG, PNG ו-GIF
         monthly_supporter_desc_html: |
           תומכי iNaturalist חודשיים מבצעים תרומות חודשיות ל-iNaturalist (United
           States IRS EIN 92-1296468) לתמיכה בתפעול שאינו למטרת רווח של iNaturalist ואתרי רשת iNaturalist.
@@ -8092,6 +8147,11 @@ he:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: כבר נוספו 3 הלקסיקונים המותרים של שמות עממיים
+        this_only_applies_to_traditional_projects2: |
+          זה חל רק על פרויקטים בסיסיים. אי אפשר להוציא תצפיות
+          מפרויקטי אוסף או מטריה, שהם בעצם חיפושים שמורים.
+          ניתן לקרוא עוד
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">כאן</a>.
       recent:
         about_recent_users: אודות
         definitions_html: <dl> <dt>כנראה ספאם</dt> <dd> יוזר שהוא ככל הנראה מפיץ ספאם, כלומר אין לו תצפיות או זיהויים אבל יש לו תיאור פרופיל. </dd> <dt>ספאם אוטומטי</dt> <dd> מפיצ.ת ספאם שסומנ.ה אוטומטית על ידי המערכת. </dd> <dt>ספאם ידני</dt> <dd> מפיצ.ת ספאם שסומנ.ה ידנית על ידי אוצר.ת של האתר. </dd> <dt>חיוביים כוזבים</dt> <dd> יוזרים שסומנו כמפיצי ספאם אך הסימונים נפתרו על ידי אוצרות ואוצרי האתר מכיוון שלא היו מפיצי ספאם באמת. </dd> </dl>
@@ -8199,7 +8259,7 @@ he:
       - ו'
       - שבת
     abbr_month_names:
-      - 
+      -
       - ינו'
       - פבר'
       - מרץ
@@ -8244,7 +8304,7 @@ he:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_day_year: '%B %-d, %Y'
     month_names:
-      - 
+      -
       - ינואר
       - פברואר
       - מרץ
@@ -8691,6 +8751,7 @@ he:
         show_for_descendent_taxa: הצגה עבור טקסונים צאצאים
       user:
         email: דוא״ל
+        faved_project_ids: פרויקטים מועדפים
         login: שם משתמש
         name: שם
         locale: אזור
@@ -8827,6 +8888,8 @@ he:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: רק אנשי צוות ואוצרים יכולים להסתיר תוכן
               only_staff_and_hiding_curators_can_unhide: רק צוות ואוצרים שמסתירים תוכן יכולים לבטל את הסתרתו
+              #Error saying that only staff can rename
+              only_staff_can_rename: רק הצוות יכול לשנות את השם
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: רק אנשי צוות יכולים להגדיר תוכן כפרטי
               staff_cannot_be_suspended: לא ניתן להשהות צוות
@@ -8884,6 +8947,9 @@ he:
               invalid_point: מכילה נקודה לא תקינה, למשל רו אורך גבוה מ-180 או קו רחוב נמוך מ-90-
               must_have_more_than_three_points: חייב יותר מ-3 נקודות
               polygon_with_less_than_four_points: בעל פוליגון עם פחות מ-4 נקודות
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: בעל מצולע ללא שטח (כל הנקודות זהות)
         place_geometry:
           attributes:
             geom:
@@ -8901,6 +8967,10 @@ he:
             user:
               must_be_on_site_long_enough: |
                 חייב.ת להירשם לפני יותר 24 שעות כדי לפרסם. יש לא מעט מפיצי ספאם, וזוהי דרך עלובה למדי להתמודד עמם. באפשרותך עדיין לשמור טיוטה, ואם עדיין תשתמש באתר בעוד יממה, אז תוכל.י לפרסם.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: את.ה יכול.ה להעדיף רק 7 פרויקטים
         project_observation:
           attributes:
             base:
@@ -8992,6 +9062,14 @@ he:
               already_has_a_range: כבר יש לו תפוצה
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: לא יכול לכלול יותר מ-7 פרויקטים
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: כולם חייבים להתקיים
             login:
               must_begin_with_a_letter: |
                 חייב להתחיל באות, ללא מרווחים, ולהכיל אותיות, ספרות, מקפים וקווים תחתונים בלבד

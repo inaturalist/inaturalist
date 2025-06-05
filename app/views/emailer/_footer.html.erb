@@ -1,7 +1,7 @@
 <%-
   @site = ( @user && @user.site ) || Site.default
   blog_url = @site.blog_url
-  twitter_url = @site.twitter_url
+  x_url = @site.x_url
   facebook_url = @site.facebook_url
   instagram_url = @site.instagram_url
   android_app_url = @site.android_app_url
@@ -67,9 +67,9 @@
                                             <% end %>
                                           </td>
                                         <% end %>
-                                        <%- unless twitter_url.blank? -%>
+                                        <%- unless x_url.blank? -%>
                                           <td align="right" width="25%">
-                                            <%= link_to twitter_url, title: t(:twitter) do %>
+                                            <%= link_to x_url, title: t(:twitter) do %>
                                               <%= image_tag image_url( "social-twitter.png", host: @site.url ), width: 36, height: 36 %>
                                             <% end %>
                                           </td>

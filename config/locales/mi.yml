@@ -172,6 +172,8 @@ mi:
   any_license: Katoa
   #Label for an option to show content with photos, sounds, or neither
   any_media: Katoa
+  #Label for an option to show any place
+  any_place: Tētahi
   #Label for an option to show content from any project
   any_project: Katoa
   #Label for an option to show content with any quality grade
@@ -270,6 +272,10 @@ mi:
   confirm_now: Whakaū ināianei
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: I whakamanahia i %{date}
+  confirming_ids: Whakaū ana i ngā ID
+  confirming_ids_description: |
+    Ki te whakaweto koe i tēnei, kāore koe e whakamōhiotia mō ngā ID e whakaae ana
+    ki a koe ki te kore e whai kōrero anō.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Hono
@@ -344,6 +350,12 @@ mi:
   #Prompt for information when applying to be a curator
   curator_application_fields_explanation_html: He aha koe i pirangi ai hei kairauhī?
   curators: Kairauhī
+  curator_coordinate_access: Āheitanga Taururuku Kaitiaki
+  curator_coordinate_access_desc: |
+    Curator coordinate access for traditional projects depends on who added
+    te kitenga ki te kaupapa. Koinei anake te tautuhinga taunoa mō
+    ngā kitenga i roto i ngā kaupapa. Ka taea hoki e ngā kaitirotiro te kōwhiri ki te huri i tēnei mō
+    ngā kitenga takitahi.
   dashboard: Paemana
   date_: Rā
   date_added: Rā tapiritia
@@ -418,6 +430,11 @@ mi:
   devise_confirmation_instructions_send_confirmation_email: Tukuna te īmera whakamana
   devise_reset_password_instructions_hello_email: Kia ora %{email}
   disagree_: Whakahē
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Ngā tautohetohe
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Whakaaturia ngā kitenga e whakahē ana i ngā tāutunga
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Momotu
@@ -466,6 +483,8 @@ mi:
   edited_by_name_html: "I whakatika nā %{name}"
   edited_by_name_some_rights_reserved_html: |
     Whakatika nā %{name}, kua rāhuitia ngā mōtika ētahi (%{license})
+  #Title for a page to edit an announcement
+  editing_announcement_x: Pānui whakatika ana %{id}
   editing_observation_id: "E whakatika ana te mauhanga %{obs_id}"
   editing_project: E whakatika ana %{project}
   editing_taxon: E whakatika ana %{taxon}
@@ -606,6 +625,10 @@ mi:
   #Label for messages you've received
   inbox: Pouakauru
   inat_user_profile: "%{site_name}: Kīwhaiaro tō %{user}"
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Ngā TT Infraspecies
   insects: pepeke
   instagram: Paeāhua
   jobs: He tūranga mahi
@@ -629,7 +652,6 @@ mi:
     maori: Te reo Māori
     spanish: Pāniora
   license: Raihana
-  link_your_google_account: Ka hono tāu pūkete Kūkara
   list: Tūtira
   list_views:
     photo: whakaahua
@@ -657,6 +679,10 @@ mi:
   log_out_caps: TAKIPUTA
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Takiputa atu i %{site_name}?"
+  #Adjectival phrase describing state of being logged in
+  logged_in: Kua takiuru
+  #Adjectival phrase describing state of being logged out
+  logged_out: Kua takiputa
   long: Pou
   longitude: Ahopau
   longitude_in_decimal: 'Te ahopou i roto i nga tohu-a-ira, e.g. -122.123'
@@ -748,6 +774,8 @@ mi:
   more_info: Mōhiohio anō
   more_info_title: Mōhiohio anō
   more_observations: Tonuhia ngā mauhanga
+  #Label for a button or section that shows additional options
+  more_options: Ngā kōwhiringa anō
   more_photos: Tonuhia ngā whakaahua
   name: Ingoa
   names: Ingoa
@@ -789,6 +817,10 @@ mi:
   no_recent_activity: E kore ngā hohenga inātata nei
   no_taxa: Kāore ngā rōpū
   noble_curators: "Ngā kairauhī rangatira o %{site}"
+  #A user who is not a curator
+  non_curator: Kaitiaki Kore
+  #A user who does not admin any projects
+  non_project_admin: Kaiwhakahaere kaupapa-kore
   notes: Kupu tīpoka
   number_of_observers_value: "E hia ngā kaimātaki: %{number}"
   number_of_observers: "E hia ngā kaimātaki"
@@ -823,6 +855,7 @@ mi:
   observation_field_type_taxon: Rōpū
   observation_field_type_dna: Pītau ira
   observation_fields: Āpure mauhanga
+  observation_fields_for_projects: Ngā Āpure Kitenga mō ngā Kaupapa
   observations: Mauhanga
   observations_: mauhanga
   observations_by: Mauhanga nā
@@ -1061,6 +1094,8 @@ mi:
   profile: Kīwhaiaro
   profile_picture: Atawhaiaro
   project: Kohinga
+  #A user who admin's a project
+  project_admin: Kaiwhakahaere kaupapa
   project_home: Kāinga kohinga
   project_list_defaults:
     description: Tūtira momo mō %{owner_name}
@@ -1074,6 +1109,16 @@ mi:
   range: Ine whānui
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Kapa
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Genus / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Momo / Hinu
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Momo Roto / Momo / Puka
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -1279,6 +1324,9 @@ mi:
   store_caps: TOA
   submission_model_description: Ko wai e taea i tāpiri ngā mauhanga ki tāu kohinga?
   submitted: I tukua
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Ohauru
   subscribe_to_a_taxon: Ohaurutia ki tētahi rōpu
   subscribe_to_a_place: Ohaurutia ki tētahi wāhi
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Ohaurutia%{tag_end} ki kōrero i runga i te kara nei"
@@ -1388,6 +1436,14 @@ mi:
   user_added_an_x_to_noun_html: "Nā %{user} tāpiritia tētahi %{x} ki %{noun}"
   user_commented: "I kōrero a %{user}"
   user_suggested_an_id: "I whakaaranga a %{user} tētahi tautuhi"
+  user_trusts_this_project_when_added_by_any: |
+    Ka whakawhirinaki te kaiwhakamahi ki ngā kaitiaki kaupapa me ngā taunga huna o ngā kitenga kua tāpirihia
+    ki te kaupapa e te tangata.
+  user_trusts_this_project_when_added_by_observer: |
+    Ka whakawhirinaki te kaiwhakamahi ki ngā kaitiaki kaupapa me ngā taunga huna o ngā kitenga kua tāpirihia
+    ki te kaupapa a te kaitirotiro.
+  user_trusts_this_project_when_added_by_none: |
+    Kāore te kaiwhakamahi e whirinaki ana ki ngā kaitiaki kaupapa whai taururuku huna.
   username: Ingoa rorohiko
   username_or_email: Ingoa rorohiko rānei, īmera rānei
   users: Kaiwhakamahi
@@ -1431,6 +1487,8 @@ mi:
   view_yours: Tirohia āu
   view_all_of_your_observations_from_x: "Tirohia āu mauhanga katoa mai i %{x}"
   visually_similar: He āhua rite
+  we_also_support3: |
+    E tautoko ana hoki mātou i te kawemai whakaahua mai i <a href="http://flickr.com">Flickr</a>.
   weather: Huarere
   welcome: nau mai, haere mai
   welcome_back!: Hoki mai anō!
@@ -1482,6 +1540,54 @@ mi:
   your_tags: Āu tūtohu
   yours: Āu
   views:
+    announcements:
+      locales_desc: |
+        CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Tīpako ana i te "Katoa", kāore rānei e hanga
+        Ka whakaaturia e tētahi tīpakonga te pānuitanga ki ngā kaiwhakamahi katoa ahakoa
+        rohe. Mā te kōwhiri i tētahi reo kāore he rohe e *kore* te ūnga
+        ngā rohe me ngā rohe, hei tauira, mēnā i kōwhiri koe i te reo Ingarihi e kore e puta
+        mō ngā tāngata kua kōwhiri i te reo Ingarihi (UK).
+      clients_desc: |
+        CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Tīpako ana i te "Katoa", kāore rānei e hanga
+        Ka whakaaturia e tētahi tīpakonga te pānuitanga ki ngā kaiwhakamahi katoa ahakoa
+        kiritaki.
+      end_desc: |
+        Wā i tō rohe wā pūkete ka tū ai tēnei pānui
+        e puta ana. Ka pā puta noa i ngā rohe wā, kia mutu ai te kite a te katoa
+        i te wā kotahi, ehara i te mea e pā ana ki tō rātou wā paetata.
+      ip_countries_desc: |
+        CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Tīpako ana i te "Katoa", kāore rānei e hanga
+        Ka whakaaturia e tētahi tīpakonga te pānuitanga ki ngā kaiwhakamahi katoa ahakoa
+        Whenua IP.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Kia mahara ko te rā waihanga o te mea i waihangatia e te kaiwhakamahi i mua tata nei
+        kua keteroki te kitenga, nā reira ka pau pea ētahi haora mō te ūnga ki
+        whai mana
+      observation_oauth_application_ids_desc: |
+        CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Tīpako ana i te "Katoa", kāore rānei e hanga
+        Ka whakaaturia e tētahi tīpakonga te pānuitanga ki ngā kaiwhakamahi katoa ahakoa
+        taupānga.
+      site_ids_desc: |
+        CMD-pāwhiri-PANUKU rānei hei tīpako i ngā taumaha. Tīpako ana i te "Katoa", kāore rānei e hanga
+        Ka whakaaturia e tētahi tīpakonga te pānuitanga ki ngā kaiwhakamahi katoa ahakoa
+        hononga pae.
+      start_desc: |
+        Te wā i tō rohe wā pūkete ka tīmata ai tēnei pānui
+        e puta ana. Ka hoatu puta noa i ngā rohe wā, kia tīmata ai te katoa ki te kite
+        i te wā kotahi, ehara i te mea e pā ana ki tō rātou wā paetata.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Ūkuia ngā kaiwhakamahi mā te whanonga koha
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Ūnga kaiwhakamahi mā te whanonga tāutunga
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Ūnga kaiwhakamahi mā te whanonga mātakitaki
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Ūnga kaiwhakamahi mā ētahi atu huanga
     donate:
       post_donate_social_media_text: Kei te tautoko ahau i iNaturalist nō te mea ...
     email_confirmation:
@@ -1510,6 +1616,10 @@ mi:
       tips_check_your_spam_folder: Takina tō kōpaki spam
       your_site_account_has_no_email: Tō %{site_name} Kāore he wāhitau īmēra o te pūkete e pā ana ki taua pūkete.
     guides:
+      index:
+        funding2_html: |
+          Funding for the development of Guides was provided by
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
       pdf_layouts:
         grid: tukutuku
         book: pukapuka
@@ -1740,6 +1850,45 @@ mi:
       #Noun
       Flag: Kara
     attributes:
+      announcement:
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Waihotia te rā tīmata o te kaituku
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Waihotia te rā mutunga o te kaituku
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Aukati i ngā kaimātakitaki mai i ngā taupānga
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Whakaurua te rā tīmata o te kaituku
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Whakaurua te rā mutunga o te kaituku
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Whakaurua ngā kaitirotiro mai i ngā taupānga
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Ngā Whenua IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Rā tīmatanga obs hōu rawa
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Rā whakamutunga obs hōu rawa
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Ngā tāutunga mōrahi
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Ngā tāutunga mōkito
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Ngā kitenga mōrahi
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Ngā kitenga mōkito
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Whakanohonga
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Kaihanga ūnga (hei whakamātautau)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Kua takiuru te ūnga
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Rā tohuake kaiwhakamahi tōmua rawa
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Rā tohuake kaiwhakamahi hōu rawa
       conservation_status:
         place_id: Wāhi
       flag:
@@ -1782,7 +1931,13 @@ mi:
     errors:
       messages:
         confirmation: Kāore i te ōrite te kupuhipa
+        must_look_like_an_email_address: Me rite te āhua ki tētahi wāhitau īmēra
         requires_privilege_interaction: me whai wāhitau īmēra kua whakaūngia hei mahi i tēnā
+      models:
+        user:
+          attributes:
+            login:
+              domain_is_not_supported: Kāore te rohe i te tautokona
   i18n:
     inflections:
       "@vow_or_con":

@@ -1004,6 +1004,9 @@ zh-TW:
   confirmation_email_sent_at_datetime: 確認電子郵件已於 %{datetime} 傳送
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: 已於 %{date}確認
+  confirming_ids_description: |
+    如果您關閉此功能，您將不再收到有關同意的 ID 的通知
+    與您的 S 一起使用，除非他們有額外的備註。
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: 連接
@@ -1347,6 +1350,12 @@ zh-TW:
   curators_changed_for_x_html: "%{x} 的策展人已更改"
   curators: 策展人
   curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
+  curator_coordinate_access: Curator 座標訪問
+  curator_coordinate_access_desc: |
+    傳統專案的 Curator 座標訪問許可權取決於添加者
+    對項目的觀察。這隻是
+    專案中的觀察結果。觀察者還可以選擇更改此設置
+    個人觀察。
   curator_identification: 策展人鑑定
   current_flags: 目前標記
   #Label for a custom boundary for an observation search
@@ -1554,6 +1563,9 @@ zh-TW:
   disable_comments: 關閉評論
   disable_comments_desc: 防止其他人新增評論
   disagree_: 不同意
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: 分歧
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: 取消連結
@@ -1668,6 +1680,8 @@ zh-TW:
   edited_by_name_some_rights_reserved_html: |
     由%{name}所編輯，保留部分權利（%{license}）
   editing: 編輯中
+  #Title for a page to edit an announcement
+  editing_announcement_x: 編輯公告 %{id}
   editing_custom_project_fields_for: 編輯自定義專案欄位用於
   editing_observation_field: 觀察欄位編輯中
   editing_observation_id: "編輯觀察 %{obs_id}"
@@ -2483,7 +2497,6 @@ zh-TW:
   #a noun.
   link_to_authorization_code: 驗證碼的連結
   link_your_flickr_account: 連結您的 Flickr 帳號
-  link_your_google_account: 連結您的 Google 帳號
   linked_flickr: "您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。"
   linked_flickr_automatically: "另外，請留意如果您經由 Flickr 登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name} 與 Flickr 帳號。若您有使用 Flickr；您應該會想要匯入在 Flickr 上的照片，很合理是吧？"
   linked_flickr_description: "保持您的 %{site_name} 帳號連結至您的 Flickr 帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓 %{site_name} 與 Flickr 之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法，就是您另外建立一個專門連結至 %{site_name} 的新 Flickr 帳號。"
@@ -2605,6 +2618,10 @@ zh-TW:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "登出 %{site_name}？"
   log_scale_label: 對數
+  #Adjectival phrase describing state of being logged in
+  logged_in: 已登錄
+  #Adjectival phrase describing state of being logged out
+  logged_out: 已註銷
   #Status message shown while logging in
   logging_in: 登入中...
   logo:
@@ -2809,6 +2826,8 @@ zh-TW:
   more_info_title: 更多資訊
   more_journal_posts: 更多日誌發佈文章
   more_observations: 更多觀察
+  #Label for a button or section that shows additional options
+  more_options: 更多選項
   more_photos: 更多照片
   more_than_a_week_ago: 超過一週前
   most_agree: 最多同意
@@ -3026,7 +3045,11 @@ zh-TW:
   no_users_found_with_those_filters: 用這些篩選條件找不到使用者
   no_wikipedia_page_for_taxon: 沒有用於此物種分類的維基百科頁面。
   noble_curators: "%{site} 的高階策展人"
+  #A user who is not a curator
+  non_curator: 非策展人
   non_human?: 非人類？
+  #A user who does not admin any projects
+  non_project_admin: 非專案管理員
   none: 無
   none_found: 未找到
   normal: 一般
@@ -3141,6 +3164,7 @@ zh-TW:
   observation_field_type_taxon: 分類群
   observation_field_type_dna: DNA
   observation_fields: 觀察欄位
+  observation_fields_for_projects: 項目的觀察欄位
   observation_fields_are_additional: 觀察欄位即為可被添加在觀察裡的額外資料欄位。
   observation_fields_by_preferences_description: |
     觀察欄位有些類似標籤，預設上只有您可以添加至您的觀察。若您只希望您自己，或網站策展人可操作請更改它。
@@ -3901,6 +3925,8 @@ zh-TW:
   profile_visibility_desc: |
     為防止在 %{site_name} 上出現垃圾訊息，使用者的個人檔案僅在使用者有貢獻出數個研究等級的觀察後，才會公開可見。
   project: 專案
+  #A user who admin's a project
+  project_admin: 專案管理員
   project_admins:
     other: 專案管理員
   project_aggregator_filter_error: |
@@ -3983,6 +4009,16 @@ zh-TW:
   range: 範圍
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: 分類位階
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: 屬 / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: 物種 / 雜交種
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: 亞種 / 品種 / 形態
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5077,7 +5113,6 @@ zh-TW:
   unknown: 未知
   unknown_error: 不明錯誤
   unknown_rank: '（未知級別）'
-  unlink_your_google_account: 取消連結您的 Google 帳號
   unlink_your_flickr_account: "取消連結至您的 Flickr 帳號"
   unmute: 取消禁言
   updates_notification_email_subject: "%{prefix} 新的更新 %{date}"
@@ -5125,7 +5160,6 @@ zh-TW:
   uploader:
     errors:
       file_too_big: 檔案必須小於 %{megabytes} MB
-      unsupported_file_type: 檔案類型不支援，我們接受 JPG、PNG、GIF、WAV、AAC、MP3、和 MP4（僅音效）
     resize_tip: |
       若您的照片檔案太大，嘗試剪裁最大至 2048 x 2048 像素，便可讓這些照片在伺服器上能更快地上傳。
     tooltips:
@@ -5216,6 +5250,14 @@ zh-TW:
   user_observed_on_on_date_in_place: |
     %{user} 於 %{date} 在%{place}觀察了一個
   user_suggested_an_id: "%{user} 建議了一個鑑定"
+  user_trusts_this_project_when_added_by_any: |
+    使用者信任添加了觀測點隱藏座標的專案策展人
+    到專案。
+  user_trusts_this_project_when_added_by_observer: |
+    使用者信任添加了觀測點隱藏座標的專案策展人
+    到專案。
+  user_trusts_this_project_when_added_by_none: |
+    使用者不信任具有隱藏座標的專案策展人。
   user_trusts_you_with_their_private_coordinates: "%{user}以他的隱藏座標來信任您"
   user_trusts_you_with_their_private_coordinates_desc: |
     觀察者選擇以他所有觀察的隱藏座標來信任您
@@ -5314,6 +5356,8 @@ zh-TW:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: 徵求
   was_it_captive_cultivated?: "是被圈養/栽培？"
+  we_also_support3: |
+    我們還支援從以下位置導入照片 <a href="http://flickr.com">Flickr的</a>.
   we_can_only_understand_csv_in: 我們僅接受以下格式的 CSV
   we_couldnt_find_a_user: 我們沒有找到帶此電子郵件的用戶。
   we_couldnt_find_a_user_with_that_activation_code: "我們找不到具有此啟用代碼的用戶。您可能已啟用過您的帳號，請嘗試登入看看。"
@@ -5607,6 +5651,25 @@ zh-TW:
   verifiable_observations: 可證實觀察
   views:
     views: '查看數'
+    announcements:
+      locales_desc: |
+        按住 CMD 或 Shift 鍵按下可選擇多個。選擇 「All」 或不進行
+        選擇將向所有用戶顯示公告，而不管
+        現場。選擇沒有區域的語言將*不會*定位
+        具有區域的區域設置，例如，如果您選擇了 English，則不會顯示
+        適用於選擇英語 （UK） 的使用者。
+      clients_desc: |
+        按住 CMD 或 Shift 鍵按下可選擇多個。選擇 「All」 或不進行
+        選擇將向所有用戶顯示公告，而不管
+        客戶。
+      end_desc: |
+        此公告將停止的時間（以您的帳戶時區為準）
+        出現。跨時區應用，因此所有人都不會再看到
+        它同時，而不是相對於他們的當地時間。
+      observation_oauth_application_ids_desc: |
+        按住 CMD 或 Shift 鍵按下可選擇多個。選擇 「All」 或不進行
+        選擇將向所有用戶顯示公告，而不管
+        應用程式。
     content_freeze:
       content_freeze: 內容凍結
       during_this_time: |
@@ -5723,8 +5786,9 @@ zh-TW:
       index:
         deprecated_banner: |
           請注意：從 2019 年一月開始，指南的功能就依此現狀("as is")來呈現；也就是我們不打算刪除它，未來也不打算開發新功能。
-        funding_html: |
-          指南開發的資金由 <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a> 提供
+        funding2_html: |
+          開發指南的資金由
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           指南協助您學習有關世界上的生物多樣性。不論您現正在探索坦尚尼亞的塞倫蓋提，或是在您當地的公園裡（我們猜您比較可能是在塞倫蓋提），指南可協助您理解我們星球上令人驚豔的多樣生物。
       edit:
@@ -6125,10 +6189,6 @@ zh-TW:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           位置隱私欄位必須為英文，且值必須是空白或是「obscured」或「private」
-        google_photos_notice_html: |
-          在 2019 年 2 月，Google 更改了他們的 API，讓我們可以取用全球定位系統座標、許可資訊，以及幾乎任何我們可以拿來添加至鑑定的資訊（像是標籤）。他們幾乎去除掉文字搜尋以數字分頁。除此之外，他們需要所有連接的帳號來擁有額外權限，並且在第三方可從使用者請求權限之前，第三方需要被驗證。我們現在正等待著驗證，而在此之前您無法從 Google 匯入照片。在我們取得核准後，您可以匯入照片，而他們不會把任何您可以在 Google 照片上查看到的位置資訊、或是許可資訊給包含進去。您可以在 
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a> 查看更多內容。
-          下載原始檔案並使用<a href="/observations/upload">上傳器</a>來添加它們是最有效的方式。
         project_csv_template_notice_html: |
           這是一個用於此專案的模版檔案，它可能有助於您關於在 CSV 檔案結構方面。
           <a href="%{url}">下載模版</a>
@@ -7255,6 +7315,15 @@ zh-TW:
       ModeratorNote: 版主註記
       TaxonLink: 物種分類連結
     attributes:
+      announcement:
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: 從應用程式中排除觀察者
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: 包括來自應用程式的觀察者
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: 目標建立者（用於測試）
       assessment:
         description: 描述
       assessment_section:
@@ -7366,6 +7435,7 @@ zh-TW:
         url: URL
       user:
         email: 電子郵件
+        faved_project_ids: 最喜歡的專案
         login: 使用者名稱
         name: 名稱
         locale: 在地
@@ -7382,6 +7452,7 @@ zh-TW:
         empty: 不能為空
         equal_to:
           other: 必須等於 %{count}
+        must_look_like_an_email_address: 必須看起來像電子郵件位址
         even: 必須是偶數
         exclusion: 已被保留
         inclusion: 未包含在名錄中
@@ -7478,6 +7549,10 @@ zh-TW:
             user:
               must_be_on_site_long_enough: |
                 必須註冊超過 24 小時才可發佈。這是我們面對到大量破壞者的將就應付方式。如果您在註冊那天裡有使用我們的網站，您仍可將內容存儲成草稿來用於發佈。
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: 你只能喜歡 7 個專案
         project_observation:
           attributes:
             base:
@@ -7552,9 +7627,18 @@ zh-TW:
               already_has_a_range: 已經有分布範圍了
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 不能包含超過 7 個專案
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: 必須全部存在
             login:
               must_begin_with_a_letter: |
                 必須以字母為開頭，內容不可包含空格，開頭以外部份僅能使用字母、數字、連接號、底線
+              domain_is_not_supported: 不支援域
         user_block:
           attributes:
             base:

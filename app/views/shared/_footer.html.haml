@@ -38,8 +38,9 @@
           - unless site.facebook_url.blank?
             = link_to site.facebook_url, :class => "social-media-link facebook", title: t(:facebook) do
               = image_tag "facebook-f-logo-white.svg", "aria-hidden" => true
-          - unless site.twitter_url.blank?
-            = link_to t(:twitter), site.twitter_url, :class => "social-media-link twitter", title: t(:twitter)
+          - unless site.x_url.blank?
+            = link_to site.x_url, :class => "social-media-link x", title: "X" do
+              = image_tag "x-logo.svg", "aria-hidden" => true
           - unless site.instagram_url.blank?
             = link_to t(:instagram), site.instagram_url, :class => "social-media-link instagram", title: t(:instagram)
           - unless site.bluesky_url.blank?
@@ -70,6 +71,6 @@
             - locales_sorted_by_localized_name = I18n.t( "locales", locale: :en ).keys.sort_by { I18n.t( "locales.#{_1}", locale: _1, default: t( "locales.#{_1}" ) ).downcase }
             - locales_sorted_by_localized_name.each do |locale|
               %li
-                = link_to I18n.t( "locales.#{locale}", locale: locale, default: t( "locales.#{locale}" ) ), set_locale_path( locale: locale ), title: t( "locales.#{locale}" )
+                = link_to I18n.t( "locales.#{locale}", locale: locale, default: t( "locales.#{locale}" ) ).upcase_first, set_locale_path( locale: locale ), title: t( "locales.#{locale}" ).upcase_first
             %li.divider{ role: "separator" }
             %li= link_to I18n.t( "help_translate!" ), "/pages/translate"

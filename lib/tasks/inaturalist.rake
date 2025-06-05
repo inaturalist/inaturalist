@@ -57,7 +57,7 @@ namespace :inaturalist do
     task_logger&.start
     min_id = UpdateAction.minimum( :id )
     # using an ID clause to limit the number of rows in the query
-    last_id_to_delete = UpdateAction.where( ["created_at < ?", 3.months.ago] ).
+    last_id_to_delete = UpdateAction.where( ["created_at < ?", 90.days.ago] ).
       where( "id >= #{min_id} AND id < #{min_id + 1_000_000}" ).maximum( :id )
     next unless last_id_to_delete
 
@@ -88,7 +88,7 @@ namespace :inaturalist do
       where( "photos.id IS NULL" ).
       where( "(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
-        6.months.ago, 1.month.ago ).includes( :photo ).find_each do | deleted_photo |
+        180.days.ago, 30.days.ago ).includes( :photo ).find_each do | deleted_photo |
       begin
         deleted_photo.remove_from_s3( s3_client: client )
       rescue
@@ -96,8 +96,8 @@ namespace :inaturalist do
         break if fails >= 5
       end
     end
-    # Delete user profile pics for users that were deleted over a month ago
-    DeletedUser.where( "created_at < ?", 1.month.ago ).each do | deleted_user |
+    # Delete user profile pics for users that were deleted over 30 days ago
+    DeletedUser.where( "created_at < ?", 30.days.ago ).each do | deleted_user |
       begin
         User.remove_icon_from_s3( deleted_user.user_id )
       rescue
@@ -151,7 +151,7 @@ namespace :inaturalist do
       where( "sounds.id IS NULL" ).
       where( "(orphan=false AND deleted_sounds.created_at <= ?)
         OR (orphan=true AND deleted_sounds.created_at <= ?)",
-        6.months.ago, 1.month.ago ).find_each do | deleted_sound |
+        180.days.ago, 30.days.ago ).find_each do | deleted_sound |
       begin
         deleted_sound.remove_from_s3( s3_client: client )
       rescue

@@ -1,0 +1,24 @@
+%h2.sub-header= "#{title} (#{queries.count})"
+
+%table.table.table-striped
+  %thead
+    %tr
+      %th Timing
+      %th Info
+  %tbody
+    - queries.each do |query|
+      %tr
+        %td
+          %strong Duration:
+          %br
+          = human_duration(query["duration"]) if query["duration"]
+          %br
+          %br
+          %strong State Changed:
+          %br
+          = time_ago_in_words(query["state_change"]) if query["state_change"]
+        %td
+          - query.each do |k,v|
+            %strong= "#{k}:"
+            = v
+            %br

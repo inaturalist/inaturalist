@@ -245,7 +245,9 @@ describe AnnouncementsController do
       end
 
       it "does not target confirmed users if targeting unconfirmed users" do
-        unconfirmed_announcement = create :announcement, prefers_target_unconfirmed_users: true
+        unconfirmed_announcement = create :announcement,
+          target_logged_in: Announcement::YES,
+          prefers_target_unconfirmed_users: true
         sign_in create( :user )
         get :active, format: :json
         annc_ids = response.parsed_body.map {| a | a["id"] }
@@ -255,8 +257,12 @@ describe AnnouncementsController do
       it "includes users by observation oauth application ids" do
         app = create :oauth_application, official: true
         app_obs = create :observation, oauth_application: app
-        app_annc = create :announcement, include_observation_oauth_application_ids: [app.id]
-        oth_annc = create :announcement, include_observation_oauth_application_ids: [OauthApplication::WEB_APP_ID]
+        app_annc = create :announcement,
+          target_logged_in: Announcement::YES,
+          include_observation_oauth_application_ids: [app.id]
+        oth_annc = create :announcement,
+          target_logged_in: Announcement::YES,
+          include_observation_oauth_application_ids: [OauthApplication::WEB_APP_ID]
         sign_in app_obs.user
         get :active, format: :json
         annc_ids = response.parsed_body.map {| a | a["id"] }
@@ -267,8 +273,12 @@ describe AnnouncementsController do
       it "excludes users by observation oauth application ids" do
         app = create :oauth_application, official: true
         app_obs = create :observation, oauth_application: app
-        app_annc = create :announcement, exclude_observation_oauth_application_ids: [app.id]
-        oth_annc = create :announcement, exclude_observation_oauth_application_ids: [OauthApplication::WEB_APP_ID]
+        app_annc = create :announcement,
+          target_logged_in: Announcement::YES,
+          exclude_observation_oauth_application_ids: [app.id]
+        oth_annc = create :announcement,
+          target_logged_in: Announcement::YES,
+          exclude_observation_oauth_application_ids: [OauthApplication::WEB_APP_ID]
         sign_in app_obs.user
         get :active, format: :json
         annc_ids = response.parsed_body.map {| a | a["id"] }

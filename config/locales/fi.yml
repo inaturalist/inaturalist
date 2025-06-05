@@ -602,6 +602,8 @@ fi:
   any_license: Mikä tahansa
   #Label for an option to show content with photos, sounds, or neither
   any_media: Mikä tahansa
+  #Label for an option to show any place
+  any_place: Mikä tahansa
   #Label for an option to show content from any project
   any_project: Mikä tahansa
   #Label for an option to show content with any quality grade
@@ -1377,6 +1379,12 @@ fi:
   curators_changed_for_x_html: "Kuraattorit vaihdettu kohteelle %{x}"
   curators: Kuraattorit
   curators_can_remove_observations_from: Kuraattorit voivat poistaa havaintoja projekteista, ja heidän tunnistuksensa näytetään havainnon ohessa projektikohtaisissa näkymissä. Kuraattorit myös näkevät tähän projektiin kuuluvien yksityisten ja karkeistettujen havaintojen tarkat koordinaatit.
+  curator_coordinate_access: Kuraattorin koordinaattien käyttöoikeus
+  curator_coordinate_access_desc: |
+    Kuraattorin koordinointi perinteisiin projekteihin riippuu siitä, kuka on lisännyt
+    havainto hankkeeseen. Tämä on vain oletusasetus
+    havaintoja hankkeissa. Tarkkailijat voivat myös halutessaan muuttaa tätä
+    yksittäisiä havaintoja.
   curator_identification: Kuraattorin tunnistus
   current_flags: Nykyiset liput
   #Label for a custom boundary for an observation search
@@ -1587,6 +1595,11 @@ fi:
   disable_comments: Poista kommentit käytöstä
   disable_comments_desc: Estä käyttäjiä lisäämästä uusia kommentteja
   disagree_: Eri mieltä
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Erimielisyyksiä
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Näytä havaintoja, joilla on eriäviä tunnistuksia
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Katkaise yhteys
@@ -1698,6 +1711,8 @@ fi:
   edited_by_name_some_rights_reserved_html: |
     Muokannut %{name}, osa oikeuksista pidätetään (%{license})
   editing: Muokataan
+  #Title for a page to edit an announcement
+  editing_announcement_x: Ilmoituksen muokkaaminen %{id}
   editing_custom_project_fields_for: Muokataan mukautettuja projektikenttiä projektille
   editing_observation_field: Muokataan havaintokenttää
   editing_observation_id: "Muokataan havaintoa %{obs_id}"
@@ -2136,6 +2151,8 @@ fi:
   inaturalist_global_year_in_review: "iNaturalistin %{year} vuosikatsaus"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist on itsenäinen järjestö, joka toimii USA:ssa veroista vapautettuna epäkaupallisena 501(c)(3) -organisaationa (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist päivitti ehdottamansa tunnuksen %{user}
   computer_vision_suggestion: Automaattisen kuvantunnistuksen ehdotus
   computer_vision_suggestion_desc: |
     Tietokonenäkö on prosessi, jossa tietokonetta opetetaan tunnistamaan kuvista erilaisia muotoja. Meillä on käytössä työkaluja, jotka käyttävät tietokonenäköön perustuvia malleja, jotka pohjautuvat yhteisön tallentamaan kuvamateriaaliin. Näiden työkalujen avulla käyttäjälle tarjotaan lajitunnistusapua kuten automaattista täydennystä ja vertailtavia ominaisuuksia. Tämä merkintä kertoo, että käyttäjä on tunnistanut lajin käyttäen em. työkaluja.
@@ -2466,7 +2483,6 @@ fi:
   linear_scale_label: Lineraarinen
   link: Linkki
   link_your_flickr_account: Linkitä Flickr-tilisi
-  link_your_google_account: Linkitä Google-tilisi
   linked_flickr: "%{site_name}-käyttäjätunnuksesi on tällä hetkellä linkitetty Flickr-tiliisi."
   #Text inserted into a textarea when the link button is clicked but no text was selected
   linked_text: linkin teksti
@@ -2802,6 +2818,8 @@ fi:
   more_info_title: Lisätietoja
   more_journal_posts: Lisää päiväkirjamerkintöjä
   more_observations: Lisää havaintoja
+  #Label for a button or section that shows additional options
+  more_options: Lisää vaihtoehtoja
   more_photos: Lisää kuvia
   more_than_a_week_ago: Yli viikko sitten
   most_agree: suurin osa samaa mieltä
@@ -3146,6 +3164,7 @@ fi:
   observation_field_type_taxon: Taksoni
   observation_field_type_dna: DNA
   observation_fields: Havainnointikentät
+  observation_fields_for_projects: Hankkeiden havaintokentät
   observation_fields_are_additional: Havaintokentät ovat lisätietokenttiä, joita voidaan lisätä havaintoihin.
   observation_fields_by_preferences_description: |
     Havaintokentät ovat vähän kuin tunnisteita, mutta kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin, että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
@@ -5003,7 +5022,6 @@ fi:
   unfollow_observation: Lopeta havainnon seuranta
   #Text for a button to stop following updates from a user
   unfollow_user: Lopeta käyttäjän seuraaminen
-  unlink_your_google_account: Poista linkitys Google-tiliisi
   unlink_your_flickr_account: "Poista linkitys Flickr-tiliisi"
   unmute: Poista hiljennys
   updates_notification_email_subject: "%{prefix} Uudet päivitykset %{date}"
@@ -5053,8 +5071,6 @@ fi:
   #Label that notes who uploaded some content, not in a sentence
   uploaded_by: Tallentanut
   uploader:
-    errors:
-      unsupported_file_type: Tiedostotyyppiä ei tueta. Tuemme JPG, PNG, GIF, WAV, AAC, MP3, ja MP4 (vain ääni)
     tooltips:
       add: Lisää havainto(ja)
       combine: Yhdistä valitut havainnot
@@ -5134,6 +5150,14 @@ fi:
   user_observed_on_on_date_in_place: |
     %{user} havaitsi %{date} paikassa %{place}
   user_suggested_an_id: "%{user} ehdotti tunnistusta"
+  user_trusts_this_project_when_added_by_any: |
+    Käyttäjä luottaa projektin kuraattoreihin, joihin on lisätty havaintojen piilotetut koordinaatit
+    projektiin kenen tahansa toimesta.
+  user_trusts_this_project_when_added_by_observer: |
+    Käyttäjä luottaa projektin kuraattoreihin, joihin on lisätty havaintojen piilotetut koordinaatit
+    tarkkailijan hankkeeseen.
+  user_trusts_this_project_when_added_by_none: |
+    Käyttäjä ei luota projektin kuraattoreihin, joilla on piilotetut koordinaatit.
   user_updated_an_observation_field_html: '%{user} päivitti arvon kentälle "%{field_name}" havaintoon, jonka teki %{owner}'
   user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> kirjoitti,
   username: Käyttäjänimi
@@ -5259,9 +5283,8 @@ fi:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Haluttu
   was_it_captive_cultivated?: "Oliko se vangittu / viljelty"
-  we_also_support2: |
-    Tuemme myös kuvien tuontia <a href="http://flickr.com">Flickr-</a>
-    ja <a href="http://photos.google.com">Google Photos</a> -palveluista.
+  we_also_support3: |
+    Tuemme myös valokuvien tuontia <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Voimme ymmärtää CSV-tiedostoa vain seuraavassa muodossa
   we_couldnt_find_a_user: Emme löytäneet käyttäjää kyseisellä sähköpostiosoitteella.
   we_couldnt_find_a_user_with_that_activation_code: "Emme löytäneet käyttäjää tällä aktivointikoodilla. Voi olla että aktivoit jo tilisi, joten ole hyvä ja kokeile kirjautumista sisään."
@@ -5535,8 +5558,51 @@ fi:
   views:
     views: 'Näyttökerrat'
     announcements:
+      locales_desc: |
+        CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
+        valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
+        tapahtumapaikka. Kielen valitseminen ilman aluetta *ei* kohdistu
+        alueet alueineen, esimerkiksi jos valitsit englannin, se ei näy
+        ihmisille, jotka ovat valinneet englannin (Iso-Britannia).
+      clients_desc: |
+        CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
+        valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
+        asiakas.
+      end_desc: |
+        Aikavyöhykkeellä oleva aika, jolloin tämä ilmoitus päättyy
+        esiintyminen. Koskee kaikkia aikavyöhykkeitä, joten kaikki eivät enää näe
+        se samaan aikaan, ei suhteessa paikalliseen aikaansa.
+      ip_countries_desc: |
+        CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
+        valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
+        IP-maa.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Huomaa, että käyttäjän viimeksi luodun
+        havainto on tallennettu välimuistiin, joten kohdentaminen voi kestää muutaman tunnin
+        tulla voimaan
       observation_oauth_application_ids_desc: |
         Klikkaa CMD- tai SHIFT-näppäintä valitaksesi useita. Valitsemalla "Kaikki" tai jos et valitse mitään, ilmoitus näytetään kaikille käyttäjille riippumatta sovelluksesta.
+      site_ids_desc: |
+        CMD- tai VAIHTO-napsauta valitaksesi useita. Valitsemalla "Kaikki" tai tekemättä jättäminen
+        valinta näyttää ilmoituksen kaikille käyttäjille riippumatta siitä,
+        sivustoon kuuluminen.
+      start_desc: |
+        Aika, jolloin tämä ilmoitus alkaa tilisi aikavyöhykkeellä
+        esiintyminen. Koskee kaikkia aikavyöhykkeitä, joten kaikki alkavat nähdä
+        se samaan aikaan, ei suhteessa paikalliseen aikaansa.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Kohdenna käyttäjät lahjoituskäyttäytymisen mukaan
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Kohdista käyttäjät tunnistamiskäyttäytymisen mukaan
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Kohdista käyttäjät havaintokäyttäytymisen mukaan
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Kohdista käyttäjät muiden määritteiden mukaan
     atlases:
       show:
         #Title for section describing atlases
@@ -5660,8 +5726,9 @@ fi:
       index:
         deprecated_banner: |
           Huom: Lajiopas-osion kehitys on päättynyt, ja se on käytettävissä sellaisena kuin se oli tammikuussa 2019.
-        funding_html: |
-          Rahoituksen oppaiden kehittämiseen toimitti <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Oppaiden kehittämistä rahoitti
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Oppaat auttavat sinua tutustumaan luonnon monimuotoisuuteen kaikkialla maailmassa.
           Olitpa tutkimassa Serengetiä tai vain paikallista puistoasi
@@ -5938,11 +6005,6 @@ fi:
           %{site_name} hyväksyy koordinaatit useassa eri koordinaattijärjestelmässä, joten kun annat koordinaatit jossain muussa järjestelmässä kuin leveysaste/pituusaste (latitudi/longitudi), tarvitaan tieto koordinaattijärjestelmästä koordinaattien tulkitsemiseksi oikein. Ole hyvä ja varmista, että olet valinnut oikean koordinaattijärjestelmän datallesi tai sijainti voi mennä kauaksikin oikeasta paikasta. Jos koordinaatit ovat peräisin GPS-laitteelta, tarkista laitteen asetuksista sen käyttämä koordinaattijärjestelmä. Huomaa, että emme säilytä erikoiskoordinaatteja, vain niiden konversiot leveys- ja pituusasteisiin.
         date_column_format: VVVV-KK-PP TT:MM
         decimal_degrees_format: dd,dddd
-        google_photos_notice_html: |
-          Google muutti ohjelmointirajapintaansa helmikuussa 2019 siten että emme enää pääse käsiksi Googlen kautta tuotavien valokuvien koordinaatteihin, lisenssitietoihin, tageihin tai tekstihakuun. Lisäksi Google- ja iNaturalist-tilien linkitykseen vaaditaan lisäoikeuksia, ja ennen kuin voimme pyytää käyttäjiltä näitä oikeuksia on meidän verifioitava iNaturalist Googlelle. Odotamme verifikaatiota, mutta et voi tuoda kuvia Googlesta ennen kuin tämä on tehty. Jos meidät verifioidaan, voit jälleen tuoda valokuvia Googlesta, mutta ilman edellä mainittuja tietoja. Voit lukea lisää tästä osoitteessa <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Kuvat on toistaiseksi helpointa lisätä lataamalla ne ensin Googlesta omalle tietokoneelle ja <a
-          href="/observations/upload">sieltä iNaturalistiin</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Salli projektin kuraattorien nähdä piilotetut koordinaatit tälle havainnolle.
@@ -6566,6 +6628,11 @@ fi:
         photo_chooser_modal_explanation: |
           Huomaa, että taksonisivulla näkyy kuvia tästä taksonista ja sen jälkeläisistä. Tälle taksonille valitut kuvat näkyvät tosin ensimmäisinä. Ensimmäistä kuvaa käytetään taksonin oletuskuvana kaikkialla sivustolla.
         rare_desc: Harvimmin havaitut uhanalaiset taksonit
+        site_curators_disabled_wikipedia_html: |
+          Sivuston kuraattorit ovat poistaneet näyttämisen käytöstä <a href="%{url}">tämä
+          sisältö Wikipediasta</a>. Voit auttaa muokkaamalla sivua
+          Wikipedia tehdäkseen siitä sopivan tälle taksonille, tai merkitsemällä tämän
+          taksonin tuodakseen sen sivuston kuraattorien tietoon.
         trending_desc: Eniten havaitut taksonit viime kuussa
         trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa <a href="%{url}">%{place}</a>
         wanted_desc: Tähän taksoniin kuuluvat lajit, joita ei ole vielä havaittu.
@@ -6996,12 +7063,44 @@ fi:
         #announcement should be shown on
         site_ids: Sivuston tunniste
         prefers_exclude_monthly_supporters: Jätä pois kuukausittaiset tukijat
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Jätä luovuttajan aloituspäivä pois
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Luovutuksen antajan sulkeminen pois
         #iNat client applications that the user must not have made an observation
         #with to see the announcement
         exclude_observation_oauth_application_ids: Jätä havainnoijat pois sovelluksista
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Sisällytä luovuttajan aloituspäivä
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Sisällytä luovuttajan päättymispäivä
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Sisällytä havainnoijat sovelluksiin
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP-maat
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Viimeisin obs:n aloituspäivä
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Viimeisin obs:n päättymispäivä
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Tunnisteiden enimmäismäärä
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Vähimmäistunnisteet
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Havaintojen enimmäismäärä
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Pienet havainnot
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Sijoittelu
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Kohteen luoja (testausta varten)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Kohde kirjautunut sisään
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Aikaisin käyttäjän rekisteröitymispäivä
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Viimeisin käyttäjän rekisteröitymispäivä
       assessment:
         description: Kuvaus
       assessment_section:
@@ -7094,6 +7193,8 @@ fi:
         name: Nimi
         parent_id: Ylemmän taksonin ID
         rank: Sija
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Näyttää wikipedian
         source_identifier: Lähdetunniste
         source_url: Lähteen URL-osoite
         wikipedia_summary: Wikipedia-yhteenveto
@@ -7139,6 +7240,7 @@ fi:
         equal_to:
           one: oltava yhtäsuuri kuin %{count}
           other: oltava yhtäsuuri kuin %{count}
+        must_look_like_an_email_address: on näytettävä sähköpostiosoitteelta
         even: pitää olla parillinen
         exclusion: on varattu
         greater_than:
@@ -7360,6 +7462,7 @@ fi:
             login:
               must_begin_with_a_letter: |
                 tulee alkaa kirjaimella, ei sisällä välilyöntejä, ja sisältää vain kirjaimia, numeroita, väliviivoja ja alaviivoja
+              domain_is_not_supported: Verkkotunnusta ei tueta
         user_block:
           attributes:
             base:

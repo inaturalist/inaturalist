@@ -10,14 +10,14 @@ import PlaceAutocomplete from "../../../observations/identify/components/place_a
 
 const Account = ( {
   config,
-  profile,
   handleCustomDropdownSelect,
   handleInputChange,
   handlePlaceAutocomplete,
-  sites
+  sites,
+  userSettings
 } ) => {
   if ( !sites ) { return null; }
-  const siteId = profile.site_id || 1;
+  const siteId = userSettings.site_id || 1;
   const currentNetworkAffiliation = sites.filter( site => site.id === siteId )[0];
 
   // these locales are not available for all regions (like "en-US")
@@ -25,7 +25,7 @@ const Account = ( {
   const localeListKeys = Object.keys( I18n.t( "locales", { locale: "en" } ) );
 
   const setLocale = ( ) => {
-    let { locale } = profile;
+    let { locale } = userSettings;
     locale = locale || I18n.locale;
     if ( localeListKeys.includes( locale ) ) {
       return locale;
@@ -58,21 +58,6 @@ const Account = ( {
       <div className="caret" />
     </div>
   );
-
-  const createINatAffiliationList = ( ) => sites.map( site => {
-    const { id, name } = site;
-
-    return (
-      <MenuItem
-        key={`inat-affiliation-logo-${id}`}
-        eventKey={id}
-      >
-        {showNetworkLogo( id, site.icon_url )}
-        <div className="text-muted">{name}</div>
-        {siteId === id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
-      </MenuItem>
-    );
-  } );
 
   const thirdPartyTrackingModalDescription = (
     <div>
@@ -150,7 +135,7 @@ const Account = ( {
             <PlaceAutocomplete
               config={config}
               resetOnChange={false}
-              initialPlaceID={profile.search_place_id}
+              initialPlaceID={userSettings.search_place_id}
               bootstrapClear
               afterSelect={e => handlePlaceAutocomplete( e, "search_place_id" )}
               afterClear={( ) => handlePlaceAutocomplete( { item: { id: 0 } }, "search_place_id" )}
@@ -158,7 +143,7 @@ const Account = ( {
           </SettingsItem>
           <SettingsItem header={I18n.t( "activerecord.attributes.user.time_zone" )} htmlFor="user_time_zone">
             <p className="text-muted">{I18n.t( "default_display_time_zone" )}</p>
-            <select id="user_time_zone" className="form-control dropdown" value={profile.time_zone} name="time_zone" onChange={handleInputChange}>
+            <select id="user_time_zone" className="form-control dropdown" value={userSettings.time_zone} name="time_zone" onChange={handleInputChange}>
               {createTimeZoneList( )}
             </select>
           </SettingsItem>
@@ -175,7 +160,7 @@ const Account = ( {
               label={I18n.t( "pi_consent_label" )}
               modalDescription={I18n.t( "pi_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
               modalDescriptionTitle={I18n.t( "pi_consent_desc_title" )}
-              disabled={profile.pi_consent}
+              disabled={userSettings.pi_consent}
               confirm={I18n.t( "revoke_privacy_consent_warning" )}
             />
             <CheckboxRowContainer
@@ -183,7 +168,7 @@ const Account = ( {
               label={I18n.t( "data_transfer_consent_label" )}
               modalDescription={I18n.t( "data_transfer_consent_desc_html", { privacy_url: "/privacy", terms_url: "/terms" } )}
               modalDescriptionTitle={I18n.t( "data_transfer_consent_desc_title" )}
-              disabled={profile.data_transfer_consent}
+              disabled={userSettings.data_transfer_consent}
               confirm={I18n.t( "revoke_privacy_consent_warning" )}
             />
           </SettingsItem>
@@ -199,7 +184,16 @@ const Account = ( {
                     title={showCurrentNetwork( )}
                     noCaret
                   >
-                    {createINatAffiliationList( )}
+                    {sites.map( site => (
+                      <MenuItem
+                        key={`inat-affiliation-logo-${site.id}`}
+                        eventKey={site.id}
+                      >
+                        {showNetworkLogo( site.id, site.icon_url )}
+                        <div className="text-muted">{site.name}</div>
+                        {siteId === site.id && <i className="fa fa-check blue-checkmark" aria-hidden="true" />}
+                      </MenuItem>
+                    ) )}
                   </DropdownButton>
                 </div>
                 <p
@@ -240,11 +234,10 @@ const Account = ( {
 
 Account.propTypes = {
   config: PropTypes.object,
-  profile: PropTypes.object,
+  userSettings: PropTypes.object,
   handleCustomDropdownSelect: PropTypes.func,
   handleInputChange: PropTypes.func,
   handlePlaceAutocomplete: PropTypes.func,
-  showModalDescription: PropTypes.func,
   sites: PropTypes.array
 };
 

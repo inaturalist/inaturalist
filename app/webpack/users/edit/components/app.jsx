@@ -34,9 +34,9 @@ class App extends Component {
 
   handleUnload( e ) {
     if ( !this.props ) return;
-    const { profile } = this.props;
+    const { userSettings } = this.props;
 
-    if ( profile && profile.saved_status === "unsaved" ) {
+    if ( userSettings?.saved_status === "unsaved" ) {
       // preventing default within this if statement makes this work on both Chrome and Firefox
       // https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event#browser_compatibility
       e.preventDefault( );
@@ -109,9 +109,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  profile: PropTypes.object,
   section: PropTypes.number,
-  setContainerIndex: PropTypes.func
+  setContainerIndex: PropTypes.func,
+  userSettings: PropTypes.object
 };
 
 export default App;

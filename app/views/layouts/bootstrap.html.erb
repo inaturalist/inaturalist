@@ -42,8 +42,8 @@
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
-    <% if !@site&.twitter_username.blank? -%>
-      <meta name="twitter:site" content="<%= @site.twitter_username %>">
+    <% if !@site&.x_username.blank? -%>
+      <meta name="twitter:site" content="<%= @site.x_username %>">
     <% end -%>
     <meta property="og:site_name" content="<%= @site&.name %>"/>
     <meta property="og:type" content="website"/>

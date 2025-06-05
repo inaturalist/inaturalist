@@ -1889,6 +1889,11 @@ en:
   disable_comments: Disable comments
   disable_comments_desc: Prevent people from adding new comments
   disagree_: Disagree
+  # Checkbox controlling whether to show observations that have disagreeing
+  # identifications or not
+  disagreements: Disagreements
+  # Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Show observations that have disagreeing identifications
   # Label for a button to disconnect your iNat account from another account,
   # e.g. disconnecting your Flickr account
   disconnect: Disconnect
@@ -1916,6 +1921,8 @@ en:
   # Button text to donate to iNaturalist. Please try to keep translations as
   # short as possible
   donate: DONATE
+  # Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Donate
   donate_again_caps: DONATE AGAIN
   donate_again_today_caps: DONATE AGAIN TODAY
   # Title for pages and sections that encourage people to donate to iNaturalist
@@ -2926,7 +2933,6 @@ en:
   # a noun.
   link_to_authorization_code: Link to authorization code
   link_your_flickr_account: Link your Flickr account
-  link_your_google_account: Link your Google account
   linked_flickr: "Your %{site_name} account is currently linked to your Flickr account."
   linked_flickr_automatically: "Also, keep in mind that if you log in to %{site_name} via Flickr, we will automatically re-link your %{site_name} and Flickr accounts. Seems reasonable that if you use Flickr you'll want to be able to import Flickr photos, right?"
   linked_flickr_description: "Keeping your %{site_name} account linked to your Flickr account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Flickr to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Flickr account that you want to link %{site_name} to."
@@ -3759,6 +3765,7 @@ en:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Observation Fields
+  observation_fields_for_projects: Observation Fields for Projects
   observation_fields_are_additional: Observation fields are additional data fields that can be added to observations.
   observation_fields_by_preferences_description: |
     Observation fields are a bit like tags, except anyone can add them to your
@@ -6108,7 +6115,6 @@ en:
   unfollow_observation: Unfollow observation
   # Text for a button to stop following updates from a user
   unfollow_user: Unfollow user
-  unlink_your_google_account: Unlink Your Google Account
   unlink_your_flickr_account: "Unlink your Flickr Account"
   unmute: Unmute
   updates_notification_email_subject: "%{prefix} New updates %{date}"
@@ -6173,7 +6179,7 @@ en:
   uploader:
     errors:
       file_too_big: File must be less than %{megabytes} MB
-      unsupported_file_type: File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)
+      unsupported_file_type: File type not supported. We accept JPG, PNG, GIF, HEIC, HEIF, WAV, AAC, MP3, and MP4 (audio only)
     resize_tip: |
       If your photo files are too big, try cropping them down to a maximum
       of 2048 by 2048 pixels. This will happen to all photos on the
@@ -6457,9 +6463,8 @@ en:
   # Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
-  we_also_support2: |
-    We also support importing photos from <a href="http://flickr.com">Flickr</a>
-    and <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    We also support importing photos from <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_couldnt_find_a_user: We couldn't find a user with that email address.
   we_couldnt_find_a_user_with_that_activation_code: "We couldn't find a user with that activation code. You may have already activated your account, please try signing in."
@@ -7244,9 +7249,9 @@ en:
           Please note that as of January 2019, the Guides feature is presented
           "as is"; while we don’t have any plans to delete it, we don’t plan
           to develop it any further.
-        funding_html: |
+        funding2_html: |
           Funding for the development of Guides was provided by
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Guides help you learn about biodiversity all around the world.
           Whether you're exploring the Serengeti or just your local park
@@ -7927,22 +7932,6 @@ en:
         geoprivacy_must_be_in_english: |
           The geoprivacy column must be in English and must be blank or have a
           value of "obscured" or "private"
-        google_photos_notice_html: |
-          In February 2019, Google changed their API, making it impossible for
-          us to access GPS coordinates, license information, and almost any
-          information we could use to add an identification (like tags). They
-          also removed text search and numerical pagination. On top of that,
-          they required all connected accounts to have an additional permission,
-          and before a third party can request that permission from users, the
-          third party has to be verified. We are awaiting verification, but
-          until that happens, you will not be able to import photos from Google.
-          If we get approved, you will be able to import photos, but they won't
-          include any location information or license information that you might
-          be able to see on Google Photos. You can read more about this at <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Downloading the
-          original files and adding them using the <a
-          href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file.
           <a href="%{url}">Download template</a>

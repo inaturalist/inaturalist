@@ -40,7 +40,8 @@ Rails.application.configure do
   # Compress JavaScripts and CSS
   # Choose the compressors to use (if any)
   config.assets.compress = true
-  config.assets.js_compressor = Uglifier.new( mangle: false )
+  config.assets.terser = { mangle: false }
+  config.assets.js_compressor = :terser
   config.assets.css_compressor = :yui
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
