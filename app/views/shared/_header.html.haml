@@ -87,6 +87,8 @@
             %li= link_to t( :video_tutorials ), @site.video_tutorials_url
           - if !@site&.curator_guide_url.blank?
             %li= link_to t( :curator_guide ), @site.curator_guide_url
+          %li.divider{ role: "separator" }
+          %li= link_to t( :donate_ ), donate_url( utm_content: "header-more" )
   - if logged_in?
     .navtabs.add-obs
       = link_to upload_observations_path, class: "btn btn-default btn-inat btn-focus" do
