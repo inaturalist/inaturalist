@@ -1722,6 +1722,8 @@ da:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Uenigheder
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Vis observationer, som har uenige identifikationer
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Frakobl
@@ -2713,7 +2715,6 @@ da:
   #a noun.
   link_to_authorization_code: Link til godkendelseskode
   link_your_flickr_account: Tilknyt din Flickr konto
-  link_your_google_account: Tilknyt din Google konto
   linked_flickr: "Din %{site_name} konto er i øjeblikket tilknyttet din Flickr konto."
   linked_flickr_automatically: "Husk også, at hvis du logger ind på %{site_name} via Flickr, vil vi automatisk genforbinde din %{site_name} og Flickr konti. Det virker rimeligt, at hvis du bruger Flickr, vil du gerne kunne importere Flickr foto´s, ikke?"
   linked_flickr_description: "Hvis du lader din %{site_name} konto være tilknyttet til din Flickr konto, kan du tilføje flere billeder til dine observationer. Selvfølgelig, hvis du nogensinde vil have %{site_name} og Flickr til ikke at være tilknyttede, så stopper vi dig ikke, du kan bare ikke tilføje billeder derfra. Nogle gange kan det være det bedste, hvis du opretter en helt ny Flickr-konto, som du vil tilknytte %{site_name} til."
@@ -3534,6 +3535,7 @@ da:
   observation_field_type_taxon: Takson
   observation_field_type_dna: DNA
   observation_fields: Observationsfelter
+  observation_fields_for_projects: Observationsfelter for projekter
   observation_fields_are_additional: Observationsfelter er yderligere datafelter, som kan tilføjes til observationer.
   observation_fields_by_preferences_description: |
     Observationsfelter er lidt som tags, bortset fra at enhver som standard kan tilføje dem til din observation. Du kan ændre dette hvis du foretrækker at det kun er dig eller side kuratoren, der kan gøre dette.
@@ -5772,7 +5774,6 @@ da:
   unfollow_observation: Følg ikke længere observation
   #Text for a button to stop following updates from a user
   unfollow_user: Følg ikke længere bruger
-  unlink_your_google_account: Frakobl din Google konto
   unlink_your_flickr_account: "Fjern din Flickr-konto"
   unmute: Tænd
   updates_notification_email_subject: "%{prefix} Nye opdateringer %{date}"
@@ -6107,9 +6108,8 @@ da:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Ønsket
   was_it_captive_cultivated?: "Var det i fangenskab / dyrket?"
-  we_also_support2: |
-    Vi understøtter også import af fotos fra <a href="http://flickr.com">Flickr</a>
-    og <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Vi understøtter også import af fotos fra <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Vi kan kun forstå CSV i følgende format
   we_couldnt_find_a_user: Vi kunne ikke finde en bruger med den e-mail adresse.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunne ikke finde en bruger med denne aktiveringskode. Du har måske allerede aktiveret din konto, prøv venligst at logge ind."
@@ -6812,9 +6812,9 @@ da:
           Bemærk, at funktionen Guider fra januar 2019 leveres "som den er og
           forefindes". Selvom den ikke er planlægges slettet, er der dog heller
           ingen planer om at videreudvikle den.
-        funding_html: |
-          Støtte til udvikling af "Guider" blev sponseret af
-          <a href="http://eol.org"> <img src = "https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"> </a>
+        funding2_html: |
+          Finansiering til udarbejdelsen af Vejledninger blev ydet af
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Guider hjælper dig med at lære om biodiversitet over hele verden.
           Uanset om du udforsker Serengeti eller bare din lokale park
@@ -7380,17 +7380,6 @@ da:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: |
           Geofortrolighedskolonnen skal fremgå på engelsk og enten være tom eller indeholde “sløret” eller “fortrolig”
-        google_photos_notice_html: |
-          I februar 2019 ændrede Google deres API, hvilket gjorde det umuligt for
-          os for at få adgang til GPS koordinater, licensoplysninger og næsten alle
-          informationer vi kunne bruge for at kunne tilføje en identifikation (som tags). De
-          fjernede også tekstsøgning og numerisk pagination. Du kan stadig
-          importere fotos, men de vil ikke indeholde nogen lokaliseringsoplysninger eller
-          licensoplysninger, som du muligvis kan se på Google Fotos.
-          Du kan læse mere om dette på
-          <a href="https://developers.google.com/picasa-web"> https://developers.google.com/picasa-web </a>.
-          Download de oprindelige filer og tilføj dem ved hjælp af
-          <a href="/observations/upload"> Uploader </a> er den bedste løsning.
         project_csv_template_notice_html: |
           Der er en skabelonfil til dette projekt, som kan hjælpe dig med strukturen i CSV filen.
           <a href="%{url}"> Download skabelon </a>

@@ -474,6 +474,8 @@ kk:
   any_license: Кез келген
   #Label for an option to show content with photos, sounds, or neither
   any_media: Кез келген
+  #Label for an option to show any place
+  any_place: Кез келген
   #Label for an option to show content from any project
   any_project: Кез келген
   #Label for an option to show content with any quality grade
@@ -792,6 +794,10 @@ kk:
   confirmation_email_sent_at_datetime: Растау электрондық хаты %{datetime} мекенжайында жіберілді
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: '%{date} күні расталды'
+  confirming_ids: Растаушы идентификаттары
+  confirming_ids_description: |
+    Егер бұны өшірсеңіз, келісетін идентификаттары туралы сізге хабарланбайды
+    егер оларда қосымша ескертулер болмаса, сізбен бірге.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Қосылу
@@ -973,6 +979,12 @@ kk:
     Басқа пайдаланушылар жасаған контентті жою.
   curator_application_you_should_apply_if_you_are_a_regular_user: |
     Сіз бірнеше ай бойы сәйкестендірулерді және/немесе бақылауларды қосып жатырсыз және жалғастырғыңыз келеді.
+  curator_coordinate_access: Куратордың координатаға кіруі
+  curator_coordinate_access_desc: |
+    Дәстүрлі жобалар үшін куратордың координатаға қол жеткізуі кімнің қосқанына байланысты
+    жобаға бақылау жасау. Бұл тек әдепкі параметр
+    жобалардағы бақылаулар. Бақылаушылар мұны өзгертуді де таңдай алады
+    жеке бақылаулар.
   current_flags: Ағымдағы белгілер
   darr_apply_darr: "&darr; Қолдану &darr;"
   daily_users: Күнделікті пайдаланушылар
@@ -1131,6 +1143,11 @@ kk:
   disable_comments: Пікірлерді өшіру
   disable_comments_desc: Адамдарға жаңа пікірлер қосуға жол бермеу
   disagree_: Келіспеймін
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Келіспеушіліктер
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Сәйкестендірмеулері бар бақылауларды көрсету
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Ажырату
@@ -1190,6 +1207,8 @@ kk:
   edit_taxon: Таксонды өңдеу
   edit_taxon_framework: Таксон құрылымын өңдеу
   edit_taxon_link: Таксон сілтемесін өңдеу
+  #Title for a page to edit an announcement
+  editing_announcement_x: Өңдеу хабарландыруы %{id}
   editing_taxon_name_for_taxon_html: '%{taxon} үшін "%{name}" таксон атауын өңдеу'
   editing_this: '%{elem} өңдеу'
   editors: Редакторлар
@@ -1356,6 +1375,10 @@ kk:
   inaturalist_applications: "iNaturalist қолданбалары"
   inaturalist_places: "%{site_name} Орындар"
   info: Ақпарат
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infraspecies идентификациялары
   insects: жәндіктер
   insect_life_stage: Жәндіктердің өмір сүру кезеңі
   instagram: Instagram
@@ -1569,6 +1592,10 @@ kk:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "%{site_name} жүйесінен шығу керек пе?"
   log_scale_label: Лог.
+  #Adjectival phrase describing state of being logged in
+  logged_in: Кірген
+  #Adjectival phrase describing state of being logged out
+  logged_out: Кірген
   #Status message shown while logging in
   logging_in: Жүйеге кіру...
   logo:
@@ -1706,6 +1733,8 @@ kk:
   more_info_title: Толығырақ ақпарат
   more_journal_posts: Көбірек журнал жазбалары
   more_observations: Көбірек бақылаулар
+  #Label for a button or section that shows additional options
+  more_options: Қосымша параметрлер
   more_photos: Қосымша фотосуреттер
   more_than_a_week_ago: Бір аптадан астам уақыт бұрын
   most_agree: көпшілігі келіседі
@@ -1771,7 +1800,11 @@ kk:
   no_suggestions_available: Ұсыныстар жоқ
   no_summary_from_wikipedia: Уикипедиядан түйіндеме жоқ
   no_taxa: Таксондар жоқ
+  #A user who is not a curator
+  non_curator: Куратор емес
   non_human?: Адам емес пе?
+  #A user who does not admin any projects
+  non_project_admin: Жобалық емес әкімші
   notify_me_of_mentions: Маған ескертулер туралы хабарлау (мысалы, @username)
   observation: Бақылау
   observation_: бақылау
@@ -1793,6 +1826,7 @@ kk:
   observation_field_type_taxon: Таксон
   observation_field_type_dna: ДНҚ
   observation_fields: Бақылау өрісітері
+  observation_fields_for_projects: Жобаларға арналған бақылау алаңдары
   observation_fields_are_additional: Бақылау өрістері - бақылауларға қосуға болатын қосымша деректер өрістері.
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
@@ -2432,6 +2466,8 @@ kk:
   profile: Профиль
   profile_picture: Профиль суреті
   project: Жоба
+  #A user who admin's a project
+  project_admin: Жоба әкімшісі
   project_admins:
     one: Жоба әкімшісі
     other: Жоба әкімшілері
@@ -2498,6 +2534,16 @@ kk:
   range: Ауқым
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Дәреже
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Тек / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Түрі / Гибрид
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Кіші түр / Сорт / Пішін
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2975,6 +3021,9 @@ kk:
     one: 1 бақылауды жіберіңіз
     other: '%{count} бақылауды жіберіңіз'
   submitted: Жіберілді
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Жазылу
   subscribe_to_a_taxon: Таксонға жазылу
   subscribe_to_a_place: Орынға жазылу
   suggestions: Ұсыныстар
@@ -3154,7 +3203,6 @@ kk:
   unknown: Белгісіз
   unknown_error: Белгісіз қате
   unknown_rank: '(Белгісіз дәреже)'
-  unlink_your_google_account: Google аккаунтыңызбен байланысты ажырату
   unlink_your_flickr_account: "Flickr аккаунтыңызбен байланысты ажырату"
   unsubscribe: Жазылымнан бас тарту
   upcoming_bioblitzes: Алдағы биоблицтер
@@ -3242,6 +3290,14 @@ kk:
   user_invited_you_to_join_project: "%{user} сізді %{project} жобасына қосылуға шақырды"
   user_is_a_naturalist: "%{user} – табиғаттанушы!"
   user_suggested_an_id: "%{user} ID ұсынды"
+  user_trusts_this_project_when_added_by_any: |
+    Пайдаланушы бақылаулардың жасырын координаталары қосылған жоба кураторларына сенеді
+    жобаға кез келген адам.
+  user_trusts_this_project_when_added_by_observer: |
+    Пайдаланушы бақылаулардың жасырын координаталары қосылған жоба кураторларына сенеді
+    жобаға бақылаушы тарапынан.
+  user_trusts_this_project_when_added_by_none: |
+    Пайдаланушы жасырын координаттары бар жоба кураторларына сенбейді.
   username: Пайдаланушы аты
   username_or_email: Қолданушы аты немесе электрондық пошта
   username_or_user_id: Пайдаланушы аты немесе пайдаланушы ID
@@ -3277,6 +3333,8 @@ kk:
   vulnerable: Әлсіз жағдайда
   w_photos_only: фотолармен
   w_sounds: дыбыстармен
+  we_also_support3: |
+    Сондай-ақ, фотосуреттерді импорттауды қолдаймыз <a href="http://flickr.com">Фликр</a>.
   weather: Ауа райы
   website: Веб-сайт
   welcome: қош келдіңіз
@@ -3412,6 +3470,54 @@ kk:
   verifiable: Анықталатын
   verifiable_observations: Анықталатын бақылаулар
   views:
+    announcements:
+      locales_desc: |
+        Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
+        таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
+        локал. Аймақсыз тіл таңдау *not* нысана
+        аймақтары бар жергілікті тұрғындар, мысалы, ағылшын тілін таңдасаңыз ол пайда болмайды
+        ағылшын тілін таңдаған адамдар үшін (Ұлыбритания).
+      clients_desc: |
+        Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
+        таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
+        клиент.
+      end_desc: |
+        Тіркелгі уақыт белдеуіндегі бұл хабарландырудың тоқтатылатын уақыты
+        пайда болады. Уақыт белдеулері бойынша қолданылады, сондықтан әркім көруді тоқтатады
+        бұл олардың жергілікті уақытына қатысты емес.
+      ip_countries_desc: |
+        Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
+        таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
+        IP елі.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Пайдаланушының соңғы жасалған күнін ескеріңіз
+        бақылау кэштелген, сондықтан таргеттеу үшін бірнеше сағат уақыт кетуі мүмкін
+        күшіне енуі
+      observation_oauth_application_ids_desc: |
+        Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
+        таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
+        бағдарлама.
+      site_ids_desc: |
+        Бірнешеуді таңдау үшін CMD немесе SHIFT түймешігін басыңыз. «Барлығын» таңдау немесе жасамау
+        таңдау хабарландыруды барлық пайдаланушыларға тәуелсіз көрсетеді
+        сайттың тиесілігі.
+      start_desc: |
+        Бұл хабарландыру басталатын тіркелгі уақыт белдеуіндегі уақыт
+        пайда болады. Уақыт белдеулері бойынша қолданылады, сондықтан әркім көре бастайды
+        бұл олардың жергілікті уақытына қатысты емес.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Донорлық мінез-құлық бойынша мақсатты пайдаланушылар
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Сәйкестендіру мінез-құлқы бойынша мақсатты пайдаланушылар
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Бақылау мінез-құлқы бойынша мақсатты пайдаланушылар
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Басқа атрибуттар бойынша мақсатты пайдаланушылар
     donate:
       post_donate_social_media_text: Мен iNaturalist-ті қолдаймын, себебі...
     email_confirmation:
@@ -3450,6 +3556,10 @@ kk:
           f1_colon: |
             F1:
     guides:
+      index:
+        funding2_html: |
+          Гидтерді дамытуды қаржыландыру есебінен жүзеге асырылады
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
       pdf_layouts:
         book: кітап
         journal: журнал
@@ -4022,6 +4132,44 @@ kk:
         #Preference for an announcement that is only shown to staff
         prefers_target_staff: Мақсатты персонал (сынау үшін)
         clients: Клиенттер
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Донордың басталу күнін алып тастау
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Донордың аяқталу күнін алып тастау
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Бақылаушыларды бағдарламалардан алып тастау
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Донордың басталу күнін қосу
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Донордың аяқталу күнін қосу
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Бағдарламалардан бақылаушыларды қосу
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP елдері
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Соңғы обсс басталу күні
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Соңғы обсс аяқталу күні
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Макс идентификациялары
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Min идентификациялары
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Макс бақылаулары
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Мин бақылаулары
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Орналастыру
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Мақсатты жасаушы (тестілеуге арналған)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Кірген нысана
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Пайдаланушының ең ерте тіркелу күні
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Пайдаланушының соңғы тіркелу күні
       assessment:
         description: Сипаттама
       assessment_section:
@@ -4178,6 +4326,7 @@ kk:
         show_for_descendent_taxa: Ұрпақ таксондарын көрсету
       user:
         email: Электрондық пошта
+        faved_project_ids: Таңдаулы жобалар
         login: Пайдаланушы аты
         name: Есімі
         locale: Жергілікті тіл
@@ -4194,6 +4343,7 @@ kk:
         equal_to:
           one: '%{count} тең болуы керек'
           other: '%{count} тең болуы керек'
+        must_look_like_an_email_address: электрондық пошта мекенжайына ұқсауы керек
         exclusion: резервтелген
         greater_than:
           one: '%{count} үлкен болуы керек'
@@ -4299,6 +4449,10 @@ kk:
               cannot_be_blank: бос болуы мүмкін емес
               invalid_point: жарамсыз нүкте бар, мысалы, бойлық 180 үлкен немесе ендік -90 кем
               must_have_more_than_three_points: 3 нүктеден көп болуы керек
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Тек 7 жобаны іске асыруға болады
         project_observation:
           attributes:
             user_id:
@@ -4348,9 +4502,18 @@ kk:
                 %{max} фотосуреттен артық болмауы керек
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7-ден артық жобаны қамтуға болмайды
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: барлығы болуы керек
             login:
               must_begin_with_a_letter: |
                 әріптен басталып, бос орындар болмауы керек және тек әріптерді, сандарды, сызықшаларды және астын сызуларды пайдалану керек.
+              domain_is_not_supported: доменге қолдау көрсетілмеген
         user_block:
           attributes:
             base:

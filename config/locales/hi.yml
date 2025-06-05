@@ -15,14 +15,121 @@ hi:
   x_flags_resolved_html:
     one: "<span class='count'>%{count}</span> शिकायत समाधान"
     other: "<span class='count'>%{count}</span> शिकायत समाधान"
+  #Label for an option to show any place
+  any_place: कोई
+  confirming_ids: आईडी की पुष्टि करना
+  confirming_ids_description: |
+    अगर आप इसे बंद कर देते हैं, तो आपको सहमति देने वाली आईडी के बारे में सूचित नहीं किया जाएगा
+    आपके साथ जब तक कि उनके पास अतिरिक्त टिप्पणी न हो।
+  curator_coordinate_access: क्यूरेटर समन्वय पहुंच
+  curator_coordinate_access_desc: |
+    पारंपरिक परियोजनाओं के लिए क्यूरेटर समन्वय पहुंच इस बात पर निर्भर करता है कि किसने जोड़ा
+    परियोजना के लिए अवलोकन। यह सिर्फ के लिए डिफ़ॉल्ट सेटिंग है
+    परियोजनाओं में अवलोकन। पर्यवेक्षक इसके लिए इसे बदलना भी चुन सकते हैं
+    व्यक्तिगत अवलोकन।
   #message informing the user the must confirm their email address to interact with other users
   devise_confirmation_instructions_please_click2: |
     कृपया अपने ईमेल पते की पुष्टि करने के लिए नीचे दिए गए लिंक पर क्लिक करें। यदि आप अपने ईमेल की पुष्टि नहीं करते हैं
     पता, आप अन्य उपयोगकर्ताओं की सामग्री के साथ बातचीत करने में सक्षम नहीं होंगे।
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: असहमति
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: उन टिप्पणियों को दिखाएं जिनकी असहमत पहचान है
+  #Title for a page to edit an announcement
+  editing_announcement_x: संपादन घोषणा %{id}
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: इन्फ्रास्पीशीज आईडी
   lexicons:
     malayalam: मलयाळम
     tamil: तमिऴ्
+  #Adjectival phrase describing state of being logged in
+  logged_in: लॉग इन किया
+  #Adjectival phrase describing state of being logged out
+  logged_out: लॉग आउट किया
+  #Label for a button or section that shows additional options
+  more_options: अधिक विकल्प
+  #A user who is not a curator
+  non_curator: नॉन-क्यूरेटर
+  #A user who does not admin any projects
+  non_project_admin: गैर-परियोजना व्यवस्थापक
+  observation_fields_for_projects: परियोजनाओं के लिए अवलोकन क्षेत्र
+  #A user who admin's a project
+  project_admin: प्रोजेक्ट व्यवस्थापक
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: जीनस / जीनसहाइब्रिड
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: प्रजातियां/संकर
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: उप-प्रजाति / विविधता / रूप
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: सदस्यता लें
+  user_trusts_this_project_when_added_by_any: |
+    उपयोगकर्ता जोड़े गए टिप्पणियों के छिपे निर्देशांक के साथ प्रोजेक्ट क्यूरेटर पर भरोसा करता है
+    किसी के द्वारा परियोजना के लिए।
+  user_trusts_this_project_when_added_by_observer: |
+    उपयोगकर्ता जोड़े गए टिप्पणियों के छिपे निर्देशांक के साथ प्रोजेक्ट क्यूरेटर पर भरोसा करता है
+    पर्यवेक्षक द्वारा परियोजना के लिए।
+  user_trusts_this_project_when_added_by_none: |
+    उपयोगकर्ता छिपे हुए निर्देशांक के साथ परियोजना क्यूरेटर पर भरोसा नहीं करता है।
+  we_also_support3: |
+    हम से तस्वीरें आयात करने का भी समर्थन करते हैं <a href="http://flickr.com">फ़्लिकर</a>.
   views:
+    announcements:
+      locales_desc: |
+        एकाधिक का चयन करने के लिए CMD- या SHIFT-क्लिक करें. "सभी" का चयन करना या नहीं बनाना
+        एक चयन सभी उपयोगकर्ताओं को घोषणा दिखाएगा, भले ही
+        स्थान। एक क्षेत्र के बिना एक भाषा चुनना * लक्ष्य नहीं होगा
+        क्षेत्रों वाले स्थान, उदा. अगर आपने अंग्रेज़ी चुना है, तो वह दिखाई नहीं देगी
+        उन लोगों के लिए जिन्होंने अंग्रेजी (यूके) चुना है।
+      clients_desc: |
+        एकाधिक का चयन करने के लिए CMD- या SHIFT-क्लिक करें. "सभी" का चयन करना या नहीं बनाना
+        एक चयन सभी उपयोगकर्ताओं को घोषणा दिखाएगा, भले ही
+        ग्राहक।
+      end_desc: |
+        आपके खाते के समय क्षेत्र में यह घोषणा रुकने का समय
+        दिखने। समय क्षेत्रों में लागू होता है, इसलिए हर कोई देखना बंद कर देगा
+        यह एक ही समय में, उनके स्थानीय समय के सापेक्ष नहीं है।
+      ip_countries_desc: |
+        एकाधिक का चयन करने के लिए CMD- या SHIFT-क्लिक करें. "सभी" का चयन करना या नहीं बनाना
+        एक चयन सभी उपयोगकर्ताओं को घोषणा दिखाएगा, भले ही
+        आईपी देश।
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        ध्यान दें कि उपयोगकर्ता के सबसे हाल ही में बनाए गए निर्माण की तारीख
+        निगरानी कैश की जाती है, इसलिए इसे लक्षित करने में कुछ घंटे लग सकते हैं
+        प्रभावी
+      observation_oauth_application_ids_desc: |
+        एकाधिक का चयन करने के लिए CMD- या SHIFT-क्लिक करें. "सभी" का चयन करना या नहीं बनाना
+        एक चयन सभी उपयोगकर्ताओं को घोषणा दिखाएगा, भले ही
+        अनुप्रयोग।
+      site_ids_desc: |
+        एकाधिक का चयन करने के लिए CMD- या SHIFT-क्लिक करें. "सभी" का चयन करना या नहीं बनाना
+        एक चयन सभी उपयोगकर्ताओं को घोषणा दिखाएगा, भले ही
+        साइट संबद्धता।
+      start_desc: |
+        आपके खाते के समय क्षेत्र में वह समय जब यह घोषणा शुरू होगी
+        दिखने। समय क्षेत्रों में लागू होता है, इसलिए हर कोई देखना शुरू कर देगा
+        यह एक ही समय में, उनके स्थानीय समय के सापेक्ष नहीं है।
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: दान व्यवहार द्वारा उपयोगकर्ताओं को लक्षित करें
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: पहचान व्यवहार द्वारा उपयोगकर्ताओं को लक्षित करें
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: अवलोकन व्यवहार द्वारा उपयोगकर्ताओं को लक्षित करें
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: अन्य विशेषताओं के आधार पर उपयोगकर्ताओं को लक्षित करें
     email_confirmation:
       click_here_to_resend_a_confirmation_email: पुष्टिकरण ईमेल पुनः भेजने के लिए यहां क्लिक करें
       #message displayed after users trigger sending a email to confirm their email address
@@ -48,6 +155,11 @@ hi:
       tips_check_email_filters: आपके द्वारा किए गए किसी भी फ़िल्टर की जाँच करें जो आपके इनबॉक्स से हमारे ईमेल निकाल सकता है #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: अपना स्पैम फ़ोल्डर जांचें
       your_site_account_has_no_email: तुम्हारा %{site_name} खाते के साथ कोई ईमेल पता संबद्ध नहीं है।
+    guides:
+      index:
+        funding2_html: |
+          गाइड के विकास के लिए धन किसके द्वारा प्रदान किया गया था
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -70,6 +182,66 @@ hi:
         significant: true
         strip_insignificant_zeros: true
   activerecord:
+    attributes:
+      announcement:
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: दाता शुरू होने की तारीख बहिष्कृत करें
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: दान देने वालों की खत्म होने की तारीख शामिल न करें
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: पर्यवेक्षकों को ऐप्लिकेशन से बाहर करें
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: दाता शुरू होने की तारीख शामिल करें
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: दाता की समाप्ति तिथि शामिल करें
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: ऐप्लिकेशन के पर्यवेक्षक शामिल करें
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: आईपी देश
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: नवीनतम ऑब्स प्रारंभ दिनांक
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: नवीनतम ऑब्स समाप्ति तिथि
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: अधिकतम पहचान
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: न्यूनतम पहचान
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: अधिकतम अवलोकन
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: न्यूनतम अवलोकन
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: नियोजन
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: लक्ष्य निर्माता (परीक्षण के लिए)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: लक्ष्य लॉग इन किया
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: सबसे पहले उपयोगकर्ता साइनअप दिनांक
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: नवीनतम उपयोगकर्ता साइनअप तिथि
+      user:
+        faved_project_ids: पसंदीदा परियोजनाएं
     errors:
       messages:
+        must_look_like_an_email_address: एक ईमेल पते की तरह दिखना चाहिए
         requires_privilege_interaction: ऐसा करने के लिए एक कन्फर्म ईमेल पता होना चाहिए
+      models:
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: आप केवल 7 परियोजनाओं को फेव कर सकते हैं
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7 से अधिक परियोजनाएं शामिल नहीं हो सकती हैं
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: सभी मौजूद होना चाहिए
+            login:
+              domain_is_not_supported: डोमेन समर्थित नहीं है

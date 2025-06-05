@@ -285,6 +285,8 @@ fr:
   add_a_new_change_group: Ajouter un nouveau groupe de modifications
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Ajouter une liste numérotée
+  #Placeholder for a project autocomplete field
+  add_a_project: Ajouter un projet
   add_a_single_observation: Ajouter une observation unique.
   add_a_taxon: Ajouter un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -1101,6 +1103,9 @@ fr:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmé le %{date}
   confirming_ids: Confirmation des IDs
+  confirming_ids_description: |
+    Si vous désactivez cette option, vous ne serez plus informé des IDs en accord
+    avec le vôtre à moins qu’ils n’aient des remarques supplémentaires.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connecter
@@ -1459,6 +1464,12 @@ fr:
   curators_changed_for_x_html: "Les curateurs ont modifiés à %{x}"
   curators: Curateurs
   curators_can_remove_observations_from: Les responsables de l’organisation peuvent supprimer des observations du projet. Leurs identifications sont affichées à côté des observations dans certaines vues du projet. Les responsables de l’organisation peuvent aussi voir les vraies coordonnées des contributions privées et masquées du projet.
+  curator_coordinate_access: Accès coordonné par le curateur
+  curator_coordinate_access_desc: |
+    L’accès coordonné du curateur pour les projets traditionnels dépend de qui a ajouté
+    l’observation du projet. Il s’agit simplement du paramètre par défaut pour les
+    observations dans les projets. Les observateurs peuvent également choisir de modifier cela pour
+    observations individuelles.
   curator_identification: Identification du responsable de l’organisation
   current_flags: Signalements actuels
   #Label for a custom boundary for an observation search
@@ -1466,6 +1477,8 @@ fr:
   custom_project_fields: Champs de projet personnalisés
   custom_project_was_successfully_created: Le projet personnalisé a bien été créé.
   custom_project_was_successfully_updated: Le projet personnalisé a bien été mis à jour.
+  #Button to customize projects that appear in the header
+  customize__projects: Personnaliser
   customize_location: Personnaliser l’emplacement
   darr_apply_darr: "&darr; Appliquez &darr;"
   daily_users: Utilisateurs journaliers
@@ -1673,6 +1686,8 @@ fr:
   #Checkbox controlling whether to show observations that have disagreeing
   #identifications or not
   disagreements: Désaccords
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Montrez les observations qui ont des identifications en désaccord
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Déconnecter
@@ -1913,6 +1928,12 @@ fr:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoris
   Family: Famille
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Projets favoris
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Choisissez jusqu’à sept projets qui apparaitront sous forme de liens dans l’en-tête. Les mises à jour
+    apparaîtront après l’actualisation de la page.
   favorite_taxa: Taxons favoris
   favorites: "Favoris"
   feature_this_project_: "Mettre en valeur ce projet"
@@ -2372,6 +2393,10 @@ fr:
   inaturalist_applications: "Applications iNaturalist"
   inaturalist_places: "Lieux d’%{site_name}"
   info: Info
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Identifiants infra-espèces
   #Description of preference to control whether you receive notifications about
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
@@ -2644,7 +2669,6 @@ fr:
   #a noun.
   link_to_authorization_code: Lien vers le code d'autorisation
   link_your_flickr_account: Lier votre compte Flickr
-  link_your_google_account: Lier votre compte Google
   linked_flickr: "Votre compte %{site_name} est actuellement lié à votre compte Flickr."
   linked_flickr_automatically: "N’oubliez pas que si vous vous connectez à %{site_name} au moyen de Flickr, nous relierons automatiquement vos comptes %{site_name} et Flickr. Si vous utilisez Flickr, c’est probable que vous voudrez importer des photos de Flickr, n’est-ce pas ?"
   linked_flickr_description: "En liant votre compte %{site_name} à votre compte Flickr, vous pourrez ajouter plusieurs photos à vos observations. Bien entendu, si vous pouvez séparer %{site_name} et Flickr, mais vous ne pourrez plus ajouter de photos. Parfois c’est préférable, comme si vous créez un nouveau compte Flickr que vous voulez lier à %{site_name}."
@@ -3228,6 +3252,15 @@ fr:
   noble_curators: "Les éminents curateurs d'%{site}"
   #A user who is not a curator
   non_curator: Non curateur
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Si vous désactivez cette option, vous ne serez plus averti lorsque quelqu’un ajoute 
+    l'ID d'un taxon qui est un ancêtre du taxon de votre ID et qui n’est pas
+    explicitement en désaccord avec le taxon communautaire. Vous serez informé si 
+    l'ID a des remarques supplémentaires.
   non_human?: Non-humain ?
   #A user who does not admin any projects
   non_project_admin: Non-administrateur de projet
@@ -3444,6 +3477,7 @@ fr:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: ADN
   observation_fields: Champs des observations
+  observation_fields_for_projects: Champs d’observation des projets
   observation_fields_are_additional: Les champs de l’observation sont des champs de données supplémentaires qui peuvent être ajoutés aux observations.
   observation_fields_by_preferences_description: |
     Les champs de l’observation sont comme des étiquettes que, par défaut, n’importe qui peut ajouter à votre observation. Modifiez vos paramètres si vous voulez être la seule personne à pouvoir les remplir ou pour donner cette capacité uniquement aux personnes responsables de l’organisation du site.
@@ -4351,6 +4385,9 @@ fr:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
   rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Genre / Genrehybride
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: Espèce / Hybride
@@ -5582,7 +5619,6 @@ fr:
   unfollow_observation: Ne plus suivre l'observation
   #Text for a button to stop following updates from a user
   unfollow_user: Ne plus suivre l'utilisateur
-  unlink_your_google_account: Supprimer le lien de votre compte Google
   unlink_your_flickr_account: "Dé-lier votre compte Flickr"
   unmute: Supprimer la mise en silence
   updates_notification_email_subject: "%{prefix} Nouvelles notifications du %{date}"
@@ -5763,6 +5799,14 @@ fr:
     L'utilisateur donne à ce projet l'accès à ses coordonnées masquées, quelle que soit la raison pour laquelle elles ont été occultées.
   user_trusts_this_project_for_taxon: |
     L'utilisateur ne donne à ce projet l'accès à ses coordonnées masquées que si celles-ci ont été occultées parce qu'un taxon est menacé.
+  user_trusts_this_project_when_added_by_any: |
+    L’utilisateur fait confiance aux curateurs de projet avec des coordonnées cachées d'observations ajoutées
+    au projet par n’importe qui.
+  user_trusts_this_project_when_added_by_observer: |
+    L’utilisateur fait confiance aux curateurs de projet avec des coordonnées cachées d'observations ajoutées
+    au projet par l’observateur.
+  user_trusts_this_project_when_added_by_none: |
+    L’utilisateur ne fait pas confiance aux curateurs de projets avec des coordonnées cachées.
   user_trusts_you_with_their_private_coordinates: "%{user} vous a fait confiance avec ses coordonnées masquées"
   user_trusts_you_with_their_private_coordinates_desc: |
     L’observateur vous a donné accès aux coordonnées masquées de toutes ses observations.
@@ -5895,9 +5939,8 @@ fr:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Recherché
   was_it_captive_cultivated?: "Était-il en captivité / cultivé ?"
-  we_also_support2: |
-    L'importation de photos est également possible depuis <a href="http://flickr.com">Flickr</a>
-    et <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Nous prenons également en charge l’importation de photos à partir de <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format suivant
   we_couldnt_find_a_user: Nous n’avons pas pu trouver d’utilisateur avec cette adresse électronique.
   we_couldnt_find_a_user_with_that_activation_code: "Nous n’avons pas pu trouver d’utilisateur avec ce code d’activation. Vous avez peut-être déjà activé votre compte; veuillez essayer de vous connecter."
@@ -6569,9 +6612,9 @@ fr:
           Veuillez noter qu'à compter de janvier 2019, la fonction Guides est présentée
           « telle quelle » ; bien que nous n'ayons pas prévu de la supprimer, nous ne prévoyons pas
           de la développer d'avantage.
-        funding_html: |
-          Le financement du développement des Guides a été fourni par
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Le financement de l’élaboration des guides a été fourni par
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Les guides vous aident à en apprendre d'avantage sur la biodiversité dans le monde entier.
           Que vous exploriez le Sérengéti ou simplement votre parc voisin
@@ -7051,6 +7094,61 @@ fr:
           Le nom de la zone administrative de troisième niveau qui contient les coordonnées de coordonnées de cette observation (par ex. un comté dans la plupart des États-Unis)
         place_country_name: |
           Le nom du pays qui contient les coordonnées de cette observation
+        place_state_name: |
+          Le nom de la zone administrative de deuxième niveau qui contient les coordonnées de cette observation (par ex. un état dans la plupart des États-Unis)
+        place_town_name: |
+          Le nom du village ou de la ville qui contient les coordonnées
+          de cette observation, si connue
+        private_place_guess: |
+          Emplacement de l’observation tel qu’il est écrit par l’observateur si l’emplacement est masqué
+        public_positional_accuracy: Incertitude positionnelle maximale en mètres; inclut l'incertitude ajoutée par le masquage des coordonnées
+        taxon_class_name: |
+          Nom de la classe taxonomique contenant le taxon observé
+        taxon_family_name: |
+          Nom de la famille taxonomique contenant le taxon observé
+        taxon_form_name: |
+          Nom de la forme taxonomique contenant le taxon observé
+        taxon_genus_name: |
+          Nom du genre taxonomique contenant le taxon observé
+        taxon_genushybrid_name: |
+          Nom du genre hybride taxonomique contenant le taxon observé
+        taxon_hybrid_name: |
+          Nom de l'hybride taxonomique contenant le taxon observé
+        taxon_kingdom_name: |
+          Nom du règne taxonomique contenant le taxon observé
+        taxon_order_name: |
+          Nom de l’ordre taxonomique contenant le taxon observé
+        taxon_phylum_name: |
+          Nom du phylum taxonomique contenant le taxon observé
+        taxon_species_name: |
+          Nom de l’espèce taxonomique contenant le taxon observé
+        taxon_subclass_name: |
+          Nom de la sous-classe taxonomique contenant le taxon observé
+        taxon_subfamily_name: |
+          Nom de la sous-famille taxonomique contenant le taxon observé
+        taxon_suborder_name: |
+          Nom du sous-ordre taxonomique contenant le taxon observé
+        taxon_subphylum_name: |
+          Nom du sous-phylum taxonomique contenant le taxon observé
+        taxon_subspecies_name: |
+          Nom de la sous-espèce taxonomique contenant le taxon observé
+        taxon_subtribe_name: |
+          Nom de la sous-tribu taxonomique contenant le taxon observé
+        taxon_superclass_name: |
+          Nom de la superclasse taxonomique contenant le taxon observé
+        taxon_superfamily_name: |
+          Nom de la superfamille taxonomique contenant le taxon observé
+        taxon_superorder_name: |
+          Nom du superordre taxonomique contenant le taxon observé
+        taxon_supertribe_name: |
+          Nom de la supertribu taxonomique contenant le taxon observé
+        taxon_tribe_name: |
+          Nom de la tribu taxonomique contenant le taxon observé
+        taxon_variety_name: |
+          Nom de la variété taxonomique contenant le taxon observé
+        uuid: |
+          Identificateur unique universel pour l’observation. Voir
+          https://datatracker.ietf.org/doc/html/rfc9562
       identify:
         review_all_tooltip: "Marquer toutes les observations de la page comme vérifiées"
         you_reviewed_message: "Vous avez vérifié %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
@@ -7072,21 +7170,6 @@ fr:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           La colonne coordonnées privées doit être en anglais et laissée vide ou avoir une valeur « obscured » ou « private »
-        google_photos_notice_html: |
-          En février 2019, Google a modifié son API, nous empêchant
-          d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
-          toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
-          a aussi supprimé la recherche textuelle et la pagination numérique. De plus,
-          ils demandent que tous les comptes connectés nécessitent à une autorisation supplémentaire,
-          et avant qu’un tiers puisse demander ce droit pour les utilisateurs, le
-          tiers doit être vérifié. Nous attendons la vérification, mais
-          avant que cela n'arrive, vous ne pourrez pas importer de photos de Google.
-          Si nous sommes acceptés, vous pourrez importer des photos, mais elles 
-          n’incluront aucune information de localisation ni de licence que vous pourriez 
-          voir sur Google Photos. Vous pouvez lire d'avantage là-dessus à
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Importer des fichiers d’origine et les ajouter en utilisant
-          <a href="/observations/upload">Uploader</a> est la meilleure façon de contourner le problème.
         project_csv_template_notice_html: |
           Il y a un fichier modèle pour ce projet qui peut vous aider avec la structure du fichier CSV. 
           <a href="%{url}">Téléchargez le modèle</a>
@@ -8152,6 +8235,12 @@ fr:
           différents noms de lieux sont en conflit.
     terminology:
       index:
+        exports_can_also_contain_observation_field_values_html: |
+          Les exportations peuvent également contenir des colonnes avec des valeurs de champ d’observation. Pour
+          trouver les définitions de ceux-ci, soit recherchez-les à
+          <a href="%{observation_fields_url}">%{observation_fields_url}</a>
+          ou ajoutez le nom de la colonne (avec les deux-points) à
+          <code>%{terminology_url}</code> (p. ex. <a href="%{term_url}">%{term_url}</a>).
         inaturalist_employs_a_variety_of_terms: |
           iNaturalist utilise une variété de termes uniques pour décrire divers aspects du service. Ici, nous avons essayé d’en lister quelques-uns avec leurs définitions.
     users:
@@ -8983,6 +9072,7 @@ fr:
         show_for_descendent_taxa: Afficher pour les taxons descendants
       user:
         email: Courriel
+        faved_project_ids: Projets favoris
         login: Nom d’utilisateur
         name: Nom
         locale: Option régionale
@@ -9188,6 +9278,10 @@ fr:
                 assez lamentable de régler le problème. Vous pouvez toujours
                 enregistrer un brouillon, et si vous utilisez toujours le site
                 dans un jour, vous pourrez publier.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Vous ne pouvez ajouter que 7 projets favoris
         project_observation:
           attributes:
             base:
@@ -9283,6 +9377,14 @@ fr:
               already_has_a_range: a déjà une aire de répartition
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ne peut pas inclure plus de 7 projets
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: doivent tous exister
             login:
               must_begin_with_a_letter: |
                 doit commencer par une lettre, ne pas contenir d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères souligné

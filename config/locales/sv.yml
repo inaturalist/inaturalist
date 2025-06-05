@@ -765,6 +765,13 @@ sv:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, uppladdad av %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Sprängd
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Oexploderad
   authority_list:
     iucn_red_list: IUCN:s Röda lista
     natureserve: NatureServe
@@ -1470,6 +1477,7 @@ sv:
   curators_changed_for_x_html: "Förvaltare ändrade för %{x}"
   curators: Förvaltare
   curators_can_remove_observations_from: Förvaltare kan ta bort observationer från projektet och deras bestämningar visas tillsammans med observationer i projektspecifika vyer. Förvaltare kan också se de exakta koordinaterna för privata och diffuserade bidrag till detta projekt.
+  curator_coordinate_access: Åtkomst till kuratorns koordinater
   curator_identification: Förvaltarbestämning
   current_flags: Nuvarande flaggningar
   #Label for a custom boundary for an observation search
@@ -1477,6 +1485,8 @@ sv:
   custom_project_fields: Anpassade projektfält
   custom_project_was_successfully_created: Projektanpassningar tillagda
   custom_project_was_successfully_updated: Projektanpassningar uppdaterade
+  #Button to customize projects that appear in the header
+  customize__projects: Anpassa
   customize_location: Anpassa fyndplats
   darr_apply_darr: "&darr; Använd &darr;"
   daily_users: Dagliga användare
@@ -1694,6 +1704,9 @@ sv:
   disable_comments: Inaktivera kommentarer
   disable_comments_desc: Förhindra personer från att lägga till nya kommentarer
   disagree_: Håller inte med
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Meningsskiljaktigheter
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Koppla ifrån
@@ -1939,6 +1952,12 @@ sv:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoriter
   Family: Familj
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Favoritprojekt
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Välj upp till sju projekt som visas som länkar i sidhuvudet. Uppdateringar
+    visas när du har uppdaterat sidan.
   favorite_taxa: Favorittaxa
   favorites: "Favoriter"
   feature_this_project_: "Uppmärksamma detta projekt"
@@ -2322,6 +2341,8 @@ sv:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist är en oberoende 501(c)(3), skattebefriad, icke vinstdrivande
     organisation baserad i Amerikas förenta stater (Tax ID: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist uppdaterade det ID som föreslagits av %{user}
   computer_vision_suggestion: Bildigenkänningsförslag
   computer_vision_suggestion_desc: |
     Bildigenkänning är när man lär datorer att känna igen mönster i bilder. Vi tillhandahåller verktyg som använder bildigenkänningsmodeller tränade på communityns bilder för att kunna ge bestämningsförslag, såsom som autokompletterings- och jämförelsefunktioner. Denna etikett visar när en person lagt till en bestämning med något av dessa verktyg.
@@ -2430,6 +2451,8 @@ sv:
   internal_taxon_rank: Intern taxonrang
   introduced: Införd
   introduced_in_place: "Införd till %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Ogiltigt datum
   invitation: Inbjudan
   invite: bjud in
   invite_people: Bjud in personer
@@ -2679,7 +2702,6 @@ sv:
   #a noun.
   link_to_authorization_code: Länk till auktoriseringskod
   link_your_flickr_account: Anslut ditt Flickr-konto
-  link_your_google_account: Anslut ditt Google-konto
   linked_flickr: "Ditt %{site_name}-konto är för närvarande kopplat till ditt Flickr-konto."
   linked_flickr_automatically: "Tänk på, att om du loggar in på %{site_name} via Flickr, kommer vi automatiskt att länka dina %{site_name}- och Flickr-konton. Det verkar rimligt att om du använder Flickr du vill kunna importera Flickr-bilder, eller hur?"
   linked_flickr_description: "Genom att hålla ditt %{site_name}-konto kopplat till ditt Flickr-konto kan du lägga till flera bilder till ett fynd. Om du någonsin vill att kopplingen mellan %{site_name} och Flickr ska brytas, kommer vi naturligtvis inte att stoppa dig, du kommer bara inte att kunna lägga till bilder. Ibland kan det vara bäst så, t.ex. om du skapar ett nytt Flickr-konto som du vill länka %{site_name} till."
@@ -2703,6 +2725,10 @@ sv:
   list_with_two_items: "%{one} och %{two}"
   listed_taxa: Listade taxa
   listed_taxon: Listat taxon
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Listade
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Onoterade
   listed_taxon_updated: Listat taxon uppdaterat
   listing_lists: Listar listor
   listing_project_assets: Listar projekttillgångar
@@ -4313,6 +4339,9 @@ sv:
   processing3p: "Bearbetar..."
   profile: Profil
   profile_picture: Profilbild
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Filtyp för profilbild
   profile_visibility_desc: |
     I ett försök att hålla spam borta från %{site_name}, är användarprofiler bara offentligt synliga efter att en användare har bidragit med flera fynd av forskningsklass.
   project: Projekt
@@ -4409,6 +4438,16 @@ sv:
   range: Intervall
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Släkte / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Arter / Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Underart / Sort / Form
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5664,7 +5703,6 @@ sv:
   unfollow_observation: Sluta följa fynd
   #Text for a button to stop following updates from a user
   unfollow_user: Sluta följa användaren
-  unlink_your_google_account: Koppla från ditt Google-konto
   unlink_your_flickr_account: "Koppla från ditt Flickr-konto"
   unmute: Ta bort "tysta"
   updates_notification_email_subject: "%{prefix} Nya uppdateringar %{date}"
@@ -5685,7 +5723,15 @@ sv:
   update: Uppdatera
   update_existing_observations_with_new_license: Uppdatera befintliga fynd med nya licensval
   update_existing_photos_with_new_license: Uppdatera befintliga bilder med nya licensval
+  update_existing_photos_with_new_license_desc: |
+    Om du väljer det här alternativet tillämpas ditt nya licensval på alla dina
+    befintliga foton. Detta kan ta några timmar om du har mycket
+    foton.
   update_existing_sounds_with_new_license: Uppdatera befintliga ljud med nya licensval
+  update_existing_sounds_with_new_license_desc: |
+    Om du väljer det här alternativet tillämpas ditt nya licensval på alla dina
+    befintliga ljud. Detta kan ta några timmar om du har mycket
+    Ljud.
   update_observations: Uppdatera fynd
   update_past: "Uppdatera tidigare %{type}"
   update_photos: Uppdatera bilder
@@ -5835,6 +5881,8 @@ sv:
   user_trusts_this_project_for_taxon: |
     Användaren litar bara på detta projekt tillräckligt för att dela dolda koordinater som diffuserats
     på grund av hotade taxa.
+  user_trusts_this_project_when_added_by_none: |
+    Användaren litar inte på projektkuratorer med dolda koordinater.
   user_trusts_you_with_their_private_coordinates: "%{user} litar på dig med sina dolda koordinater"
   user_trusts_you_with_their_private_coordinates_desc: |
     Observatören har valt att lita på dig med de dolda koordinaterna för alla sina fynd.
@@ -5976,9 +6024,8 @@ sv:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Efterlyst
   was_it_captive_cultivated?: "Var den i fångenskap / odlad?"
-  we_also_support2: |
-    Vi stöder även import av bilder från <a href="http://flickr.com">Flickr</a>
-    och <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Vi har även stöd för import av foton från <a href="http://flickr.com">Flickr (på engelska)</a>.
   we_can_only_understand_csv_in: Vi kan bara förstå CSV i följande format
   we_couldnt_find_a_user: Vi kunde inte hitta någon användare med den e-postadressen.
   we_couldnt_find_a_user_with_that_activation_code: "Vi kunde inte hitta någon användare med den aktiveringskoden. Du kanske redan har aktiverat ditt konto, försök logga in."
@@ -6383,6 +6430,23 @@ sv:
       #Description of a group of options for targeting announcements based
       #miscellaneous user attributes
       target_users_by_other_attributes: Användarmålgrupp utifrån andra attribut
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Om kartböcker
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlaser förmedlar den globala utbredningen av ett taxon. Kuratorer gör
+          atlaser genom att definiera strukturen för en atlas och kurera
+          listade taxa som driver den.
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Inga ändringar i denna atlas ännu
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Senaste ändringar av Atlas
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Visa listade taxa
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Den här atlasen är för närvarande inte aktiv
     content_freeze:
       content_freeze: Låsning av innehåll
       during_this_time: |
@@ -6662,9 +6726,9 @@ sv:
       index:
         deprecated_banner: |
           Observera att från och med januari 2019 erbjuder vi Guide-funktionen "som den är"; även om vi inte har några planer på att ta bort den, planerar vi heller inte att utveckla den vidare.
-        funding_html: |
-          Finansiering för utveckling av guider tillhandahölls av
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Utvecklingen av handledningar finansierades av
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Guider hjälper dig att lära dig om biologisk mångfald runt om i världen. Oavsett om du utforskar Serengeti eller bara din lokala park (som skulle kunna vara Serengeti) kan guider hjälpa dig få grepp om vår planets oerhörda mångfald av liv.
       edit:
@@ -7183,12 +7247,6 @@ sv:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: |
           Kolumnen för koordinatsekretess måste vara på engelska och antingen vara tom eller ha något av värdena "obscured" eller "private"
-        google_photos_notice_html: |
-          I februari 2019 ändrade Google sitt API, och gjorde det omöjligt för oss att komma åt GPS-koordinater, licensinformation och nästan all information som vi skulle kunna använda för att lägga till en bestämning
-          (som taggningar). De tog också bort textsökning och sidnumrering. Utöver det måste numera alla anslutna konton ha ytterligare behörighet, och innan en tredjepart kan begära att få ett sådant tillstånd från användare, måste tredjeparten verifieras. Vi väntar på verifiering, men innan det är klart, kan du inte importera bilder från Google. Om vi blir godkända,
-          kommer du att kunna importera bilder, men de kommer inte att innehålla någon plats- eller licensinformation som du kanske kan se på Google Photos. Du kan läsa mer om detta på <a href="https://
-          developers.google.com/picasa-web">https://developers.google.com/
-          picasa-web</a>. Det bästa alternativet är att ladda ner originalfilerna och lägga till dem med <a href="/observations/upload">Upladdaren</a>.
         project_csv_template_notice_html: |
           Det finns en mall för detta projekt som kanske kan hjälpa dig med strukturen i CSV-filen.
           <a href="%{url}">Ladda ner mallen</a>
@@ -8096,6 +8154,11 @@ sv:
           Observera att taxonsidan kommer att visa bilder av detta taxon och dess barn. Utvalda bilder för detta taxon kommer dock att visas först. Den första bilden kommer att vara den standardbild som används på webbplatsen.
         rare_desc: Minst observerade hotade taxa
         rare_in_place_desc_html: Minst observerade hotade taxa i <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Webbplatskuratorer har inaktiverat visning <a href="%{url}">denna
+          innehåll från Wikipedia</a>. Du kan hjälpa till genom att redigera sidan på
+          Wikipedia för att göra det lämpligt för detta taxon, eller genom att flagga detta
+          taxon för att uppmärksamma dem på platsens kuratorer.
         trending_desc: Mest observerade taxa senaste månaden
         trending_in_place_desc_html: Mest observerade taxa senaste månaden i <a href="%{url}">%{place}</a>
         wanted_desc: Arter i detta taxon som ännu inte har observerats
@@ -8256,6 +8319,10 @@ sv:
           inkluderar vi poster med Ingen Copyright (CC0), Erkännande (CC BY), och Erkännande-Icke kommersiell (CC BY-NC) i det arkiv vi genererar
           för <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), en internationell, mellanstatlig organisation som sammanställer och tillgängliggör information om biologisk mångfald
           från hela världen.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Filtypen stöds inte. Vi accepterar JPG, PNG och GIF
         monthly_supporter_desc_html: |
           iNaturalist Månatliga givare ger automatiska månatliga bidrag
           till iNaturalist (United States IRS EIN 92-1296468) för att stödja
@@ -8636,6 +8703,10 @@ sv:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%-d %B %Y %H.%M'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%H:%M %Z'
@@ -8674,6 +8745,8 @@ sv:
     attributes:
       announcement:
         created_at: Skapad den
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Kan avfärdas
         updated_at: Uppdaterad den
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8862,6 +8935,8 @@ sv:
         photos_locked: Bilder låsta?
         rank: Rang
         rank_level: Rangnivå
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Visar Wikipedia
         source_id: Käll-ID
         source_identifier: Källans identifierare
         source_url: Källans URL
@@ -8896,6 +8971,7 @@ sv:
         show_for_descendent_taxa: Visa för underliggande taxa
       user:
         email: E-post
+        faved_project_ids: Favoritprojekt
         login: Användarnamn
         name: Namn
         locale: Språk
@@ -9016,6 +9092,8 @@ sv:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Endast personal och förvaltare kan dölja innehåll
               only_staff_and_hiding_curators_can_unhide: Endast personal och förvaltare som döljer innehåll kan visa det igen
+              #Error saying that only staff can rename
+              only_staff_can_rename: Endast personal kan byta namn
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Endast personal kan ange innehåll privat
               staff_cannot_be_suspended: Personalen kan inte stängas av
@@ -9038,6 +9116,9 @@ sv:
                 kan inte vara större än det datum som fyndet lades till
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: måste vara inom de senaste 130 åren
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: Måste vara en enda dag, inte ett intervall
         observation_field_value:
           attributes:
             value:
@@ -9070,6 +9151,9 @@ sv:
               invalid_point: har en ogiltig punkt, t.ex. längdgrad större än 180 eller breddgrad mindre än -90
               must_have_more_than_three_points: måste ha mer än 3 punkter
               polygon_with_less_than_four_points: har en polygon med mindre än 4 punkter
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: har en polygon utan area (alla punkter är desamma)
         place_geometry:
           attributes:
             geom:
@@ -9087,6 +9171,10 @@ sv:
             user:
               must_be_on_site_long_enough: |
                 måste ha registrerat sig för mer än 24 timmar sedan för att publicera. Vi får en hel del spam, och detta är ett rätt lamt sätt att hantera det på. Du kan fortfarande spara ett utkast, och om du fortfarande använder webbplatsen om en dag, kommer du att kunna publicera.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Du kan bara fave 7 projekt
         project_observation:
           attributes:
             base:
@@ -9174,6 +9262,14 @@ sv:
               already_has_a_range: har redan ett utbredningsområde
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: Får inte omfatta mer än 7 projekt
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: Måste alla existera
             login:
               must_begin_with_a_letter: |
                 måste börja med en bokstav, inte innehålla några mellanslag, och endast använda bokstäver, siffror, bindestreck och understreck

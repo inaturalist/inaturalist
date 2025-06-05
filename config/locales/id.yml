@@ -1608,6 +1608,11 @@ id:
   disable_comments: Matikan komentar
   disable_comments_desc: Cegah orang lain menambahkan komentar baru
   disagree_: Tidak Setuju
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Perselisihan
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Tampilkan pengamatan yang memiliki identifikasi yang tidak setuju
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Putuskan
@@ -2567,7 +2572,6 @@ id:
   #a noun.
   link_to_authorization_code: Tautan untuk kode otorisasi
   link_your_flickr_account: Hubungkan akun Flickr Anda
-  link_your_google_account: Hubungkan akun Google Anda
   linked_flickr: "Akun %{site_name} Anda saat ini terhubung dengan akun Flickr Anda."
   linked_flickr_automatically: "Perlu diingat bahwa jika Anda masuk ke %{site_name} melalui Flickr, kami akan secara otomatis menghubungkan kembali akun %{site_name} dan akun Flickr Anda. Tampak masuk akal bukan jika Anda menggunakan Flickr, Anda ingin dapat mengimpor foto dari Flickr?"
   linked_flickr_description: "Dengan menjaga akun %{site_name} Anda tetap terhubung dengan akun Flickr, Anda dapat menambahkan sejumlah foto untuk pengamatanmu. Jika Anda ingin %{site_name} dan Facebook putus, kami tidak akan menghentikanmu, Anda tidak akan bisa menambahkan foto saja. Terkadang, ini mungkin jalan yang terbaik, contohnya jika Anda membuat akun Facebook baru yang ingin dihubungkan dengan %{site_name}."
@@ -3375,6 +3379,7 @@ id:
   observation_field_type_taxon: Takson
   observation_field_type_dna: DNA
   observation_fields: Bidang Pengamatan
+  observation_fields_for_projects: Bidang Observasi untuk Proyek
   observation_fields_are_additional: Bidang pengamatan adalah bidang data tambahan yang dapat ditambahkan ke pengamatan.
   observation_fields_by_preferences_description: |
     Bidang pengamatan bisa dibilang seperti label, tetapi semua orang dapat menambahkannya kepada pengamatan Anda jika mengacu setelan aslinya. Ubah ini jika Anda ingin hanya Anda yang bisa melakukan ini, atau hanya situs kurator saja.
@@ -4282,6 +4287,16 @@ id:
   range: Jangkauan
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Tingkat
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Genus / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Spesies / Hibrida
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subspesies / Varietas / Bentuk
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5469,7 +5484,6 @@ id:
   unfollow_observation: Berhenti mengikuti pengamatan ini
   #Text for a button to stop following updates from a user
   unfollow_user: Berhenti mengikuti pengguna
-  unlink_your_google_account: Putuskan Akun Google Anda
   unlink_your_flickr_account: "Putuskan Akun Flickr Anda"
   unmute: Bunyikan
   updates_notification_email_subject: "%{prefix} Kabar baru %{date}"
@@ -5649,6 +5663,11 @@ id:
   user_trusts_this_project_when_added_by_any: |
     Pengguna mempercayai kurator proyek dengan koordinat pengamatan tersembunyi yang ditambahkan 
     oleh siapa pun ke dalam proyek.
+  user_trusts_this_project_when_added_by_observer: |
+    Pengguna mempercayai kurator proyek dengan koordinat pengamatan tersembunyi yang ditambahkan
+    ke proyek oleh pengamat.
+  user_trusts_this_project_when_added_by_none: |
+    Pengguna tidak mempercayai kurator proyek dengan koordinat tersembunyi.
   user_trusts_you_with_their_private_coordinates: "%{user} memercayakan Anda dengan koordinat tersembunyi mereka"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pengamat ini telah memilih untuk memercayakan Anda koordinat yang tersembunyi dari semua pengamatan mereka.
@@ -5781,8 +5800,8 @@ id:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Dicari
   was_it_captive_cultivated?: "Apakah itu dipelihara / dibudidayakan?"
-  we_also_support2: |
-    Kami juga mendukung pengimporan foto dari <a href="http://flickr.com">Flickr</a> dan <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Kami juga mendukung impor foto dari <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Kami hanya dapat mengenali CSV dalam format berikut
   we_couldnt_find_a_user: Kami tidak dapat menemukan pengguna dengan alamat email tersebut.
   we_couldnt_find_a_user_with_that_activation_code: "Kami tidak dapat menemukan pengguna dengan kode aktivasi tersebut. Anda mungkin telah mengaktifkan akun Anda, silakan mencoba untuk masuk lagi."
@@ -6458,8 +6477,9 @@ id:
       index:
         deprecated_banner: |
           Harap mengerti bahwa sejak Januari 2019, fitur Panduan ditampilkan apa adanya; kami tidak memiliki rencana untuk menghapusnya, juga mengembangkannya lebih lanjut.
-        funding_html: |
-          Pendanaan untuk pengembangan Panduan disediakan oleh <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Pendanaan untuk pengembangan Panduan disediakan oleh
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Panduan membantu Anda belajar tentang keanekaragaman hayati di seluruh dunia.
           Apakah itu Anda sedang menjelajahi Serengeti atau hanya taman lokal Anda (yang mungkin adalah Serengeti), Panduan dapat membantu Anda memahami ragam kehidupan yang menakjubkan dari planet kita.
@@ -6932,11 +6952,6 @@ id:
         decimal_degrees_format: dd,dddd
         geoprivacy_must_be_in_english: |
           Kolom geoprivasi harus berbahasa Inggris dan harus kosong atau memiliki nilai "dikaburkan" atau "pribadi"
-        google_photos_notice_html: |
-          Pada Februari 2019, Google mengubah APInya, membuat kami tidak bisa mengakses koordinat GPS, informasi lisensi, dan hampir semua informasi yang dapat kami gunakan untuk menambah identifikasi (seperti label). Mereka juga menghapus pencarian teks dan penomoran halaman. Selain itu, mereka juga mengharuskan semua akun yang terkoneksi untuk memiliki izin tambahan, dan sebelum pihak ketiga dapat meminta izin dari pengguna, pihak ketiga harus terverifikasi terlebih dahulu. Kami sedang menunggu verifikasi, tetapi hingga saatnya, Anda tidak akan bisa mengimpor foto dari Google. Jika sudah disetujui, Anda akan bisa mengimpor foto, tetapi mereka tidak akan memasukkan informasi lokasi atau informasi lisensi apapun yang Anda dapat lihat di Google Photos. Anda dapt membaca lebih lanjut tentang ini di <a
-          href="https://developers.google.com/picasa-
-          web">https://developers.google.com/picasa-web</a>. Mengunduh file asli dan menambahkannya menggunakan <a
-          href="/observations/upload">Pengunggah</a> adalah cara terbaik untuk saat ini.
         project_csv_template_notice_html: |
           Ada file template untuk proyek ini yang dapat membantu Anda dengan struktur file CSV.
           <a href="%{url}">Unduh template</a>
@@ -8297,6 +8312,8 @@ id:
         min_observations: Pengamatan min
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Penempatan
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Pembuat target (untuk pengujian)
         #Whether or not the announcement is shown to logged in users
         target_logged_in: Target masuk
         #Earliest date the viewer can have signed up to see the announcement

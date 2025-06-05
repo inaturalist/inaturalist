@@ -67,6 +67,8 @@ sk:
   add_a_flag: Pridať značku
   add_a_name: Vložiť meno
   add_a_new_change_group: Pridať novú skupinu zmien
+  #Placeholder for a project autocomplete field
+  add_a_project: Pridanie projektu
   add_a_single_observation: Vložiť jedno pozorovanie
   add_a_taxon: Vložiť taxón
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -259,6 +261,8 @@ sk:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: Ľubovoľný
+  #Label for an option to show any place
+  any_place: Akýkoľvek
   anyone: Ktokoľvek
   apply_to_selected: Použiť pre vybrané
   apply_captive_cultivated: "Použiť zajatý / kutlivovaný"
@@ -324,6 +328,13 @@ sk:
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribút
   attribution: Uvedenie autora
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Explodoval
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Nevybuchnutej
   authority_list:
     iucn_red_list: Červený zoznam IUCN
   authorize: Autorizovať
@@ -550,6 +561,10 @@ sk:
   confirm_new_password: Potvrdiť nové heslo
   confirm_now: Potvrdiť teraz
   confirm_your_info: Potvrďte svoje info
+  confirming_ids: Potvrdenie ID
+  confirming_ids_description: |
+    Ak túto možnosť vypnete, už nebudete dostávať upozornenia na identifikátory, ktoré súhlasia
+    s vašimi, pokiaľ nemajú ďalšie poznámky.
   connect_to_provider: "Pripojiť sa k %{provider}"
   connecting_flickr: "Pripájanie k Flickr..."
   conservation_status: Stav ochrany
@@ -650,11 +665,19 @@ sk:
   curators_changed_for_x_html: "Správcovia zmenený na %{x}"
   curators: Kurátori
   curators_can_remove_observations_from: Kurátori môžu odstrániť pozorovania z projektu a ich identifikácie sú uvedené pri pozorovaniach v náhľadoch projektu. Kurátori tiež vidia skutočné súradnice súkromných a skrytých príspevkov do tohto projektu.
+  curator_coordinate_access: Prístup ku súradniciam kurátora
+  curator_coordinate_access_desc: |
+    Kurátor koordinuje prístup k tradičným projektom v závislosti od toho, kto pridal
+    pozorovanie k projektu. Toto je len predvolené nastavenie pre
+    Pozorovania v projektoch. Pozorovatelia sa tiež môžu rozhodnúť zmeniť túto možnosť pre
+    individuálne pozorovania.
   curator_identification: Identifikácia správcu
   current_flags: Aktuálne značky
   custom_project_fields: Vlastné projektové polia
   custom_project_was_successfully_created: Vlastný projekt bol úspešne vytvorený.
   custom_project_was_successfully_updated: Vlastný projekt bol úspešne aktualizovaný.
+  #Button to customize projects that appear in the header
+  customize__projects: Prispôsobiť
   customize_location: Upraviť lokalitu
   darr_apply_darr: "&darr; Použiť &darr;"
   dashboard: Nástenka
@@ -763,6 +786,11 @@ sk:
   did_you_photos_flickr?: Nahrali ste nejaké fotografie na Flickr?
   disable: Vypnúť
   disagree_: Nesúhlasím
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Nezhody
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Zobrazenie pozorovaní, ktoré majú nesúhlasné identifikácie
   disconnect_provider: "Odpojiť %{provider}"
   display_link_to_checklist: Zobraziť odkaz na zoznam projektu zo stránky projektu
   distance_traveled_value: "Prejdená vzdialenosť: %{distance} m"
@@ -836,6 +864,8 @@ sk:
   edited_by_name_some_rights_reserved_html: |
     Upravené používateľom %{name}, niektoré práva vyhradené (%{license})
   editing: Upravuje sa
+  #Title for a page to edit an announcement
+  editing_announcement_x: Oznámenie o úprave %{id}
   editing_custom_project_fields_for: Upraviť vlastné projektové polia pre
   editing_observation_field: Upraviť pole pozorovania
   editing_observation_id: "Upravuje sa pozorovanie %{obs_id}"
@@ -908,6 +938,12 @@ sk:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Obľúbené
   Family: Čeľaď
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Obľúbené projekty
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Vyberte až sedem projektov, ktoré sa zobrazia ako odkazy v hlavičke. Aktualizácie
+    sa zobrazí po obnovení stránky.
   favorite_taxa: Obľúbené taxóny
   favorites: "Obľúbené"
   feature_this_project_: "Odporučiť tento projekt"
@@ -1108,6 +1144,8 @@ sk:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikácia odstránená.
   identifications: Identifikácie
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist aktualizoval ID navrhnuté %{user}
   computer_vision_suggestion: Návrh počítačového videnia
   identifiers: Identifikátory
   identotron_for: Identotron pre
@@ -1154,6 +1192,18 @@ sk:
   inat_user_profile: "%{site_name}: Profil užívateľa %{user}"
   inaturalist_places: "%{site_name} Miesta"
   info: Informácie
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Infradruhové ID
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Ak túto možnosť vypnete, už nebudete upozornení na ID taxónov
+    pod druhovou úrovňou (ako sú poddruhy a odrody), ktoré súhlasia s vašou
+    ID na úrovni druhu. Budete upozornení, ak nesúhlasia s vaším preukazom totožnosti alebo
+    ak obsahujú ďalšie poznámky.
   input_taxon: Vstupný taxón
   insects: hmyz
   insect_life_stage: Štádium života hmyzu
@@ -1163,6 +1213,8 @@ sk:
   internal_taxon_rank: Hodnosť interného taxónu
   introduced: Introdukovaný
   introduced_in_place: "Introdukovaný v %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Neplatný dátum
   invitation: Pozvánka
   invite: pozvať
   invite_people: Pozvať ľudí
@@ -1286,7 +1338,6 @@ sk:
   linear_scale_label: Lineárny
   link: Odkaz
   link_your_flickr_account: Pripojiť účet Flickr
-  link_your_google_account: Pripojiť účet Google
   linked_flickr: "Váš účet na %{site_name} je teraz pripojený s vašim účtom na Flickr."
   linked_flickr_automatically: "Ďalej nezabudnite, že keď sa prihlásite na %{site_name} cez Flickr, automaticky znovu prepojíme váš účet na %{site_name} s účtom na Flickr. Zdá sa rozumné, že ak používate Flickr, budete chcieť importovať fotky z Flickr, že?"
   linked_flickr_description: "Ak bude váš účet na %{site_name} prepojený s vaším účtom na Flickr, budete môcť pridávať ku svojim pozorovaniam viac fotiek. Samozrejme, ak budete kedykoľvek chcieť %{site_name} a Flickr oddeliť, nebudeme vám v tom brániť, len nebudete môcť pridávať fotky. Niekedy to môže byť dobré, napríklad keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}."
@@ -1302,6 +1353,10 @@ sk:
   list_was_successfully_created: Zoznam bol úspešne vytvorený.
   listed_taxa: Taxóny uvedené na zozname
   listed_taxon: Taxón uvedený na zozname
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Uvedené
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Neuvedené
   listed_taxon_updated: Taxón uvedený na zozname bol aktualizovaný
   listing_lists: Zoznamy zápisov
   listing_project_assets: Zápisy projektových_položiek
@@ -1368,6 +1423,10 @@ sk:
   locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana catesbeiana</i> od externého poskytovateľa názvov, nový taxón bude vytvorený, ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Kurátor môže vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
+  #Adjectival phrase describing state of being logged in
+  logged_in: Prihlásený
+  #Adjectival phrase describing state of being logged out
+  logged_out: Odhlásený
   logo:
     white_bg_gif: GIF s bielym pozadím
     transparent_png: transparentný PNG
@@ -1480,6 +1539,8 @@ sk:
   more_info_title: Viac informácií
   more_journal_posts: Ďalšie príspevky v denníku
   more_observations: Ďalšie pozorovania
+  #Label for a button or section that shows additional options
+  more_options: Ďalšie možnosti
   more_photos: Ďalšie fotky
   more_than_a_week_ago: Viac ako pred týždňom
   most_agree: väčšina súhlasí
@@ -1641,7 +1702,24 @@ sk:
   no_taxonomic_changes_match_those_criteria: Týmto kritériám nezodpovedajú žiadne taxonomické zmeny
   no_wikipedia_page_for_taxon: "Žiadna stránka na Wikipédii pre tento taxón \n."
   noble_curators: "Vybraní kurátori stránky %{site}"
+  #A user who is not a curator
+  non_curator: Nekurátor
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Nesúhlasné ID predkov
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Ak túto možnosť vypnete, už nebudete dostávať upozornenia, keď niekto pridá
+    ID taxónu, ktorý je predkom taxónu z vášho ID a nie
+    výslovne nesúhlasím s taxónom Spoločenstva. Budete upozornení, ak
+    ID obsahuje ďalšie poznámky.
   non_human?: Nie je ľudský?
+  #A user who does not admin any projects
+  non_project_admin: Nie je správcom projektu
   none: Žiadny
   none_found: Nenájdené
   normal: normálny
@@ -1684,6 +1762,7 @@ sk:
   observation_field: Pole pozorovania
   observation_field_details: Podrobnosti poľa pozorovania
   observation_fields: Pole pozorovania
+  observation_fields_for_projects: Polia pozorovania pre projekty
   observation_fields_are_additional: Polia pozorovaní sú dodatočné polia údajov, ktoré možno pridať k pozorovaniam.
   observation_fields_by_preferences_description: |
     Polia pozorovania sú trochu podobné tagom s tým rozdielom, že ich štandardne môže k vášmu pozorovaniu pridať ktokoľvek. Ak chcete, aby ste túto možnosť mali len vy alebo kurátori stránky, vykonajte zmenu nastavenia.
@@ -2242,7 +2321,12 @@ sk:
   processing: Spracováva sa
   processing3p: "Spracováva sa..."
   profile: Profil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Typ súboru profilového obrázka
   project: Projekt
+  #A user who admin's a project
+  project_admin: Správca projektu
   project_assessments: Hodnotenie projektu
   project_assets: Položky projektu
   project_cover: Obal projektu
@@ -2294,6 +2378,16 @@ sk:
   range: Rozsah
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikácia
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Rod / Rod hybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Druh / Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Poddruh / Odroda / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2849,13 +2943,24 @@ sk:
   unknown: Neznámy
   unknown_error: Neznáma chyba
   unknown_rank: '(Neznáme zaradenie)'
-  unlink_your_google_account: Zrušiť pripojenie vášho účtu Google
   unmute: Zapnúť zvuk
   updates_notification_email_subject: "%{prefix} Nové aktualizácie %{date}"
   updates_suspension_email_subject: "%{prefix} Vaše prihlásenia čakajú"
   updating: Aktualizovanie...
   unprocessable: Nespracovateľný
   unpublish: Zrušiť zverejnenie
+  update_existing_observations_with_new_license_desc: |
+    Výberom tejto možnosti sa nová voľba licencie použije na všetky vaše
+    existujúcich pozorovaní. Môže to trvať niekoľko hodín, ak máte veľa
+    Pozorovania.
+  update_existing_photos_with_new_license_desc: |
+    Výberom tejto možnosti sa nová voľba licencie použije na všetky vaše
+    existujúce fotografie. Môže to trvať niekoľko hodín, ak máte veľa
+    Fotografie.
+  update_existing_sounds_with_new_license_desc: |
+    Výberom tejto možnosti sa nová voľba licencie použije na všetky vaše
+    existujúce zvuky. Môže to trvať niekoľko hodín, ak máte veľa
+    Zvuky.
   update_your_content: Aktualizovať váš obsah
   updated: Aktualizované
   updated_daily: Aktualizované denne
@@ -2878,6 +2983,14 @@ sk:
   user_invite_observation_to_project: 'Užívateľ %{user} by rád pripojil vaše pozorovanie „%{observation}“ k projektu %{project}.'
   user_invited_you_to_join_project: "Užívateľ %{user} vás pozval, aby ste sa pripojili k projektu %{project}"
   user_suggested_an_id: "%{user} navrhol ID"
+  user_trusts_this_project_when_added_by_any: |
+    Používateľ dôveruje kurátorom projektu s pridanými skrytými súradnicami pozorovaní
+    projektu kýmkoľvek.
+  user_trusts_this_project_when_added_by_observer: |
+    Používateľ dôveruje kurátorom projektu s pridanými skrytými súradnicami pozorovaní
+    na projekt pozorovateľom.
+  user_trusts_this_project_when_added_by_none: |
+    Používateľ nedôveruje kurátorom projektu so skrytými súradnicami.
   username: Používateľské meno
   username_or_email: Používateľské meno alebo email
   username_or_user_id: Používateľské meno alebo používateľské ID
@@ -2901,6 +3014,8 @@ sk:
   view_more_observations_near_x_place: "Zobraziť viac pozorovaní blízko %{place} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Zobraziť viac pozorovaní %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Zobraziť viac neskontrolovaných"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Zobrazenie ovplyvnených identifikátorov
   view_observation: Zobraziť pozorovanie
   view_observations: Zobraziť pozorovania
   view_observation_flags: Pozri značky pozorovania
@@ -2921,6 +3036,8 @@ sk:
   view_your_observations: Zobraziť vaše pozorovania.
   view_yours: Zobraziť váš
   view_all_of_your_observations_from_x: "Zobraziť všetky vaše pozorovania z %{x}"
+  we_also_support3: |
+    Podporujeme aj import fotografií z <a href="http://flickr.com">Flickr</a>.
   we_had_a_problem_flagging_that_item: "Máme problém s označením tejto položky:%{flag_error}"
   welcome: vitajte
   welcome_back!: Vitajte späť!
@@ -2954,6 +3071,65 @@ sk:
   your_recent_projects: Vaše nedávne projekty
   views:
     views: 'Zobrazenia'
+    announcements:
+      locales_desc: |
+        Kliknutím so stlačeným CMD alebo SHIFT vyberte viaceré. Výber "Všetko" alebo nevytváranie
+        výberom sa oznámenie zobrazí všetkým používateľom bez ohľadu na
+        Locale. Výber jazyka bez regiónu *nebude* zameraný
+        miestne nastavenia s regiónmi, napr. ak ste vybrali angličtinu, nezobrazí sa
+        pre ľudí, ktorí si vybrali angličtinu (UK).
+      clients_desc: |
+        Kliknutím so stlačeným CMD alebo SHIFT vyberte viaceré. Výber "Všetko" alebo nevytváranie
+        výberom sa oznámenie zobrazí všetkým používateľom bez ohľadu na
+        klient.
+      end_desc: |
+        Čas v časovom pásme vášho účtu, kedy sa toto oznámenie zastaví
+        Uvedené. Platí vo všetkých časových pásmach, takže všetci prestanú vidieť
+        zároveň, nie vo vzťahu k ich miestnemu času.
+      observation_oauth_application_ids_desc: |
+        Kliknutím so stlačeným CMD alebo SHIFT vyberte viaceré. Výber "Všetko" alebo nevytváranie
+        výberom sa oznámenie zobrazí všetkým používateľom bez ohľadu na
+        App.
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: O atlasoch
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasy vyjadrujú globálnu distribúciu taxónu. Kurátori robia
+          definovaním štruktúry atlasu a kurátorstvom
+          uvedené taxóny, ktoré ho riadia.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Vybuchnite toto miesto
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Nevybuchnite toto miesto
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Zatiaľ žiadne zmeny v tomto atlase
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Nedávne zmeny atlasu
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Nedávne uvedené zmeny taxónov
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Zobraziť uvedené taxóny
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Tento atlas momentálne nie je aktívny
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tým sa tento taxón a všetci jeho potomkovia odstránia z kontrolných zoznamov
+          spojené s týmto miestom a všetkými štandardnými miestami, ktoré obsahuje. Ono
+          nedá sa vrátiť späť. Naozaj to chcete urobiť?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Upozornenie: existujú pozorovania, ktoré tento atlas nepredstavuje
     devise:
       mailer:
         confirmation_instructions:
@@ -2986,6 +3162,11 @@ sk:
       tips_check_email_filters: Skontrolujte všetky filtre, ktoré by mohli odstrániť naše e-maily z vašej doručenej pošty #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Skontrolujte priečinok so spamom
       your_site_account_has_no_email: Tvoj %{site_name} k účtu nie je priradená žiadna e-mailová adresa.
+    guides:
+      index:
+        funding2_html: |
+          Finančné prostriedky na vypracovanie sprievodcov poskytli
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -3045,6 +3226,23 @@ sk:
       edit:
         high_status_conservation_status_notice_html: |
           Pridanie statusu ochrany vyššiemu taxónu ovplyvňuje pozorovania všetkých druhov v tomto taxóne. Nepridávajte prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje súradnice pozorovaní týchto druhov.
+      show:
+        site_curators_disabled_wikipedia_html: |
+          Kurátori stránok zakázali zobrazovanie <a href="%{url}">toto
+          obsah z Wikipédie</a>. Môžete pomôcť úpravou stránky na
+          Wikipédia, aby to bolo vhodné pre tento taxón, alebo označením tohto
+          taxon, aby naň upozornil kurátorov stránok.
+    users:
+      edit:
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Typ súboru nie je podporovaný. Akceptujeme formáty JPG, PNG a GIF
+        this_only_applies_to_traditional_projects2: |
+          To platí len pre tradičné projekty. Pozorovania nie je možné vylúčiť
+          zo zbierkových alebo zastrešujúcich projektov, čo sú v podstate uložené vyhľadávania.
+          Môžete si prečítať viac
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">tu</a>.
     welcome:
       index:
         connect_with_nature: Spojte sa s prírodou
@@ -3153,16 +3351,59 @@ sk:
       format:
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Zamietnuť
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Vylúčenie pozorovateľov z aplikácií
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Zahrnutie pozorovateľov z aplikácií
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Cieľový tvorca (na testovanie)
       project:
         last_aggregated_at: Naposledy zoskupené pozorovania
+      taxon:
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Zobrazuje Wikipédiu
       user:
+        faved_project_ids: Obľúbené projekty
         login: Používateľské meno
     errors:
       messages:
+        must_look_like_an_email_address: musí vyzerať ako e-mailová adresa
         requires_privilege_interaction: na to musíte mať potvrdenú e-mailovú adresu
       models:
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Premenovať môžu iba zamestnanci
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: musí to byť jeden deň, nie rozsah
+        place:
+          attributes:
+            place_geometry:
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: má mnohouholník bez plochy (všetky body sú rovnaké)
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Môžete si obľúbiť iba 7 projektov
         project_observation:
           attributes:
             user_id:
@@ -3178,6 +3419,23 @@ sk:
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 môže byť zmenený iba kurátorom tohto taxónu
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Taxón Life nemôže byť zapojený do zmien taxónov
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: nemôže zahŕňať viac ako 7 projektov
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: musia existovať všetky
+            login:
+              domain_is_not_supported: doména nie je podporovaná
   doorkeeper:
     errors:
       messages:

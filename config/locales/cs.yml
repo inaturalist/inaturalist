@@ -374,6 +374,8 @@ cs:
   add_a_new_change_group: Přidat novou skupinu změn
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Přidat číslovaný seznam
+  #Placeholder for a project autocomplete field
+  add_a_project: Přidání projektu
   add_a_single_observation: Vložit jediné pozorování
   add_a_taxon: Vložit taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -863,6 +865,13 @@ cs:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, nahrál/a %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Explodoval
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Nevybuchlý
   authority_list:
     iucn_red_list: Červený seznam IUCN
     natureserve: NatureServe
@@ -1212,6 +1221,10 @@ cs:
   confirmation_email_sent_at_datetime: Potvrzovací e-mail odeslán %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Potvrzeno dne %{date}
+  confirming_ids: Potvrzení ID
+  confirming_ids_description: |
+    Pokud tuto možnost vypnete, nebudete již upozorňováni na souhlasná ID
+    s vašimi, pokud nemají další připomínky.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Připojit
@@ -1579,6 +1592,12 @@ cs:
   curators_changed_for_x_html: "Kurátoři změněni na %{x}"
   curators: Kurátoři
   curators_can_remove_observations_from: Kurátoři mohou odstranit pozorování z projektu a jejich identifikace je uvedena u pozorování v náhledech projektu. Kurátoři také vidí skutečné souřadnice soukromých a přibližných příspěvků do tohoto projektu.
+  curator_coordinate_access: Kurátor koordinuje přístup
+  curator_coordinate_access_desc: |
+    Přístup kurátora ke koordinaci tradičních projektů závisí na tom, kdo přidal
+    pozorování k projektu. Toto je pouze výchozí nastavení pro
+    pozorování v projektech. Pozorovatelé se také mohou rozhodnout změnit tuto možnost pro
+    Individuální pozorování.
   curator_identification: Identifikace kurátora
   current_flags: Aktuální označení
   #Label for a custom boundary for an observation search
@@ -1586,6 +1605,8 @@ cs:
   custom_project_fields: Pole vlastního projektu
   custom_project_was_successfully_created: Vlastní projekt byl úspěšně vytvořen.
   custom_project_was_successfully_updated: Vlastní projekt byl úspěšně aktualizován.
+  #Button to customize projects that appear in the header
+  customize__projects: Přizpůsobit
   customize_location: Upravit lokalitu
   darr_apply_darr: "&darr; Použít &darr;"
   daily_users: Denní uživatelé
@@ -1789,6 +1810,11 @@ cs:
   disable_comments: Zakázat komentáře
   disable_comments_desc: Zabránit lidem přidávat nové komentáře
   disagree_: Nesouhlasím
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Neshody
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Zobrazit pozorování s nesouhlasnou identifikací
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Odpojit
@@ -1902,6 +1928,8 @@ cs:
   edited_by_name_some_rights_reserved_html: |
     Upraveno uživatelem %{name}, některá práva vyhrazena (%{license})
   editing: Upravuje se
+  #Title for a page to edit an announcement
+  editing_announcement_x: Oznámení o úpravách %{id}
   editing_custom_project_fields_for: Editovat vlastní projektová pole pro
   editing_observation_field: Editování pole pozorování
   editing_observation_id: "Editování pozorování %{obs_id}"
@@ -2023,6 +2051,12 @@ cs:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Oblíbené
   Family: čeleď
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Oblíbené projekty
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Vyberte až sedm projektů, které se v záhlaví zobrazí jako odkazy. Aktualizace
+    se zobrazí po obnovení stránky.
   favorite_taxa: oblíbené taxony
   favorites: "Oblíbené"
   feature_this_project_: "Znaky toho projektu"
@@ -2395,6 +2429,8 @@ cs:
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist je nezávislá nezisková organizace typu 501(c)(3), vyjmutá z federálních daní z příjmu,
     se sídlem ve Spojených státech amerických (Tax ID: 92–1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist aktualizoval ID navržené uživatelem %{user}
   computer_vision_suggestion: Návrh počítačového vidění
   computer_vision_suggestion_desc: |
     Počítačové vidění je proces, kterým se počítač učí rozpoznávat vzory v obrazech. Poskytujeme nástroje, které využívají modely počítačového vidění řízené fotografiemi z komunity, aby poskytly návrhy na identifikaci, jako jsou automatické úplnosti a funkce porovnání. Tento štítek označuje, kdy osoba přidala ID pomocí jednoho z těchto nástrojů.
@@ -2491,6 +2527,18 @@ cs:
   inaturalist_applications: "Aplikace iNaturalist"
   inaturalist_places: "%{site_name} Místa"
   info: Informace
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ID infradruhů
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Pokud tuto možnost vypnete, nebudete již upozorňováni na ID taxonů
+    pod úrovní druhu (jako jsou poddruhy a odrůdy), které souhlasí s vaším
+    ID na úrovni druhu. Pokud s vaším průkazem totožnosti nesouhlasí, budete informováni nebo
+    pokud obsahují další poznámky.
   input_taxon: Vstupní taxon
   insects: hmyz
   insect_life_stage: Stádium života hmyzu
@@ -2503,6 +2551,8 @@ cs:
   internal_taxon_rank: Vnitřní hodnost taxonů
   introduced: zavlečený
   introduced_in_place: "Zavlečen do %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Neplatné datum
   invitation: Pozvánka
   invite: pozvat
   invite_people: Pozvat lidi
@@ -2750,7 +2800,6 @@ cs:
   #a noun.
   link_to_authorization_code: Odkaz na autorizační kód
   link_your_flickr_account: Propojit váš účet na Flickru
-  link_your_google_account: Propojit váš účet na Googlu
   linked_flickr: "Váš účet na %{site_name} je teď propojen s vaším účtem na Flickru."
   linked_flickr_automatically: "Dále nezapomeňte, že když se přihlásíte na %{site_name} přes Flickr, automaticky znovu propojíme váš účet na %{site_name} s účtem na Flickru. Zdá se rozumné, že pokud používáte Flickr, budete chtít importovat fotky z Flickru, že?"
   linked_flickr_description: "Pokud bude váš účet na %{site_name} propojený s vaším účtem na Flickru, budete moci přidávat ke svým pozorováním více fotek. Samozřejmě, pokud budete kdykoliv chtít %{site_name} a Flickr oddělit, nebudeme vám v tom bránit, jen nebudete moci přidávat fotky. Někdy to může být dobré, například když si vytvoříte nový účet na Flickru, s kterým chcete propojit %{site_name}."
@@ -2774,6 +2823,10 @@ cs:
   list_with_two_items: "%{one} a %{two}"
   listed_taxa: Taxony uvedené v seznamu
   listed_taxon: Taxon uvedený v seznamu
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Zaznamenaný
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Neevidovaný
   listed_taxon_updated: Taxon uvedený v seznamu byl aktualizován
   listing_lists: Seznamy zápisů
   listing_project_assets: Zápisy projektových_položek
@@ -3336,6 +3389,21 @@ cs:
   no_users_found_with_those_filters: S těmito filtry nebyli nalezeni žádní uživatelé
   no_wikipedia_page_for_taxon: Žádná stránka na Wikipedii pro tento taxon.
   noble_curators: "Vybraní kurátoři stránky %{site}"
+  #A user who is not a curator
+  non_curator: Nekurátor
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Nesouhlasící ID předků
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Pokud tuto možnost vypnete, nebudete již upozorňováni, když někdo přidá soubor
+    ID taxonu, který je předkem taxonu z vašeho ID a není
+    výslovně nesouhlasím s taxonem Společenství. Pokud dojde k poškození
+    ID obsahuje další poznámky.
   non_human?: Není lidský?
   #A user who does not admin any projects
   non_project_admin: Neprojektový správce
@@ -3551,6 +3619,7 @@ cs:
   observation_field_type_taxon: Taxon
   observation_field_type_dna: DNA
   observation_fields: Pole pozorování
+  observation_fields_for_projects: Pozorovací pole pro projekty
   observation_fields_are_additional: Pole pozorování jsou dodatečná pole údajů, které lze přidat k pozorování.
   observation_fields_by_preferences_description: |
     Pole pozorování jsou trochu podobné tagům s tím rozdílem, že je standardně může k vašemu pozorování přidat kdokoliv. Pokud chcete, abyste tuto možnost měli jen vy nebo kurátoři stránky, proveďte změnu nastavení.
@@ -4370,6 +4439,9 @@ cs:
   processing3p: "Zpracovává se..."
   profile: Profil
   profile_picture: Profilový obrázek
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Typ souboru profilového obrázku
   profile_visibility_desc: |
     Ve snaze bojovat proti spamu na %{site_name} jsou profily uživatelů veřejně viditelné až poté, co uživatel přispěl k několika pozorováním programu Research Grade.
   project: Projekt
@@ -4466,6 +4538,16 @@ cs:
   range: Rozsah
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Klasifikace
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Rod / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Druh / Hybrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Poddruh / Odrůda / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -5762,7 +5844,6 @@ cs:
   unfollow_observation: Přestat sledovat pozorování
   #Text for a button to stop following updates from a user
   unfollow_user: Přestat sledovat uživatele
-  unlink_your_google_account: Zrušit propojení vašeho účtu na Googlu
   unlink_your_flickr_account: "Odpojit svůj účet na Flickru"
   unmute: Zapnout zvuk
   updates_notification_email_subject: "%{prefix} Nové aktualizace %{date}"
@@ -5782,8 +5863,20 @@ cs:
   upcoming_bioblitzes: Nadcházející bioblitzy
   update: Aktualizovat
   update_existing_observations_with_new_license: Aktualizovat stávající pozorování na nové volby licencí
+  update_existing_observations_with_new_license_desc: |
+    Výběrem této možnosti použijete novou volbu licence na všechny vaše
+    existující pozorování. To může trvat několik hodin, pokud máte hodně
+    pozorování.
   update_existing_photos_with_new_license: Aktualizovat stávající fotky na nové volby licencí
+  update_existing_photos_with_new_license_desc: |
+    Výběrem této možnosti použijete novou volbu licence na všechny vaše
+    již existující fotografie. To může trvat několik hodin, pokud máte hodně
+    fotky.
   update_existing_sounds_with_new_license: Aktualizovat stávající zvuky na nové volby licencí
+  update_existing_sounds_with_new_license_desc: |
+    Výběrem této možnosti použijete novou volbu licence na všechny vaše
+    existujících zvuků. To může trvat několik hodin, pokud máte hodně
+    zvuky.
   update_observations: Aktualizovat pozorování
   update_past: "Aktualizovat minulý %{type}"
   update_photos: Aktualizovat fotky
@@ -5939,6 +6032,14 @@ cs:
   user_trusts_this_project_for_taxon: |
     Uživatel důvěřuje pouze tomu projektu se skrytými souřadnicemi, které byly skryty
     kvůli ohroženým taxonům.
+  user_trusts_this_project_when_added_by_any: |
+    Uživatel důvěřuje kurátorům projektu s přidanými skrytými souřadnicemi pozorování
+    k projektu kýmkoliv.
+  user_trusts_this_project_when_added_by_observer: |
+    Uživatel důvěřuje kurátorům projektu s přidanými skrytými souřadnicemi pozorování
+    k projektu pozorovatelem.
+  user_trusts_this_project_when_added_by_none: |
+    Uživatel nedůvěřuje kurátorům projektu se skrytými souřadnicemi.
   user_trusts_you_with_their_private_coordinates: "%{user} vám věří s jejich skrytými souřadnicemi"
   user_trusts_you_with_their_private_coordinates_desc: |
     Pozorovatel se rozhodl vám věřit se skrytými souřadnicemi všech jejich pozorování.
@@ -6037,6 +6138,8 @@ cs:
   view_more_observations_of_x_project: "Zobrazit více pozorování z %{project} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Zobrazit více pozorování %{taxon} na <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Zobrazit více nezkontrolovaných"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Zobrazení dotčených ID
   view_observation: Zobrazit pozorování
   view_observations: Zobrazit pozorování
   view_observation_flags: Zobrazit vlajky pozorování
@@ -6079,9 +6182,8 @@ cs:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Hledaný
   was_it_captive_cultivated?: "Byl v zajetí / pěstovaný?"
-  we_also_support2: |
-    Podporujeme také import fotografií z <a href="http://flickr.com">Flickr</a>
-    a <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    Podporujeme také import fotografií z <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Rozumíme pouze CSV v následujícím formátu
   we_couldnt_find_a_user: Nepodařilo se nám najít uživatele s touto e-mailovou adresou.
   we_couldnt_find_a_user_with_that_activation_code: "Nepodařilo se nám najít uživatele s tímto aktivačním kódem. Možná už jste si účet aktivovali, zkuste se prosím přihlásit."
@@ -6436,6 +6538,94 @@ cs:
   verifiable_observations: ověřitelné pozorování
   views:
     views: 'Zobrazení'
+    announcements:
+      locales_desc: |
+        Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Výběr "Vše" nebo nevytváření
+        Po výběru se oznámení zobrazí všem uživatelům bez ohledu na to, zda
+        dějiště. Výběr jazyka bez regionu *nebude* cílový
+        národní prostředí s regiony, např. pokud vyberete angličtinu, nezobrazí se
+        pro lidi, kteří si zvolili angličtinu (UK).
+      clients_desc: |
+        Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Výběr "Vše" nebo nevytváření
+        Po výběru se oznámení zobrazí všem uživatelům bez ohledu na to, zda
+        klient.
+      end_desc: |
+        Čas v časovém pásmu vašeho účtu, po který bude toto oznámení ukončeno
+        objevování se. Platí napříč časovými pásmy, takže všichni přestanou vidět
+        ve stejnou dobu, nikoli ve vztahu k jejich místnímu času.
+      ip_countries_desc: |
+        Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Výběr "Vše" nebo nevytváření
+        Po výběru se oznámení zobrazí všem uživatelům bez ohledu na to, zda
+        země IP.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Všimněte si, že datum vytvoření naposledy vytvořeného uživatelského souboru
+        Pozorování je uloženo do mezipaměti, takže může trvat několik hodin, než se cílení
+        vstoupit v platnost
+      observation_oauth_application_ids_desc: |
+        Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Výběr "Vše" nebo nevytváření
+        Po výběru se oznámení zobrazí všem uživatelům bez ohledu na to, zda
+        App.
+      site_ids_desc: |
+        Kliknutím se stisknutou klávesou CMD nebo SHIFT vyberte více položek. Výběr "Vše" nebo nevytváření
+        Po výběru se oznámení zobrazí všem uživatelům bez ohledu na to, zda
+        přidružení k webu.
+      start_desc: |
+        Čas v časovém pásmu vašeho účtu, kdy se toto oznámení spustí
+        objevování se. Platí napříč časovými pásmy, takže všichni začnou vidět
+        ve stejnou dobu, nikoli ve vztahu k jejich místnímu času.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Cílení na uživatele podle chování při darování
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Cílení na uživatele podle chování identifikace
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Cílení na uživatele podle chování pozorování
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Cílení na uživatele podle jiných atributů
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: O společnosti Atlases
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlasy vyjadřují globální rozšíření taxonu. Kurátoři dělají
+          atlasů definováním struktury atlasu a kurátorstvím
+          uvedené taxony, které jej řídí.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Vyhoď tohle místo do povětří
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Tohle místo vybuchněte
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: V tomto atlase zatím nedošlo k žádným změnám
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Nedávné úpravy atlasu
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Nedávné změny taxonů
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Zobrazit uvedené taxony
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Tento atlas není v současné době aktivní
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Tím se tento taxon a všichni jeho potomci odstraní z kontrolních seznamů
+          spojené s tímto místem a všemi standardními místy, která obsahuje. Ono
+          nelze vrátit zpět. Opravdu to chcete udělat?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Upozornění: existují pozorování, která nejsou v tomto atlasu zastoupena
     content_freeze:
       content_freeze: Zmrazení obsahu
       during_this_time: |
@@ -6686,8 +6876,9 @@ cs:
           Vezměte prosím na vědomí, že od ledna 2019 je představena funkce průvodce
           "jak je"; zatím nemáme v plánu ji smazat, ani ji neplánujeme
           dále rozvíjet.
-        funding_html: |
-          Financování vývoje průvodců pochází od <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          Finanční prostředky na vývoj příruček poskytly
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Díky průvodcům se můžete dozvědět o biodiverzitě po celém světě. Je jedno, jestli jste v Serengeti nebo jen v místním parku (který může být Serengeti), průvodci vám pomůžou porozumět úžasné rozmanitosti života na naší planetě.
       edit:
@@ -7221,8 +7412,6 @@ cs:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           Sloupec Soukromí zeměpisné polohy musí být v angličtině a musí být prázdný nebo mít hodnotu "obscured" (přibližné) nebo "private" (soukromé)
-        google_photos_notice_html: |
-          V únoru 2019 změnila společnost Google své rozhraní API, což nám bránilo v přístupu ke souřadnicím GPS, informacím o licenci a prakticky k jakýmkoli informacím, které bychom mohli použít k přidání ID (například značek). Odstranil také textové vyhledávání a digitální stránkování. Kromě toho požadují, aby všechny připojené účty měly dodatečné právo, a než může třetí strana požádat o toto právo uživatele, musí být třetí strana ověřena. Čekáme na ověření, ale než se to stane, nebudete moci importovat fotografie od společnosti Google. Pokud budeme přijati, budete moci nahrát fotografie, ale nebudou obsahovat žádné informace o poloze ani licenci, které by se mohly zobrazit ve službě Fotky Google. Další informace naleznete v <a href="https://developers.google.com/picasa-web"> https://developers.google.com/picasa-web </a>. Stahování původních souborů a jejich přidávání pomocí <a href="/observations/upload"> Nahrávání </a> je nejlepším řešením.
         project_csv_template_notice_html: |
           Tento vzorový soubor pro tento projekt vám může pomoci se strukturou souboru CSV. 
           <a href="%{url}">Stáhnout šablonu</a>
@@ -8095,6 +8284,11 @@ cs:
           Vezměte prosím na vědomí, že stránka taxonu zobrazí fotky tohoto taxonu a jeho následných taxonů. Fotky vybrané pro tento taxon se však zobrazí jako první. První fotka bude základním obrázkem používaným na celých stránkách.
         rare_desc: Nejméně pozorované ohrožené taxony
         rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Kurátoři webu zakázali zobrazování <a href="%{url}">toto
+          obsah z Wikipedie</a>. Můžete pomoci úpravou stránky na
+          Wikipedii, aby to bylo vhodné pro tento taxon, nebo označením tohoto taxonu
+          taxon, aby na něj upozornili kurátoři webu.
         trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
         trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci v <a href="%{url}">%{place}</a>
         wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
@@ -8250,6 +8444,10 @@ cs:
         licensing_desc_html: |
           Poskytnutím licence ke svému obsahu dáváte ostatním právo ho využívat, aniž by si od vás museli vyžádat souhlas, pokud dodrží podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons, který sdílí s partnery, např. <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), mezinárodní, mezivládní organizací, která shromažďuje a šíří informace o biodiverzitě z celého světa.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Typ souboru není podporován. Přijímáme soubory JPG, PNG a GIF
         monthly_supporter_desc_html: |
           Měsíční příznivci iNaturalist automaticky měsíčně přispívají na iNaturalist (IRS EIN 92-1296468 Spojených států), aby podpořili neziskový provoz stránek sítě iNaturalist a iNaturalist. <a href="%{url}">Kliknutím sem se stanete měsíčním podporovatelem</a>. Jakmile potvrdíme vaši podporu, budete moci zaškrtnutím tohoto políčka zobrazit tento stav ve vašem profilu. Poznámka: E-mailové adresy na Donorbox a iNaturalist se musí přesně shodovat, abychom mohli potvrdit, že jste měsíčním příznivcem. Pokud se liší, změňte jeden, aby odpovídal druhému.
         muting_desc_html: |
@@ -8357,6 +8555,11 @@ cs:
           #a warning message given when users have added the maximum number of common name
           #lexicon settings that we currently allow
           the_maximum_number_of_lexicons_have_been_added: Už byl vybrán maximální počet 3 slovníků obecných názvů
+        this_only_applies_to_traditional_projects2: |
+          To platí pouze pro tradiční projekty. Pozorování nelze vyloučit
+          z kolekce nebo zastřešujících projektů, což jsou v podstatě uložená vyhledávání.
+          Můžete si přečíst více
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Tady</a>.
       recent:
         about_recent_users: O projektu
         definitions_html: <dl> <dt> Bezpochyby spam </dt> <dd> Uživatel, který je pravděpodobně spammer, což znamená, že nemá žádné pozorování ani identifikace, ale má popis profilu.</dd><dt>Automatický spam </dt> <dd> Spammer, který byl jako takový automaticky označen systémem.</dd><dt>Manuální spam </dt><dd>Spammer, který byl jako takový označen vedoucím webu.</dd><dt>Falešné pozitiva</dt><dd>Uživatelé, kteří byli označeni jako spammmeři, aby byli řešeni kurátory stránek, protože nebyli skutečnými spammery </dd> </dl>
@@ -8690,6 +8893,10 @@ cs:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -8728,6 +8935,8 @@ cs:
     attributes:
       announcement:
         created_at: Vytvořeno
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Propustitelný
         updated_at: Aktualizováno
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8739,8 +8948,40 @@ cs:
         prefers_target_unconfirmed_users: Jen pro nepotvrzené uživatele
         prefers_exclude_monthly_supporters: Bez měsíčních podporovatelů
         clients: Klienti
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Vyloučit datum zahájení dárcovství
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Vyloučit datum ukončení dárcovství
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Vyloučení pozorovatelů z aplikací
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Uveďte datum zahájení dárcovství
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Zahrnout datum ukončení dárcovství
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Zahrnout pozorovatele z aplikací
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP země
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Nejpozdější datum zahájení obs
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Nejpozdější datum ukončení obs
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Maximální identifikace
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Minimální identifikace
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Max. počet pozorování
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Minimální pozorování
         #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
         placement: Umístění
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Tvůrce cíle (pro testování)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Cíl přihlášen
         #Earliest date the viewer can have signed up to see the announcement
         user_created_start_date: Datum první registrace uživatele
         #Latest date the viewer can have signed up to see the announcement
@@ -8920,6 +9161,7 @@ cs:
         show_for_descendent_taxa: Zobrazit pro taxony potomků
       user:
         email: E-mail
+        faved_project_ids: Oblíbené projekty
         login: Uživatelské jméno
         name: Název
         locale: Jazyk
@@ -9058,6 +9300,8 @@ cs:
               #a ModeratorAction with action Hide
               only_staff_and_curators_can_hide: Pouze zaměstnanci a kurátoři mohou skrýt obsah
               only_staff_and_hiding_curators_can_unhide: Pouze zaměstnanci a kurátoři, kteří skryjí obsah, jej mohou znovu odkrýt
+              #Error saying that only staff can rename
+              only_staff_can_rename: Přejmenovat mohou pouze zaměstnanci
               #Error saying that only staff can set resources as private
               only_staff_can_make_private: Pouze zaměstnanci mohou nastavit obsah jako soukromý
               staff_cannot_be_suspended: Zaměstnanci nemohou být pozastaveni
@@ -9080,6 +9324,9 @@ cs:
                 nemůže být větší než datum přidání pozorování
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: musí být během posledních 130 let
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: Musí to být jeden den, ne rozsah
         observation_field_value:
           attributes:
             value:
@@ -9114,6 +9361,9 @@ cs:
               invalid_point: má neplatný bod, např. zeměpisná délka větší než 180 nebo šířka menší než -90
               must_have_more_than_three_points: musí mít více než 3 body
               polygon_with_less_than_four_points: má polygon s méně než 4 body
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: má mnohoúhelník bez obsahu (všechny body jsou stejné)
         place_geometry:
           attributes:
             geom:
@@ -9131,6 +9381,10 @@ cs:
             user:
               must_be_on_site_long_enough: |
                 pro zveřejnění je nutná registrace před více než 24 hodinami. Objevuje se nám tady hodně spamů a tohle je způsob, jak se proti nim bránit. Můžete si uložit koncept, a když budete na stránce i příští den, budete ho moci zveřejnit.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Jako oblíbené můžete pouze 7 projektů
         project_observation:
           attributes:
             base:
@@ -9183,6 +9437,11 @@ cs:
             name:
               bad_format: |
                 může obsahovat pouze standartní písmena Latinky, pomlčky, mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Taxon Life nemůže být zapojen do změn taxonu
         taxon_name:
           attributes:
             lexicon:
@@ -9219,6 +9478,14 @@ cs:
               already_has_a_range: již má rozsah
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: Nesmí obsahovat více než 7 projektů
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: musí existovat všechny
             login:
               must_begin_with_a_letter: |
                 musí začínat písmenem, neobsahovat žádné mezery a používat pouze

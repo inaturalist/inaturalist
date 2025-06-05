@@ -72,6 +72,8 @@ sq:
   add_a_flag: Shto një shënim
   add_a_name: Shto një emër
   add_a_new_change_group: Shto një grup të ri për ndryshim
+  #Placeholder for a project autocomplete field
+  add_a_project: Shto një projekt
   add_a_single_observation: Shto një vëzhgim të vetëm.
   add_a_taxon: Shto një taxon
   add_an_assessment: Shto një vlerësim
@@ -292,6 +294,8 @@ sq:
   #seeing this used incorrectly somewhere we should be using a more specific
   #translation, please let us know.
   any_: Cilido
+  #Label for an option to show any place
+  any_place: Çdo
   apply_to_selected: Aplikoni tek të përzgjedhurat
   apply_captive_cultivated: "Aplikoni e mbyllur / kultivuar"
   apply_fields: Aplikoni fushat
@@ -352,6 +356,13 @@ sq:
   #Noun form, as in a property of something. Generally used to describe the
   #name of an attribute available for annotation, e.g. "Life Stage"
   attribute: Atribut
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Shpërtheu
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: I pashpërthyer
   authority_list:
     iucn_red_list: IUCN Lista e Kuqe
   authorize_permissions_from_provider: "Autorizo ​​lejet nga %{provider}"
@@ -572,6 +583,10 @@ sq:
   confirm_new_password: Konfirmo fjalëkalimin e ri
   confirm_now: Konfirmo tani
   confirm_your_info: Konfirmo informacionin tënd
+  confirming_ids: Konfirmimi i ID-ve
+  confirming_ids_description: |
+    Nëse e çaktivizoni këtë, nuk do të njoftoheni më për ID-të që bien dakord
+    me tuajat, përveç nëse kanë vërejtje shtesë.
   connect_to_provider: "Lidhu me %{provider}"
   connecting_flickr: "Duke u lidhur me Flickr..."
   connecting_your_inat_account_to_accounts_other_sites: "Lidhja e llogarisë tuaj %{site_name} me llogaritë në faqe tjera do t'u mundësojë të qaseni në %{site_name} duke shfrytëzuar kredencialet tuaja nga këto faqe."
@@ -664,11 +679,19 @@ sq:
   curators_changed_for_x_html: "Kuratorët ndryshuan %{x}"
   curators: Kuratorët
   curators_can_remove_observations_from: Kuratorët mund të heqin vëzhgimet nga projekti, dhe identifikimet e tyre shfaqen krahas vëzhgimeve në pamje specifike të projektit. Po ashtu, kuratorët mund të shohin koordinatat e vërteta të kontributeve private dhe të errësuara në projekt.
+  curator_coordinate_access: Qasja e koordinatave të kuratorit
+  curator_coordinate_access_desc: |
+    Qasja e koordinatave të kuratorëve për projektet tradicionale varet nga kush shtoi
+    vëzhgimi i projektit. Ky është vetëm cilësimi i paracaktuar për
+    vëzhgimet në projekte. Vëzhguesit gjithashtu mund të zgjedhin ta ndryshojnë këtë për
+    vëzhgimet individuale.
   curator_identification: Identifikimi i kuratorit
   current_flags: Flamujt aktuale
   custom_project_fields: Fushat e Projektit me porosi
   custom_project_was_successfully_created: CustomProject u krijua me sukses.
   custom_project_was_successfully_updated: CustomProject u përditësua me sukses.
+  #Button to customize projects that appear in the header
+  customize__projects: Personalizoni
   customize_location: Rregullo vendndodhjen
   darr_apply_darr: "&darr; apliko &darr;"
   dashboard: Paneli
@@ -771,6 +794,11 @@ sq:
   did_you_mean: 'Kishit në mendje'
   did_you_photos_flickr?: A keni hedhur ndonjë fotografi në Flickr?
   disagree_: Nuk bie dakort
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Mosmarrëveshjet
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Shfaqni vëzhgime që kanë identifikime që nuk pajtohen
   disconnect_provider: "Shkëput %{provider}"
   display_link_to_checklist: Afisho lidhjen në listën e projekteve nga faqja e projektit
   documentation_for_developers_html: Dokumentacioni për <a href="/pages/developers">developers</a>
@@ -838,6 +866,8 @@ sq:
   edit_your_settings_for_this_project: Ndrysho paramentrat për këtë projekt
   edited_by_name_html: "Redaktuar nga %{name}"
   editing: Redaktimi
+  #Title for a page to edit an announcement
+  editing_announcement_x: Redaktimi i njoftimit %{id}
   editing_custom_project_fields_for: Redaktimi i fushave të rëndomta të projektit për
   editing_observation_field: Redaktimi i fushës së vëzhgimit
   editing_observation_id: "Redaktimi i Vëzhgimit %{obs_id}"
@@ -908,6 +938,12 @@ sq:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Te preferuarat
   Family: Familja
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Projektet e preferuara
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Zgjidhni deri në shtatë projekte që shfaqen si lidhje në kokë. Përditësime
+    do të shfaqet pas rifreskimit të faqes.
   favorite_taxa: taxa favorite
   favorites: "Favoritet"
   featured: i/e paraqitur
@@ -1091,6 +1127,8 @@ sq:
   #Notification when an identification has been withdrawn
   identification_withdrawn: Identifikimi u tërhoq.
   identifications: Identifikimet
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist përditësoi ID-në e sugjeruar nga %{user}
   identifiers: Identifikuesit
   identotron_for: Identotron për
   identotron_help: Ndihma identotron
@@ -1139,6 +1177,18 @@ sq:
   inat_user_profile: "%{site_name}: profili i %{user}"
   inaturalist_places: "%{site_name} Vendet"
   info: Informacion
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ID-të e infraspecieve
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Nëse e çaktivizoni këtë, nuk do të njoftoheni më për ID-të e taksonave
+    nën nivelin e specieve (si nënllojet dhe varietetet) që pajtohen me
+    ID e nivelit të specieve. Do të njoftoheni nëse ata nuk pajtohen me ID-në tuaj ose
+    nëse ato përmbajnë vërejtje shtesë.
   input_taxon: Fut taxon
   insects: Insektet
   insect_life_stage: Etapat e jetës së insektit
@@ -1146,6 +1196,8 @@ sq:
   internal_server_error: Gabim në serverin e brendshëm
   introduced: E sjellë
   introduced_in_place: "e sjellur në %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Data e pavlefshme
   invitation: Ftesë
   invite: Fto
   invite_people: Fto njerëz
@@ -1259,7 +1311,6 @@ sq:
   life_list: "%{user}lista Jetësore"
   link: Vegëza
   link_your_flickr_account: Lidh llogarinë tuaj në Flickr
-  link_your_google_account: Lidh llogarinë tuaj në Google
   linked_flickr: "Llogaria juaj në %{site_name} tani është e lidhur me llogarinë tuaj në Flickr."
   linked_flickr_automatically: "Gjithashtu, të keni parasysh se nëse qaseni në llogarinë tuaj në %{site_name} përmes Flickr, ne automatikisht do ta rilidhim llogarinë tuaj në %{site_name} me llogarinë tuaj në Flickr. Duket e arsyeshme që nëse përdoni Flickr ju gjithashtu do të dëshironi të mundeni të importoni Fotonga Flickr, e saktë?"
   linked_flickr_description: "Mbajtja e llogarisë suaj në %{site_name} të lidhur me llogarinë tuaj në Flickr mundëson shtimin e shumë fotove përnjëherësh në vëzhgimet tuaja. Natyrisht, nëse doni t’i ndani nga njëra-tjetra ne nuk jua ndalojmë, vetëm se nuk do të mund të shtoni më foto. Nganjëherë kjo mund të jetë gjë e mirë, p.sh. nëse krijoni një Flickr të ri me të cilin doni ta lidhni %{site_name}."
@@ -1276,6 +1327,10 @@ sq:
   list_was_successfully_created: Lista u krijua me sukses.
   listed_taxa: taxon te listuara
   listed_taxon: taxon te listuara
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: E listuar
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: E palistuar
   listed_taxon_updated: Përditësimi i taxonë të listuara
   listing_lists: Listimi i listës
   listing_project_assets: Listimi i asseteve-te projekteve
@@ -1334,6 +1389,10 @@ sq:
   location_specified: lokacioni është i specifikuar
   locked_taxa_will_not_allow_new: Klasat e kyçura nuk lejojnë shtimin e klasave të reja. Pra, nëse kyçni Amphibia dhe dikush përpiqet të importojë <i>Rana catesbeiana</i> nga një ofrues i jashtëm, krijohet një klasë e re por nuk klasifikohet si amfibe. Në këtë rast, klasa e re që shtohet duhet të shenjohet për vëmendje të mëtejshme nga ana e kuratorit. Në fakt, kjo duhet përdorur vetëm për klasa pasardhësit e të cilave mendojmë se i kemi të gjithë. Kuratori mund ta tejkalojë këtë duke ndryshuar klasat dhe duke vënë direkt identifikatin prindëror, por mundësisht sugjerohet bashkimi i klasave të reja me ato ekzistuese në vend të krijimit të klasave të tjera.
   log_in: Hyr
+  #Adjectival phrase describing state of being logged in
+  logged_in: Identifikuar
+  #Adjectival phrase describing state of being logged out
+  logged_out: U dalë
   logo:
     white_bg_gif: Prapavijë e bardhë GIF
     transparent_png: E tejdukshme PNG
@@ -1437,6 +1496,8 @@ sq:
   more_info_title: Më shumë informacion
   more_journal_posts: Më shumë postime gazetareske
   more_observations: Më shumë vëzhgime
+  #Label for a button or section that shows additional options
+  more_options: Më shumë opsione
   more_photos: Më shumë fotografi
   most_agree: shumica pajtohen
   most_browser_print_pdf: "Shënim: shumica e shfletuesve kanë mundësinë e shtypjes në PDF"
@@ -1599,7 +1660,24 @@ sq:
   no_taxonomic_changes_match_those_criteria: Asnjë ndryshim taksonomik nuk përputhet me këto kritere
   no_wikipedia_page_for_taxon: Asnjë faqe në Wikipedia për këtë takson.
   noble_curators: "%{site}'s Përzgjedhësit fisnik"
+  #A user who is not a curator
+  non_curator: Jo kurator
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: ID-të e paraardhësve që nuk pajtohen
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Nëse e çaktivizoni këtë, nuk do të njoftoheni më kur dikush shton një
+    ID e një taksoni që është paraardhës i taksonit nga ID-ja juaj dhe nuk
+    në mënyrë eksplicite nuk pajtohem me Taksonin e Komunitetit. Ju do të njoftoheni nëse
+    ID ka vërejtje shtesë.
   non_human?: Jo-njerëzore?
+  #A user who does not admin any projects
+  non_project_admin: Administratorë jo-projekti
   none: Asnjë
   none_found: Asnjë nuk u gjet
   normal: normale
@@ -1639,6 +1717,7 @@ sq:
   observation_field: Fushë e vëzhgimit
   observation_field_details: Detajet e fushës së vëzhgimit
   observation_fields: Fushat e vëzhgimit
+  observation_fields_for_projects: Fushat e vëzhgimit për projektet
   observation_fields_are_additional: Fushat e vëzhgimit janë fushë e të dhënave shtesë që mund ti shtohen vëzhgimeve.
   observation_fields_by_preferences_description: |
     Fushat e vëzhgimit janë si etiketa (tags), vetëm se secili mund t’i shtojë ato automatikisht në vëzhgimet tuaja. Nëse doni që këtë veprim ta kryeni vetëm ju ose vetëm kuratorët e faqes, atëherë ndryshojeni opsionin.
@@ -2041,7 +2120,12 @@ sq:
   processing: Përpunimi
   processing3p: "Duke përpunuar..."
   profile: Profili
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Lloji i skedarit të fotografisë së profilit
   project: Projekti
+  #A user who admin's a project
+  project_admin: Administratori i projektit
   project_admins:
     one: Administratori i projektit
     other: Administratorët e projektit
@@ -2099,6 +2183,16 @@ sq:
   range: Rangu
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Renditja
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Gjinia / Gjinia hibrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Speciet / Hibridet
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Nënllojet / Shumëllojshmëria / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -2498,6 +2592,18 @@ sq:
   try_adding_species_form: Provo te shtosh ca specje duke përdorur formularin në këtë faqe.
   type_species_name: "Shkruaj emrin e specjeve"
   type_taxon_name: "Lloji i emrit të taxon"
+  update_existing_observations_with_new_license_desc: |
+    Zgjedhja e këtij opsioni do të aplikojë zgjedhjen tuaj të re të licencës për të gjithë
+    vëzhgimet ekzistuese. Kjo mund të zgjasë disa orë nëse keni shumë
+    vëzhgime.
+  update_existing_photos_with_new_license_desc: |
+    Zgjedhja e këtij opsioni do të aplikojë zgjedhjen tuaj të re të licencës për të gjithë
+    fotot ekzistuese. Kjo mund të zgjasë disa orë nëse keni shumë
+    fotot.
+  update_existing_sounds_with_new_license_desc: |
+    Zgjedhja e këtij opsioni do të aplikojë zgjedhjen tuaj të re të licencës për të gjithë
+    tingujt ekzistues. Kjo mund të zgjasë disa orë nëse keni shumë
+    tingujt.
   update_your_content: Përditëso përmbajten tuaj
   upload: Ngarko
   #@gender operates on %{x}
@@ -2507,8 +2613,20 @@ sq:
   user_added_an_observation_html: "%{user} shtoi një vëzhgim"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_html: "%{user} shtoi një %{x} tek %{noun} nga %{by}"
+  user_trusts_this_project_when_added_by_any: |
+    Përdoruesi u beson kuratorëve të projektit me koordinata të fshehura të vëzhgimeve të shtuara
+    projektit nga kushdo.
+  user_trusts_this_project_when_added_by_observer: |
+    Përdoruesi u beson kuratorëve të projektit me koordinata të fshehura të vëzhgimeve të shtuara
+    projektit nga vëzhguesi.
+  user_trusts_this_project_when_added_by_none: |
+    Përdoruesi nuk u beson kuratorëve të projektit me koordinata të fshehura.
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Shikoni ID-të tuaja të prekura
   view_observation: Shiko vëzhgimin
   view_your_observations: Shikoni vëzhgimet tuaja
+  we_also_support3: |
+    Ne gjithashtu mbështesim importimin e fotove nga <a href="http://flickr.com">Flickr</a>.
   welcome: mirë se vini
   welcome_to_inat: "Mirë se vini në %{site_name}"
   welcome_to_x_project: "Mirë se vini në %{project}"
@@ -2517,6 +2635,65 @@ sq:
   your_content: Përmbajtja Juaj
   your_observations: Vëzhgimet tuaja
   views:
+    announcements:
+      locales_desc: |
+        CMD- ose SHIFT-klikoni për të zgjedhur shumëfishtë. Zgjedhja e "Të gjithëve" ose mosbërja
+        Një përzgjedhje do t'ua tregojë njoftimin të gjithë përdoruesve pavarësisht nga
+        vendndodhja. Zgjedhja e një gjuhe pa rajon *jo* do të synojë
+        lokalizime me rajone, p.sh. nëse keni zgjedhur anglisht nuk do të shfaqet
+        për njerëzit që kanë zgjedhur anglishten (MB).
+      clients_desc: |
+        CMD- ose SHIFT-klikoni për të zgjedhur shumëfishtë. Zgjedhja e "Të gjithëve" ose mosbërja
+        Një përzgjedhje do t'ua tregojë njoftimin të gjithë përdoruesve pavarësisht nga
+        klienti.
+      end_desc: |
+        Koha në zonën kohore të llogarisë tuaj që ky njoftim do të ndalet
+        duke u shfaqur. Zbatohet në të gjitha zonat kohore, kështu që të gjithë do të ndalojnë së shohuri
+        në të njëjtën kohë, jo në lidhje me kohën e tyre lokale.
+      observation_oauth_application_ids_desc: |
+        CMD- ose SHIFT-klikoni për të zgjedhur shumëfishtë. Zgjedhja e "Të gjithëve" ose mosbërja
+        Një përzgjedhje do t'ua tregojë njoftimin të gjithë përdoruesve pavarësisht nga
+        aplikacioni.
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Rreth Atlaseve
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Atlaset përcjellin shpërndarjen globale të një taksoni. Kuratorët bëjnë
+          duke përcaktuar strukturën e një atlasi dhe duke kuruar
+          taksona të listuara që e nxisin atë.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Shpërtheni këtë vend
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Shpërtheni këtë vend
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Ende nuk ka ndryshime në këtë atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Ndryshimet e fundit të Atlasit
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Ndryshimet e fundit të taksoneve të listuara
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Shfaq taksonat e listuara
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Ky atlas nuk është aktualisht aktiv
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Kjo do ta heqë këtë takson dhe të gjithë pasardhësit e tij nga listat e kontrollit
+          lidhur me këtë vend dhe çdo vend standard që përmban. Ai
+          nuk mund të zhbëhet. A jeni i sigurt që dëshironi ta bëni këtë?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Paralajmërim: ka vëzhgime që nuk përfaqësohen nga ky atlas
     email_confirmation:
       click_here_to_resend_a_confirmation_email: Kliko këtu për të ridërguar një email konfirmimi
       #message displayed after users trigger sending a email to confirm their email address
@@ -2542,6 +2719,11 @@ sq:
       tips_check_email_filters: Kontrolloni për çdo filtër që keni bërë që mund të heqë email-et tona nga inbox-i juaj #tip for users who do not receive confirmation emails to check their email spam folder
       tips_check_your_spam_folder: Kontrolloni dosjen tuaj spam
       your_site_account_has_no_email: E jotja %{site_name} Llogaria nuk ka adresë emaili të lidhur me të.
+    guides:
+      index:
+        funding2_html: |
+          Financimi për zhvillimin e Udhëzuesve u sigurua nga
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -2560,11 +2742,25 @@ sq:
         welcome_to_projects: Mirë se vini te Projektet!
     taxa:
       show:
+        site_curators_disabled_wikipedia_html: |
+          Kuratorët e faqes kanë çaktivizuar shfaqjen <a href="%{url}">kjo
+          përmbajtje nga Wikipedia</a>. Ju mund të ndihmoni duke redaktuar faqen në
+          Wikipedia për ta bërë atë të përshtatshme për këtë takson, ose duke e shënuar këtë
+          takson për ta sjellë atë në vëmendjen e kuratorëve të faqes.
         wanted_desc: Specjet në këtë taxon nuk janë vëzhguar ende.
     users:
       edit:
         licensing_desc_html: |
           Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin nga e gjithë bota.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: Lloji i skedarit nuk mbështetet. Ne pranojmë JPG, PNG dhe GIF
+        this_only_applies_to_traditional_projects2: |
+          Kjo vlen vetëm për projektet tradicionale. Ju nuk mund të përjashtoni vëzhgimet
+          nga projektet e koleksionit ose ombrellë, të cilat janë në thelb kërkime të ruajtura.
+          Ju mund të lexoni më shumë
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">këtu</a>.
   datetime:
     prompts:
       day: Dita
@@ -2596,12 +2792,28 @@ sq:
         strip_insignificant_zeros: true
   time:
     am: pd
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
     pm: md
   activerecord:
     models:
       AssessmentSection: Seksioni i Vlerësimit
       TaxonLink: Vegëza e taxon-it
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: E hedhur poshtë
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Përjashtimi i vëzhguesve nga aplikacionet
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Përfshini vëzhgues nga aplikacionet
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Krijuesi i synuar (për testim)
       assessment:
         description: Përshkrimi
       assessment_section:
@@ -2672,6 +2884,8 @@ sq:
         name: Emri
         parent_id: ID amë
         rank: Renditja
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Tregon Wikipedian
         source_identifier: Identifikuesi i burimit
         source_url: Burimi URL
         wikipedia_summary: Përmbledhje e Wikipedia
@@ -2682,6 +2896,7 @@ sq:
         source_identifier: Identifikuesi i burimit
       user:
         email: Emaili
+        faved_project_ids: Projektet e preferuara
         login: Emri i përdoruesit
         name: Emër
         locale: Vendndodhje
@@ -2691,6 +2906,7 @@ sq:
         preferred_observation_fields_by: Lejo fusha vëzhgimi nga
     errors:
       messages:
+        must_look_like_an_email_address: duhet të duket si një adresë emaili
         requires_privilege_interaction: Duhet të ketë një adresë emaili të konfirmuar për ta bërë këtë
       models:
         guide:
@@ -2701,6 +2917,17 @@ sq:
           attributes:
             base:
               guide_has_too_many_taxa: "Sqarimet mund të kenë vetëm 500 taxa"
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Vetëm stafi mund të riemërtojë
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: duhet të jetë një ditë e vetme, jo një gamë
         observation_field_value:
           attributes:
             value:
@@ -2712,6 +2939,13 @@ sq:
             place_geometry:
               is_too_large_to_import: është shumë e madhe për tu importuar
               contains_too_many_observations: përmban shumë vëzhgime për tu importuar
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: ka një shumëkëndësh pa sipërfaqe (të gjitha pikat janë të njëjta)
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Ju mund të preferoni vetëm 7 projekte
         project_observation:
           attributes:
             user_id:
@@ -2721,6 +2955,11 @@ sq:
                 Duhet të vëzhgohet pas %{time}
               must_be_observed_before: |
                 Duhet të vëzhgohet para %{time}
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: Taksoni i jetës nuk mund të përfshihet në ndryshimet e taksonit
         taxon_name:
           attributes:
             lexicon:
@@ -2730,9 +2969,18 @@ sq:
                 Nuk mund ta krahasojmë emrin shkencor të specjeve për këtë leksikon
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: nuk mund të përfshijë më shumë se 7 projekte
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: duhet të ekzistojnë të gjitha
             login:
               must_begin_with_a_letter: |
                 duhet të fillojë me shkronjë, të mos përmbajë zbrazëtira, dhe të përdoren vetëm shkronja, numra, kllapa dhe nënvizime
+              domain_is_not_supported: Domeni nuk mbështetet
   wild: i egër
   will_paginate:
     previous_label: "&#8592; Para"

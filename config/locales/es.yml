@@ -603,6 +603,8 @@ es:
   any_license: Cualquiera
   #Label for an option to show content with photos, sounds, or neither
   any_media: Cualquiera
+  #Label for an option to show any place
+  any_place: Cualquier
   #Label for an option to show content from any project
   any_project: Cualquiera
   #Label for an option to show content with any quality grade
@@ -749,6 +751,13 @@ es:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, subido por %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Explotó
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Sin explotar
   authority_list:
     iucn_red_list: Lista roja UICN
     natureserve: NatureServe
@@ -1089,6 +1098,9 @@ es:
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmado en %{date}
   confirming_ids: Confirmación de Identificación
+  confirming_ids_description: |
+    Si desactivas esta opción, ya no se te notificará sobre los ID que acepten
+    con el suyo a menos que tengan observaciones adicionales.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Conectar
@@ -1443,6 +1455,7 @@ es:
   curators_changed_for_x_html: "Curadores cambiado para %{x}"
   curators: Curadores
   curators_can_remove_observations_from: Los curadores pueden quitar observaciones del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia). Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
+  curator_coordinate_access: Coordenada por el curador
   curator_identification: Identificación de curador
   current_flags: Advertencias actuales
   #Label for a custom boundary for an observation search
@@ -1450,6 +1463,8 @@ es:
   custom_project_fields: Campos de proyecto personalizados
   custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
   custom_project_was_successfully_updated: El proyecto personalizado fue actualizado exitosamente.
+  #Button to customize projects that appear in the header
+  customize__projects: Personalizar
   customize_location: Personaliza la ubicación
   darr_apply_darr: "&darr; Aplica &darr;"
   daily_users: Usuarios Diarios
@@ -1652,6 +1667,11 @@ es:
   disable_comments: Desactivar comentarios
   disable_comments_desc: Evitar que la gente añada nuevos comentarios
   disagree_: No aceptar
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Desacuerdos
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Mostrar observaciones que tienen identificaciones contradictorias
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Desconectar
@@ -1766,6 +1786,8 @@ es:
   edited_by_name_some_rights_reserved_html: |
     Editado por %{name}, algunos derechos reservados (%{license})
   editing: Modificando
+  #Title for a page to edit an announcement
+  editing_announcement_x: Anuncio de edición %{id}
   editing_custom_project_fields_for: Editando campos a la medida para
   editing_observation_field: Modificando campo de observación
   editing_observation_id: "Modificando observación %{obs_id}"
@@ -1889,6 +1911,12 @@ es:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favoritos
   Family: Familia
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Proyectos favoritos
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Elija hasta siete proyectos que aparezcan como enlaces en el encabezado. Actualizaciones
+    aparecerá después de actualizar la página.
   favorite_taxa: Taxones favoritos
   favorites: "Favoritos"
   feature_this_project_: "Presenta este proyecto"
@@ -2259,6 +2287,8 @@ es:
   inaturalist_global_year_in_review: "Resumen Global de iNaturalist del año %{year}"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist es una organización sin fines de lucro independiente y exenta de impuestos bajo el régimen fiscal 501(c)(3), con sede en los Estados Unidos de América (id. tributaria: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist actualizó la ID sugerida por %{user}
   computer_vision_suggestion: Sugerencia de la visión artificial
   computer_vision_suggestion_desc: |
     Visión de computador es el proceso de enseñar a los computadores a reconocer patrones en imágenes. Proporcionamos herramientas que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad para proporcionar sugerencias de identificación, por ejemplo el auto-completar y características de comparación. Esta etiqueta indica cuándo una persona añadió una identificación utilizando una de estas herramientas.
@@ -2346,6 +2376,14 @@ es:
   inaturalist_applications: "Aplicaciones de iNaturalist"
   inaturalist_places: "Lugares %{site_name}"
   info: Información
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Si desactivas esta opción, ya no se te notificará sobre las identificaciones de los taxones
+    por debajo del nivel de especie (como subespecies y variedades) que concuerden con su
+    ID a nivel de especie. Se le notificará si no están de acuerdo con su identificación o
+    si contienen observaciones adicionales.
   input_taxon: Taxón de entrada
   insects: insectos
   insect_life_stage: Etapa vital del insecto
@@ -2358,6 +2396,8 @@ es:
   internal_taxon_rank: Rango de taxón interno
   introduced: Introducida
   introduced_in_place: "Introducida en %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Fecha no válida
   invitation: Invitación
   invite: invitar
   invite_people: Invita gente
@@ -2607,7 +2647,6 @@ es:
   #a noun.
   link_to_authorization_code: Enlace al código de autorización
   link_your_flickr_account: Vincula tu cuenta de Flickr
-  link_your_google_account: Enlaza tu cuenta de Google
   linked_flickr: "Tu cuenta de %{site_name} está vinculada actualmente con tu cuenta de Flickr."
   linked_flickr_automatically: "También, ten en cuenta que si inicias sesión en %{site_name} a través de Flickr, enlazaremos automáticamente tus cuentas de %{site_name} y de Flickr. Parece razonable que si usas Flickr quieres importar las fotos desde Flickr ¿cierto?"
   linked_flickr_description: "Mantener tu cuenta de %{site_name} vinculada con tu cuenta de Flickr te permite agregar varias fotos a tus observaciones. Por supuesto, si alguna vez deseas desvincular tus cuentas de %{site_name} y Flickr, no te detendremos, solamente no podrás agregar fotos. A veces esto es lo mejor, como cuando creas una cuenta nueva de Flickr que deseas vincular con %{site_name}."
@@ -2631,6 +2670,10 @@ es:
   list_with_two_items: "%{one} y %{two}"
   listed_taxa: Taxones listados
   listed_taxon: Taxón listado
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Listado
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: No cotizado
   listed_taxon_updated: El listado de especie o grupo fue actualizado
   listing_lists: Mostrando listas
   listing_project_assets: Listado de activos del proyecto
@@ -3193,6 +3236,8 @@ es:
   #A user who is not a curator
   non_curator: No curador
   non_human?: '¿No humano?'
+  #A user who does not admin any projects
+  non_project_admin: Administrador que no es del proyecto
   none: Ninguno
   none_found: No se encontró ninguno
   normal: normal
@@ -3364,6 +3409,7 @@ es:
   observation_field_type_taxon: Taxón
   observation_field_type_dna: ADN
   observation_fields: Campos de observación
+  observation_fields_for_projects: Campos de observación para proyectos
   observation_fields_are_additional: Los campos de observación son campos de datos adicionales que se pueden agregar a las observaciones.
   observation_fields_by_preferences_description: |
     Los campos de observación son parecidos a las etiquetas, con la excepción de que cualquiera puede añadirlos a tu observación. Puedes cambiar esta opción si prefieres hacer los cambios solamente tú o los curadores del sitio.
@@ -4171,9 +4217,14 @@ es:
   processing3p: "Procesando..."
   profile: Perfil
   profile_picture: Foto del perfil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Tipo de archivo de imagen de perfil
   profile_visibility_desc: |
     En un esfuerzo para mantener %{site_name} libre de basura, los perfiles de los usuario son sólo visibles públicamente después de que el usuario haya contribuido varias Observaciones de Grado de Investigación.
   project: Proyecto
+  #A user who admin's a project
+  project_admin: Administrador del proyecto
   project_admins:
     one: Administrador de proyecto
     other: Administradores de proyecto
@@ -4261,6 +4312,16 @@ es:
   range: Área
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rango
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Género / Génerohíbrido
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Especie / Híbrido
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subespecie / Variedad / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4923,6 +4984,9 @@ es:
     one: Enviar 1 observación
     other: Enviar %{count} observaciones
   submitted: Enviado
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Subscribir
   subscribe_to_a_taxon: Suscríbete a un taxón
   subscribe_to_a_place: Suscríbete a un lugar
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Suscribirse %{tag_end} a los comentarios de esta marca"
@@ -5477,7 +5541,6 @@ es:
   unfollow_observation: Dejar de seguir la observación
   #Text for a button to stop following updates from a user
   unfollow_user: Dejar de seguir a este usuario
-  unlink_your_google_account: Desenlazar tu cuenta de Google
   unlink_your_flickr_account: "Desvincular tu cuenta de Flickr"
   unmute: Activar sonido
   updates_notification_email_subject: "%{prefix} Nuevas actualizaciones %{date}"
@@ -5497,8 +5560,20 @@ es:
   upcoming_bioblitzes: Próximos maratones naturalistas
   update: Actualizar
   update_existing_observations_with_new_license: Actualizar las observaciones existentes con la licencia que escogí
+  update_existing_observations_with_new_license_desc: |
+    Al seleccionar esta opción, se aplicará su nueva opción de licencia a todos sus
+    observaciones existentes. Esto puede tardar unas horas si tiene una gran cantidad de
+    Observaciones.
   update_existing_photos_with_new_license: Actualizar las fotos existentes con la licencia que escogí
+  update_existing_photos_with_new_license_desc: |
+    Al seleccionar esta opción, se aplicará su nueva opción de licencia a todos sus
+    Fotos existentes. Esto puede tardar unas horas si tiene una gran cantidad de
+    Fotos.
   update_existing_sounds_with_new_license: Actualiza los sonidos existentes con la licencia que escogí
+  update_existing_sounds_with_new_license_desc: |
+    Al seleccionar esta opción, se aplicará su nueva opción de licencia a todos sus
+    sonidos existentes. Esto puede tardar unas horas si tiene una gran cantidad de
+    Sonidos.
   update_observations: Actualiza observaciones
   update_past: "Actualiza %{type} pasado"
   update_photos: Actualiza fotos
@@ -5635,6 +5710,8 @@ es:
     El usuario confía en este proyecto con coordenadas ocultas que han sido ocultadas por alguna razón.
   user_trusts_this_project_for_taxon: |
     El usuario únicamente confía en este proyecto con coordenadas ocultas que han sido ocultadas por tratarse de taxones amenazados.
+  user_trusts_this_project_when_added_by_none: |
+    El usuario no confía en los curadores de proyectos con coordenadas ocultas.
   user_trusts_you_with_their_private_coordinates: "\n%{user} confía en ti con sus coordenadas ocultas"
   user_trusts_you_with_their_private_coordinates_desc: |
     El observador ha elegido confiarle las coordenadas ocultas de todas sus observaciones.
@@ -5724,6 +5801,8 @@ es:
   view_more_observations_of_x_project: "Ver más observaciones de %{project} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_observations_of_x_taxon: "Ver más observaciones de %{taxon} en <nobr>%{site_name} &raquo;</nobr>"
   view_more_unreviewed: "Ver más sin revisar"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Ver los ID afectados
   view_observation: Ve observación
   view_observations: Ver observaciones
   view_observation_flags: Ver marcas de observación
@@ -5766,9 +5845,8 @@ es:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerido
   was_it_captive_cultivated?: "¿Fue cautiva / cultivado?"
-  we_also_support2: |
-    También admitimos la importación de fotos de <a href="http://flickr.com">Flickr</a>
-    y <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    También admitimos la importación de fotos desde <a href="http://flickr.com">Flickr (en inglés)</a>.
   we_can_only_understand_csv_in: Sólo podemos entender CSV en el siguiente formato
   we_couldnt_find_a_user: No pudimos encontrar un usuario con esa dirección de correo.
   we_couldnt_find_a_user_with_that_activation_code: "No pudimos encontrar un usuario con ese código de activación. Puede que ya hayas activado tu cuenta. Intenta iniciar sesión."
@@ -6109,6 +6187,94 @@ es:
   verifiable_observations: Observaciones verificables
   views:
     views: 'Visualizaciones'
+    announcements:
+      locales_desc: |
+        CMD o MAYÚS y haga clic para seleccionar varios. Seleccionar "Todos" o no hacer
+        Una selección mostrará el anuncio a todos los usuarios, independientemente de
+        configuración regional. La elección de un idioma sin una región *no* se orientará
+        regiones con regiones, por ejemplo, si eliges inglés no aparecerá
+        para las personas que han elegido el inglés (Reino Unido).
+      clients_desc: |
+        CMD o MAYÚS y haga clic para seleccionar varios. Seleccionar "Todos" o no hacer
+        Una selección mostrará el anuncio a todos los usuarios, independientemente de
+        cliente.
+      end_desc: |
+        Hora en la zona horaria de su cuenta en la que se detendrá este anuncio
+        Aparecer. Se aplica en todas las zonas horarias, por lo que todo el mundo dejará de verlo
+        al mismo tiempo, no en relación con su hora local.
+      ip_countries_desc: |
+        CMD o MAYÚS y haga clic para seleccionar varios. Seleccionar "Todos" o no hacer
+        Una selección mostrará el anuncio a todos los usuarios, independientemente de
+        País de propiedad intelectual.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Tenga en cuenta que la fecha de creación de la propiedad
+        La observación se almacena en caché, por lo que es posible que la segmentación de destinos tarde unas horas en
+        Entrar en vigor
+      observation_oauth_application_ids_desc: |
+        CMD o MAYÚS y haga clic para seleccionar varios. Seleccionar "Todos" o no hacer
+        Una selección mostrará el anuncio a todos los usuarios, independientemente de
+        aplicación.
+      site_ids_desc: |
+        CMD o MAYÚS y haga clic para seleccionar varios. Seleccionar "Todos" o no hacer
+        Una selección mostrará el anuncio a todos los usuarios, independientemente de
+        afiliación del sitio.
+      start_desc: |
+        Hora en la zona horaria de su cuenta en la que comenzará este anuncio
+        Aparecer. Se aplica en todas las zonas horarias, por lo que todos comenzarán a ver
+        al mismo tiempo, no en relación con su hora local.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Diríjase a los usuarios por comportamiento de donación
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Diríjase a los usuarios por comportamiento de identificación
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Diríjase a los usuarios por comportamiento de observación
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Dirigirse a los usuarios por otros atributos
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Acerca de los Atlas
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Los atlas transmiten la distribución global de un taxón. Los curadores hacen
+          atlas definiendo la estructura de un atlas y comisariando los
+          taxones enumerados que lo impulsan.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Explota este lugar
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Desexplota este lugar
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Todavía no hay alteraciones en este atlas
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Alteraciones recientes del atlas
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Alteraciones Recientes de Taxones Listados
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Mostrar taxones listados
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Este atlas no está activo actualmente
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Esto eliminará a este taxón y a todos sus descendientes de las listas de verificación
+          asociado con este lugar y cualquier Lugar Estándar que contenga. Eso
+          no se puede deshacer. ¿Estás seguro de que quieres hacer esto?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Advertencia: hay observaciones que no están representadas por este atlas
     content_freeze:
       content_freeze: Contenido bloqueado
       during_this_time: |
@@ -6334,9 +6500,9 @@ es:
         deprecated_banner: |
           Ten en cuenta que a partir de enero de 2019, la función Guías se muestra
           "tal cual". Aunque no tenemos planes para eliminarla, tampoco tenemos previsto desarrollarla más.
-        funding_html: |
-          Los fondos para el desarrollo de Guías fueron proporcionados por 
-          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          La financiación para la elaboración de las Guías fue proporcionada por
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Las Guías ayudan a aprender acerca de la biodiversidad en todo el mundo.
           Si estás explorando el Serengeti o simplemente tu parque local
@@ -6822,12 +6988,6 @@ es:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           La columna de geoprivacidad debe ir en inglés y debe estar vacía o tener el valor de "oculto" o "privado"
-        google_photos_notice_html: |
-          En febrero del 2019 Google cambió su API, haciéndonos imposible para acceder a las coordenadas GPS, la información de licencia, y casi cualquier información  que podríamos utilizar para añadir una identificación (como etiquetas). Google también quitó la búsqueda de texto y la paginación numérica.  Usted todavía puede importar fotos, pero no incluirán ninguna información de ubicación o información de licencia que le permita verlas en Google Photos.
-          Puede leer más sobre esto en:
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Descargando los archivos originales y añadiéndoles la información usando
-          <a href="/observations/upload">Uploader</a> es la mejor alternativa.
         project_csv_template_notice_html: |
           Hay un archivo plantilla para este proyecto que puede ayudarte con la estructura del archivo CSV. <a href="%{url}">Descarga la plantilla</a>
         soundcloud_notice_html: |
@@ -7595,6 +7755,11 @@ es:
           la imagen por defecto utilizada en todo el sitio.
         rare_desc: Taxones amenazados menos observados
         rare_in_place_desc_html: Taxones amenazados menos observados en <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Los curadores del sitio han deshabilitado la presentación <a href="%{url}">éste
+          contenido de Wikipedia</a>. Puedes ayudar editando la página en
+          Wikipedia para que sea apropiado para este taxón, o marcando este
+          taxón para llamar la atención de los curadores del sitio.
         trending_desc: Taxones más observados en el último mes
         trending_in_place_desc_html: Taxones más observados en el último mes en <a href="%{url}">%{place}</a>
         wanted_desc: Especies en este taxón que aún no se han observado.
@@ -7735,6 +7900,10 @@ es:
         licensing_desc_html: |
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: No se admite el tipo de archivo. Aceptamos JPG, PNG y GIF
         monthly_supporter_desc_html: |
           Los patrocinadores mensuales de iNaturalist hacen contribuciones mensuales automáticas a iNaturalist (IRS EIN 92-1296468 de los Estados Unidos) para apoyar las actividades sin ánimo de lucro de iNaturalist y de la Red de iNaturalist.
           <a href="%{url}"> Haz clic aquí para convertirte en un patrocinador mensual</a>. Cuando hayamos confirmado tu apoyo, podrás marcar esta casilla para mostrar esta condición en tu perfil. Nota: Las direcciones de correo electrónico en Donorbox y en iNaturalist deben coincidir para que podamos confirmar que te has convertido en un patrocinador mensual. Si son diferentes, cambia una para que sea idéntica a la otra.
@@ -8135,6 +8304,10 @@ es:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       long: '%B %-d, %Y %I:%M %p'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%H:%M"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: 'a las %I:%M %p %Z'
@@ -8173,6 +8346,8 @@ es:
     attributes:
       announcement:
         created_at: Creado el
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Descartable
         updated_at: Actualizado el
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -8198,6 +8373,26 @@ es:
         #iNat client applications that the user must have made an observation
         #with to see the announcement
         include_observation_oauth_application_ids: Incluye observadores de aplicaciones
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Países IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Última fecha de inicio de OBS
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Última fecha de finalización de obs
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Identificaciones máximas
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Identificaciones mínimas
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Observaciones mínimas
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Colocación
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Creador de objetivos (para pruebas)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Objetivo que ha iniciado sesión
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Fecha de registro de usuario más temprana
         #Latest date the viewer can have signed up to see the announcement
         user_created_end_date: Última fecha de registro de usuario
       assessment:
@@ -8339,6 +8534,8 @@ es:
         photos_locked: '¿Fotos bloqueadas?'
         rank: Clasificación
         rank_level: Nivel del rango
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Muestra Wikipedia
         source_id: ID del origen
         source_identifier: Identificador de la fuente
         source_url: Enlace fuente
@@ -8373,6 +8570,7 @@ es:
         show_for_descendent_taxa: Mostrar para taxones descendientes
       user:
         email: Correo
+        faved_project_ids: Proyectos favoritos
         login: Nombre de usuario
         name: Nombre
         locale: Configuración regional
@@ -8390,6 +8588,7 @@ es:
         equal_to:
           one: debe ser igual a %{count}
           other: deben ser iguales a %{count}
+        must_look_like_an_email_address: debe parecerse a una dirección de correo electrónico
         even: debe ser par
         exclusion: está reservado
         greater_than:
@@ -8512,6 +8711,9 @@ es:
                 No puede ser mayor que la fecha en que se agregó la observación
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: debe estar dentro de los últimos 130 años.
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: debe ser un solo día, no un rango
         observation_field_value:
           attributes:
             value:
@@ -8544,6 +8746,9 @@ es:
               invalid_point: tiene un punto no válido, por ejemplo, longitud mayor a 180 o latitud menor que -90
               must_have_more_than_three_points: debe tener más de 3 puntos
               polygon_with_less_than_four_points: tiene un polígono con menos de 4 puntos
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: tiene un polígono sin área (todos los puntos son iguales)
         place_geometry:
           attributes:
             geom:
@@ -8561,6 +8766,10 @@ es:
             user:
               must_be_on_site_long_enough: |
                 debe de haberse registrado hace más de 24 horas para publicar. Tenemos gran cantidad de gente que introduce spam, y así los evitamos. De todas formas puedes guardar un borrador, y si estás usando el sitio en un día, podrás publicarlo.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Solo puedes marcar 7 proyectos favoritos
         project_observation:
           attributes:
             base:
@@ -8613,6 +8822,11 @@ es:
             name:
               bad_format: |
                 solo puede contener caracteres latinos estándar, guiones, espacios, y ×; nota que no se permiten taxones putativos ni cultivares
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: El taxón Life no puede estar involucrado en cambios taxonómicos
         taxon_name:
           attributes:
             lexicon:
@@ -8645,6 +8859,14 @@ es:
               already_has_a_range: ya tiene una distribución
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: No puede incluir más de 7 proyectos
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: deben existir todos
             login:
               must_begin_with_a_letter: |
                 tiene que empezar con una letra, sin contener espacios, y usar sólo

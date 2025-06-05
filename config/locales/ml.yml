@@ -101,6 +101,8 @@ ml:
   add_a_link: ലിങ്ക് ചേർക്കുക
   add_a_name: പേര് ചേർക്കുക
   add_a_note: കുറിപ്പ് ചേർക്കുക
+  #Placeholder for a project autocomplete field
+  add_a_project: ഒരു പ്രോജക്റ്റ് ചേർക്കുക
   add_a_single_observation: ഒരൊറ്റ നിരീക്ഷണം ചേർക്കുക
   add_a_taxon: ടാക്സോൺ ചേർക്കുക
   add_taxon_range: ടാക്സോൺ പരിധി ചേർക്കുക
@@ -109,6 +111,8 @@ ml:
   agree?: സമ്മതിക്കുന്നു
   agree_with_current_taxon: നിലവിലെ ടാക്‌സോൺ അംഗീകരിക്കുക
   already_have_an_account_log_in_html: ഇതുവരെ അക്കൗണ്ട് ഉണ്ടോ? <strong>ലോഗിൻ ചെയ്യൂ.</strong>
+  #Label for an option to show any place
+  any_place: എന്തും.
   #Label for an option to show/include content by any user
   any_user: എന്തും
   #An app or service the user has authorized to access their iNat account, e.g.
@@ -128,6 +132,13 @@ ml:
   #https://en.wikipedia.org/wiki/Atom_(Web_standard), generally used to link to
   #an Atom representation of the content shown on the current page
   atom: ആറ്റം
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: പൊട്ടിത്തെറിച്ചു
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: പൊട്ടിത്തെറിക്കാത്തത്
   back_to_observation: നിരീക്ഷണത്തിലേക്ക് തിരിച്ച്
   back_to_possessive_user_profile: "%{possuser} അവരുടെ പരിചയത്തിന് മടങ്ങി"
   back_to_suggestions: നിർദ്ദേശങ്ങളിലേക്ക് മടങ്ങുക
@@ -152,13 +163,25 @@ ml:
   community_id_heading: സമൂഹം ടാക്സോൺ
   computer_vision_model_included_desc: |
     നിലവിലെ കമ്പ്യൂട്ടർ വിഷൻ മോഡലുകൾ ഈ ടാക്‌സണിനെക്കുറിച്ച് ബോധവാന്മാരാണ്, അതിനാൽ ഇത് "ഒരേ ദൃശ്യപരത" ലേബൽ ഉള്ള സ്വയമേവയുള്ള നുറുങ്ങുകളിൽ ഉൾപ്പെടുത്താവുന്നതാണ്.
+  confirming_ids: ഐഡികൾ സ്ഥിരീകരിക്കുന്നു
+  confirming_ids_description: |
+    നിങ്ങൾ ഇത് ഓഫാക്കുകയാണെങ്കിൽ, സമ്മതിക്കുന്ന ഐഡികളെക്കുറിച്ച് നിങ്ങളെ ഇനി അറിയിക്കില്ല
+    അവര് ക്ക് കൂടുതല് പരാമര് ശങ്ങള് ഉണ്ടായില്ലെങ്കില് നിങ്ങളുടേതായിരിക്കും.
   controlled_term_labels:
     subimago: സുബിമാഗോ
   creative_commons_unless_otherwise_noted: "ക്രിയേറ്റീവ് കോമൺസ്, വേറെ അടച്ചുപൊരുത്തി രേഖപ്പെടുത്തിയില്ലെങ്കിൽ."
   curate_taxa: ടാക്സ മേൽനോട്ടം ചെയ്യുക
   curate_user: ഉപയോക്താവ് മേൽനോട്ടം ചെയ്യുക
+  curator_coordinate_access: ക്യൂറേറ്റർ കോർഡിനേറ്റ് ആക്സസ്
+  curator_coordinate_access_desc: |
+    പരമ്പരാഗത പ്രോജക്റ്റുകൾക്കായുള്ള ക്യൂറേറ്റർ ഏകോപന ആക്സസ് ആരാണ് ചേർത്തത് എന്നതിനെ ആശ്രയിച്ചിരിക്കുന്നു
+    പ്രോജക്റ്റിന്റെ നിരീക്ഷണം. ഇത് ഡിഫോൾട്ട് ക്രമീകരണം മാത്രമാണ്
+    പദ്ധതികളിലെ നിരീക്ഷണങ്ങൾ. നിരീക്ഷകർക്ക് ഇത് മാറ്റാൻ തിരഞ്ഞെടുക്കാം
+    വ്യക്തിഗത നിരീക്ഷണങ്ങൾ.
   #Label for a custom boundary for an observation search
   custom_boundary: വ്യക്തിഗത അതിരുകൾ
+  #Button to customize projects that appear in the header
+  customize__projects: ഇഷ്ടാനുസൃതമാക്കുക
   date_: തീയതി
   date_format:
     date_long:
@@ -203,6 +226,11 @@ ml:
   devise_confirmation_instructions_please_click2: |
     നിങ്ങളുടെ ഇമെയിൽ വിലാസം സ്ഥിരീകരിക്കാൻ ചുവടെയുള്ള ലിങ്കിൽ ക്ലിക്കുചെയ്യുക. നിങ്ങളുടെ ഇമെയിൽ സ്ഥിരീകരിക്കുന്നില്ലെങ്കിൽ
     വിലാസം, നിങ്ങൾക്ക് മറ്റ് ഉപയോക്താക്കളുടെ ഉള്ളടക്കവുമായി സംവദിക്കാൻ കഴിയില്ല.
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: അഭിപ്രായവ്യത്യാസങ്ങൾ
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: വിയോജിപ്പുള്ള ഐഡന്റിഫിക്കേഷനുകൾ ഉള്ള നിരീക്ഷണങ്ങൾ കാണിക്കുക
   doh_something_went_wrong: അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്.
   doh_something_went_wrong_error: "അയ്യോ! എന്തു പ്രശ്നം തോന്നുന്നുണ്ട്: %{error}"
   donate_again_today_caps: ഇന്ന് വീണ്ടും ദാനം നൽകുക
@@ -213,11 +241,19 @@ ml:
   edit: തിരുത്തുക
   edit_place: സ്ഥാനം എഡിറ്റ് ചെയ്യുക
   edit_your_default_settings: "നിങ്ങളുടെ നിയുക്ത കോമ്പിനേഷനുകൾ എഡിറ്റ് ചെയ്യുക"
+  #Title for a page to edit an announcement
+  editing_announcement_x: എഡിറ്റിംഗ് അറിയിപ്പ് %{id}
   #Introductory form of address in an email. %{user} could be a username or a
   #name, and the gender is unknown. @vow_or_con should work.
   email_dear_user: പ്രിയപ്പെട്ട %{user},
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: പ്രിയപ്പെട്ടവ
+  #Header for a section showing the user's favorite projects
+  favorite_projects: പ്രിയപ്പെട്ട പ്രോജക്റ്റുകൾ
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    തലക്കെട്ടിൽ ലിങ്കുകളായി പ്രത്യക്ഷപ്പെടുന്ന ഏഴ് പ്രോജക്റ്റുകൾ വരെ തിരഞ്ഞെടുക്കുക. അപ്‌ഡേറ്റുകൾ
+    പേജ് പുതുക്കിയ ശേഷം ദൃശ്യമാകും.
   favorite_taxa: പ്രിയപ്പെട്ട ടാക്സ
   favorites: "പ്രിയപ്പെട്ടവ"
   fill_out_your_profile: നിങ്ങളുടെ പരിചയം പൂര്‍ത്തിയാക്കുക
@@ -240,14 +276,34 @@ ml:
   header_your_profile: നിങ്ങളുടെ പരിചയ
   here_are_our_top_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ നിർദ്ദേശങ്ങൾ
   here_are_our_top_species_suggestions: ഇവയാണ് ഞങ്ങളുടെ ശ്രേഷ്ഠ സ്പീഷീസ് നിർദ്ദേശങ്ങൾ
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist നിർദ്ദേശിച്ച ID അപ് ഡേറ്റുചെയ് തു %{user}
   if_this_is_a_scientific_name: ഇതൊരു ശാസ്ത്രീയ നാമമാണെങ്കിൽ, ഇത് നിലവിൽ അംഗീകരിക്കപ്പെട്ടിട്ടുണ്ടോ?
   include_suggestions_not_seen_nearby: സമീപത്ത് കാണാനില്ലാത്ത നുറുങ്ങുകൾ ചേർക്കുക
   include_suggestions_not_expected_nearby: സമീപത്ത് പ്രതീക്ഷിക്കാത്ത നിർദ്ദേശങ്ങൾ ഉൾപ്പെടുത്തുക
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: ഇൻഫ്രാസ്പീഷീസ് ഐഡികൾ
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    നിങ്ങൾ ഇത് ഓഫാക്കുകയാണെങ്കിൽ, ടാക്സയുടെ ഐഡികളെക്കുറിച്ച് ഇനി നിങ്ങളെ അറിയിക്കില്ല
+    നിങ്ങളുടെ അഭിപ്രായത്തോട് യോജിക്കുന്ന സ്പീഷീസ്-ലെവലിന് താഴെ (ഉപജാതികളും ഇനങ്ങളും പോലെ)
+    സ്പീഷീസ് ലെവൽ ഐഡി. നിങ്ങളുടെ ഐഡിയുമായി അവർ വിയോജിക്കുന്നുവെങ്കിൽ നിങ്ങളെ അറിയിക്കും അല്ലെങ്കിൽ
+    അവയിൽ കൂടുതൽ പരാമർശങ്ങൾ ഉണ്ടെങ്കിൽ.
+  #Error message shown when a date format is invalid
+  invalid_date: അസാധുവായ തീയതി
   lexicons:
     japanese: ജാപ്പനീസ്
     kannada: കന്നഡ
     tamil: തമിഴ്
   license: അനുമതി
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: ലിസ്റ്റുചെയ്തു
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: ലിസ്റ്റുചെയ്യാത്തത്
   loading_suggestions: നിർദ്ദേശങ്ങൾ ലോഡ് ചെയ്യുന്നു...
   locales:
     ar: അറബിക്
@@ -283,6 +339,10 @@ ml:
     ru: റഷ്യൻ
   location_is_accurate: സ്ഥലം കൃത്യമാണ്
   log_in: ലോഗിൻ ചെയ്യൂ
+  #Adjectival phrase describing state of being logged in
+  logged_in: ലോഗിൻ ചെയ്യുക
+  #Adjectival phrase describing state of being logged out
+  logged_out: ലോഗ് ഔട്ട്
   logo:
     logo: ലോഗോ
   map: ഭൂപട
@@ -305,6 +365,8 @@ ml:
     #please use Z and not z
     datetime_with_offset: "MMM D, YYYY · LT Z"
   more: കൂടുതല്
+  #Label for a button or section that shows additional options
+  more_options: കൂടുതൽ ഓപ്ഷനുകൾ
   more_than_a_week_ago: ഒരു ആഴ്ചയിൽ കൂടുതലായി
   muting_description: എന്തെങ്കിലും പ്രവർത്തനങ്ങളിൽ നിന്ന് നിശബ്ദം ചെയ്യുന്നത് നിങ്ങൾക്ക് അവരുടെ പ്രവർത്തനങ്ങളോടുള്ള ഏതെങ്കിലും അറിയിപ്പുകൾക്ക് തടയുന്നു, അതിൽ '@' പരാമർശങ്ങൾ, സന്ദേശങ്ങൾ, നിങ്ങളുടെ നിരീക്ഷണങ്ങളിൽ ഉള്ള അഭിപ്രായങ്ങളും തിരിച്ചറിയലുകളും ഉൾപ്പെടുന്നു.
   n_ago: "%{n} പിന്നിൽ"
@@ -317,7 +379,24 @@ ml:
     user: "%{user} പ്രിയപ്പെട്ടവ ചേർത്തിട്ടില്ല."
   no_recent_activity: സമീപകാല പ്രവർത്തനങ്ങളൊന്നുമില്ല
   no_suggestions_available: നിർദ്ദേശങ്ങൾ ലഭ്യമല്ല
+  #A user who is not a curator
+  non_curator: നോൺ-ക്യൂറേറ്റർ
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: വിയോജിക്കാത്ത പൂർവ്വിക ഐഡികൾ
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    നിങ്ങൾ ഇത് ഓഫാക്കുകയാണെങ്കിൽ, ആരെങ്കിലും ഇത് ചേർക്കുമ്പോൾ നിങ്ങൾക്ക് അറിയിപ്പ് ലഭിക്കില്ല
+    നിങ്ങളുടെ ഐഡിയിൽ നിന്ന് ടാക്സോണിന്റെ പൂർവ്വികനായ ഒരു ടാക്സോണിന്റെ ഐഡി
+    കമ്മ്യൂണിറ്റി ടാക്സണിനോട് വ്യക്തമായി വിയോജിക്കുന്നു. ഇനിപ്പറയുന്ന കാര്യങ്ങൾ ഉണ്ടെങ്കിൽ നിങ്ങളെ അറിയിക്കും
+    ഐഡിയിൽ അധിക പരാമർശങ്ങളുണ്ട്.
   non_human?: മാനവനല്ല?
+  #A user who does not admin any projects
+  non_project_admin: നോൺ-പ്രോജക്റ്റ് അഡ്മിൻ
   note: കുറിപ്പ്
   notes: കുറിപ്പുകൾ
   notify_me_of_mentions: മെൻഷനുകളെ കുറിച്ച് എന്നെ അറിയിക്കുക (ഉദാ, @username)
@@ -335,6 +414,7 @@ ml:
   #@something.
   observation_attribution_copyright_html: നിരീക്ഷണം &copy; %{user}
   observation_date?: തീയതി?
+  observation_fields_for_projects: പ്രോജക്റ്റുകൾക്കായുള്ള നിരീക്ഷണ ഫീൽഡുകൾ
   observations_near_a_place_are: |
     ഒരു സ്ഥലത്തോട് 'നികത്തുള്ള' നിരീക്ഷണങ്ങൾ, ആ സ്ഥലത്തിന്റെ അതിർത്തികളെ ചുറ്റി രേഖപ്പെടുത്തിയ ഒരു ചതുരത്തിലെ ഉൾപ്പെടുത്തിയവയാണ്, ഇത് ചതുരങ്ങളേക്കാൾ വ്യത്യസ്തമായ സ്ഥലങ്ങൾക്കായി ചില കൃത്യതക്കുറവുകൾക്ക് ഇടയാക്കാം. ഇത് നമ്മുടെ ഡേറ്റാബേസിന്റെ ഒരു പരിമിതിയാണ്, അത് പരിഹരിക്കാൻ ഞങ്ങൾ ജോലി ചെയ്യുന്നു.
   onboarding:
@@ -426,6 +506,21 @@ ml:
   please_confirm_your_inat_username: "ദയവായി നിങ്ങളുടെ %{site_name} ഉപയോക്തൃനാമം സ്ഥിരീകരിക്കുക."
   profile: പരിചയ
   profile_picture: പരിചയയുടെ ചിത്രങ്ങൾ
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: പ്രൊഫൈൽ ചിത്രം ഫയൽ തരം
+  #A user who admin's a project
+  project_admin: Project admin
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: ജനുസ്സ് / Genushybrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: സ്പീഷീസ് / ഹൈബ്രിഡ്
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: ഉപജാതികൾ / വൈവിധ്യങ്ങൾ / രൂപം
   ranks:
     genus: ജീനസ്സ്
     x_genera:
@@ -461,6 +556,9 @@ ml:
   species_name_cap: സ്പീഷീസ് പേര്
   species_names: സ്പീഷീസ് പേരുകൾ
   still_no_luck?: ഇനി ഭാഗ്യം എങ്ങനെയുമില്ല?
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: സബ് സ് ക്രൈബ്
   suggestions: നിർദ്ദേശങ്ങൾ
   taxon_map:
     gbif_occurrences: GBIF സാന്നിധ്യങ്ങൾ
@@ -478,6 +576,18 @@ ml:
   #TZ / IANA time zone name. See https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
   time_zone_pacific_auckland: ന്യൂസിലാൻഡ് സമയം
   type_species_name: "സ്പീഷീസ് പേര് ടൈപ്പ് ചെയ്യുക"
+  update_existing_observations_with_new_license_desc: |
+    ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുന്നത് നിങ്ങളുടെ പുതിയ ലൈസൻസ് ചോയ്സ് നിങ്ങളുടെ എല്ലാവർക്കും ബാധകമാക്കും
+    നിലവിലുള്ള നിരീക്ഷണങ്ങൾ. നിങ്ങൾക്ക് ധാരാളം ഉണ്ടെങ്കിൽ ഇത് കുറച്ച് മണിക്കൂറുകൾ എടുത്തേക്കാം
+    നിരീക്ഷണങ്ങൾ.
+  update_existing_photos_with_new_license_desc: |
+    ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുന്നത് നിങ്ങളുടെ പുതിയ ലൈസൻസ് ചോയ്സ് നിങ്ങളുടെ എല്ലാവർക്കും ബാധകമാക്കും
+    നിലവിലുള്ള ഫോട്ടോകൾ. നിങ്ങൾക്ക് ധാരാളം ഉണ്ടെങ്കിൽ ഇത് കുറച്ച് മണിക്കൂറുകൾ എടുത്തേക്കാം
+    ഫോട്ടോകൾ.
+  update_existing_sounds_with_new_license_desc: |
+    ഈ ഓപ്ഷൻ തിരഞ്ഞെടുക്കുന്നത് നിങ്ങളുടെ പുതിയ ലൈസൻസ് ചോയ്സ് നിങ്ങളുടെ എല്ലാവർക്കും ബാധകമാക്കും
+    നിലവിലുള്ള ശബ്ദങ്ങൾ. നിങ്ങൾക്ക് ധാരാളം ഉണ്ടെങ്കിൽ ഇത് കുറച്ച് മണിക്കൂറുകൾ എടുത്തേക്കാം
+    ശബ്ദങ്ങൾ.
   upload: അപ്‌ലോഡ് ചെയ്യുക
   upload_a_csv_file: CSV ഫയല് അപ്‌ലോഡ് ചെയ്യുക
   upload_a_csv_file_with_observation: |
@@ -497,6 +607,14 @@ ml:
     other: ചിത്രങ്ങൾ അപ്‌ലോഡുചെയ്യുന്നു %{num}/%{count}...
   user_has_been_removed_from_site: |
     %{username} നെ %{site_name} ൽ നിന്നു മാറ്റി (സംബന്ധിച്ച എല്ലാ ഉള്ളടക്കവും പൂർണ്ണമായും ഇല്ലാതാക്കാൻ ഒരു മണിക്കൂർ വരെ കാലയളവെടുക്കാം).
+  user_trusts_this_project_when_added_by_any: |
+    നിരീക്ഷണങ്ങളുടെ മറഞ്ഞിരിക്കുന്ന കോർഡിനേറ്റുകൾ ചേർത്ത് ഉപയോക്താവ് പ്രോജക്റ്റ് ക്യൂറേറ്റർമാരെ വിശ്വസിക്കുന്നു
+    ആരുടെയും പ്രോജക്റ്റിലേക്ക്.
+  user_trusts_this_project_when_added_by_observer: |
+    നിരീക്ഷണങ്ങളുടെ മറഞ്ഞിരിക്കുന്ന കോർഡിനേറ്റുകൾ ചേർത്ത് ഉപയോക്താവ് പ്രോജക്റ്റ് ക്യൂറേറ്റർമാരെ വിശ്വസിക്കുന്നു
+    നിരീക്ഷകന്റെ പ്രോജക്റ്റിലേക്ക്.
+  user_trusts_this_project_when_added_by_none: |
+    മറഞ്ഞിരിക്കുന്ന കോർഡിനേറ്റുകളുള്ള പ്രോജക്റ്റ് ക്യൂറേറ്റർമാരെ ഉപയോക്താവ് വിശ്വസിക്കുന്നില്ല.
   username: ഉപയോക്തൃനാമം
   username_description: ഈ നിങ്ങളുടെ ലോഗിൻ ചെയ്യാൻ ഉപയോഗിക്കുന്ന ഉപയോക്തൃനാമമാണ്, മറ്റ് ഉപയോക്താക്കൾ നിങ്ങൾക്ക് iNaturalist-ൽ തിരിച്ചറിയാൻ ഉപയോഗിക്കും.
   username_or_email: ഉപയോക്തൃനാമം അല്ലെങ്കിൽ ഇമെയിൽ
@@ -505,6 +623,10 @@ ml:
   view_license: അനുമതി കാണുക
   view_moderation_history: മോഡറേഷൻ ചരിത്രം കാണുക
   view_moderation_history_for_this_comment: ഈ അഭിപ്രായത്തിൻ്റെ മോഡറേഷൻ ചരിത്രം കാണുക
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: നിങ്ങളുടെ ബാധിത ഐഡികൾ കാണുക
+  we_also_support3: |
+    ഇവിടെ നിന്ന് ഫോട്ടോകൾ ഇറക്കുമതി ചെയ്യുന്നതിനെയും ഞങ്ങൾ പിന്തുണയ്ക്കുന്നു <a href="http://flickr.com">Flickr</a>.
   #Label for the most probable taxon in the automated suggestions when that taxon is a genus
   were_pretty_sure_this_is_in_the_genus: ഞങ്ങൾ ഇത് ജീനസ്സ്ൽ ആണെന്ന് ഉറപ്പാണ്
   #Falback label for the most probable taxon in the automated suggestions.
@@ -527,6 +649,94 @@ ml:
   you_sure_delete_comment?: ഈ അഭിപ്രായം നീക്കം ചെയ്യാൻ നിങ്ങൾ ഉറപ്പാണ്?
   your_comment_was_saved: നിങ്ങളുടെ ഉള്ളടക്കം സംരക്ഷിച്ചിരിക്കുന്നു
   views:
+    announcements:
+      locales_desc: |
+        ഒന്നിലധികം തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്കുചെയ്യുക. "എല്ലാം" തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉണ്ടാക്കാതിരിക്കുക
+        ഇനിപ്പറയുന്നവ കണക്കിലെടുക്കാതെ ഒരു തിരഞ്ഞെടുപ്പ് എല്ലാ ഉപയോക്താക്കൾക്കും അറിയിപ്പ് കാണിക്കും
+        സ്ഥലം. ഒരു പ്രദേശമില്ലാതെ ഒരു ഭാഷ തിരഞ്ഞെടുക്കുന്നത് *ടാർഗെറ്റ് ചെയ്യില്ല"
+        പ്രദേശങ്ങളുള്ള സ്ഥലങ്ങൾ, ഉദാഹരണത്തിന്, നിങ്ങൾ ഇംഗ്ലീഷ് തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ അത് ദൃശ്യമാകില്ല
+        ഇംഗ്ലീഷ് (യുകെ) തിരഞ്ഞെടുത്ത ആളുകൾക്കായി.
+      clients_desc: |
+        ഒന്നിലധികം തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്കുചെയ്യുക. "എല്ലാം" തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉണ്ടാക്കാതിരിക്കുക
+        ഇനിപ്പറയുന്നവ കണക്കിലെടുക്കാതെ ഒരു തിരഞ്ഞെടുപ്പ് എല്ലാ ഉപയോക്താക്കൾക്കും അറിയിപ്പ് കാണിക്കും
+        കക്ഷി.
+      end_desc: |
+        ഈ പ്രഖ്യാപനം അവസാനിക്കുമെന്ന് നിങ്ങളുടെ അക്കൗണ്ട് സമയമേഖലയിലെ സമയം
+        പ്രത്യക്ഷപ്പെടുന്നു. ടൈം സോണുകളിലുടനീളം ബാധകമാണ്, അതിനാൽ എല്ലാവരും കാണുന്നത് നിർത്തും
+        അതേ സമയം, അവരുടെ പ്രാദേശിക സമയവുമായി താരതമ്യപ്പെടുത്തുമ്പോൾ.
+      ip_countries_desc: |
+        ഒന്നിലധികം തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്കുചെയ്യുക. "എല്ലാം" തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉണ്ടാക്കാതിരിക്കുക
+        ഇനിപ്പറയുന്നവ കണക്കിലെടുക്കാതെ ഒരു തിരഞ്ഞെടുപ്പ് എല്ലാ ഉപയോക്താക്കൾക്കും അറിയിപ്പ് കാണിക്കും
+        IP രാജ്യം.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        ഉപയോക്താവ് ഏറ്റവും അടുത്തിടെ സൃഷ്ടിച്ച സൃഷ്ടി തീയതി ശ്രദ്ധിക്കുക
+        നിരീക്ഷണം കാഷ് ചെയ്തിരിക്കുന്നു, അതിനാൽ ലക്ഷ്യമിടാൻ കുറച്ച് മണിക്കൂറുകൾ എടുത്തേക്കാം
+        പ്രാബല്യത്തിൽ വരുത്തുക
+      observation_oauth_application_ids_desc: |
+        ഒന്നിലധികം തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്കുചെയ്യുക. "എല്ലാം" തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉണ്ടാക്കാതിരിക്കുക
+        ഇനിപ്പറയുന്നവ കണക്കിലെടുക്കാതെ ഒരു തിരഞ്ഞെടുപ്പ് എല്ലാ ഉപയോക്താക്കൾക്കും അറിയിപ്പ് കാണിക്കും
+        ആപ്പ്.
+      site_ids_desc: |
+        ഒന്നിലധികം തിരഞ്ഞെടുക്കുന്നതിന് CMD- അല്ലെങ്കിൽ SHIFT-ക്ലിക്കുചെയ്യുക. "എല്ലാം" തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ ഉണ്ടാക്കാതിരിക്കുക
+        ഇനിപ്പറയുന്നവ കണക്കിലെടുക്കാതെ ഒരു തിരഞ്ഞെടുപ്പ് എല്ലാ ഉപയോക്താക്കൾക്കും അറിയിപ്പ് കാണിക്കും
+        സൈറ്റ് അഫിലിയേഷൻ.
+      start_desc: |
+        ഈ പ്രഖ്യാപനം ആരംഭിക്കുന്ന നിങ്ങളുടെ അക്കൗണ്ട് സമയമേഖലയിലെ സമയം
+        പ്രത്യക്ഷപ്പെടുന്നു. ടൈം സോണുകളിലുടനീളം ബാധകമാണ്, അതിനാൽ എല്ലാവരും കാണാൻ തുടങ്ങും
+        അതേ സമയം, അവരുടെ പ്രാദേശിക സമയവുമായി താരതമ്യപ്പെടുത്തുമ്പോൾ.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: സംഭാവന പെരുമാറ്റം വഴി ടാർഗെറ്റ് ഉപയോക്താക്കളെ
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: തിരിച്ചറിയൽ പെരുമാറ്റത്തിലൂടെ ഉപയോക്താക്കളെ ടാർഗെറ്റുചെയ്യുക
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: നിരീക്ഷണ സ്വഭാവം ഉപയോഗിച്ച് ടാർഗെറ്റ് ഉപയോക്താക്കളെ
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: മറ്റ് ആട്രിബ്യൂട്ടുകൾ ഉപയോഗിച്ച് ഉപയോക്താക്കളെ ടാർഗെറ്റുചെയ്യുക
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Atlases കുറിച്ച്
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          അറ്റ്ലസുകൾ ഒരു ടാക്സോണിന്റെ ആഗോള വിതരണം അറിയിക്കുന്നു. ക്യൂറേറ്റർമാർ നിർമ്മിക്കുന്നു
+          ഒരു അറ്റ്ലസിന്റെ ഘടന നിർവചിക്കുന്നതിലൂടെയും ക്യൂറേറ്റുചെയ്യുന്നതിലൂടെയും അറ്റ്ലസുകൾ
+          അതിനെ നയിക്കുന്ന ടാക്സയെ പട്ടികപ്പെടുത്തി.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: ഈ സ്ഥലം പൊട്ടിത്തെറിക്കുക
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: ഈ സ്ഥലത്തെ പര്യവേക്ഷണം ചെയ്യാതിരിക്കുക
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: ഈ അറ്റ് ലസിൽ ഇതുവരെ മാറ്റങ്ങളൊന്നുമില്ല
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: സമീപകാല അറ്റ്ലസ് മാറ്റങ്ങൾ
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: അടുത്തിടെ ലിസ്റ്റുചെയ്ത ടാക്സോൺ മാറ്റങ്ങൾ
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: ലിസ്റ്റുചെയ് ത ടാക്സ കാണിക്കുക
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: ഈ അറ്റ്ലസ് നിലവിൽ സജീവമല്ല
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          ഇത് ഈ ടാക്സോണിനെയും അതിന്റെ എല്ലാ പിൻഗാമികളെയും ചെക്ക്ലിസ്റ്റുകളിൽ നിന്ന് നീക്കംചെയ്യും
+          ഈ സ്ഥലവുമായും അതിൽ അടങ്ങിയിരിക്കുന്ന ഏതെങ്കിലും സ്റ്റാൻഡേർഡ് സ്ഥലങ്ങളുമായും ബന്ധപ്പെട്ടിരിക്കുന്നു. അത്
+          ഒഴിവാക്കാൻ കഴിയില്ല. ഇത് ചെയ്യണമെന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          മുന്നറിയിപ്പ്: ഈ അറ്റ്ലസ് പ്രതിനിധീകരിക്കാത്ത നിരീക്ഷണങ്ങളുണ്ട്
     email_confirmation:
       click_here_to_resend_a_confirmation_email: ഒരു സ്ഥിരീകരണ ഇമെയിൽ വീണ്ടും അയയ്ക്കാൻ ഇവിടെ ക്ലിക്കുചെയ്യുക
       #message displayed after users trigger sending a email to confirm their email address
@@ -556,6 +766,11 @@ ml:
       explain:
         range_comparison:
           expected_nearby_vs_taxon_range: സമീപത്ത് പ്രതീക്ഷിക്കുന്നു വ്യത്യാസം ടാക്സോൺ പരിധി
+    guides:
+      index:
+        funding2_html: |
+          ഗൈഡുകളുടെ വികസനത്തിനുള്ള ധനസഹായം നൽകിയത്
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
     messages:
       index:
         #Users cannot create messages if they lack the criteria for
@@ -582,8 +797,17 @@ ml:
       show:
         frequency:
           "Life Stage=Subimago": സുബിമാഗോ
+        site_curators_disabled_wikipedia_html: |
+          സൈറ്റ് ക്യൂറേറ്റർമാർ കാണിക്കുന്നത് പ്രവർത്തനരഹിതമാക്കിയിട്ടുണ്ട് <a href="%{url}">ഇത്
+          വിക്കിപീഡിയയിൽ നിന്നുള്ള ഉള്ളടക്കം</a>. പേജ് എഡിറ്റുചെയ്യുന്നതിലൂടെ നിങ്ങൾക്ക് സഹായിക്കാനാകും
+          വിക്കിപീഡിയ ഈ വർഗ്ഗീകരണത്തിന് അനുയോജ്യമാക്കണം, അല്ലെങ്കിൽ ഇത് ഫ്ലാഗ് ചെയ്തുകൊണ്ട്
+          സൈറ്റ് ക്യൂറേറ്റർമാരുടെ ശ്രദ്ധയിൽപ്പെടുത്താൻ ടാക്സോൺ.
     users:
       edit:
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: ഫയൽ തരം പിന്തുണയ്ക്കുന്നില്ല. JPG, PNG, GIF എന്നിവ ഞങ്ങൾ സ്വീകരിക്കുന്നു
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_comments: അഭിപ്രായങ്ങൾ
         #Checkbox label for user preference about what to receive in the daily email update
@@ -594,6 +818,11 @@ ml:
         notification_preferences_messages: സന്ദേശങ്ങൾ
         prefers_no_tracking_label_desc_info_we_share_browser_details: |
           ബ്രൗസർ വിശദാംശങ്ങൾ, പോലുള്ളത് നിർമ്മാണം, മോഡൽ, ഉം പതിപ്പ്.
+        this_only_applies_to_traditional_projects2: |
+          പരമ്പരാഗത പദ്ധതികൾക്ക് മാത്രമേ ഇത് ബാധകമാകൂ. നിങ്ങൾക്ക് നിരീക്ഷണങ്ങൾ ഒഴിവാക്കാൻ കഴിയില്ല
+          ശേഖരണം അല്ലെങ്കിൽ കുട പ്രോജക്റ്റുകളിൽ നിന്ന്, അവ അടിസ്ഥാനപരമായി സേവ് ചെയ്ത തിരയലുകളാണ്.
+          നിങ്ങൾക്ക് കൂടുതൽ വായിക്കാൻ കഴിയും
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">ഇവിടെ</a>.
     welcome:
       index:
         run_a_bioblitz: ഒരു Bioblitz സംഘടിപ്പിക്കുക
@@ -630,16 +859,68 @@ ml:
         precision: 3
         significant: true
         strip_insignificant_zeros: true
+  time:
+    formats:
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
   activerecord:
     models:
       Comment: അഭിപ്രായം
     attributes:
+      announcement:
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: തള്ളിക്കളയാവുന്നതാണ്
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: ദാതാവിന്റെ ആരംഭ തീയതി ഒഴിവാക്കുക
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: ദാതാവിന്റെ അവസാന തീയതി ഒഴിവാക്കുക
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: അപ്ലിക്കേഷനുകളിൽ നിന്ന് നിരീക്ഷകരെ ഒഴിവാക്കുക
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: ദാതാവിന്റെ ആരംഭ തീയതി ഉൾപ്പെടുത്തുക
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: ദാതാവിന്റെ അവസാന തീയതി ഉൾപ്പെടുത്തുക
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: അപ്ലിക്കേഷനുകളിൽ നിന്നുള്ള നിരീക്ഷകരെ ഉൾപ്പെടുത്തുക
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: IP രാജ്യങ്ങൾ
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: ഏറ്റവും പുതിയ obs ആരംഭ തീയതി
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: ഏറ്റവും പുതിയ obs അവസാന തീയതി
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: പരമാവധി തിരിച്ചറിയലുകൾ
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: ചെറിയ തിരിച്ചറിയലുകൾ
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: പരമാവധി നിരീക്ഷണങ്ങൾ
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: ചെറിയ നിരീക്ഷണങ്ങൾ
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: പ്ലേസ്മെന്റ്
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: ടാർഗെറ്റ് സ്രഷ്ടാവ് (ടെസ്റ്റിംഗിനായി)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: ടാർഗെറ്റ് ലോഗിൻ ചെയ്തു
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: ആദ്യകാല ഉപയോക്തൃ സൈൻ അപ്പ് തീയതി
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: ഏറ്റവും പുതിയ ഉപയോക്തൃ സൈൻ അപ്പ് തീയതി
+      taxon:
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: വിക്കിപീഡിയ കാണിക്കുന്നു
       taxon_name:
         audit_comment: കുറിപ്പ്
       user:
+        faved_project_ids: പ്രിയപ്പെട്ട പ്രോജക്റ്റുകൾ
         login: ഉപയോക്തൃനാമം
     errors:
       messages:
+        must_look_like_an_email_address: ഒരു ഇമെയിൽ വിലാസം പോലെ കാണണം
         requires_privilege_interaction: അത് ചെയ്യുന്നതിന് സ്ഥിരീകരിച്ച ഇമെയിൽ വിലാസം ഉണ്ടായിരിക്കണം
       models:
         comment:
@@ -649,12 +930,26 @@ ml:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: അഭിപ്രായങ്ങൾ അസജീവമാക്കി
+        moderator_action:
+          attributes:
+            base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: സ്റ്റാഫിന് മാത്രമേ പുനർനാമകരണം ചെയ്യാൻ കഴിയൂ
+        observation:
+          attributes:
+            observed_on:
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: ഒരൊറ്റ ദിവസമായിരിക്കണം, ഒരു പരിധിയല്ല
         place:
           attributes:
             place_geometry:
               contains_too_many_observations: കയറ്റുമതി ചെയ്യാൻ കൂടുതൽ നിരീക്ഷണങ്ങൾ ഉണ്ട്
               cannot_be_blank: ശൂന്യമാക്കാൻ കഴിയില്ല
               must_have_more_than_three_points: 3 പോയിന്റുകളിൽ കൂടുതൽ ഉണ്ടായിരിക്കണം
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: വിസ്തീർണ്ണമില്ലാത്ത ഒരു ബഹുഭുജമുണ്ട് (എല്ലാ പോയിന്റുകളും ഒരുപോലെയാണ്)
         place_geometry:
           attributes:
             geom:
@@ -667,6 +962,10 @@ ml:
               #post that does not allow comments. Theoretically an end user
               #should never see this, though an API client might.
               prefers_no_comments: പുതിയ അഭിപ്രായങ്ങൾ അനുവദിക്കുന്നില്ല
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: നിങ്ങൾക്ക് 7 പ്രോജക്റ്റുകൾ മാത്രമേ ചെയ്യാൻ കഴിയൂ
         taxon:
           attributes:
             rank:
@@ -690,6 +989,11 @@ ml:
             name:
               bad_format: |
                 സാധാരണ ലാറ്റിൻ പ്രതിനിധികൾ, ഹൈഫൻ, ഇടവേളകൾ, × മാത്രം അടങ്ങിയിരിക്കണം; ഊഹിത ടാക്സയും സസ്യജാതികളും അനുവദിച്ചിട്ടില്ല.
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: ടാക്സോൺ മാറ്റങ്ങളിൽ ലൈഫ് ടാക്സോൺ ഉൾപ്പെടാൻ കഴിയില്ല
         taxon_name:
           attributes:
             lexicon:
@@ -697,6 +1001,18 @@ ml:
               should_match_english_translation: |
                 ഇംഗ്ലീഷിലായിരിക്കണം, എന്നാൽ നിലവിൽ ഇത് "%{suggested}"-ന്റെ %{suggested_locale} പരിഭാഷയുമായി പൊരുത്തപ്പെടുന്നു. നിങ്ങൾ അതാണെങ്കിൽ "%{suggested}" ഉപയോഗിക്കുക, ഇത് നിങ്ങള്‍ ആ ഭാഷയിൽ സൈറ്റ് കാണുമ്പോൾ വിവർത്തനം ചെയ്യപ്പെടും.
               should_be_in_english: ഇംഗ്ലീഷിലായിരിക്കണം
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: 7 പ്രോജക്റ്റുകളിൽ കൂടുതൽ ഉൾപ്പെടുത്താൻ കഴിയില്ല
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: എല്ലാം ഉണ്ടായിരിക്കണം
+            login:
+              domain_is_not_supported: ഡൊമെയ്ൻ പിന്തുണയ്ക്കുന്നില്ല
   i18n:
     inflections:
       "@vow_or_con":

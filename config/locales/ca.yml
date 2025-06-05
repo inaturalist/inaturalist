@@ -257,6 +257,8 @@ ca:
   add_a_new_change_group: Afegiu un nou canvi en grup
   #Tool tip for a button that adds a numbered list to a text area
   add_a_numbered_list: Afegeix una llista numerada
+  #Placeholder for a project autocomplete field
+  add_a_project: Afegir un projecte
   add_a_single_observation: Afegiu una única observació
   add_a_taxon: Afegiu un tàxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: |
@@ -561,6 +563,8 @@ ca:
   any_license: Qualsevol
   #Label for an option to show content with photos, sounds, or neither
   any_media: Qualsevol
+  #Label for an option to show any place
+  any_place: Qualsevol
   #Label for an option to show content from any project
   any_project: Qualsevol
   #Label for an option to show content with any quality grade
@@ -705,6 +709,13 @@ ca:
   #{attribution} will be one of the copyright.* keys, like
   #copyright.all_rights_reserved. @vow_or_con refers to %{user}
   attribution_uploaded_by_user: "%{attribution}, pujat per %{user}"
+  #Adjective describing when a place in an atlas was "exploded," i.e. divided
+  #into its constituent places
+  atlas_alteration_action_exploded: Explotar
+  #Adjective describing when a place in an atlas was "unexploded," i.e. its
+  #constituent places were removed and now the atlas just contains this
+  #place
+  atlas_alteration_action_unexploded: Sense explotar
   authority_list:
     iucn_red_list: Llista vermella d'UICN
     natureserve: NatureServe
@@ -1041,6 +1052,10 @@ ca:
   confirmation_email_sent_at_datetime: Correu electrònic de confirmació enviat el %{datetime}
   #Text showing when a user's email was confirmed. date will take the form of momentjs.date_long
   confirmed_on_date: Confirmat el %{date}
+  confirming_ids: Confirmació d'identificacions
+  confirming_ids_description: |
+    Si desactives aquesta opció, ja no rebràs notificacions sobre els identificadors que accepten
+    amb el teu tret que tinguin comentaris addicionals.
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: Connectar
@@ -1376,6 +1391,12 @@ ca:
   curators_changed_for_x_html: "Supervisors han canviat per a %{x}"
   curators: Supervisors
   curators_can_remove_observations_from: Els supervisors poden eliminar observacions del projecte i les seves identificacions es mostren en certes vistes (com a referència). A més, poden veure les coordenades enfosquides o privades del projecte.
+  curator_coordinate_access: Comissari Coordina l'Accés
+  curator_coordinate_access_desc: |
+    L'accés de coordenades del comissari per a projectes tradicionals depèn de qui hagi afegit
+    l'observació al projecte. Aquesta és només la configuració predeterminada per a
+    observacions en projectes. Els observadors també poden optar per canviar-ho per
+    observacions individuals.
   curator_identification: Identificació del supervisor
   current_flags: Etiquetes actuals
   #Label for a custom boundary for an observation search
@@ -1383,6 +1404,8 @@ ca:
   custom_project_fields: Camps de projecte personalitzats
   custom_project_was_successfully_created: El projecte de l'usuari s'ha creat satisfactòriament.
   custom_project_was_successfully_updated: El projecte de l'usuari s'ha actualitzat correctament.
+  #Button to customize projects that appear in the header
+  customize__projects: Personalitzar
   customize_location: Personalitzar la ubicació
   darr_apply_darr: "↓ Aplica ↓"
   daily_users: Usuaris Diaris
@@ -1582,6 +1605,11 @@ ca:
   disable_comments: Desactiva els comentaris
   disable_comments_desc: Evitar que altres persones puguin afegir nous comentaris
   disagree_: En desacord
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: Desacords
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: Mostra observacions que tenen identificacions en desacord
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: Desconnectar
@@ -1695,6 +1723,8 @@ ca:
   edited_by_name_some_rights_reserved_html: |
     Editat per %{name}, alguns drets reservats (%{license})
   editing: Modificant
+  #Title for a page to edit an announcement
+  editing_announcement_x: Edició de l'anunci %{id}
   editing_custom_project_fields_for: Editant els camps personalitzats del projecte per a
   editing_observation_field: Modifica camp d'observació
   editing_observation_id: "Modifica observació %{obs_id}"
@@ -1808,6 +1838,12 @@ ca:
   #Plural noun for instances when someone has marked something as a favorite, e.g. "Order by: Faves"
   faves: Favorits
   Family: Família
+  #Header for a section showing the user's favorite projects
+  favorite_projects: Projectes preferits
+  #Description of what Favorite Projects section in user settings
+  favorite_projects_desc: |
+    Tria fins a set projectes que apareguin com a enllaços a la capçalera. Novetats
+    apareixerà després d'actualitzar la pàgina.
   favorite_taxa: Tàxons preferits
   favorites: "Preferits"
   feature_this_project_: "Destacar aquest projecte"
@@ -2154,6 +2190,8 @@ ca:
   inaturalist_global_year_in_review: "Resum global de l'any %{year} d'iNaturalist"
   inaturalist_is_an_independent_nonprofit: |
     iNaturalist és una organització independent 501(c)(3), exempta d'impostos i sense ànim de lucre amb seu als Estats Units d'Amèrica (ID fiscal: 92-1296468).
+  #Title of identification that was automatically added by a taxon change
+  inaturalist_updated_the_id_suggested_by_user: iNaturalist ha actualitzat l'ID suggerit per %{user}
   computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
   computer_vision_suggestion_desc: |
     El Reconeixement Visual Artificial és el procés pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem eines que utilitzen models de visió artificial obtinguts a partir d'imatges de la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat i la comparació de característiques. Aquesta etiqueta indica que una persona ha afegit una identificació emprant una d'aquestes eines.
@@ -2235,6 +2273,18 @@ ca:
   inaturalist_applications: "Aplicacions d'iNaturalist"
   inaturalist_places: "Llocs %{site_name}"
   info: Informació
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: Identificadors d'infraespècies
+  #Description of preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids_description: |
+    Si desactiveu aquesta opció, ja no rebreu notificacions sobre els identificadors dels tàxons
+    per sota del nivell d'espècie (com subespècies i varietats) que coincideixen amb el vostre
+    ID a nivell d'espècie. Se us notificarà si no estan d'acord amb el vostre DNI o
+    si contenen observacions addicionals.
   input_taxon: Introduir tàxon
   insects: Insectes
   insect_life_stage: Etapa vital de l'insecte
@@ -2247,6 +2297,8 @@ ca:
   internal_taxon_rank: Rang del tàxon intern
   introduced: Introduïda
   introduced_in_place: "Introduït a %{place}"
+  #Error message shown when a date format is invalid
+  invalid_date: Data no vàlida
   invitation: Invitació
   invite: convida
   invite_people: Convida persones
@@ -2486,7 +2538,6 @@ ca:
   #a noun.
   link_to_authorization_code: Enllaç al codi d'autorització
   link_your_flickr_account: Vinculeu el compte de Flickr
-  link_your_google_account: Vinculeu el compte de Google
   linked_flickr: "El vostre compte d’%{site_name} actualment està vinculat amb el compte de Flickr."
   linked_flickr_automatically: "Tingueu en compte també que, si obriu la sessió a %{site_name} a través de Flickr, automàticament es re-enllacen els comptes del vostre lloc %{site_name} i de Flickr. Sembla raonable que, si utilitzeu Flickr voldreu ser capaços d'importar fotos de Flickr, no és així?"
   linked_flickr_description: "Vincular el vostre compte d’%{site_name} amb el compte de Flickr us permet afegir diverses fotos a les observacions. Podeu desvincular els comptes d’%{site_name} i de Flickr en qualsevol moment. No us ho impedirem, però no podreu afegir fotos. De vegades és la millor opció, per exemple, si creeu un nou compte de Flickr i el voleu vincular amb %{site_name}."
@@ -2510,6 +2561,10 @@ ca:
   list_with_two_items: "%{one} i %{two}"
   listed_taxa: Tàxon llistat
   listed_taxon: Tàxon llistat
+  #Adjective describing addition of a taxon to a list
+  listed_taxon_alteration_action_listed: Llistats
+  #Adjective describing removal of a taxon from a list
+  listed_taxon_alteration_action_unlisted: Sense classificar
   listed_taxon_updated: S'ha actualitzat el llistat de tàxons
   listing_lists: Mostrant llistes
   listing_project_assets: Llistat d'arxius del projecte
@@ -2608,6 +2663,10 @@ ca:
   #Application is a mobile app the user has authorized to access their iNat account
   log_out_of_application: "Sortir de %{site_name}?"
   log_scale_label: Registre
+  #Adjectival phrase describing state of being logged in
+  logged_in: Iniciat sessió
+  #Adjectival phrase describing state of being logged out
+  logged_out: Tancat la sessió
   #Status message shown while logging in
   logging_in: Iniciant sessió...
   logo:
@@ -2819,6 +2878,8 @@ ca:
   more_info_title: Més informació
   more_journal_posts: Més articles de revistes
   more_observations: Més observacions
+  #Label for a button or section that shows additional options
+  more_options: Més opcions
   more_photos: Més Fotos
   more_than_a_week_ago: Fa més d'una setmana
   most_agree: La majoria està d’acord
@@ -3050,7 +3111,24 @@ ca:
   no_users_found_with_those_filters: No s'han troba usuaris amb aquests filtres
   no_wikipedia_page_for_taxon: No hi ha cap pàgina a Viquipèdia per a aquest tàxon.
   noble_curators: "Supervisors actius d'%{site}"
+  #A user who is not a curator
+  non_curator: No comissari
+  #Title for a preference to control whether you receive notifications about
+  #non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens and
+  #someone else adds an ID of Mammalia but does not make it a disagreement.
+  non_disagreeing_ancestor_ids: Identificadors d'avantpassats que no estan en desacord
+  #Description of a preference to control whether you receive notifications
+  #about non-disagreeing ancestor IDs, e.g. if your ID is of Homo sapiens
+  #and someone else adds an ID of Mammalia but does not make it a
+  #disagreement.
+  non_disagreeing_ancestor_ids_description: |
+    Si desactiveu aquesta opció, ja no rebreu una notificació quan algú afegeixi un
+    ID d'un tàxon que és un avantpassat del tàxon del vostre document d'identitat i no
+    en desacord explícitament amb el tàxon comunitari. Se us notificarà si el
+    ID té comentaris addicionals.
   non_human?: No humà?
+  #A user who does not admin any projects
+  non_project_admin: Administrador que no és del projecte
   none: Cap
   none_found: No s'ha trobat cap
   normal: normal
@@ -3258,6 +3336,7 @@ ca:
   observation_field_type_taxon: Tàxon
   observation_field_type_dna: ADN
   observation_fields: Camps d'observació
+  observation_fields_for_projects: Camps d'observació per a projectes
   observation_fields_are_additional: Els camps d'observació són camps de dades addicionals que poden afegir-se a les observacions.
   observation_fields_by_preferences_description: |
     Els camps d'observacions són semblants a les etiquetes, excepte que qualsevol persona pot afegir-los a la vostra
@@ -4055,9 +4134,14 @@ ca:
   processing3p: "Processant..."
   profile: Perfil
   profile_picture: Fotografia de perfil
+  #A user may attempt to upload a profile picture with an unsupported content type, and this
+  #text will be the first part of an error message displayed to the user describing that error
+  profile_picture_file_type: Tipus d'arxiu d'imatge de perfil
   profile_visibility_desc: |
     En un esforç per evitar l'spam a %{site_name}, els perfils dels usuaris només són visibles públicament una vegada que aquest hagi contribuït amb diverses observacions amb Grau de Recerca.
   project: Projecte
+  #A user who admin's a project
+  project_admin: Administrador del projecte
   project_admins:
     one: Administrador del Projecte
     other: Administradors del Projecte
@@ -4139,6 +4223,16 @@ ca:
   range: Interval
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: Rang
+  rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: Gènere / Gènerehíbrid
+    #Label when displaying species level, which is the same for species and
+    #hybrid
+    species: Espècie / Híbrid
+    #Label when displaying infraspecies level, which is the same for all the
+    #infraspecies ranks
+    subspecies: Subespècie / Varietat / Forma
   #A person's rank on an ordinal scale (e.g. "first place," "second place,"
   #etc.). Generally used as a column header in lists of observers and
   #identifiers
@@ -4785,6 +4879,9 @@ ca:
     one: Enviar 1 observació
     other: Enviar %{count} observacions
   submitted: Enviat
+  #Label for a button that subscribes the user to updates on a resource, e.g.
+  #comments on a journal post
+  subscribe: Subscriure
   subscribe_to_a_taxon: Subscriure's a un tàxon
   subscribe_to_a_place: Subscriure's a un lloc
   subscribe_to_comments_on_this_flag_html: "%{tag_start}Subscriure's%{tag_end} als comentaris d'aquesta marca"
@@ -5337,7 +5434,6 @@ ca:
   unfollow_observation: Deixar de seguir l'observació
   #Text for a button to stop following updates from a user
   unfollow_user: Deixar de seguir l'usuari
-  unlink_your_google_account: Desvinculeu el vostre compte de Google
   unlink_your_flickr_account: "Desenllaçar el compte de Flickr"
   unmute: No silenciar
   updates_notification_email_subject: "%{prefix} Noves actualitzacions %{date}"
@@ -5357,8 +5453,20 @@ ca:
   upcoming_bioblitzes: Propers bioblitzes
   update: Actualitza
   update_existing_observations_with_new_license: Actualitza les observacions existents amb la llicència triada
+  update_existing_observations_with_new_license_desc: |
+    Si seleccioneu aquesta opció, s'aplicarà la vostra nova opció de llicència a tots els vostres
+    observacions existents. Això pot trigar unes quantes hores si teniu molts
+    Observacions.
   update_existing_photos_with_new_license: Actualitza les fotos existents amb la llicència triada
+  update_existing_photos_with_new_license_desc: |
+    Si seleccioneu aquesta opció, s'aplicarà la vostra nova opció de llicència a tots els vostres
+    fotos existents. Això pot trigar unes quantes hores si teniu molts
+    Fotos.
   update_existing_sounds_with_new_license: Actualitza els sons existents amb la llicència triada
+  update_existing_sounds_with_new_license_desc: |
+    Si seleccioneu aquesta opció, s'aplicarà la vostra nova opció de llicència a tots els vostres
+    sons existents. Això pot trigar unes quantes hores si teniu molts
+    Sons.
   update_observations: Actualitzeu observacions
   update_past: "Actualitzeu %{type} passat"
   update_photos: Actualitzeu fotos
@@ -5502,6 +5610,14 @@ ca:
     L'usuari confia en aquest projecte amb coordenades ocultes, les quals han estat amagades per alguna raó.
   user_trusts_this_project_for_taxon: |
     L'usuari únicament confia en aquest projecte amb coordenades amagades, que han estat ocultades per tractar-se d'un tàxon amenaçat.
+  user_trusts_this_project_when_added_by_any: |
+    L'usuari confia en els curadors del projecte amb coordenades ocultes d'observacions afegides
+    al projecte per qualsevol.
+  user_trusts_this_project_when_added_by_observer: |
+    L'usuari confia en els curadors del projecte amb coordenades ocultes d'observacions afegides
+    al projecte per part de l'observador.
+  user_trusts_this_project_when_added_by_none: |
+    L'usuari no confia en els curadors de projectes amb coordenades ocultes.
   user_trusts_you_with_their_private_coordinates: "%{user} comparteix amb tu les seves coordenades ocultes"
   user_trusts_you_with_their_private_coordinates_desc: |
     L'observador ha escollit compartir amb tu les coordenades ocultes de totes les seves observacions.
@@ -5588,6 +5704,8 @@ ca:
   view_more_observations_of_x_project: "Mostra més observacions del projecte %{project} a <nobr>%{site_name} »</nobr>"
   view_more_observations_of_x_taxon: "Mostra més observacions de %{taxon} a <nobr>%{site_name} »</nobr>"
   view_more_unreviewed: "Veure més no revisats"
+  #Link to view identifications affected by a taxon change
+  view_your_affected_ids: Consultar els identificadors afectats
   view_observation: Veure observació
   view_observations: Veure observacions
   view_observation_flags: Veure marques de l'observació
@@ -5630,9 +5748,8 @@ ca:
   #Species that are "wanted," e.g. we know they exist but haven't been observed
   wanted: Requerit
   was_it_captive_cultivated?: "Estava captiva/conreada?"
-  we_also_support2: |
-    També admetem la importació de fotografies des de <a href="http://flickr.com">Flickr</a>
-    i des de <a href="http://photos.google.com">Google Photos</a>.
+  we_also_support3: |
+    També admetem la importació de fotos des de <a href="http://flickr.com">Flickr</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
   we_couldnt_find_a_user_with_that_activation_code: "No hem trobat cap usuari amb aquest codi d'activació. Pot ser que el compte ja s’hagi activat; proveu d’entrar al sistema."
@@ -5933,6 +6050,94 @@ ca:
   verifiable_observations: Observacions verificables
   views:
     views: 'Vistes'
+    announcements:
+      locales_desc: |
+        CMD o MAJÚSCULES per seleccionar-ne múltiples. Seleccionar "Tots" o no fer
+        Una selecció mostrarà l'anunci a tots els usuaris, independentment de
+        Locale. Triar un idioma sense una regió *no* orientarà
+        locals amb regions, per exemple, si trieu anglès no apareixerà
+        per a persones que han triat l'anglès (Regne Unit).
+      clients_desc: |
+        CMD o MAJÚSCULES per seleccionar-ne múltiples. Seleccionar "Tots" o no fer
+        Una selecció mostrarà l'anunci a tots els usuaris, independentment de
+        client.
+      end_desc: |
+        Hora de la zona horària del compte en què s'aturarà aquest anunci
+        Apareixent. S'aplica a totes les zones horàries, de manera que tothom deixarà de veure-ho
+        al mateix temps, no en relació amb la seva hora local.
+      ip_countries_desc: |
+        CMD o MAJÚSCULES per seleccionar-ne múltiples. Seleccionar "Tots" o no fer
+        Una selecció mostrarà l'anunci a tots els usuaris, independentment de
+        País IP.
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        Tingueu en compte que la data de creació de l'usuari més recent
+        l'observació es posa a la memòria cau, de manera que pot trigar unes hores a orientar-se a
+        Entra en vigor
+      observation_oauth_application_ids_desc: |
+        CMD o MAJÚSCULES per seleccionar-ne múltiples. Seleccionar "Tots" o no fer
+        Una selecció mostrarà l'anunci a tots els usuaris, independentment de
+        app.
+      site_ids_desc: |
+        CMD o MAJÚSCULES per seleccionar-ne múltiples. Seleccionar "Tots" o no fer
+        Una selecció mostrarà l'anunci a tots els usuaris, independentment de
+        afiliació al lloc.
+      start_desc: |
+        Hora de la zona horària del compte en què començarà aquest anunci
+        Apareixent. S'aplica a totes les zones horàries, de manera que tothom començarà a veure
+        al mateix temps, no en relació amb la seva hora local.
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: Orientar els usuaris per comportament de donació
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: Orientar els usuaris per comportament d'identificació
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: Orientar els usuaris per comportament d'observació
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: Orientar els usuaris per altres atributs
+    atlases:
+      show:
+        #Title for section describing atlases
+        about_atlases: Sobre Atlases
+        #Description of what atlases are
+        atlases_convey_the_global_distribution: |
+          Els atles transmeten la distribució global d'un tàxon. Els comissaris fan
+          atles definint l'estructura d'un atles i comissariant el
+          tàxons llistats que l'impulsen.
+        #Label for a button that divides a place in an atlas into it's
+        #constituent places. E.g. if the atlas for Red Fox contained Europe
+        #you wanted to specify that Red Fox only occurs in Belgium and
+        #France, you would "explode" Europe so you could choose Belgium and
+        #France.
+        explode_this_place: Explotar aquest lloc
+        #Label for a button that reunites places in an atlas into the place
+        #that contains them. E.g. if an atlas contains Europe but it has
+        #been "exploded" into its constituent countries, this would remove
+        #those countries so the atlas would just contain Europe again.
+        unexplode_this_place: Desexplotar aquest lloc
+        #Notice when an atlas has not been altered
+        no_alterations_to_this_atlas_yet: Encara no hi ha modificacions en aquest atles
+        #Title for a section showing recent alterations to an atlas
+        recent_atlas_alterations: Alteracions recents de l'Atles
+        #Title for a section showing taxa that were recently added to a check
+        #list
+        recent_listed_taxon_additions: Alteracions recents del tàxon llistat
+        #Label for a button that shows taxa on checklists for a place
+        show_listed_taxa: Mostra els tàxons llistats
+        #Notice when an atlas is not active
+        this_atlas_is_not_currently_active: Aquest atles no està actiu actualment
+        #Warning before removing a place from an atlas
+        this_will_remove_this_taxon_and_all: |
+          Això eliminarà aquest tàxon i tots els seus descendents de les llistes de verificació
+          associat amb aquest lloc i qualsevol lloc estàndard que contingui. Allò
+          no es pot desfer. Estàs segur que vols fer-ho?
+        #Warning when there are observations outside of the places defined by
+        #the atlas
+        warning_there_are_observations_not_represented: |
+          Atenció: hi ha observacions no representades per aquest atles
     content_freeze:
       content_freeze: Congela el contingut
       during_this_time: |
@@ -6012,8 +6217,9 @@ ca:
       index:
         deprecated_banner: |
           Noteu que des del gener de 2019, la funció Guies es mostra "tal qual"; encara no tenim plans per eliminar-les ni s'està proposant desenvolupar-les més.
-        funding_html: |
-          El finançament per al desenvolupament de les Guies ha estat proporcionat per <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          El finançament per al desenvolupament de guies va ser proporcionat per
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           Les guies us ajuden a aprendre sobre la biodiversitat a tot el món. Tant si està explorant el Serengueti, o el seu parc local (que podria ser el Serengueti), amb les guies pot trobar-li sentit a la impresionant diversitat de la vida del nostre planeta.
       edit:
@@ -6400,10 +6606,6 @@ ca:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: |
           La columna geoprivacitat ha d'estar en anglès i ha d'estar en blanca o tenir el valor de "enfoquit" o "privat"
-        google_photos_notice_html: |
-          El febrer del 2019, Google va canviar el seu API, fent impossible per nosaltres accedir a les coordenades del GPS, informació de llicència, i gairebé total la informació que  podiem utilitzar per afegir a una identificació (com etiquetes). També ha eliminat la cerca de text i la paginació numèrica. A més, han requerit que tots els comptes demanin permisos addicionals, i que els tercers siguin verificats. Estem esperant la verificació i mentre arriba, no podreu importar fotos de Google.
-          Si som aprovats, podreu importar fotos, però no inclourà informació d'ubicació o informació de llicència que sí que podeu veure a Photos de Google. Podeu llegir més sobre això a <a href="https://developers.google.com/picasa-
-          web">https://desenvolupadors.google.com/picasa-Web</a>. Descarregar els arxius originals i afegint-los utilitzant la <a href="/observations/upload">Nostra Aplicació </a> és, per ara la millor opció.
         project_csv_template_notice_html: |
           Hi ha un fitxer de plantilla per a aquest projecte que pot ajudar-vos amb l'estructura del fitxer CSV. 
           <a href="%{url}">Descarregar la plantilla</a>
@@ -7057,6 +7259,11 @@ ca:
           Tingueu en compte que la pàgina del tàxon mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies escollides per aquest tàxon es mostraran les primeres. La primera foto serà la imatge que s'utilitzi per defecte de tot el lloc.
         rare_desc: Tàxon amenaçat menys observat
         rare_in_place_desc_html: Tàxon amenaçat menys observa a <a href="%{url}">%{place}</a>
+        site_curators_disabled_wikipedia_html: |
+          Els comissaris del lloc han desactivat la projecció <a href="%{url}">aquest
+          contingut de la Viquipèdia</a>. Podeu ajudar editant la pàgina a
+          Viquipèdia per fer-lo apropiat per a aquest tàxon, o marcant-ho
+          tàxon per portar-lo a l'atenció dels conservadors del lloc.
         trending_desc: Tàxons més observats el darrer mes
         trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
         wanted_desc: Espècies d'aquest taxon que encara no han estat observades
@@ -7143,6 +7350,10 @@ ca:
           <p> La <a href="%{url}" target="_blank"> xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment connectats a la comunitat global iNaturalist. Aquests llocs web compten amb el suport d’institucions locals que han signat un acord amb iNaturalist per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés a les coordenades reals dels seus països que queden automàticament ocultes al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d'usuari i contrasenya són els mateixo a tots els llocs que formen part de la xarxa iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions locals que operen en cada lloc també tindran accés a la vostra adreça de correu electrònic (només per comunicar-vos les activitats del lloc) i accedir a les coordenades reals d'observacions tant siguin públiques o privades. </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de 1000 observacions. </p>
         licensing_desc_html: |
           Llicenciar els continguts, confereix a qualsevol altra el dret a utilitzar-los sense demanar permís si atenen a les condicions de la llicència. %{site_name} inclou els vostres continguts amb llicencia Creative Commons en arxius actualitzats periòdicament produïts per determinades organitzacions associades interessades en les nostres dades. Per exemple, incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ "> Global Biodiversity Information Facility </a> (GBIF), una organització internacional intergovernamental que recopila i distribueix informació sobre biodiversitat de tot el món.
+        errors:
+          #error message when a user attempts to update their profile picture using
+          #an image that has an unsupported file type
+          unsupported_file_type: No s'admet el tipus de fitxer. Acceptem JPG, PNG i GIF
         monthly_supporter_desc_html: |
           Els Patrocinadors Mensuals d'iNaturalist fan contribucions mensuals automàtiques a l'Acadèmia de Ciències de Califòrnia (IRS EIN 94-1156258 dels Estats Units) per a donar suport a les activitats sense ànim de lucre dels llocs iNaturalist i de la Xarxa d'iNaturalist.
           <a href="%{url}"> Feu clic aquí per a convertir-vos en un Patrocinador Mensual</a>. Quan confirmem el vostre suport, podreu marcar aquesta casella per a mostrar aquest estat en el vostre perfil. Nota: Les adreces de correu electrònic a Donorbox i a iNaturalist hauran de ser exactament les mateixes perquè puguem confirmar que s'ha convertit en un Patrocinador Mensual. Si són diferents, canviï una perquè sigui igual a l'altre.
@@ -7211,6 +7422,11 @@ ca:
         same_day_geoprivacy_protection: Protecció de geoprivacitat per "mateix dia"
         taxon_change_desc: |
           Quan es fusionen o canvien de nom els tàxons a %{site_name}, les vostres observacions, llistes de tàxons, identificacions, etc. seran actualitzades automàticament al nou tàxon si el canvi és inequívoc. Si opteu pel contrari o el canvi és ambigu (per exemple, es tracta d'un separació de dos tàxons), rebreu una actualització sobre el canvi vinculat a una eina que, si ho voleu, podreu utilitzar per actualitzar manualment el contingut.
+        this_only_applies_to_traditional_projects2: |
+          Això només s'aplica als projectes tradicionals. No es poden excloure observacions
+          de projectes de col·lecció o paraigua, que són essencialment cerques desades.
+          Pots llegir més
+          <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">aquí</a>.
       recent:
         about_recent_users: Quant a
         definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui un spammer, el que significa que no té cap observació o identificació però sí que té una descripció al perfil. </dd> <dt>Spam Automàtic</dt> <dd> Spammer que ha estat identificats pel sistema com Spammer, de forma automàtica. </dd> <dt>Spam Manual</dt> <dd> Spammer que ha estat considerat així per un supervisor del lloc. </dd> <dt>Falsos Positius</dt> <dd> Usuaris que van ser marcats com spammers però resolts pels supervisors del lloc perquè no eren realment spammers. </dd> </dl>
@@ -7490,6 +7706,10 @@ ca:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       default: '%d %b %Y %H:%M:%S %Z'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short: '%-d %b %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
+      short_with_year: '%-d %b %Y %I:%M %p'
+      #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%I:%M %p"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       observed_at: '%I:%M %p %Z'
@@ -7526,6 +7746,8 @@ ca:
     attributes:
       announcement:
         created_at: Creat el
+        #Whether or not the announcement can be dismissed by people who see it
+        dismissible: Descartable
         updated_at: Actualitzat el
         #Numerical IDs of the iNaturalist Network partner sites the
         #announcement should be shown on
@@ -7534,6 +7756,44 @@ ca:
         #not confirmed their email address
         prefers_target_unconfirmed_users: Per a usuaris sense confirmació.
         clients: Clients
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: Excloure la data d'inici del donant
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: Excloure la data de finalització del donant
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: Excloure observadors de les aplicacions
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: Inclou la data d'inici del donant
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: Inclou la data de finalització del donant
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: Incloure observadors d'aplicacions
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: Països de propietat intel·lectual
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: Última data d'inici de l'obs
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: Data de finalització de l'últim obs
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: Identificacions màximes
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: Identificacions mínimes
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: Observacions màximes
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: Observacions mínimes
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: Col·locació
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: Creador de la destinació (per a proves)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: Destinació iniciada
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: Data de registre de l'usuari més primerenca
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: Última data de registre d'usuari
       assessment:
         description: Descripció
       assessment_section:
@@ -7671,6 +7931,8 @@ ca:
         photos_locked: Fotos bloquejades?
         rank: Rang
         rank_level: Nivell de classificació
+        #Boolean attribute that controls whether Wikipedia content is shown for this taxon
+        shows_wikipedia: Mostra la Viquipèdia
         source_id: ID de la font
         source_identifier: Identificador de la font
         source_url: Enllaç font
@@ -7705,6 +7967,7 @@ ca:
         show_for_descendent_taxa: Mostra per als tàxons descendents
       user:
         email: Correu
+        faved_project_ids: Projectes preferits
         login: Nom d’usuari
         name: Nom
         locale: Local
@@ -7722,6 +7985,7 @@ ca:
         equal_to:
           one: ha de ser igual a %{count}
           other: han de ser iguals a %{count}
+        must_look_like_an_email_address: Ha de semblar una adreça de correu electrònic
         even: ha de ser parell
         exclusion: està reservat
         greater_than:
@@ -7798,6 +8062,8 @@ ca:
             action:
               not_supported_for_this_kind_of_content: no està suportat per aquest tipus de contigut
             base:
+              #Error saying that only staff can rename
+              only_staff_can_rename: Només el personal pot canviar el nom
               staff_cannot_be_suspended: El personal no es pot suspendre
             user_id:
               must_be_a_curator: ha de ser supervisor
@@ -7814,6 +8080,9 @@ ca:
                 no pot ser major que la data quan els va afegir l'observació
               #Error message for an invalid date, e.g. "Date observed must be within the last 130 years"
               must_be_within_130_years: ha de ser dels darrers 130 anys
+              #Error message when user attempts to enter an observation date
+              #like "2020 or "2020-05"
+              must_be_a_single_day: ha de ser un sol dia, no un rang
         observation_field_value:
           attributes:
             value:
@@ -7843,6 +8112,9 @@ ca:
               cannot_be_blank: no pot estar en blanc
               invalid_point: té un punt no vàlid, p.e. la longitud és superior a 180 o la latitud inferior a -90
               must_have_more_than_three_points: ha de tenir més de 3 punts
+              #Error message when a user uploads a KML that has a polygon
+              #where all the points are the same.
+              polygon_with_no_area: té un polígon sense àrea (tots els punts són iguals)
         place_geometry:
           attributes:
             geom:
@@ -7859,6 +8131,10 @@ ca:
             user:
               must_be_on_site_long_enough: |
                 ha de ser registrat transcorregudes, al menys 24 hores abans de la seva publicació. Hi ha molts spammers, i això és una forma d'evitar els seus efectes. Podeu desar un esborrany i, si transcorregut un dia, encara esteu utilitzant el lloc web, ho podreu publicar.
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: Només pots afavorit 7 projectes
         project_observation:
           attributes:
             base:
@@ -7903,6 +8179,11 @@ ca:
             name:
               bad_format: |
                 només pot contenir caràcters llatins estàndard, guionets, espais i x; Tingueu en compte que els tàxons o cultivars putatius no són permesos
+        taxon_change:
+          attributes:
+            base:
+              #Taxon changes cannot involve the Life taxon, which is the root of the taxonomic tree
+              life_taxon_cannot_be_involved: El tàxon Life no pot participar en els canvis de tàxons
         taxon_name:
           attributes:
             lexicon:
@@ -7931,9 +8212,18 @@ ca:
               already_has_a_range: ja té una distribució
         user:
           attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: No pot incloure més de 7 projectes
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: han d'existir tots
             login:
               must_begin_with_a_letter: |
                 ha de començar per una lletra, no contenir espai i utilitzar únicament lletres, xifres, guionets i guions baixos (subratllat)
+              domain_is_not_supported: No s'admet el domini
         user_block:
           attributes:
             base:

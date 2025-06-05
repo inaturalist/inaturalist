@@ -495,6 +495,8 @@ th:
   any_license: ไม่ระบุ
   #Label for an option to show content with photos, sounds, or neither
   any_media: ไม่ระบุ
+  #Label for an option to show any place
+  any_place: ใด
   #Label for an option to show content from any project
   any_project: ไม่ระบุ
   #Label for an option to show content with any quality grade
@@ -779,6 +781,9 @@ th:
   confirm_now: ยืนยันเลย
   confirm_your_info: ยืนยันข้อมูลของคุณ
   confirming_ids: ยืนยันการจำแนก
+  confirming_ids_description: |
+    หากคุณปิด คุณจะไม่ได้รับการแจ้งเตือนเกี่ยวกับรหัสที่ตกลง
+    กับคุณเว้นแต่พวกเขาจะมีข้อสังเกตเพิ่มเติม
   #Label for a button to connect your iNat account to another account, e.g.
   #connecting to Flickr
   connect: เชื่อมต่อ
@@ -951,6 +956,12 @@ th:
   #Label for a menu item linking to a help page aimed at curators
   curator_guide: คู่มือผู้ดูแล
   curators: ผู้ดูแล
+  curator_coordinate_access: การเข้าถึงพิกัดภัณฑารักษ์
+  curator_coordinate_access_desc: |
+    ผู้ประสานงานการเข้าถึงสําหรับโครงการแบบดั้งเดิมขึ้นอยู่กับว่าใครเพิ่ม
+    การสังเกตโครงการ นี่เป็นเพียงการตั้งค่าเริ่มต้นสําหรับ
+    การสังเกตในโครงการ ผู้สังเกตการณ์ยังสามารถเลือกที่จะเปลี่ยนสิ่งนี้สําหรับ
+    การสังเกตส่วนบุคคล
   curator_identification: การจำแนกโดย Curator
   custom_project_was_successfully_created: เพิ่มการปรับแต่งโครงการแล้ว
   custom_project_was_successfully_updated: อัปเดตการปรับแต่งโครงการแล้ว
@@ -1067,6 +1078,11 @@ th:
   devise_reset_password_instructions_hello_email: สวัสดี %{email}
   did_you_mean: 'คุณหมายถึง'
   disagree_: ไม่เห็นด้วย
+  #Checkbox controlling whether to show observations that have disagreeing
+  #identifications or not
+  disagreements: ความขัดแย้ง
+  #Title / tooltip for the disagreements checkbox
+  disagreements_show_observations_that: แสดงข้อสังเกตที่มีการระบุตัวตนที่ไม่เห็นด้วย
   #Label for a button to disconnect your iNat account from another account,
   #e.g. disconnecting your Flickr account
   disconnect: เลิกเชื่อมต่อ
@@ -1121,6 +1137,8 @@ th:
   edited_by_name_some_rights_reserved_html: |
     แก้ไขโดย %{name} สงวนลิขสิทธิ์บางประการ (%{license})
   editing: แก้ไข
+  #Title for a page to edit an announcement
+  editing_announcement_x: การแก้ไขประกาศ %{id}
   editing_observation_field: แก้ไขข้อมูลเสริมการสังเกต
   editing_observation_id: "แก้ไขการสังเกต %{obs_id}"
   editing_observations:
@@ -1410,6 +1428,10 @@ th:
   inappropriate_content: เนื้อหาไม่เหมาะสมใช่ไหม?
   inaturalist_activity_notifications: "การแจ้งเตือนกิจกรรม %{site_name}"
   info: ข้อมูล
+  #Title for a preference to control whether you receive notifications about
+  #infraspecies IDs, i.e. identifications of taxa below the species level,
+  #like subspecies
+  infraspecies_ids: รหัสอินฟราสปีชีส์
   insects: แมลง
   insect_life_stage: ระยะการเจริญของแมลง
   instagram: อินสตาแกรม
@@ -1641,6 +1663,10 @@ th:
   location_is_private: สถานที่นี้เป็นส่วนตัว
   location_specified: มีการระบุตำแหน่ง
   log_scale_label: ล็อก
+  #Adjectival phrase describing state of being logged in
+  logged_in: เข้าสู่ระบบ
+  #Adjectival phrase describing state of being logged out
+  logged_out: ออกจากระบบ
   logo:
     logo: โลโก้
     white_bg_gif: พื้นหลังสีขาว GIF
@@ -1779,6 +1805,8 @@ th:
   more_info_title: ข้อมูลเพิ่มเติม
   more_journal_posts: โพสต์บันทึกเพิ่มเติม
   more_observations: การสังเกตเพิ่มเติม
+  #Label for a button or section that shows additional options
+  more_options: ตัวเลือกเพิ่มเติม
   more_than_a_week_ago: มากกว่าหนึ่งสัปดาห์ที่ผ่านมา
   most_disagree: ไม่เห็นด้วยมากที่สุด
   most_comments_and_faves: มีความคิดเห็นและมีคนชอบมากที่สุด
@@ -1883,6 +1911,10 @@ th:
   no_taxonomic_changes_match_those_criteria: ไม่มีการเปลี่ยนแปลงอนุกรมวิธานที่ตรงกับเกณฑ์เหล่านั้น
   no_users_found_with_those_filters: ไม่พบผู้ใช้งานจากการใช้ตัวกรอง
   noble_curators: "ผู้ดูแลดีเด่นของ %{site}"
+  #A user who is not a curator
+  non_curator: ไม่ใช่ภัณฑารักษ์
+  #A user who does not admin any projects
+  non_project_admin: ผู้ที่ไม่ใช่ผู้ดูแลระบบโครงการ
   none: ไม่ระบุ
   none_found: ไม่พบ
   not_confident_top_suggestions: เราไม่มั่นใจพอที่จะให้คำแนะนำ แต่นี่คือคำแนะนำอันดับแรกของเรา
@@ -1940,6 +1972,7 @@ th:
   observation_field_type_time: เวลา
   observation_field_type_datetime: วันที่และเวลา
   observation_fields: ข้อมูลเสริมการสังเกต
+  observation_fields_for_projects: ฟิลด์สังเกตการณ์สําหรับโครงการ
   #Help text to show what kind of values you can enter for the date an observation was observed
   observation_observed_on_examples: |
     เช่น 2019-10-29 13:12:21
@@ -2252,6 +2285,8 @@ th:
   profile: โปรไฟล์
   profile_picture: รูปโปรไฟล์
   project: โครงการ
+  #A user who admin's a project
+  project_admin: ผู้ดูแลระบบโครงการ
   project_admins:
     other: แอดมินโครงการ
   project_assessments: การประเมินโครงการ
@@ -2292,6 +2327,9 @@ th:
   #Taxonomic rank, e.g. "genus," "subfamily", "kingdom", etc.
   rank: ลำดับ
   rank_levels:
+    #Label when displaying genus level, which is the same for genus and
+    #genushybrid
+    genus: สกุล / สกุลไฮบริด
     #Label when displaying species level, which is the same for species and
     #hybrid
     species: ชนิด / พันธุ์ผสม
@@ -3049,6 +3087,14 @@ th:
   user_is_a_naturalist: "%{user} เป็นนักธรรมชาติวิทยา!"
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
   user_trusts_this_project_for_none: ผู้ใช้งานไม่ไว้วางใจโครงการนี้ในการเปิดเผยพิกัด
+  user_trusts_this_project_when_added_by_any: |
+    ผู้ใช้ไว้วางใจผู้ดูแลโครงการที่มีพิกัดการสังเกตที่ซ่อนอยู่
+    ไปยังโครงการโดยทุกคน
+  user_trusts_this_project_when_added_by_observer: |
+    ผู้ใช้ไว้วางใจผู้ดูแลโครงการที่มีพิกัดการสังเกตที่ซ่อนอยู่
+    ไปยังโครงการโดยผู้สังเกตการณ์
+  user_trusts_this_project_when_added_by_none: |
+    ผู้ใช้ไม่ไว้วางใจผู้ดูแลโครงการที่มีพิกัดที่ซ่อนอยู่
   user_trusts_you_with_their_private_coordinates_desc: |
     ผู้สังเกตไว้วางใจคุณในการเปิดเผยพิกัดการสังเกตของเขาทั้งหมด
   username_or_user_id: ชื่อผู้ใช้ หรือ ID ผู้ใช้
@@ -3124,6 +3170,8 @@ th:
   vulnerable: มีแนวโน้มใกล้สูญพันธุ์
   w_sounds: มีเสียง
   was_it_captive_cultivated?: "ถูกจับมา / เพาะปลูกหรือไม่?"
+  we_also_support3: |
+    เรายังรองรับการนําเข้ารูปภาพจาก <a href="http://flickr.com">Flickr</a>.
   we_have_no_conservation_status_for_this_taxon: เรายังไม่มีสถานะการอนุรักษ์สำหรับหน่วยอนุกรมวิธานนี้
   we_have_no_establishment_data_for_this_taxon: "เราไม่มีข้อมูลการตั้งถิ่นฐานสำหรับหน่วยอนุกรมวิธานนี้"
   website: เว็บไซต์
@@ -3261,6 +3309,40 @@ th:
   verifiable: ตรวจสอบได้
   verifiable_observations: การสังเกตที่ตรวจสอบได้
   views:
+    announcements:
+      clients_desc: |
+        คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
+        การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
+        ลูกค้า
+      ip_countries_desc: |
+        คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
+        การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
+        ประเทศ IP
+      #Note about how the announcement last observation date property works
+      last_observation_date_desc: |
+        โปรดทราบว่าวันที่สร้างของผู้ใช้ที่สร้างล่าสุด
+        การสังเกตจะถูกแคช ดังนั้นจึงอาจใช้เวลาสองสามชั่วโมงในการกําหนดเป้าหมาย
+        ผล
+      observation_oauth_application_ids_desc: |
+        คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
+        การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
+        แอพ
+      site_ids_desc: |
+        คลิกค้างไว้แล้วคลิก CMD- หรือ SHIFT เพื่อเลือกหลายรายการ การเลือก "ทั้งหมด" หรือไม่ทํา
+        การเลือกจะแสดงประกาศต่อผู้ใช้ทุกคนโดยไม่คํานึงถึง
+        สังกัดเว็บไซต์
+      #Description of a group of options for targeting announcements based
+      #on donation behavior
+      target_users_by_donation_behavior: กําหนดเป้าหมายผู้ใช้ตามพฤติกรรมการบริจาค
+      #Description of a group of options for targeting announcements based
+      #on identification behavior
+      target_users_by_identification_behavior: กําหนดเป้าหมายผู้ใช้ตามพฤติกรรมการระบุตัวตน
+      #Description of a group of options for targeting announcements based
+      #on observation behavior
+      target_users_by_observation_behavior: กําหนดเป้าหมายผู้ใช้ตามพฤติกรรมการสังเกต
+      #Description of a group of options for targeting announcements based
+      #miscellaneous user attributes
+      target_users_by_other_attributes: กําหนดเป้าหมายผู้ใช้ตามแอตทริบิวต์อื่นๆ
     donate:
       donate_short_desc: "บริจาคเพื่อสนับสนุนเลย!"
       post_donate_social_media_text: ฉันสนับสนุน iNaturalist เพราะว่า...
@@ -3294,8 +3376,9 @@ th:
       your_site_account_has_no_email: ของคุณ %{site_name} บัญชีไม่มีที่อยู่อีเมลที่เชื่อมโยง
     guides:
       index:
-        funding_html: |
-          สนับสนุนเงินทุนเพื่อพัฒนาคู่มือสำรวจโดย <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+        funding2_html: |
+          เงินทุนสําหรับการพัฒนา Guides จัดทําโดย
+          <a href="http://eol.org"><img alt="Encyclopedia of Life" src="%{image_url}"></a>
         welcome_message_html: |
           คู่มือสำรวจธรรมชาติจะช่วยให้คุณเรียนรู้เกี่ยวกับความหลากหลายทางชีวภาพจากทั่วโลก ไม่ว่าคุณกำลังสำรวจในอุทยานแห่งชาติเซเรนเกตีหรือแค่สวนสาธารณะใกล้บ้าน คู่มือจะช่วยให้คุณเข้าใจความหลากหลายของสิ่งมีชีวิตอันน่าทึ่งของโลกใบนี้
       pdf_layouts:
@@ -3782,6 +3865,45 @@ th:
       #iNaturalist Android app or an app made by a third party
       OauthApplication: แอปพลิเคชัน
     attributes:
+      announcement:
+        #Start of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_start_date: ยกเว้นวันที่เริ่มต้นของผู้บริจาค
+        #End of a date range that the viewer must not have donated in to see the announcement
+        exclude_donor_end_date: ยกเว้นวันที่สิ้นสุดของผู้บริจาค
+        #iNat client applications that the user must not have made an observation
+        #with to see the announcement
+        exclude_observation_oauth_application_ids: ยกเว้นผู้สังเกตการณ์จากแอป
+        #start of a date range that the viewer must have donated in to see the announcement
+        include_donor_start_date: รวมวันที่เริ่มต้นของผู้บริจาค
+        #End of a date range that the viewer must have donated in to see the announcement
+        include_donor_end_date: รวมวันที่สิ้นสุดของผู้บริจาค
+        #iNat client applications that the user must have made an observation
+        #with to see the announcement
+        include_observation_oauth_application_ids: รวมผู้สังเกตการณ์จากแอป
+        #List of countries that the viewer's IP address can come from to see the announcement
+        ip_countries: ประเทศ IP
+        #Start of a date range that includes the viewer's most recent observation
+        last_observation_start_date: วันที่เริ่มต้น obs ล่าสุด
+        #end of a date range that includes the viewer's most recent observation
+        last_observation_end_date: วันที่สิ้นสุด obs ล่าสุด
+        #Maximum number of identifications the viewer must have added for others to see the announcement
+        max_identifications: การระบุตัวตนสูงสุด
+        #Minimum number of identifications the viewer must have added for others to see the announcement
+        min_identifications: การระบุขั้นต่ํา
+        #Maximum number of observations the viewer must have added for others to see the announcement
+        max_observations: การสังเกตสูงสุด
+        #Minimum number of observations the viewer must have added for others to see the announcement
+        min_observations: การสังเกตขั้นต่ํา
+        #Place in iNat where this announcement will be shown, e.g. web dashboard, mobile home, etc
+        placement: ตำแหน่ง
+        #Preference for an announcement that is only shown to the user who created the announcement
+        target_creator: ผู้สร้างเป้าหมาย (สําหรับการทดสอบ)
+        #Whether or not the announcement is shown to logged in users
+        target_logged_in: เป้าหมายเข้าสู่ระบบ
+        #Earliest date the viewer can have signed up to see the announcement
+        user_created_start_date: วันที่ลงทะเบียนผู้ใช้เร็วที่สุด
+        #Latest date the viewer can have signed up to see the announcement
+        user_created_end_date: วันที่ลงทะเบียนผู้ใช้ล่าสุด
       assessment:
         description: คำอธิบาย
       assessment_section:
@@ -3842,10 +3964,12 @@ th:
         #Biodiversity Information Facility
         site_title: ชื่อเว็บไซต์
       user:
+        faved_project_ids: โครงการที่ชื่นชอบ
         name: ชื่อ
         search_place_id: ค้นหาสถานที่
     errors:
       messages:
+        must_look_like_an_email_address: ต้องดูเหมือนที่อยู่อีเมล
         new_project_owner_must_be_a_manager: เจ้าของโครงการใหม่ต้องเป็นแอดมิน
         requires_privilege_interaction: ต้องมีที่อยู่อีเมลที่ได้รับการยืนยันเพื่อทําเช่นนั้น
       models:
@@ -3867,6 +3991,10 @@ th:
             place_geometry:
               is_too_large_to_edit: มีขนาดใหญ่เกินไปจึงแก้ไขไม่ได้
               is_too_large_to_import: มีขนาดใหญ่เกินไปจึงนำเข้าไม่ได้
+        project_fave:
+          attributes:
+            base:
+              only_seven_projects: คุณสามารถชื่นชอบได้เพียง 7 โครงการเท่านั้น
         taxon_name:
           attributes:
             lexicon:
@@ -3876,6 +4004,18 @@ th:
           attributes:
             iucn_relationship:
               must_be_an_accepted_value: ต้องเป็นค่าที่ยอมรับได้
+        user:
+          attributes:
+            faved_project_ids:
+              #Error when a user tries to add more than 7 favorite projects,
+              #e.g. "Faved projects cannot include more than 7 projects"
+              cannot_include_more_than_7_projects: ไม่สามารถรวมได้มากกว่า 7 โครงการ
+              #Error when a user tries to add a project that does not exist
+              #to their favorite projects, e.g. "Faved projects must all
+              #exist"
+              must_all_exist: ต้องมีอยู่ทั้งหมด
+            login:
+              domain_is_not_supported: ไม่รองรับโดเมน
   i18n:
     inflections:
       "@gender":
