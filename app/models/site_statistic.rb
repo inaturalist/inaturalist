@@ -196,9 +196,20 @@ class SiteStatistic < ApplicationRecord
       size: 0,
       track_total_hits: true,
       filters: [
-        range: {
-          created_at: {
-            lte: at_time
+        {
+          range: {
+            created_at: {
+              lte: at_time
+            }
+          }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
           }
         }
       ]
@@ -207,10 +218,21 @@ class SiteStatistic < ApplicationRecord
       size: 0,
       track_total_hits: true,
       filters: [
-        range: {
-          created_at: {
-            gte: at_time - 7.days,
-            lte: at_time
+        {
+          range: {
+            created_at: {
+              gte: at_time - 7.days,
+              lte: at_time
+            }
+          }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
           }
         }
       ]
@@ -219,10 +241,21 @@ class SiteStatistic < ApplicationRecord
       size: 0,
       track_total_hits: true,
       filters: [
-        range: {
-          created_at: {
-            gte: at_time - 1.days,
-            lte: at_time
+        {
+          range: {
+            created_at: {
+              gte: at_time - 1.days,
+              lte: at_time
+            }
+          }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
           }
         }
       ]
@@ -311,6 +344,15 @@ class SiteStatistic < ApplicationRecord
               lte: at_time
             }
           }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
         }
       ],
       aggregate: {
@@ -373,6 +415,15 @@ class SiteStatistic < ApplicationRecord
         },
         {
           term: { own_observation: false }
+        },
+        {
+          bool: {
+            must_not: {
+              exists: {
+                field: "taxon_change.id"
+              }
+            }
+          }
         }
       ],
       aggs: {
