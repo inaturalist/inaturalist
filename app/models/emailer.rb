@@ -10,6 +10,8 @@ class Emailer < ActionMailer::Base
 
   include Shared::MailerModule
 
+  class NoAsmGroupIdError < StandardError; end
+
   default from: "#{Site.default.try( :name )} <#{Site.default.try( :email_noreply )}>",
     reply_to: Site.default.try( :email_noreply )
 
@@ -147,10 +149,15 @@ class Emailer < ActionMailer::Base
     )
   end
 
-  def custom_email( user, subject, body )
+  def custom_email( user, subject, body, asm_group_id )
+    if asm_group_id.blank?
+      raise NoAsmGroupIdError, "You must specify an asm_group_id to send a custom email"
+    end
+
     @user = user
     @subject = subject
     @body = body
+    @x_smtpapi_headers[:asm_group_id] = asm_group_id
     mail_with_defaults( to: "#{@user.name} <#{@user.email}>", subject: @subject )
   end
 
