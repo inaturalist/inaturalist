@@ -956,7 +956,6 @@ th:
   #Label for a menu item linking to a help page aimed at curators
   curator_guide: คู่มือผู้ดูแล
   curators: ผู้ดูแล
-  curator_coordinate_access: การเข้าถึงพิกัดภัณฑารักษ์
   curator_coordinate_access_desc: |
     ผู้ประสานงานการเข้าถึงสําหรับโครงการแบบดั้งเดิมขึ้นอยู่กับว่าใครเพิ่ม
     การสังเกตโครงการ นี่เป็นเพียงการตั้งค่าเริ่มต้นสําหรับ
@@ -3088,11 +3087,9 @@ th:
   user_suggested_an_id: "%{user} แนะนำว่าเป็น"
   user_trusts_this_project_for_none: ผู้ใช้งานไม่ไว้วางใจโครงการนี้ในการเปิดเผยพิกัด
   user_trusts_this_project_when_added_by_any: |
-    ผู้ใช้ไว้วางใจผู้ดูแลโครงการที่มีพิกัดการสังเกตที่ซ่อนอยู่
-    ไปยังโครงการโดยทุกคน
+    ผู้ใช้อนุญาตให้ผู้ดูแลโครงการเข้าถึงพิกัดที่ถูกซ่อนของการสังเกตที่ถูกเพิ่มเข้าโครงการโดยผู้ใดก็ตาม
   user_trusts_this_project_when_added_by_observer: |
-    ผู้ใช้ไว้วางใจผู้ดูแลโครงการที่มีพิกัดการสังเกตที่ซ่อนอยู่
-    ไปยังโครงการโดยผู้สังเกตการณ์
+    ผู้ใช้อนุญาตให้ผู้ดูแลโครงการเข้าถึงพิกัดที่ถูกซ่อนของการสังเกตที่ถูกเพิ่มเข้าโครงการโดยผู้ใดก็ตาม
   user_trusts_this_project_when_added_by_none: |
     ผู้ใช้ไม่ไว้วางใจผู้ดูแลโครงการที่มีพิกัดที่ซ่อนอยู่
   user_trusts_you_with_their_private_coordinates_desc: |
