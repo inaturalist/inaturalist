@@ -176,8 +176,8 @@ tr:
   activity_snipped_resource_with_indefinite_article: "%{resource}"
   about: Hakkında
   about_charts: Grafikler Hakkında
-  about_community_taxa: Topluluk sınıfları hakkında
-  about_complete_taxa: Eksiksiz Sınıflar Hakkında
+  about_community_taxa: Topluluk taksonları hakkında
+  about_complete_taxa: Eksiksiz Taksonlar Hakkında
   about_conservation_status: Koruma Durumu Hakkında
   about_editing_observation_fields: Gözlem Alanlarını Düzenleme Hakkında
   #Header for a section explaining Establishment Means. See the
@@ -222,7 +222,7 @@ tr:
   about_trusting_projects_options_any_desc: |-
     Bu, coğrafi gizliliği "gizlenmiş" ya da "özel" olarak ayarladığın gözlemleri içerir, örneğin arka bahçenden ya da başkalarının bilmesini istemediğin noktalardan yapılan gözlemler gibi.
   about_trusting_projects_options_taxon: |-
-    Sadece bu projede, tehdit altındaki sınıflandırmalar için gizlenmiş koordinatların
+    Sadece bu projede, tehdit altındaki taksonlar için gizlenmiş koordinatların
   about_trusting_projects_options_taxon_desc: |-
     Birçok proje, gözlem, tehdit altındaki bir taksonu tanımladığı için gizlenmiş olan koordinatlara erişime ihtiyaç duyar.
   about_trusting_projects_overview: |-
@@ -270,7 +270,7 @@ tr:
   adapted_by_name_from_a_work_by_original: "%{name} tarafından %{original} eserinden uyarlanmıştır"
   add: Ekle
   add_a_batch_of_observations: Toplu Gözlem Ekle
-  add_a_batch_of_taxa: Toplu Sınıf Ekle
+  add_a_batch_of_taxa: Toplu Takson Ekle
   #Tool tip for a button that adds a bulleted list to a text area
   add_a_bulleted_list: Madde işaretli bir liste ekle
   add_a_comment: Bir Yorum Ekle
@@ -334,7 +334,7 @@ tr:
   add_new_rule: Yeni Bir Kural Ekle
   add_new_source: "Yeni Kaynak Ekle..."
   add_new_taxon_name: Yeni Bir Takson Adı Ekle
-  add_notes_about_this_taxon: Bu yerdeki takson hakkında, ör. nerede ve ne zaman görüldüğü gibi notlar ekle.
+  add_notes_about_this_taxon: Bu konumdaki sınıf hakkında, örneğin nerede ve ne zaman görüldüğü gibi notlar ekle.
   add_obs_from_a_link: "Şu listeden gözlem ekle: %{link}"
   add_obs_from_a_list: Bir Listeden Gözlem Ekle
   add_observation_fields: Gözlem Alanları Ekle
@@ -397,8 +397,8 @@ tr:
   add_some_now: Şimdi Bir Şey Ekle
   add_tag: Etiket Ekle
   add_tags: Etiket Ekle
-  add_tags_to_selected_taxa: Seçili Sınıflara Etiket Ekle
-  add_taxa: Sınıf Ekle
+  add_tags_to_selected_taxa: Seçili Taksonlara Etiket Ekle
+  add_taxa: Takson Ekle
   add_taxon_batch_to: "%{list} Listesine Toplu Takson Ekle"
   add_taxon_range: Takson Yayılımı Ekle
   add_taxonomic_tags_to: "Seçili Flickr fotoğraflarına taksonomik etiketler ekle &raquo;"
@@ -548,8 +548,8 @@ tr:
     x_other_animals:
       one: "%{count} diğer hayvan"
       other: "%{count} diğer hayvan"
-  all_taxa_: Tüm sınıflar
-  all_taxa_in_this_guide: Bu rehberdeki tüm sınıflar
+  all_taxa_: Tüm taksonlar
+  all_taxa_in_this_guide: Bu rehberdeki tüm taksonlar
   all_taxonomic_groups: "&laquo; Tüm Taksonomik Gruplar"
   all_updates: Tüm Güncellemeler
   allow_curator_access: Küratör erişimine izin ver
@@ -569,7 +569,7 @@ tr:
   analyze_clashes: Beklenmeyen Uyuşmazlıkları Analiz Et
   analyze_ids: Tanımlama Analizi
   ancestor_taxon: Üst Takson
-  and_other_taxa: "&amp; Diğer Sınıflar"
+  and_other_taxa: "&amp; Diğer Taksonlar"
   android: Android
   animals: Hayvanlar
   annotation: Açıklama
@@ -640,7 +640,7 @@ tr:
   apply_fields: Alanları uygula
   apply_geoprivacy: Coğrafi gizliliği uygula
   apply_darr: "Uygula &darr;"
-  apply_establishment_means_to_descendant_places: "Yerleşim tiplerini soydan gelen konumlara uygula"
+  apply_establishment_means_to_descendant_places: "Yerleşim tiplerini alt düzeydeki konumlara uygula"
   apply_these_settings_to_all: Bu ayarları aşağıdaki tüm gözlemlere uygula.
   appropriate?: Uygun mu?
   arachnids: örümceğimsiler
@@ -709,13 +709,13 @@ tr:
   are_you_sure_you_want_to_remove_spammer: |
     Bu kullanıcıyı güvenilir bulduğuna emin misin? 
     İçeriğindeki tüm gereksiz işaretler kaldırılacak.
-  are_you_sure_you_want_to_remove_these_x_taxa?: "%{x} sınıflarını kaldırmak istediğine emin misin?"
+  are_you_sure_you_want_to_remove_these_x_taxa?: "%{x} taksonlarını kaldırmak istediğine emin misin?"
   are_you_sure_you_want_to_remove_this_observation_from_project: |
     Bu gözlemi %{project} projesinden kaldırmak istediğinden emin misin?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: "Bu taksonu %{place} konumunun kontrol listesinden kaldırmak istediğine emin misin?"
   are_you_sure_you_want_to_flag_as_spammer: Bu kullanıcıyı istenmeyen olarak işaretlemek istediğinden emin misin?
   associated_observations: İlgili gözlemler
-  associated_taxa: İlgili sınıflar
+  associated_taxa: İlişkili taksonlar
   attention: Dikkat
   you_sure_delete_list: Bu listeyi silmek istediğine emin misin?
   you_sure_delete_taxon_from_list?: "%{taxon} taksonunu listeden kaldırmak istediğine emin misin?"
@@ -781,7 +781,7 @@ tr:
   back_to_lists: "%{name} listesine dön"
   back_to_observation: Gözleme dön
   back_to_observation_fields: Gözlem alanlarına dön
-  back_to_people: İnsanlara dön
+  back_to_people: Kişilere geri dön
   back_to_places: Konumlara dön
   back_to_possessive_user_profile: "%{possuser} kullanıcısının profiline dön"
   back_to_post: '&laquo; Gönderiye dön'
@@ -817,7 +817,7 @@ tr:
   batch: Toplu
   batch_edit: Toplu düzenle
   #Where x is the title of a list of taxa
-  batch_edit_taxa_for_x_html: "%{x} için sınıfları toplu düzenle"
+  batch_edit_taxa_for_x_html: "%{x} için taksonları toplu düzenle"
   batch_operations: Toplu İşlemler
   be_the_first_to_fave_this_observation: Bu gözlemi favori yapan ilk sen ol!
   #disagreements are identifications that disagree with other identifications on the same observation
@@ -878,7 +878,7 @@ tr:
   card: Kart
   casual: sıradan
   casual_: Sıradan
-  casual_tooltip_html: '"Sıradan" gözlemlerde medya, konum veya tarih eksiktir ya da başka nedenlerle "Araştırma" ya da "Tanımlama Gerekli" derecelerinin gerekliliklerini karşılamamaktadır. <a href="https://www.inaturalist.org/pages/help#quality">Kalite dereceleri hakkında daha çok bilgi edin</a>'
+  casual_tooltip_html: '"Sıradan" gözlemlerde medya, konum veya tarih eksiktir ya da başka nedenlerle "Araştırma" ya da "Tanımlama Gerekli" derecelerinin gerekliliklerini karşılamamaktadır. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha çok bilgi edin</a>'
   categories: Kategoriler
   cc_0_description: "Bu lisans, çalışmanızı kamuya açık bir alanda yayınlar; böylece diğerleri, izin almadan ya da size bilgi vermeden ticari amaçlarla bile çalışmanızı kopyalayabilir, değiştirebilir, dağıtabilir ve uygulayabilir. Sunulan lisansların en uygunu budur. Azami yayılma ve lisanslı malzemelerin kullanımı için önerilir."
   cc_0_name: Telif Hakkı Yok (CC0)
@@ -950,7 +950,7 @@ tr:
   check_here_to_autoload_photos: Flickr'dan fotoğrafları otomatik yüklemek için burayı işaretle. Bir taksonun bilimsel adı aynı zamanda bilimsel olmayan bir sözcük ya da "Parus" gibi yaygın bir yanlış yazım olduğunda bu işareti kaldırmak isteyebilirsin.
   check_list: Kontrol listesi
   check_list_description: Bu listede gösterilmesini istediğin kuşlar için "Aves" ya da yüzergezerler için "Amphibia" gibi daha üst düzey bir takson seç. Ayarlandığında, bu liste bu taksonda olmayan taksonlara izin vermeyecektir. Örneğin, bir kuş listesi oluşturursan, bu listeye herhangi bir kurbağa ekleyemezsin.
-  check_list_for_individual_taxa_that: 'Burada yaşayan sınıflar için listeleri kontrol et, örneğin "%{place} Kuşları".'
+  check_list_for_individual_taxa_that: 'Burada yaşayan bireysel taksonlar için listeleri kontrol et, örneğin "%{place} Kuşları".'
   check_list_for_taxon_html: "%{taxon} için kontrol listesi"
   check_lists_must_belong_to_a_place: |
     Kontrol listeleri bir konuma ait olmalıdır. Yeni bir kontrol listesi oluşturmak için bir konumun varsayılan kontrol listesini ziyaret edin ve 'Yeni bir kontrol listesi oluştur' bağlantısını tıklayın.
@@ -1102,14 +1102,14 @@ tr:
     description: Bunun neden listelendiğinin kısa açıklaması.
     authority: |
       Bu statüyü ilan eden kuruluş. Lütfen yeni bir otorite eklemeden önce mevcut bir otoriteyi seçmek için otomatik tamamlamayı kullanın. Eğer *sen* yetkili olarak listelenmek istiyorsan bunu atlayabilirsin.
-    place: Bu statünün kısıtlandığı konum.
+    place: Bu statünün kısıtlandığı yer.
     url: Bu statüyü açıklayan bir sayfanın URL'si.
     geoprivacy: |
       Bu taksonun gözlemleri için varsayılan coğrafi gizlilik. Kıta, ülke ya da eyalet düzeyinde bir konumla ilişkili bir durumun coğrafi gizliliğinin, küresel olan ya da daha üst düzey bir yerle ilişkili bir durumu geçersiz kılabileceğini unutmayın.
     iucn: |
       Eşdeğer IUCN Kırmızı Liste kodu. Bu gerçek IUCN değerlendirmesi değildir, sadece bu durumun ima ettiği koordinat ifşası tehdidine en iyi uyan IUCN kodudur. Bu, "En Az Endişe Verici" ya da altında ise coğrafi gizliliği geçersiz kılacaktır, bu nedenle bu taksonun gözlemlerini gizlemek istiyorsanız için bunu "Tehdide Yakın" ya da daha yüksek bir değere ayarlayın.
   conservation_status_geoprivacy_desc: |
-    Bu yerdeki tüm takson gözlemlerine uygulanan varsayılan coğrafi gizlilik
+    Bu konumdaki tüm sınıf gözlemlerine uygulanan varsayılan coğrafi gizlilik
   contact_support: Destekle İletişime Geç
   contain_all_descendants?: Bu kontrol listesi, bu taksonun burada görülen tüm alt taksonlarını içeriyor mu?
   #Noun, e.g. a header in a table showing flags for a column containing the content that was flagged.
@@ -1249,7 +1249,7 @@ tr:
   #that the viewer has permission to see
   coords_viewable_for_proj_label: Sadece tam koordinatlılar
   coords_viewable_for_proj_desc: |
-    Sadece bu projede görebileceğin "gerçek" koordinatları; gizlenmemiş gözlemler, size güvenen kişilerin gizlenmiş gözlemleri, bu projeye tamamıyla güvenen kişilerin gizlenmiş gözlemleri, yine aynı şekilde sadece bu projeye güvenen kişilerin tehlike sınıfındaki gizlenmiş gözlemleri de dahil olacak şekilde göster.
+    Bu projedeki yalnızca "gerçek" koordinatları görebileceğin gözlemleri göster — buna şunlar dahildir: gizlenmemiş gözlemler, size güvenen kişiler tarafından gizlenmiş gözlemler, herhangi bir konuda bu projeye güvenen kişiler tarafından gizlenmiş gözlemler ve yalnızca tehdit altındaki taksonlar için bu projeye güvenen kişiler tarafından gizlenmiş gözlemler.
   copy: Kopyala
   copy_and_paste_the_following_code_to: Bu değerlendirmeyi başka bir ağ sayfasına yerleştirmek için aşağıdaki kodu kopyalayıp yapıştır.
   copy_and_paste_this_into_your_own_html: Bunu kopyalayıp kendi HTML'ne yapıştır.
@@ -1309,7 +1309,7 @@ tr:
   csv_should_not_contain_a_header_row: CSV başlık satırı içermemelidir
   cumulative_ids: "Toplam Tanımlama: %{count} / %{total}"
   curate_observations: Gözlemleri düzenle
-  curate_taxa: Sınıfları Düzenle
+  curate_taxa: Taksonları Düzenle
   curate_user: Kullanıcıyı Düzenle
   curating: Düzenleme
   curation: Düzenleme
@@ -1379,7 +1379,7 @@ tr:
   #things curators can do, so you might imagine it is preceded with "Curators
   #can..."
   curator_application_what_curators_can_do_edit_places_html: |
-    Topluluk tarafından oluşturulan Konumları düzenleyebilir ve 1 MB'tan büyük (ancak 5 MB'den küçük) KML dosyalarını yükleyebilir.
+    Topluluk tarafından oluşturulan Yerleri düzenleyebilir ve 1 MB'tan büyük (ancak 5 MB'den küçük) KML dosyalarını yükleyebilir.
   #Header
   curator_application_what_curators_cannot_do: Küratörler Neleri Yapamaz
   #Description of the fact that a curator cannot change certain attributes of
@@ -1416,7 +1416,8 @@ tr:
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_committed: |
-    Düzenli aralıklarla küratörlük yapmaya uygun ve gönüllüysen. Eğer sadece bir kaç sınıflandırma ekleyeceksen, bir üst sınıflandırmaya işaret bırakarak varolan küratörlerden bir alt sınıfı girmesini isteyebilirsin.
+    Düzenleme çalışmalarını düzenli olarak yapmaya istekli ve yetkili olmalısın. Eğer yalnızca birkaç takson eklemek istiyorsan, lütfen mevcut küratörlerden bu taksonları eklemelerini istemek için üst düzey taksonlara 
+    işaret ekleyin.
   #A requirement for becoming a curator; part of a list, so you might imagine
   #it is preceded with "You should apply to be a curator if..."
   curator_application_you_should_apply_if_you_can_behave: |
@@ -1669,6 +1670,8 @@ tr:
   #Button text to donate to iNaturalist. Please try to keep translations as
   #short as possible
   donate: BAĞIŞ YAP
+  #Imperative verb; link to a page where a user can donate money to iNaturalist
+  donate_: Bağış Yap
   donate_again_caps: TEKRAR BAĞIŞ YAP
   donate_again_today_caps: BUGÜN TEKRAR BAĞIŞ YAP
   #Title for pages and sections that encourage people to donate to iNaturalist
@@ -1692,7 +1695,7 @@ tr:
   downstream_deviations_for_taxon: "%{taxon} için alt takson uyumsuzluğu"
   #Label for a link to taxa that are descendants ("downstream") of the current
   #taxon that are covered by the same Taxon Framework
-  downstream_flagged_covered_taxa: Alt soy işaretli sınıflar
+  downstream_flagged_covered_taxa: Alt soy işaretli taksonlar
   #Noun, as in a journal post that has not been published
   draft: taslak
   #Noun, as in a journal post that has not been published
@@ -1741,7 +1744,7 @@ tr:
   edit_remove: Düzenle/Kaldır
   edit_selected: Seçileni Düzenle
   edit_source: Kaynağı Düzenle
-  edit_taxa: Sınıfları Düzenle
+  edit_taxa: Taksonları Düzenle
   edit_taxon: Taksonu Düzenle
   edit_taxon_framework: Takson Çerçevesini Düzenle
   edit_taxon_link: Takson Bağlantısını Düzenle
@@ -1830,7 +1833,7 @@ tr:
   events_only: Yalnız etkinlikler
   everyone: herkes
   everyone_: Herkes
-  everyone_journal_posts: Herkesin Günlük Gönderileri
+  everyone_journal_posts: Topluluğun Günlük Gönderileri
   everywhere: her yer
   exact: Tam
   exact_date: Tam Tarih
@@ -1842,7 +1845,7 @@ tr:
   exclude__taxon: Hariç tut
   exclude_places: Konumları Hariç Tut
   exclude_projects: Projeleri Hariç Tut
-  exclude_taxa: Sınıfları Hariç Tut
+  exclude_taxa: Taksonları Hariç Tut
   exclude_users: Kullanıcıları Hariç Tut
   #Shows how many taxa have been excluded from an observation search
   excluding_x_taxa:
@@ -1888,7 +1891,7 @@ tr:
   #Description of what Favorite Projects section in user settings
   favorite_projects_desc: |
     Başlıkta bağlantı olarak görünecek en fazla yedi proje seçin. Güncellemeler sayfa yenilendikten sonra görünecektir.
-  favorite_taxa: Favori Sınıflar
+  favorite_taxa: Favori Taksonlar
   favorites: "Favoriler"
   feature_this_project_: "Bu Projeyi Öne Çıkar"
   featured: Öne Çıkan
@@ -1918,7 +1921,7 @@ tr:
   filter_by_place: Konuma göre Filtrele
   filter_by_species: Türlere göre filtrele
   filter_by_taxon: Taksona göre filtrele
-  filter_by_place_taxon_and_color: Kontrolleri kullanarak yere, taksona ve renge göre filtrele.
+  filter_by_place_taxon_and_color: Kontrolleri kullanarak konuma, sınıfa ve renge göre filtrele.
   filter_list_by_this_taxon: Listeyi bu taksona göre filtrele
   filtering: Filtreleme
   filters: Filtreler
@@ -1928,7 +1931,7 @@ tr:
   find_a_place: Bir Konum Bul
   find_guides: Rehberleri Bul
   find_posts_for: "%{journal_name} için gönderileri bul"
-  find_new_place_to_explore: Yeni bir yer keşfet!
+  find_new_place_to_explore: Yeni bir konum keşfet!
   find_observations: Gözlemleri bul
   find_photos: Fotoğrafları bul
   find_places: Konumları Bul
@@ -2311,10 +2314,10 @@ tr:
   #the taxa that contain another taxon from an observation search, e.g. if
   #the search results include Homo sapiens, the user could choose to refine
   #the search to only Mammalia, or exclude all observations of Mammalia
-  include_slash_exclude_ancestor_taxa: Üst Soy Sınıflarını Dahil Et / Hariç Tut
+  include_slash_exclude_ancestor_taxa: Üst Soy Taksonlarını Dahil Et / Hariç Tut
   include_suggestions_not_seen_nearby: Yakınlarda görünmeyen önerileri de içer
   include_suggestions_not_expected_nearby: Yakınlarda beklenmeyen önerileri dahil et
-  include_taxa: Sınıfları Dahil Et
+  include_taxa: Taksonları Dahil Et
   include_users: Kullanıcıları Dahil Et
   including: şunu içerir
   increase_brightness: Parlaklığı Arttır
@@ -2347,7 +2350,7 @@ tr:
   #infraspecies IDs, i.e. identifications of taxa below the species level,
   #like subspecies
   infraspecies_ids_description: |
-    Bunu kapatırsan, tür altı seviyedeki sınıfların (alt türler ve varyeteler gibi) tür seviyesindeki tanımlamanla aynı olan kimlikleri hakkında artık bildirim almayacaksın. Ancak, tanımlamanla uyuşmayan ya da ek açıklamalar içeren durumlarda bildirim almaya devam edeceksin.
+    Bunu kapatırsan, tür altı seviyedeki taksonların (alt türler ve varyeteler gibi) tür seviyesindeki tanımlamanla aynı olan tanımlamarı hakkında artık bildirim almayacaksın. Ancak, tanımlamanla uyuşmayan ya da ek açıklamalar içeren durumlarda bildirim almaya devam edeceksin.
   input_taxon: Girdi taksonu
   insects: böcekler
   insect_life_stage: Böcek Yaşam Evresi
@@ -2628,7 +2631,7 @@ tr:
   #lists of this form for an arbitrary number of items, not just three.
   list_with_n_items: "%{one}, %{two} ve %{three}"
   list_with_two_items: "%{one} ve %{two}"
-  listed_taxa: Listelenen Sınıflar
+  listed_taxa: Listelenen Taksonlar
   listed_taxon: Listelenen takson
   #Adjective describing addition of a taxon to a list
   listed_taxon_alteration_action_listed: Listelenen
@@ -2637,7 +2640,7 @@ tr:
   listed_taxon_updated: Listelenen takson güncellendi
   listing_lists: Listeleri listeleme
   listing_project_assets: Proje İçeriklerini Listeleme
-  listing_taxa: Sınıfları Listeleme
+  listing_taxa: Taksonları Listeleme
   lists: Listeler
   lists_by_login:
     title:
@@ -2651,7 +2654,7 @@ tr:
   loading_preview_and_code: Ön izleme ve kod yükleniyor...
   loading_suggestions: Öneriler yükleniyor...
   loading_tags: "Etiketler yükleniyor..."
-  loading_taxa_from_your: "Sınıfları gözlemlerinizden yüklüyor..."
+  loading_taxa_from_your: "Taksonları gözlemlerinizden yüklüyor..."
   loading_wikipedia_description: "Vikipedi açıklaması yükleniyor..."
   locales_: Yerel Ayarlar
   locales:
@@ -2752,7 +2755,7 @@ tr:
   longitude_slash_x_coord_slash_easting: Boylam / x koordinatı / doğu
   longitude_value: "Boylam: %{longitude}"
   look_up_name: "Ad ara"
-  looks_like_neither_have!: Hiçbir sınıfı yok gibi görünüyor!
+  looks_like_neither_have!: Hiçbir takson yok gibi görünüyor!
   looks_like_no_species_in_guide: Görünüşe göre rehberinde henüz bir tür yok.
   lookup: Ara
   low: Düşük
@@ -2868,7 +2871,7 @@ tr:
   mobile: Mobil
   moderation_history_for_user_html: '%{user} kullanıcısının moderasyon geçmişi'
   moderation_history_desc_html: |
-    Bu, kullanıcının sınıflandırma oluşturmalarının yanı sıra moderasyon hareketlerini (örneğin yorumları gizleme veya görünür yapma), notlar ve işaretlemeleri de içerir. Bunu <strong>sadece küratörler görüntüleyebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu yüzden kişi hakkındaki notları kesinlikle kişinin kendisi görüntüleyememelidir.
+    Bu, moderatör işlemlerini (ör. yorumları gizleme veya görünür hale getirme), notları ve bu kullanıcının taksonlar dışındaki tüm katkılarına eklenmiş işaretleri içerir. Bu bölüm <strong>yalnızca küratörler tarafından görülebilir</strong> ve <strong>küratörler kendi geçmişlerini görüntüleyemez</strong>, bu nedenle bir kişi hakkında yazılan notlar asla o kişinin kendisi tarafından görülebilir olmamalıdır.
   #Action a moderator can take to hide content; verb
   moderator_actions_hide: Gizle
   #Action a moderator can take to unhide content, i.e. undo hiding; verb
@@ -2909,17 +2912,17 @@ tr:
       #Short text representing %d years in the past
       yy: "%dyıl"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone: "D MMM YYYY · LT z"
+    datetime_with_zone: "DD MMMM YYYY · HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    datetime_with_zone_no_year: "D MMMM, HH:mm z"
+    datetime_with_zone_no_year: "DD MMMM, HH:mm z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes.
     #Note that this should display an offset and not a time zone code, so
     #please use Z and not z
-    datetime_with_offset: "D MMM YYYY · LT Z"
+    datetime_with_offset: "D MMM YYYY · LT Z\n\nDD MMMM YYYY · HH:mm Z"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long: "D MMMM YYYY"
+    date_long: "DD MMMM YYYY"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
-    date_long_without_year: "D MMMM"
+    date_long_without_year: "DD MMMM"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
     time_hours: "h:mm a"
     #See https://momentjs.com/docs/#/displaying/format/ for formatting codes
@@ -2960,17 +2963,17 @@ tr:
   most_disagree: çoğunluğun katılmadığı
   most_comments_and_faves: En Çok Yorum Alanlar ve Beğenilenler
   most_observations: Gözlem Sayısına Göre
-  most_recent_observation_by_date_observed: Gözlenen tarihe göre en son doğrulanabilir gözlem
+  most_recent_observation_by_date_observed: Gözlemlenen tarihe göre en son doğrulanabilir gözlem
   most_species: Tür Sayısına Göre
-  most_observed_species: En Çok Gözlenen Türler
-  most_observed_introduced_species: En Çok Gözlenen Yabancı Türler
-  most_observed_threatened_species: En Çok Gözlenen Tehdit Altındaki Türler
+  most_observed_species: En Çok Gözlemlenen Türler
+  most_observed_introduced_species: En Çok Gözlemlenen Yabancı Türler
+  most_observed_threatened_species: En Çok Gözlemlenen Tehdit Altındaki Türler
   move_input_children_to_output?: Alt soy çıktıya taşınsın mı?
   moving_child_out_of_old_parent_would_narrow_html: |
     %{child} alt soyunu %{old_parent} üst soyundan ayırmak, %{old_parent} ile kastettiğimiz şeyi daraltacaktır. %{old_parent} için %{id_count} tanımlama vardır.
   multiple: çoklu
   multiple_select_option: '-- çoklu --'
-  multiple_taxa_for_taxon_change: "Birden fazla sınıf (değiştirme/birleştirme için girdi, ayırma için çıktı)"
+  multiple_taxa_for_taxon_change: "Birden fazla takson (değiştirme/birleştirme için girdi, ayırma için çıktı)"
   multiple_taxon_ids_separated_by_commas: 'Virgülle ayrılmış çoklu takson tanımlamaları, örn. 123,654'
   #Project rule for an umbrella project. %{project} is the title of the project
   #the observation must be in
@@ -2987,7 +2990,7 @@ tr:
   must_have_observation_field: "%{operand} gözlem alanının doldurulmuş olması gerekir"
   must_have_photos: fotoğraf içermeli
   #Grades is a comma separated list of quality grades
-  must_have_quality_grades: "minimum kalite derecesi: %{grades}"
+  must_have_quality_grades: "asgari nitelik sınıfları: %{grades}"
   must_have_sounds: ses içermeli
   must_have_x: "%{x} olması gerekir"
   #Imperative verb, label for a button that lets you mute another user
@@ -3026,7 +3029,7 @@ tr:
   needs_id: tanımlama gerekli
   needs_id_: Tanımlama Gerekli
   needs_id_expandable_html: "Tanımlama <span class='full'>Gerekli</span>"
-  needs_id_tooltip_html: '"Tanımlama Gerekli" gözlemlerinde medya, konum ve tarih bulunur ancak yine de kesin bir tanımlama için topluluk kararı gerekir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
+  needs_id_tooltip_html: '"Tanımlama Gerekli" gözlemlerinde medya, konum ve tarih bulunur ancak yine de kesin bir tanımlama için topluluk kararı gerekir. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha fazla bilgi edin</a>'
   #@vow_or_con can be used here for the first letter of %{place}
   network_affiliation_prompt_from_inat_html: |
     <strong>%{site_name}</strong>, %{place} konumundaki insanlara ve biyoçeşitliliğe odaklı uluslararası iNaturalist Ağının parçasıdır. Hesap üyeliğini <strong>%{inat_site_name}</strong> yerine <strong>%{site_name}</strong> olarak değiştirmek ve verilerini yerel kurumlarla paylaşmak istiyor musun?
@@ -3046,7 +3049,7 @@ tr:
   new_assessment: Yeni değerlendirme
   new_check_list: Yeni kontrol listesi
   new_check_list_for: "%{place} için yeni bir kontrol listesi oluştur &raquo;"
-  new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsan, onu oluştur, sınıfları ekle ve ardından düzenle; burada kapsamlı olarak işaretleme seçeneğin olacaktır."
+  new_check_list_record: "Bu listeyi kapsamlı olarak işaretlemek istiyorsan, onu oluştur, takson ekle ve ardından düzenle; burada kapsamlı olarak işaretleme seçeneğin olacaktır."
   new_comment_on_a_parent_by_user_link: '%{user_link} tarafından %{parent} hakkında yeni yorum'
   new_conservation_status: Yeni Koruma Durumu
   new_flag_for: Şunun için Yeni İşaret
@@ -3083,7 +3086,7 @@ tr:
   new_users_w_7_obs: 7 Gözlemli Yeni Kullanıcılar
   newly_added: Yeni Eklenmiş
   newly_added_species: Yeni Eklenmiş Türler
-  newly_observed_species: Yeni Gözlenen Türler
+  newly_observed_species: Yeni Gözlemlenen Türler
   newly_observed_species_in_year: "%{year} Yılında Yeni Eklenen Türler"
   next: Sonraki
   next_date_short: Sonraki
@@ -3125,13 +3128,13 @@ tr:
   no_matching_places: Eşleşen konumlar yok
   no_matching_projects: Eşleşen projeler yok
   no_matching_species: Eşleşen tür yok.
-  no_matching_taxa: Eşleşen sınıf yok
+  no_matching_taxa: Eşleşen takson yok
   no_matching_users: Eşleşen kullanıcılar yok.
   no_members_yet: "Henüz üye yok."
   no_messages_yet: Henüz mesaj yok
   no_misidentifications_yet: Henüz yanlış tanımlama yok
   no_more_mail_from_site: "%{site_name} adresinden e-posta almak istemiyor musun? E-posta ayarlarını şu adresten düzenle:"
-  no_more_taxa_to_load: Yüklenecek başka sınıf yok!
+  no_more_taxa_to_load: Yüklenecek başka takson yok!
   no_more_results_found: Başka sonuç bulunamadı
   no_new_messages: Yeni ileti yok
   no_new_parent_specified: Yeni üst soy belirtilmedi
@@ -3172,10 +3175,10 @@ tr:
   no_suggestions_available: Geçerli Öneriler Yok
   no_summary_from_wikipedia: Vikipedi'den özet yok
   no_summary_has_been_set: Ayarlanmış özet yok.
-  no_taxa: Sınıflar yok
-  no_taxa_listed: Listelenmiş sınıflar yok
-  no_taxa_selected: Seçilmiş sınıflar yok!
-  no_taxa_with_unknown_relationships: Bilinmeyen ilişkileri olan sınıflar yok
+  no_taxa: Takson yok
+  no_taxa_listed: Listelenmiş taksonlar yok
+  no_taxa_selected: Seçilmiş taksonlar yok!
+  no_taxa_with_unknown_relationships: Bilinmeyen ilişkileri olan taksonlar yok
   no_taxon_framework_relationships: takson çerçevesi ilişkileri yok
   no_taxonomic_changes_match_those_criteria: Bu ölçüte uygun taksonomik değişiklikler yok
   no_users_found_with_those_filters: Bu filtrelerle eşleşen herhangi bir kullanıcı bulunamadı
@@ -3246,7 +3249,7 @@ tr:
   observation_accuracy_experiment_iconic_taxon_name: "İkonik Takson Adı"
   observation_accuracy_experiment_continent: "Kıta"
   observation_accuracy_experiment_year: "Yıl"
-  observation_accuracy_experiment_quality_grade: "Kalite Derecesi"
+  observation_accuracy_experiment_quality_grade: "Nitelik Sınıfı"
   observation_accuracy_experiment_show_frequency: "sıklığı göster"
   observation_accuracy_experiment_click_on_bars: "Alt kümeleri keşfetmek için çubuklara tıkla."
   observation_accuracy_experiment_bars_will: "Çubuklar, örneklemlerin onaylanması için son tarih geçtikten sonra tıklanabilir olacaktır."
@@ -3432,7 +3435,7 @@ tr:
   observations_deleted: Gözlemler silindi.
   observations_fields_are: |
     Gözlem alanları; gözlem sayısı, habitat tanımı ya da istediğin her şey gibi bir gözlemle ilişkili ek verilerdir! Projeler, doldurmanı istedikleri alanları da belirleyebilirler.
-  observations_from_people_taxa_and_places_youre_following: "Takip ettiğin kişi, konum ve sınıflardan gözlemler"
+  observations_from_people_taxa_and_places_youre_following: "Takip ettiğin kişi, konum ve taksonlardan gözlemler"
   observations_from_this_place: Bu konumdan gözlemler
   observations_from_this_project: Bu projeden gözlemler
   observations_in_this_project_must: Bu projedeki gözlemler aşağıdaki ölçütleri yerine getirmelidir
@@ -3512,13 +3515,13 @@ tr:
     follow_panel_title_local: Yakındaki Doğa Bilimcilerden Bazılarını Takip Et
     follow_panel_title_global: Bazı Aktif Doğa Bilimcileri Takip Et
     follow_panel_body: Bu profilleri ziyaret eder ve takip et düğmesine tıklarsan, gözlem paylaşıldığında haberdar olacaksın
-    following_panel_title: İnsanları, Sınıfları ve Konumları Takip Et
+    following_panel_title: Kişileri, Taksonları ve Yerleri Takip Et
     following_panel_body: |
       %{site_name}'te insanları takip ederek gönderdikleri gözlemleri takip edebilirsin. Ayrıca belirli türlere abone olarak bu türlerle ilgili yeni gözlemleri takip edebilir ya da aynı şeyi konumlar için de yapabilirsin.
     comments_panel_title: '%{site_name}''te ne tür tartışmalar yaşandığını merak ediyor musun?'
     comments_panel_body: "<p>%{site_name}, canlılarla ilgili gözlemlerin paylaşılması ve tartışılmasıyla ilgilidir. Şu anda gerçekleşen tartışmalar aşağıdadır. (Not: Yorum ya da tanımlamalarla katkıda bulunduğun tüm tartışmalara otomatik olarak abone olursun. Bu güncellemeleri sağdaki 'Abonelikler' bölümünden yönetebilirsin).</p>"
     updates_by_you_panel_title: Bu sekme, yalnızca içeriğinle ilgili güncellemeleri filtrelemenin hızlı bir yoludur.
-    updates_by_you_panel_body: '''Tüm güncellemeler'' sekmesinde yalnızca kendi içeriğinle ilgili değil, aynı zamanda takip ettiğin kişilerin ve sağdaki Abonelikler aracını kullanarak abone olduğun sınıfların ya da konumların içerikleriyle ilgili güncellemeler de alacağını unutma.'
+    updates_by_you_panel_body: '''Tüm güncellemeler'' sekmesinde yalnızca kendi içeriğinle ilgili değil, aynı zamanda takip ettiğin kişilerin ve sağdaki Abonelikler aracını kullanarak abone olduğun taksonların ya da yerlerin içerikleriyle ilgili güncellemeler de alacağını unutma.'
     youve_got_updates_panel_title: Güncellemeler var!
     youve_got_updates_panel_body_p1: Aşağıdaki güncellemeler ile güncel kalın...
     youve_got_updates_panel_body_p2: |
@@ -3544,11 +3547,11 @@ tr:
     Dosya başına yalnızca bir koordinat sistemi kullanılabilir, aksi takdirde yanlış dönüştürme veya görüntüleme meydana gelir.
   only_project_curators_can_do_that: Bunu sadece proje küratörleri yapabilir.
   only_receive_updates_about_this_taxon: Sadece bu takson ile ilgili güncellemeler al
-  only_show_active_taxa: Sadece etkin sınıfları göster
+  only_show_active_taxa: Sadece etkin taksonları göster
   only_show_events_that_last_less_than_2_weeks: Yalnızca 2 haftadan az süren etkinlikleri göster
   only_show_for_species_subspecies_varieties_etc: Yalnızca türler, alt türler, varyasyonlar vb. için göster.
-  only_show_taxa_fom_this_list: "Yalnızca bu listeden sınıfları göster"
-  only_showing_taxa_from: yalnızca bu listeden sınıflar gösteriliyor
+  only_show_taxa_fom_this_list: "Yalnızca bu listeden taksonları göster"
+  only_showing_taxa_from: yalnızca bu listeden taksonlar gösteriliyor
   only_staff_can_edit_large_places: Yalnızca site personeli çok büyük konumları düzenleyebilir
   only_staff_can_edit_standard_places: Yalnızca site personeli standart hiyerarşideki konumları düzenleyebilir
   only_the_owner_of_this_list_can_do_that: Bunu yalnızca bu listenin sahibi yapabilir. İyi biri ol.
@@ -3567,7 +3570,7 @@ tr:
   #Usually used to separate buttons or functional areas of the interface, e.g.
   #sign in with Apple OR Google
   or_all_caps: YA DA
-  or_choose_high_level_taxa: "... veya bazı üst düzey sınıflardan seç"
+  or_choose_high_level_taxa: "... veya bazı üst düzey taksonlardan seç"
   order: Sıralama
   order_by: Sıralama ölçütü
   organism_is_wild: Yabani organizma
@@ -3589,24 +3592,24 @@ tr:
   other_names: Diğer İsimler
   other_species_commonly_misidentified_as_this_species: Bu tür olarak sıklıkla yanlış tanımlanan diğer türler
   other_species_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu tür olarak yanlış tanımlanan diğer türler
-  other_taxa_commonly_misidentified_as_this_complex: Yaygın biçimde bu kompleks olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_complex_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu kompleks olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_genus: Yaygın biçimde bu cins olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_genus_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu cins olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_genushybrid: Yaygın biçimde bu melez cins olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu melez cins olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_hybrid: Yaygın biçimde bu melez olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu melez olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_rank: Yaygın biçimde bu %{rank} olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_rank_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu %{rank} olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_section: Yaygın biçimde bu seksiyon olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_section_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu seksiyon olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_species: Yaygın biçimde bu tür olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu tür olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_subgenus: Yaygın biçimde bu alt cins olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu alt cins olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_subsection: Yaygın biçimde bu alt seksiyon olarak yanlış tanımlanan diğer sınıflar
-  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu alt seksiyon olarak yanlış tanımlanan diğer sınıflar
+  other_taxa_commonly_misidentified_as_this_complex: Yaygın biçimde bu kompleks olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_complex_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu kompleks olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_genus: Yaygın biçimde bu cins olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_genus_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu cins olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_genushybrid: Yaygın biçimde bu melez cins olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_genushybrid_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu melez cins olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_hybrid: Yaygın biçimde bu melez olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_hybrid_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu melez olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_rank: Yaygın biçimde bu %{rank} olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu %{rank} olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_section: Yaygın biçimde bu seksiyon olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_section_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu seksiyon olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_species: Yaygın biçimde bu tür olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_species_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu tür olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_subgenus: Yaygın biçimde bu alt cins olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_subgenus_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu alt cins olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_subsection: Yaygın biçimde bu alt seksiyon olarak yanlış tanımlanan diğer taksonlar
+  other_taxa_commonly_misidentified_as_this_subsection_in_place_html: <a href="%{url}">%{place}</a> konumunda yaygın biçimde bu alt seksiyon olarak yanlış tanımlanan diğer taksonlar
   outside_of_all_atlases: Tüm atlasların dışında
   our_blog: Blogumuz
   output_taxon: Çıktı taksonu
@@ -3628,7 +3631,7 @@ tr:
   password_change_observations_warning: Ayrıca iNaturalist mobil uygulamalarından ve senin adına iNaturalist'e gönderi yapan diğer uygulamalardan ya da web sitelerinden çıkış yapacaksın, bu nedenle bunu yapmadan önce bekleyen tüm gözlemleri yüklediğinden emin ol. Yüklenmeyen tüm gözlemler kaybolacaktır.
   paste: Yapıştır
   paste_in_a_bunch_of_names: Her satıra 1 tane olmak üzere bir grup isim yapıştır ve düğmeye bas!
-  people: İnsanlar
+  people: Kişiler
   people_following_user: "%{user} Kullanıcısını Takip Edenler"
   people_user_follows: "%{user} Kullanıcısının Takip Ettikleri"
   people_added:
@@ -4216,7 +4219,7 @@ tr:
     one: Proje yöneticisi
     other: Proje yöneticileri
   project_aggregator_filter_error: |
-    Projeler, proje orta büyüklükte bir konumla ilişkilendirilmedikçe ya da yalnızca belirli sınıfların veya bir listedeki sınıfların gözlemlenmesine izin vermedikçe, otomatik gözlem toplamayı etkinleştiremez
+    Projeler, proje orta büyüklükte bir konumla ilişkilendirilmedikçe ya da yalnızca belirli taksonların veya bir listedeki taksonların gözlemlenmesine izin vermedikçe, otomatik gözlem toplamayı etkinleştiremez
   project_assessments: Proje Değerlendirmeleri
   project_assets: Proje İçerikleri
   project_coordinate_access_enabled: |
@@ -4267,8 +4270,8 @@ tr:
   #"admins" is equivalent to "administrates"
   projects_user_admins: '%{user} Tarafından Yönetilen Projeler'
   projects_you_admin: Yönettiğin Projeler
-  proposed_taxa_that_contradict_the_community_id: Topluluk tanımlamasıyla çelişen önerilmiş sınıflar
-  proposed_taxa_that_support_the_community_id: Topluluk tanımlamasını destekleyen önerilmiş sınıflar
+  proposed_taxa_that_contradict_the_community_id: Topluluk tanımlamasıyla çelişen önerilmiş taksonlar
+  proposed_taxa_that_support_the_community_id: Topluluk tanımlamasını destekleyen önerilmiş taksonlar
   protozoans: tek hücreliler
   provider_authorizations: Sağlayıcı Yetkileri
   provider_without_email_error_apple: |
@@ -4281,9 +4284,9 @@ tr:
     Google, bu hesap için gerekli olan bir e-posta adresi sağlamadı. Lütfen Google üzerinden oturum açmak yerine bu sitede bir hesap oluşturun.
   public_domain: Genel Kullanıma Açık
   publish: Yayınla
-  quality_grade: Kalite derecesi
-  quality_grade_: Kalite Derecesi
-  quality_grade_colon: "Kalite derecesi:"
+  quality_grade: Nitelik sınıfı
+  quality_grade_: Nitelik Sınıfı
+  quality_grade_colon: "Nitelik sınıfı:"
   queued: Sırada
   query: Sorgulama
   radius: Yarıçap (m)
@@ -4473,7 +4476,7 @@ tr:
   recently_added: Son Eklenenler
   recently_created: Son Zamanlarda Oluşturulmuş
   recently_finished: Son Zamanlarda Bitirilmiş
-  recently_observed: Son Gözlenenler
+  recently_observed: Son Gözlemlenenler
   recently_resolved: Yakın Zamanda Çözülenler
   #Record as a noun, as in "According to our records, you love whales"
   record_noun: Kayıt
@@ -4551,7 +4554,7 @@ tr:
   research_: Araştırma
   research_grade: Araştırma Sınıfı
   research_grade_short_html: "A<span class='full'>raştırma</span>S<span class='full'>ınıfı</span>"
-  research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Kalite derecesi hakkında daha fazla bilgi edin</a>'
+  research_grade_tooltip_html: '"Araştırma Sınıfı" gözlemlerde medya, konum, tarih ve kesin bir tanımlama (genellikle tür düzeyinde) konusunda topluluk fikir birliğine sahiptir. <a href="https://www.inaturalist.org/pages/help#quality">Nitelik sınıfı hakkında daha fazla bilgi edin</a>'
   research_grade_observations_have: '"Araştırma Sınıfı" gözlemlerin bir tarihi, fotoğrafı, koordinatları ve topluluk destekli bir tanımlaması vardır. Veri kalite değerlendirmesini görmek için tıklayın.'
   research_grade_qualification: Araştırma Sınıfı Yeterliliği
   #Label for a button that re-sends the account confirmation email and signs
@@ -4704,7 +4707,7 @@ tr:
   #Label for messages you've sent
   sent: Gönderildi
   separate_values_with_a_pipe: Bir şerit ile ayrılan değerler, örn. "1-5|6-10|çok" ya da "evet|hayır|belki"
-  set_a_place_if_this_link_only_applies_to: Bu bağlantı yalnızca belirli bir konumdaki sınıflar için geçerliyse bir konum belirle. Tüm dünyadaki sınıflar için geçerliyse boş bırak.
+  set_a_place_if_this_link_only_applies_to: Bu bağlantı yalnızca belirli bir konumdaki taksonlar için geçerliyse bir konum belirle. Tüm dünyadaki taksonlar için geçerliyse boş bırak.
   set_license: Lisans ayarla
   settings: Ayarlar
   share: Paylaş
@@ -4715,7 +4718,7 @@ tr:
   #Form field label for setting a common name as the default common name in a language for a taxon
   should_this_common_name_be_shown_by_default: Bu takson için bu ortak ad varsayılan olarak gösterilmeli mi?
   show: Göster
-  show_active_and_inactive_taxa: Etkin ve pasif sınıfları göster
+  show_active_and_inactive_taxa: Etkin ve pasif taksonları göster
   show_hidden_content: Gizli İçeriği Göster
   show_history_by_this_user: Bu kullanıcının geçmişini göster
   show_history_for_this_kind_of_action: Bu tür bir eylemin geçmişini göster
@@ -4735,16 +4738,16 @@ tr:
   show_relative_proportions_of_all_observations: Tüm gözlemlerin göreli oranlarını göster
   #Label for a button to show the running total of an accumulation chart
   show_running_total: Toplam Bulunanı Göster
-  show_taxa_from_both: (her iki listeden sınıfları göster)
-  show_taxa_from_everywhere: "Her yerden sınıfları göster"
-  show_taxa_from_place: "%{place} konumundan sınıfları göster"
+  show_taxa_from_both: (her iki listeden taksonları göster)
+  show_taxa_from_everywhere: "Her yerden taksonları göster"
+  show_taxa_from_place: "%{place} konumundan taksonları göster"
   show_total_counts: Toplam sayıyı göster
   show_uncountable_species: Sayılamayan türleri göster
   #Text to indicate that the first X items in a list are being shown, but there
   #could be more
   showing_first_x: İlk %{x} gösteriliyor
-  showing_taxa_from_everywhere: "Her yerden sınıflar gösteriliyor"
-  showing_taxa_from_place: "%{place} konumundan sınıflar gösteriliyor"
+  showing_taxa_from_everywhere: "Her yerden taksonlar gösteriliyor"
+  showing_taxa_from_place: "%{place} konumundan taksonlar gösteriliyor"
   showing_x_of_y: Gösterilen %{y} / %{x}
   showing_x_of_y_listings: "Listelemelerden Gösterilen %{y} / %{x}"
   sign_in: Giriş Yap
@@ -4755,7 +4758,7 @@ tr:
   sign_out: Çıkış Yap
   sign_up: Üye Ol
   similar_species: Benzer Türler
-  similar_taxa: Benzer Sınıflar
+  similar_taxa: Benzer Taksonlar
   #Journal post formatting option
   simple: Basit
   single_observation: Tek gözlem
@@ -4823,7 +4826,7 @@ tr:
   some_observations_are_missing_media_or_identifications: |
     Bazı gözlemlerde eksik medya ya da tanımlamalar var
   some_observations_are_missing_media_or_identifications_desc: |
-    Medya içermeyen gözlemler varsayılan olarak aramalarda görünmez ve herhangi bir tanımlama içermeyenler belirli sınıfları arayan uzmanlar tarafından görülmeyebilir. "Bitkiler" gibi çok kaba bir tanımlama bile bir bitki uzmanının gözlemini bulmasına yardımcı olabilir.
+    Medya içermeyen gözlemler varsayılan olarak aramalarda görünmez ve herhangi bir tanımlama içermeyenler belirli taksonları arayan uzmanlar tarafından görülmeyebilir. "Bitkiler" gibi çok kaba bir tanımlama bile bir bitki uzmanının gözlemini bulmasına yardımcı olabilir.
   some_observations_failed_to_be_added: Bazı gözlemler projelere eklenemedi
   some_observations_failed_to_save: Bazı gözlemler kaydedilemedi
   some_of_those_photos_couldnt_be_saved: "Bu fotoğrafların bir kısmı kaydedilemedi: %{error}"
@@ -5006,14 +5009,14 @@ tr:
   target_list_alert: Hedef listende yer alan tüm türleri gözlemlemeye çalıştığından emin misin? Hedef listende yer alıp da gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutmayın; bu nedenle hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir
   target_list_warning: Hedef listende yer alan ve bu gezinin yarıçapı ve süresi içinde gözlemlemediğin her şeyin yokluk olarak yorumlanacağını unutma. Hedef listenin tespit etmeye çalıştığın türler kümesini doğru bir şekilde yansıtması çok önemlidir. Hedef listendeki bir türü ya da hedef listendeki bir grubun kapsadığı her türü tespit etmeye çalışmadıysan, lütfen listenden çıkar.
   task_deleted: Görev silindi
-  taxa: Sınıflar
+  taxa: Taksonlar
   taxa_show_obs_photo_search_tip: |
     İpucu: Belirli bir gözlemden fotoğraf seçmek istiyorsan, arama alanına bir gözlemin tanımlamasını gir.
-  taxa_with_unknown_relationships: İlişkileri bilinmeyen sınıflar
-  taxa_info: Sınıf Bilgileri
-  taxa_needing_curation: Düzenleme Gerektiren Sınıflar
-  taxa_observed: gözlemlenen sınıflar
-  taxa_to_include: Dahil edilecek sınıflar
+  taxa_with_unknown_relationships: İlişkileri bilinmeyen taksonlar
+  taxa_info: Takson Bilgileri
+  taxa_needing_curation: Düzenleme Gerektiren Taksonlar
+  taxa_observed: gözlemlenen taksonlar
+  taxa_to_include: Dahil edilecek taksonlar
   taxon: Takson
   taxon_autocomplete_placeholder: Kuşlar, kral kelebeği, vb.
   taxon_geoprivacy: Takson Coğrafi Gizliliği
@@ -5065,10 +5068,10 @@ tr:
     other: "%{taxon} %{count} gözlemle bir yaşam alemidir"
   taxon_is_threatened_coordinates_hidden: Takson tehdit altında, koordinatlar varsayılan olarak saklandı
   taxon_is_threatened_coordinates_hidden_desc: |
-    Tanımlamalarda önerilen sınıflardan birinin ya da bu sınıflardan herhangi birini içeren sınıflardan birinin nadir ve/ya da tehdit altında olduğu bilinmektedir, bu nedenle bu gözlemin konumu gizlenmiştir.
+    Tanımlamalarda önerilen taksonlardan birinin ya da bu taksonlardan herhangi birini içeren taksonlardan birinin nadir ve/ya da tehdit altında olduğu bilinmektedir, bu nedenle bu gözlemin konumu gizlenmiştir.
   taxon_is_threatened_coordinates_obscured: Takson tehdit altında, koordinatlar varsayılan olarak gizlendi
   taxon_is_threatened_coordinates_obscured_desc: |
-    Tanımlamalarda önerilen sınıflardan birinin ya da bu sınıflardan herhangi birini içeren sınıflardan birinin nadir ve/ya da tehdit altında olduğu bilinmektedir, bu nedenle bu gözlemin konumu gizlenmiştir.
+    Tanımlamalarda önerilen taksonlardan birinin ya da bu taksonlardan herhangi birini içeren taksonlardan birinin nadir ve/ya da tehdit altında olduğu bilinmektedir, bu nedenle bu gözlemin konumu gizlenmiştir.
   taxonomy: Taksonomi
   taxon_assessments_are: |
     Takson değerlendirmeleri, bir türün mevcut durumunu, genellikle de koruma durumunu değerlendiren belgelerdir. Örneğin, bölgesel bir koruma kuruluşu, bölgedeki tehdit altındaki birkaç taksonun durumu hakkında bilgi düzenlemek ve geri bildirim istemek için bunları kullanabilir.
@@ -5099,7 +5102,7 @@ tr:
   taxon_framework_deviations_with_count_html: "Uygunsuzluklar: %{count}"
   taxon_framework_relationships_with_count_html: "Takson Çerçevesi İlişkileri: %{count}"
   #Count of taxa covered by the Taxon Framework that have been flagged
-  taxon_framework_flagged_covered_taxa_count_html: "İşaretlenmiş kapsanan sınıflar: %{count}"
+  taxon_framework_flagged_covered_taxa_count_html: "İşaretlenmiş kapsanan taksonlar: %{count}"
   taxon_framework_notes: Takson Çerçevesi notları
   taxon_framework_relationship: Takson Çerçevesi İlişkisi
   taxon_framework_relationship_number: "Takson Çerçevesi İlişkisi %{number}"
@@ -5219,7 +5222,7 @@ tr:
   the_name_of_the_taxon_dashes: Taksonun adı, boşluklar tire ile değiştirilir.
   the_name_of_the_taxon_underscores: Taksonun adı, boşluklar alt çizgi ile değiştirilir.
   the_observation_was_already_added_to_that_project: Gözlem, zaten bu projeye eklenmiş.
-  the_people_of_inat: "%{site_name}'in İnsanları"
+  the_people_of_inat: "%{site_name} Topluluğu"
   the_species_listed_below_were_not_found_in_the_site_database: |
     Aşağıda listelenen türler %{site_name} veritabanında bulunamadı.
   the_title_of_the_wikipedia_article_we_use: |
@@ -5231,7 +5234,7 @@ tr:
     Dünya, her biri tuhaf ve harika yaşam formlarıyla dolu ilginç yerlerle doludur. Bazıları dünyanın öbür ucunda, bazıları ise sokağın hemen aşağısında! %{site_name} Konumları gezegenin dört bir yanındaki yaşamlara göz atmanı sağlar. Keşfetmeye başla!
   then_keybord_sequence: sonra
   #thinned refers to a branch of the taxonomy that has lost descendants because they are moved elsewhere
-  there_are_no_current_ids: Potansiyel olarak daraltılmış herhangi bir ana sınıfın mevcut tanımlaması bulunmamaktadır.
+  there_are_no_current_ids: Potansiyel olarak daraltılmış herhangi bir üst taksonun mevcut tanımlaması bulunmamaktadır.
   there_are_x_synonyms_html:
     one: "<span class='count'>1</span> eş anlamlı</span> var"
     other: "<span class='count'>%{count}</span> eş anlamlı</span> var"
@@ -5241,7 +5244,7 @@ tr:
   there_was_a_problem_creating_this_account: |
     Bu hesap oluşturulurken bir sorun oluştu. Bu sorun sürerse lütfen bize ulaşın
   there_was_a_problem_saving_your_identification: "Tanımlamanı kaydederken bir sorun oluştu: %{error}"
-  there_were_problems_adding_taxa: "Bu sınıfları eklerken sorunlar oluştu: %{errors}"
+  there_were_problems_adding_taxa: "Bu taksonları eklerken sorunlar oluştu: %{errors}"
   there_were_problems_adding_that_observation_to_this_project: "Gözlem, projeye eklenirken sorunlar oluştu: "
   there_were_problems_importing_that_place: "Bu konum içe aktarılırken sorunlar oluştu: %{place_error}"
   there_were_problems_importing_that_place_geometry: |
@@ -5250,7 +5253,7 @@ tr:
   there_were_some_problems_saving_those_colors: "Bu renkleri kaydederken bazı sorunlar oluştu: %{error}"
   there_were_some_problems_with_fields: "Aşağıdaki alanlarla ilgili bazı sorunlar oluştu:"
   there_were_some_problems_with_these_files: "Bu dosyalarla ilgili bazı sorunlar oluştu:"
-  theres_something_wrong_with_taxon_framework_relationship: Burada yanlış bir şey var - herhangi bir iç ve dış sınıf arasındaki ilişkiyi belirleyemiyoruz
+  theres_something_wrong_with_taxon_framework_relationship: Burada yanlış bir şey var - herhangi bir dahili ve harici takson arasındaki ilişkiyi belirleyemiyoruz
   therefore_committing_additional_taxon_changes: Bu nedenle, bu taksonunu değiştirmesini gerçekleştirdikten sonra ek takson yer değişimleri yapmak gerekli olmayacaktır.
   therefore_committing_taxon_changes: Bu nedenle, bu soy değişikliğini takiben takson değiştirmelerin yapılması gerekli değildir.
   these_are_items_people_on: |
@@ -5279,8 +5282,8 @@ tr:
   this_is_your_observation_desc: Kendi gözlemlerinin koordinatlarını her zaman görebilirsin.
   this_job_failed_to_run: Başarısız oldu. Lütfen, %{email} ile iletişime geç
   this_list_is_empty!: Bu liste boş!
-  this_list_only_accepts_taxa_that_are_species: Bu liste yalnızca tür olan sınıfları kabul eder
-  this_list_only_accepts_taxa_that_are_species_or_lower: Bu liste yalnızca tür ya da daha alt sınıfları kabul eder
+  this_list_only_accepts_taxa_that_are_species: Bu liste yalnızca tür olan taksonları kabul eder
+  this_list_only_accepts_taxa_that_are_species_or_lower: Bu liste yalnızca tür ya da daha alt taksonları kabul eder
   this_observation: Bu gözlem
   this_observation_is_featured_on_x_sites:
     one: Bu gözlem %{count} sitede yayınlandı
@@ -5303,8 +5306,8 @@ tr:
   this_user_has_been_suspended: Bu kullanıcı askıya alındı
   this_user_has_been_suspended_message: |
     Bu senin hesabın ise ve bunun yanlışlıkla yapıldığını düşünüyorsan, lütfen <a href="mailto:%{email}">bizimle iletişime geç</a>.
-  this_will_add_listed_taxa: Bu, gözlemlerden listelenen sınıfları ekleyecektir. Bu işlem biraz zaman alabilir, bu nedenle lütfen az miktarda ve küçük kontrol listelerinde kullanın
-  this_will_refresh_listed_taxa: Bu, bu listede listelenen sınıfları yenileyecektir. Bu işlem biraz zaman alabilir, bu nedenle lütfen az miktarda ve küçük kontrol listelerinde kullanın
+  this_will_add_listed_taxa: Bu, gözlemlerden listelenen taksonları ekleyecektir. Bu işlem biraz zaman alabilir, bu nedenle lütfen az miktarda ve küçük kontrol listelerinde kullanın
+  this_will_refresh_listed_taxa: Bu, bu listede listelenen taksonları yenileyecektir. Bu işlem biraz zaman alabilir, bu nedenle lütfen az miktarda ve küçük kontrol listelerinde kullanın
   this_will_remove_inaturalists_ability_to_access_this_account: |
     Bu işlem, iNaturalist'in senin adına bu hesaba erişim iznini kaldıracak (tekrar erişim izni verene kadar). İşlemin geçerli olması için harici sitedeki ayarlarını da değiştirmen gerekebilir.
   #Application is an app or service the user has authorized to access their
@@ -5444,7 +5447,7 @@ tr:
   today: Bugün
   too_many_results: Çok Fazla Sonuç
   too_many_taxa_to_render: |
-    Bu sorgu, tek seferde işlenemeyecek kadar çok sınıf içeriyor. Daha çok filtre eklemeyi dene
+    Bu sorgu, tek seferde işlenemeyecek kadar çok takson içeriyor. Daha çok filtre eklemeyi dene
   tools: Araçlar
   top_contributors: En çok katkıda bulunanlar
   top_identifier_caps: EN ÇOK TANIMLAYAN
@@ -5493,7 +5496,7 @@ tr:
   unclassified: Sınıflandırılmamış
   #Label for a menu item linking to a help page describing how iNaturalist Projects work
   understanding_projects: Projeleri Anlama
-  ungrafted_taxa: Aşılanmamış Sınıflar
+  ungrafted_taxa: Aşılanmamış Taksonlar
   unhide_content: İçeriği Göster
   unhide_desc: |
     Gizlemeyi kaldırmak, bu içeriği herkesin görmesi için ortaya çıkaracaktır. Küratörler ileride içeriği tekrar gizlemeyi seçebilirler.
@@ -5537,7 +5540,7 @@ tr:
   update_past: "Geçmişi Güncelle %{type}"
   update_photos: Fotoğrafları Güncelle
   update_search: Aramayı Güncelle
-  update_selected_taxa: Seçilen Sınıfları Güncelle
+  update_selected_taxa: Seçilen Taksonları Güncelle
   update_subscription: Aboneliği Güncelle
   update_subscription_preferences: Abonelik tercihlerini güncelle
   update_x_selected_taxa:
@@ -5605,9 +5608,9 @@ tr:
   #@gender operates on %{x}
   user_added_a_x: "%{user} bir %{x} ekledi"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  user_added_a_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
-  user_added_a_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
+  user_added_a_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
   user_added_a_x_to_noun_by_you_html: "%{user}, senin yaptığın %{noun}e %{x} ekledi"
   #@gender operates on %{x}
@@ -5619,9 +5622,9 @@ tr:
   #@gender operates on %{x}
   user_added_an_x: "%{user} bir %{x} ekledi"
   #@gender operates on %{x}
-  user_added_an_x_to_noun_by_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  user_added_an_x_to_noun_by_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
-  user_added_an_x_to_noun_by_user_html: "%{user}, %{by} tarafından yapılan %{noun}'e %{x} ekledi"
+  user_added_an_x_to_noun_by_user_html: "%{user}, %{by}in tarafından yapılan %{noun}e %{x} ekledi"
   #@gender operates on %{x}
   user_added_an_x_to_noun_by_you_html: "%{user}, senin %{noun}ine %{x} ekledi"
   #@gender operates on %{x}
@@ -5679,7 +5682,7 @@ tr:
   user_trusts_this_project_for_any: |
     Kullanıcı bu projeye herhangi bir nedenle gizlenmiş gizli koordinatları ile güveniyor.
   user_trusts_this_project_for_taxon: |
-    Kullanıcı bu projeye yalnızca tehdit altındaki sınıflar nedeniyle gizlenmiş koordinatlar ile güvenmektedir.
+    Kullanıcı bu projeye yalnızca tehdit altındaki taksonlar nedeniyle gizlenmiş koordinatlar ile güvenmektedir.
   user_trusts_this_project_when_added_by_any: |
     Kullanıcı, projeye herhangi bir kişi tarafından eklenen gözlemlerin gizli koordinatları konusunda proje küratörlerine güvenir.
   user_trusts_this_project_when_added_by_observer: |
@@ -5782,7 +5785,7 @@ tr:
   view_observations_by_everyone: Herkesin gözlemlerini görüntüle
   view_observations_by_these_users: Bu Kullanıcıların Gözlemlerini Görüntüle
   view_observations_of_this_taxon_by: 'Bu taksonun gözlemlerini şuna göre görüntüle:'
-  view_on: 'Şuna göre görüntüle:'
+  view_on: 'Şurada görüntüle:'
   view_on_flickr: Flickr'da Görüntüle
   view_original: "Aslını Görüntüle"
   view_original_by: "%{by} vasıtasıyla %{photo} üzerinde aslını görüntüle"
@@ -5811,7 +5814,7 @@ tr:
   view_all_of_your_observations_from_x: "Tüm gözlemlerini %{x} ile görüntüle"
   visually_similar: Görsel Olarak Benzer
   vulnerable: Savunmasız
-  w00t_no_ungrafted_taxa: Hayır! Aşılanmış sınıflar yok!
+  w00t_no_ungrafted_taxa: Hayır! Aşılanmış taksonlar yok!
   w_photos_only: fotoğraflarla
   w_sounds: seslerle
   wait_file_generation: Dosya oluşturulurken lütfen bekle. Büyük listeler için birkaç dakika sürebilir.
@@ -5945,7 +5948,7 @@ tr:
   #with access to their hidden coordinates but only for observations of
   #threatened taxa
   yes_but_only_for_threatened: |-
-    Evet ancak yalnızca tehdit altındaki sınıflara ilişkin gözlemlerim için coğrafi gizliliği ayarladığımda değil.
+    Evet ancak yalnızca tehdit altındaki taksonlara ilişkin gözlemlerim için coğrafi gizliliği ayarladığımda değil.
   yes_find_them!: "Evet, onları bul!"
   #Used when trusting a project and the user is agreeing to trust the project
   #with access to their hidden coordinates
@@ -5954,7 +5957,7 @@ tr:
   yes_license_my_childs_observations: Evet, çocuğumun fotoğraflarını, seslerini ve gözlemlerini lisansla, böylece bilim insanları verileri kullanabilir.
   yes_license_my_observations_so_scientists_can_use: Evet, bilim insanlarının verilerimi kullanabilmesi için fotoğraflarımı, seslerimi ve gözlemlerimi lisansla (önerilir).
   yes_reject_it: Evet, bunu reddet
-  yes_show_this_in_the_box: Evet, bunu /sınıfların üstündeki büyük kutuda göster
+  yes_show_this_in_the_box: Evet, bunu /taxa sayfasının en üstündeki büyük kutuda göster.
   yesterday: Dün
   yir_code_contributors_desc_html: |
     <a href="%{url}">Yazılımımızın</a> neredeyse tamamı açık kaynaklıdır, bu da nasıl yapılacağını bilen herkesin katkıda bulunabileceği anlamına gelir. İşte bu yıl gönüllü olarak kod yazan kişiler. Teşekkürler, kodlayıcılar!
@@ -6203,7 +6206,7 @@ tr:
         #list
         recent_listed_taxon_additions: Son Listelenen Sınıf Değişiklikleri
         #Label for a button that shows taxa on checklists for a place
-        show_listed_taxa: Listelenen sınıfları göster
+        show_listed_taxa: Listelenen taksonları göster
         #Notice when an atlas is not active
         this_atlas_is_not_currently_active: Bu atlas şu anda etkin değil
         #Warning before removing a place from an atlas
@@ -6435,9 +6438,9 @@ tr:
           Rehberler, tüm dünyada biyoçeşitlilik ile ilgili bilgi edinmenize yardımcı olur. İster Serengeti'yi, ister yalnız yerel parkınızı (Serengeti olabilir) keşfedin. Rehberler gezegenimizin çarpıcı yaşam çeşitliliğini anlamanıza yardımcı olabilir.
       edit:
         add_eol_content: |
-          Seçilen sınıflara EOL içeriğini toplu olarak ekle. Bu biraz zaman alabilir, bu yüzden lütfen sabırlı ol.
+          Seçilen taksonlara EOL içeriğini toplu olarak ekle. Bu biraz zaman alabilir, bu yüzden lütfen sabırlı ol.
         add_color_tags_help: |
-          Seçilen sınıflarla ilişkilendirilmiş renklerden, renk etiketleri ekle.
+          Seçilen taksonlara ilişkilendirilmiş renklerden, renk etiketleri ekle.
         add_rank_tags_help_html: |
           Taksonomimize dayanarak takson düzeyi etiketleri ekle, ör. <code>familya=Martıgiller</code>
           ya da <code>familya=Martılar ve Benzerleri</code>
@@ -6483,7 +6486,7 @@ tr:
         paste_note_html: |
           Satır başına bir tane olmak üzere en çok 500 tür adı yapıştır. %{site_name} yaygın adları tür kavramlarıyla eşleştirmek için elinden geleni yapacaktır ancak belirsizlikten kaçınmak için bilimsel adları kullanmak daha iyidir. Her ikisini de belirtmek istiyorsan, bilimsel adı yaygın addan virgülle ayır, <code>Homo sapiens,Human</code> gibi.
         places_note: |
-          Not: Tüm konumların sınıfları içeren kontrol listeleri yoktur. Sınıf içeren bir konum bulmakta zorlanıyorsan devletler, eyaletler, iller ya da ilçeler gibi siyasi sınırları olan daha büyük alanları seçmeyi dene.
+          Not: Tüm konumların taksonları içeren kontrol listeleri yoktur. Takson içeren bir konum bulmakta zorlanıyorsan devletler, eyaletler, iller ya da ilçeler gibi siyasi sınırları olan daha büyük alanları seçmeyi dene.
         replace_existing_eol_desc: Yaşam ansiklopedisinden içe aktarmadan önce mevcut içeriği sil
         place_choose_taxon_note: |
           Aramanı daraltmak istiyorsan, filtrelemek için bir takson seç, ör. "bitkiler"
@@ -6542,9 +6545,9 @@ tr:
       filter_by: Filtrele
       filtered_by: Filtre
       apply_filters_to_export: Filtreleri dışa aktarıma uygula
-      restrict_to_leaf_taxa: Son sınıflar ile sınırlayın
+      restrict_to_leaf_taxa: Yaprak taksonlar ile sınırla
       restrict_to_taxon: '%{taxon} ile sınırla'
-      restrict_to_taxa_observed_in_place: '%{place} konumunda gözlemlenen sınıflarla sınırlandır'
+      restrict_to_taxa_observed_in_place: '%{place} konumunda gözlemlenen taksonlarla sınırlandır'
       exporting_all_x_taxa:
         one: '%{count} taksonu dışa aktarma'
         other: '%{count} taksonun tamamını dışa aktarma'
@@ -6580,7 +6583,7 @@ tr:
     listed_taxa:
       establishment_field:
         confirmation: |
-          Emin misin? Bu, söz konusu konum içindeki konumlara ait TÜM listelenen sınıflar için yerleşim tiplerini değiştirecektir. Birçok çalışmayı bozuyor olabilirsin.
+          Emin misin? Bu, söz konusu konum içindeki konumlara ait TÜM listelenen taksonlar için yerleşim tiplerini değiştirecektir. Birçok çalışmayı bozuyor olabilirsin.
         description_html: |
           Bu, <a href="%{place_url}">%{place_name}</a> konumunun soyundan gelen konumlardaki bu taksonun <em>tüm</em> listelerinin yerleşim tiplerini <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca küratörler kullanabilir. Yerleşim tipini "yabancı" olarak değiştirmek aşağı yukarı aynı etkiye sahip olacaktır ancak mevcut değerleri değiştirmeyecek, sadece boş olanları dolduracaktır.
     lists:
@@ -6588,10 +6591,10 @@ tr:
         lifelist_titles_cannot_be_changed: Yaşam Listesi başlıkları değiştirilemez
       new:
         place_desc: |
-          Bu listeyi bu konumda gözlemlenen sınıflarla otomatik olarak doldur. Yalnızca sınırları olan konumları seçebileceğini unutma.
+          Bu listeyi bu konumda gözlemlenen taksonlarla otomatik olarak doldur. Yalnızca sınırları olan konumları seçebileceğini unutma.
       show:
         project_list_desc: |
-          Proje küratörleri tarafından manuel olarak eklenen sınıflar ve projeye eklenen araştırma sınıfı gözlemlerle temsil edilen sınıflar, proje listelerinde listelenir.
+          Proje küratörleri tarafından manuel olarak eklenen taksonlar ve projeye eklenen araştırma sınıfı gözlemlerle temsil edilen taksonlar, proje listelerinde listelenir.
     messages:
       from: Kimden
       to: Kime
@@ -6687,8 +6690,8 @@ tr:
       captive_help_html: |
         Organizma, <strong>kısıtlanmış</strong> ya da <strong>ekili</strong> mi? Örneğin; <strong>bir bahçede, hayvanat bahçesinde, akvaryumda</strong> ya da yalnızca <strong>insanının onun orada bulunduğunu düşündüğü için var olduğu</strong> başka bir durumda mıydı? Yaşayan tüm canlıların gözlemleri memnuniyetle karşılanır, ancak canlıların yabani/doğallaştırılmamış olduğu durumları bilmek isteriz.
       compare:
-        about_missing_taxa: Eksik Sınıflar Hakkında
-        about_total_taxa: "Mevcut Sınıflar Hakkında"
+        about_missing_taxa: Eksik Taksonlar Hakkında
+        about_total_taxa: "Toplam Taksonlar Hakkında"
         #Label for a visualization that combines multiple series of data in a single chart
         combined: Birleşik
         #Date field to use when grouping by date, e.g. date created or date added
@@ -6702,15 +6705,15 @@ tr:
         interval_limit_warning_week: Sadece 10 yıllık haftanın değeri gösteriliyor
         interval_limit_warning_month: Sadece 100 yıllık ayların değeri gösteriliyor
         interval_limit_warning_year: Sadece 100 yıllık yılın değeri gösteriliyor
-        some_queries_missing_taxa: Bazı sorguların sınıfları eksik
+        some_queries_missing_taxa: Bazı sorguların taksonları eksik
         some_queries_missing_taxa_desc: |
-          Sorgu başına en çok gözlemlenen sınıflardan yalnızca 500'ünü yükleyebiliyoruz, bu nedenle sorguda temsil edilen daha çok takson varsa, bunlar ya görünmeyecek ya da diğer sorgularda mevcutlarsa "?" olarak görüneceklerdir. En uygun karşılaştırmalar için sorgularını 500 ya da daha az sınıf gösterecek şekilde daraltmayı dene.
-        taxa_not_observed_in_all_queries: Sınıflar tüm sorgularda gözlenmedi
-        taxa_observed_in_all_queries: Sınıflar tüm sorgularda gözlendi
-        taxa_observed_in_only_one_query: Sınıflar yalnızca bir sorguda gözlendi
-        total_taxa: Toplam Sınıflar
+          Sorgu başına en çok gözlemlenen taksonlardan yalnızca 500'ünü yükleyebiliyoruz, bu nedenle sorguda temsil edilen daha çok takson varsa, bunlar ya görünmeyecek ya da diğer sorgularda mevcutlarsa "?" olarak görüneceklerdir. En uygun karşılaştırmalar için sorgularını 500 ya da daha az takson gösterecek şekilde daraltmayı dene.
+        taxa_not_observed_in_all_queries: Taksonlar tüm sorgularda gözlemlenmedi
+        taxa_observed_in_all_queries: Taksonlar tüm sorgularda gözlemlendi
+        taxa_observed_in_only_one_query: Taksonlar yalnızca bir sorguda gözlemlendi
+        total_taxa: Toplam Taksonlar
         total_taxa_desc: |
-          Bu, sorguda temsil edilen toplam "yaprak" sınıf sayısıdır. Bazen sıfır olmayan sayılarla bundan daha çok satır görürsün çünkü diğer sorgulardan eklenen daha yüksek seviyeli sınıflar vardır. Örneğin, Sorgu 1'de Homo sapiens gözlemi ve Sorgu 2'de Homo cinsi gözlemi varsa, her iki sınıf da tabloda mevcut olacaktır ancak bu, Sorgu 1 için Homo cinsi için ek bir satır anlamına gelir çünkü bu cins içinde yalnızca Homo sapiens türünü saymıştır zira bu, ağacın o kısmının "yaprağı"dır.
+          Bu, sorguda temsil edilen toplam "yaprak" takson sayısıdır. Bazen sıfır olmayan sayılarla bundan daha çok satır görürsün çünkü diğer sorgulardan eklenen daha yüksek seviyeli taksonlar vardır. Örneğin, Sorgu 1'de Homo sapiens gözlemi ve Sorgu 2'de Homo cinsi gözlemi varsa, her iki takson da tabloda mevcut olacaktır ancak bu, Sorgu 1 için Homo cinsi için ek bir satır anlamına gelir çünkü bu cins içinde yalnızca Homo sapiens türünü saymıştır zira bu, ağacın o kısmının "yaprağı"dır.
         #Label for a visualization that compare multiple series of data in several charts stacked vertical
         vertical: Dikey
         #Count of how many taxa several observation searches have in common
@@ -6811,7 +6814,7 @@ tr:
         private_latitude: "Özel enlem, gözlem özel veya gizlenmişse ayarlanır"
         private_longitude: "Özel boylam, gözlem özel veya gizlenmişse ayarlanır"
         geoprivacy: "Gözlemcinin koordinatları gizlemeyi seçip seçmediği durumu. Ayrıntılar için: https://help.inaturalist.org/support/solutions/articles/151000169938"
-        taxon_geoprivacy: "Çoğu koruyucu coğrafi gizlilik, mevcut tanımlamada sınıfların koruma durumları nedeniyle uygulanmaktadır."
+        taxon_geoprivacy: "Çoğu koruyucu coğrafi gizlilik, mevcut tanımlamada taksonların koruma durumları nedeniyle uygulanmaktadır."
         coordinates_obscured: "Coğrafi gizlilik nedeniyle veya tehdit altında olan bir takson nedeniyle, koordinatların gizlenmiş olup olmadığı"
         out_of_range: Bu gözlemin taksonunun bilinen yayılım alanının dışında olup olmadığı
         user_id: Gözlemci için benzersiz ve sıralı belirteç
@@ -6931,7 +6934,7 @@ tr:
         curator_coordinate_access_disabled_desc_html: |
           Bu proje, proje küratörlerinin göremediği koordinatlara sahip gözlemlere izin vermez. Bu gözlemin koordinatlarını bu projenin küratörleriyle paylaşmak istemiyorsan, gözlemi projeden kaldırman gerekir.
         data_quality_assessment_desc3_html: |
-          Kalite derecesi, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
+          Nitelik sınıfı, bir iNaturalist gözleminin biyoçeşitlilik verisi olarak doğruluğunu, kesinliğini, eksiksizliğini, bağlantılılık ve uygunluğunu özetler. Bazı nitelikler otomatik olarak belirlenirken, diğerleri iNat kullanıcılarının oylamasına tabidir. iNaturalist, lisanslı "Araştırma Sınıfı" gözlemlerini bilim ve korumada kullanılmak üzere bir dizi veri ortağıyla paylaşır.
         disagreement_count_desc: "# bir taksonun üst soyu arasında yer almayan tanımlanmış taksonların sayısı"
         #Leads a list of requirements for an observation to be Needs ID
         dqa_help_needs_id_lead_html: |
@@ -7297,7 +7300,7 @@ tr:
         trust_allow_members_to_trust: |-
           Üyelerin bu projede gizli koordinatlar için güvenmesine izin ver
         trust_help_desc: |-
-          Gizlenmiş gözlemlerin gizli koordinatlarına erişim istiyorsan, bu seçenek, bu projeye katılan kişilerin proje yöneticilerine gizli koordinatlara erişim konusunda güvenmelerine izin verecektir. Proje üyeleri, projede görünen tüm gözlemlerinin ya da yalnızca tehdit altındaki sınıflar nedeniyle gizlenmiş olan gözlemlerinin gizli koordinatlarına erişim izni verebileceklerdir.
+          Gizlenmiş gözlemlerin gizli koordinatlarına erişim istiyorsan, bu seçenek, bu projeye katılan kişilerin proje yöneticilerine gizli koordinatlara erişim konusunda güvenmelerine izin verecektir. Proje üyeleri, projede görünen tüm gözlemlerinin ya da yalnızca tehdit altındaki taksonlar nedeniyle gizlenmiş olan gözlemlerinin gizli koordinatlarına erişim izni verebileceklerdir.
         trust_help_notification2: |-
           Ancak, aynı zamanda proje gözlem gerekliliğinde yapılan her değişiklikte, bütün güvenen proje üyeleri de bununla ilgili bildirim alacak ve istenilen yeni gerekliliklerin kendilerine uygunluğuna göre projeye güvenirliklerine devam edip etmeyeceklerini gözden geçirebilecekler. Gizli koordinatlara erişim iznin, gözlem gerekliliklerini değiştirdiğin andan itibaren bir hafta boyunca askıya alınacak, böylece üyelerin gerekeni yapabilmesi için zamanı olacak.
         trusted_project_means: |
@@ -7360,7 +7363,7 @@ tr:
         note_you_can_delete_the_time: |
           (Not: Tüm günleri dahil etmek istiyorsan, saat dilimini ve kesin zamanları silebilirsin.)
         note_about_unselected_filters: |
-          Not: Sınıfları, konumları ya da kullanıcıları seçmezsen, varsayılan olarak hepsi dahil edilecektir.
+          Not: Taksonları, yerleri ya da kullanıcıları seçmezsen, varsayılan olarak hepsi dahil edilecektir.
         only_display_member_observations: |
           Yalnızca proje üyelerinden (projeye katılmış kişiler) gelen gözlemleri görüntüle
         optionally_filter_media: İsteğe bağlı olarak fotoğraf, ses ya da her ikisini içeren gözlemler için filtreleme yap.
@@ -7381,12 +7384,12 @@ tr:
           Projen hakkında kısa bir açıklama yap. Yaklaşık ilk 200 karakter proje ana ekran başlığının sağında görünür olacaktır, bu nedenle önce en iyi şeyleri koy!
         project_summary_placeholder: Golden Gate Parkı'nın kuşlarını izle ve keşfet...
         select_native_to_include: |
-          Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş sınıfları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Yabancı" olarak işaretlenmiş sınıfları eklemek için "Yabancı"yı seçin.
+          Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş taksonları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Yabancı" olarak işaretlenmiş taksonları eklemek için "Yabancı"yı seçin.
         select_quality_grade: |
-          En az bir Kalite Derecesi seç. Her bir Kalite Derecesi için daha çok açıklama <a href="%{url}">SSS sayfamızda</a> bulunabilir.
+          En az bir Nitelik Sınıfı seçin. Her Nitelik Sınıfı için daha fazla açıklama <a href="%{url}">SSS sayfamızda</a> bulunabilir.
         show_projects_as_flags: Projeleri haritada işaret olarak göster
         specify_project_filters: |
-          Projene hangi gözlemlerin dahil edileceğine ilişkin filtreleri belirt. Otomatik olarak dahil edilecek gözlemler için birden çok tür (ya da sınıf), konum, tarih veya diğer ölçütleri seçebilirsin.
+          Projene hangi gözlemlerin dahil edileceğine ilişkin filtreleri belirt. Otomatik olarak dahil edilecek gözlemler için birden çok tür (ya da takson), yer, tarih veya diğer ölçütleri seçebilirsin.
         start_and_end_times_for_bioblitzes: Başlangıç ve bitiş tarihi/saati (bioblitz türünden olaylar için)
         traditional_projects_cannot_be_copied: Geleneksel projeler kopyalanamaz
         trusting_members_will_be_notified: |
@@ -7400,12 +7403,12 @@ tr:
           Bunun yerine geleneksel bir proje oluşturmak için <a href="%{url}">bu bağlantıyı</a> kullan.
         visual_comparison_of_data_among: Şemsiyenin altındaki projeler arasında verilerin görsel olarak karşılaştırılması
         we_have_redesigned_projects: |
-          Projeler; tanımladığın konumlar, sınıflar, kullanıcılar, nitelik ve tarihlere uyan tüm gözlemleri otomatik olarak içerecek şekilde tasarlanmıştır. İki ana tür arasından seçim yap: Aşağıdaki özellikleri paylaşan Koleksiyon Projeleri ve Şemsiye Projeler:
+          Projeler; tanımladığın yerler, taksonlar, kullanıcılar, nitelik ve tarihlere uyan tüm gözlemleri otomatik olarak içerecek şekilde tasarlanmıştır. İki ana tür arasından seçim yap: Aşağıdaki özellikleri paylaşan Koleksiyon Projeleri ve Şemsiye Projeler:
         welcome_to_projects: Projelere Hoş Geldin!
         you_can_learn_more2_html: |
           <a href="https://help.inaturalist.org/support/solutions/articles/151000176472">Buradan</a> projeleri yönetme hakkında daha fazla bilgi edinebilirsin veya projelerin geçmişini <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">blogumuzdan</a> okuyabilirsin.
         you_have_not_defined_any_observation_requirements: |
-          Herhangi bir gözlem gereksinimi tanımlamadın. Projene dahil etmek istediğin gözlemleri tanımlamak için bir veya daha fazla sınıf (örn. kuşlar, kozalaklı ağaçlar), konum (örn. Brezilya, Yellowstone), kullanıcı ve/veya tarih seçtiğinden emin ol.
+          Herhangi bir gözlem gereksinimi tanımlamadın. Projene dahil etmek istediğin gözlemleri tanımlamak için bir veya daha fazla takson (örn. kuşlar, kozalaklı ağaçlar), yer (örn. Brezilya, Yellowstone), kullanıcı ve/veya tarih seçtiğinden emin ol.
         errors:
           name_is_required: Proje ismi gerekli
           name_less_than_100_characters: Proje ismi 100 karakterden az olmalıdır
@@ -7449,14 +7452,14 @@ tr:
           Başlamak için <a href="%{url}" class="readmore">bir gönderi oluştur</a>
           </p>
         curated_checklist_desc: |
-          Bu, etkinliğin yapıldığı konum ve zamanda kaydedilen tüm gözlemlerin değil, bu projeye açıkça eklenen gözlemlerden elde edilen sınıfların küratörlü kontrol listesi ve sayısıdır.
+          Bu, etkinliğin yapıldığı yer ve zamanda kaydedilen tüm gözlemlerin değil, bu projeye açıkça eklenen gözlemlerden elde edilen taksonların küratörlü kontrol listesi ve sayısıdır.
         make_sure_you_have_read_about_the_differences: |
           <a href="%{url}" target="_blank">Koleksiyon Projeleri hakkında blog gönderilerimizdeki</a>
           farklılıkları okuduğuna emin ol.
         this_is_a_preview: |
           Bu, bu projenin bir Koleksiyon Projesi olarak nasıl görüneceğinin bir ön izlemesidir.
         this_project_has_not_defined_requirements: |
-          Bu proje herhangi bir gözlem gereksinimi tanımlamamıştır. Projeler, gözlemleri görüntülemeye başlamak için bir ya da daha çok sınıf (örneğin kuşlar, kozalaklı ağaçlar), konum (örneğin Brezilya, Yellowstone), kullanıcı ve/ya da tarih seçmelidir.
+          Bu proje herhangi bir gözlem gereksinimi tanımlamamıştır. Projeler, gözlemleri görüntülemeye başlamak için bir ya da daha çok takson (örneğin kuşlar, kozalaklı ağaçlar), yer (örneğin Brezilya, Yellowstone), kullanıcı ve/ya da tarih seçmelidir.
       updates_desc: |
         Bu projeyle ilgili güncellemeleri kontrol panelinde ve günlük güncellemeler e-postasında al.
     search:
@@ -7563,7 +7566,7 @@ tr:
           burada %100 büyüme olurdu ve bu geçen yıl 0 ve bu yıl 1 olsaydı, burada % sonsuz büyüme olurdu.
         growth_by_country_title: Ülkelere Göre Büyüme
         growth_desc: |
-          "Gözlemler" ve "Sınıflar" grafikleri %{site_name}'e üye olmayan kişilerin katkıda bulunduğu %{site_name}'te görülebilen verileri içerebilirken, "Kullanıcılar" grafiği yalnızca şu anda %{site_name}'e üye olan kullanıcıların iNaturalist'e katıldıkları tarihleri gösterir.
+          "Gözlemler" ve "Taksonlar" grafikleri %{site_name}'e üye olmayan kişilerin katkıda bulunduğu %{site_name}'te görülebilen verileri içerebilirken, "Kullanıcılar" grafiği yalnızca şu anda %{site_name}'e üye olan kullanıcıların iNaturalist'e katıldıkları tarihleri gösterir.
         growth_in_year_obs: "%{year} içinde büyüme (gözl)"
         growth_title: Büyüme
         #Label when a mark on a chart has a value that is too small to
@@ -7573,7 +7576,7 @@ tr:
         new_species_desc: |
           Bu yıl %{site_name}'te ilk kez gözlemlenen türler. <a href="%{url}">%{y} türünün</a> %{x}'i gösteriliyor.
         new_species_desc_html: |
-          Bu yıl ilk kez eklenen türler. Bir aya tıklayarak o ay eklenen yeni türlerden bazılarını görüntüleyebilirsin. Ayrıca toplam tür birikimini görüntüleyebilir veya yeni gözlemlenen diğer türleri görmek için kaydırıcıyı zamanda geriye doğru hareket ettirebilirsin. Bu grafik doğrulanabilir gözlemlerden elde edilen türleri %{site_name}'e yüklendikleri aya göre göstermektedir (gözlemlendikleri aya göre değil). Daha yüksek veya daha düşük seviyeli sınıfları içermez, bu nedenle Mammalia olarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>arctos</i> olan gözlem sadece <i>Canis lupus</i> olarak sayılır.
+          Bu yıl ilk kez eklenen türler. Bir aya tıklayarak o ay eklenen yeni türlerden bazılarını görüntüleyebilirsin. Ayrıca toplam tür birikimini görüntüleyebilir veya yeni gözlemlenen diğer türleri görmek için kaydırıcıyı zamanda geriye doğru hareket ettirebilirsin. Bu grafik doğrulanabilir gözlemlerden elde edilen türleri %{site_name}'e yüklendikleri aya göre göstermektedir (gözlemlendikleri aya göre değil). Daha yüksek veya daha düşük seviyeli taksonları içermez, bu nedenle Mammalia olarak tanımlanan bir gözlem sayılmaz ve <i>Canis lupus</i> alt türü <i>arctos</i> olan gözlem sadece <i>Canis lupus</i> olarak sayılır.
         new_species_per_year: Yeni Türler / Yıl
         new_species_per_year_by_date_added: Eklenme tarihine göre
         new_species_per_year_by_date_observed: Gözlem tarihine göre
@@ -7723,12 +7726,12 @@ tr:
           Fotoğrafları buraya soldan sürükleyin veya yeniden düzenlemek için fotoğrafları buraya sürükleyin.
         photo_chooser_modal_explanation: |
           Takson sayfasının bu taksonun ve onun alt soyundan gelenlerin fotoğraflarını göstereceğini unutma. Ancak bu takson için seçilen fotoğraflar ilk olarak gösterilecektir. İlk fotoğraf site genelinde kullanılan varsayılan resim olacaktır.
-        rare_desc: En az gözlemlenen tehdit altındaki sınıflar
-        rare_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda en az gözlemlenen tehdit altındaki sınıflar
+        rare_desc: En az gözlemlenen tehdit altındaki taksonlar
+        rare_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda en az gözlemlenen tehdit altındaki taksonlar
         site_curators_disabled_wikipedia_html: |
           Site küratörleri, <a href="%{url}">Vikipedi'den gelen bu içeriğin</a> gösterilmesini devre dışı bıraktı. Bu taksona uygun hâle getirmek için Vikipedi sayfasını düzenleyerek yardımcı olabilir ya da bu taksonu işaretleyerek site küratörlerinin dikkatine sunabilirsin.
-        trending_desc: Geçen ayda en çok gözlemlenen sınıflar
-        trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen sınıflar
+        trending_desc: Geçen ayda en çok gözlemlenen taksonlar
+        trending_in_place_desc_html: <a href="%{url}">%{place}</a> konumunda geçen ay en çok gözlemlenen taksonlar
         wanted_desc: Bu taksonda yer alan henüz gözlemlenmemiş türler.
     taxon_changes:
       move_children_desc: |
@@ -7768,7 +7771,7 @@ tr:
           Bir konuma, o konumdaki siteler ve kullanıcılar için öncelik vermek üzere bir ad ekleyin. Her konum için birden çok ad varsa, bunları <a href="%{url}">burada</a> önceliklendirebilirsiniz. Lütfen adın kullanıldığı HER konum için isim <strong>eklemeyin</strong>, yalnızca diğer konumlarla çakışanlar için ekleyin.
       taxon:
         about_html: |
-          Sınıfların birçok ortak adı olabilir. Küresel olarak bir varsayılan ortak adı destekliyoruz, bu adı burada listenin en üstüne sürükleyerek değiştirebilirsin. Ayrıca adı düzenleyip bir yer ekleyerek farklı yerlerde varsayılan adlar belirleyebilirsin ancak lütfen bunu yalnızca farklı yerlerde çakışan adlar olduğunda yap.
+          Taksonların birçok ortak adı olabilir. Küresel olarak bir varsayılan ortak adı destekliyoruz, bu adı burada listenin en üstüne sürükleyerek değiştirebilirsin. Ayrıca adı düzenleyip bir yer ekleyerek farklı yerlerde varsayılan adlar belirleyebilirsin ancak lütfen bunu yalnızca farklı yerlerde çakışan adlar olduğunda yap.
     terminology:
       index:
         exports_can_also_contain_observation_field_values_html: |
@@ -7779,8 +7782,8 @@ tr:
       dashboard:
         taxon_change_desc: |
           Takson değişiklikleri %{site_name}'in taksonomisindeki değişiklikleri temsil eder. Çoğu zaman %{site_name}, bu değişiklikler gerçekleştiğinde içeriğini otomatik olarak güncel tutacaktır (devre dışı bırakmadığın sürece) ancak yine de verilerinin ne zaman ve nasıl değiştiğini sana bildirmek istiyoruz.
-        your_content_will_be_updated: Bu sınıflar ile ilgili içeriğin otomatik olarak güncellenecektir.
-        you_may_want_to_update: Bu sınıflar ile ilgili güncellemek isteyebileceğin bazı içeriklerin var.
+        your_content_will_be_updated: Bu taksonlar ile ilgili içeriğin otomatik olarak güncellenecektir.
+        you_may_want_to_update: Bu taksonlar ile ilgili güncellemek isteyebileceğin bazı içeriklerin var.
         cannot_update_your_content: "%{site_name}, bu değişiklik için içeriğini otomatik olarak güncelleyemiyor."
         new_project_admin_html: |
           Bu proje için neden şimdi yönetici olduğunu mu merak ediyorsun? Önceki sahibi ya seni yeni yönetici olarak atadı ya da hesabını sildi ve %{site_name} seni proje yürütücüsü ya da site küratörü olduğun için atadı. Proje yöneticisi olmak istemiyorsan, lütfen <a href="mailto:%{help_email}">%{help_email}</a> ile iletişime geç.
@@ -7912,7 +7915,7 @@ tr:
         #Checkbox label for user preference about what to receive in the daily email update
         notification_preferences_user_observations: Takip ettiğim kişilerin gözlemleri
         #Checkbox label for user preference about what to receive in the daily email update
-        notification_preferences_taxon_or_place_observations: Sınıfların gözlemleri veya abone olduğum konumlardan gözlemler
+        notification_preferences_taxon_or_place_observations: Abone olduğum taksonlar veya yerlerle ilgili gözlemler
         place_preference_changed_notice_html: |
           Konum tercihi değişti. Fikrini değiştirirsen her zaman <a href='/users/edit'>ayarlarını düzenleyebilirsin</a>.
         project_addition_preferences:
@@ -7950,9 +7953,9 @@ tr:
           Unutma, bu, projelere gizli koordinatlarına erişme veya sana güncelleme gönderme izni vermez. Bu izinleri vermek için projelere katılman veya duruma göre izin vermen gerekir.
         same_day_geoprivacy_protection: Aynı gün coğrafi gizlilik koruması
         taxon_change_desc: |
-          Sınıflar %{site_name} üzerinde birleştirildiğinde veya yeniden adlandırıldığında,
-          gözlemlerin, listelenen sınıfların, tanımlamaların, vb., değişikliklerin anlamları açıkça
-          belliyse otomatik olarak yeni sınıflara güncellenecek. Vazgeçerseniz veya değişiklik 
+          Taksonlar %{site_name} üzerinde birleştirildiğinde veya yeniden adlandırıldığında,
+          gözlemlerin, listelenen taksonların, tanımlamaların, vb., değişikliklerin anlamları açıkça
+          belliyse otomatik olarak yeni taksonlara güncellenecek. Vazgeçerseniz veya değişiklik 
           belirsiz ise (örneğin bir bölme), isterseniz içeriğinizi manuel olarak güncellemek için
           kullanabileceğiniz bir araca bağlanma değişikliği hakkında bir güncelleme alırsınız.
         taxon_name_priorities:
@@ -7993,7 +7996,7 @@ tr:
         take_a_moment_to_review_html: '<a href="%{link}">İlkelerimizi</a> incelemek için birkaç dakikanı ayır.'
         this_user_was_banned: Bu kullanıcı askıya alındı
         favorites_list_prompt_html: |
-          En sevdiğin sınıflardan bazılarını göstermek ister misin? "Favoriler" başlıklı %{link_start_tag}bir liste oluşturun%{link_end_tag} ve en son eklenenler bu alanda görünecektir.
+          En sevdiğin taksonlardan bazılarını göstermek ister misin? "Favoriler" başlıklı %{link_start_tag}bir liste oluşturun%{link_end_tag} ve en son eklenenler bu alanda görünecektir.
     user_parents:
       confirm:
         thanks_donor_html: |
@@ -8118,19 +8121,19 @@ tr:
       7: Cmt
     formats:
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      default: '%d-%m-%Y'
+      default: '%d/%m/%Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      long: '%-d %B %Y'
+      long: '%d %B %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short: '%-d %b'
+      short: '%d %b'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       compact: "%e %b"
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      short_with_year: '%-d %b %Y'
+      short_with_year: '%d %b %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
       month_year: '%B %Y'
       #See https://ruby-doc.org/stdlib-2.6.1/libdoc/date/rdoc/Date.html#method-i-strftime for formatting codes. Use %=B or %=b for lowercase months.
-      month_day_year: '%-d %B %Y'
+      month_day_year: '%d %B %Y'
     month_names:
       - 
       - Ocak
@@ -8532,7 +8535,7 @@ tr:
         place: Konum
         #Controls whether the taxon link is visible for descendants of this
         #taxon
-        show_for_descendent_taxa: Alt soy sınıflar için göster
+        show_for_descendent_taxa: Alt taksonlar için göster
       user:
         email: E-posta
         faved_project_ids: Favori projeler
@@ -8637,11 +8640,11 @@ tr:
         guide:
           attributes:
             published_at:
-              published_at_needs_3_taxa: "rehberinde en az 3 sınıfa ihtiyaç var"
+              published_at_needs_3_taxa: "rehberinde en az 3 taksona ihtiyaç var"
         guide_taxon:
           attributes:
             base:
-              guide_has_too_many_taxa: "rehber yalnızca 500 sınıfa sahip olabilir"
+              guide_has_too_many_taxa: "rehber yalnızca 500 taksona sahip olabilir"
         moderator_action:
           attributes:
             action:
@@ -8790,7 +8793,7 @@ tr:
                 yalnızca bu taksonun küratörü tarafından değiştirilebilir
             name:
               bad_format: |
-                yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+                yalnızca standart Latin harfleri, kısa çizgiler (-), boşluklar ve × karakterini içerebilir; varsayımsal taksonlar ve kültivarlar kabul edilmez
         taxon_change:
           attributes:
             base:
@@ -8810,7 +8813,7 @@ tr:
               must_match_the_taxon_if_valid: |
                 geçerli bir bilimsel ad ise takson adıyla eşleşmelidir
               bad_format: |
-                yalnızca standart Latin karakterler, kısa çizgiler, boşluklar ve x içerebilir; varsayılan sınıflara ve çeşitlere izin verilmediğine dikkat edin
+                yalnızca standart Latin harfleri, kısa çizgiler (-), boşluklar ve × karakterini içerebilir; varsayımsal taksonlar ve kültivarlar kabul edilmez
             audit_comment:
               needs_to_be_at_least_10_characters: en az 10 karakter olmalı
         taxon_photo:
