@@ -1803,19 +1803,19 @@ tr:
   end: Bitiş
   end_date_time: Bitiş Tarihi / Saati
   endangered: Nesli tükenmekte
-  endemic: Yöreye özgü
-  endemic_to_x: "%{x} yöresine özgü"
+  endemic: Endemik
+  endemic_to_x: "%{x} konumunda endemik"
   #Abbreviation for the Encyclopedia of Life (https://eol.org/)
   eol: Yaşam Ansiklopedisi
   eol_collection_url: "EOL koleksiyon URL'si"
   error_updating_photo: "Fotoğraf yükleme hatası: %{photo_errors}"
   establishment:
-    endemic: Yöreye özgü
+    endemic: Endemik
     establishment: Yerleşim Tipi
-    introduced: Yabancı
+    introduced: Egzotik Tür
     invasive: İstilacı
     managed: Kısıtlı/ekili
-    native: Yerli
+    native: Yerel
     naturalised: Uyum sağlamış
   establishment_means: Yerleşim Tipleri
   establishment_means_describes_how: |
@@ -2361,8 +2361,8 @@ tr:
   internal_server_error: İç Sunucu Hatası
   internal_taxon_including_descendants: Dahili takson (alt taksonları içerir)
   internal_taxon_rank: Dahili takson düzeyi
-  introduced: Yabancı
-  introduced_in_place: "%{place} konumunda yabancı"
+  introduced: Egzotik Tür
+  introduced_in_place: "%{place} konumunda egzotik tür"
   #Error message shown when a date format is invalid
   invalid_date: Geçersiz tarih
   invitation: Davetiye
@@ -2465,7 +2465,7 @@ tr:
   learn_what_these_licenses_mean: Bu lisansların ne anlama geldiğini öğren
   least_concern: Asgari Endişe
   leave: Ayrıl
-  leave_a_comment: Yorum yaz
+  leave_a_comment: Yorum yap
   leave_this_project: Bu projeden ayrıl
   #Terminal nodes in a taxonomic tree
   leaves: birim sınıf
@@ -2966,7 +2966,7 @@ tr:
   most_recent_observation_by_date_observed: Gözlemlenen tarihe göre en son doğrulanabilir gözlem
   most_species: Tür Sayısına Göre
   most_observed_species: En Çok Gözlemlenen Türler
-  most_observed_introduced_species: En Çok Gözlemlenen Yabancı Türler
+  most_observed_introduced_species: En Çok Gözlemlenen Egzotik Türler
   most_observed_threatened_species: En Çok Gözlemlenen Tehdit Altındaki Türler
   move_input_children_to_output?: Alt soy çıktıya taşınsın mı?
   moving_child_out_of_old_parent_would_narrow_html: |
@@ -3016,7 +3016,7 @@ tr:
   names_for_taxon_html: "%{taxon} için isimler"
   native: yerel
   native_page_url: Yerel Sayfa URL'si
-  native_to_place: "%{place} konumuna özgü"
+  native_to_place: "%{place} konumunda yerel"
   #Short for "navigation," used to describe a navigational component on the
   #project detail page when editing custom project data
   nav: Nav
@@ -3129,7 +3129,7 @@ tr:
   no_matching_projects: Eşleşen projeler yok
   no_matching_species: Eşleşen tür yok.
   no_matching_taxa: Eşleşen takson yok
-  no_matching_users: Eşleşen kullanıcılar yok.
+  no_matching_users: Eşleşen kullanıcı yok.
   no_members_yet: "Henüz üye yok."
   no_messages_yet: Henüz mesaj yok
   no_misidentifications_yet: Henüz yanlış tanımlama yok
@@ -6533,7 +6533,7 @@ tr:
     lifelists:
       list_view: Liste Görünümü
       tree_view: Ağaç Görünümü
-      observed_species: Gözlemlenen Türler
+      observed_species: Gözlemlenen Tür
       observed_rank: Gözlemlenen %{rank}
       unobserved_species: Gözlemlenmemiş Türler
       all_species: Tüm Türler
@@ -6585,7 +6585,7 @@ tr:
         confirmation: |
           Emin misin? Bu, söz konusu konum içindeki konumlara ait TÜM listelenen taksonlar için yerleşim tiplerini değiştirecektir. Birçok çalışmayı bozuyor olabilirsin.
         description_html: |
-          Bu, <a href="%{place_url}">%{place_name}</a> konumunun soyundan gelen konumlardaki bu taksonun <em>tüm</em> listelerinin yerleşim tiplerini <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca küratörler kullanabilir. Yerleşim tipini "yabancı" olarak değiştirmek aşağı yukarı aynı etkiye sahip olacaktır ancak mevcut değerleri değiştirmeyecek, sadece boş olanları dolduracaktır.
+          Bu, <a href="%{place_url}">%{place_name}</a> konumunun soyundan gelen konumlardaki bu taksonun <em>tüm</em> listelerinin yerleşim tiplerini <strong>%{establishment_means}</strong> olarak değiştirecektir. Bu aracı yalnızca küratörler kullanabilir. Yerleşim tipini "egzotik" olarak değiştirmek aşağı yukarı aynı etkiye sahip olacaktır ancak mevcut değerleri değiştirmeyecek, sadece boş olanları dolduracaktır.
     lists:
       edit:
         lifelist_titles_cannot_be_changed: Yaşam Listesi başlıkları değiştirilemez
@@ -7384,7 +7384,7 @@ tr:
           Projen hakkında kısa bir açıklama yap. Yaklaşık ilk 200 karakter proje ana ekran başlığının sağında görünür olacaktır, bu nedenle önce en iyi şeyleri koy!
         project_summary_placeholder: Golden Gate Parkı'nın kuşlarını izle ve keşfet...
         select_native_to_include: |
-          Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş taksonları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Yabancı" olarak işaretlenmiş taksonları eklemek için "Yabancı"yı seçin.
+          Yalnızca projenizdeki yerlere "Yerel" olarak işaretlenmiş taksonları eklemek için "Yerel"i seçin. Yalnızca projenizdeki yerlere "Egzotik" olarak işaretlenmiş taksonları eklemek için "Egzotik"yı seçin.
         select_quality_grade: |
           En az bir Nitelik Sınıfı seçin. Her Nitelik Sınıfı için daha fazla açıklama <a href="%{url}">SSS sayfamızda</a> bulunabilir.
         show_projects_as_flags: Projeleri haritada işaret olarak göster
@@ -7675,7 +7675,7 @@ tr:
         about_conservation_status_desc: |
           Koruma durumu, bir grup organizmanın neslinin tükenme durumunu özetlemektedir.
         about_establishment_desc: |
-          "Yerleşim tipleri" bir türün şu anda bulunduğu yere nasıl geldiğini açıklar. Yabancı, insan faaliyeti nedeniyle geldiği anlamına gelirken, yerli insan yardımı olmadan geldiği anlamına gelir. Yöreye özgü türler yalnızca belirli bir yerde görülür ve başka hiçbir yerde görülmez.
+          "Yerleşim tipleri" bir türün şu anda bulunduğu yere nasıl geldiğini açıklar. Egzotik, insan faaliyeti nedeniyle geldiği anlamına gelirken, yerel ise insan yardımı olmadan geldiği anlamına gelir. Endemik türler yalnızca belirli bir yerde görülür ve başka hiçbir yerde görülmez.
         about_taxon_curators_desc: |
           Bu kişiler taksonomi ağacının bu taksonu içeren kısmını yönetmektedir. Değişiklik yapmak istiyorsan, lütfen bu taksonu işaretle veya bu kişilerden biriyle iletişime geç.
         charts_caps: GRAFİKLER
