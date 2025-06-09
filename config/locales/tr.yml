@@ -4314,7 +4314,7 @@ tr:
   #Genus Noctua (but generally not Species Noctua pronuba)
   rank_sciname: "%{rank} %{name}"
   ranks:
-    stateofmatter: İçeriğin durumu
+    stateofmatter: Kök takson
     kingdom: Alem
     x_kingdoms:
       one: Alem
@@ -4339,9 +4339,9 @@ tr:
       other: Takım
     suborder: Alt Takım
     infraorder: İnfra Takım
-    subterclass: Enaltsınıf
+    subterclass: Subterclass
     parvorder: Geçiş Takımı
-    zoosection: Zoobölüm
+    zoosection: Zoo seksiyon
     zoosubsection: Zooaltbölüm
     superfamily: Üst Familya
     epifamily: Epi Familya
@@ -4375,7 +4375,7 @@ tr:
     infrahybrid: İnfra Melez
     leaves: Birim Sınıf
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the state of matter X"
-  ranks_lowercase_stateofmatter: maddenin durumu
+  ranks_lowercase_stateofmatter: kök takson
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the kingdom X"
   ranks_lowercase_kingdom: alem
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subkingdom X"
@@ -4401,11 +4401,11 @@ tr:
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the infraorder X"
   ranks_lowercase_infraorder: infra takım
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the subterclass X"
-  ranks_lowercase_subterclass: enaltsınıf
+  ranks_lowercase_subterclass: subterclass
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the parvorder X"
   ranks_lowercase_parvorder: geçiş takımı
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosection X"
-  ranks_lowercase_zoosection: zoobölüm
+  ranks_lowercase_zoosection: zoo seksiyon
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the zoosubsection X"
   ranks_lowercase_zoosubsection: zooaltbölüm
   #Singular lowercase version of rank used in the middle of a sentence, e.g. "We're pretty sure it's in the superfamily X"
@@ -4580,7 +4580,7 @@ tr:
   review_all: Tümünü İncele
   review_identifications_of_taxon_html: |
     <span class="sciname">%{taxon}</span> %{taxon_id} taksonunun tanımlamalarını gözden geçir
-  reviewed: İncelenmiş
+  reviewed: İncelendi
   revoke: İptal Et
   revoke_caps: İPTAL ET
   #Application is a third-party app or service the user has authorized to
